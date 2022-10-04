@@ -1,0 +1,63 @@
+/* stylelint-disable docusaurus/copyright-header */
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+@font-face {
+  font-family: Circular;
+  src: url(/static/CircularXXSub-Medium.woff2) format('woff2');
+}
+
+:root {
+  --ifm-color-primary: #6900FF;
+  --ifm-color-primary-dark: #4300C4;
+  --ifm-color-primary-darker: #1E007C;
+  --ifm-color-primary-darkest: #110033;
+  --ifm-color-primary-light: #976CFF;
+  --ifm-color-primary-lighter: #C2AEFF;
+  --ifm-color-primary-lightest: #C2AEFF;
+  --ifm-code-font-size: 95%;
+  font-family: Circular;
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #F9CAEA;
+  --ifm-color-primary-dark: #BF0050;
+  --ifm-color-primary-darker: #870050;
+  --ifm-color-primary-darkest: #3A0025;
+  --ifm-color-primary-light: #F495D3;
+  --ifm-color-primary-lighter: #F9CAEA;
+  --ifm-color-primary-lightest: #F9CAEA;
+  --ifm-code-font-size: 95%;
+  --ifm-color-content-inverse: #FFFFFF;
+}
+
+.button {
+  --ifm-button-background-color: #C9FF06;
+}
+
+.button:hover {
+  --ifm-button-background-color: #EFFCBB;
+}
+
+[data-theme='dark'] .button {
+  --ifm-button-background-color: #00895F;
+}
+
+[data-theme='dark'] .button:hover {
+  --ifm-button-background-color: #22FFCA;
+}
+
+[data-theme='dark'] .hero {
+  --ifm-hero-background-color: #EF0078;
+}
+
+.docusaurus-highlight-code-line {
+  background-color: rgb(72, 77, 91);
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+}
