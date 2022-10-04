@@ -143,10 +143,10 @@ module.exports = {
         {
             // options here
             name: "github-getting-started-samples", // used by CLI, must be path safe
-            sourceBaseUrl: "https://raw.githubusercontent.com/vectara/getting-started/main/", // the base url for the markdown (gets prepended to all of the documents when fetching)
+            sourceBaseUrl: "https://raw.githubusercontent.com/vectara/getting-started/main/language-examples", // the base url for the markdown (gets prepended to all of the documents when fetching)
             //sourceBaseUrl: "http://127.0.0.1:8000/", // the base url for the markdown (gets prepended to all of the documents when fetching)
             outDir: "docs/getting-started-samples", // the base directory to output to.
-            noRuntimeDownloads: true,
+            noRuntimeDownloads: false,
             documents: [
               // getting started "standalone" examples
               "java/rest/src/main/java/com/vectara/examples/rest/RestApiKeyQueries.java",
