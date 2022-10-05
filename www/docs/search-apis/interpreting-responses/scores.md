@@ -78,8 +78,8 @@ takes the language and context into account by default.
 ## Standard Results Response
 By default, results from <Config v="names.product"/> will be scored on a scale
 from -1 to 1, with 1 being a perfect match and -1 having absolutely nothing to
-do with the query.  In practice, the vast majority will be scored between 0 and
-1.
+do with the query.  In practice, the vast majority will be scored between 0
+and 1.
 
 As with most search systems, there is no hard rule around when to cut off
 results as no longer very relevant.  However, as a general rule, scores less
