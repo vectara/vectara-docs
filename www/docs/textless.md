@@ -36,7 +36,7 @@ find the document.
 
 In general, this feature is optimal for use cases where the cost of any
 information leakage is very high.  Note that <Config v="names.product"/> does
-[encrypt documents](/docs/data_encryption)
+[encrypt documents](/docs/encryption)
 
 ## Limitations
 Currently, the [reranking](/docs/search-apis/reranking) capability relies on
