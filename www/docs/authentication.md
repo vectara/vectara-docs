@@ -1,7 +1,7 @@
 ---
 id: authentication
 title: OAuth 2.0
-sidebar_label: OAuth 2.0
+sidebar_label: Overview
 ---
 
 import Tabs from '@theme/Tabs';

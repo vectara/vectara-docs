@@ -43,8 +43,20 @@ module.exports = {
               type: 'category',
               label: 'Authentication',
               items: [
-                'authentication',
-                'api-keys'
+                {
+                  type: 'category',
+                  label: 'OAuth 2.0',
+                  items: [
+                    'authentication'
+                  ]
+                },
+                {
+                  type: 'category',
+                  label: 'API Keys',
+                  items: [
+                    'api-keys'
+                  ]
+                }
               ]
             }
           ],
@@ -201,6 +213,7 @@ module.exports = {
           ],
         },
         'custom-dimensions',
+        'textless',
       ],
     },
     {
