@@ -27,7 +27,8 @@ module.exports = {
             'getting-started-samples/rest_api_key_queries.py',
             'getting-started-samples/app.js',
           ]
-        }
+        },
+        'encryption'
       ],
     },
     {
