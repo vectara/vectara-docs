@@ -175,23 +175,29 @@ module.exports = {
 
               // indexing
               "csharp/rest/RestIndexData.cs",
-              "/java/rest/src/main/java/com/vectara/examples/rest/RestIndex.java",
+              "java/rest/src/main/java/com/vectara/examples/rest/RestIndex.java",
               "nodejs/rest/index_document.js",
               "php/rest/indexDocument.php",
               "python/vectara-rest/rest_index_document.py",
 
               // file upload
-              "/java/rest/src/main/java/com/vectara/examples/rest/RestUploadFile.java",
+              "java/rest/src/main/java/com/vectara/examples/rest/RestUploadFile.java",
               "nodejs/rest/upload_file.js",
               "php/rest/uploadFile.php",
               "python/vectara-rest/rest_upload_file.py",
 
               // standard query
               "csharp/rest/RestQueryData.cs",
-              "/java/rest/src/main/java/com/vectara/examples/rest/RestQuery.java",
+              "java/rest/src/main/java/com/vectara/examples/rest/RestQuery.java",
               "python/vectara-rest/rest_query.py",
               "php/rest/queryData.php",
               "nodejs/rest/query.js",
+
+              // oauth & jwt tokens
+              "csharp/common/JWTFetcher.cs",
+              "java/auth/src/main/java/com/vectara/auth/JwtFetcher.java",
+              "php/rest/getJwtToken.php",
+              "python/vectara-rest/rest_util.py",
             ],
             modifyContent(filename, content) {
                       return {

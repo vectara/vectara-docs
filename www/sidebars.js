@@ -47,7 +47,17 @@ module.exports = {
                   type: 'category',
                   label: 'OAuth 2.0',
                   items: [
-                    'authentication'
+                    'authentication',
+                    {
+                      type: 'category',
+                      label: 'Client Credentials Grant Examples',
+                      items: [
+                        'getting-started-samples/JWTFetcher.cs',
+                        'getting-started-samples/JwtFetcher.java',
+                        'getting-started-samples/getJwtToken.php',
+                        'getting-started-samples/rest_util.py'
+                      ]
+                    }
                   ]
                 },
                 {
