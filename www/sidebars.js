@@ -64,7 +64,18 @@ module.exports = {
                   type: 'category',
                   label: 'API Keys',
                   items: [
-                    'api-keys'
+                    'api-keys',
+                    {
+                      type: 'category',
+                      label: 'REST Examples',
+                      items: [
+                        'getting-started-samples/RestApiKeyQueries.cs',
+                        'getting-started-samples/RestApiKeyQueries.java',
+                        'getting-started-samples/queryDataApiKey.php',
+                        'getting-started-samples/rest_api_key_queries.py',
+                        'getting-started-samples/app.js',
+                      ]
+                    }
                   ]
                 }
               ]
