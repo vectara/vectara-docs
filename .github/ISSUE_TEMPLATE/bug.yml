@@ -1,0 +1,17 @@
+name: 🐞 Documentation Bug
+description: Something in the docs are incorrect.
+labels: ["bug"]
+body:
+- type: input
+  attributes:
+    label: Pages
+    description: What page(s) you see incorrect documentation on.
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Description
+    description: Description of the problem(s)
+  validations:
+    required: true
+    
