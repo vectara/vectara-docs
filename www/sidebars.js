@@ -169,6 +169,7 @@ module.exports = {
                 type: 'category',
                 label: 'Interpreting Responses',
                 items: [
+                  'search-apis/interpreting-responses/metadata',
                   'search-apis/interpreting-responses/intepreting-scores',
                   'search-apis/interpreting-responses/highlighting',
                 ],
