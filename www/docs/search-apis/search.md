@@ -13,12 +13,6 @@ Once you've indexed data into one or more corpora, you're ready to run queries
 and display the results. This page provides a detailed reference guide for how
 to do that.
 
-:::important
-
-These instructions require a customer account on <Config v="names.product"/>.
-
-:::
-
 ## Full Definition
 
 The full definition of the gRPC interface is covered below.

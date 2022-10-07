@@ -14,12 +14,6 @@ you're ready to integrate the platform more deeply into your application, the
 Admin APIs allow you to programatically manipulate corpora and perform many
 other operations within the system.
 
-:::important
-
-These instructions require a customer account on <Config v="names.product"/>.
-
-:::
-
 ## Full Definition
 
 ### Service
@@ -31,8 +25,11 @@ deleting its definition, while Delete expunges both the data in the corpus and
 its definition.
 
 The REST APIs are programatically derived from these definitions: see
-[gRPC with REST and Open APIs](https://grpc.io/blog/coreos/) or
-[REST APIs](/docs/rest) for more information.
+[REST APIs](/docs/rest) for more information on endpoints or expand the
+specific API in the navigation sidebar to find REST examples in various
+programming languages.  For more information on the programmatic conversion,
+see [gRPC with REST and Open APIs](https://grpc.io/blog/coreos/).
+
 
 <pre>{`protobuf
 service AdminService {
@@ -61,4 +58,3 @@ service AdminService {
   }
 }
 `}</pre>
-

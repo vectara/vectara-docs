@@ -13,12 +13,6 @@ The first step in using <Config v="names.product"/> is to index a set of related
 or content into a corpus. This reference page provides a detailed guide for how
 to do that.
 
-:::important
-
-These instructions require a customer account on <Config v="names.product"/>.
-
-:::
-
 ## Full Definition
 
 The full definition of the gRPC interface is covered below.
