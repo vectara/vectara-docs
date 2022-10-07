@@ -1,5 +1,5 @@
 name: 💡 New documentation request
-description: .
+description: Something is missing in the documentation
 labels: ["new-docs-idea"]
 body:
 - type: textarea
