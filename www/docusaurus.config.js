@@ -75,7 +75,7 @@ module.exports = {
             },
             {
               label: 'Terms',
-              href: 'https://www.vectara.com/terms-and-conditions/',
+              href: 'https://vectara.com/legal/terms-of-service/',
             },
             {
               label: 'FAQs',
