@@ -1,0 +1,10 @@
+name: 💡 New documentation request
+description: Something is missing in the documentation
+labels: ["new-docs-idea"]
+body:
+- type: textarea
+  attributes:
+    label: Idea
+    description: What documentation you really wish existed that you can't find.
+  validations:
+    required: true
