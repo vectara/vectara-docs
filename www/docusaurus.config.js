@@ -137,6 +137,14 @@ module.exports = {
       },
     ],
   ],
+  scripts: [
+    {
+      src: '/analytics.js',
+      async: true,
+    },
+  ],
+
+
   plugins: [
     [
         "docusaurus-plugin-remote-content",
