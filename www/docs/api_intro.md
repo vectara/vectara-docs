@@ -13,7 +13,7 @@ services. You can download the proto files directly below.
 | :--- | :--- |
 | [services.proto](https://github.com/vectara/protos/blob/main/services.proto) | Defines the core services within the platform. |
 | [serving.proto](https://github.com/vectara/protos/blob/main/serving.proto) | Message definitions for running queries. |
-| [custom-dim.proto](https://github.com/vectara/protos/blob/main/custom-dim.proto) | Message definitions for custom dimensions. |
+| [custom_dim.proto](https://github.com/vectara/protos/blob/main/custom_dim.proto) | Message definitions for custom dimensions. |
 | [indexing.proto](https://github.com/vectara/protos/blob/main/indexing.proto) | Message definitions for indexing content. |
 | [admin.proto](https://github.com/vectara/protos/blob/main/admin.proto) | Message definitions for performing administrative tasks. |
 | [status.proto](https://github.com/vectara/protos/blob/main/status.proto) | Status return codes. |
