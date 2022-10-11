@@ -15,4 +15,4 @@ Not sure where to start?  Here are some ideas:
 [search](/docs/getting-started-samples/rest_query.py) documents
 - Grab the [full protobuf definitions](/docs/protobuf-definitions) and start building using gRPC
 - Learn more about <Config v="names.product"/>'s [access controls](/docs/console-ui/configure-server-access-to-corpus)
-- Visit our [forums](discuss.vectara.com/) to ask any questions or provide any suggestions
+- Visit our [forums](https://discuss.vectara.com/) to ask any questions or provide any suggestions
