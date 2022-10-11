@@ -11,10 +11,10 @@ module.exports = {
       additionalLanguages: ['java', 'php', 'csharp'],
     },
     navbar: {
-      title: 'Vectara',
+      title: '',
       logo: {
         alt: 'Vectara Logo',
-        src: 'img/vectara_logo.svg',
+        src: 'img/vectara_wordmark.png',
       },
       items: [
         {
