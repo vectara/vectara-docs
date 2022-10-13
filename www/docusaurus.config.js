@@ -50,15 +50,15 @@ module.exports = {
           items: [
             {
               label: 'About',
-              to: 'https://www.vectara.com/about/',
+              to: 'https://vectara.com/about-vectara-neural-search/',
             },
             {
               label: 'Careers and Culture',
-              to: 'https://www.vectara.com/careers/',
+              to: 'https://vectara.com/careers/',
             },
             {
               label: 'Contact Us',
-              to: 'https://www.vectara.com/contact-us/',
+              to: 'https://vectara.com/contact-us/',
             },
           ],
         },
@@ -67,11 +67,11 @@ module.exports = {
           items: [
             {
               label: 'Trust and Security',
-              href: 'https://www.vectara.com/security-at-vectara/',
+              href: 'https://vectara.com/legal/security-at-vectara/',
             },
             {
               label: 'Privacy Policy',
-              href: 'https://www.vectara.com/privacy-policy/',
+              href: 'https://vectara.com/legal/privacy-policy/',
             },
             {
               label: 'Terms',
@@ -79,7 +79,7 @@ module.exports = {
             },
             {
               label: 'FAQs',
-              href: 'https://www.vectara.com/faqs/',
+              href: 'https://vectara.com/faqs/',
             },
           ],
         },
@@ -96,7 +96,7 @@ module.exports = {
             },
             {
               label: 'Twitter',
-              href: 'https://twitter.com/vectarahq',
+              href: 'https://twitter.com/vectara',
             },
             {
               label: 'Youtube',
