@@ -3,7 +3,7 @@
 const opts = {
   apiKey: '2Dotj5QS43qYsyjDaWfccNkjAVB',
   apiUrl: 'https://vectara.dataplane.rudderstack.com',
-  application: 'WEBSITE'
+  application: 'DOCS'
 };
 /******* CONFIG END *******/
 
