@@ -132,7 +132,11 @@ module.exports = {
             'https://github.com/vectara/vectara-docs/tree/master/www',
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: [
+            require.resolve('./src/css/custom.css'),
+            require.resolve('./node_modules/@blueprintjs/core/lib/css/blueprint.css'),
+            require.resolve('./node_modules/@blueprintjs/icons/lib/css/blueprint-icons.css'),
+          ]
         },
       },
     ],
@@ -220,13 +224,13 @@ sidebar_label: ${String(filename.split('\.').slice(-1)).replace('py','Python')
 
 ${((filename.toLowerCase().includes('api') && filename.toLowerCase().includes('key'))
     || filename === 'nodejs/rest/app.js') &&
-  'This is a complete example of using the platform via REST.  For more sample ' + 
+  'This is a complete example of using the platform via REST.  For more sample ' +
   'code, including any dependencies this file has, please have a look at our ' +
   'GitHub examples repository.  This file can be found in that repo at ' +
   '<a href="https://github.com/vectara/getting-started/tree/main/language-examples/' +
   filename + '">' + filename + '</a>'
   ||
-  'This is an example of using the platform via REST.  For more sample ' + 
+  'This is an example of using the platform via REST.  For more sample ' +
   'code, including any dependencies this file has, please have a look at our ' +
   'GitHub examples repository.  This file can be found in that repo at ' +
   '<a href="https://github.com/vectara/getting-started/tree/main/language-examples/' +
