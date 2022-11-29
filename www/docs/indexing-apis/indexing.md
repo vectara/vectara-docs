@@ -46,13 +46,13 @@ A request to add data into a corpus consists of three key pieces of information:
 the customer ID, the corpus ID, and the data itself, represented as a
 **Document** message.
 
-<pre>{`
+```protobuf
 message IndexDocumentRequest {
   int64 customer_id = 1;
   int64 corpus_id = 2;
-  ${vars['package.protobuf']}.indexing.Document document = 3;
+  Document document = 3;
 }
-`}</pre>
+```
 
 The reply from the server consists of nothing yet. Note that the reply does not
 block. In other words, the information in the request is not yet available in
