@@ -17,6 +17,9 @@ to do that.
 
 The full definition of the gRPC interface is covered below.
 
+### Index Endpoint
+The indexing endpoint is `indexing.vectara.io`.
+
 ### Service
 
 The indexing service operates in two modes: _incremental_ and _batch_. In
