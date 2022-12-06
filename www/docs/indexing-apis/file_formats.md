@@ -1,6 +1,6 @@
 ---
 id: format-for-upload
-title: Format Documents for Indexing
+title: Format JSON and Pbtext Files
 ---
 
 When uploading files using the [File Upload Service](/docs/indexing-apis/file-upload), you may
