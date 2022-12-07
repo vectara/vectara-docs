@@ -28,7 +28,7 @@ types are supported:
 
 ## Semi-structured
 
-In addition, the [upload endpoint](docs/indexing-apis/file-upload) supports
+In addition, the [upload endpoint](/docs/indexing-apis/file-upload) supports
 sending semi-structured documents through this endpoint that reflect a
 `Document` proto message.  Those can be sent in the following formats:
 
