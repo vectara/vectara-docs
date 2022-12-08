@@ -10,7 +10,7 @@ import {vars} from '@site/static/variables.json';
 
 <Config v="names.product"/> exposes an HTTP endpoint at the following URL
 to upload and index documents into a corpus:
-<code>https://<Config v="domains.rest.indexing"/>/upload</code>
+<code>https://<Config v="domains.rest.indexing"/>/v1/upload</code>
 This page describes the details
 of interacting with this endpoint.
 
@@ -42,35 +42,6 @@ If you need to provide additional metadata, it's recommended to pre-parse
 any raw documents and provide the metadata using the standard indexing API
 
 :::
-
-## Supported Formats
-
-The upload endpoint supports the following file formats that should contain the
-`Document` proto message.
-
--  `pb`: Contains binary serialized `Document` proto message.
-
-- `pbtxt`: Contains `Document` proto message in proto text format.
-
-- `json`: Contains `Document` proto message in json text format.
-
-The upload endpoint also supports several raw document types. The uploader
-extracts text from these documents and creates `Document` proto message
-on behalf of the caller. This provides a convenient way to index text, yet
-the caller has lesser control compared to when providing the `Document`
-proto message themselves. The following raw document types are supported.
-
-- CommonMark (`md` extension).
-- PDF/A (`pdf`).
-- Open Office (`odt`).
-- Microsoft Word (`doc`, `docx`).
-- Microsoft Powerpoint (`ppt`, `pptx`).
-- Text files (`txt`).
-- HTML files.
-- LXML files.
-- RTF files.
-- ePUB files.
-- Email files conforming to RFC 822.
 
 ## Response Codes
 
@@ -105,6 +76,6 @@ corpus `151` in customer `123456` using `curl`.
 <pre>
 {`$ jwt=eyJraWQ...
 $ curl -H "Authorization: Bearer $jwt" -F file=@/tmp/instructions.pdf \\
-    https://${vars['domains.rest.indexing']}:443/upload?c=123456\&o=151
+    https://${vars['domains.rest.indexing']}:443/v1/upload?c=123456\&o=151
 `}
 </pre>
