@@ -1,6 +1,6 @@
 ---
 id: file-upload-filetypes
-title: Supported Filetypes
+title: Supported File Types
 ---
 
 import {Config} from '../definitions.md';
