@@ -1,0 +1,25 @@
+name: IndexDocs
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Index changed-files
+    steps:
+      - uses: vectara/vectara-index-git-docs@v0.1.9
+        with:
+          vectaraAccountNumber: ${{ secrets.VECTARA_ACCOUNT_NUMBER }}
+          vectaraCorpusID: ${{ secrets.VECTARA_CORPUS_NUMBER }}
+          vectaraAuthEndpoint: ${{ secrets.VECTARA_AUTH_ENDPOINT }}
+          vectaraClientID: ${{ secrets.VECTARA_CLIENT_ID }}
+          vectaraClientSecret: ${{ secrets.VECTARA_CLIENT_SECRET }}
+          filesPattern: |
+            www/docs/**
+          incrementalIndexing: 'false'
