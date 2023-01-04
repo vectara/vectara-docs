@@ -4,7 +4,7 @@ title: Reset Corpus
 sidebar_label: API Definition
 ---
 
-import {Config} from './definitions.md';
+import {Config} from '../definitions.md';
 import {vars} from '@site/static/variables.json';
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
