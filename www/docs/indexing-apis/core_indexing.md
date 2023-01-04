@@ -13,13 +13,6 @@ The low-level indexing API provides low-level access to the semantic indexing
 capabilities of the platform. It is reserved for advanced use cases and
 normal users should use the [Default API](indexing).
 
-## Endpoint Address
-
-<Config v="names.product"/> exposes a REST endpoint at the following URL
-to index content into a corpus:
-<code>https://<Config v="domains.rest.indexing"/>/v1/index</code>
-This page describes the details of interacting with this endpoint.
-
 ## Full Definition
 
 The full definition of the gRPC interface is covered below.
