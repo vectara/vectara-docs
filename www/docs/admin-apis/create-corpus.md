@@ -4,6 +4,9 @@ title: Create Corpus
 sidebar_label: API Definition
 ---
 
+import {Config} from './definitions.md';
+import {vars} from '@site/static/variables.json';
+
 ## Endpoint Address
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
