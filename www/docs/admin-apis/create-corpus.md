@@ -4,6 +4,13 @@ title: Create Corpus
 sidebar_label: API Definition
 ---
 
+## Endpoint Address
+
+<Config v="names.product"/> exposes a REST endpoint at the following URL
+to index content into a corpus:
+<code>https://<Config v="domains.rest.admin"/>/v1/create-corpus</code>
+This page describes the details of interacting with this endpoint.
+
 Only the `name` and `description` fields are mandatory when creating a corpus.
 The response message returns a unique id, `corpus_id`, by which the corpus can
 be subsequently referenced. Note that the name needn't be unique within an
