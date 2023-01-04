@@ -7,6 +7,7 @@ sidebar_label: API Definition
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {Config} from '../definitions.md';
+import {vars} from '@site/static/variables.json';
 
 The low-level indexing API provides low-level access to the semantic indexing
 capabilities of the platform. It is reserved for advanced use cases and
