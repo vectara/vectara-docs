@@ -117,6 +117,7 @@ module.exports = {
                 items: [
                   'indexing-apis/file-upload',
                   'indexing-apis/format-for-upload',
+                  'indexing-apis/file-upload-filetypes',
                   {
                     type: 'category',
                     label: 'REST Examples',

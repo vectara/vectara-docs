@@ -13,6 +13,13 @@ The first step in using <Config v="names.product"/> is to index a set of related
 or content into a corpus. This reference page provides a detailed guide for how
 to do that.
 
+## Endpoint Address
+
+<Config v="names.product"/> exposes a REST endpoint at the following URL
+to index content into a corpus:
+<code>https://<Config v="domains.rest.indexing"/>/v1/index</code>
+This page describes the details of interacting with this endpoint.
+
 ## Full Definition
 
 The full definition of the gRPC interface is covered below.
