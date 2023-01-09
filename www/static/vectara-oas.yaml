@@ -1,7 +1,11 @@
 openapi: 3.0.0
 info:
-  title: services.proto
-  version: version not set
+  title: Vectara REST API
+  version: 1.0.0
+  termsOfService: https://vectara.com/legal/online-customer-agreement/
+  x-logo:
+    url: https://docs.vectara.com/img/vectara_wordmark.png
+    altText: Vectara
 paths:
   /v1/create-corpus:
     post:
@@ -135,7 +139,6 @@ paths:
         - $ref: '#/components/parameters/customerIdentifier'
   /v1/query:
     post:
-      summary: A standard single-request, single-response endpoint designed for high performance.
       operationId: QueryService_Query
       responses:
         "200":
@@ -184,7 +187,6 @@ paths:
         - $ref: '#/components/parameters/customerIdentifier'
   /v1/stream-query:
     post:
-      summary: A streamed response interface when lower latency is absolutely critical.
       operationId: QueryService_StreamQuery
       responses:
         "200":
@@ -228,6 +230,7 @@ paths:
                 properties:
                   httpCode:
                     type: integer
+                    description: Returned HTTP code
         "401":
           description: The request was not authenticated
         "403":
@@ -554,8 +557,20 @@ components:
 
 
 
+
+
+
+
+
+
               value in binary format, or produce an error.
             * Applications are allowed to cache lookup results based on the
+
+
+
+
+
+
 
 
 
@@ -656,6 +671,12 @@ components:
 
 
 
+
+
+
+
+
+
             Foo foo = ...;
             Any any;
             any.PackFrom(foo);
@@ -665,6 +686,12 @@ components:
             }
 
         Example 2: Pack and unpack a message in Java.
+
+
+
+
+
+
 
 
 
@@ -743,6 +770,12 @@ components:
 
 
 
+
+
+
+
+
+
             foo = Foo(...)
             any = Any()
             any.Pack(foo)
@@ -752,6 +785,12 @@ components:
               ...
 
         Example 4: Pack and unpack a message in Go
+
+
+
+
+
+
 
 
 
@@ -853,6 +892,12 @@ components:
 
 
 
+
+
+
+
+
+
             package google.profile;
             message Person {
               string first_name = 1;
@@ -872,6 +917,12 @@ components:
         `value` which holds the custom JSON in addition to the `@type`
 
         field. Example (for message [google.protobuf.Duration][]):
+
+
+
+
+
+
 
 
 
@@ -1056,7 +1107,6 @@ components:
           format: int64
         document:
           $ref: "#/components/schemas/vectaraindexingDocument"
-      description: Request to index a document.
     vectaraIndexDocumentResponse:
       type: object
       properties:
