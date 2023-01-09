@@ -12,7 +12,7 @@
 
   function loadLib() {
     const scripts = document.getElementsByTagName("script");
-    const cdnLink = "https://rdcdn.vectara.com/v1.1/rudder-analytics.min.js";
+    const cdnLink = "https://console.vectara.com/rd.js";
     for (let i = 0; i < scripts.length; i++) {
       if (scripts[i].src === cdnLink) {
         return;
