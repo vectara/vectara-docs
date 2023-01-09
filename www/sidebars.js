@@ -265,4 +265,17 @@ module.exports = {
       ],
     },
   ],
+  restOAS: [
+	  {
+		  type: "category",
+		  label: "OpenAPI REST Playground",
+		  link: {
+			  type: "generated-index",
+			  title: "Vectara API",
+			  description: "Play around with Vectara's REST APIs",
+			  slug: "/rest-api",
+		  },
+		  items: require("./docs/rest-api/sidebar.js"),
+	  }
+  ],
 };

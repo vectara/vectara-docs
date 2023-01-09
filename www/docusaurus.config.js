@@ -22,6 +22,12 @@ module.exports = {
           activeBasePath: 'docs',
           label: 'Docs',
           position: 'left',
+        },
+        {
+          to: 'docs/rest-api/',
+          activeBasePath: 'docs/rest-api',
+          label: 'REST Playground',
+          position: 'left',
         }
       ],
     },
@@ -123,13 +129,15 @@ module.exports = {
   },
   presets: [
     [
-      '@docusaurus/preset-classic',
+      'classic',
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           editUrl:
             'https://github.com/vectara/vectara-docs/tree/master/www',
+          docItemComponent: "@theme/ApiItem",
+          docLayoutComponent: "@theme/DocPage",
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -143,7 +151,6 @@ module.exports = {
       async: true,
     },
   ],
-
 
   plugins: [
     [
@@ -240,5 +247,23 @@ ${content}
             },
         },
     ],
+    [
+      'docusaurus-plugin-openapi-docs',
+      {
+        id: "openapi",
+        docsPluginId: "classic",
+        config: {
+          vectara: {
+            specPath: "static/vectara-oas.yaml", // Path to designated spec file
+            outputDir: "docs/rest-api", // Output directory for generated .mdx docs
+            sidebarOptions: {
+              groupPathsBy: "tag",
+              categoryLinkSource: "tag",
+            },
+          },
+        },
+      },
+    ],
   ],
+  themes: ["docusaurus-theme-openapi-docs"],
 };
