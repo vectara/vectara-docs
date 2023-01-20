@@ -26,7 +26,7 @@ module.exports = {
         {
           to: 'docs/rest-api/',
           activeBasePath: 'docs/rest-api',
-          label: 'REST Playground',
+          label: 'API Playground',
           position: 'left',
         }
       ],
@@ -256,10 +256,14 @@ ${content}
           vectara: {
             specPath: "static/vectara-oas.yaml", // Path to designated spec file
             outputDir: "docs/rest-api", // Output directory for generated .mdx docs
+            downloadUrl: "https://docs.vectara.com/vectara-oas.yaml",
             sidebarOptions: {
               groupPathsBy: "tag",
               categoryLinkSource: "tag",
             },
+            baseUrl: "docs/rest-api/vectara-oas",
+            version: "1.0.0",
+            label: "v1.0.0"
           },
         },
       },

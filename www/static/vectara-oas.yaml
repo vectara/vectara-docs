@@ -6,6 +6,16 @@ info:
   x-logo:
     url: https://docs.vectara.com/img/vectara_wordmark.png
     altText: Vectara
+  description2: |+
+    Foobar
+
+    ## Introduction
+    blip blop
+
+    ## Authentication
+
+    nice auth
+
 paths:
   /v1/create-corpus:
     post:
@@ -563,8 +573,10 @@ components:
 
 
 
+
               value in binary format, or produce an error.
             * Applications are allowed to cache lookup results based on the
+
 
 
 
@@ -677,6 +689,7 @@ components:
 
 
 
+
             Foo foo = ...;
             Any any;
             any.PackFrom(foo);
@@ -686,6 +699,7 @@ components:
             }
 
         Example 2: Pack and unpack a message in Java.
+
 
 
 
@@ -776,6 +790,7 @@ components:
 
 
 
+
             foo = Foo(...)
             any = Any()
             any.Pack(foo)
@@ -785,6 +800,7 @@ components:
               ...
 
         Example 4: Pack and unpack a message in Go
+
 
 
 
@@ -898,6 +914,7 @@ components:
 
 
 
+
             package google.profile;
             message Person {
               string first_name = 1;
@@ -917,6 +934,7 @@ components:
         `value` which holds the custom JSON in addition to the `@type`
 
         field. Example (for message [google.protobuf.Duration][]):
+
 
 
 

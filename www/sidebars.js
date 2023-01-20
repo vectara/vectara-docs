@@ -268,7 +268,7 @@ module.exports = {
   restOAS: [
 	  {
 		  type: "category",
-		  label: "OpenAPI REST Playground",
+		  label: "API Playground",
 		  link: {
 			  type: "generated-index",
 			  title: "Vectara API",
