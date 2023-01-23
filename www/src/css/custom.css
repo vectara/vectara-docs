@@ -49,12 +49,16 @@
  background-color: white !important; 
 }
 
-.details__demo-panel .token-line .string,.property{
+.details__demo-panel .token-line .property{
  color: black !important;
 }
 
 .details__demo-panel .token.property{
  color: hsl(0 0% 30% / 1) !important;
+}
+
+.details__demo-panel .token.string{
+ color: black !important;
 }
 
 .details__demo-panel [contenteditable]:focus {
