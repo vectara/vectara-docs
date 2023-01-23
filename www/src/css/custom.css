@@ -57,6 +57,11 @@
  border: 2px solid var(--ifm-color-primary);
 }
 
+.optionsPanel_node_modules-docusaurus-theme-openapi-docs-lib-next-theme-ApiDemoPanel-Request-styles-module::before {
+ content: "Fill out the below parameters to test an API request";
+ color: var(--ifm-color-primary);
+}
+
 .post > .menu__link::before {
   content: "[POST]";
   color: var(--openapi-code-green);
