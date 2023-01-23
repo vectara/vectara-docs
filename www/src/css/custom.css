@@ -53,6 +53,10 @@
  color: black !important;
 }
 
+.details__demo-panel [contenteditable]:focus {
+ border: 2px solid var(--ifm-color-primary);
+}
+
 .post > .menu__link::before {
   content: "[POST]";
   color: var(--openapi-code-green);
