@@ -53,12 +53,16 @@
  color: black !important;
 }
 
+.details__demo-panel .token.property{
+ color: hsl(0 0% 30% / 1) !important;
+}
+
 .details__demo-panel [contenteditable]:focus {
  border: 2px solid var(--ifm-color-primary);
 }
 
 .optionsPanel_node_modules-docusaurus-theme-openapi-docs-lib-next-theme-ApiDemoPanel-Request-styles-module::before {
- content: "Fill out the below parameters to test an API request";
+ content: "Fill out the parameters below to test an API request";
  color: var(--ifm-color-primary);
 }
 
