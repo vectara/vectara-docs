@@ -6,20 +6,10 @@ info:
   x-logo:
     url: https://docs.vectara.com/img/vectara_wordmark.png
     altText: Vectara
-  description2: |+
-    Foobar
-
-    ## Introduction
-    blip blop
-
-    ## Authentication
-
-    nice auth
-
 paths:
   /v1/create-corpus:
     post:
-      operationId: AdminService_CreateCorpus
+      operationId: CreateCorpus
       responses:
         "200":
           description: A successful response.
@@ -45,7 +35,7 @@ paths:
         - $ref: '#/components/parameters/customerIdentifier'
   /v1/delete-corpus:
     post:
-      operationId: AdminService_DeleteCorpus
+      operationId: DeleteCorpus
       responses:
         "200":
           description: A successful response.
@@ -71,7 +61,7 @@ paths:
         - $ref: '#/components/parameters/customerIdentifier'
   /v1/delete-doc:
     post:
-      operationId: IndexService_Delete
+      operationId: Delete
       responses:
         "200":
           description: A successful response.
@@ -97,7 +87,7 @@ paths:
         - $ref: '#/components/parameters/customerIdentifier'
   /v1/index:
     post:
-      operationId: IndexService_Index
+      operationId: Index
       responses:
         "200":
           description: A successful response.
@@ -123,7 +113,7 @@ paths:
         - $ref: '#/components/parameters/customerIdentifier'
   /v1/list-corpora:
     post:
-      operationId: AdminService_ListCorpora
+      operationId: ListCorpora
       responses:
         "200":
           description: A successful response.
@@ -149,7 +139,7 @@ paths:
         - $ref: '#/components/parameters/customerIdentifier'
   /v1/query:
     post:
-      operationId: QueryService_Query
+      operationId: Query
       responses:
         "200":
           description: A successful response.
@@ -171,7 +161,7 @@ paths:
         - $ref: '#/components/parameters/customerIdentifier'
   /v1/reset-corpus:
     post:
-      operationId: AdminService_ResetCorpus
+      operationId: ResetCorpus
       responses:
         "200":
           description: A successful response.
@@ -197,7 +187,7 @@ paths:
         - $ref: '#/components/parameters/customerIdentifier'
   /v1/stream-query:
     post:
-      operationId: QueryService_StreamQuery
+      operationId: StreamQuery
       responses:
         "200":
           description: A successful response.(streaming responses)
@@ -225,7 +215,7 @@ paths:
         - $ref: '#/components/parameters/customerIdentifier'
   /v1/upload:
     post:
-      operationId: IndexService_FileUpload
+      operationId: FileUpload
       tags:
         - IndexService
       responses:
@@ -573,10 +563,8 @@ components:
 
 
 
-
               value in binary format, or produce an error.
             * Applications are allowed to cache lookup results based on the
-
 
 
 
@@ -689,7 +677,6 @@ components:
 
 
 
-
             Foo foo = ...;
             Any any;
             any.PackFrom(foo);
@@ -699,7 +686,6 @@ components:
             }
 
         Example 2: Pack and unpack a message in Java.
-
 
 
 
@@ -790,7 +776,6 @@ components:
 
 
 
-
             foo = Foo(...)
             any = Any()
             any.Pack(foo)
@@ -800,7 +785,6 @@ components:
               ...
 
         Example 4: Pack and unpack a message in Go
-
 
 
 
@@ -914,7 +898,6 @@ components:
 
 
 
-
             package google.profile;
             message Person {
               string first_name = 1;
@@ -934,7 +917,6 @@ components:
         `value` which holds the custom JSON in addition to the `@type`
 
         field. Example (for message [google.protobuf.Duration][]):
-
 
 
 
