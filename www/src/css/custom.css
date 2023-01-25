@@ -11,6 +11,95 @@
   src: url(/static/CircularXXSub-Medium.woff2) format('woff2');
 }
 
+.api-method > .menu__link {
+  align-items: center;
+  justify-content: start;
+}
+
+.api-method > .menu__link::before {
+  width: 50px;
+  height: 20px;
+  font-size: 12px;
+  line-height: 20px;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: 0.25rem;
+  border: 1px solid;
+  margin-right: var(--ifm-spacing-horizontal);
+  text-align: center;
+  flex-shrink: 0;
+  border-color: transparent;
+  color: white;
+}
+
+
+/* the next couple CSS lines use !important overrides which isn't the right way,
+ * but I couldn't find the right classes/structures to edit correctly
+ */
+.optionsPanel_node_modules-docusaurus-theme-openapi-docs-lib-next-theme-ApiDemoPanel-Request-styles-module input,select {
+  background-color: white;
+  color: black !important;
+}
+
+.selectInput_node_modules-docusaurus-theme-openapi-docs-lib-next-theme-ApiDemoPanel-FormSelect-styles-module {
+ background: white !important;
+}
+
+.details__demo-panel [contenteditable] {
+ background-color: white !important; 
+}
+
+.details__demo-panel .token-line .property{
+ color: black !important;
+}
+
+.details__demo-panel .token.property{
+ color: hsl(0 0% 30% / 1) !important;
+}
+
+.details__demo-panel .token.string{
+ color: black !important;
+}
+
+.details__demo-panel [contenteditable]:focus {
+ border: 2px solid var(--ifm-color-primary);
+}
+
+.optionsPanel_node_modules-docusaurus-theme-openapi-docs-lib-next-theme-ApiDemoPanel-Request-styles-module::before {
+ content: "Fill out the parameters below to test an API request";
+ color: var(--ifm-color-primary);
+}
+
+.post > .menu__link::before {
+  content: "[POST]";
+  color: var(--openapi-code-green);
+}
+
+.get > .menu__link::before {
+  content: "[GET]";
+  color: var(--ifm-color-primary);
+}
+
+.delete > .menu__link::before {
+  content: "[DEL]";
+  color: var(--openapi-code-red);
+}
+
+.put > .menu__link::before {
+  content: "[PUT]";
+  color: var(--openapi-code-blue);
+}
+
+.patch > .menu__link::before {
+  content: "[PATCH]";
+  color: var(--openapi-code-orange);
+}
+
+.head > .menu__link::before {
+  content: "[HEAD]";
+  color: var(--ifm-color-secondary-darkest);
+}
+
 :root {
   --ifm-color-primary: #6900FF;
   --ifm-color-primary-dark: #4300C4;
