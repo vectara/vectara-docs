@@ -9,6 +9,12 @@ import TabItem from '@theme/TabItem';
 import {Config} from '../definitions.md';
 import {vars} from '@site/static/variables.json';
 
+## Endpoint Address
+
+<Config v="names.product"/> exposes a REST endpoint at the following URL
+to search content from a corpus:
+<code>https://<Config v="domains.rest.serving"/>/v1/query</code>
+
 Once you've indexed data into one or more corpora, you're ready to run queries
 and display the results. This page provides a detailed reference guide for how
 to do that.

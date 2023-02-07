@@ -1,7 +1,7 @@
 # Vectara Docs
 
-Welcome to the repo for the Vectara API Documentation!  This documentation uses
-the [Docusaurus](https://docusaurus.io/) framework and is hosted at
+Welcome to the repo for the Vectara API Documentation!  This documentation is
+built with [Docusaurus 2](https://docusaurus.io/) and is hosted at
 [docs.vectara.com](https://docs.vectara.com)
 
 ## Local Development and Contributions
@@ -29,6 +29,26 @@ things like link checking to ensure all of the links are valid.
 
 Once you've got the updates in a good shape, feel free to submit a pull
 request!
+
+### Advanced
+
+```
+$ yarn gen-api-docs
+```
+
+This will regenerate docs/rest-api from the static/vectara-oas.yaml file.
+Note that this only regenerates a subset of files, and files need to be manually
+deleted before they're regenerated. To regenerate all files, delete all existing
+files in that directory except for:
+* sidebar.js
+* vectara-rest-api.info.mdx
+
+```
+$ yarn serve
+```
+
+This serves the "build" directory at: [http://localhost:3000/](http://localhost:3000/).
+This is useful for mimicking the behavior of a production server.
 
 ## Deployment
 When code/new docs are merged to the `main` branch on GitHub, the entire repo

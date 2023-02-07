@@ -1,8 +1,8 @@
 {
     "vars": {
-        "domains.rest.serving": "h.serving.vectara.io",
-        "domains.rest.admin": "h.admin.vectara.io",
-        "domains.rest.indexing": "h.indexing.vectara.io",
+        "domains.rest.serving": "api.vectara.io",
+        "domains.rest.admin": "api.vectara.io",
+        "domains.rest.indexing": "api.vectara.io",
         "domains.grpc.serving": "serving.vectara.io",
         "domains.grpc.admin": "admin.vectara.io",
         "domains.grpc.indexing": "indexing.vectara.io",

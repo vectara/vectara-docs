@@ -9,6 +9,13 @@ import TabItem from '@theme/TabItem';
 import {Config} from '../definitions.md';
 import {vars} from '@site/static/variables.json';
 
+## Endpoint Address
+
+<Config v="names.product"/> exposes a REST endpoint at the following URL
+to delete content from a corpus:
+<code>https://<Config v="domains.rest.indexing"/>/v1/delete-doc</code>
+This page describes the details of interacting with this endpoint.
+
 A request to delete a document from a corpus consists of three key pieces of information:
 the customer ID, the corpus ID, and the document ID.
 
