@@ -26,6 +26,8 @@ Indexing and administrative actions cannot be performed through these keys.
 
 The remainder of this guide walks you through managing and using the API Keys.
 
+## Best Practices in Using API Keys
+
 ## Creating a Key
 
 If you have the necessary permissions you'll see the `API Keys` in the sidebar.
