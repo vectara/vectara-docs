@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkwww=self.webpackChunkwww||[]).push([[1560],{78111:e=>{e.exports=JSON.parse('{"title":"Vectara API","description":"Play around with Vectara\'s REST APIs","slug":"/rest-api","permalink":"/docs/rest-api","navigation":{"next":{"title":"Introduction","permalink":"/docs/rest-api/vectara-rest-api"}}}')}}]);

@@ -9,45 +9,53 @@ import TabItem from '@theme/TabItem';
 import {Config} from './definitions.md';
 import {vars} from '@site/static/variables.json';
 
-API Keys allow controlled, anonymous access to running semantic searches on your
-corpora. This greatly simplifies integration from public-facing systems such as
-websites, by allowing them to embed the API key and directly pass it
-to <Config v="names.product"/> when issuing requests. Should a key be compromised,
-it can be revoked in minutes, and a new key issued.
+API keys provide controlled unauthenticated access to your corpora in the <Config v="names.product"/> platform. Rapidly build prototypes by embedding API keys in clients such as web pages and mobile apps. 
+
+API keys can either support [querying](search-apis/search.md) or both querying and [indexing](indexing-apis/indexing.md) APIs access to your corpora based on your usage needs. [Administrative actions](admin-apis/admin.md) APIs are not currently available through an API key.  
+
+You can explore the <Config v="names.product"/> platform's APIs further as well through our [API Playground](rest-api/). 
 
 :::important
+
+Don't use API keys to provide public client access to corpora with sensitive data. Configure [OAuth API authentication](authentication.md) instead to securely provide access for such public usage.
 
 Account owners are responsible for charges incurred through anonymous access to
 your account with an API key.
 
 :::
 
-Indexing and administrative actions cannot be performed through these keys.
+## API Key Management
 
-The remainder of this guide walks you through managing and using the API Keys.
+The platform provides full management - including creation and deletion - of API keys so should a key ever become compromised, it can be revoked in minutes, and a new key issued. Existing API keys can also be disabled and re-enabled. 
 
-## Best Practices in Using API Keys
 
-## Creating a Key
+SHOW IMAGE
+<!--
+![API Keys](/img/api_key-empty.png)
+-->
 
-If you have the necessary permissions you'll see the `API Keys` in the sidebar.
-Click on it and you'll see the following page
+### Creating an API Key
 
-![API Keys](/img/api_key_create.png)
+1. Navigate to the API keys page. Click on **API Keys** menu item in the sidebar navigation. 
 
-Click the **Create Key** button to create a new key, the following dialog will
-display:
+2. Click on **Create Key** button and a dialog will display to create an API key.
 
-![New API Keys](/img/api_key_new.png)
+SHOW IMAGE
+![Create an API Key](/img/api_key_new.png)
 
-Enter the name of the key and select the corpora you want to be able to query
-using the it. Then, click **Create**.
+3. Enter a name for the API key to distinguish it from other keys.
+4. Select the API(s) to give the key access to. 
 
-![API Key corpus](/img/api_key_corpus_associate.png)
+Select QueryService -TODO
 
-You can now start using the key.
+Select QueryService & IndexService -TODO
 
-## Using a Key
+5. Enter or select one or more corpora for to provide API access to based on the selected API(s). 
+6. Click **Create** button to create the new key. 
+
+You and your organization can now start using the API key to develop powerful applications with your corpora on the <Config v="names.product"/> platform!
+
+### Using an API Key
 
 To use an API key, pass it using the `x-api-key` header request, in lieu of the
 standard JWT token over bearer authentication method covered in
@@ -143,23 +151,32 @@ END
 </TabItem>
 </Tabs>
 
-## Management
+### Disable and Enable an API Key
 
-### Disable and Enable
+API keys can have their access temporarily blocked or fully restored by disabling or enabling functionality. 
 
-To temporarily disable access to an API key, begin by visiting the API Keys
-screen. Select disable by clicking on the action menu (three dots) of the key
-you want to disable.
+To disable an API key from the API keys management screen:
+1. Find the table row for the API key you want to disable.
+2. **Open the actions menu** ([meatballs menu](https://uxpickle.com/significance-of-the-three-dots-or-ellipses-in-ui-design/)) for the key.
+3. **Select Disable** menu item from the actions menu.
 
-![API Key Disable](/img/api_key_disable.png)
+It will take approximately 1 minute for query requests using this key to be blocked.
 
-It will take around a minute for query requests using this key to be blocked.
+Once an API key is disabled, a key can be reenabled through the **Enable** menu item in the actions menu. It will take approximately 1-2 minutes before an API key can serve query traffic again.
 
-Once disabled, a key can be reenabled through the action menu. It will take a
-minute or two before it can serve query traffic again.
+### Delete an API Key
 
-### Delete
+An API key may be permanently deleted from the <Config v="names.product"/> platform. 
 
-A key may be permanently deleted through its action menu. Proceed with caution,
-once deleted, there is no way to undelete it, and all external systems that
-issue queries using the key will be blocked.
+:::caution
+
+Once an API key is deleted, it is permanently deleted from the platform and cannot be recovered. 
+All clients that use the key will be blocked.
+
+:::
+
+To delete an API key from the API keys management screen:
+1. Find the table row for the API key you want to delete.
+2. **Open the actions menu** ([meatballs menu](https://uxpickle.com/significance-of-the-three-dots-or-ellipses-in-ui-design/)) for the key.
+3. **Select Delete** menu item from the actions menu.
+
