@@ -17,13 +17,13 @@ You can explore the <Config v="names.product"/> platform's APIs further as well 
 
 ## When to use an API key vs. OAuth
 
-The <Config v="names.product"/> platform supports both API Keys and OAuth to access our APIs. The following are our recommendations and best practices on when to use which based on your usage and environment needs:
+The <Config v="names.product"/> platform supports both API Keys and [OAuth](authentication.md) to access our APIs. The following are our recommendations and best practices on when to use which method based on your usage and environment needs:
 
 - API keys are great for getting started and prototyping with the <Config v="names.product"/> platform. Creating a key with both querying & indexing capabilities may facilitate this. 
-- When creating an API key, if just the query functionality will suffice, provide just query access to the key to not risk additional exposure to your indexed data in corpora in the platform. 
+- When creating an API key, if just the query functionality will suffice, provide just query access to the key to not risk additional exposure to your corpora in the platform. 
 - If you must provide public client access in an unsecured environment and must use an API key, then you should limit the key to just the [query API](search-apis/search.md).
 - Don't use API keys to provide public client access to corpora with sensitive data. Configure [OAuth API authentication](authentication.md) instead to provide such access.
-  - The potential risk is that if an API key with querying & indexing access is in a client in an unsecure environment (e.g. a web page), an attacker could then use that key to index or delete information from the corpus. 
+  - The potential risk is that if an API key with querying & indexing access is in a client in an unsecure environment (e.g. a web page), an attacker could then use that key to index or delete information from corpora. 
 - In general, we recommend to use [OAuth API authentication](authentication.md) whenever possible.
 - Using API keys for private client access in secure environments should be OK but please adhere to your organization's security practices & standards.  
 
@@ -36,7 +36,7 @@ your account with an API key.
 
 ## API Key Management
 
-The platform provides full management - including creation and deletion - of API keys so should a key ever become compromised, it can be revoked in minutes, and a new key issued. Existing API keys can also be disabled and re-enabled. 
+The platform provides full management of API keys - including creation and deletion - so should a key ever become compromised, it can be revoked in minutes, and a new key issued. Existing API keys can also be disabled and re-enabled. 
 
 
 ![API Keys](/img/api_keys-manage.png)
@@ -45,16 +45,16 @@ The platform provides full management - including creation and deletion - of API
 ### Creating an API Key
 Before creating a new API key, we **recommend to review** our **[API key vs. OAuth usage recommendations.](#when-to-use-an-api-key-vs-oauth)**
 
-1. Navigate to the API keys page. Click on **API Keys** menu item in the sidebar navigation. 
+1. Navigate to the **API keys page**. Click on **API keys** menu item in the sidebar navigation. 
 
-2. Click on **Create Key** button and a dialog will display to create an API key.  
+2. Click on **Create API key** button and a dialog will display to create an API key.  
 
 <img src={'/img/api_keys-create.png'} style={{height: 500}} />  
 
 3. Enter a name for the API key to distinguish it from other keys.
 4. Select the API(s) to give the key access to:
 - **QueryService.** Provides key access to the [query/search API](search-apis/search.md) for running queries and outputting search results from corpora. Best to use when just query capabilities are needed. Try out [QueryService in the API playground](rest-api/query.api.mdx).
-- **QueryService & IndexService** provides key access to both query/search API & [index API](indexing-apis/indexing.md). Index APIs support indexing a set of related documents or content into corpora. This type of key should **never be used in public facing clients.** Try out [IndexService in the API playground](rest-api/index.api.mdx).
+- **QueryService & IndexService** provides key access to both query/search API & [index API](indexing-apis/indexing.md). Index APIs support indexing & deleting data into corpora. As per best practices, this type of key should **never be used in public facing clients.** Try out [IndexService in the API playground](rest-api/index.api.mdx).
 5. Enter or select one or more corpora for to provide API access to based on the selected API(s). 
 6. Click **Create** button to create the new key. 
 
@@ -158,12 +158,12 @@ END
 
 ### Disable and Enable an API Key
 
-API keys can have their access temporarily blocked or fully restored by disabling or enabling functionality. 
+API keys can have their access temporarily blocked or fully restored by respectively disabling or enabling a key. 
 
 To disable an API key from the API keys management screen:
 1. Find the table row for the API key you want to disable.
-2. **Open the actions menu** (...) for the key.
-3. **Select Disable** menu item from the actions menu.
+2. Open the **actions menu** (...) for the key.
+3. Select **Disable** menu item from the actions menu.
 
 It will take approximately 1 minute for query and/or index requests using this key to be blocked.
 
@@ -182,6 +182,6 @@ All clients that currently use the key will be blocked.
 
 To delete an API key from the API keys management screen:
 1. Find the table row for the API key you want to delete.
-2. **Open the actions menu** (...) for the key.
-3. **Select Delete** menu item from the actions menu.
+2. Open the **actions menu** (...) for the key.
+3. Select **Delete** menu item from the actions menu.
 
