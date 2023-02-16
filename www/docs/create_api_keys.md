@@ -9,6 +9,8 @@ import TabItem from '@theme/TabItem';
 import {Config} from './definitions.md';
 import {vars} from '@site/static/variables.json';
 
+## Introduction
+
 API keys provide controlled unauthenticated access to your corpora in the <Config v="names.product"/> platform. Rapidly build prototypes by embedding API keys in clients such as web pages and mobile apps. 
 
 API keys can either support [querying](search-apis/search.md) or both querying and [indexing](indexing-apis/indexing.md) APIs access to your corpora based on your usage needs. [Administrative actions](admin-apis/admin.md) APIs are not currently available through an API key.  
