@@ -1,11 +1,11 @@
 # Dependencies
-/node_modules
+/www/node_modules
 
 # Production
-/build
+/www/build
 
 # Auto-pulled remote content
-/docs/getting-started-samples
+/www/docs/getting-started-samples
 
 # Generated files
 .docusaurus
