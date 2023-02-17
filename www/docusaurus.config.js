@@ -163,6 +163,7 @@ ${content}
       logo: {
         alt: 'Vectara Logo',
         src: 'img/vectara_wordmark.png',
+	srcDark: 'img/vectara_wordmark_light.png',
       },
       items: [
         {
