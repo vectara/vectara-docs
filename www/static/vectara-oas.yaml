@@ -242,6 +242,9 @@ paths:
                   description: The file to be indexed into Vectara.
                   type: string
                   format: binary
+                doc_metadata:
+                  description: A JSON string of any additional metadata you want attached to the file.
+                  type: string
       parameters:
         - in: query
           name: c
@@ -988,6 +991,7 @@ components:
         - QRY__INVALID_CORPUS
         - QRY__INVALID_START
         - QRY__INVALID_NUM_RESULTS
+        - QRY__INVALID_CONTEXT
         - QRY__MISSING_QUERY
         - QRY__MISSING_CORPUS
         - QRY__TIMEOUT
