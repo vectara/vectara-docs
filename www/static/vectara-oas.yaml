@@ -93,6 +93,9 @@ paths:
         - IndexService
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
   /v1/index:
     post:
       operationId: Index
@@ -119,6 +122,9 @@ paths:
         - IndexService
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
   /v1/list-corpora:
     post:
       operationId: ListCorpora
@@ -232,6 +238,9 @@ paths:
       operationId: FileUpload
       tags:
         - IndexService
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       requestBody:
         content:
           multipart/form-data:
