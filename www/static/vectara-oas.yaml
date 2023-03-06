@@ -1182,6 +1182,8 @@ components:
       name: customer-id
       required: true
       description: The Customer ID to use for the request.
+      schema:
+        type: integer
 # add oauth and api key security
 security:
   - oAuth: []
