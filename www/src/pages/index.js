@@ -23,7 +23,7 @@ const features = [
     description: (
       <>
         Our intuitive cloud-based API makes it easy to index and query
-        your textual data, making it easy to create advanced applications like <a href="https://github.com/vectara/slackbot">out slackbot</a> quickly.
+        your textual data, making it easy to create advanced applications like <a href="https://github.com/vectara/slackbot">our slackbot</a> quickly.
       </>
     ),
   },
