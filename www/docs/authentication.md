@@ -12,7 +12,7 @@ import {vars} from '@site/static/variables.json';
 [OAuth 2.0](https://oauth.net/2/) forms the basis for authentication on the
 platform. This section provides practical guidance for authenticating requests.
 
-For examples of how to perform authenitcation in a variety of programming
+For examples of how to perform authentication in a variety of programming
 languages, see the Client Credentials Grant Examples in the sidebar.
 
 ## Client Credentials Grant
