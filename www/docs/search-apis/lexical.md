@@ -48,8 +48,8 @@ effectively turns off semantic matching. In practice values between 0.05 and
 When interpreting query strings, <Config v="names.product"/> treats the following
 syntax specially.
 
-Words that are quoted must match exactly in that order. So, for example, while
-the query "blue shoes" must match the word *blue* followed immediately by *shoes*.
+Words that are quoted must match exactly in that order. So, for example, the
+query "blue shoes" must match the word *blue* followed immediately by *shoes*.
 
 A word fragment suffixed with a "\*" is treated as a prefix match, meaning that it
 matches any word of which it is a prefix. For example, Miss\* matches Mississippi.
