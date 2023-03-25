@@ -52,8 +52,8 @@ Words that are quoted must match exactly in that order. So, for example, the
 query "blue shoes" must match the word *blue* followed immediately by *shoes*.
 
 A word fragment suffixed with a "\*" is treated as a prefix match, meaning that it
-matches any word of which it is a prefix. For example, Miss\* matches Mississippi.
+matches any word of which it is a prefix. For example, *Miss*\* matches *Mississippi*.
 
 Words prefixed with a "-" sign are excluded from the results. So, to extend the
-previous example, -Mississippi would exclude results referencing the Magnolia
-State. While -Miss\* would exclude references to both Mississippi and Missouri.
+previous example, -*Mississippi* would exclude results referencing the Magnolia
+State. While -*Miss*\* would exclude references to both *Mississippi* and *Missouri*.
