@@ -155,6 +155,7 @@ module.exports = {
                   },
                 ]
               },
+              'search-apis/lexical',
               'search-apis/reranking',
               {
                   type: 'category',

@@ -85,6 +85,13 @@ creation. See the [Filter Expressions Overview](sql/filter-overview) for a
 description of their syntax, and [Corpus Administration](/docs/admin-apis/admin) to learn how 
 referenceable metadata is specified during corpus creation.
 
+To blend results from semantic search with keyword search results, specify the
+**lexical_interpolation_config** with a *lambda* value between 0.0 and 1.0. The
+default value of 0.0 turns off blending, while a value of 1.0 effectively
+turns off semantic results and only returns keyword matches. In practice, values
+in the range 0.05 to 0.10 work well, but the optimal value depends on the use
+case and characteristics of the corpus.
+
 If the corpus specifies custom dimensions, weights can be assigned to each
 dimension as well.
 
@@ -108,8 +115,22 @@ message CorpusKey {
 
   repeated CustomDimension dim = 20;
   string metadata_filter = 25;
+  LinearInterpolation lexical_interpolation_config = 30;
+}
+
+message LinearInterpolation {
+  float lambda = 1;
 }
 ```
+
+In the definition of a linear interpolation shown above, the value of $\lambda$
+controls the weight given to the lexical match score, $S_{l}$, and the semantic
+match score, $S_{s}$. The final score, $S$, assigned by the platform is computed
+as:
+
+$$
+S = \lambda S_{l} + (1 - \lambda) S_{s}
+$$
 
 ### Response
 
