@@ -532,13 +532,14 @@ components:
         - FILTER_ATTRIBUTE_TYPE__REAL_LIST
         - FILTER_ATTRIBUTE_TYPE__TEXT
         - FILTER_ATTRIBUTE_TYPE__TEXT_LIST
+        - FILTER_ATTRIBUTE_TYPE__BOOLEAN
       default: FILTER_ATTRIBUTE_TYPE__UNDEFINED
     adminListCorporaRequest:
       type: object
       properties:
         filter:
           type: string
-          description: A regex to match corpora against.
+          description: A regex over the names and descriptions to match corpora against.
         numResults:
           type: integer
           format: int64
@@ -894,6 +895,9 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/servingCorpusKey"
+          description: |-
+            The query is run on all these corpora, and the results are
+            merged together in the response, ranked by score.
         rerankingConfig:
           $ref: "#/components/schemas/QueryRequestRerankingConfig"
     servingResponse:
@@ -1037,6 +1041,7 @@ components:
         - QRY__RERANK_FAILURE
         - QRY__TOO_MANY_RESULT_ROWS
         - QRY__PARTIAL_RETRIEVAL
+        - QRY__GEN__NO_QUERY_RESULTS
         - CX_SPECS__INVALID_JSON
         - CX_SPECS__UNREGISTERED_TYPE
         - CX_SPECS__MISSING_SPEC
