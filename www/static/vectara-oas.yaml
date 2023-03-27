@@ -282,6 +282,8 @@ paths:
           description: Corpus ID
           schema:
             type: integer
+          example: 1
+          minimum: 1
         - in: query
           name: d
           required: false
@@ -371,6 +373,8 @@ components:
           title: |-
             Which reranking model to use if reranking.  Currently, the only ID
             available is ID 272725717
+          enum: [272725717]
+          example: 272725717
       description: Configuration options to apply to the reranking.
     adminCorpus:
       type: object
@@ -463,9 +467,9 @@ components:
           type: integer
           format: int64
           description: The Corpus ID to be deleted.
-      required:
-        - customerId
-        - corpusId
+          minimum: 1
+          example: 1
+      required: ['customerId', 'corpusId']
     adminDeleteCorpusResponse:
       type: object
       properties:
@@ -546,11 +550,13 @@ components:
         filter:
           type: string
           description: A regex over the names and descriptions to match corpora against.
+          example: "[Tt][Ee][Ss][Tt]"
         numResults:
           type: integer
           format: int64
           description: The maximum results to return.
           minimum: 1
+          example: 10
         pageKey:
           type: string
           format: byte
@@ -581,10 +587,10 @@ components:
           type: integer
           format: int64
           description: The Corpus ID to be reset.
-      required:
-        - customerId
-        - corpusId
-        # add required headers
+          minimum: 1
+          example: 1
+          # add required headers
+      required: ['customerId', 'corpusId']
     adminResetCorpusResponse:
       type: object
       properties:
@@ -859,6 +865,8 @@ components:
           type: integer
           format: int64
           description: The Corpus ID.
+          minimum: 1
+          example: 1
         semantics:
           $ref: "#/components/schemas/CorpusKeySemantics"
         dim:
@@ -868,9 +876,8 @@ components:
           description: Weights on custom dimensions for the corpus.
         metadataFilter:
           type: string
-      required:
-        - customerId
-        - corpusId
+          example: "part.lang = 'eng'"
+      required: ['customerId', 'corpusId']
     servingPerformanceMetrics:
       type: object
       properties:
@@ -897,6 +904,7 @@ components:
         query:
           type: string
           description: The query text to use from the end user.
+          example: "What is the answer to the life, the universe, and everything?"
         start:
           type: integer
           format: int64
@@ -907,6 +915,7 @@ components:
           format: int64
           description: The number of results to return.
           minimum: 1
+          example: 10
         corpusKey:
           type: array
           items:
@@ -916,10 +925,7 @@ components:
             merged together in the response, ranked by score.
         rerankingConfig:
           $ref: "#/components/schemas/QueryRequestRerankingConfig"
-          enum: [272725717]
-      required:
-        - numResults
-        - corpusKey
+      required: ['numResults', 'corpusKey']
     servingResponse:
       type: object
       properties:
@@ -975,14 +981,13 @@ components:
           type: string
           format: int64
           description: The Corpus ID that contains the document.
+          minimum: 1
+          example: 1
         documentId:
           type: string
           description: The Document ID to be deleted.
       description: Request to delete a document from an index.
-      required:
-        - customerId
-        - corpusId
-        - documentId
+      required: ['customerId', 'corpusId', 'documentId']
     vectaraDeleteDocumentResponse:
       type: object
     vectaraIndexDocumentRequest:
@@ -994,12 +999,11 @@ components:
         corpusId:
           type: string
           format: int64
+          minimum: 1
+          example: 1
         document:
           $ref: "#/components/schemas/vectaraindexingDocument"
-      required:
-        - customerId
-        - corpusId
-        - document
+      required: ['customerId', 'corpusId', 'document']
     vectaraIndexDocumentResponse:
       type: object
       properties:
