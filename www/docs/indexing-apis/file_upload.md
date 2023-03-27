@@ -17,7 +17,7 @@ of interacting with this endpoint.
 ## Request Details
 
 The endpoint expects an `multipart/form-data` `POST` request that includes the
-following http parameters:
+following HTTP parameters:
 
 1.  `c` [required]: Customer ID.
 
@@ -34,14 +34,8 @@ headers.
 
 The maximum file size supported by the server is 10 MB.
 
-:::important
-
-When using the file upload API, it's not possible to provide additional
-user-supplied metadata beyond what is extracted by <Config v="names.product"/>.
-If you need to provide additional metadata, it's recommended to pre-parse
-any raw documents and provide the metadata using the standard indexing API
-
-:::
+You can attach additional metadata to the file by specifying an additional
+`doc_metadata` form field, which can contain a JSON string.
 
 ## Response Codes
 
@@ -76,6 +70,7 @@ corpus `151` in customer `123456` using `curl`.
 <pre>
 {`$ jwt=eyJraWQ...
 $ curl -H "Authorization: Bearer $jwt" -F file=@/tmp/instructions.pdf \\
+    -F doc_metadata='{ "filesize\": 1234 }' \\
     https://${vars['domains.rest.indexing']}:443/v1/upload?c=123456\&o=151
 `}
 </pre>

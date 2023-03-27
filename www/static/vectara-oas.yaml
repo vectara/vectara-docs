@@ -17,7 +17,7 @@ info:
     Vectara is a neural search platform, built for developers to get the most out of their data.
 
     You can sign up for an account at [https://vectara.com](https://vectara.com).
-# add file upload API
+# add file upload API and auth options for other APIs
 paths:
   /v1/create-corpus:
     post:
@@ -267,6 +267,8 @@ paths:
                 doc_metadata:
                   description: A JSON string of any additional metadata you want attached to the file.
                   type: string
+              required:
+                - file
       parameters:
         - in: query
           name: c
@@ -284,6 +286,7 @@ paths:
           name: d
           required: false
           description: If true, the server returns the extracted document that was indexed
+          default: false
           schema:
             type: boolean
       responses:
@@ -460,6 +463,9 @@ components:
           type: integer
           format: int64
           description: The Corpus ID to be deleted.
+      required:
+        - customerId
+        - corpusId
     adminDeleteCorpusResponse:
       type: object
       properties:
@@ -544,6 +550,7 @@ components:
           type: integer
           format: int64
           description: The maximum results to return.
+          minimum: 1
         pageKey:
           type: string
           format: byte
@@ -574,6 +581,10 @@ components:
           type: integer
           format: int64
           description: The Corpus ID to be reset.
+      required:
+        - customerId
+        - corpusId
+        # add required headers
     adminResetCorpusResponse:
       type: object
       properties:
@@ -857,6 +868,9 @@ components:
           description: Weights on custom dimensions for the corpus.
         metadataFilter:
           type: string
+      required:
+        - customerId
+        - corpusId
     servingPerformanceMetrics:
       type: object
       properties:
@@ -887,10 +901,12 @@ components:
           type: integer
           format: int64
           title: The start position in the result set
+          minimum: 0
         numResults:
           type: integer
           format: int64
           description: The number of results to return.
+          minimum: 1
         corpusKey:
           type: array
           items:
@@ -900,6 +916,10 @@ components:
             merged together in the response, ranked by score.
         rerankingConfig:
           $ref: "#/components/schemas/QueryRequestRerankingConfig"
+          enum: [272725717]
+      required:
+        - numResults
+        - corpusKey
     servingResponse:
       type: object
       properties:
@@ -959,6 +979,10 @@ components:
           type: string
           description: The Document ID to be deleted.
       description: Request to delete a document from an index.
+      required:
+        - customerId
+        - corpusId
+        - documentId
     vectaraDeleteDocumentResponse:
       type: object
     vectaraIndexDocumentRequest:
@@ -972,6 +996,10 @@ components:
           format: int64
         document:
           $ref: "#/components/schemas/vectaraindexingDocument"
+      required:
+        - customerId
+        - corpusId
+        - document
     vectaraIndexDocumentResponse:
       type: object
       properties:
@@ -1180,7 +1208,7 @@ components:
       type: apiKey
       in: header
       name: x-api-key
-      # add required headers
+      # defaults
   parameters:
     customerIdentifier:
       in: header
