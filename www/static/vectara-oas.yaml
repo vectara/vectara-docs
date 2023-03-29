@@ -124,6 +124,45 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/vectaraIndexDocumentRequest"
+            examples:
+              BookExample:
+                value:
+                  customerId: 123456
+                  corpusId: 1
+                  document:
+                    documentId: "isbn-9781405053976"
+                    title: "The Hitchhiker's Guide to the Galaxy"
+                    description: "A great book with the answer to life, the universe, and everything"
+                    metadataJson: '{"author": "Douglas Adams"}'
+                    section:
+                      - title: Intro
+                        text: "Far out in the uncharted backwaters of the unfashionable end of the western spiral arm of the Galaxy lies a small unregarded yellow sun."
+                        metadataJson: '{"page": 1}'
+                      - title: The answer
+                        text: "The Answer to the Great Question ... Of Life, the Universe and Everything ... Is ... Forty-two."
+                        metadataJson: '{"speaker": "Deep Thought"}'
+              ReviewExample:
+                value:
+                  customerId: 234567
+                  corpusId: 2
+                  document:
+                    documentId: "review-f876-1937-90d6-a7e9"
+                    title: "The Fusion Mug: The Hottest Way to Burn Your Mouth and Your Wallet"
+                    description: "Have you ever wanted to combine the pleasure of drinking coffee with the thrill of nuclear fusion? Look no further than the Fusion Mug!"
+                    metadataJson: '{"author": "George P Burdell"}'
+                    section:
+                      - title: Intro
+                        text: "This revolutionary mug promises to keep your coffee piping hot for millennia, thanks to its built-in fusion reactor. Yes, you read that right - a real, honest-to-goodness fusion reactor! What could possibly go wrong?"
+                        metadataJson: '{"section": "intro"}'
+                      - title: Main Benefit
+                        text: "Let me tell you, folks, this mug is a game-changer. The fusion reactor heats up your coffee to the perfect temperature in seconds, without any of that annoying waiting around for your drip pot to do its thing. And the taste? Oh, man. It's like the coffee beans themselves were infused with pure energy from the heart of the sun. I've never tasted anything like it."
+                        metadataJson: '{"section": "benefit1"}'
+                      - title: Counterpoint
+                        text: "Now, I know what you're thinking... 'But George, isn't nuclear fusion dangerous? Won't it give me cancer or something?' Ha! That's just the kind of paranoia that keeps people from truly experiencing life. Sure, there might be some minor risks involved, but come on. What's a little radiation poisoning compared to the pure, unadulterated joy of a perfect cup of coffee?"
+                        metadataJson: '{"section": "counterpoint"}'
+                      - title: Conclusion
+                        text: "In conclusion, if you're not using the Fusion-Powered Perfection mug to drink your coffee, you might as well be drinking mud. This mug is the ultimate in technological sophistication and gourmet taste. It will make your coffee so good that you'll never want to drink anything else again. And if you're worried about the so-called 'risks' of using a fusion reactor to heat your beverage, well, maybe you're just not cut out for the high-stakes world of elite coffee connoisseurship. So go ahead and stick with your bland, boring, non-nuclear coffee mugs. We'll be over here, sipping the sweet nectar of the gods from our Fusion-Powered Perfection mugs."
+                        metadataJson: '{"section": "conclusion"}'
         required: true
       tags:
         - IndexService
@@ -382,58 +421,32 @@ components:
         id:
           type: integer
           format: int64
-          description: The Corpus ID.
         name:
           type: string
-          description: The name of the corpus.
         description:
           type: string
-          description: A description for the corpus.
         dtProvision:
           type: string
           format: int64
-          description: The time at which the corpus was provisioned.
         enabled:
           type: boolean
-          description: Whether the corpus is enabled for use or not.
         swapQenc:
           type: boolean
         swapIenc:
           type: boolean
-          description: >-
-            The default query encoder is designed for normal question-answering types
-
-            of queries when the text contains the answer.  Swapping the index encoder
-
-            is generally rare, but can be used to help directly match questions to
-
-            questions.  This can be useful if you have a FAQ dataset and you want to
-
-            directly match the user question to the question in the FAQ.
         textless:
           type: boolean
-          description: >-
-            When a corpus is "textless", Vectara does not store the original text.
-
-            Instead, Vectara converts the text to vectors and only retains metadata.
         encrypted:
           type: boolean
           description: Encryption is on by default and cannot be turned off.
         encoderId:
           type: string
           format: uint64
-          description: >-
-            This is an advanced setting for changing the underlying model type.  The
-
-            default value is "1", which is Vectara's high-performing global model.
-
-            Underlying models may be swapped for some paying customers by contacting
-
-            our support team.
         metadataMaxBytes:
           type: integer
           format: int64
-          description: An optional maximum size of the metadata that each document can contain.
+        faissIndexType:
+          type: string
         customDimensions:
           type: array
           items:
@@ -453,7 +466,6 @@ components:
         corpusId:
           type: integer
           format: int64
-          description: The Corpus ID that was created.
         status:
           $ref: "#/components/schemas/comvectaraStatus"
     adminDeleteCorpusRequest:
@@ -462,11 +474,9 @@ components:
         customerId:
           type: integer
           format: int64
-          description: The Customer ID that contains the corpus to be deleted.
         corpusId:
           type: integer
           format: int64
-          description: The Corpus ID to be deleted.
           minimum: 1
           example: 1
       required: ['customerId', 'corpusId']
@@ -480,43 +490,23 @@ components:
       properties:
         name:
           type: string
-          description: |-
-            The name of the custom dimension.  The maximum length of the name is
-            8 characters.
         description:
           type: string
-          description: A description for the custom dimension.
         servingDefault:
           type: number
           format: double
-          description: >-
-            The default weight to give this dimension when running queries. A value of
-
-            0.0, for example, gives it no weight at all.
         indexingDefault:
           type: number
           format: double
-          description: The default value to give to documents for this custom dimension.
-      description: >-
-        A custom dimension is additional numeric metadata that you want to affect
-
-        Vectara's scoring.  For example, these could be "number of stars" ratings,
-
-        or other business metrics like a product's margins that you want to use
-
-        to boost where a result is in the list.
     adminFilterAttribute:
       type: object
       properties:
         name:
           type: string
-          description: Name of the field, as seen in metadata.
         description:
           type: string
-          description: An optional description.
         indexed:
           type: boolean
-          description: Whether the field is indexed for maximum query speed.
         type:
           $ref: "#/components/schemas/adminFilterAttributeType"
         level:
@@ -529,9 +519,6 @@ components:
         - FILTER_ATTRIBUTE_LEVEL__DOCUMENT
         - FILTER_ATTRIBUTE_LEVEL__DOCUMENT_PART
       default: FILTER_ATTRIBUTE_LEVEL__UNDEFINED
-      title: |-
-        - FILTER_ATTRIBUTE_LEVEL__DOCUMENT: Document-level attribute
-         - FILTER_ATTRIBUTE_LEVEL__DOCUMENT_PART: Part-level attribute
     adminFilterAttributeType:
       type: string
       enum:
@@ -542,25 +529,21 @@ components:
         - FILTER_ATTRIBUTE_TYPE__REAL_LIST
         - FILTER_ATTRIBUTE_TYPE__TEXT
         - FILTER_ATTRIBUTE_TYPE__TEXT_LIST
-        - FILTER_ATTRIBUTE_TYPE__BOOLEAN
       default: FILTER_ATTRIBUTE_TYPE__UNDEFINED
     adminListCorporaRequest:
       type: object
       properties:
         filter:
           type: string
-          description: A regex over the names and descriptions to match corpora against.
           example: "[Tt][Ee][Ss][Tt]"
         numResults:
           type: integer
           format: int64
-          description: The maximum results to return.
           minimum: 1
           example: 10
         pageKey:
           type: string
           format: byte
-          description: A key that is passed in to retrieve a specific page of results.
     adminListCorporaResponse:
       type: object
       properties:
@@ -582,11 +565,9 @@ components:
         customerId:
           type: integer
           format: int64
-          description: The Customer ID that contains the corpus to be reset.
         corpusId:
           type: integer
           format: int64
-          description: The Corpus ID to be reset.
           minimum: 1
           example: 1
           # add required headers
