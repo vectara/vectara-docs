@@ -63,43 +63,22 @@
   color: white;
 }
 
-
-/* the next couple CSS lines use !important overrides which isn't the right way,
- * but I couldn't find the right classes/structures to edit correctly
- */
-.optionsPanel_node_modules-docusaurus-theme-openapi-docs-lib-next-theme-ApiDemoPanel-Request-styles-module input,select {
-  background-color: white;
-  color: black !important;
+.details__demo-panel {
+  --openapi-input-background: #FFFFFF;
+  --docusaurus-details-decoration-color: #FFFFF;
 }
-
-.selectInput_node_modules-docusaurus-theme-openapi-docs-lib-next-theme-ApiDemoPanel-FormSelect-styles-module {
- background: white !important;
-}
-
-.details__demo-panel [contenteditable] {
- background-color: white !important; 
-}
-
-.details__demo-panel .token-line .property{
- color: black !important;
-}
-
-.details__demo-panel .token.property{
- color: hsl(0 0% 30% / 1) !important;
-}
-
-.details__demo-panel .token.string{
- color: black !important;
+[data-theme='dark'] .details__demo-panel {
+  --openapi-input-background: #282A36;
 }
 
 .details__demo-panel [contenteditable]:focus {
- border: 2px solid var(--ifm-color-primary);
-}
-
-.optionsPanel_node_modules-docusaurus-theme-openapi-docs-lib-next-theme-ApiDemoPanel-Request-styles-module::before {
- content: "Fill out the parameters below to test an API request";
- color: var(--ifm-color-primary);
-}
+  border: 2px solid var(--ifm-color-primary);
+ }
+ 
+ .details__demo-panel div[class^="optionsPanel_"]::before {
+  content: "Fill out the parameters below to test an API request";
+  color: var(--ifm-color-primary);
+ }
 
 .post > .menu__link::before {
   content: "[POST]";
@@ -147,7 +126,7 @@
   --ifm-color-primary: #F9CAEA;
   --ifm-color-primary-dark: #BF0050;
   --ifm-color-primary-darker: #870050;
-  --ifm-color-primary-darkest: #3A0025;
+  --ifm-color-primary-darkest: #010101;
   --ifm-color-primary-light: #F495D3;
   --ifm-color-primary-lighter: #F9CAEA;
   --ifm-color-primary-lightest: #F9CAEA;
