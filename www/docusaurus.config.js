@@ -159,9 +159,6 @@ ${content}
       additionalLanguages: ['java', 'php', 'csharp'],
       theme: require('prism-react-renderer/themes/vsLight'),
       darkTheme: require('prism-react-renderer/themes/dracula'),
-      /* dracula looks pretty good for dark.  just need to copy its background color or change it */
-      /* nightOwl is pretty good too, but less in theme */
-      /* oceanicNext looks good too */
     },/*
     announcementBar: {
       id: 'support_us',
