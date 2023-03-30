@@ -421,32 +421,58 @@ components:
         id:
           type: integer
           format: int64
+          description: The Corpus ID.
         name:
           type: string
+          description: The name of the corpus.
         description:
           type: string
+          description: A description for the corpus.
         dtProvision:
           type: string
           format: int64
+          description: The time at which the corpus was provisioned.
         enabled:
           type: boolean
+          description: Whether the corpus is enabled for use or not.
         swapQenc:
           type: boolean
         swapIenc:
           type: boolean
+          description: >-
+            The default query encoder is designed for normal question-answering types
+
+            of queries when the text contains the answer.  Swapping the index encoder
+
+            is generally rare, but can be used to help directly match questions to
+
+            questions.  This can be useful if you have a FAQ dataset and you want to
+
+            directly match the user question to the question in the FAQ.
         textless:
           type: boolean
+          description: >-
+            When a corpus is "textless", Vectara does not store the original text.
+
+            Instead, Vectara converts the text to vectors and only retains metadata.
         encrypted:
           type: boolean
           description: Encryption is on by default and cannot be turned off.
         encoderId:
           type: string
           format: uint64
+          description: >-
+            This is an advanced setting for changing the underlying model type.  The
+
+            default value is "1", which is Vectara's high-performing global model.
+
+            Underlying models may be swapped for some paying customers by contacting
+
+            our support team.
         metadataMaxBytes:
           type: integer
           format: int64
-        faissIndexType:
-          type: string
+          description: An optional maximum size of the metadata that each document can contain.
         customDimensions:
           type: array
           items:
@@ -466,6 +492,7 @@ components:
         corpusId:
           type: integer
           format: int64
+          description: The Corpus ID that was created.
         status:
           $ref: "#/components/schemas/comvectaraStatus"
     adminDeleteCorpusRequest:
@@ -474,9 +501,11 @@ components:
         customerId:
           type: integer
           format: int64
+          description: The Customer ID that contains the corpus to be deleted.
         corpusId:
           type: integer
           format: int64
+          description: The Corpus ID to be deleted.
           minimum: 1
           example: 1
       required: ['customerId', 'corpusId']
@@ -490,23 +519,43 @@ components:
       properties:
         name:
           type: string
+          description: |-
+            The name of the custom dimension.  The maximum length of the name is
+            8 characters.
         description:
           type: string
+          description: A description for the custom dimension.
         servingDefault:
           type: number
           format: double
+          description: >-
+            The default weight to give this dimension when running queries. A value of
+
+            0.0, for example, gives it no weight at all.
         indexingDefault:
           type: number
           format: double
+          description: The default value to give to documents for this custom dimension.
+      description: >-
+        A custom dimension is additional numeric metadata that you want to affect
+
+        Vectara's scoring.  For example, these could be "number of stars" ratings,
+
+        or other business metrics like a product's margins that you want to use
+
+        to boost where a result is in the list.
     adminFilterAttribute:
       type: object
       properties:
         name:
           type: string
+          description: Name of the field, as seen in metadata.
         description:
           type: string
+          description: An optional description.
         indexed:
           type: boolean
+          description: Whether the field is indexed for maximum query speed.
         type:
           $ref: "#/components/schemas/adminFilterAttributeType"
         level:
@@ -519,6 +568,9 @@ components:
         - FILTER_ATTRIBUTE_LEVEL__DOCUMENT
         - FILTER_ATTRIBUTE_LEVEL__DOCUMENT_PART
       default: FILTER_ATTRIBUTE_LEVEL__UNDEFINED
+      title: |-
+        - FILTER_ATTRIBUTE_LEVEL__DOCUMENT: Document-level attribute
+         - FILTER_ATTRIBUTE_LEVEL__DOCUMENT_PART: Part-level attribute
     adminFilterAttributeType:
       type: string
       enum:
@@ -529,21 +581,25 @@ components:
         - FILTER_ATTRIBUTE_TYPE__REAL_LIST
         - FILTER_ATTRIBUTE_TYPE__TEXT
         - FILTER_ATTRIBUTE_TYPE__TEXT_LIST
+        - FILTER_ATTRIBUTE_TYPE__BOOLEAN
       default: FILTER_ATTRIBUTE_TYPE__UNDEFINED
     adminListCorporaRequest:
       type: object
       properties:
         filter:
           type: string
+          description: A regex over the names and descriptions to match corpora against.
           example: "[Tt][Ee][Ss][Tt]"
         numResults:
           type: integer
           format: int64
+          description: The maximum results to return.
           minimum: 1
           example: 10
         pageKey:
           type: string
           format: byte
+          description: A key that is passed in to retrieve a specific page of results.
     adminListCorporaResponse:
       type: object
       properties:
@@ -565,9 +621,11 @@ components:
         customerId:
           type: integer
           format: int64
+          description: The Customer ID that contains the corpus to be reset.
         corpusId:
           type: integer
           format: int64
+          description: The Corpus ID to be reset.
           minimum: 1
           example: 1
           # add required headers
