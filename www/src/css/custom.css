@@ -14,7 +14,7 @@
 /* You can override the default Infima variables here. */
 @font-face {
   font-family: Circular;
-  src: url(/static/CircularXXWeb-Light.woff2) format('woff2');
+  src: url(/static/CircularXXWeb-Regular.woff2) format('woff2');
 }
 
 .api-method > .menu__link {
