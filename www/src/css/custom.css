@@ -77,7 +77,7 @@
  
  .details__demo-panel div[class^="optionsPanel_"]::before {
   content: "Fill out the parameters below to test an API request";
-  color: var(--ifm-color-primary);
+  color: var(--ifm-color-emphasis-600);
  }
 
 .post > .menu__link::before {
