@@ -17,6 +17,13 @@ info:
     Vectara is a neural search platform, built for developers to get the most out of their data.
 
     You can sign up for an account at [https://vectara.com](https://vectara.com).
+tags:
+  - name: AdminService
+    description: Administrative services, such as creating or deleting corpora
+  - name: IndexService
+    description: Indexing operations, such as creating and deleting documents
+  - name: QueryService
+    description: Query operations, such as performing a standard search
 # add file upload API and auth options for other APIs
 paths:
   /v1/create-corpus:
@@ -94,6 +101,7 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/vectaraDeleteDocumentRequest"
+        description: Request to delete a document from an index.
         required: true
       tags:
         - IndexService
@@ -124,6 +132,45 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/vectaraIndexDocumentRequest"
+            examples:
+              BookExample:
+                value:
+                  customerId: 123456
+                  corpusId: 1
+                  document:
+                    documentId: "isbn-9781405053976"
+                    title: "The Hitchhiker's Guide to the Galaxy"
+                    description: "A great book with the answer to life, the universe, and everything"
+                    metadataJson: '{"author": "Douglas Adams"}'
+                    section:
+                      - title: Intro
+                        text: "Far out in the uncharted backwaters of the unfashionable end of the western spiral arm of the Galaxy lies a small unregarded yellow sun."
+                        metadataJson: '{"page": 1}'
+                      - title: The answer
+                        text: "The Answer to the Great Question ... Of Life, the Universe and Everything ... Is ... Forty-two."
+                        metadataJson: '{"speaker": "Deep Thought"}'
+              ReviewExample:
+                value:
+                  customerId: 234567
+                  corpusId: 2
+                  document:
+                    documentId: "review-f876-1937-90d6-a7e9"
+                    title: "The Fusion Mug: The Hottest Way to Burn Your Mouth and Your Wallet"
+                    description: "Have you ever wanted to combine the pleasure of drinking coffee with the thrill of nuclear fusion? Look no further than the Fusion Mug!"
+                    metadataJson: '{"author": "George P Burdell"}'
+                    section:
+                      - title: Intro
+                        text: "This revolutionary mug promises to keep your coffee piping hot for millennia, thanks to its built-in fusion reactor. Yes, you read that right - a real, honest-to-goodness fusion reactor! What could possibly go wrong?"
+                        metadataJson: '{"section": "intro"}'
+                      - title: Main Benefit
+                        text: "Let me tell you, folks, this mug is a game-changer. The fusion reactor heats up your coffee to the perfect temperature in seconds, without any of that annoying waiting around for your drip pot to do its thing. And the taste? Oh, man. It's like the coffee beans themselves were infused with pure energy from the heart of the sun. I've never tasted anything like it."
+                        metadataJson: '{"section": "benefit1"}'
+                      - title: Counterpoint
+                        text: "Now, I know what you're thinking... 'But George, isn't nuclear fusion dangerous? Won't it give me cancer or something?' Ha! That's just the kind of paranoia that keeps people from truly experiencing life. Sure, there might be some minor risks involved, but come on. What's a little radiation poisoning compared to the pure, unadulterated joy of a perfect cup of coffee?"
+                        metadataJson: '{"section": "counterpoint"}'
+                      - title: Conclusion
+                        text: "In conclusion, if you're not using the Fusion-Powered Perfection mug to drink your coffee, you might as well be drinking mud. This mug is the ultimate in technological sophistication and gourmet taste. It will make your coffee so good that you'll never want to drink anything else again. And if you're worried about the so-called 'risks' of using a fusion reactor to heat your beverage, well, maybe you're just not cut out for the high-stakes world of elite coffee connoisseurship. So go ahead and stick with your bland, boring, non-nuclear coffee mugs. We'll be over here, sipping the sweet nectar of the gods from our Fusion-Powered Perfection mugs."
+                        metadataJson: '{"section": "conclusion"}'
         required: true
       tags:
         - IndexService
@@ -458,6 +505,8 @@ components:
           $ref: "#/components/schemas/comvectaraStatus"
     adminDeleteCorpusRequest:
       type: object
+      example:
+        corpusId: 1
       properties:
         customerId:
           type: integer
@@ -468,8 +517,9 @@ components:
           format: int64
           description: The Corpus ID to be deleted.
           minimum: 1
-          example: 1
-      required: ['customerId', 'corpusId']
+      required:
+        - customerId
+        - corpusId
     adminDeleteCorpusResponse:
       type: object
       properties:
@@ -546,21 +596,25 @@ components:
       default: FILTER_ATTRIBUTE_TYPE__UNDEFINED
     adminListCorporaRequest:
       type: object
+      example:
+        numResults: 10
+        filter: "[Tt][Ee][Ss][Tt]"
       properties:
         filter:
           type: string
-          description: A regex over the names and descriptions to match corpora against.
           example: "[Tt][Ee][Ss][Tt]"
+          description: A regex over the names and descriptions to match corpora against.
         numResults:
           type: integer
           format: int64
           description: The maximum results to return.
           minimum: 1
-          example: 10
         pageKey:
           type: string
           format: byte
           description: A key that is passed in to retrieve a specific page of results.
+      required:
+        - numResults
     adminListCorporaResponse:
       type: object
       properties:
@@ -578,6 +632,8 @@ components:
           $ref: "#/components/schemas/comvectaraStatus"
     adminResetCorpusRequest:
       type: object
+      example:
+        corpusId: 1
       properties:
         customerId:
           type: integer
@@ -588,9 +644,9 @@ components:
           format: int64
           description: The Corpus ID to be reset.
           minimum: 1
-          example: 1
-          # add required headers
-      required: ['customerId', 'corpusId']
+      required:
+        - customerId
+        - corpusId
     adminResetCorpusResponse:
       type: object
       properties:
@@ -656,7 +712,7 @@ components:
     protobufAny:
       type: object
       properties:
-        typeUrl:
+        "@type":
           type: string
           description: >-
             A URL/resource name that uniquely identifies the type of the serialized
@@ -707,10 +763,7 @@ components:
             Schemes other than `http`, `https` (or the empty scheme) might be
 
             used with implementation specific semantics.
-        value:
-          type: string
-          format: byte
-          description: Must be a valid serialized protocol buffer of the above specified type.
+      additionalProperties: {}
       description: >-
         `Any` contains an arbitrary serialized protocol buffer message along with a
 
@@ -926,32 +979,13 @@ components:
         rerankingConfig:
           $ref: "#/components/schemas/QueryRequestRerankingConfig"
       required: ['numResults', 'corpusKey']
-    servingResponse:
-      type: object
-      properties:
-        text:
-          type: string
-        score:
-          type: number
-          format: float
-          description: The score used for ranking results.  The higher the score, the better the match.
-        metadata:
-          type: array
-          items:
-            $ref: "#/components/schemas/servingAttribute"
-        documentIndex:
-          type: integer
-          format: int64
-          description: Use this ID to find the document in the ResponseSet.
-        corpusKey:
-          $ref: "#/components/schemas/servingCorpusKey"
     servingResponseSet:
       type: object
       properties:
         response:
           type: array
           items:
-            $ref: "#/components/schemas/servingResponse"
+            $ref: "#/components/schemas/vectaraservingResponse"
         status:
           type: array
           items:
@@ -1001,6 +1035,7 @@ components:
           format: int64
           minimum: 1
           example: 1
+          # add required headers
         document:
           $ref: "#/components/schemas/vectaraindexingDocument"
       required: ['customerId', 'corpusId', 'document']
@@ -1074,6 +1109,7 @@ components:
         - QRY__TOO_MANY_RESULT_ROWS
         - QRY__PARTIAL_RETRIEVAL
         - QRY__GEN__NO_QUERY_RESULTS
+        - QRY__GEN__UNPARSEABLE_MODEL_PARAMS
         - CX_SPECS__INVALID_JSON
         - CX_SPECS__UNREGISTERED_TYPE
         - CX_SPECS__MISSING_SPEC
@@ -1200,6 +1236,25 @@ components:
           type: number
           format: double
       description: Defined the weight of a custom dimension at query time.
+    vectaraservingResponse:
+      type: object
+      properties:
+        text:
+          type: string
+        score:
+          type: number
+          format: float
+          description: The score used for ranking results.  The higher the score, the better the match.
+        metadata:
+          type: array
+          items:
+            $ref: "#/components/schemas/servingAttribute"
+        documentIndex:
+          type: integer
+          format: int64
+          description: Use this ID to find the document in the ResponseSet.
+        corpusKey:
+          $ref: "#/components/schemas/servingCorpusKey"
   securitySchemes:
     oAuth:
       type: oauth2
@@ -1224,13 +1279,6 @@ components:
 # add oauth and api key security
 security:
   - oAuth: []
-tags:
-  - name: AdminService
-    description: Administrative services, such as creating or deleting corpora
-  - name: IndexService
-    description: Indexing operations, such as creating and deleting documents
-  - name: QueryService
-    description: Query operations, such as performing a standard search
 # add server endpoint
 servers:
   - url: https://api.vectara.io
