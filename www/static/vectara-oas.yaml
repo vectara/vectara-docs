@@ -17,6 +17,13 @@ info:
     Vectara is a neural search platform, built for developers to get the most out of their data.
 
     You can sign up for an account at [https://vectara.com](https://vectara.com).
+tags:
+  - name: AdminService
+    description: Administrative services, such as creating or deleting corpora
+  - name: IndexService
+    description: Indexing operations, such as creating and deleting documents
+  - name: QueryService
+    description: Query operations, such as performing a standard search
 # add file upload API and auth options for other APIs
 paths:
   /v1/create-corpus:
@@ -94,6 +101,7 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/vectaraDeleteDocumentRequest"
+        description: Request to delete a document from an index.
         required: true
       tags:
         - IndexService
@@ -497,6 +505,8 @@ components:
           $ref: "#/components/schemas/comvectaraStatus"
     adminDeleteCorpusRequest:
       type: object
+      example:
+        corpusId: 1
       properties:
         customerId:
           type: integer
@@ -507,8 +517,9 @@ components:
           format: int64
           description: The Corpus ID to be deleted.
           minimum: 1
-          example: 1
-      required: ['customerId', 'corpusId']
+      required:
+        - customerId
+        - corpusId
     adminDeleteCorpusResponse:
       type: object
       properties:
@@ -585,21 +596,25 @@ components:
       default: FILTER_ATTRIBUTE_TYPE__UNDEFINED
     adminListCorporaRequest:
       type: object
+      example:
+        numResults: 10
+        filter: "[Tt][Ee][Ss][Tt]"
       properties:
         filter:
           type: string
-          description: A regex over the names and descriptions to match corpora against.
           example: "[Tt][Ee][Ss][Tt]"
+          description: A regex over the names and descriptions to match corpora against.
         numResults:
           type: integer
           format: int64
           description: The maximum results to return.
           minimum: 1
-          example: 10
         pageKey:
           type: string
           format: byte
           description: A key that is passed in to retrieve a specific page of results.
+      required:
+        - numResults
     adminListCorporaResponse:
       type: object
       properties:
@@ -617,6 +632,8 @@ components:
           $ref: "#/components/schemas/comvectaraStatus"
     adminResetCorpusRequest:
       type: object
+      example:
+        corpusId: 1
       properties:
         customerId:
           type: integer
@@ -627,9 +644,9 @@ components:
           format: int64
           description: The Corpus ID to be reset.
           minimum: 1
-          example: 1
-          # add required headers
-      required: ['customerId', 'corpusId']
+      required:
+        - customerId
+        - corpusId
     adminResetCorpusResponse:
       type: object
       properties:
@@ -695,7 +712,7 @@ components:
     protobufAny:
       type: object
       properties:
-        typeUrl:
+        "@type":
           type: string
           description: >-
             A URL/resource name that uniquely identifies the type of the serialized
@@ -746,10 +763,7 @@ components:
             Schemes other than `http`, `https` (or the empty scheme) might be
 
             used with implementation specific semantics.
-        value:
-          type: string
-          format: byte
-          description: Must be a valid serialized protocol buffer of the above specified type.
+      additionalProperties: {}
       description: >-
         `Any` contains an arbitrary serialized protocol buffer message along with a
 
@@ -965,32 +979,13 @@ components:
         rerankingConfig:
           $ref: "#/components/schemas/QueryRequestRerankingConfig"
       required: ['numResults', 'corpusKey']
-    servingResponse:
-      type: object
-      properties:
-        text:
-          type: string
-        score:
-          type: number
-          format: float
-          description: The score used for ranking results.  The higher the score, the better the match.
-        metadata:
-          type: array
-          items:
-            $ref: "#/components/schemas/servingAttribute"
-        documentIndex:
-          type: integer
-          format: int64
-          description: Use this ID to find the document in the ResponseSet.
-        corpusKey:
-          $ref: "#/components/schemas/servingCorpusKey"
     servingResponseSet:
       type: object
       properties:
         response:
           type: array
           items:
-            $ref: "#/components/schemas/servingResponse"
+            $ref: "#/components/schemas/vectaraservingResponse"
         status:
           type: array
           items:
@@ -1040,6 +1035,7 @@ components:
           format: int64
           minimum: 1
           example: 1
+          # add required headers
         document:
           $ref: "#/components/schemas/vectaraindexingDocument"
       required: ['customerId', 'corpusId', 'document']
@@ -1113,6 +1109,7 @@ components:
         - QRY__TOO_MANY_RESULT_ROWS
         - QRY__PARTIAL_RETRIEVAL
         - QRY__GEN__NO_QUERY_RESULTS
+        - QRY__GEN__UNPARSEABLE_MODEL_PARAMS
         - CX_SPECS__INVALID_JSON
         - CX_SPECS__UNREGISTERED_TYPE
         - CX_SPECS__MISSING_SPEC
@@ -1239,6 +1236,25 @@ components:
           type: number
           format: double
       description: Defined the weight of a custom dimension at query time.
+    vectaraservingResponse:
+      type: object
+      properties:
+        text:
+          type: string
+        score:
+          type: number
+          format: float
+          description: The score used for ranking results.  The higher the score, the better the match.
+        metadata:
+          type: array
+          items:
+            $ref: "#/components/schemas/servingAttribute"
+        documentIndex:
+          type: integer
+          format: int64
+          description: Use this ID to find the document in the ResponseSet.
+        corpusKey:
+          $ref: "#/components/schemas/servingCorpusKey"
   securitySchemes:
     oAuth:
       type: oauth2
@@ -1263,13 +1279,6 @@ components:
 # add oauth and api key security
 security:
   - oAuth: []
-tags:
-  - name: AdminService
-    description: Administrative services, such as creating or deleting corpora
-  - name: IndexService
-    description: Indexing operations, such as creating and deleting documents
-  - name: QueryService
-    description: Query operations, such as performing a standard search
 # add server endpoint
 servers:
   - url: https://api.vectara.io
