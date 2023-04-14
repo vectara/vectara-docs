@@ -11,7 +11,7 @@ import {vars} from '@site/static/variables.json';
 
 The low-level indexing API provides low-level access to the semantic indexing
 capabilities of the platform. It is reserved for advanced use cases and
-normal users should use the [Default API](indexing).
+normal users should use the [Standard API](indexing).
 
 ## Full Definition
 
