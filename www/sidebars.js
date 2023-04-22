@@ -163,6 +163,7 @@ module.exports = {
                     'search-apis/sql/filter-overview',
                     'search-apis/sql/func-opr',
                     'search-apis/sql/data-types',
+                    'search-apis/sql/ootb-filters',
                   ],
               },
               'search-apis/batched-queries',
