@@ -156,6 +156,7 @@ module.exports = {
                 ]
               },
               'search-apis/reranking',
+              'search-apis/lexical-matching',
               {
                   type: 'category',
                   label: 'Filter Expressions',
