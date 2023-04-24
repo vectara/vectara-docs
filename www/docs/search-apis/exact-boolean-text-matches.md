@@ -20,8 +20,8 @@ By default, the exact and Boolean text matching is disabled and only neural
 retrieval is used.  You can enable the feature by specifying a value,
 `lambda`, at query time.  This value can range from `0` to `1` (inclusive).
 
-The default value of `lambda` is `0`, and thus turning off exact and Boolean
-text matching.
+The default value of `lambda` is `0`, thus turning off exact and Boolean text
+matching.
 
 A value of `1` would turn off _neural_ retrieval instead, relying _only_ on
 Boolean and exact text matching.  This can be useful if you're trying to

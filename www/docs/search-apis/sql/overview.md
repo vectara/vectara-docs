@@ -18,7 +18,7 @@ scopes are `doc.` and `part.`, for document and part-level metadata,
 respectively.
 
 To learn more about setting up metadata so that it can be filtered, have a look
-at the [filter attribute][4] section of the 
+at the [filter attribute][4] section of the corpus creation documentation.
 
 The expression below selects customer reviews in German with better than a
 3-star rating. Note that while there is a single rating for the entire document,
@@ -47,4 +47,4 @@ page.
 [1]: http://www.contrib.andrew.cmu.edu/~shadow/sql/sql1992.txt
 [2]: /docs/search-apis/sql/func-opr
 [3]: https://en.wikipedia.org/wiki/Unix_time
-[4]: https://docs.vectara.com/docs/admin-apis/create-corpus#filter-attribute
+[4]: /docs/admin-apis/create-corpus#filter-attribute

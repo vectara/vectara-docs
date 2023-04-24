@@ -5,10 +5,10 @@ title: Default Filterable Metadata
 
 import {Config} from '../../definitions.md';
 
-A few pieces of metadata that are filterable out of the box, as they're very
+A few pieces of metadata are filterable out of the box, as they're very
 useful in a variety of situations.  This page describes these.
 
-Note tha tyou can set up additional fields to filter on by setting up
+Note that you can set up additional fields to filter on by setting up
 [filter attributes](/docs/admin-apis/create-corpus#filter-attribute) on a
 corpus.
 
