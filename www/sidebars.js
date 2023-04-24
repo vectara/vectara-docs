@@ -156,6 +156,7 @@ module.exports = {
                 ]
               },
               'search-apis/reranking',
+              'search-apis/lexical-matching',
               {
                   type: 'category',
                   label: 'Filter Expressions',
@@ -163,6 +164,7 @@ module.exports = {
                     'search-apis/sql/filter-overview',
                     'search-apis/sql/func-opr',
                     'search-apis/sql/data-types',
+                    'search-apis/sql/ootb-filters',
                   ],
               },
               'search-apis/batched-queries',
