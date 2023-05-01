@@ -45,9 +45,11 @@ the customer ID, the corpus ID, and the data itself, represented as a
 
 ```protobuf
 message IndexCoreDocumentRequest {
+  // The Customer ID to issue the request for.
   int64 customer_id = 1;
+  // The Corpus ID to index the document into.
   int64 corpus_id = 2;
-  CoreDocument document = 3;
+  com.vectara.indexing.CoreDocument document = 3;
 }
 ```
 
@@ -75,11 +77,20 @@ Most importantly, **parts** defines the actual text items to be indexed.
 ```protobuf
 // A document to index.
 message CoreDocument {
+  // A document ID to assign to this document.
   string document_id = 1;
+  // Metadata about the document. This should be a json string. It can be
+  // retrieved at query time.
   string metadata_json = 2;
+  // All parts of this document.
   repeated CoreDocumentPart parts = 3;
+  // This field provides a way to specify a blanket context for all parts. If
+  // the context in a part is empty, this context will be used.
   string default_part_context = 4;
+  // A list of custom dimension values that are included in the generated
+  // representation of all parts.
   repeated CustomDimension custom_dims = 5;
+}
 }
 ```
 
@@ -107,9 +118,17 @@ defined ahead of time for the corpus, or else they'll be ignored.
 
 ```protobuf
 message CoreDocumentPart {
+  // A part of the document. e.g., a sentence.
   string text = 1;
+  // Context of the part.
   string context = 2;
+  // Metadata about this part of the document. This should be a json string.
+  // It is passed through the system, without being used at indexing time. It
+  // can be retrieved at query time.
   string metadata_json = 3;
+  // A list of custom dimension values that are included in the generated
+  // representation of this part.  These are optional and take on the corpus
+  // default custom dimension value if not explicitly provided for the document
   repeated CustomDimension custom_dims = 4;
 }
 ```

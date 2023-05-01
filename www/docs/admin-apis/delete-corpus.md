@@ -19,8 +19,10 @@ Note that the corpus id assigned to the corpus will not be reused.
 
 ```protobuf
 message DeleteCorpusRequest {
-  uint64 customer_id = 1;
-  uint64 corpus_id = 2;
+  // The Customer ID that contains the corpus to be deleted.
+  uint32 customer_id = 1;
+  // The Corpus ID to be deleted.
+  uint32 corpus_id = 2;
 }
 
 message DeleteCorpusResponse {

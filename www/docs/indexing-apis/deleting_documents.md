@@ -20,16 +20,21 @@ A request to delete a document from a corpus consists of three key pieces of inf
 the customer ID, the corpus ID, and the document ID.
 
 ```protobuf
+// Request to delete a document from an index.
 message DeleteDocumentRequest {
+  // The Customer ID to issue the request for.
   int64 customer_id = 1;
+  // The Corpus ID that contains the document.
   int64 corpus_id = 2;
+  // The Document ID to be deleted.
   string document_id = 3;
 }
 ```
 
-The reply from the server consists of nothing yet. Note that the operation is not
-synchronous: the document may still be returned in query results. The platform typically
-takes 5-10 mins before the document is removed from serving.
+The reply from the server consists of nothing yet. Note that while the operation is
+not completely synchronous (the document may still be returned in query results),
+the platform typically removes the document within a few seconds, though it may
+take longer for Growth accounts.
 
 The server returns [gRPC status codes](https://grpc.github.io/grpc/core/md_doc_statuscodes.html).
 For example:

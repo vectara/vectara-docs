@@ -17,8 +17,9 @@ successful completion, space quota consumed by the corpus will be freed.
 
 ```protobuf
 message ResetCorpusRequest {
-  uint64 customer_id = 1;
-  uint64 corpus_id = 2;
+  uint32 customer_id = 1;
+  // The Corpus ID to be reset.
+  uint32 corpus_id = 2;
 }
 
 message ResetCorpusResponse {

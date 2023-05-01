@@ -57,15 +57,37 @@ further increase relevance in certain scenarios. For details, see
 
 ```protobuf
 message QueryRequest {
+  // The query text to use from the end user.
   string query = 5;
-  string query_context = 10;
 
+  // The start position in the result set
   uint32 start = 15;
+  // The number of results to return.
   uint32 num_results = 20;
+  message ContextConfig {
+    // The amount of context before. Ignored if sentences_before is set.
+    int32 chars_before = 5;
+    // The amount of context after. Ignored if sentences_after is set.
+    int32 chars_after = 10;
+    // The amount of context before, in sentences.
+    int32 sentences_before = 15;
+    // The amount of context after, in sentences.
+    int32 sentences_after = 20;
+    // The tag that wraps the snippet at the start.
+    string start_tag = 25;
+    // The tag that wraps the snippet at the end.
+    string end_tag = 30;
+  }
+  ContextConfig context_config = 22;
+
+  // The query is run on all these corpora, and the results are
+  // merged together in the response, ranked by score.
   repeated CorpusKey corpus_key = 25;
 
-  // Configuration options for reranking.
+  // Configuration options to apply to the reranking.
   message RerankingConfig {
+    // Which reranking model to use if reranking.  Currently, the only ID
+    // available is ID 272725717
     uint32 reranker_id = 5;
   }
   RerankingConfig reranking_config = 30;
@@ -96,18 +118,30 @@ more rarely, as a response.
 
 ```protobuf
 message CorpusKey {
+  // The Customer ID.
   uint32 customer_id = 5;
+  // The Corpus ID.
   uint32 corpus_id = 10;
 
+  // Semantics controls the interpretation of the query string by the
+  // server, and can be used to override the default semantics assigned
+  // in the corpus definition.
   enum Semantics {
+    // Use corpus-assigned semantics.  This is the most common setting.
     DEFAULT = 0;
+    // Use query semantics.  This is also common.
     QUERY = 1;
+    // Use response semantics.  Usage of this is rare.
     RESPONSE = 2;
   }
   Semantics semantics = 15;
 
+  // Weights on custom dimensions for the corpus.
   repeated CustomDimension dim = 20;
+
   string metadata_filter = 25;
+
+  LinearInterpolation lexical_interpolation_config = 30;
 }
 ```
 
@@ -128,9 +162,11 @@ document id and document-level metadata.
 ```
 message Response {
   string text = 5;
+  // The score used for ranking results.  The higher the score, the better the match.
   float score = 10;
   repeated Attribute metadata = 20;
-  uint32 document_index = 25;     // Pointer to the document in the ResponseSet.
+  // Use this ID to find the document in the ResponseSet.
+  uint32 document_index = 25;
   CorpusKey corpus_key = 30;
 }
 ```
@@ -145,14 +181,14 @@ may be less than the length of the response list.
 ```
 message ResponseSet {
   repeated Response response = 5;
-  repeated Status status = 10;    // Potentially multiple warnings.
+  // Potentially multiple warnings.
+  repeated Status status = 10;
 
   message Document {
     string id = 5;
     repeated Attribute metadata = 10;
   }
   repeated Document document = 15;
-}
 ```
 
 ### Attribute
