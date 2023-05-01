@@ -66,13 +66,14 @@ expressions to operate on.
 
 If **indexed** is true, the system will build an index on the extracted values
 to further improve the performance of filter expressions involving the
-attribute. 
+attribute.
 
 Finally, filter attributes must specify a **type**, which is validated when
-documents are indexed. The three supported types are **integer**, which stores
+documents are indexed. The four supported types are **integer**, which stores
 signed whole-number values up to eight bytes in length; **real**, for storing
-floating point values in [IEEE 754 8-byte format][1]; and **text** for storing 
-textual strings in [UTF-8 encoding][2].
+floating point values in [IEEE 754 8-byte format][1]; **text** for storing
+textual strings in [UTF-8 encoding][2], and **boolean** for storing true/false
+values.
 
 [1]: https://en.wikipedia.org/wiki/Double-precision_floating-point_format
 [2]: https://en.wikipedia.org/wiki/UTF-8
@@ -92,6 +93,7 @@ enum FilterAttributeType {
   FILTER_ATTRIBUTE_TYPE__INTEGER = 5;
   FILTER_ATTRIBUTE_TYPE__REAL = 15;
   FILTER_ATTRIBUTE_TYPE__TEXT = 25;
+  FILTER_ATTRIBUTE_TYPE__BOOLEAN = 35;
 }
 
 enum FilterAttributeLevel {
