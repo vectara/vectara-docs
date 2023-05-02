@@ -93,6 +93,13 @@ const config = {
           "php/rest/indexDocument.php",
           "python/vectara-rest/rest_index_document.py",
 
+          // delete documents
+          "csharp/rest/RestDeleteDocument.cs",
+          "java/rest/src/main/java/com/vectara/examples/rest/RestDeleteDocument.java",
+          "nodejs/rest/delete_document.js",
+          "php/rest/deleteDocument.php",
+          "python/vectara-rest/rest_delete_document.py",
+
           // file upload
           "java/rest/src/main/java/com/vectara/examples/rest/RestUploadFile.java",
           "nodejs/rest/upload_file.js",

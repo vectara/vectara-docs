@@ -130,7 +130,24 @@ module.exports = {
                   },
                 ]
               },
-              'indexing-apis/deleting-documents',
+              {
+                type: 'category',
+                label: 'Document Deletion API',
+                items: [
+                  'indexing-apis/deleting-documents',
+                  {
+                    type: 'category',
+                    label: 'REST Examples',
+                    items: [
+                      'getting-started-samples/RestDeleteDocument.cs',
+                      'getting-started-samples/RestDeleteDocument.java',
+                      'getting-started-samples/delete_document.js',
+                      'getting-started-samples/deleteDocument.php',
+                      'getting-started-samples/rest_delete_document.py',
+                    ]
+                  },
+                ]
+              },
             ],
         },
         {
