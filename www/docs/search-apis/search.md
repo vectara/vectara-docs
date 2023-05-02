@@ -189,6 +189,7 @@ message ResponseSet {
     repeated Attribute metadata = 10;
   }
   repeated Document document = 15;
+}
 ```
 
 ### Attribute
