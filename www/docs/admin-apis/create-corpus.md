@@ -33,24 +33,44 @@ message CreateCorpusRequest {
 }
 
 message CreateCorpusResponse {
+  // The Corpus ID that was created.
   uint32 corpus_id = 1;
   Status status = 2;
 }
 
 message Corpus {
+  // The Corpus ID.
   uint32 id = 1;
+  // The name of the corpus.
   string name = 2;
+  // A description for the corpus.
   string description = 3;
+  // The time at which the corpus was provisioned.
   int64 dt_provision = 4;
+  // Whether the corpus is enabled for use or not.
   bool enabled = 5;
+
+  
   bool swap_qenc = 6;
+  // The default query encoder is designed for normal question-answering types
+  // of queries when the text contains the answer.  Swapping the index encoder
+  // is generally rare, but can be used to help directly match questions to
+  // questions.  This can be useful if you have a FAQ dataset and you want to
+  // directly match the user question to the question in the FAQ.
   bool swap_ienc = 7;
+  // When a corpus is "textless", Vectara does not store the original text.
+  // Instead, Vectara converts the text to vectors and only retains metadata.
   bool textless = 8;
+  // Encryption is on by default and cannot be turned off.
   bool encrypted = 9;
 
+  // This is an advanced setting for changing the underlying model type.  The
+  // default value is "1", which is Vectara's high-performing global model.
+  // Underlying models may be swapped for some paying customers by contacting
+  // our support team.
   uint64 encoder_id = 10;
+  // An optional maximum size of the metadata that each document can contain.
   uint32 metadata_max_bytes = 11;
-  string faiss_index_type = 12;
 
   repeated Dimension custom_dimensions = 13;
   repeated FilterAttribute filter_attributes = 14;
@@ -81,11 +101,16 @@ values.
 
 ```
 message FilterAttribute {
-  string name = 5;                     // Name, as seen in metadata
-  string description = 10;             // Optional description
-  bool indexed = 15;                   // Index for maximum query speed.
-  FilterAttributeType type = 20;       // Type of the attribute
-  FilterAttributeLevel level = 25;     // Document or part level?
+  // Name of the field, as seen in metadata.
+  string name = 5;
+  // An optional description.
+  string description = 10;
+  // Whether the field is indexed for maximum query speed.
+  bool indexed = 15;
+  // The data type of the attribute.
+  FilterAttributeType type = 20;
+  // Whether the attribute lives at the document or part level.
+  FilterAttributeLevel level = 25;
 }
 
 enum FilterAttributeType {

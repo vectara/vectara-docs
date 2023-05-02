@@ -84,14 +84,24 @@ Most importantly, **section** defines the actual textual matter.
 
 ```protobuf
 message Document {
+  // Client assigned document ID to this document.
   string document_id = 1;
+  // The title of the document.
   string title = 2;
+  // An optional description for the document.
   string description = 3;
+  // Metadata about the document. This should be a json string, and it can be
+  // retrieved at query time.
   string metadata_json = 4;
+  // A list of custom dimension values that are included in the generated
+  // representation of all sections.
   repeated CustomDimension custom_dims = 5;
 
+  // The actual content of the document, structured as a repeating list
+  // of sections.
   repeated Section section = 10;
 }
+
 ```
 
 ### Section
@@ -151,11 +161,22 @@ defined ahead of time for the corpus, or else they'll be ignored.
 
 ```protobuf
 message Section {
-  string title = 1;
-  string text = 2;
-  string metadata_json = 3;
-  repeated CustomDimension custom_dims = 4;
+  // Optionally, the unique ID of this section. If set, it will be returned as
+  // metadata in query results.
+  int32 id = 1;
+  // Optionally, the title of the section. This may be empty.
+  string title = 2;
+  // The text of the section. This should never be empty.
+  string text = 3;
+  // Metadata about this section. This should be a json string. It is passed
+  // through the system, without being used at indexing time. It can be
+  // retrieved at query time.
+  string metadata_json = 4;
+  // A list of custom dimension values that are included in the generated
+  // representation of all subsections (i.e. sections contains by this section).
+  repeated CustomDimension custom_dims = 5;
 
+  // A list of subsections.
   repeated Section section = 10;
 }
 ```
