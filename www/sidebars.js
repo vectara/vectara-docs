@@ -7,6 +7,7 @@ module.exports = {
     {
       type: 'category',
       label: 'Getting Started',
+      collapsed: false,
       items: [
         {
           type: 'category',
@@ -34,6 +35,7 @@ module.exports = {
     {
       type: 'category',
       label: 'API and Configuration Reference',
+      collapsed: false,
       items: [
         {
           type: 'category',
@@ -261,6 +263,7 @@ module.exports = {
     {
       type: 'category',
       label: 'Administrative User Interface',
+      collapsed: false,
       items: [
         {
           type: 'category',
