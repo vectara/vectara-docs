@@ -4,7 +4,7 @@ title: Exact and Boolean Text Matching
 sidebar_label: Exact and Boolean Text Matching
 ---
 
-Vecata supports the ability to incorporate partial/exact/Boolean matching in
+Vectara supports the ability to incorporate partial/exact/Boolean matching in
 search results and even to blend them with the neural model in what's called
 a "hybrid" retrieval model.
 
