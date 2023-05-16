@@ -272,10 +272,10 @@ paths:
                 type: object
                 properties:
                   result:
-                    $ref: "#/components/schemas/servingResponseSet"
+                    $ref: "#/components/schemas/servingQueryResponsePart"
                   error:
                     $ref: "#/components/schemas/googlerpcStatus"
-                title: Stream result of servingResponseSet
+                title: Stream result of servingQueryResponsePart
         default:
           description: An unexpected error response.
           content:
@@ -411,6 +411,31 @@ components:
          - DEFAULT: Use corpus-assigned semantics.  This is the most common setting.
          - QUERY: Use query semantics.  This is also common.
          - RESPONSE: Use response semantics.  Usage of this is rare.
+    QueryRequestContextConfig:
+      type: object
+      properties:
+        charsBefore:
+          type: integer
+          format: int32
+          description: The amount of context before. Ignored if sentences_before is set.
+        charsAfter:
+          type: integer
+          format: int32
+          description: The amount of context after. Ignored if sentences_after is set.
+        sentencesBefore:
+          type: integer
+          format: int32
+          description: The amount of context before, in sentences.
+        sentencesAfter:
+          type: integer
+          format: int32
+          description: The amount of context after, in sentences.
+        startTag:
+          type: string
+          description: The tag that wraps the snippet at the start.
+        endTag:
+          type: string
+          description: The tag that wraps the snippet at the end.
     QueryRequestRerankingConfig:
       type: object
       properties:
@@ -901,6 +926,18 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/servingResponseSet"
+          description: >-
+            The response sets for queries within the batch. If using synchronous APIs
+
+            for querying, the response set will be included directly in the response.
+
+            However, if using the streaming APIs for query, the response set messages
+
+            only set the future_id field. Later, as response sets are computed and
+
+            returned over the stream, the future_id within the summary can be used for
+
+            correlation.
         status:
           type: array
           items:
@@ -930,7 +967,22 @@ components:
         metadataFilter:
           type: string
           example: "part.lang = 'eng'"
+        lexicalInterpolationConfig:
+          $ref: "#/components/schemas/servingLinearInterpolation"
       required: ['customerId', 'corpusId']
+    servingLinearInterpolation:
+      type: object
+      properties:
+        lambda:
+          type: number
+          format: float
+          title: >-
+            Controls the weight given to lexical matches. The final score, S, is then:
+
+
+
+                S = (lambda) * (lexical score) + (1 - lambda) * (dense score)
+      description: Configuration for a linear interpolation.
     servingPerformanceMetrics:
       type: object
       properties:
@@ -969,6 +1021,8 @@ components:
           description: The number of results to return.
           minimum: 1
           example: 10
+        contextConfig:
+          $ref: "#/components/schemas/QueryRequestContextConfig"
         corpusKey:
           type: array
           items:
@@ -978,7 +1032,29 @@ components:
             merged together in the response, ranked by score.
         rerankingConfig:
           $ref: "#/components/schemas/QueryRequestRerankingConfig"
+        summary:
+          type: array
+          items:
+            $ref: "#/components/schemas/servingSummarizationRequest"
+          description: Optionally, one or more requests to summarize the results.
       required: ['numResults', 'corpusKey']
+    servingQueryResponsePart:
+      type: object
+      properties:
+        batchQueryResponse:
+          $ref: "#/components/schemas/servingBatchQueryResponse"
+        responseSet:
+          $ref: "#/components/schemas/servingResponseSet"
+        summary:
+          $ref: "#/components/schemas/servingSummary"
+        status:
+          type: array
+          items:
+            $ref: "#/components/schemas/comvectaraStatus"
+          description: A status code at the level of a BatchQueryResponse.
+      description: |-
+        This message contains individual partial results that are returned
+        asynchronously by the streaming interface.
     servingResponseSet:
       type: object
       properties:
@@ -995,6 +1071,24 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/servingResponseSetDocument"
+        summary:
+          type: array
+          items:
+            $ref: "#/components/schemas/servingSummary"
+          description: >-
+            A summary. If using synchronous APIs for querying, the summary will be
+
+            included directly in this response. However, if using the streaming APIs
+
+            for query, the summary messages only set the future_id field. Later, as
+
+            summary results are computed and returned over the stream, the future_id
+
+            within the summary can be used for correlation.
+        futureId:
+          type: integer
+          format: int32
+          description: Populated for streaming requests only.
     servingResponseSetDocument:
       type: object
       properties:
@@ -1004,6 +1098,40 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/servingAttribute"
+    servingSummarizationRequest:
+      type: object
+      properties:
+        summarizerPromptId:
+          type: integer
+          format: int64
+          description: The summarizer+prompt combination to use for summarization.
+        maxSummarizedResults:
+          type: integer
+          format: int64
+          description: Maximum number of results to summarize.
+        responseLang:
+          type: string
+          description: |-
+            ISO 639-3 language code for the response, or "auto" to indicate that
+            the auto-detected language of the incoming query should be used.
+    servingSummary:
+      type: object
+      properties:
+        text:
+          type: string
+          description: The summary text.
+        status:
+          type: array
+          items:
+            $ref: "#/components/schemas/comvectaraStatus"
+          description: >-
+            Statuses are marked “repeated” for consistency and flexibility. A failed
+
+            summary should bubble up into the status code of the entire ResponseSet.
+        futureId:
+          type: integer
+          format: int32
+          description: Populated for streaming requests only.
     vectaraDeleteDocumentRequest:
       type: object
       properties:
@@ -1108,6 +1236,10 @@ components:
         - QRY__RERANK_FAILURE
         - QRY__TOO_MANY_RESULT_ROWS
         - QRY__PARTIAL_RETRIEVAL
+        - QRY__SMRY_INVALID_SUMMARIZER_PROMPT
+        - QRY__SMRY_INVALID_SUMMARY_LANG
+        - QRY__SMRY_UNSUPPORTED_SUMMARY_LANG
+        - QRY__SMRY_PARTIAL_SUMMARY
         - QRY__GEN__NO_QUERY_RESULTS
         - QRY__GEN__UNPARSEABLE_MODEL_PARAMS
         - CX_SPECS__INVALID_JSON
