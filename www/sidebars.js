@@ -47,6 +47,14 @@ module.exports = {
         },
         {
           type: 'category',
+          label: 'Filtering Search by Metadata',
+          items: [
+            'common-use-cases/filtering-by-metadata/filter-overview',
+            'common-use-cases/filtering-by-metadata/ootb-filters',
+          ]
+        },
+        {
+          type: 'category',
           label: 'Authentication and Authorization',
           items: [
             'common-use-cases/app-authn-authz/api-keys',
@@ -204,10 +212,10 @@ module.exports = {
                   type: 'category',
                   label: 'Filter Expressions',
                   items: [
-                    'api-reference/search-apis/sql/filter-overview',
+                    'common-use-cases/filtering-by-metadata/filter-overview',
                     'api-reference/search-apis/sql/func-opr',
                     'api-reference/search-apis/sql/data-types',
-                    'api-reference/search-apis/sql/ootb-filters',
+                    'common-use-cases/filtering-by-metadata/ootb-filters',
                   ],
               },
               'api-reference/search-apis/batched-queries',

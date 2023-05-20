@@ -88,7 +88,7 @@ you uploaded documents using the
 [file upload API](/docs/api-reference/indexing-apis/format-for-upload), then you might need
 to look up the additional sections.  This can be done by an additional query
 to <Config v="names.product"/> using
-[filters](/docs/api-reference/search-apis/sql/filter-overview).  Do do this, retrieve the
+[filters](/docs/common-use-cases/filtering-by-metadata/filter-overview).  Do do this, retrieve the
 `id` value of the document and perform a query for that ID.  For example:
 
 ```

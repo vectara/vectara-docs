@@ -103,7 +103,7 @@ customer attached to the gRPC request.
 The **metadata_filter** allows specifying a predicate expression that restricts
 the search to a part of the corpus. The filter is written in a simplified SQL
 dialect and can reference metadata that was marked as filterable during corpus
-creation. See the [Filter Expressions Overview](sql/filter-overview) for a 
+creation. See the [Filter Expressions Overview](/docs/common-use-cases/filtering-by-metadata/filter-overview) for a 
 description of their syntax, and [Corpus Administration](/docs/api-reference/admin-apis/admin) to learn how 
 referenceable metadata is specified during corpus creation.
 
