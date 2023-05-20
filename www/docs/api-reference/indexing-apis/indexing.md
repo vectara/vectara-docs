@@ -6,7 +6,7 @@ sidebar_label: API Definition
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '../definitions.md';
+import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The first step in using <Config v="names.product"/> is to index a set of related documents

@@ -3,11 +3,11 @@ id: format-for-upload
 title: Format JSON and Pbtext Files
 ---
 
-When uploading files using the [File Upload Service](/docs/indexing-apis/file-upload), you may
+When uploading files using the [File Upload Service](/docs/api-reference/indexing-apis/file-upload), you may
 send any of the predefined formats like markdown, PDF, and MS Word.
 
 Alternatively, you may perform the text extraction yourself, and save the result
-as a JSON or text serialized [Document proto](/docs/indexing-apis/indexing#document). The benefit
+as a JSON or text serialized [Document proto](/docs/api-reference/indexing-apis/indexing#document). The benefit
 of this approach is that you can attach your own metadata to the document, or
 to individual sections within it.
 

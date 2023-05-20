@@ -3,7 +3,7 @@ id: file-upload
 title: API Definition
 ---
 
-import {Config} from '../definitions.md';
+import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 ## Endpoint Address

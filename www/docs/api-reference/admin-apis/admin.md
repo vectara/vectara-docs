@@ -6,7 +6,7 @@ sidebar_label: Corpus Administration
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '../definitions.md';
+import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The admin console is a good way to get started with <Config v="names.product"/>. Once

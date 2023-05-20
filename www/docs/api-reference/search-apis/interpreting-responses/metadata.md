@@ -6,10 +6,10 @@ sidebar_label: Metadata
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '../../definitions.md';
+import {Config} from '@site/docs/definitions.md';
 
 In <Config v="names.product"/>, when you
-[index a document](/docs/indexing-apis/indexing), it will consist of both a
+[index a document](/docs/api-reference/indexing-apis/indexing), it will consist of both a
 top-level `Document` object and a series of `Section`s which can be nested.
 Both can contain separate metadata, including some metadata
 that <Config v="names.product"/> will auto-generate.  A good example of
@@ -144,4 +144,4 @@ together for display purposes.
 You can also use the `document`- and `section`-level metadata to filter in a
 search operation.  For more information on how to apply filter expressions at
 either the document or section/part level, please see the
-[filter expression](/docs/search-apis/sql/filter-overview) documentation.
+[filter expression](/docs/api-reference/search-apis/sql/filter-overview) documentation.

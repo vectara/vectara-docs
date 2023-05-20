@@ -6,7 +6,7 @@ sidebar_label: Highlighting
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '../../definitions.md';
+import {Config} from '@site/docs/definitions.md';
 
 When you receive search results from <Config v="names.product"/>, alongside the
 result, you'll receive a values for `section` and `offset`.  For example:
@@ -85,10 +85,10 @@ If you created the sections yourself, you may choose to just replay the
 sectioning logic at query time and use as much of the additional sections as
 desired.  However, if you aren't certain as to the section numbers and/or if
 you uploaded documents using the
-[file upload API](/docs/indexing-apis/format-for-upload), then you might need
+[file upload API](/docs/api-reference/indexing-apis/format-for-upload), then you might need
 to look up the additional sections.  This can be done by an additional query
 to <Config v="names.product"/> using
-[filters](/docs/search-apis/sql/filter-overview).  Do do this, retrieve the
+[filters](/docs/api-reference/search-apis/sql/filter-overview).  Do do this, retrieve the
 `id` value of the document and perform a query for that ID.  For example:
 
 ```

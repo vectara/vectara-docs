@@ -6,7 +6,7 @@ sidebar_label: Scores
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '../../definitions.md';
+import {Config} from '@site/docs/definitions.md';
 
 ## Overview
 
@@ -18,9 +18,9 @@ the controls and query parameters you've provided.
 Out of the box scores in <Config v="names.product"/>:
 1. Can be either positive or negative
 2. Are larger/more positive as relevance is increased
-3. Are between -1 and 1 when not [reranked](/docs/search-apis/reranking)
+3. Are between -1 and 1 when not [reranked](/docs/api-reference/search-apis/reranking)
 4. Can be any real number -- positive or negative -- when
-[reranked](/docs/search-apis/reranking).  However, scores when reranked are
+[reranked](/docs/api-reference/search-apis/reranking).  However, scores when reranked are
 *typically* between about -10 and 10
 
 See the sections below on "standard" and "reranked" results for details on

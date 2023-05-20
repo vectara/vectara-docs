@@ -3,7 +3,7 @@ id: filter-overview
 title: Overview
 ---
 
-import {Config} from '../../definitions.md';
+import {Config} from '@site/docs/definitions.md';
 
 Filter expressions are attached to queries, or, more formally, to its corpus
 keys, and serve to restrict the search to only the part of the corpus that 
@@ -45,6 +45,6 @@ You can find a full list of supported syntax on the [Functions and Operators][2]
 page.
 
 [1]: http://www.contrib.andrew.cmu.edu/~shadow/sql/sql1992.txt
-[2]: /docs/search-apis/sql/func-opr
+[2]: /docs/api-reference/search-apis/sql/func-opr
 [3]: https://en.wikipedia.org/wiki/Unix_time
-[4]: /docs/admin-apis/create-corpus#filter-attribute
+[4]: /docs/api-reference/admin-apis/create-corpus#filter-attribute

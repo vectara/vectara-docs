@@ -11,10 +11,10 @@ import {Config} from './definitions.md';
 ## Overview
 
 When you send documents to the
-[index API](/docs/indexing-apis/indexing), <Config v="names.product"/> will
+[index API](/docs/api-reference/indexing-apis/indexing), <Config v="names.product"/> will
 receive both document text and metadata information to be indexed. If you
 choose the “textless” option for
-[corpus creation](/docs/admin-apis/create-corpus), then document text will be
+[corpus creation](/docs/api-reference/admin-apis/create-corpus), then document text will be
 indexed (converted into vectors) but not stored anywhere in the platform.
 Metadata, however, is always stored. For the safety of your
 data, <Config v="names.product"/> always stores your text and metadata in an

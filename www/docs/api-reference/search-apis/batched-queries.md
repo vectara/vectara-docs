@@ -6,7 +6,7 @@ sidebar_label: Batched Queries
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '../definitions.md';
+import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 Some applications may be designed to be powered by different queries in
@@ -42,7 +42,7 @@ separate query for billing purposes.
 
 When you a query <Config v="names.product"/>, you get back an array oof results
 This is to assist in using a
-[Batched Query](/docs/search-apis/batched-queries.md), 
+[Batched Query](/docs/api-reference/search-apis/batched-queries.md), 
 
 ```jsx
 {

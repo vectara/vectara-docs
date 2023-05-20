@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 import {Config} from './definitions.md';
 
 ## Textless
-When you create a corpus [via the API](/docs/admin-apis/create-corpus) or the
+When you create a corpus [via the API](/docs/api-reference/admin-apis/create-corpus) or the
 [UI](/docs/console-ui/creating-a-corpus), you will have the option to create it
 and "don't store the text," also known as a "textless" mode.  When this is
 enabled, several things happen in the platform.  This document talks about when
@@ -39,6 +39,6 @@ information leakage is very high.  Note that <Config v="names.product"/> does
 [encrypt documents](/docs/encryption)
 
 ## Limitations
-Currently, the [reranking](/docs/search-apis/reranking) capability relies on
+Currently, the [reranking](/docs/api-reference/search-apis/reranking) capability relies on
 the text being stored.  As a result, attempting to rerank search results on any
 corpora where text storage has been turned off will not work at this time.

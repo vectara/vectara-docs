@@ -4,7 +4,7 @@ title: Create Corpus
 sidebar_label: API Definition
 ---
 
-import {Config} from '../definitions.md';
+import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 ## Endpoint Address
@@ -19,7 +19,7 @@ The response message returns a unique id, `corpus_id`, by which the corpus can
 be subsequently referenced. Note that the name needn't be unique within an
 account.
 
-In order to reference metadata in [filter expressions](/docs/search-apis/sql/filter-overview), the
+In order to reference metadata in [filter expressions](/docs/api-reference/search-apis/sql/filter-overview), the
 referenceable attributes must be declared at creation time in the **filter
 attributes**. This list cannot be changed once the corpus is created.
 

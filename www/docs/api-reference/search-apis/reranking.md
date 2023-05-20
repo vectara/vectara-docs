@@ -6,7 +6,7 @@ sidebar_label: Reranking
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '../definitions.md';
+import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 Reranking is the process by which an initial set of query results is rescored

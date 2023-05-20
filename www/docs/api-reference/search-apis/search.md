@@ -6,7 +6,7 @@ sidebar_label: API Definition
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '../definitions.md';
+import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 ## Endpoint Address
@@ -104,7 +104,7 @@ The **metadata_filter** allows specifying a predicate expression that restricts
 the search to a part of the corpus. The filter is written in a simplified SQL
 dialect and can reference metadata that was marked as filterable during corpus
 creation. See the [Filter Expressions Overview](sql/filter-overview) for a 
-description of their syntax, and [Corpus Administration](/docs/admin-apis/admin) to learn how 
+description of their syntax, and [Corpus Administration](/docs/api-reference/admin-apis/admin) to learn how 
 referenceable metadata is specified during corpus creation.
 
 If the corpus specifies custom dimensions, weights can be assigned to each

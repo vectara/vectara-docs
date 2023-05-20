@@ -92,7 +92,7 @@ module.exports = {
                 type: 'category',
                 label: 'Standard Indexing API',
                 items: [
-                  'indexing-apis/indexing',
+                  'api-reference/indexing-apis/indexing',
                   {
                     type: 'category',
                     label: 'REST Examples',
@@ -110,16 +110,16 @@ module.exports = {
                 type: 'category',
                 label: 'Low-level API',
                 items: [
-                  'indexing-apis/core_indexing'
+                  'api-reference/indexing-apis/core_indexing'
                 ]
               },
               {
                 type: 'category',
                 label: 'File Upload API',
                 items: [
-                  'indexing-apis/file-upload',
-                  'indexing-apis/format-for-upload',
-                  'indexing-apis/file-upload-filetypes',
+                  'api-reference/indexing-apis/file-upload',
+                  'api-reference/indexing-apis/format-for-upload',
+                  'api-reference/indexing-apis/file-upload-filetypes',
                   {
                     type: 'category',
                     label: 'REST Examples',
@@ -136,7 +136,7 @@ module.exports = {
                 type: 'category',
                 label: 'Document Deletion API',
                 items: [
-                  'indexing-apis/deleting-documents',
+                  'api-reference/indexing-apis/deleting-documents',
                   {
                     type: 'category',
                     label: 'REST Examples',
@@ -160,7 +160,7 @@ module.exports = {
                 type: 'category',
                 label: 'Standard Search API',
                 items: [
-                  'search-apis/search',
+                  'api-reference/search-apis/search',
                   {
                     type: 'category',
                     label: 'REST Examples',
@@ -174,26 +174,26 @@ module.exports = {
                   },
                 ]
               },
-              'search-apis/reranking',
-              'search-apis/lexical-matching',
+              'api-reference/search-apis/reranking',
+              'api-reference/search-apis/lexical-matching',
               {
                   type: 'category',
                   label: 'Filter Expressions',
                   items: [
-                    'search-apis/sql/filter-overview',
-                    'search-apis/sql/func-opr',
-                    'search-apis/sql/data-types',
-                    'search-apis/sql/ootb-filters',
+                    'api-reference/search-apis/sql/filter-overview',
+                    'api-reference/search-apis/sql/func-opr',
+                    'api-reference/search-apis/sql/data-types',
+                    'api-reference/search-apis/sql/ootb-filters',
                   ],
               },
-              'search-apis/batched-queries',
+              'api-reference/search-apis/batched-queries',
               {
                 type: 'category',
                 label: 'Interpreting Responses',
                 items: [
-                  'search-apis/interpreting-responses/metadata',
-                  'search-apis/interpreting-responses/intepreting-scores',
-                  'search-apis/interpreting-responses/highlighting',
+                  'api-reference/search-apis/interpreting-responses/metadata',
+                  'api-reference/search-apis/interpreting-responses/intepreting-scores',
+                  'api-reference/search-apis/interpreting-responses/highlighting',
                 ],
             },
             ],
@@ -202,12 +202,12 @@ module.exports = {
           type: 'category',
           label: 'Admin APIs',
           items: [
-            'admin-apis/admin',
+            'api-reference/admin-apis/admin',
             {
               type: 'category',
               label: 'Create Corpus',
               items: [
-                'admin-apis/create-corpus',
+                'api-reference/admin-apis/create-corpus',
                 {
                   type: 'category',
                   label: 'REST Examples',
@@ -224,7 +224,7 @@ module.exports = {
               type: 'category',
               label: 'Delete Corpus',
               items: [
-                'admin-apis/delete-corpus',
+                'api-reference/admin-apis/delete-corpus',
                 {
                   type: 'category',
                   label: 'REST Examples',
@@ -241,7 +241,7 @@ module.exports = {
               type: 'category',
               label: 'Reset Corpus',
               items: [
-                'admin-apis/reset-corpus',
+                'api-reference/admin-apis/reset-corpus',
                 {
                   type: 'category',
                   label: 'REST Examples',
