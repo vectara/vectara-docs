@@ -62,6 +62,7 @@ module.exports = {
             'common-use-cases/filtering-by-metadata/ootb-filters',
           ]
         },
+        'api-reference/search-apis/lexical-matching',
         'api-reference/search-apis/batched-queries',
       ]
     },
