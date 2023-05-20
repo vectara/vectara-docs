@@ -47,21 +47,22 @@ module.exports = {
         },
         {
           type: 'category',
-          label: 'Filtering Search by Metadata',
-          items: [
-            'common-use-cases/filtering-by-metadata/filter-overview',
-            'common-use-cases/filtering-by-metadata/ootb-filters',
-          ]
-        },
-        {
-          type: 'category',
           label: 'Authentication and Authorization',
           items: [
             'common-use-cases/app-authn-authz/api-keys',
             'common-use-cases/app-authn-authz/authorization',
             'common-use-cases/app-authn-authz/authentication',
           ]
-        }
+        },
+        {
+          type: 'category',
+          label: 'Filtering Search by Metadata',
+          items: [
+            'common-use-cases/filtering-by-metadata/filter-overview',
+            'common-use-cases/filtering-by-metadata/ootb-filters',
+          ]
+        },
+        'api-reference/search-apis/batched-queries',
       ]
     },
     {
