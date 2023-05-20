@@ -15,7 +15,7 @@ module.exports = {
           items: [
             'protobuf-definitions',
             'rest',
-            'tls'
+            'common-use-cases/keeping-your-data-private/tls'
           ]
         },
         {
