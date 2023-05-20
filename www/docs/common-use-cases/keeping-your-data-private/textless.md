@@ -6,7 +6,7 @@ sidebar_label: Configurable Data Retention
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from './definitions.md';
+import {Config} from '@site/docs/definitions.md';
 
 ## Textless
 When you create a corpus [via the API](/docs/api-reference/admin-apis/create-corpus) or the
@@ -36,7 +36,7 @@ find the document.
 
 In general, this feature is optimal for use cases where the cost of any
 information leakage is very high.  Note that <Config v="names.product"/> does
-[encrypt documents](/docs/encryption)
+[encrypt documents](encryption)
 
 ## Limitations
 Currently, the [reranking](/docs/api-reference/search-apis/reranking) capability relies on

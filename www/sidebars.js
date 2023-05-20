@@ -29,8 +29,23 @@ module.exports = {
             'getting-started-samples/app.js',
           ]
         },
-        'encryption'
       ],
+    },
+    {
+      type: 'category',
+      label: 'Common Use Cases and Flows',
+      collapsed: false,
+      items: [
+        {
+          type: 'category',
+          label: 'Keeping Your Data Private',
+          items: [
+            'common-use-cases/keeping-your-data-private/privacy-overview',
+            'common-use-cases/keeping-your-data-private/textless',
+            'common-use-cases/keeping-your-data-private/encryption',
+          ]
+        }
+      ]
     },
     {
       type: 'category',
@@ -257,7 +272,6 @@ module.exports = {
           ],
         },
         'custom-dimensions',
-        'textless',
       ],
     },
     {

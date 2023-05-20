@@ -6,7 +6,7 @@ sidebar_label: Data Encryption
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from './definitions.md';
+import {Config} from '@site/docs/definitions.md';
 
 ## Overview
 
@@ -22,10 +22,10 @@ encrypted format. By default this encryption will
 use <Config v="names.product"/>'s own encryption key to encrypt your data
 (text and/or metadata).
 
-However, <Config v="names.product"/> also allows you to
-use your own AWS KMS encryption key so that you have full control over how
-your data is encrypted.  If you would like to do so, follow the instructions
-below.
+However, for [Scale accounts](https://vectara.com/pricing/) <Config v="names.product"/>
+also allows you to use your own AWS KMS encryption key so that you have full
+control over how your data is encrypted.  If you would like to do so, follow
+the instructions below.
 
 :::caution
 
