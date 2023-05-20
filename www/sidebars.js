@@ -44,6 +44,15 @@ module.exports = {
             'common-use-cases/keeping-your-data-private/textless',
             'common-use-cases/keeping-your-data-private/encryption',
           ]
+        },
+        {
+          type: 'category',
+          label: 'Authentication and Authorization',
+          items: [
+            'common-use-cases/app-authn-authz/api-keys',
+            'common-use-cases/app-authn-authz/authorization',
+            'common-use-cases/app-authn-authz/authentication',
+          ]
         }
       ]
     },
@@ -64,7 +73,7 @@ module.exports = {
                   type: 'category',
                   label: 'OAuth 2.0',
                   items: [
-                    'authentication',
+                    'common-use-cases/app-authn-authz/authentication',
                     {
                       type: 'category',
                       label: 'Client Credentials Grant Examples',
@@ -81,7 +90,7 @@ module.exports = {
                   type: 'category',
                   label: 'API Keys',
                   items: [
-                    'api-keys',
+                    'common-use-cases/app-authn-authz/api-keys',
                     {
                       type: 'category',
                       label: 'REST Examples',
@@ -294,7 +303,7 @@ module.exports = {
             'console-ui/configure-server-access-to-corpus',
             'console-ui/corpus-default-read-access',
             'console-ui/manage-user',
-            'authorization'
+            'common-use-cases/app-authn-authz/authorization',
           ]
         },
         'console-ui/update-credit-card'

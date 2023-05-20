@@ -6,7 +6,7 @@ sidebar_label: Client Credentials Grant
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from './definitions.md';
+import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 [OAuth 2.0](https://oauth.net/2/) forms the basis for authentication on the
