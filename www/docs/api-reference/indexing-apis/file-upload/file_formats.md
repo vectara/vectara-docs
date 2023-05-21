@@ -3,7 +3,7 @@ id: format-for-upload
 title: Format JSON and Pbtext Files
 ---
 
-When uploading files using the [File Upload Service](/docs/api-reference/indexing-apis/file-upload), you may
+When uploading files using the [File Upload Service](/docs/api-reference/indexing-apis/file-upload/file-upload), you may
 send any of the predefined formats like markdown, PDF, and MS Word.
 
 Alternatively, you may perform the text extraction yourself, and save the result
