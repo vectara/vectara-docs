@@ -63,7 +63,6 @@ module.exports = {
           ]
         },
         'api-reference/search-apis/lexical-matching',
-        'api-reference/search-apis/lexical-matching',
         'api-reference/search-apis/batched-queries',
       ]
     },
