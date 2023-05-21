@@ -13,8 +13,8 @@ module.exports = {
           type: 'category',
           label: 'Common API Paradigms',
           items: [
-            'protobuf-definitions',
-            'rest',
+            'api-reference/protobuf-definitions',
+            'api-reference/rest',
             'common-use-cases/keeping-your-data-private/tls'
           ]
         },
@@ -62,6 +62,7 @@ module.exports = {
             'common-use-cases/filtering-by-metadata/ootb-filters',
           ]
         },
+        'api-reference/search-apis/lexical-matching',
         'api-reference/search-apis/lexical-matching',
         'api-reference/search-apis/batched-queries',
       ]
@@ -290,7 +291,7 @@ module.exports = {
             },
           ],
         },
-        'custom-dimensions',
+        'common-use-cases/semantic-search/custom-dimensions',
       ],
     },
     {

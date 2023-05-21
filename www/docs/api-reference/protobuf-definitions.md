@@ -4,7 +4,7 @@ title: Protocol Buffer Definitions
 sidebar_label: Protocol Buffers
 ---
 
-import {Config} from './definitions.md';
+import {Config} from '@site/docs/definitions.md';
 
 <Config v="names.product"/> implements a <a href="https://grpc.io/">gRPC API</a> to all its core
 services. You can download the proto files directly below.

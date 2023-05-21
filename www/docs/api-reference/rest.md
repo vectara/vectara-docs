@@ -4,7 +4,7 @@ title: REST APIs
 sidebar_label: REST APIs
 ---
 
-import {Config} from './definitions.md';
+import {Config} from '@site/docs/definitions.md';
 
 While gRPC provides low latency and excellent scalability, in some scenarios
 it may be simpler to integrate using REST APIs. Currently, the following

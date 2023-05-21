@@ -25,7 +25,7 @@ deleting its definition, while Delete expunges both the data in the corpus and
 its definition.
 
 The REST APIs are programatically derived from these definitions: see
-[REST APIs](/docs/rest) for more information on endpoints or expand the
+[REST APIs](/docs/api-reference/rest) for more information on endpoints or expand the
 specific API in the navigation sidebar to find REST examples in various
 programming languages.  For more information on the programmatic conversion,
 see [gRPC with REST and Open APIs](https://grpc.io/blog/coreos/).
