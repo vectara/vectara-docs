@@ -1,7 +1,7 @@
 ---
 id: api-keys
 title: API Keys
-sidebar_label: Overview
+sidebar_label: API Keys Overview
 ---
 
 import Tabs from '@theme/Tabs';
