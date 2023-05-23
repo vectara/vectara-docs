@@ -290,8 +290,7 @@ module.exports = {
               ]
             },
           ],
-        },
-        'common-use-cases/semantic-search/custom-dimensions',
+        }
       ],
     },
     {
