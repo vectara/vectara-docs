@@ -71,6 +71,7 @@ module.exports = {
       label: 'API and Configuration Reference',
       collapsed: false,
       items: [
+        'api-reference/api-overview',
         {
           type: 'category',
           label: 'Authentication and Authorization',
