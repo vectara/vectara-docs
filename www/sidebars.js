@@ -34,7 +34,7 @@ module.exports = {
     {
       type: 'category',
       label: 'Common Use Cases and Flows',
-      collapsed: true,
+      collapsed: false,
       items: [
         {
           type: 'category',
@@ -305,7 +305,7 @@ module.exports = {
     {
       type: 'category',
       label: 'Administrative User Interface',
-      collapsed: false,
+      collapsed: true,
       items: [
         {
           type: 'category',
