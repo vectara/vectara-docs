@@ -205,7 +205,8 @@ message CustomDimension {
 }
 ```
 
-For more information on how to use custom dimensions, refer to the [Custom Dimensions Usage Documentation](/docs/custom-dimensions)
+For more information on how to use custom dimensions, refer to the
+[Custom Dimensions Usage Documentation](/docs/common-use-cases/semantic-search/custom_dimensions.md)
 
 ## Frequently Asked Questions
 

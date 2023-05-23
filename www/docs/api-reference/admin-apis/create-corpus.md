@@ -24,8 +24,8 @@ referenceable attributes must be declared at creation time in the **filter
 attributes**. This list cannot be changed once the corpus is created.
 
 For information on **custom dimensions** please see
-[Custom Dimensions](/docs/custom-dimensions). Like filter attributes, custom
-dimensions cannot be changed after the corpus is created.
+[Custom Dimensions](/docs/common-use-cases/semantic-search/custom_dimensions.md).
+Like filter attributes, custom dimensions cannot be changed after the corpus is created.
 
 ```protobuf
 message CreateCorpusRequest {

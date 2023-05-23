@@ -34,7 +34,7 @@ module.exports = {
     {
       type: 'category',
       label: 'Common Use Cases and Flows',
-      collapsed: false,
+      collapsed: true,
       items: [
         {
           type: 'category',
@@ -49,6 +49,7 @@ module.exports = {
           type: 'category',
           label: 'Authentication and Authorization',
           items: [
+            'common-use-cases/app-authn-authz/auth-overview',
             'common-use-cases/app-authn-authz/api-keys',
             'common-use-cases/app-authn-authz/authorization',
           ]
@@ -67,8 +68,8 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'API and Configuration Reference',
-      collapsed: false,
+      label: 'API Reference',
+      collapsed: true,
       items: [
         'api-reference/api-overview',
         {
