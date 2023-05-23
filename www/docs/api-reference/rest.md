@@ -10,7 +10,7 @@ While gRPC provides low latency and excellent scalability, in some scenarios
 it may be simpler to integrate using REST APIs.
 
 # API Formatting Guidelines
-All of the APIs can be found at https://<Config v="domains.rest.admin"/>/&lt;version&gt;/&lt;api-endpoint&gt;
+All of the APIs can be found at https://<Config v="domains.rest.admin"/>/&lt;version&gt;/&lt;api-endpoint&gt;ee
 
 The API endpoints are outlined in the various subsections of this API Reference
 section.  These are automatically derived from the [protobuf definitions](https://github.com/vectara/protos)
@@ -27,7 +27,7 @@ from the protobuf definitions to REST is:
 All <Config v="names.product"/> APIs are authenticated.  Indexing and Search
 APIs can be authenticated via [API Keys](/docs/common-use-cases/app-authn-authz/api-keys)
 however, Admin actions (creating/deleting corpora) must be done via
-[OAuth 2.0](/docs/common-use-cases/app-authn-authz/authentication).
+[OAuth 2.0](/docs/api-reference/auth-apis/oauth-2).
 
 # API Playground and OpenAPI Specifications
 You can find up-to-date OpenAPI specifications at

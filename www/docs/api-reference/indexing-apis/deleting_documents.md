@@ -48,7 +48,7 @@ preferably with a backoff. Note that the deletion operation is idempotent, so it
 
 The code snippet below illustrates how to delete a document from a corpus. For information
 on how to get the call credentials and metadata, please consult
-[The OAuth 2.0 documentation](/docs/common-use-cases/app-authn-authz/authentication.md).
+[The OAuth 2.0 documentation](/docs/api-reference/auth-apis/oauth-2).
 
 <Tabs
   defaultValue="java"

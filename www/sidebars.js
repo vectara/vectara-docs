@@ -51,7 +51,6 @@ module.exports = {
           items: [
             'common-use-cases/app-authn-authz/api-keys',
             'common-use-cases/app-authn-authz/authorization',
-            'common-use-cases/app-authn-authz/authentication',
           ]
         },
         {
@@ -84,7 +83,7 @@ module.exports = {
                   type: 'category',
                   label: 'OAuth 2.0',
                   items: [
-                    'common-use-cases/app-authn-authz/authentication',
+                    'api-reference/auth-apis/oauth-2',
                     {
                       type: 'category',
                       label: 'Client Credentials Grant Examples',
@@ -101,7 +100,7 @@ module.exports = {
                   type: 'category',
                   label: 'API Keys',
                   items: [
-                    'common-use-cases/app-authn-authz/api-keys',
+                    'api-reference/auth-apis/api-keys',
                     {
                       type: 'category',
                       label: 'REST Examples',

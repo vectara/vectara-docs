@@ -47,9 +47,7 @@ You can now start using the key.
 
 ## Using a Key
 
-To use an API key, pass it using the `x-api-key` header request, in lieu of the
-standard JWT token over bearer authentication method covered in
-[authentication](authentication.md).
+To use an API key, pass it using the `x-api-key` header request.
 
 <Tabs
   defaultValue="js"
