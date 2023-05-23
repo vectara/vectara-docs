@@ -41,3 +41,12 @@ proto $ curl -s -o ext/google/api/http.proto --create-dirs \
 
 The [Quickstart Examples](https://github.com/vectara/getting-started) GitHub
 repository has examples of connecting via gRPC in a variety of languages.
+
+## Generating Strongly Typed Clients
+One of the advantages of using gRPC is that there is some tooling for generating
+strongly-typed clients/bindings in many programming languages.  These work by
+converting the protobuf definitions to code.
+
+The most up-to-date documentation on how to do this is in the "quick start"
+sections of [https://grpc.io/docs/languages/](https://grpc.io/docs/languages/)
+following the "Generate gRPC code" section in the language of your choosing.
