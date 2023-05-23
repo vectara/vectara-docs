@@ -27,10 +27,10 @@ See the sections below on "standard" and "reranked" results for details on
 how they differ and how to use them best.
 
 Also, note that <Config v="names.product"/> provides an important control:
-[custom dimensions](/docs/custom-dimensions), which allow you to boost or bury
+[custom dimensions](/docs/common-use-cases/semantic-search/custom-dimensions), which allow you to boost or bury
 results based on metadata.  These can affect scores and if you're interested
 in understanding more on how, please read the documentation
-[here](/docs/custom-dimensions).
+[here](/docs/common-use-cases/semantic-search/custom-dimensions).
 
 ## Comparison With Keyword Systems
 If you've used a keyword-based system (BM25, TF/IDF, etc) and are used to the

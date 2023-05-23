@@ -56,6 +56,15 @@ module.exports = {
         },
         {
           type: 'category',
+          label: 'Semantic Search',
+          items: [
+            'common-use-cases/semantic-search/semantic-search-overview',
+            'common-use-cases/semantic-search/custom-dimensions',
+            'common-use-cases/semantic-search/pagination',
+          ]
+        },
+        {
+          type: 'category',
           label: 'Filtering Search by Metadata',
           items: [
             'common-use-cases/filtering-by-metadata/filter-overview',
