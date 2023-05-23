@@ -45,6 +45,12 @@ tend to make heavy use of document similarity metrics.  However, these can be
 useful in other use cases as well, including [matching questions](/docs/common-use-cases/question-answer/question-answer-overview)
 in FAQ search systems.
 
+# Interpreting scores
+If you want to understand a bit more about why <Config v="names.product"/>
+produced a particular score, have a look at our
+[interpreting scores](/docs/api-reference/search-apis/interpreting-responses/intepreting-scores)
+documentation.
+
 # Low-level indexing controls
 Sometimes, the best solution to changing relevance is by adjusting the low-level
 indexing controls.  <Config v="names.product"/> supports fine-grained tuning of
