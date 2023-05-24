@@ -63,6 +63,7 @@ module.exports = {
             'common-use-cases/semantic-search/pagination',
           ]
         },
+        'common-use-cases/recommendation-systems/recommender-overview',
         {
           type: 'category',
           label: 'Filtering Search by Metadata',
