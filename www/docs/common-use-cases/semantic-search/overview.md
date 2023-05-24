@@ -20,7 +20,7 @@ language generation.
 These generally work by reading immense amounts of text to build a model and
 then using that model to convert text into vectors, both at index and at query
 time.  This obviates the need for many language rules of traditional keyword
-systems like sysnonym management, stemming, and phrase parsing for many use
+systems like synonym management, stemming, and phrase parsing for many use
 cases because the LLM can inherently understand what the user is asking.
 
 The team behind <Config v="names.product"/> has built LLMs that work across a
