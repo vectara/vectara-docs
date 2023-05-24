@@ -46,7 +46,7 @@ END
 `}
 </CodeBlock>
 
-You can then attach the value of a custom dimension as follows:
+Then, at index time, you can attach the value of the custom dimension as follows:
 ```
 {
     "documentId": "237a8b63-2826-4ee1-8d83-14c2451a3357",
