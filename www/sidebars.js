@@ -63,7 +63,6 @@ module.exports = {
             'common-use-cases/semantic-search/pagination',
           ]
         },
-        'common-use-cases/recommendation-systems/recommender-overview',
         {
           type: 'category',
           label: 'Filtering Search by Metadata',
@@ -72,6 +71,8 @@ module.exports = {
             'common-use-cases/filtering-by-metadata/ootb-filters',
           ]
         },
+        'common-use-cases/recommendation-systems/recommender-overview',
+        'common-use-cases/question-answer/question-answer-overview',
         'api-reference/search-apis/lexical-matching',
       ]
     },
