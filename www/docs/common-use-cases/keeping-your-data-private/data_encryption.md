@@ -11,9 +11,10 @@ import {Config} from '@site/docs/definitions.md';
 ## Overview
 
 When you send documents to the
-[index API](/docs/api-reference/indexing-apis/indexing), <Config v="names.product"/> will
-receive both document text and metadata information to be indexed. If you
-choose the “textless” option for
+[index API](/docs/api-reference/indexing-apis/indexing) or
+[file upload API](/docs/api-reference/indexing-apis/file-upload/file-upload)
+, <Config v="names.product"/> will receive both document text and metadata
+information to be indexed. If you choose the “textless” option for
 [corpus creation](/docs/api-reference/admin-apis/create-corpus), then document text will be
 indexed (converted into vectors) but not stored anywhere in the platform.
 Metadata, however, is always stored. For the safety of your
@@ -41,6 +42,9 @@ depending on that key will be inaccessible forever.
 :::
 
 ## Create your AWS KMS key
+KMS keys are only available to Scale plan accounts.  If you need help with setting
+up your customer-managed key, [reach out to support](https://vectara.com/contact-us/)
+
 To create an AWS KMS key:
 1. Go to KMS on the AWS Console
 2. Select “Customer Managed Keys”
@@ -87,12 +91,13 @@ The key should look like the following:
 The final step to creating the AWS KMS key to finish the key creation.
 
 ## Attach your key to your account
-In order to get <Config v="names.product"/> to use your key, you must currently
-contact <Config v="names.product"/> to use your key Support and send us the ARN
-for the KMS key you created (starting with `arn:aws:kms:us-west-2`).
-The <Config v="names.product"/> team will set it up for you. In the future, you
-will be able to set the ARN on the The <Config v="names.product"/> Console and
-these instructions will be updated.
+In order to get <Config v="names.product"/> to use your key, you must
+contact <Config v="names.company"/> Support.  Send us the ARN for the KMS key
+you created (starting with `arn:aws:kms:us-west-2`).
+
+The <Config v="names.company"/> team will set the configuration up for you. In
+the future, you will be able to set the ARN on the <Config v="names.product"/>
+Console and these instructions will be updated.
 
 ## How does it work
 Once your AWS KMS key is configured in the platform, when encrypting your
