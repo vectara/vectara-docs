@@ -10,7 +10,7 @@ import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
 import {Config} from '@site/docs/definitions.md';
 
-### Custom Dimensions
+## Custom Dimensions
 Custom dimensions are a fixed set of additional "dimensions" that contain
 user-defined numerical values and are stored in addition to the dimensions
 that <Config v="names.product"/> automatically extracts and stores from the text. At
@@ -90,3 +90,41 @@ curl -X POST \\
 END
 `}
 </CodeBlock>
+
+## How custom dimensions affect scores
+In order to calculate the final score of a document and query that contains
+custom dimensions, <Config v="names.product"/> takes the dot product of the
+query's custom dimensions with the document's custom dimensions and the resulting
+number is aded to their score.
+
+Negative values decrease the overall score (sometimes caled "burying") and
+postive values increase the overal score (sometimes caled "boosting").  A dot
+product of 0 does not affect the underlying text retrieval score.
+
+For more information on how scores can be interpreted in general, see the
+documentation on [interpreting scores](/docs/api-reference/search-apis/interpreting-responses/scores.md)
+
+## Choosing values for custom dimensions
+Because scores in <Config v="names.product"/> range from -1 to 1, in general
+it's best to make sure the dot product of the custom dimension values you store
+in your document and the query custom dimensions are between -1 and 1.  
+
+### Indexing
+If you're tracking some underlying value that increases or decreases linearly
+(like upvotes, number of responses, total units sold, etc), then you would
+typically take the `log()` of the value first before storing it in a document to
+ensure that it cannot dominate the overall score to much.
+
+In some cases, it can be useful to bound the boost or penalty for a field.  For
+example, in some cases a longer content length might warrant a boost while older
+documents might warrant being buried, but in either case, there may be a point
+at which "even longer" or "even older" doesn't really matter.  In these cases,
+it can be useful to apply a [sigmoid function](https://en.wikipedia.org/wiki/Sigmoid_function)
+to the content length or age at indexing time.
+
+### Querying
+Not much is typically needed at query time to make a significant impact on the
+score, if the document values are in the -100 to +100 range.  Depending on how
+your document values scale, query values for a custom dimension should
+normally be in a range of -0.1 to 0.1, or even smaller like -0.01 to 0.01 if
+document values on the larger side of that. 
