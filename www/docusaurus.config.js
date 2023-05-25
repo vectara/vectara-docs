@@ -125,6 +125,7 @@ const config = {
             content: `---
     id: ${filename.split('/').slice(-1)}
     title: ${filename.split('/').slice(-1)}
+    custom_edit_url: https://github.com/vectara/getting-started/blob/main/language-examples/${filename}
     sidebar_label: ${String(filename.split('\.').slice(-1)).replace('py','Python')
                   .replace('cs','C#').replace('php','PHP').replace('js','NodeJS')
                   .replace('java','Java')}
