@@ -4,7 +4,6 @@
 /docs/admin-apis/reset-corpus                                 /docs/api-reference/admin-apis/reset-corpus
 /docs/indexing-apis/core_indexing                             /docs/api-reference/indexing-apis/core_indexing
 /docs/indexing-apis/deleting-documents                        /docs/api-reference/indexing-apis/deleting-documents
-/docs/indexing-apis/format-for-upload                         /docs/api-reference/indexing-apis/format-for-upload
 /docs/indexing-apis/file-upload                               /docs/api-reference/indexing-apis/file-upload/file-upload
 /docs/indexing-apis/file-upload-filetypes                     /docs/api-reference/indexing-apis/file-upload/file-upload-filetypes
 /docs/indexing-apis/format-for-upload                         /docs/api-reference/indexing-apis/file-upload/format-for-upload
