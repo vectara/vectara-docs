@@ -12,7 +12,7 @@ the *nearest question* to their own, so you can provide them with the
 authoritative answer from the "answer" side of the question-answer database.
 
 This lacks the dynamic nature of Grounded Generation, but can allow you to
-very tight controls for the types of questions users can ask and get
+build very tight controls for the types of questions users can ask and get
 authoritative answers to.  These can be great for building things like
 RFP-answering systems for employees and FAQ lookups for customers.
 
@@ -30,7 +30,6 @@ question in the text content.  For example:
     "title": "Who is the King of England?",
     "section": [
       {
-        "title": "Answer",
         "text": "Charles III"
       }
     ]
@@ -97,7 +96,7 @@ combined with filter expressions.  For example:
         {
           "customerId": 12345678,
           "corpusId": 1,
-          "metadataFilter": "part.is_title = false"
+          "metadataFilter": "part.is_title <> true"
         }
       ]
     }
