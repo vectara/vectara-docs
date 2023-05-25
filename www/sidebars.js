@@ -61,6 +61,7 @@ module.exports = {
             'common-use-cases/semantic-search/semantic-search-overview',
             'common-use-cases/semantic-search/semantic-search-scoring',
             'common-use-cases/semantic-search/pagination',
+            'common-use-cases/semantic-search/custom-dimensions',
           ]
         },
         {
