@@ -205,15 +205,15 @@ ${content}
           items: [
             {
               label: 'Indexing',
-              to: 'docs/indexing-apis/indexing',
+              to: 'docs/api-reference/indexing-apis/indexing',
             },
             {
               label: 'Search',
-              to: 'docs/search-apis/search',
+              to: 'docs/api-reference/search-apis/search',
             },
             {
               label: 'Admin',
-              to: 'docs/admin-apis/admin',
+              to: 'docs/api-reference/admin-apis/admin',
             },
           ],
         },
