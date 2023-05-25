@@ -7,6 +7,7 @@
 /docs/indexing-apis/format-for-upload                         /docs/api-reference/indexing-apis/format-for-upload
 /docs/indexing-apis/file-upload                               /docs/api-reference/indexing-apis/file-upload/file-upload
 /docs/indexing-apis/file-upload-filetypes                     /docs/api-reference/indexing-apis/file-upload/file-upload-filetypes
+/docs/indexing-apis/format-for-upload                         /docs/api-reference/indexing-apis/file-upload/format-for-upload
 /docs/indexing-apis/indexing                                  /docs/api-reference/indexing-apis/indexing
 /docs/protobuf-definitions                                    /docs/api-reference/protobuf-definitions
 /docs/rest                                                    /docs/api-reference/rest
