@@ -123,8 +123,9 @@ it can be useful to apply a [sigmoid function](https://en.wikipedia.org/wiki/Sig
 to the content length or age at indexing time.
 
 ### Querying
-Not much is typically needed at query time to make a significant impact on the
-score, if the document values are in the -100 to +100 range.  Depending on how
+Even if the absolute value of the custom dimension is small, it will still have
+a large impact on the score.  Try to keep he document values in the -100 to +100
+range so that you don't need to suppress these values further.  Depending on how
 your document values scale, query values for a custom dimension should
 normally be in a range of -0.1 to 0.1, or even smaller like -0.01 to 0.01 if
 document values on the larger side of that. 
