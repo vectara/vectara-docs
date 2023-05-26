@@ -66,6 +66,14 @@ module.exports = {
         },
         {
           type: 'category',
+          label: 'Chatbots and Grounded Generation',
+          items: [
+            'common-use-cases/chatbots-grounded-generation/grounded-generation-overview',
+            'common-use-cases/chatbots-grounded-generation/grounded-generation-response-languages',
+          ]
+        },
+        {
+          type: 'category',
           label: 'Filtering Search by Metadata',
           items: [
             'common-use-cases/filtering-by-metadata/filter-overview',
