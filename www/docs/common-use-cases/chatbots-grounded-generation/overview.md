@@ -30,13 +30,18 @@ To enable this behavior, send a `summary` request with your `query`.  For exampl
       "summary": [
         {
             "summarizerPromptName": "vectara-summary-ext-v1.2.0",
-            "responseLang": "en"
+            "responseLang": "en",
+            "maxSummarizedResults": 5
         }
       ]
     }
   ]
 }
 ```
+
+This tells <Config v="names.product"/> to return a summary in English using the
+`vectara-summary-ext-v1.2.0` summarizer and to consider the first 5 results when
+summarizing.
 
 When <Config v="names.product"/> responds, it will contain the list of results
 as well as the generative summary.  Here is an example response to the query

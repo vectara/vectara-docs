@@ -30,13 +30,14 @@ the `summarizerPromptName` as follows:
       "corpusKey": [
         {
           "customerId": 12345678,
-          "corpusId": 1,
+          "corpusId": 1
         }
       ],
       "summary": [
         {
             "summarizerPromptName": "vectara-summary-ext-v1.2.0",
-            "responseLang": "en"
+            "responseLang": "en",
+            "maxSummarizedResults": 5
         }
       ]
     }
