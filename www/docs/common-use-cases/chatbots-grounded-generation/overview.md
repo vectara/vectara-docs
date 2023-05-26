@@ -14,7 +14,7 @@ avoiding some of the problems that many generative AI systems have, such as
 
 To enable this behavior, send a `summary` request with your `query`.  For example:
 
-```
+```json showLineNumbers title="https://api.vectara.io/v1/query"
 {
   "query": [
     {
@@ -48,7 +48,7 @@ as well as the generative summary.  Here is an example response to the query
 `What is the infinite improbability drive?` when searching across the
 Hitchhiker's Guide to the Galaxy:
 
-```
+```json showLineNumbers title="response.json"
 [
     {
         "summary": {

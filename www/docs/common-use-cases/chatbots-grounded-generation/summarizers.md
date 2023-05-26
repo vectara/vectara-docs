@@ -20,7 +20,7 @@ This summarizer attempts to balance creating a good quality summary with a
 a reasonably fast response.  To use `vectara-summary-ext-v1.2.0`, send it as
 the `summarizerPromptName` as follows:
 
-```
+```json showLineNumbers title="https://api.vectara.io/v1/query"
 {
   "query": [
     {
