@@ -24,7 +24,7 @@ the `summarizerPromptName` as follows:
 {
   "query": [
     {
-      "query": "Who's the English monarch?",
+      "query": "What is the infinite improbability drive?",
       "start": 0,
       "numResults": 10,
       "corpusKey": [

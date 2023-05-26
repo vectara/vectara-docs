@@ -18,7 +18,7 @@ To enable this behavior, send a `summary` request with your `query`.  For exampl
 {
   "query": [
     {
-      "query": "Who's the English monarch?",
+      "query": "What is the infinite improbability drive?",
       "start": 0,
       "numResults": 10,
       "corpusKey": [
