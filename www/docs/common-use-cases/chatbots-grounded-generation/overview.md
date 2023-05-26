@@ -64,7 +64,7 @@ Hitchhiker's Guide to the Galaxy:
         "responseSet": {
             "responseList": [
                 {
-                    "text": "Ford was wildly excited. \"Arthur!\" he said, \"this is fantastic! %START_SNIPPET%We've been picked up by a ship \npowered by the Infinite Improbability Drive!%END_SNIPPET% This is incredible! I heard \nrumors about it before! They were all officially denied, but they must \nhave done it!",
+                    "text": "Ford was wildly excited. \"Arthur!\" he said, \"this is fantastic! We've been picked up by a ship \npowered by the Infinite Improbability Drive! This is incredible! I heard \nrumors about it before! They were all officially denied, but they must \nhave done it!",
                     "score": 0.9203816652297974,
                     "metadataList": [
                         {
@@ -94,17 +94,13 @@ Hitchhiker's Guide to the Galaxy:
                     ],
                     "documentIndex": 0,
                     "corpusKey": {
-                        "customerId": 0,
-                        "corpusId": 3,
-                        "semantics": 0,
-                        "dimList": [],
-                        "metadataFilter": ""
+                        ...
                     },
                     "resultOffset": 79,
                     "resultLength": 76
                 },
                 {
-                    "text": "Look, I was right.\"   \nFord jabbed at one of the pages and showed it to Arthur.  \n\" It says: 'Sensational new breakthrough in Improbability Physics. %START_SNIPPET%As \nsoon as the ship's drive reaches Infinite Improbability it passes \nthrough every point in the Universe.%END_SNIPPET% Be the envy of other major \ngovernments. ' Wow, this is big league stuff.",
+                    "text": "Look, I was right.\"   \nFord jabbed at one of the pages and showed it to Arthur.  \n\" It says: 'Sensational new breakthrough in Improbability Physics. As \nsoon as the ship's drive reaches Infinite Improbability it passes \nthrough every point in the Universe. Be the envy of other major \ngovernments. ' Wow, this is big league stuff.",
                     "score": 0.8904105424880981,
                     "metadataList": [
                         {
@@ -134,17 +130,13 @@ Hitchhiker's Guide to the Galaxy:
                     ],
                     "documentIndex": 0,
                     "corpusKey": {
-                        "customerId": 0,
-                        "corpusId": 3,
-                        "semantics": 0,
-                        "dimList": [],
-                        "metadataFilter": ""
+                        ...
                     },
                     "resultOffset": 164,
                     "resultLength": 107
                 },
                 {
-                    "text": "Chapter 10 Chapter 10 %START_SNIPPET%The Infinite Improbability Drive is a wonderful new method of \ncrossing vast interstellar distances in a mere nothingth of a second, \nwithout all that tedious mucking about in hyperspace.%END_SNIPPET% It was discovered by a lucky chance, and then developed into a \ngovernable form of propulsion by the Galactic Government's research \nteam on Damogran. This, briefly, is the story of its discovery.",
+                    "text": "Chapter 10 Chapter 10 The Infinite Improbability Drive is a wonderful new method of \ncrossing vast interstellar distances in a mere nothingth of a second, \nwithout all that tedious mucking about in hyperspace. It was discovered by a lucky chance, and then developed into a \ngovernable form of propulsion by the Galactic Government's research \nteam on Damogran. This, briefly, is the story of its discovery.",
                     "score": 0.8826565742492676,
                     "metadataList": [
                         {
@@ -174,17 +166,13 @@ Hitchhiker's Guide to the Galaxy:
                     ],
                     "documentIndex": 0,
                     "corpusKey": {
-                        "customerId": 0,
-                        "corpusId": 3,
-                        "semantics": 0,
-                        "dimList": [],
-                        "metadataFilter": ""
+                        ...
                     },
                     "resultOffset": 37,
                     "resultLength": 187
                 },
                 {
-                    "text": "The photon drive gave a sickly judder and cut out again. said Arthur.  \n\"Hey, didja hear that?\" %START_SNIPPET%muttered Zaphod as he leapt now for the \nmanual controls of the Infinite Improbability Drive, \"the monkey \nspoke!\"%END_SNIPPET% The Improbability Drive gave two small whines and then also cut \nout. \"Pure history, man,\" said Zaphod, kicking the Improbability Drive, \n\"a talking monkey!\"",
+                    "text": "The photon drive gave a sickly judder and cut out again. said Arthur.  \n\"Hey, didja hear that?\" muttered Zaphod as he leapt now for the \nmanual controls of the Infinite Improbability Drive, \"the monkey \nspoke!\" The Improbability Drive gave two small whines and then also cut \nout. \"Pure history, man,\" said Zaphod, kicking the Improbability Drive, \n\"a talking monkey!\"",
                     "score": 0.7908053398132324,
                     "metadataList": [
                         {
@@ -214,11 +202,7 @@ Hitchhiker's Guide to the Galaxy:
                     ],
                     "documentIndex": 0,
                     "corpusKey": {
-                        "customerId": 0,
-                        "corpusId": 3,
-                        "semantics": 0,
-                        "dimList": [],
-                        "metadataFilter": ""
+                        ...
                     },
                     "resultOffset": 111,
                     "resultLength": 114
