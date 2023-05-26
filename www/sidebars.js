@@ -70,6 +70,7 @@ module.exports = {
           items: [
             'common-use-cases/chatbots-grounded-generation/grounded-generation-overview',
             'common-use-cases/chatbots-grounded-generation/grounded-generation-response-languages',
+            'common-use-cases/chatbots-grounded-generation/available-summarizers',
           ]
         },
         {
