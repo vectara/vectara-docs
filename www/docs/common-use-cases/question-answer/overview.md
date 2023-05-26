@@ -18,10 +18,10 @@ RFP-answering systems for employees and FAQ lookups for customers.
 
 # Formatting data for indexing
 When you send data to <Config v="names.product"/> for this use case, we
-recommend that you index the question in `title` field and the answer to that
-question in the text content.  For example:
+recommend that you index the question in the `title` field and the answer to
+that question in the text content.  For example:
 
-```
+```json showLineNumbers title="document.json"
 {
   "customerId": 123456,
   "corpusId": 1,
@@ -42,7 +42,7 @@ Suppose you wanted to find the answer to a question related to this example.
 You can put <Config v="names.product"/> into a document-matching mode by
 setting `semantics` to `RESPONSE`.  For example:
 
-```
+```json showLineNumbers title="https://api.vectara.io/v1/query"
 {
   "query": [
     {
@@ -72,7 +72,7 @@ Expanding on the previous example, we can help users find question or answer
 matches together by using [batched queries](/docs/api-reference/search-apis/batched-queries)
 combined with filter expressions.  For example:
 
-```
+```json showLineNumbers title="https://api.vectara.io/v1/query"
 {
   "query": [
     {
@@ -96,7 +96,7 @@ combined with filter expressions.  For example:
         {
           "customerId": 12345678,
           "corpusId": 1,
-          "metadataFilter": "part.is_title <> true"
+          "metadataFilter": "part.is_title IS NULL"
         }
       ]
     }

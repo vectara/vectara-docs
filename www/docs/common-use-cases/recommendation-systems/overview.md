@@ -63,7 +63,7 @@ and you wanted to find other documents that are similar to this, you can pass
 this document text to <Config v="names.product"/> and set the `semantics` to
 `RESPONSE`.  For example:
 
-```
+```json showLineNumbers title="https://api.vectara.io/v1/query"
 {
   "query": [
     {

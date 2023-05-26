@@ -234,7 +234,7 @@ the corpora you're interested in searching
 
 The query body modification that's necessary is that `corpusKey` can take an
 array of objects.  So if you're currently searching 1 corpus as follows:
-```
+```json
 ...
 "corpusKey": [
   {
@@ -250,7 +250,7 @@ array of objects.  So if you're currently searching 1 corpus as follows:
 
 As long as the API key you're using has permissions to each of these corpora,
 you can search multiple corpora at once as follows:
-```
+```json
 ...
 "corpusKey": [
   {
