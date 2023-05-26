@@ -3,6 +3,8 @@ id: grounded-generation-response-languages
 title: Response Languages
 ---
 
+import {Config} from '@site/docs/definitions.md';
+
 By default, if you don't send a `responseLang`, <Config v="names.product"/>
 will attempt to guess the language of the query and respond in that language.
 You can explicitly ask for this behavior if desired by setting `responseLang`
