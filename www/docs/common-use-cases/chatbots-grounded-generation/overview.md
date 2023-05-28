@@ -6,7 +6,7 @@ sidebar_label: Overview
 
 import {Config} from '@site/docs/definitions.md';
 
-In addition to "just" returning search results, <Config v="names.product"/> can
+In addition to returning search results, <Config v="names.product"/> can
 summarize those results in a way that answers the user's question directly.
 This can be useful to provide a chatbot-like experience to your users while
 avoiding some of the problems that many generative AI systems have, such as
@@ -41,7 +41,8 @@ To enable this behavior, send a `summary` request with your `query`.  For exampl
 
 This tells <Config v="names.product"/> to return a summary in English using the
 `vectara-summary-ext-v1.2.0` summarizer and to consider the first 5 results when
-summarizing.
+summarizing.  Note that the `summarizerPromptName` is optional and will default
+to the best summarizer available to your account type.
 
 When <Config v="names.product"/> responds, it will contain the list of results
 as well as the generative summary.  Here is an example response to the query
@@ -54,7 +55,6 @@ Hitchhiker's Guide to the Galaxy:
         "summary": {
             "text": "\nThe Infinite Improbability Drive is a form of propulsion developed by the Galactic Government on Damogran which allows for vast interstellar distances to be crossed in a nothingth of a second without the use of hyperspace [3]. It is incredibly powerful and rare, with only rumors circulating of its existence prior to its development [1]. It has been known to cause problems with other forms of propulsion, like the photon drive [4]. It is a remarkable breakthrough in Improbability Physics [2].",
             "lang": "eng",
-            "prompt": "",
             "statusList": [],
             "futureId": 2
         },
@@ -222,15 +222,6 @@ Hitchhiker's Guide to the Galaxy:
                 }
             ],
             "generatedList": [],
-            "summaryList": [
-                {
-                    "text": "",
-                    "lang": "",
-                    "prompt": "",
-                    "statusList": [],
-                    "futureId": 2
-                }
-            ],
             "futureId": 1
         },
         "statusList": []

@@ -5,10 +5,10 @@ title: Response Languages
 
 import {Config} from '@site/docs/definitions.md';
 
-By default, if you don't send a `responseLang`, <Config v="names.product"/>
-will attempt to guess the language of the query and respond in that language.
-You can explicitly ask for this behavior if desired by setting `responseLang`
-to `auto` (which is the default).  However, note that this guessing is not
+`responseLang` in <Config v="names.product"/> is a mandatory field for
+sumarization requests. You *can* ask <Config v="names.product"/> to attempt
+to guess the language of the query and respond in that guessed language by
+setting `responseLang` to `auto`.  However, note that this guessing is not
 perfect: many languages have many borrowed words and phrases which makes
 guessing the language difficult to impossible at times.  For that reason, it's
 recommended that you send the user's preferred language when you know it.
@@ -18,6 +18,7 @@ preferred language or to use the localization of your application to determine
 the best language to send to <Config v="names.product"/>.  Alternatively, if
 your application is a web-based application, you can consider using the
 [Navigator.language](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/language)
+and [Navigator.languages](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/languages)
 API.
 
 For the most up-to-date list of languages supported by <Config v="names.product"/>'s

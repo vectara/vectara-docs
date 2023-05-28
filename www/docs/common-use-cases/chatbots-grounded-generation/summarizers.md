@@ -13,8 +13,11 @@ on your options, please
 [reach out to our support team](https://vectara.com/contact-us/), who can help
 guide you.
 
-Summarizers have both names and IDs, and are versioned.  Currently, the only
-summarizer that is available to Growth users is `vectara-summary-ext-v1.2.0`.
+Summarizers have both names and IDs, and are versioned.  Providing the
+summarizer as part of the config is optional: if you do not provide a
+summarizer config at request time, <Config v="names.product"/> will use the best
+available summarizer for your account.  Currently, the only summarizer that is
+available to Growth users is `vectara-summary-ext-v1.2.0`.
 
 This summarizer attempts to balance creating a good quality summary with a
 a reasonably fast response.  To use `vectara-summary-ext-v1.2.0`, send it as
