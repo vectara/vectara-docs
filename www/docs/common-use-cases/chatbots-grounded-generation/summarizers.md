@@ -1,6 +1,6 @@
 ---
 id: available-summarizers
-title: Available Summarizers
+title: Selecting Summarizers
 ---
 
 import {Config} from '@site/docs/definitions.md';

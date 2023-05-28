@@ -209,7 +209,6 @@ Hitchhiker's Guide to the Galaxy:
                 },
                 ...
             ],
-            "statusList": [],
             "documentList": [
                 {
                     "id": "TheultimateHitchhikersGuide.pdf",
@@ -221,10 +220,8 @@ Hitchhiker's Guide to the Galaxy:
                     ]
                 }
             ],
-            "generatedList": [],
             "futureId": 1
-        },
-        "statusList": []
+        }
     },
     {
        ...
