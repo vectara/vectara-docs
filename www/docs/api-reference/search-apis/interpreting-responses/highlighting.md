@@ -11,7 +11,7 @@ import {Config} from '@site/docs/definitions.md';
 When you receive search results from <Config v="names.product"/>, alongside the
 result, you'll receive a values for `section` and `offset`.  For example:
 
-```
+```json showLineNumbers
 {
     "responseSet": [
         {
@@ -91,8 +91,7 @@ to <Config v="names.product"/> using
 [filters](/docs/common-use-cases/filtering-by-metadata/filter-overview).  Do do this, retrieve the
 `id` value of the document and perform a query for that ID.  For example:
 
-```
-curl -X POST ^
+```json showLineNumbers title="https://api.vectara.io/v1/query"
 {
     "query":[
         {

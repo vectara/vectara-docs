@@ -11,7 +11,7 @@ to provide your users with semantically similar documents/products.
 
 # Before you begin
 Before you begin using <Config v="names.product"/> for a semantic recommendation
-system, it's useful to think through what types of recommendation flows do you
+system, it's useful to think through what types of recommendation flows you
 want to enable.  For example:
 - Do you want to recommend based on the entire document content or just 1 section/field like the document title?
 - Do you want to recommend semantically similar content regardless of the source language or do you want to only match a particular language?
@@ -49,7 +49,7 @@ to find the best *answers* to queries.
 Document recommendation systems are not trying to answer questions though:
 they're trying to find the most similar documents.  So for that use case, what
 you need to do is change the mode of the search to document similarity instead
-of question answering. You do that by semantics key which is inside of the
+of question answering. You do that via the semantics key which is inside of the
 corpusKey block in the query.
 
 If a user is looking at a document that has the text:
@@ -63,7 +63,7 @@ and you wanted to find other documents that are similar to this, you can pass
 this document text to <Config v="names.product"/> and set the `semantics` to
 `RESPONSE`.  For example:
 
-```
+```json showLineNumbers title="https://api.vectara.io/v1/query"
 {
   "query": [
     {
@@ -88,7 +88,7 @@ This will find documents that are most semantically similar to that document.
 At times, it can be useful to further refine the recommendations.  For example:
 - Only suggest based on similar document titles
 - Only suggest results that share the same language
-- Only suggest results that was created by a particular user
+- Only suggest results that were created by a particular user
 
 In these cases, it can be useful to use <Config v="names.product"/>'s
 [filter expressions](/docs/common-use-cases/filtering-by-metadata/filter-overview).

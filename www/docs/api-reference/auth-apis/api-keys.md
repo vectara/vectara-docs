@@ -22,7 +22,7 @@ header.
 
 For example, a REST request using an API key for search would typically look
 like the following:
-```
+```py showLineNumbers
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
