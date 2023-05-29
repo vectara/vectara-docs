@@ -91,12 +91,15 @@ message QueryRequest {
     uint32 reranker_id = 5;
   }
   RerankingConfig reranking_config = 30;
+
+  // Optionally, one or more requests to summarize the results.
+  repeated SummarizationRequest summary = 35;
 }
 ```
 
 ### Corpus Key
 
-At the most basic level, the corpus key specifies the id of the corpus being
+At the most basic level, the corpus key specifies the ID of the corpus being
 searched. Specifying the **customer_id** is optional, since it defaults to the
 customer attached to the gRPC request.
 
@@ -145,6 +148,59 @@ message CorpusKey {
 }
 ```
 
+### Generative Summarization
+
+If you'd like to use "Grounded Generation" -- <Config v="names.product"/>'s
+groundbreaking way of producing generative summaries on top of your own data --
+you can submit a SummarizationRequest alongside your query.  This produces a
+summary that atttempts to answer the end-user's question, citing the results
+as references.  The format of the summary request is as follows:
+
+```protobuf
+message SummarizationRequest {
+  // The name of the summarizer+prompt combination to use for summarization.
+  string summarizer_prompt_name = 3;
+  // Maximum number of results to summarize.
+  uint32 max_summarized_results = 15;
+  // ISO 639-1 or ISO 639-3 language code for the response, or "auto" to indicate that
+  // the auto-detected language of the incoming query should be used.
+  string response_lang = 20;
+}
+```
+
+When <Config v="names.product"/> responds with the list of results that most
+semantically answer the user, it will also then produce a summary of the results
+with its sources cited.  For more details on use cases for grounded generation
+and details on how to use grounded generation and common use cases to consider,
+have a look at the
+[chatbots and grounded generation](/docs/common-use-cases/chatbots-grounded-generation/grounded-generation-overview)
+use case documentation.
+
+The summary will come back in the following format:
+
+```protobuf
+message Summary {
+  // The summary text.
+  string text = 10;
+
+  // ISO 639 language code of the summary. If the requested language was set to "AUTO", the
+  // summary language is the same as the auto-detected language of the query.
+  string lang = 15;
+
+
+  // Statuses are marked “repeated” for consistency and flexibility. A failed
+  // summary should bubble up into the status code of the entire ResponseSet.
+  repeated Status status = 1000;
+  // Populated for streaming requests only.
+  int32 future_id = 1010;
+}
+```
+
+The `text` will contain a summary of the relevant results to the given search
+with those relevant results included as cited sources.  <Config v="names.product"/>
+cites these by `[number]` format.  For example, if the 1st result is in the
+summary, it will be cited as `[1]`.
+
 ### Response
 
 The response message encapsulates a single query result. It is a subdocument
@@ -189,6 +245,16 @@ message ResponseSet {
     repeated Attribute metadata = 10;
   }
   repeated Document document = 15;
+
+  // A summary. If using synchronous APIs for querying, the summary will be
+  // included directly in this response. However, if using the streaming APIs
+  // for query, the summary messages only set the future_id field. Later, as
+  // summary results are computed and returned over the stream, the future_id
+  // within the summary can be used for correlation.
+  repeated Summary summary = 25;
+
+  // Populated for streaming requests only.
+  int32 future_id = 1010;
 }
 ```
 
