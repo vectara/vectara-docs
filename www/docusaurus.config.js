@@ -167,15 +167,15 @@ ${content}
       additionalLanguages: ['java', 'php', 'csharp'],
       theme: require('prism-react-renderer/themes/vsLight'),
       darkTheme: require('prism-react-renderer/themes/dracula'),
-    },/*
+    },
     announcementBar: {
-      id: 'support_us',
+      id: 'genai_launch',
       content:
-        'We are looking to revamp our docs, please fill <a target="_blank" rel="noopener noreferrer" href="#">this survey</a>',
+        "We've just launched our new Grounded Generation and Hybrid Search features!  For more details, see our blog <a href=\"https://vectara.com/new-release-grounded-generation/\">here<a>",
       backgroundColor: '#fafbfc',
       textColor: '#091E42',
       isCloseable: true,
-    },*/
+    },
     navbar: {
       title: '',
       logo: {
