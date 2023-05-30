@@ -16,6 +16,6 @@ similar feature for REST users via an alternative mechanism.
 
 To use asynchronous summarization over gRPC, you can use <Config v="names.product"/>'s
 `future_id`s.  When you first send a request that includes a generative summary,
-the response will include a `future_id`.  You can then look for a future
+the immediate response will include a `future_id`.  You can then look for a future
 `QueryResponsePart` for associated messages of the given `future_id` to look for
 `Summary` response parts that matched the given query.
