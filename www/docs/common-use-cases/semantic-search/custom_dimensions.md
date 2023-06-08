@@ -95,10 +95,10 @@ END
 In order to calculate the final score of a document and query that contains
 custom dimensions, <Config v="names.product"/> takes the dot product of the
 query's custom dimensions with the document's custom dimensions and the resulting
-number is aded to their score.
+number is added to their score.
 
-Negative values decrease the overall score (sometimes caled "burying") and
-postive values increase the overal score (sometimes caled "boosting").  A dot
+Negative values decrease the overall score (sometimes called "burying") and
+postive values increase the overal score (sometimes called "boosting").  A dot
 product of 0 does not affect the underlying text retrieval score.
 
 For more information on how scores can be interpreted in general, see the
