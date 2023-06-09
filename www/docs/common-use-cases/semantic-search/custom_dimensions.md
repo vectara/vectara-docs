@@ -74,7 +74,7 @@ curl -X POST \\
   -d @- <<END;
 {
   "query": [
-    { "query": "When was the last time you saw a ragitinbow?",
+    { "query": "When was the last time you saw a rainbow?",
       "num_results": 5,
       "corpus_key": [{
           "customer_id": $\{CUSTOMER_ID\},
@@ -113,7 +113,7 @@ in your document and the query custom dimensions are between -1 and 1.
 If you're tracking some underlying value that increases or decreases linearly
 (like upvotes, number of responses, total units sold, etc), then you would
 typically take the `log()` of the value first before storing it in a document to
-ensure that it cannot dominate the overall score to much.
+ensure that it cannot dominate the overall score too much.
 
 In some cases, it can be useful to bound the boost or penalty for a field.  For
 example, in some cases a longer content length might warrant a boost while older
@@ -124,7 +124,7 @@ to the content length or age at indexing time.
 
 ### Querying
 Even if the absolute value of the custom dimension is small, it will still have
-a large impact on the score.  Try to keep he document values in the -100 to +100
+a large impact on the score.  Try to keep the document values in the -100 to +100
 range so that you don't need to suppress these values further.  Depending on how
 your document values scale, query values for a custom dimension should
 normally be in a range of -0.1 to 0.1, or even smaller like -0.01 to 0.01 if
