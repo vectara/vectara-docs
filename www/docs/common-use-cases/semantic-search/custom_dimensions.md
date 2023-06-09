@@ -74,7 +74,7 @@ curl -X POST \\
   -d @- <<END;
 {
   "query": [
-    { "query": "When was the last time you saw a rainbow?",
+    { "query": "When was the last time you saw a ragitinbow?",
       "num_results": 5,
       "corpus_key": [{
           "customer_id": $\{CUSTOMER_ID\},
@@ -98,7 +98,7 @@ query's custom dimensions with the document's custom dimensions and the resultin
 number is added to their score.
 
 Negative values decrease the overall score (sometimes called "burying") and
-postive values increase the overal score (sometimes called "boosting").  A dot
+postive values increase the overall score (sometimes called "boosting").  A dot
 product of 0 does not affect the underlying text retrieval score.
 
 For more information on how scores can be interpreted in general, see the
