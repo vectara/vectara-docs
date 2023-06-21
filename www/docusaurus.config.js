@@ -223,7 +223,7 @@ ${content}
           items: [
             {
               label: 'About',
-              to: 'https://vectara.com/about-vectara-neural-search/',
+              to: 'https://vectara.com/about-vectara/',
             },
             {
               label: 'Careers and Culture',
@@ -274,6 +274,10 @@ ${content}
             {
               label: 'Youtube',
               href: 'https://www.youtube.com/channel/UCoP_hcyjJRLQr0CV050bfMg',
+            },
+            {
+              label: 'Discord',
+              href: 'https://discord.gg/GFb8gMz6UH',
             },
           ],
         },
