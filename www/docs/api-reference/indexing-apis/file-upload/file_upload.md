@@ -35,7 +35,11 @@ headers.
 The maximum file size supported by the server is 10 MB.
 
 You can attach additional metadata to the file by specifying an additional
-`doc_metadata` form field, which can contain a JSON string.
+`doc_metadata` form field, which can contain a JSON string:
+
+<pre>
+doc_metadata='{ "filesize\": 1234 }'
+</pre>
 
 ## Response Codes
 
@@ -71,6 +75,6 @@ corpus `151` in customer `123456` using `curl`.
 {`$ jwt=eyJraWQ...
 $ curl -H "Authorization: Bearer $jwt" -F file=@/tmp/instructions.pdf \\
     -F doc_metadata='{ "filesize\": 1234 }' \\
-    https://${vars['domains.rest.indexing']}:443/v1/upload?c=123456\&o=151
+    'https://${vars['domains.rest.indexing']}:443/v1/upload?c=123456\&o=151'
 `}
 </pre>
