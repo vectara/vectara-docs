@@ -24,8 +24,6 @@ tags:
     description: Indexing operations, such as creating and deleting documents
   - name: QueryService
     description: Query operations, such as performing a standard search
-  - name: CoreService
-    description: Core services
 # add file upload API and auth options for other APIs
 paths:
   /v1/create-corpus:
@@ -294,34 +292,6 @@ paths:
       security:
         - ApiKeyAuth: []
         - oAuth: []
-  /v1/core/delete-doc:
-    post:
-      operationId: Core-Delete
-      responses:
-        "200":
-          description: A successful response.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/vectaraDeleteDocumentResponse"
-        default:
-          description: An unexpected error response.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/googlerpcStatus"
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/vectaraDeleteDocumentRequest"
-        description: Request to delete a document from an index.
-        required: true
-      tags:
-        - IndexService
-      parameters:
-        - $ref: '#/components/parameters/customerIdentifier'
-      description: Core-Delete
   /v1/core/index:
     post:
       operationId: Core-Index
@@ -350,6 +320,9 @@ paths:
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
       description: Core-Index
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
   /v1/upload:
     post:
       operationId: FileUpload
@@ -868,8 +841,10 @@ components:
 
 
 
+
               value in binary format, or produce an error.
             * Applications are allowed to cache lookup results based on the
+
 
 
 
@@ -907,6 +882,7 @@ components:
 
 
 
+
             Foo foo = ...;
             Any any;
             any.PackFrom(foo);
@@ -916,6 +892,7 @@ components:
             }
 
         Example 2: Pack and unpack a message in Java.
+
 
 
 
@@ -934,6 +911,7 @@ components:
 
 
 
+
             foo = Foo(...)
             any = Any()
             any.Pack(foo)
@@ -943,6 +921,7 @@ components:
               ...
 
         Example 4: Pack and unpack a message in Go
+
 
 
 
@@ -984,6 +963,7 @@ components:
 
 
 
+
             package google.profile;
             message Person {
               string first_name = 1;
@@ -1003,6 +983,7 @@ components:
         `value` which holds the custom JSON in addition to the `@type`
 
         field. Example (for message [google.protobuf.Duration][]):
+
 
 
 
