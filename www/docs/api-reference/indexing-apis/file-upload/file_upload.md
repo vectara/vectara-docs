@@ -38,7 +38,7 @@ You can attach additional metadata to the file by specifying an additional
 `doc_metadata` form field, which can contain a JSON string:
 
 <pre>
-doc_metadata='{ "filesize\": 1234 }'
+doc_metadata='{ "filesize\": 1234 }' \\
 </pre>
 
 ## Response Codes
