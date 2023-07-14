@@ -294,7 +294,7 @@ paths:
         - oAuth: []
   /v1/core/index:
     post:
-      operationId: Core-Index
+      operationId: CoreIndex
       responses:
         "200":
           description: A successful response.
@@ -319,7 +319,7 @@ paths:
         - IndexService
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
-      description: Core-Index
+      description: Low level indexing API
       security:
         - ApiKeyAuth: []
         - oAuth: []
