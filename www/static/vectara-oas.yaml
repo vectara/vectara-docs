@@ -526,7 +526,9 @@ components:
         id:
           type: integer
           format: int64
-          description: The Corpus ID.
+          description: |-
+            The Corpus ID.
+            This value is ignored during Corpus creation.
         name:
           type: string
           description: The name of the corpus.
@@ -536,10 +538,14 @@ components:
         dtProvision:
           type: string
           format: int64
-          description: The time at which the corpus was provisioned.
+          description: |-
+            The time at which the corpus was provisioned.
+            This value is ignored during Corpus creation.
         enabled:
           type: boolean
-          description: Whether the corpus is enabled for use or not.
+          description: |-
+            Whether the corpus is enabled for use or not.
+            This value is ignored during Corpus creation.
         swapQenc:
           type: boolean
         swapIenc:
@@ -1436,10 +1442,7 @@ components:
           description: An optional description for the document.
         metadataJson:
           type: string
-          description: >-
-            Metadata about the document. This should be a json string, and it can be
-
-            retrieved at query time.
+          description: "Metadata about the document. This is a string containing a JSON\nobject. It can be an arbitrary object except that any keys \nthat match a metadata filter of the corpus must have the\nsame value type as metadata filter's value type.\n\nA query can use this object to filter if the object's key/value pair\nhas been defined as a metadata filter.\n\nThe whole object will be in the query result."
         customDims:
           type: array
           items:
