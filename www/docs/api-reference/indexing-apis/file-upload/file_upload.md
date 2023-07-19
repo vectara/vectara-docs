@@ -37,9 +37,10 @@ The maximum file size supported by the server is 10 MB.
 You can attach additional metadata to the file by specifying an additional
 `doc_metadata` form field, which can contain a JSON string:
 
-<pre>
-doc_metadata='{ "filesize\": 1234 }' \\
-</pre>
+```json
+doc_metadata='{ "filesize": 1234 }'
+```
+
 
 ## Response Codes
 
