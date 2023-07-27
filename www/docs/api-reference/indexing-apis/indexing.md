@@ -26,12 +26,9 @@ The full definition of the gRPC interface is covered below.
 
 ### Service
 
-The indexing service operates in two modes: _incremental_ and _batch_. In
-incremental mode, individual documents or messages are sent to be indexed. In
-a short period of time, generally a few minutes, the new content will become
-available in the search index.
+The indexing service operates by accepting individual documents or messages to be indexed. In a short period of time, generally a few minutes, the new content will become available in the search index.
 
-The definition of the incremental service is shown below.
+The definition of the service is shown below.
 
 
 ```protobuf
@@ -43,9 +40,6 @@ service IndexService {
   rpc Delete(DeleteDocumentRequest) returns (DeleteDocumentResponse) {}
 }
 ```
-
-When there are a large number of documents to process, it is more efficient to
-process them using the batch interface. This is described below.
 
 ## Index Document
 
