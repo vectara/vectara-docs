@@ -16,6 +16,12 @@ having an accidental publication of an over-privileged API key is often
 organizationally "expensive."  In general, it's recommended that you use
 [OAuth 2.0](OAuth 2.0) if/where possible for production applications.
 
+:::warning
+
+:lock: Always keep your API Keys and 0Auth tokens private. Do not share them through email, Slack, Discord, forums, or other public channels because it can lead to unauthorized access. Treat these keys with the same confidentiality as your personal credentials. 
+
+:::
+
 # Use an API Key
 To use an API key in a request, you need to pass in `x-api-key` as an HTTP
 header.

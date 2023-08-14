@@ -45,6 +45,12 @@ using the it. Then, click **Create**.
 
 You can now start using the key.
 
+:::warning
+
+:lock: Always keep your API Keys and OAuth tokens private. Do not share them through email, Slack, Discord, forums, or other public channels because it can lead to unauthorized access. Treat these keys with the same confidentiality as your personal credentials. 
+
+:::
+
 ## Using a Key
 
 To use an API key, pass it using the `x-api-key` header request.

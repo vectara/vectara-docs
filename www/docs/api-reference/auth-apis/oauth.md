@@ -22,6 +22,12 @@ OAuth 2.0 has several advantages over API keys or simple usernames/passwords:
 - OAuth 2.0 is inherently more tightly scoped than API keys
 - JWT tokens are detected by many security scanning tools, allowing them to more easily be flagged in the case of accidental publication
 
+:::warning
+
+:lock: Always keep your OAuth tokens private. Do not share them through email, Slack, Discord, forums, or other public channels because it can lead to unauthorized access. Treat these tokens with the same confidentiality as your personal credentials. 
+
+:::
+
 # Creating an application client
 Go to [https://console.vectara.com/console/authentication/app-client](https://console.vectara.com/console/authentication/app-client)
 to create a new application client.  Most applications will want to use the
