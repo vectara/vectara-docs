@@ -155,7 +155,13 @@ code {
   box-shadow: none;
 }
 
+.navbar__logo {
+  height: 24px;
+  margin-top: -3px;
+}
+
 .navbar__link {
+  font-size: 16px;
   transition: none;
 }
 
