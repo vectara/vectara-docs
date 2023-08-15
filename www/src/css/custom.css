@@ -374,6 +374,13 @@ table td {
   color: #fff;
 }
 
+/* Callouts */
+
+.admonition_node_modules-\@docusaurus-theme-classic-lib-theme-Admonition-styles-module {
+  box-shadow: none;
+  border-radius: 0;
+}
+
 /* API specs */
 
 .api-method > .menu__link {
