@@ -49,6 +49,27 @@ h3 {
   color: #fff;
 }
 
+/* Code */
+
+code {
+  padding: 2px 4px;
+  background: transparent;
+  border-radius: 0;
+  border: 1px solid #cbcdde;
+}
+
+.codeBlockTitle_node_modules-\@docusaurus-theme-classic-lib-theme-CodeBlock-Content-styles-module {
+  background-color: #f3f7fb;
+  font-weight: 600 !important;
+  font-size: 12px !important;
+}
+
+.codeBlockContainer_node_modules-\@docusaurus-theme-classic-lib-theme-CodeBlock-Container-styles-module {
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  border: 1px solid #e3e4f3;
+}
+
 /* Button */
 
 .button.button--secondary.button--outline:not(.button--active):not(:hover) {
