@@ -260,6 +260,52 @@ code {
   font-weight: 600;
 }
 
+/* Page edit */
+
+.theme-edit-this-page {
+  margin-left: -14px;
+  padding: 4px 12px;
+  border: 1px dotted #69707d;
+  color: #2c313a;
+}
+
+.theme-edit-this-page:hover {
+  color: rgb(38, 76, 214);
+  border-color: rgb(38, 76, 214);
+}
+
+.theme-edit-this-page svg {
+  display: none;
+}
+
+/* Pagination */
+
+.pagination-nav {
+  gap: initial;
+  margin: 0 -14px;
+}
+
+.pagination-nav__label {
+  color: #2c313a;
+}
+
+.pagination-nav__link {
+  border: none;
+  border-bottom: 4px solid transparent;
+  border-radius: 0;
+  transition: none;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.pagination-nav__link:hover {
+  border-bottom-color: rgb(38, 76, 214);
+}
+
+.pagination-nav__link:hover .pagination-nav__label {
+  color: rgb(38, 76, 214);
+}
+
 /* Tabs */
 
 .tabs {
