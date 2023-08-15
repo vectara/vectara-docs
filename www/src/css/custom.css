@@ -128,7 +128,7 @@ code {
 /* Header */
 
 .announcementBar_node_modules-\@docusaurus-theme-classic-lib-theme-AnnouncementBar-styles-module {
-  background-color: rgb(38, 76, 214) !important;
+  background-color: #7027f6 !important;
   color: #fff !important;
   font-size: 16px;
 }
@@ -266,6 +266,8 @@ code {
   font-size: 14px;
   font-weight: 400;
   line-height: 1;
+  border-radius: 0;
+  transition: none;
 }
 
 .tabs__item--active {
