@@ -126,6 +126,16 @@ h3 {
 
 .table-of-contents__link {
   font-size: 14px;
+  padding-left: 8px;
+  padding-bottom: 8px;
+}
+
+.table-of-contents__link:hover {
+  text-decoration: underline;
+}
+
+.table-of-contents li {
+  margin: 0;
 }
 
 /* Breadcrumbs */
@@ -149,7 +159,7 @@ h3 {
 
 .breadcrumbs__item--active .breadcrumbs__link {
   background-color: transparent;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 /* Tabs */
@@ -183,7 +193,51 @@ h3 {
 /* Tables */
 
 table {
+  display: table;
   margin-top: var(--ifm-spacing-vertical);
+  width: 100%;
+  table-layout: fixed;
+  border: 1px solid #e3e4f3;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-bottom: 18px;
+}
+
+table thead {
+  background-color: #f3f7fb;
+  border-bottom: 1px solid #e3e4f3;
+}
+
+table thead tr {
+  border-bottom: none;
+  border-top: none;
+}
+
+tbody tr:hover {
+  background-color: #f3f7fb !important;
+}
+
+table tr:nth-child(2n) {
+  background-color: transparent;
+}
+
+table th {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 8px 12px;
+  text-align: left;
+  border: none;
+  color: #2c313a;
+  max-width: 100%;
+}
+
+table td {
+  font-size: 14px;
+  vertical-align: middle;
+  border: none;
+  padding: 8px 12px;
+  color: #2c313a;
+  max-width: 100%;
 }
 
 /* API specs */
