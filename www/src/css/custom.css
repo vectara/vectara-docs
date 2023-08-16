@@ -227,6 +227,11 @@ pre {
   margin-bottom: 12px;
 }
 
+h1
+  + .themedImage--light_node_modules-\@docusaurus-theme-classic-lib-theme-ThemedImage-styles-module {
+  display: none !important;
+}
+
 /* Side nav */
 
 .theme-doc-sidebar-menu {
