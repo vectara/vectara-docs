@@ -367,9 +367,19 @@ h1
   color: #2c313a;
 }
 
+[data-theme="dark"] .theme-edit-this-page {
+  border-color: #69707d;
+  color: #fff;
+}
+
 .theme-edit-this-page:hover {
   color: rgb(38, 76, 214);
   border-color: rgb(38, 76, 214);
+}
+
+[data-theme="dark"] .theme-edit-this-page:hover {
+  color: var(--ifm-link-color);
+  border-color: var(--ifm-link-color);
 }
 
 .theme-edit-this-page svg {
