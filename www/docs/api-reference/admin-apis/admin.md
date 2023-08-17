@@ -11,7 +11,7 @@ import {vars} from '@site/static/variables.json';
 
 The admin console is a good way to get started with <Config v="names.product"/>. Once
 you're ready to integrate the platform more deeply into your application, the
-Admin APIs allow you to programatically manipulate corpora and perform many
+Admin APIs allow you to programatically manipulate indices, also known as corpora, and perform many
 other operations within the system.
 
 ## Full Definition
@@ -19,9 +19,9 @@ other operations within the system.
 ### Service
 
 The full definitions of the Create, Reset, and Delete gRPC APIs are covered
-below. The Create API allows corpora to be programatically created, up to the
-limit defined for the account. Reset deletes all data from a corpus, without
-deleting its definition, while Delete expunges both the data in the corpus and
+below. The Create API allows indices to be programatically created, up to the
+limit defined for the account. Reset deletes all data from an index, without
+deleting its definition, while Delete expunges both the data in the index and
 its definition.
 
 The REST APIs are programatically derived from these definitions: see

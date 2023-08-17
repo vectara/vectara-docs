@@ -1,40 +1,39 @@
 ---
 id: reset-or-delete-corpus
-title: Resetting and deleting a corpus
+title: Reset or delete a corpus
 ---
 
-If you've decided to stop using a corpus you have three options.
+If you've decided to stop using an index you have three options.
 
-1. **Disable**: Disables query or indexing requests. A disabled corpus can be
+1. **Disable**: Disables query or indexing requests. A disabled index can be
    reenabled at any time.
-2. **Reset**: Purge all the data within the corpus, but leave the corpus
-   definition intact.
-3. **Delete**: Purge all the data within the corpus and delete the corpus.
-   All your connected services to the corpus will also cease to function.
+2. **Reset**: Purge all the data within the index, but leave the definition intact.
+3. **Delete**: Purge all the data within the index and the delete the index.
+   All your connected services to the index will also cease to function.
 
 :::caution
 The **Reset** and **Delete** operations are irreversable.
 :::
 
-You can view these options on the corpus operations tab with their respective
+You can view these options on the Indices operations tab with their respective
 descriptions.
 
 ![Create operations](/img/corpus_operations.png)
 
-## Resetting a corpus
+## Reset an index
 
-To reset a corpus: 
-1. Click on the _Reset_ button. A warning modal will appear.
-2. Enter the full name of the corpus for confirmation (case insensitive).
+To reset an index: 
+1. Click the **Reset** button. A warning modal will appear.
+2. Enter the full name of the index for confirmation (case insensitive).
 3. Select _Reset_ and wait for the confirmation message.
 
-That's it, all the data within the corpus has been purged.
+That's it, all the data within the index has been purged.
 
-## Deleting a corpus
+## Delete an index
 
-To permanently delete a corpus: 
-1. Click on the _Delete_ button. A warning modal will appear. 
-2. Enter the full name of the corpus for confirmation (case insensitive).
-3. Select _Delete_ and wait for the confirmation message.
+To permanently delete an index: 
+1. Click the **Delete** button. A warning modal will appear. 
+2. Enter the full name of the index for confirmation (case insensitive).
+3. Select **Delete** and wait for the confirmation message.
 
-That's it, the corpus has been deleted.
+That's it, the index has been deleted.
