@@ -491,15 +491,14 @@ h1
 
 /* API playground tabs */
 
-.responseTabsListContainer_node_modules-docusaurus-theme-openapi-docs-lib-next-theme-ApiTabs-styles-module,
-.schemaTabsListContainer_node_modules-docusaurus-theme-openapi-docs-lib-next-theme-SchemaTabs-styles-module {
+[role="tablist"] {
   overflow-x: initial !important;
   overflow-y: initial !important;
 }
 
-.tabItem_node_modules-docusaurus-theme-openapi-docs-lib-next-theme-ApiTabs-styles-module {
+/* .tabItem_node_modules-docusaurus-theme-openapi-docs-lib-next-theme-ApiTabs-styles-module {
   opacity: 1 !important;
-}
+} */
 
 /* Hide application/json tab */
 .tabs__item:only-child {
