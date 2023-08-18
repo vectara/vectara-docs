@@ -628,9 +628,7 @@ table td {
 }
 
 .details__demo-panel button,
-.details__request-summary > button,
-.floatingButton_node_modules-docusaurus-theme-openapi-docs-lib-next-theme-ApiDemoPanel-FloatingButton-styles-module
-  > button {
+.details__request-summary > button {
   opacity: 1 !important;
   visibility: visible !important;
   background-color: transparent !important;
@@ -642,17 +640,12 @@ table td {
   line-height: 0 !important;
 }
 
-.details__demo-panel button,
-.floatingButton_node_modules-docusaurus-theme-openapi-docs-lib-next-theme-ApiDemoPanel-FloatingButton-styles-module
-  > button {
+.details__demo-panel button {
   border: 1px solid #cbcdde !important;
   color: #2c313a !important;
 }
 
-[data-theme="dark"] .details__demo-panel button,
-[data-theme="dark"]
-  .floatingButton_node_modules-docusaurus-theme-openapi-docs-lib-next-theme-ApiDemoPanel-FloatingButton-styles-module
-  > button {
+[data-theme="dark"] .details__demo-panel button {
   border-color: #69707d !important;
   color: #cbcdde !important;
 }
@@ -667,15 +660,13 @@ table td {
   color: var(--ifm-color-primary) !important;
 }
 
-.details__demo-panel button,
-.details__request-summary > button:hover,
-.floatingButton_node_modules-docusaurus-theme-openapi-docs-lib-next-theme-ApiDemoPanel-FloatingButton-styles-module
-  > button:hover {
+.details__demo-panel button:hover,
+.details__request-summary > button:hover {
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
-.selectInput_node_modules-docusaurus-theme-openapi-docs-lib-next-theme-ApiDemoPanel-FormSelect-styles-module {
+.details__demo-panel select {
   margin-top: 12px !important;
   appearance: none;
   border-radius: 4px !important;
@@ -686,7 +677,7 @@ table td {
   font-size: 14px !important;
 }
 
-.input_node_modules-docusaurus-theme-openapi-docs-lib-next-theme-ApiDemoPanel-FormTextInput-styles-module {
+.details__demo-panel input {
   appearance: none;
   border-radius: 4px !important;
   border: 1px solid #cbcdde !important;
@@ -696,10 +687,8 @@ table td {
   font-size: 14px !important;
 }
 
-[data-theme="dark"]
-  .selectInput_node_modules-docusaurus-theme-openapi-docs-lib-next-theme-ApiDemoPanel-FormSelect-styles-module,
-[data-theme="dark"]
-  .input_node_modules-docusaurus-theme-openapi-docs-lib-next-theme-ApiDemoPanel-FormTextInput-styles-module {
+[data-theme="dark"] .details__demo-panel select,
+[data-theme="dark"] .details__demo-panel input {
   border-color: #69707d !important;
   color: #cbcdde !important;
 }
