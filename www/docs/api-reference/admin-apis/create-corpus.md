@@ -10,7 +10,7 @@ import {vars} from '@site/static/variables.json';
 ## Endpoint Address
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
-to injest content into an index:
+to ingest content into an index:
 <code>https://<Config v="domains.rest.admin"/>/v1/create-corpus</code>
 This page describes the details of interacting with this endpoint.
 
