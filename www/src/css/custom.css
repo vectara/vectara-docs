@@ -599,6 +599,7 @@ table td {
 /* API Playground panels */
 
 .theme-api-markdown .details__demo-panel,
+.theme-api-markdown .details__demo-panel > div,
 .optionsPanel_node_modules-docusaurus-theme-openapi-docs-lib-next-theme-ApiDemoPanel-Request-styles-module {
   border-radius: 0 !important;
   background: transparent !important;
@@ -626,6 +627,7 @@ table td {
   background: transparent !important;
 }
 
+.details__demo-panel button,
 .details__request-summary > button,
 .floatingButton_node_modules-docusaurus-theme-openapi-docs-lib-next-theme-ApiDemoPanel-FloatingButton-styles-module
   > button {
@@ -640,12 +642,14 @@ table td {
   line-height: 0 !important;
 }
 
+.details__demo-panel button,
 .floatingButton_node_modules-docusaurus-theme-openapi-docs-lib-next-theme-ApiDemoPanel-FloatingButton-styles-module
   > button {
   border: 1px solid #cbcdde !important;
   color: #2c313a !important;
 }
 
+[data-theme="dark"] .details__demo-panel button,
 [data-theme="dark"]
   .floatingButton_node_modules-docusaurus-theme-openapi-docs-lib-next-theme-ApiDemoPanel-FloatingButton-styles-module
   > button {
@@ -663,6 +667,7 @@ table td {
   color: var(--ifm-color-primary) !important;
 }
 
+.details__demo-panel button,
 .details__request-summary > button:hover,
 .floatingButton_node_modules-docusaurus-theme-openapi-docs-lib-next-theme-ApiDemoPanel-FloatingButton-styles-module
   > button:hover {
@@ -731,6 +736,7 @@ table td {
   transition: none !important;
 }
 
+.alert--info code,
 .schemaItem_node_modules-docusaurus-theme-openapi-docs-lib-next-theme-SchemaItem-styles-module
   code {
   border: none !important;
