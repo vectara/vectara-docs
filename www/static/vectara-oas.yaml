@@ -292,6 +292,37 @@ paths:
       security:
         - ApiKeyAuth: []
         - oAuth: []
+  /v1/core/index:
+    post:
+      operationId: CoreIndex
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/vectaraIndexCoreDocumentResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/googlerpcStatus"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/vectaraIndexCoreDocumentRequest"
+        description: Request to index a document.
+        required: true
+      tags:
+        - IndexService
+      parameters:
+        - $ref: '#/components/parameters/customerIdentifier'
+      description: Low level indexing API
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
   /v1/upload:
     post:
       operationId: FileUpload
@@ -307,13 +338,13 @@ paths:
             schema:
               type: object
               properties:
+                doc_metadata:
+                  description: A JSON string of any additional metadata you want attached to the file.
+                  type: string
                 file:
                   description: The file to be indexed into Vectara.
                   type: string
                   format: binary
-                doc_metadata:
-                  description: A JSON string of any additional metadata you want attached to the file.
-                  type: string
               required:
                 - file
       parameters:
@@ -408,6 +439,7 @@ components:
 
 
 
+
          - DEFAULT: Use corpus-assigned semantics.  This is the most common setting.
          - QUERY: Use query semantics.  This is also common.
          - RESPONSE: Use response semantics.  Usage of this is rare.
@@ -494,7 +526,9 @@ components:
         id:
           type: integer
           format: int64
-          description: The Corpus ID.
+          description: |-
+            The Corpus ID.
+            This value is ignored during Corpus creation.
         name:
           type: string
           description: The name of the corpus.
@@ -504,10 +538,14 @@ components:
         dtProvision:
           type: string
           format: int64
-          description: The time at which the corpus was provisioned.
+          description: |-
+            The time at which the corpus was provisioned.
+            This value is ignored during Corpus creation.
         enabled:
           type: boolean
-          description: Whether the corpus is enabled for use or not.
+          description: |-
+            Whether the corpus is enabled for use or not.
+            This value is ignored during Corpus creation.
         swapQenc:
           type: boolean
         swapIenc:
@@ -808,8 +846,12 @@ components:
 
 
 
+
+
               value in binary format, or produce an error.
             * Applications are allowed to cache lookup results based on the
+
+
 
 
 
@@ -845,6 +887,8 @@ components:
 
 
 
+
+
             Foo foo = ...;
             Any any;
             any.PackFrom(foo);
@@ -854,6 +898,8 @@ components:
             }
 
         Example 2: Pack and unpack a message in Java.
+
+
 
 
 
@@ -870,6 +916,8 @@ components:
 
 
 
+
+
             foo = Foo(...)
             any = Any()
             any.Pack(foo)
@@ -879,6 +927,8 @@ components:
               ...
 
         Example 4: Pack and unpack a message in Go
+
+
 
 
 
@@ -918,6 +968,8 @@ components:
 
 
 
+
+
             package google.profile;
             message Person {
               string first_name = 1;
@@ -937,6 +989,8 @@ components:
         `value` which holds the custom JSON in addition to the `@type`
 
         field. Example (for message [google.protobuf.Duration][]):
+
+
 
 
 
@@ -1018,6 +1072,7 @@ components:
           format: float
           title: >-
             Controls the weight given to lexical matches. The final score, S, is then:
+
 
 
 
@@ -1387,10 +1442,7 @@ components:
           description: An optional description for the document.
         metadataJson:
           type: string
-          description: >-
-            Metadata about the document. This should be a json string, and it can be
-
-            retrieved at query time.
+          description: "Metadata about the document. This is a string containing a JSON\nobject. It can be an arbitrary object except that any keys \nthat match a metadata filter of the corpus must have the\nsame value type as metadata filter's value type.\n\nA query can use this object to filter if the object's key/value pair\nhas been defined as a metadata filter.\n\nThe whole object will be in the query result."
         customDims:
           type: array
           items:
@@ -1434,6 +1486,85 @@ components:
           description: Use this ID to find the document in the ResponseSet.
         corpusKey:
           $ref: "#/components/schemas/servingCorpusKey"
+    indexingCoreDocument:
+      type: object
+      properties:
+        documentId:
+          type: string
+          description: A document ID to assign to this document.
+        metadataJson:
+          type: string
+          description: |-
+            Metadata about the document. This should be a json string. It can be
+            retrieved at query time.
+        parts:
+          type: array
+          items:
+            $ref: "#/components/schemas/indexingCoreDocumentPart"
+          description: All parts of this document.
+        defaultPartContext:
+          type: string
+          description: >-
+            This field provides a way to specify a blanket context for all parts. If
+
+            the context in a part is empty, this context will be used.
+        customDims:
+          type: array
+          items:
+            $ref: "#/components/schemas/vectaraindexingCustomDimension"
+          description: |-
+            A list of custom dimension values that are included in the generated
+            representation of all parts.
+      description: A document to index.
+    indexingCoreDocumentPart:
+      type: object
+      properties:
+        text:
+          type: string
+          description: A part of the document. e.g., a sentence.
+        context:
+          type: string
+          description: Context of the part.
+        metadataJson:
+          type: string
+          description: >-
+            Metadata about this part of the document. This should be a json string.
+
+            It is passed through the system, without being used at indexing time. It
+
+            can be retrieved at query time.
+        customDims:
+          type: array
+          items:
+            $ref: "#/components/schemas/vectaraindexingCustomDimension"
+          title: >-
+            A list of custom dimension values that are included in the generated
+
+            representation of this part.  These are optional and take on the corpus
+
+            default custom dimension value if not explicitly provided for the document
+      description: Part of a document. A document consists of several such parts.
+    vectaraIndexCoreDocumentRequest:
+      type: object
+      properties:
+        customerId:
+          type: string
+          format: int64
+          description: The Customer ID to issue the request for.
+        corpusId:
+          type: string
+          format: int64
+          description: The Corpus ID to index the document into.
+        document:
+          $ref: "#/components/schemas/indexingCoreDocument"
+      description: Request to index a document.
+    vectaraIndexCoreDocumentResponse:
+      type: object
+      properties:
+        status:
+          $ref: "#/components/schemas/comvectaraStatus"
+        quotaConsumed:
+          $ref: "#/components/schemas/vectaraStorageQuota"
   securitySchemes:
     oAuth:
       type: oauth2
