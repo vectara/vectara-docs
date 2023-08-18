@@ -19,7 +19,9 @@ The full definition of the gRPC interface is covered below.
 
 ### Service
 
-The indexing service operates by accepting individual documents or messages to be indexed. In a short period of time, generally a few minutes, the new content will become available in the search index.
+The indexing service operates by accepting individual documents or messages to 
+be indexed. In a short period of time, generally a few minutes, the new content 
+will become available in the search index.
 
 The definition of the service is shown below.
 
