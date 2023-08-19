@@ -12,13 +12,13 @@ to reset an index:
 <code>https://<Config v="domains.rest.admin"/>/v1/reset-corpus</code>
 This page describes the details of interacting with this endpoint.
 
-To reset an index, specify the **customer id** and **corpus id**. Upon
+To reset an index, specify the `customer_id` and `corpus_id`. Upon 
 successful completion, space quota consumed by the index will be freed.
 
 ```protobuf
 message ResetCorpusRequest {
   uint32 customer_id = 1;
-  // The index is the Corpus ID to be reset.
+  // The corpus ID uniquely identifies the index to reset.
   uint32 corpus_id = 2;
 }
 

@@ -33,13 +33,13 @@ message CreateCorpusRequest {
 }
 
 message CreateCorpusResponse {
-  // The index is the Corpus ID that was created.
+  // The corpus_id uniquely identifies the index that was created.
   uint32 corpus_id = 1;
   Status status = 2;
 }
 
 message Corpus {
-  // The index ID.
+  // The index ID, also referred to as the corpus ID.
   uint32 id = 1;
   // The name of the index.
   string name = 2;
