@@ -12,7 +12,7 @@ Note that you can set up additional fields to filter on by setting up
 [filter attributes](/docs/api-reference/admin-apis/create-corpus#filter-attribute) on a
 corpus.
 
-## part.lang field
+## `part.lang` field
 Each section of a document is evaluated for its language at index time and the
 `part.lang` field is added with a 3-character lower-case language code
 ([ISO 639-2](https://en.wikipedia.org/wiki/List_of_ISO_639-2_codes)).  For
@@ -24,7 +24,7 @@ Valid filter expressions for this would be something like:
 * `part.lang = 'deu'`
 * `part.lang = 'eng' OR part.lang = 'deu'`
 
-## part.is_title field
+## `part.is_title` field
 When adding content, <Config v="names.product"/> will add a special Boolean
 field to indicate whether the field is a title field or not.  This is useful
 for a few different cases depending on how you model your data.  For example,
