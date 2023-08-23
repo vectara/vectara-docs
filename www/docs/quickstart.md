@@ -58,10 +58,10 @@ This menu has a few sections:
 * Displays a Welcome message
 * Provides links to this documentation site and the community forum.
 
-### Corpora
+### Indices
 
-* Lists your corpora (also known as indices, which are containers for your 
-  data). 
+* Lists your indices (also known as corpora), which are containers for your 
+  data. 
 * This list is empty since you just created an account. Once you create additional
 corpora, you can easily access them from this list.
 * Searches existing index names and descriptions once you begin creating them
@@ -131,8 +131,9 @@ lots of nuanced information about employee benefits.
    Learn about [filter expressions](/docs/common-use-cases/filtering-by-metadata/filter-overview) if you want to use them in the future.
 4. Click **Create**. 
 
-   The **Corpus ID** displays next to the index title **Employee Handbook** in the 
-    console. You need the `corpus_id` if you want to use the API later.
+   The **Index ID** displays next to the index title **Employee Handbook** in the 
+    console. If you use the API later, you need to configure `corpus_id` fields 
+    with this value.
    
    The **Data Ingestion** tab lets you upload documents to the index so that <Config v="names.product"/> can 
    ingest them. We support `.md`, `.pdf`, `.doc`, `.docx`, `.ppt`, `.pptx`, `.txt`, 
