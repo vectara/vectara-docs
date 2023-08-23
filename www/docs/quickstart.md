@@ -8,8 +8,8 @@ import {Config} from '@site/docs/definitions.md';
 
 Let's get you started with <Config v="names.product"/> so that you upload some data 
 and get answers to your questions! In this quick start tutorial, you will 
-create an account, learn about the UI, upload your first document, 
-and get precise answers!
+create an account, learn about the UI, create an index, upload your first 
+document, and get precise answers!
 
 ## Create a Vectara Account
 
@@ -17,12 +17,7 @@ To get started with <Config v="names.product"/>, register an account with us.
 
 1. Go to https://console.vectara.com/signup or click **Get Started Free** 
    at vectara.com
-2. Sign up with Google or enter the following information:
-    * Name
-    * Organization
-    * Email Address
-    * Password
-    * Country
+2. Sign up with Google or by filling out the form.
 3. Agree to the terms of service and privacy policy.
 4. Click **Start Free**.
 
@@ -63,16 +58,16 @@ This menu has a few sections:
 * Displays a Welcome message
 * Provides links to this documentation site and the community forum.
 
-### Corpora
+### Indices
 
-* Lists your corpora (also known as indices, which are containers for your 
-  data). 
+* Lists your indices (also known as corpora), which are containers for your 
+  data. 
 * This list is empty since you just created an account. Once you create additional
 corpora, you can easily access them from this list.
-* Searches existing corpus names and descriptions once you begin creating them
+* Searches existing index names and descriptions once you begin creating them
 * Click **Take a tour** in the upper-right corner to view an interactive 
   demo of the UI.
-* Click **Create** in the upper-right corner to get started with corpus creation.
+* Click **Create index** in the upper-right corner to get started with index creation.
 
 ### Authentication
 
@@ -80,7 +75,7 @@ The Authentication menu contains tabs for **User** and **App Client**.
 
 * Displays your user information
 * Creates additional users for your account
-* Sets these new users as Account Admin, Corpus Admin, or Billing Admin
+* Sets these new users as Account Admin, Index Admin, or Billing Admin
 * Creates an app client
 * Configures OAuth API authentication.
 
@@ -98,12 +93,14 @@ The Billing tab contains tabs for **Current Usage**, **Choose Your Plan**, and *
 * Displays billing overview information
 * Provides the option to delete your account.
 
-## Create your first corpus
+## Create your first index
 
-You can now create your first corpus, also known as an index. Think of the 
-corpus as a container that includes your uploaded data, and you really want 
-to extract meaningful information from this data through queries. Now you 
-decide what kind of documents you want to index. 
+Before you can ask questions about your data, you need to ingest your data into 
+Vectara. Your first step is to create a place for storing the data, called an 
+index. Think of an index as a container that includes your uploaded data, 
+and you really want to extract meaningful information from this data through 
+queries. Now you decide what kind of documents you want to ingest into an 
+index. 
 
 Here are some ideas to let you see <Config v="names.product"/> in action:
 
@@ -126,18 +123,19 @@ lots of nuanced information about employee benefits.
 
 ![Create Corpus](/img/create_corpus.gif)
 
-1. Click **Create corpus**.
+1. Click **Create index**.
 2. Enter a **Name** and **Description** such as _Employee Handbook_ and _The employee 
    handbook from HR_.
-3. (Optional) Add Filter Attributes to the corpus.
+3. (Optional) Add Filter Attributes to the index.
    
    Learn about [filter expressions](/docs/common-use-cases/filtering-by-metadata/filter-overview) if you want to use them in the future.
 4. Click **Create**. 
 
-   The **Corpus ID** displays next to the corpus title **Employee Handbook** in the 
-    console. You need the `corpus_id` if you want to use the API later.
+   The **Index ID** displays next to the index title **Employee Handbook** in the 
+    console. If you use the API later, you need to configure `corpus_id` fields 
+    with this value.
    
-   The **Data Ingestion** tab lets you upload documents to the corpus so that <Config v="names.product"/> can 
+   The **Data Ingestion** tab lets you upload documents to the index so that <Config v="names.product"/> can 
    ingest them. We support `.md`, `.pdf`, `.doc`, `.docx`, `.ppt`, `.pptx`, `.txt`, 
    `.html`, `.rtf`, `.epub` and more.
 
@@ -148,7 +146,7 @@ lots of nuanced information about employee benefits.
 
    :::
 
-5. Select or drag and drop files to upload them to the corpus.
+5. Select or drag and drop files to upload them to the index.
 
 Now you can get some answers about your data! Think about the kind of queries 
 that you or other users could ask about a particular document type.
@@ -174,6 +172,6 @@ meaningful and relevant results.
 Think about other queries that would be helpful for a user and imagine
 the amount of time saved because you get quick answers with precise summaries!
 
-Now that you have an understanding of how to upload data into a corpus, ask 
+Now that you have an understanding of how to upload data into an index, ask 
 questions, and get meaningful answers from <Config v="names.product"/>, continue getting 
 more answers and insights from your data.
