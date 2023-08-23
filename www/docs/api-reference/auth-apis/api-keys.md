@@ -23,6 +23,7 @@ organizationally "expensive."  In general, it's recommended that you use
 :::
 
 ## Use an API Key
+
 To use an API key in a request, you need to pass in `x-api-key` as an HTTP
 header.
 
