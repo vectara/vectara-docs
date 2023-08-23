@@ -2,7 +2,13 @@ module.exports = {
   someSidebar: [
     {
       type: 'doc',
-      id: 'introduction'
+      id: 'introduction',
+      label: "The Vectara Platform",
+    },
+    {
+      type: 'doc',
+      id: 'use-case-exploration',
+      label: "Use Case Exploration",
     },
     {
       type: 'category',
