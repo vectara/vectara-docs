@@ -44,7 +44,7 @@ retry may not succeed.
 - `UNAVAILABLE`: The service is temporarily unavailable, and the operation should be retried,
 preferably with a backoff. Note that the deletion operation is idempotent, so it is fine to re-apply.
 
-### Example
+### Delete a Document Example
 
 The code snippet below illustrates how to delete a document from a corpus. For information
 on how to get the call credentials and metadata, please consult

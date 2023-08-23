@@ -64,7 +64,7 @@ message IndexDocumentResponse {
 }
 ```
 
-### Document
+### Document Definition in Vectara
 
 A document is a piece of coherent textual matter. It defines an ID,
 **document_id**, which must be unique among all the documents in

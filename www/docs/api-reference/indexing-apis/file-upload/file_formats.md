@@ -13,7 +13,7 @@ to individual sections within it.
 
 Below is a sample document in each format.
 
-## JSON
+## Sample JSON Document
 
 ```json
 {
@@ -44,7 +44,7 @@ Below is a sample document in each format.
 }
 ```
 
-## Pbtxt
+## Sample Pbtxt Document
 
 ```
 document_id: "selected-works-of-shakespeare"
@@ -69,7 +69,7 @@ section {
 }
 ```
 
-## Python
+## Sample Python Document
 
 For reference, these documents were output by the following Python program:
 

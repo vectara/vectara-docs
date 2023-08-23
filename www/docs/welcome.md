@@ -70,7 +70,7 @@ power of your data. <Config v="names.product"/> wants to transform the way
 developers interact with data and unlock a world of insights at their 
 fingertips. Welcome to the future of information interaction!  
 
-### Not sure where to start?
+## Not sure where to start?
 
 Here are some ideas:
 

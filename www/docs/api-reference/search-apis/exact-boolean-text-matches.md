@@ -15,7 +15,7 @@ term was absent from Vectara's training data (e.g. product SKUs)
 - Incorporate typical keyword modifiers like a `NOT` function, exact phrase
 matching, and wildcard prefixes of terms
 
-# Enabling Exact and Boolean Text Matching
+## Enable Exact and Boolean Text Matching
 By default, the exact and Boolean text matching is disabled and only neural
 retrieval is used.  You can enable the feature by specifying a value,
 `lambda`, at query time.  This value can range from `0` to `1` (inclusive).
@@ -34,7 +34,7 @@ the scores of the results of the two different scoring models.  Users often see
 best results by setting this value somewhere between 0.01 and 0.1, and we
 typically recommend users start experimentation with a value of 0.025.
 
-# Syntax
+## Syntax Interpretation
 When interpreting query strings, Vectara treats the following syntax specially.
 
 Words that are quoted must match exactly in that order. So, for example, the

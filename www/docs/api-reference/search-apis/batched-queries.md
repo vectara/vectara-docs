@@ -38,10 +38,10 @@ separate query for billing purposes.
 
 :::
 
-# Responses
+## Responses
 
-When you a query <Config v="names.product"/>, you get back an array oof results
-This is to assist in using a
+When you a query <Config v="names.product"/>, you get back an array of results.
+This array is to assist in using
 [Batched Query](/docs/api-reference/search-apis/batched-queries.md), 
 
 ```jsx
