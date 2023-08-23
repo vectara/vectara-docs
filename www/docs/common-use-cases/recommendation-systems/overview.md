@@ -9,15 +9,17 @@ import {Config} from '@site/docs/definitions.md';
 Vectara can be used as a semantic recommendation system out of the box in order
 to provide your users with semantically similar documents/products.
 
-# Before you begin
+## Semantic recommendation system considerations
 Before you begin using <Config v="names.product"/> for a semantic recommendation
 system, it's useful to think through what types of recommendation flows you
 want to enable.  For example:
-- Do you want to recommend based on the entire document content or just 1 section/field like the document title?
-- Do you want to recommend semantically similar content regardless of the source language or do you want to only match a particular language?
+- Do you want to recommend based on the entire document content or just 1 
+  section/field like the document title?
+- Do you want to recommend semantically similar content regardless of the 
+  source language or do you want to only match a particular language?
 - Are you looking for exact duplicates or semantic similarity?
 
-# Exact duplicate matching
+## Exact duplicate matching
 Exact duplicate matching can be useful when you want to ensure no duplicate
 content exists in your corpora or to find exact matches of "known bad" documents
 like those that might violate compliance rules in your organization. In general,
@@ -28,7 +30,7 @@ Specifically:
 1. When you index your content, hash your content using something like SHA-256 and add that as custom metadata on the document
 2. To find similar content to a particular document, hash the entire document using the same hashing algorithm and then perform a filtered query to find exact hash matches
 
-# Similar document matching and near-duplicates
+## Similar document matching and near-duplicates
 Sometimes, you want to recommend alternative products or web pages to a user that
 are similar to the one they're looking at or a recently purchased product. These
 use cases can be dealt with by using <Config v="names.product"/> in a
@@ -84,7 +86,7 @@ this document text to <Config v="names.product"/> and set the `semantics` to
 
 This will find documents that are most semantically similar to that document.
 
-## Further refinement
+## Further recommendation refinement
 At times, it can be useful to further refine the recommendations.  For example:
 - Only suggest based on similar document titles
 - Only suggest results that share the same language

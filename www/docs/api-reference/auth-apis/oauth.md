@@ -28,12 +28,12 @@ OAuth 2.0 has several advantages over API keys or simple usernames/passwords:
 
 :::
 
-# Creating an application client
+## Create an application client
 Go to [https://console.vectara.com/console/authentication/app-client](https://console.vectara.com/console/authentication/app-client)
 to create a new application client.  Most applications will want to use the
 `Client Credentials` grant.
 
-# Obtain a JWT Token
+## Obtain a JWT Token
 Before continuing, you'll need the OAuth 2.0 token endpoint.  You can obtain that
 by navigating to the [Authentication page](https://console.vectara.com/authentication)
 and then selecting the App Client tab.  Append `/oauth2/token` to this URL and

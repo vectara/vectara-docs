@@ -11,7 +11,7 @@ LLM-powered search application.  This page outlines what <Config v="names.produc
 can do for this use case as well as why and how to employ these features for the
 best overall end-user experience.
 
-# Large Language Models (LLMs)
+## Large Language Models (LLMs)
 [LLMs](https://en.wikipedia.org/wiki/Large_language_model) are deep neural nets
 that are built with the task of specifically understanding human language. These
 models can be a great asset to many different use cases, including search and
@@ -28,7 +28,7 @@ wide variety of languages and verticals.  When you index data into <Config v="na
 or perform a search, the text is converted to one or more vectors via a LLM
 and then used to answer questions that your users have.
 
-# Zero-shot models
+## Zero-shot models
 [Zero-shot](https://en.wikipedia.org/wiki/Zero-shot_learning) models are models
 which have an excellent understanding of language in general.  They can understand
 and respond to the semantic meaning of questions without any additional tuning.
@@ -40,7 +40,7 @@ that have been developed by the team to allow your end users to query using
 the language and verbiage of their choosing and find the right documents,
 regardless of the domain your documents are in.
 
-# Hybrid search
+## Hybrid search
 While zero-shot LLMs work very well in the vast majority of search use cases,
 there are some occasions where they suffer.  In particular, many zero-shot LLMs
 don't work as well when users perform queries for things which have little

@@ -14,9 +14,9 @@ identity by presenting a valid JWT token. Even entities that lack explicit roles
 may still be able to perform operations on the platform through the use of
 **default permissions**.
 
-These concepts are explained in further detail in the sections below.
-
 ## Roles
+
+This section explains these concepts in further detail:
 
 ### Account Level Roles
 

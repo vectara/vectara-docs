@@ -37,7 +37,7 @@ proto $ curl -s -o ext/google/api/http.proto --create-dirs \
              https://raw.githubusercontent.com/googleapis/googleapis/master/google/api/http.proto
 ```
 
-## Examples
+## Example Protocol Buffers
 
 The [Quickstart Examples](https://github.com/vectara/getting-started) GitHub
 repository has examples of connecting via gRPC in a variety of languages.

@@ -6,7 +6,7 @@ title: Manage users
 In this section, you will learn how to create and manage a user, including
 adjusting account and corpus level authorizations.
 
-# Add User
+## Add User
 
 Users can be created by the account administrator. Once you've logged in,
 navigate to the **User** tab under **Authentication** to create new users
@@ -20,7 +20,7 @@ administrator, corpus administrator, and billing administrator. A user without
 assigned roles at the account level can still be given corpus-level roles, as
 described later.
 
-# Edit User
+## Edit User
 
 A list of all users is available on the User screen. An existing user can be
 modified directly from this list by clicking the three-dotted button at the far

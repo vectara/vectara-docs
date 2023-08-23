@@ -16,7 +16,7 @@ build very tight controls for the types of questions users can ask and get
 authoritative answers to.  These can be great for building things like
 RFP-answering systems for employees and FAQ lookups for customers.
 
-# Formatting data for indexing
+## Format data for indexing
 When you send data to <Config v="names.product"/> for this use case, we
 recommend that you index the question in the `title` field and the answer to
 that question in the text content.  For example:
@@ -37,7 +37,7 @@ that question in the text content.  For example:
 }
 ```
 
-# Querying for similar questions
+## Query for similar questions
 Suppose you wanted to find the answer to a question related to this example.
 You can put <Config v="names.product"/> into a document-matching mode by
 setting `semantics` to `RESPONSE`.  For example:
@@ -67,7 +67,7 @@ instead tells it to find similar questions.
 You can also add a [filter expression](/docs/common-use-cases/filtering-by-metadata/filter-overview)
 of `part.is_title = true` to *only* match the questions.
 
-# Combining question matching and answering
+## Combine question matching and answering
 Expanding on the previous example, we can help users find question or answer
 matches together by using [batched queries](/docs/api-reference/search-apis/batched-queries)
 combined with filter expressions.  For example:

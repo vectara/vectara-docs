@@ -13,7 +13,7 @@ score of -1 would be "completely irrelevant" and a score of 1 would be a
 near/exact match.  There are several controls which affect these scores and
 the associated result rankings.
 
-# Custom dimensions
+## Custom dimensions
 [Custom dimensions](custom-dimensions) are a fixed set of additional "dimensions"
 that contain user-defined numerical values and are stored in addition to the
 vectors that <Config v="names.product"/> automatically extracts and stores from
@@ -24,14 +24,14 @@ Custom dimensions are great to hold metadata like "upvotes" of a post, number
 of times a product has been purchased, and similar measures of business/relevance
 value.
 
-# Hybrid search
+## Hybrid search
 By default, <Config v="names.product"/> uses purely semantic similarity when
 evaluating whether a document/section is responsive to a particular search.
 However, we often find that with a *slight* introduction of keyword-focused
 algorithms, the relevance can be much better.  <Config v="names.product"/>
 supports this out of the box via [hybrid search](/docs/api-reference/search-apis/lexical-matching).
 
-# Alternative similarity measures
+## Alternative similarity measures
 While <Config v="names.product"/> uses question-answer style similarity by
 default, sometimes it's advantageous to use document-document similarity. For
 example, think of a case where a user asks "where can I find great tacos?"  You
@@ -45,13 +45,13 @@ tend to make heavy use of document similarity metrics.  However, these can be
 useful in other use cases as well, including [matching questions](/docs/common-use-cases/question-answer/question-answer-overview)
 in FAQ search systems.
 
-# Interpreting scores
+## Interpreting scores
 If you want to understand a bit more about why <Config v="names.product"/>
 produced a particular score, have a look at our
 [interpreting scores](/docs/api-reference/search-apis/interpreting-responses/intepreting-scores)
 documentation.
 
-# Low-level indexing controls
+## Low-level indexing controls
 Sometimes, the best solution to changing relevance is by adjusting the low-level
 indexing controls.  <Config v="names.product"/> supports fine-grained tuning of
 this in the [low-level](/docs/api-reference/indexing-apis/core_indexing) API.
