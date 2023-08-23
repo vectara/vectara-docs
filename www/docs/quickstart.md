@@ -67,7 +67,7 @@ corpora, you can easily access them from this list.
 * Searches existing index names and descriptions once you begin creating them
 * Click **Take a tour** in the upper-right corner to view an interactive 
   demo of the UI.
-* Click **Create** in the upper-right corner to get started with index creation.
+* Click **Create index** in the upper-right corner to get started with index creation.
 
 ### Authentication
 
@@ -123,7 +123,7 @@ lots of nuanced information about employee benefits.
 
 ![Create Corpus](/img/create_corpus.gif)
 
-1. Click **Create Index**.
+1. Click **Create index**.
 2. Enter a **Name** and **Description** such as _Employee Handbook_ and _The employee 
    handbook from HR_.
 3. (Optional) Add Filter Attributes to the index.
