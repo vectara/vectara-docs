@@ -16,6 +16,11 @@ module.exports = {
       collapsed: false,
       items: [
         {
+          type: 'doc',
+          id: 'quickstart',
+          label: "Quick Start",
+        },
+        {
           type: 'category',
           label: 'Common API Paradigms',
           items: [
