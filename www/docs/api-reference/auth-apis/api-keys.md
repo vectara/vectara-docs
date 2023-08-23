@@ -26,6 +26,7 @@ as your personal credentials.
 :::
 
 ## Use an API Key
+
 To use an API key in a request, you need to pass in `x-api-key` as an HTTP
 header.
 

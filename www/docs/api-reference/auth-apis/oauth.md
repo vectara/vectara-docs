@@ -36,6 +36,7 @@ your personal credentials.
 :::
 
 ## Creating an application client
+
 Go to [https://console.vectara.com/console/authentication/app-client](https://console.vectara.com/console/authentication/app-client)
 to create a new application client.  Most applications will want to use the
 `Client Credentials` grant.

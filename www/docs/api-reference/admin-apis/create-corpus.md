@@ -10,12 +10,12 @@ import {vars} from '@site/static/variables.json';
 ## Endpoint Address
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
-to index content into a corpus:
+to ingest content into an index:
 <code>https://<Config v="domains.rest.admin"/>/v1/create-corpus</code>
 This page describes the details of interacting with this endpoint.
 
-Only the `name` and `description` fields are mandatory when creating a corpus.
-The response message returns a unique id, `corpus_id`, by which the corpus can
+Only the `name` and `description` fields are mandatory when creating an index.
+The response message returns a unique id, `corpus_id`, by which the index can
 be subsequently referenced. Note that the name needn't be unique within an
 account.
 
@@ -33,21 +33,21 @@ message CreateCorpusRequest {
 }
 
 message CreateCorpusResponse {
-  // The Corpus ID that was created.
+  // The corpus_id uniquely identifies the index that was created.
   uint32 corpus_id = 1;
   Status status = 2;
 }
 
 message Corpus {
-  // The Corpus ID.
+  // The index ID, also referred to as the corpus ID.
   uint32 id = 1;
-  // The name of the corpus.
+  // The name of the index.
   string name = 2;
-  // A description for the corpus.
+  // A description for the index.
   string description = 3;
-  // The time at which the corpus was provisioned.
+  // The time at which the index was provisioned.
   int64 dt_provision = 4;
-  // Whether the corpus is enabled for use or not.
+  // Whether the index is enabled for use or not.
   bool enabled = 5;
 
   
