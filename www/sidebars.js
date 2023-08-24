@@ -21,6 +21,11 @@ module.exports = {
           label: "Quick Start",
         },
         {
+          type: 'doc',
+          id: 'prepare-your-data',
+          label: "Prepare Your Data",
+        },
+        {
           type: 'category',
           label: 'Common API Paradigms',
           items: [
