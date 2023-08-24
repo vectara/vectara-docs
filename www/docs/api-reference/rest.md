@@ -9,7 +9,7 @@ import {Config} from '@site/docs/definitions.md';
 While gRPC provides low latency and excellent scalability, in some scenarios
 it may be simpler to integrate using REST APIs.
 
-# API Formatting Guidelines
+## API Formatting Guidelines
 All of the APIs can be found at https://<Config v="domains.rest.admin"/>/&lt;version&gt;/&lt;api-endpoint&gt;ee
 
 The API endpoints are outlined in the various subsections of this API Reference
@@ -23,13 +23,13 @@ from the protobuf definitions to REST is:
 - API parameters can be sent in either `camelCase` or lowercase with `underscores`.  For example, you could submit either `numResults` or `num_results` in the Search API
 - JSON responses are always returned in `camelCase` form
 
-# Authentication
+## API Authentication
 All <Config v="names.product"/> APIs are authenticated.  Indexing and Search
 APIs can be authenticated via [API Keys](/docs/common-use-cases/app-authn-authz/api-keys)
 however, Admin actions (creating/deleting corpora) must be done via
 [OAuth 2.0](/docs/api-reference/auth-apis/oauth-2).
 
-# API Playground and OpenAPI Specifications
+## API Playground and OpenAPI Specifications
 You can find up-to-date OpenAPI specifications at
 [https://docs.vectara.com/vectara-oas.yaml](https://docs.vectara.com/vectara-oas.yaml).
 These are automatically derived from the gRPC protobuf definitions as well.

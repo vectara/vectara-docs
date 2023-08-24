@@ -90,7 +90,7 @@ The key should look like the following:
 
 The final step to creating the AWS KMS key to finish the key creation.
 
-## Attach your key to your account
+## Attach your AWS KMS key to your account
 In order to get <Config v="names.product"/> to use your key, you must
 contact <Config v="names.company"/> Support.  Send us the ARN for the KMS key
 you created (starting with `arn:aws:kms:us-west-2`).
@@ -99,11 +99,11 @@ The <Config v="names.company"/> team will set the configuration up for you. In
 the future, you will be able to set the ARN on the <Config v="names.product"/>
 Console and these instructions will be updated.
 
-## How does it work
+## How the encryption key works
 Once your AWS KMS key is configured in the platform, when encrypting your
 document text or metadata, <Config v="names.product"/> will connect to your KMS
 service to generate an encryption key. The encryption key provided by the KMS
 is stored in-memory and used to encrypt and decrypt your data. In-memory key
-will expire every hour.  In turn, every hour <Config v="names.product"/> will
+will expire every hour. In turn, every hour <Config v="names.product"/> will
 ask your AWS KMS to generate that encryption key again.
 

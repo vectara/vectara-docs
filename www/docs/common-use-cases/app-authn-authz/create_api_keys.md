@@ -26,7 +26,7 @@ Administrative actions cannot be performed through these keys.
 
 The remainder of this guide walks you through managing and using the API Keys.
 
-## Creating a Key
+## Create an API Key
 
 If you have the necessary permissions you'll see the `API Keys` in the sidebar.
 Click on it and you'll see the following page
@@ -51,7 +51,7 @@ You can now start using the key.
 
 :::
 
-## Using a Key
+## Use an API Key
 
 To use an API key, pass it using the `x-api-key` header request.
 
@@ -147,7 +147,9 @@ END
 
 ## Management
 
-### Disable and Enable
+This section describes how to manage API keys.
+
+### Disable and Enable API Keys
 
 To temporarily disable access to an API key, begin by visiting the API Keys
 screen. Select disable by clicking on the action menu (three dots) of the key
@@ -160,7 +162,7 @@ It will take around a minute for query requests using this key to be blocked.
 Once disabled, a key can be reenabled through the action menu. It will take a
 minute or two before it can serve query traffic again.
 
-### Delete
+### Delete API Keys
 
 A key may be permanently deleted through its action menu. Proceed with caution,
 once deleted, there is no way to undelete it, and all external systems that

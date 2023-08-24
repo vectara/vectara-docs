@@ -7,7 +7,7 @@ sidebar_label: API Keys
 API Keys can be used for querying and indexing operations, but cannot at this
 time be used for administrative operations such as creating or deleting corpora.
 
-## Creating an API Key
+## Create an API Key
 Go to [https://console.vectara.com/console/api-keys](https://console.vectara.com/console/api-keys)
 to create a new API key.  API Keys can be scoped either to be query-only or
 both query and index.  It's recommended that you choose the most limited scope

@@ -6,7 +6,7 @@ title: Supported File Types
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-## Binary file types
+## Raw document types
 
 The upload endpoint supports several raw document types. Vectara extracts text
 from these documents and sections them as best it can. This provides a
@@ -20,19 +20,19 @@ types are supported:
 - Microsoft Word (`doc`, `docx`).
 - Microsoft Powerpoint (`ppt`, `pptx`).
 - Text files (`txt`).
-- HTML files.
-- LXML files.
-- RTF files.
-- ePUB files.
+- HTML files (`.html`).
+- LXML files (`.lxml`).
+- RTF files (`.rtf`).
+- ePUB files (`.epub`).
 - Email files conforming to RFC 822.
 
-## Semi-structured
+## Semi-structured documents
 
 In addition, the [upload endpoint](/docs/api-reference/indexing-apis/file-upload/file-upload) supports
 sending semi-structured documents through this endpoint that reflect a
 `Document` proto message.  Those can be sent in the following formats:
 
--  `pb`: Contains binary serialized `Document` proto message.
+- `pb`: Contains binary serialized `Document` proto message.
 
 - `pbtxt`: Contains `Document` proto message in proto text format.
 

@@ -24,7 +24,6 @@ their information on what you and your users care about – information grounded
 in facts. <Config v="names.product"/> also provides result recommendations and enables global 
 collaboration through its **cross-language** search. 
 
-
 ## Vectara GenAI Use Cases
 
 This versatile <Config v="names.product"/> GenAI platform caters to a wide range of use 
@@ -39,8 +38,8 @@ sovereignty and provides you with peace of mind.
 ### Conversational AI
 
 Use <Config v="names.product"/> to leverage the power of intelligent chatbots that provide 
-an interactive user experience. Enable your users with self-service as they engage in 
-human-like interactions, providing context in queries, and receiving 
+an interactive user experience. Enable your users with self-service as they engage 
+in human-like interactions, providing context in queries, and receiving 
 intelligent answers because the system understands them. This technology 
 sits behind virtual assistants, chatbots, and messaging applications to 
 help businesses automate customer service and streamline operations. 
@@ -63,7 +62,6 @@ workers on data, and enhance your website search. <Config v="names.product"/> em
 organization to create a dynamic, responsive, and continuous improving Question 
 and Answer system that enhances the user experience and provides context-aware answers.
 
-
 ### Research and Analysis
 
 Vectara sifts through volumes of publications, news articles, financial reports, 
@@ -72,10 +70,10 @@ summarized answers to guide decision-making in your domain. Collaborate with
 researchers to streamline the peer review process by investigating topics and 
 questions in these vast volumes of data to identify key insights. 
 
-Using <Config v="names.product"/> is like having a global research assistant that can read and 
-understand large volumes of documents in an instant. Let the platform speed up 
-your research process, find the most relevant information, and become a 
-recommendation system for your domain.
+Using <Config v="names.product"/> is like having a global research assistant that 
+can read and understand large volumes of documents in an instant. Let the 
+platform speed up your research process, find the most relevant information, 
+and become a recommendation system for your domain.
 
 Vectara can help transform data into insights which help make decision-making 
 easier. This platform can provide hidden insights and patterns from your data, 
@@ -90,13 +88,14 @@ being an LLM expert. You provide data and queries through simple APIs in
 our SaaS service. 
 
 Enable your users to find the most relevant products, support cases, and 
-documents that answer their questions. <Config v="names.product"/> helps you bridge the gap 
-between user queries and the vast amount of data within an application. 
-Users can find exactly what they are looking for despite how they ask.
+documents that answer their questions. <Config v="names.product"/> helps you 
+bridge the gap between user queries and the vast amount of data within 
+an application. Users can find exactly what they are looking for despite 
+how they ask.
 
 ## Sample Vectara Demos and Applications
 
-We provide this list of sample <Config v="names.product"/> applications to help inspire developer 
+We provide this list of sample open source <Config v="names.product"/> applications to help inspire developer 
 creativity:
 
 * [**AskNews**](https://asknews.demo.vectara.com)
@@ -118,7 +117,7 @@ creativity:
 
 :::note
 
-These sample applications are examples of our platform in action and not supported products.
+These sample open source applications are examples of our platform in action and not supported products.
 
 :::
 
