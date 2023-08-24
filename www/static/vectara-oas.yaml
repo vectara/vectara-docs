@@ -260,38 +260,6 @@ paths:
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
       description: Reset Corpus
-  /v1/stream-query:
-    post:
-      operationId: StreamQuery
-      responses:
-        "200":
-          description: A successful response.(streaming responses)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  result:
-                    $ref: "#/components/schemas/servingQueryResponsePart"
-                  error:
-                    $ref: "#/components/schemas/googlerpcStatus"
-                title: Stream result of servingQueryResponsePart
-        default:
-          description: An unexpected error response.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/googlerpcStatus"
-      requestBody:
-        $ref: "#/components/requestBodies/servingBatchQueryRequest"
-      tags:
-        - QueryService
-      parameters:
-        - $ref: '#/components/parameters/customerIdentifier'
-      description: Stream Query
-      security:
-        - ApiKeyAuth: []
-        - oAuth: []
   /v1/core/index:
     post:
       operationId: CoreIndex
