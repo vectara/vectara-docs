@@ -74,6 +74,8 @@ fingertips. Welcome to the future of information interaction!
 
 Here are some ideas:
 
+- Check out our [Quick Start Tutorial](/docs/quickstart) and get up and running 
+  to index and search your first document in just a couple of minutes!
 - If you don't have a <Config v="names.product"/> account yet, register for one [here](https://console.vectara.com/signup)
 - Check out some [Vectara applications, demos, and video tutorials](https://vectara.com/demos/)
 - Have a look at examples of how to [index](/docs/getting-started-samples/rest_index_document.py) and
