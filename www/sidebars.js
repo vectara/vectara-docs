@@ -21,6 +21,11 @@ module.exports = {
           label: "Quick Start",
         },
         {
+          type: 'doc',
+          id: 'api-jumpstart',
+          label: "API Jumpstart",
+        },
+        {
           type: 'category',
           label: 'Common API Paradigms',
           items: [
