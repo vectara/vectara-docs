@@ -15,6 +15,11 @@ module.exports = {
       label: 'Getting Started',
       collapsed: false,
       items: [
+                {
+          type: 'doc',
+          id: 'key-concepts',
+          label: "Key Concepts",
+        },
         {
           type: 'doc',
           id: 'quickstart',
