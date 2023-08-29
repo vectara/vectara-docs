@@ -6,54 +6,52 @@ sidebar_label: Key Concepts in Gen AI
 
 import {Config} from './definitions.md';
 
-Generative AI is a rapidly evolving field that leverages advanced 
-technologies to create different types of content and insights. At the core 
-lies the AI Architecture, a complex structure that defines the various 
-components of an AI system. This intelligent architecture is not standalone 
-because it intricately connects with several techniques and query mechanisms 
-to perform tasks efficiently.
-
-This section describes common terminology associated with Generative 
+This section describes common terminology associated with Generative (Gen AI)
 AI and how these concepts connect or complement each other on the <Config v="names.product"/>
 platform.
 
-## AI Architecture
+## Generative AI Architecture
 
-AI Architecture refers to the underlying structure of artificial intelligence 
-systems. This architecture contains many important components that enable AI 
-to function effectively:
+Generative AI architecture refers to the underlying structure that contains the 
+important components that enable this technology to function effectively:
 
 ![AI Architecture](/img/ai_architecture.png)
 
 ### Large Language Models (LLMs)
 
-Large Language Models (LLMs) provide language prediction that use machine 
-learning to generate human-like text. <Config v="names.product"/> leverages LLMs to understand 
-and respond to queries with precision. 
+Large Language Models (LLMs) represent deep learning algorithms that mimic the 
+way humans interpreet, translate, and create content. <Config v="names.product"/> leverages LLMs 
+to provide helpful answers to questions.
 
 ### Vector Databases
 
 Vectors represent objects in a multi-dimensional space, enabling efficient 
-similarity search. These databases enable rapid retrieval of large data sets.
+similarity search. <Config v="names.product"/> uses vector databases to retrieve the 
+data it needs to accurately answer questions.
 
 ### Semantic Search
 
-Semantic search understands the intent and contextual meaning of a 
-search to generate more accurate results. This approach is different 
-from traditional, keyword-based search.
+Whereas traditional, keyword-based search is limited to results 
+that literally match the words in a query, semantic search identifies 
+the intent and contextual meaning of a query. Vector databases 
+enable semantic search.
 
 [Learn about Semantic Search](/docs/common-use-cases/semantic-search/semantic-search-overview)
 
 ### Neural Search
 
-Neural search leverages neural networks and machine learning to improve search 
-experiences by creating more contextual and relevant results.
+Neural search utilizes neural networks, often deep learning models, 
+to understand the context of a query. It goes beyond the rule-based 
+approach of semantic search as an advanced form of Natural Language 
+Processing (NLP). Neural search is general more resource-intensive than 
+semantic search. However, you can combine the strengths of both methods. 
+
 
 ### Hybrid Search
 
 Hybrid search combines semantic and keyword search as a balanced approach to 
-information retrieval. Sometimes users simply need to search for a specific 
-serial number or product code.
+information retrieval. Some data is most meaningful when interpreted 
+literally, such as serial numbers, dates, or product codes.
 
 ### Cross-Language Search
 
@@ -94,15 +92,14 @@ By leveraging machine learning models, summarizations adapt to different
 contexts and content types, while preserving the essence of the original 
 data
 
-### Hallucinations
+### Hallucination Reduction
 
-Hallucinations occur when AI generates incorrect information that was not 
-present in the input or training data. Simply put, chatbots tend to make 
-things up. Hallucinations appear as made-up facts, events, or details that 
-are simply not true. They occur when the AI model tries to fill in gaps by 
-attempting to create a coherent narrative. Thanks to Grounded 
-Generation, <Config v="names.product"/> reduces the risk of hallucinations 
-dramatically.
+Hallucinations occur when Generative AI creates incorrect information. This 
+generateve information was not present in the input or training data. 
+Hallucinations appear as made-up facts, events, or details that are simply 
+not true. They occur when the Generative AI model tries to fill in gaps by 
+attempting to create a coherent narrative. Thanks to Grounded Generation, <Config v="names.product"/> reduces 
+the risk of hallucinations dramatically.
 
 ## Query Mechanisms
 
