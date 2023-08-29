@@ -244,8 +244,109 @@ curl -L -X POST 'https://api.vectara.io/v1/index' \
 
 
 
-## Index the corpus
+## Query a term and return a specific number of results
 
+In this example, you want to search for the term "technology," and then return 
+only the first 5 results. 
+
+### Example cURL command
+
+```json
+
+curl -X POST "https://api.vectara.io/v1/query" \
+     -H "x-api-key: 12345" \
+     -H "customer-id: 7890" \
+     -d '{
+         "corpusId": "2",
+         "query": "technology",
+         "numResults": 5,
+         "start": 0
+     }'
+
+
+
+```
+
+### Example response with 5 results
+
+```json
+
+{
+  "status": "OK",
+  "results": [
+    {
+      "text": "The future of technology is AI.",
+      "score": 0.98,
+      "documentIndex": 1
+    },
+    {
+      "text": "Technology is evolving rapidly.",
+      "score": 0.95,
+      "documentIndex": 2
+    },
+    {
+      "text": "Blockchain technology is revolutionary.",
+      "score": 0.92,
+      "documentIndex": 3
+    },
+    {
+      "text": "Technology has its pros and cons.",
+      "score": 0.90,
+      "documentIndex": 4
+    },
+    {
+      "text": "The role of technology in modern society.",
+      "score": 0.88,
+      "documentIndex": 5
+    }
+  ]
+}
+
+```
+
+## Query with metadata filters
+
+In this example, you want to query _cloud computing_ with 10 results in 
+the _IT_ category.
+
+### Example cURL Command
+
+```json
+curl -X POST "https://api.vectara.io/v1/query" \
+     -H "x-api-key: 12345" \
+     -H "customer-id: 7890" \
+     -d '{
+         "corpusId": "2",
+         "query": "cloud computing",
+         "numResults": 10,
+         "metadataJson": {
+             "category": "IT"
+         }
+     }'
+
+
+### Example query response
+
+
+```json
+
+{
+  "status": "OK",
+  "results": [
+    {
+      "text": "Cloud computing is changing the IT landscape.",
+      "score": 0.99,
+      "documentIndex": 8
+    },
+    {
+      "text": "The benefits of cloud computing are numerous.",
+      "score": 0.96,
+      "documentIndex": 9
+    }
+  ]
+}
+
+```
 
 
 
@@ -253,8 +354,72 @@ curl -L -X POST 'https://api.vectara.io/v1/index' \
 1. 
 
 
-## Update data in a corpus
+## Create a new index and ingest a document
+
+In this example, you want to create a new index and ingest a new document in 
+this new index.
+
+1. Execute the following cURL command:
+
+   ```json
+   curl -X POST "https://api.vectara.io/v1/create-corpus" \
+     -H "x-api-key: 12345" \
+     -H "customer-id: 7890" \
+     -d '{
+         "name": "Tech Corpus"
+     }'
+
+   ```
+
+You get the following response:
+
+```json
+{
+  "status": "OK",
+  "corpusId": "3"
+}
+```
+
+2. Index a document into the new index with the following cURL command:
+
+   ```json
+   curl -X POST "https://api.vectara.io/v1/index" \
+     -H "x-api-key: 12345" \
+     -H "customer-id: 7890" \
+     -d '{
+         "corpusId": "3",
+         "documentId": "doc_1",
+         "text": "The future of technology is AI."
+     }'
+```
+   You get the following response:
+
+   ```json
+   {
+  "status": "OK"
+   }
+   ```
 
 
+## List all indices and delete a specific index
 
-1. 
+1. Execute the following curl command:
+
+   ```json
+   curl -X GET "https://api.vectara.io/v1/list-corpora" \
+     -H "x-api-key: 12345" \
+     -H "customer-id: 7890"
+```
+You get the following response:
+
+
+```json
+   {
+  "status": "OK",
+  "corpora": [
+    {"corpusId": "1", "name": "Default Corpus"},
+    {"corpusId": "2", "name": "My Corpus"},
+    {"corpusId": "3", "name": "Tech Corpus"}
+  ]
+}
+```
