@@ -4,37 +4,29 @@ title: API Jumpstart
 sidebar_label: API Jumpstart
 ---
 
-Let’s get you started with the Vectara API so that you can perform some 
-more advanced operations with your data. To use the API, you must have the 
-following information available:
+Let’s get you started with the <Config v="names.product"/> API so that you can perform some 
+more advanced operations with your data. To issue the types of API calls in these 
+examples, you must have the following information available:
 
 * Customer ID
 * Index ID
 * API Key
 
-:::note
+## Search for answers in an index
 
-Some API functions require OAuth 2.0 through a client credentials grant. Learn 
-about how to create an application client and obtain a JWT Token.
-
-:::
-
-
-## Search for answers in the index
-
-Let’s continue using the Employee Handbook example from the 
-Now you want to ask another question, “How much PTO is offered to 
-employees each year?”
+In this example, you already uploaded data from an Employee Handbook. Now you  
+want to issue an API call to ask, _“How much PTO is offered to 
+employees each year?”_
 
 You need to input the following information:
 
-* customer_id and customerId
-* API Key
-* corpus_id
-* query
+* `customer_id` and `customerId`
+* `x-api-key`
+* `corpus_id`
+* `query`
 
 
-### Example curl command
+### Example cURL command
 
 ```json
 curl -L -X POST 'https://api.vectara.io/v1/query' \
@@ -98,7 +90,10 @@ Let’s take a closer look at the first response:
     {
       "response": [
         {
-          "text": "Employee Handbook PTO is 20 days a year for all new employees. <b>Employees earn more vacation days per year of service up to 5 extra days.</b> Example: Once you begin your 5th year, you now have 25 vacation days.",
+          "text": "Employee Handbook PTO is 20 days a year for all new employees. 
+          <b>Employees earn more vacation days per year of service up to 5 extra 
+          days.</b> Example: Once you begin your 5th year, you now have 25 
+          vacation days.",
           "score": 4.30505,
           "metadata": [
             {
@@ -133,27 +128,29 @@ Let’s take a closer look at the first response:
 	  // More results....
 ```
 
-The API provides the following response:
+The example API call provides the following response:
 
-"Employee Handbook PTO is 20 days a year for all new employees. <b>Employees 
+_"Employee Handbook PTO is 20 days a year for all new employees. <b>Employees 
 earn more vacation days per year of service up to 5 extra days.</b> 
-Example: Once you begin your 5th year, you now have 25 vacation days."
+Example: Once you begin your 5th year, you now have 25 vacation days."_
 
+Let's take a look at some other API calls that you can make.
 
 ## Upload a file to the index
 
-Since you already created an index, you can upload a new file with 
+If you want to add a file to an existing index, you can upload a new file with 
 a simple POST request.
 
 You need to input the following information:
 
-* customer_id
-* API Key
-* corpus_id
-* File name
-* Path to file
+* `customer_id`
+* `x-api-key`
+* `corpus_id`
+* File name 
+* Path to the file
 
-In this example, you have a local rtf file that you want to upload to corpus 1.
+In this example, you have a local `.rtf` file that you want to upload to 
+index 1, which is `corpus_id` = 1.
 
 ### Example curl command
 
@@ -165,8 +162,6 @@ curl -L -X POST 'https://api.vectara.io/v1/upload?c=123456789&o=1&d=true' \
 -H 'x-api-key: zwt_asdfasdfasdfasdfasdfasdfasdfasdf' \
 -F 'file=@"//Users/username/Documents/tmp/doc.rtf"'
 ```
-
-
 
 ### Example JSON response
 
@@ -181,24 +176,26 @@ The file uploads successfully and you get the following response:
     "numChars": "60",
     "numMetadataChars": "148"
   }
-},"document":{
+  },"document":{
   "documentId": "doc.rtf",
   "metadataJson": "{\"X-TIKA:Parsed-By\":\"org.apache.tika.parser.microsoft.rtf.RTFParser\",\"Content-Type\":\"application/rtf\"}",
   "section": [{
     "id": 1,
     "text": "Simple test doc\n\nLorem ipsum \nLorem ipsum \nLorem ipsum \n "
-  }]
-}} 
+   }]
+  }} 
 ```
 
-## Index the document
+## Update and reindex the document
 
-After you upload a document, you index the data to become searchable. Indexing 
-provides faster search results and also use fewer resources. An index is like 
-a snapshot of your data.
+After you update a document, you can reindex the data to become searchable 
+with the updated content. Indexing provides faster search results and it also 
+use fewer resources. An index is like a snapshot of your data.
 
 In this example, you send a POST request to the /index endpoint along 
 with appropriate parameters:
+
+### Example cURL command
 
 
 ```json
@@ -242,17 +239,79 @@ curl -L -X POST 'https://api.vectara.io/v1/index' \
 }'
 ```
 
+### Example JSON Response
+
+```json
+{
+  "status": {
+    "code": "OK"
+  },
+  "quotaConsumed": {
+    "numChars": "250",
+    "numMetadataChars": "15"
+  }
+}
+
+```
+
+## Update the metadata of the uploaded file
+
+In this example, you want to add the following metadata to the `.rtf` file:
+
+* "Document-Version": "2.0" - Indicates that this is the second version of the document.
+* "Last-Modified-By": "JohnDoe" - Specifies the last person who modified the document.
+* "Security-Level": "High" - Indicates the security level of the updated document.
+* "Keywords": ["Quantum", "Physics", "Research"] - An array of keywords relevant to the document.
+
+Execute the following cURL command to update the document:
+
+  ```json
+  curl -L -X POST 'https://api.vectara.io/v1/index' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'customer-id: 12345' \
+-H 'x-api-key: asdfasdf' \
+--data-raw '{
+  "customerId": "12345",
+  "corpusId": 1,
+  "document": {
+    "documentId": "doc.rtf",
+    "metadataJson": "{\"X-TIKA:Parsed-By\":\"org.apache.tika.parser.microsoft.rtf.RTFParser\",\"Content-Type\":\"application/rtf\", \"Document-Version\":\"2.0\", \"Last-Modified-By\":\"JohnDoe\", \"Security-Level\":\"High\", \"Keywords\":[\"Quantum\", \"Physics\", \"Research\"]}"
+  }
+}'
+```
+You get the following JSON response:
+
+```json
+{
+  "response": {
+    "status": {
+      "code": "OK"
+    },
+    "quotaConsumed": {
+      "numChars": "60",
+      "numMetadataChars": "250"
+    }
+  },
+  "document": {
+    "documentId": "doc.rtf",
+    "metadataJson": "{\"X-TIKA:Parsed-By\":\"org.apache.tika.parser.microsoft.rtf.RTFParser\",\"Content-Type\":\"application/rtf\", \"Document-Version\":\"2.0\", \"Last-Modified-By\":\"JohnDoe\", \"Security-Level\":\"High\", \"Keywords\":[\"Quantum\", \"Physics\", \"Research\"]}"
+  }
+}
+```
+The metadataJson field now includes additional metadata that can help with 
+version tracking, identifying the last person who modified the document, 
+setting security levels, and categorizing the document based on keywords.
 
 
-## Query a term and return a specific number of results
+## Issue a query and return a specific number of results
 
-In this example, you want to search for the term "technology," and then return 
+In this query, you want to search for the term "technology" and then return 
 only the first 5 results. 
 
 ### Example cURL command
 
 ```json
-
 curl -X POST "https://api.vectara.io/v1/query" \
      -H "x-api-key: 12345" \
      -H "customer-id: 7890" \
@@ -262,15 +321,11 @@ curl -X POST "https://api.vectara.io/v1/query" \
          "numResults": 5,
          "start": 0
      }'
-
-
-
 ```
 
-### Example response with 5 results
+### Example JSON response with 5 results
 
 ```json
-
 {
   "status": "OK",
   "results": [
@@ -301,13 +356,12 @@ curl -X POST "https://api.vectara.io/v1/query" \
     }
   ]
 }
-
 ```
 
-## Query with metadata filters
+## Issue a query with metadata filters
 
-In this example, you want to query _cloud computing_ with 10 results in 
-the _IT_ category.
+In this example, you want to query the phrase _cloud computing_ with 2 
+results in the _IT_ category.
 
 ### Example cURL Command
 
@@ -318,18 +372,17 @@ curl -X POST "https://api.vectara.io/v1/query" \
      -d '{
          "corpusId": "2",
          "query": "cloud computing",
-         "numResults": 10,
+         "numResults": 2,
          "metadataJson": {
              "category": "IT"
          }
      }'
-
+```
 
 ### Example query response
 
 
 ```json
-
 {
   "status": "OK",
   "results": [
@@ -345,18 +398,10 @@ curl -X POST "https://api.vectara.io/v1/query" \
     }
   ]
 }
-
 ```
-
-
-
-
-1. 
-
-
 ## Create a new index and ingest a document
 
-In this example, you want to create a new index and ingest a new document in 
+In this example, you want to create a new index and also ingest a document in 
 this new index.
 
 1. Execute the following cURL command:
@@ -368,17 +413,16 @@ this new index.
      -d '{
          "name": "Tech Corpus"
      }'
-
    ```
 
-You get the following response:
+ You get the following response:
 
-```json
+ ```json
 {
   "status": "OK",
   "corpusId": "3"
 }
-```
+ ```
 
 2. Index a document into the new index with the following cURL command:
 
@@ -391,8 +435,9 @@ You get the following response:
          "documentId": "doc_1",
          "text": "The future of technology is AI."
      }'
-```
-   You get the following response:
+   ```
+
+ You get the following response:
 
    ```json
    {
@@ -403,23 +448,211 @@ You get the following response:
 
 ## List all indices and delete a specific index
 
-1. Execute the following curl command:
+1. Execute the following curl command to list the indices:
 
    ```json
    curl -X GET "https://api.vectara.io/v1/list-corpora" \
      -H "x-api-key: 12345" \
      -H "customer-id: 7890"
-```
+   ```
 You get the following response:
 
-
-```json
+   ```json
    {
   "status": "OK",
   "corpora": [
     {"corpusId": "1", "name": "Default Corpus"},
     {"corpusId": "2", "name": "My Corpus"},
     {"corpusId": "3", "name": "Tech Corpus"}
+    ]
+   }
+   ```
+
+2. Execute the following curl command to delete a specific index with `corpus_id` = 3.
+
+  ```json
+  curl -X DELETE "https://api.vectara.io/v1/delete-corpus" \
+     -H "x-api-key: 12345" \
+     -H "customer-id: 7890" \
+     -d '{
+         "corpusId": "3"
+     }'
+    ```
+
+     You get the following response:
+
+     ```json
+     {
+  "status": "OK"
+     }
+   ```
+
+
+3. Execute the curl command from Step 1 again:
+
+  You get the following response:
+
+   ```json
+   {
+  "status": "OK",
+  "corpora": [
+    {"corpusId": "1", "name": "Default Corpus"},
+    {"corpusId": "2", "name": "My Corpus"},
+    ]
+   }
+   ```
+  Notice that you only have 2 indices now.
+
+## Update a document, reindex the document, and query the index
+
+In this example, you want to update a documet with new information. Reindexing 
+the document improves data retrieval time when you ask a query. After the 
+reindex, you want to query the index and get a result from the updated information.
+
+1. Execute the following curl command to update an existing document in your 
+   index:
+
+   ```json
+   curl -X POST "https://api.vectara.io/v1/index" \
+  -H "x-api-key: 12345" \
+  -H "customer-id: 7890" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "corpusId": "2",
+    "document": {
+      "documentId": "quantum_doc_001",
+      "title": "Quantum Entanglement and Spacetime: An Updated Perspective",
+      "description": "An updated analysis on quantum entanglement and its implications on spacetime.",
+      "metadataJson": "{\"author\": \"Dr. Quantum\", \"field\": \"Quantum Physics\", \"version\": \"2.1\"}",
+      "parts": [
+        {
+          "text": "Quantum entanglement is a phenomenon where the states of two particles are correlated.",
+          "context": "Introduction"
+        },
+        {
+          "text": "Einstein's 'spooky action at a distance' has been experimentally verified.",
+          "context": "Historical Context"
+        },
+        {
+          "text": "Entanglement could be the key to a Theory of Everything.",
+          "context": "Recent Research"
+        }
+      ]
+    }
+  }'
+   ```
+   You get the following response:
+   
+   ```json
+   curl -X POST "https://api.vectara.io/v1/index" \
+  -H "x-api-key: 12345" \
+  -H "customer-id: 7890" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "corpusId": "2",
+    "document": {
+      "documentId": "quantum_doc_001",
+      "title": "Quantum Entanglement and Spacetime: An Updated Perspective",
+      "description": "An updated analysis on quantum entanglement and its implications on spacetime.",
+      "metadataJson": "{\"author\": \"Dr. Quantum\", \"field\": \"Quantum Physics\", \"version\": \"2.1\"}",
+      "parts": [
+        {
+          "text": "Quantum entanglement is a phenomenon where the states of two particles are correlated.",
+          "context": "Introduction"
+        },
+        {
+          "text": "Einstein's 'spooky action at a distance' has been experimentally verified.",
+          "context": "Historical Context"
+        },
+        {
+          "text": "Entanglement could be the key to a Theory of Everything.",
+          "context": "Recent Research"
+        }
+      ]
+    }
+  }'
+   ```
+
+2. Reindex the updated document:
+
+  ```json
+  curl -X POST "https://api.vectara.io/v1/core/index" \
+  -H "x-api-key: 12345" \
+  -H "customer-id: 7890" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "customerId": "7890",
+    "corpusId": "2",
+    "document": {
+      "documentId": "quantum_doc_001",
+      "metadataJson": "{\"author\": \"Dr. Quantum\", \"field\": \"Quantum Physics\", \"version\": \"2.1\"}",
+      "parts": [
+        {
+          "text": "Entanglement could be the key to a Theory of Everything.",
+          "context": "Recent Research"
+        }
+      ]
+    }
+  }'
+  ```
+  You get the following response:
+
+  ```json
+  {
+  "status": {
+    "code": "OK"
+    },
+  "quotaConsumed": {
+    "numChars": "100",
+    "numMetadataChars": "20"
+    }
+  }
+  ```
+
+3. Query the updated index:
+   
+   ```json
+   curl -X POST "https://api.vectara.io/v1/query" \
+  -H "x-api-key: 12345" \
+  -H "customer-id: 7890" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "corpusId": "2",
+    "query": "Is entanglement the key to a Theory of Everything?"
+  }'
+   ```
+   You get the following response:
+
+   ```json
+   {
+  "status": {
+    "code": "OK"
+  },
+  "results": [
+    {
+      "text": "Entanglement could be the key to a Theory of Everything.",
+      "score": 0.99,
+      "metadata": [
+        {
+          "key": "author",
+          "value": "Dr. Quantum"
+        },
+        {
+          "key": "field",
+          "value": "Quantum Physics"
+        },
+        {
+          "key": "version",
+          "value": "2.1"
+        }
+      ],
+      "documentIndex": 1,
+      "corpusKey": "quantum_doc_001"
+    }
   ]
 }
-```
+   ```
+In this final example, you updated an existing document to include new 
+information from the latest version of a document. You wanted to reindex 
+this updated document to ensure that the latest content is earchable. Finally, 
+you issued a query that asked a question about the new content.
