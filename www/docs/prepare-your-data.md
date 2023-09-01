@@ -7,18 +7,25 @@ sidebar_label: Prepare Your Data
 import {Config} from './definitions.md';
 
 Before your start ingesting data with <Config v="names.product"/>, we recommend that you 
-clean and prepare the data that you want to ingest. Part of this cleaning 
-process involves normalizing and standardizing data. Clean data ensures 
-that you have consistency and accuracy. Without clean data, insights or 
-actions derived from the data may be incorrect or misleading. 
+clean and prepare the data. This cleaning and preparing process involves 
+normalizing and standardizing datasets. 
 
-You can begin cleaning your data such as standardizing date formats, 
-correcting typos, or replace missing values with suitable placeholders. 
-The goal of cleaning your data is to provide a reliable and consistent 
-dataset for ingestion. 
+Normalization involves transforming your data into a common format. 
+Standardization goes a step further by making sure the data follows a 
+particular set of criteria. For example, if you ingest data about product 
+reviews, you want to ensure that a 5-star rating means the same thing 
+across different platforms.
 
+Clean data ensures that you have consistency and accuracy. Without clean data, 
+insights or actions derived from the data may be incorrect or misleading. 
+Taking the time to prepare your data provdies a reliable and consistent 
+dataset for ingestion, optimized for seamless ingestion. 
 
 ## Identify and correct errors in your data. 
+
+Cleaning your data includes standardizing date formats, correcting typos, or 
+substituting missing values with suitable placeholders.
+
 1. **Remove duplicate records**
 
     Duplicate records distort analysis and lead to incorrect insights. For example, 
