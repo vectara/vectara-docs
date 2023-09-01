@@ -408,7 +408,7 @@ curl -X POST "https://api.vectara.io/v1/query" \
      }'
 ```
 
-### Example query response
+### Example JSON response
 
 
 ```json
