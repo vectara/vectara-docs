@@ -9,6 +9,7 @@
   --ifm-link-color: rgb(38, 76, 214);
   --ifm-color-primary: rgb(38, 76, 214);
   --ifm-button-background-color: rgb(38, 76, 214);
+  --ifm-z-index-fixed: 8;
 }
 
 [data-theme="dark"] {
