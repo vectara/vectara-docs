@@ -9,6 +9,7 @@
   --ifm-link-color: rgb(38, 76, 214);
   --ifm-color-primary: rgb(38, 76, 214);
   --ifm-button-background-color: rgb(38, 76, 214);
+  --ifm-z-index-fixed: 8;
 }
 
 [data-theme="dark"] {
@@ -185,6 +186,7 @@ pre {
 /* Locally this should be applied to .announcementBar_node_modules-\@docusaurus-theme-classic-lib-theme-AnnouncementBar-styles-module
 but in production this class isn't in use and we need to target this element by role instead. */
 [role="banner"] {
+  z-index: 1;
   background-color: #7027f6 !important;
   color: #fff !important;
   font-size: 16px;
