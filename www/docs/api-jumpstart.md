@@ -1,41 +1,48 @@
 ---
-id: api-jumpstart
-title: API Jumpstart
-sidebar_label: API Jumpstart
+id: api-recipes
+title: API Recipes
+sidebar_label: API Recipes
 ---
 import {Config} from '@site/docs/definitions.md';
 
-Using the API enables you to integrate the <Config v="names.product"/> search capabilities into your 
-applications. While the console UI offers a user-friendly interface for initial 
-testing and manual operations, the <Config v="names.product"/> API is where the 
-magic happens.
+Using our APIs enable application developers and data engineers to seamlessly 
+integrate the <Config v="names.product"/> semantic search capabilities into your applications. 
 
-As an application developer or data engineer, the API enables you to seamlessly 
-integrate semantic search into your applications. Let’s get you started with 
-the <Config v="names.product"/> API so that you can perform queries on 
-some data. 
+The Console UI and our APIs work hand-in-hand as part of the app development 
+process. For example, a builder uses this following workflow: 
+
+* Fine-tune a query's lambda and filters until the answer quality is just 
+  right.
+* Copy the request directly from the console and paste it into your IDE.
+* Copy the customer ID and API key from Console to further configure 
+  the request.
+* Test out the software and then verify that requests are hitting your 
+  index by checking the querying graph on the Overview tab.
+
+Let’s get you started with using the <Config v="names.product"/> APIs so that 
+you can perform queries on some data. 
 
 ## What you will learn
 
-We'll show you several example queries with some values in the parameters, and 
-then display example responses:
-* Search for answers in an index
-* Upload a file to the index
-* Update the metadata of an uploaded file
-* Issue a query and return a specific number of results
-* Issue a query with metadata filters
-* Create a new index and ingest a document
-* List all indices and delete a specific index
-* Update a document, reindex the document, and query the index 
+We'll show you several example API recipes that include queries with some 
+values in the parameters, and then display example responses:
+* [Search for answers in an index](/docs/api-recipes#search-for-answers-in-an-index)
+* [Upload a file to the index](/docs/api-recipes#upload-a-file-to-the-index)
+* [Update the metadata of an uploaded file](/docs/api-recipes#update-the-metadata-of-the-uploaded-file)
+* [Issue a query and return a specific number of results](/docs/api-recipes#issue-a-query-and-return-a-specific-number-of-results)
+* [Issue a query with metadata filters](/docs/api-recipes#issue-a-query-with-metadata-filters)
+* [Create a new index and ingest a document](/docs/api-recipes#create-a-new-index-and-ingest-a-document)
+* [List all indices and delete a specific index](/docs/api-recipes#list-all-indices-and-delete-a-specific-index)
+* [Update a document, reindex the document, and query the index](/docs/api-recipes#update-a-document-reindex-the-document-and-query-the-index)
 
-To issue the types of API calls in these examples, you typically need the 
+To issue the types of API calls in these recipes, you typically need the 
 following information that you can get from the console UI:
 
 * Customer ID
 * Index ID
 * API Key
 
-## Search for answers in an index
+### Search for answers in an index
 
 In this example, you have an index with uploaded data from an Employee 
 Handbook. Now you want to ask, _“How much PTO is offered to employees each 
@@ -50,11 +57,11 @@ field values:
 * `query` = How much PTO is offered to employees each year?
 
 
-### Example cURL command
+#### Example cURL command
 
 This example queries the index with the question about annual PTO.
 
-```json
+```js
 curl -L -X POST 'https://api.vectara.io/v1/query' \
 -H 'Content-Type: application/json' \
 -H 'Accept: application/json' \
@@ -106,11 +113,11 @@ curl -L -X POST 'https://api.vectara.io/v1/query' \
 }'
 ```
 
-### Example JSON response
+#### Example JSON response
 
 Let’s take a closer look at the first response:
 
-```json
+```js
 {
   "responseSet": [
     {
@@ -165,7 +172,7 @@ query, such as the language, section, and offset.
 
 Let's take a look at some other API calls that you can make.
 
-## Upload a file to the index
+### Upload a file to the index
 
 If you want to add a file to an existing index, you can upload a new file with 
 a simple command.
@@ -178,12 +185,12 @@ You need to input the following information:
 * File name 
 * Path to the file
 
-### Example cURL command
+#### Example cURL command
 
 In this example command, you have a local `doc.rtf` file that you want to upload to 
 index 1, which is `corpus_id` = 1.
 
-```json
+```js
 curl -L -X POST 'https://api.vectara.io/v1/upload?c=123456789&o=1&d=true' \
 -H 'Content-Type: multipart/form-data' \
 -H 'Accept: application/json' \
@@ -191,11 +198,11 @@ curl -L -X POST 'https://api.vectara.io/v1/upload?c=123456789&o=1&d=true' \
 -F 'file=@"//Users/username/Documents/tmp/doc.rtf"'
 ```
 
-### Example JSON response
+#### Example JSON response
 
 The file uploads successfully and you get the following response:
 
-```json
+```js
 {"response":{
   "status": {
   },
@@ -213,18 +220,18 @@ The file uploads successfully and you get the following response:
   }} 
 ```
 
-## Update and reindex the document
+### Update and reindex the document
 
 After you update a document, you can reindex the data to become searchable 
 with the updated content. Indexing provides faster search results and it also 
 use fewer resources. An index is like a snapshot of your data.
 
-### Example cURL command
+#### Example cURL command
 
 In this example, you send a POST request to the index endpoint along 
 with appropriate parameters:
 
-```json
+```js
 curl -L -X POST 'https://api.vectara.io/v1/index' \
 -H 'Content-Type: application/json' \
 -H 'Accept: application/json' \
@@ -265,9 +272,9 @@ curl -L -X POST 'https://api.vectara.io/v1/index' \
 }'
 ```
 
-### Example JSON Response
+#### Example JSON Response
 
-```json
+```js
 {
   "status": {
     "code": "OK"
@@ -280,7 +287,7 @@ curl -L -X POST 'https://api.vectara.io/v1/index' \
 
 ```
 
-## Update the metadata of the uploaded file
+### Update the metadata of the uploaded file
 
 Metadata serves as a critical component of improving search results because it 
 more precise filtering and adds important context. If you have really good 
@@ -292,9 +299,11 @@ this example, you want to add the following metadata to the `.rtf` file:
 * "Security-Level": "High" - Indicates the security level of the updated document.
 * "Keywords": ["Quantum", "Physics", "Research"] - An array of keywords relevant to the document.
 
+#### Example cURL Command
+
 Execute the following cURL command to update the document:
 
-  ```json
+  ```js
   curl -L -X POST 'https://api.vectara.io/v1/index' \
 -H 'Content-Type: application/json' \
 -H 'Accept: application/json' \
@@ -309,9 +318,11 @@ Execute the following cURL command to update the document:
   }
 }'
 ```
+#### Example JSON Response
+
 You get the following JSON response:
 
-```json
+```js
 {
   "response": {
     "status": {
@@ -333,14 +344,14 @@ version tracking, identifying the last person who modified the document,
 setting security levels, and categorizing the document based on keywords.
 
 
-## Issue a query and return a specific number of results
+### Issue a query and return a specific number of results
 
 In this query, you want to search for the term "technology" and then return 
 only the first 5 results. 
 
-### Example cURL command
+#### Example cURL command
 
-```json
+```js
 curl -X POST "https://api.vectara.io/v1/query" \
      -H "x-api-key: abc_12345defg67890hij09876" \
      -H "customer-id: 123456789" \
@@ -352,9 +363,9 @@ curl -X POST "https://api.vectara.io/v1/query" \
      }'
 ```
 
-### Example JSON response with 5 results
+#### Example JSON response with 5 results
 
-```json
+```js
 {
   "status": "OK",
   "results": [
@@ -387,14 +398,14 @@ curl -X POST "https://api.vectara.io/v1/query" \
 }
 ```
 
-## Issue a query with metadata filters
+### Issue a query with metadata filters
 
 In this example, you want to query the phrase _cloud computing_ with 2 
 results in the _IT_ category.
 
-### Example cURL Command
+#### Example cURL command
 
-```json
+```js
 curl -X POST "https://api.vectara.io/v1/query" \
      -H "x-api-key: abc_12345defg67890hij09876" \
      -H "customer-id: 123456789" \
@@ -408,10 +419,10 @@ curl -X POST "https://api.vectara.io/v1/query" \
      }'
 ```
 
-### Example JSON response
+#### Example JSON response
 
 
-```json
+```js
 {
   "status": "OK",
   "results": [
@@ -428,14 +439,14 @@ curl -X POST "https://api.vectara.io/v1/query" \
   ]
 }
 ```
-## Create a new index and ingest a document
+### Create a new index and ingest a document
 
 In this example, you want to create a new index and also ingest a document in 
 this new index.
 
 1. Execute the following cURL command:
 
-   ```json
+   ```js
    curl -X POST "https://api.vectara.io/v1/create-corpus" \
      -H "x-api-key: abc_12345defg67890hij09876" \
      -H "customer-id: 123456789" \
@@ -446,7 +457,7 @@ this new index.
 
  You get the following response:
 
- ```json
+ ```js
 {
   "status": "OK",
   "corpusId": "3"
@@ -455,7 +466,7 @@ this new index.
 
 2. Index a document into the new index with the following cURL command:
 
-   ```json
+   ```js
    curl -X POST "https://api.vectara.io/v1/index" \
      -H "x-api-key: abc_12345defg67890hij09876" \
      -H "customer-id: 123456789" \
@@ -468,25 +479,25 @@ this new index.
 
  You get the following response:
 
-   ```json
+   ```js
    {
   "status": "OK"
    }
    ```
 
 
-## List all indices and delete a specific index
+### List all indices and delete a specific index
 
 1. Execute the following curl command to list the indices:
 
-   ```json
+   ```js
    curl -X GET "https://api.vectara.io/v1/list-corpora" \
      -H "x-api-key: abc_12345defg67890hij09876" \
      -H "customer-id: 123456789"
    ```
 You get the following response:
 
-   ```json
+   ```js
    {
   "status": "OK",
   "corpora": [
@@ -499,7 +510,7 @@ You get the following response:
 
 2. Execute the following curl command to delete a specific index with `corpus_id` = 3.
 
-  ```json
+  ```js
   curl -X DELETE "https://api.vectara.io/v1/delete-corpus" \
      -H "x-api-key: abc_12345defg67890hij09876" \
      -H "customer-id: 123456789" \
@@ -510,7 +521,7 @@ You get the following response:
 
      You get the following response:
 
-     ```json
+     ```js
      {
   "status": "OK"
      }
@@ -520,7 +531,7 @@ You get the following response:
 
   You get the following response:
 
-   ```json
+   ```js
    {
   "status": "OK",
   "corpora": [
@@ -531,7 +542,7 @@ You get the following response:
    ```
   Notice that you only have 2 indices now.
 
-## Update a document, reindex the document, and query the index
+### Update a document, reindex the document, and query the index
 
 In this example, you want to update a document with new information. Reindexing 
 the document improves data retrieval time when you ask a query. After the 
@@ -540,7 +551,7 @@ reindex, you want to query the index and get a result from the updated informati
 1. Execute the following curl command to update an existing document in your 
    index:
 
-   ```json
+   ```js
    curl -X POST "https://api.vectara.io/v1/index" \
   -H "x-api-key: abc_12345defg67890hij09876" \
   -H "customer-id: 123456789" \
@@ -571,7 +582,7 @@ reindex, you want to query the index and get a result from the updated informati
    ```
    You get the following response:
    
-   ```json
+   ```js
    {
   "status": {
     "code": "OK"
@@ -585,7 +596,7 @@ reindex, you want to query the index and get a result from the updated informati
 
 2. Reindex the updated document:
 
-  ```json
+  ```js
   curl -X POST "https://api.vectara.io/v1/core/index" \
   -H "x-api-key: abc_12345defg67890hij09876" \
   -H "customer-id: 123456789" \
@@ -607,7 +618,7 @@ reindex, you want to query the index and get a result from the updated informati
   ```
   You get the following response:
 
-  ```json
+  ```js
   {
   "status": {
     "code": "OK"
@@ -621,7 +632,7 @@ reindex, you want to query the index and get a result from the updated informati
 
 3. Query the updated index:
    
-   ```json
+   ```js
    curl -X POST "https://api.vectara.io/v1/query" \
   -H "x-api-key: abc_12345defg67890hij09876" \
   -H "customer-id: 123456789" \
@@ -633,7 +644,7 @@ reindex, you want to query the index and get a result from the updated informati
    ```
    You get the following response:
 
-   ```json
+   ```js
    {
   "status": {
     "code": "OK"
@@ -668,5 +679,5 @@ information from the latest version of a document. You wanted to reindex
 this updated document to ensure that the latest content is searchable. 
 Finally, you issued a query that asked a question about the new content.
 
-Thie API jumpstart provided a variety of query examples that you can leverage 
+This API recipes section provided a variety of query examples that you can leverage 
 as you start building with <Config v="names.product"/>.

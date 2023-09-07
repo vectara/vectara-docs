@@ -22,8 +22,8 @@ module.exports = {
         },
         {
           type: 'doc',
-          id: 'api-jumpstart',
-          label: "API Jumpstart",
+          id: 'api-recipes',
+          label: "API Recipes",
         },
         {
           type: 'category',
