@@ -338,7 +338,98 @@ This examples shows granular metadata for a legal document:
 }
 
 ```
+#### Example metadata for collaborative medical research
+
+Now let's look at an even more complex example of nuanced metadata and how it 
+benefits user outcomes. This example medical research document has multiple 
+doctors and scientists in different countries working collaboratively. Because 
+the research document contains nuanced fields like `efficacy`, `age-range`, 
+`treatment`, `language`, `country`, `statistical_methods`, and `additional_notes`, 
+the ingested data enables researchers to search through intricate data about 
+complex medical research.
+
+Because <Config v="names.product"/> also has multi-language search 
+capabilities, researchers can collaborate from multiple countries and get 
+answers to complex queries about the data in their native languages. Imagine 
+being able to find answers from studies that used similar research methods, 
+received approvals and funding from specific sources, determine conflicts of 
+interest, and many more complex questions. 
+
+The richness of this extensive metadata allows <Config v="names.product"/> to provide you with 
+highly specific and contextually relevant answers, making it an indispensable 
+tool for in-depth research and data-driven decision making.
+
+```js
+{
+  "document_id": "MR2023-456789",
+  "title": "The Efficacy of Immunotherapy in Treating Melanoma",
+  "abstract": "This multinational research study rigorously evaluates the effectiveness of immunotherapy, specifically PD-1 inhibitors, in treating advanced stages of melanoma in adult patients aged 40-60. Conducted across Germany, the USA, and France, the study employs a sample size of 200 participants diagnosed with stage III or IV melanoma. Utilizing Kaplan-Meier Estimators and Cox Proportional Hazards Models for statistical analysis, the research aims to measure key outcome variables such as Overall Survival Rate and Progression-Free Survival. The study is particularly significant as it is part of a larger initiative to understand the global impact of immunotherapy on melanoma and aims to fill existing gaps in the literature concerning treatment efficacy. Ethical approval for the study has been granted by the Ethics Committee of Sorbonne University, and the research is funded by the National Cancer Institute."
+
+  "keywords": ["Immunotherapy", "Melanoma", "Oncology", "Clinical Trial"],
+  "authors": [
+    {
+      "name": "Dr. Marie Dupont",
+      "affiliation": "Sorbonne University, France"
+    },
+    {
+      "name": "Dr. Sarah Williams",
+      "affiliation": "Johns Hopkins University, USA"
+    },
+    {
+      "name": "Dr. Hans Müller",
+      "affiliation": "Charité Hospital, Germany"
+    }
+  ],
+  "publish_date": "2023-06-15",
+  "journal_name": "Journal of Clinical Oncology",
+  "volume": "31",
+  "issue": "12",
+  "pages": "e201-e209",
+  "doi": "10.1000/jco.2023.31.12.e201",
+  "study_type": "Clinical Trial",
+  "sample_size": 200,
+  "age_range": "40-60",
+  "gender": "Both",
+  "medical_condition": "Melanoma",
+  "treatment": "PD-1 Inhibitors",
+  "outcome_measures": "Overall Survival Rate, Progression-Free Survival",
+  "funding_source": "National Cancer Institute",
+  "ethics_approval": "Ethics Committee of Sorbonne University",
+  "inclusion_criteria": "Patients with stage III or IV melanoma",
+  "exclusion_criteria": "Patients with other types of skin cancer",
+  "data_source": "Clinical records, Laboratory tests",
+  "statistical_methods": "Kaplan-Meier Estimator, Cox Proportional Hazards Model",
+  "conflict_of_interest": "None",
+  "citations": 150,
+  "peer_reviewed": true,
+  "limitations": "Sample size could be larger for more conclusive results",
+  "recommendations": "Further studies with larger sample sizes are needed",
+  "language": ["German", "English", "French"],
+  "country": ["Multinational", "Germany", "USA", "France"],
+  "institution": "Sorbonne University, Charité Hospital",
+  "clinical_trial_id": "NCT04567890",
+  "patient_population": "Adults diagnosed with advanced melanoma",
+  "study_duration": "24 months",
+  "follow_up": "12 months",
+  "drug_interaction": "No significant interactions observed",
+  "side_effects": "Fatigue, Skin Rash",
+  "efficacy": "Improved overall survival by 20% compared to control group"
+  "additional_notes": "This study is part of a larger initiative to understand the global impact of immunotherapy on melanoma.",
+  "related_studies": [
+    {
+      "title": "Immunotherapy in Early-Stage Melanoma",
+      "doi": "10.1000/ijo.2021.50.1.a001"
+    },
+    {
+      "title": "Combination Therapies in Melanoma Treatment",
+      "doi": "10.1000/ijo.2022.51.2.b002"
+    }
+  "acknowledgments": "We thank the European Cancer Research Foundation for their generous funding and support."
+  ],
+}
+```
 Now that you understand what it means to have cleaned and prepared your data, 
+and you viewed examples of nuanced metadata which improves search outcomes, 
 you can start ingesting this data into <Config v="names.product"/>. Create an index 
 and get answers to your questions from your data. Always consider the needs of 
 your users and the type of searches that they will be performing when deciding how to structure your data.
