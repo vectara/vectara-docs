@@ -199,7 +199,6 @@ This second example shows a more complex JSON format with additional
   "journal": "Physical Review Letters",
   "volume": "123",
   "issue": "5",
-  "
 }
 ```
 The additional metadata provides more nuanced information about the references 
