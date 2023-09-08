@@ -527,9 +527,7 @@ You get the following response:
      }
    ```
 
-3. Execute the curl command from Step 1 again:
-
-  You get the following response:
+3. Execute the curl command from Step 1 again. You get the following response: 
 
    ```js
    {
