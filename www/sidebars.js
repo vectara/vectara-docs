@@ -22,6 +22,11 @@ module.exports = {
         },
         {
           type: 'doc',
+          id: 'api-recipes',
+          label: "API Recipes",
+        },
+        {
+          type: 'doc',
           id: 'prepare-your-data',
           label: "Prepare Your Data",
         },
