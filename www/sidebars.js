@@ -21,6 +21,11 @@ module.exports = {
           label: "Quick Start",
         },
         {
+          type: 'doc',
+          id: 'api-recipes',
+          label: "API Recipes",
+        },
+        {
           type: 'category',
           label: 'Common API Paradigms',
           items: [
