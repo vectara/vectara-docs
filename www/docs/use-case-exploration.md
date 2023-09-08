@@ -33,6 +33,28 @@ capabilities while protecting company IP and customer data. The data
 is secure. <Config v="names.product"/> does not train on user data and respects data 
 sovereignty and provides you with peace of mind.
 
+### Choose the Data for Ingestion
+
+You might be wondering what kind of data to select for ingestion. Our [Vectara Quick Start Tutorial](/docs/quickstart)
+provides an example that gets you set up and searching for answers quickly!
+
+Here are some other ideas to let you see <Config v="names.product"/> in action:
+
+* Employee handbook
+* Product manuals
+* Legal contracts
+* Research papers
+* Training materials
+* Financial reports
+* Government regulations.
+
+These types of documents contain very nuanced information where semantic search 
+really shines! Think about what information takes a long time for a user to 
+locate manually in a large volume. Unless you know exact keywords and section 
+titles, you might struggle to find the exact information you need for understanding 
+a real-estate contract, complex machine repair, conducting scientific 
+research, and so on.
+
 :bulb: Check out [example Vectara applications, demos, and tutorials](http://vectara.com/demos/) to explore the many capabilities of our platform.
 
 ### Conversational AI
@@ -120,4 +142,3 @@ creativity:
 These sample open source applications are examples of our platform in action and not supported products.
 
 :::
-
