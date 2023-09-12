@@ -287,63 +287,6 @@ curl -L -X POST 'https://api.vectara.io/v1/index' \
 
 ```
 
-### Update the metadata of the uploaded file
-
-Metadata serves as a critical component of improving search results because it 
-more precise filtering and adds important context. If you have really good 
-metadata, it helps ensure that data retrieval completes more effectively. In 
-this example, you want to add the following metadata to the `.rtf` file:
-
-* "Document-Version": "2.0" - Indicates that this is the second version of the document.
-* "Last-Modified-By": "DrQuantum" - Specifies the last person who modified the document.
-* "Security-Level": "High" - Indicates the security level of the updated document.
-* "Keywords": ["Quantum", "Physics", "Research"] - An array of keywords relevant to the document.
-
-#### Example cURL Command
-
-Execute the following cURL command to update the document:
-
-  ```js
-  curl -L -X POST 'https://api.vectara.io/v1/index' \
--H 'Content-Type: application/json' \
--H 'Accept: application/json' \
--H 'customer-id: 123456789' \
--H 'x-api-key: abc_12345defg67890hij09876' \
---data-raw '{
-  "customerId": "123456789",
-  "corpusId": 1,
-  "document": {
-    "documentId": "doc.rtf",
-    "metadataJson": "{\"X-TIKA:Parsed-By\":\"org.apache.tika.parser.microsoft.rtf.RTFParser\",\"Content-Type\":\"application/rtf\", \"Document-Version\":\"2.0\", \"Last-Modified-By\":\"DrQuantum\", \"Security-Level\":\"High\", \"Keywords\":[\"Quantum\", \"Physics\", \"Research\"]}"
-  }
-}'
-```
-#### Example JSON Response
-
-You get the following JSON response:
-
-```js
-{
-  "response": {
-    "status": {
-      "code": "OK"
-    },
-    "quotaConsumed": {
-      "numChars": "60",
-      "numMetadataChars": "250"
-    }
-  },
-  "document": {
-    "documentId": "doc.rtf",
-    "metadataJson": "{\"X-TIKA:Parsed-By\":\"org.apache.tika.parser.microsoft.rtf.RTFParser\",\"Content-Type\":\"application/rtf\", \"Document-Version\":\"2.0\", \"Last-Modified-By\":\"DrQuantum\", \"Security-Level\":\"High\", \"Keywords\":[\"Quantum\", \"Physics\", \"Research\"]}"
-  }
-}
-```
-The metadataJson field now includes additional metadata that can help with 
-version tracking, identifying the last person who modified the document, 
-setting security levels, and categorizing the document based on keywords.
-
-
 ### Issue a query and return a specific number of results
 
 In this query, you want to search for the term "technology" and then return 
