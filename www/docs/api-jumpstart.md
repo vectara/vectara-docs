@@ -28,7 +28,6 @@ We'll show you several example API recipes that include queries with some
 values in the parameters, and then display example responses:
 * [Search for answers in an index](/docs/api-recipes#search-for-answers-in-an-index)
 * [Upload a file to the index](/docs/api-recipes#upload-a-file-to-the-index)
-* [Update the metadata of an uploaded file](/docs/api-recipes#update-the-metadata-of-the-uploaded-file)
 * [Issue a query and return a specific number of results](/docs/api-recipes#issue-a-query-and-return-a-specific-number-of-results)
 * [Issue a query with metadata filters](/docs/api-recipes#issue-a-query-with-metadata-filters)
 * [Create a new index and ingest a document](/docs/api-recipes#create-a-new-index-and-ingest-a-document)
