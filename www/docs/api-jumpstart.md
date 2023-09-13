@@ -17,7 +17,7 @@ process. For example, a builder uses this following workflow:
 * Copy the customer ID and API key from Console to further configure 
   the request.
 * Test out the software and then verify that requests are hitting your 
-  index by checking the querying graph on the Overview tab.
+  corpus by checking the querying graph on the Overview tab.
 
 Let’s get you started with using the <Config v="names.product"/> APIs so that 
 you can perform queries on some data. 
@@ -26,24 +26,21 @@ you can perform queries on some data.
 
 We'll show you several example API recipes that include queries with some 
 values in the parameters, and then display example responses:
-* [Search for answers in an index](/docs/api-recipes#search-for-answers-in-an-index)
-* [Upload a file to the index](/docs/api-recipes#upload-a-file-to-the-index)
+* [Search for answers in a corpus](/docs/api-recipes#search-for-answers-in-a-corpus)
+* [Upload a file to the corpus](/docs/api-recipes#upload-a-file-to-the-corpus)
 * [Issue a query and return a specific number of results](/docs/api-recipes#issue-a-query-and-return-a-specific-number-of-results)
-* [Issue a query with metadata filters](/docs/api-recipes#issue-a-query-with-metadata-filters)
-* [Create a new index and ingest a document](/docs/api-recipes#create-a-new-index-and-ingest-a-document)
-* [List all indices and delete a specific index](/docs/api-recipes#list-all-indices-and-delete-a-specific-index)
-* [Update a document, reindex the document, and query the index](/docs/api-recipes#update-a-document-reindex-the-document-and-query-the-index)
+* [List all corpora and delete a specific corpus](/docs/api-recipes#list-all-corpora-and-delete-a-specific-corpus)
 
 To issue the types of API calls in these recipes, you typically need the 
 following information that you can get from the console UI:
 
 * Customer ID
-* Index ID
+* Corpus ID
 * API Key
 
-### Search for answers in an index
+### Search for answers in a corpus
 
-In this example, you have an index with uploaded data from an Employee 
+In this example, you have a corpus with uploaded data from an Employee 
 Handbook. Now you want to ask, _“How much PTO is offered to employees each 
 year?”_
 
@@ -58,7 +55,7 @@ field values:
 
 #### Example cURL command
 
-This example queries the index with the question about annual PTO.
+This example queries the corpus with the question about annual PTO.
 
 ```js
 curl -L -X POST 'https://api.vectara.io/v1/query' \
@@ -171,9 +168,9 @@ query, such as the language, section, and offset.
 
 Let's take a look at some other API calls that you can make.
 
-### Upload a file to the index
+### Upload a file to the corpus
 
-If you want to add a file to an existing index, you can upload a new file with 
+If you want to add a file to an existing corpus, you can upload a new file with 
 a simple command.
 
 You need to input the following information:
@@ -186,8 +183,8 @@ You need to input the following information:
 
 #### Example cURL command
 
-In this example command, you have a local `doc.rtf` file that you want to upload to 
-index 1, which is `corpus_id` = 1.
+In this example command, you have a local `doc.rtf` file that you want to 
+upload to corpus 1, which is `corpus_id` = 1.
 
 ```js
 curl -L -X POST 'https://api.vectara.io/v1/upload?c=123456789&o=1&d=true' \
@@ -219,73 +216,6 @@ The file uploads successfully and you get the following response:
   }} 
 ```
 
-### Update and reindex the document
-
-After you update a document, you can reindex the data to become searchable 
-with the updated content. Indexing provides faster search results and it also 
-use fewer resources. An index is like a snapshot of your data.
-
-#### Example cURL command
-
-In this example, you send a POST request to the index endpoint along 
-with appropriate parameters:
-
-```js
-curl -L -X POST 'https://api.vectara.io/v1/index' \
--H 'Content-Type: application/json' \
--H 'Accept: application/json' \
--H 'customer-id: 123456789' \
--H 'x-api-key: abc_12345defg67890hij09876' \
---data-raw '{
-  "customerId": "123456789",
-  "corpusId": 1,
-  "document": {
-    "documentId": "doc.rtf",
-    "title": "Sample test doc",
-    "description": "This doc is a sample",
-    "metadataJson": "{}",
-    "customDims": [
-      {
-        "name": "string",
-        "value": 0
-      }
-    ],
-    "section": [
-      {
-        "id": 0,
-        "title": "Section Title",
-        "text": "Text in this section",
-        "metadataJson": "string",
-        "customDims": [
-          {
-            "name": "string",
-            "value": 0
-          }
-        ],
-        "section": [
-          null
-        ]
-      }
-    ]
-  }
-}'
-```
-
-#### Example JSON Response
-
-```js
-{
-  "status": {
-    "code": "OK"
-  },
-  "quotaConsumed": {
-    "numChars": "250",
-    "numMetadataChars": "15"
-  }
-}
-
-```
-
 ### Issue a query and return a specific number of results
 
 In this query, you want to search for the term "technology" and then return 
@@ -294,17 +224,48 @@ only the first 5 results.
 #### Example cURL command
 
 ```js
-curl -X POST "https://api.vectara.io/v1/query" \
-     -H "x-api-key: abc_12345defg67890hij09876" \
-     -H "customer-id: 123456789" \
-     -d '{
-         "corpusId": "2",
-         "query": "technology",
-         "numResults": 5,
-         "start": 0
-     }'
+curl -L -X POST 'https://api.vectara.io/v1/query' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'customer-id: 123456789' \
+-H 'x-api-key: abc_12345defg67890hij09876' \
+--data-raw '{
+  "query": [
+    {
+      "query": "Technology",
+      "start": 0,
+      "numResults": 5,
+      "corpusKey": [
+        {
+          "customerId": 123456789,
+          "corpusId": 2,
+          "semantics": "DEFAULT",
+          "dim": [
+            {
+              "name": "string",
+              "weight": 0
+            }
+          ],
+          "metadataFilter": "part.lang = '\''eng'\''",
+          "lexicalInterpolationConfig": {
+            "lambda": 0
+          }
+        }
+      ],
+      "rerankingConfig": {
+        "rerankerId": 272725717
+      },
+      "summary": [
+        {
+          "summarizerPromptName": "string",
+          "maxSummarizedResults": 0,
+          "responseLang": "string"
+        }
+      ]
+    }
+  ]
+}'
 ```
-
 #### Example JSON response with 5 results
 
 ```js
@@ -315,6 +276,7 @@ curl -X POST "https://api.vectara.io/v1/query" \
       "text": "The future of technology is AI.",
       "score": 0.98,
       "documentIndex": 1
+      // More results....
     },
     {
       "text": "Technology is evolving rapidly.",
@@ -339,285 +301,107 @@ curl -X POST "https://api.vectara.io/v1/query" \
   ]
 }
 ```
+### List all corpora and delete a specific corpus
 
-### Issue a query with metadata filters
+In this example, you want to list all corpora that contain the word "handbook" in 
+the name.
 
-In this example, you want to query the phrase _cloud computing_ with 2 
-results in the _IT_ category.
-
-#### Example cURL command
-
-```js
-curl -X POST "https://api.vectara.io/v1/query" \
-     -H "x-api-key: abc_12345defg67890hij09876" \
-     -H "customer-id: 123456789" \
-     -d '{
-         "corpusId": "2",
-         "query": "IT,
-         "numResults": 2,
-         "metadataJson": {
-             "category": "IT"
-         }
-     }'
-```
-
-#### Example JSON response
-
-
-```js
-{
-  "status": "OK",
-  "results": [
-    {
-      "text": "Generative AI is changing the IT landscape.",
-      "score": 0.99,
-      "documentIndex": 8
-    },
-    {
-      "text": "The benefits of Generative AI are numerous.",
-      "score": 0.96,
-      "documentIndex": 9
-    }
-  ]
-}
-```
-### Create a new index and ingest a document
-
-In this example, you want to create a new index and also ingest a document in 
-this new index.
-
-1. Execute the following cURL command:
+1. Execute the following curl command to list the corpora:
 
    ```js
-   curl -X POST "https://api.vectara.io/v1/create-corpus" \
-     -H "x-api-key: abc_12345defg67890hij09876" \
-     -H "customer-id: 123456789" \
-     -d '{
-         "name": "AI Future"
-     }'
-   ```
-
- You get the following response:
-
- ```js
-{
-  "status": "OK",
-  "corpusId": "3"
-}
- ```
-
-2. Index a document into the new index with the following cURL command:
-
-   ```js
-   curl -X POST "https://api.vectara.io/v1/index" \
-     -H "x-api-key: abc_12345defg67890hij09876" \
-     -H "customer-id: 123456789" \
-     -d '{
-         "corpusId": "3",
-         "documentId": "doc_1",
-         "text": "The future of technology is AI."
-     }'
-   ```
-
- You get the following response:
-
-   ```js
-   {
-  "status": "OK"
-   }
-   ```
-
-
-### List all indices and delete a specific index
-
-1. Execute the following curl command to list the indices:
-
-   ```js
-   curl -X GET "https://api.vectara.io/v1/list-corpora" \
-     -H "x-api-key: abc_12345defg67890hij09876" \
-     -H "customer-id: 123456789"
+   curl -L -X POST 'https://api.vectara.io/v1/list-corpora' \
+      -H 'Content-Type: application/json' \
+      -H 'Accept: application/json' \
+      -H 'customer-id: 123456789' \
+      -H 'Authorization: Bearer zwt_bearer_token' \
+      --data-raw '{
+  "numResults": 8,
+  "filter": "handbook"
+   }'
    ```
 You get the following response:
 
    ```js
    {
-  "status": "OK",
-  "corpora": [
-    {"corpusId": "1", "name": "Modern AI"},
-    {"corpusId": "2", "name": "AI Now"},
-    {"corpusId": "3", "name": "AI Future"}
-    ]
-   }
-   ```
-
-2. Execute the following curl command to delete a specific index with `corpus_id` = 3.
-
-  ```js
-  curl -X DELETE "https://api.vectara.io/v1/delete-corpus" \
-     -H "x-api-key: abc_12345defg67890hij09876" \
-     -H "customer-id: 123456789" \
-     -d '{
-         "corpusId": "3"
-     }'
-    ```
-
-     You get the following response:
-
-     ```js
+    "corpus": [
+      {
+      "id": 6,
+      "name": "Employee handbook",
+      "description": "Employee guidelines from HR",
+      "enabled": true,
+      "swapQenc": false,
+      "swapIenc": false,
+      "textless": false,
+      "encrypted": false,
+      "encoderId": "0",
+      "metadataMaxBytes": 0,
+      "faissIndexType": "",
+      "customDimensions": [],
+      "filterAttributes": []
+      },
      {
-  "status": "OK"
-     }
-   ```
-
-3. Execute the curl command from Step 1 again. You get the following response: 
-
-   ```js
-   {
-  "status": "OK",
-  "corpora": [
-    {"corpusId": "1", "name": "Modern AI"},
-    {"corpusId": "2", "name": "AI Now"},
-    ]
-   }
-   ```
-  Notice that you only have 2 indices now.
-
-### Update a document, reindex the document, and query the index
-
-In this example, you want to update a document with new information. Reindexing 
-the document improves data retrieval time when you ask a query. After the 
-reindex, you want to query the index and get a result from the updated information.
-
-1. Execute the following curl command to update an existing document in your 
-   index:
-
-   ```js
-   curl -X POST "https://api.vectara.io/v1/index" \
-  -H "x-api-key: abc_12345defg67890hij09876" \
-  -H "customer-id: 123456789" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "corpusId": "2",
-    "document": {
-      "documentId": "quantum_doc_001",
-      "title": "Quantum Entanglement and Spacetime: An Updated Perspective",
-      "description": "An updated analysis on quantum entanglement and its implications on spacetime.",
-      "metadataJson": "{\"author\": \"Dr. Quantum\", \"field\": \"Quantum Physics\", \"version\": \"2.1\"}",
-      "parts": [
-        {
-          "text": "Quantum entanglement is a phenomenon where the states of two particles are correlated.",
-          "context": "Introduction"
-        },
-        {
-          "text": "Einstein's 'spooky action at a distance' has been experimentally verified.",
-          "context": "Historical Context"
-        },
-        {
-          "text": "Entanglement could be the key to a Theory of Everything.",
-          "context": "Recent Research"
-        }
-      ]
+      "id": 11,
+      "name": "Employee Handbook",
+      "description": "Pet Policy",
+      "enabled": true,
+      "swapQenc": false,
+      "swapIenc": false,
+      "textless": false,
+      "encrypted": false,
+      "encoderId": "0",
+      "metadataMaxBytes": 0,
+      "faissIndexType": "",
+      "customDimensions": [],
+      "filterAttributes": []
+     },
+     {
+      "id": 13,
+      "name": "2022 handbook",
+      "description": "",
+      "enabled": true,
+      "swapQenc": false,
+      "swapIenc": false,
+      "textless": false,
+      "encrypted": false,
+      "encoderId": "0",
+      "metadataMaxBytes": 0,
+      "faissIndexType": "",
+      "customDimensions": [],
+      "filterAttributes": []
     }
-  }'
-   ```
-   You get the following response:
-   
-   ```js
-   {
-  "status": {
-    "code": "OK"
-    },
-  "quotaConsumed": {
-    "numChars": "330",
-    "numMetadataChars": "65"
-    }
+   ],
+   "pageKey": "",
+   "status": null
   }
    ```
 
-2. Reindex the updated document:
+2. Execute the following curl command to delete a specific corpus with `corpus_id` = 13.
 
   ```js
-  curl -X POST "https://api.vectara.io/v1/core/index" \
-  -H "x-api-key: abc_12345defg67890hij09876" \
-  -H "customer-id: 123456789" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "customerId": "123456789",
-    "corpusId": "2",
-    "document": {
-      "documentId": "quantum_doc_001",
-      "metadataJson": "{\"author\": \"Dr. Quantum\", \"field\": \"Quantum Physics\", \"version\": \"2.1\"}",
-      "parts": [
-        {
-          "text": "Entanglement could be the key to a Theory of Everything.",
-          "context": "Recent Research"
-        }
-      ]
-    }
+  curl -L -X POST 'https://api.vectara.io/v1/delete-corpus' \
+      -H 'Content-Type: application/json' \
+      -H 'Accept: application/json' \
+      -H 'customer-id: 123456789' \
+      -H 'Authorization: Bearer zwt_bearer_token' \
+     --data-raw '{
+  "corpusId": 13
   }'
   ```
-  You get the following response:
 
-  ```js
-  {
-  "status": {
-    "code": "OK"
-    },
-  "quotaConsumed": {
-    "numChars": "100",
-    "numMetadataChars": "20"
-    }
+ You get the following response:
+
+ ```js
+ {
+   "status": {
+    "code": "OK",
+    "statusDetail": "Corpus Deleted",
+    "cause": null
   }
-  ```
+ }
+ ```
 
-3. Query the updated index:
-   
-   ```js
-   curl -X POST "https://api.vectara.io/v1/query" \
-  -H "x-api-key: abc_12345defg67890hij09876" \
-  -H "customer-id: 123456789" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "corpusId": "2",
-    "query": "Is entanglement the key to a Theory of Everything?"
-  }'
-   ```
-   You get the following response:
-
-   ```js
-   {
-  "status": {
-    "code": "OK"
-  },
-  "results": [
-    {
-      "text": "Entanglement could be the key to a Theory of Everything.",
-      "score": 0.99,
-      "metadata": [
-        {
-          "key": "author",
-          "value": "Dr. Quantum"
-        },
-        {
-          "key": "field",
-          "value": "Quantum Physics"
-        },
-        {
-          "key": "version",
-          "value": "2.1"
-        }
-      ],
-      "documentIndex": 1,
-      "corpusKey": "quantum_doc_001"
-    }
-  ]
-}
-   ```
-
-In this final example, you updated an existing document to include new 
-information from the latest version of a document. You wanted to reindex 
-this updated document to ensure that the latest content is searchable. 
-Finally, you issued a query that asked a question about the new content.
+3. Execute the curl command from Step 1 again and the corpus you deleted 
+   no longer exists.
 
 This API recipes section provided a variety of query examples that you can leverage 
 as you start building with <Config v="names.product"/>.
