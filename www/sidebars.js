@@ -47,27 +47,27 @@ module.exports = {
         },
       ],
     },
-    {
+        {
       type: 'category',
-      label: 'Common Use Cases and Flows',
+      label: 'Learn',
       collapsed: false,
       items: [
         {
           type: 'category',
-          label: 'Keeping Your Data Private',
+          label: 'Data Privacy',
           items: [
-            'common-use-cases/keeping-your-data-private/privacy-overview',
-            'common-use-cases/keeping-your-data-private/textless',
-            'common-use-cases/keeping-your-data-private/encryption',
+            'learn/data-privacy/privacy-overview',
+            'learn/data-privacy/textless',
+            'learn/data-privacy/encryption',
           ]
         },
         {
           type: 'category',
-          label: 'Authentication and Authorization',
+          label: 'Authentication',
           items: [
-            'common-use-cases/app-authn-authz/auth-overview',
-            'common-use-cases/app-authn-authz/api-keys',
-            'common-use-cases/app-authn-authz/authorization',
+            'learn/authentication/auth-overview',
+            'learn/authentication/api-key-management',
+            'learn/authentication/role-based-access-control',
           ]
         },
         {
@@ -82,11 +82,11 @@ module.exports = {
         },
         {
           type: 'category',
-          label: 'Chatbots and Grounded Generation',
+          label: 'Grounded Generation',
           items: [
             'common-use-cases/chatbots-grounded-generation/grounded-generation-overview',
-            'common-use-cases/chatbots-grounded-generation/grounded-generation-response-languages',
             'common-use-cases/chatbots-grounded-generation/available-summarizers',
+            'common-use-cases/chatbots-grounded-generation/grounded-generation-response-languages',
           ]
         },
         {
@@ -349,8 +349,7 @@ module.exports = {
             'console-ui/configure-server-access-to-corpus',
             'console-ui/corpus-default-read-access',
             'console-ui/manage-user',
-            'common-use-cases/app-authn-authz/authorization',
-          ]
+            ]
         },
         'console-ui/update-credit-card'
       ],

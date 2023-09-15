@@ -1,6 +1,7 @@
 ---
 id: filter-overview
-title: Overview
+title: Filter Expressions
+sidebar_title: Filter Expressions
 ---
 
 import {Config} from '@site/docs/definitions.md';

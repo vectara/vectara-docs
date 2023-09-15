@@ -1,7 +1,7 @@
 ---
 id: auth-overview
-title: Authentication Overview
-sidebar_label: Overview
+title: Authentication and Authorization
+sidebar_label: Authentication and Authorization
 ---
 
 import Tabs from '@theme/Tabs';

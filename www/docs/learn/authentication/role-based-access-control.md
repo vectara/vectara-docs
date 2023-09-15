@@ -1,7 +1,7 @@
 ---
-id: authorization
-title: RBAC Roles
-sidebar_label: RBAC Roles
+id: role-based-access-control
+title: Role-Based Access Control
+sidebar_label: Role-Based Access Control
 ---
 
 Authorization refers to the access control policies that define what actions an
@@ -14,7 +14,7 @@ identity by presenting a valid JWT token. Even entities that lack explicit roles
 may still be able to perform operations on the platform through the use of
 **default permissions**.
 
-## Roles
+## RBAC Roles
 
 This section explains these concepts in further detail:
 

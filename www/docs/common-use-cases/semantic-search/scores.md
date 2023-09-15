@@ -1,7 +1,7 @@
 ---
 id: semantic-search-scoring
-title: Relevance Tuning
-sidebar_label: Relevance Tuning
+title: Relevance Tuning Techniques
+sidebar_label: Relevance Tuning Techniques
 ---
 
 import {Config} from '@site/docs/definitions.md';

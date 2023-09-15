@@ -1,6 +1,6 @@
 ---
 id: grounded-generation-response-languages
-title: Response Languages
+title: Response Language Configuration
 ---
 
 import {Config} from '@site/docs/definitions.md';

@@ -1,7 +1,7 @@
 ---
 id: custom-dimensions
-title: Custom Dimensions
-sidebar_label: Custom Dimensions
+title: Add Custom Dimensions to Affect Scoring
+sidebar_label: Add Custom Dimensions to Affect Scoring
 ---
 
 import Tabs from '@theme/Tabs';
@@ -10,7 +10,6 @@ import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
 import {Config} from '@site/docs/definitions.md';
 
-## Custom Dimensions
 Custom dimensions are a fixed set of additional "dimensions" that contain
 user-defined numerical values and are stored in addition to the dimensions
 that <Config v="names.product"/> automatically extracts and stores from the text. At

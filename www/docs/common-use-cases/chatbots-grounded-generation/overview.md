@@ -1,7 +1,7 @@
 ---
 id: grounded-generation-overview
-title: Grounded Generation Overview
-sidebar_label: Overview
+title: Enable Summarization in a Query
+sidebar_label: Enable Summarization in a Query
 ---
 
 import {Config} from '@site/docs/definitions.md';
