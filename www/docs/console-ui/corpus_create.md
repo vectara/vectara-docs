@@ -3,7 +3,7 @@ id: creating-a-corpus
 title: Create a corpus
 ---
 
-To get begin searching your data, you first have to create a corpus. A corpus 
+To begin searching your data, you first have to create a corpus. A corpus 
 is like a container where you upload all your data to be ingested and grouped 
 together in a single location for querying.
 
