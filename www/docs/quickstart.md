@@ -54,7 +54,8 @@ question on everyone's mind!
 2. Enter a **Name** and **Description** such as _Employee Handbook_ and _Pet Policy_.
    
       Don't worry about the Filter Attributes for now. You can read 
-      about [filter expressions](/docs/common-use-cases/filtering-by-metadata/filter-overview) later.
+      about [filter expressions](/docs/common-use-cases/filtering-by-metadata/filter-overview) and 
+      edit them later.
 3. Click **Create**. 
 
    The **Corpus ID** displays next to the corpus title **Employee Handbook** in the 
