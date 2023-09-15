@@ -19,13 +19,15 @@ and take the same parameters.  At a high level, the `api-endpoint`s are derived 
 specifically, and the API parameters are in other `.proto` files.  The translation
 from the protobuf definitions to REST is:
 - The only `version` currently available is `v1`
-- `api-endpoint` is lowercase and has hyphens.  For example, the gRPC call `CreateCorpus` in services.proto is `/create-corpus`
-- API parameters can be sent in either `camelCase` or lowercase with `underscores`.  For example, you could submit either `numResults` or `num_results` in the Search API
+- `api-endpoint` is lowercase and has hyphens.  For example, the gRPC 
+  call `CreateCorpus` in services.proto is `/create-corpus`
+- API parameters can be sent in either `camelCase` or lowercase with `underscores`.  
+  For example, you could submit either `numResults` or `num_results` in the Search API
 - JSON responses are always returned in `camelCase` form
 
 ## API Authentication
 All <Config v="names.product"/> APIs are authenticated.  Indexing and Search
-APIs can be authenticated via [API Keys](/docs/common-use-cases/app-authn-authz/api-keys)
+APIs can be authenticated via [API Keys](/docs/learn/authentication/api-key-management)
 however, Admin actions (creating/deleting corpora) must be done via
 [OAuth 2.0](/docs/api-reference/auth-apis/oauth-2).
 
