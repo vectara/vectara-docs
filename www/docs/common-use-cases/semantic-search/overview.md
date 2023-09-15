@@ -7,9 +7,11 @@ sidebar_label: Overview
 import {Config} from '@site/docs/definitions.md';
 
 A common use case in <Config v="names.product"/> is to build a semantic,
-LLM-powered search application. This page outlines what <Config v="names.product"/>
-can do for this use case as well as why and how to employ these features for the
-best overall end-user experience.
+LLM-powered search application. Semantic search is
+not just about finding data, but about understanding data and helping you 
+answer questions about your data. This page outlines what <Config v="names.product"/>
+can do for this use case as well as why and how to employ these features for 
+the best overall end-user experience.
 
 ## Large Language Models (LLMs)
 

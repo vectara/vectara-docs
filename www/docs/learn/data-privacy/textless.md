@@ -15,19 +15,22 @@ sensitive text content. In this mode, the text content becomes
 unrecoverable to <Config v="names.product"/> or to any user who successfully queries and 
 finds the document.
 
-In general, this feature is optimal for use cases where the cost of any
-information leakage is very high. Note that <Config v="names.product"/> does
-[encrypt documents](encryption)
+:::note
 
-When you enable textless mode, several things happen in the platform.  
-Let's look at when it's appropriate to enable textless, what happens on the 
-platform, and what benefits and limitations it brings.
+This feature is optimal for use cases where the cost of any
+information leakage is very high. Note that <Config v="names.product"/> does
+[**encrypt documents**](encryption).
+
+:::
 
 ## What happens in textless mode?
 
+Let's look at when it's appropriate to enable textless, what happens on the 
+platform, and what benefits and limitations it brings.
+
 When you enable `textless` on a corpus, <Config v="names.product"/> discards
 the text content of the document immediately after it converts the text to a
-vector. At that point, the text is no longer recoverable. It won't be
+vector. At that point, the text is no longer recoverable. It also won't be 
 returned in any <Config v="names.product"/> APIs.
 
 Note that <Config v="names.product"/> **does** retain any metadata that were supplied 

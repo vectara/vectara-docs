@@ -10,10 +10,10 @@ Welcome to <Config v="names.product"/>'s Quick Start tutorial. In just a couple 
 you'll upload this [employee handbook](/img/vectara_employee_handbook.pdf) and begin exploring our 
 company's unique pet policy. Have you ever wondered if you can bring a velociraptor 
 to work? Why certain birds are allowed for the most random reason? We have part of a 
-unique employee handbook ready for you to upload into a <Config v="names.product"/> index, 
+unique employee handbook ready for you to upload into a <Config v="names.product"/> corpus, 
 and we'll guide you through the ingestion and question answering process step by step.
 
-## Create a Vectara Account
+## Create a Vectara account
 
 To get started with <Config v="names.product"/>, register an account with us.
 1. Go to https://console.vectara.com/signup or click **Get Started Free** 
@@ -37,27 +37,27 @@ the Customer ID.
  you a welcome email with this ID after you created the account.
 :::
 
-Now that you have an account, you can create your first index and upload 
+Now that you have an account, you can create your first corpus and upload 
 your first document!
 
-## Create your first index
+## Create your first corpus
 
 Before you can ask the data about bringing your velociraptor to the 
-office, you first need to create an index. Think of an index as a container 
+office, you first need to create a corpus. Think of a corpus as a container 
 that includes your uploaded data, and you really want to extract meaningful 
 information from this data through queries. In this case, we upload a [PDF file](/img/vectara_employee_handbook.pdf) file 
 that contains the pet policy information. After you upload this 
 file, <Config v="names.product"/> ingests your data and lets you ask the burning 
 question on everyone's mind!
 
-1. Click **Create index**.
+1. Click **Create corpus**.
 2. Enter a **Name** and **Description** such as _Employee Handbook_ and _Pet Policy_.
    
       Don't worry about the Filter Attributes for now. You can read 
       about [filter expressions](/docs/common-use-cases/filtering-by-metadata/filter-overview) later.
 3. Click **Create**. 
 
-   The **Index ID** displays next to the index title **Employee Handbook** in the 
+   The **Corpus ID** displays next to the corpus title **Employee Handbook** in the 
     console. If you use the API later, you need to configure `corpus_id` fields 
     with this value.
    
@@ -68,9 +68,9 @@ Think about the kind of queries that you or other users could ask about
 the company's pet policies. The main question on everyone's mind is still
 _"Can I bring a velociraptor to the office?"_
 
-Now that you created the index, you can upload the PDF document 
-that contains the pet policy. When you create additional indices in the 
-future, the left menu lets you come back to any index for data 
+Now that you created the corpus, you can upload the PDF document 
+that contains the pet policy. When you create additional corpora in the 
+future, the left menu lets you come back to any corpus for data 
 ingestion and search.
 
 1. Click **Employee Handbook** from the left menu, if you decided to explore the UI
@@ -81,7 +81,7 @@ ingestion and search.
    `.html`, `.rtf`, and `.epub` files. Review [supported file types](/docs/api-reference/indexing-apis/file-upload/file-upload-filetypes) for 
    a full list.
 
-3. Select or drag and drop the pet policy document `PDF` into the index.
+3. Select or drag and drop the pet policy document `PDF` into the corpus.
 
 That's it! <Config v="names.product"/> has just ingested this important document!
 
@@ -119,7 +119,7 @@ more about the pet policies:
 - How does the company handle potential conflicts between different species, 
   such as birds and alligators?
 
-Now you have an understanding of how to upload data into an index, ask 
+Now you have an understanding of how to upload data into a corpus, ask 
 questions, and get meaningful answers from <Config v="names.product"/>. Continue 
 gaining more answers and insights from your data, and ingest more data. 
 Imagine the amount of time saved because you get quick answers with precise 

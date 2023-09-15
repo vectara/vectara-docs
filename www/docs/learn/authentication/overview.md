@@ -11,8 +11,9 @@ import {vars} from '@site/static/variables.json';
 
 ## Authentication
 
-All <Config v="names.product"/> APIs are authenticated.  Indexing and Search
-APIs can be authenticated via [API Keys](/docs/common-use-cases/app-authn-authz/api-keys)
+In <Config v="names.product"/>, robust authentication and authorization methods are 
+in place to secure your data and operations. All <Config v="names.product"/> APIs are authenticated. 
+Indexing and Search APIs can be authenticated via [API Keys](/docs/common-use-cases/app-authn-authz/api-keys)
 however, Admin actions (creating/deleting corpora) must be done via
 [OAuth 2.0](/docs/api-reference/auth-apis/oauth-2).
 
