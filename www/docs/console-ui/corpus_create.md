@@ -7,7 +7,7 @@ To begin searching your data, you first have to create a corpus. A corpus
 is a container where you upload all your data to be ingested and grouped 
 together in a single location for querying.
 
-1.  To get started, navigate to the [Console Overview](https://console.vectara.com/overview).
+1. To get started, navigate to the [Console Overview](https://console.vectara.com/overview).
 
 2. On the left sidebar, click **Corpora**. This 
    will open an overview of the incides you have created. It will be empty 
