@@ -23,4 +23,4 @@ together in a single location for querying.
   ![Create corpus success](/img/create_corpus_success.png)
 
 The corpus is now created and ready to receive your data. You might want to head
-towards how to index data and the index overview.
+towards how to index data and the corpus overview.
