@@ -65,7 +65,7 @@ setting `semantics` to `RESPONSE`.  For example:
 This `RESPONSE` setting disables <Config v="names.product"/>'s "question-answering" mode and
 instead tells it to find similar questions.
 
-You can also add a [filter expression](/learn/metadata-search-filtering/filter-overview)
+You can also add a [filter expression](/docs/learn/metadata-search-filtering/filter-overview)
 of `part.is_title = true` to *only* match the questions.
 
 ## Combine question matching and answering

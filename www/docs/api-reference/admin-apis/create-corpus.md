@@ -19,7 +19,7 @@ The response message returns a unique id, `corpus_id`, by which the corpus can
 be subsequently referenced. Note that the name needn't be unique within an
 account.
 
-In order to reference metadata in [filter expressions](/learn/metadata-search-filtering/filter-overview), the
+In order to reference metadata in [filter expressions](/docs/learn/metadata-search-filtering/filter-overview), the
 referenceable attributes must be declared at creation time in the **filter
 attributes**. This list cannot be changed once the corpus is created.
 

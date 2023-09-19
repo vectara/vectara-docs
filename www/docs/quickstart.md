@@ -54,7 +54,7 @@ question on everyone's mind!
 2. Enter a **Name** and **Description** such as _Employee Handbook_ and _Pet Policy_.
    
       Don't worry about the Filter Attributes for now. You can read 
-      about [filter expressions](/learn/metadata-search-filtering/filter-overview) and 
+      about [filter expressions](/docs/learn/metadata-search-filtering/filter-overview) and 
       edit them later.
 3. Click **Create**. 
 
