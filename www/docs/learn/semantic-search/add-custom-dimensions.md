@@ -1,5 +1,5 @@
 ---
-id: custom-dimensions
+id: add-custom-dimensions
 title: Add Custom Dimensions to Affect Scoring
 sidebar_label: Add Custom Dimensions to Affect Scoring
 ---

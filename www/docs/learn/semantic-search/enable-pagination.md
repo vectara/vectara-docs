@@ -1,7 +1,7 @@
 ---
-id: pagination
+id: enable-pagination
 title: Enable Pagination in Search Results
-sidebar_label: Enable Pagination in Search Results
+sidebar_label: Enable Pagination
 ---
 
 import Tabs from '@theme/Tabs';

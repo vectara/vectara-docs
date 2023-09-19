@@ -88,7 +88,7 @@ you uploaded documents using the
 [file upload API](/docs/api-reference/indexing-apis/file-upload/format-for-upload), then you might need
 to look up the additional sections.  This can be done by an additional query
 to <Config v="names.product"/> using
-[filters](/docs/common-use-cases/filtering-by-metadata/filter-overview).  Do do this, retrieve the
+[filters](/learn/metadata-search-filtering/filter-overview).  Do do this, retrieve the
 `id` value of the document and perform a query for that ID.  For example:
 
 ```json showLineNumbers title="https://api.vectara.io/v1/query"

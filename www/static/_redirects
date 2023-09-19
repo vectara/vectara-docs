@@ -22,11 +22,11 @@
 /docs/authorization                                           /docs/common-use-cases/app-authn-authz/authorization
 /docs/api-keys                                                /docs/common-use-cases/app-authn-authz/api-keys
 /docs/search-apis/sql/ootb-filters                            /docs/common-use-cases/filtering-by-metadata/ootb-filters
-/docs/search-apis/sql/filter-overview                         /docs/common-use-cases/filtering-by-metadata/filter-overview
+/docs/search-apis/sql/filter-overview                         /learn/metadata-search-filtering/filter-overview
 /docs/encryption                                              /docs/common-use-cases/keeping-your-data-private/encryption
 /docs/textless                                                /docs/common-use-cases/keeping-your-data-private/textless
 /docs/tls                                                     /docs/common-use-cases/keeping-your-data-private/tls
-/docs/search-apis/sql/filter-overview                         /docs/common-use-cases/filtering-by-metadata/filter-overview
-/docs/custom-dimensions                                       /docs/common-use-cases/semantic-search/custom-dimensions
+/docs/search-apis/sql/filter-overview                         /learn/metadata-search-filtering//filter-overview
+/docs/custom-dimensions                                       /docs/learn/semantic-search/add-custom-dimensions
 /docs/search-apis/reranking                                   /docs/api-reference/search-apis/reranking
 /docs/search-apis/interpreting-responses/intepreting-scores   /docs/api-reference/search-apis/interpreting-responses/intepreting-scores

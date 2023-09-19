@@ -74,32 +74,34 @@ module.exports = {
           type: 'category',
           label: 'Semantic Search',
           items: [
-            'common-use-cases/semantic-search/semantic-search-overview',
-            'common-use-cases/semantic-search/semantic-search-scoring',
-            'common-use-cases/semantic-search/pagination',
-            'common-use-cases/semantic-search/custom-dimensions',
+            'learn/semantic-search/semantic-search-overview',
+            'learn/semantic-search/hybrid-search',
+            'learn/semantic-search/relevance-tuning-techniques',
+            'learn/semantic-search/enable-pagination',
+            'learn/semantic-search/add-custom-dimensions',
           ]
         },
         {
           type: 'category',
           label: 'Grounded Generation',
           items: [
-            'common-use-cases/chatbots-grounded-generation/grounded-generation-overview',
-            'common-use-cases/chatbots-grounded-generation/available-summarizers',
+            'learn/grounded-generation/grounded-generation-overview',
+            'learn/grounded-generation/select-a-summarizer',
             'common-use-cases/chatbots-grounded-generation/grounded-generation-response-languages',
           ]
         },
         {
           type: 'category',
-          label: 'Filtering Search by Metadata',
+          label: 'Metadata Search Filtering',
           items: [
-            'common-use-cases/filtering-by-metadata/filter-overview',
-            'common-use-cases/filtering-by-metadata/ootb-filters',
+            'learn/metadata-search-filtering/filter-overview',
+            'learn/metadata-search-filtering/ootb-metadata-filters',
+            'api-reference/search-apis/sql/func-opr',
+            'api-reference/search-apis/sql/data-types',
           ]
         },
-        'common-use-cases/recommendation-systems/recommender-overview',
-        'common-use-cases/question-answer/question-answer-overview',
-        'api-reference/search-apis/lexical-matching',
+        'learn/recommendation-systems/recommender-overview',
+        'learn/question-answer/question-answer-overview',
       ]
     },
     {
@@ -246,17 +248,6 @@ module.exports = {
                 ]
               },
               'api-reference/search-apis/reranking',
-              'api-reference/search-apis/lexical-matching',
-              {
-                  type: 'category',
-                  label: 'Filter Expressions',
-                  items: [
-                    'common-use-cases/filtering-by-metadata/filter-overview',
-                    'api-reference/search-apis/sql/func-opr',
-                    'api-reference/search-apis/sql/data-types',
-                    'common-use-cases/filtering-by-metadata/ootb-filters',
-                  ],
-              },
               'api-reference/search-apis/batched-queries',
               {
                 type: 'category',

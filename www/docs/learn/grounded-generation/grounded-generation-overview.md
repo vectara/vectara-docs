@@ -1,18 +1,24 @@
 ---
 id: grounded-generation-overview
-title: Enable Summarization in a Query
-sidebar_label: Enable Summarization in a Query
+title: Grounded Generation Overview
+sidebar_label: Grounded Generation Overview
 ---
 
 import {Config} from '@site/docs/definitions.md';
 
-In addition to returning search results, <Config v="names.product"/> can
-summarize those results in a way that answers the user's question directly.
-This can be useful to provide a chatbot-like experience to your users while
-avoiding some of the problems that many generative AI systems have, such as
-[hallucinations](https://vectara.com/avoiding-hallucinations-in-llm-powered-applications/).
+Grounded generation, also known as Retrieval Augmented Generation (RAG) 
+ensures that generated content is both verifiable and anchored to the data 
+you supply. This approach minimizes the occurrence of innaccurate or 
+misleading information found in generative AI systems, specifically 
+[hallucinations](https://vectara.com/avoiding-hallucinations-in-llm-powered-applications/). <Config v="names.product"/> 
+provides grounded generation to summarize search results that answer queries 
+directly.
 
-To enable this behavior, send a `summary` request with your `query`.  For example:
+
+## Enable Summarization in a Query
+
+Summarization provides a chatbot-like experience to your users. To 
+enable this behavior, send a `summary` request with your `query`.  For example:
 
 ```json showLineNumbers title="https://api.vectara.io/v1/query"
 {
@@ -39,10 +45,16 @@ To enable this behavior, send a `summary` request with your `query`.  For exampl
 }
 ```
 
-This tells <Config v="names.product"/> to return a summary in English using the
+This query tells <Config v="names.product"/> to return a summary in English using the
 `vectara-summary-ext-v1.2.0` summarizer and to consider the first 5 results when
-summarizing.  Note that the `summarizerPromptName` is optional and will default
+summarizing. 
+
+:::note
+
+The `summarizerPromptName` is optional and will default
 to the best summarizer available to your account type.
+
+:::
 
 When <Config v="names.product"/> responds, it will contain the list of results
 as well as the generative summary.  Here is an example response to the query
