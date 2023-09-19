@@ -173,7 +173,7 @@ semantically answer the user, it will also then produce a summary of the results
 with its sources cited.  For more details on use cases for grounded generation
 and details on how to use grounded generation and common use cases to consider,
 have a look at the
-[chatbots and grounded generation](/docs/grounded-generation/grounded-generation-overview)
+[chatbots and grounded generation](/docs/learn/grounded-generation/grounded-generation-overview)
 use case documentation.
 
 The summary will come back in the following format:
