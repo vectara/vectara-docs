@@ -87,7 +87,7 @@ module.exports = {
           items: [
             'learn/grounded-generation/grounded-generation-overview',
             'learn/grounded-generation/select-a-summarizer',
-            'common-use-cases/chatbots-grounded-generation/grounded-generation-response-languages',
+            'learn/grounded-generation/grounded-generation-response-languages',
           ]
         },
         {

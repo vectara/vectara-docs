@@ -6,7 +6,7 @@ title: Functions and Operators
 import {Config} from '@site/docs/definitions.md';
 
 Most operators in <Config v="names.product"/> have the same precedence and are left-associative.
-Parenthesis need to be used to enforce a different precedence.
+You need to use parenthesis to enforce a different precedence.
 
 The following table indicates the supported operators and their precedence (highest to lowest).
 Non-binary operators do not specify associativity.
