@@ -2,13 +2,29 @@ module.exports = {
   someSidebar: [
     {
       type: 'doc',
-      id: 'introduction'
+      id: 'introduction',
+      label: "The Vectara Platform",
+    },
+    {
+      type: 'doc',
+      id: 'use-case-exploration',
+      label: "Use Case Exploration",
     },
     {
       type: 'category',
       label: 'Getting Started',
       collapsed: false,
       items: [
+        {
+          type: 'doc',
+          id: 'quickstart',
+          label: "Quick Start",
+        },
+        {
+          type: 'doc',
+          id: 'api-recipes',
+          label: "API Recipes",
+        },
         {
           type: 'category',
           label: 'Common API Paradigms',

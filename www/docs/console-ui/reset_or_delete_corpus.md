@@ -1,6 +1,6 @@
 ---
 id: reset-or-delete-corpus
-title: Resetting and deleting a corpus
+title: Reset or delete a corpus
 ---
 
 If you've decided to stop using a corpus you have three options.
@@ -21,7 +21,7 @@ descriptions.
 
 ![Create operations](/img/corpus_operations.png)
 
-## Resetting a corpus
+## Reset a corpus
 
 To reset a corpus: 
 1. Click on the _Reset_ button. A warning modal will appear.
@@ -30,7 +30,7 @@ To reset a corpus:
 
 That's it, all the data within the corpus has been purged.
 
-## Deleting a corpus
+## Delete a corpus
 
 To permanently delete a corpus: 
 1. Click on the _Delete_ button. A warning modal will appear. 
