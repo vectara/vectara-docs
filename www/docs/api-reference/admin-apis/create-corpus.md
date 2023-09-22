@@ -10,7 +10,7 @@ import {vars} from '@site/static/variables.json';
 ## Endpoint Address
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
-to index content into a corpus:
+to ingest content into a corpus:
 <code>https://<Config v="domains.rest.admin"/>/v1/create-corpus</code>
 This page describes the details of interacting with this endpoint.
 
@@ -33,13 +33,13 @@ message CreateCorpusRequest {
 }
 
 message CreateCorpusResponse {
-  // The Corpus ID that was created.
+  // The corpus id that was created.
   uint32 corpus_id = 1;
   Status status = 2;
 }
 
 message Corpus {
-  // The Corpus ID.
+  // The corpus id.
   uint32 id = 1;
   // The name of the corpus.
   string name = 2;

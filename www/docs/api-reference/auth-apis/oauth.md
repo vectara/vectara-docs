@@ -22,12 +22,18 @@ OAuth 2.0 has several advantages over API keys or simple usernames/passwords:
 - OAuth 2.0 is inherently more tightly scoped than API keys
 - JWT tokens are detected by many security scanning tools, allowing them to more easily be flagged in the case of accidental publication
 
-# Creating an application client
+:::warning
+
+:lock: Always keep your OAuth tokens private. Do not share them through email, Slack, Discord, forums, or other public channels because it can lead to unauthorized access. Treat these tokens with the same confidentiality as your personal credentials. 
+
+:::
+
+## Create an application client
 Go to [https://console.vectara.com/console/authentication/app-client](https://console.vectara.com/console/authentication/app-client)
 to create a new application client.  Most applications will want to use the
 `Client Credentials` grant.
 
-# Obtain a JWT Token
+## Obtain a JWT Token
 Before continuing, you'll need the OAuth 2.0 token endpoint.  You can obtain that
 by navigating to the [Authentication page](https://console.vectara.com/authentication)
 and then selecting the App Client tab.  Append `/oauth2/token` to this URL and
