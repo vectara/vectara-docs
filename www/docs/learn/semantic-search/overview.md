@@ -28,8 +28,8 @@ what the user is asking.
 
 The team behind <Config v="names.product"/> has built LLMs that work across a
 wide variety of languages and verticals. When you index data into <Config v="names.product"/>
-or perform a search, the text is converted to one or more vectors via a LLM
-and then used to answer questions that your users have.
+or perform a search, also known as retrieval, the text is converted to one or 
+more vectors via a LLM and then used to answer questions that your users have.
 
 ## Zero-shot models
 

@@ -5,12 +5,12 @@ title: Response Language Configuration
 
 import {Config} from '@site/docs/definitions.md';
 
-`responseLang` in <Config v="names.product"/> is a mandatory field for
+The `responseLang` field in <Config v="names.product"/> is mandatory for
 sumarization requests. You *can* ask <Config v="names.product"/> to attempt
 to guess the language of the query and respond in that guessed language by
-setting `responseLang` to `auto`.  However, note that this guessing is not
-perfect: many languages have many borrowed words and phrases which makes
-guessing the language difficult to impossible at times.  For that reason, it's
+setting `responseLang` to `auto`.  However, this guessing is not perfect: 
+many languages have many borrowed words and phrases which makes
+guessing the language difficult to impossible at times. For that reason, it's
 recommended that you send the user's preferred language when you know it.
 
 One possible way to do this is just to ask the user to configure their

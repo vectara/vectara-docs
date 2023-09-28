@@ -67,6 +67,7 @@ module.exports = {
           items: [
             'learn/authentication/auth-overview',
             'learn/authentication/api-key-management',
+            'learn/authentication/oauth-2',
             'learn/authentication/role-based-access-control',
           ]
         },
@@ -122,7 +123,7 @@ module.exports = {
                   type: 'category',
                   label: 'OAuth 2.0',
                   items: [
-                    'api-reference/auth-apis/oauth-2',
+                    
                     {
                       type: 'category',
                       label: 'Client Credentials Grant Examples',

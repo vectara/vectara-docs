@@ -6,7 +6,7 @@ sidebar_label: Grounded Generation Overview
 
 import {Config} from '@site/docs/definitions.md';
 
-Grounded generation, also known as Retrieval Augmented Generation (RAG) 
+Grounded generation, also known as Retrieval Augmented Generation (RAG), 
 ensures that generated content is both verifiable and anchored to the data 
 you supply. This approach minimizes the occurrence of innaccurate or 
 misleading information found in generative AI systems, specifically 
@@ -18,7 +18,7 @@ directly.
 ## Enable Summarization in a Query
 
 Summarization provides a chatbot-like experience to your users. To 
-enable this behavior, send a `summary` request with your `query`.  For example:
+enable this behavior, send a `summary` request with your `query`. For example:
 
 ```json showLineNumbers title="https://api.vectara.io/v1/query"
 {
