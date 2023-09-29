@@ -18,7 +18,7 @@ matching, and wildcard prefixes of terms
 
 ## Enable Exact and Boolean Text Matching
 
-By default, the exact and Boolean text matching is disabled and Vectara only0
+By default, the exact and Boolean text matching is disabled and Vectara only 
 uses neural retrieval. You can enable hybrid search by specifying a value,
 `lambda`, at query time. This value can range from `0` to `1` (inclusive).
 

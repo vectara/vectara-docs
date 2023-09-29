@@ -29,7 +29,7 @@ from the protobuf definitions to REST is:
 All <Config v="names.product"/> APIs are authenticated.  Indexing and Search
 APIs can be authenticated via [API Keys](/docs/learn/authentication/api-key-management)
 however, Admin actions (creating/deleting corpora) must be done via
-[OAuth 2.0](/docs/api-reference/auth-apis/oauth-2).
+[OAuth 2.0](/docs/learn/authentication/oauth-2).
 
 ## API Playground and OpenAPI Specifications
 You can find up-to-date OpenAPI specifications at
