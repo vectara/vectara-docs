@@ -45,7 +45,7 @@ personal credentials.
 Go to [https://console.vectara.com/console/apiAccess/appClients](https://console.vectara.com/console/apiAccess/appClients)
 to create a new application client.  Most applications will want to use the
 `client credentials` grant. When you create the app client, you can then copy the 
-client_id and secret that you need for the credentials grant.
+`client_id` and `client_secret` that you need for the credentials grant.
 
 1. Click **Create app client**.
 2. Enter a **Name** and **Description** for the app client.
@@ -97,7 +97,7 @@ substitute your values for the `customer_id` in the URL, `client_id`, and `clien
 <Tabs>
 <TabItem value="nodejs-example" label="NodeJS">
 
-```js
+```js title="NodeJS Example"
 const { access_token } = await axios.post(
   "https://vectara-prod-123456789.auth.us-west-2.amazoncognito.com/oauth2/token",
   {
@@ -110,7 +110,7 @@ const { access_token } = await axios.post(
 </TabItem>
 <TabItem value="curl-example" label="cURL" default>
 
-```js
+```js title="cURL Example"
 curl -XPOST -H "Content-type: application/x-www-form-urlencoded" -d 
 "grant_type=client_credentials&client_id=...nft9ga72pf&client_secret=abcdefghijklmnop1234567890" 
 https://vectara-prod-123456789.auth.us-west-2.amazoncognito.com/oauth2/token | jq -r ".access_token"
