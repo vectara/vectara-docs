@@ -14,11 +14,14 @@ both query and index.  It's recommended that you choose the most limited scope
 you can for your application: it's "cheap" to create multiple API keys, but
 having an accidental publication of an over-privileged API key is often
 organizationally "expensive."  In general, it's recommended that you use
-[OAuth 2.0](OAuth 2.0) if/where possible for production applications.
+[OAuth 2.0](/docs/learn/authentication/oauth-2) if/where possible for production applications.
 
 :::warning
 
-:lock: Always keep your API Keys and 0Auth tokens private. Do not share them through email, Slack, Discord, forums, or other public channels because it can lead to unauthorized access. Treat these keys with the same confidentiality as your personal credentials. 
+:lock: Always keep your API Keys and 0Auth tokens private. Do not share them 
+through email, Slack, Discord, forums, or other public channels because it 
+can lead to unauthorized access. Treat these keys with the same 
+confidentiality as your personal credentials. 
 
 :::
 
