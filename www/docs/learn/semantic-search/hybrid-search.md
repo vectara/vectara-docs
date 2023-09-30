@@ -1,7 +1,7 @@
 ---
 id: hybrid-search
-title: Hybrid Search
-sidebar_label: Hybrid Search
+title: 'Hybrid Search: Combine Keyword and Semantic'
+sidebar_label: 'Hybrid Search: Combine Keyword and Semantic'
 ---
 
 Vectara provides a Hybrid Search that offers a powerful and flexible approach 

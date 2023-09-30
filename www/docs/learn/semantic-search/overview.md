@@ -1,7 +1,7 @@
 ---
 id: semantic-search-overview
-title: Semantic Search Overview
-sidebar_label: Semantic Search Overview
+title: Semantic Search Fundamentals
+sidebar_label: Semantic Search Fundamentals
 ---
 
 import {Config} from '@site/docs/definitions.md';

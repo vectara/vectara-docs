@@ -1,7 +1,7 @@
 ---
 id: oauth-2
-title: OAuth 2.0
-sidebar_label: OAuth 2.0
+title: OAuth 2.0 Access Tokens
+sidebar_label: OAuth 2.0 Access Tokens
 ---
 
 import Tabs from '@theme/Tabs';
@@ -17,6 +17,12 @@ Fundamentally, you provide an OAuth 2.0 authentication provider with a
 a password, and a successful authentication returns a
 [JWT token](https://jwt.io/), which you can then pass into subsequent requests
 as an authenticated application.
+
+:::note
+
+Our API Reference section provides several [**Client Credentials Grant Examples**](/docs/getting-started-samples/JWTFetcher.cs) for C#, Java, PHP, and Python.
+
+:::
 
 OAuth 2.0 has several advantages over API keys or simple usernames/passwords:
 - OAuth 2.0 has built in revocation flows in case a key is compromised

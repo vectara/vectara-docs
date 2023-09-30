@@ -1,7 +1,7 @@
 ---
 id: add-custom-dimensions
-title: Add Custom Dimensions to Affect Scoring
-sidebar_label: Add Custom Dimensions to Affect Scoring
+title: Add Custom Dimensions to Enhance Scoring
+sidebar_label: Add Custom Dimensions to Enhance Scoring
 ---
 
 import Tabs from '@theme/Tabs';

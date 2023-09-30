@@ -22,7 +22,8 @@ your account with an API key.
 
 :::
 
-Administrative actions cannot be performed through these keys.
+You can use API keys for querying and indexing operations, but not at this 
+time for administrative operations such as creating or deleting corpora.
 
 The remainder of this guide walks you through managing and using the API Keys.
 

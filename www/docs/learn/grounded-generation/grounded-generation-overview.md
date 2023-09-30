@@ -1,18 +1,21 @@
 ---
 id: grounded-generation-overview
-title: Grounded Generation Overview
-sidebar_label: Grounded Generation Overview
+title: Grounded Generation Fundamentals
+sidebar_label: Grounded Generation Fundamentals
 ---
 
 import {Config} from '@site/docs/definitions.md';
 
 Grounded generation, also known as Retrieval Augmented Generation (RAG), 
 ensures that generated content is both verifiable and anchored to the data 
-you supply. This approach minimizes the occurrence of innaccurate or 
+you supply. This capability minimizes the occurrence of innaccurate or 
 misleading information found in generative AI systems, specifically 
-[hallucinations](https://vectara.com/avoiding-hallucinations-in-llm-powered-applications/). <Config v="names.product"/> 
-provides grounded generation to summarize search results that answer queries 
-directly.
+[hallucinations](https://vectara.com/avoiding-hallucinations-in-llm-powered-applications/). <Config v="names.product"/>'s
+grounded generation summarizes search results that answer complex queries 
+directly while providing citations that ground these search results in facts
+from the data.
+
+![Grounded Generation Summary Example](/img/grounded_generation_summary_example.png)
 
 
 ## Enable Summarization in a Query

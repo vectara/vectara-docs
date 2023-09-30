@@ -63,14 +63,14 @@ module.exports = {
         },
         {
           type: 'category',
-          label: 'Authentication',
+          label: 'Authentication and Authorization',
           items: [
             'learn/authentication/auth-overview',
             'learn/authentication/api-key-management',
             'learn/authentication/oauth-2',
             'learn/authentication/role-based-access-control',
           ]
-        },
+         },
         {
           type: 'category',
           label: 'Semantic Search',
@@ -111,53 +111,33 @@ module.exports = {
       collapsed: true,
       items: [
         'api-reference/api-overview',
-        {
-          type: 'category',
-          label: 'Authentication and Authorization',
-          items: [
-            {
-              type: 'category',
-              label: 'Authentication',
-              items: [
-                {
-                  type: 'category',
-                  label: 'OAuth 2.0',
-                  items: [
-                    
-                    {
-                      type: 'category',
-                      label: 'Client Credentials Grant Examples',
-                      items: [
-                        'getting-started-samples/JWTFetcher.cs',
-                        'getting-started-samples/JwtFetcher.java',
-                        'getting-started-samples/getJwtToken.php',
-                        'getting-started-samples/rest_util.py'
-                      ]
-                    }
-                  ]
-                },
-                {
-                  type: 'category',
-                  label: 'API Keys',
-                  items: [
-                    'api-reference/auth-apis/api-keys',
-                    {
-                      type: 'category',
-                      label: 'REST Examples',
-                      items: [
-                        'getting-started-samples/RestApiKeyQueries.cs',
-                        'getting-started-samples/RestApiKeyQueries.java',
-                        'getting-started-samples/queryDataApiKey.php',
-                        'getting-started-samples/rest_api_key_queries.py',
-                        'getting-started-samples/app.js',
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ],
-        },
+         {
+            type: 'category',
+            label: 'Authentication Examples',
+            items: [
+              {
+                type: 'category',
+                label: 'OAuth 2.0 Client Credentials Grant Examples',
+                items: [
+                  'getting-started-samples/JWTFetcher.cs',
+                  'getting-started-samples/JwtFetcher.java',
+                  'getting-started-samples/getJwtToken.php',
+                  'getting-started-samples/rest_util.py'
+                ]
+              },
+              {
+                type: 'category',
+                label: 'API Key REST Examples',
+                items: [
+                  'getting-started-samples/RestApiKeyQueries.cs',
+                  'getting-started-samples/RestApiKeyQueries.java',
+                  'getting-started-samples/queryDataApiKey.php',
+                  'getting-started-samples/rest_api_key_queries.py',
+                  'getting-started-samples/app.js',
+                ]
+              }
+           ]
+          },
         {
             type: 'category',
             label: 'Indexing APIs',
