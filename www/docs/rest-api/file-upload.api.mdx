@@ -5,7 +5,249 @@ description: "File Upload"
 sidebar_label: "FileUpload"
 hide_title: true
 hide_table_of_contents: true
-api: {"operationId":"FileUpload","description":"File Upload","tags":["IndexService"],"security":[{"ApiKeyAuth":[]},{"oAuth":[]}],"requestBody":{"content":{"multipart/form-data":{"schema":{"type":"object","properties":{"doc_metadata":{"description":"A JSON string of any additional metadata you want attached to the file.","type":"string"},"file":{"description":"The file to be indexed into Vectara.","type":"string","format":"binary"}},"required":["file"]}}}},"parameters":[{"in":"query","name":"c","required":true,"description":"Customer ID","schema":{"type":"integer"}},{"in":"query","name":"o","required":true,"description":"Corpus ID","schema":{"type":"integer"},"example":1,"minimum":1},{"in":"query","name":"d","required":false,"description":"If true, the server returns the extracted document that was indexed","default":false,"schema":{"type":"boolean"}}],"responses":{"200":{"description":"A successful response","content":{"application/json":{"schema":{"type":"object","properties":{"response":{"type":"object","properties":{"status":{"type":"object"},"quotaConsumed":{"type":"object","properties":{"numChars":{"type":"string","description":"The number of characters Vectara indexed from the file uploaded."},"numMetadataChars":{"type":"string","description":"The number of metadata characters Vectara indexed from the file uploaded."}}}}}}}}}},"400":{"description":"An invalid request was sent.  e.g. one or more parameters was missing, or the corpus does not exist.","content":{"application/json":{"schema":{"type":"object","properties":{"httpCode":{"type":"integer","description":"Returned HTTP code"}}}}}},"401":{"description":"The request was not authenticated"},"403":{"description":"The caller is not authorized to add documents to the corpus"},"409":{"description":"A document already exists in the corpus with the same document ID, yet the contents of the indexed document are different than the file being uploaded.\nSince the indexer is idempotent, the same document (identified by the document ID) can be uploaded multiple times.\nThe indexer does not support updates yet, so an error is returned when a different document is uploaded for the same document ID\nNote that when a raw file is uploaded, the file name is used as the document ID."},"507":{"description":"There is no more indexing quota left for the corpus or customer to index more documents.  Upgrade your account, add a credit card, or contact sales."}},"method":"post","path":"/v1/upload","servers":[{"url":"https://api.vectara.io"}],"securitySchemes":{"oAuth":{"type":"oauth2","description":"OAuth2 access to Vectara","flows":{"clientCredentials":{"tokenUrl":"https://vectara-prod-YOUR_VECTARA_CUSTOMER_ID.auth.us-west-2.amazoncognito.com/oauth2/token","scopes":{}}}},"ApiKeyAuth":{"type":"apiKey","in":"header","name":"x-api-key"}},"info":{"title":"Vectara REST API","version":"1.0.0","termsOfService":"https://vectara.com/legal/online-customer-agreement/","x-logo":{"url":"https://docs.vectara.com/img/vectara_wordmark.png","altText":"Vectara"},"x-dark-logo":{"url":"https://docs.vectara.com/img/vectara_wordmark_light.png","altText":"Vectara"},"contact":{"name":"Vectara Support","email":"support@vectara.com","url":"http://support.vectara.com/"},"description":"Vectara is a neural search platform, built for developers to get the most out of their data.\n\nYou can sign up for an account at [https://vectara.com](https://vectara.com)."},"postman":{"name":"File Upload","description":{"content":"File Upload","type":"text/plain"},"url":{"path":["v1","upload"],"host":["{{baseUrl}}"],"query":[{"disabled":false,"description":{"content":"(Required) Customer ID","type":"text/plain"},"key":"c","value":""},{"disabled":false,"description":{"content":"(Required) Corpus ID","type":"text/plain"},"key":"o","value":""},{"disabled":false,"description":{"content":"If true, the server returns the extracted document that was indexed","type":"text/plain"},"key":"d","value":""}],"variable":[]},"header":[{"key":"Content-Type","value":"multipart/form-data"},{"key":"Accept","value":"application/json"}],"method":"POST","body":{"mode":"formdata","formdata":[]},"auth":{"type":"apikey","apikey":[{"type":"any","value":"x-api-key","key":"key"},{"type":"any","value":"<API Key>","key":"value"},{"type":"any","value":"header","key":"in"}]}}}
+api:
+  {
+    "operationId": "FileUpload",
+    "description": "File Upload",
+    "tags": ["IndexService"],
+    "security": [{ "ApiKeyAuth": [] }, { "oAuth": [] }],
+    "requestBody":
+      {
+        "content":
+          {
+            "multipart/form-data":
+              {
+                "schema":
+                  {
+                    "type": "object",
+                    "properties":
+                      {
+                        "doc_metadata":
+                          {
+                            "description": "A JSON string of any additional metadata you want attached to the file.",
+                            "type": "string",
+                          },
+                        "file":
+                          {
+                            "description": "The file to be indexed into Vectara.",
+                            "type": "string",
+                            "format": "binary",
+                          },
+                      },
+                    "required": ["file"],
+                  },
+              },
+          },
+      },
+    "parameters":
+      [
+        {
+          "in": "query",
+          "name": "c",
+          "required": true,
+          "description": "Customer ID",
+          "schema": { "type": "integer" },
+        },
+        {
+          "in": "query",
+          "name": "o",
+          "required": true,
+          "description": "Corpus ID",
+          "schema": { "type": "integer" },
+          "example": 1,
+          "minimum": 1,
+        },
+        {
+          "in": "query",
+          "name": "d",
+          "required": false,
+          "description": "If true, the server returns the extracted document that was indexed",
+          "default": false,
+          "schema": { "type": "boolean" },
+        },
+      ],
+    "responses":
+      {
+        "200":
+          {
+            "description": "A successful response",
+            "content":
+              {
+                "application/json":
+                  {
+                    "schema":
+                      {
+                        "type": "object",
+                        "properties":
+                          {
+                            "response":
+                              {
+                                "type": "object",
+                                "properties":
+                                  {
+                                    "status": { "type": "object" },
+                                    "quotaConsumed":
+                                      {
+                                        "type": "object",
+                                        "properties":
+                                          {
+                                            "numChars":
+                                              {
+                                                "type": "string",
+                                                "description": "The number of characters Vectara indexed from the file uploaded.",
+                                              },
+                                            "numMetadataChars":
+                                              {
+                                                "type": "string",
+                                                "description": "The number of metadata characters Vectara indexed from the file uploaded.",
+                                              },
+                                          },
+                                      },
+                                  },
+                              },
+                          },
+                      },
+                  },
+              },
+          },
+        "400":
+          {
+            "description": "An invalid request was sent.  e.g. one or more parameters was missing, or the corpus does not exist.",
+            "content":
+              {
+                "application/json":
+                  {
+                    "schema":
+                      {
+                        "type": "object",
+                        "properties":
+                          {
+                            "httpCode":
+                              {
+                                "type": "integer",
+                                "description": "Returned HTTP code",
+                              },
+                          },
+                      },
+                  },
+              },
+          },
+        "401": { "description": "The request was not authenticated" },
+        "403":
+          {
+            "description": "The caller is not authorized to add documents to the corpus",
+          },
+        "409":
+          {
+            "description": "A document already exists in the corpus with the same document ID, yet the contents of the indexed document are different than the file being uploaded.\nSince the indexer is idempotent, the same document (identified by the document ID) can be uploaded multiple times.\nThe indexer does not support updates yet, so an error is returned when a different document is uploaded for the same document ID\nNote that when a raw file is uploaded, the file name is used as the document ID.",
+          },
+        "507":
+          {
+            "description": "There is no more indexing quota left for the corpus or customer to index more documents.  Upgrade your account, add a credit card, or contact sales.",
+          },
+      },
+    "method": "post",
+    "path": "/v1/upload",
+    "servers": [{ "url": "https://api.vectara.io" }],
+    "securitySchemes":
+      {
+        "oAuth":
+          {
+            "type": "oauth2",
+            "description": "OAuth2 access to Vectara",
+            "flows":
+              {
+                "clientCredentials":
+                  {
+                    "tokenUrl": "https://vectara-prod-YOUR_VECTARA_CUSTOMER_ID.auth.us-west-2.amazoncognito.com/oauth2/token",
+                    "scopes": {},
+                  },
+              },
+          },
+        "ApiKeyAuth": { "type": "apiKey", "in": "header", "name": "x-api-key" },
+      },
+    "info":
+      {
+        "title": "Vectara REST API",
+        "version": "1.0.0",
+        "termsOfService": "https://vectara.com/legal/online-customer-agreement/",
+        "x-logo":
+          {
+            "url": "https://docs.vectara.com/img/vectara_wordmark.png",
+            "altText": "Vectara",
+          },
+        "x-dark-logo":
+          {
+            "url": "https://docs.vectara.com/img/vectara_wordmark_light.png",
+            "altText": "Vectara",
+          },
+        "contact":
+          {
+            "name": "Vectara Support",
+            "email": "support@vectara.com",
+            "url": "http://support.vectara.com/",
+          },
+        "description": "Vectara is a neural search platform, built for developers to get the most out of their data.\n\nYou can sign up for an account at [https://vectara.com](https://vectara.com).",
+      },
+    "postman":
+      {
+        "name": "File Upload",
+        "description": { "content": "File Upload", "type": "text/plain" },
+        "url":
+          {
+            "path": ["v1", "upload"],
+            "host": ["{{baseUrl}}"],
+            "query":
+              [
+                {
+                  "disabled": false,
+                  "description":
+                    {
+                      "content": "(Required) Customer ID",
+                      "type": "text/plain",
+                    },
+                  "key": "c",
+                  "value": "",
+                },
+                {
+                  "disabled": false,
+                  "description":
+                    { "content": "(Required) Corpus ID", "type": "text/plain" },
+                  "key": "o",
+                  "value": "",
+                },
+                {
+                  "disabled": false,
+                  "description":
+                    {
+                      "content": "If true, the server returns the extracted document that was indexed",
+                      "type": "text/plain",
+                    },
+                  "key": "d",
+                  "value": "",
+                },
+              ],
+            "variable": [],
+          },
+        "header":
+          [
+            { "key": "Content-Type", "value": "multipart/form-data" },
+            { "key": "Accept", "value": "application/json" },
+          ],
+        "method": "POST",
+        "body": { "mode": "formdata", "formdata": [] },
+        "auth":
+          {
+            "type": "apikey",
+            "apikey":
+              [
+                { "type": "any", "value": "x-api-key", "key": "key" },
+                { "type": "any", "value": "<API Key>", "key": "value" },
+                { "type": "any", "value": "header", "key": "in" },
+              ],
+          },
+      },
+  }
 sidebar_class_name: "post api-method"
 info_path: docs/rest-api/vectara-rest-api
 custom_edit_url: null
@@ -22,9 +264,9 @@ import TabItem from "@theme/TabItem";
 
 ## FileUpload
 
-This operation authenticates with either an API Key or OAuth 2.0 Bearer 
+This operation authenticates with either an API Key or OAuth 2.0 Bearer
 Token. Review the [API Keys](/docs/learn/authentication/api-key-management) and [OAuth 2.0](/docs/learn/authentication/oauth-2) sections
-for more details. We also provide [client credentials grant examples](/docs/getting-started-samples/JWTFetcher.cs) 
+for more details. We also provide [client credentials grant examples](/docs/getting-started-samples/JWTFetcher.cs)
 and [REST examples](/docs/getting-started-samples/RestApiKeyQueries.cs) in different programming languages.
 
 File Upload
@@ -35,7 +277,7 @@ A successful response
 
 </div><div><MimeTabs schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs><TabItem label={"Schema"} value={"Schema"}><details style={{}} data-collapsed={false} open={true}><summary style={{"textAlign":"left"}}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}}><summary style={{}}><strong>response</strong><span style={{"opacity":"0.6"}}> object</span></summary><div style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"status"} required={false} schemaName={"object"} qualifierMessage={undefined} schema={{"type":"object"}}></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}}><summary style={{}}><strong>quotaConsumed</strong><span style={{"opacity":"0.6"}}> object</span></summary><div style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"numChars"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","description":"The number of characters Vectara indexed from the file uploaded."}}></SchemaItem><SchemaItem collapsible={false} name={"numMetadataChars"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","description":"The number of metadata characters Vectara indexed from the file uploaded."}}></SchemaItem></div></details></SchemaItem></div></details></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"response\": {\n    \"status\": {},\n    \"quotaConsumed\": {\n      \"numChars\": \"string\",\n      \"numMetadataChars\": \"string\"\n    }\n  }\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"400"} value={"400"}><div>
 
-An invalid request was sent.  e.g. one or more parameters was missing, or the corpus does not exist.
+An invalid request was sent. e.g. one or more parameters was missing, or the corpus does not exist.
 
 </div><div><MimeTabs schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs><TabItem label={"Schema"} value={"Schema"}><details style={{}} data-collapsed={false} open={true}><summary style={{"textAlign":"left"}}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"httpCode"} required={false} schemaName={"integer"} qualifierMessage={undefined} schema={{"type":"integer","description":"Returned HTTP code"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"httpCode\": 0\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"401"} value={"401"}><div>
 
@@ -54,7 +296,7 @@ Note that when a raw file is uploaded, the file name is used as the document ID.
 
 </div><div></div></TabItem><TabItem label={"507"} value={"507"}><div>
 
-There is no more indexing quota left for the corpus or customer to index more documents.  Upgrade your account, add a credit card, or contact sales.
+There is no more indexing quota left for the corpus or customer to index more documents. Upgrade your account, add a credit card, or contact sales.
 
 </div><div></div></TabItem></ApiTabs></div>
-      
+

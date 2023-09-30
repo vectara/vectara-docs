@@ -13,28 +13,42 @@ import SchemaTabs from "@theme/SchemaTabs";
 import TabItem from "@theme/TabItem";
 import Export from "@theme/ApiDemoPanel/Export";
 
-<span className={"theme-doc-version-badge badge badge--secondary"}>Version: 1.0.0</span>
+<span className={"theme-doc-version-badge badge badge--secondary"}>
+  Version: 1.0.0
+</span>
 
-<Export url={"https://docs.vectara.com/vectara-oas.yaml"} proxy={undefined}></Export>
+<Export
+  url={"https://docs.vectara.com/vectara-oas.yaml"}
+  proxy={undefined}
+></Export>
 
 # Vectara REST API
 
-<ApiLogo logo={{"url":"https://docs.vectara.com/img/vectara_wordmark.png","altText":"Vectara"}} darkLogo={{"url":"https://docs.vectara.com/img/vectara_wordmark_light.png","altText":"Vectara"}}></ApiLogo>
+<ApiLogo
+  logo={{
+    url: "https://docs.vectara.com/img/vectara_wordmark.png",
+    altText: "Vectara",
+  }}
+  darkLogo={{
+    url: "https://docs.vectara.com/img/vectara_wordmark_light.png",
+    altText: "Vectara",
+  }}
+></ApiLogo>
 
-Vectara is the trusted GenAI product platform. Built around a neural search 
-core, it provides an end-to-end platform for creating GenAI products using 
+Vectara is the trusted GenAI product platform. Built around a neural search
+core, it provides an end-to-end platform for creating GenAI products using
 a simple to use API
 
-You can sign up for an account at [https://vectara.com](https://vectara.com) and 
-then view several [API Recipes](/docs/api-recipes) with example queries 
+You can sign up for an account at [https://vectara.com](https://vectara.com) and
+then view several [API Recipes](/docs/api-recipes) with example queries
 and parameter values.
 
 :::note
 
-API Keys can be used for querying and indexing operations, but cannot at this 
-time be used for administrative operations such as creating or deleting 
-corpora. These operations authenticate with a Bearer Token via the 
-OAuth 2.0 client credentials grant. Review the [OAuth 2.0 section](/docs/learn/authentication/oauth-2) about 
+API Keys can be used for querying and indexing operations, but cannot at this
+time be used for administrative operations such as creating or deleting
+corpora. These operations authenticate with a Bearer Token via the
+OAuth 2.0 client credentials grant. Review the [OAuth 2.0 section](/docs/learn/authentication/oauth-2) about
 how to generate the token.
 
 :::
@@ -44,4 +58,4 @@ how to generate the token.
 OAuth2 access to Vectara
 
 <div><table><tbody><tr><th>Security Scheme Type:</th><td>oauth2</td></tr><tr><th>OAuth Flow (clientCredentials):</th><td><p>Token URL: https://vectara-prod-YOUR_VECTARA_CUSTOMER_ID.auth.us-west-2.amazoncognito.com/oauth2/token</p><span>Scopes:</span><ul></ul></td></tr></tbody></table></div></TabItem><TabItem label={"API Key: ApiKeyAuth"} value={"ApiKeyAuth"}><div><table><tbody><tr><th>Security Scheme Type:</th><td>apiKey</td></tr><tr><th>Header parameter name:</th><td>x-api-key</td></tr></tbody></table></div></TabItem></SchemaTabs></div><div style={{"display":"flex","flexDirection":"column","marginBottom":"var(--ifm-paragraph-margin-bottom)"}}><h3 style={{"marginBottom":"0.25rem"}}>Contact</h3><span>Vectara Support: <a href={"mailto:support@vectara.com"}>support@vectara.com</a></span><span>URL: <a href={"http://support.vectara.com/"}>http://support.vectara.com/</a></span></div><div style={{"marginBottom":"var(--ifm-paragraph-margin-bottom)"}}><h3 style={{"marginBottom":"0.25rem"}}>Terms of Service</h3><a href={"https://vectara.com/legal/online-customer-agreement/"}>https://vectara.com/legal/online-customer-agreement/</a></div>
-      
+
