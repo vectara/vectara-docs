@@ -7,124 +7,129 @@ sidebar_label: OAuth 2.0
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Vectara supports OAuth 2.0 via the
-[client credentials grant](https://oauth.net/2/grant-types/client-credentials/).
-This looks a lot like an API key or username/password authentication if you've
-never used this before, but there's a lot more to it.
+Vectara uses "Application clients" to support authentication with OAuth 2.0. 
+These application clients enable you to generate JWT tokens which are used by 
+Vectara to authenticate API requests. Think of OAuth 2.0 has a more secure way 
+to send API calls, similar to an API key or username/password combination 
+but with enhanced features.
 
-Fundamentally, you provide an OAuth 2.0 authentication provider with a
-"client ID" which is *like* a username and a "client secret" which is *like*
-a password, and a successful authentication returns a
-[JWT token](https://jwt.io/), which you can then pass into subsequent requests
-as an authenticated application. After you create an app client, you will use
-the values for the authentication URL, `client_id`, and `client_secret` to 
-obtain a JWT token, also known as a Bearer Token, via the 
-`client-credentials` grant.
+Here is how it works. You provide the OAuth 2.0 authentication provider with a
+"client ID" (similar to a username) and a "client secret" (similar to a 
+password). A successful authentication returns a [JWT token](https://jwt.io/), which 
+you can then pass into subsequent requests as an authenticated application. 
 
-OAuth 2.0 has several advantages over API keys or simple usernames/passwords:
-- OAuth 2.0 has built in revocation flows in case a key is compromised
-- OAuth 2.0 doesn't suffer from information leakage e.g. of the username 
-  that created the client
-- OAuth 2.0 has built-in token expiry, so if a JWT token ever does get posted 
-  to a public place, it's less likely to be valid by the time an attacker 
-  discovers it
-- OAuth 2.0 is inherently more tightly scoped than API keys
-- JWT tokens are detected by many security scanning tools, allowing them to 
-  more easily be flagged in the case of accidental publication
+:::caution
 
-:::warning
-
-:lock: Always keep your OAuth tokens private. Do not share them through email, 
+:lock: Always keep your JWT tokens private. Do not share them through email, 
 Slack, Discord, forums, or other public channels because it can lead to 
 unauthorized access. Treat these tokens with the same confidentiality as your 
 personal credentials. 
 
 :::
 
-## Create an application client
-Go to [https://console.vectara.com/console/apiAccess/appClients](https://console.vectara.com/console/apiAccess/appClients)
-to create a new application client.  Most applications will want to use the
-`client credentials` grant. When you create the app client, you can then copy the 
-`client_id` and `client_secret` that you need for the credentials grant.
+## Advantages of OAuth 2.0 vs API Keys
+
+OAuth 2.0 takes more work to set up but offer several advantages over API keys:
+
+- OAuth 2.0 has built-in revocation flows in case a key is compromised.
+- The JWT token expires automatically, so if a JWT token ever does get posted 
+  to a public place, it's less likely to be valid by the time an attacker 
+  discovers it.
+- OAuth 2.0 doesn't suffer from information leakage such as the username 
+  that created the client.
+- OAuth 2.0 is inherently more tightly scoped than API keys.
+- JWT tokens are detected by many security scanning tools, allowing them to 
+  more easily be flagged in the case of accidental publication.
+
+## Authenticate with OAuth 2.0
+
+OAuth 2.0 authentication consists of three steps:
+1. [Create an application client](/docs/api-reference/auth-apis/oauth-2#create-an-application-client)
+2. [Generate a JWT token](/docs/api-reference/auth-apis/oauth-2#generate-a-jwt-token)
+3. [Use the JWT token in an API request](/docs/api-reference/auth-apis/oauth-2#use-the-jwt-token-in-an-api-request)
+
+### Create an application client
+Visit the **API access** page in the Console or go to [https://console.vectara.com/console/apiAccess/appClients](https://console.vectara.com/console/apiAccess/appClients) to create a new application client. Most applications will want to use the
+`client credentials` grant when they generate the JWT token. 
 
 1. Click **Create app client**.
 2. Enter a **Name** and **Description** for the app client.
-3. Select the appropriate roles for the client from **Account Admin**, 
-   **Corpus Admin**, and **Billing Admin**.
+3. Select the appropriate roles for the client.
 4. Click **Create**.
    The new app client appears in the list.
 
-   ![Copy the Client ID and Secret](/img/copy_client_id_and_secret.png)
-5. Click the **Copy** icon to copy the `client_id` and then save this value.
-6. Select the drop-down menu, click **Copy Secret** and save the `client_secret` value.
-7. Click the **Copy** icon to the right of the _OAuth 2.0 authentication URL_ and save the value.
+This page provides three pieces of information that you will use to generate a 
+JWT token:
 
-When you create your client credentials request, you need 
+**Authentication URL**
+
+Access your authentication by clicking the copy icon for the "OAuth 2.0 authentication URL."
+
+![Copy the Authentication URL](/img/copy_authentication_url.png)
+
+The URL has the following format:
+
+`https://vectara-prod-<customer-id>.auth.us-west-2.amazoncognito.com/oauth2/token`
+
+**Client ID**
+
+Access the `client_id` by clicking the copy icon next to your app client's ID.
+
+![Copy the Client ID](/img/copy_client_id.png)
+
+**Client secret**
+
+Access the `client_secret` by clicking the drop-down to the right of your app client and selecting **Copy secret.**
+
+![Copy the Client Secret](/img/copy_client_secret.png)
+
+Now that you have values for the authentication URL, `client_id`, and `client_secret`, 
+you can generate the JWT token with a `client-credentials` grant. We provide [client 
+credentials grant examples](/docs/getting-started-samples/JWTFetcher.cs) in different programming languages.
+
+### Generate a JWT Token
+
+Use the information from the previous step to send a request to generate a JWT 
+token. When you create your client credentials request, you need 
 the OAuth 2.0 Authentication URL, `client_id`, and `client_secret` values to
 generate the token correctly.
 
-## How to obtain a JWT Token
+Here's how you can generate a JWT token in JavaScript which is how you 
+authenticate Vectara API requests in a JavaScript application:
 
-Before continuing, you'll need the OAuth 2.0 token endpoint which is the OAuth 
-2.0 authentication URL. You can copy the URL from the [API access](https://console.vectara.com/console/apiAccess/appClients)
-page and then selecting the App Client tab. Your account's authentication URL will typically look like:
-`https://vectara-prod-YOUR_VECTARA_CUSTOMER_ID.auth.us-west-2.amazoncognito.com/oauth2/token`
-where `YOUR_VECTARA_CUSTOMER_ID` is your customer ID.
-
-Nearly every modern high-level programming language has libraries to obtain a
-JWT token from an OAuth 2.0 server via the `client_credentials` grant type.
-
-The **client ID** is the `app_id`, and the **redirect URI**
-must match the redirect URL configured for the client. Note the peculiarities
-of the HTTP authorization header: this is per the OAuth 2.0 standard.
-
-The **grant type** should be `client_credentials` for App Clients. This auth
-flow is commonly used for servers that must communicate with the platform. It
-should be `authorization_code` for authentication from apps installed on a
-device, such as web browsers. Finally, `refresh_token` is used to refresh
-an expired token.
-
-### Generate the JWT token
-
-Now that you have the OAuth 2.0 authentication URL, 
-`client_id`, and `client_secret`, you can generate the JWT token with 
-a `client_credentials` grant. You can then use the resulting value in 
-the [API Playground](/docs/rest-api/) to test your API calls.
-
-The following examples show how to generate the JWT token. Make sure to 
-substitute your values for the `customer_id` in the URL, `client_id`, and `client_secret`.
-
-<Tabs>
-<TabItem value="nodejs-example" label="NodeJS">
-
-```js title="NodeJS Example"
-const { access_token } = await axios.post(
-  "https://vectara-prod-123456789.auth.us-west-2.amazoncognito.com/oauth2/token",
-  {
+```js title="JavaScript Example"
+const {
+  data: { access_token: jwt }
+} = await axios({
+  method: "POST",
+  headers: { "content-type": "application/x-www-form-urlencoded" },
+  data: qs.stringify({
     grant_type: "client_credentials",
-    client_id: "...nft9ga72pf",
-    client_secret: "abcdefghijklmnop1234567890"
-  }
- );
+    client_id: "<your client ID goes here>",
+    client_secret: "<your client secret goes here>"
+  }),
+  url: "<your authentication URL goes here>"
+});
 ```
-</TabItem>
-<TabItem value="curl-example" label="cURL" default>
+Here’s how you can generate a JWT token from the command line with a 
+cURL command. This method is useful if you want to try out requests in 
+our Vectara [API Playground](docs/rest-api/vectara-rest-api).
 
 ```js title="cURL Example"
 curl -XPOST -H "Content-type: application/x-www-form-urlencoded" -d 
-"grant_type=client_credentials&client_id=...nft9ga72pf&client_secret=abcdefghijklmnop1234567890" 
-https://vectara-prod-123456789.auth.us-west-2.amazoncognito.com/oauth2/token | jq -r ".access_token"
-
+"grant_type=client_credentials&client_id=<your client ID goes 
+here>&client_secret=<your client secret goes here> <your authentication 
+URL goes here> 
 ```
-</TabItem>
+### Use the JWT token in an API request
 
-</Tabs>
+To use a JWT token in an API request, pass the token using the `Authorization` 
+header configuration.
 
-After you generate the token and copy the value, go to a section of the API 
-Playground such as [ListCorpora](/docs/rest-api/list-corpora) and paste the 
-the resulting value into the **Bearer Token** field along with other required 
-fields such as `customer_id`:
+If you're using the API Playground such as [ListCorpora](/docs/rest-api/list-corpora), 
+use the JWT token value in the **Bearer Token** field:
 
 ![API Playground Example](/img/api_playground_listcorpora.png)
 
-Finally, click **Send API Request** to test the API call.
+Click **Send API Request** to test the API call.
+
