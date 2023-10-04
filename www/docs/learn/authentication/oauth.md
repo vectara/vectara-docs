@@ -44,9 +44,9 @@ OAuth 2.0 takes more work to set up but offer several advantages over API keys:
 ## Authenticate with OAuth 2.0
 
 OAuth 2.0 authentication consists of three steps:
-1. [Create an application client](/docs/api-reference/auth-apis/oauth-2#create-an-application-client)
-2. [Generate a JWT token](/docs/api-reference/auth-apis/oauth-2#generate-a-jwt-token)
-3. [Use the JWT token in an API request](/docs/api-reference/auth-apis/oauth-2#use-the-jwt-token-in-an-api-request)
+  - [Create an application client](/docs/learn/authentication/oauth-2#create-an-application-client)
+  - [Generate a JWT Token](/docs/learn/authentication/oauth-2#generate-a-jwt-token)
+  - [Use the JWT token in an API request](/docs/learn/authentication/oauth-2#use-the-jwt-token-in-an-api-request)
 
 ### Create an application client
 Visit the **API access** page in the Console or go to [https://console.vectara.com/console/apiAccess/appClients](https://console.vectara.com/console/apiAccess/appClients) to create a new application client. Most applications will want to use the
