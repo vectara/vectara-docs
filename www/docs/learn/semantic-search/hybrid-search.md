@@ -1,12 +1,12 @@
 ---
 id: hybrid-search
 title: 'Hybrid Search: Combine Keyword and Semantic'
-sidebar_label: 'Hybrid Search: Combine Keyword and Semantic'
+sidebar_label: Hybrid Search
 ---
 
 Vectara provides a Hybrid Search that offers a powerful and flexible approach 
 to text retrieval. We combine partial, exact, and Boolean text matching with 
-neural models that blends traditional, keyword-based search with 
+neural models which blends traditional, keyword-based search with 
 semantic search in what is called "hybrid" retrieval model.
 
 For example, Vectara enables you to do the following:
@@ -18,18 +18,18 @@ matching, and wildcard prefixes of terms
 
 ## Enable Exact and Boolean Text Matching
 
-By default, the exact and Boolean text matching is disabled and Vectara only 
-uses neural retrieval. You can enable hybrid search by specifying a value,
-`lambda`, at query time. This value can range from `0` to `1` (inclusive).
+The exact and Boolean text matching (similar to similar to a traditional, 
+keyword-based search) is disabled by default and Vectara only uses neural 
+retrieval. You can enable hybrid search by specifying a value, `lambda`, at
+ query time. This value can range from `0` to `1` (inclusive).
 
 The default value of `lambda` is `0`, which disables exact and Boolean text
 matching.
 
 A value of `1` would disable _neural_ retrieval instead, relying _only_ on
-Boolean and exact text matching (similar to a traditional, keyword search). 
-Experiemnting with the `lambda` value is useful if you're trying to evaluate 
-how a keyword system like one based on Elasticsearch or Solr may compare 
-to Vectara.
+Boolean and exact text matching. Experiemnting with the `lambda` value is 
+useful if you're trying to evaluate how a keyword system like one based on 
+Elasticsearch or Solr may compare to Vectara.
 
 Vectara supports in-between values as well, which tells Vectara to try to
 consider _both_ neural _and_ Boolean and exact text matching and then to blend

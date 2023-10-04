@@ -27,11 +27,10 @@ module.exports = {
         },
         {
           type: 'category',
-          label: 'Common API Paradigms',
+          label: 'Vectara API Paradigms',
           items: [
             'api-reference/protobuf-definitions',
             'api-reference/rest',
-            'common-use-cases/keeping-your-data-private/tls'
           ]
         },
         {
@@ -47,6 +46,7 @@ module.exports = {
         },
       ],
     },
+
         {
       type: 'category',
       label: 'Learn',

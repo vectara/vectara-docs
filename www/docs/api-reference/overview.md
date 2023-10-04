@@ -1,19 +1,39 @@
 ---
 id: api-overview
-title: Overview of APIs
+title: Overview of Vectara's APIs
 sidebar_label: API Overview
 ---
 
 import {Config} from '@site/docs/definitions.md';
 
-Everything in <Config v="names.product"/> is driven by APIs. This page serves
+Everything in <Config v="names.product"/> is driven by APIs. This page serves 
 as an overview of the APIs and how to navigate this documentation to use those
-APIs.
+APIs. Before you dive into othis topic, we recommend that you have a basic 
+understanding of the following information:
+
+## API Concepts
+
+Familiarize yourself with the fundamentals of Application Programming 
+Interfaces (APIs) including what APIs are, how they work, common use cases, 
+and other key concepts:
+
+* **gRPC APIs:** Understand the basics of gRPC (Remote Procedure Call) such as 
+  the advantages with performance, code generation, and how it uses Protocol 
+  Buffers for schema defnitions.
+* **RESTful APIs:** Understand the principles of Representational State Transfer 
+  (REST) and why it's commonly used in web services. Make sure to also 
+  understand how it differs from gRPC.
+* **HTTP Methods:** Become familar with HTTP methods like GET, POST, PUT, and DELETE.
+* **gRPC Methods:** Become familar with gRPC methods like server streaming, client
+  streaming, and bidirectional streaming.
+* **Authentication:** Become aware of common authentication methods that can be 
+  implemented in both gRPC and REST APIs including API Keys and OAuth 2.0 and 
+  JWT tokens.
 
 ## gRPC and REST APIs
 Almost every API has both a [gRPC](https://en.wikipedia.org/wiki/GRPC) and a
 REST(https://en.wikipedia.org/wiki/Representational_state_transfer) endpoint.
-The 1 exception to this is the [File Upload](/docs/api-reference/indexing-apis/file-upload/file-upload)
+The only exception at this time is the [File Upload](/docs/api-reference/indexing-apis/file-upload/file-upload)
 API, which is only available via REST.
 
 gRPC has several advantages over REST:

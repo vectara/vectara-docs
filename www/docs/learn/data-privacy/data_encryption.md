@@ -11,18 +11,17 @@ import {Config} from '@site/docs/definitions.md';
 When you send documents to the
 [index API](/docs/api-reference/indexing-apis/indexing) or
 [file upload API](/docs/api-reference/indexing-apis/file-upload/file-upload), <Config v="names.product"/> 
-will receive both document text and metadata information to be indexed. If you 
-choose the “textless” option for [corpus creation](/docs/api-reference/admin-apis/create-corpus), 
-then document text will be indexed (converted into vectors) but not stored 
+indexes both the document text and metadata. If you 
+choose the “textless” option for [corpus creation](/docs/api-reference/admin-apis/create-corpus), <Config v="names.product"/> converts 
+the document text into vectors for indexing but **does not** store the text 
 anywhere in the platform. However, metadata is always stored. 
 
 :::note
 
 For the safety 
 of your data, <Config v="names.product"/> always stores your text and metadata 
-in an encrypted format. By default this encryption will 
-use <Config v="names.product"/>'s own encryption key to encrypt your data
-(text and/or metadata).
+in an encrypted format. By default this encryption uses <Config v="names.product"/>'s own
+ encryption key to encrypt your data (text and/or metadata).
 
 :::
 
@@ -108,8 +107,8 @@ Console and these instructions will be updated.
 ## How the encryption key works
 
 Once your AWS KMS key is configured in the platform, when encrypting your
-document text or metadata, <Config v="names.product"/> will connect to your KMS
+document text or metadata, <Config v="names.product"/> connects to your KMS
 service to generate an encryption key. The encryption key provided by the KMS
 is stored in-memory and used to encrypt and decrypt your data. The in-memory 
-key will expire every hour. In turn, every hour <Config v="names.product"/> will 
-ask your AWS KMS to generate that encryption key again.
+key expires every hour. In turn, every hour <Config v="names.product"/>  
+asks your AWS KMS to generate that encryption key again.

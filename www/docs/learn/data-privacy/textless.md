@@ -11,8 +11,8 @@ import {Config} from '@site/docs/definitions.md';
 When you create a corpus [via the API](/docs/api-reference/admin-apis/create-corpus) or the
 [console UI](/docs/console-ui/creating-a-corpus), you have the option to **not** store 
 the text, also known as a "textless" mode. This mode is useful when you have 
-very sensitive text content. In this mode, the text content becomes 
-unrecoverable to <Config v="names.product"/> or to any user who successfully queries and 
+very sensitive text content. The text content becomes unrecoverable 
+to <Config v="names.product"/> or to any user who successfully queries and 
 finds the document.
 
 :::note

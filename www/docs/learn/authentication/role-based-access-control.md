@@ -1,18 +1,21 @@
 ---
 id: role-based-access-control
-title: Role-Based Access Control
+title: Role-Based Access Control (RBAC)
 sidebar_label: Role-Based Access Control
 ---
 
-Authorization refers to the access control policies that define what actions an
-authenticated entity may perform. A **permission** defines a
-granular action, such as running a query against a specific corpus, or resetting
-its contents. Related permissions are grouped together into **roles**, and
-authenticated entites may be assigned one or more roles. In this context, an
-**authenticated entity** refers to a user or an app client able to attest its
-identity by presenting a valid JWT token. Even entities that lack explicit roles
-may still be able to perform operations on the platform through the use of
-**default permissions**.
+import {Config} from '@site/docs/definitions.md';
+
+Authorization refers to the role-based access control policies in <Config v="names.product"/> that define
+what actions an authenticated entity may perform. In this system, **permissions** are 
+specific actions, like running a query against a specific corpus, or resetting
+its contents. These permissions are grouped together into **roles**, and
+authenticated entites may be assigned one or more roles.
+
+In this context, an **authenticated entity** refers to a user or an app client 
+able to attest its identity by presenting a valid JWT token. Even entities that 
+lack explicit roles may still be able to perform operations on the platform 
+through the use of **default permissions**.
 
 ## RBAC Roles
 
@@ -33,8 +36,8 @@ This section explains these concepts in further detail:
 
 ### Corpus Level Roles
 
-Users can also be authorized to perform various actions per corpus. This can be
-done in the Authorization tab on the Corpus page.
+Users can also be authorized to perform various actions per corpus. You can 
+assign roles in the Authorization tab on the Corpus page.
 
 ![Edit user](/img/corpus_auth.png)
 

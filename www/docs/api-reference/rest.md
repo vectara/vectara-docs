@@ -6,15 +6,16 @@ sidebar_label: REST APIs
 
 import {Config} from '@site/docs/definitions.md';
 
-While gRPC provides low latency and excellent scalability, in some scenarios
-it may be simpler to integrate using REST APIs.
+While gRPC provides low latency and excellent scalability, REST APISs provide 
+a more traditional and sometimes simpler integration path. REST is often the 
+choice for web-based applications that do not require real-time communication.
 
 ## API Formatting Guidelines
-All of the APIs can be found at https://<Config v="domains.rest.admin"/>/&lt;version&gt;/&lt;api-endpoint&gt;ee
+You can find all of our APIs at https://<Config v="domains.rest.admin"/>/&lt;version&gt;/&lt;api-endpoint&gt;
 
 The API endpoints are outlined in the various subsections of this API Reference
-section.  These are automatically derived from the [protobuf definitions](https://github.com/vectara/protos)
-and take the same parameters.  At a high level, the `api-endpoint`s are derived from
+section. These endpoints are automatically derived from the [protobuf definitions](https://github.com/vectara/protos)
+and take the same parameters. At a high level, the `api-endpoint` derives from
 [services.proto](https://github.com/vectara/protos/blob/main/services.proto)
 specifically, and the API parameters are in other `.proto` files.  The translation
 from the protobuf definitions to REST is:
@@ -37,7 +38,12 @@ You can find up-to-date OpenAPI specifications at
 These are automatically derived from the gRPC protobuf definitions as well.
 
 You can use these with tools of your choosing like [Insomnia](https://insomnia.rest/)
-or [Postman](https://www.postman.com/)
+or [Postman](https://www.postman.com/).
 
-If you'd like to try out the REST APIs live in your browser, you can do so in
-our [API Playground](/docs/rest-api/vectara-rest-api), which also make use of.
+1. Download the OpenAPI YAML file.
+2. Importt the file into Insomonia or Postman.
+3. Start making API calls directly from the tool.
+
+Want to try the REST APIs live in your browser? Head over to our
+our [API Playground](/docs/rest-api/vectara-rest-api) and make
+real-time API calls from your browser.

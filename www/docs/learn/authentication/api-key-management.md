@@ -10,10 +10,10 @@ import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 API Keys allow controlled, anonymous access to running semantic searches on your
-corpora. This greatly simplifies integration from public-facing systems such as
-websites, by allowing them to embed the API key and directly pass it
-to <Config v="names.product"/> when issuing requests. Should a key be compromised,
-it can be revoked in minutes, and a new key issued.
+corpora. This greatly simplifies integration from public-facing systems like
+websites. Simply embed the API key and directly pass it to <Config v="names.product"/> when 
+issuing requests. If a key is compromised, you can quickly revoke the key and 
+replace it in minutes.
 
 :::important
 
@@ -25,12 +25,12 @@ your account with an API key.
 You can use API keys for querying and indexing operations, but not at this 
 time for administrative operations such as creating or deleting corpora.
 
-The remainder of this guide walks you through managing and using the API Keys.
+The remainder of this section walks you through managing and using the API Keys.
 
 ## Create an API Key
 
 If you have the necessary permissions you'll see the `API Keys` in the sidebar.
-Click this option and you'll see the following page
+Click this option and you'll see the following page:
 
 ![API Keys](/img/api_key_create.png)
 

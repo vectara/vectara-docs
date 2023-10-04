@@ -1,13 +1,22 @@
 ---
 id: protobuf-definitions
-title: Protocol Buffer Definitions
-sidebar_label: Protocol Buffers
+title: gRPC APIs
+sidebar_label: gRPC APIs
 ---
 
 import {Config} from '@site/docs/definitions.md';
 
-<Config v="names.product"/> implements a <a href="https://grpc.io/">gRPC API</a> to all its core
-services. You can download the proto files directly below.
+<Config v="names.product"/> implements a <a href="https://grpc.io/">gRPC (Remote Procedure 
+Call) API</a> to all its core services. gRPC is a high-performance, open-source 
+framework developed by Google that enables different services to communicate 
+with each other. 
+
+Check out our [API Overview](/docs/api-reference/api-overview) for more 
+information. 
+
+## Protocol Buffer Definitions
+
+You can download the proto files directly from GitHub below. 
 
 | Protobuf | Description |
 | :--- | :--- |
@@ -19,12 +28,13 @@ services. You can download the proto files directly below.
 | [status.proto](https://github.com/vectara/protos/blob/main/status.proto) | Status return codes. |
 | [common.proto](https://github.com/vectara/protos/blob/main/common.proto) | Common message definitions. |
 
-## Auxiliary Protocol Buffers
+## Download the Auxiliary Protocol Buffers
 
 The gRPC services also use Google's
 [annotations.proto](https://github.com/googleapis/googleapis/blob/master/google/api/annotations.proto)
 and [http.proto](https://github.com/googleapis/googleapis/blob/master/google/api/http.proto).
-The curl commands below will download these files into the `ext` subdirectory.
+If you need these `proto` files, the following curl commands download these files into 
+the `ext` subdirectory.
 You can then reference them in the `protoc` path using `-I ext`.
 
 ```bash
@@ -44,9 +54,11 @@ repository has examples of connecting via gRPC in a variety of languages.
 
 ## Generating Strongly Typed Clients
 One of the advantages of using gRPC is that there is some tooling for generating
-strongly-typed clients/bindings in many programming languages.  These work by
+strongly-typed clients/bindings in many programming languages. These work by
 converting the protobuf definitions to code.
 
 The most up-to-date documentation on how to do this is in the "quick start"
 sections of [https://grpc.io/docs/languages/](https://grpc.io/docs/languages/)
 following the "Generate gRPC code" section in the language of your choosing.
+For example, check out the official documentation 
+for [getting started with gRPC in Python](https://grpc.io/docs/languages/python/quickstart/).
