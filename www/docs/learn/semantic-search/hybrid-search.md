@@ -18,7 +18,7 @@ matching, and wildcard prefixes of terms
 
 ## Enable Exact and Boolean Text Matching
 
-The exact and Boolean text matching (similar to similar to a traditional, 
+The exact and Boolean text matching (similar to a traditional, 
 keyword-based search) is disabled by default and Vectara only uses neural 
 retrieval. You can enable hybrid search by specifying a value, `lambda`, at
  query time. This value can range from `0` to `1` (inclusive).
@@ -41,14 +41,14 @@ typically recommend users start experimentation with a `lambda` value of 0.025.
 
 When interpreting query strings, Vectara treats the following syntax specially.
 
-Words that are quoted must match exactly in that order. So, for example, the
+* Words that are quoted must match exactly in that order. For example, the
 query `blue shoes` must match the word `blue` followed immediately by `shoes`.
 
-A word fragment suffixed with an asterisk `*` is treated as a prefix match, 
+* A word fragment suffixed with an asterisk `*` is treated as a prefix match, 
 meaning that it matches any word of which it is a prefix. For example, 
 `Miss*` matches Mississippi.
 
-Words prefixed with a minus `-` sign are excluded from the results. To extend 
+* Words prefixed with a minus `-` sign are excluded from the results. To extend 
 on the previous example, `-Mississippi` would exclude results referencing the 
 Magnolia State. Using `-Miss*` would exclude references to both 
 Mississippi and Missouri.

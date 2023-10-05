@@ -14,7 +14,7 @@ methods in place to secure your data and operations. All <Config v="names.produc
 are authenticated. Indexing and Search APIs can be authenticated via [API Keys](/docs/learn/authentication/api-key-management) however, Admin actions (creating/deleting corpora) must be done via
 [OAuth 2.0](/docs/learn/authentication/oauth-2).
 
-### Choose between API keys or OAuth 2.0
+## Choosing API keys or OAuth 2.0
 
 When it comes to securing your application and managing access, you have a 
 choice between API Keys and OAuth. API Keys can be scoped either to be 
