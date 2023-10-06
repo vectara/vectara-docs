@@ -29,7 +29,7 @@ login.
 
 ![Reveal the Customer ID](/img/view_customer_id.gif)
 
-You can click your name in the top, upper-right corner to reveal 
+You can click your name in the upper-right corner to reveal and copy
 the Customer ID.
 
 :::note
