@@ -1,5 +1,5 @@
 ---
-id: intepreting-scores
+id: interpreting-scores
 title: Interpreting Scores
 sidebar_label: Scores
 ---

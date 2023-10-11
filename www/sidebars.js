@@ -235,7 +235,7 @@ module.exports = {
                 label: 'Interpreting Responses',
                 items: [
                   'api-reference/search-apis/interpreting-responses/metadata',
-                  'api-reference/search-apis/interpreting-responses/intepreting-scores',
+                  'api-reference/search-apis/interpreting-responses/interpreting-scores',
                   'api-reference/search-apis/interpreting-responses/highlighting',
                 ],
             },
