@@ -52,7 +52,7 @@ in FAQ search systems.
 
 If you want to understand a bit more about why <Config v="names.product"/>
 produced a particular score, have a look at our
-[interpreting scores](/docs/api-reference/search-apis/interpreting-responses/intepreting-scores)
+[interpreting scores](/docs/api-reference/search-apis/interpreting-responses/interpreting-scores)
 documentation.
 
 ## Low-level indexing controls
