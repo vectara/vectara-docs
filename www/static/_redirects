@@ -2,6 +2,7 @@
 /docs/admin-apis/create-corpus                                /docs/api-reference/admin-apis/create-corpus
 /docs/admin-apis/delete-corpus                                /docs/api-reference/admin-apis/delete-corpus
 /docs/admin-apis/reset-corpus                                 /docs/api-reference/admin-apis/reset-corpus
+/docs/common-use-cases/chatbots-grounded-generation/grounded-generation-overview                /docs/learn/grounded-generation/grounded-generation-overview
 /docs/indexing-apis/core_indexing                             /docs/api-reference/indexing-apis/core_indexing
 /docs/indexing-apis/deleting-documents                        /docs/api-reference/indexing-apis/deleting-documents
 /docs/indexing-apis/file-upload                               /docs/api-reference/indexing-apis/file-upload/file-upload
