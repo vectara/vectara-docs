@@ -1,7 +1,7 @@
 ---
 id: tls
-title: Transport Layer Security
-sidebar_label: Transport Layer Security
+title: Transport Layer Security (TLS)
+sidebar_label: Transport Layer Security (TLS)
 ---
 
 import Tabs from '@theme/Tabs';

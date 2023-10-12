@@ -1,6 +1,6 @@
 ---
 id: recommender-overview
-title: Recommendations
+title: Recommendation System
 sidebar_label: Recommendation System
 ---
 
@@ -27,8 +27,11 @@ we recommend that you use [filter expressions](/docs/api-reference/search-apis/s
 for this.
 
 Specifically:
-1. When you index your content, hash your content using something like SHA-256 and add that as custom metadata on the document
-2. To find similar content to a particular document, hash the entire document using the same hashing algorithm and then perform a filtered query to find exact hash matches
+1. When you index your content, hash your content using something like SHA-256 
+   and add that as custom metadata on the document
+2. To find similar content to a particular document, hash the entire document 
+   using the same hashing algorithm and then perform a filtered query to find 
+   exact hash matches
 
 ## Similar document matching and near-duplicates
 Sometimes, you want to recommend alternative products or web pages to a user that
@@ -93,7 +96,7 @@ At times, it can be useful to further refine the recommendations.  For example:
 - Only suggest results that were created by a particular user
 
 In these cases, it can be useful to use <Config v="names.product"/>'s
-[filter expressions](/docs/common-use-cases/filtering-by-metadata/filter-overview).
-There are [out of the box filters](/docs/common-use-cases/filtering-by-metadata/ootb-filters)
+[filter expressions](/docs/learn/metadata-search-filtering/filter-overview).
+There are [out of the box filters](/docs/learn/metadata-search-filtering/ootb-metadata-filters)
 for title and language and you can make use of additional metadata you add, such
 as the author or publication date.

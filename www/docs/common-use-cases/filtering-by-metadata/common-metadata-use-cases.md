@@ -5,7 +5,7 @@ title: Common Use Cases
 
 import {Config} from '@site/docs/definitions.md';
 
-In addition to the [built in metadata that you can filter on](ootb-filters)
+In addition to the [built in metadata that you can filter on](/docs/learn/metadata-search-filtering/ootb-metadata-filters)
 in <Config v="names.product"/>, there are several common use cases that can be
 handled via metadata:
 

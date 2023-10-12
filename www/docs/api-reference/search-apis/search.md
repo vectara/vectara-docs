@@ -106,7 +106,7 @@ customer attached to the gRPC request.
 The **metadata_filter** allows specifying a predicate expression that restricts
 the search to a part of the corpus. The filter is written in a simplified SQL
 dialect and can reference metadata that was marked as filterable during corpus
-creation. See the [Filter Expressions Overview](/docs/common-use-cases/filtering-by-metadata/filter-overview) for a 
+creation. See the [Filter Expressions Overview](/docs/learn/metadata-search-filtering/filter-overview) for a 
 description of their syntax, and [Corpus Administration](/docs/api-reference/admin-apis/admin) to learn how 
 referenceable metadata is specified during corpus creation.
 
@@ -173,7 +173,7 @@ semantically answer the user, it will also then produce a summary of the results
 with its sources cited.  For more details on use cases for grounded generation
 and details on how to use grounded generation and common use cases to consider,
 have a look at the
-[chatbots and grounded generation](/docs/common-use-cases/chatbots-grounded-generation/grounded-generation-overview)
+[chatbots and grounded generation](/docs/learn/grounded-generation/grounded-generation-overview)
 use case documentation.
 
 The summary will come back in the following format:

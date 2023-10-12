@@ -144,4 +144,4 @@ together for display purposes.
 You can also use the `document`- and `section`-level metadata to filter in a
 search operation.  For more information on how to apply filter expressions at
 either the document or section/part level, please see the
-[filter expression](/docs/common-use-cases/filtering-by-metadata/filter-overview) documentation.
+[filter expression](/docs/learn/metadata-search-filtering/filter-overview) documentation.

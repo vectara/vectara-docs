@@ -1,11 +1,12 @@
 ---
-id: available-summarizers
-title: Selecting Summarizers
+id: select-a-summarizer
+title: Select a Summarizer
+sidebar_label: Select a Summarizer
 ---
 
 import {Config} from '@site/docs/definitions.md';
 
-Behind the scenes, <Config v="names.product"/> supports both varying the
+Behind the scenes, <Config v="names.product"/> supports both selecting the
 summarizer model as well as the prompt for the model.  We make range of these
 controls available to our [Scale](https://vectara.com/pricing/) customers.  If
 you are a Scale customer or are considering becoming one and have any questions
