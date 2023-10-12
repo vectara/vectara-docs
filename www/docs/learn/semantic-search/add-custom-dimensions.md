@@ -1,7 +1,7 @@
 ---
-id: custom-dimensions
-title: Custom Dimensions
-sidebar_label: Custom Dimensions
+id: add-custom-dimensions
+title: Add Custom Dimensions to Enhance Scoring
+sidebar_label: Add Custom Dimensions to Enhance Scoring
 ---
 
 import Tabs from '@theme/Tabs';
@@ -10,7 +10,6 @@ import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
 import {Config} from '@site/docs/definitions.md';
 
-## Custom Dimensions
 Custom dimensions are a fixed set of additional "dimensions" that contain
 user-defined numerical values and are stored in addition to the dimensions
 that <Config v="names.product"/> automatically extracts and stores from the text. At
@@ -102,7 +101,7 @@ postive values increase the overall score (sometimes called "boosting").  A dot
 product of 0 does not affect the underlying text retrieval score.
 
 For more information on how scores can be interpreted in general, see the
-documentation on [interpreting scores](/docs/api-reference/search-apis/interpreting-responses/scores.md)
+documentation on [interpreting scores](/docs/api-reference/search-apis/interpreting-responses/interpreting-scores).
 
 ## Choosing values for custom dimensions
 Because scores in <Config v="names.product"/> range from -1 to 1, in general

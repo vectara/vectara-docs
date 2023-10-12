@@ -3,6 +3,9 @@ id: data-types
 title: Data Types
 ---
 
+This section provides a list of the various data types supported by Vectara, 
+helping you make informed decisions when working with different data types.
+
 | Data Type    | Description                                                        |
 | ------------ | ------------------------------------------------------------------ |
 | Integer      | The value is a signed integer up to eight bytes in length.         |

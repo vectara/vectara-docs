@@ -1,7 +1,7 @@
 ---
-id: api-keys
-title: API Keys
-sidebar_label: API Keys Overview
+id: api-key-management
+title: API Key Management
+sidebar_label: API Key Management
 ---
 
 import Tabs from '@theme/Tabs';
@@ -10,10 +10,10 @@ import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 API Keys allow controlled, anonymous access to running semantic searches on your
-corpora. This greatly simplifies integration from public-facing systems such as
-websites, by allowing them to embed the API key and directly pass it
-to <Config v="names.product"/> when issuing requests. Should a key be compromised,
-it can be revoked in minutes, and a new key issued.
+corpora. This greatly simplifies integration from public-facing systems like
+websites. Simply embed the API key and directly pass it to <Config v="names.product"/> when 
+issuing requests. If a key is compromised, you can quickly revoke the key and 
+replace it in minutes.
 
 :::important
 
@@ -22,18 +22,19 @@ your account with an API key.
 
 :::
 
-Administrative actions cannot be performed through these keys.
+You can use API keys for querying and indexing operations, but not at this 
+time for administrative operations such as creating or deleting corpora.
 
-The remainder of this guide walks you through managing and using the API Keys.
+The remainder of this section walks you through managing and using the API Keys.
 
 ## Create an API Key
 
 If you have the necessary permissions you'll see the `API Keys` in the sidebar.
-Click on it and you'll see the following page
+Click this option and you'll see the following page:
 
 ![API Keys](/img/api_key_create.png)
 
-Click the **Create Key** button to create a new key, the following dialog will
+Click **Create Key** to create a new key, and the following dialog will
 display:
 
 ![New API Keys](/img/api_key_new.png)
@@ -47,7 +48,10 @@ You can now start using the key.
 
 :::warning
 
-:lock: Always keep your API Keys and OAuth tokens private. Do not share them through email, Slack, Discord, forums, or other public channels because it can lead to unauthorized access. Treat these keys with the same confidentiality as your personal credentials. 
+:lock: Always keep your API Keys and OAuth tokens private. Do not share them 
+through email, Slack, Discord, forums, or other public channels because it 
+can lead to unauthorized access. Treat these keys with the same 
+confidentiality as your personal credentials. 
 
 :::
 
@@ -145,11 +149,7 @@ END
 </TabItem>
 </Tabs>
 
-## Management
-
-This section describes how to manage API keys.
-
-### Disable and Enable API Keys
+## Disable and Enable API Keys
 
 To temporarily disable access to an API key, begin by visiting the API Keys
 screen. Select disable by clicking on the action menu (three dots) of the key
@@ -162,8 +162,13 @@ It will take around a minute for query requests using this key to be blocked.
 Once disabled, a key can be reenabled through the action menu. It will take a
 minute or two before it can serve query traffic again.
 
-### Delete API Keys
+## Delete API Keys
 
-A key may be permanently deleted through its action menu. Proceed with caution,
-once deleted, there is no way to undelete it, and all external systems that
+A key may be permanently deleted through its action menu. 
+
+:::caution
+
+Once deleted, there is no way to undelete it, and all external systems that
 issue queries using the key will be blocked.
+
+:::

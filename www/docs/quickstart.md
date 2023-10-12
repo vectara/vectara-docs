@@ -54,7 +54,7 @@ question on everyone's mind!
 2. Enter a **Name** and **Description** such as _Employee Handbook_ and _Pet Policy_.
    
       Don't worry about the Filter Attributes for now. You can read 
-      about [filter expressions](/docs/common-use-cases/filtering-by-metadata/filter-overview) and 
+      about [filter expressions](/docs/learn/metadata-search-filtering/filter-overview) and 
       edit them later.
 3. Click **Create**. 
 
@@ -120,7 +120,7 @@ more about the pet policies:
 - How does the company handle potential conflicts between different species, 
   such as birds and alligators?
 
-Now you have an understanding of how to upload data into an corpus, ask 
+Now you have an understanding of how to upload data into a corpus, ask 
 questions, and get meaningful answers from <Config v="names.product"/>. Continue 
 gaining more answers and insights from your data, and ingest more data. 
 Imagine the amount of time saved because you get quick answers with precise 

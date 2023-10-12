@@ -200,7 +200,7 @@ message CustomDimension {
 ```
 
 For more information on how to use custom dimensions, refer to the
-[Custom Dimensions Usage Documentation](/docs/common-use-cases/semantic-search/custom_dimensions.md)
+[Custom Dimensions Usage Documentation](/docs/learn/semantic-search/add-custom-dimensions)
 
 ## Frequently Asked Questions
 

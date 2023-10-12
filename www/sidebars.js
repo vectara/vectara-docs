@@ -27,11 +27,10 @@ module.exports = {
         },
         {
           type: 'category',
-          label: 'Common API Paradigms',
+          label: 'Vectara API Paradigms',
           items: [
             'api-reference/protobuf-definitions',
             'api-reference/rest',
-            'common-use-cases/keeping-your-data-private/tls'
           ]
         },
         {
@@ -47,59 +46,63 @@ module.exports = {
         },
       ],
     },
-    {
+
+        {
       type: 'category',
-      label: 'Common Use Cases and Flows',
+      label: 'Learn',
       collapsed: false,
       items: [
         {
           type: 'category',
-          label: 'Keeping Your Data Private',
+          label: 'Data Privacy',
           items: [
-            'common-use-cases/keeping-your-data-private/privacy-overview',
-            'common-use-cases/keeping-your-data-private/textless',
-            'common-use-cases/keeping-your-data-private/encryption',
+            'learn/data-privacy/privacy-overview',
+            'learn/data-privacy/textless',
+            'learn/data-privacy/encryption',
           ]
         },
         {
           type: 'category',
           label: 'Authentication and Authorization',
           items: [
-            'common-use-cases/app-authn-authz/auth-overview',
-            'common-use-cases/app-authn-authz/api-keys',
-            'common-use-cases/app-authn-authz/authorization',
+            'learn/authentication/auth-overview',
+            'learn/authentication/api-key-management',
+            'learn/authentication/oauth-2',
+            'learn/authentication/role-based-access-control',
           ]
-        },
+         },
         {
           type: 'category',
           label: 'Semantic Search',
           items: [
-            'common-use-cases/semantic-search/semantic-search-overview',
-            'common-use-cases/semantic-search/semantic-search-scoring',
-            'common-use-cases/semantic-search/pagination',
-            'common-use-cases/semantic-search/custom-dimensions',
+            'learn/semantic-search/semantic-search-overview',
+            'learn/semantic-search/hybrid-search',
+            'learn/semantic-search/relevance-tuning-techniques',
+            'learn/semantic-search/enable-pagination',
+            'learn/semantic-search/add-custom-dimensions',
           ]
         },
         {
           type: 'category',
-          label: 'Chatbots and Grounded Generation',
+          label: 'Grounded Generation',
           items: [
-            'common-use-cases/chatbots-grounded-generation/grounded-generation-overview',
-            'common-use-cases/chatbots-grounded-generation/grounded-generation-response-languages',
-            'common-use-cases/chatbots-grounded-generation/available-summarizers',
+            'learn/grounded-generation/grounded-generation-overview',
+            'learn/grounded-generation/select-a-summarizer',
+            'learn/grounded-generation/grounded-generation-response-languages',
           ]
         },
         {
           type: 'category',
-          label: 'Filtering Search by Metadata',
+          label: 'Metadata Search Filtering',
           items: [
-            'common-use-cases/filtering-by-metadata/filter-overview',
-            'common-use-cases/filtering-by-metadata/ootb-filters',
+            'learn/metadata-search-filtering/filter-overview',
+            'learn/metadata-search-filtering/ootb-metadata-filters',
+            'api-reference/search-apis/sql/func-opr',
+            'api-reference/search-apis/sql/data-types',
           ]
         },
-        'common-use-cases/recommendation-systems/recommender-overview',
-        'common-use-cases/question-answer/question-answer-overview',
-        'api-reference/search-apis/lexical-matching',
+        'learn/recommendation-systems/recommender-overview',
+        'learn/question-answer/question-answer-overview',
       ]
     },
     {
@@ -108,53 +111,33 @@ module.exports = {
       collapsed: true,
       items: [
         'api-reference/api-overview',
-        {
-          type: 'category',
-          label: 'Authentication and Authorization',
-          items: [
-            {
-              type: 'category',
-              label: 'Authentication',
-              items: [
-                {
-                  type: 'category',
-                  label: 'OAuth 2.0',
-                  items: [
-                    'api-reference/auth-apis/oauth-2',
-                    {
-                      type: 'category',
-                      label: 'Client Credentials Grant Examples',
-                      items: [
-                        'getting-started-samples/JWTFetcher.cs',
-                        'getting-started-samples/JwtFetcher.java',
-                        'getting-started-samples/getJwtToken.php',
-                        'getting-started-samples/rest_util.py'
-                      ]
-                    }
-                  ]
-                },
-                {
-                  type: 'category',
-                  label: 'API Keys',
-                  items: [
-                    'api-reference/auth-apis/api-keys',
-                    {
-                      type: 'category',
-                      label: 'REST Examples',
-                      items: [
-                        'getting-started-samples/RestApiKeyQueries.cs',
-                        'getting-started-samples/RestApiKeyQueries.java',
-                        'getting-started-samples/queryDataApiKey.php',
-                        'getting-started-samples/rest_api_key_queries.py',
-                        'getting-started-samples/app.js',
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ],
-        },
+         {
+            type: 'category',
+            label: 'Authentication Examples',
+            items: [
+              {
+                type: 'category',
+                label: 'OAuth 2.0 Client Credentials Grant Examples',
+                items: [
+                  'getting-started-samples/JWTFetcher.cs',
+                  'getting-started-samples/JwtFetcher.java',
+                  'getting-started-samples/getJwtToken.php',
+                  'getting-started-samples/rest_util.py'
+                ]
+              },
+              {
+                type: 'category',
+                label: 'API Key REST Examples',
+                items: [
+                  'getting-started-samples/RestApiKeyQueries.cs',
+                  'getting-started-samples/RestApiKeyQueries.java',
+                  'getting-started-samples/queryDataApiKey.php',
+                  'getting-started-samples/rest_api_key_queries.py',
+                  'getting-started-samples/app.js',
+                ]
+              }
+           ]
+          },
         {
             type: 'category',
             label: 'Indexing APIs',
@@ -246,24 +229,13 @@ module.exports = {
                 ]
               },
               'api-reference/search-apis/reranking',
-              'api-reference/search-apis/lexical-matching',
-              {
-                  type: 'category',
-                  label: 'Filter Expressions',
-                  items: [
-                    'common-use-cases/filtering-by-metadata/filter-overview',
-                    'api-reference/search-apis/sql/func-opr',
-                    'api-reference/search-apis/sql/data-types',
-                    'common-use-cases/filtering-by-metadata/ootb-filters',
-                  ],
-              },
               'api-reference/search-apis/batched-queries',
               {
                 type: 'category',
                 label: 'Interpreting Responses',
                 items: [
                   'api-reference/search-apis/interpreting-responses/metadata',
-                  'api-reference/search-apis/interpreting-responses/intepreting-scores',
+                  'api-reference/search-apis/interpreting-responses/interpreting-scores',
                   'api-reference/search-apis/interpreting-responses/highlighting',
                 ],
             },
@@ -349,8 +321,7 @@ module.exports = {
             'console-ui/configure-server-access-to-corpus',
             'console-ui/corpus-default-read-access',
             'console-ui/manage-user',
-            'common-use-cases/app-authn-authz/authorization',
-          ]
+            ]
         },
         'console-ui/update-credit-card'
       ],

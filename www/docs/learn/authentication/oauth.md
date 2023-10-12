@@ -1,7 +1,7 @@
 ---
 id: oauth-2
-title: OAuth 2.0
-sidebar_label: OAuth 2.0
+title: OAuth 2.0 Tokens
+sidebar_label: OAuth 2.0 Tokens
 ---
 
 import Tabs from '@theme/Tabs';
@@ -44,12 +44,14 @@ OAuth 2.0 takes more work to set up but offer several advantages over API keys:
 ## Authenticate with OAuth 2.0
 
 OAuth 2.0 authentication consists of three steps:
-1. [Create an application client](/docs/api-reference/auth-apis/oauth-2#create-an-application-client)
-2. [Generate a JWT token](/docs/api-reference/auth-apis/oauth-2#generate-a-jwt-token)
-3. [Use the JWT token in an API request](/docs/api-reference/auth-apis/oauth-2#use-the-jwt-token-in-an-api-request)
+1. [Create an application client](/docs/learn/authentication/oauth-2#create-an-application-client)
+2. [Generate a JWT Token](/docs/learn/authentication/oauth-2#generate-a-jwt-token)
+3. [Use the JWT token in an API request](/docs/learn/authentication/oauth-2#use-the-jwt-token-in-an-api-request)
 
 ### Create an application client
-Visit the **API access** page in the Console or go to [https://console.vectara.com/console/apiAccess/appClients](https://console.vectara.com/console/apiAccess/appClients) to create a new application client. Most applications will want to use the
+Visit the **API access** page in the Console or go 
+to [https://console.vectara.com/console/apiAccess/appClients](https://console.vectara.com/console/apiAccess/appClients) to 
+create a new application client. Most applications will want to use the
 `client credentials` grant when they generate the JWT token. 
 
 1. Click **Create app client**.
@@ -112,8 +114,7 @@ const {
 });
 ```
 Here’s how you can generate a JWT token from the command line with a 
-cURL command. This method is useful if you want to try out requests in 
-our Vectara [API Playground](docs/rest-api/vectara-rest-api).
+cURL command: 
 
 ```js title="cURL Example"
 curl -XPOST -H "Content-type: application/x-www-form-urlencoded" -d 
@@ -121,6 +122,14 @@ curl -XPOST -H "Content-type: application/x-www-form-urlencoded" -d
 here>&client_secret=<your client secret goes here> <your authentication 
 URL goes here> 
 ```
+
+:::note
+
+This method is useful if you want to try out requests in 
+our [**Vectara API Playground**](/docs/rest-api/vectara-rest-api).
+
+:::
+
 ### Use the JWT token in an API request
 
 To use a JWT token in an API request, pass the token using the `Authorization` 
@@ -132,4 +141,3 @@ use the JWT token value in the **Bearer Token** field:
 ![API Playground Example](/img/api_playground_listcorpora.png)
 
 Click **Send API Request** to test the API call.
-
