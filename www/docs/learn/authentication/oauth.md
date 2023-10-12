@@ -114,8 +114,7 @@ const {
 });
 ```
 Here’s how you can generate a JWT token from the command line with a 
-cURL command. This method is useful if you want to try out requests in 
-our Vectara [API Playground](docs/rest-api/vectara-rest-api).
+cURL command: 
 
 ```js title="cURL Example"
 curl -XPOST -H "Content-type: application/x-www-form-urlencoded" -d 
@@ -123,6 +122,14 @@ curl -XPOST -H "Content-type: application/x-www-form-urlencoded" -d
 here>&client_secret=<your client secret goes here> <your authentication 
 URL goes here> 
 ```
+
+:::note
+
+This method is useful if you want to try out requests in 
+our [**Vectara API Playground**](/docs/rest-api/vectara-rest-api).
+
+:::
+
 ### Use the JWT token in an API request
 
 To use a JWT token in an API request, pass the token using the `Authorization` 

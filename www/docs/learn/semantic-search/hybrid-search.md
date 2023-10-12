@@ -21,15 +21,24 @@ matching, and wildcard prefixes of terms
 The exact and Boolean text matching (similar to a traditional, 
 keyword-based search) is disabled by default and Vectara only uses neural 
 retrieval. You can enable hybrid search by specifying a value, `lambda`, at
- query time. This value can range from `0` to `1` (inclusive).
+query time, specifically under the `corpusKey`. This value can range 
+from `0` to `1` (inclusive).
 
 The default value of `lambda` is `0`, which disables exact and Boolean text
-matching.
+matching. 
 
 A value of `1` would disable _neural_ retrieval instead, relying _only_ on
 Boolean and exact text matching. Experiemnting with the `lambda` value is 
 useful if you're trying to evaluate how a keyword system like one based on 
 Elasticsearch or Solr may compare to Vectara.
+
+:::note
+
+:bulb:
+You can test queries with different `lambda` values in 
+our [**API Playground**](/docs/rest-api/query).
+
+:::
 
 Vectara supports in-between values as well, which tells Vectara to try to
 consider _both_ neural _and_ Boolean and exact text matching and then to blend
