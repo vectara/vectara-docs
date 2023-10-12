@@ -171,7 +171,7 @@ ${content}
     announcementBar: {
       id: 'genai_launch',
       content:
-        "We've just launched our new Grounded Generation and Hybrid Search features!  For more details, see our blog <a href=\"https://vectara.com/new-release-grounded-generation/\">here<a>",
+        "Vectara has just launched its new embedding model, now available to all users!  For more details, see our blog <a href=\"https://vectara.com/introducing-boomerang-vectaras-new-and-improved-retrieval-model/\">here<a>",
       backgroundColor: '#fafbfc',
       textColor: '#091E42',
       isCloseable: true,
