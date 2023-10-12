@@ -10,7 +10,7 @@ together in a single location for querying.
 1. To get started, navigate to the [Console Overview](https://console.vectara.com/overview).
 
 2. On the left sidebar, click **Corpora**. This 
-   will open an overview of the corpora you have created. It will be empty 
+   will open an overview of the incides you have created. It will be empty 
    if this is your first time accessing the console.
 
 3. Click **Create corpus** and a dialog box appears.
