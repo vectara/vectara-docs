@@ -9,14 +9,19 @@ import TabItem from '@theme/TabItem';
 
 Vectara uses "Application clients" to support authentication with OAuth 2.0. 
 These application clients enable you to generate JWT tokens which are used by 
-Vectara to authenticate API requests. Think of OAuth 2.0 has a more secure way 
-to send API calls, similar to an API key or username/password combination 
-but with enhanced features.
+
+Vectara to authenticate API requests. If you are not familiar with OAuth, 
+think of it as a more secure way to send API calls, similar to 
+an API key or username/password combination but with enhanced features. The 
+client credentials grant is the OAuth flow that Vectara supports at this time.
 
 Here is how it works. You provide the OAuth 2.0 authentication provider with a
-"client ID" (similar to a username) and a "client secret" (similar to a 
+`client_id` (similar to a username) and a `client_secret` (similar to a 
 password). A successful authentication returns a [JWT token](https://jwt.io/), which 
-you can then pass into subsequent requests as an authenticated application. 
+you can then pass into subsequent requests as an authenticated application.
+
+If you already have familiarity about how JWT tokens work, check out the 
+[our API Playground](/docs/rest-api) and explore Vectara's capabilities.
 
 :::caution
 
@@ -32,9 +37,11 @@ personal credentials.
 OAuth 2.0 takes more work to set up but offer several advantages over API keys:
 
 - OAuth 2.0 has built-in revocation flows in case a key is compromised.
-- The JWT token expires automatically, so if a JWT token ever does get posted 
-  to a public place, it's less likely to be valid by the time an attacker 
-  discovers it.
+
+- The JWT token expires automatically after 30 minutes, so if a JWT token ever 
+  does get posted   to a public place, it's less likely to be valid by the 
+  time an attacker   discovers it.
+
 - OAuth 2.0 doesn't suffer from information leakage such as the username 
   that created the client.
 - OAuth 2.0 is inherently more tightly scoped than API keys.
@@ -44,9 +51,10 @@ OAuth 2.0 takes more work to set up but offer several advantages over API keys:
 ## Authenticate with OAuth 2.0
 
 OAuth 2.0 authentication consists of three steps:
-1. [Create an application client](/docs/learn/authentication/oauth-2#create-an-application-client)
-2. [Generate a JWT Token](/docs/learn/authentication/oauth-2#generate-a-jwt-token)
-3. [Use the JWT token in an API request](/docs/learn/authentication/oauth-2#use-the-jwt-token-in-an-api-request)
+
+1. Create an application client
+2. Generate a JWT Token
+3. Use the JWT token in an API request
 
 ### Create an application client
 Visit the **API access** page in the Console or go 
@@ -87,12 +95,14 @@ Access the `client_secret` by clicking the drop-down to the right of your app cl
 
 Now that you have values for the authentication URL, `client_id`, and `client_secret`, 
 you can generate the JWT token with a `client-credentials` grant. We provide [client 
-credentials grant examples](/docs/getting-started-samples/JWTFetcher.cs) in different programming languages.
+credentials grant examples](/docs/getting-started-samples/JWTFetcher.cs) in different 
+programming languages.
 
 ### Generate a JWT Token
 
 Use the information from the previous step to send a request to generate a JWT 
-token. When you create your client credentials request, you need 
+token. The client credentials grant is OAuth flow that Vectara supports at 
+this time. When you create your client credentials grant request, you need 
 the OAuth 2.0 Authentication URL, `client_id`, and `client_secret` values to
 generate the token correctly.
 

@@ -21,9 +21,23 @@ import Export from "@theme/ApiDemoPanel/Export";
 
 <ApiLogo logo={{"url":"https://docs.vectara.com/img/vectara_wordmark.png","altText":"Vectara"}} darkLogo={{"url":"https://docs.vectara.com/img/vectara_wordmark_light.png","altText":"Vectara"}}></ApiLogo>
 
-Vectara is a neural search platform, built for developers to get the most out of their data.
+Vectara is the trusted GenAI product platform. Built around a neural search 
+core, it provides an end-to-end platform for creating GenAI products using 
+a simple to use API
 
-You can sign up for an account at [https://vectara.com](https://vectara.com).
+You can sign up for an account at [https://vectara.com](https://vectara.com) and 
+then view several [API Recipes](/docs/api-recipes) with example queries 
+and parameter values.
+
+:::note
+
+API Keys can be used for querying and indexing operations, but cannot at this 
+time be used for administrative operations such as creating or deleting 
+corpora. These operations authenticate with a Bearer Token via the 
+OAuth 2.0 client credentials grant. Review the [OAuth 2.0 section](/docs/api-reference/auth-apis/oauth-2) about 
+how to generate the token.
+
+:::
 
 <div style={{"marginBottom":"2rem"}}><h2 id={"authentication"} style={{"marginBottom":"1rem"}}>Authentication</h2><SchemaTabs className={"openapi-tabs__security-schemes"}><TabItem label={"OAuth 2.0: oAuth"} value={"oAuth"}>
 
