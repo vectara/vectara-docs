@@ -2,6 +2,7 @@
 /docs/admin-apis/create-corpus                                /docs/api-reference/admin-apis/create-corpus
 /docs/admin-apis/delete-corpus                                /docs/api-reference/admin-apis/delete-corpus
 /docs/admin-apis/reset-corpus                                 /docs/api-reference/admin-apis/reset-corpus
+/docs/api-reference/auth-apis/oauth-2                         /docs/learn/authentication/oauth-2 
 /docs/common-use-cases/chatbots-grounded-generation/grounded-generation-overview                /docs/learn/grounded-generation/grounded-generation-overview
 /docs/indexing-apis/core_indexing                             /docs/api-reference/indexing-apis/core_indexing
 /docs/indexing-apis/deleting-documents                        /docs/api-reference/indexing-apis/deleting-documents
@@ -20,11 +21,11 @@
 /docs/search-apis/search                                      /docs/api-reference/search-apis/search
 /docs/search-apis/sql/data-types                              /docs/api-reference/search-apis/sql/data-types
 /docs/search-apis/sql/func-opr                                /docs/api-reference/search-apis/sql/func-opr
-/docs/authentication                                          /docs/common-use-cases/app-authn-authz/authentication
+/docs/authentication                                          /docs/learn/authentication/auth-overview
 /docs/common-use-cases/app-authn-authz/authentication         /docs/learn/authentication/auth-overview
-/docs/authorization                                           /docs/common-use-cases/app-authn-authz/authorization
+/docs/authorization                                           /docs/learn/authentication/auth-overview
 /docs/common-use-cases/app-authn-authz/authorization          /docs/learn/authentication/role-based-access-control
-/docs/api-keys                                                /docs/common-use-cases/app-authn-authz/api-keys
+/docs/api-keys                                                /docs/learn/authentication/api-key-management
 /docs/common-use-cases/app-authn-authz/api-keys               /docs/learn/authentication/api-key-management
 /docs/search-apis/sql/ootb-filters                            /docs/learn/metadata-search-filtering/ootb-metadata-filters
 /docs/common-use-cases/filtering-by-metadata/ootb-filters     /docs/learn/metadata-search-filtering/ootb-metadata-filters
