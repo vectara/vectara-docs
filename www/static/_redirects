@@ -20,11 +20,11 @@
 /docs/search-apis/search                                      /docs/api-reference/search-apis/search
 /docs/search-apis/sql/data-types                              /docs/api-reference/search-apis/sql/data-types
 /docs/search-apis/sql/func-opr                                /docs/api-reference/search-apis/sql/func-opr
-/docs/authentication                                          /docs/common-use-cases/app-authn-authz/authentication
+/docs/authentication                                          /docs/learn/authentication/auth-overview
 /docs/common-use-cases/app-authn-authz/authentication         /docs/learn/authentication/auth-overview
-/docs/authorization                                           /docs/common-use-cases/app-authn-authz/authorization
+/docs/authorization                                           /docs/learn/authentication/auth-overview
 /docs/common-use-cases/app-authn-authz/authorization          /docs/learn/authentication/role-based-access-control
-/docs/api-keys                                                /docs/common-use-cases/app-authn-authz/api-keys
+/docs/api-keys                                                /docs/learn/authentication/api-key-management
 /docs/common-use-cases/app-authn-authz/api-keys               /docs/learn/authentication/api-key-management
 /docs/search-apis/sql/ootb-filters                            /docs/learn/metadata-search-filtering/ootb-metadata-filters
 /docs/common-use-cases/filtering-by-metadata/ootb-filters     /docs/learn/metadata-search-filtering/ootb-metadata-filters
