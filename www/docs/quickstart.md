@@ -15,30 +15,9 @@ and we'll guide you through the ingestion and question answering process step by
 
 ## Create a Vectara account
 
-To get started with <Config v="names.product"/>, register an account with us.
-1. Go to https://console.vectara.com/signup or click **Get Started Free** 
-   at vectara.com
-2. Sign up with Google or by filling out the form.
-3. Agree to the terms of service and privacy policy.
-4. Click **Start Free**.
-
-## View your Customer ID
-
-After you create an account, the <Config v="names.product"/> Console UI appears after 
-login. 
-
-![Reveal the Customer ID](/img/view_customer_id.gif)
-
-You can click your name in the top, upper-right corner to reveal 
-the Customer ID.
-
-:::note
- You need the `customer_id` to use the API later. <Config v="names.product"/> also sent 
- you a welcome email with this ID after you created the account.
-:::
-
-Now that you have an account, you can create your first corpus and upload 
-your first document!
+To get started with <Config v="names.product"/>, go to https://console.vectara.com/signup or 
+click **Get Started Free** at vectara.com. After you make an account, you can 
+create your first corpus and upload your first document!
 
 ## Create your first corpus
 
@@ -126,3 +105,18 @@ questions, and get meaningful answers from <Config v="names.product"/>. Continue
 gaining more answers and insights from your data, and ingest more data. 
 Imagine the amount of time saved because you get quick answers with precise 
 summaries!
+
+## Next steps
+
+You need the `customer_id` to use the API later. <Config v="names.product"/> also sent 
+you a welcome email with this ID after you created the account.
+
+### View your Customer ID
+
+After you create an account, the <Config v="names.product"/> Console UI appears after 
+login. 
+
+![Reveal the Customer ID](/img/view_customer_id.gif)
+
+You can click your name in the top, upper-right corner to reveal 
+the Customer ID.
