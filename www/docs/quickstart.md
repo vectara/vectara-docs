@@ -7,7 +7,7 @@ sidebar_label: Quick Start
 import {Config} from '@site/docs/definitions.md';
 
 Welcome to <Config v="names.product"/>'s Quick Start tutorial. In just a couple minutes, 
-you'll upload this [employee handbook](/img/vectara_employee_handbook.pdf) and begin exploring our 
+you'll upload this [**Vectara Employee Handbook (PDF)**](/img/vectara_employee_handbook.pdf) and begin exploring our 
 company's unique pet policy. Have you ever wondered if you can bring a velociraptor 
 to work? Why certain birds are allowed for the most random reason? We have part of a 
 unique employee handbook ready for you to upload into a <Config v="names.product"/> corpus, 
@@ -74,15 +74,16 @@ that contains the pet policy. When you create additional corpora in the
 future, the left menu lets you come back to any corpus for data 
 ingestion and search.
 
-1. Click **Employee Handbook** from the left menu, if you decided to explore the UI
+1. Download the [**Vectara Employee Handbook (PDF)**](/img/vectara_employee_handbook.pdf).
+2. Click **Employee Handbook** from the left menu, if you decided to explore the UI
    after the previous step.
-2. Click the **Data Ingestion** tab.
+3. Click the **Data Ingestion** tab.
 
    We support `.md`, `.pdf`, `.doc`, `.docx`, `.ppt`, `.pptx`, `.txt`, 
    `.html`, `.rtf`, and `.epub` files. Review [supported file types](/docs/api-reference/indexing-apis/file-upload/file-upload-filetypes) for 
    a full list.
 
-3. Select or drag and drop the pet policy document `PDF` into the corpus.
+4. Select or drag and drop the pet policy document `PDF` into the corpus.
 
 That's it! <Config v="names.product"/> has just ingested this important document!
 
