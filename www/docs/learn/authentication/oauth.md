@@ -37,11 +37,9 @@ personal credentials.
 OAuth 2.0 takes more work to set up but offer several advantages over API keys:
 
 - OAuth 2.0 has built-in revocation flows in case a key is compromised.
-
 - The JWT token expires automatically after 30 minutes, so if a JWT token ever 
   does get posted   to a public place, it's less likely to be valid by the 
   time an attacker   discovers it.
-
 - OAuth 2.0 doesn't suffer from information leakage such as the username 
   that created the client.
 - OAuth 2.0 is inherently more tightly scoped than API keys.
@@ -51,7 +49,6 @@ OAuth 2.0 takes more work to set up but offer several advantages over API keys:
 ## Authenticate with OAuth 2.0
 
 OAuth 2.0 authentication consists of three steps:
-
 1. Create an application client
 2. Generate a JWT Token
 3. Use the JWT token in an API request
