@@ -9,7 +9,6 @@ import TabItem from '@theme/TabItem';
 
 Vectara uses "Application clients" to support authentication with OAuth 2.0. 
 These application clients enable you to generate JWT tokens which are used by 
-
 Vectara to authenticate API requests. If you are not familiar with OAuth, 
 think of it as a more secure way to send API calls, similar to 
 an API key or username/password combination but with enhanced features. The 
@@ -39,8 +38,8 @@ OAuth 2.0 takes more work to set up but offer several advantages over API keys:
 - OAuth 2.0 has built-in revocation flows in case a key is compromised.
 
 - The JWT token expires automatically after 30 minutes, so if a JWT token ever 
-  does get posted   to a public place, it's less likely to be valid by the 
-  time an attacker   discovers it.
+  does get posted to a public place, it's less likely to be valid by the 
+  time an attacker discovers it.
 
 - OAuth 2.0 doesn't suffer from information leakage such as the username 
   that created the client.
