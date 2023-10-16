@@ -30,14 +30,14 @@ file, <Config v="names.product"/> ingests your data and lets you ask the burning
 question on everyone's mind!
 
 1. Click **Create corpus**.
-2. Enter a **Name** and **Description** such as _Employee Handbook_ and _Pet Policy_.
+2. Enter a **Name** and **Description** such as _Vectara Employee Handbook_ and _Pet Policy_.
    
       Don't worry about the Filter Attributes for now. You can read 
       about [filter expressions](/docs/learn/metadata-search-filtering/filter-overview) and 
       edit them later.
 3. Click **Create**. 
 
-   The **Corpus ID** displays next to the corpus title **Employee Handbook** in the 
+   The **Corpus ID** displays next to the corpus title **Vectara Employee Handbook** in the 
     console. If you use the API later, you need to configure `corpus_id` fields 
     with this value.
    
@@ -72,7 +72,7 @@ Let's take a closer look at the employee handbook you just uploaded. Since <Conf
 now ingested the data, you can ask all sorts of questions and receive 
 meaningful and relevant results.
 
-1. Select the **Employee Handbook** from list in the left menu.
+1. Select the **Vectara Employee Handbook** from list in the left menu.
 2. Click the **Search** tab.
 3. Ask a question and view a summary of the answer along with additional 
    search results.
@@ -108,15 +108,16 @@ summaries!
 
 ## Next steps
 
-You need the `customer_id` to use the API later. <Config v="names.product"/> also sent 
+If you want to start using our [API Recipes](/docs/api-recipes), you need 
+the `customer_id` value. <Config v="names.product"/> also sent 
 you a welcome email with this ID after you created the account.
 
 ### View your Customer ID
 
-After you create an account, the <Config v="names.product"/> Console UI appears after 
+After you created an account, the <Config v="names.product"/> Console UI appeared after 
 login. 
 
 ![Reveal the Customer ID](/img/view_customer_id.gif)
 
 You can click your name in the top, upper-right corner to reveal 
-the Customer ID.
+the `customer_id`.
