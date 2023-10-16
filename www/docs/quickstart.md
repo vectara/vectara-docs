@@ -7,7 +7,7 @@ sidebar_label: Quick Start
 import {Config} from '@site/docs/definitions.md';
 
 Welcome to <Config v="names.product"/>'s Quick Start tutorial. In just a couple minutes, 
-you'll upload this [employee handbook](/img/vectara_employee_handbook.pdf) and begin exploring our 
+you'll upload this [**Vectara Employee Handbook (PDF)**](/img/vectara_employee_handbook.pdf) and begin exploring our 
 company's unique pet policy. Have you ever wondered if you can bring a velociraptor 
 to work? Why certain birds are allowed for the most random reason? We have part of a 
 unique employee handbook ready for you to upload into a <Config v="names.product"/> corpus, 
@@ -15,30 +15,9 @@ and we'll guide you through the ingestion and question answering process step by
 
 ## Create a Vectara account
 
-To get started with <Config v="names.product"/>, register an account with us.
-1. Go to https://console.vectara.com/signup or click **Get Started Free** 
-   at vectara.com
-2. Sign up with Google or by filling out the form.
-3. Agree to the terms of service and privacy policy.
-4. Click **Start Free**.
-
-## View your Customer ID
-
-After you create an account, the <Config v="names.product"/> Console UI appears after 
-login. 
-
-![Reveal the Customer ID](/img/view_customer_id.gif)
-
-You can click your name in the top, upper-right corner to reveal 
-the Customer ID.
-
-:::note
- You need the `customer_id` to use the API later. <Config v="names.product"/> also sent 
- you a welcome email with this ID after you created the account.
-:::
-
-Now that you have an account, you can create your first corpus and upload 
-your first document!
+To get started with <Config v="names.product"/>, go to https://console.vectara.com/signup or 
+click **Get Started Free** at vectara.com. After you make an account, you can 
+create your first corpus and upload your first document!
 
 ## Create your first corpus
 
@@ -51,14 +30,14 @@ file, <Config v="names.product"/> ingests your data and lets you ask the burning
 question on everyone's mind!
 
 1. Click **Create corpus**.
-2. Enter a **Name** and **Description** such as _Employee Handbook_ and _Pet Policy_.
+2. Enter a **Name** and **Description** such as _Vectara Employee Handbook_ and _Pet Policy_.
    
       Don't worry about the Filter Attributes for now. You can read 
       about [filter expressions](/docs/learn/metadata-search-filtering/filter-overview) and 
       edit them later.
 3. Click **Create**. 
 
-   The **Corpus ID** displays next to the corpus title **Employee Handbook** in the 
+   The **Corpus ID** displays next to the corpus title **Vectara Employee Handbook** in the 
     console. If you use the API later, you need to configure `corpus_id` fields 
     with this value.
    
@@ -74,15 +53,16 @@ that contains the pet policy. When you create additional corpora in the
 future, the left menu lets you come back to any corpus for data 
 ingestion and search.
 
-1. Click **Employee Handbook** from the left menu, if you decided to explore the UI
+1. Download the [**Vectara Employee Handbook (PDF)**](/img/vectara_employee_handbook.pdf).
+2. Click **Employee Handbook** from the left menu, if you decided to explore the UI
    after the previous step.
-2. Click the **Data Ingestion** tab.
+3. Click the **Data Ingestion** tab.
 
    We support `.md`, `.pdf`, `.doc`, `.docx`, `.ppt`, `.pptx`, `.txt`, 
    `.html`, `.rtf`, and `.epub` files. Review [supported file types](/docs/api-reference/indexing-apis/file-upload/file-upload-filetypes) for 
    a full list.
 
-3. Select or drag and drop the pet policy document `PDF` into the corpus.
+4. Select or drag and drop the pet policy document `PDF` into the corpus.
 
 That's it! <Config v="names.product"/> has just ingested this important document!
 
@@ -92,7 +72,7 @@ Let's take a closer look at the employee handbook you just uploaded. Since <Conf
 now ingested the data, you can ask all sorts of questions and receive 
 meaningful and relevant results.
 
-1. Select the **Employee Handbook** from list in the left menu.
+1. Select the **Vectara Employee Handbook** from list in the left menu.
 2. Click the **Search** tab.
 3. Ask a question and view a summary of the answer along with additional 
    search results.
@@ -125,3 +105,19 @@ questions, and get meaningful answers from <Config v="names.product"/>. Continue
 gaining more answers and insights from your data, and ingest more data. 
 Imagine the amount of time saved because you get quick answers with precise 
 summaries!
+
+## Next steps
+
+If you want to start using our [API Recipes](/docs/api-recipes), you need 
+the `customer_id` value. <Config v="names.product"/> also sent 
+you a welcome email with this ID after you created the account.
+
+### View your Customer ID
+
+After you created an account, the <Config v="names.product"/> Console UI appeared after 
+login. 
+
+![Reveal the Customer ID](/img/view_customer_id.gif)
+
+You can click your name in the top, upper-right corner to reveal 
+the `customer_id`.
