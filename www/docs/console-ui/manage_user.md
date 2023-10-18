@@ -1,31 +1,36 @@
 ---
 id: manage-user
-title: Manage users
+title: Manage Team
+sidebar_label: Manage Team
 ---
 
-In this section, you will learn how to create and manage a user, including
-adjusting account and corpus level authorizations.
+This section lets you add team members and manage the access levels of these 
+users. For example, you can adjust account and corpus level authorizations.
 
-## Add User
+## Create User
 
-Users can be created by the account administrator. Once you've logged in,
-navigate to the **User** tab under **Authentication** to create new users
-and manage existing ones. You can create a new user by
-clicking the **Create User** button.
+The Account Admin can create users. After login, 
+navigate to the **Teams** tab to create new users
+and manage existing ones. 
 
-![Add user](/img/new_user.png)
+1. Click **Create User**
+2. Enter the user's details including the user name, email, and a 
+   description.
+3. Select a role or multiple roles to assign with this user: Account Admin, 
+   Corpus Admin, or Billing Admin. A user without assigned roles at the 
+   account level can still be given corpus-level roles.
 
-Optionally, a user may be assigned one or more roles. The roles include account
-administrator, corpus administrator, and billing administrator. A user without
-assigned roles at the account level can still be given corpus-level roles, as
-described later.
+   ![Add user](/img/new_user.png)
+
+4. Click Create and the new user appears on the Team pagee.
+
 
 ## Edit User
 
-A list of all users is available on the User screen. An existing user can be
-modified directly from this list by clicking the three-dotted button at the far
-right of the row. This includes changing role assignments, password resets,
-enabling and disabling the user, and transferring owership of the account to
+The Team page also lets you modify users directly from the user 
+list by clicking the drop-down on the right side of of the row. This 
+includes changing role assignments, password resets, enabling and disabling 
+the user, and transferring owership of the account to
 a new owner.
 
 ![Edit user](/img/edit_user.png)

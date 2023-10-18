@@ -1,6 +1,7 @@
 ---
 id: corpus-default-read-access
-title: Configuring default read access to a corpus
+title: Configure Default Read Access to a Corpus
+sidebar_label: Configure Default Read Access
 ---
 
 Sometimes, you’ll want to make a corpus searchable by any authenticated user.

@@ -1,6 +1,6 @@
 ---
 id: reset-or-delete-corpus
-title: Reset or delete a corpus
+title: Reset or Delete a Corpus
 ---
 
 If you've decided to stop using a corpus you have three options.

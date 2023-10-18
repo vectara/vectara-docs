@@ -1,6 +1,7 @@
 ---
 id: update-credit-card
-title: Payment Management
+title: Manage Payments
+sidebar_label: Manage Payments
 ---
 
 Follow the steps below to update the payment information for your account.

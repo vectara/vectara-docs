@@ -1,6 +1,6 @@
 ---
 id: creating-a-corpus
-title: Create a corpus
+title: Create a Corpus
 ---
 
 To begin searching your data, you first have to create a corpus. A corpus 
@@ -13,14 +13,21 @@ together in a single location for querying.
    will open an overview of the incides you have created. It will be empty 
    if this is your first time accessing the console.
 
-3.  Now click on the **Create corpus** button, a dialog box will open. Enter the
-    name and description of the index.
+3. Click **Create corpus** and a dialog box appears.
+4. Enter the name and description of the corpus.
+5. Select an Embedding Model (Boomerand is default).
+6. Specify any Filter Attributes.
+7. (Optional) Click **Inspect** and the request inspector appears. You can now 
+   optionally create this corpus by copying and pasting the application code 
+   in NodeJS, JavaScript, Linux, or Windows.
 
-4.  Leave all settings on their default values and click **Create**. Once created,
-    you will see a confirmation message and the newly created corpus listed
-    below.
+  ![Create Corpus Request Inspector](/img/create_corpus_request_inspector.png)
 
-  ![Create corpus success](/img/create_corpus_success.png)
+8. Click **Create**.
 
-The corpus is now created and ready to receive your data. You might want to head
-towards how to index data and the corpus overview.
+  ![Create Corpus](/img/create_corpus.png)
+
+The corpus is created and a confirmation message appears. It is now ready to 
+receive your data.
+
+![Create Corpus](/img/create_corpus_success.png)

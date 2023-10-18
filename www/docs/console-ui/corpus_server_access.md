@@ -1,6 +1,7 @@
 ---
 id: configure-server-access-to-corpus
-title: Configuring server access to a corpus
+title: Configure Server Access to a Corpus
+sidebar_label: Configure Server Access
 ---
 
 Follow the steps below to configure server access to a corpus. This is
