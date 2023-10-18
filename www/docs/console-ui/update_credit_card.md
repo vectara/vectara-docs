@@ -10,14 +10,13 @@ Follow the steps below to update the payment information for your account.
    or **Account Owner** role. To learn how to assign a specific role to a user,
    see the guide for [managing users](manage-user).
 
-2. Click on the **Billing** node in the left navigation window. If you do not
-   see it, then you do not have sufficient privileges. Ask your account owner
-   to make you a billing administrator.
+2. Click **Billing** in the left navigation window. If you do not
+   see this option, then you do not have sufficient privileges. Ask your 
+   account owner to make you a billing administrator.
 
-  ![Billing](/img/billing_main_page.png)
+  ![Billing](/img/main_billing_page.png)
 
-3. Click on the **Edit** link in the Payment Method. You will see an
-   **Edit Payment Method** popover dialog. 
+1. Click **Add credit card** to update your payment information. 
 
   ![Edit Payment Method](/img/edit_payment_method.png)
 

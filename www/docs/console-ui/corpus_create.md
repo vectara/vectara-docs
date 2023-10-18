@@ -31,3 +31,27 @@ The corpus is created and a confirmation message appears. It is now ready to
 receive your data.
 
 ![Create Corpus](/img/create_corpus_success.png)
+
+## View Corpus Overview
+
+The Overview section provides information about the corpus including usage statistics  
+and configuration information about the embedding model, indexing semantics, 
+and filter attributes. Click Edit to modify the filter attributes from this page.
+
+## Authorization
+
+The Authorization section defines the users and role that have access to the 
+corpus. You can also [create new user roles](/docs/learn/authentication/role-based-access-control) 
+and [API keys](/docs/console-ui/manage-api-access) associated with this corpus.
+
+## Data Ingestion
+
+The Data Ingestion section lets you upload files to the corpus, including 
+text, HTML, PDF, Word files, and more. It is the quickest way to ask your data 
+some questions.
+
+## Search
+
+The Search section lets you ask questions about your data. You can also use 
+Advanced options and use the Search Inspector to copy and paste queries in 
+your applicaton code and view responses

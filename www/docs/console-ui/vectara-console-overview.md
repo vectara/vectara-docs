@@ -10,8 +10,8 @@ Vectara account.
 
 * :rocket: **Five-Minute Walkthrough:** Let Vectara show you [how to build a simple 
   GenAI application](https://console.vectara.com/console/walkthrough) in just a few minutes!
-* :floppy_disk: [Create and manage your corpora](/docs/console-ui/creating-a-corpus), which serve as storage 
-  for data that you want to search
+* :floppy_disk: **Manage Corpora:** [Create and manage your corpora](/docs/console-ui/creating-a-corpus), which serve as storage 
+  for data that you want to search.
 * :ledger: **Manage Data:** Manage the data in your account and in individual corpora
 * :closed_lock_with_key: **Define API Credentials:** Users can define API access credentials, including 
   [API Keys](/docs/learn/authentication/api-key-management) and [OAuth app clients](/docs/learn/authentication/oauth-2).
@@ -24,3 +24,5 @@ Vectara account.
 * **Vectara Platform Overview:** Learn about the Vectara Platform and view interactive 
   parts of our documentation like the [API Playground](/docs/rest-api/vectara-rest-api) and 
   [Quick Start guide](/docs/quickstart).
+
+![Vectara Consoole Overview](/img/console_overview.png)
