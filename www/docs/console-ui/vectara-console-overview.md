@@ -25,4 +25,4 @@ Vectara account.
   parts of our documentation like the [API Playground](/docs/rest-api/vectara-rest-api) and 
   [Quick Start guide](/docs/quickstart).
 
-![Vectara Consoole Overview](/img/console_overview.png)
+![Vectara Console Overview](/img/console_overview.png)

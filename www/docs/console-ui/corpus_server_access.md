@@ -26,7 +26,7 @@ running queries against it.
   ![Corpus Authorization](/img/corpus_authorization_tab.png)
 
 1. Click **Create user role**.
-2. Select your auser in the Name dropdown, select the
+2. Select a user in the Name dropdown, select the
    desired role(s) and add an optional description.  Usually, the appropriate
    roles will be indexing (IDX), or querying (QRY), or both.
 

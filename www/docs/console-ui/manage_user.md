@@ -22,7 +22,7 @@ and manage existing ones.
 
    ![Add user](/img/new_user.png)
 
-4. Click Create and the new user appears on the Team pagee.
+4. Click Create and the new user appears on the Team page.
 
 
 ## Edit User
@@ -30,7 +30,7 @@ and manage existing ones.
 The Team page also lets you modify users directly from the user 
 list by clicking the drop-down on the right side of of the row. This 
 includes changing role assignments, password resets, enabling and disabling 
-the user, and transferring owership of the account to
+the user, and transferring ownership of the account to
 a new owner.
 
 ![Edit user](/img/edit_user.png)

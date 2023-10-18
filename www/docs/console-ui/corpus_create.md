@@ -10,12 +10,12 @@ together in a single location for querying.
 1. To get started, navigate to the [Console Overview](https://console.vectara.com/overview).
 
 2. On the left sidebar, click **Corpora**. This 
-   will open an overview of the incides you have created. It will be empty 
+   will open an overview of the corpora you have created. It will be empty 
    if this is your first time accessing the console.
 
 3. Click **Create corpus** and a dialog box appears.
 4. Enter the name and description of the corpus.
-5. Select an Embedding Model (Boomerand is default).
+5. Select an Embedding Model, such as Boomerang.
 6. Specify any Filter Attributes.
 7. (Optional) Click **Inspect** and the request inspector appears. You can now 
    optionally create this corpus by copying and pasting the application code 
@@ -32,7 +32,9 @@ receive your data.
 
 ![Create Corpus](/img/create_corpus_success.png)
 
-## View Corpus Overview
+When you create a corpus, the following tabs appear:
+
+## Overview
 
 The Overview section provides information about the corpus including usage statistics  
 and configuration information about the embedding model, indexing semantics, 
@@ -54,4 +56,4 @@ some questions.
 
 The Search section lets you ask questions about your data. You can also use 
 Advanced options and use the Search Inspector to copy and paste queries in 
-your applicaton code and view responses
+your application code and view responses
