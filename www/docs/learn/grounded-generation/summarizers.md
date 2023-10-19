@@ -20,10 +20,14 @@ summarizer config at request time, <Config v="names.product"/> will use the best
 available summarizer for your account.  Currently, the only summarizer that is
 available to Growth users is `vectara-summary-ext-v1.2.0`.
 
-The limit of `maxSummarizedResults` is `10` for Growth plans and can be extended 
-for Scale customers. Setting the values closer to the limit generates a more 
-comprehensive summary, but using a lower value can balance the results with 
-quality and response time.
+## Default maxSummarizedResults Limit
+
+The default limit of `maxSummarizedResults` is `10` search results for Growth 
+plans and this limit can be extended for Scale plan users. Setting the values 
+closer to the limit generates a more comprehensive summary, but using a lower 
+value can balance the results with quality and response time.
+
+## maxSummarizedResults Example
 
 This summarizer example attempts to balance creating a good quality summary with a
 a reasonably fast response by setting `maxSummarizedResults` to `5`. To use `vectara-summary-ext-v1.2.0`, send 
