@@ -8,13 +8,13 @@ import {Config} from '@site/docs/definitions.md';
 Using our APIs enable application developers and data engineers to seamlessly 
 integrate the <Config v="names.product"/> semantic search capabilities into your applications. 
 
-The Console UI and our APIs work hand-in-hand as part of the app development 
+The Vectara Console and our APIs work hand-in-hand as part of the app development 
 process. For example, a builder uses this following workflow: 
 
 * Fine-tune a query's lambda and filters until the answer quality is just 
   right.
-* Copy the request directly from the console and paste it into your IDE.
-* Copy the customer ID and API key from Console to further configure 
+* Copy the request directly from the Vectara Console and paste it into your IDE.
+* Copy the customer ID and API key from the Vectara Console to further configure 
   the request.
 * Test out the software and then verify that requests are hitting your 
   corpus by checking the querying graph on the Overview tab.
@@ -32,7 +32,7 @@ values in the parameters, and then display example responses:
 * [List all corpora and delete a specific corpus](/docs/api-recipes#list-all-corpora-and-delete-a-specific-corpus)
 
 To issue the types of API calls in these recipes, you typically need the 
-following information that you can get from the console UI:
+following information that you can get from the Vectara Console UI:
 
 * Customer ID
 * Corpus ID
