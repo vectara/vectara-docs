@@ -107,6 +107,44 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'Vectara Console',
+      collapsed: false,
+      items: [
+        {
+          type: 'doc',
+          id: 'console-ui/vectara-console-overview',
+          label: "Vectara Console Overview",
+        },
+        {
+          type: 'category',
+          label: 'Manage Corpora',
+          collapsed: false,
+          items: [
+            'console-ui/creating-a-corpus',
+            'console-ui/reset-or-delete-corpus',
+            'console-ui/configure-server-access-to-corpus',
+            'console-ui/corpus-default-read-access',
+          ]
+        },
+        {
+          type: 'doc',
+          id: 'console-ui/manage-api-access',
+          label: "Manage API Access",
+        },
+        {
+          type: 'doc',
+          id: 'console-ui/manage-user',
+          label: "Manage Team",
+        },
+        {
+          type: 'doc',
+          id: 'console-ui/update-credit-card',
+          label: "Manage Payments",
+        },
+      ],
+    },
+    {
+      type: 'category',
       label: 'API Reference',
       collapsed: true,
       items: [
@@ -299,31 +337,6 @@ module.exports = {
             },
           ],
         }
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Administrative User Interface',
-      collapsed: true,
-      items: [
-        {
-          type: 'category',
-          label: 'Corpora CRUD Operations',
-          items: [
-            'console-ui/creating-a-corpus',
-            'console-ui/reset-or-delete-corpus'
-          ]
-        },
-        {
-          type: 'category',
-          label: 'Users and Authorization Controls',
-          items: [
-            'console-ui/configure-server-access-to-corpus',
-            'console-ui/corpus-default-read-access',
-            'console-ui/manage-user',
-            ]
-        },
-        'console-ui/update-credit-card'
       ],
     },
   ],
