@@ -10,10 +10,11 @@ Vectara account:
 
 * :rocket: **Five-Minute Walkthrough:** Let Vectara show you [how to build a simple 
   GenAI application](https://console.vectara.com/console/walkthrough) in just a few minutes!
-* :runner: **Get Started Quickly:** View our Quick Start guide and search the Vectara Employee Handbook PDF.
-* :floppy_disk: **Manage Corpora:** [Create and manage your corpora](/docs/console-ui/creating-a-corpus), which serve as storage 
+* :runner: **Get Started Quickly:** View our [Quick Start guide](/docs/quickstart) and search the Vectara 
+  Employee Handbook PDF.
+* :floppy_disk: **Manage Corpora:** [Create and manage your corpora data](/docs/console-ui/creating-a-corpus), which serve as storage 
   for data that you want to search.
-* :ledger: **Manage Data:** Manage the data in your account and in individual corpora
+* :ledger: **Manage Data:** Manage the data in your account.
 * :closed_lock_with_key: **Manage API Access:** Users can define API access credentials, including 
   [API Keys](/docs/learn/authentication/api-key-management) and [OAuth app clients](/docs/learn/authentication/oauth-2).
 * :busts_in_silhouette: **Invite Team Members:** [Add users to your team](/docs/console-ui/manage-user) and assign 
@@ -23,8 +24,8 @@ Vectara account:
 * :moneybag: **Manage Billing Details:** View account usage information and [payment 
   details](/docs/console-ui/update-credit-card) to ensure uninterrupted service.
 * :globe_with_meridians: **Vectara Platform Overview:** Learn about the Vectara Platform and view interactive 
-  parts of our documentation like the [API Playground](/docs/rest-api/vectara-rest-api) and 
-  [Quick Start guide](/docs/quickstart).
+  parts of our documentation like the [API Playground](/docs/rest-api/vectara-rest-api).
+
 
 The console Overview home page also provides helpful links to get you started 
 with our plaltform:

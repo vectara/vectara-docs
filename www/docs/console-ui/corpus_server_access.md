@@ -15,13 +15,12 @@ running queries against it.
 
 3. Click the **Authorization** tab.
    
-   :::note
+:::note
    
-   If you don't see an Authorization tab,
-   you do not have sufficient privileges. Ask your Account or Corpus Admin to
-   grant you privileges on this corpus.
+   If you don't see an Authorization tab, you lack sufficient privileges. Ask your Account 
+   or Corpus Admin to grant you privileges on this corpus.
 
-   :::
+:::
 
   ![Corpus Authorization](/img/corpus_authorization_tab.png)
 
