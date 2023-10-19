@@ -1,6 +1,7 @@
 ---
 id: corpus-default-read-access
-title: Configuring default read access to a corpus
+title: Configure Default Read Access to a Corpus
+sidebar_label: Configure Default Read Access
 ---
 
 Sometimes, you’ll want to make a corpus searchable by any authenticated user.
@@ -10,26 +11,20 @@ corpus.
 1. Make sure that you are logged in with a user having sufficient privileges to
    modify corpus authorizations. Any of the roles **Corpus Admin**,
    **Account Admin**, or **Account Owner** suffice.
+2. Navigate to your desired corpus by either clicking its name in the left
+   sidebar or through the **Corpora** page.
+3. Click the **Authorization** tab in the right side window. 
 
-2. Click the corpus either from the left side bar or search for it from the
-   Corpora page and click on it.
+  ![Corpus Authorization](/img/corpus_authorization_tab.png)
 
-  ![Corpora](/img/corpora.png)
+    If you do not see an Authorization tab, you may not have sufficient privileges. 
+    Log in with an account that has rights.
 
-3. Click on the **Authorization** tab in the right side window. 
 
-  :::caution
-  If you do not see an Authorization tab, you may not have sufficient
-  privileges. Login with an account having rights as explained in the first
-  point above.
-  :::
-
-  ![Corpus Authorization](/img/corpus_authorization.png)
-
-4. Click on the **Create Default Role** button and create a Query Role for the
+1. Click on the **Create Default Role** button and create a Query Role for the
    corpus.
 
-  ![Create Default Role](/img/create_default_corpus_role.png)
+  ![Create Default Role](/img/create_default_role.gif)
 
 5. You will get a notification indicating successful creation of role. 
 

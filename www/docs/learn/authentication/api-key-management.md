@@ -11,8 +11,9 @@ import {vars} from '@site/static/variables.json';
 
 API Keys allow controlled, anonymous access to running semantic searches on your
 corpora. This greatly simplifies integration from public-facing systems like
-websites. Simply embed the API key and directly pass it to <Config v="names.product"/> when 
-issuing requests. If a key is compromised, you can quickly revoke the key and 
+websites. You can easily [create an API key](/docs/console-ui/manage-api-access#create-an-api-key) and then simp embed the API key and 
+directly pass it to <Config v="names.product"/> when issuing requests. If a key 
+is compromised, you can quickly revoke the key and 
 replace it in minutes.
 
 :::important
@@ -24,27 +25,6 @@ your account with an API key.
 
 You can use API keys for querying and indexing operations, but not at this 
 time for administrative operations such as creating or deleting corpora.
-
-The remainder of this section walks you through managing and using the API Keys.
-
-## Create an API Key
-
-If you have the necessary permissions you'll see the `API Keys` in the sidebar.
-Click this option and you'll see the following page:
-
-![API Keys](/img/api_key_create.png)
-
-Click **Create Key** to create a new key, and the following dialog will
-display:
-
-![New API Keys](/img/api_key_new.png)
-
-Enter the name of the key and select the corpora you want to be able to query
-using the it. Then, click **Create**.
-
-![API Key corpus](/img/api_key_corpus_associate.png)
-
-You can now start using the key.
 
 :::warning
 
