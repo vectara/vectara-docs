@@ -153,6 +153,7 @@ ${content}
         },
       },
     ],
+    '@vectara/docusaurus-search'
   ],
 
   scripts: [
