@@ -26,6 +26,11 @@ module.exports = {
           label: "API Recipes",
         },
         {
+          type: 'doc',
+          id: 'prepare-your-data',
+          label: "Prepare Your Data",
+        },
+        {
           type: 'category',
           label: 'Vectara API Paradigms',
           items: [
