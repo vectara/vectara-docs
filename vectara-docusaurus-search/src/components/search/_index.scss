@@ -1,35 +1,3 @@
-.searchResultItem {
-  list-style-type: none;
-  padding: 4px 16px;
-
-  &:hover {
-    background-color: #cbcdde;
-  }
-
-  &.selected {
-    background-color: #cbcdde;
-  }
-}
-
-.searchResultsWrapper {
-  border: 1px solid #cbcdde;
-  border-radius: 8px;;
-  left: 0;
-  margin-top: 8px;
-  max-height: 500px;
-  overflow: scroll;
-  position: absolute;
-  top: 100%;
-
-  .vuiSearchResultPosition {
-    display: none;
-  }
-
-  .vuiTitle--s {
-    font-size: 14px;
-  }
-
-  .vuiText--s p {
-    font-size: 12px;
-  }
-}
+@import "../../../vui/styleUtils/index";
+@import "./searchInput";
+@import "./searchResult";
