@@ -5,6 +5,7 @@ import {
 } from "react";
 import classNames from "classnames";
 import { BiSearch } from "react-icons/bi";
+import { VuiSpinner } from "../../../vui";
 
 const SIZE = ["m", "l"] as const;
 
@@ -16,6 +17,7 @@ type Props = {
   autoFocus?: boolean;
   onSubmit?: FormEventHandler;
   onKeyDown?: KeyboardEventHandler<HTMLInputElement>;
+  isLoading?: boolean;
 };
 
 export const SearchInput = ({
@@ -25,6 +27,7 @@ export const SearchInput = ({
   placeholder,
   autoFocus,
   onSubmit,
+  isLoading,
   ...rest
 }: Props) => {
   const classes = classNames("searchInput", `searchInput--${size}`);
@@ -45,9 +48,15 @@ export const SearchInput = ({
           {...rest}
         />
 
-        <button className="searchInput__submitButton" onClick={onSubmit}>
-          <BiSearch size="20px" />
-        </button>
+        {isLoading ? (
+          <div className="searchInput__submitButton">
+            <VuiSpinner size="xs" />
+          </div>
+        ) : (
+          <button className="searchInput__submitButton" onClick={onSubmit}>
+            <BiSearch size="20px" />
+          </button>
+        )}
       </div>
     </form>
   );

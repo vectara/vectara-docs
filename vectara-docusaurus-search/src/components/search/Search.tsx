@@ -28,7 +28,7 @@ export const Search: FC<Props> = ({ customerId, apiKey, corpusId, apiUrl }) => {
     null
   );
 
-  const { fetchSearchResults } = useSearch(
+  const { fetchSearchResults, isLoading } = useSearch(
     customerId,
     corpusId,
     apiKey,
@@ -92,7 +92,11 @@ export const Search: FC<Props> = ({ customerId, apiKey, corpusId, apiUrl }) => {
   return (
     <div style={{ position: "relative" }}>
       <BrowserRouter>
-        <SearchInput onChange={onChange} onKeyDown={onKeyDown} />
+        <SearchInput
+          isLoading={isLoading}
+          onChange={onChange}
+          onKeyDown={onKeyDown}
+        />
         {resultsList}
       </BrowserRouter>
     </div>
