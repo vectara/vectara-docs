@@ -3,6 +3,11 @@ import { DeserializedSearchResult, DocMetadata, SearchResponse } from "./types";
 
 const DEFAULT_QUERY_API_URL = "https://api.vectara.io/v1/query";
 
+/**
+ * A hook that exposes a data fetcher.
+ * This data fetcher sends a request to the supplied or default API endpoint
+ * and automatically parses results before returning them to the calling hook or component.
+ */
 export const useSearch = (
   customerId: string,
   corpusId: string,
