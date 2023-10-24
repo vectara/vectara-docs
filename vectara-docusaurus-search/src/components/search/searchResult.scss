@@ -6,12 +6,14 @@
 }
 
 .searchResult {
+  background-color: $colorEmptyShade;
   display: block;
   padding: $sizeS $sizeS;
   text-decoration: none;
   border-bottom: 1px solid $borderColorLight;
 
-  &:hover {
+  &:hover,
+  &.isSelected {
     background-color: $colorLightShade;
 
     .searchResultTitle {
