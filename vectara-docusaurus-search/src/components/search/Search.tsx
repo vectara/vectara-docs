@@ -1,14 +1,12 @@
 import { ChangeEvent, FC, useCallback, useState, KeyboardEvent } from "react";
 import { BrowserRouter } from "react-router-dom";
 import debounce from "lodash.debounce";
-import { VuiMenu, VuiMenuItem, VuiSearchResult } from "../../../vui";
 import { DeserializedSearchResult } from "./types";
 import { useSearch } from "./useSearch";
 import { SearchInput } from "./SearchInput";
-
-import "../../../vui/_index.scss";
-import "./_index.scss";
 import { SearchResult } from "./SearchResult";
+
+import "./_index.scss";
 
 interface Props {
   customerId: string;
