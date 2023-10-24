@@ -3,15 +3,11 @@ import {
   FormEventHandler,
   KeyboardEventHandler,
 } from "react";
-import classNames from "classnames";
 import { BiSearch } from "react-icons/bi";
 import { VuiSpinner } from "../../../vui";
 
-const SIZE = ["m", "l"] as const;
-
 type Props = {
   value?: string;
-  size?: (typeof SIZE)[number];
   onChange?: ChangeEventHandler<HTMLInputElement>;
   placeholder?: string;
   autoFocus?: boolean;
@@ -21,7 +17,6 @@ type Props = {
 };
 
 export const SearchInput = ({
-  size = "m",
   value,
   onChange,
   placeholder,
@@ -30,11 +25,9 @@ export const SearchInput = ({
   isLoading,
   ...rest
 }: Props) => {
-  const classes = classNames("searchInput", `searchInput--${size}`);
-
   return (
     <form onSubmit={onSubmit}>
-      <div className={classes}>
+      <div className="searchInput">
         <input
           className="searchInput__input"
           type="text"
