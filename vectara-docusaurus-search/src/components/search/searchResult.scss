@@ -7,8 +7,9 @@
 
 .searchResult {
   display: block;
-  padding: $sizeM $sizeS;
+  padding: $sizeS $sizeS;
   text-decoration: none;
+  border-bottom: 1px solid $borderColorLight;
 
   &:hover {
     background-color: $colorLightShade;
@@ -16,6 +17,10 @@
     .searchResultTitle {
       text-decoration: underline;
     }
+  }
+
+  &:last-of-type {
+    border-bottom: none;
   }
 }
 
