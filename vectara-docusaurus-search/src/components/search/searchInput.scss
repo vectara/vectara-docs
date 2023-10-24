@@ -10,14 +10,14 @@
   background-color: $colorEmptyShade;
   border: 1px solid $colorMediumShade;
   box-shadow: $shadowSmallStart;
-  outline-width: 1px !important;
+  outline-width: 1px;
   outline-style: solid;
   outline-color: transparent;
-  outline-offset: -1px !important;
+  outline-offset: -1px;
   font-size: $fontSizeMedium;
 
   &:focus-visible {
-    outline-color: $colorPrimary !important;
+    outline-color: $colorPrimary;
     box-shadow: $shadowSmallEnd;
   }
 }
