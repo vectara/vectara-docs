@@ -1,0 +1,40 @@
+.searchResults {
+  border: 1px solid $borderColor;
+  border-top: none;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.searchResult {
+  display: block;
+  padding: $sizeS $sizeS;
+  text-decoration: none;
+  border-bottom: 1px solid $borderColorLight;
+
+  &:hover {
+    background-color: $colorLightShade;
+
+    .searchResultTitle {
+      text-decoration: underline;
+    }
+  }
+
+  &:last-of-type {
+    border-bottom: none;
+  }
+}
+
+.searchResultTitle {
+  color: $colorPrimary;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 22px;
+  margin-bottom: $sizeXxs;
+}
+
+.searchResultSnippet {
+  color: $colorDarkerShade;
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 0;
+}

@@ -1,7 +1,7 @@
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { DeserializedSearchResult, DocMetadata, SearchResponse } from "./types";
 
-const DEFAULT_QUERY_API_URL = 'https://api.vectara.io/v1/query';
+const DEFAULT_QUERY_API_URL = "https://api.vectara.io/v1/query";
 
 export const useSearch = (
   customerId: string,
@@ -9,47 +9,53 @@ export const useSearch = (
   apiKey: string,
   apiUrl: string = DEFAULT_QUERY_API_URL
 ) => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const headers = useMemo(() => {
     const headersInstance = new Headers();
-    headersInstance.append('customer-id', customerId);
-    headersInstance.append('x-api-key', apiKey);
-    headersInstance.append('content-type', 'application/json');
+    headersInstance.append("customer-id", customerId);
+    headersInstance.append("x-api-key", apiKey);
+    headersInstance.append("content-type", "application/json");
 
     return headersInstance;
-  }, [customerId, apiKey])
-  
-  const generateRequestBody = useCallback((query: string) => {
-    return JSON.stringify({
-      query: [
-        {
-          query,
-          start: 0,
-          numResults: 10,
-          corpusKey: [
-            {
-              corpusId,
-            }
-          ]
-        }
-      ]
-    })
-  }, [corpusId]);
+  }, [customerId, apiKey]);
 
-  const fetchSearchResults = async (query: string): Promise<DeserializedSearchResult[]> => {
+  const generateRequestBody = useCallback(
+    (query: string) => {
+      return JSON.stringify({
+        query: [
+          {
+            query,
+            start: 0,
+            numResults: 10,
+            corpusKey: [
+              {
+                corpusId,
+              },
+            ],
+          },
+        ],
+      });
+    },
+    [corpusId]
+  );
+
+  const fetchSearchResults = async (
+    query: string
+  ): Promise<DeserializedSearchResult[]> => {
+    setIsLoading(true);
     const requestBody = generateRequestBody(query);
-    const response = await fetch(
-      apiUrl,
-      {
-        headers,
-        body: requestBody,
-        method: 'POST',
-      }
-    );
+    const response = await fetch(apiUrl, {
+      headers,
+      body: requestBody,
+      method: "POST",
+    });
     const responseJson = await response.json();
+    setIsLoading(false);
     return deserializeSearchResponse(responseJson.responseSet?.[0]) ?? [];
-  }
+  };
 
-  return { fetchSearchResults };
+  return { fetchSearchResults, isLoading };
 };
 
 const convertMetadataToObject = (metadata: DocMetadata[]) => {
@@ -66,7 +72,7 @@ const parseMetadata = (rawMetadata: DocMetadata[]) => {
     source: metadata.source as string,
     url: metadata.url,
     title: metadata.title || "Untitled",
-    metadata
+    metadata,
   };
 };
 
@@ -90,12 +96,12 @@ const deserializeSearchResponse = (
       snippet: {
         pre,
         text,
-        post
+        post,
       },
       source,
       url,
       title,
-      metadata
+      metadata,
     });
   });
 
@@ -106,7 +112,11 @@ export const START_TAG = "%START_SNIPPET%";
 export const END_TAG = "%END_SNIPPET%";
 
 export const parseSnippet = (source: string) => {
-  const [pre, textAndPost] = source.indexOf(START_TAG) !== -1 ? source.split(START_TAG) : ["", source];
-  const [text, post] = textAndPost.indexOf(END_TAG) !== -1 ? textAndPost.split(END_TAG) : [textAndPost, ""];
+  const [pre, textAndPost] =
+    source.indexOf(START_TAG) !== -1 ? source.split(START_TAG) : ["", source];
+  const [text, post] =
+    textAndPost.indexOf(END_TAG) !== -1
+      ? textAndPost.split(END_TAG)
+      : [textAndPost, ""];
   return { pre, post, text };
 };
