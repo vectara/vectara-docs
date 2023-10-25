@@ -1,6 +1,7 @@
 ---
 id: format-for-upload
-title: Format JSON and Pbtext Files
+title: Format Files for Upload
+sidebar_title: Format Files for Upload
 ---
 
 When uploading files using the [File Upload Service](/docs/api-reference/indexing-apis/file-upload/file-upload), you may
@@ -11,9 +12,11 @@ as a JSON or text serialized [Document proto](/docs/api-reference/indexing-apis/
 of this approach is that you can attach your own metadata to the document, or
 to individual sections within it.
 
+## Sample Document Formats
+
 Below is a sample document in each format.
 
-## Sample JSON Document
+### Format a JSON Document
 
 ```json
 {
@@ -44,32 +47,7 @@ Below is a sample document in each format.
 }
 ```
 
-## Sample Pbtxt Document
-
-```
-document_id: "selected-works-of-shakespeare"
-title: "William Shakespeare, Greatest Hits"
-metadata_json: "{\"timespan\":\"26 April 1564---23 April 1616\",\"stars\":5,\"author\":\"William Shakespeare\"}"
-section {
-  title: "King Lear"
-  section {
-    title: "Act I"
-    text: "KENT: I thought the king had more affected the Duke of Albany than Cornwall.\nGLOUCESTER: It did always seem so to us..."
-    metadata_json: "{\"stage-instructions\":\"Enter KENT, GLOUCESTER, and EDMUND\"}"
-  }
-  section {
-    title: "Act II"
-    text: "EDMUND: Save thee, Curan. ..."
-    metadata_json: "{\"stage-instructions\":\"Enter EDMUND, and CURAN meets him\"}"
-  }
-}
-section {
-  title: "Antony and Cleopatra"
-  text: "PHILO: Nay, but this dotage of our general\'s\nO\'erflows the measure: those his goodly eyes, ..."
-}
-```
-
-## Sample Python Document
+### Format a Python Document
 
 For reference, these documents were output by the following Python program:
 
@@ -120,4 +98,29 @@ def main():
 if __name__ == "__main__":
     main()
 
+```
+
+### Format a Pbtxt Document
+
+```
+document_id: "selected-works-of-shakespeare"
+title: "William Shakespeare, Greatest Hits"
+metadata_json: "{\"timespan\":\"26 April 1564---23 April 1616\",\"stars\":5,\"author\":\"William Shakespeare\"}"
+section {
+  title: "King Lear"
+  section {
+    title: "Act I"
+    text: "KENT: I thought the king had more affected the Duke of Albany than Cornwall.\nGLOUCESTER: It did always seem so to us..."
+    metadata_json: "{\"stage-instructions\":\"Enter KENT, GLOUCESTER, and EDMUND\"}"
+  }
+  section {
+    title: "Act II"
+    text: "EDMUND: Save thee, Curan. ..."
+    metadata_json: "{\"stage-instructions\":\"Enter EDMUND, and CURAN meets him\"}"
+  }
+}
+section {
+  title: "Antony and Cleopatra"
+  text: "PHILO: Nay, but this dotage of our general\'s\nO\'erflows the measure: those his goodly eyes, ..."
+}
 ```

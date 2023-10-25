@@ -27,7 +27,7 @@ from the protobuf definitions to REST is:
 - JSON responses are always returned in `camelCase` form
 
 ## API Authentication
-All <Config v="names.product"/> APIs are authenticated.  Indexing and Search
+All <Config v="names.product"/> APIs are authenticated. Indexing and Search
 APIs can be authenticated via [API Keys](/docs/learn/authentication/api-key-management)
 however, Admin actions (creating/deleting corpora) must be done via
 [OAuth 2.0](/docs/learn/authentication/oauth-2).
@@ -41,7 +41,7 @@ You can use these with tools of your choosing like [Insomnia](https://insomnia.r
 or [Postman](https://www.postman.com/).
 
 1. Download the OpenAPI YAML file.
-2. Importt the file into Insomonia or Postman.
+2. Import the file into Insomonia or Postman.
 3. Start making API calls directly from the tool.
 
 Want to try the REST APIs live in your browser? Head over to our
