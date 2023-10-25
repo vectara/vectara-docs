@@ -14,7 +14,7 @@ import { DeserializedSearchResult } from "./types";
 import { useSearch } from "./useSearch";
 import { SearchInput } from "./SearchInput";
 import { SearchResult } from "./SearchResult";
-import { VuiButtonTertiary, VuiModal } from "../../../vui";
+import { VuiButtonSecondary, VuiIcon, VuiModal } from "../../../vui";
 
 import "./_index.scss";
 
@@ -166,9 +166,17 @@ export const Search: FC<Props> = ({ customerId, apiKey, corpusId, apiUrl }) => {
   return (
     <BrowserRouter>
       <div ref={buttonRef}>
-        <VuiButtonTertiary color="neutral" onClick={() => setIsOpen(true)}>
-          <BiSearch />
-        </VuiButtonTertiary>
+        <VuiButtonSecondary
+          color="neutral"
+          onClick={() => setIsOpen(true)}
+          icon={
+            <VuiIcon>
+              <BiSearch />
+            </VuiIcon>
+          }
+        >
+          Search
+        </VuiButtonSecondary>
       </div>
       <div ref={modalRef}>
         <VuiModal
