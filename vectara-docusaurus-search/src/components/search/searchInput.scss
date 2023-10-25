@@ -8,18 +8,13 @@
   flex-grow: 1;
   padding: $sizeS $sizeM;
   background-color: $colorEmptyShade;
-  border: 1px solid $colorMediumShade;
+  border: none;
   box-shadow: $shadowSmallStart;
   outline-width: 1px;
   outline-style: solid;
   outline-color: transparent;
   outline-offset: -1px;
   font-size: $fontSizeMedium;
-
-  &:focus-visible {
-    outline-color: $colorPrimary;
-    box-shadow: $shadowSmallEnd;
-  }
 }
 
 .searchInput__submitButton {

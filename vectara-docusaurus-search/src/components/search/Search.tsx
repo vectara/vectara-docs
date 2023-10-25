@@ -10,11 +10,11 @@ import {
 import { BrowserRouter } from "react-router-dom";
 import debounce from "lodash.debounce";
 import { BiSearch } from "react-icons/bi";
+import { VuiButtonSecondary, VuiIcon } from "../../../vui";
 import { DeserializedSearchResult } from "./types";
 import { useSearch } from "./useSearch";
-import { SearchInput } from "./SearchInput";
 import { SearchResult } from "./SearchResult";
-import { VuiButtonTertiary, VuiModal } from "../../../vui";
+import { SearchModal } from "./SearchModal";
 
 import "./_index.scss";
 
@@ -105,9 +105,9 @@ export const Search: FC<Props> = ({ customerId, apiKey, corpusId, apiUrl }) => {
   };
 
   const resultsList =
-    searchResults.length === 0 ? null : (
-      <div className="searchResults" ref={modalRef}>
-        {searchResults.map((searchResult, index) => {
+    searchResults.length === 0
+      ? null
+      : searchResults.map((searchResult, index) => {
           const {
             snippet: { pre, text, post },
           } = searchResult;
@@ -122,13 +122,10 @@ export const Search: FC<Props> = ({ customerId, apiKey, corpusId, apiUrl }) => {
               <SearchResult
                 searchResult={searchResult}
                 isSelected={selectedResultIndex === index}
-                shouldOpenInNewWindow={true}
               />
             </div>
           );
-        })}
-      </div>
-    );
+        });
 
   const onBodyClick = useCallback((evt: MouseEvent) => {
     if (evt.target) {
@@ -166,28 +163,27 @@ export const Search: FC<Props> = ({ customerId, apiKey, corpusId, apiUrl }) => {
   return (
     <BrowserRouter>
       <div ref={buttonRef}>
-        <VuiButtonTertiary color="neutral" onClick={() => setIsOpen(true)}>
-          <BiSearch />
-        </VuiButtonTertiary>
-      </div>
-      <div ref={modalRef}>
-        <VuiModal
-          className="searchModal"
-          title={
-            <div ref={inputRef}>
-              <SearchInput
-                isLoading={isLoading}
-                onChange={onChange}
-                onKeyDown={onKeyDown}
-                placeholder="Search Docs"
-              />
-            </div>
+        <VuiButtonSecondary
+          color="neutral"
+          onClick={() => setIsOpen(true)}
+          icon={
+            <VuiIcon>
+              <BiSearch />
+            </VuiIcon>
           }
-          isOpen={isOpen}
         >
-          {resultsList}
-        </VuiModal>
+          Search
+        </VuiButtonSecondary>
       </div>
+
+      <SearchModal
+        ref={modalRef}
+        isLoading={isLoading}
+        onChange={onChange}
+        onKeyDown={onKeyDown}
+        isOpen={isOpen}
+        resultsList={resultsList}
+      />
     </BrowserRouter>
   );
 };
