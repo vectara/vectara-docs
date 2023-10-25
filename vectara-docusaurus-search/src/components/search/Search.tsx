@@ -42,6 +42,7 @@ export const Search: FC<Props> = ({ customerId, apiKey, corpusId, apiUrl }) => {
   const modalRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLDivElement | null>(null);
   const selectedResultRef = useRef<HTMLDivElement | null>(null);
+  const queryRef = useRef<string>("");
   const { fetchSearchResults, isLoading } = useSearch(
     customerId,
     corpusId,
@@ -49,14 +50,28 @@ export const Search: FC<Props> = ({ customerId, apiKey, corpusId, apiUrl }) => {
     apiUrl
   );
 
-  const onChange = debounce(async (evt: ChangeEvent<HTMLInputElement>) => {
-    const query = evt.target.value;
+  const sendSearchQuery = async (query: string) => {
+    if (isLoading) {
+      return;
+    }
+
     const results = await fetchSearchResults(query);
 
     setSearchResults(results);
     setSelectedResultIndex(null);
     selectedResultRef.current = null;
-  }, 500);
+  };
+
+  // A debounced version of the above, for integration into key handling.
+  const debouncedSendSearchQuery = debounce(
+    (query: string) => sendSearchQuery(query),
+    250
+  );
+
+  const onChange = (evt: ChangeEvent<HTMLInputElement>) => {
+    queryRef.current = evt.target.value;
+    debouncedSendSearchQuery(evt.target.value);
+  };
 
   const onKeyDown = useCallback(
     (evt: KeyboardEvent) => {
@@ -64,6 +79,16 @@ export const Search: FC<Props> = ({ customerId, apiKey, corpusId, apiUrl }) => {
 
       if (key === "Escape") {
         closeModalAndResetResults();
+      }
+
+      if (key === "Enter") {
+        evt.preventDefault();
+
+        if (selectedResultIndex !== null) {
+          window.open(searchResults[selectedResultIndex].url, "_self");
+        } else {
+          sendSearchQuery(queryRef.current);
+        }
       }
 
       if (searchResults.length === 0) {
@@ -84,14 +109,6 @@ export const Search: FC<Props> = ({ customerId, apiKey, corpusId, apiUrl }) => {
             ? searchResults.length - 1
             : prevValue - 1;
         });
-      }
-
-      if (key === "Enter") {
-        evt.preventDefault();
-
-        if (selectedResultIndex !== null) {
-          window.open(searchResults[selectedResultIndex].url, "_blank");
-        }
       }
     },
     [searchResults, selectedResultIndex]
