@@ -15,11 +15,6 @@ think of it as a more secure way to send API calls, similar to
 an API key or username/password combination but with enhanced features. The 
 client credentials grant is the OAuth flow that Vectara supports at this time.
 
-Vectara to authenticate API requests. If you are not familiar with OAuth, 
-think of it as a more secure way to send API calls, similar to 
-an API key or username/password combination but with enhanced features. The 
-client credentials grant is the OAuth flow that Vectara supports at this time.
-
 Here is how it works. You provide the OAuth 2.0 authentication provider with a
 `client_id` (similar to a username) and a `client_secret` (similar to a 
 password). A successful authentication returns a [JWT token](https://jwt.io/), which 
