@@ -44,4 +44,3 @@ type SearchResponseSummary = {
   text?: string;
   status?: string;
 };
-
