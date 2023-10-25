@@ -4,7 +4,7 @@ import {
   useEffect,
   useRef,
   ChangeEvent,
-  KeyboardEvent,
+  KeyboardEvent as ReactKeyboardEvent,
 } from "react";
 import { SearchInput } from "./SearchInput";
 import { VuiPortal, VuiScreenBlock } from "../../../vui";
@@ -13,15 +13,15 @@ import { FocusOn } from "react-focus-on";
 type Props = {
   isLoading: boolean;
   onChange: (evt: ChangeEvent<HTMLInputElement>) => void;
-  onKeyDown: (evt: KeyboardEvent) => void;
-  isOpen?: boolean;
-  onClose?: () => void;
+  onKeyDown: (evt: ReactKeyboardEvent) => void;
+  onClose: () => void;
   resultsList: React.ReactNode;
+  isOpen?: boolean;
 };
 
 export const SearchModal = forwardRef(
   (
-    { isLoading, onChange, onKeyDown, isOpen, onClose, resultsList }: Props,
+    { isLoading, onChange, onKeyDown, onClose, isOpen, resultsList }: Props,
     ref: ForwardedRef<HTMLDivElement>
   ) => {
     const returnFocusElRef = useRef<HTMLElement | null>(null);
@@ -39,7 +39,7 @@ export const SearchModal = forwardRef(
     // Allow contents to respond to blur events before unmounting.
     const onCloseDelayed = () => {
       window.setTimeout(() => {
-        onClose?.();
+        onClose();
       }, 0);
     };
 
