@@ -39,10 +39,9 @@ export const Search: FC<Props> = ({ customerId, apiKey, corpusId, apiUrl }) => {
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const buttonRef = useRef<HTMLDivElement | null>(null);
-  const modalRef = useRef<HTMLDivElement | null>(null);
-  const inputRef = useRef<HTMLDivElement | null>(null);
   const selectedResultRef = useRef<HTMLDivElement | null>(null);
   const queryRef = useRef<string>("");
+  const searchCount = useRef<number>(0);
   const { fetchSearchResults, isLoading } = useSearch(
     customerId,
     corpusId,
@@ -51,15 +50,14 @@ export const Search: FC<Props> = ({ customerId, apiKey, corpusId, apiUrl }) => {
   );
 
   const sendSearchQuery = async (query: string) => {
-    if (isLoading) {
-      return;
-    }
-
+    const searchId = ++searchCount.current;
     const results = await fetchSearchResults(query);
 
-    setSearchResults(results);
-    setSelectedResultIndex(null);
-    selectedResultRef.current = null;
+    if (searchId === searchCount.current) {
+      setSearchResults(results);
+      setSelectedResultIndex(null);
+      selectedResultRef.current = null;
+    }
   };
 
   // A debounced version of the above, for integration into key handling.
@@ -76,10 +74,6 @@ export const Search: FC<Props> = ({ customerId, apiKey, corpusId, apiUrl }) => {
   const onKeyDown = useCallback(
     (evt: KeyboardEvent) => {
       const key = evt.key;
-
-      if (key === "Escape") {
-        closeModalAndResetResults();
-      }
 
       if (key === "Enter") {
         evt.preventDefault();
@@ -144,22 +138,6 @@ export const Search: FC<Props> = ({ customerId, apiKey, corpusId, apiUrl }) => {
           );
         });
 
-  const onBodyClick = useCallback((evt: MouseEvent) => {
-    if (evt.target) {
-      const didClickSearchButton = buttonRef.current?.contains(
-        evt.target as Node
-      );
-      const didClickModal = modalRef.current?.contains(evt.target as Node);
-      const didClickInput = inputRef.current?.contains(evt.target as Node);
-      const shouldCloseModal =
-        !didClickSearchButton && !didClickModal && !didClickInput;
-
-      if (shouldCloseModal) {
-        closeModalAndResetResults();
-      }
-    }
-  }, []);
-
   useEffect(() => {
     if (selectedResultRef.current) {
       selectedResultRef.current.scrollIntoView({
@@ -167,14 +145,6 @@ export const Search: FC<Props> = ({ customerId, apiKey, corpusId, apiUrl }) => {
         block: "nearest",
       });
     }
-  }, [selectedResultRef.current]);
-
-  useEffect(() => {
-    document.body.addEventListener("click", onBodyClick);
-
-    return () => {
-      document.body.removeEventListener("click", onBodyClick);
-    };
   }, [selectedResultRef.current]);
 
   return (
@@ -194,12 +164,12 @@ export const Search: FC<Props> = ({ customerId, apiKey, corpusId, apiUrl }) => {
       </div>
 
       <SearchModal
-        ref={modalRef}
         isLoading={isLoading}
         onChange={onChange}
         onKeyDown={onKeyDown}
         isOpen={isOpen}
         resultsList={resultsList}
+        onClose={closeModalAndResetResults}
       />
     </BrowserRouter>
   );
