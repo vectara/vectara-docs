@@ -3,50 +3,49 @@
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Vectara Docs',
-  tagline: 'Developer documentation for Vectara\'s Semantic Search Platform',
-  url: 'https://docs.vectara.com',
-  baseUrl: '/',
-  favicon: 'img/vectara_logo.svg',
-  organizationName: 'vectara',
-  projectName: 'vectara-docs',
+  title: "Vectara Docs",
+  tagline: "Developer documentation for Vectara's Semantic Search Platform",
+  url: "https://docs.vectara.com",
+  baseUrl: "/",
+  favicon: "img/vectara_logo.svg",
+  organizationName: "vectara",
+  projectName: "vectara-docs",
 
   presets: [
     [
-      '@docusaurus/preset-classic',
-      ({
+      "@docusaurus/preset-classic",
+      {
         docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
-          editUrl:
-          'https://github.com/vectara/vectara-docs/tree/master/www',
+          sidebarPath: require.resolve("./sidebars.js"),
+          editUrl: "https://github.com/vectara/vectara-docs/tree/master/www",
           docLayoutComponent: "@theme/DocPage",
-          docItemComponent: "@theme/ApiItem" // Derived from docusaurus-theme-openapi-docs
+          docItemComponent: "@theme/ApiItem", // Derived from docusaurus-theme-openapi-docs
         },
         theme: {
-          customCss: require.resolve("./src/css/custom.css")
-        }
-      })
+          customCss: require.resolve("./src/css/custom.css"),
+        },
+      },
     ],
   ],
 
   plugins: [
     [
-      'docusaurus-plugin-openapi-docs',
+      "docusaurus-plugin-openapi-docs",
       {
-        id: 'apiDocs',
-        docsPluginId: 'classic',
+        id: "apiDocs",
+        docsPluginId: "classic",
         config: {
           vectara: {
-            specPath: 'static/vectara-oas.yaml', // Path to designated spec file
-            outputDir: 'docs/rest-api', // Output directory for generated .mdx docs
-            downloadUrl: 'https://docs.vectara.com/vectara-oas.yaml',
+            specPath: "static/vectara-oas.yaml", // Path to designated spec file
+            outputDir: "docs/rest-api", // Output directory for generated .mdx docs
+            downloadUrl: "https://docs.vectara.com/vectara-oas.yaml",
             sidebarOptions: {
-              groupPathsBy: 'tag',
-              categoryLinkSource: 'tag',
+              groupPathsBy: "tag",
+              categoryLinkSource: "tag",
             },
-            baseUrl: 'docs/rest-api/vectara-oas',
-            version: '1.0.0',
-            label: 'v1.0.0',
+            baseUrl: "docs/rest-api/vectara-oas",
+            version: "1.0.0",
+            label: "v1.0.0",
           },
         },
       },
@@ -56,7 +55,8 @@ const config = {
       {
         // options here
         name: "github-getting-started-samples", // used by CLI, must be path safe
-        sourceBaseUrl: "https://raw.githubusercontent.com/vectara/getting-started/main/language-examples", // the base url for the markdown (gets prepended to all of the documents when fetching)
+        sourceBaseUrl:
+          "https://raw.githubusercontent.com/vectara/getting-started/main/language-examples", // the base url for the markdown (gets prepended to all of the documents when fetching)
         //sourceBaseUrl: "http://127.0.0.1:8000/", // the base url for the markdown (gets prepended to all of the documents when fetching)
         outDir: "docs/getting-started-samples", // the base directory to output to.
         noRuntimeDownloads: false,
@@ -121,35 +121,46 @@ const config = {
         ],
         modifyContent(filename, content) {
           return {
-            filename: `${filename.split('/').slice(-1)}.md`,
+            filename: `${filename.split("/").slice(-1)}.md`,
             content: `---
-    id: ${filename.split('/').slice(-1)}
-    title: ${filename.split('/').slice(-1)}
+    id: ${filename.split("/").slice(-1)}
+    title: ${filename.split("/").slice(-1)}
     custom_edit_url: https://github.com/vectara/getting-started/blob/main/language-examples/${filename}
-    sidebar_label: ${String(filename.split('\.').slice(-1)).replace('py','Python')
-                  .replace('cs','C#').replace('php','PHP').replace('js','NodeJS')
-                  .replace('java','Java')}
+    sidebar_label: ${String(filename.split(".").slice(-1))
+      .replace("py", "Python")
+      .replace("cs", "C#")
+      .replace("php", "PHP")
+      .replace("js", "NodeJS")
+      .replace("java", "Java")}
 ---
 
-${((filename.toLowerCase().includes('api') && filename.toLowerCase().includes('key'))
-  || filename === 'nodejs/rest/app.js') &&
-'This is a complete example of using the platform via REST.  For more sample ' + 
-'code, including any dependencies this file has, please have a look at our ' +
-'GitHub examples repository.  This file can be found in that repo at ' +
-'<a href="https://github.com/vectara/getting-started/tree/main/language-examples/' +
-filename + '">' + filename + '</a>'
-||
-'This is an example of using the platform via REST.  For more sample ' + 
-'code, including any dependencies this file has, please have a look at our ' +
-'GitHub examples repository.  This file can be found in that repo at ' +
-'<a href="https://github.com/vectara/getting-started/tree/main/language-examples/' +
-filename + '">' + filename + '</a>'}
+${
+  (((filename.toLowerCase().includes("api") &&
+    filename.toLowerCase().includes("key")) ||
+    filename === "nodejs/rest/app.js") &&
+    "This is a complete example of using the platform via REST.  For more sample " +
+      "code, including any dependencies this file has, please have a look at our " +
+      "GitHub examples repository.  This file can be found in that repo at " +
+      '<a href="https://github.com/vectara/getting-started/tree/main/language-examples/' +
+      filename +
+      '">' +
+      filename +
+      "</a>") ||
+  "This is an example of using the platform via REST.  For more sample " +
+    "code, including any dependencies this file has, please have a look at our " +
+    "GitHub examples repository.  This file can be found in that repo at " +
+    '<a href="https://github.com/vectara/getting-started/tree/main/language-examples/' +
+    filename +
+    '">' +
+    filename +
+    "</a>"
+}
 
-\`\`\`${filename.split('\.').slice(-1)} title="${filename}"
+\`\`\`${filename.split(".").slice(-1)} title="${filename}"
 ${content}
 \`\`\`
 `,
-          }
+          };
         },
       },
     ],
@@ -157,140 +168,140 @@ ${content}
 
   scripts: [
     {
-      src: '/analytics.js',
+      src: "/analytics.js",
       async: true,
     },
   ],
-  
+
   themeConfig: {
     prism: {
-      additionalLanguages: ['java', 'php', 'csharp'],
-      theme: require('prism-react-renderer/themes/vsLight'),
-      darkTheme: require('prism-react-renderer/themes/dracula'),
+      additionalLanguages: ["java", "php", "csharp"],
+      theme: require("prism-react-renderer/themes/vsLight"),
+      darkTheme: require("prism-react-renderer/themes/dracula"),
     },
     announcementBar: {
-      id: 'genai_launch',
+      id: "genai_launch",
       content:
-        "Vectara has just launched its new embedding model, now available to all users!  For more details, see our blog <a href=\"https://vectara.com/introducing-boomerang-vectaras-new-and-improved-retrieval-model/\">here<a>",
-      backgroundColor: '#fafbfc',
-      textColor: '#091E42',
+        'Vectara has just launched its new embedding model, now available to all users!  For more details, see our blog <a href="https://vectara.com/introducing-boomerang-vectaras-new-and-improved-retrieval-model/">here<a>',
+      backgroundColor: "#fafbfc",
+      textColor: "#091E42",
       isCloseable: true,
     },
     navbar: {
-      title: '',
+      title: "",
       logo: {
-        alt: 'Vectara Logo',
-        src: 'img/vectara_wordmark.png',
-	srcDark: 'img/vectara_wordmark_light.png',
+        alt: "Vectara Logo",
+        src: "img/vectara_wordmark.png",
+        srcDark: "img/vectara_wordmark_light.png",
       },
       items: [
         {
-          to: 'docs/',
-          activeBasePath: 'docs',
-          label: 'Docs',
-          position: 'left',
+          to: "docs/",
+          activeBasePath: "docs",
+          label: "Docs",
+          position: "left",
         },
         {
-          to: 'docs/rest-api/',
-          activeBasePath: 'docs/rest-api',
-          label: 'API Playground',
-          position: 'left',
-        }
+          to: "docs/rest-api/",
+          activeBasePath: "docs/rest-api",
+          label: "API Playground",
+          position: "left",
+        },
       ],
     },
     footer: {
-      style: 'light',
+      style: "light",
       links: [
         {
-          title: 'APIs',
+          title: "APIs",
           items: [
             {
-              label: 'Indexing',
-              to: 'docs/api-reference/indexing-apis/indexing',
+              label: "Indexing",
+              to: "docs/api-reference/indexing-apis/indexing",
             },
             {
-              label: 'Search',
-              to: 'docs/api-reference/search-apis/search',
+              label: "Search",
+              to: "docs/api-reference/search-apis/search",
             },
             {
-              label: 'Admin',
-              to: 'docs/api-reference/admin-apis/admin',
+              label: "Admin",
+              to: "docs/api-reference/admin-apis/admin",
             },
           ],
         },
         {
-          title: 'Company',
+          title: "Company",
           items: [
             {
-              label: 'About',
-              to: 'https://vectara.com/about-vectara/',
+              label: "About",
+              to: "https://vectara.com/about-vectara/",
             },
             {
-              label: 'Careers and Culture',
-              to: 'https://vectara.com/careers/',
+              label: "Careers and Culture",
+              to: "https://vectara.com/careers/",
             },
             {
-              label: 'Contact Us',
-              to: 'https://vectara.com/contact-us/',
+              label: "Contact Us",
+              to: "https://vectara.com/contact-us/",
             },
           ],
         },
         {
-          title: 'Security and Terms',
+          title: "Security and Terms",
           items: [
             {
-              label: 'Trust and Security',
-              href: 'https://vectara.com/legal/security-at-vectara/',
+              label: "Trust and Security",
+              href: "https://vectara.com/legal/security-at-vectara/",
             },
             {
-              label: 'Privacy Policy',
-              href: 'https://vectara.com/legal/privacy-policy/',
+              label: "Privacy Policy",
+              href: "https://vectara.com/legal/privacy-policy/",
             },
             {
-              label: 'Terms',
-              href: 'https://vectara.com/legal/terms-of-service/',
+              label: "Terms",
+              href: "https://vectara.com/legal/terms-of-service/",
             },
             {
-              label: 'FAQs',
-              href: 'https://vectara.com/faqs/',
+              label: "FAQs",
+              href: "https://vectara.com/faqs/",
             },
           ],
         },
         {
-          title: 'Social Media',
+          title: "Social Media",
           items: [
             {
-              label: 'LinkedIn',
-              href: 'https://linkedin.com/company/vectara',
+              label: "LinkedIn",
+              href: "https://linkedin.com/company/vectara",
             },
             {
-              label: 'Facebook',
-              href: 'https://www.facebook.com/vectara/',
+              label: "Facebook",
+              href: "https://www.facebook.com/vectara/",
             },
             {
-              label: 'Twitter',
-              href: 'https://twitter.com/vectara',
+              label: "Twitter",
+              href: "https://twitter.com/vectara",
             },
             {
-              label: 'Youtube',
-              href: 'https://www.youtube.com/channel/UCoP_hcyjJRLQr0CV050bfMg',
+              label: "Youtube",
+              href: "https://www.youtube.com/channel/UCoP_hcyjJRLQr0CV050bfMg",
             },
             {
-              label: 'Discord',
-              href: 'https://discord.gg/GFb8gMz6UH',
+              label: "Discord",
+              href: "https://discord.gg/GFb8gMz6UH",
             },
           ],
         },
         {
-          title: 'Platform',
+          title: "Platform",
           items: [
             {
-              label: 'Log In',
-              href: 'https://console.vectara.com/login',
+              label: "Log In",
+              href: "https://console.vectara.com/login",
             },
             {
-              label: 'Sign Up',
-              href: 'https://console.vectara.com/signup',
+              label: "Sign Up",
+              href: "https://console.vectara.com/signup",
             },
           ],
         },
@@ -300,7 +311,7 @@ ${content}
   },
 
   // Allows use of @theme/ApiItem and other components
-  themes: ['docusaurus-theme-openapi-docs']
+  themes: ["docusaurus-theme-openapi-docs"],
 };
 
 module.exports = config;
