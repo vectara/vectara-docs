@@ -26,19 +26,18 @@ access to `vectara-summary-ext-v1.3.0` (GPT 4.0).
 
 ## Beta Summarizers
 
-We also have two new beta summarizers available only for
-Scale users:
+We also have two new beta summarizers available for our users to try:
 
-* `vectara-experimental-summary-ext-2023-10-23-small` (GPT 3.5) 
-* `vectara-experimental-summary-ext-2023-10-23-med` (GPT 4.0)
+* **Growth and Scale:** `vectara-experimental-summary-ext-2023-10-23-small` (GPT 3.5)
+* **Scale only:** `vectara-experimental-summary-ext-2023-10-23-med` (GPT 4.0)
 
 These beta versions are a preview of our next improved summarizers. Since 
 they are experimental, we do not support them officially.
 
 ### Beta Summarizer Example
 
-The following example query selects GPT 4.0 summarizer (only available to 
-Scale users):
+The following example query selects the beta GPT 4.0 summarizer (only 
+available to Scale users):
 
 ```json showLineNumbers title="https://api.vectara.io/v1/query"
 {
