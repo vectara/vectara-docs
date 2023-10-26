@@ -1,3 +1,5 @@
+$modalPadding: 6vh;
+
 .searchModalContainer {
   position: fixed;
   top: 0;
@@ -6,17 +8,18 @@
   bottom: 0;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   animation: modalIn 0.2s cubic-bezier(0, 1, 1, 1);
   pointer-events: none;
 }
 
 .searchModal {
+  margin-top: $modalPadding;
   display: flex;
   flex-direction: column;
   width: 100%;
   max-width: $modalWidth;
-  max-height: calc(100vh - 200px);
+  max-height: calc(100vh - ($modalPadding * 2));
   z-index: $modalZIndex;
   pointer-events: all;
   background-color: $colorEmptyShade;
