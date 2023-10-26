@@ -50,6 +50,10 @@ export const Search: FC<Props> = ({ customerId, apiKey, corpusId, apiUrl }) => {
   );
 
   const sendSearchQuery = async (query: string) => {
+    if (query.length === 0) {
+      return;
+    }
+
     const searchId = ++searchCount.current;
     const results = await fetchSearchResults(query);
 
@@ -63,12 +67,18 @@ export const Search: FC<Props> = ({ customerId, apiKey, corpusId, apiUrl }) => {
   // A debounced version of the above, for integration into key handling.
   const debouncedSendSearchQuery = debounce(
     (query: string) => sendSearchQuery(query),
-    250
+    500
   );
 
   const onChange = (evt: ChangeEvent<HTMLInputElement>) => {
-    queryRef.current = evt.target.value;
-    debouncedSendSearchQuery(evt.target.value);
+    const currentQuery = evt.target.value;
+    queryRef.current = currentQuery;
+
+    if (currentQuery.length === 0) {
+      resetResults();
+    }
+
+    debouncedSendSearchQuery(currentQuery);
   };
 
   const onKeyDown = useCallback(
@@ -108,11 +118,15 @@ export const Search: FC<Props> = ({ customerId, apiKey, corpusId, apiUrl }) => {
     [searchResults, selectedResultIndex]
   );
 
-  const closeModalAndResetResults = () => {
-    setIsOpen(false);
+  const resetResults = () => {
     setSearchResults([]);
     setSelectedResultIndex(null);
     selectedResultRef.current = null;
+  };
+
+  const closeModalAndResetResults = () => {
+    setIsOpen(false);
+    resetResults();
   };
 
   const resultsList =
