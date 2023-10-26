@@ -8,7 +8,6 @@ import {Config} from '@site/docs/definitions.md';
 
 Behind the scenes, <Config v="names.product"/> supports both selecting the
 summarizer model as well as the prompt for the model.  We make range of these
-controls available to our [Scale](https://vectara.com/pricing/) customers. If
 you are a Scale customer or are considering becoming one and have any questions
 on your options, please
 [reach out to our support team](https://vectara.com/contact-us/), who can help
@@ -23,11 +22,11 @@ available summarizer for your account.
 
 Currently, we have two official summarizers available to our users. Growth 
 users have `vectara-summary-ext-v1.2.0` (GPT 3.5), while Scale users have 
-access to `vectara-summary-ext-v1.3.0` (GPT 4.0). 
+access to `vectara-summary-ext-v1.3.0` (GPT 4.0).
 
-## Experimental Summarizers
+## Beta Summarizers
 
-We also have two new experimental beta summarizers available only for
+We also have two new beta summarizers available only for
 Scale users:
 
 * `vectara-experimental-summary-ext-2023-10-23-small` (GPT 3.5) 
@@ -36,9 +35,10 @@ Scale users:
 These beta versions are a preview of our next improved summarizers. Since 
 they are experimental, we do not support them officially.
 
-### Experimental Summarizer Example
+### Beta Summarizer Example
 
-The following example query selects the experimental GPT 4.0 summarizer:
+The following example query selects GPT 4.0 summarizer (only available to 
+Scale users):
 
 ```json showLineNumbers title="https://api.vectara.io/v1/query"
 {
@@ -64,19 +64,16 @@ The following example query selects the experimental GPT 4.0 summarizer:
   ]
 }
 ```
-
 ## Default maxSummarizedResults Limit
 
-The default limit of `maxSummarizedResults` is `10` search results for Growth 
-plans and this limit can be extended for Scale plan users. Setting the values 
-closer to the limit generates a more comprehensive summary, but using a lower 
-value can balance the results with quality and response time.
+The default limit of maxSummarizedResults is 10 search results for Growth plans and this limit can be extended for Scale plan users. Setting the values closer to the limit generates a more comprehensive summary, but using a lower value can balance the results with quality and response time.
 
-## maxSummarizedResults Example
+maxSummarizedResults Example
+This summarizer example attempts to balance creating a good quality summary with a a reasonably fast response by setting maxSummarizedResults to 5. To use vectara-summary-ext-v1.2.0, send it as the summarizerPromptName as follows:
 
-This summarizer example attempts to balance creating a good quality summary with a
-a reasonably fast response by setting `maxSummarizedResults` to `5`. To use `vectara-summary-ext-v1.2.0`, send 
-it as the `summarizerPromptName` as follows:
+This summarizer attempts to balance creating a good quality summary with a
+a reasonably fast response.  To use `vectara-summary-ext-v1.2.0`, send it as
+the `summarizerPromptName` as follows:
 
 ```json showLineNumbers title="https://api.vectara.io/v1/query"
 {
