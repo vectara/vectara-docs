@@ -90,7 +90,6 @@ function Home() {
                 styles.getStarted
               )}
               to={useBaseUrl("docs/")}
-              style={{ marginRight: "20px" }}
             >
               Get Started
             </Link>
