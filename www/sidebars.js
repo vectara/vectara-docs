@@ -26,6 +26,11 @@ module.exports = {
           label: "API Recipes",
         },
         {
+          type: 'doc',
+          id: 'sample-vectara-apps',
+          label: "Sample Demos and Applications",
+        },
+        {
           type: 'category',
           label: 'Vectara API Paradigms',
           items: [
@@ -33,20 +38,8 @@ module.exports = {
             'api-reference/rest',
           ]
         },
-        {
-          type: 'category',
-          label: 'Code Samples',
-          items: [
-            'getting-started-samples/RestApiKeyQueries.cs',
-            'getting-started-samples/RestApiKeyQueries.java',
-            'getting-started-samples/queryDataApiKey.php',
-            'getting-started-samples/rest_api_key_queries.py',
-            'getting-started-samples/app.js',
-          ]
-        },
       ],
     },
-
         {
       type: 'category',
       label: 'Learn',
@@ -103,6 +96,17 @@ module.exports = {
         },
         'learn/recommendation-systems/recommender-overview',
         'learn/question-answer/question-answer-overview',
+      ]
+    },
+    {
+      type: 'category',
+      label: 'Code Samples',
+      items: [
+        'getting-started-samples/RestApiKeyQueries.cs',
+        'getting-started-samples/RestApiKeyQueries.java',
+        'getting-started-samples/queryDataApiKey.php',
+        'getting-started-samples/rest_api_key_queries.py',
+        'getting-started-samples/app.js',
       ]
     },
     {

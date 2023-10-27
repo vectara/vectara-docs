@@ -6,7 +6,10 @@ sidebar_label: API Recipes
 import {Config} from '@site/docs/definitions.md';
 
 Using our APIs enable application developers and data engineers to seamlessly 
-integrate the <Config v="names.product"/> semantic search capabilities into your applications. 
+integrate the <Config v="names.product"/> semantic search capabilities into 
+your applications. After you review this section, you can 
+check out our [API Playground](/docs/rest-api/vectara-rest-api) to experiment with Vectara's REST APIs directly 
+from your browser!
 
 The Vectara Console and our APIs work hand-in-hand as part of the app development 
 process. For example, a builder uses this following workflow: 
@@ -20,7 +23,7 @@ process. For example, a builder uses this following workflow:
   corpus by checking the querying graph on the Overview tab.
 
 Let’s get you started with using the <Config v="names.product"/> APIs so that 
-you can perform queries on some data. 
+you can perform queries on some data.
 
 ## What you will learn
 

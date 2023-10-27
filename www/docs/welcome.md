@@ -47,6 +47,13 @@ privacy violations. <Config v="names.product"/> provides support for customer-ma
 keys, encryption at rest and during transit, client-configurable data 
 retention, and more.
 
+### :star2: Ready to Dive In? Check Out Our API Playground! :star2:
+
+If you're ready to dive into our APIs, make your way to our [**API Playground**](/docs/rest-api/vectara-rest-api)! 
+This interactive environment allows you to experiment with <Config v="names.product"/>'s REST APIs 
+directly from your browser! Tailored for developers, the API Playground 
+offers a hands-on experience to understand and demonstrate our capabilities.
+
 ## Solve the Hallucination Problem
 
 AI content generators often create **hallucinations** – false information 
@@ -72,14 +79,13 @@ fingertips. Welcome to the future of information interaction!
 
 ## Not sure where to start?
 
-Here are some ideas:
+If you don't have a <Config v="names.product"/> account yet, register for 
+one [here](https://console.vectara.com/signup). Here are some other ideas:
 
-- Check out our [Quick Start Tutorial](/docs/quickstart) and get up and running 
-  to index and search your first document in just a couple of minutes!
-- If you don't have a <Config v="names.product"/> account yet, register for one [here](https://console.vectara.com/signup)
+- Check out our [Quick Start Tutorial](/docs/quickstart) and [API Recipes](/docs/api-recipes) to 
+  index and search your first document in just a couple of minutes!
 - Check out some [Vectara applications, demos, and video tutorials](https://vectara.com/demos/)
 - Have a look at examples of how to [index](/docs/getting-started-samples/rest_index_document.py) and
 [search](/docs/getting-started-samples/rest_query.py) documents
 - Grab the [full protobuf definitions](/docs/api-reference/protobuf-definitions) and start building using gRPC
-- Learn more about <Config v="names.product"/>'s [access controls](/docs/console-ui/configure-server-access-to-corpus)
 - Visit our [forums](https://discuss.vectara.com/) to ask any questions or provide any suggestions
