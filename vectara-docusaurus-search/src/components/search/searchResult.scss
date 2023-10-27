@@ -1,0 +1,35 @@
+.searchResult {
+  background-color: $colorEmptyShade;
+  display: block;
+  padding: $sizeS $sizeS;
+  text-decoration: none;
+  border-bottom: 1px solid $borderColorLight;
+
+  &:hover,
+  &.isSelected {
+    background-color: $colorLightShade;
+
+    .searchResultTitle {
+      text-decoration: underline;
+    }
+  }
+
+  &:last-of-type {
+    border-bottom: none;
+  }
+}
+
+.searchResultTitle {
+  color: $colorPrimary;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 22px;
+  margin-bottom: $sizeXxs;
+}
+
+.searchResultSnippet {
+  color: $colorDarkerShade;
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 0;
+}

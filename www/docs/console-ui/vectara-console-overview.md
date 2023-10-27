@@ -1,12 +1,11 @@
 ---
 id: vectara-console-overview
 title: Vectara Console Overview
-sidebar_label: Administrative Console Overview
+sidebar_label: Vectara Console Overview
 ---
 
-The Vectara administrative console enables you to create corpora, manage data  
-and API access, add team members, build API requests, and manage your 
-Vectara account:
+The Vectara Console enables you to create corpora, manage data and API access, 
+add team members, build API requests, and manage your Vectara account:
 
 * :rocket: **Five-Minute Walkthrough:** Let Vectara show you [how to build a simple 
   GenAI application](https://console.vectara.com/console/walkthrough) in just a few minutes!
@@ -27,7 +26,7 @@ Vectara account:
   parts of our documentation like the [API Playground](/docs/rest-api/vectara-rest-api).
 
 
-The console Overview home page also provides helpful links to get you started 
+The Vectara Console Overview home page also provides helpful links to get you started 
 with our plaltform:
 
 ![Vectara Console Overview](/img/console_overview.png)

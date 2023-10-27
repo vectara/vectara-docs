@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The admin console is a good way to get started with <Config v="names.product"/>. Once
+The Vectara Console is a good way to get started with <Config v="names.product"/>. Once
 you're ready to integrate the platform more deeply into your application, the 
 Admin APIs allow you to programatically manipulate corpora and perform many 
 other operations within the system.

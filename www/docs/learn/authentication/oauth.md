@@ -15,11 +15,6 @@ think of it as a more secure way to send API calls, similar to
 an API key or username/password combination but with enhanced features. The 
 client credentials grant is the OAuth flow that Vectara supports at this time.
 
-Vectara to authenticate API requests. If you are not familiar with OAuth, 
-think of it as a more secure way to send API calls, similar to 
-an API key or username/password combination but with enhanced features. The 
-client credentials grant is the OAuth flow that Vectara supports at this time.
-
 Here is how it works. You provide the OAuth 2.0 authentication provider with a
 `client_id` (similar to a username) and a `client_secret` (similar to a 
 password). A successful authentication returns a [JWT token](https://jwt.io/), which 
@@ -44,8 +39,8 @@ OAuth 2.0 takes more work to set up but offer several advantages over API keys:
 - OAuth 2.0 has built-in revocation flows in case a key is compromised.
 
 - The JWT token expires automatically after 30 minutes, so if a JWT token ever 
-  does get posted   to a public place, it's less likely to be valid by the 
-  time an attacker   discovers it.
+  does get posted to a public place, it's less likely to be valid by the 
+  time an attacker discovers it.
 
 - OAuth 2.0 doesn't suffer from information leakage such as the username 
   that created the client.
@@ -56,6 +51,7 @@ OAuth 2.0 takes more work to set up but offer several advantages over API keys:
 ## Authenticate with OAuth 2.0
 
 OAuth 2.0 authentication consists of three steps:
+
 1. Create an application client
 2. Generate a JWT Token
 3. Use the JWT token in an API request
