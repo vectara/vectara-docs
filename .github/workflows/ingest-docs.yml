@@ -1,0 +1,60 @@
+name: Vectara Docs Ingestion
+on:
+  push:
+    branches:
+      - main
+jobs:
+  run-ingestion:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test step 1 run on merge
+        run: echo "This ran post-merge to main"
+# The workflow below will be un-commented once the above proves to be working
+# ONLY on merges to main.
+
+# name: Vectara Docs Ingestion
+# on:
+#   push:
+#     branches:
+#       - main
+#   paths:
+#       - www/**
+# jobs:
+#   run-ingestion:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Clone vectara ingest repository
+#         uses: actions/checkout@v2
+#         with:
+#           repository: vectara/vectara-ingest
+#           ref: main
+#           path: vectara-ingest
+#       - name: Create the config YAML file
+#         working-directory: ./vectara-ingest
+#         run: |
+#           echo "vectara:
+#             corpus_id: ${{secrets.VECTARA_DOCS_CORPUS_ID}}
+#             customer_id: ${{secrets.VECTARA_DOCS_CUSTOMER_ID}}
+#             reindex: true
+
+#           crawling:
+#             crawler_type: docs
+
+#           docs_crawler:
+#             base_urls: [\"https://docs.vectara.com/docs\"]
+#             pos_regex: [\".*vectara.com/docs.*\"]
+#             neg_regex: [\".*vectara.com/docs/rest-api/.*\"]
+#             extensions_to_ignore: [\"php\", \"java\", \"py\", \"js\"]
+#             docs_system: docusaurus" >> ingest.yaml
+
+#           echo "[default]
+#           api_key=\"${{secrets.VECTARA_DOCS_API_KEY}}\"" >> secrets.toml
+#           cat ingest.yaml
+#           cat secrets.toml
+#       - name: Run the bash script
+#         working-directory: ./vectara-ingest
+#         run: |
+#           bash run.sh ingest.yaml default
+#       - name: Check the logs
+#         working-directory: ./vectara-ingest
+#         run: docker logs -f vingest
