@@ -17,25 +17,27 @@ The API endpoints are outlined in the various subsections of this API Reference
 section. These endpoints are automatically derived from the [protobuf definitions](https://github.com/vectara/protos)
 and take the same parameters. At a high level, the `api-endpoint` derives from
 [services.proto](https://github.com/vectara/protos/blob/main/services.proto)
-specifically, and the API parameters are in other `.proto` files.  The translation
-from the protobuf definitions to REST is:
-- The only `version` currently available is `v1`
-- `api-endpoint` is lowercase and has hyphens.  For example, the gRPC 
-  call `CreateCorpus` in services.proto is `/create-corpus`
+specifically, and the API parameters are in other `.proto` files. 
+
+The translation from the protobuf definitions to REST is:
+- The only `version` currently available is `v1`.
+- `api-endpoint` is lowercase and has hyphens. For example, the gRPC 
+  call `CreateCorpus` in services.proto is `/create-corpus`.
 - API parameters can be sent in either `camelCase` or lowercase with `underscores`.  
-  For example, you could submit either `numResults` or `num_results` in the Search API
-- JSON responses are always returned in `camelCase` form
+  For example, you could submit either `numResults` or `num_results` in the Search API.
+- JSON responses are always returned in `camelCase` form.
 
 ## API Authentication
 All <Config v="names.product"/> APIs are authenticated. Indexing and Search
-APIs can be authenticated via [API Keys](/docs/learn/authentication/api-key-management)
-however, Admin actions (creating/deleting corpora) must be done via
+APIs can be authenticated via [API Keys](/docs/learn/authentication/api-key-management).
+However, Admin actions for creating and deleting corpora must be done via
 [OAuth 2.0](/docs/learn/authentication/oauth-2).
 
 ## API Playground and OpenAPI Specifications
 You can find up-to-date OpenAPI specifications at
 [https://docs.vectara.com/vectara-oas.yaml](https://docs.vectara.com/vectara-oas.yaml).
-These are automatically derived from the gRPC protobuf definitions as well.
+These REST API specifications are automatically derived from the gRPC protobuf 
+definitions as well.
 
 You can use these with tools of your choosing like [Insomnia](https://insomnia.rest/)
 or [Postman](https://www.postman.com/).

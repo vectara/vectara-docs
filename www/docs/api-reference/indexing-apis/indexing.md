@@ -1,7 +1,7 @@
 ---
 id: indexing
-title: Indexing
-sidebar_label: API Definition
+title: Standard Indexing API Definition
+sidebar_label: Standard Indexing API Definition
 ---
 
 import Tabs from '@theme/Tabs';
@@ -13,22 +13,27 @@ The first step in using <Config v="names.product"/> is to index a set of related
 or content into a corpus. This reference page provides a detailed guide for how
 to do that.
 
-## Endpoint Address
+## Standard Indexing Endpoint Address
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
 to index content into a corpus:
 <code>https://<Config v="domains.rest.indexing"/>/v1/index</code>
+
 This page describes the details of interacting with this endpoint.
 
-## Full Definition
+## Full Standard Indexing Definition
 
 The full definition of the gRPC interface is covered below.
 
-### Service
+### Standard Indexing Service
 
-The indexing service operates by accepting individual documents or messages to be indexed. In a short period of time, generally a few minutes, the new content will become available in the search index.
+The indexing service operates by accepting individual documents or messages to 
+be indexed. In a short period of time, generally a few minutes, the new 
+content will become available in the search index.
 
-The definition of the service is shown below.
+### Indexing Service Definition
+
+The following shows the definition of the service:
 
 
 ```protobuf
@@ -44,7 +49,7 @@ service IndexService {
 ## Index Document
 
 A request to add data into a corpus consists of three key pieces of information:
-the customer ID, the corpus ID, and the data itself, represented as a
+the `customer_id`, the `corpus_id`, and the data itself, represented as a
 **Document** message.
 
 <pre>{`
@@ -67,14 +72,14 @@ message IndexDocumentResponse {
 ### Document Definition in Vectara
 
 A document is a piece of coherent textual matter. It defines an ID,
-**document_id**, which must be unique among all the documents in
-the same corpus. It may optionally specify a **title** and a **description**,
-as well as metadata in **metadata_json**.
+`document_id`, which must be unique among all the documents in
+the same corpus. It may optionally specify a `title` and a `description`,
+as well as metadata in `metadata_json`.
 
-The field **custom_dims**, provide default values for the corresponding
+The `custom_dims` field provides default values for the corresponding
 section fields, should they fail to define them explicitly.
 
-Most importantly, **section** defines the actual textual matter.
+Most importantly, `section` defines the actual textual matter.
 
 ```protobuf
 message Document {
@@ -98,14 +103,14 @@ message Document {
 
 ```
 
-### Section
+### Section within a Document
 
 A section represents an organizational subunit within a document. Its definition
-is recursive, since a section can be composed of further **sections**.
+is recursive, since a section can be composed of further `sections`.
 
 The actual textual content, which is at least a single sentence, but might span
-several paragraphs or more, is stored in **text**. Like a Document, it may
-optionally specify a **title**, which semantically corresponds to a section
+several paragraphs or more, is stored in `text`. Like a Document, it may
+optionally specify a `title`, which semantically corresponds to a section
 header or chapter title.
 
 Sections are flexible, and it's possible that a section specifies a title, but
@@ -175,21 +180,27 @@ message Section {
 }
 ```
 
-### Custom Dimension
+### Custom Dimensions Use Cases
 
-Custom dimensions are a powerful feature of <Config v="names.product"/>. They allow you to
-attach numeric factors to every item in the index, which affect its final
-ranking during searches. Some example use cases include:
+Custom dimensions are a powerful <Config v="names.product"/> capability. Custom 
+dimensions enable you to attach numeric factors to every item in the index, 
+which affect its final ranking during searches. Some example use cases include:
 
-1. Defining the authoritativeness of the content. For example, content with 100
+1. Define the authoritativeness of the content. 
+   
+   For example, content with 100
    upvotes can be ranked higher than content with no upvotes and 10 downvotes.
-2. Indicating the source of the content. If there are N sources, this is usually
-   done by defining N custom dimensions, and treating them as boolean 0-1 fields.
+2. Indicate the source of the content. 
+   
+   If there are N sources, this is usually done by defining N custom 
+   dimensions, and treating them as boolean 0-1 fields.    
    This allows weighting results based on source, or even excluding certain
-   sources altogether. For example, content from a government FAQ would be rated
+   sources altogether. 
+   
+   For example, content from a government FAQ would be rated
    higher than content from a user forum.
-3. Defining the geography in which content is relevant.
-4. Indicating the publication date. This makes it easy to weight more recent
+3. Define the geography in which content is relevant.
+4. Indicate the publication date which makes it easy to weight more recent
    results higher.
 
 ```protobuf

@@ -1,19 +1,19 @@
 ---
 id: api-overview
-title: Vectara API Overview
-sidebar_label: Vectara API Overview
+title: Vectara APIs Overview
+sidebar_label: Vectara APIs Overview
 ---
 
 import {Config} from '@site/docs/definitions.md';
 
-Welcome to our API Reference. Everything in <Config v="names.product"/> 
-is driven by APIs. This section serves as a roadmap to understanding and using 
-our APIs. Before getting into more details, we recommend that you have a basic 
-understanding of API concepts.
+Everything in <Config v="names.product"/> is driven by APIs. This section serves 
+as a roadmap to understanding and using our [gRPC APIs](/docs/api-reference/protobuf-definitions) and 
+[REST APIs](/docs/api-reference/rest). Before getting into more details, we recommend that 
+you have a basic understanding of API concepts.
 
 ## :star2: Ready to Dive In? Check Out Our API Playground! :star2:
 
-If you're ready to dive into our APIs, make your way to our [API Playground](/docs/rest-api/vectara-rest-api)! 
+If you're ready to dive into our APIs, make your way to our [**API Playground**](/docs/rest-api/vectara-rest-api)! 
 This interactive environment allows you to experiment with <Config v="names.product"/>'s REST APIs 
 directly from your browser! Tailored for developers, the API Playground 
 offers a hands-on experience to understand and demonstrate our capabilities.
@@ -26,10 +26,18 @@ and other key concepts:
 
 * **gRPC APIs:** Understand the basics of gRPC (Remote Procedure Call) such as 
   the advantages with performance, code generation, and how it uses Protocol 
-  Buffers for schema defnitions.
+  Buffers (**.proto** files) for schema defnitions.
+
+  You can [download the `.proto` files](https://github.com/vectara/protos/tree/main) directly from Github. 
+  For example, [`serving.proto`](https://github.com/vectara/protos/blob/main/serving.proto) 
+provides the message definitions for running queries.
+
 * **RESTful APIs:** Understand the principles of Representational State Transfer 
   (REST) and why it's commonly used in web services. Make sure to also 
   understand how it differs from gRPC.
+
+  For example, review the definition for our Standard Indexing API
+
 * **HTTP Methods:** Become familar with HTTP methods like GET, POST, PUT, and DELETE.
 * **gRPC Methods:** Become familar with gRPC methods like server streaming, client
   streaming, and bidirectional streaming.

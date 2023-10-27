@@ -1,7 +1,7 @@
 ---
 id: deleting-documents
-title: Deleting Documents
-sidebar_label: Deleting Documents
+title: Delete Documents API Definition
+sidebar_label: Delete Documents API Definition
 ---
 
 import Tabs from '@theme/Tabs';
@@ -9,15 +9,16 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-## Endpoint Address
+## Delete Documents Endpoint Address
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
 to delete content from a corpus:
 <code>https://<Config v="domains.rest.indexing"/>/v1/delete-doc</code>
+
 This page describes the details of interacting with this endpoint.
 
 A request to delete a document from a corpus consists of three key pieces of information:
-the customer ID, the corpus ID, and the document ID.
+the `customer_id`, the `corpus_id`, and the `document_id`.
 
 ```protobuf
 // Request to delete a document from an index.
@@ -31,22 +32,24 @@ message DeleteDocumentRequest {
 }
 ```
 
-The reply from the server consists of nothing yet. Note that while the operation is
-not completely synchronous (the document may still be returned in query results),
-the platform typically removes the document within a few seconds, though it may
-take longer for Growth accounts.
+The reply from the server consists of nothing yet. Note that while the 
+operation is not completely synchronous (the document may still be returned 
+in query results), the platform typically removes the document within a few 
+seconds, though it may take longer for Growth accounts.
 
 The server returns [gRPC status codes](https://grpc.github.io/grpc/core/md_doc_statuscodes.html).
 For example:
 
-- `INTERNAL`: An internal error code indicates a failure inside the platform, and an immediate
-retry may not succeed.
-- `UNAVAILABLE`: The service is temporarily unavailable, and the operation should be retried,
-preferably with a backoff. Note that the deletion operation is idempotent, so it is fine to re-apply.
+- `INTERNAL`: An internal error code indicates a failure inside the platform, 
+  and an immediate retry may not succeed.
+- `UNAVAILABLE`: The service is temporarily unavailable, and the operation should be 
+  retried, preferably with a backoff. 
+  
+  Note that the deletion operation is idempotent, so it is fine to re-apply.
 
 ### Delete a Document Example
 
-The code snippet below illustrates how to delete a document from a corpus. For information
+The code snippet belows illustrates how to delete a document from a corpus in Java or Python. For information
 on how to get the call credentials and metadata, please consult
 [The OAuth 2.0 documentation](/docs/learn/authentication/oauth-2).
 
