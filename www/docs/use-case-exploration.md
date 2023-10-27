@@ -114,31 +114,3 @@ documents that answer their questions. <Config v="names.product"/> helps you
 bridge the gap between user queries and the vast amount of data within 
 an application. Users can find exactly what they are looking for despite 
 how they ask.
-
-## Sample Vectara Demos and Applications
-
-We provide this list of sample open source <Config v="names.product"/> applications to help inspire developer 
-creativity:
-
-* [**AskNews**](https://asknews.demo.vectara.com)
-
-    Demonstrates the power of GenAI conversational search. Ask questions about news 
-    events around the world and get accurate answers thanks to <Config v="names.product"/>'s Grounded 
-    Generation.
-* [**Vectara Ingest**](https://github.com/vectara/vectara-ingest)
-
-    Crawl datasets from pre-built crawlers (websites, RSS feeds, Jira, Notion, 
-    Docusaurus) and ingest them into Vectara
-* [**Vectara Answer**](https://github.com/vectara/vectara-answer)
-  
-    Enable users to create custom conversational search applications, such as 
-    chatbots, semantic search, and workplace search by connecting to your 
-    ingested data.
-    
-    This project provides example code for a modern user-interface for <Config v="names.product"/> GenAI conversational search.
-
-:::note
-
-These sample open source applications are examples of our platform in action and not supported products.
-
-:::

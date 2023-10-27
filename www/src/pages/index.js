@@ -13,6 +13,12 @@ const features = [
       <>
         Our semantic search, based on the latest Neural IR research, returns
         results that keyword search often misses.
+
+        <br></br>
+        <br></br>
+
+        Semantic search is not just about finding data, but about understanding 
+        data and helping you answer questions about your data.
       </>
     ),
   },
@@ -25,6 +31,11 @@ const features = [
         applications like{" "}
         <a href="https://asknews.demo.vectara.com/">our AskNews</a> demo
         quickly.
+        <br></br>
+        <br></br>
+
+        🌟 <b></b>Dive into our <b>{" "} <a href="https://docs.vectara.com/docs/rest-api/vectara-rest-api">API Playground </a></b>
+        to experiment with Vectara's REST APIs directly from your browser! 🌟
       </>
     ),
   },
@@ -34,6 +45,12 @@ const features = [
       <>
         We are experts in language understanding and machine learning with over
         twenty-five years of industry experience.
+
+        <br></br>
+        <br></br>
+
+        Our cutting-edge solutions are built on this extensive expertise 
+        to deliver optimal performance and reliability.
       </>
     ),
   },
@@ -78,7 +95,7 @@ function Home() {
             </Link>
           </div>
         </div>
-      </header>
+        </header>
       <main>
         {features && features.length > 0 && (
           <section className={styles.features}>

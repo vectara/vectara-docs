@@ -1,7 +1,7 @@
 ---
 id: search
-title: Search API
-sidebar_label: API Definition
+title: Search API Definition
+sidebar_label: Search API Definition
 ---
 
 import Tabs from '@theme/Tabs';
@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-## Endpoint Address
+## Search API Endpoint Address
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
 to search content from a corpus:
@@ -19,11 +19,11 @@ Once you've indexed data into one or more corpora, you're ready to run queries
 and display the results. This page provides a detailed reference guide for how
 to do that.
 
-## Full Definition
+## Full Search API Definition
 
 The full definition of the gRPC interface is covered below.
 
-### Service
+### Query Service
 
 Fundamentally, the system accepts a query and returns a response, which contains
 a list of results. However, for efficiency, one or more queries can be batched
@@ -35,15 +35,15 @@ service QueryService {
 }
 ```
 
-### Query
+### Query Request
 
 A single query consists of a **query**, which is specified in plain text. For
 example, *"Where can I buy the latest iPhone?"*. Optionally, the **query
 context** provides additional information that the system may use to refine the
 results. For example, *"The Apple store near my house is closed due to Covid."*
 
-The **start** field controls the starting position within the list of results,
-while **num_results** dictates how many results are returned. Thus, setting
+The `start` field controls the starting position within the list of results,
+while `num_results` dictates how many results are returned. Thus, setting
 `start=5` and `num_results=20` would return twenty results beginning at position
 five. These fields are mainly used to provide pagination.
 
@@ -100,10 +100,10 @@ message QueryRequest {
 ### Corpus Key
 
 At the most basic level, the corpus key specifies the ID of the corpus being
-searched. Specifying the **customer_id** is optional, since it defaults to the
+searched. Specifying the `customer_id` is optional, since it defaults to the
 customer attached to the gRPC request.
 
-The **metadata_filter** allows specifying a predicate expression that restricts
+The `metadata_filter` allows specifying a predicate expression that restricts
 the search to a part of the corpus. The filter is written in a simplified SQL
 dialect and can reference metadata that was marked as filterable during corpus
 creation. See the [Filter Expressions Overview](/docs/learn/metadata-search-filtering/filter-overview) for a 
@@ -148,11 +148,11 @@ message CorpusKey {
 }
 ```
 
-### Generative Summarization
+### Generative Summarization Grounded in Data
 
 If you'd like to use "Grounded Generation" -- <Config v="names.product"/>'s
 groundbreaking way of producing generative summaries on top of your own data --
-you can submit a SummarizationRequest alongside your query.  This produces a
+you can submit a `SummarizationRequest` alongside your query.  This produces a
 summary that atttempts to answer the end-user's question, citing the results
 as references.  The format of the summary request is as follows:
 
@@ -176,7 +176,7 @@ have a look at the
 [chatbots and grounded generation](/docs/learn/grounded-generation/grounded-generation-overview)
 use case documentation.
 
-The summary will come back in the following format:
+The summary comes back in the following format:
 
 ```protobuf
 message Summary {
@@ -196,23 +196,23 @@ message Summary {
 }
 ```
 
-The `text` will contain a summary of the relevant results to the given search
+The `text` contains a summary of the relevant results to the given search
 with those relevant results included as cited sources.  <Config v="names.product"/>
 cites these by `[number]` format.  For example, if the 1st result is in the
-summary, it will be cited as `[1]`.
+summary, it is cited as `[1]`.
 
-### Response
+### Query Response
 
 The response message encapsulates a single query result. It is a subdocument
-provided at indexing time. The **text** is the subdocument text, the **score**
+provided at indexing time. The `text` is the subdocument text, the `score`
 indicates how well the text answers the query (higher scores are better).
 
-The **metadata** list holds any subdocument-level metadata that was stored with
-the item at indexing time. The **corpus_key** indicates which corpus the result
+The `metadata` list holds any subdocument-level metadata that was stored with
+the item at indexing time. The `corpus_key` indicates which corpus the result
 came from: recall that a single query can execute against multiple corpora.
 
-Finally, the **document_index** points at a specific document within the
-enclosing response set's **document** array. This is useful for retrieving the
+Finally, the `document_index` points at a specific document within the
+enclosing response set's `document` array. This is useful for retrieving the
 document id and document-level metadata.
 
 ```
@@ -230,7 +230,7 @@ message Response {
 ### ResponseSet
 
 The response set groups a list of responses, sorted in order of score, together
-with a list of **statuses** and enclosing **documents**. Since it's possible for
+with a list of `statuses` and enclosing `documents`. Since it's possible for
 several results to come from the same document, the length of the document list
 may be less than the length of the response list.
 
@@ -291,15 +291,24 @@ message BatchQueryResponse {
 
 ## Advanced Scenarios
 
-### Searching Multiple Corpora
-Sometimes, it's advantageous to search multiple corpora at the same time.  In
-those cases, you need two things:
-1. Permissions (e.g. via an API key) that's set up to have access to all of
-the corpora you're interested in searching
-2. A modification to the query body as outlined below
+### Search Multiple Corpora
+
+There are situations where searching multiple corpora simultaneously can be 
+benefitcial. To do this effectively, you need two things:
+
+1. **Proper Permissions:** Setting up an API Key that grants access to all corpora 
+   that you intend to search.
+2. **Query Body Adjustment:** Specific modifications to the query body as outlined below.
+
 
 The query body modification that's necessary is that `corpusKey` can take an
-array of objects.  So if you're currently searching 1 corpus as follows:
+array of objects.
+
+#### Search a Single Corpus Example
+
+So if you're currently searching 1 corpus as follows:
+
+
 ```json
 ...
 "corpusKey": [
@@ -314,8 +323,12 @@ array of objects.  So if you're currently searching 1 corpus as follows:
 ...
 ```
 
-As long as the API key you're using has permissions to each of these corpora,
+#### Search Multiple Corpora Example
+
+
+As long as your API key has permissions to each of these corpora,
 you can search multiple corpora at once as follows:
+
 ```json
 ...
 "corpusKey": [
@@ -336,7 +349,7 @@ you can search multiple corpora at once as follows:
 ]
 ...
 ```
-This then means that the `query` will return results across the queried
-corpora.  The `corpusKey` will be returned in the response for each document
+In this example, the `query` returns results across the queried
+corpora. The `corpusKey` is returned in the response for each document
 if you need to use it in your application.
 

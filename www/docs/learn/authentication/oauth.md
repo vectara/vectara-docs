@@ -4,6 +4,7 @@ title: OAuth 2.0 Tokens
 sidebar_label: OAuth 2.0 Tokens
 ---
 
+import {Config} from '@site/docs/definitions.md';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -20,8 +21,14 @@ Here is how it works. You provide the OAuth 2.0 authentication provider with a
 password). A successful authentication returns a [JWT token](https://jwt.io/), which 
 you can then pass into subsequent requests as an authenticated application.
 
-If you already have familiarity about how JWT tokens work, check out the 
-[our API Playground](/docs/rest-api) and explore Vectara's capabilities.
+
+## :star2: Ready to Dive In? Check Out Our API Playground! :star2:
+
+If already have familiarity about how JWT tokens work and you're ready to dive 
+into our APIs, make your way to our [**API Playground**](/docs/rest-api/vectara-rest-api)! 
+This interactive environment allows you to experiment with <Config v="names.product"/>'s REST 
+APIs directly from your browser! Tailored for developers, the API Playground 
+offers a hands-on experience to understand and demonstrate our capabilities.
 
 :::caution
 
