@@ -8,38 +8,35 @@ import {Config} from './definitions.md';
 
 Explore the <Config v="names.product"/> platform through various 
 demo applications that demonstrates the power of GenAI conversational 
-search. We provide several open 
-source <Config v="names.product"/> applications to help inspire developer 
+search. 
+
+![Vectara Demos](/img/vectara-demos.gif)
+
+We provide several open source <Config v="names.product"/> applications to help 
+inspire developer 
 creativity.
 
-* [**Ask Docker**](https://docker-docs.demo.vectara.com/)
-  
-    Ask questions about the Docker documentation.
-* [**Ask LangChain Docs**](https://langchain-docs.demo.vectara.com/)
-  
-    Ask questions about LangChain from their documentation.
-* [**Ask LlamaIndex Docs**](https://llamaindex-docs.demo.vectara.com/)
+
+* [**Ask Docker**](https://docker-docs.demo.vectara.com/) questions about the Docker 
+  documentation.
+* [**Ask LangChain Docs**](https://langchain-docs.demo.vectara.com/) questions about 
+  LangChain from their documentation.
+* [**Ask LlamaIndex Docs**](https://llamaindex-docs.demo.vectara.com/) questions 
+  about LlamaIndex from their documentation.
+* [**Ask Harvard Business School**](https://askhbs.demo.vectara.com/) questions 
+  about their institution.
+* [**AskNews**](https://asknews.demo.vectara.com) lets you ask questions about news 
+  events around the world and get accurate answers thanks 
+  to <Config v="names.product"/>'s Grounded     Generation.
+* [**Vectara Ingest**](https://github.com/vectara/vectara-ingest) crawls datasets 
+  from pre-built crawlers (websites, RSS feeds, Jira, Notion, Docusaurus) and 
+  ingests them into <Config v="names.product"/>.
+* [**Vectara Answer**](https://github.com/vectara/vectara-answer) enables users to create 
+  custom conversational search applications, such as chatbots, semantic search, 
+  and workplace search by connecting to your ingested data.
     
-    Ask questions about LlamaIndex from their documentation.
-* [**Ask Harvard Business School**](https://askhbs.demo.vectara.com/)
-
-    Ask Harvard Business School questions about their institution.
-* [**AskNews**](https://asknews.demo.vectara.com)
-
-    Ask questions about news events around the world and get accurate answers 
-    thanks to <Config v="names.product"/>'s Grounded 
-    Generation.
-* [**Vectara Ingest**](https://github.com/vectara/vectara-ingest)
-
-    Crawl datasets from pre-built crawlers (websites, RSS feeds, Jira, Notion, 
-    Docusaurus) and ingest them into <Config v="names.product"/>.
-* [**Vectara Answer**](https://github.com/vectara/vectara-answer)
-  
-    Enable users to create custom conversational search applications, such as 
-    chatbots, semantic search, and workplace search by connecting to your 
-    ingested data.
-    
-    This project provides example code for a modern user-interface for <Config v="names.product"/> GenAI conversational search.
+    This project provides example code for a modern user-interface 
+    for <Config v="names.product"/> GenAI conversational search.
 
 :::note
 
