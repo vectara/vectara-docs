@@ -32,7 +32,7 @@ export const useSearch = (
           {
             query,
             start: 0,
-            numResults: 10,
+            numResults: 20,
             corpusKey: [
               {
                 corpusId,
@@ -57,7 +57,11 @@ export const useSearch = (
     });
     const responseJson = await response.json();
     setIsLoading(false);
-    return deserializeSearchResponse(responseJson.responseSet?.[0]) ?? [];
+
+    const results =
+      deserializeSearchResponse(responseJson.responseSet?.[0]) ?? [];
+
+    return compileDedupedResults(results);
   };
 
   return { fetchSearchResults, isLoading };
@@ -113,10 +117,10 @@ const deserializeSearchResponse = (
   return results;
 };
 
-export const START_TAG = "%START_SNIPPET%";
-export const END_TAG = "%END_SNIPPET%";
+const START_TAG = "%START_SNIPPET%";
+const END_TAG = "%END_SNIPPET%";
 
-export const parseSnippet = (source: string) => {
+const parseSnippet = (source: string) => {
   const [pre, textAndPost] =
     source.indexOf(START_TAG) !== -1 ? source.split(START_TAG) : ["", source];
   const [text, post] =
@@ -124,4 +128,22 @@ export const parseSnippet = (source: string) => {
       ? textAndPost.split(END_TAG)
       : [textAndPost, ""];
   return { pre, post, text };
+};
+
+const compileDedupedResults = (
+  undedupedResults: DeserializedSearchResult[]
+): DeserializedSearchResult[] => {
+  const listedUrls: Record<string, boolean> = {};
+  const dedupedResults: DeserializedSearchResult[] = [];
+
+  undedupedResults.forEach((result) => {
+    if (listedUrls[result.url]) {
+      return;
+    }
+
+    dedupedResults.push(result);
+    listedUrls[result.url] = true;
+  });
+
+  return dedupedResults;
 };
