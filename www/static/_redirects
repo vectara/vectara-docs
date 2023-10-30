@@ -3,7 +3,11 @@
 /docs/admin-apis/delete-corpus                                /docs/api-reference/admin-apis/delete-corpus
 /docs/admin-apis/reset-corpus                                 /docs/api-reference/admin-apis/reset-corpus
 /docs/api-reference/auth-apis/oauth-2                         /docs/learn/authentication/oauth-2 
+/docs/common-use-cases/keeping-your-data-private/tls          /docs/learn/authentication/auth-overview#transport-layer-security-tls
+/docs/common-use-cases/chatbots-grounded-generation/grounded-generation-response-languages      /docs/learn/grounded-generation/grounded-generation-response-languages
 /docs/common-use-cases/chatbots-grounded-generation/grounded-generation-overview                /docs/learn/grounded-generation/grounded-generation-overview
+/docs/common-use-cases/semantic-search/semantic-search-scoring                                  /docs/learn/semantic-search/relevance-tuning-techniques
+/docs/common-use-cases/semantic-search/semantic-search-overview                                 /docs/learn/semantic-search/semantic-search-overview
 /docs/indexing-apis/core_indexing                             /docs/api-reference/indexing-apis/core_indexing
 /docs/indexing-apis/deleting-documents                        /docs/api-reference/indexing-apis/deleting-documents
 /docs/indexing-apis/file-upload                               /docs/api-reference/indexing-apis/file-upload/file-upload
