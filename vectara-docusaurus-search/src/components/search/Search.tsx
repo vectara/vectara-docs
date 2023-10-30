@@ -3,7 +3,7 @@ import {
   FC,
   useCallback,
   useState,
-  KeyboardEvent,
+  KeyboardEvent as ReactKeyboardEvent,
   useRef,
   useEffect,
 } from "react";
@@ -81,8 +81,14 @@ export const Search: FC<Props> = ({ customerId, apiKey, corpusId, apiUrl }) => {
     debouncedSendSearchQuery(currentQuery);
   };
 
+  const openSearchOnKeyStroke = (e: KeyboardEvent) => {
+    if (e.key === "k" && e.ctrlKey) {
+      setIsOpen(true);
+    }
+  };
+
   const onKeyDown = useCallback(
-    (evt: KeyboardEvent) => {
+    (evt: ReactKeyboardEvent) => {
       const key = evt.key;
 
       if (key === "Enter") {
@@ -160,6 +166,14 @@ export const Search: FC<Props> = ({ customerId, apiKey, corpusId, apiUrl }) => {
       });
     }
   }, [selectedResultRef.current]);
+
+  useEffect(() => {
+    document.addEventListener("keyup", openSearchOnKeyStroke);
+
+    return () => {
+      document.removeEventListener("keyup", openSearchOnKeyStroke);
+    };
+  });
 
   return (
     <BrowserRouter>

@@ -40851,6 +40851,11 @@ fieldset {
       }
       debouncedSendSearchQuery(currentQuery);
     };
+    const openSearchOnKeyStroke = (e) => {
+      if (e.key === "k" && e.ctrlKey) {
+        setIsOpen(true);
+      }
+    };
     const onKeyDown = (0, import_react42.useCallback)(
       (evt) => {
         const key = evt.key;
@@ -40914,6 +40919,12 @@ fieldset {
         });
       }
     }, [selectedResultRef.current]);
+    (0, import_react42.useEffect)(() => {
+      document.addEventListener("keyup", openSearchOnKeyStroke);
+      return () => {
+        document.removeEventListener("keyup", openSearchOnKeyStroke);
+      };
+    });
     return /* @__PURE__ */ (0, import_jsx_runtime80.jsxs)(BrowserRouter, { children: [
       /* @__PURE__ */ (0, import_jsx_runtime80.jsx)("div", { ref: buttonRef, children: /* @__PURE__ */ (0, import_jsx_runtime80.jsx)(
         VuiButtonSecondary,
