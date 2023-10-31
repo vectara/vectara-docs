@@ -13,13 +13,13 @@ to work? Why certain birds are allowed for the most random reason? We have part 
 unique employee handbook ready for you to upload into a <Config v="names.product"/> corpus, 
 and we'll guide you through the ingestion and question answering process step by step.
 
-## Create a Vectara account
+## Step 1. Create a Vectara account
 
 To get started with <Config v="names.product"/>, go to https://console.vectara.com/signup or 
 click **Get Started Free** at vectara.com. After you make an account, you can 
 create your first corpus and upload your first document!
 
-## Create your first corpus
+## Step 2. Create your first corpus
 
 Before you can ask the data about bringing your velociraptor to the 
 office, you first need to create a corpus. Think of a corpus as a container 
@@ -41,7 +41,7 @@ question on everyone's mind!
     console. If you use the API later, you need to configure `corpus_id` fields 
     with this value.
    
-## Upload your first document  
+## Step 3. Upload your first document  
    
 The hard part is over. Now you can get answers about your uploaded data! 
 Think about the kind of queries that you or other users could ask about 
@@ -66,7 +66,7 @@ ingestion and search.
 
 That's it! <Config v="names.product"/> has just ingested this important document!
 
-## Get answers from your uploaded content
+## Step 5. Get answers from your data
 
 Let's take a closer look at the employee handbook you just uploaded. Since <Config v="names.product"/> has 
 now ingested the data, you can ask all sorts of questions and receive 

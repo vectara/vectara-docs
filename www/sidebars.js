@@ -17,6 +17,11 @@ module.exports = {
       items: [
         {
           type: 'doc',
+          id: 'key-concepts',
+          label: "Key Concepts in GenAI",
+        },
+        {
+          type: 'doc',
           id: 'quickstart',
           label: "Quick Start",
         },
