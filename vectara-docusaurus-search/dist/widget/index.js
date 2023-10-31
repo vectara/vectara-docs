@@ -36699,6 +36699,9 @@ var import_classnames27 = __toESM(require_classnames());
 // vui/components/link/Link.tsx
 var import_classnames26 = __toESM(require_classnames());
 var import_jsx_runtime36 = __toESM(require_jsx_runtime());
+var VuiLinkInternal = ({ ...rest }) => {
+  return /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(VuiLink, { ...rest, track: true });
+};
 var VuiLink = ({ children, href, target, onClick, className, track, ...rest }) => {
   if (!href) {
     return /* @__PURE__ */ (0, import_jsx_runtime36.jsx)("button", { className: (0, import_classnames26.default)("vuiLink", "vuiLink--button", className), onClick, ...rest, children });
@@ -37940,10 +37943,26 @@ var SearchModal = (0, import_react41.forwardRef)(
               isLoading,
               onChange,
               onKeyDown,
-              placeholder: "Search Docs"
+              placeholder: "Search docs"
             }
           ),
-          resultsList && /* @__PURE__ */ (0, import_jsx_runtime79.jsx)("div", { className: "searchModalResults", children: resultsList })
+          resultsList && /* @__PURE__ */ (0, import_jsx_runtime79.jsx)("div", { className: "searchModalResults", children: resultsList }),
+          /* @__PURE__ */ (0, import_jsx_runtime79.jsxs)("div", { className: "searchModalFooter", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime79.jsx)(VuiSpacer, { size: "xs" }),
+            /* @__PURE__ */ (0, import_jsx_runtime79.jsx)(VuiText, { size: "s", align: "right", children: /* @__PURE__ */ (0, import_jsx_runtime79.jsxs)("p", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime79.jsx)(VuiTextColor, { color: "subdued", children: "Built with" }),
+              " ",
+              /* @__PURE__ */ (0, import_jsx_runtime79.jsx)(
+                VuiLinkInternal,
+                {
+                  href: "https://vectara.com",
+                  target: "_blank",
+                  children: "Vectara"
+                }
+              )
+            ] }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime79.jsx)(VuiSpacer, { size: "xs" })
+          ] })
         ] }) })
       }
     ) }) });
@@ -37951,187 +37970,7 @@ var SearchModal = (0, import_react41.forwardRef)(
 );
 
 // src/components/search/_index.scss
-var css2 = `body,
-textarea {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-}
-
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
-  margin: 0;
-  padding: 0;
-  border: none;
-  vertical-align: baseline;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-  font-family: inherit;
-  font-weight: inherit;
-  font-size: inherit;
-}
-
-/* HTML5 display-role reset for older browsers */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-  display: block;
-}
-
-a[href],
-button,
-[role=button] {
-  cursor: pointer;
-}
-
-button {
-  background: none;
-  border: none;
-  padding: 0;
-  margin: 0;
-  color: inherit;
-  border-radius: 0;
-  font-size: inherit;
-}
-
-input {
-  margin: 0;
-  padding: 0;
-}
-
-input:disabled {
-  opacity: 1; /* required on iOS */
-}
-
-ol,
-ul {
-  list-style: none;
-}
-
-blockquote,
-q {
-  quotes: none;
-}
-
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-  content: "";
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-hr {
-  margin: 0;
-}
-
-fieldset {
-  min-inline-size: auto;
-}
-
-.vuiAccordionHeader {
+var css2 = `.vuiAccordionHeader {
   font-size: 14px;
   border-bottom: 1px solid #cbcdde;
   width: 100%;
@@ -40723,7 +40562,7 @@ fieldset {
 
 .searchInput__input {
   flex-grow: 1;
-  padding: 12px 16px;
+  padding: 16px 24px;
   background-color: #ffffff;
   border: none;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 0px 0px 0px, rgba(60, 64, 67, 0.15) 0px 0px 0px 0px;
@@ -40736,7 +40575,7 @@ fieldset {
 
 .searchInput__submitButton {
   position: absolute;
-  right: 12px;
+  right: 16px;
   line-height: 0;
   color: #69707d;
   transition: all 0.2s;
@@ -40748,12 +40587,14 @@ fieldset {
 .searchResult {
   background-color: #ffffff;
   display: block;
-  padding: 12px 12px;
+  padding: 12px 24px 12px 16px;
+  border-left: 12px solid #ffffff;
   text-decoration: none;
   border-bottom: 1px solid #e3e4f3;
 }
 .searchResult:hover, .searchResult.isSelected {
   background-color: #f3f7fb;
+  border-left: 12px solid rgb(38, 76, 214);
 }
 .searchResult:hover .searchResultTitle, .searchResult.isSelected .searchResultTitle {
   text-decoration: underline;
@@ -40792,6 +40633,7 @@ fieldset {
 
 .searchModal {
   margin-top: 6vh;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -40802,11 +40644,47 @@ fieldset {
   background-color: #ffffff;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   max-width: 520px;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .searchModalResults {
   border-top: 1px solid #cbcdde;
+  border-bottom: 1px solid #cbcdde;
   overflow-y: auto;
+}
+
+.searchModalFooter {
+  padding: 0 16px;
+  background-color: #f3f7fb;
+}
+
+@media only screen and (max-width: 600px) {
+  .searchModalContainer {
+    overflow-y: auto;
+  }
+  .searchModal {
+    margin-top: 0;
+    max-width: 100vw;
+    max-height: none;
+    border-radius: 0;
+    overflow: initial;
+  }
+  .searchModalResults {
+    overflow-y: none;
+  }
+}
+/**
+ * A one-off reset for the button elements.
+ */
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  border-radius: 0;
+  font-size: inherit;
 }`;
 document.head.appendChild(document.createElement("style")).appendChild(document.createTextNode(css2));
 

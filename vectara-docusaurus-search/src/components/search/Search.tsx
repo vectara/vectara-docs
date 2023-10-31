@@ -7,6 +7,7 @@ import {
   useRef,
   useEffect,
 } from "react";
+import { render } from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import debounce from "lodash.debounce";
 import { BiSearch } from "react-icons/bi";

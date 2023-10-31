@@ -1,4 +1,17 @@
-@import "../../../vui/index";
+@import "../../../vui/components/index";
 @import "./searchInput";
 @import "./searchResult";
 @import "./searchModal";
+
+/**
+ * A one-off reset for the button elements.
+ */
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  border-radius: 0;
+  font-size: inherit;
+}

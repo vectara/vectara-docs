@@ -28,6 +28,7 @@ $modalPadding: 6vh;
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   max-width: 520px;
   border-radius: $sizeXs;
+  overflow: hidden;
 }
 
 .searchModalResults {
