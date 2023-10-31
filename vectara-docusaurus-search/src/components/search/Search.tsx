@@ -82,12 +82,6 @@ export const Search: FC<Props> = ({ customerId, apiKey, corpusId, apiUrl }) => {
     debouncedSendSearchQuery(currentQuery);
   };
 
-  const openSearchOnKeyStroke = (e: KeyboardEvent) => {
-    if (e.key === "k" && e.ctrlKey) {
-      setIsOpen(true);
-    }
-  };
-
   const onKeyDown = useCallback(
     (evt: ReactKeyboardEvent) => {
       const key = evt.key;
@@ -169,12 +163,18 @@ export const Search: FC<Props> = ({ customerId, apiKey, corpusId, apiUrl }) => {
   }, [selectedResultRef.current]);
 
   useEffect(() => {
+    const openSearchOnKeyStroke = (e: KeyboardEvent) => {
+      if (e.key === "k" && e.ctrlKey) {
+        setIsOpen(true);
+      }
+    };
+
     document.addEventListener("keyup", openSearchOnKeyStroke);
 
     return () => {
       document.removeEventListener("keyup", openSearchOnKeyStroke);
     };
-  });
+  }, []);
 
   return (
     <BrowserRouter>
