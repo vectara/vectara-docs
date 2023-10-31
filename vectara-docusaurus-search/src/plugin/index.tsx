@@ -28,12 +28,11 @@ import { Search } from "../components/search/Search";
       widgetContainerId ?? "search"
     );
 
-    if (searchContainer) {
+    if (searchContainer && searchContainer.childNodes.length === 0) {
       const root = createRoot(searchContainer);
       root.render(
         <Search customerId={customerId} apiKey={apiKey} corpusId={corpusId} />
       );
-      observer.disconnect();
     }
   });
 
