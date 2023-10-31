@@ -76,7 +76,7 @@ export const SearchModal = forwardRef(
                     <div className="searchModalResults">{resultsList}</div>
                   )}
 
-                  <div className="searchModalSection searchModalFooter">
+                  <div className="searchModalFooter">
                     <VuiSpacer size="xs" />
 
                     <VuiText size="s" align="right">

@@ -28,7 +28,6 @@ $modalPadding: 6vh;
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   max-width: 520px;
   border-radius: $sizeXs;
-  overflow: hidden;
 }
 
 .searchModalResults {
@@ -40,4 +39,22 @@ $modalPadding: 6vh;
 .searchModalFooter {
   padding: 0 $sizeM;
   background-color: $colorLightShade;
+}
+
+@media only screen and (max-width: 600px) {
+  .searchModalContainer {
+    overflow-y: auto;
+  }
+
+  .searchModal {
+    margin-top: 0;
+    max-width: 100vw;
+    max-height: none;
+    border-radius: 0;
+    overflow: initial;
+  }
+
+  .searchModalResults {
+    overflow-y: none;
+  }
 }
