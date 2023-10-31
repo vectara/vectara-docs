@@ -7,7 +7,14 @@ import {
   KeyboardEvent as ReactKeyboardEvent,
 } from "react";
 import { SearchInput } from "./SearchInput";
-import { VuiPortal, VuiScreenBlock } from "../../../vui";
+import {
+  VuiLinkInternal,
+  VuiPortal,
+  VuiScreenBlock,
+  VuiSpacer,
+  VuiText,
+  VuiTextColor,
+} from "../../../vui";
 import { FocusOn } from "react-focus-on";
 
 type Props = {
@@ -62,12 +69,30 @@ export const SearchModal = forwardRef(
                     isLoading={isLoading}
                     onChange={onChange}
                     onKeyDown={onKeyDown}
-                    placeholder="Search Docs"
+                    placeholder="Search docs"
                   />
 
                   {resultsList && (
                     <div className="searchModalResults">{resultsList}</div>
                   )}
+
+                  <div className="searchModalFooter">
+                    <VuiSpacer size="xs" />
+
+                    <VuiText size="s" align="right">
+                      <p>
+                        <VuiTextColor color="subdued">Built with</VuiTextColor>{" "}
+                        <VuiLinkInternal
+                          href="https://vectara.com"
+                          target="_blank"
+                        >
+                          Vectara
+                        </VuiLinkInternal>
+                      </p>
+                    </VuiText>
+
+                    <VuiSpacer size="xs" />
+                  </div>
                 </div>
               </div>
             </FocusOn>
