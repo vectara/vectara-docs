@@ -1,6 +1,4 @@
 @import "../../../vui/components/index";
-@import "./searchInput";
-@import "./searchResult";
 @import "./searchModal";
 
 /**
@@ -14,4 +12,10 @@ button {
   color: inherit;
   border-radius: 0;
   font-size: inherit;
+}
+
+.searchModalContainer {
+  @import "../../../vui/_reset";
+  @import "./searchInput";
+  @import "./searchResult";
 }
