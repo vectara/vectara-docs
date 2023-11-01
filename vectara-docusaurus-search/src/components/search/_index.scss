@@ -14,6 +14,24 @@ button {
   font-size: inherit;
 }
 
+.searchButton {
+  width: 220px;
+  box-shadow: inset rgba(60, 64, 67, 0.3) 0px 1px 2px 0px;
+  white-space: nowrap;
+  border-radius: $sizeXxs;
+  display: inline-flex;
+  align-items: center;
+  font-weight: 500;
+  line-height: 1;
+  border: 1px solid $borderColor;
+  color: $colorText;
+  background-color: $colorEmptyShade;
+  font-size: $fontSizeMedium;
+  padding: $sizeXs $sizeM;
+  height: 34px;
+  cursor: text;
+}
+
 .searchModalContainer {
   @import "../../../vui/_reset";
   @import "./searchInput";
