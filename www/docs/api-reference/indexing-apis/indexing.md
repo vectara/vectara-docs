@@ -10,8 +10,8 @@ import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The first step in using <Config v="names.product"/> is to index a set of related documents
-or content into a corpus. Indexing a document enables you to make data 
-available for search and retrieval.
+or content into a corpus. This reference page provides a detailed guide for how
+to do that.
 
 ## Standard Indexing Service
 
@@ -19,35 +19,27 @@ The indexing service operates by accepting individual documents or messages to
 be indexed. In a short period of time, generally a few minutes, the new 
 content will become available in the search index.
 
-## Standard Indexing Service Endpoint Address
+
+## Standard Indexing REST Service
+
+The indexing service operates by accepting individual documents or messages to 
+be indexed. In a short period of time, generally a few minutes, the new 
+content will become available in the search index.
+
+## Standard Indexing Service Endpoint
+
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
 to index content into a corpus:
 
 <code>https://<Config v="domains.rest.indexing"/>/v1/index</code>
 
-### Index Request Headers
+The [API Playground](/docs/rest-api/index) lets you experiment with this REST 
+endpoint interactively in your browser.
 
-To interact with the Index service via REST calls, you need the following 
-headers:
-
-* `customer_id` is the customer ID to use for the request.
-* An API Key or JWT token is your authentication method
-* (Optional) `grpc-timeout` lets you specify how long to wait for the calls 
-  that have the potential to take longer to process. We recommend 
-  `-H "grpc-timeout: 30S"`
-
-### Index Request Body
-
-The request body provides essential information about the document you want to 
-index. The Index request requires the following parameters:
-
-* `customerID`
-* `corpusID`
-* `document` object
+The Standard Indexing Service Endpoint has the following request body:
 
 ```json
-
 {
   "customerId": "string",
   "corpusId": 1,
@@ -81,15 +73,10 @@ index. The Index request requires the following parameters:
     ]
   }
 }
+
 ```
-Let's take a closer look at the document object which encapsulates the 
-information about the document to be indexed. It typically includes the 
-title, description, and metadata. The core of the document is also structured 
-in sections that can include unique identifiers, titles, strings, metadata, 
-and so on.
 
-
-## Full Standard Indexing gRPC Definition
+## Full Standard Indexing Definition
 
 The full definition of the gRPC interface is covered below.
 
