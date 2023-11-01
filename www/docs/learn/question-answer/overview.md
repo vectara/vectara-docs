@@ -11,16 +11,17 @@ question databases where the use case demands that your users are trying to find
 the *nearest question* to their own, so you can provide them with the
 authoritative answer from the "answer" side of the question-answer database.
 
-This approach may not offer the dynamic nature of Grounded Generation, but 
-it allows you to establish tight controls over the types of questions that 
-which users can ask and receive authorizative answers. These question-answer 
-systems can be great for building RFP-answering systems for employees and FAQ 
-lookups for customers.
+This approach may not offer the dynamic nature of Retrieval Augmented 
+Generation (RAG), but it allows you to establish tight controls over the 
+types of questions that which users can ask and receive authorizative answers. 
+These question-answer systems can be great for building RFP-answering systems 
+for employees and FAQ lookups for customers.
 
 ## Format data for indexing
+
 When you send data to <Config v="names.product"/> for this use case, we
 recommend that you index the question in the `title` field and the answer to
-that question in the text content.  For example:
+that question in the `text` content.  For example:
 
 ```json showLineNumbers title="document.json"
 {

@@ -8,13 +8,12 @@ import {Config} from './definitions.md';
 
 Explore the <Config v="names.product"/> platform through various 
 demo applications that demonstrates the power of GenAI conversational 
-search. 
+search and Retrieval Augmented Generation (RAG). 
 
 ![Vectara Demos](/img/vectara-demos.gif)
 
 We provide several open source <Config v="names.product"/> applications to help 
-inspire developer 
-creativity.
+inspire developer creativity.
 
 
 * [**Ask Docker**](https://docker-docs.demo.vectara.com/) questions about the Docker 
@@ -26,8 +25,7 @@ creativity.
 * [**Ask Harvard Business School**](https://askhbs.demo.vectara.com/) questions 
   about their institution.
 * [**AskNews**](https://asknews.demo.vectara.com) lets you ask questions about news 
-  events around the world and get accurate answers thanks 
-  to <Config v="names.product"/>'s Grounded     Generation.
+  events around the world and get accurate answers.
 * [**Vectara Ingest**](https://github.com/vectara/vectara-ingest) crawls datasets 
   from pre-built crawlers (websites, RSS feeds, Jira, Notion, Docusaurus) and 
   ingests them into <Config v="names.product"/>.
