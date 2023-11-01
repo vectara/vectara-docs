@@ -3,10 +3,11 @@ import {
   FC,
   useCallback,
   useState,
-  KeyboardEvent,
+  KeyboardEvent as ReactKeyboardEvent,
   useRef,
   useEffect,
 } from "react";
+import { render } from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import debounce from "lodash.debounce";
 import { BiSearch } from "react-icons/bi";
@@ -82,7 +83,7 @@ export const Search: FC<Props> = ({ customerId, apiKey, corpusId, apiUrl }) => {
   };
 
   const onKeyDown = useCallback(
-    (evt: KeyboardEvent) => {
+    (evt: ReactKeyboardEvent) => {
       const key = evt.key;
 
       if (key === "Enter") {
@@ -160,6 +161,20 @@ export const Search: FC<Props> = ({ customerId, apiKey, corpusId, apiUrl }) => {
       });
     }
   }, [selectedResultRef.current]);
+
+  useEffect(() => {
+    const openSearchOnKeyStroke = (e: KeyboardEvent) => {
+      if (e.key === "k" && e.ctrlKey) {
+        setIsOpen(true);
+      }
+    };
+
+    document.addEventListener("keyup", openSearchOnKeyStroke);
+
+    return () => {
+      document.removeEventListener("keyup", openSearchOnKeyStroke);
+    };
+  }, []);
 
   return (
     <BrowserRouter>
