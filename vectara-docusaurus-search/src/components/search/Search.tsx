@@ -11,7 +11,12 @@ import { render } from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import debounce from "lodash.debounce";
 import { BiSearch } from "react-icons/bi";
-import { VuiButtonSecondary, VuiIcon } from "../../../vui";
+import {
+  VuiButtonSecondary,
+  VuiFlexContainer,
+  VuiFlexItem,
+  VuiIcon,
+} from "../../../vui";
 import { DeserializedSearchResult } from "./types";
 import { useSearch } from "./useSearch";
 import { SearchResult } from "./SearchResult";
@@ -179,17 +184,17 @@ export const Search: FC<Props> = ({ customerId, apiKey, corpusId, apiUrl }) => {
   return (
     <BrowserRouter>
       <div ref={buttonRef}>
-        <VuiButtonSecondary
-          color="neutral"
-          onClick={() => setIsOpen(true)}
-          icon={
-            <VuiIcon>
-              <BiSearch />
-            </VuiIcon>
-          }
-        >
-          Search
-        </VuiButtonSecondary>
+        <button className="searchButton" onClick={() => setIsOpen(true)}>
+          <VuiFlexContainer alignItems="center" spacing="s">
+            <VuiFlexItem>
+              <VuiIcon>
+                <BiSearch />
+              </VuiIcon>
+            </VuiFlexItem>
+
+            <VuiFlexItem>Search</VuiFlexItem>
+          </VuiFlexContainer>
+        </button>
       </div>
 
       <SearchModal
