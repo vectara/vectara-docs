@@ -3050,7 +3050,7 @@ button {
 }
 .searchModalContainer .searchInput__input {
   flex-grow: 1;
-  padding: 16px 24px;
+  padding: 24px;
   background-color: #ffffff;
   border: none;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 0px 0px 0px, rgba(60, 64, 67, 0.15) 0px 0px 0px 0px;
@@ -3058,7 +3058,7 @@ button {
   outline-style: solid;
   outline-color: transparent;
   outline-offset: -1px;
-  font-size: 16px;
+  font-size: 18px;
   color: #2c313a;
 }
 .searchModalContainer .searchInput__submitButton {
