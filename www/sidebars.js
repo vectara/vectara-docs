@@ -132,6 +132,11 @@ module.exports = {
         },
         {
           type: 'doc',
+          id: 'console-ui/manage-documents',
+          label: "Manage Documents",
+        },
+        {
+          type: 'doc',
           id: 'console-ui/manage-api-access',
           label: "Manage API Access",
         },
