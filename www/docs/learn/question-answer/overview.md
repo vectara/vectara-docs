@@ -13,7 +13,7 @@ authoritative answer from the "answer" side of the question-answer database.
 
 This approach may not offer the dynamic nature of Retrieval Augmented 
 Generation (RAG), but it allows you to establish tight controls over the 
-types of questions that which users can ask and receive authorizative answers. 
+types of questions that users can ask and receive authorizative answers. 
 These question-answer systems can be great for building RFP-answering systems 
 for employees and FAQ lookups for customers.
 

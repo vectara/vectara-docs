@@ -59,7 +59,7 @@ offers a hands-on experience to understand and demonstrate our capabilities.
 AI content generators often create **hallucinations** – false information 
 outside of the raw, factual data - they make stuff up. These hallucinations 
 lead to inaccurate and misleading responses. <Config v="names.product"/> addresses 
-this problem through **Retrieval Augmented Generation (RAG)n** by grounding the 
+this problem through **Retrieval Augmented Generation (RAG)** by grounding the 
 search results in the uploaded data. By focusing on facts and reducing 
 hallucinations, <Config v="names.product"/> enhances trust in AI-powered 
 decision making. 
