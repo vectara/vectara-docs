@@ -13,23 +13,64 @@ The first step in using <Config v="names.product"/> is to index a set of related
 or content into a corpus. This reference page provides a detailed guide for how
 to do that.
 
-## Standard Indexing Endpoint Address
-
-<Config v="names.product"/> exposes a REST endpoint at the following URL
-to index content into a corpus:
-<code>https://<Config v="domains.rest.indexing"/>/v1/index</code>
-
-This page describes the details of interacting with this endpoint.
-
-## Full Standard Indexing Definition
-
-The full definition of the gRPC interface is covered below.
-
-### Standard Indexing Service
+## Standard Indexing Service
 
 The indexing service operates by accepting individual documents or messages to 
 be indexed. In a short period of time, generally a few minutes, the new 
 content will become available in the search index.
+
+## Standard Indexing Service Endpoint Address
+
+<Config v="names.product"/> exposes a REST endpoint at the following URL
+to index content into a corpus:
+
+<code>https://<Config v="domains.rest.indexing"/>/v1/index</code>
+
+The [API Playground](/docs/rest-api/index) lets you experiment with this REST 
+endpoint interactively in your browser.
+
+The Standard Indexing Service Endpoint has the following request body:
+
+```json
+{
+  "customerId": "string",
+  "corpusId": 1,
+  "document": {
+    "documentId": "string",
+    "title": "string",
+    "description": "string",
+    "metadataJson": "string",
+    "customDims": [
+      {
+        "name": "string",
+        "value": 0
+      }
+    ],
+    "section": [
+      {
+        "id": 0,
+        "title": "string",
+        "text": "string",
+        "metadataJson": "string",
+        "customDims": [
+          {
+            "name": "string",
+            "value": 0
+          }
+        ],
+        "section": [
+          null
+        ]
+      }
+    ]
+  }
+}
+
+```
+
+## Full Standard Indexing Definition
+
+The full definition of the gRPC interface is covered below.
 
 ### Indexing Service Definition
 
