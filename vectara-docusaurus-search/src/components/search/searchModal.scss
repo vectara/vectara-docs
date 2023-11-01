@@ -11,34 +11,35 @@ $modalPadding: 6vh;
   align-items: flex-start;
   animation: modalIn 0.2s cubic-bezier(0, 1, 1, 1);
   pointer-events: none;
-}
 
-.searchModal {
-  margin-top: $modalPadding;
-  background-color: $colorEmptyShade;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: $modalWidth;
-  max-height: calc(100vh - ($modalPadding * 2));
-  z-index: $modalZIndex;
-  pointer-events: all;
-  background-color: $colorEmptyShade;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
-    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-  max-width: 520px;
-  border-radius: $sizeXs;
-}
+  .searchModal {
+    margin-top: $modalPadding;
+    background-color: $colorEmptyShade;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: $modalWidth;
+    max-height: calc(100vh - ($modalPadding * 2));
+    z-index: $modalZIndex;
+    pointer-events: all;
+    background-color: $colorEmptyShade;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+      rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    max-width: 520px;
+    border-radius: $sizeXs;
+    overflow: hidden;
+  }
 
-.searchModalResults {
-  border-top: 1px solid $borderColor;
-  border-bottom: 1px solid $borderColor;
-  overflow-y: auto;
-}
+  .searchModalResults {
+    border-top: 1px solid $borderColor;
+    border-bottom: 1px solid $borderColor;
+    overflow-y: auto;
+  }
 
-.searchModalFooter {
-  padding: 0 $sizeM;
-  background-color: $colorLightShade;
+  .searchModalFooter {
+    padding: 0 $sizeM;
+    background-color: $colorLightShade;
+  }
 }
 
 @media only screen and (max-width: 600px) {
