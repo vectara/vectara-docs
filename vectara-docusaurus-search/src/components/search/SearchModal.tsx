@@ -81,13 +81,17 @@ export const SearchModal = forwardRef(
 
                     <VuiText size="s" align="right">
                       <p>
-                        <VuiTextColor color="subdued">Built with</VuiTextColor>{" "}
-                        <VuiLinkInternal
-                          href="https://vectara.com"
-                          target="_blank"
-                        >
-                          Vectara
-                        </VuiLinkInternal>
+                        <strong>
+                          <VuiTextColor color="subdued">
+                            Built with
+                          </VuiTextColor>{" "}
+                          <VuiLinkInternal
+                            href="https://vectara.com"
+                            target="_blank"
+                          >
+                            Vectara
+                          </VuiLinkInternal>
+                        </strong>
                       </p>
                     </VuiText>
 
