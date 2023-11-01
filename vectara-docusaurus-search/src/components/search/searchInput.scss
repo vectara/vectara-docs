@@ -6,7 +6,7 @@
 
 .searchInput__input {
   flex-grow: 1;
-  padding: $sizeM $sizeL;
+  padding: $sizeL;
   background-color: $colorEmptyShade;
   border: none;
   box-shadow: $shadowSmallStart;
@@ -14,7 +14,8 @@
   outline-style: solid;
   outline-color: transparent;
   outline-offset: -1px;
-  font-size: $fontSizeMedium;
+  font-size: $fontSizeLarge;
+  color: $colorText;
 }
 
 .searchInput__submitButton {
