@@ -79,7 +79,8 @@
   loadLib();
 
   whenAvailable("_analytics", function(_analytics) {
-    var Analytics = _analytics.init({
+    // Storing in window so we can access it from the routeUpdateModule
+    var Analytics = window.snowAnalytics = _analytics.init({
       app: 'analytics-html-demo',
       debug: true,
       plugins: [
@@ -106,7 +107,5 @@
       ]
     });
     Analytics.page();
-    // Storing in window so we can access it from the routeUpdateModule
-    window.snowAnalytics = Analytics;
   });
 })();
