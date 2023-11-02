@@ -1,20 +1,71 @@
 ---
 id: create-corpus
 title: Create Corpus
-sidebar_label: API Definition
+sidebar_label: Create Corpus API Definition
 ---
 
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-## Endpoint Address
+The Create Corpus endpoint lets you create a corpus that contains specific 
+properties and attributes.
+
+## Create Corpus REST Endpoint
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
 to ingest content into a corpus:
 <code>https://<Config v="domains.rest.admin"/>/v1/create-corpus</code>
-This page describes the details of interacting with this endpoint.
+
+### Create Corpus Request Headers
+
+To interact with the Create Corpus service via REST calls, you need the following 
+headers:
+
+* `customer_id` is the customer ID to use for the request.
+* JWT token as your `Bearer Token`
+* (Optional) `grpc-timeout` lets you specify how long to wait for queries that 
+  have the potential to take longer to process. We recommend 
+  `-H "grpc-timeout: 30S"`
+
+### Create Corpus Request Body
 
 Only the `name` and `description` fields are mandatory when creating a corpus.
+
+```json
+{
+  "corpus": {
+    "id": 0,
+    "name": "string",
+    "description": "string",
+    "dtProvision": "string",
+    "enabled": true,
+    "swapQenc": true,
+    "swapIenc": true,
+    "textless": true,
+    "encrypted": true,
+    "encoderId": "string",
+    "metadataMaxBytes": 0,
+    "customDimensions": [
+      {
+        "name": "string",
+        "description": "string",
+        "servingDefault": 0,
+        "indexingDefault": 0
+      }
+    ],
+    "filterAttributes": [
+      {
+        "name": "string",
+        "description": "string",
+        "indexed": true,
+        "type": "FILTER_ATTRIBUTE_TYPE__UNDEFINED",
+        "level": "FILTER_ATTRIBUTE_LEVEL__UNDEFINED"
+      }
+    ]
+  }
+}
+```
+
 The response message returns a unique id, `corpus_id`, by which the corpus can
 be subsequently referenced. Note that the name needn't be unique within an
 account.

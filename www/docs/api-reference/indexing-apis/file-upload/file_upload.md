@@ -6,7 +6,7 @@ title: File Upload API Definition
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-## File Upload Endpoint Address
+## File Upload REST Endpoint
 
 <Config v="names.product"/> exposes an HTTP endpoint at the following URL
 to upload and index documents into a corpus:
@@ -46,7 +46,6 @@ You can attach additional metadata to the file by specifying an additional
 doc_metadata='{ "filesize": 1234 }'
 ```
 
-
 ## Response Codes
 
 The server responds with `200` when the file was uploaded and indexed
@@ -85,3 +84,20 @@ $ curl -H "Authorization: Bearer $jwt" -F file=@/tmp/instructions.pdf \\
     'https://${vars['domains.rest.indexing']}:443/v1/upload?c=123456\&o=151'
 `}
 </pre>
+
+## Add a Timeout to the File Upload
+
+Adding `grpc-timeout` to the header of your REST call lets you specify how 
+long to wait for queries that have the potential to take longer to process. We 
+recommend a timeout value of 30 seconds `30S` as typically long enough to 
+allow the call to complete successfully.
+
+You can pass this parameter in header as follows:
+
+<pre>
+{`$ jwt=eyJraWQ...
+$ curl -H "Authorization: Bearer $jwt" -H "grpc-timeout: 30S"  -F file=@/tmp/instructions.pdf \\
+    -F doc_metadata='{ "filesize\": 1234 }' \\
+    'https://${vars['domains.rest.indexing']}:443/v1/upload?c=123456\&o=151'
+`}
+<pre>
