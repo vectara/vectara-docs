@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "docusaurus-plugin-sass": "^0.2.5",
-    "sass": "^1.69.5"
-  }
-}
