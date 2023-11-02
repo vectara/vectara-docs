@@ -100,4 +100,4 @@ $ curl -H "Authorization: Bearer $jwt" -H "grpc-timeout: 30S"  -F file=@/tmp/ins
     -F doc_metadata='{ "filesize\": 1234 }' \\
     'https://${vars['domains.rest.indexing']}:443/v1/upload?c=123456\&o=151'
 `}
-<pre>
+</pre>
