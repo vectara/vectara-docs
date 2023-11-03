@@ -100,6 +100,18 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'Discover',
+      collapsed: false,
+      items: [
+        {
+          type: 'doc',
+          id: 'discover/build-a-data-crawler',
+          label: "Build a Data Crawler",
+        },
+      ],
+    },
+    {
+      type: 'category',
       label: 'Code Samples',
       items: [
         'getting-started-samples/RestApiKeyQueries.cs',
