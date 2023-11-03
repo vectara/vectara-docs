@@ -9,7 +9,12 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-## Search API Endpoint Address
+The Search endpoint lets you perform a query while defining its parameters 
+that specify the query text, pagination details, metadata filters, and other 
+settings that enable application builders to tailor their queries to specific 
+use cases.
+
+## Query API Endpoint Address
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
 to search content from a corpus:
@@ -18,6 +23,73 @@ to search content from a corpus:
 Once you've indexed data into one or more corpora, you're ready to run queries
 and display the results. This page provides a detailed reference guide for how
 to do that.
+
+### Query Request Headers
+
+To interact with the Query service via REST calls, you need the following 
+headers:
+
+* `customer_id` is the customer ID to use for the request.
+* An API Key or JWT token is your authentication method
+* (Optional) `grpc-timeout` lets you specify how long to wait for queries that 
+  have the potential to take longer to process. We recommend 
+  `-H "grpc-timeout: 30S"`
+
+### Query Request Body
+
+The Query request body specifies different parameters that ask questions about 
+the data within corpora. The Query request requires the following parameters:
+
+* `query` - Contains your question and number of results to return.
+* `corpusKey` - Specifies which corpora to run the query 
+
+```json
+{
+  "query": [
+    {
+      "query": "What is the answer to the life, the universe, and everything?",
+      "start": 0,
+      "numResults": 10,
+      "contextConfig": {
+        "charsBefore": 30,
+        "charsAfter": 30,
+        "sentencesBefore": 3,
+        "sentencesAfter": 3,
+        "startTag": "<b>",
+        "endTag": "</b>"
+      },
+      "corpusKey": [
+        {
+          "customerId": 0,
+          "corpusId": 1,
+          "semantics": "DEFAULT",
+          "dim": [
+            {
+              "name": "string",
+              "weight": 0
+            }
+          ],
+          "metadataFilter": "part.lang = 'eng'",
+          "lexicalInterpolationConfig": {
+            "lambda": 0
+          }
+        }
+      ],
+      "rerankingConfig": {
+        "rerankerId": 272725717
+      },
+      "summary": [
+        {
+          "summarizerPromptName": "string",
+          "maxSummarizedResults": 0,
+          "responseLang": "string"
+        }
+      ]
+    }
+  ]
+}
+```
+
 
 ## Full Search API Definition
 

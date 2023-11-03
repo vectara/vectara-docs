@@ -36,7 +36,7 @@ provides the message definitions for running queries.
   (REST) and why it's commonly used in web services. Make sure to also 
   understand how it differs from gRPC.
 
-  For example, review the definition for our Standard Indexing API
+  For example, review the [Java example](/docs/getting-started-samples/RestIndex.java) for our Standard Indexing API. 
 
 * **HTTP Methods:** Become familar with HTTP methods like GET, POST, PUT, and DELETE.
 * **gRPC Methods:** Become familar with gRPC methods like server streaming, client
