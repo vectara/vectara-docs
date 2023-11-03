@@ -13,35 +13,36 @@ to work? Why certain birds are allowed for the most random reason? We have part 
 unique employee handbook ready for you to upload into a <Config v="names.product"/> corpus, 
 and we'll guide you through the ingestion and question answering process step by step.
 
-## Create a Vectara account
+## Step 1. Create a Vectara account
 
 To get started with <Config v="names.product"/>, go to https://console.vectara.com/signup or 
 click **Get Started Free** at vectara.com. After you make an account, you can 
 create your first corpus and upload your first document!
 
-## Create your first corpus
+## Step 2. Create your first data store
 
 Before you can ask the data about bringing your velociraptor to the 
-office, you first need to create a corpus. Think of a corpus as a container 
-that includes your uploaded data, and you really want to extract meaningful 
-information from this data through queries. In this case, we upload a [PDF file](/img/vectara_employee_handbook.pdf) file 
+office, you first need to create a data store called a corpus. Think of a 
+corpus as a container that includes your uploaded data, and you really want 
+to extract meaningful information from this data through queries. In this 
+case, we upload a [PDF file](/img/vectara_employee_handbook.pdf) file 
 that contains the pet policy information. After you upload this 
 file, <Config v="names.product"/> ingests your data and lets you ask the burning 
 question on everyone's mind!
 
-1. Click **Create corpus**.
+1. Click **Create data store**.
 2. Enter a **Name** and **Description** such as _Vectara Employee Handbook_ and _Pet Policy_.
    
       Don't worry about the Filter Attributes for now. You can read 
       about [filter expressions](/docs/learn/metadata-search-filtering/filter-overview) and 
       edit them later.
-3. Click **Create**. 
+3. Click **Create data store**. 
 
    The **Corpus ID** displays next to the corpus title **Vectara Employee Handbook** in the 
     console. If you use the API later, you need to configure `corpus_id` fields 
     with this value.
    
-## Upload your first document  
+## Step 3. Upload your first document  
    
 The hard part is over. Now you can get answers about your uploaded data! 
 Think about the kind of queries that you or other users could ask about 
@@ -56,7 +57,7 @@ ingestion and search.
 1. Download the [**Vectara Employee Handbook (PDF)**](/img/vectara_employee_handbook.pdf).
 2. Click **Employee Handbook** from the left menu, if you decided to explore the UI
    after the previous step.
-3. Click the **Data Ingestion** tab.
+3. Click the **Add Data** tab.
 
    We support `.md`, `.pdf`, `.doc`, `.docx`, `.ppt`, `.pptx`, `.txt`, 
    `.html`, `.rtf`, and `.epub` files. Review [supported file types](/docs/api-reference/indexing-apis/file-upload/file-upload-filetypes) for 
@@ -66,14 +67,14 @@ ingestion and search.
 
 That's it! <Config v="names.product"/> has just ingested this important document!
 
-## Get answers from your uploaded content
+## Step 4. Get answers from your uploaded content
 
 Let's take a closer look at the employee handbook you just uploaded. Since <Config v="names.product"/> has 
 now ingested the data, you can ask all sorts of questions and receive 
 meaningful and relevant results.
 
 1. Select the **Vectara Employee Handbook** from list in the left menu.
-2. Click the **Search** tab.
+2. Click the **Query data** tab.
 3. Ask a question and view a summary of the answer along with additional 
    search results.
 
@@ -117,7 +118,7 @@ you a welcome email with this ID after you created the account.
 After you created an account, the <Config v="names.product"/> Console UI appeared after 
 login. 
 
-![Reveal the Customer ID](/img/view_customer_id.gif)
+![Reveal the Customer ID](/img/view_customer_id.png)
 
 You can click your name in the top, upper-right corner to reveal 
 the `customer_id`.
