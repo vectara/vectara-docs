@@ -1,7 +1,7 @@
 ---
 id: build-a-data-crawler
 title: Build a Data Crawler with Vectara Ingest
-sidebar_label: Build a Data Crawler with Vectara Ingest
+sidebar_label: Build a Data Crawler
 ---
 
 import {Config} from '@site/docs/definitions.md';
@@ -16,14 +16,21 @@ This tutorial guides you through the process of
 building a data crawler that indexes the content of [sf.gov](https://sf.gov) which 
 is the website for the city and county of San Francisco.
 
+## Prerequisites
+
+* Vectara acount
+* Familiarity with our [Quick Start guide](/docs/quickstart.md).
+* Install the dependencies (python >= 3.8 | pyyaml | Docker)
+
 ## Step 1. Set up your environment
 
-Make sure have you a Vectara account. You can also become familiar with 
-our [Quick Start guide](/docs/quickstart.md).
+Make sure have you a Vectara account. You can also become familiar 
 1. Read about the [vectara-ingest Open Source project on GitHub](https://github.com/vectara/vectara-ingest).
-2. Install the dependencies (python >= 3.8 | pyyaml | Docker)
-3. Clone the `vectara-ingest` repository: `git clone https://github.com/vectara/vectara-ingest.git`
-4.  `cd vectara-ingest`
+2. Clone the `vectara-ingest` repository: 
+   
+   ```bash
+   git clone https://github.com/vectara/vectara-ingest.git
+   cd vectara-ingest
 
 ## Step 2. Configure the corpus
 
@@ -31,11 +38,11 @@ In this step, you create a corpus from the Vectara Console, create an API key,
 and then you associate the API key with the new corpus for the website crawl 
 job.
 1. Select the **Data** tab.
-2. Create a corpus with the name **sf** and enter a description like
-   **city and county of SF**.
-3. Take note of the corpus ID, such as **ID: 1**.
-4. Create an API key for indexing and searching with this `sf (ID: 1)` corpus.
-5. Take note of the API key because you need it for Step 3.
+2. Create a corpus with the name **sf** 
+3. Add a description like **city and county of SF**.
+4. Take note of the corpus ID, such as **ID: 1**.
+5. Create an API key for indexing and searching with this `sf (ID: 1)` corpus.
+6. Copy the API key for use in Step 3.
 
 ## Step 3. Configure the data crawler
 
@@ -52,8 +59,8 @@ Locate the files you cloned for `vectara-ingest`.
    
    ```yaml
   vectara:
-    corpus_id: 28
-    customer_id: 1169579801
+    corpus_id: 1
+    customer_id: 123456789
     reindex: false
 
   crawling:
@@ -84,11 +91,5 @@ After the job finshes, go back to the Vectara console and try out some
 search queries!
 
 By following this tutorial, you built a data crawler capable of ingesting 
-content into a Vectara data store.
-
-:::note
-
-   If you want to crawl other data sources later, create a different corpus and substitute 
-   [check out our list of data crawlers](https://github.com/vectara/vectara-ingest/blob/main/crawlers/CRAWLERS.md).
-
-:::
+content into a Vectara data store. If you want to crawl other data sources 
+later, create a different corpus and [check out our list of data crawlers](https://github.com/vectara/vectara-ingest/blob/main/crawlers/CRAWLERS.md).

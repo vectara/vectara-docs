@@ -108,6 +108,11 @@ module.exports = {
           id: 'discover/build-a-data-crawler',
           label: "Build a Data Crawler",
         },
+        {
+          type: 'doc',
+          id: 'discover/deploy-a-conversational-search-ui',
+          label: "Deploy a Conversational Search Interface",
+        },
       ],
     },
     {
