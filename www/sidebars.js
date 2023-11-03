@@ -77,7 +77,7 @@ module.exports = {
         },
         {
           type: 'category',
-          label: 'Grounded Generation',
+          label: 'Retrieval Augmented Generation (RAG)',
           items: [
             'learn/grounded-generation/grounded-generation-overview',
             'learn/grounded-generation/select-a-summarizer',
