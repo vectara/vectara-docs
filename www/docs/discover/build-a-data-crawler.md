@@ -20,7 +20,7 @@ is the website for the city and county of San Francisco.
 
 * Vectara account
 * Familiarity with our [Quick Start guide](/docs/quickstart.md).
-* Install the dependencies (python >= 3.8 | pyyaml | Docker)
+* Install the dependencies ([python >= 3.8](https://www.python.org/downloads/) | [pyyaml](https://pypi.org/project/PyYAML/) | [Docker](https://docs.docker.com/engine/install/))
 
 ## Step 1. Set up your environment
 

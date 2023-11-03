@@ -13,13 +13,16 @@ connect it to the [website crawler](/docs/discover/build-a-data-crawler) that yo
 
 
 ## Prerequisites
-* [Complete the Vectara Ingest tutorial](/docs/discover/build-a-data-crawler) to build a data crawler
-* Install the dependencies (Docker | pyyaml | npm and NodeJS)
+* [Complete the Vectara Ingest tutorial](/docs/discover/build-a-data-crawler) to build a data crawler.
+* Install the dependencies ([Docker](https://docs.docker.com/engine/install/) | [pyyaml](https://pypi.org/project/PyYAML/) | [npm and NodeJS](https://nodejs.org/en/download)).
 
 ## Step 1. Set up the environment
 
 In this step, you clone the `vectara-answer` repository, install the 
 JavaScript dependencies, and then build the front-end application:
+
+1. Read about the [vectara-answer Open Source project on GitHub](https://github.com/vectara/vectara-answer).
+2. Clone the repository and install the dependencies:
 
 ```bash
 git clone https://github.com/vectara/vectara-answer.git
@@ -33,7 +36,7 @@ In this step, you configure the application with information from your
 Vectara account including the `corpus_id`, `customer_id`, and the URL you 
 want to crawl: `sf.gov`
 
-Locate the files you cloned for `vectara-ingest`.
+Locate the files you cloned for `vectara-answer`.
 
 1. Duplicate `secrets.example.toml` and rename the copy to `secrets.toml`.
 2. Edit the `secrets.toml` file, add your **api_key** value.
