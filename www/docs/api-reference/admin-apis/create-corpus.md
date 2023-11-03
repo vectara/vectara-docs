@@ -23,8 +23,8 @@ headers:
 
 * `customer_id` is the customer ID to use for the request.
 * JWT token as your `Bearer Token`
-* (Optional) `grpc-timeout` lets you specify how long to wait for queries that 
-  have the potential to take longer to process. We recommend 
+* (Optional) `grpc-timeout` lets you specify how long to wait for the calls 
+* that have the potential to take longer to process. We recommend 
   `-H "grpc-timeout: 30S"`
 
 ### Create Corpus Request Body
