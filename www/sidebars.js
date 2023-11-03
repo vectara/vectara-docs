@@ -101,13 +101,21 @@ module.exports = {
     {
       type: 'category',
       label: 'Code Samples',
+      collapsed: false,
       items: [
-        'getting-started-samples/RestApiKeyQueries.cs',
-        'getting-started-samples/RestApiKeyQueries.java',
-        'getting-started-samples/queryDataApiKey.php',
-        'getting-started-samples/rest_api_key_queries.py',
-        'getting-started-samples/app.js',
-      ]
+        {
+          type: 'category',
+          label: 'Query Operations Code Samples',
+          collapsed: false,
+          items: [
+            'getting-started-samples/RestApiKeyQueries.cs',
+            'getting-started-samples/RestApiKeyQueries.java',
+            'getting-started-samples/queryDataApiKey.php',
+            'getting-started-samples/rest_api_key_queries.py',
+            'getting-started-samples/app.js',
+          ]
+        }
+     ]
     },
     {
       type: 'category',
