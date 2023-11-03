@@ -18,19 +18,20 @@ is the website for the city and county of San Francisco.
 
 ## Prerequisites
 
-* Vectara acount
+* Vectara account
 * Familiarity with our [Quick Start guide](/docs/quickstart.md).
 * Install the dependencies (python >= 3.8 | pyyaml | Docker)
 
 ## Step 1. Set up your environment
 
-Make sure have you a Vectara account. You can also become familiar 
+Make sure you have a Vectara account. You can also become familiar 
 1. Read about the [vectara-ingest Open Source project on GitHub](https://github.com/vectara/vectara-ingest).
 2. Clone the `vectara-ingest` repository: 
    
    ```bash
    git clone https://github.com/vectara/vectara-ingest.git
    cd vectara-ingest
+   ```
 
 ## Step 2. Configure the corpus
 
@@ -81,13 +82,15 @@ In this step, you run the crawl job which creates the Docker image which then
 runs the container with the `sf.yaml` file.
 
 1. Execute the `run.sh` script:
-  `bash run.sh config/sf.yaml sf`
+  ```bash
+  bash run.sh config/sf.yaml sf
+  ```
 2. Track progress with the Docker log messages:
   `docker logs -f vingest`
 
 ## Step 5. Verify and explore the data
 
-After the job finshes, go back to the Vectara console and try out some 
+After the job finishes, go back to the Vectara console and try out some 
 search queries!
 
 By following this tutorial, you built a data crawler capable of ingesting 

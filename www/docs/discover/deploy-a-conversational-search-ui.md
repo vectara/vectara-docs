@@ -49,9 +49,13 @@ Locate the files you cloned for `vectara-ingest`.
 In this step, you deploy the configured search interface application in a 
 Docker container:
 
+1. Execute the `run.sh` script:
+
 ```bash
 bash docker/run.sh config/pg-search default
 ```
+2. Track progress with the Docker log messages: `docker logs -f vanswer`
+
 ## Step 4. Explore the search application
 
 Now that the Docker container is set up, a browser window opens 
