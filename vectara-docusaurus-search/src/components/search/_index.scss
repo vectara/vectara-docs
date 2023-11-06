@@ -1,4 +1,39 @@
-@import "../../../vui/index";
-@import "./searchInput";
-@import "./searchResult";
+@import "../../../vui/components/index";
 @import "./searchModal";
+
+/**
+ * A one-off reset for the button elements.
+ */
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  border-radius: 0;
+  font-size: inherit;
+}
+
+.searchButton {
+  width: 220px;
+  box-shadow: inset rgba(60, 64, 67, 0.3) 0px 1px 2px 0px;
+  white-space: nowrap;
+  border-radius: $sizeXxs;
+  display: inline-flex;
+  align-items: center;
+  font-weight: 500;
+  line-height: 1;
+  border: 1px solid $borderColor;
+  color: $colorText;
+  background-color: $colorEmptyShade;
+  font-size: $fontSizeMedium;
+  padding: $sizeXs $sizeM;
+  height: 34px;
+  cursor: text;
+}
+
+.searchModalContainer {
+  @import "../../../vui/_reset";
+  @import "./searchInput";
+  @import "./searchResult";
+}

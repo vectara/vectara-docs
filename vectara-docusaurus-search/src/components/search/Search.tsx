@@ -3,14 +3,20 @@ import {
   FC,
   useCallback,
   useState,
-  KeyboardEvent,
+  KeyboardEvent as ReactKeyboardEvent,
   useRef,
   useEffect,
 } from "react";
+import { render } from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import debounce from "lodash.debounce";
 import { BiSearch } from "react-icons/bi";
-import { VuiButtonSecondary, VuiIcon } from "../../../vui";
+import {
+  VuiButtonSecondary,
+  VuiFlexContainer,
+  VuiFlexItem,
+  VuiIcon,
+} from "../../../vui";
 import { DeserializedSearchResult } from "./types";
 import { useSearch } from "./useSearch";
 import { SearchResult } from "./SearchResult";
@@ -82,7 +88,7 @@ export const Search: FC<Props> = ({ customerId, apiKey, corpusId, apiUrl }) => {
   };
 
   const onKeyDown = useCallback(
-    (evt: KeyboardEvent) => {
+    (evt: ReactKeyboardEvent) => {
       const key = evt.key;
 
       if (key === "Enter") {
@@ -161,20 +167,34 @@ export const Search: FC<Props> = ({ customerId, apiKey, corpusId, apiUrl }) => {
     }
   }, [selectedResultRef.current]);
 
+  useEffect(() => {
+    const openSearchOnKeyStroke = (e: KeyboardEvent) => {
+      if (e.key === "k" && e.ctrlKey) {
+        setIsOpen(true);
+      }
+    };
+
+    document.addEventListener("keyup", openSearchOnKeyStroke);
+
+    return () => {
+      document.removeEventListener("keyup", openSearchOnKeyStroke);
+    };
+  }, []);
+
   return (
     <BrowserRouter>
       <div ref={buttonRef}>
-        <VuiButtonSecondary
-          color="neutral"
-          onClick={() => setIsOpen(true)}
-          icon={
-            <VuiIcon>
-              <BiSearch />
-            </VuiIcon>
-          }
-        >
-          Search
-        </VuiButtonSecondary>
+        <button className="searchButton" onClick={() => setIsOpen(true)}>
+          <VuiFlexContainer alignItems="center" spacing="s">
+            <VuiFlexItem>
+              <VuiIcon>
+                <BiSearch />
+              </VuiIcon>
+            </VuiFlexItem>
+
+            <VuiFlexItem>Search</VuiFlexItem>
+          </VuiFlexContainer>
+        </button>
       </div>
 
       <SearchModal

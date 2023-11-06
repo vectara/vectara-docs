@@ -29,6 +29,7 @@ const config = {
   ],
 
   plugins: [
+    "docusaurus-plugin-sass",
     [
       "docusaurus-plugin-openapi-docs",
       {
@@ -164,6 +165,15 @@ ${content}
         },
       },
     ],
+    [
+      "@vectara/docusaurus-search",
+      {
+        containerId: "search",
+        customerId: "3874164736",
+        apiKey: "zqt_5usQAFwTytdQHAXn17Iq31OQMA5RrIBWLI7Fwg",
+        corpusId: "1",
+      },
+    ],
   ],
 
   scripts: [
@@ -212,6 +222,11 @@ ${content}
           activeBasePath: "docs/rest-api",
           label: "API Playground",
           position: "left",
+        },
+        {
+          type: "html",
+          position: "left",
+          value: '<div id="search"></div>',
         },
       ],
     },

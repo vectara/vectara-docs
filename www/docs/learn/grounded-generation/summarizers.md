@@ -116,3 +116,17 @@ the `summarizerPromptName` as follows:
   ]
 }
 ```
+
+## Add a Timeout to REST Calls
+
+Adding `grpc-timeout` to the header of your REST call lets you specify how 
+long to wait for queries that have the potential to take longer to process. We 
+recommend a timeout value of 30 seconds `30S` as typically long enough to 
+allow the call to complete successfully.
+
+You can pass this parameter in header as follows:
+
+```json
+-H "grpc-timeout: 30S" 
+```
+

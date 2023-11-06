@@ -6,7 +6,7 @@
 
 .searchInput__input {
   flex-grow: 1;
-  padding: $sizeS $sizeM;
+  padding: $sizeL;
   background-color: $colorEmptyShade;
   border: none;
   box-shadow: $shadowSmallStart;
@@ -14,12 +14,13 @@
   outline-style: solid;
   outline-color: transparent;
   outline-offset: -1px;
-  font-size: $fontSizeMedium;
+  font-size: $fontSizeLarge;
+  color: $colorText;
 }
 
 .searchInput__submitButton {
   position: absolute;
-  right: $sizeS;
+  right: $sizeM;
   line-height: 0; // TODO: Should this be applied to all buttons?
   color: $colorDarkShade;
   transition: all $transitionSpeed;
