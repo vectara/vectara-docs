@@ -36,8 +36,6 @@ result:
 The **Parent document** drop-down also lets you filter your searches on the 
 document from the search results:
 
-
-
 1. Click **Filter on document**.
    
    ![Document Filter Dropdown](/img/filter_by_document_dropdown.png)
