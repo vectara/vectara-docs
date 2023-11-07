@@ -85,6 +85,11 @@ module.exports = {
           ]
         },
         {
+          type: 'doc',
+          id: 'learn/document-data-structuring',
+          label: "Document Data Structuring",
+        },
+        {
           type: 'category',
           label: 'Metadata Search Filtering',
           items: [
