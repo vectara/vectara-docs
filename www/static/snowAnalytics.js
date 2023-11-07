@@ -92,7 +92,6 @@
           },
           page: ({ payload }) => {
             // Send data to snow endpoint
-            console.log(payload);
             const pageObject = payloadToPageObject(payload);
             const pageJSON = JSON.stringify(pageObject);
             const url = 'https://snow.vectara.io/ui_event';
