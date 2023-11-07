@@ -53,7 +53,7 @@
       identity: identity,
       path: payload.properties.path,
       title: payload.properties.title,
-      referrer: null,
+      referrer: payload.properties.referrer ?? null,
       search: payload.properties.search,
       url: payload.properties.url,
       width: payload.properties.width,
