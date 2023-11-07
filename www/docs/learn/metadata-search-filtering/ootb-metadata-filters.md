@@ -12,6 +12,18 @@ Note that you can set up additional fields to filter on by setting up
 [filter attributes](/docs/api-reference/admin-apis/create-corpus#filter-attribute) on a
 corpus.
 
+
+## `doc.id` field
+Each document is assigneed a unique identifier at indexing. You can use the 
+`doc.id` field to retrieve or filter specific documents in your corpus.
+
+Valid filter expressions include something like:
+
+* `doc.id` = 'my-document-2023.pdf'
+* `doc.id` = 'my-document-2022.pdf' OR 'my-document-2023.pdf'
+* `doc.id` = 'my-document-2023.pdf' AND 'my-document-2024.pdf'
+
+
 ## `part.lang` field
 Each section of a document is evaluated for its language at index time and the
 `part.lang` field is added with a 3-character lower-case language code
