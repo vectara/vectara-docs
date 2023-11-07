@@ -2,7 +2,7 @@
 
   function loadLib() {
     const scripts = document.getElementsByTagName("script");
-    const cdnLink = "https://unpkg.com/analytics/dist/analytics.min.js";
+    const cdnLink = "https://console.vectara.com/ua.js";
     for (let i = 0; i < scripts.length; i++) {
       if (scripts[i].src === cdnLink) {
         return;
@@ -92,6 +92,7 @@
           },
           page: ({ payload }) => {
             // Send data to snow endpoint
+            console.log(payload);
             const pageObject = payloadToPageObject(payload);
             const pageJSON = JSON.stringify(pageObject);
             const url = 'https://snow.vectara.io/ui_event';
