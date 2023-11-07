@@ -13,7 +13,6 @@ The first step in using <Config v="names.product"/> is to index a set of related
 or content into a corpus. Indexing a document enables you to make data 
 available for search and retrieval.
 
-
 ## Standard Indexing REST Service
 
 The indexing service operates by accepting individual documents or messages to 
@@ -27,33 +26,27 @@ to index content into a corpus:
 
 <code>https://<Config v="domains.rest.indexing"/>/v1/index</code>
 
-
 The [API Playground](/docs/rest-api/index) lets you experiment with this REST 
 endpoint interactively in your browser.
 
-The Standard Indexing Service Endpoint has the following request body:
-
-```json
-
 ### Index Request Headers
 
-To interact with the Index service via REST calls, you need the following 
-headers:
+To interact with the Index service via REST calls, you need the following headers:
 
 * `customer_id` is the customer ID to use for the request.
-* An API Key or JWT token is your authentication method
+* An API Key or JWT token as your authentication method
 * (Optional) `grpc-timeout` lets you specify how long to wait for the calls 
-  that have the potential to take longer to process. We recommend 
-  `-H "grpc-timeout: 30S"`
+  that have the potential to take longer to process. We recommend `-H "grpc-timeout: 30S"`
 
 ### Index Request Body
 
-The request body provides essential information about the document you want to 
-index. The Index request requires the following parameters:
+The request body provides essential information about the document you want to index. The Index request requires the following parameters:
 
 * `customerID`
 * `corpusID`
-* `document` object
+* `document object`
+
+The Standard Indexing Service Endpoint has the following request body:
 
 ```json
 {
@@ -90,6 +83,7 @@ index. The Index request requires the following parameters:
   }
 }
 ```
+Let's take a closer look at the document object which encapsulates the information about the document to be indexed. It typically includes the title, description, and metadata. The core of the document is also structured in sections that can include unique identifiers, titles, strings, metadata, and so on.
 
 ## Index Document
 
