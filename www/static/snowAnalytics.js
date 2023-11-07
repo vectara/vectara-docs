@@ -2,7 +2,7 @@
 
   function loadLib() {
     const scripts = document.getElementsByTagName("script");
-    const cdnLink = "https://unpkg.com/analytics/dist/analytics.min.js";
+    const cdnLink = "https://console.vectara.com/ua.js";
     for (let i = 0; i < scripts.length; i++) {
       if (scripts[i].src === cdnLink) {
         return;
