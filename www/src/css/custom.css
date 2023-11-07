@@ -135,6 +135,15 @@ pre {
   background: transparent !important;
 }
 
+code[class*="language-"],
+pre[class*="language-"] {
+  text-shadow: none !important;
+}
+
+.token.operator {
+  background-color: transparent !important;
+}
+
 /* Button */
 
 .button.button--secondary.button--outline:not(.button--active):not(:hover) {
