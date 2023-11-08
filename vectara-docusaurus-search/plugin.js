@@ -11,10 +11,10 @@ export default (function () {
   if (!ExecutionEnvironment.canUseDOM) {
     return null;
   }
-  const event = new Event("onRouteUpdated");
+
   return {
     onRouteDidUpdate() {
-      document.dispatchEvent(event);
+      document.dispatchEvent(new Event("onRouteUpdated"));
     },
   };
 })();
