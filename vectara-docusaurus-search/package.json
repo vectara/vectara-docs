@@ -12,6 +12,8 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
+    "@docusaurus/module-type-aliases": "^3.0.0",
+    "@tsconfig/docusaurus": "^2.0.2",
     "classnames": "^2.3.2",
     "esbuild-sass-plugin": "^2.16.0",
     "lodash": "^4.17.21",
