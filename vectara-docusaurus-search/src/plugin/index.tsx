@@ -1,7 +1,9 @@
-import { createRoot } from "react-dom/client";
+import { Root, createRoot } from "react-dom/client";
 import { Search } from "../components/search/Search";
 
 (function appendWidget() {
+  let root: Root;
+
   // When the search container has been added to the DOM,
   // add the search component to it.
   var observer = new MutationObserver(() => {
@@ -29,17 +31,37 @@ import { Search } from "../components/search/Search";
     );
 
     if (searchContainer && searchContainer.childNodes.length === 0) {
-      const root = createRoot(searchContainer);
+      root = createRoot(searchContainer);
       root.render(
-        <Search customerId={customerId} apiKey={apiKey} corpusId={corpusId} />
+        <Search
+          key={customerId}
+          customerId={customerId}
+          apiKey={apiKey}
+          corpusId={corpusId}
+        />
       );
+      observer.disconnect();
     }
   });
 
-  observer.observe(document, {
-    attributes: false,
-    childList: true,
-    characterData: false,
-    subtree: true,
-  });
+  /**
+   * Whenever docusaurus changes route, the nav bar gets rerendered.
+   * This means we need to re-mount search into this new navbar instance.
+   * When the docusaurus route changes:
+   *  1. unmount search
+   *  2. wait for the search container to be rendered into new page
+   */
+  const waitForSearchContainer = () => {
+    if (root) {
+      root.unmount();
+    }
+    observer.observe(document, {
+      attributes: false,
+      childList: true,
+      characterData: false,
+      subtree: true,
+    });
+  };
+
+  document.addEventListener("onRouteUpdated", waitForSearchContainer);
 })();
