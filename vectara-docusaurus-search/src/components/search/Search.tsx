@@ -16,6 +16,8 @@ import {
   VuiFlexContainer,
   VuiFlexItem,
   VuiIcon,
+  VuiText,
+  VuiTextColor,
 } from "../../../vui";
 import { DeserializedSearchResult } from "./types";
 import { useSearch } from "./useSearch";
@@ -185,14 +187,35 @@ export const Search: FC<Props> = ({ customerId, apiKey, corpusId, apiUrl }) => {
     <BrowserRouter>
       <div ref={buttonRef}>
         <button className="searchButton" onClick={() => setIsOpen(true)}>
-          <VuiFlexContainer alignItems="center" spacing="s">
+          <VuiFlexContainer
+            alignItems="center"
+            spacing="s"
+            justifyContent="spaceBetween"
+            className="searchButton__inner"
+          >
             <VuiFlexItem>
-              <VuiIcon>
-                <BiSearch />
-              </VuiIcon>
+              <VuiFlexContainer alignItems="center" spacing="xxs">
+                <VuiFlexItem>
+                  <VuiIcon>
+                    <BiSearch />
+                  </VuiIcon>
+                </VuiFlexItem>
+
+                <VuiFlexItem>
+                  <VuiText>
+                    <p>Search</p>
+                  </VuiText>
+                </VuiFlexItem>
+              </VuiFlexContainer>
             </VuiFlexItem>
 
-            <VuiFlexItem>Search</VuiFlexItem>
+            <VuiFlexItem>
+              <VuiText>
+                <p>
+                  <VuiTextColor color="subdued">Ctrl+K</VuiTextColor>
+                </p>
+              </VuiText>
+            </VuiFlexItem>
           </VuiFlexContainer>
         </button>
       </div>

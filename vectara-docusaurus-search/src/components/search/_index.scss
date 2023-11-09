@@ -15,6 +15,7 @@ button {
 }
 
 .searchButton {
+  display: flex;
   width: 220px;
   box-shadow: inset rgba(60, 64, 67, 0.3) 0px 1px 2px 0px;
   white-space: nowrap;
@@ -27,9 +28,13 @@ button {
   color: $colorText;
   background-color: $colorEmptyShade;
   font-size: $fontSizeMedium;
-  padding: $sizeXs $sizeM;
+  padding: $sizeXs $sizeS;
   height: 34px;
   cursor: text;
+}
+
+.searchButton__inner {
+  flex-grow: 1;
 }
 
 .searchModalContainer {

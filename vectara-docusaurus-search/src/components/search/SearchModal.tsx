@@ -8,6 +8,8 @@ import {
 } from "react";
 import { SearchInput } from "./SearchInput";
 import {
+  VuiFlexContainer,
+  VuiFlexItem,
   VuiLinkInternal,
   VuiPortal,
   VuiScreenBlock,
@@ -79,21 +81,36 @@ export const SearchModal = forwardRef(
                   <div className="searchModalFooter">
                     <VuiSpacer size="xs" />
 
-                    <VuiText size="s" align="right">
-                      <p>
-                        <strong>
-                          <VuiTextColor color="subdued">
-                            Built with
-                          </VuiTextColor>{" "}
-                          <VuiLinkInternal
-                            href="https://vectara.com"
-                            target="_blank"
-                          >
-                            Vectara
-                          </VuiLinkInternal>
-                        </strong>
-                      </p>
-                    </VuiText>
+                    <VuiFlexContainer
+                      alignItems="center"
+                      justifyContent="spaceBetween"
+                    >
+                      <VuiFlexItem>
+                        <VuiText size="s" align="right">
+                          <p>
+                            <strong>
+                              <VuiTextColor color="subdued">
+                                Built with
+                              </VuiTextColor>{" "}
+                              <VuiLinkInternal
+                                href="https://vectara.com"
+                                target="_blank"
+                              >
+                                Vectara
+                              </VuiLinkInternal>
+                            </strong>
+                          </p>
+                        </VuiText>
+                      </VuiFlexItem>
+
+                      <VuiFlexItem>
+                        <VuiText>
+                          <p>
+                            <VuiTextColor color="subdued">Ctrl+K</VuiTextColor>
+                          </p>
+                        </VuiText>
+                      </VuiFlexItem>
+                    </VuiFlexContainer>
 
                     <VuiSpacer size="xs" />
                   </div>
