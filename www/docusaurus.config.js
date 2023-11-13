@@ -226,7 +226,7 @@ ${content}
         {
           to: "https://console.vectara.com",
           label: "Console",
-          position: "left",
+          position: "right",
         },
         {
           type: "html",
