@@ -6,8 +6,9 @@ import {
   KeyboardEvent as ReactKeyboardEvent,
   useRef,
   useEffect,
+  useMemo,
 } from "react";
-import { render } from "react-dom";
+import getUuid from "uuid-by-string";
 import { BrowserRouter } from "react-router-dom";
 import debounce from "lodash.debounce";
 import { BiSearch } from "react-icons/bi";
@@ -25,21 +26,52 @@ import { SearchResult } from "./SearchResult";
 import { SearchModal } from "./SearchModal";
 
 import "./_index.scss";
+import { useSearchHistory } from "./useSearchHistory";
 
 interface Props {
+  // Vectara customer ID
   customerId: string;
+
+  // Vectara API key
   apiKey: string;
+
+  // Vectara corpus ID
   corpusId: string;
+
+  // An optional API url to direct requests toward
   apiUrl?: string;
+
+  // The number of previous searches to cache.
+  // Default is 0.
+  historySize?: number;
 }
 
 /**
  * A client-side search component that queries a specific corpus with a user-provided string.
  */
-export const Search: FC<Props> = ({ customerId, apiKey, corpusId, apiUrl }) => {
+export const Search: FC<Props> = ({
+  customerId,
+  apiKey,
+  corpusId,
+  apiUrl,
+  historySize = 10,
+}) => {
   const [searchResults, setSearchResults] = useState<
     DeserializedSearchResult[]
   >([]);
+
+  // Compute a unique ID for this search component.
+  // This creates a namespace, and ensures that stored search results
+  // for one search box don't appear for another.
+  const searchId = useMemo(
+    () => getUuid(`${customerId}-${corpusId}-${apiKey}`),
+    [customerId, corpusId, apiKey]
+  );
+
+  const { getPreviousSearches, addPreviousSearch } = useSearchHistory(
+    searchId,
+    historySize
+  );
 
   const [selectedResultIndex, setSelectedResultIndex] = useState<number | null>(
     null
@@ -63,6 +95,9 @@ export const Search: FC<Props> = ({ customerId, apiKey, corpusId, apiUrl }) => {
     }
 
     const searchId = ++searchCount.current;
+
+    addPreviousSearch(query);
+
     const results = await fetchSearchResults(query);
 
     if (searchId === searchCount.current) {
