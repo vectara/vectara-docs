@@ -224,6 +224,11 @@ ${content}
           position: "left",
         },
         {
+          to: "https://console.vectara.com",
+          label: "Console",
+          position: "right",
+        },
+        {
           type: "html",
           position: "left",
           value: '<div id="search"></div>',
