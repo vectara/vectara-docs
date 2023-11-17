@@ -1,5 +1,4 @@
 (function () {
-
   function loadLib() {
     const scripts = document.getElementsByTagName("script");
     const cdnLink = "https://console.vectara.com/ua.js";
@@ -12,25 +11,25 @@
     tag.type = "text/javascript";
     tag.async = true;
     tag.src = cdnLink;
-    const placement = scripts?.[0] || document.getElementsByTagName("title")?.[0];
+    const placement =
+      scripts?.[0] || document.getElementsByTagName("title")?.[0];
     if (placement?.parentNode) {
       placement.parentNode.insertBefore(tag, placement);
     } else {
-      console.warn("Can't insert external JavaScript. Analytics will not work")
+      console.warn("Can't insert external JavaScript. Analytics will not work");
     }
   }
 
-  const getCookie = (name) => (
-    document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || ''
-  )
+  const getCookie = (name) =>
+    document.cookie.match("(^|;)\\s*" + name + "\\s*=\\s*([^;]+)")?.pop() || "";
 
   // This function converts Payload into a format that Snow expects for Page events.
   function payloadToPageObject(payload) {
     let userData = {
       userSub: null,
-      email: getCookie('__anon_id_email') ?? null,
-      customerId: getCookie('__anon_id_uid') ?? null,
-    }
+      email: getCookie("__anon_id_email") ?? null,
+      customerId: getCookie("__anon_id_uid") ?? null,
+    };
 
     const url = new URL(payload.properties.url ?? null);
 
@@ -46,9 +45,9 @@
       anonymousId: payload.anonymousId,
       timestamp: payload.meta.ts,
       utm: utm,
-      userData: userData
+      userData: userData,
     };
-    
+
     return {
       identity: identity,
       path: payload.properties.path,
@@ -61,51 +60,53 @@
       application: "DOCS",
       locale: navigator.language,
       agent: navigator.userAgent,
-      type: "PAGE"
+      type: "PAGE",
     };
   }
 
   function whenAvailable(name, callback) {
     var interval = 3000; // ms
-    window.setTimeout(function() {
+    window.setTimeout(function () {
       if (window[name]) {
         callback(window[name]);
       } else {
         whenAvailable(name, callback);
       }
     }, interval);
-  };
+  }
 
   loadLib();
 
-  whenAvailable("_analytics", function(_analytics) {
+  whenAvailable("_analytics", function (_analytics) {
     // Storing in window so we can access it from the routeUpdateModule
-    var Analytics = window.snowAnalytics = _analytics.init({
-      app: 'analytics-html-demo',
+    var Analytics = (window.snowAnalytics = _analytics.init({
+      app: "analytics-html-demo",
       debug: true,
       plugins: [
         {
           name: "snow-plugin",
           campaign: ({ payload }) => {
             // Store utm in localstorage
-            console.log('payload', payload);
+            console.log("payload", payload);
           },
           page: ({ payload }) => {
             // Send data to snow endpoint
             const pageObject = payloadToPageObject(payload);
             const pageJSON = JSON.stringify(pageObject);
-            const url = 'https://snow.vectara.io/ui_event';
+            const url = "https://snow.vectara.io/ui_event";
             fetch(url, {
               method: "POST",
               headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
               },
-              body: pageJSON
+              body: pageJSON,
+            }).catch((e) => {
+              console.log("Could not send analytics request.", e);
             });
-          }
-        }      
-      ]
-    });
+          },
+        },
+      ],
+    }));
     Analytics.page();
   });
 })();
