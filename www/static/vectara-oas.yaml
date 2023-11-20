@@ -224,7 +224,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/googlerpcStatus"
       requestBody:
-        $ref: "#/components/requestBodies/servingBatchQueryRequest"
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/servingBatchQueryRequest"
+        required: true
       tags:
         - QueryService
       parameters:
@@ -382,13 +386,6 @@ paths:
         "507":
           description: There is no more indexing quota left for the corpus or customer to index more documents.  Upgrade your account, add a credit card, or contact sales.
 components:
-  requestBodies:
-    servingBatchQueryRequest:
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/servingBatchQueryRequest"
-      required: true
   schemas:
     CorpusKeySemantics:
       type: string
@@ -1345,6 +1342,9 @@ components:
         - ADM__SIGNUP_ROOT_EMAIL_NOT_AVAILABLE
         - ADM__CUST_MARK_DELETE_FAILED
         - ADM__CUST_FAISS_DEALLOC_FAILED
+        - ADM__CUST_ALREADY_ACTIVE
+        - ADM__CUST_REACTIVATE_FAILED
+        - ADM__CUST_ENABLEMENT_FAILED
         - ADM__CORPUS_LIMIT_REACHED
         - ADM__STRIPE_CARD_DECLINED
         - ADM__STRIPE_PROCESSING_ERROR
