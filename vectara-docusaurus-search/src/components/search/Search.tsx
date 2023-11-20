@@ -63,6 +63,9 @@ export const Search: FC<Props> = ({
   // Compute a unique ID for this search component.
   // This creates a namespace, and ensures that stored search results
   // for one search box don't appear for another.
+  // NOTE: This is an implementation for what's historically been found to be
+  // an issue with persistent search history: overlap between the histories
+  // of different search boxes.
   const searchId = useMemo(
     () => getUuid(`${customerId}-${corpusId}-${apiKey}`),
     [customerId, corpusId, apiKey]
