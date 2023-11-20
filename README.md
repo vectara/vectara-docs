@@ -8,7 +8,19 @@ built with [Docusaurus 2](https://docusaurus.io/) and is hosted at
 
 For anything other than minor changes, clone the repository onto your local machine
 and build the documentation locally. It's often helpful to see the changes you make
-live, which can be done by running the following command:
+live.
+
+**Before executing the following commands, please ensure you are in the `www/` directory.**
+
+### Running the app locally
+
+First, install dependencies:
+
+```
+$ npm install
+```
+
+You can run the app on your machine by issuing the following command.
 
 ```
 $ npm run start
