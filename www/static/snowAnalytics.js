@@ -52,7 +52,7 @@
       identity: identity,
       path: payload.properties.path,
       title: payload.properties.title,
-      referrer: payload.properties.referrer ?? null,
+      referrer: document.referrer,
       search: payload.properties.search,
       url: payload.properties.url,
       width: payload.properties.width,
