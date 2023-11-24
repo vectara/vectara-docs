@@ -19,11 +19,11 @@ info:
     You can sign up for an account at [https://vectara.com](https://vectara.com).
 tags:
   - name: AdminService
-    description: Administrative services, such as creating or deleting corpora
+    description: Administrative operations, such as creating or deleting corpora
   - name: IndexService
     description: Indexing operations, such as creating and deleting documents
   - name: QueryService
-    description: Query operations, such as performing a standard search
+    description: Query operations, such as performing a search and retrieval augmented generation
 # add file upload API and auth options for other APIs
 paths:
   /v1/create-corpus:
@@ -52,7 +52,16 @@ paths:
         - AdminService
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
-      description: Create Corpus
+      description: |
+        Creates a corpus, which is a container to store data in.
+
+        Some tips for this API:
+        * This operation only works with OAuth 2.0 (in a JWT "Bearer Token") authentication. It does not work with API Keys.  You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * The `name` of the corpus is the only required field.
+        * Filter attributes tell Vectara which metadata fields you'd like to run SQL-style filters against.  If you need to change them after you've created the corpus, see the [Replace Filter Attributes API](https://docs.vectara.com/docs/rest-api/replace-corpus-filter-attrs)
+        * `textless` and `customDimensions` are features that are only available to [Scale](https://vectara.com/pricing/) accounts.
+      security:
+        - oAuth: []
   /v1/delete-corpus:
     post:
       operationId: DeleteCorpus
@@ -79,7 +88,14 @@ paths:
         - AdminService
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
-      description: Delete Corpus
+      description: |
+        Deletes a corpus and all of the data contained inside of the corpus.
+
+        Some tips for this API:
+        * This operation only works with OAuth 2.0 (in a JWT "Bearer Token") authentication. It does not work with API Keys.  You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * It can take a few seconds to completely delete the corpus if there's heavy system load.  Be patient if the corpus is still present after a deletion request is initiated.
+      security:
+        - oAuth: []
   /v1/delete-doc:
     post:
       operationId: Delete
@@ -107,7 +123,12 @@ paths:
         - IndexService
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
-      description: Delete
+      description: |
+        Delete documents from a corpus.
+
+        Some tips for this API:
+        * This operation authenticates with either an API Key or OAuth 2.0 (in a JWT "Bearer Token"). You can find details of how to set up an API key or use OAuth 2.0 [here](https://docs.vectara.com/docs/console-ui/manage-api-access).
+        * You can quickly delete all documents from a corpus to clear it out by using the [Reset Corpus](https://docs.vectara.com/docs/rest-api/reset-corpus) operation.
       security:
         - ApiKeyAuth: []
         - oAuth: []
@@ -176,7 +197,14 @@ paths:
         - IndexService
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
-      description: Index
+      description: |
+        This is the "standard" Indexing API for indexing semi-structured, text-heavy "documents."  Indexing data into Vectara is typically very fast: within a few seconds.
+
+        Some tips for this API:
+        * This operation authenticates with either an API Key or OAuth 2.0 (in a JWT "Bearer Token"). You can find details of how to set up an API key or use OAuth 2.0 [here](https://docs.vectara.com/docs/console-ui/manage-api-access).
+        * Vectara does require a special format for JSON objects you'd like to index.  Some tips on how to model data in the indexing API, see the documentation [here](https://docs.vectara.com/docs/learn/document-data-structuring).
+        * The `metadataJson` object needs the JSON to be escaped so that it's not confused with other parts of the request JSON.
+        * [Custom dimensions](https://docs.vectara.com/docs/learn/semantic-search/add-custom-dimensions) (`customDims`) is a feature that is only available to [Scale](https://vectara.com/pricing/) accounts.
       security:
         - ApiKeyAuth: []
         - oAuth: []
@@ -206,7 +234,48 @@ paths:
         - AdminService
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
-      description: List Corpora
+      description: |
+        Lists all corpora accessible to the OAuth client.
+
+        Some tips for this API:
+        * This operation only works with OAuth 2.0 (in a JWT "Bearer Token") authentication. It does not work with API Keys.  You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * The `filter` feature applies to either the name *or* the description of a corpus.
+      security:
+        - oAuth: []
+  /v1/list-jobs:
+    post:
+      operationId: ListJobs
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/adminListJobsResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/googlerpcStatus"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/adminListJobsRequest"
+        required: true
+      tags:
+        - AdminService
+      parameters:
+        - $ref: '#/components/parameters/customerIdentifier'
+      description: |
+        List the jobs associated with this account.  Jobs are background processes like [replacing the filterable metadata attributes](https://docs.vectara.com/docs/rest-api/replace-corpus-filter-attrs).
+
+        Some tips for this API:
+        * This operation only works with OAuth 2.0 (in a JWT "Bearer Token") authentication. It does not work with API Keys.  You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * It's best practice to filter as much as possible (by date, by status, and/or by job ID) to make job lists as easy to interpret as possible, as there can be many for a given time window.
+      security:
+        - oAuth: []
   /v1/query:
     post:
       operationId: Query
@@ -233,9 +302,54 @@ paths:
         - QueryService
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
-      description: Query
+      description: |
+        Search for relevant results, highlight relevant snippets, and do
+        [Retrieval Augmented Generation](https://docs.vectara.com/docs/learn/grounded-generation/grounded-generation-overview) (RAG).
+
+        Some tips for this API:
+        * This operation authenticates with either an API Key or OAuth 2.0 (in a JWT "Bearer Token"). You can find details of how to set up an API key or use OAuth 2.0 [here](https://docs.vectara.com/docs/console-ui/manage-api-access).
+        * By default, Vectara only uses its neural/semantic retrieval model, and does not attempt to use keyword matching.  To enable hybrid search with a mix of both keyword and neural results, edit the `lambda` value.  Additional documentation on hybrid search is [here](https://docs.vectara.com/docs/learn/semantic-search/hybrid-search).
+        * Vectara can automatically provide a generative summary with the query results for Retrieval Augmented Generation (RAG).  Additional details on RAG in Vectara can be found [here](https://docs.vectara.com/docs/learn/grounded-generation/grounded-generation-overview).
+        * The Query API takes an *array* of queries, since you can have Vectara perform more than 1 query in a single API call.  The results that are returned are thus in an array as well, with each element in the response array corresponding to the input query array.
+        * Custom dimensions (`customDims`) is a feature that is only available to [Scale](https://vectara.com/pricing/) accounts.
       security:
         - ApiKeyAuth: []
+        - oAuth: []
+  /v1/replace-corpus-filter-attrs:
+    post:
+      operationId: ReplaceCorpusFilterAttrs
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/adminReplaceCorpusFilterAttrsResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/googlerpcStatus"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/adminReplaceCorpusFilterAttrsRequest"
+        required: true
+      tags:
+        - AdminService
+      parameters:
+        - $ref: '#/components/parameters/customerIdentifier'
+      description: |
+        Updates the [filterable metadata fields](https://docs.vectara.com/docs/learn/metadata-search-filtering/filter-overview) for the corpus.
+
+        Some tips for this API:
+        * This operation only works with OAuth 2.0 (in a JWT "Bearer Token") authentication. It does not work with API Keys.  You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * Each request to replace the corpus filter attributes kicks off a background [job](https://docs.vectara.com/docs/rest-api/list-jobs).  The job ID is returned when you kick off a metadata filter update job so you can track it later.
+        * Existing filters will continue to apply until the update job completes.
+        * The time that update filter jobs take is roughly proportional to the size of the corpus.  Updates on small corpora generally take a few minutes at most, but updates on large corpora can take many minutes to hours to complete.
+      security:
         - oAuth: []
   /v1/reset-corpus:
     post:
@@ -263,7 +377,14 @@ paths:
         - AdminService
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
-      description: Reset Corpus
+      description: |
+        Resets a corpus by removing all of the documents inside of it.
+
+        Some tips for this API:
+        * This operation only works with OAuth 2.0 (in a JWT "Bearer Token") authentication. It does not work with API Keys.  You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * If you want to delete individual documents instead of all documents in the corpus, you can use the [Delete API](https://docs.vectara.com/docs/rest-api/delete).
+      security:
+        - oAuth: []
   /v1/core/index:
     post:
       operationId: CoreIndex
@@ -291,14 +412,30 @@ paths:
         - IndexService
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
-      description: Low level indexing API
+      description: |
+        This API is intended to be used by experts.  It gives you fine-grained control over chunking
+        strategies by using the `parts`.  Most users will want to use the [File Upload API](https://docs.vectara.com/docs/rest-api/file-upload) or the "standard" [Index API](https://docs.vectara.com/docs/rest-api/index).
+
+        Some tips for this API:
+        * This operation authenticates with either an API Key or OAuth 2.0 (in a JWT "Bearer Token"). You can find details of how to set up an API key or use OAuth 2.0 [here](https://docs.vectara.com/docs/console-ui/manage-api-access).
+        * The `metadataJson` object needs the JSON to be escaped so that it's not confused with other parts of the request JSON.
+        * [Custom dimensions](https://docs.vectara.com/docs/learn/semantic-search/add-custom-dimensions) (`customDims`) is a feature that is only available to [Scale](https://vectara.com/pricing/) accounts.
       security:
         - ApiKeyAuth: []
         - oAuth: []
   /v1/upload:
     post:
+      description: |
+        The File Upload API can be used to index binary files like PDFs, Word Documents, and similar.
+        Vectara will attempt to automatically extract the text and any metadata from the document like
+        author or title, though you can provide additional metadata as well.
+
+        Some tips for this API:
+        * This operation authenticates with either an API Key or OAuth 2.0 (in a JWT "Bearer Token"). You can find details of how to set up an API key or use OAuth 2.0 [here](https://docs.vectara.com/docs/console-ui/manage-api-access).
+        * You can find a full list of supported file formats [here](https://docs.vectara.com/docs/api-reference/indexing-apis/file-upload/file-upload-filetypes).
+        * To provide additional metadata, set the `doc_metadata` field.  You can find some additional details [here](https://docs.vectara.com/docs/api-reference/indexing-apis/file-upload/file-upload#attach-additional-metadata)
+        * PDFs must contain text: Vectara does not currently support indexing scanned images via OCR.
       operationId: FileUpload
-      description: File Upload
       tags:
         - IndexService
       security:
@@ -480,10 +617,14 @@ components:
           type: integer
           format: int64
           title: |-
-            Which reranking model to use if reranking.  Currently, the only ID
-            available is ID 272725717
+            Which reranking model to use if reranking.  Currently, the only IDs
+            available are:
+            - 272725717, HuggingFace Open Source x-attentional reranker
+            - 272725718, Maximum Marginal Relevance Reranker
           enum: [272725717]
           example: 272725717
+        mmrConfig:
+          $ref: "#/components/schemas/servingMMRConfig"
       description: Configuration options to apply to the reranking.
     adminCorpus:
       type: object
@@ -662,6 +803,66 @@ components:
         - FILTER_ATTRIBUTE_TYPE__TEXT_LIST
         - FILTER_ATTRIBUTE_TYPE__BOOLEAN
       default: FILTER_ATTRIBUTE_TYPE__UNDEFINED
+    adminJob:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          $ref: "#/components/schemas/adminJobType"
+        corpusId:
+          type: array
+          items:
+            type: integer
+            format: int64
+          description: Set if the job belongs to a corpus.
+        state:
+          $ref: "#/components/schemas/adminJobState"
+        tsCreate:
+          type: string
+          format: int64
+          description: Epoch (secs) when the job was created.
+        tsStart:
+          type: string
+          format: int64
+          description: |-
+            Epoch (secs) when the job was started. Not set if the job
+            hasn't started yet.
+        tsComplete:
+          type: string
+          format: int64
+          description: |-
+            Epoch (secs) when the job completed. Not set if the job
+            hasn't completed yet.
+        userHandle:
+          type: string
+          description: Handle of the user that created this job.
+      description: >-
+        Represents a job in the system.
+
+        A job is typically a long running unit of work for achieving a particular outcome.
+
+        Example job: replace filter attributes of a corpus.
+    adminJobState:
+      type: string
+      enum:
+        - JOB_STATE__UNKNOWN
+        - JOB_STATE__QUEUED
+        - JOB_STATE__STARTED
+        - JOB_STATE__COMPLETED
+        - JOB_STATE__FAILED
+        - JOB_STATE__TRANSIENT_FAILURE_RETRY_IMMINENT
+        - JOB_STATE__ABORTED
+      default: JOB_STATE__UNKNOWN
+      description: The state of a job.
+    adminJobType:
+      type: string
+      enum:
+        - JOB__UNKNOWN
+        - JOB__CORPUS_REBUILD_VECTOR_INDEX
+        - JOB__CORPUS_REPLACE_FILTER_ATTRS
+      default: JOB__UNKNOWN
+      description: Type of jobs.
     adminListCorporaRequest:
       type: object
       example:
@@ -698,6 +899,91 @@ components:
             retrieve the next page of results.
         status:
           $ref: "#/components/schemas/comvectaraStatus"
+    adminListJobsRequest:
+      type: object
+      properties:
+        jobId:
+          type: string
+          description: |-
+            Optional filters. If specified, the filters are logically ANDed.
+
+            [Optional] If specified, return the job for this id.
+        corpusId:
+          type: array
+          items:
+            type: integer
+            format: int64
+          description: "[Optional] If specified, return jobs for these corpora only."
+        epochSecs:
+          type: string
+          format: int64
+          description: |-
+            [Optional] Get jobs that were created since this epoch timestamp.
+            Max allowed value is 180 days ago. Default is 180 days.
+        state:
+          type: array
+          items:
+            $ref: "#/components/schemas/adminJobState"
+          description: >-
+            [Optional] Get jobs with these states. If not specified, all job
+
+            states are fetched.
+
+            Default: If not set, JOB_STATE__QUEUED and JOB_STATE__STARTED are returned.
+        numResults:
+          type: integer
+          format: int64
+          description: Maximum results to return. Max allowed value is 100.
+        pageKey:
+          type: string
+          format: byte
+          description: |-
+            A key that is passed in to retrieve a specific page of results.
+            Leave empty to retrieve first page. Subsequent page request should
+            use the page key returned in previous response, and all other
+            fields are ignored.
+    adminListJobsResponse:
+      type: object
+      properties:
+        status:
+          type: array
+          items:
+            $ref: "#/components/schemas/comvectaraStatus"
+        job:
+          type: array
+          items:
+            $ref: "#/components/schemas/adminJob"
+        pageKey:
+          type: string
+          format: byte
+          description: |-
+            A key that is passed into a subsequent result in order to
+            retrieve the next page of results.
+    adminReplaceCorpusFilterAttrsRequest:
+      type: object
+      properties:
+        corpusId:
+          type: integer
+          format: int64
+          description: The corpus for which to update filters.
+        filterAttributes:
+          type: array
+          items:
+            $ref: "#/components/schemas/adminFilterAttribute"
+          description: The filters to set. The existing filters are replaced with this list of filters.
+    adminReplaceCorpusFilterAttrsResponse:
+      type: object
+      properties:
+        status:
+          $ref: "#/components/schemas/comvectaraStatus"
+        jobId:
+          type: string
+          description: >-
+            If 'status' represents success, this contains the ID assigned to the job
+
+            for updating the list of filters. This ID can be used to query the status
+
+            of the job.
     adminResetCorpusRequest:
       type: object
       example:
@@ -1043,6 +1329,15 @@ components:
 
                 S = (lambda) * (lexical score) + (1 - lambda) * (dense score)
       description: Configuration for a linear interpolation.
+    servingMMRConfig:
+      type: object
+      properties:
+        diversityBias:
+          type: number
+          format: float
+          example: 0.3
+          description: The diversity bias. Higher values indicate more diversity.
+      description: Configuration for the maximum marginal relevance (MMR) reranker.
     servingPerformanceMetrics:
       type: object
       properties:
@@ -1367,6 +1662,12 @@ components:
         - REBUILD__EVALUATION
         - IDX__TRANSIENT_PARTIAL_DELETION_FAILURE
         - IDX__PERMANENT_PARTIAL_DELETION_FAILURE
+        - CALB__INVALID_JSON
+        - CALB__INVALID_SPEC
+        - CALB__UNREGISTERED_TYPE
+        - CALB__MISSING_SPEC
+        - CALB__MISSING_TYPE
+        - CALB__UNPARSABLE_SPEC
       default: OK
     vectaraStorageQuota:
       type: object
