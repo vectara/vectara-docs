@@ -339,7 +339,9 @@ paths:
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
       description: |
-        Updates the [filterable metadata fields](https://docs.vectara.com/docs/learn/metadata-search-filtering/filter-overview) for the corpus.
+        Updates the filterable metadata fields for the corpus.
+
+        See our documentation on [filterable metadata fields](https://docs.vectara.com/docs/learn/metadata-search-filtering/filter-overview) for more details on how these are used.
 
         Some tips for this API:
         * This operation only works with OAuth 2.0 (in a JWT "Bearer Token") authentication. It does not work with API Keys.  You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
