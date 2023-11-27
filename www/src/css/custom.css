@@ -509,7 +509,7 @@ h1
 }
 
 .openapi-tabs__code-list-container {
-  overflow-x: scroll !important;
+  overflow-x: auto !important;
 }
 
 /* .tabItem_node_modules-docusaurus-theme-openapi-docs-lib-next-theme-ApiTabs-styles-module {
