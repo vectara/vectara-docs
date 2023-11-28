@@ -198,7 +198,7 @@ ${content}
     announcementBar: {
       id: "genai_launch",
       content:
-        'Vectara has just launched its new embedding model, now available to all users!  For more details, see our blog <a href="https://vectara.com/introducing-boomerang-vectaras-new-and-improved-retrieval-model/">here<a>',
+        'Vectara now has enhanced metadata filtering capabilities, offering customizable filters and data types to elevate your search experience! For more details, see our blog <a href="https://vectara.com/why-is-metadata-important-in-genai/">here<a>',
       backgroundColor: "#fafbfc",
       textColor: "#091E42",
       isCloseable: true,
