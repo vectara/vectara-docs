@@ -18,6 +18,20 @@
   --ifm-color-primary: rgb(131 158 255);
 }
 
+/* Navbar for search */
+
+.navbar__items--right {
+  flex-grow: 1;
+}
+
+.searchBar {
+  flex-grow: 1;
+}
+
+.navbar__item {
+  flex-shrink: 0;
+}
+
 /* Typography */
 
 strong {

@@ -11,6 +11,7 @@
   overflow: hidden;
   padding: $sizeM $sizeL;
   color: $colorText;
+  line-height: 1.3;
 
   &:hover {
     text-decoration: none;
@@ -26,6 +27,7 @@
   line-height: 1.3;
   font-weight: $fontWeightBold;
   color: $colorPrimary;
+  margin-bottom: $sizeXxs;
 }
 
 [data-theme="dark"] {

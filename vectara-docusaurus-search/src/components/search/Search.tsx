@@ -227,12 +227,12 @@ export const Search: FC<Props> = ({
         <button className="searchButton" onClick={() => setIsOpen(true)}>
           <VuiFlexContainer
             alignItems="center"
-            spacing="s"
+            spacing="none"
             justifyContent="spaceBetween"
             className="searchButton__inner"
           >
             <VuiFlexItem>
-              <VuiFlexContainer alignItems="center" spacing="xxs">
+              <VuiFlexContainer alignItems="center" spacing="xs">
                 <VuiFlexItem>
                   <VuiIcon>
                     <BiSearch />
@@ -247,13 +247,7 @@ export const Search: FC<Props> = ({
               </VuiFlexContainer>
             </VuiFlexItem>
 
-            <VuiFlexItem>
-              <VuiText>
-                <p>
-                  <VuiTextColor color="subdued">Ctrl+K</VuiTextColor>
-                </p>
-              </VuiText>
-            </VuiFlexItem>
+            <div className="searchButtonShortcut">Ctrl + K</div>
           </VuiFlexContainer>
         </button>
       </div>
