@@ -12,18 +12,26 @@ import {vars} from '@site/static/variables.json';
 to upload and index documents into a corpus:
 <code>https://<Config v="domains.rest.indexing"/>/v1/upload</code>
 
-This page describes the details of interacting with this endpoint.
+### Index Request Headers
+
+To interact with the File Upload endpoint, you need the following 
+headers:
+
+* An `x-api-key` or JWT token as your authentication method
+* (Optional) `grpc-timeout` lets you specify how long to wait for the calls 
+  that have the potential to take longer to process. We recommend 
+  `-H "grpc-timeout: 30S"`
 
 ## File Upload Request Details
 
 The File Upload endpoint expects an `multipart/form-data` `POST` request that includes the
 following HTTP parameters:
 
-1.  `c` [required]: `customer_id`.
+1. (Required) `c`: `customer_id`.
 
-2.  `o` [required]: `corpus_id` into which the document should be indexed.
+2. (Required) `o`: `corpus_id` into which the document should be indexed.
 
-3.  `d` [optional]: If set to `true`, the server returns the extracted
+3. (Optional) `d`: If set to `true`, the server returns the extracted
 document that was indexed. 
 
   Use this parameter when uploading a raw file (pdf, docx) instead of a file 
@@ -32,6 +40,12 @@ document that was indexed.
 
 Apart from these parameters, the servers expect a valid JWT Token in the HTTP
 headers.
+
+## Upload a File from the API Playground
+
+Check out our [interactive API Playground](/docs/rest-api/file-upload) that enables you
+to experiment with this REST endpoint. You can upload a file to a corpus 
+directly from your browser or copy the curl for your command line.
 
 ### Maximum File Upload Size
 
@@ -72,18 +86,6 @@ the document ID) can be uploaded multiple times.
 
 -  `507`: There is no more indexing quota left for the corpus or customer to
 index more documents.
-
-## Upload a File with the Command Line
-
-The following command shows how to upload a file `/tmp/instructions.pdf` to
-corpus `151` in customer `123456` using `curl`.
-<pre>
-{`$ jwt=eyJraWQ...
-$ curl -H "Authorization: Bearer $jwt" -F file=@/tmp/instructions.pdf \\
-    -F doc_metadata='{ "filesize\": 1234 }' \\
-    'https://${vars['domains.rest.indexing']}:443/v1/upload?c=123456\&o=151'
-`}
-</pre>
 
 ## Add a Timeout to the File Upload
 
