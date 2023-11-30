@@ -184,7 +184,7 @@ ${content}
     {
       src: "/snowAnalytics.js",
       async: true,
-    }
+    },
   ],
 
   clientModules: ["./static/routeUpdateModule.js"],
@@ -224,14 +224,15 @@ ${content}
           position: "left",
         },
         {
+          type: "html",
+          position: "right",
+          className: "searchBar",
+          value: '<div id="search"></div>',
+        },
+        {
           to: "https://console.vectara.com",
           label: "Console",
           position: "right",
-        },
-        {
-          type: "html",
-          position: "left",
-          value: '<div id="search"></div>',
         },
       ],
     },
