@@ -1,7 +1,7 @@
 ---
 id: reset-corpus
-title: Reset Corpus
-sidebar_label: API Definition
+title: Reset Corpus API Definition
+sidebar_label: Reset Corpus API Definition
 ---
 
 import {Config} from '@site/docs/definitions.md';

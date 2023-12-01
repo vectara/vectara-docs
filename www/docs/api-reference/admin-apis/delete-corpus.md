@@ -1,7 +1,7 @@
 ---
 id: delete-corpus
-title: Delete Corpus
-sidebar_label: API Definition
+title: Delete Corpus API Definition
+sidebar_label: Delete Corpus API Definition
 ---
 
 import {Config} from '@site/docs/definitions.md';

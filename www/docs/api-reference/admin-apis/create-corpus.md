@@ -1,6 +1,6 @@
 ---
 id: create-corpus
-title: Create Corpus
+title: Create Corpus Create Corpus API Definition
 sidebar_label: Create Corpus API Definition
 ---
 

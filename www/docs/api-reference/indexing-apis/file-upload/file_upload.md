@@ -1,10 +1,13 @@
 ---
 id: file-upload
 title: File Upload API Definition
+sidebar_label: File Upload API Definition
 ---
 
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
+
+The File Upload API lets you upload files to a corpus.
 
 ## File Upload REST Endpoint
 
