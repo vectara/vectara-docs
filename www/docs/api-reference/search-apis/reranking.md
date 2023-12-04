@@ -12,7 +12,8 @@ import {vars} from '@site/static/variables.json';
 Reranking involves a process of rescoring and refining an initial set of query 
 results to achieve a more precise ranking. It employs a machine learning model 
 that while slower than the rapid retrieval step, offers more accurate results. 
-We currently have two rerankers.
+We currently have two rerankers, the English reranker and the Maximal Marginal 
+Relevance (MMR) reranker.
 
 ## English Reranker (Scale Only)
 
@@ -46,10 +47,10 @@ the use case:
 
 In addition to specifying the `reranker_id` as `272725718` at query time, you also 
 specify a `diversity bias` range between `0.0` and `1.0`. Values closer to `1.0` 
-optimize for the most diverse results. Note that the diversity 
-reranker is currently in beta. 
+optimize for the most diverse results. 
 
-You can also enable the beta MMR Reranker in the Console UI as follows:
+You can also enable the Maximal Marginal Relevance Reranker in the Console 
+UI as follows:
 
 1. Open a corpus from the list and select the **Query** tab.
 2. Click **Configure retrieval** and a navigation drawer opens.
