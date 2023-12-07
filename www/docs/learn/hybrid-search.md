@@ -1,7 +1,7 @@
 ---
 id: hybrid-search
-title: 'Hybrid Search: Combine Keyword and Semantic'
-sidebar_label: Hybrid Search
+title: 'Blend Neural Search and Keyword Search'
+sidebar_label: Blend Neural Search and Keyword Search
 ---
 
 Vectara provides a Hybrid Search that offers a powerful and flexible approach 
@@ -16,19 +16,27 @@ term was absent from Vectara's training data (e.g. product SKUs)
 - Incorporate typical keyword modifiers like a `NOT` function, exact phrase
 matching, and wildcard prefixes of terms
 
-## Enable Exact and Boolean Text Matching
-
-The exact and Boolean text matching (similar to a traditional, 
-keyword-based search) is disabled by default and Vectara only uses neural 
-retrieval. You can enable hybrid search by specifying a value, `lambda`, at
+You can enable hybrid search by specifying a value, `lambda`, at
 query time, specifically under the `corpusKey`. This value can range 
 from `0` to `1` (inclusive).
 
-The default value of `lambda` is `0`, which disables exact and Boolean text
-matching. 
+```json
+      "corpusKey": [
+        {
+          "customerId": 123456789,
+          "corpusId": 5,
+          "semantics": 0,
+          "metadataFilter": "",
+          "lexicalInterpolationConfig": {
+            "lambda": 0.025
+          },
+          "dim": []
+        }
+```
 
-A value of `1` would disable _neural_ retrieval instead, relying _only_ on
-Boolean and exact text matching. Experiemnting with the `lambda` value is 
+The default value of `lambda` is `0`, which disables exact and Boolean text
+matching. A value of `1` would disable _neural_ retrieval instead, [relying _only_ on
+Boolean and exact text matching](/docs/learn/enable-keyword-text-matching). Experiemnting with the `lambda` value is 
 useful if you're trying to evaluate how a keyword system like one based on 
 Elasticsearch or Solr may compare to Vectara.
 

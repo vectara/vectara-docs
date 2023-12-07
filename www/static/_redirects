@@ -17,8 +17,8 @@
 /docs/protobuf-definitions                                    /docs/api-reference/protobuf-definitions
 /docs/rest                                                    /docs/api-reference/rest
 /docs/search-apis/batched-queries                             /docs/api-reference/search-apis/batched-queries
-/docs/search-apis/lexical-matching                            /docs/learn/semantic-search/hybrid-search
-/docs/api-reference/search-apis/lexical-matching              /docs/learn/semantic-search/hybrid-search
+/docs/search-apis/lexical-matching                            /docs/learn/hybrid-search
+/docs/api-reference/search-apis/lexical-matching              /docs/learn/hybrid-search
 /docs/search-apis/interpreting-responses/highlighting         /docs/api-reference/search-apis/interpreting-responses/highlighting
 /docs/search-apis/interpreting-responses/metadata             /docs/api-reference/search-apis/interpreting-responses/metadata
 /docs/search-apis/interpreting-responses/interpreting-scores  /docs/api-reference/search-apis/interpreting-responses/interpreting-scores
@@ -47,3 +47,4 @@
 /docs/search-apis/reranking                                   /docs/api-reference/search-apis/reranking
 /docs/search-apis/interpreting-responses/intepreting-scores   /docs/api-reference/search-apis/interpreting-responses/interpreting-scores
 /docs/api-reference/search-apis/interpreting-responses/intepreting-scores                    /docs/api-reference/search-apis/interpreting-responses/interpreting-scores
+/docs/learn/semantic-search/hybrid-search                     /docs/learn/hybrid-search

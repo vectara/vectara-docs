@@ -52,4 +52,10 @@ don't work as well when users perform queries for things which have little
 semantic meaning. For example, a UPC code, barcode number, or particular named
 configuration setting has little/no semantic meaning, and if you expect your
 users to perform this type of search, it's best to look into our
-[hybrid search](/docs/learn/semantic-search/hybrid-search) documentation.
+[hybrid search](/docs/learn/hybrid-search) documentation to learn about how 
+to blend neural search and keyword search.
+
+## Keyword search
+
+There may be cases where you would want to only use the more traditioanl 
+[keyword search](/docs/learn/enable-keyword-text-matching) instead of neural search or a combination of the two methods.

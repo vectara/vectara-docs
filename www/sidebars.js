@@ -69,11 +69,20 @@ module.exports = {
           label: 'Semantic Search',
           items: [
             'learn/semantic-search/semantic-search-overview',
-            'learn/semantic-search/hybrid-search',
             'learn/semantic-search/relevance-tuning-techniques',
             'learn/semantic-search/enable-pagination',
             'learn/semantic-search/add-custom-dimensions',
           ]
+        },
+        {
+          type: 'doc',
+          id: 'learn/enable-keyword-text-matching',
+          label: "Enable Exact Keyword Text Matching",
+        },
+        {
+          type: 'doc',
+          id: 'learn/hybrid-search',
+          label: "Blend Neural Search and Keyword Search",
         },
         {
           type: 'category',
