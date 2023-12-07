@@ -303,6 +303,15 @@ module.exports = {
             'api-reference/admin-apis/admin',
             {
               type: 'category',
+              label: 'API Key APIs',
+              items: [
+                'api-reference/api-keys/create-api-key',
+                'api-reference/api-keys/delete-api-key',
+                'api-reference/api-keys/list-api-keys',
+              ]
+            },
+            {
+              type: 'category',
               label: 'Create Corpus',
               items: [
                 'api-reference/admin-apis/create-corpus',
