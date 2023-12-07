@@ -71,7 +71,10 @@ curl -L -X POST 'https://api.vectara.io/v1/query' \
     {
       "query": "How much PTO is offered to employees each year?",
       "start": 0,
-      "numResults": 10,
+      
+      // 20 results per page
+      
+      "numResults": 20,
       "contextConfig": {
         "charsBefore": 30,
         "charsAfter": 30,
@@ -85,15 +88,13 @@ curl -L -X POST 'https://api.vectara.io/v1/query' \
           "customerId": 123456789,
           "corpusId": 1,
           "semantics": "DEFAULT",
-          "dim": [
-            {
-              "name": "string",
-              "weight": 0
-            }
-          ],
+          "dim": [],
           "metadataFilter": "part.lang = '\''eng'\''",
           "lexicalInterpolationConfig": {
-            "lambda": 0
+            
+            // This value lets you balance neural search and keyword search
+            // You can specify 0.0 to 1.0, where 1.0 is exact keyword matching
+            "lambda": 0.1
           }
         }
       ],
@@ -102,9 +103,17 @@ curl -L -X POST 'https://api.vectara.io/v1/query' \
       },
       "summary": [
         {
-          "summarizerPromptName": "string",
-          "maxSummarizedResults": 0,
-          "responseLang": "string"
+
+          // This value selects the summarizer. In this case it is using
+          // ChatGPT 3.5 Turbo. Scale users can use the 1.3.0 summarizer
+          // which is ChatGPT 4.0
+          "summarizerPromptName": "vectara-summary-ext-v1.2.0",
+          "responseLang": "en"
+
+          // This value tell the summarizer to use 5 results
+          // Experiment setting this value from 5-10
+          "maxSummarizedResults": 5,
+          
         }
       ]
     }
@@ -260,9 +269,10 @@ curl -L -X POST 'https://api.vectara.io/v1/query' \
       },
       "summary": [
         {
-          "summarizerPromptName": "string",
-          "maxSummarizedResults": 0,
-          "responseLang": "string"
+          "summarizerPromptName": "vectara-summary-ext-v1.2.0",
+          "responseLang": "en"
+          "maxSummarizedResults": 5,
+          
         }
       ]
     }

@@ -1,7 +1,7 @@
 ---
 id: manage-user
-title: Manage Team
-sidebar_label: Manage Team
+title: Manage Users
+sidebar_label: Manage Users
 ---
 
 This section lets you add team members and manage the access levels of these 

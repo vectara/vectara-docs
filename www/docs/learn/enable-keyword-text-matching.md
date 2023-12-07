@@ -32,7 +32,6 @@ You can also set this value in the Console UI:
 The default value of `lambda` is `0`, which disables exact and Boolean text
 matching. 
 
-
 ## Example Query with Exact Keyword Search Enabled
 
 The following example shows the full query with the `lambda` value set to `1`:
@@ -86,6 +85,7 @@ END
 ```
 
 
-Experiemnting with the `lambda` value is 
-useful if you're trying to evaluate how a keyword system like one based on 
-Elasticsearch or Solr may compare to Vectara.
+Experimenting with the `lambda` value is useful if you're trying to evaluate 
+how a keyword system like one based on Elasticsearch or Solr may compare to 
+Vectara.
+

@@ -30,14 +30,6 @@ module.exports = {
           id: 'sample-vectara-apps',
           label: "Sample Demos and Applications",
         },
-        {
-          type: 'category',
-          label: 'Vectara API Paradigms',
-          items: [
-            'api-reference/protobuf-definitions',
-            'api-reference/rest',
-          ]
-        },
       ],
     },
         {
@@ -114,25 +106,6 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Code Samples',
-      collapsed: false,
-      items: [
-        {
-          type: 'category',
-          label: 'Query Operations Code Samples',
-          collapsed: false,
-          items: [
-            'getting-started-samples/RestApiKeyQueries.cs',
-            'getting-started-samples/RestApiKeyQueries.java',
-            'getting-started-samples/queryDataApiKey.php',
-            'getting-started-samples/rest_api_key_queries.py',
-            'getting-started-samples/app.js',
-          ]
-        }
-     ]
-    },
-    {
-      type: 'category',
       label: 'Vectara Console',
       collapsed: false,
       items: [
@@ -160,7 +133,7 @@ module.exports = {
         {
           type: 'doc',
           id: 'console-ui/manage-user',
-          label: "Manage Team",
+          label: "Manage Users",
         },
         {
           type: 'doc',
@@ -175,6 +148,8 @@ module.exports = {
       collapsed: true,
       items: [
         'api-reference/api-overview',
+        'api-reference/protobuf-definitions',
+        'api-reference/rest',
          {
             type: 'category',
             label: 'Authentication Examples',

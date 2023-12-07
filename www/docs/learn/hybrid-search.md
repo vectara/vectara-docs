@@ -20,6 +20,9 @@ You can enable hybrid search by specifying a value, `lambda`, at
 query time, specifically under the `corpusKey`. This value can range 
 from `0` to `1` (inclusive).
 
+As you ingest data and run queries, adjust the lambda
+value to achieve the perfect balance in answer quality. 
+
 ```json
       "corpusKey": [
         {
@@ -36,8 +39,8 @@ from `0` to `1` (inclusive).
 
 The default value of `lambda` is `0`, which disables exact and Boolean text
 matching. A value of `1` would disable _neural_ retrieval instead, [relying _only_ on
-Boolean and exact text matching](/docs/learn/enable-keyword-text-matching). Experiemnting with the `lambda` value is 
-useful if you're trying to evaluate how a keyword system like one based on 
+Boolean and exact text matching](/docs/learn/enable-keyword-text-matching). Experimenting with 
+the `lambda` value is useful if you're trying to evaluate how a keyword system like one based on 
 Elasticsearch or Solr may compare to Vectara.
 
 :::note

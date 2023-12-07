@@ -42,3 +42,9 @@ These sample open source applications are examples of our platform in action
 and not supported products. Check out all of our latest [**demos, applications, and video tutorials**](https://vectara.com/demos/).
 
 :::
+
+## Code Samples on GitHub
+
+Check out of our [code samples in different languages](https://github.com/vectara/getting-started/tree/main/language-examples) about 
+how to use the Vectara platform at our 
+[GitHub examples repository](https://github.com/vectara/getting-started).
