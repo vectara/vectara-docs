@@ -181,10 +181,6 @@ ${content}
       src: "/analytics.js",
       async: true,
     },
-    {
-      src: "/snowAnalytics.js",
-      async: true,
-    },
   ],
 
   clientModules: ["./static/routeUpdateModule.js"],
