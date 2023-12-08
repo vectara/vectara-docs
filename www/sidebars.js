@@ -308,6 +308,7 @@ module.exports = {
                 'api-reference/api-keys/create-api-key',
                 'api-reference/api-keys/delete-api-key',
                 'api-reference/api-keys/list-api-keys',
+                'api-reference/api-keys/enable-api-key',
               ]
             },
             {

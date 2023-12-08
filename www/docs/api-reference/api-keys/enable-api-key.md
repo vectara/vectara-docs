@@ -1,7 +1,7 @@
 ---
-id: delete-api-key
-title: Delete API Key API Definition
-sidebar_label: Delete API Key API Definition
+id: enable-api-key
+title: Enable API Key API Definition
+sidebar_label: Enable API Key API Definition
 ---
 
 import Tabs from '@theme/Tabs';
@@ -9,15 +9,13 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The Delete API key endpoint lets users delete one or more existing API keys. 
-This is necessary for managing the lifecycle and security of API keys.
+The Enable API Key endpoint lets you enable or disable specific API keys. 
 
-
-## Delete API Key Endpoint Address
+## Enable API Key REST Endpoint
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
 to index content into a corpus:
-<code>https://<Config v="domains.rest.indexing"/>/v1/create-api-key</code>
+<code>https://<Config v="domains.rest.indexing"/>/v1/enable-api-key</code>
 
 ### Request Headers
 
@@ -27,12 +25,6 @@ headers:
 * `customer_id` is the customer ID to use for the request.
 * An JWT token as your authentication method
 
+
 ### Request Body
 
-The request body includes...
-
-
-```json
-// code sample with fields explained if not obvious in previous paragraph
-
-```
