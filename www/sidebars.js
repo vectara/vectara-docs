@@ -303,16 +303,6 @@ module.exports = {
             'api-reference/admin-apis/admin',
             {
               type: 'category',
-              label: 'API Key APIs',
-              items: [
-                'api-reference/api-keys/create-api-key',
-                'api-reference/api-keys/delete-api-key',
-                'api-reference/api-keys/list-api-keys',
-                'api-reference/api-keys/enable-api-key',
-              ]
-            },
-            {
-              type: 'category',
               label: 'Create Corpus',
               items: [
                 'api-reference/admin-apis/create-corpus',
@@ -360,6 +350,16 @@ module.exports = {
                     'getting-started-samples/rest_reset_corpus.py'
                   ]
                 }
+              ]
+            },
+            {
+              type: 'category',
+              label: 'API Key Management APIs',
+              items: [
+                'api-reference/api-keys/create-api-key',
+                'api-reference/api-keys/delete-api-key',
+                'api-reference/api-keys/list-api-keys',
+                'api-reference/api-keys/enable-api-key',
               ]
             },
           ],
