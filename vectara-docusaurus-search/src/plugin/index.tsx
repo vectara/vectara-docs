@@ -1,8 +1,10 @@
 import { Root, createRoot } from "react-dom/client";
 import { Search } from "../components/search/Search";
+import { set } from "lodash";
 
 (function appendWidget() {
-  let root: Root;
+  console.log("appendWidget");
+  const roots: Root[] = [];
 
   // When the search container has been added to the DOM,
   // add the search component to it.
@@ -12,12 +14,7 @@ import { Search } from "../components/search/Search";
       return;
     }
 
-    const {
-      containerId: widgetContainerId,
-      customerId,
-      apiKey,
-      corpusId,
-    } = searchConfig;
+    const { customerId, apiKey, corpusId } = searchConfig;
 
     if (!customerId || !apiKey || !corpusId) {
       console.warn(
@@ -26,22 +23,25 @@ import { Search } from "../components/search/Search";
       return;
     }
 
-    const searchContainer = document.getElementById(
-      widgetContainerId ?? "search"
-    );
+    const searchContainers = document.querySelectorAll("[data-vectara-search]");
+    searchContainers.forEach((searchContainer) => {
+      const isSearchContainerUnmounted =
+        searchContainer && searchContainer.childNodes.length === 0;
+      if (isSearchContainerUnmounted) {
+        const root = createRoot(searchContainer);
 
-    if (searchContainer && searchContainer.childNodes.length === 0) {
-      root = createRoot(searchContainer);
-      root.render(
-        <Search
-          key={customerId}
-          customerId={customerId}
-          apiKey={apiKey}
-          corpusId={corpusId}
-        />
-      );
-      observer.disconnect();
-    }
+        root.render(
+          <Search
+            key={customerId}
+            customerId={customerId}
+            apiKey={apiKey}
+            corpusId={corpusId}
+          />
+        );
+
+        roots.push(root);
+      }
+    });
   });
 
   /**
@@ -51,17 +51,19 @@ import { Search } from "../components/search/Search";
    *  1. unmount search
    *  2. wait for the search container to be rendered into new page
    */
-  const waitForSearchContainer = () => {
-    if (root) {
-      root.unmount();
+  document.addEventListener("onRouteUpdated", () => {
+    // Unmount all search containers.
+    while (roots.length > 0) {
+      const root = roots.pop();
+      root?.unmount();
     }
-    observer.observe(document, {
+
+    const nav = document.getElementsByTagName("nav")[0];
+    observer.observe(nav, {
       attributes: false,
       childList: true,
       characterData: false,
       subtree: true,
     });
-  };
-
-  document.addEventListener("onRouteUpdated", waitForSearchContainer);
+  });
 })();
