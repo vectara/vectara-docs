@@ -219,10 +219,9 @@ ${content}
           position: "left",
         },
         {
-          type: "html",
-          position: "right",
+          type: "search",
           className: "searchBar",
-          value: "<div data-vectara-search></div>",
+          position: "right",
         },
         {
           to: "https://console.vectara.com",

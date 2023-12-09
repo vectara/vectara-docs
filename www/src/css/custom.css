@@ -25,9 +25,13 @@
 }
 
 .searchBar {
+  /* Expand search bar. */
   flex-grow: 1;
+  /* Expand on narrow screens too. */
+  position: relative !important;
 }
 
+/* Prevent sibling elements from being squished by the expanding search bar. */
 .navbar__item {
   flex-shrink: 0;
 }
