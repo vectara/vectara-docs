@@ -41,20 +41,20 @@ $modalPadding: 6vh;
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 740px) {
   .searchModalContainer {
     overflow-y: auto;
-  }
 
-  .searchModal {
-    margin-top: 0;
-    max-width: 100vw;
-    max-height: none;
-    border-radius: 0;
-    overflow: initial;
-  }
+    .searchModal {
+      margin-top: 0 !important;
+      max-width: 100vw !important;
+      max-height: none !important;
+      border-radius: 0 !important;
+      overflow: initial !important;
+    }
 
-  .searchModalResults {
-    overflow-y: none;
+    .searchModalResults {
+      overflow-y: none !important;
+    }
   }
 }
