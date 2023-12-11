@@ -24,11 +24,18 @@
   flex-grow: 1;
 }
 
+@media (max-width: 650px) {
+  .navbar__items--right {
+    flex: 1;
+  }
+}
+
 .searchBar {
   /* Expand search bar. */
   flex-grow: 1;
   /* Expand on narrow screens too. */
   position: relative !important;
+  right: 0 !important;
 }
 
 /* Prevent sibling elements from being squished by the expanding search bar. */

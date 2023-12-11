@@ -1,9 +1,7 @@
 import { Root, createRoot } from "react-dom/client";
-import { Search } from "../components/search/Search";
-import { set } from "lodash";
+import { Search } from "../components/search/Search";\
 
 (function appendWidget() {
-  console.log("appendWidget");
   const roots: Root[] = [];
 
   // When the search container has been added to the DOM,
