@@ -168,7 +168,6 @@ ${content}
     [
       "@vectara/docusaurus-search",
       {
-        containerId: "search",
         customerId: "3874164736",
         apiKey: "zqt_5usQAFwTytdQHAXn17Iq31OQMA5RrIBWLI7Fwg",
         corpusId: "1",
@@ -220,10 +219,9 @@ ${content}
           position: "left",
         },
         {
-          type: "html",
-          position: "right",
+          type: "search",
           className: "searchBar",
-          value: '<div id="search"></div>',
+          position: "right",
         },
         {
           to: "https://console.vectara.com",
