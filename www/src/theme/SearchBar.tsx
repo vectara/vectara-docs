@@ -1,5 +1,6 @@
 import React from "react";
 import { Search } from "./search/Search";
+import BrowserOnly from "@docusaurus/BrowserOnly";
 
 export default function SearchBar() {
   const searchConfig = (window as any).vectara?.plugins?.search;
@@ -18,11 +19,13 @@ export default function SearchBar() {
   }
 
   return (
-    <Search
-      key={customerId}
-      customerId={customerId}
-      apiKey={apiKey}
-      corpusId={corpusId}
-    />
+    <BrowserOnly>
+      <Search
+        key={customerId}
+        customerId={customerId}
+        apiKey={apiKey}
+        corpusId={corpusId}
+      />
+    </BrowserOnly>
   );
 }
