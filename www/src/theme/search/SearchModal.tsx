@@ -21,6 +21,7 @@ import { FocusOn } from "react-focus-on";
 
 type Props = {
   isLoading: boolean;
+  searchValue?: string;
   onChange: (evt: ChangeEvent<HTMLInputElement>) => void;
   onKeyDown: (evt: ReactKeyboardEvent) => void;
   onClose: () => void;
@@ -30,7 +31,15 @@ type Props = {
 
 export const SearchModal = forwardRef(
   (
-    { isLoading, onChange, onKeyDown, onClose, isOpen, resultsList }: Props,
+    {
+      isLoading,
+      searchValue,
+      onChange,
+      onKeyDown,
+      onClose,
+      isOpen,
+      resultsList,
+    }: Props,
     ref: ForwardedRef<HTMLDivElement>
   ) => {
     const returnFocusElRef = useRef<HTMLElement | null>(null);
@@ -69,6 +78,7 @@ export const SearchModal = forwardRef(
                 <div ref={ref} className="searchModal">
                   <SearchInput
                     isLoading={isLoading}
+                    value={searchValue}
                     onChange={onChange}
                     onKeyDown={onKeyDown}
                     placeholder="Search docs"
