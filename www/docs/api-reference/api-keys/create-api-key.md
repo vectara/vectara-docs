@@ -10,13 +10,13 @@ import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The Create API Key endpoint lets you create new API keys, which you can 
-bind to one or multiple corpora. You also decide whether to designate each key
-for specific access like only querying (read-only) or both querying and 
+bind to one or multiple corpora. You can also decide whether to designate each 
+key for specific access like only querying (read-only) or both querying and 
 indexing (read-write).
 
-This is useful in scenarios where you have applications that 
+This capability is useful in scenarios where you have applications that 
 require different levels of access to corpora data. For example, you might 
-create a read-only API key for an application that only nees to query data.
+create a read-only API key for an application that only needs to query data.
 
 ## Create API Key Endpoint Address
 

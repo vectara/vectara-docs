@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The List API keys endpoint lists all existng API keys for a customer ID. 
+The List API Keys endpoint lists all existing API keys for a customer ID. 
 It also shows what corpora are accessed by these keys and with what 
 permissions.
 
@@ -26,7 +26,7 @@ to index content into a corpus:
 ## List the API Keys from the API Playground
 
 Check out our [interactive API Playground](/docs/rest-api/list-api-keys) that lets 
-you experiment with this REST endpoint to list API keys in your account.
+you experiment with this REST endpoint to list API keys in an account.
 
 
 ### Request Headers

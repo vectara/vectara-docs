@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The Delete API key endpoint lets users delete one or more existing API keys. 
+The Delete API Key endpoint lets you delete one or more existing API keys. 
 This capability is useful for managing the lifecycle and security of API keys 
 such as when they are no longer needed or when a key is compromised.
 
@@ -22,7 +22,7 @@ to index content into a corpus:
 ## Delete an API Key from the API Playground
 
 Check out our [interactive API Playground](/docs/rest-api/delete-api-key) that lets 
-experiment with this REST endpoint.
+you experiment with this REST endpoint to delete API keys from an account.
 
 ### Request Headers
 
