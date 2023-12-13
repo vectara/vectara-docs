@@ -23,6 +23,42 @@ tags:
     description: Query operations, such as performing a search and retrieval augmented generation
 # add file upload API and auth options for other APIs
 paths:
+  /v1/create-api-key:
+    post:
+      operationId: CreateApiKey
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/adminCreateApiKeyResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/googlerpcStatus"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/adminCreateApiKeyRequest"
+        description: |-
+          This request can be used to create one or more ApiKeys.
+          Every ApiKey is bound to one or more corpora.
+        required: true
+      tags:
+        - AdminService
+      parameters:
+        - $ref: '#/components/parameters/customerIdentifier'
+      description: |
+        Creates an API key that you bind with a specific corpus or multiple corpora. You can create an API key that only gives access to query data (read-only) or an API key that gives access to both querying and serving (read-write).
+
+        Some tips for this API:
+        * This operation only works with OAuth 2.0 (in a JWT "Bearer Token") authentication. It does not work with API Keys. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+      security:
+        - oAuth: []
   /v1/create-corpus:
     post:
       operationId: CreateCorpus
@@ -57,6 +93,35 @@ paths:
         * The `name` of the corpus is the only required field.
         * Filter attributes tell Vectara which metadata fields you'd like to run SQL-style filters against.  If you need to change them after you've created the corpus, see the [Replace Filter Attributes API](https://docs.vectara.com/docs/rest-api/replace-corpus-filter-attrs)
         * `textless` and `customDimensions` are features that are only available to [Scale](https://vectara.com/pricing/) accounts.
+      security:
+        - oAuth: []
+  /v1/delete-api-key:
+    post:
+      operationId: DeleteApiKey
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/adminDeleteApiKeyResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/googlerpcStatus"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/adminDeleteApiKeyRequest"
+        required: true
+      tags:
+        - AdminService
+      parameters:
+        - $ref: '#/components/parameters/customerIdentifier'
+      description: "Deletes API keys to help you manage the security and lifecycle of API keys in your application.  \nSome tips for this API:\n* This operation only works with OAuth 2.0 (in a JWT \"Bearer Token\") authentication. It does not work with API Keys. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).\n"
       security:
         - oAuth: []
   /v1/delete-corpus:
@@ -128,6 +193,35 @@ paths:
         * You can quickly delete all documents from a corpus to clear it out by using the [Reset Corpus](https://docs.vectara.com/docs/rest-api/reset-corpus) operation.
       security:
         - ApiKeyAuth: []
+        - oAuth: []
+  /v1/enable-api-key:
+    post:
+      operationId: EnableApiKey
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/adminEnableApiKeyResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/googlerpcStatus"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/adminEnableApiKeyRequest"
+        required: true
+      tags:
+        - AdminService
+      parameters:
+        - $ref: '#/components/parameters/customerIdentifier'
+      description: "Enables or disables a specific API key.\n \nSome tips for this API:\n* This operation only works with OAuth 2.0 (in a JWT \"Bearer Token\") authentication. It does not work with API Keys. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).\n"
+      security:
         - oAuth: []
   /v1/index:
     post:
@@ -204,6 +298,39 @@ paths:
         * [Custom dimensions](https://docs.vectara.com/docs/learn/semantic-search/add-custom-dimensions) (`customDims`) is a feature that is only available to [Scale](https://vectara.com/pricing/) accounts.
       security:
         - ApiKeyAuth: []
+        - oAuth: []
+  /v1/list-api-keys:
+    post:
+      operationId: ListApiKeys
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/adminListApiKeysResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/googlerpcStatus"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/adminListApiKeysRequest"
+        required: true
+      tags:
+        - AdminService
+      parameters:
+        - $ref: '#/components/parameters/customerIdentifier'
+      description: |
+        Lists the API keys and the associated corpora names and IDs.
+
+        Some tips for this API:
+        * This operation only works with OAuth 2.0 (in a JWT "Bearer Token") authentication. It does not work with API Keys. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+      security:
         - oAuth: []
   /v1/list-corpora:
     post:
@@ -544,6 +671,61 @@ components:
          - DEFAULT: Use corpus-assigned semantics.  This is the most common setting.
          - QUERY: Use query semantics.  This is also common.
          - RESPONSE: Use response semantics.  Usage of this is rare.
+    CreateApiKeyRequestApiKeyCorpus:
+      type: object
+      properties:
+        description:
+          type: string
+          description: Description of the ApiKey.
+        apiKeyType:
+          $ref: "#/components/schemas/adminApiKeyType"
+        corpusId:
+          type: array
+          items:
+            type: integer
+            format: int64
+          description: List of corpus ids to bind the ApiKey to.
+      description: ApiKey data to create the ApiKey bound to one or more corpora.
+    CreateApiKeyResponseApiKeyOrStatus:
+      type: object
+      properties:
+        keyId:
+          type: string
+          description: A valid ApiKey.
+        status:
+          $ref: "#/components/schemas/comvectaraStatus"
+      description: A valid key or Status of the ApiKey creation (in case of failure).
+    EnableApiKeyRequestApiKeyEnablement:
+      type: object
+      properties:
+        keyId:
+          type: string
+          description: ApiKey id to enable or disable.
+        enable:
+          type: boolean
+          title: Enable or disable using this variable
+    KeyAndCorporaCorpusInfo:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Corpus id.
+        name:
+          type: string
+          description: Corpus name.
+      description: Message containing corpus name and id.
+    ListApiKeysResponseKeyAndCorpora:
+      type: object
+      properties:
+        apiKey:
+          $ref: "#/components/schemas/adminApiKey"
+        corpus:
+          type: array
+          items:
+            $ref: "#/components/schemas/KeyAndCorporaCorpusInfo"
+          description: List of corpora associated with the ApiKey.
+      description: A message containing ApiKey and associated corpora.
     QueryRequestContextConfig:
       type: object
       properties:
@@ -625,6 +807,58 @@ components:
         mmrConfig:
           $ref: "#/components/schemas/servingMMRConfig"
       description: Configuration options to apply to the reranking.
+    adminApiKey:
+      type: object
+      properties:
+        id:
+          type: string
+        description:
+          type: string
+          description: Description of the ApiKey.
+        keyType:
+          $ref: "#/components/schemas/adminApiKeyType"
+        enabled:
+          type: boolean
+          description: Whether the ApiKey is enabled.
+        tsStart:
+          type: string
+          format: int64
+          description: Seconds sinch Epoch when the ApiKey becomes active.
+        tsEnd:
+          type: string
+          format: int64
+          description: Seconds sinch Epoch when the ApiKey becomes inactive.
+        status:
+          $ref: "#/components/schemas/adminApiKeyStatus"
+      description: >-
+        Represents an ApiKey.
+
+        An ApiKey provides anonymous access to common tasks such as index data, query data, etc.
+    adminApiKeyStatus:
+      type: string
+      enum:
+        - UNKNOWN
+        - ENABLED
+        - DISABLED
+        - DELETED
+      default: UNKNOWN
+      description: Status of ApiKey.
+    adminApiKeyType:
+      type: string
+      enum:
+        - API_KEY_TYPE__UNDEFINED
+        - API_KEY_TYPE__SERVING
+        - API_KEY_TYPE__SERVING_INDEXING
+      default: API_KEY_TYPE__UNDEFINED
+      description: >-
+        Types of ApiKey.
+
+
+
+
+
+         - API_KEY_TYPE__SERVING: ApiKey for serving. Only gives access to query data.
+         - API_KEY_TYPE__SERVING_INDEXING: ApiKey for serving and indexing. Gives access to both query and index data.
     adminCorpus:
       type: object
       properties:
@@ -697,6 +931,26 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/adminFilterAttribute"
+    adminCreateApiKeyRequest:
+      type: object
+      properties:
+        apiKeyData:
+          type: array
+          items:
+            $ref: "#/components/schemas/CreateApiKeyRequestApiKeyCorpus"
+          description: List of ApiKey data to create.
+      description: |-
+        This request can be used to create one or more ApiKeys.
+        Every ApiKey is bound to one or more corpora.
+    adminCreateApiKeyResponse:
+      type: object
+      properties:
+        response:
+          type: array
+          items:
+            $ref: "#/components/schemas/CreateApiKeyResponseApiKeyOrStatus"
+          description: List of ApiKeyOrStatus corresponding to the list of ApiKey data in request.
+      description: Response of the CreateApiKeyRequest.
     adminCreateCorpusRequest:
       type: object
       properties:
@@ -711,6 +965,22 @@ components:
           description: The Corpus ID that was created.
         status:
           $ref: "#/components/schemas/comvectaraStatus"
+    adminDeleteApiKeyRequest:
+      type: object
+      properties:
+        keyId:
+          type: array
+          items:
+            type: string
+          description: List of ApiKey ids to delete.
+    adminDeleteApiKeyResponse:
+      type: object
+      properties:
+        status:
+          type: array
+          items:
+            $ref: "#/components/schemas/comvectaraStatus"
+          description: Status of the DeleteApiKeyRequest.
     adminDeleteCorpusRequest:
       type: object
       example:
@@ -763,6 +1033,22 @@ components:
         or other business metrics like a product's margins that you want to use
 
         to boost where a result is in the list.
+    adminEnableApiKeyRequest:
+      type: object
+      properties:
+        keyEnablement:
+          type: array
+          items:
+            $ref: "#/components/schemas/EnableApiKeyRequestApiKeyEnablement"
+          description: List of ApiKey ids to enable or disable.
+    adminEnableApiKeyResponse:
+      type: object
+      properties:
+        status:
+          type: array
+          items:
+            $ref: "#/components/schemas/comvectaraStatus"
+          description: List of Status such as OK, FAILED corresponding to the EnableApiKeyRequest.
     adminFilterAttribute:
       type: object
       properties:
@@ -862,6 +1148,40 @@ components:
         - JOB__CORPUS_REPLACE_FILTER_ATTRS
       default: JOB__UNKNOWN
       description: Type of jobs.
+    adminListApiKeysRequest:
+      type: object
+      properties:
+        numResults:
+          type: integer
+          format: int64
+          description: Max results to return.
+        pageKey:
+          type: string
+          format: byte
+          description: |-
+            A key that is passed to retrieve a specific page of results.
+            Leave empty to retrieve first page. Subsequent page requests should
+            use the page key returned in previous response, and all other
+            fields are ignored.
+        readCorporaInfo:
+          type: boolean
+          description: If set, returns corpus name & id associated with api keys.
+    adminListApiKeysResponse:
+      type: object
+      properties:
+        keyData:
+          type: array
+          items:
+            $ref: "#/components/schemas/ListApiKeysResponseKeyAndCorpora"
+          description: List of ApiKey and associated corpora.
+        pageKey:
+          type: string
+          format: byte
+          description: |-
+            A key that is passed into a subsequent result in order to
+            retrieve the next page of results.
+        status:
+          $ref: "#/components/schemas/comvectaraStatus"
     adminListCorporaRequest:
       type: object
       example:
@@ -1854,6 +2174,14 @@ components:
       description: The Customer ID to use for the request.
       schema:
         type: integer
+    timeout:
+      in: header
+      name: timeout
+      required: false
+      description: Optional timeout value of the request in seconds, such as 10S or 30S.
+      schema:
+        type: string
+        default: "30S"
 # add oauth and api key security
 security:
   - oAuth: []
