@@ -10,7 +10,6 @@ import React, {
 } from "react";
 import { BiSearch } from "react-icons/bi";
 import getUuid from "uuid-by-string";
-import debounce from "lodash.debounce";
 import { VuiFlexContainer, VuiFlexItem, VuiIcon, VuiText } from "./vui";
 import { DeserializedSearchResult } from "./types";
 import { useSearch } from "./useSearch";
@@ -18,6 +17,12 @@ import { SearchResult } from "./SearchResult";
 import { SearchModal } from "./SearchModal";
 import { useSearchHistory } from "./useSearchHistory";
 import "./_index.scss";
+
+const getQueryParam = (urlParams: URLSearchParams, key: string) => {
+  const value = urlParams.get(key);
+  if (value) return decodeURIComponent(value);
+  return undefined;
+};
 
 interface Props {
   // Vectara customer ID
@@ -47,10 +52,6 @@ export const Search: FC<Props> = ({
   apiUrl,
   historySize = 10,
 }) => {
-  const [searchResults, setSearchResults] = useState<
-    DeserializedSearchResult[]
-  >([]);
-
   // Compute a unique ID for this search component.
   // This creates a namespace, and ensures that stored search results
   // for one search box don't appear for another.
@@ -61,21 +62,7 @@ export const Search: FC<Props> = ({
     () => getUuid(`${customerId}-${corpusId}-${apiKey}`),
     [customerId, corpusId, apiKey]
   );
-
-  const { getPreviousSearches, addPreviousSearch } = useSearchHistory(
-    searchId,
-    historySize
-  );
-
-  const [selectedResultIndex, setSelectedResultIndex] = useState<number | null>(
-    null
-  );
-
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const buttonRef = useRef<HTMLDivElement | null>(null);
-  const selectedResultRef = useRef<HTMLDivElement | null>(null);
-  const queryRef = useRef<string>("");
-  const searchCount = useRef<number>(0);
+  const { addPreviousSearch } = useSearchHistory(searchId, historySize);
   const { fetchSearchResults, isLoading } = useSearch(
     customerId,
     corpusId,
@@ -83,15 +70,42 @@ export const Search: FC<Props> = ({
     apiUrl
   );
 
+  const [selectedResultIndex, setSelectedResultIndex] = useState<number | null>(
+    null
+  );
+  const [searchResults, setSearchResults] = useState<
+    DeserializedSearchResult[]
+  >([]);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [searchValue, setSearchValue] = useState<string>("");
+
+  const buttonRef = useRef<HTMLDivElement | null>(null);
+  const selectedResultRef = useRef<HTMLDivElement | null>(null);
+  const searchCount = useRef<number>(0);
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(window.location.search);
+    const deeplinkedSearch = getQueryParam(queryParams, "search");
+
+    if (deeplinkedSearch) {
+      setIsOpen(true);
+      setSearchValue(deeplinkedSearch);
+      sendSearchQuery(deeplinkedSearch);
+    }
+  }, []);
+
   const sendSearchQuery = async (query: string) => {
     if (query.length === 0) {
       return;
     }
 
-    const searchId = ++searchCount.current;
+    // Persist search.
+    const queryParams = new URLSearchParams(window.location.search);
+    queryParams.set("search", query);
+    history.replaceState(null, "", "?" + queryParams.toString());
 
     addPreviousSearch(query);
-
+    const searchId = ++searchCount.current;
     const results = await fetchSearchResults(query);
 
     if (searchId === searchCount.current) {
@@ -101,21 +115,21 @@ export const Search: FC<Props> = ({
     }
   };
 
-  // A debounced version of the above, for integration into key handling.
-  const debouncedSendSearchQuery = debounce(
-    (query: string) => sendSearchQuery(query),
-    500
-  );
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      sendSearchQuery(searchValue);
+    }, 500);
+
+    return () => clearTimeout(timeoutId);
+  }, [searchValue]);
 
   const onChange = (evt: ChangeEvent<HTMLInputElement>) => {
     const currentQuery = evt.target.value;
-    queryRef.current = currentQuery;
+    setSearchValue(currentQuery);
 
     if (currentQuery.length === 0) {
       resetResults();
     }
-
-    debouncedSendSearchQuery(currentQuery);
   };
 
   const onKeyDown = useCallback(
@@ -128,7 +142,7 @@ export const Search: FC<Props> = ({
         if (selectedResultIndex !== null) {
           window.open(searchResults[selectedResultIndex].url, "_self");
         } else {
-          sendSearchQuery(queryRef.current);
+          sendSearchQuery(searchValue);
         }
       }
 
@@ -163,7 +177,13 @@ export const Search: FC<Props> = ({
 
   const closeModalAndResetResults = () => {
     setIsOpen(false);
+    setSearchValue("");
     resetResults();
+
+    // Clear persisted search.
+    const queryParams = new URLSearchParams(window.location.search);
+    queryParams.delete("search");
+    history.replaceState(null, "", "?" + queryParams.toString());
   };
 
   const resultsList =
@@ -245,6 +265,7 @@ export const Search: FC<Props> = ({
 
       <SearchModal
         isLoading={isLoading}
+        searchValue={searchValue}
         onChange={onChange}
         onKeyDown={onKeyDown}
         isOpen={isOpen}
