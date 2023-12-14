@@ -28,7 +28,7 @@ and manage existing ones.
 ## Edit User
 
 The Team page also lets you modify users directly from the user 
-list by clicking the drop-down on the right side of of the row. This 
+list by clicking the drop-down on the right side of the row. This 
 includes changing role assignments, password resets, enabling and disabling 
 the user, and transferring ownership of the account to
 a new owner.

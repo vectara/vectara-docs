@@ -1,7 +1,7 @@
 ---
 id: textless
 title: Textless Mode
-sidebar_label: Textless Mode
+sidebar_label: Enable Textless Mode
 ---
 
 import Tabs from '@theme/Tabs';
@@ -22,7 +22,6 @@ information leakage is very high. <Config v="names.product"/> does
 [**encrypt documents**](encryption).
 
 :::
-
 
 ## What happens in textless mode?
 
@@ -57,17 +56,15 @@ https://api.vectara.io:443/v1/create-corpus \
 -d @- <<END;
 {
   "corpus": {
-    "id": 0,
+    "id": 2,
     "name": "Name of my corpus",
     "description": "Description about my corpus",
     "dtProvision": 0,
     "enabled": false,
     "swapQenc": false,
     "swapIenc": false,
-
-    //enable textless mode here
+    //enable textless mode
     "textless": true,
-    
     "encrypted": true,
     "encoderId": 1,
     "metadataMaxBytes": 0,
@@ -94,7 +91,6 @@ https://api.vectara.io:443/v1/create-corpus \
 END
         
 ```
-
 
 ### Limitations
 
