@@ -19,10 +19,10 @@ To get started with <Config v="names.product"/>, go to https://console.vectara.c
 click **Get Started Free** at vectara.com. After you make an account, you can 
 create your first corpus and upload your first document!
 
-## Step 2. Create your first data store
+## Step 2. Create your first corpus
 
 Before you can ask the data about bringing your velociraptor to the 
-office, you first need to create a data store called a corpus. Think of a 
+office, you first need to create a corpus. Think of a 
 corpus as a container that includes your uploaded data, and you really want 
 to extract meaningful information from this data through queries. In this 
 case, we upload a [PDF file](/img/vectara_employee_handbook.pdf) file 

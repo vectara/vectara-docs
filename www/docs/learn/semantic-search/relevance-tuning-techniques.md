@@ -31,7 +31,7 @@ By default, <Config v="names.product"/> uses purely semantic similarity when
 evaluating whether a document/section is responsive to a particular search.
 However, we often find that with a _slight_ introduction of keyword-focused
 algorithms, the relevance can be much better. <Config v="names.product"/>
-supports this out of the box via [hybrid search](/docs/learn/semantic-search/hybrid-search).
+supports this out of the box via [hybrid search](/docs/learn/hybrid-search).
 
 ## Alternative similarity measures
 

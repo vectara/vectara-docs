@@ -1,7 +1,7 @@
 ---
 id: manage-user
-title: Manage Team
-sidebar_label: Manage Team
+title: Manage Users
+sidebar_label: Manage Users
 ---
 
 This section lets you add team members and manage the access levels of these 
@@ -28,7 +28,7 @@ and manage existing ones.
 ## Edit User
 
 The Team page also lets you modify users directly from the user 
-list by clicking the drop-down on the right side of of the row. This 
+list by clicking the drop-down on the right side of the row. This 
 includes changing role assignments, password resets, enabling and disabling 
 the user, and transferring ownership of the account to
 a new owner.

@@ -63,15 +63,10 @@ the data within corpora. The Query request requires the following parameters:
           "customerId": 0,
           "corpusId": 1,
           "semantics": "DEFAULT",
-          "dim": [
-            {
-              "name": "string",
-              "weight": 0
-            }
-          ],
+          "dim": [],
           "metadataFilter": "part.lang = 'eng'",
           "lexicalInterpolationConfig": {
-            "lambda": 0
+            "lambda": 0.025
           }
         }
       ],
@@ -80,9 +75,9 @@ the data within corpora. The Query request requires the following parameters:
       },
       "summary": [
         {
-          "summarizerPromptName": "string",
-          "maxSummarizedResults": 0,
-          "responseLang": "string"
+          "summarizerPromptName": "vectara-summary-ext-v1.2.0",
+          "maxSummarizedResults": 5,
+          "responseLang": "eng"
         }
       ]
     }

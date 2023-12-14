@@ -49,7 +49,10 @@ regardless of the domain your documents are in.
 While zero-shot LLMs work very well in the vast majority of search use cases,
 there are some occasions where they struggle. In particular, many zero-shot LLMs
 don't work as well when users perform queries for things which have little
-semantic meaning. For example, a UPC code, barcode number, or particular named
-configuration setting has little/no semantic meaning, and if you expect your
+semantic meaning. 
+
+For example, a UPC code, barcode number, or particular named
+configuration setting has little to no semantic meaning, and if you expect your
 users to perform this type of search, it's best to look into our
-[hybrid search](/docs/learn/semantic-search/hybrid-search) documentation.
+[hybrid search](/docs/learn/hybrid-search) documentation to learn about how 
+to blend neural search and keyword search.
