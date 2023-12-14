@@ -105,6 +105,23 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'Discover',
+      collapsed: false,
+      items: [
+        {
+          type: 'doc',
+          id: 'discover/build-a-data-crawler',
+          label: "Build a Data Crawler",
+        },
+        {
+          type: 'doc',
+          id: 'discover/deploy-a-conversational-search-ui',
+          label: "Deploy a Conversational Search Interface",
+        },
+      ],
+    },
+    {
+      type: 'category',
       label: 'Code Samples',
       collapsed: false,
       items: [
