@@ -199,25 +199,25 @@ module.exports = {
                   },
                 ]
               },
-              {
-                type: 'category',
-                label: 'Document Deletion API',
-                items: [
-                  'api-reference/indexing-apis/deleting-documents',
-                  {
-                    type: 'category',
-                    label: 'REST Examples',
-                    items: [
-                      'getting-started-samples/RestDeleteDocument.cs',
-                      'getting-started-samples/RestDeleteDocument.java',
-                      'getting-started-samples/delete_document.js',
-                      'getting-started-samples/deleteDocument.php',
-                      'getting-started-samples/rest_delete_document.py',
-                    ]
-                  },
-                ]
-              },
             ],
+        },
+        {
+          type: 'category',
+          label: 'Delete Documents API',
+          items: [
+            'api-reference/indexing-apis/deleting-documents',
+            {
+              type: 'category',
+              label: 'REST Examples',
+              items: [
+                'getting-started-samples/RestDeleteDocument.cs',
+                'getting-started-samples/RestDeleteDocument.java',
+                'getting-started-samples/delete_document.js',
+                'getting-started-samples/deleteDocument.php',
+                'getting-started-samples/rest_delete_document.py',
+              ]
+            },
+          ]
         },
         {
             type: 'category',

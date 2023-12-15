@@ -15,20 +15,30 @@ import {vars} from '@site/static/variables.json';
 to delete content from a corpus:
 <code>https://<Config v="domains.rest.indexing"/>/v1/delete-doc</code>
 
-This page describes the details of interacting with this endpoint.
+### Request Headers
 
-A request to delete a document from a corpus consists of three key pieces of information:
-the `customer_id`, the `corpus_id`, and the `document_id`.
+To interact with the Index service via REST calls, you need the following 
+headers:
 
-```protobuf
-// Request to delete a document from an index.
-message DeleteDocumentRequest {
-  // The Customer ID to issue the request for.
-  int64 customer_id = 1;
-  // The Corpus ID that contains the document.
-  int64 corpus_id = 2;
-  // The Document ID to be deleted.
-  string document_id = 3;
+* `customer_id` is the customer ID to use for the request.
+* An API Key or JWT token is your authentication method
+* (Optional) `grpc-timeout` lets you specify how long to wait for the calls 
+  that have the potential to take longer to process. We recommend 
+  `-H "grpc-timeout: 30S"`
+
+### Request Body
+
+A request to delete a document from a corpus consists of three key pieces of 
+information:
+* `customer_id`
+* `corpus_id`
+* `document_id`
+
+```json
+{
+  "customerId": "123456789",
+  "corpusId": 1,
+  "documentId": "my_document.docx"
 }
 ```
 
@@ -37,8 +47,11 @@ operation is not completely synchronous (the document may still be returned
 in query results), the platform typically removes the document within a few 
 seconds, though it may take longer for Growth accounts.
 
-The server returns [gRPC status codes](https://grpc.github.io/grpc/core/md_doc_statuscodes.html).
-For example:
+<!-- Will probably remove the following and replace with REST
+
+### gRPC Status Codes
+
+The server returns the following [gRPC status codes](https://grpc.github.io/grpc/core/md_doc_statuscodes.html):
 
 - `INTERNAL`: An internal error code indicates a failure inside the platform, 
   and an immediate retry may not succeed.
@@ -47,7 +60,7 @@ For example:
   
   Note that the deletion operation is idempotent, so it is fine to re-apply.
 
-### Delete a Document Example
+### Delete a Document gRPC Example
 
 The code snippet belows illustrates how to delete a document from a corpus in Java or Python. For information
 on how to get the call credentials and metadata, please consult
@@ -97,3 +110,5 @@ indexingStub.withCallCredentials(credentials(tokenSupplier.get().getOrDie()))
 
 </TabItem>
 </Tabs>
+
+-->
