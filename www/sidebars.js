@@ -150,34 +150,8 @@ module.exports = {
         'api-reference/api-overview',
         'api-reference/protobuf-definitions',
         'api-reference/rest',
-         {
-            type: 'category',
-            label: 'Authentication Examples',
-            items: [
-              {
-                type: 'category',
-                label: 'OAuth 2.0 Client Credentials Grant Examples',
-                items: [
-                  'getting-started-samples/JWTFetcher.cs',
-                  'getting-started-samples/JwtFetcher.java',
-                  'getting-started-samples/getJwtToken.php',
-                  'getting-started-samples/rest_util.py'
-                ]
-              },
-              {
-                type: 'category',
-                label: 'API Key REST Examples',
-                items: [
-                  'getting-started-samples/RestApiKeyQueries.cs',
-                  'getting-started-samples/RestApiKeyQueries.java',
-                  'getting-started-samples/queryDataApiKey.php',
-                  'getting-started-samples/rest_api_key_queries.py',
-                  'getting-started-samples/app.js',
-                ]
-              }
-           ]
-          },
-        {
+        'api-reference/select-ideal-indexing-api',
+                 {
             type: 'category',
             label: 'Indexing APIs',
             items: [
@@ -349,8 +323,35 @@ module.exports = {
               ]
             },
           ],
-        }
+        },
       ],
+    },
+    {
+      type: 'category',
+      label: 'API Authentication Examples',
+      items: [
+        {
+          type: 'category',
+          label: 'OAuth 2.0 Client Credentials Grant Examples',
+          items: [
+            'getting-started-samples/JWTFetcher.cs',
+            'getting-started-samples/JwtFetcher.java',
+            'getting-started-samples/getJwtToken.php',
+            'getting-started-samples/rest_util.py'
+          ]
+        },
+        {
+          type: 'category',
+          label: 'API Key REST Examples',
+          items: [
+            'getting-started-samples/RestApiKeyQueries.cs',
+            'getting-started-samples/RestApiKeyQueries.java',
+            'getting-started-samples/queryDataApiKey.php',
+            'getting-started-samples/rest_api_key_queries.py',
+            'getting-started-samples/app.js',
+          ]
+        }
+     ]
     },
   ],
   restOAS: [
