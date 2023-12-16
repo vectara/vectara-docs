@@ -20,11 +20,11 @@ editing user roles are performed by the [Manage Users](/docs/api-reference/admin
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
 to index content into a corpus:
-<code>https://<Config v="domains.rest.indexing"/>/v1/create-corpus</code>
+<code>https://<Config v="domains.rest.indexing"/>/v1/list-users</code>
 
 ## Manage Users from the API Playground
 
-Check out our [interactive API Playground](/docs/rest-api/create-user) that lets 
+Check out our [interactive API Playground](/docs/rest-api/create-corpus) that lets 
 you experiment with this REST endpoint to manage users for your Vectara
 account.
 
