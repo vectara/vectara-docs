@@ -23,7 +23,7 @@ permissions.
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
 to index content into a corpus:
-<code>https://<Config v="domains.rest.indexing"/>/v1/manage-user</code>
+<code>https://<Config v="domains.rest.indexing"/>/v1/create-corpus</code>
 
 ## Manage Users from the API Playground
 
