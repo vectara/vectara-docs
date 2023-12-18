@@ -10,7 +10,7 @@ import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The first step in using <Config v="names.product"/> is to index a set of related documents
-or content into a corpus. Indexing a document enables you to make data 
+or content into a corpus. Indexing a document enables you to make data
 available for search and retrieval.
 
 ## Standard Indexing REST Endpoint
@@ -21,18 +21,18 @@ to index content into a corpus:
 
 ### Index Request Headers
 
-To interact with the Index service via REST calls, you need the following 
+To interact with the Index service via REST calls, you need the following
 headers:
 
 * `customer_id` is the customer ID to use for the request.
 * An API Key or JWT token is your authentication method
-* (Optional) `grpc-timeout` lets you specify how long to wait for the calls 
-  that have the potential to take longer to process. We recommend 
+* (Optional) `grpc-timeout` lets you specify how long to wait for the calls
+  that have the potential to take longer to process. We recommend
   `-H "grpc-timeout: 30S"`
 
 ### Index Request Body
 
-The request body provides essential information about the document you want to 
+The request body provides essential information about the document you want to
 index. The Index request requires the following parameters:
 
 * `customerID`
@@ -75,10 +75,15 @@ index. The Index request requires the following parameters:
   }
 }
 ```
-Let's take a closer look at the document object which encapsulates the 
-information about the document to be indexed. It typically includes the 
-title, description, and metadata. The core of the document is also structured 
-in sections that can include unique identifiers, titles, strings, metadata, 
+
+The response from the server includes a status code and the amount of quota
+consumed. For details, please see [IndexDocument](#index-document).
+
+
+Let's take a closer look at the document object which encapsulates the
+information about the document to be indexed. It typically includes the
+title, description, and metadata. The core of the document is also structured
+in sections that can include unique identifiers, titles, strings, metadata,
 and so on.
 
 
@@ -88,9 +93,9 @@ The full definition of the gRPC interface is covered below.
 
 ### Standard Indexing Service
 
-The indexing service operates by accepting individual documents or messages to 
-be indexed. In a short period of time, generally a few minutes, the new 
-content will become available in the search index.
+The indexing service operates by accepting individual documents or messages to
+be indexed. The content will become available in the search index, generally
+within a second or two.
 
 ### Indexing Service Definition
 
@@ -121,12 +126,40 @@ message IndexDocumentRequest {
 }
 `}</pre>
 
-The reply from the server consists of nothing yet. Note that the reply does not
-block. In other words, the information in the request is not yet available in
-the index when the RPC returns.
+The reply from the server includes a status message and a `StorageQuota` message
+indicating how much quota was consumed, or, in the case of an `ALREADY_EXISTS`
+status code, how much quota would have been consumed.
+
+Note that the reply does not block. In other words, the information in the
+request is not necessarily available in the index when the RPC returns. In most
+cases, though, it becomes available within a second.
 
 ```protobuf
 message IndexDocumentResponse {
+  // If ALREADY_EXISTS, it means the document was already indexed, and no new
+  // quota was consumed.
+  Status status = 1;
+
+  // The storage quota needed for the document indexed in the request.
+  // If "status" is ALREADY_EXISTS, it means that the document was already in
+  // the index prior to this request. In such cases, quota is not consumed again
+  // and the value in this field represents the quota consumed when the document
+  // was indexed the first time.
+  StorageQuota quota_consumed = 2;
+}
+```
+
+The storage quota object returns the number of characters consumed and the number
+of metadata characters consumed. The total quota consumed is simply the sum of
+both values.
+
+```protobuf
+message StorageQuota {
+  // The number of chars from the document that consumed the storage quota.
+  int64 num_chars = 1;
+  // The number of chars in the metadata of the document that consumed the
+  // storage quota.
+  int64 num_metadata_chars = 2;
 }
 ```
 
@@ -243,21 +276,21 @@ message Section {
 
 ### Custom Dimensions Use Cases (Scale only)
 
-Custom dimensions are a powerful <Config v="names.product"/> capability. Custom 
-dimensions enable you to attach numeric factors to every item in the index, 
+Custom dimensions are a powerful <Config v="names.product"/> capability. Custom
+dimensions enable you to attach numeric factors to every item in the index,
 which affect its final ranking during searches. Some example use cases include:
 
-1. Define the authoritativeness of the content. 
-   
+1. Define the authoritativeness of the content.
+
    For example, content with 100
    upvotes can be ranked higher than content with no upvotes and 10 downvotes.
-2. Indicate the source of the content. 
-   
-   If there are N sources, this is usually done by defining N custom 
-   dimensions, and treating them as boolean 0-1 fields.    
+2. Indicate the source of the content.
+
+   If there are N sources, this is usually done by defining N custom
+   dimensions, and treating them as boolean 0-1 fields.
    This allows weighting results based on source, or even excluding certain
-   sources altogether. 
-   
+   sources altogether.
+
    For example, content from a government FAQ would be rated
    higher than content from a user forum.
 3. Define the geography in which content is relevant.
@@ -273,6 +306,30 @@ message CustomDimension {
 
 For more information on how to use custom dimensions, refer to the
 [Custom Dimensions Usage Documentation](/docs/learn/semantic-search/add-custom-dimensions)
+
+## Delete Document
+
+Document deletion requires specifying the `corpus_id` and `document_id`. The
+`customer_id` is optional, and, if specified, must match the id of your
+account.
+
+```protobuf
+message DeleteDocumentRequest {
+  // The Customer ID to issue the request for.
+  int64 customer_id = 1;
+  // The Corpus ID that contains the document.
+  int64 corpus_id = 2;
+  // The Document ID to be deleted.
+  string document_id = 3;
+}
+```
+
+The server sends an empty reply in response.
+
+```protobuf
+message DeleteDocumentResponse {
+}
+```
 
 ## Frequently Asked Questions
 
