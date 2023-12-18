@@ -77,7 +77,8 @@ index. The Index request requires the following parameters:
 ```
 
 The response from the server includes a status code and the amount of quota
-consumed. For details, please see
+consumed. For details, please see [IndexDocument](#index-document).
+
 
 Let's take a closer look at the document object which encapsulates the
 information about the document to be indexed. It typically includes the
