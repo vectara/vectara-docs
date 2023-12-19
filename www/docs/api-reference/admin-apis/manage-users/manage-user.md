@@ -27,7 +27,7 @@ to index content into a corpus:
 
 ## Manage Users from the API Playground
 
-Check out our [interactive API Playground](/docs/rest-api/create-corpus) that lets 
+Check out our [interactive API Playground](/docs/rest-api/manage-user) that lets 
 you experiment with this REST endpoint to manage users for your Vectara
 account.
 
@@ -70,18 +70,16 @@ The Manage User request body requires the following parameters:
        "type": "USER_TYPE__USER",
        "email": "firstlast@gmail.com"
      },
-     "userActionType": "USER_ACTION_TYPE__ADD" or "USER_ACTION_TYPE__DELETE" 
-     or "USER_ACTION_TYPE__DISABLE" or "USER_ACTION_TYPE__ENABLE" or 
-     "USER_ACTION_TYPE__RESET_PASSWORD" or "USER_ACTION_TYPE__EDIT_ROLE"
+     "userActionType": ["USER_ACTION_TYPE__ADD", "USER_ACTION_TYPE__DELETE", 
+     "USER_ACTION_TYPE__DISABLE", "USER_ACTION_TYPE__ENABLE", 
+     "USER_ACTION_TYPE__RESET_PASSWORD", "USER_ACTION_TYPE__EDIT_ROLE"]
     }
    }
  ]
 }
 ```
 
-## User Management Examples
-
-### Onboard a New User to your Vectara Account
+## Example: Onboard a New User to your Account
 
 In this example, you want to create a new user for your account.
 
@@ -90,9 +88,9 @@ In this example, you want to create a new user for your account.
  "userAction": [
    {
      "user": {
-       "handle": "elonmusk",
+       "handle": "johndoe",
        "type": "USER_TYPE__USER",
-       "email": "elonmusk@x.com"
+       "email": "johndoe@email.com"
      },
      "userActionType": "USER_ACTION_TYPE__ADD"
    }

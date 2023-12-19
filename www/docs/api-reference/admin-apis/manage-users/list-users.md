@@ -24,7 +24,7 @@ to index content into a corpus:
 
 ## Manage Users from the API Playground
 
-Check out our [interactive API Playground](/docs/rest-api/create-corpus) that lets 
+Check out our [interactive API Playground](/docs/rest-api/list-users) that lets 
 you experiment with this REST endpoint to manage users for your Vectara
 account.
 
@@ -40,20 +40,17 @@ To interact with the List Users service via REST calls, you need the following h
 ### Request Body
 
 The List Users request body has the following parameters:
-* `corpus_id` - Specifies a specific corpus
-* `filter`
-* `list_users_type`
+* `list_users_type` - Specifies the type of users as none, all, or only to list users
+  with acustomer account level.
 * `page_key`
 * `num_results`
 
 
 ```json
 {
-    "corpus_id" 1234,
-    "filter" ".@company.com",
-    "list_users_type": "LIST_USERS_TYPE__NONE" or "LIST_USERS_TYPE__CORPUS" or "LIST_USERS_TYPE__CUSTOMER",
+    "list_users_type": ["LIST_USERS_TYPE__NONE", "LIST_USERS_TYPE__CUSTOMER", 
+    "LIST_USERS_TYPE__ALL"],
     "page_key": "encrypted_key",
     "num_results": "5",
-
 }
 ```
