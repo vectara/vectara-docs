@@ -284,6 +284,8 @@ module.exports = {
           type: 'category',
           label: 'Admin APIs',
           items: [
+            'api-reference/admin-apis/manage-users/list-users',
+            'api-reference/admin-apis/manage-users/manage-user',
             'api-reference/admin-apis/admin',
             {
               type: 'category',
