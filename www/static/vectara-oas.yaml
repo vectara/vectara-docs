@@ -52,6 +52,7 @@ paths:
         - AdminService
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
+        - $ref: '#/components/parameters/timeout'
       description: |
         Creates an API key that you bind with a specific corpus or multiple corpora. You can create an API key that only gives access to query data (read-only) or an API key that gives access to both querying and serving (read-write).
 
@@ -85,6 +86,7 @@ paths:
         - AdminService
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
+        - $ref: '#/components/parameters/timeout'
       description: |
         Creates a corpus, which is a container to store data in.
 
@@ -121,6 +123,7 @@ paths:
         - AdminService
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
+        - $ref: '#/components/parameters/timeout'
       description: "Deletes API keys to help you manage the security and lifecycle of API keys in your application.  \nSome tips for this API:\n* This operation only works with OAuth 2.0 (in a JWT \"Bearer Token\") authentication. It does not work with API Keys. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).\n"
       security:
         - oAuth: []
@@ -150,6 +153,7 @@ paths:
         - AdminService
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
+        - $ref: '#/components/parameters/timeout'
       description: |
         Deletes a corpus and all of the data contained inside of the corpus.
 
@@ -185,6 +189,7 @@ paths:
         - IndexService
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
+        - $ref: '#/components/parameters/timeout'
       description: |
         Delete documents from a corpus.
 
@@ -220,6 +225,7 @@ paths:
         - AdminService
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
+        - $ref: '#/components/parameters/timeout'
       description: "Enables or disables a specific API key.\n \nSome tips for this API:\n* This operation only works with OAuth 2.0 (in a JWT \"Bearer Token\") authentication. It does not work with API Keys. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).\n"
       security:
         - oAuth: []
@@ -288,6 +294,7 @@ paths:
         - IndexService
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
+        - $ref: '#/components/parameters/timeout'
       description: |
         This is the "standard" Indexing API for indexing semi-structured, text-heavy "documents."  Indexing data into Vectara is typically very fast: within a few seconds.
 
@@ -325,6 +332,7 @@ paths:
         - AdminService
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
+        - $ref: '#/components/parameters/timeout'
       description: |
         Lists the API keys and the associated corpora names and IDs.
 
@@ -358,6 +366,7 @@ paths:
         - AdminService
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
+        - $ref: '#/components/parameters/timeout'
       description: |
         Lists all corpora accessible to the OAuth client.
 
@@ -392,12 +401,78 @@ paths:
         - AdminService
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
+        - $ref: '#/components/parameters/timeout'
       description: |
         List the jobs associated with this account.  Jobs are background processes like [replacing the filterable metadata attributes](https://docs.vectara.com/docs/rest-api/replace-corpus-filter-attrs).
 
         Some tips for this API:
         * This operation only works with OAuth 2.0 (in a JWT "Bearer Token") authentication. It does not work with API Keys.  You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
         * It's best practice to filter as much as possible (by date, by status, and/or by job ID) to make job lists as easy to interpret as possible, as there can be many for a given time window.
+      security:
+        - oAuth: []
+  /v1/list-users:
+    post:
+      operationId: ListUsers
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/adminListUsersResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/googlerpcStatus"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/adminListUsersRequest"
+        required: true
+      tags:
+        - AdminService
+      parameters:
+        - $ref: '#/components/parameters/customerIdentifier'
+        - $ref: '#/components/parameters/timeout'
+      description: "Lists the users in your account along with their corpus access and customer-level authorizations. \n\nSome tips for this API:\n* This operation only works with OAuth 2.0 (in a JWT \"Bearer Token\") authentication. It does not work with API Keys. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).\n* Use this API to view the members on your team. If you need to manage their access, use the Manage User endpoint.\n"
+      security:
+        - oAuth: []
+  /v1/manage-user:
+    post:
+      operationId: ManageUser
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/adminManageUserResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/googlerpcStatus"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/adminManageUserRequest"
+        required: true
+      tags:
+        - AdminService
+      parameters:
+        - $ref: '#/components/parameters/customerIdentifier'
+        - $ref: '#/components/parameters/timeout'
+      description: |
+        Lets you manage users in your account by adding, deleting, enabling, or disabling users. You can also reset their passwords and edit user roles. This endpoint can help you streamline your onboarding process by programmatically adding new users, assigning appropriate roles, and setting up permissions.
+
+        Some tips for this API:
+        * This operation only works with OAuth 2.0 (in a JWT "Bearer Token") authentication. It does not work with API Keys. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * Add multiple users by including additional “user” objects into the userAction array.
       security:
         - oAuth: []
   /v1/query:
@@ -426,6 +501,7 @@ paths:
         - QueryService
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
+        - $ref: '#/components/parameters/timeout'
       description: |
         Search for relevant results, highlight relevant snippets, and do
         [Retrieval Augmented Generation](https://docs.vectara.com/docs/learn/grounded-generation/grounded-generation-overview) (RAG).
@@ -465,6 +541,7 @@ paths:
         - AdminService
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
+        - $ref: '#/components/parameters/timeout'
       description: |
         Updates the filterable metadata fields for the corpus.
 
@@ -503,6 +580,7 @@ paths:
         - AdminService
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
+        - $ref: '#/components/parameters/timeout'
       description: |
         Resets a corpus by removing all of the documents inside of it.
 
@@ -538,6 +616,7 @@ paths:
         - IndexService
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
+        - $ref: '#/components/parameters/timeout'
       description: |
         This API is intended to be used by experts.  It gives you fine-grained control over chunking
         strategies by using the `parts`.  Most users will want to use the [File Upload API](https://docs.vectara.com/docs/rest-api/file-upload) or the "standard" [Index API](https://docs.vectara.com/docs/rest-api/index).
@@ -668,6 +747,7 @@ components:
 
 
 
+
          - DEFAULT: Use corpus-assigned semantics.  This is the most common setting.
          - QUERY: Use query semantics.  This is also common.
          - RESPONSE: Use response semantics.  Usage of this is rare.
@@ -726,6 +806,22 @@ components:
             $ref: "#/components/schemas/KeyAndCorporaCorpusInfo"
           description: List of corpora associated with the ApiKey.
       description: A message containing ApiKey and associated corpora.
+    ManageUserRequestUserAction:
+      type: object
+      properties:
+        user:
+          $ref: "#/components/schemas/adminUser"
+        userActionType:
+          $ref: "#/components/schemas/adminUserActionType"
+      title: User and action to be performed on user
+    ManageUserResponseUserResponse:
+      type: object
+      properties:
+        user:
+          $ref: "#/components/schemas/adminUser"
+        status:
+          $ref: "#/components/schemas/comvectaraStatus"
+      title: List of users and their status
     QueryRequestContextConfig:
       type: object
       properties:
@@ -857,6 +953,7 @@ components:
 
 
 
+
          - API_KEY_TYPE__SERVING: ApiKey for serving. Only gives access to query data.
          - API_KEY_TYPE__SERVING_INDEXING: ApiKey for serving and indexing. Gives access to both query and index data.
     adminCorpus:
@@ -965,6 +1062,21 @@ components:
           description: The Corpus ID that was created.
         status:
           $ref: "#/components/schemas/comvectaraStatus"
+    adminCustomerRole:
+      type: string
+      enum:
+        - CustomerRole_None
+        - CustomerRole_Owner
+        - CustomerRole_Admin
+        - CustomerRole_Billing_Admin
+        - CustomerRole_Corpus_Admin
+      default: CustomerRole_None
+      description: >2-
+         - CustomerRole_Owner: The owner is the root user of the account. Only an owner can shut
+        down the account completely.
+         - CustomerRole_Admin: An account administrator can do things like create corpora, add or remove users etc.
+         - CustomerRole_Billing_Admin: View and modify billing-related information for the account.
+         - CustomerRole_Corpus_Admin: View and modify corpus-related information for the account.
     adminDeleteApiKeyRequest:
       type: object
       properties:
@@ -1278,6 +1390,70 @@ components:
           description: |-
             A key that is passed into a subsequent result in order to
             retrieve the next page of results.
+    adminListUsersRequest:
+      type: object
+      properties:
+        listUsersType:
+          $ref: "#/components/schemas/adminListUsersType"
+        pageKey:
+          type: string
+          format: byte
+          description: |-
+            A key that is passed to retrieve a specific page of results.
+            Leave empty to retrieve first page. Subsequent page requests should
+            use the page key returned in previous response, and all other
+            fields are ignored.
+        numResults:
+          type: integer
+          format: int64
+          description: Number of results to return.
+    adminListUsersResponse:
+      type: object
+      properties:
+        user:
+          type: array
+          items:
+            $ref: "#/components/schemas/adminUser"
+          title: List of users
+        pageKey:
+          type: string
+          format: byte
+          description: |-
+            A key that is passed into a subsequent result in order to
+            retrieve the next page of results.
+        status:
+          $ref: "#/components/schemas/comvectaraStatus"
+    adminListUsersType:
+      type: string
+      enum:
+        - LIST_USERS_TYPE__NONE
+        - LIST_USERS_TYPE__CUSTOMER
+        - LIST_USERS_TYPE__ALL
+      default: LIST_USERS_TYPE__NONE
+      title: >-
+        - LIST_USERS_TYPE__CUSTOMER: Only List users with customer account-level authorizations.
+
+
+
+
+
+         - LIST_USERS_TYPE__ALL: List All the users
+    adminManageUserRequest:
+      type: object
+      properties:
+        userAction:
+          type: array
+          items:
+            $ref: "#/components/schemas/ManageUserRequestUserAction"
+          title: List of users and actions to be performed on them
+    adminManageUserResponse:
+      type: object
+      properties:
+        response:
+          type: array
+          items:
+            $ref: "#/components/schemas/ManageUserResponseUserResponse"
+          description: List of users alongwith relative status such as OK, FAILED etc.
     adminReplaceCorpusFilterAttrsRequest:
       type: object
       properties:
@@ -1325,6 +1501,86 @@ components:
       properties:
         status:
           $ref: "#/components/schemas/comvectaraStatus"
+    adminUser:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: >-
+            Unique ID for the user. This is required for deleting, enabling, disabling a user
+
+            or to reset their password. This can be retrieved via ListUsers API or it is also
+
+            returned as part of ManageUser API when a new user is created.
+        handle:
+          type: string
+          description: Name of the user. This is required for creating a new user.
+        type:
+          $ref: "#/components/schemas/adminUserType"
+        comment:
+          type: string
+          title: Comment about the user
+        tsCreate:
+          type: string
+          format: int64
+          description: Seconds since epoch when the user was created.
+        idCreate:
+          type: integer
+          format: int64
+          description: ID of the user who created this user.
+        email:
+          type: string
+          description: Email address associated with the user. This is required for creating a new user.
+        userStatus:
+          $ref: "#/components/schemas/adminUserStatus"
+        role:
+          type: array
+          items:
+            $ref: "#/components/schemas/adminCustomerRole"
+          title: List of customer level roles
+      description: |-
+        Represents a user in an account.
+        A user is a person or an application that has access to the system.
+    adminUserActionType:
+      type: string
+      enum:
+        - USER_ACTION_TYPE__NONE
+        - USER_ACTION_TYPE__ADD
+        - USER_ACTION_TYPE__DELETE
+        - USER_ACTION_TYPE__DISABLE
+        - USER_ACTION_TYPE__ENABLE
+        - USER_ACTION_TYPE__RESET_PASSWORD
+      default: USER_ACTION_TYPE__NONE
+      title: |-
+        - USER_ACTION_TYPE__ADD: Add User
+         - USER_ACTION_TYPE__DELETE: Delete User
+         - USER_ACTION_TYPE__DISABLE: Disable User
+         - USER_ACTION_TYPE__ENABLE: Enable User
+         - USER_ACTION_TYPE__RESET_PASSWORD: Reset User Password
+    adminUserStatus:
+      type: string
+      enum:
+        - USER_STATUS__NONE
+        - USER_STATUS__ACTIVE
+        - USER_STATUS__DISABLED
+      default: USER_STATUS__NONE
+      title: |-
+        - USER_STATUS__ACTIVE: User is active
+         - USER_STATUS__DISABLED: User is disabled
+    adminUserType:
+      type: string
+      enum:
+        - USER_TYPE__NONE
+        - USER_TYPE__USER
+        - USER_TYPE__FEDERATED_USER
+        - USER_TYPE__APP_CLIENT
+      default: USER_TYPE__NONE
+      description: >2-
+         - USER_TYPE__USER: A normal user
+         - USER_TYPE__FEDERATED_USER: A user that is authenticated by an external identity provider such as Google etc.
+         - USER_TYPE__APP_CLIENT: An application client. Please note that this doesn't work with ManageUser API.
+        To create an App Client, use the ManageAppClient API.
     comvectaraStatus:
       type: object
       properties:
@@ -1418,8 +1674,10 @@ components:
 
 
 
+
               value in binary format, or produce an error.
             * Applications are allowed to cache lookup results based on the
+
 
 
 
@@ -1459,6 +1717,7 @@ components:
 
 
 
+
             Foo foo = ...;
             Any any;
             any.PackFrom(foo);
@@ -1468,6 +1727,7 @@ components:
             }
 
         Example 2: Pack and unpack a message in Java.
+
 
 
 
@@ -1488,6 +1748,7 @@ components:
 
 
 
+
             foo = Foo(...)
             any = Any()
             any.Pack(foo)
@@ -1497,6 +1758,7 @@ components:
               ...
 
         Example 4: Pack and unpack a message in Go
+
 
 
 
@@ -1540,6 +1802,7 @@ components:
 
 
 
+
             package google.profile;
             message Person {
               string first_name = 1;
@@ -1559,6 +1822,7 @@ components:
         `value` which holds the custom JSON in addition to the `@type`
 
         field. Example (for message [google.protobuf.Duration][]):
+
 
 
 
@@ -1642,6 +1906,7 @@ components:
           format: float
           title: >-
             Controls the weight given to lexical matches. The final score, S, is then:
+
 
 
 
