@@ -9,9 +9,14 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The first step in using <Config v="names.product"/> is to index a set of related documents
-or content into a corpus. Indexing a document enables you to make data
-available for search and retrieval.
+The first step in using <Config v="names.product"/> is to index a set of related 
+documents or content into a corpus. Indexing a document enables you to make data
+available for search and retrieval more efficiently.
+
+Our indexing focuses on transforming unstructured or semi-structured data into 
+a structured format that enables the data to become more easily
+searchable. This endpoint supports a variety of data formats by allowing for 
+detailed specification of document attributes and metadata.
 
 ## Standard Indexing REST Endpoint
 
@@ -39,32 +44,32 @@ index. The Index request requires the following parameters:
 * `corpusID`
 * `document` object
 
-```json
 
+Let's take a closer look at the [document object](#document-definition-in-vectara) which encapsulates 
+the information about the document to be indexed. It typically includes the 
+`title`, `description`, and `metadata`. The core of the document is also structured
+in `sections` that can include unique identifiers, titles, strings, metadata,
+and so on.
+
+```json
 {
-  "customerId": "123456789",
-  "corpusId": 1,
+  "customerId": 123456789,
+  "corpusId": 5,
   "document": {
-    "documentId": "quantum_computing",
-    "title": "Advancements in Quantum Computing",
-    "description": "A research paper discussing recent advancements in quantum computing",
-    "metadataJson": "{\"field\":\"quantum computing\",\"publication_date\":\"2023-12-20\"}",
-    "customDims": [
-          {
-            "name": "citations",
-            "value": 10
-          }
-    ],
+    "documentId": "issbn-9781405053976",
+    "title": "The Hitchhiker's Guide to the Galaxy",
+    "description": "A great book with the answer to life, the universe, and everything",
+    "metadataJson": "{\"author\": \"Douglas Adams\"}",
     "section": [
       {
-        "id": 1,
-        "title": "Introduction",
-        "text": "This introduction section provides an overview of quantum computing...",
-        "metadataJson": "{}",
-        "customDims": [],
-        "section": [
-          // Another section with a unique ID, title, text, metadata, and so on
-        ]
+        "title": "Intro",
+        "text": "Far out in the uncharted backwaters of the unfashionable end of the western spiral arm of the Galaxy lies a small unregarded yellow sun.",
+        "metadataJson": "{\"page\": 1}"
+      },
+      {
+        "title": "The answer",
+        "text": "The Answer to the Great Question ... Of Life, the Universe and Everything ... Is ... Forty-two.",
+        "metadataJson": "{\"speaker\": \"Deep Thought\"}"
       }
     ]
   }
@@ -75,22 +80,33 @@ index. The Index request requires the following parameters:
 
 Check out our REST Index examples in [C#](/docs/getting-started-samples/RestIndexData.cs), [Java](/docs/getting-started-samples/RestIndex.java), [NodeJS](/docs/getting-started-samples/index_document.js), [PHP](/docs/getting-started-samples/indexDocument.php), and [Python](/docs/getting-started-samples/rest_index_document.py).
 
-### Index Response
+### Index REST Response
 
 The response from the server includes a status code and the amount of quota
-consumed. For details, please see [IndexDocument](#index-document).
+consumed. 
+
+```json
+{
+  "status": {
+    "code": "OK",
+    "statusDetail": "",
+    "cause": null
+  },
+  "quotaConsumed": {
+    "numChars": "348",
+    "numMetadataChars": "469"
+  }
+}
+```
 
 
-Let's take a closer look at the document object which encapsulates the
-information about the document to be indexed. It typically includes the
-title, description, and metadata. The core of the document is also structured
-in sections that can include unique identifiers, titles, strings, metadata,
-and so on.
+For the gRPC response, please see [IndexDocument](#index-document).
 
 
 ## Full Standard Indexing gRPC Definition
 
-The full definition of the gRPC interface is covered below.
+The full definition of the gRPC interface is covered below, and you can always 
+find the latest definition at [indexing.proto](https://github.com/vectara/protos/blob/main/indexing.proto).
 
 ### Standard Indexing Service
 
@@ -126,6 +142,8 @@ message IndexDocumentRequest {
   ${vars['package.protobuf']}.indexing.Document document = 3;
 }
 `}</pre>
+
+### Index Response
 
 The reply from the server includes a status message and a `StorageQuota` message
 indicating how much quota was consumed, or, in the case of an `ALREADY_EXISTS`
