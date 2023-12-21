@@ -13,12 +13,12 @@ import {Config} from '@site/docs/definitions.md';
 Selecting the ideal Indexing API for your application depends on your needs, 
 such as when you have structured or unstructured documents, or if you need 
 more granular control over the indexing process. Vectara offers the following 
-indexing APIs for these different scenarios.
+indexing APIs for these different scenarios:
 
 * [File Upload API](/docs/api-reference/indexing-apis/file-upload/file-upload)
 
-  If you mainly want to extract text from existing, unstructured documents, use 
-  the File Upload API.
+  If you mainly want to extract text from existing, unstructured documents in 
+  common file types, use the File Upload API.
 
 * [Standard Indexing API](/docs/api-reference/indexing-apis/indexing)
   
@@ -30,8 +30,8 @@ indexing APIs for these different scenarios.
 
 * [Low-Level Indexing API](/docs/api-reference/indexing-apis/core_indexing)
 
-  For the most advanced use cases, if you want full, granular control in what 
-  you want your document chunks to be, use the low-level indexing API. These 
+  For the most advanced use cases, if you want full, granular control to define  
+  your document chunks, use the low-level indexing API. These 
   documents also have a unique ID and metadata, but you also define document
   `parts`:
     - `text` - A part of the document, such as a sentence

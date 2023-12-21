@@ -42,39 +42,40 @@ index. The Index request requires the following parameters:
 ```json
 
 {
-  "customerId": "string",
+  "customerId": "123456789",
   "corpusId": 1,
   "document": {
-    "documentId": "string",
-    "title": "string",
-    "description": "string",
-    "metadataJson": "string",
+    "documentId": "quantum_computing",
+    "title": "Advancements in Quantum Computing",
+    "description": "A research paper discussing recent advancements in quantum computing",
+    "metadataJson": "{\"field\":\"quantum computing\",\"publication_date\":\"2023-12-20\"}",
     "customDims": [
-      {
-        "name": "string",
-        "value": 0
-      }
+          {
+            "name": "citations",
+            "value": 10
+          }
     ],
     "section": [
       {
-        "id": 0,
-        "title": "string",
-        "text": "string",
-        "metadataJson": "string",
-        "customDims": [
-          {
-            "name": "string",
-            "value": 0
-          }
-        ],
+        "id": 1,
+        "title": "Introduction",
+        "text": "This introduction section provides an overview of quantum computing...",
+        "metadataJson": "{}",
+        "customDims": [],
         "section": [
-          null
+          // Another section with a unique ID, title, text, metadata, and so on
         ]
       }
     ]
   }
 }
 ```
+
+### Index REST Examples
+
+Check out our REST Index examples in [C#](/docs/getting-started-samples/RestIndexData.cs), [Java](/docs/getting-started-samples/RestIndex.java), [NodeJS](/docs/getting-started-samples/index_document.js), [PHP](/docs/getting-started-samples/indexDocument.php), and [Python](/docs/getting-started-samples/rest_index_document.py).
+
+### Index Response
 
 The response from the server includes a status code and the amount of quota
 consumed. For details, please see [IndexDocument](#index-document).
