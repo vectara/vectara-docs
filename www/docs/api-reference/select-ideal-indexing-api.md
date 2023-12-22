@@ -24,7 +24,7 @@ indexing APIs for these different scenarios:
   
   If you have structured documents that you want Vectara to index and chunk for 
   you, use the standard indexing API. The document typically includes unique 
-  identifiers like title, description, and medtadata. The document is also 
+  identifiers like title, description, and metadata. The document is also 
   structured into sections that each can have a unique ID, title, text, 
   metadata, and so on.
 
