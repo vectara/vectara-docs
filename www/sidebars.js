@@ -87,6 +87,11 @@ module.exports = {
         },
         {
           type: 'doc',
+          id: 'learn/data-ingestion',
+          label: "Data Ingestion",
+        },
+        {
+          type: 'doc',
           id: 'learn/document-data-structuring',
           label: "Document Data Structuring",
         },
