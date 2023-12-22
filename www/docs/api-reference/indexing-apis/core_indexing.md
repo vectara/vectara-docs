@@ -10,16 +10,15 @@ import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The Low-level Indexing API provides low-level access to the semantic indexing 
-capabilities of the platform. The Standard Indexing API organizes documents 
+capabilities of the <Config v="names.product"/> platform. It focuses on document `parts` which allow for 
+specific text and context definitions within a document. This approach differs 
+from the [Standard Indexing API](indexing) which organizes documents 
 into sections that have IDs, titles, and descriptions, like traditional, 
-hierarchical document structures. This Low-level Indexing API differs by 
-focusing on document `parts` which allow for specific text and context 
-definitions within 
-a document.
+hierarchical document structures. 
 
 This more granular control over documents enables you to tailor your indexing 
-strategies. This API is reserved for advanced use cases and normal 
-users should use the [Standard API](indexing).
+strategies. The Low-level Indexing API is reserved for advanced use cases and 
+normal users should use the Standard Indexing API.
 
 :::tip
 
@@ -28,9 +27,9 @@ with this endpoint to index documents from your browser.
 
 :::
 
-### Low-Level Index Document Request and Response
+### Low-level Index Document Request and Response
 
-The indexing service operates by accepting individual documents or messages to 
+The low-level indexing service accepts individual documents or messages to 
 be indexed. In a short period of time, generally a few minutes, the new 
 content becomes available in the search index. This index request requires the 
 following parameters:
@@ -39,33 +38,27 @@ following parameters:
 * Corpus ID
 * Document object
 
-The reply from the server consists of nothing yet. Note that the reply does not
-block. In other words, the information in the request is not yet available in
-the index when the RPC returns.
+The response includes a `status` message and a `StorageQuota` message
+indicating how much quota was consumed.
 
-## Document Container
+## Document Container Definition
 
-The `document` object is a container of related textual items that are indexed. 
+The `document` object contains the related textual items that are indexed. 
 This object has a `document_id`, which must be unique among all the documents in
 the same corpus. It may optionally define `metadata_json`.
 
-Two fields, `default_part_context` and `custom_dims` (Scale only), provide 
+The two fields `default_part_context` and `custom_dims` (Scale only) provide 
 default values for the corresponding sub-document fields, should they fail to 
 define either of these explicitly.
 
-Most importantly, `parts` defines the actual text items to be indexed.
+### Parts within a Document
 
-## Documents Parts
-
-The document part is the atomic unit of <Config v="names.product"/>. Every 
+Most importantly, `parts` defines the actual text items that you want to index.
+The document *part* is the atomic unit of <Config v="names.product"/>. Every 
 part is added to the index, and when search results are returned, each result 
-is a document part:
-* Text
-* Context
-* Metadata
-* Custom Dimensions
+is a document part.
 
-The `text` field defines the text. This should generally be a sentence: it
+The `text` field defines the text and should generally be a sentence. It
 should not be shorter, but may be longer, up to the length of an entire
 paragraph, although performance may suffer.
 
