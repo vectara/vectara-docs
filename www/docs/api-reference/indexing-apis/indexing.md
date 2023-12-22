@@ -13,10 +13,17 @@ The first step in using <Config v="names.product"/> is to index a set of related
 documents or content into a corpus. Indexing a document enables you to make data
 available for search and retrieval more efficiently.
 
-Our indexing focuses on transforming unstructured or semi-structured data into 
-a structured format that enables the data to become more easily
-searchable. This endpoint supports a variety of data formats by allowing for 
-detailed specification of document attributes and metadata.
+Our indexing transforms unstructured or semi-structured data into 
+a structured format that enables the data to become easily
+searchable in just a few seconds. We support a variety of data formats by 
+allowing for detailed specification of document attributes and metadata.
+
+The [document object](#document-definition-in-vectara) encapsulates 
+the information about the document that you want to index. It typically 
+includes the `title`, `description`, and `metadata`. The core of the document 
+is also structured in `sections` that can include unique identifiers, titles, 
+strings, metadata,
+and so on.
 
 ## Standard Indexing REST Endpoint
 
@@ -32,7 +39,7 @@ headers:
 * `customer_id` is the customer ID to use for the request.
 * An API Key or JWT token is your authentication method
 * (Optional) `grpc-timeout` lets you specify how long to wait for the calls
-  that have the potential to take longer to process. We recommend
+  that have the potential to take longer to process. We recommend 30 seconds:
   `-H "grpc-timeout: 30S"`
 
 ### Index Request Body
@@ -76,10 +83,6 @@ and so on.
 }
 ```
 
-### Index REST Examples
-
-Check out our REST Index examples in [C#](/docs/getting-started-samples/RestIndexData.cs), [Java](/docs/getting-started-samples/RestIndex.java), [NodeJS](/docs/getting-started-samples/index_document.js), [PHP](/docs/getting-started-samples/indexDocument.php), and [Python](/docs/getting-started-samples/rest_index_document.py).
-
 ### Index REST Response
 
 The response from the server includes a status code and the amount of quota
@@ -99,8 +102,13 @@ consumed.
 }
 ```
 
-
 For the gRPC response, please see [IndexDocument](#index-document).
+
+## Index REST Examples
+
+Check out our REST Index examples in [C#](/docs/getting-started-samples/RestIndexData.cs), [Java](/docs/getting-started-samples/RestIndex.java), [NodeJS](/docs/getting-started-samples/index_document.js), [PHP](/docs/getting-started-samples/indexDocument.php), and [Python](/docs/getting-started-samples/rest_index_document.py).
+
+
 
 
 ## Full Standard Indexing gRPC Definition
