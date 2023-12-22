@@ -8,6 +8,7 @@
 /docs/common-use-cases/chatbots-grounded-generation/grounded-generation-overview                /docs/learn/grounded-generation/grounded-generation-overview
 /docs/common-use-cases/semantic-search/semantic-search-scoring                                  /docs/learn/semantic-search/relevance-tuning-techniques
 /docs/common-use-cases/semantic-search/semantic-search-overview                                 /docs/learn/semantic-search/semantic-search-overview
+/docs/common-use-cases/question-answer/question-answer-overview                                 /docs/learn/question-answer/question-answer-overview
 /docs/indexing-apis/core_indexing                             /docs/api-reference/indexing-apis/core_indexing
 /docs/indexing-apis/deleting-documents                        /docs/api-reference/indexing-apis/deleting-documents
 /docs/indexing-apis/file-upload                               /docs/api-reference/indexing-apis/file-upload/file-upload
@@ -48,4 +49,4 @@
 /docs/search-apis/interpreting-responses/intepreting-scores   /docs/api-reference/search-apis/interpreting-responses/interpreting-scores
 /docs/api-reference/search-apis/interpreting-responses/intepreting-scores                    /docs/api-reference/search-apis/interpreting-responses/interpreting-scores
 /docs/learn/semantic-search/hybrid-search                     /docs/learn/hybrid-search
-/docs/common-use-cases/question-answer/question-answer-overview        /docs/learn/question-answer/question-answer-overview
+/docs/hybrid-search                                           /docs/learn/hybrid-search
