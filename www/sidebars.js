@@ -344,6 +344,16 @@ module.exports = {
               ]
             },
             {
+              type: 'doc',
+              id: 'api-reference/admin-apis/corpus/read-corpus',
+              label: "Read Corpus API Definition",
+            },
+            {
+              type: 'doc',
+              id: 'api-reference/admin-apis/corpus/update-corpus-enablement',
+              label: "Update Corpus Enablement API Definition",
+            },
+            {
               type: 'category',
               label: 'API Key Management APIs',
               items: [
