@@ -40,4 +40,22 @@ The request to enable or disable a corpus requires the following parameters:
 to update the status of a corpus:
 <code>https://<Config v="domains.rest.admin"/>/v1/update-corpus-enablement</code>
 
-...tbd
+### Update Corpus Enablement Request Example
+
+```json
+{
+  "corpusId": "15",
+  "enable": true
+}
+```
+
+### Update Corpus Enablement Response Example
+
+```json
+{
+  "status": {
+    "code": "OK",
+    "statusDetail": "string",
+  }
+}
+```
