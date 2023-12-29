@@ -16,10 +16,15 @@ API keys, custom dimensions, and filter attributes.
 This capability helps administrators understand the access control details and 
 monitor the size of corpora to understand information like the amount of quota 
 consumed. You can also use this information for optimizing 
-search and storage utilization. For example, you can track the read and write 
-activity of a specific corpus which can help you change the security strategy. 
-In this case you might decide on [disabling a specific corpus](/docs/api-reference/admin-apis/corpus/update-corpus-enablement) 
-for a particular reason.
+search and storage utilization. 
+
+For example, you can track the read and write activity of a specific corpus 
+which can help you change your security strategy proactively. You noticed a 
+corpus with an API key with read/write access that is only being used for high 
+volume reads. You may decide to switch to a read-only key.
+
+In another case, you might respond to a security incident by [disabling a specific corpus](/docs/api-reference/admin-apis/corpus/update-corpus-enablement) 
+because of information returned by this endpoint.
 
 :::tip
 
