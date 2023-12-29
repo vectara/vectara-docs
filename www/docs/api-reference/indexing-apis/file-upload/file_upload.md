@@ -21,6 +21,9 @@ headers:
 * (Optional) `grpc-timeout` lets you specify how long to wait for the calls 
   that have the potential to take longer to process. We recommend 
   `-H "grpc-timeout: 30S"`
+* `Content-Disposition` lets you specify the Document ID of the file with the 
+  following format: `Content-Disposition: form-data; name="file"; filename="t2"` where
+  `file` is the name of the file and `filename` is Document ID that you want 
 
 ## File Upload Request Details
 
