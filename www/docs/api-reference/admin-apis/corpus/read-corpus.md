@@ -13,12 +13,13 @@ including basic information like the ID, name, whether it is enabled or
 disabled, and other metadata. You can also view the corpus size, associated 
 API keys, custom dimensions, and filter attributes.
 
-This capability helps you monitor the size of your corpora for optimizing 
+This capability helps administrators understand the access control details and 
+monitor the size of corpora to understand information like the amount of quota 
+consumed. You can also use this information for optimizing 
 search and storage utilization. For example, you can track the read and write 
-activity of a specific corpus
-
-You can also use it to understand the access 
-control and how the corpus is configured for queries.
+activity of a specific corpus which can help you change the security strategy. 
+In this case you might decide on [disabling a specific corpus](/docs/api-reference/admin-apis/corpus/update-corpus-enablement) 
+for a particular reason.
 
 :::tip
 
@@ -32,17 +33,14 @@ REST endpoint to manage your corpus details.
 The request to read corpus data provides detailed information about the corpus.
 You specifiy either `true` or `false` whether you want to view basic 
 information, corpus size, associated API keys, custom dimensions, and filter 
-attributes. This read corpus request requires the following parameters:
+attributes. This read corpus request also requires the following parameters:
 
 * Customer ID
 * Corpus ID
 
-The response includes 
-
-
-## Corpus Definition
-
-A corpus contains the stored data 
+The response includes detailed information about the corpus depending on what 
+you specified in the request. For example, you wanted to know the associated 
+API keys with a specific corpus.
 
 ## REST Example
 
@@ -67,10 +65,9 @@ to ingest content into a corpus:
 }
 ```
 
-
 ### Read Corpus Response Example
 
-tbd.. still need to modify fields
+tbd.. still need to modify fields with realworld values
 
 ```json
 {
@@ -110,12 +107,6 @@ tbd.. still need to modify fields
       "corpusStatus": {
         "code": "OK",
         "statusDetail": "string",
-        "cause": {
-          "@type": "string",
-          "additionalProp1": "string",
-          "additionalProp2": "string",
-          "additionalProp3": "string"
-        }
       },
       "size": {
         "epochSecs": "string",
@@ -124,27 +115,6 @@ tbd.. still need to modify fields
       "sizeStatus": {
         "code": "OK",
         "statusDetail": "string",
-        "cause": {
-          "@type": "string",
-          "additionalProp1": "string",
-          "additionalProp2": "string",
-          "additionalProp3": "string"
-        }
-      },
-      "recall": {
-        "epochSecs": "string",
-        "recall": 0,
-        "sampleSize": 0
-      },
-      "recallStatus": {
-        "code": "OK",
-        "statusDetail": "string",
-        "cause": {
-          "@type": "string",
-          "additionalProp1": "string",
-          "additionalProp2": "string",
-          "additionalProp3": "string"
-        }
       },
       "apiKey": [
         {
@@ -160,12 +130,6 @@ tbd.. still need to modify fields
       "apiKeyStatus": {
         "code": "OK",
         "statusDetail": "string",
-        "cause": {
-          "@type": "string",
-          "additionalProp1": "string",
-          "additionalProp2": "string",
-          "additionalProp3": "string"
-        }
       },
       "customDimension": [
         {
@@ -178,12 +142,6 @@ tbd.. still need to modify fields
       "customDimensionStatus": {
         "code": "OK",
         "statusDetail": "string",
-        "cause": {
-          "@type": "string",
-          "additionalProp1": "string",
-          "additionalProp2": "string",
-          "additionalProp3": "string"
-        }
       },
       "filterAttribute": [
         {
@@ -197,12 +155,6 @@ tbd.. still need to modify fields
       "filterAttributeStatus": {
         "code": "OK",
         "statusDetail": "string",
-        "cause": {
-          "@type": "string",
-          "additionalProp1": "string",
-          "additionalProp2": "string",
-          "additionalProp3": "string"
-        }
       }
     }
   ]
