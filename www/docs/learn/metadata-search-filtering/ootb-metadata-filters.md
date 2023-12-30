@@ -5,8 +5,9 @@ title: Default Metadata Filters
 
 import {Config} from '@site/docs/definitions.md';
 
-A few pieces of metadata expressions filterable out of the box, as they're very
-useful in a variety of situations.
+A few pieces of metadata expressions are filterable out of the box, including 
+Document ID, Language, and Titles. These filters are very useful in a variety 
+of situations.
 
 Note that you can set up additional fields to filter on by setting up
 [filter attributes](/docs/api-reference/admin-apis/create-corpus#filter-attribute) on a
@@ -14,8 +15,9 @@ corpus.
 
 
 ## `doc.id` field
+
 Each document is assigneed a unique identifier at indexing. You can use the 
-`doc.id` field to retrieve or filter specific documents in your corpus.
+`doc.id` field to retrieve or filter specific Document IDs in your corpus.
 
 Valid filter expressions include something like:
 
@@ -25,6 +27,7 @@ Valid filter expressions include something like:
 
 
 ## `part.lang` field
+
 Each section of a document is evaluated for its language at index time and the
 `part.lang` field is added with a 3-character lower-case language code
 ([ISO 639-2](https://en.wikipedia.org/wiki/List_of_ISO_639-2_codes)).  For
@@ -37,12 +40,19 @@ Valid filter expressions for this would be something like:
 * `part.lang = 'eng' OR part.lang = 'deu'`
 
 ## `part.is_title` field
-When adding content, <Config v="names.product"/> will add a special Boolean
-field to indicate whether the field is a title field or not. This is useful
+
+When adding content, <Config v="names.product"/> adds a special Boolean
+field to indicate whether the field is a `title` field or not. This is useful
 for a few different cases depending on how you model your data. For example,
-some users want to only match on a title field or never match on a title field,
+some users want to **only** match on a title field, or never match on a title field,
 in which case this field can be used to filter.
 
-To filter for title fields only, you can use: `part.is_title = true` and
-conversely `part.is_title = false` will return only non-title sections.
+This field actually uses three value logic: true, false, and unset. We 
+designed it like this to avoid creating too much metadata because customers 
+are billed for metadata, so doing so is in the customer's interest. Here is 
+how it works:
 
+* To filter for title fields only, use `part.is_title = true`
+* To return only non-title sections, use `part.is_title = false` 
+* However, not all documents have titles. To include sections with no title, 
+  use `part.is_title<>true`.
