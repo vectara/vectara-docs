@@ -1,7 +1,7 @@
 ---
 id: integrate-with-langchain
-title: Integrate Vectara with LangChain
-sidebar_label: Integrate with LangChain
+title: Use Vectara with LangChain
+sidebar_label: Use Vectara with LangChain
 ---
 
 import {Config} from '@site/docs/definitions.md';
@@ -13,10 +13,10 @@ Generation. LangChain is a framework for creating LLM-powered applications.
 This integration enables developers to create scalable and accurate 
 applications that can handle a large volume of documents and queries.
 
-The benefits of LangChain users integrating with Vectara include obtaining 
-the most relevant facts through RAG, combining neural and keyword-style 
-approaches to queries, efficient vector database reindexing, data security, 
-data privacy, and optimizing latency and cost. 
+The benefits of LangChain users using the Vectara integration include 
+obtaining the most relevant facts through RAG, combining neural and 
+keyword-style approaches to queries, efficient vector database reindexing, 
+data security, data privacy, and optimizing latency and cost. 
 
 :::tip
 
@@ -24,7 +24,7 @@ Check out our blog on [**5 Reasons to Use Vectara's LangChain Integration**](htt
 
 :::
 
-## Set Up Vectara as a Vector Store with LangChain.js
+## Set Up Vectara as a Vector Store
 
 To set up Vectara as a vector store:
 

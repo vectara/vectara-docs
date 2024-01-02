@@ -1,7 +1,7 @@
 ---
 id: integrate-with-llamaindex
-title: Integrate Vectara with LlamaIndex
-sidebar_label: Integrate with LlamaIndex
+title: Use Vectara with LlamaIndex
+sidebar_label: Use Vectara with LlamaIndex
 ---
 
 import {Config} from '@site/docs/definitions.md';
