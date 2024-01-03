@@ -54,7 +54,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
         - $ref: '#/components/parameters/timeout'
-      description: "Computes the amount of quota consumed across the entire Vectara account. This endpoint is useful for administrators who want to track \nand monitor usage of tenants on their account.\n\nSome tips for this API:\n* This operation only works with OAuth 2.0 (in a JWT \"Bearer Token\") authentication. It does not work with API Keys.  You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).\n"
+      description: "Computes the amount of quota consumed across the entire Vectara account.\n\nSome tips for this API:\n* This operation only works with OAuth 2.0 (in a JWT \"Bearer Token\") authentication. It does not work with API Keys.  You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).\n"
   /v1/compute-corpus-size:
     post:
       operationId: ComputeCorpusSize
@@ -600,7 +600,7 @@ paths:
         - $ref: '#/components/parameters/timeout'
       description: |
         Displays detailed information about corpora within your account including basic information, metadata, and whether it is enabled or disabled.
-        This endpoint can help administrators monitor the ammount of quota consumed by tenants.
+        This endpoint can help administrators monitor the amount of quota consumed by tenants.
 
         Some tips for this API:
         * This operation only works with OAuth 2.0 (in a JWT "Bearer Token") authentication. It does not work with API Keys.  You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
