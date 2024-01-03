@@ -497,7 +497,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
         - $ref: '#/components/parameters/timeout'
-      description: List Users
+      description: "Lists the users in your account along with their corpus access and customer-level authorizations. \n\nSome tips for this API:\n* This operation only works with OAuth 2.0 (in a JWT \"Bearer Token\") authentication. It does not work with API Keys. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).\n* Use this API to view the members on your team. If you need to manage their access, use the Manage User endpoint.\n"
   /v1/manage-user:
     post:
       operationId: ManageUser
@@ -525,7 +525,12 @@ paths:
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
         - $ref: '#/components/parameters/timeout'
-      description: Manage User
+      description: |
+        Lets you manage users in your account by adding, deleting, enabling, or disabling users. You can also reset their passwords and edit user roles. This endpoint can help you streamline your onboarding process by programmatically adding new users, assigning appropriate roles, and setting up permissions.
+
+        Some tips for this API:
+        * This operation only works with OAuth 2.0 (in a JWT "Bearer Token") authentication. It does not work with API Keys. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * Add multiple users by including additional “user” objects into the userAction array.
   /v1/query:
     post:
       operationId: Query
