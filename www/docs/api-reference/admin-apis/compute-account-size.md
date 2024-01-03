@@ -12,7 +12,7 @@ across the entire account. This capability is useful for administrators who
 want to track and monitor usage of multiple accounts. For example, you manage 
 multiple tenants and notice that your account usage is higher than expected.
 
-You use the [Compute Corpus Size API](/docs/api-reference/corpus/compute-corpus-size) to determine 
+You use the [Compute Corpus Size API](/docs/api-reference/admin-apis/corpus/compute-corpus-size) to determine 
 that a tenant is over their quota. You decide to revoke the ability for 
 the tenant to add more data to the corpus or perform more searches by 
 disabling API keys.

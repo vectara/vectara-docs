@@ -44,7 +44,7 @@ to update the status of a corpus:
 
 ```json
 "size": {
-    "epochSecs": "1704067200	",
+    "epochSecs": "1704067200",
     "size": "5048"
   },
 ```
