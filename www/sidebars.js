@@ -289,6 +289,7 @@ module.exports = {
           type: 'category',
           label: 'Admin APIs',
           items: [
+            'api-reference/admin-apis/compute-account-size',
             'api-reference/admin-apis/manage-users/list-users',
             'api-reference/admin-apis/manage-users/manage-user',
             'api-reference/admin-apis/admin',
@@ -342,6 +343,21 @@ module.exports = {
                   ]
                 }
               ]
+            },
+            {
+              type: 'doc',
+              id: 'api-reference/admin-apis/corpus/compute-corpus-size',
+              label: "Compute Corpus Siz API Definition",
+            },
+            {
+              type: 'doc',
+              id: 'api-reference/admin-apis/corpus/read-corpus',
+              label: "Read Corpus API Definition",
+            },
+            {
+              type: 'doc',
+              id: 'api-reference/admin-apis/corpus/update-corpus-enablement',
+              label: "Update Corpus Enablement API Definition",
             },
             {
               type: 'category',
