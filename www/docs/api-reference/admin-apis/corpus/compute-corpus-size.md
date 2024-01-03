@@ -15,7 +15,7 @@ to disable the API keys associated with a specific corpus or corpora.
 
 :::tip
 
-Check out our interactive API Playground that lets you experiment with this 
+Check out our [**interactive API Playground**](/docs/rest-api/compute-corpus-size) that lets you experiment with this 
 endpoint to compute the corpus size.
 
 :::
@@ -43,8 +43,15 @@ to update the status of a corpus:
 ### Compute Corpus Size Example
 
 ```json
-"size": {
-    "epochSecs": "1704067200",
-    "size": "5048"
+{
+  "size": {
+    "epochSecs": "1704313931",
+    "size": "673229"
   },
+  "status": {
+    "code": "OK",
+    "statusDetail": "",
+    "cause": null
+  }
+}
 ```

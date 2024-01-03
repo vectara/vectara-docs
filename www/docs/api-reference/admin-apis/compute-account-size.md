@@ -19,7 +19,7 @@ disabling API keys.
 
 :::tip
 
-Check out our interactive API Playground that lets you experiment with this 
+Check out our [**interactive API Playground**](/docs/rest-api/compute-account-size) that lets you experiment with this 
 endpoint to view the account size.
 
 :::
@@ -33,9 +33,8 @@ The request to compute the account size is an expensive operation.
 
 :::
 
-This request requires the Customer ID parameter.
-
-The response includes a `sum` object which is the sum of the number of 
+This request requires the Customer ID parameter. The response includes a `size` 
+object which is the sum of the number of 
 characters and metadata characters.
 
 
@@ -50,10 +49,17 @@ to update the status of a corpus:
 ### Compute Account Size Example
 
 ```json
-"size": [
+{
+  "size": [
     {
-      "numChars": "168",
-      "numMetadataChars": "2059"
+      "numChars": "2638721",
+      "numMetadataChars": "1084267"
     }
   ],
+  "status": {
+    "code": "OK",
+    "statusDetail": "",
+    "cause": null
+  }
+}
   ```

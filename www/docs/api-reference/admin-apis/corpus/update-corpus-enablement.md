@@ -19,7 +19,7 @@ incidents.
 
 :::tip
 
-Check out our interactive API Playground that lets you experiment with this 
+Check out our [**interactive API Playground**](/docs/rest-api/update-corpus-enablement) that lets you experiment with this 
 REST endpoint to enable or disable corpora.
 
 :::
@@ -56,7 +56,8 @@ In this example, you enable a corpus with the ID of `15`.
 {
   "status": {
     "code": "OK",
-    "statusDetail": "string",
+    "statusDetail": "",
+    "cause": null
   }
 }
 ```

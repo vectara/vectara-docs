@@ -28,7 +28,7 @@ because of information returned by this endpoint.
 
 :::tip
 
-Check out our interactive API Playground that lets you experiment with this 
+Check out our [**interactive API Playground**](/docs/rest-api/read-corpus) that lets you experiment with this 
 REST endpoint to manage your corpus details.
 
 :::
@@ -36,7 +36,7 @@ REST endpoint to manage your corpus details.
 ## Read Corpus Request and Response
 
 The request to read corpus data provides detailed information about the corpus.
-You specifiy either `true` or `false` whether you want to view basic 
+You specify either `true` or `false` whether you want to view basic 
 information, corpus size, associated API keys, custom dimensions, and filter 
 attributes. This read corpus request also requires the following parameters:
 
@@ -60,7 +60,7 @@ to ingest content into a corpus:
 ```json
 {
   "corpusId": [
-    123456789
+    8
   ],
   "readBasicInfo": true,
   "readSize": true,
@@ -80,8 +80,8 @@ The following shows an example response:
     {
       "corpus": {
         "id": 5,
-        "name": "NHL Rulebook 2024",
-        "description": "The ruleboook the the 2023-2024 NHL season",
+        "name": "Employee handbooks",
+        "description": "The employee handbook for 2024",
         "enabled": true,
         "swapQenc": true,
         "swapIenc": true,
@@ -104,7 +104,7 @@ The following shows an example response:
       },
       "corpusStatus": {
         "code": "OK",
-        "statusDetail": "string",
+        "statusDetail": "",
       },
       "size": {
         "epochSecs": "1704067200",
@@ -112,13 +112,13 @@ The following shows an example response:
       },
       "sizeStatus": {
         "code": "OK",
-        "statusDetail": "string",
+        "statusDetail": "",
       },
       "apiKey": [
         {
           "id": "1234",
-          "description": "API Key for the NHL Rulebook corpus",
-          "keyType": "API_KEY_TYPE__UNDEFINED",
+          "description": "API Key for the employee handbook corpus",
+          "keyType": "API_KEY_TYPE__SERVING_INDEXING",
           "enabled": true,
           "tsStart": "5678",
           "tsEnd": "",
@@ -138,17 +138,28 @@ The following shows an example response:
       },
       "filterAttribute": [
         {
-          "name": "another_filter",
-          "description": "Another filter",
+          "name": "doc.id",
+          "description": "",
           "indexed": true,
-          "type": "FILTER_ATTRIBUTE_TYPE__UNDEFINED",
-          "level": "FILTER_ATTRIBUTE_LEVEL__UNDEFINED"
+          "type": "FILTER_ATTRIBUTE_TYPE__TEXT",
+          "level": "FILTER_ATTRIBUTE_LEVEL__DOCUMENT"
+        },
+        {
+          "name": "is_title",
+          "description": "True if the text is a title.",
+          "indexed": true,
+          "type": "FILTER_ATTRIBUTE_TYPE__BOOLEAN",
+          "level": "FILTER_ATTRIBUTE_LEVEL__DOCUMENT_PART"
+        },
+        {
+          "name": "lang",
+          "description": "Detected language, as an ISO 639-3 code.",
+          "indexed": true,
+          "type": "FILTER_ATTRIBUTE_TYPE__TEXT",
+          "level": "FILTER_ATTRIBUTE_LEVEL__DOCUMENT_PART"
         }
       ],
-      "filterAttributeStatus": {
-        "code": "OK",
-        "statusDetail": "string",
-      }
+      "filterAttributeStatus": null
     }
   ]
 }
