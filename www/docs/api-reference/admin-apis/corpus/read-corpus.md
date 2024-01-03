@@ -72,7 +72,7 @@ to ingest content into a corpus:
 
 ### Read Corpus Response Example
 
-tbd.. still need to modify fields with realworld values
+The following shows an example response:
 
 ```json
 {
@@ -80,29 +80,22 @@ tbd.. still need to modify fields with realworld values
     {
       "corpus": {
         "id": 5,
-        "name": "string",
-        "description": "string",
-        "dtProvision": "string",
+        "name": "NHL Rulebook 2024",
+        "description": "The ruleboook the the 2023-2024 NHL season",
         "enabled": true,
         "swapQenc": true,
         "swapIenc": true,
         "textless": true,
         "encrypted": true,
-        "encoderId": "string",
+        "encoderId": "1",
         "metadataMaxBytes": 0,
-        "faissIndexType": "string",
         "customDimensions": [
-          {
-            "name": "string",
-            "description": "string",
-            "servingDefault": 0,
-            "indexingDefault": 0
-          }
+          {}
         ],
         "filterAttributes": [
           {
-            "name": "string",
-            "description": "string",
+            "name": "custom1",
+            "description": "Custom filter",
             "indexed": true,
             "type": "FILTER_ATTRIBUTE_TYPE__UNDEFINED",
             "level": "FILTER_ATTRIBUTE_LEVEL__UNDEFINED"
@@ -114,8 +107,8 @@ tbd.. still need to modify fields with realworld values
         "statusDetail": "string",
       },
       "size": {
-        "epochSecs": "string",
-        "size": "string"
+        "epochSecs": "1704067200",
+        "size": "4026"
       },
       "sizeStatus": {
         "code": "OK",
@@ -123,13 +116,13 @@ tbd.. still need to modify fields with realworld values
       },
       "apiKey": [
         {
-          "id": "string",
-          "description": "string",
+          "id": "1234",
+          "description": "API Key for the NHL Rulebook corpus",
           "keyType": "API_KEY_TYPE__UNDEFINED",
           "enabled": true,
-          "tsStart": "string",
-          "tsEnd": "string",
-          "status": "UNKNOWN"
+          "tsStart": "5678",
+          "tsEnd": "",
+          "status": "ENABLED"
         }
       ],
       "apiKeyStatus": {
@@ -137,12 +130,7 @@ tbd.. still need to modify fields with realworld values
         "statusDetail": "string",
       },
       "customDimension": [
-        {
-          "name": "string",
-          "description": "string",
-          "servingDefault": 0,
-          "indexingDefault": 0
-        }
+        {}
       ],
       "customDimensionStatus": {
         "code": "OK",
@@ -150,8 +138,8 @@ tbd.. still need to modify fields with realworld values
       },
       "filterAttribute": [
         {
-          "name": "string",
-          "description": "string",
+          "name": "another_filter",
+          "description": "Another filter",
           "indexed": true,
           "type": "FILTER_ATTRIBUTE_TYPE__UNDEFINED",
           "level": "FILTER_ATTRIBUTE_LEVEL__UNDEFINED"

@@ -31,7 +31,6 @@ The request to enable or disable a corpus requires the following parameters:
 * Customer ID
 * Corpus ID
 
-
 ## REST Example
 
 ### Update Corpus Enablement REST Endpoint Address
@@ -41,6 +40,8 @@ to update the status of a corpus:
 <code>https://<Config v="domains.rest.admin"/>/v1/update-corpus-enablement</code>
 
 ### Update Corpus Enablement Request Example
+
+In this example, you enable a corpus with the ID of `15`.
 
 ```json
 {
