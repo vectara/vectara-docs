@@ -23,6 +23,66 @@ tags:
     description: Query operations, such as performing a search and retrieval augmented generation
 # add file upload API and auth options for other APIs
 paths:
+  /v1/compute-account-size:
+    post:
+      operationId: ComputeAccountSize
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/adminComputeAccountSizeResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/googlerpcStatus"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/adminComputeAccountSizeRequest"
+        description: >-
+          Please note that this is an expensive operation, and the requests can be throttled
+
+          by the platform.
+        required: true
+      tags:
+        - AdminService
+      parameters:
+        - $ref: '#/components/parameters/customerIdentifier'
+        - $ref: '#/components/parameters/timeout'
+      description: "Computes the amount of quota consumed across the entire Vectara account. This endpoint is useful for administrators who want to track \nand monitor usage of tenants on their account.\n\nSome tips for this API:\n* This operation only works with OAuth 2.0 (in a JWT \"Bearer Token\") authentication. It does not work with API Keys.  You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).\n"
+  /v1/compute-corpus-size:
+    post:
+      operationId: ComputeCorpusSize
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/adminComputeCorpusSizeResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/googlerpcStatus"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/adminComputeCorpusSizeRequest"
+        required: true
+      tags:
+        - AdminService
+      parameters:
+        - $ref: '#/components/parameters/customerIdentifier'
+        - $ref: '#/components/parameters/timeout'
+      description: "Computes the amount of quota consumed by a corpus. This capability is useful for administrators to track and monitor the amount \nof usage for specific corpora.\n\nSome tips for this API:\n* This operation only works with OAuth 2.0 (in a JWT \"Bearer Token\") authentication. It does not work with API Keys.  You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).\n"
   /v1/create-api-key:
     post:
       operationId: CreateApiKey
@@ -437,9 +497,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
         - $ref: '#/components/parameters/timeout'
-      description: "Lists the users in your account along with their corpus access and customer-level authorizations. \n\nSome tips for this API:\n* This operation only works with OAuth 2.0 (in a JWT \"Bearer Token\") authentication. It does not work with API Keys. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).\n* Use this API to view the members on your team. If you need to manage their access, use the Manage User endpoint.\n"
-      security:
-        - oAuth: []
+      description: List Users
   /v1/manage-user:
     post:
       operationId: ManageUser
@@ -467,14 +525,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
         - $ref: '#/components/parameters/timeout'
-      description: |
-        Lets you manage users in your account by adding, deleting, enabling, or disabling users. You can also reset their passwords and edit user roles. This endpoint can help you streamline your onboarding process by programmatically adding new users, assigning appropriate roles, and setting up permissions.
-
-        Some tips for this API:
-        * This operation only works with OAuth 2.0 (in a JWT "Bearer Token") authentication. It does not work with API Keys. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
-        * Add multiple users by including additional “user” objects into the userAction array.
-      security:
-        - oAuth: []
+      description: Manage User
   /v1/query:
     post:
       operationId: Query
@@ -514,6 +565,41 @@ paths:
         * Custom dimensions (the `dim` array) is a feature that is only available to [Scale](https://vectara.com/pricing/) accounts.
       security:
         - ApiKeyAuth: []
+        - oAuth: []
+  /v1/read-corpus:
+    post:
+      operationId: ReadCorpus
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/adminReadCorpusResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/googlerpcStatus"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/adminReadCorpusRequest"
+        required: true
+      tags:
+        - AdminService
+      parameters:
+        - $ref: '#/components/parameters/customerIdentifier'
+        - $ref: '#/components/parameters/timeout'
+      description: |
+        Displays detailed information about corpora within your account including basic information, metadata, and whether it is enabled or disabled.
+        This endpoint can help administrators monitor the ammount of quota consumed by tenants.
+
+        Some tips for this API:
+        * This operation only works with OAuth 2.0 (in a JWT "Bearer Token") authentication. It does not work with API Keys.  You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+      security:
         - oAuth: []
   /v1/replace-corpus-filter-attrs:
     post:
@@ -589,6 +675,38 @@ paths:
         * If you want to delete individual documents instead of all documents in the corpus, you can use the [Delete API](https://docs.vectara.com/docs/rest-api/delete).
       security:
         - oAuth: []
+  /v1/update-corpus-enablement:
+    post:
+      operationId: UpdateCorpusEnablement
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/adminUpdateCorpusEnablementResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/googlerpcStatus"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/adminUpdateCorpusEnablementRequest"
+        required: true
+      tags:
+        - AdminService
+      parameters:
+        - $ref: '#/components/parameters/customerIdentifier'
+        - $ref: '#/components/parameters/timeout'
+      description: |
+        Lets you enable or disable a corpus. This is useful when you need to take the corpus offline without having to delete the corpus.
+
+        Some tips for this API:
+        * This operation only works with OAuth 2.0 (in a JWT "Bearer Token") authentication. It does not work with API Keys.  You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
   /v1/core/index:
     post:
       operationId: CoreIndex
@@ -784,7 +902,18 @@ components:
         enable:
           type: boolean
           title: Enable or disable using this variable
-    KeyAndCorporaCorpusInfo:
+    ListApiKeysResponseKeyAndCorpora:
+      type: object
+      properties:
+        apiKey:
+          $ref: "#/components/schemas/adminApiKey"
+        corpus:
+          type: array
+          items:
+            $ref: "#/components/schemas/ListApiKeysResponseKeyAndCorporaCorpusInfo"
+          description: List of corpora associated with the ApiKey.
+      description: A message containing ApiKey and associated corpora.
+    ListApiKeysResponseKeyAndCorporaCorpusInfo:
       type: object
       properties:
         id:
@@ -795,17 +924,6 @@ components:
           type: string
           description: Corpus name.
       description: Message containing corpus name and id.
-    ListApiKeysResponseKeyAndCorpora:
-      type: object
-      properties:
-        apiKey:
-          $ref: "#/components/schemas/adminApiKey"
-        corpus:
-          type: array
-          items:
-            $ref: "#/components/schemas/KeyAndCorporaCorpusInfo"
-          description: List of corpora associated with the ApiKey.
-      description: A message containing ApiKey and associated corpora.
     ManageUserRequestUserAction:
       type: object
       properties:
@@ -956,6 +1074,39 @@ components:
 
          - API_KEY_TYPE__SERVING: ApiKey for serving. Only gives access to query data.
          - API_KEY_TYPE__SERVING_INDEXING: ApiKey for serving and indexing. Gives access to both query and index data.
+    adminComputeAccountSizeRequest:
+      type: object
+      description: >-
+        Please note that this is an expensive operation, and the requests can be throttled
+
+        by the platform.
+    adminComputeAccountSizeResponse:
+      type: object
+      properties:
+        size:
+          type: array
+          items:
+            $ref: "#/components/schemas/adminTextSize"
+          description: >-
+            One TextSize represents one cluster. The account size is a sum of all the sizes.
+
+            Generally, this will only have one value.
+        status:
+          $ref: "#/components/schemas/comvectaraStatus"
+    adminComputeCorpusSizeRequest:
+      type: object
+      properties:
+        corpusId:
+          type: integer
+          format: int64
+          description: The corpus for which to compute the size.
+    adminComputeCorpusSizeResponse:
+      type: object
+      properties:
+        size:
+          $ref: "#/components/schemas/adminCorpusSize"
+        status:
+          $ref: "#/components/schemas/comvectaraStatus"
     adminCorpus:
       type: object
       properties:
@@ -1028,6 +1179,17 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/adminFilterAttribute"
+    adminCorpusSize:
+      type: object
+      properties:
+        epochSecs:
+          type: string
+          format: int64
+          description: The time at which the size was calculated.
+        size:
+          type: string
+          format: uint64
+          description: The size of the corpus.
     adminCreateApiKeyRequest:
       type: object
       properties:
@@ -1454,6 +1616,76 @@ components:
           items:
             $ref: "#/components/schemas/ManageUserResponseUserResponse"
           description: List of users alongwith relative status such as OK, FAILED etc.
+    adminReadCorpusRequest:
+      type: object
+      properties:
+        corpusId:
+          type: array
+          items:
+            type: integer
+            format: int64
+          description: Corpora IDs to read.
+        readBasicInfo:
+          type: boolean
+          description: >-
+            Subset of information to read.
+
+            Set to true to read basic information about the corpus such as id, name,
+
+            description, enabled, etc.
+        readSize:
+          type: boolean
+          description: Set to true to read the size of the corpus.
+        readApiKeys:
+          type: boolean
+          description: Set to true to read the API keys associated with the corpus.
+        readCustomDimensions:
+          type: boolean
+          description: Set to true to read the custom dimensions of the corpus.
+        readFilterAttributes:
+          type: boolean
+          description: Set to true to read the filter attributes of the corpus.
+    adminReadCorpusResponse:
+      type: object
+      properties:
+        corpora:
+          type: array
+          items:
+            $ref: "#/components/schemas/adminReadCorpusResponseCorpusInfo"
+          description: Information about the requested corpora.
+    adminReadCorpusResponseCorpusInfo:
+      type: object
+      properties:
+        corpus:
+          $ref: "#/components/schemas/adminCorpus"
+        corpusStatus:
+          $ref: "#/components/schemas/comvectaraStatus"
+        size:
+          $ref: "#/components/schemas/adminCorpusSize"
+        sizeStatus:
+          $ref: "#/components/schemas/comvectaraStatus"
+        apiKey:
+          type: array
+          items:
+            $ref: "#/components/schemas/adminApiKey"
+          description: API keys associated with the corpus. Only populated if read_api_keys is true.
+        apiKeyStatus:
+          $ref: "#/components/schemas/comvectaraStatus"
+        customDimension:
+          type: array
+          items:
+            $ref: "#/components/schemas/adminDimension"
+          description: Custom dimensions of the corpus. Only populated if read_custom_dimensions is true.
+        customDimensionStatus:
+          $ref: "#/components/schemas/comvectaraStatus"
+        filterAttribute:
+          type: array
+          items:
+            $ref: "#/components/schemas/adminFilterAttribute"
+          description: Filter attributes of the corpus. Only populated if read_filter_attributes is true.
+        filterAttributeStatus:
+          $ref: "#/components/schemas/comvectaraStatus"
+      description: A Corpus information object containing the requested information.
     adminReplaceCorpusFilterAttrsRequest:
       type: object
       properties:
@@ -1497,6 +1729,33 @@ components:
         - customerId
         - corpusId
     adminResetCorpusResponse:
+      type: object
+      properties:
+        status:
+          $ref: "#/components/schemas/comvectaraStatus"
+    adminTextSize:
+      type: object
+      properties:
+        numChars:
+          type: string
+          format: uint64
+          description: Count of actual characters in the text that will be searched.
+        numMetadataChars:
+          type: string
+          format: uint64
+          description: Count of metadata characters such as URL, author, date of creation etc.
+      description: A TextSize object represents the size of stored text.
+    adminUpdateCorpusEnablementRequest:
+      type: object
+      properties:
+        corpusId:
+          type: integer
+          format: int64
+          description: The corpus to enable or disable.
+        enable:
+          type: boolean
+          description: If true, enable the corpus. Otherwise, disable it.
+    adminUpdateCorpusEnablementResponse:
       type: object
       properties:
         status:
