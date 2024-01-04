@@ -132,6 +132,11 @@ module.exports = {
         },
         {
           type: 'doc',
+          id: 'console-ui/manage-documents',
+          label: "Manage Documents",
+        },
+        {
+          type: 'doc',
           id: 'console-ui/manage-api-access',
           label: "Manage API Access",
         },
@@ -346,8 +351,13 @@ module.exports = {
             },
             {
               type: 'doc',
+              id: 'api-reference/admin-apis/corpus/list-documents',
+              label: "List Documents API Definition",
+            },
+            {
+              type: 'doc',
               id: 'api-reference/admin-apis/corpus/compute-corpus-size',
-              label: "Compute Corpus Siz API Definition",
+              label: "Compute Corpus Size API Definition",
             },
             {
               type: 'doc',
