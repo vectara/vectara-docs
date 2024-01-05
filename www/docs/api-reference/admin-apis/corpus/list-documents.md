@@ -8,8 +8,10 @@ import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The List Documents endpoint lets you view detailed information about documents 
-uploaded to corpora, including the Document ID, title, size, date added, and 
-total number of documents in a corpus.
+uploaded to a corpus, including the Document ID, title, size, date added, and 
+total number of documents in a corpus. This is useful for viewing documents 
+indexed so far and remove documents that are no longer needed. It helps you 
+manage the document lifecycle in your environent.
 
 This information enables you to catalog and inventory large amounts of data 
 while also extracting lists of documents for further analysis. For example, 
@@ -33,7 +35,8 @@ following parameters:
 * Corpus ID
 * Document ID
 
-The response includes details ....
+The response includes a list of the first 10 documents by default. You can 
+configure up to 1000.
 
 
 ## REST Example
@@ -47,5 +50,14 @@ to update the status of a corpus:
 ### List Documents Example
 
 ```json
-tbd
+{
+  "id": "NHL2023-24Rulebook_Part2.pdf",
+  "metadata": {
+    "CreationDate": "1704344165",
+    "Producer": "Acrobat 11.0.3",
+    "Creator": "Acrobat 11.0.3",
+    "ModDate": "1704344166",
+    "title": "Front Page"
+  }
+}
 ```
