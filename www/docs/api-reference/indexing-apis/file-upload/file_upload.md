@@ -57,6 +57,14 @@ curl -L -X POST 'https://api.vectara.io/v1/upload?c=123456789&o=5' \
 -H 'x-api-key: zwt_123456' \
 -F 'file=@"/path/to/file"'
 ```
+## Set a Custom Document ID
+
+The `Content-Disposition` header lets you specify the Document ID of the file 
+that are uploading. Use the following format:
+
+`Content-Disposition: form-data; name="file"; filename="desired_doc_id"` 
+
+where `file` is the name of the file and `filename` is Document ID that you want 
 
 ### Attach Additional Metadata
 
