@@ -8,11 +8,9 @@ import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The List Documents view provides information about each document ingested into 
-the corpus. This information includes the Document ID, title, size, date 
-added, and metadata. This enables you to catalog and inventory large amounts 
-of data while also extracting lists of documents for further analysis. This 
-information helps you better manage the lifecycle of your documents. This page 
-provides a quick way to check which documents are already in the index:
+the corpus, including  the Document ID, title, size, date added, and metadata. 
+This data helps you better manage the lifecycle of your documents by providing  
+a quick way to check which documents are already in the index:
 
 * Utilize the metadata to build custom search and filtering capabilities 
   into applications
@@ -25,14 +23,14 @@ provides a quick way to check which documents are already in the index:
 ![List Documents](/img/list_documents.png)
 
 The list shows the first 10 documents and you can paginate with the next and 
-previous buttons.
+previous buttons if you have more documents in the corpus.
 
 
 ## View Document Details
 
 Click a Document ID from the list to open the Document details panel. This 
 shows the fields associated with the document and also a JSON string that 
-you can copy.
+you can copy. You can also delete the document permanently.
 
 ![List Documents](/img/list_document_details.png)
 
