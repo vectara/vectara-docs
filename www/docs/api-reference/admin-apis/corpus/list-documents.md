@@ -29,8 +29,8 @@ REST endpoint to manage your documents.
 
 The request to list documents provides detailed information about documents 
 uploaded to the corpus. You specify the `num_results`, `page_key`, and 
-`metadata_filter`. This list documents request also requires the 
-following parameters:
+`metadata_filter`. This list documents request also requires the following 
+parameters:
 
 * Customer ID
 * Corpus ID
