@@ -832,12 +832,10 @@ paths:
           schema:
             type: integer
           example: 1
-          minimum: 1
         - in: query
           name: d
           required: false
           description: If true, the server returns the extracted document that was indexed
-          default: false
           schema:
             type: boolean
       responses:
