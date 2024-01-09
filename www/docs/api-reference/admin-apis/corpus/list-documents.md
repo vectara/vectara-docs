@@ -27,7 +27,7 @@ REST endpoint to manage your documents.
 ## List Documents Request and Response
 
 The request to list documents provides detailed information about documents 
-uploaded to the corpus. You specify the `numResults`, `pageKey`, and 
+uploaded to the corpus. You can also specify the `numResults`, `pageKey`, and 
 `metadataFilter`. This list documents request also requires the following 
 parameters:
 
