@@ -34,7 +34,6 @@ parameters:
 
 * Customer ID
 * Corpus ID
-* Document ID
 
 The response includes a list of the first 10 documents by default. You can 
 configure up to 1000.
