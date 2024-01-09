@@ -7,10 +7,9 @@ sidebar_label: List Documents API Definition
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The List Documents endpoint lets you view detailed information about documents 
-uploaded to a corpus, including the Document ID, title, size, date added, and 
-total number of documents in a corpus. This is useful for viewing documents 
-indexed so far and remove documents that are no longer needed. It helps you 
+The List Documents endpoint lets you view the Document IDs and their associated
+metadata in a corpus. This is useful for viewing documents indexed so far and 
+helping you decide to remove documents that are no longer needed. It helps you 
 manage the document lifecycle in your environent.
 
 This information enables you to catalog and inventory large amounts of data 
