@@ -13,7 +13,7 @@ info:
     name: Vectara Support
     email: support@vectara.com
     url: http://support.vectara.com/
-  description: "Vectara provides an end-to-end platform for creating GenAI products using \na simple to use API.\n\nYou can [sign up for an account](https://vectara.com) and \nthen view several [API Recipes](https://docs.vectara.com/docs/api-recipes) with example queries \nand parameter values.\n\n:::note\n\nAPI Keys can be used for querying and indexing operations, but cannot at this \ntime be used for administrative operations such as creating or deleting \ncorpora. These operations authenticate with a Bearer Token via the \nOAuth 2.0 client credentials grant. Review the [**OAuth 2.0 section**](https://docs.vectara.com/docs/learn/authentication/oauth-2) about \nhow to generate the token."
+  description: "Vectara provides an end-to-end platform for creating GenAI products using \na simple to use API.\n\nYou can [sign up for an account](https://console.vectara.com/signup) and \nthen view several [API Recipes](https://docs.vectara.com/docs/api-recipes) with example queries \nand parameter values.\n\nThe Vectara API Playground lets you experiment with REST endpoints from \nyour browser. Select an endpoint to view its definition, including the \nrequired or optional headers, body, responses, and sample commands. On the \nright side of each endpoint page, like [ReadCorpus](/docs/rest-api/read-corpus), you manually \nenter your API Key or OAuth Bearer Token, `customer_id`, and then any \nrequired body parameters like the `corpusID` before sending the API \nrequest.\n\n:::note\n\nAPI Keys can be used for querying and indexing operations, but cannot at this \ntime be used for administrative operations such as creating or deleting \ncorpora. These operations authenticate with a Bearer Token via the \nOAuth 2.0 client credentials grant. Review the [**OAuth 2.0 section**](https://docs.vectara.com/docs/learn/authentication/oauth-2) about \nhow to generate the token."
 tags:
   - name: AdminService
     description: Administrative operations, such as creating or deleting corpora
@@ -54,7 +54,11 @@ paths:
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
         - $ref: '#/components/parameters/timeout'
-      description: "Computes the amount of quota consumed across the entire Vectara account.\n\nSome tips for this API:\n* This operation only works with OAuth 2.0 (in a JWT \"Bearer Token\") authentication. It does not work with API Keys.  You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).\n"
+      description: |
+        Computes the amount of quota consumed across the entire Vectara account.
+
+        Some tips for this API:
+        * This operation only works with OAuth 2.0 (in a JWT "Bearer Token") authentication. It does not work with API Keys.  You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
   /v1/compute-corpus-size:
     post:
       operationId: ComputeCorpusSize
@@ -435,6 +439,41 @@ paths:
         * The `filter` feature applies to either the name *or* the description of a corpus.
       security:
         - oAuth: []
+  /v1/list-documents:
+    post:
+      operationId: ListDocuments
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listsListDocumentsResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/googlerpcStatus"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/listsListDocumentsRequest"
+        description: Request to list documents in a corpus.
+        required: true
+      tags:
+        - DocumentService
+      parameters:
+        - $ref: '#/components/parameters/customerIdentifier'
+        - $ref: '#/components/parameters/timeout'
+      description: |
+        Lists information about each document ingested into the corpus including the Document ID and metadata. This is useful for managing the lifecycle of documents and a quick way to check which documents are already in the index.
+
+        Some tips for this API:
+        * This operation only works with OAuth 2.0 (in a JWT "Bearer Token") authentication. It does not work with API Keys.  You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+      security:
+        - oAuth: []
   /v1/list-jobs:
     post:
       operationId: ListJobs
@@ -497,7 +536,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
         - $ref: '#/components/parameters/timeout'
-      description: "Lists the users in your account along with their corpus access and customer-level authorizations. \n\nSome tips for this API:\n* This operation only works with OAuth 2.0 (in a JWT \"Bearer Token\") authentication. It does not work with API Keys. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).\n* Use this API to view the members on your team. If you need to manage their access, use the Manage User endpoint.\n"
+      description: List Users
   /v1/manage-user:
     post:
       operationId: ManageUser
@@ -525,12 +564,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
         - $ref: '#/components/parameters/timeout'
-      description: |
-        Lets you manage users in your account by adding, deleting, enabling, or disabling users. You can also reset their passwords and edit user roles. This endpoint can help you streamline your onboarding process by programmatically adding new users, assigning appropriate roles, and setting up permissions.
-
-        Some tips for this API:
-        * This operation only works with OAuth 2.0 (in a JWT "Bearer Token") authentication. It does not work with API Keys. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
-        * Add multiple users by including additional “user” objects into the userAction array.
+      description: Manage User
   /v1/query:
     post:
       operationId: Query
@@ -929,6 +963,18 @@ components:
           type: string
           description: Corpus name.
       description: Message containing corpus name and id.
+    ListDocumentsResponseDocumentInfo:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The document ID that was used when indexing the document.
+        metadata:
+          type: array
+          items:
+            $ref: "#/components/schemas/comvectaraAttribute"
+          description: Document metadata.
+      description: Document information format of each document in the list.
     ManageUserRequestUserAction:
       type: object
       properties:
@@ -1845,6 +1891,16 @@ components:
          - USER_TYPE__FEDERATED_USER: A user that is authenticated by an external identity provider such as Google etc.
          - USER_TYPE__APP_CLIENT: An application client. Please note that this doesn't work with ManageUser API.
         To create an App Client, use the ManageAppClient API.
+    comvectaraAttribute:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the document metadata attribute.
+        value:
+          type: string
+          description: Value of the document metadata attribute.
+      description: A key/value pair representing a document attribute (metadata item).
     comvectaraStatus:
       type: object
       properties:
@@ -1902,6 +1958,56 @@ components:
             $ref: "#/components/schemas/indexingSection"
           description: A list of subsections.
       description: A section within a structured document.
+    listsListDocumentsRequest:
+      type: object
+      properties:
+        corpusId:
+          type: integer
+          format: int64
+          description: The Corpus ID.
+        numResults:
+          type: integer
+          format: int64
+          description: |-
+            Maximum number of results to be returned by the server.
+            Max is 1000.
+            If the value is larger than 1000, it will be capped to 1000.
+        pageKey:
+          type: string
+          format: byte
+          description: >-
+            Key of the specific page of the list results to return.
+
+            Null/empty value means the very first page of the results is requested.
+        metadataFilter:
+          type: string
+          description: >-
+            Filter on document metadata. If empty, no filtering is done.
+
+            Otherwise, only documents that match all of the specified metadata
+
+            will be returned. The syntax is the same as for QueryRequest.metadata.
+      description: Request to list documents in a corpus.
+    listsListDocumentsResponse:
+      type: object
+      properties:
+        document:
+          type: array
+          items:
+            $ref: "#/components/schemas/ListDocumentsResponseDocumentInfo"
+          description: The list of documents.
+        nextPageKey:
+          type: string
+          format: byte
+          description: >-
+            Represents the pagination key to retrieve the next page of results.
+
+            If the value is "", it means no further results for the request.
+
+            To retrieve the next page of results, client shall pass the value of next_page_key in the subsequent
+
+            ListDocumentsRequest method call (in the request message's page_key field).
+      description: Response of listing documents in a corpus.
     protobufAny:
       type: object
       properties:
@@ -2097,13 +2203,6 @@ components:
               "@type": "type.googleapis.com/google.protobuf.Duration",
               "value": "1.212s"
             }
-    servingAttribute:
-      type: object
-      properties:
-        name:
-          type: string
-        value:
-          type: string
     servingBatchQueryRequest:
       type: object
       properties:
@@ -2300,7 +2399,7 @@ components:
         metadata:
           type: array
           items:
-            $ref: "#/components/schemas/servingAttribute"
+            $ref: "#/components/schemas/vectaraservingAttribute"
     servingSummarizationRequest:
       type: object
       properties:
@@ -2575,6 +2674,13 @@ components:
             The actual content of the document, structured as a repeating list
             of sections.
       description: A document to index.
+    vectaraservingAttribute:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
     vectaraservingCustomDimension:
       type: object
       properties:
@@ -2596,7 +2702,7 @@ components:
         metadata:
           type: array
           items:
-            $ref: "#/components/schemas/servingAttribute"
+            $ref: "#/components/schemas/vectaraservingAttribute"
         documentIndex:
           type: integer
           format: int64
@@ -2700,14 +2806,14 @@ components:
       in: header
       name: customer-id
       required: true
-      description: The Customer ID to use for the request.
+      description: Enter the Customer ID to use for the request.
       schema:
         type: integer
     timeout:
       in: header
       name: timeout
       required: false
-      description: Optional timeout value of the request in seconds, such as 10S or 30S.
+      description: (Optional) Enter the timeout value of the request in seconds, such as 10S or 30S.
       schema:
         type: string
         default: "30S"
