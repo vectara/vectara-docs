@@ -7,10 +7,10 @@ sidebar_label: List Documents API Definition
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The List Documents endpoint lets you view the Document IDs and their associated
-metadata in a corpus. This is useful for viewing documents indexed so far and 
-helping you decide to remove documents that are no longer needed. It helps you 
-manage the document lifecycle in your environent.
+The List Documents endpoint lets you view the Document IDs and their metadata 
+in a corpus. This is useful for viewing documents indexed so far and helping 
+you decide to remove documents that are no longer needed. It helps you manage 
+the document lifecycle in your environent.
 
 This information enables you to catalog and inventory large amounts of data 
 while also extracting lists of documents for further analysis. For example, 
@@ -19,7 +19,7 @@ capabilities into their applications.
 
 :::tip
 
-Check out our interactive API Playground that lets you experiment with this 
+Check out our [interactive API Playground](/docs/rest-api/list-documents) that lets you experiment with this 
 REST endpoint to manage your documents.
 
 :::
@@ -27,8 +27,8 @@ REST endpoint to manage your documents.
 ## List Documents Request and Response
 
 The request to list documents provides detailed information about documents 
-uploaded to the corpus. You specify the `num_results`, `page_key`, and 
-`metadata_filter`. This list documents request also requires the following 
+uploaded to the corpus. You specify the `numResults`, `pageKey`, and 
+`metadataFilter`. This list documents request also requires the following 
 parameters:
 
 * Customer ID
@@ -46,7 +46,18 @@ configure up to 1000.
 to update the status of a corpus:
 <code>https://<Config v="domains.rest.admin"/>/v1/list-documents</code>
 
-### List Documents Example
+### Example Request
+
+```json
+{
+  "corpusId": 12,
+  "numResults": 20,
+  "pageKey": "",
+  "metadataFilter": ""
+}
+```
+
+### Example Reponse
 
 ```json
 {
