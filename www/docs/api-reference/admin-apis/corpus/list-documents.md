@@ -51,7 +51,7 @@ to update the status of a corpus:
 ```json
 {
   "corpusId": 12,
-  "numResults": 20,
+  "numResults": 5,
   "pageKey": "",
   "metadataFilter": ""
 }
@@ -61,13 +61,45 @@ to update the status of a corpus:
 
 ```json
 {
-  "id": "NHL2023-24Rulebook_Part2.pdf",
-  "metadata": {
-    "CreationDate": "1704344165",
-    "Producer": "Acrobat 11.0.3",
-    "Creator": "Acrobat 11.0.3",
-    "ModDate": "1704344166",
-    "title": "Front Page"
-  }
+  "document": [
+    {
+      "id": "NHL2023-24Rulebook_Part1.pdf",
+      "metadata": [
+        {
+        "CreationDate": "1704344165",
+        "Producer": "Acrobat 11.0.3",
+        "Creator": "Acrobat 11.0.3",
+        "ModDate": "1704344166",
+        "title": "Front Page"
+        },
+      ]
+    },
+    {
+      "id": "NHL2023-24Rulebook_Part2.pdf",
+      "metadata": [
+       {
+        "CreationDate": "1704344166",
+        "Producer": "Acrobat 11.0.3",
+        "Creator": "Acrobat 11.0.3",
+        "ModDate": "1704344167",
+        "title": "Section 1 - Officials"
+       },
+      ]
+    },
+    {
+      "id": "NHL2023-24Rulebook_Part3.pdf",
+      "metadata": [
+       {
+        "CreationDate": "1704344167",
+        "Producer": "Acrobat 11.0.3",
+        "Creator": "Acrobat 11.0.3",
+        "ModDate": "1704344167",
+        "title": "Index"
+       },
+      ]
+    }
+  ]
+  "nextPageKey": ""
 }
+
 ```
