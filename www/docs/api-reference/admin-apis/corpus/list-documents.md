@@ -46,7 +46,7 @@ configure up to 1000.
 to update the status of a corpus:
 <code>https://<Config v="domains.rest.admin"/>/v1/list-documents</code>
 
-### Example Request
+### List Documents Request Example
 
 ```json
 {
@@ -57,7 +57,7 @@ to update the status of a corpus:
 }
 ```
 
-### Example Reponse
+### List Documents Reponse Example
 
 ```json
 {
@@ -66,40 +66,103 @@ to update the status of a corpus:
       "id": "NHL2023-24Rulebook_Part1.pdf",
       "metadata": [
         {
-        "CreationDate": "1704344165",
-        "Producer": "Acrobat 11.0.3",
-        "Creator": "Acrobat 11.0.3",
-        "ModDate": "1704344166",
-        "title": "Front Page"
+          "name": "CreationDate",
+          "value": "1704344165"
         },
+        {
+          "name": "Producer",
+          "value": "Acrobat 11.0.3"
+        },
+        {
+          "name": "Creator",
+          "value": "Acrobat 11.0.3"
+        },
+        {
+          "name": "ModDate",
+          "value": "1704344166"
+        },
+        {
+          "name": "title",
+          "value": "Section 1 - Playing Area"
+        }
       ]
     },
     {
       "id": "NHL2023-24Rulebook_Part2.pdf",
       "metadata": [
-       {
-        "CreationDate": "1704344166",
-        "Producer": "Acrobat 11.0.3",
-        "Creator": "Acrobat 11.0.3",
-        "ModDate": "1704344167",
-        "title": "Section 1 - Officials"
-       },
+        {
+          "name": "CreationDate",
+          "value": "1704344166"
+        },
+        {
+          "name": "Producer",
+          "value": "Acrobat 11.0.3"
+        },
+        {
+          "name": "Creator",
+          "value": "Acrobat 11.0.3"
+        },
+        {
+          "name": "ModDate",
+          "value": "1704344167"
+        },
+        {
+          "name": "title",
+          "value": "Section 2 - Teams"
+        }
       ]
     },
     {
       "id": "NHL2023-24Rulebook_Part3.pdf",
       "metadata": [
-       {
-        "CreationDate": "1704344167",
-        "Producer": "Acrobat 11.0.3",
-        "Creator": "Acrobat 11.0.3",
-        "ModDate": "1704344167",
-        "title": "Index"
-       },
+        {
+          "name": "CreationDate",
+          "value": "1704344167"
+        },
+        {
+          "name": "Producer",
+          "value": "Acrobat 11.0.3"
+        },
+        {
+          "name": "Creator",
+          "value": "Acrobat 11.0.3"
+        },
+        {
+          "name": "ModDate",
+          "value": "1704344167"
+        },
+        {
+          "name": "title",
+          "value": "Section 3 - Equipment"
+        }
+      ]
+    },
+    {
+      "id": "NHL2023-24Rulebook_Part4.pdf",
+      "metadata": [
+        {
+          "name": "CreationDate",
+          "value": "1704344168"
+        },
+        {
+          "name": "Producer",
+          "value": "Acrobat 11.0.3"
+        },
+        {
+          "name": "Creator",
+          "value": "Acrobat 11.0.3"
+        },
+        {
+          "name": "ModDate",
+          "value": "1704344168"
+        },
+        {
+          "name": "title",
+          "value": "Section 4 - Types of Penalties"
+        }
       ]
     }
-  ]
+  ],
   "nextPageKey": ""
 }
-
 ```
