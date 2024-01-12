@@ -6,15 +6,18 @@ sidebar_label: Standard Indexing API Definition
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '@site/docs/definitions.md';
+import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
+import {Config} from '@site/docs/definitions.md';
 
 The first step in using <Config v="names.product"/> is to index a set of related 
 documents or content into a corpus. Indexing a document enables you to make 
-data available for search and retrieval more efficiently. 
+data available for search and retrieval more efficiently. The Standard 
+Indexing API is recommended for applications where documents already have a 
+clear and consistent structure.
 
-Our standard indexing transforms unstructured or semi-structured data into a 
-format that enables the data to become easily searchable in just a couple of 
+Our Standard Indexing capability transforms this structured data into a 
+format that enables the data to become easily searchable in just a few 
 seconds. We also support a variety of data formats by allowing you to specify 
 multiple document attributes and metadata.
 
@@ -22,7 +25,7 @@ multiple document attributes and metadata.
 
 * Check out our [**interactive API Playground**](/docs/rest-api/index) that lets you experiment 
 with this endpoint to index documents from your browser.
-* We also provide REST Index examples in in [C#](/docs/getting-started-samples/RestIndexData.cs), [Java](/docs/getting-started-samples/RestIndex.java), [NodeJS](/docs/getting-started-samples/index_document.js), [PHP](/docs/getting-started-samples/indexDocument.php), and [Python](/docs/getting-started-samples/rest_index_document.py).
+* We also provide REST Index examples in in [**C#**](/docs/getting-started-samples/RestIndexData.cs), [**Java**](/docs/getting-started-samples/RestIndex.java), [**NodeJS**](/docs/getting-started-samples/index_document.js), [**PHP**](/docs/getting-started-samples/indexDocument.php), and [**Python**](/docs/getting-started-samples/rest_index_document.py).
 
 :::
 
@@ -42,20 +45,21 @@ indicates how much quota would have been consumed.
 
 :::note
 
-The storage quota object returns the number of characters consumed and the number
-of metadata characters consumed. The total quota consumed is simply the sum of
-both values.
+The storage quota object returns the number of characters consumed and the 
+number of metadata characters consumed. The total quota consumed is simply the 
+sum of both values.
 
 :::
 
-## Document Definition
+## Document Object Definition
 
-A `document` object encapsulates the information about the data that you want to 
-index. This object has a `document_id` which must be unique among all the 
-documents in the same corpus. The document may optionally speciify a `title`, 
-`description`, and `metadata`. The core of the document is also structured in 
-`sections` that can include unique identifiers, titles, strings, metadata, and 
-so on.
+A `document` object encapsulates the information about the data that you want 
+to index. A **document** in Vectara is very flexible because it represent a 
+short tweet or book with thousands of pages. This object has a `document_id` 
+which must be unique among all the documents in the same corpus. The document 
+may optionally speciify a `title`, `description`, and `metadata`. The core of 
+the document is also structured in `sections` that can include unique 
+identifiers, titles, strings, metadata, and so on. 
 
 The `custom_dims` field provides default values for the corresponding
 section fields, should they fail to define them explicitly. Most importantly, 
@@ -324,17 +328,4 @@ The server sends an empty reply in response.
 ```protobuf
 message DeleteDocumentResponse {
 }
-```
-
-## Frequently Asked Questions
-
-### Error received from peer...Trying to connect an http1.x server
-
-You are receiving this error message because you are trying to connect via
-an insecure channel. The endpoint only allows secure (TLS) connections.
-
-This is bad:
-
-```python
-grpc.insecure_channel(...)
 ```

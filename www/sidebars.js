@@ -68,6 +68,11 @@ module.exports = {
         },
         {
           type: 'doc',
+          id: 'learn/select-ideal-indexing-api',
+          label: "Select the Ideal Indexing API",
+        },
+        {
+          type: 'doc',
           id: 'learn/enable-keyword-text-matching',
           label: "Enable Exact Keyword Text Matching",
         },
@@ -150,7 +155,6 @@ module.exports = {
         'api-reference/api-overview',
         'api-reference/protobuf-definitions',
         'api-reference/rest',
-        'api-reference/select-ideal-indexing-api',
                  {
             type: 'category',
             label: 'Indexing APIs',

@@ -4,12 +4,17 @@ title: Vectara APIs Overview
 sidebar_label: Vectara APIs Overview
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+import {vars} from '@site/static/variables.json';
 import {Config} from '@site/docs/definitions.md';
 
 Everything in <Config v="names.product"/> is driven by APIs. This section serves 
 as a roadmap to understanding and using our [gRPC APIs](/docs/api-reference/protobuf-definitions) and 
-[REST APIs](/docs/api-reference/rest). Before getting into more details, we recommend that 
-you have a basic understanding of API concepts.
+[REST APIs](/docs/api-reference/rest) for indexing, searching, and administrative tasks.
+Before getting into more details, we 
+recommend that you have a basic understanding of API concepts.
 
 ## :star2: Ready to Dive In? Check Out Our API Playground! :star2:
 
@@ -46,8 +51,8 @@ provides the message definitions for running queries.
   JWT tokens.
 
 ## Choosing gRPC or REST APIs
-Almost every API has both a [gRPC](https://en.wikipedia.org/wiki/GRPC) and a
-REST(https://en.wikipedia.org/wiki/Representational_state_transfer) endpoint.
+Almost every API has both a [gRPC](https://en.wikipedia.org/wiki/GRPC) and a 
+[REST](https://en.wikipedia.org/wiki/Representational_state_transfer) endpoint.
 The only exception at this time is the [File Upload API](/docs/api-reference/indexing-apis/file-upload/file-upload),
 which is only available via REST.
 
