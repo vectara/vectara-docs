@@ -9,30 +9,36 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-## Delete Documents Endpoint Address
+The Delete Documents API lets you delete a document from a corpus.
 
-<Config v="names.product"/> exposes a REST endpoint at the following URL
-to delete content from a corpus:
-<code>https://<Config v="domains.rest.indexing"/>/v1/delete-doc</code>
+:::tip
 
-### Request Headers
+Check out our [**interactive API Playground**](/docs/rest-api/delete-doc) that enables you
+to experiment with this REST endpoint. You can delete a file from a corpus
+directly from your browser or copy the curl for your command line.
 
-To interact with the Index service via REST calls, you need the following 
-headers:
+:::
 
-* `customer_id` is the customer ID to use for the request.
-* An API Key or JWT token is your authentication method
-* (Optional) `grpc-timeout` lets you specify how long to wait for the calls 
-  that have the potential to take longer to process. We recommend 
-  `-H "grpc-timeout: 30S"`
-
-### Request Body
+### Delete Document Request and Response
 
 A request to delete a document from a corpus consists of three key pieces of 
 information:
 * `customer_id`
 * `corpus_id`
 * `document_id`
+
+The reply on successful deletion is `{}`.
+
+
+## REST Example
+
+### Delete Documents Endpoint Address
+
+<Config v="names.product"/> exposes a REST endpoint at the following URL
+to delete content from a corpus:
+<code>https://<Config v="domains.rest.indexing"/>/v1/delete-doc</code>
+
+### Delete Document Request and Response
 
 ```json
 {
@@ -41,26 +47,24 @@ information:
   "documentId": "my_document.docx"
 }
 ```
+You get the following response:
+
+```json
+{}
+```
+To verify that the document no longer exists in the corpus, use the 
+List Documents endpoint.
+
+## gRPC Example
+
+You can find the Delete Document gRPC definition at [common.proto](https://github.com/vectara/protos/blob/main/common.proto).
 
 The reply from the server consists of nothing yet. Note that while the 
 operation is not completely synchronous (the document may still be returned 
 in query results), the platform typically removes the document within a few 
 seconds, though it may take longer for Growth accounts.
 
-<!-- Will probably remove the following and replace with REST
-
-### gRPC Status Codes
-
-The server returns the following [gRPC status codes](https://grpc.github.io/grpc/core/md_doc_statuscodes.html):
-
-- `INTERNAL`: An internal error code indicates a failure inside the platform, 
-  and an immediate retry may not succeed.
-- `UNAVAILABLE`: The service is temporarily unavailable, and the operation should be 
-  retried, preferably with a backoff. 
-  
-  Note that the deletion operation is idempotent, so it is fine to re-apply.
-
-### Delete a Document gRPC Example
+### Java and Python Examples
 
 The code snippet belows illustrates how to delete a document from a corpus in Java or Python. For information
 on how to get the call credentials and metadata, please consult
@@ -111,4 +115,15 @@ indexingStub.withCallCredentials(credentials(tokenSupplier.get().getOrDie()))
 </TabItem>
 </Tabs>
 
--->
+### gRPC Status Codes
+
+The server returns the following [gRPC status codes](https://grpc.github.io/grpc/core/md_doc_statuscodes.html):
+
+- `INTERNAL`: An internal error code indicates a failure inside the platform, 
+  and an immediate retry may not succeed.
+- `UNAVAILABLE`: The service is temporarily unavailable, and the operation should be 
+  retried, preferably with a backoff. 
+  
+  :::note
+  The deletion operation is idempotent, so it is fine to re-apply.
+  :::
