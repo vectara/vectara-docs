@@ -13,7 +13,7 @@ The Delete Documents API lets you delete a document from a corpus.
 
 :::tip
 
-Check out our [**interactive API Playground**](/docs/rest-api/delete-doc) that enables you
+Check out our [**interactive API Playground**](/docs/rest-api/delete) that enables you
 to experiment with this REST endpoint. You can delete a file from a corpus
 directly from your browser or copy the curl for your command line.
 
