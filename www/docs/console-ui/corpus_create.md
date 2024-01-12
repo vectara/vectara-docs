@@ -30,30 +30,49 @@ together in a single location for querying.
 The corpus is created and a confirmation message appears. It is now ready to 
 receive your data.
 
-![Create Corpus](/img/create_corpus_success.png)
+## View the Corpus ID
+
+Vectara API requests against a corpus require the corpus ID. Find the corpus 
+ID in the top-left corner of the corpus view, near the corpus name.
+
+![View Corpus ID](/img/view_corpus_id.png)
 
 When you create a corpus, the following tabs appear:
 
-## Overview
+## Data
 
-The Overview section provides information about the corpus including usage statistics  
+The Data tab provides a link to the API documentation and drag-and-drop file 
+uploader. Click **Upload files** and then select your text, HTML, PDF, Word 
+files, and more. It is the quickest way to ingest your data to ask some 
+questions.
+
+The Data tab also lets you take a Vectara test drive by loading sample 
+data from an employee handbook PDF. 
+
+
+## Query
+
+The Query tab lets you ask questions about your data. You can also use 
+Advanced options and use the Search Inspector to copy and paste queries in 
+your application code and view responses
+
+## Analytics
+
+The Analytics tab provides usage statistics about the corpus and you can 
+download this data in `.SVG`, `.PNG`, or `.CSV` format.
+
+
 and configuration information about the embedding model, indexing semantics, 
 and filter attributes. Click Edit to modify the filter attributes from this page.
 
-## Authorization
+## Access Control
 
-The Authorization section defines the users and role that have access to the 
-corpus. You can also [create new user roles](/docs/learn/authentication/role-based-access-control) 
-and [API keys](/docs/console-ui/manage-api-access) associated with this corpus.
+The Access Control tab defines the users and roles that have access to the 
+corpus. You can also [create new user roles](/docs/learn/authentication/role-based-access-control), 
+a default role, and [API keys](/docs/console-ui/manage-api-access) associated with this corpus.
 
-## Data Ingestion
+## Configuration
 
-The Data Ingestion section lets you upload files to the corpus, including 
-text, HTML, PDF, Word files, and more. It is the quickest way to ask your data 
-some questions.
+The Configuration tab lets you view the embedding model and filter attributes 
+for the corpus. You can also Edit filter attributes from this page.
 
-## Search
-
-The Search section lets you ask questions about your data. You can also use 
-Advanced options and use the Search Inspector to copy and paste queries in 
-your application code and view responses
