@@ -68,6 +68,11 @@ module.exports = {
         },
         {
           type: 'doc',
+          id: 'learn/select-ideal-indexing-api',
+          label: "Select the Ideal Indexing API",
+        },
+        {
+          type: 'doc',
           id: 'learn/enable-keyword-text-matching',
           label: "Enable Exact Keyword Text Matching",
         },
@@ -160,34 +165,7 @@ module.exports = {
         'api-reference/api-overview',
         'api-reference/protobuf-definitions',
         'api-reference/rest',
-         {
-            type: 'category',
-            label: 'Authentication Examples',
-            items: [
-              {
-                type: 'category',
-                label: 'OAuth 2.0 Client Credentials Grant Examples',
-                items: [
-                  'getting-started-samples/JWTFetcher.cs',
-                  'getting-started-samples/JwtFetcher.java',
-                  'getting-started-samples/getJwtToken.php',
-                  'getting-started-samples/rest_util.py'
-                ]
-              },
-              {
-                type: 'category',
-                label: 'API Key REST Examples',
-                items: [
-                  'getting-started-samples/RestApiKeyQueries.cs',
-                  'getting-started-samples/RestApiKeyQueries.java',
-                  'getting-started-samples/queryDataApiKey.php',
-                  'getting-started-samples/rest_api_key_queries.py',
-                  'getting-started-samples/app.js',
-                ]
-              }
-           ]
-          },
-        {
+                 {
             type: 'category',
             label: 'Indexing APIs',
             items: [
@@ -235,25 +213,25 @@ module.exports = {
                   },
                 ]
               },
-              {
-                type: 'category',
-                label: 'Document Deletion API',
-                items: [
-                  'api-reference/indexing-apis/deleting-documents',
-                  {
-                    type: 'category',
-                    label: 'REST Examples',
-                    items: [
-                      'getting-started-samples/RestDeleteDocument.cs',
-                      'getting-started-samples/RestDeleteDocument.java',
-                      'getting-started-samples/delete_document.js',
-                      'getting-started-samples/deleteDocument.php',
-                      'getting-started-samples/rest_delete_document.py',
-                    ]
-                  },
-                ]
-              },
             ],
+        },
+        {
+          type: 'category',
+          label: 'Delete Documents API',
+          items: [
+            'api-reference/indexing-apis/deleting-documents',
+            {
+              type: 'category',
+              label: 'REST Examples',
+              items: [
+                'getting-started-samples/RestDeleteDocument.cs',
+                'getting-started-samples/RestDeleteDocument.java',
+                'getting-started-samples/delete_document.js',
+                'getting-started-samples/deleteDocument.php',
+                'getting-started-samples/rest_delete_document.py',
+              ]
+            },
+          ]
         },
         {
             type: 'category',
@@ -380,8 +358,35 @@ module.exports = {
               ]
             },
           ],
-        }
+        },
       ],
+    },
+    {
+      type: 'category',
+      label: 'API Authentication Examples',
+      items: [
+        {
+          type: 'category',
+          label: 'OAuth 2.0 Client Credentials Grant Examples',
+          items: [
+            'getting-started-samples/JWTFetcher.cs',
+            'getting-started-samples/JwtFetcher.java',
+            'getting-started-samples/getJwtToken.php',
+            'getting-started-samples/rest_util.py'
+          ]
+        },
+        {
+          type: 'category',
+          label: 'API Key REST Examples',
+          items: [
+            'getting-started-samples/RestApiKeyQueries.cs',
+            'getting-started-samples/RestApiKeyQueries.java',
+            'getting-started-samples/queryDataApiKey.php',
+            'getting-started-samples/rest_api_key_queries.py',
+            'getting-started-samples/app.js',
+          ]
+        }
+     ]
     },
   ],
   restOAS: [
