@@ -306,26 +306,3 @@ message CustomDimension {
 For more information on how to use custom dimensions, refer to the
 [Custom Dimensions Usage Documentation](/docs/learn/semantic-search/add-custom-dimensions)
 
-## Delete Document
-
-Document deletion requires specifying the `corpus_id` and `document_id`. The
-`customer_id` is optional, and, if specified, must match the id of your
-account.
-
-```protobuf
-message DeleteDocumentRequest {
-  // The Customer ID to issue the request for.
-  int64 customer_id = 1;
-  // The Corpus ID that contains the document.
-  int64 corpus_id = 2;
-  // The Document ID to be deleted.
-  string document_id = 3;
-}
-```
-
-The server sends an empty reply in response.
-
-```protobuf
-message DeleteDocumentResponse {
-}
-```
