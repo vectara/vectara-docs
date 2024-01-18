@@ -193,7 +193,7 @@ ${content}
     announcementBar: {
       id: "genai_launch",
       content:
-        'Vectara now has enhanced metadata filtering capabilities, offering the ability to edit and update filters and data types to elevate your search and GenAI experience! For more details, see our blog <a href="https://vectara.com/why-is-metadata-important-in-genai/">here<a>',
+        'Vectara now streamlines performance and enhances RAG capabilities across a variety of data sources through efficient data ingestion with Airbyte. For more details, see our blog <a href="https://vectara.com/blog/vectara-and-airbyte/">here<a>',
       backgroundColor: "#fafbfc",
       textColor: "#091E42",
       isCloseable: true,
