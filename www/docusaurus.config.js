@@ -165,14 +165,6 @@ ${content}
         },
       },
     ],
-    [
-      "@vectara/docusaurus-search",
-      {
-        customerId: "3874164736",
-        apiKey: "zqt_5usQAFwTytdQHAXn17Iq31OQMA5RrIBWLI7Fwg",
-        corpusId: "1",
-      },
-    ],
   ],
 
   scripts: [
