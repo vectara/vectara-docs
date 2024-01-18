@@ -293,6 +293,41 @@ paths:
       description: "Enables or disables a specific API key.\n \nSome tips for this API:\n* This operation only works with OAuth 2.0 (in a JWT \"Bearer Token\") authentication. It does not work with API Keys. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).\n"
       security:
         - oAuth: []
+  /v1/get-usage-metrics:
+    post:
+      operationId: GetUsageMetrics
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/adminUsageMetricsResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/googlerpcStatus"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/adminUsageMetricsRequest"
+        required: true
+      tags:
+        - AdminService
+      parameters:
+        - $ref: '#/components/parameters/customerIdentifier'
+        - $ref: '#/components/parameters/timeout'
+      description: |
+        Displays usage information about indexing and query operations in a corpus. This helps administrators in analyzing and managing resource consumption more efficiently for specific corpora.
+
+        Some tips for this API:
+        * Use these metrics to determine usage patterns that enable you to optimize resource allocations.
+        * This operation only works with OAuth 2.0 (in a JWT "Bearer Token") authentication. It does not work with API Keys.  You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+      security:
+        - oAuth: []
   /v1/index:
     post:
       operationId: Index
@@ -1070,6 +1105,32 @@ components:
         mmrConfig:
           $ref: "#/components/schemas/servingMMRConfig"
       description: Configuration options to apply to the reranking.
+    UsageMetricsRequestMetricType:
+      type: string
+      enum:
+        - METRICTYPE__NONE
+        - METRICTYPE__INDEXING
+        - METRICTYPE__SERVING
+      default: METRICTYPE__NONE
+      title: The type of metric to get
+    UsageMetricsResponseIntervalValue:
+      type: object
+      properties:
+        indexingValue:
+          $ref: "#/components/schemas/adminIndexingMetric"
+        servingValue:
+          $ref: "#/components/schemas/adminServingMetric"
+      title: The response for a single interval
+    adminAbsoluteWindow:
+      type: object
+      properties:
+        startEpochSecs:
+          type: string
+          format: int64
+        endEpochSecs:
+          type: string
+          format: int64
+      title: This window is used to specify a time range for metrics
     adminApiKey:
       type: object
       properties:
@@ -1411,6 +1472,33 @@ components:
         - FILTER_ATTRIBUTE_TYPE__TEXT_LIST
         - FILTER_ATTRIBUTE_TYPE__BOOLEAN
       default: FILTER_ATTRIBUTE_TYPE__UNDEFINED
+    adminIndexingMetric:
+      type: object
+      properties:
+        docCount:
+          type: string
+          format: uint64
+          title: The number of documents indexed
+        docPartCount:
+          type: string
+          format: uint64
+          title: The number of document parts indexed
+        docPartBytes:
+          type: string
+          format: uint64
+          description: >-
+            The number of bytes indexed.
+
+            In case of Upload API, this is the actual bytes extracted from the document and not
+
+            the size of the document.
+
+            In case of Index API, this is the combined size of text in all the sections of the document.
+        startEpochSecs:
+          type: string
+          format: int64
+          title: The start time for this metric
+      title: Indexing data
     adminJob:
       type: object
       properties:
@@ -1782,6 +1870,22 @@ components:
       properties:
         status:
           $ref: "#/components/schemas/comvectaraStatus"
+    adminServingMetric:
+      type: object
+      properties:
+        rowsRead:
+          type: string
+          format: uint64
+          title: The number of rows read
+        queryCount:
+          type: string
+          format: uint64
+          title: The number of queries
+        startEpochSecs:
+          type: string
+          format: int64
+          title: The start time for this metric
+      title: Serving/querying data
     adminTextSize:
       type: object
       properties:
@@ -1807,6 +1911,42 @@ components:
     adminUpdateCorpusEnablementResponse:
       type: object
       properties:
+        status:
+          $ref: "#/components/schemas/comvectaraStatus"
+    adminUsageMetricsRequest:
+      type: object
+      properties:
+        corpusId:
+          type: integer
+          format: int64
+          description: The corpus for which the metric is requested.
+        window:
+          $ref: "#/components/schemas/adminAbsoluteWindow"
+        type:
+          $ref: "#/components/schemas/UsageMetricsRequestMetricType"
+        aggregationIntervalSecs:
+          type: string
+          format: int64
+          description: >-
+            The response stats will be aggregated by this interval. Minimum aggregation interval is 1 minute.
+
+            Supported granularity units for aggregation are days, hours and minutes.
+
+            For example, If 2.5 days (in seconds) are passed, results will be aggregated by 2 days.
+
+            Similarly, if 7.6 hours (in seconds) are passed, results will be aggregated by 7 hours.
+      title: The request type for usage metrics
+    adminUsageMetricsResponse:
+      type: object
+      properties:
+        values:
+          type: array
+          items:
+            $ref: "#/components/schemas/UsageMetricsResponseIntervalValue"
+          description: >-
+            List of IntervalValue containing values for either Indexing or Serving. These are
+
+            aggregated by the interval specified in the request.
         status:
           $ref: "#/components/schemas/comvectaraStatus"
     adminUser:
