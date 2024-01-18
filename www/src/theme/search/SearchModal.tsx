@@ -16,7 +16,9 @@ import {
   VuiSpacer,
   VuiText,
   VuiTextColor,
+  VuiSpinner,
 } from "./vui";
+import { BiSearch } from "react-icons/bi";
 import { FocusOn } from "react-focus-on";
 
 type Props = {
@@ -24,6 +26,7 @@ type Props = {
   searchValue?: string;
   onChange: (evt: ChangeEvent<HTMLInputElement>) => void;
   onKeyDown: (evt: ReactKeyboardEvent) => void;
+  sendSearch: () => void;
   onClose: () => void;
   resultsList: React.ReactNode;
   isOpen?: boolean;
@@ -36,6 +39,7 @@ export const SearchModal = forwardRef(
       searchValue,
       onChange,
       onKeyDown,
+      sendSearch,
       onClose,
       isOpen,
       resultsList,
@@ -76,13 +80,32 @@ export const SearchModal = forwardRef(
             >
               <div className="searchModalContainer">
                 <div ref={ref} className="searchModal">
-                  <SearchInput
-                    isLoading={isLoading}
-                    value={searchValue}
-                    onChange={onChange}
-                    onKeyDown={onKeyDown}
-                    placeholder="Search docs"
-                  />
+                  <form>
+                    <div className="searchForm">
+                      <SearchInput
+                        isLoading={isLoading}
+                        value={searchValue}
+                        onChange={onChange}
+                        onKeyDown={onKeyDown}
+                        placeholder="Search docs"
+                      />
+                      {isLoading ? (
+                        <div className="submitSpinner">
+                          <VuiSpinner size="xs" />
+                        </div>
+                      ) : (
+                        <button
+                          className="submitButton"
+                          onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                            e.preventDefault();
+                            sendSearch();
+                          }}
+                        >
+                          <BiSearch size="20px" />
+                        </button>
+                      )}
+                    </div>
+                  </form>
 
                   {resultsList && (
                     <div className="searchModalResults">{resultsList}</div>
