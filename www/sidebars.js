@@ -116,6 +116,17 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'Integrate with Other Systems',
+      collapsed: false,
+      items: [
+        'integrations/vectara-integrations-overview',
+        'integrations/integrate-with-langchain',
+        'integrations/integrate-with-llamaindex',
+        'integrations/integrate-with-flowise',
+      ]
+    },
+    {
+      type: 'category',
       label: 'Vectara Console',
       collapsed: false,
       items: [
