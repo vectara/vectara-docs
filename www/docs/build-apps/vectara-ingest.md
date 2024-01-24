@@ -12,5 +12,5 @@ Jira, Notion, Docusaurus) and ingests them into Vectara. This sample ingestion
 framework includes preconfigured templates for pulling data from many popular 
 data sources.
 
-Go to the [code repository](https://github.com/vectara/vectara-ingest) for information about 
+[Go to the code repository](https://github.com/vectara/vectara-ingest) for information about 
 how to use Vectara Ingest.
