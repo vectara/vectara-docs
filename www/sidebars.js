@@ -116,6 +116,16 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'Build Applications',
+      items: [
+        'build-apps/app-building',
+        'build-apps/vectara-ingest',
+        'build-apps/vectara-answer',
+        'build-apps/react-search',
+      ]
+     },
+    {
+      type: 'category',
       label: 'Vectara Console',
       collapsed: false,
       items: [
