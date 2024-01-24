@@ -165,7 +165,118 @@ module.exports = {
         'api-reference/api-overview',
         'api-reference/protobuf-definitions',
         'api-reference/rest',
-                 {
+        {
+          type: `category`,
+          label: `Account Admin APIs`,
+          items: [
+            'api-reference/admin-apis/compute-account-size'
+          ]
+        },
+        {
+          type: `category`,
+          label: `Access Admin APIs`,
+          items: [
+            {
+              type: 'category',
+              label: 'User Admin APIs',
+              items: [
+                'api-reference/admin-apis/manage-users/list-users',
+                'api-reference/admin-apis/manage-users/manage-user',
+              ]
+            },
+            {
+              type: 'category',
+              label: 'API Key Admin APIs',
+              items: [
+                'api-reference/api-keys/create-api-key',
+                'api-reference/api-keys/delete-api-key',
+                'api-reference/api-keys/list-api-keys',
+                'api-reference/api-keys/enable-api-key',
+              ]
+            },
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Corpus Admin APIs',
+          items: [
+            'api-reference/admin-apis/admin',
+            {
+              type: 'category',
+              label: 'Create Corpus',
+              items: [
+                'api-reference/admin-apis/create-corpus',
+                {
+                  type: 'category',
+                  label: 'Create Corpus   REST Examples',
+                  items: [
+                    'getting-started-samples/RestCreateCorpus.java',
+                    'getting-started-samples/create_corpus.js',
+                    'getting-started-samples/createCorpus.php',
+                    'getting-started-samples/rest_create_corpus.py'
+                  ]
+                }
+              ]
+            },
+            {
+              type: 'category',
+              label: 'Delete Corpus',
+              items: [
+                'api-reference/admin-apis/delete-corpus',
+                {
+                  type: 'category',
+                  label: 'Delete Corpus REST Examples',
+                  items: [
+                    'getting-started-samples/RestDeleteCorpus.cs',
+                    'getting-started-samples/delete_corpus.js',
+                    'getting-started-samples/deleteCorpus.php',
+                    'getting-started-samples/rest_delete_corpus.py'
+                  ]
+                }
+              ]
+            },
+            {
+              type: 'category',
+              label: 'Reset Corpus',
+              items: [
+                'api-reference/admin-apis/reset-corpus',
+                {
+                  type: 'category',
+                  label: 'Reset Corpus REST Examples',
+                  items: [
+                    'getting-started-samples/RestResetCorpus.cs',
+                    'getting-started-samples/reset_corpus.js',
+                    'getting-started-samples/resetCorpus.php',
+                    'getting-started-samples/rest_reset_corpus.py'
+                  ]
+                }
+              ]
+            },
+            'api-reference/admin-apis/corpus/update-corpus-enablement',
+            'api-reference/admin-apis/corpus/read-corpus',
+            'api-reference/admin-apis/corpus/compute-corpus-size',
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Document Admin APIs',
+          items: [
+            'api-reference/admin-apis/corpus/list-documents',
+            'api-reference/indexing-apis/deleting-documents',
+            {
+              type: 'category',
+              label: 'Delete Document REST Examples',
+              items: [
+                'getting-started-samples/RestDeleteDocument.cs',
+                'getting-started-samples/RestDeleteDocument.java',
+                'getting-started-samples/delete_document.js',
+                'getting-started-samples/deleteDocument.php',
+                'getting-started-samples/rest_delete_document.py',
+              ]
+            },
+          ]
+        },
+        {
             type: 'category',
             label: 'Indexing APIs',
             items: [
@@ -176,7 +287,7 @@ module.exports = {
                   'api-reference/indexing-apis/indexing',
                   {
                     type: 'category',
-                    label: 'REST Examples',
+                    label: 'Standard Indexing REST Examples',
                     items: [
                       'getting-started-samples/RestIndexData.cs',
                       'getting-started-samples/RestIndex.java',
@@ -203,7 +314,7 @@ module.exports = {
                   'api-reference/indexing-apis/file-upload/file-upload-filetypes',
                   {
                     type: 'category',
-                    label: 'REST Examples',
+                    label: 'File Upload REST Examples',
                     items: [
                       'getting-started-samples/RestUploadFile.java',
                       'getting-started-samples/upload_file.js',
@@ -216,35 +327,17 @@ module.exports = {
             ],
         },
         {
-          type: 'category',
-          label: 'Delete Documents API',
-          items: [
-            'api-reference/indexing-apis/deleting-documents',
-            {
-              type: 'category',
-              label: 'REST Examples',
-              items: [
-                'getting-started-samples/RestDeleteDocument.cs',
-                'getting-started-samples/RestDeleteDocument.java',
-                'getting-started-samples/delete_document.js',
-                'getting-started-samples/deleteDocument.php',
-                'getting-started-samples/rest_delete_document.py',
-              ]
-            },
-          ]
-        },
-        {
             type: 'category',
-            label: 'Search APIs',
+            label: 'Query APIs',
             items: [
               {
                 type: 'category',
-                label: 'Standard Search API',
+                label: 'Standard Query API',
                 items: [
                   'api-reference/search-apis/search',
                   {
                     type: 'category',
-                    label: 'REST Examples',
+                    label: 'Standard Query REST Examples',
                     items: [
                       'getting-started-samples/RestQueryData.cs',
                       'getting-started-samples/RestQuery.java',
@@ -268,98 +361,7 @@ module.exports = {
             },
             ],
         },
-        {
-          type: 'category',
-          label: 'Admin APIs',
-          items: [
-            'api-reference/admin-apis/compute-account-size',
-            'api-reference/admin-apis/manage-users/list-users',
-            'api-reference/admin-apis/manage-users/manage-user',
-            'api-reference/admin-apis/admin',
-            {
-              type: 'category',
-              label: 'Create Corpus',
-              items: [
-                'api-reference/admin-apis/create-corpus',
-                {
-                  type: 'category',
-                  label: 'REST Examples',
-                  items: [
-                    'getting-started-samples/RestCreateCorpus.java',
-                    'getting-started-samples/create_corpus.js',
-                    'getting-started-samples/createCorpus.php',
-                    'getting-started-samples/rest_create_corpus.py'
-                  ]
-                }
-              ]
-            },
-            {
-              type: 'category',
-              label: 'Delete Corpus',
-              items: [
-                'api-reference/admin-apis/delete-corpus',
-                {
-                  type: 'category',
-                  label: 'REST Examples',
-                  items: [
-                    'getting-started-samples/RestDeleteCorpus.cs',
-                    'getting-started-samples/delete_corpus.js',
-                    'getting-started-samples/deleteCorpus.php',
-                    'getting-started-samples/rest_delete_corpus.py'
-                  ]
-                }
-              ]
-            },
-            {
-              type: 'category',
-              label: 'Reset Corpus',
-              items: [
-                'api-reference/admin-apis/reset-corpus',
-                {
-                  type: 'category',
-                  label: 'REST Examples',
-                  items: [
-                    'getting-started-samples/RestResetCorpus.cs',
-                    'getting-started-samples/reset_corpus.js',
-                    'getting-started-samples/resetCorpus.php',
-                    'getting-started-samples/rest_reset_corpus.py'
-                  ]
-                }
-              ]
-            },
-            {
-              type: 'doc',
-              id: 'api-reference/admin-apis/corpus/list-documents',
-              label: "List Documents API Definition",
-            },
-            {
-              type: 'doc',
-              id: 'api-reference/admin-apis/corpus/compute-corpus-size',
-              label: "Compute Corpus Size API Definition",
-            },
-            {
-              type: 'doc',
-              id: 'api-reference/admin-apis/corpus/read-corpus',
-              label: "Read Corpus API Definition",
-            },
-            {
-              type: 'doc',
-              id: 'api-reference/admin-apis/corpus/update-corpus-enablement',
-              label: "Update Corpus Enablement API Definition",
-            },
-            {
-              type: 'category',
-              label: 'API Key Management APIs',
-              items: [
-                'api-reference/api-keys/create-api-key',
-                'api-reference/api-keys/delete-api-key',
-                'api-reference/api-keys/list-api-keys',
-                'api-reference/api-keys/enable-api-key',
-              ]
-            },
-          ],
-        },
-      ],
+        ],
     },
     {
       type: 'category',

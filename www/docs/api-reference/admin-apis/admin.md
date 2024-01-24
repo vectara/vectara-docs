@@ -1,7 +1,7 @@
 ---
 id: admin
-title: Corpus Administration APIs
-sidebar_label: Corpus Administration APIs
+title: Corpus Administration
+sidebar_label: Corpus Administration
 ---
 
 import Tabs from '@theme/Tabs';
