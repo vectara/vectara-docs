@@ -16,7 +16,7 @@ retrieval functionality for your generative AI applications.
 
 ### [Vectara Ingest](/docs/build-apps/vectara-ingest)
 
-Sample templates for pulling data from many popular data sources.
+Sample templates and crawlers for pulling data from many popular data sources.
 
 ## User interface
 
