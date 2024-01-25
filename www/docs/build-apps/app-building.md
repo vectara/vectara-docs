@@ -12,25 +12,26 @@ neural retrieval, and Retrieval Augmented Generation (RAG) enhancement. Our
 tools can help you realize the full potential of AI-driven search and
 retrieval functionality for your generative AI applications.
 
-## [Vectara Ingest](/docs/build-apps/vectara-ingest)
+## Data ingestion
 
-Enables crawling of various data sources and ingestion into Vectara. Vectara
-Ingest helps enable conversational experiences like chatbots and semantic search.
+### [Vectara Ingest](/docs/build-apps/vectara-ingest)
 
-## [Vectara Answer](/docs/build-apps/vectara-answer)
+Sample templates for pulling data from many popular data sources.
 
-Quickly configure Generative AI user interfaces that let you search your
-data.
+## User interface
 
-## [React-Search](/docs/build-apps/react-search)
+### [React-Search](/docs/build-apps/react-search)
 
-Seamlessly integrate Vectara’s semantic search capabilities into your React
-applications with just a few lines of code.
+UI widget for adding semantic search to your React UI in just a few lines of code.
 
-## [Create-UI](/docs/build-apps/create-ui)
+### [Create-UI](/docs/build-apps/create-ui)
 
 The fastest way to generate a working React codebase for a range of generative
 and semantic search UIs.
+
+### [Vectara Answer](/docs/build-apps/vectara-answer)
+
+Demo app for Summarized Semantic Search with advanced configuration options.
 
 :::note
 

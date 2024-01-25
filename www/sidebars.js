@@ -120,9 +120,9 @@ module.exports = {
       items: [
         "build-apps/app-building",
         "build-apps/vectara-ingest",
-        "build-apps/vectara-answer",
         "build-apps/react-search",
         "build-apps/create-ui",
+        "build-apps/vectara-answer",
       ],
     },
     {
