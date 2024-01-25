@@ -7,6 +7,8 @@ sidebar_label: Create-UI
 import {vars} from '@site/static/variables.json';
 import {Config} from '@site/docs/definitions.md';
 
+![Create-UI command line interface](/img/create_ui.jpg)
+
 Use the Create-UI code generator to create a working React codebase
 for a range of generative and semantic search UIs. [Interact with the
 demo](https://vectara.github.io/create-ui/) to see how it works.
