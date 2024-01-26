@@ -1,165 +1,176 @@
 module.exports = {
   someSidebar: [
     {
-      type: 'doc',
-      id: 'introduction',
+      type: "doc",
+      id: "introduction",
       label: "The Vectara Platform",
     },
     {
-      type: 'doc',
-      id: 'use-case-exploration',
+      type: "doc",
+      id: "use-case-exploration",
       label: "Use Case Exploration",
     },
     {
-      type: 'category',
-      label: 'Getting Started',
+      type: "category",
+      label: "Getting Started",
       collapsed: false,
       items: [
         {
-          type: 'doc',
-          id: 'quickstart',
+          type: "doc",
+          id: "quickstart",
           label: "Quick Start",
         },
         {
-          type: 'doc',
-          id: 'api-recipes',
+          type: "doc",
+          id: "api-recipes",
           label: "API Recipes",
         },
         {
-          type: 'doc',
-          id: 'sample-vectara-apps',
+          type: "doc",
+          id: "sample-vectara-apps",
           label: "Sample Demos and Applications",
         },
       ],
     },
-        {
-      type: 'category',
-      label: 'Learn',
+    {
+      type: "category",
+      label: "Learn",
       collapsed: false,
       items: [
         {
-          type: 'category',
-          label: 'Data Privacy',
+          type: "category",
+          label: "Data Privacy",
           items: [
-            'learn/data-privacy/privacy-overview',
-            'learn/data-privacy/textless',
-            'learn/data-privacy/encryption',
-          ]
+            "learn/data-privacy/privacy-overview",
+            "learn/data-privacy/textless",
+            "learn/data-privacy/encryption",
+          ],
         },
         {
-          type: 'category',
-          label: 'Authentication and Authorization',
+          type: "category",
+          label: "Authentication and Authorization",
           items: [
-            'learn/authentication/auth-overview',
-            'learn/authentication/api-key-management',
-            'learn/authentication/oauth-2',
-            'learn/authentication/role-based-access-control',
-          ]
-         },
-        {
-          type: 'category',
-          label: 'Semantic Search',
-          items: [
-            'learn/semantic-search/semantic-search-overview',
-            'learn/semantic-search/relevance-tuning-techniques',
-            'learn/semantic-search/enable-pagination',
-            'learn/semantic-search/add-custom-dimensions',
-          ]
+            "learn/authentication/auth-overview",
+            "learn/authentication/api-key-management",
+            "learn/authentication/oauth-2",
+            "learn/authentication/role-based-access-control",
+          ],
         },
         {
-          type: 'doc',
-          id: 'learn/select-ideal-indexing-api',
+          type: "category",
+          label: "Semantic Search",
+          items: [
+            "learn/semantic-search/semantic-search-overview",
+            "learn/semantic-search/relevance-tuning-techniques",
+            "learn/semantic-search/enable-pagination",
+            "learn/semantic-search/add-custom-dimensions",
+          ],
+        },
+        {
+          type: "doc",
+          id: "learn/select-ideal-indexing-api",
           label: "Select the Ideal Indexing API",
         },
         {
-          type: 'doc',
-          id: 'learn/enable-keyword-text-matching',
+          type: "doc",
+          id: "learn/enable-keyword-text-matching",
           label: "Enable Exact Keyword Text Matching",
         },
         {
-          type: 'doc',
-          id: 'learn/hybrid-search',
+          type: "doc",
+          id: "learn/hybrid-search",
           label: "Blend Neural Search and Keyword Search",
         },
         {
-          type: 'category',
-          label: 'Retrieval Augmented Generation (RAG)',
+          type: "category",
+          label: "Retrieval Augmented Generation (RAG)",
           items: [
-            'learn/grounded-generation/grounded-generation-overview',
-            'learn/grounded-generation/select-a-summarizer',
-            'learn/grounded-generation/grounded-generation-response-languages',
-          ]
+            "learn/grounded-generation/grounded-generation-overview",
+            "learn/grounded-generation/select-a-summarizer",
+            "learn/grounded-generation/grounded-generation-response-languages",
+          ],
         },
         {
-          type: 'doc',
-          id: 'learn/data-ingestion',
+          type: "doc",
+          id: "learn/data-ingestion",
           label: "Data Ingestion",
         },
         {
-          type: 'doc',
-          id: 'learn/document-data-structuring',
+          type: "doc",
+          id: "learn/document-data-structuring",
           label: "Document Data Structuring",
         },
         {
-          type: 'category',
-          label: 'Metadata Search Filtering',
+          type: "category",
+          label: "Metadata Search Filtering",
           items: [
-            'learn/metadata-search-filtering/filter-overview',
-            'learn/metadata-search-filtering/ootb-metadata-filters',
-            'api-reference/search-apis/sql/func-opr',
-            'api-reference/search-apis/sql/data-types',
-          ]
+            "learn/metadata-search-filtering/filter-overview",
+            "learn/metadata-search-filtering/ootb-metadata-filters",
+            "api-reference/search-apis/sql/func-opr",
+            "api-reference/search-apis/sql/data-types",
+          ],
         },
-        'learn/recommendation-systems/recommender-overview',
-        'learn/question-answer/question-answer-overview',
-      ]
+        "learn/recommendation-systems/recommender-overview",
+        "learn/question-answer/question-answer-overview",
+      ],
     },
     {
-      type: 'category',
-      label: 'Vectara Console',
+      type: "category",
+      label: "Build Applications",
+      items: [
+        "build-apps/app-building",
+        "build-apps/vectara-ingest",
+        "build-apps/react-search",
+        "build-apps/create-ui",
+        "build-apps/vectara-answer",
+      ],
+    },
+    {
+      type: "category",
+      label: "Vectara Console",
       collapsed: false,
       items: [
         {
-          type: 'doc',
-          id: 'console-ui/vectara-console-overview',
+          type: "doc",
+          id: "console-ui/vectara-console-overview",
           label: "Vectara Console Overview",
         },
         {
-          type: 'category',
-          label: 'Manage Corpora',
+          type: "category",
+          label: "Manage Corpora",
           collapsed: false,
           items: [
-            'console-ui/creating-a-corpus',
-            'console-ui/reset-or-delete-corpus',
-            'console-ui/configure-server-access-to-corpus',
-            'console-ui/corpus-default-read-access',
-          ]
+            "console-ui/creating-a-corpus",
+            "console-ui/reset-or-delete-corpus",
+            "console-ui/configure-server-access-to-corpus",
+            "console-ui/corpus-default-read-access",
+          ],
         },
         {
-          type: 'doc',
-          id: 'console-ui/manage-documents',
+          type: "doc",
+          id: "console-ui/manage-documents",
           label: "Manage Documents",
         },
         {
-          type: 'doc',
-          id: 'console-ui/manage-api-access',
+          type: "doc",
+          id: "console-ui/manage-api-access",
           label: "Manage API Access",
         },
         {
-          type: 'doc',
-          id: 'console-ui/manage-user',
+          type: "doc",
+          id: "console-ui/manage-user",
           label: "Manage Users",
         },
         {
-          type: 'doc',
-          id: 'console-ui/update-credit-card',
+          type: "doc",
+          id: "console-ui/update-credit-card",
           label: "Manage Payments",
         },
       ],
     },
     {
-      type: 'category',
-      label: 'API Reference',
+      type: "category",
+      label: "API Reference",
       collapsed: true,
       items: [
         'api-reference/api-overview',
@@ -359,49 +370,49 @@ module.exports = {
                   'api-reference/search-apis/interpreting-responses/highlighting',
                 ],
             },
-            ],
+          ],
         },
         ],
     },
     {
-      type: 'category',
-      label: 'API Authentication Examples',
+      type: "category",
+      label: "API Authentication Examples",
       items: [
         {
-          type: 'category',
-          label: 'OAuth 2.0 Client Credentials Grant Examples',
+          type: "category",
+          label: "OAuth 2.0 Client Credentials Grant Examples",
           items: [
-            'getting-started-samples/JWTFetcher.cs',
-            'getting-started-samples/JwtFetcher.java',
-            'getting-started-samples/getJwtToken.php',
-            'getting-started-samples/rest_util.py'
-          ]
+            "getting-started-samples/JWTFetcher.cs",
+            "getting-started-samples/JwtFetcher.java",
+            "getting-started-samples/getJwtToken.php",
+            "getting-started-samples/rest_util.py",
+          ],
         },
         {
-          type: 'category',
-          label: 'API Key REST Examples',
+          type: "category",
+          label: "API Key REST Examples",
           items: [
-            'getting-started-samples/RestApiKeyQueries.cs',
-            'getting-started-samples/RestApiKeyQueries.java',
-            'getting-started-samples/queryDataApiKey.php',
-            'getting-started-samples/rest_api_key_queries.py',
-            'getting-started-samples/app.js',
-          ]
-        }
-     ]
+            "getting-started-samples/RestApiKeyQueries.cs",
+            "getting-started-samples/RestApiKeyQueries.java",
+            "getting-started-samples/queryDataApiKey.php",
+            "getting-started-samples/rest_api_key_queries.py",
+            "getting-started-samples/app.js",
+          ],
+        },
+      ],
     },
   ],
   restOAS: [
-	  {
-		  type: "category",
-		  label: "API Playground",
-		  link: {
-			  type: "generated-index",
-			  title: "Vectara API",
-			  description: "Play around with Vectara's REST APIs",
-			  slug: "/rest-api",
-		  },
-		  items: require("./docs/rest-api/sidebar.js"),
-	  }
+    {
+      type: "category",
+      label: "API Playground",
+      link: {
+        type: "generated-index",
+        title: "Vectara API",
+        description: "Play around with Vectara's REST APIs",
+        slug: "/rest-api",
+      },
+      items: require("./docs/rest-api/sidebar.js"),
+    },
   ],
 };
