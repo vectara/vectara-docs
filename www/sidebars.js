@@ -173,164 +173,164 @@ module.exports = {
       label: "API Reference",
       collapsed: true,
       items: [
-        'api-reference/api-overview',
-        'api-reference/protobuf-definitions',
-        'api-reference/rest',
+        "api-reference/api-overview",
+        "api-reference/protobuf-definitions",
+        "api-reference/rest",
         {
-          type: `category`,
-          label: `Account Admin APIs`,
+          type: "category",
+          label: "Account Admin APIs",
           items: [
-            'api-reference/admin-apis/compute-account-size'
+            "api-reference/admin-apis/compute-account-size"
           ]
         },
         {
-          type: `category`,
-          label: `Access Admin APIs`,
+          type: "category",
+          label: "Access Admin APIs",
           items: [
             {
-              type: 'category',
-              label: 'User Admin APIs',
+              type: "category",
+              label: "User Admin APIs",
               items: [
-                'api-reference/admin-apis/manage-users/list-users',
-                'api-reference/admin-apis/manage-users/manage-user',
+                "api-reference/admin-apis/manage-users/list-users",
+                "api-reference/admin-apis/manage-users/manage-user",
               ]
             },
             {
-              type: 'category',
-              label: 'API Key Admin APIs',
+              type: "category",
+              label: "API Key Admin APIs",
               items: [
-                'api-reference/api-keys/create-api-key',
-                'api-reference/api-keys/delete-api-key',
-                'api-reference/api-keys/list-api-keys',
-                'api-reference/api-keys/enable-api-key',
+                "api-reference/api-keys/create-api-key",
+                "api-reference/api-keys/delete-api-key",
+                "api-reference/api-keys/list-api-keys",
+                "api-reference/api-keys/enable-api-key",
               ]
             },
           ]
         },
         {
-          type: 'category',
-          label: 'Corpus Admin APIs',
+          type: "category",
+          label: "Corpus Admin APIs",
           items: [
-            'api-reference/admin-apis/admin',
+            "api-reference/admin-apis/admin",
             {
-              type: 'category',
-              label: 'Create Corpus',
+              type: "category",
+              label: "Create Corpus",
               items: [
-                'api-reference/admin-apis/create-corpus',
+                "api-reference/admin-apis/create-corpus",
                 {
-                  type: 'category',
-                  label: 'Create Corpus REST Examples',
+                  type: "category",
+                  label: "Create Corpus REST Examples",
                   items: [
-                    'getting-started-samples/RestCreateCorpus.java',
-                    'getting-started-samples/create_corpus.js',
-                    'getting-started-samples/createCorpus.php',
-                    'getting-started-samples/rest_create_corpus.py'
+                    "getting-started-samples/RestCreateCorpus.java",
+                    "getting-started-samples/create_corpus.js",
+                    "getting-started-samples/createCorpus.php",
+                    "getting-started-samples/rest_create_corpus.py"
                   ]
                 }
               ]
             },
             {
-              type: 'category',
-              label: 'Delete Corpus',
+              type: "category",
+              label: "Delete Corpus",
               items: [
-                'api-reference/admin-apis/delete-corpus',
+                "api-reference/admin-apis/delete-corpus",
                 {
-                  type: 'category',
-                  label: 'Delete Corpus REST Examples',
+                  type: "category",
+                  label: "Delete Corpus REST Examples",
                   items: [
-                    'getting-started-samples/RestDeleteCorpus.cs',
-                    'getting-started-samples/delete_corpus.js',
-                    'getting-started-samples/deleteCorpus.php',
-                    'getting-started-samples/rest_delete_corpus.py'
+                    "getting-started-samples/RestDeleteCorpus.cs",
+                    "getting-started-samples/delete_corpus.js",
+                    "getting-started-samples/deleteCorpus.php",
+                    "getting-started-samples/rest_delete_corpus.py"
                   ]
                 }
               ]
             },
             {
-              type: 'category',
-              label: 'Reset Corpus',
+              type: "category",
+              label: "Reset Corpus",
               items: [
-                'api-reference/admin-apis/reset-corpus',
+                "api-reference/admin-apis/reset-corpus",
                 {
-                  type: 'category',
-                  label: 'Reset Corpus REST Examples',
+                  type: "category",
+                  label: "Reset Corpus REST Examples",
                   items: [
-                    'getting-started-samples/RestResetCorpus.cs',
-                    'getting-started-samples/reset_corpus.js',
-                    'getting-started-samples/resetCorpus.php',
-                    'getting-started-samples/rest_reset_corpus.py'
+                    "getting-started-samples/RestResetCorpus.cs",
+                    "getting-started-samples/reset_corpus.js",
+                    "getting-started-samples/resetCorpus.php",
+                    "getting-started-samples/rest_reset_corpus.py"
                   ]
                 }
               ]
             },
-            'api-reference/admin-apis/corpus/update-corpus-enablement',
-            'api-reference/admin-apis/corpus/read-corpus',
-            'api-reference/admin-apis/corpus/compute-corpus-size',
+            "api-reference/admin-apis/corpus/update-corpus-enablement",
+            "api-reference/admin-apis/corpus/read-corpus",
+            "api-reference/admin-apis/corpus/compute-corpus-size",
           ]
         },
         {
-          type: 'category',
-          label: 'Document Admin APIs',
+          type: "category",
+          label: "Document Admin APIs",
           items: [
-            'api-reference/admin-apis/corpus/list-documents',
-            'api-reference/indexing-apis/deleting-documents',
+            "api-reference/admin-apis/corpus/list-documents",
+            "api-reference/indexing-apis/deleting-documents",
             {
-              type: 'category',
-              label: 'Delete Document REST Examples',
+              type: "category",
+              label: "Delete Document REST Examples",
               items: [
-                'getting-started-samples/RestDeleteDocument.cs',
-                'getting-started-samples/RestDeleteDocument.java',
-                'getting-started-samples/delete_document.js',
-                'getting-started-samples/deleteDocument.php',
-                'getting-started-samples/rest_delete_document.py',
+                "getting-started-samples/RestDeleteDocument.cs",
+                "getting-started-samples/RestDeleteDocument.java",
+                "getting-started-samples/delete_document.js",
+                "getting-started-samples/deleteDocument.php",
+                "getting-started-samples/rest_delete_document.py",
               ]
             },
           ]
         },
         {
-            type: 'category',
-            label: 'Indexing APIs',
+            type: "category",
+            label: "Indexing APIs",
             items: [
               {
-                type: 'category',
-                label: 'Standard Indexing API',
+                type: "category",
+                label: "Standard Indexing API",
                 items: [
-                  'api-reference/indexing-apis/indexing',
+                  "api-reference/indexing-apis/indexing",
                   {
-                    type: 'category',
-                    label: 'Standard Indexing REST Examples',
+                    type: "category",
+                    label: "Standard Indexing REST Examples",
                     items: [
-                      'getting-started-samples/RestIndexData.cs',
-                      'getting-started-samples/RestIndex.java',
-                      'getting-started-samples/index_document.js',
-                      'getting-started-samples/indexDocument.php',
-                      'getting-started-samples/rest_index_document.py',
+                      "getting-started-samples/RestIndexData.cs",
+                      "getting-started-samples/RestIndex.java",
+                      "getting-started-samples/index_document.js",
+                      "getting-started-samples/indexDocument.php",
+                      "getting-started-samples/rest_index_document.py",
                     ]
                   },
                 ]
               },
               {
-                type: 'category',
-                label: 'Low-level API',
+                type: "category",
+                label: "Low-level API",
                 items: [
-                  'api-reference/indexing-apis/core_indexing'
+                  "api-reference/indexing-apis/core_indexing"
                 ]
               },
               {
-                type: 'category',
-                label: 'File Upload API',
+                type: "category",
+                label: "File Upload API",
                 items: [
-                  'api-reference/indexing-apis/file-upload/file-upload',
-                  'api-reference/indexing-apis/file-upload/format-for-upload',
-                  'api-reference/indexing-apis/file-upload/file-upload-filetypes',
+                  "api-reference/indexing-apis/file-upload/file-upload",
+                  "api-reference/indexing-apis/file-upload/format-for-upload",
+                  "api-reference/indexing-apis/file-upload/file-upload-filetypes",
                   {
-                    type: 'category',
-                    label: 'File Upload REST Examples',
+                    type: "category",
+                    label: "File Upload REST Examples",
                     items: [
-                      'getting-started-samples/RestUploadFile.java',
-                      'getting-started-samples/upload_file.js',
-                      'getting-started-samples/uploadFile.php',
-                      'getting-started-samples/rest_upload_file.py',
+                      "getting-started-samples/RestUploadFile.java",
+                      "getting-started-samples/upload_file.js",
+                      "getting-started-samples/uploadFile.php",
+                      "getting-started-samples/rest_upload_file.py",
                     ]
                   },
                 ]
@@ -338,36 +338,36 @@ module.exports = {
             ],
         },
         {
-            type: 'category',
-            label: 'Query APIs',
+            type: "category",
+            label: "Query APIs",
             items: [
               {
-                type: 'category',
-                label: 'Standard Query API',
+                type: "category",
+                label: "Standard Query API",
                 items: [
-                  'api-reference/search-apis/search',
+                  "api-reference/search-apis/search",
                   {
-                    type: 'category',
-                    label: 'Standard Query REST Examples',
+                    type: "category",
+                    label: "Standard Query REST Examples",
                     items: [
-                      'getting-started-samples/RestQueryData.cs',
-                      'getting-started-samples/RestQuery.java',
-                      'getting-started-samples/query.js',
-                      'getting-started-samples/queryData.php',
-                      'getting-started-samples/rest_query.py',
+                      "getting-started-samples/RestQueryData.cs",
+                      "getting-started-samples/RestQuery.java",
+                      "getting-started-samples/query.js",
+                      "getting-started-samples/queryData.php",
+                      "getting-started-samples/rest_query.py",
                     ]
                   },
                 ]
               },
-              'api-reference/search-apis/reranking',
-              'api-reference/search-apis/batched-queries',
+              "api-reference/search-apis/reranking",
+              "api-reference/search-apis/batched-queries",
               {
-                type: 'category',
-                label: 'Interpreting Responses',
+                type: "category",
+                label: "Interpreting Responses",
                 items: [
-                  'api-reference/search-apis/interpreting-responses/metadata',
-                  'api-reference/search-apis/interpreting-responses/interpreting-scores',
-                  'api-reference/search-apis/interpreting-responses/highlighting',
+                  "api-reference/search-apis/interpreting-responses/metadata",
+                  "api-reference/search-apis/interpreting-responses/interpreting-scores",
+                  "api-reference/search-apis/interpreting-responses/highlighting",
                 ],
             },
           ],
