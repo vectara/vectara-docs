@@ -1,7 +1,7 @@
 ---
 id: batched-queries
-title: Batching Multiple Queries
-sidebar_label: Batched Queries
+title: Batch Multiple Queries
+sidebar_label: Batch Multiple Queries
 ---
 
 import Tabs from '@theme/Tabs';
@@ -11,8 +11,10 @@ import {vars} from '@site/static/variables.json';
 
 Some applications may be designed to be powered by different queries in
 different parts of the UI.  In order to decrease the number of network round
-trips (and thereby the net latency), you may want to issue those multiple
-queries to the system with a single API call.
+trips (and thereby the net latency), you may want to batch those multiple
+queries with a single API call.
+
+## Query Array in a Request
 
 This pattern can be done in <Config v="names.product"/> by sending an array of
 queries in a single request, as in:
@@ -38,11 +40,10 @@ separate query for billing purposes.
 
 :::
 
-## Responses
+## Batched Query Responses
 
-When you a query <Config v="names.product"/>, you get back an array of results.
-This array is to assist in using
-[Batched Query](/docs/api-reference/search-apis/batched-queries.md), 
+When you query <Config v="names.product"/>, you get back an array of results.
+This array is to assist in using batched queries. 
 
 ```jsx
 {

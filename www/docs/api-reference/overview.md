@@ -12,9 +12,9 @@ import {Config} from '@site/docs/definitions.md';
 
 Everything in <Config v="names.product"/> is driven by APIs. This section serves 
 as a roadmap to understanding and using our [gRPC APIs](/docs/api-reference/protobuf-definitions) and 
-[REST APIs](/docs/api-reference/rest) for indexing, searching, and administrative tasks.
-Before getting into more details, we 
-recommend that you have a basic understanding of API concepts.
+[REST APIs](/docs/api-reference/rest) for [indexing](/docs/learn/select-ideal-indexing-api), [querying](/docs/api-reference/search-apis/search), and administrative tasks 
+such as [managing user access](/docs/api-reference/admin-apis/manage-users/manage-user) and [corpora](/docs/api-reference/admin-apis/admin). Before getting into more 
+details, we recommend that you have a basic understanding of API concepts.
 
 ## :star2: Ready to Dive In? Check Out Our API Playground! :star2:
 

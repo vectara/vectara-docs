@@ -1,7 +1,7 @@
 ---
 id: search
-title: Search API Definition
-sidebar_label: Search API Definition
+title: Query API Definition
+sidebar_label: Query API Definition
 ---
 
 import Tabs from '@theme/Tabs';
@@ -9,10 +9,10 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The Search endpoint lets you perform a query while defining its parameters 
+The Query API lets you perform a query while defining its parameters 
 that specify the query text, pagination details, metadata filters, and other 
-settings that enable application builders to tailor their queries to specific 
-use cases.
+search settings that enable application builders to tailor their queries to 
+specific use cases.
 
 After you index data into one or more corpora, you can run queries 
 and display the results. This page provides a detailed reference for how
@@ -21,7 +21,8 @@ filtering, reranking, Retrieval Augmented Generation (RAG), and hybrid search.
 
 :::tip
 
-Check out our [**interactive API Playground**](/docs/rest-api/query) that lets you experiment with this REST endpoint to manage your corpus details.
+Check out our [**interactive API Playground**](/docs/rest-api/query) that lets 
+you experiment with this REST endpoint to query your corpus to search your data.
 
 :::
 

@@ -13,7 +13,8 @@ The Vectara Console is a good way for you to get started with <Config v="names.p
 you're ready to integrate the platform more deeply into your application, the 
 Corpus Admin APIs allow you to programmatically manipulate corpora and perform 
 many other operations within the system. These APIs enable new workflows for 
-organizations, like tracking usage of accounts and corpora. Check out this [blog post about managing multi-tenancy](https://vectara.com/managing-multi-tenancy-with-vectaras-new-management-apis/) for more details.
+organizations, like managing corpora and tracking usage of accounts 
+and corpora. Check out this [blog post about managing multi-tenancy](https://vectara.com/managing-multi-tenancy-with-vectaras-new-management-apis/) for more details.
 
 :::tip
 
@@ -21,16 +22,16 @@ The [**interactive API Playground**](/docs/rest-api/admin-service) lets you expe
 
 :::
 
-## Create, Delete, and Reset API Definitions
+## Create, Delete, and Reset Corpus API Definitions
 
 The full definitions of the Create, Reset, and Delete gRPC APIs are covered
 in [admin.proto](https://github.com/vectara/protos/blob/main/admin.proto). 
 
-* The **Create API** allows corpora to be created programmatically, up to the
+* The **Create Corpus API** allows corpora to be created programmatically, up to the
 limit defined for the account. 
-* The **Reset API** deletes all data from a corpus, without
+* The **Reset Corpus API** deletes all data from a corpus, without
 deleting its definition.
-* The **Delete API** expunges both the data in the corpus and 
+* The **Delete Corpus API** expunges both the data in the corpus and 
 its definition.
 
 

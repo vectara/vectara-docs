@@ -8,7 +8,7 @@ import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 
-The Update Corpus Enablement endpoint lets you enable or disable a corpus. 
+The Update Corpus Enablement API lets you enable or disable a corpus. 
 This is useful to manage the availability of data within the system, such as 
 when you need to take the corpus offline without having to delete the corpus. 
 
@@ -36,7 +36,7 @@ The request to enable or disable a corpus requires the following parameters:
 ### Update Corpus Enablement REST Endpoint Address
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
-to update the status of a corpus:
+to enable or disable a corpus:
 <code>https://<Config v="domains.rest.admin"/>/v1/update-corpus-enablement</code>
 
 ### Update Corpus Enablement Request Example

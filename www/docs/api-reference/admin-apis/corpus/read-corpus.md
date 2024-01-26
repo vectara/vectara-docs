@@ -7,7 +7,7 @@ sidebar_label: Read Corpus API Definition
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The Read Corpus endpoint lets you view detailed information about corpora 
+The Read Corpus API lets you view detailed information about corpora 
 within your account. It enables you to view different aspects about the corpus 
 including basic information like the ID, name, whether it is enabled or 
 disabled, and other metadata. You can also view the corpus size, associated 
@@ -29,7 +29,7 @@ because of information returned by this endpoint.
 :::tip
 
 Check out our [**interactive API Playground**](/docs/rest-api/read-corpus) that lets you experiment with this 
-REST endpoint to manage your corpus details.
+REST endpoint to read your corpus details.
 
 :::
 
@@ -52,7 +52,7 @@ API keys with a specific corpus.
 ### Read Corpus REST Endpoint Address
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
-to ingest content into a corpus:
+to read information about the corpus:
 <code>https://<Config v="domains.rest.admin"/>/v1/read-corpus</code>
 
 ### Read Corpus Request Example

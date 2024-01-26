@@ -7,7 +7,7 @@ sidebar_label: Compute Corpus Size API Definition
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The Compute Corpus Size endpoint lets you view the amount of quota consumed 
+The Compute Corpus Size API lets you view the amount of quota consumed 
 by a corpus. This capability is useful for administrators to track and monitor 
 the amount of usage for specific corpora. For example, you manage multiple 
 tenants and determine that a user consumed too much quota and you might decide 
@@ -37,7 +37,7 @@ values.
 ### Compute Corpus Size REST Endpoint Address
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
-to update the status of a corpus:
+to compute the size of a corpus:
 <code>https://<Config v="domains.rest.admin"/>/v1/compute-corpus-size</code>
 
 ### Compute Corpus Size Example

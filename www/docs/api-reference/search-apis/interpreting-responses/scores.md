@@ -1,19 +1,17 @@
 ---
 id: interpreting-scores
 title: Interpreting Scores
-sidebar_label: Scores
+sidebar_label: Interpreting Scores
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 
-## Overview
-
-Like all search systems, <Config v="names.product"/> scores documents on how
-relevant they are to the query.  And like all search systems, <Config v="names.product"/>
-it's important to understand the scoring system and how it changes based on
-the controls and query parameters you've provided.
+Like all information retrieval systems, <Config v="names.product"/> scores documents on how
+relevant they are to the query. It's important to understand the scoring 
+system and how it changes based on the controls and query parameters you have 
+provided.
 
 Out of the box scores in <Config v="names.product"/>:
 1. Can be either positive or negative
@@ -26,8 +24,13 @@ Out of the box scores in <Config v="names.product"/>:
 See the sections below on "standard" and "reranked" results for details on
 how they differ and how to use them best.
 
-Note that <Config v="names.product"/> provides an important control that can affect scores:
-[custom dimensions](/docs/learn/semantic-search/add-custom-dimensions), which allow you to boost or bury results based on metadata.
+:::note
+
+Vectara provides an important control that can affect scores:
+[**custom dimensions**](/docs/learn/semantic-search/add-custom-dimensions), which allow you to boost 
+or bury results based on metadata.
+
+:::
 
 
 ## Comparison With Keyword Systems
@@ -84,7 +87,7 @@ results as no longer very relevant.  However, as a general rule, scores less
 than 0.1 tend to be of low quality and can typically be safely removed/ignored.
 
 ## Reranked Results Response
-Scores from <Config v="names.product"/> after reranking will be scored on a
+Scores from <Config v="names.product"/> after [reranking](/docs/api-reference/search-apis/reranking) are scored on a
 scale from -infinity to +infinity.  Internally, the numbers returned from the
 reranker are derived from a logarithmic scoring system, which means that in
 practice, scores much higher than 10 or much lower than -10 should be rare.
@@ -93,6 +96,4 @@ As with standard results, there's no hard rule around when to cut off results,
 but scores above around 2.5 or so tend to be pretty good, though we advise
 users to test with their own data and some sample queries.
 
-Note that the reranker is *currently* English-only, so if you get very low
-scores, you might want to check that your content is in English and disable
-the reranker where that isn't the case.
+

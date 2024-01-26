@@ -1,14 +1,14 @@
 ---
 id: highlighting
 title: Highlighting and Snippet Extraction
-sidebar_label: Highlighting
+sidebar_label: Highlighting and Snippet Extraction
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 
-When you receive search results from <Config v="names.product"/>, alongside the
+When you receive query results from <Config v="names.product"/>, alongside the
 result, you'll receive a values for `section` and `offset`.  For example:
 
 ```json showLineNumbers
