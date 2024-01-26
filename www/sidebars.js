@@ -219,7 +219,7 @@ module.exports = {
                 'api-reference/admin-apis/create-corpus',
                 {
                   type: 'category',
-                  label: 'Create Corpus   REST Examples',
+                  label: 'Create Corpus REST Examples',
                   items: [
                     'getting-started-samples/RestCreateCorpus.java',
                     'getting-started-samples/create_corpus.js',
