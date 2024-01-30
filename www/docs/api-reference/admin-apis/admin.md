@@ -14,7 +14,7 @@ you're ready to integrate the platform more deeply into your application, the
 Corpus Admin APIs allow you to programmatically manipulate corpora and perform 
 many other operations within the system. These APIs enable new workflows for 
 organizations, like managing corpora and tracking usage of accounts 
-and corpora. Check out this [blog post about managing multi-tenancy](https://vectara.com/managing-multi-tenancy-with-vectaras-new-management-apis/) for more details.
+and corpora. Check out this [blog post about managing multi-tenancy](https://vectara.com/blog/managing-multi-tenancy-with-vectaras-new-management-apis/) for more details.
 
 :::tip
 
