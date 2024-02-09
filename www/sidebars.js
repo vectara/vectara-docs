@@ -152,6 +152,15 @@ module.exports = {
           label: "Manage Documents",
         },
         {
+          type: "category",
+          label: "Manage Conversations",
+          collapsed: false,
+          items: [
+            "console-ui/vectara-chat-overview",
+            "console-ui/chat-with-your-data",
+          ],
+        },
+        {
           type: "doc",
           id: "console-ui/manage-api-access",
           label: "Manage API Access",
@@ -366,6 +375,17 @@ module.exports = {
                 "api-reference/api-keys/enable-api-key",
               ],
             },
+          ],
+        },
+        {
+          type: "category",
+          label: "Chat APIs",
+          items: [
+            "api-reference/chat-apis/chat-apis-overview",
+            "api-reference/chat-apis/list-conversations",
+            "api-reference/chat-apis/read-conversations",
+            "api-reference/chat-apis/delete-conversations",
+            "api-reference/chat-apis/delete-turns",
           ],
         },
       ],
