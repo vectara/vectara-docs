@@ -44,7 +44,7 @@ and filter attributes. Click Edit to modify the filter attributes from this page
 
 The Authorization section defines the users and role that have access to the 
 corpus. You can also [create new user roles](/docs/learn/authentication/role-based-access-control) 
-and [API keys](/docs/console-ui/manage-api-access) associated with this corpus.
+and [API keys](/docs/console-ui/api-access-overview) associated with this corpus.
 
 ## Data Ingestion
 
