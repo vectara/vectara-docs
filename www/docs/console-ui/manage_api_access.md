@@ -1,7 +1,7 @@
 ---
 id: api-access-overview
-title: API Authorization Options
-sidebar_label: API Authorization Options
+title: API Authorization Methods
+sidebar_label: API Authorization Methods
 ---
 
 import Tabs from '@theme/Tabs';
@@ -14,11 +14,11 @@ Vectara provides a comprehensive authorization system that accommodates a wide
 range of use cases and caters to different development environments. 
 Your Generative AI journey may be in the early stages of 
 exploration and prototyping, or a more advanced production deployment. Our 
-advanced authentication system includes the Personal API Key, Index API Keys, 
+authentication methods include the Personal API Key, Index API Keys, 
 Query API Keys, and OAuth 2.0 Tokens.
 
-The API access page lets you create and manage Personal, Index, and 
-Query API Keys, and App clients. The Authentication and Authorization section 
+The Authorization page lets you manage Personal, Index, and Query API Keys, and
+OAuth App clients. The [Authentication Overview section](/docs/learn/authentication/auth-overview) 
 provides more details about how to [manage OAuth 2.0 tokens](/docs/learn/authentication/oauth-2) and [use API Keys](/docs/learn/authentication/api-key-management). 
 
 ## Personal API Key
@@ -53,7 +53,7 @@ OAuth 2.0 provides the most secure authentication method for production
 environments. Capabilities like automated token expiration provide inherent 
 benefits over API Keys.
 
-## API Key Prefixes
+## Identify API Key by Prefixes
 
 For ease of identification, the API Key types each have a specific prefix:
 

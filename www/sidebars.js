@@ -153,7 +153,7 @@ module.exports = {
         },
         {
           type: "category",
-          label: "Manage API Access",
+          label: "Manage API Authorization",
           collapsed: true,
           items: [
             "console-ui/api-access-overview",

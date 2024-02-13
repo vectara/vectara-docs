@@ -10,12 +10,13 @@ import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
 import {Config} from '@site/docs/definitions.md';
 
-A Personal API Key provides a broad range of functionality related to user and 
-corpus administration, including creating and listing corpora, reading usage 
-data, executing queries, indexing, and more. The Authorization page lets you 
-view the Personal API key that was automatically generated with your new 
-Vectara account. This page also allows you to disable and regenerate a new 
-Personal API key.
+The **Personal API Key** provides a broad range of functionality related to 
+user and corpus administration, including creating and listing corpora, 
+reading usage data, executing queries, indexing, and more. Your Personal API 
+Key inherits the permissions of your associated user account.
+
+The Authorization page lets you view the Personal API key that automatically 
+generated with your new Vectara account.
 
 ![View the Personal API Key](/img/view_personal_api_key.png)
 
@@ -23,10 +24,12 @@ Personal API key.
 2. Click the copy icon.
 3. Paste your Personal API key in a secure location. It is as private and 
 sensitive as a password.
+1. Use this Personal API Key for the `x-api-key` parameter within your API 
+   requests.
 
 ## Disable or Regenerate a Personal API Key
 
-The Actions menu lets you disable or regenerate the Personal API key.
+The Actions menu lets you disable or regenerate your Personal API key.
 
 ![View the Personal API Key](/img/personal_api_key_actions.png)
 
