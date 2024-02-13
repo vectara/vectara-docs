@@ -38,9 +38,13 @@ request.
 
 :::note
 
-API Keys can be used for querying and indexing operations, but cannot at this 
-time be used for administrative operations such as creating or deleting 
-corpora. These operations authenticate with a Bearer Token via the 
+Vectara has three kinds of API keys: the Personal API Key, Index API Keys, 
+and Query API Keys. The Personal API Key enables administrative tasks 
+including creating, deleting, and listing corpora, and managing Index and 
+Query API keys for accessible corpora, reading usage data, updating 
+corpora filters, executing queries, and indexing. Query API Keys are used
+for read-only querying operations, while Index API Keys provide read and 
+write access. The OAuth operations authenticate with a Bearer Token via the 
 OAuth 2.0 client credentials grant. Review the [**OAuth 2.0 section**](https://docs.vectara.com/docs/learn/authentication/oauth-2) about 
 how to generate the token.
 
