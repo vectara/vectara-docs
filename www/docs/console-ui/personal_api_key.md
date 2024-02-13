@@ -41,7 +41,7 @@ limitations and **do not** let you perform the following tasks:
 * Validate a Vectara account registration
 * Transfer account ownership
 * Read or set any sensitive billing data such as payment method and addresses
-* Create and delete users*
+* Create and delete users
 
 OAuth 2.0 remains the required method for these operations due to its advanced 
 security features. This distinction ensures that more sensitive actions are 

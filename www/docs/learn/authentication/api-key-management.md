@@ -27,9 +27,12 @@ the complexity of OAuth authentication. You can use the Personal API Key when
 putting together a quick prototype, or if you are working on an integration 
 that does not yet support OAuth 2.0.
 
-The Personal API Key enables administrative tasks including creating, 
+The Personal API Key enables most administrative tasks including creating, 
 deleting, and listing corpora, managing API keys for accessible corpora, 
 reading usage data, updating corpora filters, executing queries, and indexing.
+
+You cannot use a Personal API Key to delete an account, validate a registration, 
+transfer account ownership, or access billing data.
 
 :::caution
 
