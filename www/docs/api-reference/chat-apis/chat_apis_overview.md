@@ -9,22 +9,22 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The Vectara Chat APIs provide a streamlined solution for integrating chatbot 
-functionalities into domain-specific applications and websites using RAG. 
-Designed with efficiency in mind, these Chat APIs enable developers to create 
-interactive user experiences and manage data conversations while maintaining a 
-high level of security and privacy for users. 
+Vectara's Chat APIs provide a streamlined solution for integrating chatbot 
+functionalities into domain-specific applications and websites using Retrieval 
+Augmented Generation. Designed with efficiency in mind, these Chat APIs enable 
+developers to create interactive user experiences and manage data 
+conversations while maintaining a high level of security and privacy for users.
 
-The Chat APIs enable operations and pagination through the history of a chat, 
+The Vectara Chat APIs enable operations and pagination through the history of a chat, 
 specifically the conversations and their individual exchanges, also known as 
 turns. Administrators can gain valuable insights into user behavior by analyzing 
-trends among users which creates opportunities to identify knowledge gaps 
-for products, documentation, and FAQs.
+trends among users, which creates opportunities to identify knowledge gaps for 
+information about products, technical documentation, and FAQs.
 
-The `summary` within a [Query](/docs/api-reference/search-apis/search) contains the `chat` which indicates its `store` status 
-as `true` or `false` and the `conversationId`. Vectara Chat takes a privacy-first 
-approach. Users maintain control over whether to record answer histories, with 
-the default setting being set to `false`.
+The `summary` within a [query](/docs/api-reference/search-apis/search) contains the `chat` object 
+which has a unique `conversationId` and indicates its `store` status as `true` or `false`. Vectara Chat takes 
+a privacy-first approach. Users maintain control over whether to record answer 
+histories, with the default setting being set to `false`.
 
 * [**List Conversations**](/docs/api-reference/chat-apis/list-conversations) in a chat history corpus 
   get an an overview of the interactions between chatbots and users.

@@ -105,8 +105,8 @@ citing the results as references. For more information, read about [Retrieval Au
 
 ### Chat
 
-The `summary` can also contain a conversation from Vectara Chat which 
-includes a `conversationId`.
+The `summary` within the query can also contain a conversation from [Vectara Chat](/docs/api-reference/chat-apis/chat-apis-overview) which 
+includes a `conversationId`. You enable Vectara Chat by setting value `store` value to `true`.
 
 ```json
  chat": {
