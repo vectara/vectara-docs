@@ -31,7 +31,7 @@ The Delete Turns request body specifies following parameters:
 ```json
 {
   "corpus_id": 1,
-  "conversation_id": "12345",
+  "conversation_id": "0191086a-4b8a-4aec-b600-affa9b261ac",
   "turn_id": "5678"
 }
 ```

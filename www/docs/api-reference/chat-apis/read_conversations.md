@@ -31,7 +31,7 @@ The Read Conversations request body has the following parameters:
 {
   "corpus_id": 1,
   "conversation_id": [
-    "12345"
+    "0191086a-4b8a-4aec-b600-affa9b261ac"
   ]
 }
 ```
@@ -98,9 +98,6 @@ You get the following response:
 <Config v="names.product"/> exposes an HTTP endpoint at the following URL
 to read conversations in the chat history corpus:
 <code>https://<Config v="domains.rest.indexing"/>/v1/read-conversations</code>
-
-
-
 
 ## gRPC Example
 

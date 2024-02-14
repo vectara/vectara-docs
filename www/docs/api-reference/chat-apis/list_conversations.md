@@ -93,7 +93,7 @@ You get the following response:
   "conversation": [
     {
       "id": "1",
-      "conversation_id": "12345",
+      "conversation_id": "0191086a-4b8a-4aec-b600-affa9b261ac",
       "query": "First query of the turn",
       "answer": "First answer of the turn",
       "enabled": true,

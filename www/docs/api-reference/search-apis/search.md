@@ -97,11 +97,23 @@ more rarely, as a response.
 
 ### Retrieval Augmented Generation - Summarization Grounded in Data
 
-If you'd like to use Retrieval Augmented Generation (RAG), which <Config v="names.product"/> also refers to as
+To use Retrieval Augmented Generation (RAG), which <Config v="names.product"/> also refers to as
 "Grounded Generation" -- our groundbreaking way of producing generative 
 summaries on top of your own data -- you can submit a `SummarizationRequest` alongside your query. 
-This produces a summary that attempts to answer the end-user's question, 
+This produces a `summary` that attempts to answer the end-user's question, 
 citing the results as references. For more information, read about [Retrieval Augmented Generation](/docs/learn/grounded-generation/grounded-generation-overview).
+
+### Chat
+
+The `summary` can also contain a conversation from Vectara Chat which 
+includes a `conversationId`.
+
+```json
+ chat": {
+  "store": true,
+  "conversationId": "0191086a-4b8a-4aec-b600-affa9b261acf"
+},
+```
 
 
 ## REST Example
