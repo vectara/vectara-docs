@@ -24,6 +24,11 @@ The Conversations page lists the conversations in your chat history corpus:
 
 ![View the Conversation Page](/img/view_conversations.png)
 
-## View a Special Conversation
+## View a Specific Conversation
 
-To view a specific conversation, click a `Conversation ID` from the list.
+To view a specific conversation and all the turns in the chat, select 
+a `Conversation ID` from the list.
+
+![View a Specific Conversation](/img/view_specific_conversation.png)
+
+Click **Delete** to remove the chat from the conversation history.

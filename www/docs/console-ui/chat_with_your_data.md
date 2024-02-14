@@ -19,7 +19,8 @@ The Query tab of a corpus lets you enable chat with your corpus data.
    ![Chat Option on the Query Tab](/img/chat_query_tab.png)
 4. Enable the Chat toggle:
    ![Enable Chat Toggle Option](/img/enable_chat.png)
-
-
 5. Click Chat and enable Chat on the corpus.
-6. Now you can chat with your data!
+6. Now you can chat with your data! Let's ask a question.
+   ![Chat with Your Data](/img/chat_with_data.png)
+   Here is a detailed answer which also provide 4 facts from the updated data:
+   ![View a Chat Answer](/img/view_chat_answer.png)
