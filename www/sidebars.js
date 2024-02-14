@@ -386,6 +386,7 @@ module.exports = {
             "api-reference/chat-apis/read-conversations",
             "api-reference/chat-apis/delete-conversations",
             "api-reference/chat-apis/delete-turns",
+            "api-reference/chat-apis/disable-turns",
           ],
         },
       ],

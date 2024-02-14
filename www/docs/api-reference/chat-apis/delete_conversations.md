@@ -22,14 +22,13 @@ REST endpoint to delete conversations in the chat history corpus.
 
 ## Delete Conversations Request and Response
 
-The Delete Conversations request body specifies the `conversation_id` that you 
+The Delete Conversations request body specifies the `conversationId` that you 
 want to delete.
 
 ```json
 {
-  "corpus_id": 1,
-  "conversation_id": [
-    "12345"
+  "conversationId": [
+    "0191086a-4b8a-4aec-b600-affa9b261ac"
   ]
 }
 ```
@@ -39,7 +38,7 @@ You get the following response:
 {
   "status": {
     "code": 0,
-    "message": "string"
+    "message": ""
   }
 }
 ```
@@ -54,4 +53,4 @@ to delete conversations in the chat history corpus:
 
 ## gRPC Example
 
-You can find the full Delete Conversations gRPC definition at chat.proto.
+You can find the full Delete Conversations gRPC definition at [chat.proto](https://github.com/vectara/protos/blob/main/chat.proto).

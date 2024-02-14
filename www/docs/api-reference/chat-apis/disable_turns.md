@@ -1,7 +1,7 @@
 ---
-id: delete-turns
-title: Delete Turns API Definition
-sidebar_label: Delete Turns API Definition
+id: disable-turns
+title: Disable Turns API Definition
+sidebar_label: Disable Turns API Definition
 ---
 
 import Tabs from '@theme/Tabs';
@@ -9,9 +9,9 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The Delete Turns API deletes specific turns from a conversation within the 
-chat history corpus. This enables developers to remove inaccurate or 
-inappropriate responses from the conversation history. 
+The Disable Turns API disables specific turns from a conversation within the 
+chat history corpus. This enables developers to exclude specific responses 
+from the conversation history. 
 
 :::tip
 
@@ -20,16 +20,17 @@ REST endpoint to delete turns in specific chats.
 
 :::
 
-## Delete Turns Request and Response
+## Disable Turns Request and Response
 
-The Delete Turns request body specifies following parameters:
+The Disable Turns request body specifies following parameters:
 
 * `conversationId` - Specifies the conversation ID that contains the turn 
-  you want to delete
-* `turnId` - Specifies the Turn ID that you want to delete
+  you want to disable
+* `turnId` - Specifies the Turn ID that you want to disable
 
 ```json
 {
+  "corpus_id": 1,
   "conversationId": "0191086a-4b8a-4aec-b600-affa9b261ac",
   "turnId": "4b8a-4aec-b600"
 }
@@ -51,10 +52,10 @@ You get the following response:
 ### Delete Turns Endpoint Address
 
 <Config v="names.product"/> exposes an HTTP endpoint at the following URL
-to delete turns in a chat:
-<code>https://<Config v="domains.rest.indexing"/>/v1/delete-turns</code>
+to disable turns in a chat:
+<code>https://<Config v="domains.rest.indexing"/>/v1/disable-turns</code>
 
 
 ## gRPC Example
 
-You can find the full Delete Turns gRPC definition at [chat.proto](https://github.com/vectara/protos/blob/main/chat.proto).
+You can find the full Disable Turns gRPC definition at [chat.proto](https://github.com/vectara/protos/blob/main/chat.proto).

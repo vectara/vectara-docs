@@ -21,6 +21,11 @@ turns. Administrators can gain valuable insights into user behavior by analyzing
 trends among users which creates opportunities to identify knowledge gaps 
 for products, documentation, and FAQs.
 
+The `summary` within a [Query](/docs/api-reference/search-apis/search) contains the `chat` which indicates its `store` status 
+as `true` or `false` and the `conversationId`. Vectara Chat takes a privacy-first 
+approach. Users maintain control over whether to record answer histories, with 
+the default setting being set to `false`.
+
 * [**List Conversations**](/docs/api-reference/chat-apis/list-conversations) in a chat history corpus 
   get an an overview of the interactions between chatbots and users.
 * [**Read Conversations**](/docs/api-reference/chat-apis/read-conversations) and retrieve detailed information about specific
@@ -29,3 +34,5 @@ for products, documentation, and FAQs.
   data management and other purposes.
 * [**Delete Turns**](/docs/api-reference/chat-apis/delete-turns) from a conversation starting from a specific 
   Turn ID to manage the content of conversations.
+* [**Disable Turns**](/docs/api-reference/chat-apis/disable-turns) to exclude turns from being used in 
+  generating responses.

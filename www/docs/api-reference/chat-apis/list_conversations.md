@@ -32,7 +32,6 @@ REST endpoint to list conversations in the chat history corpus.
 
 The List Conversations request body has the following parameters:
 
-* `corpus_id` - Specifies the ID of the chat history corpus
 * `num_results` - Specifies the maximum number of conversations to return. 
   Default value is 5.
 * `page_key` - Retrieves a specific page of results. You can leave it blank 
@@ -40,7 +39,6 @@ The List Conversations request body has the following parameters:
 
 ```json
 {
-    "corpus_id": "Chat History Corpus ID",
     "num_results": "5",
     "page_key": "",
 }
@@ -52,8 +50,8 @@ You get the following response:
 {
   "conversation": [
     {
-      "id": "Turn ID",
-      "conversation_id": "ID of the Conversation",
+      "id": "ID of the turn",
+      "conversation_id": "ID of the conversation",
       "query": "First query of the turn",
       "answer": "First answer of the turn",
       "enabled": true,
@@ -80,7 +78,6 @@ to list conversations in the chat history corpus:
 
 ```json
 {
-    "corpus_id": "1",
     "num_results": "5",
     "page_key": "",
 }
@@ -92,7 +89,7 @@ You get the following response:
 {
   "conversation": [
     {
-      "id": "1",
+      "id": "4b8a-4aec-b600",
       "conversation_id": "0191086a-4b8a-4aec-b600-affa9b261ac",
       "query": "First query of the turn",
       "answer": "First answer of the turn",
@@ -110,4 +107,4 @@ You get the following response:
 
 ## gRPC Example
 
-You can find the full List Conversations gRPC definition at chat.proto.
+You can find the full List Conversations gRPC definition at [chat.proto](https://github.com/vectara/protos/blob/main/chat.proto).

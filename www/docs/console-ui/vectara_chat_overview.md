@@ -15,7 +15,10 @@ security. Vectara Chat remembers chat histories and leads to more relevant
 responses in different scenarios like customer support. 
 
 Every Vectara account has a unique Chat History Corpus which stores all chat 
-histories. You can enable chat in the Query tab of specific corpora.
+histories. Vectara Chat takes a privacy-first approach. Users maintain 
+control over whether your answer histories are recorded, with the default 
+setting being diabled. You can enable chat in the Query tab of specific 
+corpora.
 
 The Conversations page lists the conversations in your chat history corpus:
 

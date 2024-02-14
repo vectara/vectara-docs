@@ -29,7 +29,6 @@ The Read Conversations request body has the following parameters:
 
 ```json
 {
-  "corpus_id": 1,
   "conversation_id": [
     "0191086a-4b8a-4aec-b600-affa9b261ac"
   ]
@@ -43,19 +42,19 @@ You get the following response:
 {
   "conversation": [
     {
-      "id": "string",
+      "id": "ID of the conversation",
       "turn": [
         {
-          "id": "1",
-          "conversation_id": "1",
+          "id": "ID of the turn",
+          "conversation_id": "ID of the conversation",
           "query": "First query of the turn",
           "answer": "First answer of the turn",
           "enabled": true,
           "epoch_secs": 0
         },
         {
-          "id": "2",
-          "conversation_id": "2",
+          "id": "ID of the second turn",
+          "conversation_id": "ID of the conversation",
           "query": "Second query of the turn",
           "answer": "Second answer of the turn",
           "enabled": true,
@@ -101,4 +100,4 @@ to read conversations in the chat history corpus:
 
 ## gRPC Example
 
-You can find the full Read Conversations gRPC definition at chat.proto.
+You can find the full Read Conversations gRPC definition at [chat.proto](https://github.com/vectara/protos/blob/main/chat.proto).
