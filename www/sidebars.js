@@ -163,7 +163,14 @@ module.exports = {
         {
           type: "doc",
           id: "console-ui/manage-api-access",
-          label: "Manage API Access",
+          label: "Manage API Authorization",
+          collapsed: true,
+          items: [
+            "console-ui/api-access-overview",
+            "console-ui/personal-api-key",
+            "console-ui/index-and-query-api-keys",
+            "console-ui/app-clients",
+          ],
         },
         {
           type: "doc",
