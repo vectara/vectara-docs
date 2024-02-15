@@ -23,7 +23,7 @@ within the chat history corpus.
 
 :::tip
 
-Check out our [**interactive API Playground**](docs/rest-api/list-conversations) that lets you experiment with this 
+Check out our **interactive API Playground** that lets you experiment with this 
 REST endpoint to list conversations in the chat history corpus.
 
 :::

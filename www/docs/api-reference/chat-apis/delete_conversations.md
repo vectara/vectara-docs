@@ -15,7 +15,7 @@ maintain data hygiene and support compliance with data retention policies.
 
 :::tip
 
-Check out our [**interactive API Playground**](/docs/rest-api/delete-conversations) that lets you experiment with this 
+Check out our **interactive API Playground** that lets you experiment with this 
 REST endpoint to delete conversations in the chat history corpus.
 
 :::
