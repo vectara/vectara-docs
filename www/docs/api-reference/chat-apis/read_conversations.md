@@ -70,26 +70,6 @@ You get the following response:
 }
 ```
 
-```json
-{
-  "conversation": [
-    {
-      "id": "1",
-      "conversation_id": "12345",
-      "query": "First query of the turn",
-      "answer": "First answer of the turn",
-      "enabled": true,
-      "epoch_secs": 0
-    }
-  ],
-  "status": {
-    "code": 0,
-    "message": "Status message"
-  },
-  "page_key": ""
-}
-```
-
 ## REST Example
 
 ### Read Conversations Endpoint Address
