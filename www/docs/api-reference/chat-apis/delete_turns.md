@@ -15,7 +15,7 @@ inappropriate responses from the conversation history.
 
 :::tip
 
-Check out our **interactive API Playground** that lets you experiment with this 
+Check out our [**interactive API Playground**](/docs/rest-api/delete-turns) that lets you experiment with this 
 REST endpoint to delete turns in specific chats.
 
 :::

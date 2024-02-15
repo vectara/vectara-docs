@@ -16,7 +16,7 @@ refining chatbot responses. You can read up to 100 conversations.
 
 :::tip
 
-Check out our **interactive API Playground** that lets you experiment with this 
+Check out our [**interactive API Playground**](docs/rest-api/read-conversations) that lets you experiment with this 
 REST endpoint to read conversations in the chat history corpus.
 
 :::
