@@ -87,8 +87,8 @@ By default, <Config v="names.product"/> only uses its neural/semantic retrieval 
 and does not attempt to use keyword matching. To enable [hybrid search](/docs/learn/hybrid-search) with a 
 mix of both keyword and neural results, edit the `lambda` value.
 
-If the corpus specifies custom dimensions, weights can be assigned to each
-dimension as well.
+If the corpus specifies custom dimensions (Scale only), weights can be 
+assigned to each dimension as well.
 
 Finally, it's possible to override the semantic interpretation of the query
 string. Usually, the default settings for the corpus are sufficient. In more
@@ -212,7 +212,7 @@ customer attached to the gRPC request.
 
 #### Summarization Request Example
 
-The full Query defintion provides the detailed summary request. When <Config v="names.product"/> responds 
+The full Query definition provides the detailed summary request. When <Config v="names.product"/> responds 
 with the list of results that most semantically answer the user, it will also 
 then produce a summary of the results with its sources cited. For more details 
 on Retrieval Augmented Generation, have a look at the
