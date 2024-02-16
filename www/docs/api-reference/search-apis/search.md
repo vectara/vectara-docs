@@ -108,6 +108,8 @@ citing the results as references. For more information, read about [Retrieval Au
 The `summary` within the query can also contain a conversation from [Vectara Chat](/docs/api-reference/chat-apis/chat-apis-overview) which 
 includes a `conversationId`. You enable Vectara Chat by setting the `store` value to `true`.
 
+The [Vectara Chat APIs](/docs/api-reference/chat-apis/chat-apis-overview) have more details about conversations.
+
 ## REST Example
 
 ### Query API Endpoint Address
@@ -116,90 +118,18 @@ includes a `conversationId`. You enable Vectara Chat by setting the `store` valu
 to search content from a corpus:
 <code>https://<Config v="domains.rest.serving"/>/v1/query</code>
 
-### Query Request Headers
-
-To interact with the Query service via REST calls, you need the following 
-headers:
-
-* `customer_id` is the customer ID to use for the request.
-* An API Key or JWT token is your authentication method
-* (Optional) `grpc-timeout` lets you specify how long to wait for queries that 
-  have the potential to take longer to process. We recommend 
-  `-H "grpc-timeout: 30S"`
-
-### Query Request
-
-The Query request body specifies different parameters that ask questions about 
-the data within corpora. The Query request requires the following parameters:
-
-* `query` - Contains your question and number of results to return.
-* `corpusKey` - Specifies which corpora to run the query. For multiple corpora, 
-  use an array
-
-```json
-{
-  "query": [
-    {
-      "query": "What is the answer to the life, the universe, and everything?",
-      "start": 0,
-      "numResults": 10,
-      "contextConfig": {
-        "charsBefore": 30,
-        "charsAfter": 30,
-        "sentencesBefore": 3,
-        "sentencesAfter": 3,
-        "startTag": "<b>",
-        "endTag": "</b>"
-      },
-      "corpusKey": [
-        {
-          "customerId": 123456789,
-          "corpusId": 1,
-          "semantics": "DEFAULT",
-          "dim": [],
-          "metadataFilter": "part.lang = 'eng'",
-          "lexicalInterpolationConfig": {
-            "lambda": 0.025
-          }
-        }
-      ],
-      "rerankingConfig": {
-        "rerankerId": 272725718,
-        "mmrConfig": {
-          "diversityBias": 0
-        }
-      },
-      "summary": [
-        {
-          "summarizerPromptName": "vectara-summary-ext-v1.2.0",
-          "maxSummarizedResults": 5,
-          "responseLang": "eng",
-          "chat": {
-            "store": true,
-            "conversationId": "0191086a-4b8a-4aec-b600-affa9b261acf"
-          },
-        }
-      ]
-    }
-  ]
-}
-```
+The API Playground shows the full [Query REST definition]((/docs/rest-api/query)).
 
 ## gRPC Example
 
 You can find the full Query gRPC definition at [serving.proto](https://github.com/vectara/protos/blob/main/serving.proto).
 
-### Query Service
+### Query Service and Request
 
-Fundamentally, the system accepts a query and returns a response, which contains
-a list of results. However, for efficiency, one or more queries can be batched
-into a single request.
-
-### Query Request
-
-The request provides several fields and nested messages that configure the 
-query, its context, and how the results should be processed and presented.
-The `query` contains the search terms that the system needs to match against 
+The definition shows details about the `query` service. The system accepts a 
+`query` and returns a response, which contains a list of results. For 
+efficiency, one or more queries can be batched into a single request. `query` 
+contains the search terms that the system needs to match against 
 the data. Then `ContextConfig` specifies the amount of text or number of 
 sentences before and after the result snippet.
 
@@ -232,8 +162,8 @@ may be less than the length of the response list.
 
 #### Attribute
 
-Attribute represents a named piece of metadata. Both the **name** and its
-**value** are string typed.
+Attribute represents a named piece of metadata. Both the `name` and its
+`value` are string typed.
 
 ```
 message Attribute {
