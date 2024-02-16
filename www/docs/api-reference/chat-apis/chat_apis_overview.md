@@ -13,15 +13,16 @@ Vectara's Chat APIs provide a streamlined solution for integrating chatbot
 functionalities into domain-specific applications and websites using Retrieval 
 Augmented Generation (RAG). Designed with efficiency in mind, these Chat APIs 
 enable developers to create interactive user experiences and manage data 
-conversations for users.
+conversations for users. With the unique `conversationId` generated for each 
+chat session, developers can track and manage conversations over time.
 
 These Chat APIs enable operations and pagination through the history of a chat, 
-specifically the conversations and their individual exchanges, also known as 
+specifically the conversations and their subsequent exchanges, also known as 
 turns. Administrators can gain valuable insights into user behavior by analyzing 
 trends among users, which creates opportunities to identify knowledge gaps for 
 information about products, technical documentation, and FAQs.
 
-The following list shows the Vectara Chat APIs:
+Vectara Chat provides the following Chat APIs:
 
 * [**Query**](/docs/api-reference/search-apis/search) contains a `chat` object within the `summary` 
   which then has a unique `conversationId`.
