@@ -10,10 +10,10 @@ import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 Vectara handles the system and user prompts automatically, but if you want to 
-do it yourself, Vectara now empowers developers a flexible way of customizing 
-prompts with metadata. Our Custom Retrieval Augmented Generation (RAG) Prompt 
-Engine provides several available prompt variables and functions for Scale 
-users to customize prompts.
+do it yourself, Vectara now empowers developers with a flexible way of 
+customizing prompts with metadata. Our Custom Retrieval Augmented Generation 
+(RAG) Prompt Engine provides several available prompt variables and functions 
+for Scale users to customize prompts.
 
 ## Available Prompt Variables
 

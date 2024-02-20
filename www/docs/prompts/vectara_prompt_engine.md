@@ -33,8 +33,7 @@ processes to help you improve the outcome of your prompts.
 
 :::note
 
-Our default prompt works best for..............Reach out to support if you 
-want to modify the default prompt.
+Reach out to support if you want to modify the default prompt.
 
 :::
 
