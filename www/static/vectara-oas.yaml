@@ -63,7 +63,6 @@ paths:
 
         Some tips for this API:
         * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
-        * It's best practice to filter as much as possible (by date, by status, and/or by job ID) to make job lists as easy to interpret as possible, as there can be many for a given time window.
       security:
         - ApiKeyAuth: []
         - oAuth: []
@@ -94,7 +93,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
         - $ref: '#/components/parameters/timeout'
-      description: "Computes the amount of quota consumed by a corpus. This capability is useful for administrators to track and monitor the amount \nof usage for specific corpora.\n\nSome tips for this API:\n* This operation works with the Personal API Key and OAuth 2.0 (in a JWT \"Bearer Token\") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).\n* It's best practice to filter as much as possible (by date, by status, and/or by job ID) to make job lists as easy to interpret as possible, as there can be many for a given time window.\n"
+      description: "Computes the amount of quota consumed by a corpus. This capability is useful for administrators to track and monitor the amount \nof usage for specific corpora.\n\nSome tips for this API:\n* This operation works with the Personal API Key and OAuth 2.0 (in a JWT \"Bearer Token\") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).\n* The `filter` feature applies to either the name *or* the description of a corpus.\n"
       security:
         - ApiKeyAuth: []
         - oAuth: []
@@ -266,7 +265,6 @@ paths:
 
         Some tips for this API:
         * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
-        * It's best practice to filter as much as possible (by date, by status, and/or by job ID) to make job lists as easy to interpret as possible, as there can be many for a given time window.
         * It can take a few seconds to completely delete the corpus if there's heavy system load.  Be patient if the corpus is still present after a deletion request is initiated.
       security:
         - ApiKeyAuth: []
@@ -303,7 +301,7 @@ paths:
         Delete documents from a corpus.
 
         Some tips for this API:
-        * This operation authenticates with either an API Key or OAuth 2.0 (in a JWT "Bearer Token"). You can find details of how to set up an API key or use OAuth 2.0 [here](https://docs.vectara.com/docs/console-ui/manage-api-access).
+        * This operation authenticates with either the Personal API Key, Index API Key, or OAuth 2.0 (in a JWT "Bearer Token"). You can find details of how to set up an API key or use OAuth 2.0 [here](https://docs.vectara.com/docs/console-ui/manage-api-access).
         * You can quickly delete all documents from a corpus to clear it out by using the [Reset Corpus](https://docs.vectara.com/docs/rest-api/reset-corpus) operation.
       security:
         - ApiKeyAuth: []
@@ -433,7 +431,7 @@ paths:
         Some tips for this API:
         * Use these metrics to determine usage patterns that enable you to optimize resource allocations.
         * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
-        * It's best practice to filter as much as possible (by date, by status, and/or by job ID) to make job lists as easy to interpret as possible, as there can be many for a given time window.
+        * The `filter` feature applies to either the name *or* the description of a corpus.
       security:
         - ApiKeyAuth: []
         - oAuth: []
@@ -507,7 +505,7 @@ paths:
         This is the "standard" Indexing API for indexing semi-structured, text-heavy "documents."  Indexing data into Vectara is typically very fast: within a few seconds.
 
         Some tips for this API:
-        * This operation authenticates with either an API Key or OAuth 2.0 (in a JWT "Bearer Token"). You can find details of how to set up an API key or use OAuth 2.0 [here](https://docs.vectara.com/docs/console-ui/manage-api-access).
+        * This operation authenticates with either the Personal API Key, Index API Key, or OAuth 2.0 (in a JWT "Bearer Token"). You can find details of how to set up an API key or use OAuth 2.0 [here](https://docs.vectara.com/docs/console-ui/manage-api-access).
         * Vectara does require a special format for JSON objects you'd like to index.  Some tips on how to model data in the indexing API, see the documentation [here](https://docs.vectara.com/docs/learn/document-data-structuring).
         * The `metadataJson` object needs the JSON to be escaped so that it's not confused with other parts of the request JSON.
         * [Custom dimensions](https://docs.vectara.com/docs/learn/semantic-search/add-custom-dimensions) (`customDims`) is a feature that is only available to [Scale](https://vectara.com/pricing/) accounts.
@@ -546,7 +544,7 @@ paths:
 
         Some tips for this API:
         * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
-        * It's best practice to filter as much as possible (by date, by status, and/or by job ID) to make job lists as easy to interpret as possible, as there can be many for a given time window.
+        * The `filter` feature applies to either the name *or* the description of a corpus.
       security:
         - ApiKeyAuth: []
         - oAuth: []
@@ -618,7 +616,6 @@ paths:
 
         Some tips for this API:
         * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
-        * It's best practice to filter as much as possible (by date, by status, and/or by job ID) to make job lists as easy to interpret as possible, as there can be many for a given time window.
         * The `filter` feature applies to either the name *or* the description of a corpus.
       security:
         - ApiKeyAuth: []
@@ -656,7 +653,6 @@ paths:
 
         Some tips for this API:
         * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
-        * It's best practice to filter as much as possible (by date, by status, and/or by job ID) to make job lists as easy to interpret as possible, as there can be many for a given time window.
       security:
         - ApiKeyAuth: []
         - oAuth: []
@@ -856,7 +852,7 @@ paths:
 
         Some tips for this API:
         * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
-        * It's best practice to filter as much as possible (by date, by status, and/or by job ID) to make job lists as easy to interpret as possible, as there can be many for a given time window.
+        * The `filter` feature applies to either the name *or* the description of a corpus.
       security:
         - ApiKeyAuth: []
         - oAuth: []
@@ -932,7 +928,7 @@ paths:
 
         Some tips for this API:
         * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
-        * It's best practice to filter as much as possible (by date, by status, and/or by job ID) to make job lists as easy to interpret as possible, as there can be many for a given time window.
+        * The `filter` feature applies to either the name *or* the description of a corpus.
         * If you want to delete individual documents instead of all documents in the corpus, you can use the [Delete API](https://docs.vectara.com/docs/rest-api/delete).
       security:
         - ApiKeyAuth: []
@@ -969,7 +965,7 @@ paths:
 
         Some tips for this API:
         * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
-        * It's best practice to filter as much as possible (by date, by status, and/or by job ID) to make job lists as easy to interpret as possible, as there can be many for a given time window.
+        * The `filter` feature applies to either the name *or* the description of a corpus.
       security:
         - ApiKeyAuth: []
         - oAuth: []
@@ -1006,7 +1002,7 @@ paths:
         strategies by using the `parts`.  Most users will want to use the [File Upload API](https://docs.vectara.com/docs/rest-api/file-upload) or the "standard" [Index API](https://docs.vectara.com/docs/rest-api/index).
 
         Some tips for this API:
-        * This operation authenticates with either an API Key or OAuth 2.0 (in a JWT "Bearer Token"). You can find details of how to set up an API key or use OAuth 2.0 [here](https://docs.vectara.com/docs/console-ui/manage-api-access).
+        * This operation authenticates with either the Personal API Key, Index API Key, or OAuth 2.0 (in a JWT "Bearer Token"). You can find details of how to set up an API key or use OAuth 2.0 [here](https://docs.vectara.com/docs/console-ui/manage-api-access).
         * The `metadataJson` object needs the JSON to be escaped so that it's not confused with other parts of the request JSON.
         * [Custom dimensions](https://docs.vectara.com/docs/learn/semantic-search/add-custom-dimensions) (`customDims`) is a feature that is only available to [Scale](https://vectara.com/pricing/) accounts.
       security:
@@ -1020,7 +1016,7 @@ paths:
         author or title, though you can provide additional metadata as well.
 
         Some tips for this API:
-        * This operation authenticates with either an API Key or OAuth 2.0 (in a JWT "Bearer Token"). You can find details of how to set up an API key or use OAuth 2.0 [here](https://docs.vectara.com/docs/console-ui/manage-api-access).
+        * This operation authenticates with either the Personal API Key, Index API Key, or OAuth 2.0 (in a JWT "Bearer Token"). You can find details of how to set up an API key or use OAuth 2.0 [here](https://docs.vectara.com/docs/console-ui/manage-api-access).
         * You can find a full list of supported file formats [here](https://docs.vectara.com/docs/api-reference/indexing-apis/file-upload/file-upload-filetypes).
         * To provide additional metadata, set the `doc_metadata` field.  You can find some additional details [here](https://docs.vectara.com/docs/api-reference/indexing-apis/file-upload/file-upload#attach-additional-metadata)
         * PDFs must contain text: Vectara does not currently support indexing scanned images via OCR.
@@ -2929,6 +2925,20 @@ components:
             ISO 639-1 or ISO 639-3 language code for the response, or "auto" to indicate that
 
             the auto-detected language of the incoming query should be used.
+        promptText:
+          type: string
+          title: >-
+            Vectara manages both system and user roles and prompts for the generative
+
+            LLM out of the box by default.  However, Scale customers can override the
+
+            prompt_text via this variable.  The prompt_text is in the form of an
+
+            Apache Velocity template.  For more details on how to configure the
+
+            prompt_text, see the long-form documentation at
+
+            https://docs.vectara.com/docs/prompts/vectara-prompt-engine
         chat:
           $ref: "#/components/schemas/servingChatRequest"
     servingSummary:
