@@ -116,6 +116,14 @@ module.exports = {
     },
     {
       type: "category",
+      label: "Generative Prompts",
+      items: [
+        "prompts/vectara-prompt-engine",
+        "prompts/custom-prompts-with-metadata",
+      ],
+    },
+    {
+      type: "category",
       label: "Build Applications",
       items: [
         "build-apps/app-building",
