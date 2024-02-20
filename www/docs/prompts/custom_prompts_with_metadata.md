@@ -9,24 +9,10 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-Vectara supports Velocity Templates which offer developers a flexible way of 
-customizing prompts and enhance the effectiveness of their generative AI 
-applications. Prompts can indicate a `role`, `system`, and `content` which 
-provide context about the kind of information that you want to retrieve.
-
-## Example Prompt Template
-
-```javascript
-Example template:
-[
-  {"role": "system", "content": "You are a helpful search assistant."},
-  #foreach ($qResult in $vectaraQueryResults)
-     {"role": "user", "content": "Give me the $vectaraIdxWord[$foreach.index] search result."},
-     {"role": "assistant", "content": "${qResult.getText()}" },
-  #end
-  {"role": "user", "content": "Generate a summary for the query \"${vectaraQuery}\" based on the above results."}
-]
-```
+Vectara now empowers developers a flexible way of customizing prompts with
+metadata. Prompts typically describe indicate a `role` and `content` which 
+provide context about how you want the role to behave and the kind of 
+information that you want to retrieve.
 
 ## Include Metadata in Prompt
 
