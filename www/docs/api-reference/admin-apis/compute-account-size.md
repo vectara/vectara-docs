@@ -7,7 +7,7 @@ sidebar_label: Compute Account Size API Definition
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The Compute Account Size endpoint lets you view how much quota you consumed 
+The Compute Account Size API lets you view how much quota you consumed 
 across the entire account. This capability is useful for administrators who 
 want to track and monitor usage of multiple accounts. For example, you manage 
 multiple tenants and notice that your account usage is higher than expected.
@@ -38,7 +38,7 @@ characters.
 ### Compute Account Size REST Endpoint Address
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
-to update the status of a corpus:
+to compute the account size:
 <code>https://<Config v="domains.rest.admin"/>/v1/compute-account-size</code>
 
 The API Playground shows the full [Compute Account Size](/docs/rest-api/compute-account-size) REST definition.

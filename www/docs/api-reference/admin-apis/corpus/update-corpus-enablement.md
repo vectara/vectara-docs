@@ -7,12 +7,11 @@ sidebar_label: Update Corpus Enablement API Definition
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-
 The Update Corpus Enablement API lets you enable or disable a corpus. 
 This is useful to manage the availability of data within the system, such as 
 when you need to take the corpus offline without having to delete the corpus. 
 
-This capability can help you utilize automated scripts to programatically 
+This capability can help you utilize automated scripts to programmatically 
 control the availability of corpora based on certain conditions. For example, 
 quickly disable a corpus for maintenance updates or in response to security 
 incidents. 

@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The List Users endpoint lets you list all users on your team and also their
+The List Users API lets you list all users on your team and also their
 corpus access and customer-level authorizations.
 
 Other activities such as adding, deleting, enabling, disabling, resetting 
@@ -34,7 +34,7 @@ retrieve a specific page of results. Leave empty to retrieve first page.
 ### List Users Endpoint Address
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
-to index content into a corpus:
+to list users:
 <code>https://<Config v="domains.rest.indexing"/>/v1/list-users</code>
 
 The API Playground shows the full [List Users](/docs/rest-api/compute-account-size) REST definition.

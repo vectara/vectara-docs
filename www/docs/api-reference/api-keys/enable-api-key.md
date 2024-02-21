@@ -12,13 +12,13 @@ import {vars} from '@site/static/variables.json';
 The Enable API Key API lets you enable or disable specific API keys. You 
 can use this endpoint to temporarily disable access without deleting the key.
 
-This capability is useful for scenarios like maintenance windows. or when your 
+This capability is useful for scenarios like maintenance windows, or when your 
 team no longer requires access to a specific corpus.
 
 ## keyEnablement Object
 
 The `keyEnablement` object contains pairs of a `keyID` with the `enable` 
-status as enable (`true`) or disable (`false`) the API key.
+status as `true` or `false` for the API key.
 
 :::tip
 

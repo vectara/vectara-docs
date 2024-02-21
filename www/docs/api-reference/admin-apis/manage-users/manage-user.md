@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The Manage User endpoint lets you perform different user and team management 
+The Manage User API lets you perform different user and team management 
 activities such as adding, deleting, enabling, disabling, and editing user 
 roles. This capability is useful in scenarios that require dynamic team 
 management.
@@ -37,7 +37,7 @@ The `userActionType` object contains the `user` object, which specifies the
 ### Manage User Endpoint Address
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
-to index content into a corpus:
+to manage users:
 <code>https://<Config v="domains.rest.indexing"/>/v1/manage-user</code>
 
 The API Playground shows the full [Manag User](/docs/rest-api/manage-user) REST definition.

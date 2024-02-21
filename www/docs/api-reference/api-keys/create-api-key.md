@@ -11,14 +11,22 @@ import {vars} from '@site/static/variables.json';
 
 The Create API Key API lets you create new API keys, which you can 
 bind to one or multiple corpora. You can also decide whether to designate each 
-key for specific access like only querying (read-only) or both querying and 
-indexing (read-write).
+key for specific access like personal API keys, only querying (read-only) or 
+both querying and indexing (read-write).
 
 This capability is useful in scenarios where you have applications that 
 require different levels of access to corpora data. For example, you might 
 create a read-only API key for an application that only needs to query data.
 
-The `apiKeyData` object includes a `description`, `apiKeyType`, and `corpusId`.
+:::note
+
+For more information about the different types of API keys, see 
+[**API Key Management**](/docs/learn/authentication/api-key-management).
+
+:::
+
+The `apiKeyData` object includes a `description`, `apiKeyType` (query-only, 
+indexing and querying, or personal access key), and `corpusId`.
 
 :::tip
 
