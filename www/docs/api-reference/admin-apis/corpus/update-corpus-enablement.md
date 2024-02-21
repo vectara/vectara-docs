@@ -8,7 +8,7 @@ import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 
-The Update Corpus Enablement endpoint lets you enable or disable a corpus. 
+The Update Corpus Enablement API lets you enable or disable a corpus. 
 This is useful to manage the availability of data within the system, such as 
 when you need to take the corpus offline without having to delete the corpus. 
 
@@ -26,10 +26,8 @@ REST endpoint to enable or disable corpora.
 
 ## Update Corpus Enablement Request and Response
 
-The request to enable or disable a corpus requires the following parameters:
-
-* Customer ID
-* Corpus ID
+The request to enable or disable a corpus requires `corpus_id` and setting `enable` 
+to `true` or `false`.
 
 ## REST Example
 
@@ -39,25 +37,8 @@ The request to enable or disable a corpus requires the following parameters:
 to update the status of a corpus:
 <code>https://<Config v="domains.rest.admin"/>/v1/update-corpus-enablement</code>
 
-### Update Corpus Enablement Request Example
+The API Playground shows the full [Update Corpus Enablement](/docs/rest-api/update-corpus-enablement) REST definition.
 
-In this example, you enable a corpus with the ID of `15`.
+## gRPC Example
 
-```json
-{
-  "corpusId": "15",
-  "enable": true
-}
-```
-
-### Update Corpus Enablement Response Example
-
-```json
-{
-  "status": {
-    "code": "OK",
-    "statusDetail": "",
-    "cause": null
-  }
-}
-```
+You can find the full Update Corpus Enablement gRPC definition at [admin.proto](https://github.com/vectara/protos/blob/main/admin.proto).

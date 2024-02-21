@@ -7,7 +7,7 @@ sidebar_label: Read Corpus API Definition
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The Read Corpus endpoint lets you view detailed information about corpora 
+The Read Corpus API lets you view detailed information about corpora 
 within your account. It enables you to view different aspects about the corpus 
 including basic information like the ID, name, whether it is enabled or 
 disabled, and other metadata. You can also view the corpus size, associated 
@@ -38,10 +38,8 @@ REST endpoint to manage your corpus details.
 The request to read corpus data provides detailed information about the corpus.
 You specify either `true` or `false` whether you want to view basic 
 information, corpus size, associated API keys, custom dimensions, and filter 
-attributes. This read corpus request also requires the following parameters:
-
-* Customer ID
-* Corpus ID
+attributes. This read corpus request also requires `corpus_id` and `customer_id` 
+parameters.
 
 The response includes detailed information about the corpus depending on what 
 you specified in the request. For example, you wanted to know the associated 
@@ -52,115 +50,11 @@ API keys with a specific corpus.
 ### Read Corpus REST Endpoint Address
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
-to ingest content into a corpus:
+to read a corpus:
 <code>https://<Config v="domains.rest.admin"/>/v1/read-corpus</code>
 
-### Read Corpus Request Example
+The API Playground shows the full [Read Corpus](/docs/rest-api/read-corpus) REST definition.
 
-```json
-{
-  "corpusId": [
-    8
-  ],
-  "readBasicInfo": true,
-  "readSize": true,
-  "readApiKeys": true,
-  "readCustomDimensions": true,
-  "readFilterAttributes": true
-}
-```
+## gRPC Example
 
-### Read Corpus Response Example
-
-The following shows an example response:
-
-```json
-{
-  "corpora": [
-    {
-      "corpus": {
-        "id": 5,
-        "name": "Employee handbooks",
-        "description": "The employee handbook for 2024",
-        "enabled": true,
-        "swapQenc": true,
-        "swapIenc": true,
-        "textless": true,
-        "encrypted": true,
-        "encoderId": "1",
-        "metadataMaxBytes": 0,
-        "customDimensions": [
-          {}
-        ],
-        "filterAttributes": [
-          {
-            "name": "custom1",
-            "description": "Custom filter",
-            "indexed": true,
-            "type": "FILTER_ATTRIBUTE_TYPE__UNDEFINED",
-            "level": "FILTER_ATTRIBUTE_LEVEL__UNDEFINED"
-          }
-        ]
-      },
-      "corpusStatus": {
-        "code": "OK",
-        "statusDetail": "",
-      },
-      "size": {
-        "epochSecs": "1704067200",
-        "size": "4026"
-      },
-      "sizeStatus": {
-        "code": "OK",
-        "statusDetail": "",
-      },
-      "apiKey": [
-        {
-          "id": "1234",
-          "description": "API Key for the employee handbook corpus",
-          "keyType": "API_KEY_TYPE__SERVING_INDEXING",
-          "enabled": true,
-          "tsStart": "5678",
-          "tsEnd": "",
-          "status": "ENABLED"
-        }
-      ],
-      "apiKeyStatus": {
-        "code": "OK",
-        "statusDetail": "string",
-      },
-      "customDimension": [
-        {}
-      ],
-      "customDimensionStatus": {
-        "code": "OK",
-        "statusDetail": "string",
-      },
-      "filterAttribute": [
-        {
-          "name": "doc.id",
-          "description": "",
-          "indexed": true,
-          "type": "FILTER_ATTRIBUTE_TYPE__TEXT",
-          "level": "FILTER_ATTRIBUTE_LEVEL__DOCUMENT"
-        },
-        {
-          "name": "is_title",
-          "description": "True if the text is a title.",
-          "indexed": true,
-          "type": "FILTER_ATTRIBUTE_TYPE__BOOLEAN",
-          "level": "FILTER_ATTRIBUTE_LEVEL__DOCUMENT_PART"
-        },
-        {
-          "name": "lang",
-          "description": "Detected language, as an ISO 639-3 code.",
-          "indexed": true,
-          "type": "FILTER_ATTRIBUTE_TYPE__TEXT",
-          "level": "FILTER_ATTRIBUTE_LEVEL__DOCUMENT_PART"
-        }
-      ],
-      "filterAttributeStatus": null
-    }
-  ]
-}
-```
+You can find the full Read Corpus gRPC definition at [admin.proto](https://github.com/vectara/protos/blob/main/admin.proto).

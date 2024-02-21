@@ -13,35 +13,15 @@ The Delete Conversations API lets you delete conversations from the chat
 history corpus. This is useful for data management to help ensure that you 
 maintain data hygiene and support compliance with data retention policies.
 
+The `conversationId` specifies the IDs of the conversations that you want to  
+delete. The limit is 1000 conversations.
+
 :::tip
 
 Check out our **interactive API Playground** that lets you experiment with this 
 REST endpoint to delete conversations in the chat history corpus.
 
 :::
-
-## Delete Conversations Request and Response
-
-The Delete Conversations request body specifies the `conversationId` that you 
-want to delete.
-
-```json
-{
-  "conversationId": [
-    "0191086a-4b8a-4aec-b600-affa9b261ac"
-  ]
-}
-```
-You get the following response:
-
-```json
-{
-  "status": {
-    "code": 0,
-    "message": ""
-  }
-}
-```
 
 ## REST Example
 
@@ -50,6 +30,8 @@ You get the following response:
 <Config v="names.product"/> exposes an HTTP endpoint at the following URL
 to delete conversations in the chat history corpus:
 <code>https://<Config v="domains.rest.indexing"/>/v1/delete-conversations</code>
+
+The API Playground shows the full [Delete Conversations](/docs/rest-api/delete-conversations) REST definition.
 
 ## gRPC Example
 

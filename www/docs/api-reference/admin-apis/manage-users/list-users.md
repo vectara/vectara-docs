@@ -12,45 +12,33 @@ import {vars} from '@site/static/variables.json';
 The List Users endpoint lets you list all users on your team and also their
 corpus access and customer-level authorizations.
 
-Other activities
-such as adding, deleting, enabling, disabling, resetting passwords, and 
-editing user roles are performed by the [Manage Users](/docs/api-reference/admin-apis/manage-users/manage-user) endpoint.
+Other activities such as adding, deleting, enabling, disabling, resetting 
+passwords, and editing user roles are performed by the [Manage Users](/docs/api-reference/admin-apis/manage-users/manage-user) endpoint.
 
-## List Users Endpoint Address
-
-<Config v="names.product"/> exposes a REST endpoint at the following URL
-to index content into a corpus:
-<code>https://<Config v="domains.rest.indexing"/>/v1/list-users</code>
-
-## Manage Users from the API Playground
+:::tip
 
 Check out our [interactive API Playground](/docs/rest-api/list-users) that lets 
 you experiment with this REST endpoint to manage users for your Vectara
 account.
 
+:::
 
-### Request Headers
+## listUsersType
 
-To interact with the List Users service via REST calls, you need the following headers:
+The `listUsersType` specifies the type of user as none, all, or only to list 
+users with a customer account level. You can also pass a `page_key` to 
+retrieve a specific page of results. Leave empty to retrieve first page. 
 
-* `customer_id` is the Customer ID to use for the request
-* An API Key or JWT Token as your authentication method
+## REST Example
 
+### List Users Endpoint Address
 
-### Request Body
+<Config v="names.product"/> exposes a REST endpoint at the following URL
+to index content into a corpus:
+<code>https://<Config v="domains.rest.indexing"/>/v1/list-users</code>
 
-The List Users request body has the following parameters:
-* `list_users_type` - Specifies the type of users as none, all, or only to list users
-  with acustomer account level.
-* `page_key`
-* `num_results`
+The API Playground shows the full [List Users](/docs/rest-api/compute-account-size) REST definition.
 
+## gRPC Example
 
-```json
-{
-    "list_users_type": ["LIST_USERS_TYPE__NONE", "LIST_USERS_TYPE__CUSTOMER", 
-    "LIST_USERS_TYPE__ALL"],
-    "page_key": "encrypted_key",
-    "num_results": "5",
-}
-```
+You can find the full List Users gRPC definition at [admin_user.proto](https://github.com/vectara/protos/blob/main/admin_user.proto).
