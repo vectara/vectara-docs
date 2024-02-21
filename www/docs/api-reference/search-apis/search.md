@@ -1,7 +1,7 @@
 ---
 id: search
-title: Search API Definition
-sidebar_label: Search API Definition
+title: Query API Definition
+sidebar_label: Query API Definition
 ---
 
 import Tabs from '@theme/Tabs';
@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The Search endpoint lets you perform a query while defining its parameters 
+The Query API lets you perform a query while defining its parameters 
 that specify the query text, pagination details, metadata filters, and other 
 settings that enable application builders to tailor their queries to specific 
 use cases.
@@ -21,7 +21,8 @@ filtering, reranking, Retrieval Augmented Generation (RAG), and hybrid search.
 
 :::tip
 
-Check out our [**interactive API Playground**](/docs/rest-api/query) that lets you experiment with this REST endpoint to manage your corpus details.
+Check out our [**interactive API Playground**](/docs/rest-api/query) that lets you experiment 
+with this REST endpoint to manage your corpus details.
 
 :::
 
@@ -118,7 +119,7 @@ The [Vectara Chat APIs](/docs/api-reference/chat-apis/chat-apis-overview) have m
 to search content from a corpus:
 <code>https://<Config v="domains.rest.serving"/>/v1/query</code>
 
-The API Playground shows the full [Query REST definition]((/docs/rest-api/query)).
+The API Playground shows the full [Query REST definition](/docs/rest-api/query).
 
 ## gRPC Example
 
