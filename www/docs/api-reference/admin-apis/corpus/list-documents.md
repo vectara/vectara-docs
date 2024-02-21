@@ -10,7 +10,7 @@ import {vars} from '@site/static/variables.json';
 The List Documents API lets you view the Document IDs and their metadata 
 in a corpus. This is useful for viewing documents indexed so far and helping 
 you decide to remove documents that are no longer needed. It helps you manage 
-the document lifecycle in your environent.
+the document lifecycle in your enviroment.
 
 This information enables you to catalog and inventory large amounts of data 
 while also extracting lists of documents for further analysis. For example, 
