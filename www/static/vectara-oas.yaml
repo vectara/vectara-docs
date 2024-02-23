@@ -1293,6 +1293,43 @@ components:
         mmrConfig:
           $ref: "#/components/schemas/servingMMRConfig"
       description: Configuration options to apply to the reranking.
+    SummarizationRequestModelParams:
+      type: object
+      properties:
+        maxTokens:
+          type: integer
+          format: int64
+        temperature:
+          type: number
+          format: float
+          description: >-
+            The sampling temperature to use. Higher values make the summary more random, while lower
+
+            values make it more focused and deterministic.
+        frequencyPenalty:
+          type: number
+          format: float
+          description: >-
+            Higher values penalize new tokens based on their existing frequency in the text so far,
+
+            decreasing the model's likelihood to repeat the same line verbatim.
+        presencePenalty:
+          type: number
+          format: float
+          description: >-
+            Higher values penalize new tokens based on whether they appear in the text so far,
+
+            increasing the model's likelihood to talk about new topics.
+      description: >-
+        Parameters for the summarizer model.  These are currently a Scale-only feature.
+
+        See https://vectara.com/pricing/ for more details on becoming a Scale customer.
+
+        WARNING: This is an experimental feature, and breakable at any point with virtually no
+
+        notice. It is meant for experimentation to converge on optimal parameters that can then
+
+        be set in the prompt definitions.
     UsageMetricsRequestMetricType:
       type: string
       enum:
@@ -2927,7 +2964,7 @@ components:
             the auto-detected language of the incoming query should be used.
         promptText:
           type: string
-          title: >-
+          description: >-
             Vectara manages both system and user roles and prompts for the generative
 
             LLM out of the box by default.  However, Scale customers can override the
@@ -2939,6 +2976,27 @@ components:
             prompt_text, see the long-form documentation at
 
             https://docs.vectara.com/docs/prompts/vectara-prompt-engine
+
+            See https://vectara.com/pricing/ for more details on becoming a Scale customer.
+        debug:
+          type: boolean
+          description: >-
+            Debugging the generative prompt is currently a Scale-only feature.
+
+            See https://vectara.com/pricing/ for more details on becoming a Scale customer.
+        responseChars:
+          type: integer
+          format: int64
+          description: >-
+            Controls the length of the summary.
+
+            This is a rough estimate and not a hard limit: the end summary can be longer or shorter
+
+            than this value.  This is currently a Scale-only feature.
+
+            See https://vectara.com/pricing/ for more details on becoming a Scale customer.
+        modelParams:
+          $ref: "#/components/schemas/SummarizationRequestModelParams"
         chat:
           $ref: "#/components/schemas/servingChatRequest"
     servingSummary:
