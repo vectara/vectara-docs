@@ -268,6 +268,7 @@ export const Search: FC<Props> = ({
         searchValue={searchValue}
         onChange={onChange}
         onKeyDown={onKeyDown}
+        sendSearch={() => sendSearchQuery(searchValue)}
         isOpen={isOpen}
         resultsList={resultsList}
         onClose={closeModalAndResetResults}

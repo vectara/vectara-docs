@@ -13,7 +13,7 @@ info:
     name: Vectara Support
     email: support@vectara.com
     url: http://support.vectara.com/
-  description: "Vectara provides an end-to-end platform for creating GenAI products using \na simple to use API.\n\nYou can [sign up for an account](https://console.vectara.com/signup) and \nthen view several [API Recipes](https://docs.vectara.com/docs/api-recipes) with example queries \nand parameter values.\n\nThe Vectara API Playground lets you experiment with REST endpoints from \nyour browser. Select an endpoint to view its definition, including the \nrequired or optional headers, body, responses, and sample commands. On the \nright side of each endpoint page, like [ReadCorpus](/docs/rest-api/read-corpus), you manually \nenter your API Key or OAuth Bearer Token, `customer_id`, and then any \nrequired body parameters like the `corpusID` before sending the API \nrequest.\n\n:::note\n\nAPI Keys can be used for querying and indexing operations, but cannot at this \ntime be used for administrative operations such as creating or deleting \ncorpora. These operations authenticate with a Bearer Token via the \nOAuth 2.0 client credentials grant. Review the [**OAuth 2.0 section**](https://docs.vectara.com/docs/learn/authentication/oauth-2) about \nhow to generate the token."
+  description: "Vectara provides an end-to-end platform for creating GenAI products using \na simple to use API.\n\nYou can [sign up for an account](https://console.vectara.com/signup) and \nthen view several [API Recipes](https://docs.vectara.com/docs/api-recipes) with example queries \nand parameter values.\n\nThe Vectara API Playground lets you experiment with REST endpoints from \nyour browser. Select an endpoint to view its definition, including the \nrequired or optional headers, body, responses, and sample commands. On the \nright side of each endpoint page, like [ReadCorpus](/docs/rest-api/read-corpus), you manually \nenter your API Key or OAuth Bearer Token, `customer_id`, and then any \nrequired body parameters like the `corpusID` before sending the API \nrequest.\n\n:::note\n\nVectara has three kinds of API keys: the Personal API Key, Index API Keys, \nand Query API Keys. The Personal API Key enables administrative tasks \nincluding creating, deleting, and listing corpora, and managing Index and \nQuery API keys for accessible corpora, reading usage data, updating \ncorpora filters, executing queries, and indexing. Query API Keys are used\nfor read-only querying operations, while Index API Keys provide read and \nwrite access. The OAuth operations authenticate with a Bearer Token via the\nOAuth 2.0 client credentials grant. Review the [**OAuth 2.0 section**](https://docs.vectara.com/docs/learn/authentication/oauth-2) about \nhow to generate the token."
 tags:
   - name: AdminService
     description: Administrative operations, such as creating or deleting corpora
@@ -21,6 +21,10 @@ tags:
     description: Indexing operations, such as creating and deleting documents
   - name: QueryService
     description: Query operations, such as performing a search and retrieval augmented generation
+  - name: DocumentService
+    description: Document operations, listing documents in a corpus
+  - name: ChatService
+    description: Chat operations, such as listing and reading conversations
 # add file upload API and auth options for other APIs
 paths:
   /v1/compute-account-size:
@@ -58,7 +62,10 @@ paths:
         Computes the amount of quota consumed across the entire Vectara account.
 
         Some tips for this API:
-        * This operation only works with OAuth 2.0 (in a JWT "Bearer Token") authentication. It does not work with API Keys.  You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
   /v1/compute-corpus-size:
     post:
       operationId: ComputeCorpusSize
@@ -86,7 +93,10 @@ paths:
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
         - $ref: '#/components/parameters/timeout'
-      description: "Computes the amount of quota consumed by a corpus. This capability is useful for administrators to track and monitor the amount \nof usage for specific corpora.\n\nSome tips for this API:\n* This operation only works with OAuth 2.0 (in a JWT \"Bearer Token\") authentication. It does not work with API Keys.  You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).\n"
+      description: "Computes the amount of quota consumed by a corpus. This capability is useful for administrators to track and monitor the amount \nof usage for specific corpora.\n\nSome tips for this API:\n* This operation works with the Personal API Key and OAuth 2.0 (in a JWT \"Bearer Token\") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).\n* The `filter` feature applies to either the name *or* the description of a corpus.\n"
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
   /v1/create-api-key:
     post:
       operationId: CreateApiKey
@@ -155,11 +165,12 @@ paths:
         Creates a corpus, which is a container to store data in.
 
         Some tips for this API:
-        * This operation only works with OAuth 2.0 (in a JWT "Bearer Token") authentication. It does not work with API Keys.  You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
         * The `name` of the corpus is the only required field.
         * Filter attributes tell Vectara which metadata fields you'd like to run SQL-style filters against.  If you need to change them after you've created the corpus, see the [Replace Filter Attributes API](https://docs.vectara.com/docs/rest-api/replace-corpus-filter-attrs)
         * `textless` and `customDimensions` are features that are only available to [Scale](https://vectara.com/pricing/) accounts.
       security:
+        - ApiKeyAuth: []
         - oAuth: []
   /v1/delete-api-key:
     post:
@@ -190,6 +201,37 @@ paths:
         - $ref: '#/components/parameters/timeout'
       description: "Deletes API keys to help you manage the security and lifecycle of API keys in your application.  \nSome tips for this API:\n* This operation only works with OAuth 2.0 (in a JWT \"Bearer Token\") authentication. It does not work with API Keys. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).\n"
       security:
+        - oAuth: []
+  /v1/delete-conversations:
+    post:
+      operationId: DeleteConversations
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/chatDeleteConversationsResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/googlerpcStatus"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/chatDeleteConversationsRequest"
+        required: true
+      tags:
+        - ChatService
+      parameters:
+        - $ref: '#/components/parameters/customerIdentifier'
+        - $ref: '#/components/parameters/timeout'
+      description: "Delete conversations from the chat history corpus. This is useful for data management to help ensure that you maintain data hygiene and support compliance with data retention policies.        \n\nSome tips for this API:\n* This operation authenticates with either an API Key or OAuth 2.0 (in a JWT \"Bearer Token\"). You can find details of how to set up an API key or use OAuth 2.0 [here](https://docs.vectara.com/docs/console-ui/manage-api-access).\n"
+      security:
+        - ApiKeyAuth: []
         - oAuth: []
   /v1/delete-corpus:
     post:
@@ -222,9 +264,10 @@ paths:
         Deletes a corpus and all of the data contained inside of the corpus.
 
         Some tips for this API:
-        * This operation only works with OAuth 2.0 (in a JWT "Bearer Token") authentication. It does not work with API Keys.  You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
         * It can take a few seconds to completely delete the corpus if there's heavy system load.  Be patient if the corpus is still present after a deletion request is initiated.
       security:
+        - ApiKeyAuth: []
         - oAuth: []
   /v1/delete-doc:
     post:
@@ -258,8 +301,70 @@ paths:
         Delete documents from a corpus.
 
         Some tips for this API:
-        * This operation authenticates with either an API Key or OAuth 2.0 (in a JWT "Bearer Token"). You can find details of how to set up an API key or use OAuth 2.0 [here](https://docs.vectara.com/docs/console-ui/manage-api-access).
+        * This operation authenticates with either the Personal API Key, Index API Key, or OAuth 2.0 (in a JWT "Bearer Token"). You can find details of how to set up an API key or use OAuth 2.0 [here](https://docs.vectara.com/docs/console-ui/manage-api-access).
         * You can quickly delete all documents from a corpus to clear it out by using the [Reset Corpus](https://docs.vectara.com/docs/rest-api/reset-corpus) operation.
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
+  /v1/delete-turns:
+    post:
+      operationId: DeleteTurns
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/chatDeleteTurnsResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/googlerpcStatus"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/chatDeleteTurnsRequest"
+        required: true
+      tags:
+        - ChatService
+      parameters:
+        - $ref: '#/components/parameters/customerIdentifier'
+        - $ref: '#/components/parameters/timeout'
+      description: "Deletes specific turns from a conversation within the chat history corpus. This enables developers to remove inaccurate or inappropriate responses from the conversation history.        \n\nSome tips for this API:\n* This operation authenticates with either an API Key or OAuth 2.0 (in a JWT \"Bearer Token\"). You can find details of how to set up an API key or use OAuth 2.0 [here](https://docs.vectara.com/docs/console-ui/manage-api-access).\n"
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
+  /v1/disable-turns:
+    post:
+      operationId: DisableTurns
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/chatDisableTurnsResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/googlerpcStatus"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/chatDisableTurnsRequest"
+        required: true
+      tags:
+        - ChatService
+      parameters:
+        - $ref: '#/components/parameters/customerIdentifier'
+        - $ref: '#/components/parameters/timeout'
+      description: "Disables specific turns from a conversation within the chat history corpus. This is useful for excluding specific turns from a conversation.        \n\nSome tips for this API:\n* This operation authenticates with either an API Key or OAuth 2.0 (in a JWT \"Bearer Token\"). You can find details of how to set up an API key or use OAuth 2.0 [here](https://docs.vectara.com/docs/console-ui/manage-api-access).\n"
       security:
         - ApiKeyAuth: []
         - oAuth: []
@@ -292,6 +397,43 @@ paths:
         - $ref: '#/components/parameters/timeout'
       description: "Enables or disables a specific API key.\n \nSome tips for this API:\n* This operation only works with OAuth 2.0 (in a JWT \"Bearer Token\") authentication. It does not work with API Keys. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).\n"
       security:
+        - oAuth: []
+  /v1/get-usage-metrics:
+    post:
+      operationId: GetUsageMetrics
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/adminUsageMetricsResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/googlerpcStatus"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/adminUsageMetricsRequest"
+        required: true
+      tags:
+        - AdminService
+      parameters:
+        - $ref: '#/components/parameters/customerIdentifier'
+        - $ref: '#/components/parameters/timeout'
+      description: |
+        Displays usage information about indexing and query operations in a corpus. This helps administrators in analyzing and managing resource consumption more efficiently for specific corpora.
+
+        Some tips for this API:
+        * Use these metrics to determine usage patterns that enable you to optimize resource allocations.
+        * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * The `filter` feature applies to either the name *or* the description of a corpus.
+      security:
+        - ApiKeyAuth: []
         - oAuth: []
   /v1/index:
     post:
@@ -363,7 +505,7 @@ paths:
         This is the "standard" Indexing API for indexing semi-structured, text-heavy "documents."  Indexing data into Vectara is typically very fast: within a few seconds.
 
         Some tips for this API:
-        * This operation authenticates with either an API Key or OAuth 2.0 (in a JWT "Bearer Token"). You can find details of how to set up an API key or use OAuth 2.0 [here](https://docs.vectara.com/docs/console-ui/manage-api-access).
+        * This operation authenticates with either the Personal API Key, Index API Key, or OAuth 2.0 (in a JWT "Bearer Token"). You can find details of how to set up an API key or use OAuth 2.0 [here](https://docs.vectara.com/docs/console-ui/manage-api-access).
         * Vectara does require a special format for JSON objects you'd like to index.  Some tips on how to model data in the indexing API, see the documentation [here](https://docs.vectara.com/docs/learn/document-data-structuring).
         * The `metadataJson` object needs the JSON to be escaped so that it's not confused with other parts of the request JSON.
         * [Custom dimensions](https://docs.vectara.com/docs/learn/semantic-search/add-custom-dimensions) (`customDims`) is a feature that is only available to [Scale](https://vectara.com/pricing/) accounts.
@@ -401,8 +543,46 @@ paths:
         Lists the API keys and the associated corpora names and IDs.
 
         Some tips for this API:
-        * This operation only works with OAuth 2.0 (in a JWT "Bearer Token") authentication. It does not work with API Keys. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * The `filter` feature applies to either the name *or* the description of a corpus.
       security:
+        - ApiKeyAuth: []
+        - oAuth: []
+  # add chat endpoints
+  /v1/list-conversations:
+    post:
+      operationId: ListConversations
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/chatListConversationsResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/googlerpcStatus"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/chatListConversationsRequest"
+        required: true
+      tags:
+        - ChatService
+      parameters:
+        - $ref: '#/components/parameters/customerIdentifier'
+        - $ref: '#/components/parameters/timeout'
+      description: |
+        List all the conversations in a specific corpus. This data enables developers to monitor chatbot interactions and understand how users engage with the data. Pagination lets developers navigate through large datasets.
+
+        Some tips for this API:
+        * This operation authenticates with either an API Key or OAuth 2.0 (in a JWT "Bearer Token"). You can find details of how to set up an API key or use OAuth 2.0 [here](https://docs.vectara.com/docs/console-ui/manage-api-access).
+      security:
+        - ApiKeyAuth: []
         - oAuth: []
   /v1/list-corpora:
     post:
@@ -435,9 +615,10 @@ paths:
         Lists all corpora accessible to the OAuth client.
 
         Some tips for this API:
-        * This operation only works with OAuth 2.0 (in a JWT "Bearer Token") authentication. It does not work with API Keys.  You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
         * The `filter` feature applies to either the name *or* the description of a corpus.
       security:
+        - ApiKeyAuth: []
         - oAuth: []
   /v1/list-documents:
     post:
@@ -471,8 +652,9 @@ paths:
         Lists information about each document ingested into the corpus including the Document ID and metadata. This is useful for managing the lifecycle of documents and a quick way to check which documents are already in the index.
 
         Some tips for this API:
-        * This operation only works with OAuth 2.0 (in a JWT "Bearer Token") authentication. It does not work with API Keys.  You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
       security:
+        - ApiKeyAuth: []
         - oAuth: []
   /v1/list-jobs:
     post:
@@ -505,9 +687,10 @@ paths:
         List the jobs associated with this account.  Jobs are background processes like [replacing the filterable metadata attributes](https://docs.vectara.com/docs/rest-api/replace-corpus-filter-attrs).
 
         Some tips for this API:
-        * This operation only works with OAuth 2.0 (in a JWT "Bearer Token") authentication. It does not work with API Keys.  You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
         * It's best practice to filter as much as possible (by date, by status, and/or by job ID) to make job lists as easy to interpret as possible, as there can be many for a given time window.
       security:
+        - ApiKeyAuth: []
         - oAuth: []
   /v1/list-users:
     post:
@@ -605,6 +788,37 @@ paths:
       security:
         - ApiKeyAuth: []
         - oAuth: []
+  /v1/read-conversations:
+    post:
+      operationId: ReadConversations
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/chatReadConversationsResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/googlerpcStatus"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/chatReadConversationsRequest"
+        required: true
+      tags:
+        - ChatService
+      parameters:
+        - $ref: '#/components/parameters/customerIdentifier'
+        - $ref: '#/components/parameters/timeout'
+      description: "Retrieves detailed information about specific conversations. This information enables developers to analyze the flow of user chats and understand the context of interactions, which helps in refining chatbot responses. You can read up to 100 conversations.        \n\nSome tips for this API:\n* This operation authenticates with either an API Key or OAuth 2.0 (in a JWT \"Bearer Token\"). You can find details of how to set up an API key or use OAuth 2.0 [here](https://docs.vectara.com/docs/console-ui/manage-api-access).\n"
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
   /v1/read-corpus:
     post:
       operationId: ReadCorpus
@@ -637,8 +851,10 @@ paths:
         This endpoint can help administrators monitor the amount of quota consumed by tenants.
 
         Some tips for this API:
-        * This operation only works with OAuth 2.0 (in a JWT "Bearer Token") authentication. It does not work with API Keys.  You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * The `filter` feature applies to either the name *or* the description of a corpus.
       security:
+        - ApiKeyAuth: []
         - oAuth: []
   /v1/replace-corpus-filter-attrs:
     post:
@@ -673,11 +889,12 @@ paths:
         See our documentation on [filterable metadata fields](https://docs.vectara.com/docs/learn/metadata-search-filtering/filter-overview) for more details on how these are used.
 
         Some tips for this API:
-        * This operation only works with OAuth 2.0 (in a JWT "Bearer Token") authentication. It does not work with API Keys.  You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
         * Each request to replace the corpus filter attributes kicks off a background [job](https://docs.vectara.com/docs/rest-api/list-jobs).  The job ID is returned when you kick off a metadata filter update job so you can track it later.
         * Existing filters will continue to apply until the update job completes.
         * The time that update filter jobs take is roughly proportional to the size of the corpus.  Updates on small corpora generally take a few minutes at most, but updates on large corpora can take many minutes to hours to complete.
       security:
+        - ApiKeyAuth: []
         - oAuth: []
   /v1/reset-corpus:
     post:
@@ -710,9 +927,11 @@ paths:
         Resets a corpus by removing all of the documents inside of it.
 
         Some tips for this API:
-        * This operation only works with OAuth 2.0 (in a JWT "Bearer Token") authentication. It does not work with API Keys.  You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * The `filter` feature applies to either the name *or* the description of a corpus.
         * If you want to delete individual documents instead of all documents in the corpus, you can use the [Delete API](https://docs.vectara.com/docs/rest-api/delete).
       security:
+        - ApiKeyAuth: []
         - oAuth: []
   /v1/update-corpus-enablement:
     post:
@@ -745,7 +964,11 @@ paths:
         Lets you enable or disable a corpus. This is useful when you need to take the corpus offline without having to delete the corpus.
 
         Some tips for this API:
-        * This operation only works with OAuth 2.0 (in a JWT "Bearer Token") authentication. It does not work with API Keys.  You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * The `filter` feature applies to either the name *or* the description of a corpus.
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
   /v1/core/index:
     post:
       operationId: CoreIndex
@@ -779,7 +1002,7 @@ paths:
         strategies by using the `parts`.  Most users will want to use the [File Upload API](https://docs.vectara.com/docs/rest-api/file-upload) or the "standard" [Index API](https://docs.vectara.com/docs/rest-api/index).
 
         Some tips for this API:
-        * This operation authenticates with either an API Key or OAuth 2.0 (in a JWT "Bearer Token"). You can find details of how to set up an API key or use OAuth 2.0 [here](https://docs.vectara.com/docs/console-ui/manage-api-access).
+        * This operation authenticates with either the Personal API Key, Index API Key, or OAuth 2.0 (in a JWT "Bearer Token"). You can find details of how to set up an API key or use OAuth 2.0 [here](https://docs.vectara.com/docs/console-ui/manage-api-access).
         * The `metadataJson` object needs the JSON to be escaped so that it's not confused with other parts of the request JSON.
         * [Custom dimensions](https://docs.vectara.com/docs/learn/semantic-search/add-custom-dimensions) (`customDims`) is a feature that is only available to [Scale](https://vectara.com/pricing/) accounts.
       security:
@@ -793,7 +1016,7 @@ paths:
         author or title, though you can provide additional metadata as well.
 
         Some tips for this API:
-        * This operation authenticates with either an API Key or OAuth 2.0 (in a JWT "Bearer Token"). You can find details of how to set up an API key or use OAuth 2.0 [here](https://docs.vectara.com/docs/console-ui/manage-api-access).
+        * This operation authenticates with either the Personal API Key, Index API Key, or OAuth 2.0 (in a JWT "Bearer Token"). You can find details of how to set up an API key or use OAuth 2.0 [here](https://docs.vectara.com/docs/console-ui/manage-api-access).
         * You can find a full list of supported file formats [here](https://docs.vectara.com/docs/api-reference/indexing-apis/file-upload/file-upload-filetypes).
         * To provide additional metadata, set the `doc_metadata` field.  You can find some additional details [here](https://docs.vectara.com/docs/api-reference/indexing-apis/file-upload/file-upload#attach-additional-metadata)
         * PDFs must contain text: Vectara does not currently support indexing scanned images via OCR.
@@ -1070,6 +1293,32 @@ components:
         mmrConfig:
           $ref: "#/components/schemas/servingMMRConfig"
       description: Configuration options to apply to the reranking.
+    UsageMetricsRequestMetricType:
+      type: string
+      enum:
+        - METRICTYPE__NONE
+        - METRICTYPE__INDEXING
+        - METRICTYPE__SERVING
+      default: METRICTYPE__NONE
+      title: The type of metric to get
+    UsageMetricsResponseIntervalValue:
+      type: object
+      properties:
+        indexingValue:
+          $ref: "#/components/schemas/adminIndexingMetric"
+        servingValue:
+          $ref: "#/components/schemas/adminServingMetric"
+      title: The response for a single interval
+    adminAbsoluteWindow:
+      type: object
+      properties:
+        startEpochSecs:
+          type: string
+          format: int64
+        endEpochSecs:
+          type: string
+          format: int64
+      title: This window is used to specify a time range for metrics
     adminApiKey:
       type: object
       properties:
@@ -1112,6 +1361,7 @@ components:
         - API_KEY_TYPE__UNDEFINED
         - API_KEY_TYPE__SERVING
         - API_KEY_TYPE__SERVING_INDEXING
+        - API_KEY_TYPE__PERSONAL
       default: API_KEY_TYPE__UNDEFINED
       description: >-
         Types of ApiKey.
@@ -1123,6 +1373,7 @@ components:
 
          - API_KEY_TYPE__SERVING: ApiKey for serving. Only gives access to query data.
          - API_KEY_TYPE__SERVING_INDEXING: ApiKey for serving and indexing. Gives access to both query and index data.
+         - API_KEY_TYPE__PERSONAL: ApiKey for personal access key.
     adminComputeAccountSizeRequest:
       type: object
       description: >-
@@ -1411,6 +1662,33 @@ components:
         - FILTER_ATTRIBUTE_TYPE__TEXT_LIST
         - FILTER_ATTRIBUTE_TYPE__BOOLEAN
       default: FILTER_ATTRIBUTE_TYPE__UNDEFINED
+    adminIndexingMetric:
+      type: object
+      properties:
+        docCount:
+          type: string
+          format: uint64
+          title: The number of documents indexed
+        docPartCount:
+          type: string
+          format: uint64
+          title: The number of document parts indexed
+        docPartBytes:
+          type: string
+          format: uint64
+          description: >-
+            The number of bytes indexed.
+
+            In case of Upload API, this is the actual bytes extracted from the document and not
+
+            the size of the document.
+
+            In case of Index API, this is the combined size of text in all the sections of the document.
+        startEpochSecs:
+          type: string
+          format: int64
+          title: The start time for this metric
+      title: Indexing data
     adminJob:
       type: object
       properties:
@@ -1486,6 +1764,14 @@ components:
             Leave empty to retrieve first page. Subsequent page requests should
             use the page key returned in previous response, and all other
             fields are ignored.
+        apiKeyType:
+          type: array
+          items:
+            $ref: "#/components/schemas/adminApiKeyType"
+          description: >-
+            [Optional] Get API keys of these types.
+
+            Default: If not set, API_KEY_TYPE__SERVING and API_KEY_TYPE__SERVING_INDEXING are returned.
         readCorporaInfo:
           type: boolean
           description: If set, returns corpus name & id associated with api keys.
@@ -1782,6 +2068,22 @@ components:
       properties:
         status:
           $ref: "#/components/schemas/comvectaraStatus"
+    adminServingMetric:
+      type: object
+      properties:
+        rowsRead:
+          type: string
+          format: uint64
+          title: The number of rows read
+        queryCount:
+          type: string
+          format: uint64
+          title: The number of queries
+        startEpochSecs:
+          type: string
+          format: int64
+          title: The start time for this metric
+      title: Serving/querying data
     adminTextSize:
       type: object
       properties:
@@ -1807,6 +2109,42 @@ components:
     adminUpdateCorpusEnablementResponse:
       type: object
       properties:
+        status:
+          $ref: "#/components/schemas/comvectaraStatus"
+    adminUsageMetricsRequest:
+      type: object
+      properties:
+        corpusId:
+          type: integer
+          format: int64
+          description: The corpus for which the metric is requested.
+        window:
+          $ref: "#/components/schemas/adminAbsoluteWindow"
+        type:
+          $ref: "#/components/schemas/UsageMetricsRequestMetricType"
+        aggregationIntervalSecs:
+          type: string
+          format: int64
+          description: >-
+            The response stats will be aggregated by this interval. Minimum aggregation interval is 1 minute.
+
+            Supported granularity units for aggregation are days, hours and minutes.
+
+            For example, If 2.5 days (in seconds) are passed, results will be aggregated by 2 days.
+
+            Similarly, if 7.6 hours (in seconds) are passed, results will be aggregated by 7 hours.
+      title: The request type for usage metrics
+    adminUsageMetricsResponse:
+      type: object
+      properties:
+        values:
+          type: array
+          items:
+            $ref: "#/components/schemas/UsageMetricsResponseIntervalValue"
+          description: >-
+            List of IntervalValue containing values for either Indexing or Serving. These are
+
+            aggregated by the interval specified in the request.
         status:
           $ref: "#/components/schemas/comvectaraStatus"
     adminUser:
@@ -1889,6 +2227,156 @@ components:
          - USER_TYPE__FEDERATED_USER: A user that is authenticated by an external identity provider such as Google etc.
          - USER_TYPE__APP_CLIENT: An application client. Please note that this doesn't work with ManageUser API.
         To create an App Client, use the ManageAppClient API.
+    chatConversation:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the conversation. This is unique within the chat history corpus.
+        turn:
+          type: array
+          items:
+            $ref: "#/components/schemas/chatTurn"
+          description: The turns comprising this conversation.
+      description: A chat contains several back-and-forth messages called turns.
+    chatDeleteConversationsRequest:
+      type: object
+      properties:
+        conversationId:
+          type: array
+          items:
+            type: string
+          description: "The IDs of the conversations to delete. Limit: 1000 conversations."
+    chatDeleteConversationsResponse:
+      type: object
+      properties:
+        status:
+          $ref: "#/components/schemas/comvectaraStatus"
+    chatDeleteTurnsRequest:
+      type: object
+      properties:
+        conversationId:
+          type: string
+          description: The ID of the conversations from which to delete turns.
+        turnId:
+          type: string
+          description: >-
+            The ID of the turn to start deletion from. All turns in this conversation starting from this
+
+            turn (inclusive) will be deleted.
+    chatDeleteTurnsResponse:
+      type: object
+      properties:
+        status:
+          $ref: "#/components/schemas/comvectaraStatus"
+    chatDisableTurnsRequest:
+      type: object
+      properties:
+        conversationId:
+          type: string
+          description: The ID of the conversations from which to disable turns.
+        turnId:
+          type: string
+          description: >-
+            The ID of the turn to start disabling from. All turns in this conversation starting from this
+
+            turn will be disabled.
+    chatDisableTurnsResponse:
+      type: object
+      properties:
+        status:
+          $ref: "#/components/schemas/comvectaraStatus"
+    chatListConversationsRequest:
+      type: object
+      properties:
+        numResults:
+          type: integer
+          format: int64
+          description: Maximum number of conversations to return per page.
+        pageKey:
+          type: string
+          format: byte
+          description: >-
+            A key that is passed in to retrieve a specific page of results.
+
+            Leave empty to retrieve the first page. Subsequent page request should
+
+            use the page key returned in previous response, and all other
+
+            fields are ignored.
+    chatListConversationsResponse:
+      type: object
+      properties:
+        conversation:
+          type: array
+          items:
+            $ref: "#/components/schemas/chatTurn"
+          description: >-
+            The first turn in each conversation.
+
+            This doesn't comprise all turns in each conversation; only the first turn of each
+
+            conversation is returned.
+        status:
+          $ref: "#/components/schemas/comvectaraStatus"
+        pageKey:
+          type: string
+          format: byte
+          description: >-
+            A key that is passed in to retrieve a specific page of results.
+
+            Pass this as is in to the next request to retrieve the next page of results.
+    chatReadConversationsRequest:
+      type: object
+      properties:
+        conversationId:
+          type: array
+          items:
+            type: string
+          description: "The IDs of the conversations to read. Limit: 10 conversations."
+    chatReadConversationsResponse:
+      type: object
+      properties:
+        Conversation:
+          type: array
+          items:
+            $ref: "#/components/schemas/chatConversation"
+        status:
+          $ref: "#/components/schemas/comvectaraStatus"
+    chatTurn:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            The ID of the turn. The ID of the first turn in a conversation is the same as the
+
+            ID of the conversation. This is unique within the chat history corpus.
+        conversationId:
+          type: string
+          description: >-
+            The ID of the conversation this turn belongs to. This is the same as the ID of the
+
+            first turn in the conversation.
+        query:
+          type: string
+          description: The query text.
+        answer:
+          type: string
+          description: The answer text.
+        enabled:
+          type: boolean
+          description: >-
+            Whether this turn is enabled. If a turn is disabled, it will not be used when
+
+            generating answers for subsequent queries in the conversation.
+        epochSecs:
+          type: string
+          format: int64
+          description: The time at which this turn was created.
+      description: |-
+        A turn in a conversation is a single exchange of query and answer.
+        A conversation is composed of several turns.
     comvectaraAttribute:
       type: object
       properties:
@@ -2233,6 +2721,29 @@ components:
             $ref: "#/components/schemas/comvectaraStatus"
         metrics:
           $ref: "#/components/schemas/servingPerformanceMetrics"
+    servingChat:
+      type: object
+      properties:
+        conversationId:
+          type: string
+          description: The conversation id of the chat.
+        turnId:
+          type: string
+          description: The id assigned to this query and answer.
+        status:
+          $ref: "#/components/schemas/comvectaraStatus"
+    servingChatRequest:
+      type: object
+      properties:
+        store:
+          type: boolean
+          description: Whether to store the query/answer pair.
+        conversationId:
+          type: string
+          description: |-
+            The conversation id of the chat.
+            If empty, a new conversation will be started.
+      description: The chat request.
     servingCorpusKey:
       type: object
       properties:
@@ -2414,6 +2925,22 @@ components:
             ISO 639-1 or ISO 639-3 language code for the response, or "auto" to indicate that
 
             the auto-detected language of the incoming query should be used.
+        promptText:
+          type: string
+          title: >-
+            Vectara manages both system and user roles and prompts for the generative
+
+            LLM out of the box by default.  However, Scale customers can override the
+
+            prompt_text via this variable.  The prompt_text is in the form of an
+
+            Apache Velocity template.  For more details on how to configure the
+
+            prompt_text, see the long-form documentation at
+
+            https://docs.vectara.com/docs/prompts/vectara-prompt-engine
+        chat:
+          $ref: "#/components/schemas/servingChatRequest"
     servingSummary:
       type: object
       properties:
@@ -2426,6 +2953,8 @@ components:
             ISO 639 language code of the summary. If the requested language was set to "AUTO", the
 
             summary language is the same as the auto-detected language of the query.
+        chat:
+          $ref: "#/components/schemas/servingChat"
         status:
           type: array
           items:
