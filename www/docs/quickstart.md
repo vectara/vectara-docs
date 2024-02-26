@@ -116,8 +116,9 @@ you a welcome email with this ID after you created the account.
 
 ### View your Customer ID
 
-After you created an account, the <Config v="names.product"/> Console UI appeared after
-login.
+After you create an account, you can click your name in the upper-right corner 
+to view your Customer ID, email, account size, and more. You need the
+Customer ID for many API requests.
 
 ![Reveal the Customer ID](/img/view_customer_id.png)
 
