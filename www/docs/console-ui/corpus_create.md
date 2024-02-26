@@ -69,7 +69,7 @@ and filter attributes. Click Edit to modify the filter attributes from this page
 
 The Access Control tab defines the users and roles that have access to the 
 corpus. You can also [create new user roles](/docs/learn/authentication/role-based-access-control), 
-a default role, and [API keys](/docs/console-ui/manage-api-access) associated with this corpus.
+a default role, and [API keys](/docs/console-ui/api-access-overview) associated with this corpus.
 
 ## Configuration
 
