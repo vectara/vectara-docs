@@ -95,7 +95,7 @@ string. Usually, the default settings for the corpus are sufficient. In more
 advanced scenarios, it's desirable to force it to be treated as a query, or,
 more rarely, as a response.
 
-### Retrieval Augmented Generation - Summarization Grounded in Data
+## Query Summarization Request - Retrieval Augmented Generation
 
 To use Retrieval Augmented Generation (RAG), which <Config v="names.product"/> also refers to as
 "Grounded Generation" -- our groundbreaking way of producing generative 
@@ -103,9 +103,31 @@ summaries on top of your own data -- you can submit a `SummarizationRequest` alo
 This produces a `summary` that attempts to answer the end-user's question, 
 citing the results as references. For more information, read about [Retrieval Augmented Generation](/docs/learn/grounded-generation/grounded-generation-overview).
 
+The `summary` object enables you to tailor the results of the query 
+summarization. Growth users can specify the `maxSummarizedResults` and 
+`responseLang`, while [Scale users](https://vectara.com/pricing/) have much more 
+powerful and granular capabilities:
+
+* `summarizerPromptName` allows you to select one of our [available summarizers](/docs/learn/grounded-generation/select-a-summarizer).
+* `promptText` lets you override the default prompt text with a [custom prompt](/docs/prompts/vectara-prompt-engine).
+* `debug` lets you view detailed logs to help in troubleshooting and optimization.
+* `responseChars` controls the length of the summary, but it is **not** a hard limit like with 
+  the `maxTokens` parameter.
+* The `modelParams` object provides more fine-grained controls for the summarizer model:
+    * `maxToken` specifies a hard limit on the number of characters in a response. 
+    This value supercedes the `responseChars` parameter in the `summary` object.
+    * `temperature` indicates whether you want the summarization to not be creative at all `0.0`,
+    or for the summarization to take more creative liberties as you approach 
+    the maximium value of `1.0`.
+  * `frequencyPenalty` provides even more granular control to help ensure that the 
+  summarization decreases the likelihood of repeating words. The values range from `0.0` to `1.0`
+  * `presencePenalty` provides more control over whether you want the summary to 
+  include new topics. The values also range from `0.0` to `1.0`
+
 ### Chat Conversation Located within the Summary
 
-The `summary` within the query can also contain a conversation from [Vectara Chat](/docs/api-reference/chat-apis/chat-apis-overview) which 
+If you enabled chat on the corpus, the `summary` object contains a 
+conversation from [Vectara Chat](/docs/api-reference/chat-apis/chat-apis-overview) which 
 includes a `conversationId`. You enable Vectara Chat by setting the `store` value to `true`.
 
 ## REST Example
