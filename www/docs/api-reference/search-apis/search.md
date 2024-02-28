@@ -109,7 +109,10 @@ summarization. Growth users can specify the `maxSummarizedResults` and
 powerful and granular capabilities:
 
 * `summarizerPromptName` allows you to select one of our [available summarizers](/docs/learn/grounded-generation/select-a-summarizer).
-* `promptText` lets you override the default prompt text with a [custom prompt](/docs/prompts/vectara-prompt-engine).
+* `promptText` lets you override the default prompt text with a [custom prompt](/docs/prompts/vectara-prompt-engine). 
+Your use case might require a chatbot to be more human like, so you decide to 
+create a custom response format that behaves more playfully in a conversation 
+or summary.
 * `debug` lets you view detailed logs to help in troubleshooting and optimization.
 * `responseChars` controls the length of the summary, but it is **not** a hard limit like with 
   the `maxTokens` parameter.
