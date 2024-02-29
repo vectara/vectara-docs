@@ -25,8 +25,8 @@ the best available summarizer for your account.
 ## Currently Available Summarizers
 
 Today, the versions available are `1.2.0` which uses chatgpt-3.5-turbo 
-and `1.3.0` which uses gpt-4.0 (and only available to our paying Scale 
-customers). The 1.2.0 summarizer is typically faster while 1.3.0 is typically 
+and `1.3.0` which uses gpt-4.0 (and only available to our paying [Scale 
+customers](https://vectara.com/pricing/)). The 1.2.0 summarizer is typically faster while 1.3.0 is typically 
 slower, but it produces a more accurate summary.
 
 These are the two official summarizers available to our users that you specify 

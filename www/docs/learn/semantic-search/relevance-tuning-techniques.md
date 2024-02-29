@@ -15,11 +15,11 @@ the associated result rankings.
 
 ## Custom dimensions
 
-[Custom dimensions](/docs/learn/semantic-search/add-custom-dimensions) are a fixed set of additional "dimensions"
-that contain user-defined numerical values and are stored in addition to the
-vectors that <Config v="names.product"/> automatically extracts and stores from
-the text. At query time, users can use these custom dimensions to increase or
-decrease the resulting score dynamically, query by query.
+[Custom dimensions](/docs/learn/semantic-search/add-custom-dimensions) provide [our Scale users](https://vectara.com/pricing/) with a fixed set 
+of additional "dimensions" that contain user-defined numerical values and are 
+stored in addition to the vectors that <Config v="names.product"/> automatically 
+extracts and stores from the text. At query time, users can use these custom 
+dimensions to increase or decrease the resulting score dynamically, query by query.
 
 Custom dimensions are great to hold metadata like "upvotes" of a post, number
 of times a product has been purchased, and similar measures of business/relevance
