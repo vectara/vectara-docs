@@ -40,7 +40,7 @@ The `userActionType` object contains the `user` object, which specifies the
 to manage users:
 <code>https://<Config v="domains.rest.indexing"/>/v1/manage-user</code>
 
-The API Playground shows the full [Manag User](/docs/rest-api/manage-user) REST definition.
+The API Playground shows the full [Manage User](/docs/rest-api/manage-user) REST definition.
 
 ## gRPC Example
 
