@@ -9,52 +9,42 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The Create API Key endpoint lets you create new API keys, which you can 
+The Create API Key API lets you create new API keys, which you can 
 bind to one or multiple corpora. You can also decide whether to designate each 
-key for specific access like only querying (read-only) or both querying and 
-indexing (read-write).
+key for specific access like personal API keys, only querying (read-only) or 
+both querying and indexing (read-write).
 
 This capability is useful in scenarios where you have applications that 
 require different levels of access to corpora data. For example, you might 
 create a read-only API key for an application that only needs to query data.
 
-## Create API Key Endpoint Address
+:::note
 
-<Config v="names.product"/> exposes a REST endpoint at the following URL
-to index content into a corpus:
-<code>https://<Config v="domains.rest.indexing"/>/v1/create-api-key</code>
+For more information about the different types of API keys, see 
+[**API Key Management**](/docs/learn/authentication/api-key-management).
 
-## Create an API Key from the API Playground
+:::
 
-Check out our [interactive API Playground](/docs/rest-api/create-api-key) that lets 
+The `apiKeyData` object includes a `description`, `apiKeyType` (query-only, 
+indexing and querying, or personal access key), and `corpusId`.
+
+:::tip
+
+Check out our [**interactive API Playground**](/docs/rest-api/create-api-key) that lets 
 you experiment with this REST endpoint to create API keys for your account.
 
-### Request Headers
+:::
 
-To interact with the Index service via REST calls, you need the following 
-headers:
+## REST API Example
 
-* `customer_id` is the customer ID to use for the request.
-* An JWT token as your authentication method
+### Create API Key Endpoint Address
 
-### Request Body
+<Config v="names.product"/> exposes a REST endpoint at the following URL
+to create API keys:
+<code>https://<Config v="domains.rest.indexing"/>/v1/create-api-key</code>
 
-The Create API Key request body requires the following parameters:
-* `description` - Provides details about the API key
-* `apiKeyType` - Indicates the type of API key including `API_KEY_TYPE__UNDEFINED` 
-  (default), `API_KEY_TYPE__SERVING`, or `API_KEY_TYPE__SERVING_INDEXING`.
-* `corpusId` - Specifies the corpus IDs where you want to bind the API key.
+The API Playground shows the full [Create API Key](/docs/rest-api/create-api-key) REST definition.
 
-```json
-{
-  "apiKeyData": [
-    {
-      "description": "Description of the ApiKey.",
-      "apiKeyType": "API_KEY_TYPE__UNDEFINED",
-      "corpusId": [
-        12
-      ]
-    }
-  ]
-}
-```
+## gRPC Example
+
+You can find the full Create API Key gRPC definition at [admin_apikey.proto](https://github.com/vectara/protos/blob/main/admin_apikey.proto).

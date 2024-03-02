@@ -24,10 +24,7 @@ endpoint to compute the corpus size.
 
 The request to compute the corpus size provides information about what time 
 the size was calculated and the size of the corpus. This request also requires 
-the following parameters:
-
-* Customer ID
-* Corpus ID
+the `corpus_id` and `customer_id` parameters.
 
 The response includes a `size` object that shows the `epochSecs` and corpus `size`
 values.
@@ -37,21 +34,11 @@ values.
 ### Compute Corpus Size REST Endpoint Address
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
-to update the status of a corpus:
+to compute the size of a corpus:
 <code>https://<Config v="domains.rest.admin"/>/v1/compute-corpus-size</code>
 
-### Compute Corpus Size Example
+The API Playground shows the full [Compute Corpus Size](/docs/rest-api/compute-corpus-size) REST definition.
 
-```json
-{
-  "size": {
-    "epochSecs": "1704313931",
-    "size": "673229"
-  },
-  "status": {
-    "code": "OK",
-    "statusDetail": "",
-    "cause": null
-  }
-}
-```
+## gRPC Example
+
+You can find the full Compute Corpus Size gRPC definition at [admin.proto](https://github.com/vectara/protos/blob/main/admin.proto).
