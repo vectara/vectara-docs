@@ -10,11 +10,12 @@ import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
 import {Config} from '@site/docs/definitions.md';
 
-Custom dimensions are a fixed set of additional "dimensions" that contain
-user-defined numerical values and are stored in addition to the dimensions
-that <Config v="names.product"/> automatically extracts and stores from the text. At
-query time, users can use these custom dimensions to increase or decrease the
-resulting score dynamically, query by query.
+Custom dimensions enable [our Scale users](https://vectara.com/pricing/) to have a fixed set of additional 
+"dimensions" that contain user-defined numerical values and are stored in 
+addition to the dimensions that <Config v="names.product"/> automatically 
+extracts and stores from the text. At query time, users can use these custom 
+dimensions to increase or decrease the resulting score dynamically, query by 
+query.
 
 For example, let's say we want to add a custom dimension to boost posts from a
 forum based on how many "upvotes" it has received.  We can create the corpus
