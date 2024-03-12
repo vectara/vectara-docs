@@ -1126,6 +1126,8 @@ components:
 
 
 
+
+
          - DEFAULT: Use corpus-assigned semantics.  This is the most common setting.
          - QUERY: Use query semantics.  This is also common.
          - RESPONSE: Use response semantics.  Usage of this is rare.
@@ -1402,6 +1404,8 @@ components:
       default: API_KEY_TYPE__UNDEFINED
       description: >-
         Types of ApiKey.
+
+
 
 
 
@@ -1966,6 +1970,8 @@ components:
       default: LIST_USERS_TYPE__NONE
       title: >-
         - LIST_USERS_TYPE__CUSTOMER: Only List users with customer account-level authorizations.
+
+
 
 
 
@@ -2568,8 +2574,12 @@ components:
 
 
 
+
+
               value in binary format, or produce an error.
             * Applications are allowed to cache lookup results based on the
+
+
 
 
 
@@ -2611,6 +2621,8 @@ components:
 
 
 
+
+
             Foo foo = ...;
             Any any;
             any.PackFrom(foo);
@@ -2620,6 +2632,8 @@ components:
             }
 
         Example 2: Pack and unpack a message in Java.
+
+
 
 
 
@@ -2642,6 +2656,8 @@ components:
 
 
 
+
+
             foo = Foo(...)
             any = Any()
             any.Pack(foo)
@@ -2651,6 +2667,8 @@ components:
               ...
 
         Example 4: Pack and unpack a message in Go
+
+
 
 
 
@@ -2696,6 +2714,8 @@ components:
 
 
 
+
+
             package google.profile;
             message Person {
               string first_name = 1;
@@ -2715,6 +2735,8 @@ components:
         `value` which holds the custom JSON in addition to the `@type`
 
         field. Example (for message [google.protobuf.Duration][]):
+
+
 
 
 
@@ -2796,11 +2818,6 @@ components:
           example: 1
         semantics:
           $ref: "#/components/schemas/CorpusKeySemantics"
-        dim:
-          type: array
-          items:
-            $ref: "#/components/schemas/vectaraservingCustomDimension"
-          description: Weights on custom dimensions for the corpus.
         metadataFilter:
           type: string
           example: "part.lang = 'eng'"
@@ -2815,6 +2832,8 @@ components:
           format: float
           title: >-
             Controls the weight given to lexical matches. The final score, S, is then:
+
+
 
 
 
@@ -2878,8 +2897,6 @@ components:
           description: |-
             The query is run on all these corpora, and the results are
             merged together in the response, ranked by score.
-        rerankingConfig:
-          $ref: "#/components/schemas/QueryRequestRerankingConfig"
         summary:
           type: array
           items:
