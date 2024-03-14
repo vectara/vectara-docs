@@ -72,7 +72,7 @@ The part metadata, held in `metadata_json`, is returned with the document part
 in search query results. For example, it can contain information that links the
 item to records in other systems.
 
-Finally, `custom_dims` allows you to specify additional factors that can be
+For Scale users, `custom_dims` allows you to specify additional factors that can be
 used at query time to control the ranking of results. The dimensions must be
 defined ahead of time for the corpus, or else they'll be ignored.
 
@@ -84,135 +84,19 @@ defined ahead of time for the corpus, or else they'll be ignored.
 to index content into a corpus:
 <code>https://<Config v="domains.rest.indexing"/>/v1/core-index</code>
 
-
-### Low-level Indexing Request and Response
-
-The request body provides the following parameters:
-
-* `customerID`
-* `corpusID`
-* `document` object containing the `documentID`, `metadataJson`, and contextual `parts`
-
-```json
-{
-  "customerId": "123456789",
-  "corpusId": "8",
-  "document": {
-    "documentId": "Research_Doc_1",
-    "metadataJson": "{\"category\":\"Research Papers\"}",
-    "parts": [
-      {
-        "text": "Introduction to Quantum Computing",
-        "context": "Quantum Computing Overview that summarizes the main points of the paper's purpose",
-        "metadataJson": "{\"section\":\"Introduction\"}",
-        "customDims": [
-          {
-            "name": "relevance",
-            "value": 10
-          }
-        ]
-      },
-      {
-        "text": "Quantum Entanglement and Superposition",
-        "context": "Chapter 1: Key Quantum Computing Concepts",
-        "metadataJson": "{\"section\":\"Chapter 1\"}",
-        "customDims": [
-          {
-            "name": "complexity",
-            "value": 15
-          }
-        ]
-      }
-      // Continue with additional parts that you want indexed
-    ],
-    "defaultPartContext": "Quantum Computing Research Study",
-    "customDims": [
-      {
-        "name": "difficulty",
-        "value": 6
-      }
-    ]
-  }
-}
-```
-The response from the server includes a status code and the amount of quota 
-consumed:
-
-```json
-{
-  "status": {
-    "code": "OK",
-    "statusDetail": ""
-  },
-  "quotaConsumed": {
-    "numChars": "1572",
-    "numMetadataChars": "332"
-  }
-}
-
-```
+The API Playground shows the full [Low-level Indexing REST definition](/docs/rest-api/core-index).
 
 ## gRPC Example
 
 You can find the full Low-level Indexing gRPC definition at [indexing_core.proto](https://github.com/vectara/protos/blob/main/indexing_core.proto).
 
-### Index Document Request and Response
-
 A request to add data into a corpus consists of three key pieces of information:
 the customer ID, the corpus ID, and the data itself, represented as a
-**CoreDocument** message.
-
-```protobuf
-message IndexCoreDocumentRequest {
-  // The Customer ID to issue the request for.
-  int64 customer_id = 1;
-  // The Corpus ID to index the document into.
-  int64 corpus_id = 2;
-  com.vectara.indexing.CoreDocument document = 3;
-}
-```
+`CoreDocument` message.
 
 The reply from the server consists of nothing yet. Note that the reply does not
 block. In other words, the information in the request is not yet available in
 the index when the RPC returns.
 
-### Document Container Format
-
-```protobuf
-// A document to index.
-message CoreDocument {
-  // A document ID to assign to this document.
-  string document_id = 1;
-  // Metadata about the document. This should be a json string. It can be
-  // retrieved at query time.
-  string metadata_json = 2;
-  // All parts of this document.
-  repeated CoreDocumentPart parts = 3;
-  // This field provides a way to specify a blanket context for all parts. If
-  // the context in a part is empty, this context will be used.
-  string default_part_context = 4;
-  // A list of custom dimension values that are included in the generated
-  // representation of all parts.
-  repeated CustomDimension custom_dims = 5;
-}
-```
-
-### Part within the Document
-
-```protobuf
-// Part of a document. A document consists of several such parts.
-message CoreDocumentPart {
-  // A part of the document. e.g., a sentence.
-  string text = 1;
-  // Context of the part.
-  string context = 2;
-  // Metadata about this part of the document. This should be a json string.
-  // It is passed through the system, without being used at indexing time. It
-  // can be retrieved at query time.
-  string metadata_json = 3;
-  // A list of custom dimension values that are included in the generated
-  // representation of this part.  These are optional and take on the corpus
-  // default custom dimension value if not explicitly provided for the document
-  repeated CustomDimension custom_dims = 4;
-}
-```
+The full definition also shows the `CoreDocument` container format, which has 
+metadata about the document, and parts within the document as `CoreDocumentPart`.

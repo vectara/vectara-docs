@@ -9,7 +9,8 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The Delete Documents API lets you delete a document from a corpus.
+The Delete Documents API lets you delete a document from a corpus. To verify 
+that the document no longer exists in the corpus, use the List Documents endpoint.
 
 :::tip
 
@@ -27,7 +28,7 @@ information:
 * `corpus_id`
 * `document_id`
 
-The reply on successful deletion is `{}`.
+The reply on successful deletion is `{}`. 
 
 
 ## REST Example
@@ -38,22 +39,7 @@ The reply on successful deletion is `{}`.
 to delete content from a corpus:
 <code>https://<Config v="domains.rest.indexing"/>/v1/delete-doc</code>
 
-### Delete Document Request and Response
-
-```json
-{
-  "customerId": "123456789",
-  "corpusId": 1,
-  "documentId": "my_document.docx"
-}
-```
-You get the following response:
-
-```json
-{}
-```
-To verify that the document no longer exists in the corpus, use the 
-List Documents endpoint.
+The API Playground shows the full [Delete Documents REST definition](/docs/rest-api/delete).
 
 ## gRPC Example
 

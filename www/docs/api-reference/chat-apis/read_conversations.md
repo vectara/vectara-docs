@@ -10,9 +10,15 @@ import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The Read Conversations API retrieves detailed information about specific 
-conversations. This information enables developers to analyze the flow of 
-user chats and understand the context of interactions, which helps in 
-refining chatbot responses. You can read up to 100 conversations.
+conversations and chat interactions. This information enables developers to 
+analyze the flow of user chats and understand the context of interactions, 
+which helps in refining chatbot responses. You can read up to 100 
+conversations.
+
+The `conversation_id` specifies the ID of the conversation that you want to read, 
+and it retrieves the `Conversation` object. This object has an `id` and `turn` 
+object which includes the `id` of the turn, `conversationId`, the `query` text, 
+`answer`, and whether the turn is `enabled`.
 
 :::tip
 
@@ -21,55 +27,6 @@ REST endpoint to read conversations in the chat history corpus.
 
 :::
 
-## Read Conversations Request and Response
-
-The Read Conversations request body has the following parameters:
-
-* `conversation_id` - Specifies the ID of the conversation that you want to read
-
-```json
-{
-  "conversation_id": [
-    "0191086a-4b8a-4aec-b600-affa9b261ac"
-  ]
-}
-```
-
-You get the following response:
-
-
-```json
-{
-  "conversation": [
-    {
-      "id": "ID of the conversation",
-      "turn": [
-        {
-          "id": "ID of the turn",
-          "conversation_id": "ID of the conversation",
-          "query": "First query of the turn",
-          "answer": "First answer of the turn",
-          "enabled": true,
-          "epoch_secs": 0
-        },
-        {
-          "id": "ID of the second turn",
-          "conversation_id": "ID of the conversation",
-          "query": "Second query of the turn",
-          "answer": "Second answer of the turn",
-          "enabled": true,
-          "epoch_secs": 0
-        }
-      ]
-    }
-  ],
-  "status": {
-    "code": 0,
-    "message": ""
-  }
-}
-```
-
 ## REST Example
 
 ### Read Conversations Endpoint Address
@@ -77,6 +34,8 @@ You get the following response:
 <Config v="names.product"/> exposes an HTTP endpoint at the following URL
 to read conversations in the chat history corpus:
 <code>https://<Config v="domains.rest.indexing"/>/v1/read-conversations</code>
+
+The API Playground shows the full [Read Conversations](/docs/rest-api/read-conversations) REST definition.
 
 ## gRPC Example
 

@@ -7,25 +7,34 @@ sidebar_label: API Definition
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
+The Delete Corpus API lets you delete a corpus. To delete a corpus, specify 
+the `customer_id` and `corpus_id`. Upon successful completion, space quota 
+consumed by the corpus will be freed, and the corpus will no longer be useable 
+for future indexing or querying. 
+
+:::note
+
+The corpus_id assigned to the corpus will not be reused.
+
+:::
+
+:::tip
+
+Check out our [**API Playground**](/docs/rest-api/delete-corpus) that lets you experiment with this REST endpoint 
+to delete corpora.
+
+:::
+
+## REST Example
+
+### Delete Corpus REST Endpoint
+
 <Config v="names.product"/> exposes a REST endpoint at the following URL
 to ingest content into a corpus:
 <code>https://<Config v="domains.rest.admin"/>/v1/delete-corpus</code>
-This page describes the details of interacting with this endpoint.
 
-To delete a corpus, specify the `customer_id` and `corpus_id`. Upon
-successful completion, space quota consumed by the corpus will be freed,
-and the corpus will no longer be useable for future indexing or querying.
-Note that the corpus_id assigned to the corpus will not be reused.
+The API Playground shows the full [Delete Corpus](/docs/rest-api/delete-corpus) REST definition.
 
-```protobuf
-message DeleteCorpusRequest {
-  // The customer id that contains the corpus to be deleted.
-  uint32 customer_id = 1;
-  // The corpus id to be deleted.
-  uint32 corpus_id = 2;
-}
+## gRPC Example
 
-message DeleteCorpusResponse {
-  Status status = 1;
-}
-```
+You can find the full Delete Corpus gRPC definition at [admin.proto](https://github.com/vectara/protos/blob/main/admin.proto).

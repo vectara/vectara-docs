@@ -14,12 +14,15 @@ This data enables developers to monitor chatbot interactions and understand
 how users engage with the data. Pagination lets developers navigate through 
 large datasets.
 
-
 ## Conversation Object Definition
 
 The `conversation` object specifies a unique turn `id`, which is the first turn 
 in the conversation. The unique `conversation_id` then specifies the conversation 
 within the chat history corpus. 
+
+The `num_results` (default 5) specifies the maximum number of conversations to 
+return, and `page_key` retrieves a specific page of results. Leave it blank to 
+get the first page.
 
 :::tip
 
@@ -28,44 +31,6 @@ REST endpoint to list conversations in the chat history corpus.
 
 :::
 
-## List Conversations Request and Response
-
-The List Conversations request body has the following parameters:
-
-* `num_results` - Specifies the maximum number of conversations to return. 
-  Default value is 5.
-* `page_key` - Retrieves a specific page of results. You can leave it blank 
-  to get the first page.
-
-```json
-{
-    "num_results": "5",
-    "page_key": "",
-}
-```
-
-You get the following response:
-
-```json
-{
-  "conversation": [
-    {
-      "id": "ID of the turn",
-      "conversation_id": "ID of the conversation",
-      "query": "First query of the turn",
-      "answer": "First answer of the turn",
-      "enabled": true,
-      "epoch_secs": 0
-    }
-  ],
-  "status": {
-    "code": 0,
-    "message": "Status message"
-  },
-  "page_key": ""
-}
-```
-
 ## REST Example
 
 ### List Conversations Endpoint Address
@@ -73,6 +38,8 @@ You get the following response:
 <Config v="names.product"/> exposes an HTTP endpoint at the following URL
 to list conversations in the chat history corpus:
 <code>https://<Config v="domains.rest.indexing"/>/v1/list-conversations</code>
+
+The API Playground shows the full [List Conversations](/docs/rest-api/list-conversations) REST definition.
 
 ## gRPC Example
 
