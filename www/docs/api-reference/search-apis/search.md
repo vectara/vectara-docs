@@ -21,7 +21,7 @@ filtering, reranking, Retrieval Augmented Generation (RAG), and hybrid search.
 
 :::tip
 
-Check out our [**interactive API Playground**](/docs/rest-api/query) that lets you experiment with this REST endpoint to manage your corpus details.
+Check out our [**interactive API Playground**](/docs/rest-api/query) that lets you experiment with this REST endpoint to send queries.
 
 :::
 
@@ -95,7 +95,7 @@ string. Usually, the default settings for the corpus are sufficient. In more
 advanced scenarios, it's desirable to force it to be treated as a query, or,
 more rarely, as a response.
 
-## Query Summarization Request - Retrieval Augmented Generation
+## Query Summarization Request - Retrieval Augmented Generation 
 
 To use Retrieval Augmented Generation (RAG), which <Config v="names.product"/> also refers to as
 "Grounded Generation" -- our groundbreaking way of producing generative 
@@ -105,27 +105,40 @@ citing the results as references. For more information, read about [Retrieval Au
 
 The `summary` object enables you to tailor the results of the query 
 summarization. Growth users can specify the `maxSummarizedResults` and 
-`responseLang`, while [Scale users](https://vectara.com/pricing/) have much more 
-powerful and granular capabilities:
+`responseLang`.
 
-* `summarizerPromptName` allows you to select one of our [available summarizers](/docs/learn/grounded-generation/select-a-summarizer).
-* `promptText` lets you override the default prompt text with a [custom prompt](/docs/prompts/vectara-prompt-engine). 
+
+## Advanced Summarization Customization Options
+
+[Scale users](https://vectara.com/pricing/) have access to more powerful summarization 
+capabilities, which present a powerful toolkit for tailoring summarizations to 
+specific application and user needs. 
+
+The `summarizerPromptName` allows you to specify one of our [available summarizers](/docs/learn/grounded-generation/select-a-summarizer).
+Use `promptText` to override the default prompt text with a [custom prompt](/docs/prompts/vectara-prompt-engine). 
 Your use case might require a chatbot to be more human like, so you decide to 
 create a custom response format that behaves more playfully in a conversation 
-or summary.
-* `debug` lets you view detailed logs to help in troubleshooting and optimization.
-* `responseChars` controls the length of the summary, but it is **not** a hard limit like with 
-  the `maxTokens` parameter.
-* The `modelParams` object provides more fine-grained controls for the summarizer model:
-    * `maxToken` specifies a hard limit on the number of characters in a response. 
+or summary. 
+
+The `debug` option lets you view detailed logs to help in troubleshooting and 
+optimization. The `responseChars` lets you control the length of the summary, but 
+note that it is **not a hard limit** like with the `maxTokens` parameter. The 
+`modelParams` object provides even more fine-grained controls for the summarizer 
+model:
+* `maxToken` specifies a hard limit on the number of characters in a response. 
     This value supercedes the `responseChars` parameter in the `summary` object.
-    * `temperature` indicates whether you want the summarization to not be creative at all `0.0`,
+* `temperature` indicates whether you want the summarization to not be creative at all `0.0`,
     or for the summarization to take more creative liberties as you approach 
     the maximium value of `1.0`.
-  * `frequencyPenalty` provides even more granular control to help ensure that the 
+* `frequencyPenalty` provides even more granular control to help ensure that the 
   summarization decreases the likelihood of repeating words. The values range from `0.0` to `1.0`
-  * `presencePenalty` provides more control over whether you want the summary to 
-  include new topics. The values also range from `0.0` to `1.0`
+* `presencePenalty` provides more control over whether you want the summary to 
+  include new topics. The values also range from `0.0` to `1.0`.
+
+By leveraging these advanced capabilities, application builders can fine-tune 
+the behavior and output style of the summarizer to align with your unique 
+application requirements.
+
 
 ### Chat Conversation Located within the Summary
 
