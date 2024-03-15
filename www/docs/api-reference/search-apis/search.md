@@ -21,8 +21,8 @@ filtering, reranking, Retrieval Augmented Generation (RAG), and hybrid search.
 
 :::tip
 
-Check out our [**interactive API Playground**](/docs/rest-api/query) that lets you experiment 
-with this REST endpoint to manage your corpus details.
+Check out our [**interactive API Playground**](/docs/rest-api/query) that lets you experiment with 
+this REST endpoint to send queries.
 
 :::
 
@@ -96,7 +96,7 @@ string. Usually, the default settings for the corpus are sufficient. In more
 advanced scenarios, it's desirable to force it to be treated as a query, or,
 more rarely, as a response.
 
-### Retrieval Augmented Generation - Summarization Grounded in Data
+## Query Summarization Request - Retrieval Augmented Generation 
 
 To use Retrieval Augmented Generation (RAG), which <Config v="names.product"/> also refers to as
 "Grounded Generation" -- our groundbreaking way of producing generative 
@@ -104,9 +104,47 @@ summaries on top of your own data -- you can submit a `SummarizationRequest` alo
 This produces a `summary` that attempts to answer the end-user's question, 
 citing the results as references. For more information, read about [Retrieval Augmented Generation](/docs/learn/grounded-generation/grounded-generation-overview).
 
+The `summary` object enables you to tailor the results of the query 
+summarization. Growth users can specify the `maxSummarizedResults` and 
+`responseLang`.
+
+
+## Advanced Summarization Customization Options
+
+[Scale users](https://vectara.com/pricing/) have access to more powerful summarization 
+capabilities, which present a powerful toolkit for tailoring summarizations to 
+specific application and user needs. 
+
+The `summarizerPromptName` allows you to specify one of our [available summarizers](/docs/learn/grounded-generation/select-a-summarizer).
+Use `promptText` to override the default prompt text with a [custom prompt](/docs/prompts/vectara-prompt-engine). 
+Your use case might require a chatbot to be more human like, so you decide to 
+create a custom response format that behaves more playfully in a conversation 
+or summary. 
+
+The `debug` option lets you view detailed logs to help in troubleshooting and 
+optimization. The `responseChars` lets you control the length of the summary, but 
+note that it is **not a hard limit** like with the `maxTokens` parameter. The 
+`modelParams` object provides even more fine-grained controls for the summarizer 
+model:
+* `maxToken` specifies a hard limit on the number of characters in a response. 
+    This value supercedes the `responseChars` parameter in the `summary` object.
+* `temperature` indicates whether you want the summarization to not be creative at all `0.0`,
+    or for the summarization to take more creative liberties as you approach 
+    the maximium value of `1.0`.
+* `frequencyPenalty` provides even more granular control to help ensure that the 
+  summarization decreases the likelihood of repeating words. The values range from `0.0` to `1.0`
+* `presencePenalty` provides more control over whether you want the summary to 
+  include new topics. The values also range from `0.0` to `1.0`.
+
+By leveraging these advanced capabilities, application builders can fine-tune 
+the behavior and output style of the summarizer to align with your unique 
+application requirements.
+
+
 ### Chat Conversation Located within the Summary
 
-The `summary` within the query can also contain a conversation from [Vectara Chat](/docs/api-reference/chat-apis/chat-apis-overview) which 
+If you enabled chat on the corpus, the `summary` object contains a 
+conversation from [Vectara Chat](/docs/api-reference/chat-apis/chat-apis-overview) which 
 includes a `conversationId`. You enable Vectara Chat by setting the `store` value to `true`.
 
 The [Vectara Chat APIs](/docs/api-reference/chat-apis/chat-apis-overview) have more details about conversations.

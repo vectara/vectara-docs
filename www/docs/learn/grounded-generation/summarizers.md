@@ -35,6 +35,17 @@ in the `summarizerPromptName`:
 * `vectara-summary-ext-v1.2.0` (gpt-3.5-turbo)
 * `vectara-summary-ext-v1.3.0` (gpt-4.0)
 
+Scale customers also have 
+access to [advanced summarization customization options](/docs/api-reference/search-apis/search#advanced-summarization-customization-options) including 
+[custom prompts](/docs/prompts/vectara-prompt-engine), character limits, temperature, and frequency and presence penalties.
+
+:::tip
+
+Check out our [**interactive API Playground**](/docs/rest-api/query) that lets Scale users experiment 
+with these additional summarization options.
+
+:::
+
 ## Beta Summarizers
 
 We also have two new beta summarizers available for our users to try:
