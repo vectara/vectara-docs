@@ -60,6 +60,19 @@ curl -L -X POST 'https://api.vectara.io/v1/upload?c=123456789&o=5' \
 -H 'x-api-key: zwt_123456' \
 -F 'file=@"/path/to/file"'
 ```
+### Set the Document ID
+
+The `Content-Disposition` header lets you specify the Document ID of a file 
+when you use the following format: 
+  
+`Content-Disposition: form-data; name="*file*"; filename="*your_document_id*"` 
+  
+where `file` is the name of the file, and `filename` is the Document ID that  
+you want. The primary purpose of this header is to specify the 
+`form-data`, so using `filename` as the Document ID is specific to our 
+platform. For more information about Content-Disposition, see 
+the [Mozilla documentation on headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition).
+
 ### Attach Additional Metadata
 
 You can attach additional metadata to the file by specifying a `doc_metadata` 
