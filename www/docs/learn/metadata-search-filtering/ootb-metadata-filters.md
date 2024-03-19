@@ -50,9 +50,14 @@ in which case this field can be used to filter.
 This field actually uses three value logic: true, false, and unset. We 
 designed it like this to avoid creating too much metadata because customers 
 are billed for metadata, so doing so is in the customer's interest. Here is 
-how it works:
+how it works using "neural networks" as an example:
 
-* To filter for title fields only, use `part.is_title = true`
-* To return only non-title sections, use `part.is_title = false` 
+* To filter for only title fields, use `part.is_title = true`. You get results 
+  with "neural networks" in the title.
+* To return only non-title sections, use `part.is_title = false`. You get 
+  results for sections that contain "neural networks." You **do not** get
+  titles with that term in the results.
 * However, not all documents have titles. To include sections with no title, 
-  use `part.is_title<>true`.
+  use `part.is_title<>true`. You could get a variety of results that do not 
+  have specific title designations but they contain the term.
+
