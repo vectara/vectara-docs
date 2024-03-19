@@ -1,66 +1,62 @@
 ---
-id: manage-api-access
-title: Manage API Access
-sidebar_label: Manage API Access
+id: api-access-overview
+title: API Authorization Methods
+sidebar_label: API Authorization Methods
 ---
 
-The API access page lets you create and manage app clients and API keys. The 
-Authentication and Authorization section provides more details about how 
-to [manage OAuth 2.0 tokens](/docs/learn/authentication/oauth-2) and [use API Keys](/docs/learn/authentication/api-key-management). 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+import {vars} from '@site/static/variables.json';
+import {Config} from '@site/docs/definitions.md';
 
-## Create an API Key
+Vectara provides a comprehensive authorization system that accommodates a wide 
+range of use cases and caters to different development environments. 
+Your Generative AI journey may be in the early stages of 
+exploration and prototyping, or a more advanced production deployment. Our 
+authentication methods include the Personal API Key, Index API Keys, 
+Query API Keys, and OAuth 2.0 Tokens.
 
-If you have the necessary permissions, an `API access` appears in the sidebar.
+The Authorization page lets you manage Personal, Index, and Query API Keys, and
+OAuth App clients. The [Authentication Overview section](/docs/learn/authentication/auth-overview) 
+provides more details about how to [manage OAuth 2.0 tokens](/docs/learn/authentication/oauth-2) and [use API Keys](/docs/learn/authentication/api-key-management). 
 
-1. Click `API access` and then select the **API Keys** tab.
+## Personal API Key
 
-  ![View API Keys](/img/view_api_keys.png)
-1. Click **Create API Key** and a dialog appears.
-2. Enter the name of the key and select the corpora you want to be 
-   able to query.
+The Personal API Key lets you perform administrative tasks including creating, 
+deleting, and listing corpora, managing API keys for accessible corpora, 
+reading usage data, updating corpora filters, executing queries, and indexing.
 
-   ![Create API Key](/img/create_api_key.png)
+:::note
 
-3. Click **Create**.
+A Personal API Key inherits the permissions of its associated user account.
 
-You can now start [using the API key](/docs/learn/authentication/api-key-management#use-an-api-key).
+:::
 
-## Create an App Client
+## Query API Keys
 
-Visit the **API access** page in the Console or go 
-to [https://console.vectara.com/console/apiAccess/appClients](https://console.vectara.com/console/apiAccess/appClients) to 
-create a new application client. Applications will use the
-`client credentials` grant when they generate the JWT token. 
+Query API Keys are recommended for read-only querying operations and are 
+designed for embedding in code that runs in potentially insecure environments 
+like web browsers or mobile apps. Query API Keys provide the least amount of 
+risk because they have a limited scope and do not modify account data.
 
-1. Click **Create app client**.
-2. Enter a **Name** and **Description** for the app client.
-3. Select the appropriate roles for the client.
-4. Click **Create** and the new app client appears in the list.
+## Index API Keys
 
-This page provides three pieces of information that you will use 
-to [generate a JWT token](/docs/learn/authentication/oauth-2#generate-a-jwt-token).
+Index API Keys offer a practical solution for development and testing phases 
+for when you need read and write access. Because they also provide write 
+access, Index API Keys are more powerful than Query API Keys and should be 
+treated like passwords and used with caution in production environments.
 
-**Authentication URL**
+## OAuth 2.0 Tokens
 
-Access your authentication by clicking the copy icon for the "OAuth 2.0 authentication URL."
+OAuth 2.0 provides the most secure authentication method for production 
+environments. Capabilities like automated token expiration provide inherent 
+benefits over API Keys.
 
-![Copy the Authentication URL](/img/copy_authentication_url.png)
+## Identify API Key by Prefixes
 
-The URL has the following format:
+For ease of identification, the API Key types each have a specific prefix:
 
-`https://vectara-prod-<customer-id>.auth.us-west-2.amazoncognito.com/oauth2/token`
-
-**Client ID**
-
-Access the `client_id` by clicking the copy icon next to your app client's ID.
-
-![Copy the Client ID](/img/copy_client_id.png)
-
-**Client secret**
-
-Access the `client_secret` by clicking the drop-down to the right of your app client and selecting **Copy secret.**
-
-![Copy the Client Secret](/img/copy_client_secret.png)
-
-Now that you have values for the authentication URL, `client_id`, and `client_secret`, 
-you can [generate a JWT token](/docs/learn/authentication/oauth-2#generate-a-jwt-token) with a `client-credentials` grant.
+* Personal API Keys begin with `zut_`
+* Query API Keys begin with `zqt_`
+* Index API Keys begin with `zwt_`

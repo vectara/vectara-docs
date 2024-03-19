@@ -9,40 +9,31 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The Delete API Key endpoint lets you delete one or more existing API keys. 
+The Delete API Key API lets you delete one or more existing API keys. 
 This capability is useful for managing the lifecycle and security of API keys 
 such as when they are no longer needed or when a key is compromised.
 
-## Delete API Key Endpoint Address
+## keyID String
 
-<Config v="names.product"/> exposes a REST endpoint at the following URL
-to index content into a corpus:
-<code>https://<Config v="domains.rest.indexing"/>/v1/delete-api-key</code>
+The `keyID` specifies the API key or list of keys that you want to delete.
 
-## Delete an API Key from the API Playground
+:::tip
 
-Check out our [interactive API Playground](/docs/rest-api/delete-api-key) that lets 
+Check out our [**interactive API Playground**](/docs/rest-api/delete-api-key) that lets 
 you experiment with this REST endpoint to delete API keys from an account.
 
-### Request Headers
+:::
 
-To interact with the Index service via REST calls, you need the following 
-headers:
+## REST Example
 
-* `customer_id` is the customer ID to use for the request.
-* An JWT token as your authentication method
+### Delete API Key Endpoint Address
 
-### Request Body
+<Config v="names.product"/> exposes a REST endpoint at the following URL
+to delete API keys:
+<code>https://<Config v="domains.rest.indexing"/>/v1/delete-api-key</code>
 
+The API Playground shows the full [Delete API Key](/docs/rest-api/delete-api-key) REST definition.
 
-The Delete API Key request body requires the `keyID` of the API key you 
-want to delete.
+## gRPC Example
 
-
-```json
-{
-  "keyId": [
-    "6o59jjft9o02jtga72pjfv3qpn"
-  ]
-}
-```
+You can find the full Delete API Key gRPC definition at [admin_apikey.proto](https://github.com/vectara/protos/blob/main/admin_apikey.proto).

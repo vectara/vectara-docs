@@ -15,9 +15,9 @@ that while slower than the rapid retrieval step, offers more accurate results.
 We currently have two rerankers, the English reranker and the Maximal Marginal 
 Relevance (MMR) reranker.
 
-## English Reranker (Scale Only)
+## English Cross-attentional Reranker (Scale Only)
 
-The English reranker is only available to Scale users and you enable it by 
+The English cross-attentional reranker is only available to Scale users and you enable it by 
 specifying `272725717` as the `reranker_id`.
 
 In most scenarios, it makes sense to use the default query `start` value of `0` so 

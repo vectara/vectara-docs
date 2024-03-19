@@ -11,55 +11,44 @@ import {vars} from '@site/static/variables.json';
 
 The Vectara Console is a good way for you to get started with <Config v="names.product"/>. Once
 you're ready to integrate the platform more deeply into your application, the 
-Corpus Admin APIs allow you to programatically manipulate corpora and perform 
-many other operations within the system.
+Corpus Admin APIs allow you to programmatically manipulate corpora and perform 
+many other operations within the system. These APIs enable new workflows for 
+organizations, like tracking usage of accounts and corpora. Check out this [blog post about managing multi-tenancy](https://vectara.com/managing-multi-tenancy-with-vectaras-new-management-apis/) for more details.
+
+:::tip
+
+The [**interactive API Playground**](/docs/rest-api/admin-service) lets you experiment with these API endpoints.
+
+:::
 
 ## Create, Delete, and Reset API Definitions
 
 The full definitions of the Create, Reset, and Delete gRPC APIs are covered
-below. 
+in [admin.proto](https://github.com/vectara/protos/blob/main/admin.proto). 
 
-* The **Create API** allows corpora to be created programatically, up to the
+* The **Create API** allows corpora to be created programmatically, up to the
 limit defined for the account. 
 * The **Reset API** deletes all data from a corpus, without
-deleting its definition
+deleting its definition.
 * The **Delete API** expunges both the data in the corpus and 
 its definition.
 
 
-The REST APIs are programatically derived from these gRPC definitions. See
+## Corpus Management API Definitions
+
+The Corpus Management API definitions enable administrators to track usage of 
+their accounts and corpora.
+
+* The **Compute Corpus Size API** allows you to understand how much a corpus has consumed.
+* The **Read Corpus Details API** enables you to read many aspects of a corpus, including the last 
+  computed size, associated API keys, and filter attributes.
+* The **Enable/Disable Corpus API** enables administrators to enable or disable a corpus, such as 
+  when you need to take a corpus offline without deleting the corpus.
+
+The REST APIs are programmatically derived from these gRPC definitions. See
 [REST APIs](/docs/api-reference/rest) for more information on endpoints or expand the 
 specific API in the left navigation sidebar to find REST examples in various
 programming languages. 
-
-
-<pre>{`protobuf
-service AdminService {
-  rpc CreateCorpus(${vars['package.protobuf']}.admin.CreateCorpusRequest)
-          returns (${vars['package.protobuf']}.admin.CreateCorpusResponse) {
-    option (google.api.http) = {
-      post: "/v1/create-corpus"
-      body: "*"
-    };
-  }
-
-  rpc DeleteCorpus(${vars['package.protobuf']}.admin.DeleteCorpusRequest)
-          returns (${vars['package.protobuf']}.admin.DeleteCorpusResponse) {
-    option (google.api.http) = {
-      post: "/v1/delete-corpus"
-      body: "*"
-    };
-  }
-
-  rpc ResetCorpus(${vars['package.protobuf']}.admin.ResetCorpusRequest)
-          returns (${vars['package.protobuf']}.admin.ResetCorpusResponse) {
-    option (google.api.http) = {
-      post: "/v1/reset-corpus"
-      body: "*"
-    };
-  }
-}
-`}</pre>
 
 :::note
 

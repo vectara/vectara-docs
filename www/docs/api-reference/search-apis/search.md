@@ -1,7 +1,7 @@
 ---
 id: search
-title: Search API Definition
-sidebar_label: Search API Definition
+title: Query API Definition
+sidebar_label: Query API Definition
 ---
 
 import Tabs from '@theme/Tabs';
@@ -9,33 +9,24 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The Search endpoint lets you perform a query while defining its parameters 
+The Query API lets you perform a query while defining its parameters 
 that specify the query text, pagination details, metadata filters, and other 
 settings that enable application builders to tailor their queries to specific 
 use cases.
 
-## Query API Endpoint Address
+After you index data into one or more corpora, you can run queries 
+and display the results. This page provides a detailed reference for how
+to run queries and also describes some of Vectara's capabilities in metadata 
+filtering, reranking, Retrieval Augmented Generation (RAG), and hybrid search.
 
-<Config v="names.product"/> exposes a REST endpoint at the following URL
-to search content from a corpus:
-<code>https://<Config v="domains.rest.serving"/>/v1/query</code>
+:::tip
 
-Once you've indexed data into one or more corpora, you're ready to run queries
-and display the results. This page provides a detailed reference guide for how
-to do that.
+Check out our [**interactive API Playground**](/docs/rest-api/query) that lets you experiment with 
+this REST endpoint to send queries.
 
-### Query Request Headers
+:::
 
-To interact with the Query service via REST calls, you need the following 
-headers:
-
-* `customer_id` is the customer ID to use for the request.
-* An API Key or JWT token is your authentication method
-* (Optional) `grpc-timeout` lets you specify how long to wait for queries that 
-  have the potential to take longer to process. We recommend 
-  `-H "grpc-timeout: 30S"`
-
-### Query Request Body
+## Query Request Body and Response
 
 The Query request body specifies different parameters that ask questions about 
 the data within corpora. The Query request requires the following parameters:
@@ -43,234 +34,7 @@ the data within corpora. The Query request requires the following parameters:
 * `query` - Contains your question and number of results to return.
 * `corpusKey` - Specifies which corpora to run the query 
 
-```json
-{
-  "query": [
-    {
-      "query": "What is the answer to the life, the universe, and everything?",
-      "start": 0,
-      "numResults": 10,
-      "contextConfig": {
-        "charsBefore": 30,
-        "charsAfter": 30,
-        "sentencesBefore": 3,
-        "sentencesAfter": 3,
-        "startTag": "<b>",
-        "endTag": "</b>"
-      },
-      "corpusKey": [
-        {
-          "customerId": 0,
-          "corpusId": 1,
-          "semantics": "DEFAULT",
-          "dim": [],
-          "metadataFilter": "part.lang = 'eng'",
-          "lexicalInterpolationConfig": {
-            "lambda": 0.025
-          }
-        }
-      ],
-      "rerankingConfig": {
-        "rerankerId": 272725717
-      },
-      "summary": [
-        {
-          "summarizerPromptName": "vectara-summary-ext-v1.2.0",
-          "maxSummarizedResults": 5,
-          "responseLang": "eng"
-        }
-      ]
-    }
-  ]
-}
-```
-
-
-## Full Search API Definition
-
-The full definition of the gRPC interface is covered below.
-
-### Query Service
-
-Fundamentally, the system accepts a query and returns a response, which contains
-a list of results. However, for efficiency, one or more queries can be batched
-into a single request.
-
-```protobuf
-service QueryService {
-  rpc Query(BatchQueryRequest) returns (BatchQueryResponse) { }
-}
-```
-
-### Query Request
-
-A single query consists of a **query**, which is specified in plain text. For
-example, *"Where can I buy the latest iPhone?"*. Optionally, the **query
-context** provides additional information that the system may use to refine the
-results. For example, *"The Apple store near my house is closed due to Covid."*
-
-The `start` field controls the starting position within the list of results,
-while `num_results` dictates how many results are returned. Thus, setting
-`start=5` and `num_results=20` would return twenty results beginning at position
-five. These fields are mainly used to provide pagination.
-
-The `CorpusKey` specifies a list of corpora against which to run the
-query. While it's most often the case that a query is run against a single
-corpus, it's sometimes useful to run against several in parallel.
-
-Finally, the **reranking configuration** enables reranking of results, to
-further increase relevance in certain scenarios. For details, see
-[Reranking](#reranking) under the Advanced Scenarios section below.
-
-```protobuf
-message QueryRequest {
-  // The query text to use from the end user.
-  string query = 5;
-
-  // The start position in the result set
-  uint32 start = 15;
-  // The number of results to return.
-  uint32 num_results = 20;
-  message ContextConfig {
-    // The amount of context before. Ignored if sentences_before is set.
-    int32 chars_before = 5;
-    // The amount of context after. Ignored if sentences_after is set.
-    int32 chars_after = 10;
-    // The amount of context before, in sentences.
-    int32 sentences_before = 15;
-    // The amount of context after, in sentences.
-    int32 sentences_after = 20;
-    // The tag that wraps the snippet at the start.
-    string start_tag = 25;
-    // The tag that wraps the snippet at the end.
-    string end_tag = 30;
-  }
-  ContextConfig context_config = 22;
-
-  // The query is run on all these corpora, and the results are
-  // merged together in the response, ranked by score.
-  repeated CorpusKey corpus_key = 25;
-
-  // Configuration options to apply to the reranking.
-  message RerankingConfig {
-    // Which reranking model to use if reranking.  Currently, the only ID
-    // available is ID 272725717
-    uint32 reranker_id = 5;
-  }
-  RerankingConfig reranking_config = 30;
-
-  // Optionally, one or more requests to summarize the results.
-  repeated SummarizationRequest summary = 35;
-}
-```
-
-### Corpus Key
-
-At the most basic level, the corpus key specifies the ID of the corpus being
-searched. Specifying the `customer_id` is optional, since it defaults to the
-customer attached to the gRPC request.
-
-The `metadata_filter` allows specifying a predicate expression that restricts
-the search to a part of the corpus. The filter is written in a simplified SQL
-dialect and can reference metadata that was marked as filterable during corpus
-creation. See the [Filter Expressions Overview](/docs/learn/metadata-search-filtering/filter-overview) for a 
-description of their syntax, and [Corpus Administration](/docs/api-reference/admin-apis/admin) to learn how 
-referenceable metadata is specified during corpus creation.
-
-If the corpus specifies custom dimensions, weights can be assigned to each
-dimension as well.
-
-Finally, it's possible to override the semantic interpretation of the query
-string. Usually, the default settings for the corpus are sufficient. In more
-advanced scenarios, it's desirable to force it to be treated as a query, or,
-more rarely, as a response.
-
-
-```protobuf
-message CorpusKey {
-  // The Customer ID.
-  uint32 customer_id = 5;
-  // The Corpus ID.
-  uint32 corpus_id = 10;
-
-  // Semantics controls the interpretation of the query string by the
-  // server, and can be used to override the default semantics assigned
-  // in the corpus definition.
-  enum Semantics {
-    // Use corpus-assigned semantics.  This is the most common setting.
-    DEFAULT = 0;
-    // Use query semantics.  This is also common.
-    QUERY = 1;
-    // Use response semantics.  Usage of this is rare.
-    RESPONSE = 2;
-  }
-  Semantics semantics = 15;
-
-  // Weights on custom dimensions for the corpus.
-  repeated CustomDimension dim = 20;
-
-  string metadata_filter = 25;
-
-  LinearInterpolation lexical_interpolation_config = 30;
-}
-```
-
-### Generative Summarization Grounded in Data
-
-If you'd like to use "Grounded Generation" -- <Config v="names.product"/>'s
-groundbreaking way of producing generative summaries on top of your own data --
-you can submit a `SummarizationRequest` alongside your query.  This produces a
-summary that atttempts to answer the end-user's question, citing the results
-as references.  The format of the summary request is as follows:
-
-```protobuf
-message SummarizationRequest {
-  // The name of the summarizer+prompt combination to use for summarization.
-  string summarizer_prompt_name = 3;
-  // Maximum number of results to summarize.
-  uint32 max_summarized_results = 15;
-  // ISO 639-1 or ISO 639-3 language code for the response, or "auto" to indicate that
-  // the auto-detected language of the incoming query should be used.
-  string response_lang = 20;
-}
-```
-
-When <Config v="names.product"/> responds with the list of results that most
-semantically answer the user, it will also then produce a summary of the results
-with its sources cited.  For more details on use cases for grounded generation
-and details on how to use grounded generation and common use cases to consider,
-have a look at the
-[chatbots and grounded generation](/docs/learn/grounded-generation/grounded-generation-overview)
-use case documentation.
-
-The summary comes back in the following format:
-
-```protobuf
-message Summary {
-  // The summary text.
-  string text = 10;
-
-  // ISO 639 language code of the summary. If the requested language was set to "AUTO", the
-  // summary language is the same as the auto-detected language of the query.
-  string lang = 15;
-
-
-  // Statuses are marked “repeated” for consistency and flexibility. A failed
-  // summary should bubble up into the status code of the entire ResponseSet.
-  repeated Status status = 1000;
-  // Populated for streaming requests only.
-  int32 future_id = 1010;
-}
-```
-
-The `text` contains a summary of the relevant results to the given search
-with those relevant results included as cited sources.  <Config v="names.product"/>
-cites these by `[number]` format.  For example, if the 1st result is in the
-summary, it is cited as `[1]`.
-
-### Query Response
-
-The response message encapsulates a single query result. It is a subdocument
+The query response message encapsulates a single query result. It is a subdocument
 provided at indexing time. The `text` is the subdocument text, the `score`
 indicates how well the text answers the query (higher scores are better).
 
@@ -282,53 +46,163 @@ Finally, the `document_index` points at a specific document within the
 enclosing response set's `document` array. This is useful for retrieving the
 document id and document-level metadata.
 
-```
-message Response {
-  string text = 5;
-  // The score used for ranking results.  The higher the score, the better the match.
-  float score = 10;
-  repeated Attribute metadata = 20;
-  // Use this ID to find the document in the ResponseSet.
-  uint32 document_index = 25;
-  CorpusKey corpus_key = 30;
-}
-```
 
-### ResponseSet
+## Query Definition
+
+A single query consists of a **query**, which is specified in plain text. For
+example, *"Where can I buy the latest iPhone?"*. Optionally, the **query
+context** provides additional information that the system may use to refine the
+results. For example, *"The Apple store near my house is closed due to Covid."*
+
+The `start` field controls the starting position within the list of results,
+while `num_results` dictates how many results are returned. Thus, setting
+`start=5` and `num_results=20` would return twenty results beginning at position
+five. These fields are mainly used to provide pagination.
+
+The `corpusKey` specifies a list of corpora against which to run the
+query. While it's most often the case that a query is run against a single
+corpus, it's sometimes useful to run against several in parallel.
+
+Finally, the **reranking configuration** enables reranking of results, to
+further increase relevance in certain scenarios. For details about our English 
+cross-attentional (Scale only) and Maximal Marginal Relevance (MMR) rerankers, 
+see [Reranking](/docs/api-reference/search-apis/reranking).
+
+## Corpus Key Definition
+
+The `corpusKey` specifies the ID of the corpus being searched. The `metadata_filter` allows 
+specifying a predicate expression that restricts the search to a part of the 
+corpus. The filter is written in a simplified SQL dialect and can reference 
+metadata that was marked as filterable during corpus
+creation. 
+
+:::note
+
+See the [**Filter Expressions Overview**](/docs/learn/metadata-search-filtering/filter-overview) for a 
+description of their syntax, and [**Corpus Administration**](/docs/api-reference/admin-apis/admin) to learn how 
+referenceable metadata is specified during corpus creation.
+
+:::
+
+By default, <Config v="names.product"/> only uses its neural/semantic retrieval model, 
+and does not attempt to use keyword matching. To enable [hybrid search](/docs/learn/hybrid-search) with a 
+mix of both keyword and neural results, edit the `lambda` value.
+
+If the corpus specifies custom dimensions (Scale only), weights can be 
+assigned to each dimension as well.
+
+Finally, it's possible to override the semantic interpretation of the query
+string. Usually, the default settings for the corpus are sufficient. In more
+advanced scenarios, it's desirable to force it to be treated as a query, or,
+more rarely, as a response.
+
+## Query Summarization Request - Retrieval Augmented Generation 
+
+To use Retrieval Augmented Generation (RAG), which <Config v="names.product"/> also refers to as
+"Grounded Generation" -- our groundbreaking way of producing generative 
+summaries on top of your own data -- you can submit a `SummarizationRequest` alongside your query. 
+This produces a `summary` that attempts to answer the end-user's question, 
+citing the results as references. For more information, read about [Retrieval Augmented Generation](/docs/learn/grounded-generation/grounded-generation-overview).
+
+The `summary` object enables you to tailor the results of the query 
+summarization. Growth users can specify the `maxSummarizedResults` and 
+`responseLang`.
+
+
+## Advanced Summarization Customization Options
+
+[Scale users](https://vectara.com/pricing/) have access to more powerful summarization 
+capabilities, which present a powerful toolkit for tailoring summarizations to 
+specific application and user needs. 
+
+The `summarizerPromptName` allows you to specify one of our [available summarizers](/docs/learn/grounded-generation/select-a-summarizer).
+Use `promptText` to override the default prompt text with a [custom prompt](/docs/prompts/vectara-prompt-engine). 
+Your use case might require a chatbot to be more human like, so you decide to 
+create a custom response format that behaves more playfully in a conversation 
+or summary. 
+
+The `debug` option lets you view detailed logs to help in troubleshooting and 
+optimization. The `responseChars` lets you control the length of the summary, but 
+note that it is **not a hard limit** like with the `maxTokens` parameter. The 
+`modelParams` object provides even more fine-grained controls for the summarizer 
+model:
+* `maxToken` specifies a hard limit on the number of characters in a response. 
+    This value supercedes the `responseChars` parameter in the `summary` object.
+* `temperature` indicates whether you want the summarization to not be creative at all `0.0`,
+    or for the summarization to take more creative liberties as you approach 
+    the maximium value of `1.0`.
+* `frequencyPenalty` provides even more granular control to help ensure that the 
+  summarization decreases the likelihood of repeating words. The values range from `0.0` to `1.0`
+* `presencePenalty` provides more control over whether you want the summary to 
+  include new topics. The values also range from `0.0` to `1.0`.
+
+By leveraging these advanced capabilities, application builders can fine-tune 
+the behavior and output style of the summarizer to align with your unique 
+application requirements.
+
+
+### Chat Conversation Located within the Summary
+
+If you enabled chat on the corpus, the `summary` object contains a 
+conversation from [Vectara Chat](/docs/api-reference/chat-apis/chat-apis-overview) which 
+includes a `conversationId`. You enable Vectara Chat by setting the `store` value to `true`.
+
+The [Vectara Chat APIs](/docs/api-reference/chat-apis/chat-apis-overview) have more details about conversations.
+
+## REST Example
+
+### Query API Endpoint Address
+
+<Config v="names.product"/> exposes a REST endpoint at the following URL
+to search content from a corpus:
+<code>https://<Config v="domains.rest.serving"/>/v1/query</code>
+
+The API Playground shows the full [Query REST definition](/docs/rest-api/query).
+
+## gRPC Example
+
+You can find the full Query gRPC definition at [serving.proto](https://github.com/vectara/protos/blob/main/serving.proto).
+
+### Query Service and Request
+
+The definition shows details about the `query` service. The system accepts a 
+`query` and returns a response, which contains a list of results. For 
+efficiency, one or more queries can be batched into a single request. `query` 
+contains the search terms that the system needs to match against 
+the data. Then `ContextConfig` specifies the amount of text or number of 
+sentences before and after the result snippet.
+
+#### Corpus Key
+
+The `corpus_key` allows the query to be executed across multiple corpora. 
+The `CorpusKey` identifies a specific corpus or corpora to include in the query.
+Specifying the `customer_id` is optional, since it defaults to the
+customer attached to the gRPC request.
+
+#### Summarization Request Example
+
+The full Query definition provides the detailed summary request. When <Config v="names.product"/> responds 
+with the list of results that most semantically answer the user, it will also 
+then produce a summary of the results with its sources cited. For more details 
+on Retrieval Augmented Generation, have a look at the
+[chatbots and grounded generation overview](/docs/learn/grounded-generation/grounded-generation-overview).
+
+The summary comes back in a format where the `text` contains a summary of the 
+relevant results to the given search with those relevant results included as 
+cited sources.  <Config v="names.product"/> cites these by `[number]` format. 
+For example, if the 1st result is in the summary, it is cited as `[1]`.
+
+#### ResponseSet
 
 The response set groups a list of responses, sorted in order of score, together
 with a list of `statuses` and enclosing `documents`. Since it's possible for
 several results to come from the same document, the length of the document list
 may be less than the length of the response list.
 
-```
-message ResponseSet {
-  repeated Response response = 5;
-  // Potentially multiple warnings.
-  repeated Status status = 10;
+#### Attribute
 
-  message Document {
-    string id = 5;
-    repeated Attribute metadata = 10;
-  }
-  repeated Document document = 15;
-
-  // A summary. If using synchronous APIs for querying, the summary will be
-  // included directly in this response. However, if using the streaming APIs
-  // for query, the summary messages only set the future_id field. Later, as
-  // summary results are computed and returned over the stream, the future_id
-  // within the summary can be used for correlation.
-  repeated Summary summary = 25;
-
-  // Populated for streaming requests only.
-  int32 future_id = 1010;
-}
-```
-
-### Attribute
-
-Attribute represents a named piece of metadata. Both the **name** and its
-**value** are string typed.
+Attribute represents a named piece of metadata. Both the `name` and its
+`value` are string typed.
 
 ```
 message Attribute {
@@ -337,11 +211,11 @@ message Attribute {
 }
 ```
 
-### Batch Query and Response
+#### Batch Query and Response
 
 The batch query request and response messages simply aggregate several
 individual queries and response sets, respectively. The response sets will match
-the queries in both number and order, so, for example, the third response set in
+the queries in both number and order. For example, the third response set in
 the batch response will correspond with the third query in the batch request.
 
 ```protobuf
@@ -361,7 +235,7 @@ message BatchQueryResponse {
 ### Search Multiple Corpora
 
 There are situations where searching multiple corpora simultaneously can be 
-benefitcial. To do this effectively, you need two things:
+beneficial. To do this effectively, you need two things:
 
 1. **Proper Permissions:** Setting up an API Key that grants access to all corpora 
    that you intend to search.

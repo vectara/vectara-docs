@@ -60,7 +60,7 @@ curl -L -X POST 'https://api.vectara.io/v1/upload?c=123456789&o=5' \
 -H 'x-api-key: zwt_123456' \
 -F 'file=@"/path/to/file"'
 ```
-## Set the Document ID
+### Set the Document ID
 
 The `Content-Disposition` header lets you specify the Document ID of a file 
 when you use the following format: 
