@@ -1,0 +1,48 @@
+---
+id: delete-corpus-document
+title: "Delete a document."
+description: "Delete a document."
+sidebar_label: "Delete a document."
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVW1v0zAQ/iuWhQSINqnGvlAJiYkNVPE2scEHtmlyk8viLbGN7bQrUf47d07apsuQ2MQHPsXxne+e515r7sWV49MznuqkKkF5xy9GXBuwwkutZimf8hQK8PBWW1O5w06Nj7gRVpQosPS+5lKhqhE+R5FCAf4l4cnlDazwLgWXWGnIKoo+wIrpjPkcWKvFltLn4X+NhHnNWtcRPrfws5IWEI+3FYy4S3IoBZ/W3K8MOXPeSnUVcHkERU7OxPjXwfjHZPzq8vz89cWLJ7xpRvciXfu8lOkA6poyk+ka8hDiAxA2zQUpO6OVA0fyvck+fXbdnlRJAs5lVVGsOifpjvOINyO+P3k5fHoMtpTO4Y9DbfXUM1EUetlaQQhMbBlI1UsCBTrRylOC0aowppBJKIT42pHpeshKz68hCfVgqWy8bDmViF1ctedddJ86CWuv5wRoma8CDLBWW6aTpMJAEprOibBWUBFJD2Uw6aUvSNC52WpuygBuRWmCzkxRPYiCObALsK2TiGoh5AxcSPsA52yT7k4Lz8KzRCg2B1Y5SodmORQGmcwrIoHiJQV1aTWRoor+jsHBRmGuMkZbHw2QEow1myNChjdNyOw9RdE2IcMYbRKotGeZrlT6D5P3h3DsuLrDYrST8cem7T/MyWft3xHnbW6awYQI3dnrKrKIozHX2/HZDqYc/+PFXkztpq2I6+2IbOLNCI7r3jxq8GVbuO2crWyBRnLvjZvGsTAyWrR0okSXaJvTeJEq0/14rxkfHM8YqtwlcIoBXau8BxWG/wLYwYyZQvhM2zI6V/iKQLQv9qJJNKG44ahxX7ITBCgT6AHrgyrgShRxUB3rbOxa5birV5GEesXClMQsA0jnIrl507MQEmK086UIddxN7XvjvsNsU4kebn2MZHD2o6kQw7pLyBkPEelSgqfp7t7aLEaU9PcEhjlHSGSgrufCwTdbNA1dY2XaFd7jcSGsFHPKAaYulY7OWBSZKBwMsG66lz/72i2T5+zBm/JexuuGVERpIYqK/vBIHHcWNS3IR+H82zX5CHj9qDcXqJ6DSMGGmLYaB7grje+9HUw/6opNSx4efTw6PcKq+g3g8h6r
+sidebar_class_name: "delete api-method"
+info_path: docs/v2/rest-api/vectara-api-v-2
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>Delete a document.</h1>
+
+<MethodEndpoint method={"delete"} path={"/v2/corpora/{corpus_key}/documents/{document_id}"}></MethodEndpoint>
+
+
+
+Delete a document.
+
+## Request
+
+<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Path Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"in":"path","name":"corpus_key","description":"Key of the corpus with the document to delete.","required":true,"schema":{"type":"string","pattern":"[a-zA-Z0-9_\\=]+$"}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"in":"path","name":"document_id","description":"Document id of the document to delete","required":true,"schema":{"type":"string"}}}></ParamsItem></ul></div></details><div><div><ApiTabs><TabItem label={"204"} value={"204"}><div>
+
+Successfully deleted the document.
+
+</div><div></div></TabItem><TabItem label={"403"} value={"403"}><div>
+
+Permissions don't allow deleting a document in the corpus.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"messages"} required={false} schemaName={"message[]"} qualifierMessage={undefined} schema={{"description":"Messages describing why the error occured.","type":"array","items":{"title":"message","type":"string","example":"Internal server error."}}}></SchemaItem><SchemaItem collapsible={false} name={"request_id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"Id of the request that can be used to help debug what went wrong with Vectara support.","type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"messages\": [\n    \"Internal server error.\"\n  ],\n  \"request_id\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"404"} value={"404"}><div>
+
+Corpus or document not found.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"Id not found.","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"messages"} required={false} schemaName={"message[]"} qualifierMessage={undefined} schema={{"type":"array","items":{"title":"message","type":"string"}}}></SchemaItem><SchemaItem collapsible={false} name={"request_id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"Id of the request that can be used to help debug what went wrong with Vectara support.","type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"id\": \"string\",\n  \"messages\": [\n    \"string\"\n  ],\n  \"request_id\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
+      

@@ -37,16 +37,16 @@ const config = {
         docsPluginId: "classic",
         config: {
           vectara: {
-            specPath: "static/vectara-oas.yaml", // Path to designated spec file
-            outputDir: "docs/rest-api", // Output directory for generated .mdx docs
-            downloadUrl: "https://docs.vectara.com/vectara-oas.yaml",
+            specPath: "static/vectara-oas-v2.yaml", // Path to designated spec file
+            outputDir: "docs/v2/rest-api", // Output directory for generated .mdx docs
+            downloadUrl: "https://docs.vectara.com/vectara-oas-v2.yaml",
             sidebarOptions: {
               groupPathsBy: "tag",
               categoryLinkSource: "tag",
             },
-            baseUrl: "docs/rest-api/vectara-oas",
-            version: "1.0.0",
-            label: "v1.0.0",
+            baseUrl: "docs/v2/rest-api/vectara-oas",
+            version: "2.0.0",
+            label: "v2.0.0",
           },
         },
       },
@@ -208,6 +208,12 @@ ${content}
           to: "docs/rest-api/",
           activeBasePath: "docs/rest-api",
           label: "API Playground",
+          position: "left",
+        },
+        {
+          to: "docs/v2/rest-api/",
+          activeBasePath: "docs/v2/rest-api",
+          label: "API Playground V2",
           position: "left",
         },
         {

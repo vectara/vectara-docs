@@ -1,0 +1,52 @@
+---
+id: list-users
+title: "List users in the account."
+description: "List users in the account."
+sidebar_label: "List users in the account."
+hide_title: true
+hide_table_of_contents: true
+api: eJytVm1rGzkQ/itCFO7D+e3c+1JDoYELxXDhStv04BJjxruzXrW70lbSOkmN/3tnJHnj2Nu4BwWDd6TRzDPPvEhb6WHt5OxGtg6tk4uBNA1a8MroeS5nslLOX4etgWzAQo2ehdnNVmoSgkatPO0qTcLXFu0DCTm6zKqGzdDqFdwL3dYrtMIUIngS3giLvrVagBdGo/CqxhEdtfi1VRbJeQGVw4F0WYk1yNlW+oeGPSrtcY2WdAtja/Bx6eWUFmqlVd3WcvYHfcN9+p5MGFEBbeVZ2u0GHfoG1rj8gg/PB0AM5IzYl8iorcINBkHjvRds4zEwKIihsBmYESU4sULUdBAokvznYnTkRK/lbrdgbdcY7dDx/nQy4b+n+P6mLHUI2EFmiCPtWROaplJZyOj4s2P17ak7s/qMGWexsZx/r6KzWBTn3SUrYC0EJj3W7rx1lZ+a/kSKVGZC5YKSG2hkLwdOEjNcjp6Y5kOts8sbGH67GP43Gb5a3t6+Xvz+Qu4GkoJU1amTS14WkOfErDvrpyuyaI3Msmasn2PL12nnjFGGpmFVYQ8D86I7KJQTSU+QPW38gamVMRWCZltPDBzb++tROo8KGrW0ZLcn6e9pWXBsjlPfY+VH2e9Kmex75StMPEleoHkCOfjeWnzq/4MHnYPNxf6IUDo1ZGwPhgWiCrW5n2Gjk6LrGv4kwH/L0KQ0AZwnwKf97UvKB9sfxE/6acSckkMtDiKMDtENyR5+DwjgFrrax368EQbu+xQWE0f7f05enkJ+h7ZWzpHgRG70b15AVZm7AJJD+NXzgJLviIye6rhKOyIur9j7XfkQSERrqe5MlrU2jr8fFkziILnp6UW8h7oJOnPNzQ+VoBA31CrByShQmXK47Jsv83xfvUmLvukCykDTkGa+wpwvsWooklXLQdD2HXEn7qzhoJQvxX5KubZpjPXPp/qSkYUsHrdqHKTx2kjFDFlmWh0sUhWVhu/gNfo47koSxpvpuE0Xcgw93satpUEnS+8bNxuPqY9HmwhylJmaDkm+SZQuzCHR+zgu3s3FZnrSch8J0F7lLerQU3TxXcxFU4HnuTi61XSKQcQT09FkNGE2qDDdP8UHAqgyPAB2CKrCNVTjoDo0xdBF5XEqV8hCuaYRLgvqtBVkX94cWAg0N8b5GkIZpzv9WVaPZmVKm6c+H1NQKszTwOU2MX4jAzPd+6gkf7y63a7A4bWtdjtejg8HzkSuXBrt6XI/ctn14v97F/UiDYOse4JtoGpZR/ID5+dh/OrXzTNID55bj2AXLFjFaInABSmXCDldEMxmPHeRZdgchngyxdhK1zFvLz9SbXwHa8S/kA==
+sidebar_class_name: "get api-method"
+info_path: docs/v2/rest-api/vectara-api-v-2
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>List users in the account.</h1>
+
+<MethodEndpoint method={"get"} path={"/v2/users"}></MethodEndpoint>
+
+
+
+List users in the account.
+
+## Request
+
+<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Query Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"limit","in":"query","description":"Max number of users to return at one time.","required":false,"schema":{"type":"integer","format":"int32","minimum":1,"maximum":100,"default":10}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"page_key","in":"query","description":"Used to the retrieve the next page of users after the limit has been reached.","required":false,"schema":{"type":"string"}}}></ParamsItem></ul></div></details><div><div><ApiTabs><TabItem label={"200"} value={"200"}><div>
+
+List of users.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>users</strong><span className={"openapi-schema__name"}> object[]</span></span></summary><div style={{"marginLeft":"1rem"}}><div style={{"marginTop":".5rem","marginBottom":".5rem"}}>
+
+List of users.
+
+</div><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={false} name={"id"} required={false} schemaName={"string"} qualifierMessage={"**Possible values:** Value must match regular expression `usr_[a-zA-Z0-9_\\=]+$`"} schema={{"description":"Vectara id for the user.","type":"string","pattern":"usr_[a-zA-Z0-9_\\=]+$"}}></SchemaItem><SchemaItem collapsible={false} name={"email"} required={false} schemaName={"email"} qualifierMessage={undefined} schema={{"description":"Email address for the user.","type":"string","format":"email"}}></SchemaItem><SchemaItem collapsible={false} name={"username"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"Username for the user.","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"enabled"} required={false} schemaName={"boolean"} qualifierMessage={undefined} schema={{"description":"If the user is enabled or not.","type":"boolean"}}></SchemaItem><SchemaItem collapsible={false} name={"description"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"Description for the user.","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"api_roles"} required={false} schemaName={"string[]"} qualifierMessage={undefined} schema={{"description":"Role names of the user.","type":"array","items":{"type":"string"}}}></SchemaItem><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></div></details></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>metadata</strong><span className={"openapi-schema__name"}> object</span></span></summary><div style={{"marginLeft":"1rem"}}><div style={{"marginTop":".5rem","marginBottom":".5rem"}}>
+
+Standard metadata in the response of a list operation.
+
+</div><SchemaItem collapsible={false} name={"page_key"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"When requesting the next page of this list, this is needed as a query parameter.","type":"string"}}></SchemaItem></div></details></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"users\": [\n    {\n      \"id\": \"string\",\n      \"email\": \"user@example.com\",\n      \"username\": \"string\",\n      \"enabled\": true,\n      \"description\": \"string\",\n      \"api_roles\": [\n        \"string\"\n      ]\n    }\n  ],\n  \"metadata\": {\n    \"page_key\": \"string\"\n  }\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"403"} value={"403"}><div>
+
+Permissions don't allow listing users.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"messages"} required={false} schemaName={"message[]"} qualifierMessage={undefined} schema={{"description":"Messages describing why the error occured.","type":"array","items":{"title":"message","type":"string","example":"Internal server error."}}}></SchemaItem><SchemaItem collapsible={false} name={"request_id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"Id of the request that can be used to help debug what went wrong with Vectara support.","type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"messages\": [\n    \"Internal server error.\"\n  ],\n  \"request_id\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
+      

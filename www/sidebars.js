@@ -439,11 +439,24 @@ module.exports = {
       label: "API Playground",
       link: {
         type: "generated-index",
-        title: "Vectara API",
+        title: "Vectara API V1",
         description: "Play around with Vectara's REST APIs",
         slug: "/rest-api",
       },
       items: require("./docs/rest-api/sidebar.js"),
+    },
+  ],
+  restOAS2: [
+    {
+      type: "category",
+      label: "API Playground V2",
+      link: {
+        type: "generated-index",
+        title: "Vectara API V2",
+        description: "Play around with Vectara's REST APIs",
+        slug: "/v2/rest-api",
+      },
+      items: require("./docs/v2/rest-api/sidebar.js"),
     },
   ],
 };
