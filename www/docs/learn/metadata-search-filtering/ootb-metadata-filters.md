@@ -49,7 +49,7 @@ in which case this field can be used to filter.
 
 This field actually uses three value logic: true, false, and unset. We 
 designed it like this to avoid creating too much metadata because customers 
-are billed for metadata, so doing so is in the customer's interest. Here is 
+are billed for metadata, so it is in the customer's interest. Here is 
 how it works using "neural networks" as an example:
 
 * To filter for only title fields, use `part.is_title = true`. You get results 
