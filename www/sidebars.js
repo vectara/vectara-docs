@@ -116,6 +116,14 @@ module.exports = {
     },
     {
       type: "category",
+      label: "Generative Prompts",
+      items: [
+        "prompts/vectara-prompt-engine",
+        "prompts/custom-prompts-with-metadata",
+      ],
+    },
+    {
+      type: "category",
       label: "Build Applications",
       items: [
         "build-apps/app-building",
@@ -152,9 +160,24 @@ module.exports = {
           label: "Manage Documents",
         },
         {
-          type: "doc",
-          id: "console-ui/manage-api-access",
-          label: "Manage API Access",
+          type: "category",
+          label: "Manage Conversations",
+          collapsed: false,
+          items: [
+            "console-ui/vectara-chat-overview",
+            "console-ui/chat-with-your-data",
+          ],
+        },
+        {
+          type: "category",
+          label: "Manage API Authorization",
+          collapsed: true,
+          items: [
+            "console-ui/api-access-overview",
+            "console-ui/personal-api-key",
+            "console-ui/index-and-query-api-keys",
+            "console-ui/app-clients",
+          ],
         },
         {
           type: "doc",
@@ -372,7 +395,19 @@ module.exports = {
             },
           ],
         },
-        ],
+        {
+          type: "category",
+          label: "Chat APIs",
+          items: [
+            "api-reference/chat-apis/chat-apis-overview",
+            "api-reference/chat-apis/list-conversations",
+            "api-reference/chat-apis/read-conversations",
+            "api-reference/chat-apis/delete-conversations",
+            "api-reference/chat-apis/delete-turns",
+            "api-reference/chat-apis/disable-turns",
+          ],
+        },
+      ],
     },
     {
       type: "category",

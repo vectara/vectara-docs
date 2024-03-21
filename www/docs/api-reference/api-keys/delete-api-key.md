@@ -13,6 +13,10 @@ The Delete API Key API lets you delete one or more existing API keys.
 This capability is useful for managing the lifecycle and security of API keys 
 such as when they are no longer needed or when a key is compromised.
 
+## keyID String
+
+The `keyID` specifies the API key or list of keys that you want to delete.
+
 :::tip
 
 Check out our [**interactive API Playground**](/docs/rest-api/delete-api-key) that lets 
@@ -20,25 +24,12 @@ you experiment with this REST endpoint to delete API keys from an account.
 
 :::
 
-## REST Example
-
-### Delete API Key Endpoint Address
-
 <Config v="names.product"/> exposes a REST endpoint at the following URL
-to delete an API key:
+to delete API keys:
 <code>https://<Config v="domains.rest.indexing"/>/v1/delete-api-key</code>
 
-### Delete API Key Request Body
+The API Playground shows the full [Delete API Key](/docs/rest-api/delete-api-key) REST definition.
 
+## gRPC Example
 
-The Delete API Key request body requires the `keyID` of the API key you 
-want to delete.
-
-
-```json
-{
-  "keyId": [
-    "6o59jjft9o02jtga72pjfv3qpn"
-  ]
-}
-```
+You can find the full Delete API Key gRPC definition at [admin_apikey.proto](https://github.com/vectara/protos/blob/main/admin_apikey.proto).

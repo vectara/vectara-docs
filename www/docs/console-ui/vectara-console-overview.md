@@ -25,8 +25,20 @@ add team members, build API requests, and manage your Vectara account:
 * :globe_with_meridians: **Vectara Platform Overview:** Learn about the Vectara Platform and view interactive 
   parts of our documentation like the [API Playground](/docs/rest-api/vectara-rest-api).
 
+## Vectara Console Home Page
 
 The Vectara Console Overview home page also provides helpful links to get you started 
 with our plaltform:
 
 ![Vectara Console Overview](/img/console_overview.png)
+
+
+## View the Customer ID
+
+Click your name in the upper-right corner to view your Customer ID, email, 
+account size, and more. You need the Customer ID for many API requests. You 
+can also copy the Customer ID value for those API requests and paste them 
+into the [API Playground](/docs/rest-api/) to experiment with our endpoints 
+live in your browser.
+
+![Customer ID](/img/customer_id.png)

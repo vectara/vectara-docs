@@ -12,6 +12,13 @@ neural retrieval, and Retrieval Augmented Generation (RAG) enhancement. Our
 tools can help you realize the full potential of AI-driven search and
 retrieval functionality for your generative AI applications.
 
+:::note
+
+These app building tools are not officially supported by Vectara. Users may
+need to seek community support or external resources for assistance and updates.
+
+:::
+
 ## Data ingestion
 
 ### [Vectara Ingest](/docs/build-apps/vectara-ingest)
@@ -33,9 +40,4 @@ and semantic search UIs.
 
 Demo app for Summarized Semantic Search with advanced configuration options.
 
-:::note
 
-These app building tools are not officially supported by Vectara. Users may
-need to seek community support or external resources for assistance and updates.
-
-:::

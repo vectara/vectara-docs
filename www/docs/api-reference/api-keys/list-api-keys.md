@@ -11,10 +11,14 @@ import {vars} from '@site/static/variables.json';
 
 The List API Keys API lists all existing API keys for a customer ID. 
 It also shows what corpora are accessed by these keys and with what 
-permissions.
+permissions. This capability can provide insights into key usage and 
+status and help you manage the lifecycle and security of your API keys.
 
-This capability can provide insights into key usage and status and help you
-manage the lifecycle and security of your API keys.
+Specify `numResults`, the `pageKey`, and `readCorporaInfo` which indicates whether to 
+return the corpus name and `corpus_id` associated with the API keys.
+
+The response includes a `keyData` object that shows pairs of `apiKey` and 
+`corpus` objects.
 
 :::tip
 
@@ -23,28 +27,16 @@ you experiment with this REST endpoint to list API keys in an account.
 
 :::
 
-
 ## REST Example
 
 ### List API Keys Endpoint Address
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
-to list the API keys for a Customer ID:
+to list API keys:
 <code>https://<Config v="domains.rest.indexing"/>/v1/list-api-keys</code>
 
-### List API Keys Request Body
+The API Playground shows the full [List API Keys](/docs/rest-api/list-api-keys) REST definition.
 
-The List API Keys request body requires the following parameters:
-* `numResults` - Specifies the maximum number of results to return.
-* `pageKey` Specifies the page key that retrieves a specific page of results. 
-  If you want the first page, leave this field empty.
-* `readCorporaInfo`: Indicates whether to return the corpus name and ID 
-  associated with the API keys.
+## gRPC Example
 
-```json
-{
-  "numResults": 0,
-  "pageKey": "1",
-  "readCorporaInfo": true
-}
-```
+You can find the full List API Keys gRPC definition at [admin_apikey.proto](https://github.com/vectara/protos/blob/main/admin_apikey.proto).

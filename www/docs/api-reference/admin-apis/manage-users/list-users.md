@@ -13,34 +13,21 @@ The List Users API lets you list all users on your team and also their
 corpus access and customer-level authorizations.
 
 Other activities such as adding, deleting, enabling, disabling, resetting 
-passwords, and editing user roles are performed by the [Manage Users](/docs/api-reference/admin-apis/manage-users/manage-user) API.
+passwords, and editing user roles are performed by the [Manage Users](/docs/api-reference/admin-apis/manage-users/manage-user) endpoint.
 
 :::tip
 
-Check out our [**interactive API Playground**](/docs/rest-api/list-users) that lets 
+Check out our [interactive API Playground](/docs/rest-api/list-users) that lets 
 you experiment with this REST endpoint to manage users for your Vectara
 account.
 
 :::
 
-## List Users Request and Response
+## listUsersType
 
-
-The List Users request body has the following parameters:
-* `list_users_type` - Specifies the type of users as none, all, or only to list users
-  with acustomer account level.
-* `page_key`
-* `num_results`
-
-
-```json
-{
-    "list_users_type": ["LIST_USERS_TYPE__NONE", "LIST_USERS_TYPE__CUSTOMER", 
-    "LIST_USERS_TYPE__ALL"],
-    "page_key": "encrypted_key",
-    "num_results": "5",
-}
-```
+The `listUsersType` specifies the type of user as none, all, or only to list 
+users with a customer account level. You can also pass a `page_key` to 
+retrieve a specific page of results. Leave empty to retrieve first page. 
 
 ## REST Example
 
@@ -50,54 +37,8 @@ The List Users request body has the following parameters:
 to list users:
 <code>https://<Config v="domains.rest.indexing"/>/v1/list-users</code>
 
-### Request Body and Response
+The API Playground shows the full [List Users](/docs/rest-api/compute-account-size) REST definition.
 
-```json
-{
-    "list_users_type": "LIST_USERS_TYPE__ALL",
-    "page_key": "",
-    "num_results": "5",
-}
-```
-You get the following response:
+## gRPC Example
 
-```json
-{
-  "user": [
-    {
-      "id": 1,
-      "sub": "xyz.....",
-      "handle": "user@vectara.com",
-      "type": "USER_TYPE__FEDERATED_USER",
-      "comment": "Account owner.",
-      "tsCreate": "1685481912",
-      "idCreate": 0,
-      "tsUpdate": "0",
-      "idUpdate": 0,
-      "email": "",
-      "userStatus": "USER_STATUS__NONE",
-      "role": []
-    },
-    {
-      "id": 2,
-      "sub": "abcde.....",
-      "handle": "NHL",
-      "type": "USER_TYPE__APP_CLIENT",
-      "comment": "OAuth for the Docs corpus",
-      "tsCreate": "1694584030",
-      "idCreate": 0,
-      "tsUpdate": "0",
-      "idUpdate": 0,
-      "email": "",
-      "userStatus": "USER_STATUS__NONE",
-      "role": []
-    },
-  ],
-  "pageKey": "",
-  "status": {
-    "code": "OK",
-    "statusDetail": "",
-    "cause": null
-  }
-}
-```
+You can find the full List Users gRPC definition at [admin_user.proto](https://github.com/vectara/protos/blob/main/admin_user.proto).

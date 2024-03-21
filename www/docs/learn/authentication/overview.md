@@ -11,17 +11,19 @@ import {vars} from '@site/static/variables.json';
 
 In <Config v="names.product"/>, we have robust authentication and authorization 
 methods in place to secure your data and operations. All <Config v="names.product"/> APIs 
-are authenticated. Indexing and Search APIs can be authenticated via [API Keys](/docs/learn/authentication/api-key-management) however, Admin actions (creating/deleting corpora) must be done via
-[OAuth 2.0](/docs/learn/authentication/oauth-2).
+are authenticated. Indexing and Search APIs can be authenticated via [Index or Query API Keys](/docs/learn/authentication/api-key-management#query-api-keys) 
+while, Admin actions (creating/deleting corpora) must be done via [Personal API Keys](/docs/learn/authentication/api-key-management#personal-api-keys) or [OAuth 2.0](/docs/learn/authentication/oauth-2).
 
-## Choosing API keys or OAuth 2.0
+## Choosing Personal API keys, Index API Keys, Query API Keys, or OAuth 2.0
 
 When it comes to securing your application and managing access, you have a 
-choice between API Keys and OAuth. API Keys can be scoped either to be 
-query-only or both query and index. We recommend that you choose the most 
-limited scope you can for your application: it's "cheap" to create multiple 
-API keys, but having an accidental publication of an over-privileged API key 
-is often organizationally "expensive." 
+choice between three different API Keys and OAuth. API Keys can be scoped 
+either to be Adminstrative actions, query (read-only) or both query and 
+index (read-and-write). Personal API Keys inherit the permissions of their 
+associated user account. We recommend that you choose the most limited scope 
+you can for your application: it's "cheap" to create multiple API keys, but 
+having an accidental publication of an over-privileged API key is often 
+organizationally "expensive." 
 
 In general, we recommend that you use OAuth 2.0 if and where possible for 
 production applications. OAuth can ensure a higher level of security and 

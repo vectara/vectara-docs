@@ -11,12 +11,22 @@ import {vars} from '@site/static/variables.json';
 
 The Create API Key API lets you create new API keys, which you can 
 bind to one or multiple corpora. You can also decide whether to designate each 
-key for specific access like only querying (read-only) or both querying and 
-indexing (read-write).
+key for specific access like personal API keys, only querying (read-only) or 
+both querying and indexing (read-write).
 
 This capability is useful in scenarios where you have applications that 
 require different levels of access to corpora data. For example, you might 
 create a read-only API key for an application that only needs to query data.
+
+:::note
+
+For more information about the different types of API keys, see 
+[**API Key Management**](/docs/learn/authentication/api-key-management).
+
+:::
+
+The `apiKeyData` object includes a `description`, `apiKeyType` (query-only, 
+indexing and querying, or personal access key), and `corpusId`.
 
 :::tip
 
@@ -25,34 +35,16 @@ you experiment with this REST endpoint to create API keys for your account.
 
 :::
 
-## REST Example
+## REST API Example
 
 ### Create API Key Endpoint Address
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
-to create an API key:
+to create API keys:
 <code>https://<Config v="domains.rest.indexing"/>/v1/create-api-key</code>
 
-### Create API Key Request Body
+The API Playground shows the full [Create API Key](/docs/rest-api/create-api-key) REST definition.
 
-The Create API Key request body requires the following parameters:
-* `description` - Provides details about the API key
-* `apiKeyType` - Indicates the type of API key including `API_KEY_TYPE__UNDEFINED` 
-  (default), `API_KEY_TYPE__SERVING`, or `API_KEY_TYPE__SERVING_INDEXING`.
-* `corpusId` - Specifies the corpus IDs where you want to bind the API key.
+## gRPC Example
 
-In this example, you create a default key.
-
-```json
-{
-  "apiKeyData": [
-    {
-      "description": "Description of the ApiKey.",
-      "apiKeyType": "API_KEY_TYPE__UNDEFINED",
-      "corpusId": [
-        12
-      ]
-    }
-  ]
-}
-```
+You can find the full Create API Key gRPC definition at [admin_apikey.proto](https://github.com/vectara/protos/blob/main/admin_apikey.proto).

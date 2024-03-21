@@ -23,20 +23,15 @@ Check out our [**interactive API Playground**](/docs/rest-api/compute-account-si
 endpoint to view the account size.
 
 :::
-
-
-## Compute Account Size Request and Response
-
 :::note
 
 The request to compute the account size is an expensive operation.
 
 :::
 
-This request requires the Customer ID parameter. The response includes a `size` 
-object which is the sum of the number of 
-characters and metadata characters.
-
+This request requires the Customer ID parameter and the response includes a
+`size` object which is the sum of the number of characters and metadata 
+characters.
 
 ## REST Example
 
@@ -46,20 +41,8 @@ characters and metadata characters.
 to compute the account size:
 <code>https://<Config v="domains.rest.admin"/>/v1/compute-account-size</code>
 
-### Compute Account Size Example
+The API Playground shows the full [Compute Account Size](/docs/rest-api/compute-account-size) REST definition.
 
-```json
-{
-  "size": [
-    {
-      "numChars": "2638721",
-      "numMetadataChars": "1084267"
-    }
-  ],
-  "status": {
-    "code": "OK",
-    "statusDetail": "",
-    "cause": null
-  }
-}
-  ```
+## gRPC Example
+
+You can find the full Compute Account Size gRPC definition at [admin_account.proto](https://github.com/vectara/protos/blob/main/admin_account.proto).

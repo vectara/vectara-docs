@@ -27,58 +27,21 @@ account.
 
 :::
 
+## userActionType Object
+
+The `userActionType` object contains the `user` object, which specifies the 
+`id`, `handle`, `userStatus`, `role`, and other information about the user.
 
 ## REST Example
 
 ### Manage User Endpoint Address
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
-to manage a user:
+to manage users:
 <code>https://<Config v="domains.rest.indexing"/>/v1/manage-user</code>
 
-### Manage User Request
+The API Playground shows the full [Manage User](/docs/rest-api/manage-user) REST definition.
 
-The Manage User request body requires the following parameters:
+## gRPC Example
 
-* `handle` - Specifies the ID of the user.
-* `type` - Specifies the type of user.
-* `email`
-* `userActionType` - Specifies the type of action for the user.
-
-```json
-{
- "userAction": [
-   {
-     "user": {
-       "handle": "firstlast",
-       "type": "USER_TYPE__USER",
-       "email": "firstlast@gmail.com"
-     },
-     "userActionType": ["USER_ACTION_TYPE__ADD", "USER_ACTION_TYPE__DELETE", 
-     "USER_ACTION_TYPE__DISABLE", "USER_ACTION_TYPE__ENABLE", 
-     "USER_ACTION_TYPE__RESET_PASSWORD", "USER_ACTION_TYPE__EDIT_ROLE"]
-    }
-   }
- ]
-}
-```
-
-## Example: Onboard a New User to your Account
-
-In this example, you want to create a new user for your account.
-
-```json
-{
- "userAction": [
-   {
-     "user": {
-       "handle": "johndoe",
-       "type": "USER_TYPE__USER",
-       "email": "johndoe@email.com"
-     },
-     "userActionType": "USER_ACTION_TYPE__ADD"
-   }
- ]
-}
-
-```
+You can find the full Manage User gRPC definition at [admin_user.proto](https://github.com/vectara/protos/blob/main/admin_user.proto).
