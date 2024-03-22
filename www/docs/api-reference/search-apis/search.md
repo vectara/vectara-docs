@@ -11,8 +11,8 @@ import {vars} from '@site/static/variables.json';
 
 The Query API lets you perform a query while defining its parameters 
 that specify the query text, pagination details, metadata filters, and other 
-settings that enable application builders to tailor their queries to specific 
-use cases.
+search settings that enable application builders to tailor their queries to 
+specific use cases.
 
 After you index data into one or more corpora, you can run queries 
 and display the results. This page provides a detailed reference for how

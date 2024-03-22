@@ -1,6 +1,6 @@
 ---
 id: create-corpus
-title: Create Corpus
+title: Create Corpus API Definition
 sidebar_label: Create Corpus API Definition
 ---
 
@@ -9,7 +9,6 @@ import {vars} from '@site/static/variables.json';
 
 The Create Corpus API lets you create a corpus that contains specific 
 properties and attributes.
-
 
 :::tip
 
@@ -23,9 +22,9 @@ to create corpora.
 When you create a `corpus` object, only the `name` and `description` fields are 
 mandatory.
 
-The response message returns a unique id, `corpus_id`, by which the corpus can
-be subsequently referenced. Note that the name needn't be unique within an
-account.
+The response message returns a unique id, `corpus_id`, by which the corpus 
+can be subsequently referenced. Note that the name needn't be unique 
+within an account.
 
 In order to reference metadata in [filter expressions](/docs/learn/metadata-search-filtering/filter-overview), the
 referenceable attributes must be declared at creation time in the **filter
@@ -62,7 +61,7 @@ values.
 ### Create Corpus REST Endpoint
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
-to ingest content into a corpus:
+to create a corpus:
 <code>https://<Config v="domains.rest.admin"/>/v1/create-corpus</code>
 
 The API Playground shows the full [Create Corpus](/docs/rest-api/create-corpus) REST definition.
@@ -74,4 +73,3 @@ You can find the full Create Corpus gRPC definition at [admin.proto](https://git
 The `CreateCorpusRequest` message contains a Corpus message with the name, 
 description, and other customization options. The `CreateCorpusResponse` 
 provides the response with the new Corpus ID and status.
-

@@ -21,7 +21,7 @@ permissions.
 
 :::tip
 
-Check out our [interactive API Playground](/docs/rest-api/manage-user) that lets 
+Check out our [**interactive API Playground**](/docs/rest-api/manage-user) that lets 
 you experiment with this REST endpoint to manage users for your Vectara
 account.
 

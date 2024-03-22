@@ -1,7 +1,7 @@
 ---
 id: delete-corpus
-title: Delete Corpus
-sidebar_label: API Definition
+title: Delete Corpus API Definition
+sidebar_label: Delete Corpus API Definition
 ---
 
 import {Config} from '@site/docs/definitions.md';
@@ -30,7 +30,7 @@ to delete corpora.
 ### Delete Corpus REST Endpoint
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
-to ingest content into a corpus:
+to delete a corpus:
 <code>https://<Config v="domains.rest.admin"/>/v1/delete-corpus</code>
 
 The API Playground shows the full [Delete Corpus](/docs/rest-api/delete-corpus) REST definition.
