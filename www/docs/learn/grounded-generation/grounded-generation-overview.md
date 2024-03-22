@@ -53,13 +53,13 @@ summarizing.
 
 :::note
 
-The `summarizerPromptName` is optional and will default
-to the best summarizer available to your account type.
+The `summarizerPromptName` is optional and will default to the best summarizer 
+available to your account type. Only Scale users can change this value.
 
 :::
 
 When <Config v="names.product"/> responds, it will contain the list of results
-as well as the generative summary.  Here is an example response to the query
+as well as the generative summary. Here is an example response to the query
 `What is the infinite improbability drive?` when searching across the
 Hitchhiker's Guide to the Galaxy:
 
@@ -244,6 +244,47 @@ Hitchhiker's Guide to the Galaxy:
 ```
 
 You can see in the results that the specific sources are referenced in the
-`summary`.  <Config v="names.product"/> issues these citations by putting
+`summary`. <Config v="names.product"/> issues these citations by putting
 them in `[number]` format in the summary text, where `number` starts from 1
 and increases by 1 in each result in the `responseList`.
+
+## Factual Consistency Score - Evaluate Hallucinations
+
+In your summarization request, you can set the `factual_consistency_score` field 
+to `true`.
+
+```json showLineNumbers title="Enable the Factual Consistency Score"
+"summary": [
+        {
+          "max_summarized_results": 3,
+          "response_lang": "en",
+          "factual_consistency_score": true
+          },
+        }
+      ]
+```
+
+The Vectara Factual Consistency Score automatically evaluates and detects 
+hallucinations in generated output. This score can range from `0.0` to `1.0`. 
+Higher scores indicate a greater probability of being factually accurate, 
+while lower scores indicate a greater probability of hallucinations.
+
+In the following example, the summary shows a `factualConsistency` score of `0.98`, 
+which is 98%.
+
+```json showLineNumbers title="Example Factual Consistency Score"
+"summary": [
+        {
+          "text": "According to the novel 'The Hitchhiker's Guide to the Galaxy' by Douglas Adams, the answer to the ultimate question of life, the universe, and everything is 42.",
+          "lang": "en",
+          "factualConsistency": {
+            "score": 0.98
+            "status":{
+               "code":"OK",
+               "statusDetail":"",
+               "cause":null
+            }
+          },
+        }
+      ]
+```
