@@ -9,13 +9,15 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The Query tab of a corpus lets you ask questions about your data through 
-searches or chats. Opening a corpus from Data lets you access this tab, and 
-then you select the app type that you want from the drop-down 
-as Semantic Search, Summarized Semantic Search, or Chat.
+The Query tab of a corpus lets you configure and experiment with different 
+types of searches so that you can ask questions about your data. You select the 
+search app type that you want to use from the drop-down as either Semantic 
+Search, Summarized Semantic Search, or Chat.
 
-Each of these app types has configuration options for Retrieval, Generation, 
-Filters, or Evaluation:
+Each search app has configuration options that open different drawers from the 
+right side. For example, the Retrieval configuration lets you experiment with 
+blending neural search and keyword search, while Filters helps you further 
+refine the results.
 
 ![Select an app type](/img/choose_app_type.png)
 
@@ -27,7 +29,6 @@ The semantic search finds the most relevant responses to a query. You can
 configure retrieval options, search filters, and show the API request.
 
 ![Semantic search layout](/img/query_semantic_search_option.png)
-
 
 ### Configure retrieval
 
@@ -47,7 +48,6 @@ drawer.
 
 ![Configure search filters](/img/configure_filters_drawer.png)
 
-
 ### Configure evaluation
 
 The Vectara Factual Consistency Score automatically evaluates and detects 
@@ -66,7 +66,7 @@ When you complete a search and also use the different configuration options, cli
 
 ### Ask a question of your data
 
-The summarized semantic search uses retrieval-augmented generation (RAG) to 
+The summarized semantic search uses Retrieval-Augmented Generation (RAG) to 
 summarize information in response to a semantic search query. You get the same 
 Retrieval and Filter configuration drawers as with the semantic search option, 
 but now you can also configure the generation. Growth users have access to the 
