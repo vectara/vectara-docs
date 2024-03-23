@@ -1,7 +1,7 @@
 ---
 id: corpus-query-configuration
-title: Corpus Query Configuration
-sidebar_label: Corpus Query Configuration
+title: Corpus Query Configuration Options
+sidebar_label: Corpus Query Configuration Options
 ---
 
 import Tabs from '@theme/Tabs';
@@ -10,20 +10,19 @@ import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The Query tab of a corpus lets you configure and experiment with different 
-types of searches so that you can ask questions about your data. You select the 
-search app type that you want to use from the drop-down as either Semantic 
-Search, Summarized Semantic Search, or Chat.
+types of searches and chats. You select the search app type that you want to 
+use from the drop-down as either Semantic Search, Summarized Semantic Search, 
+or Chat, and then you can begin asking questions about your data.
 
-Each search app has configuration options that open different drawers from the 
-right side. For example, the Retrieval configuration lets you experiment with 
-blending neural search and keyword search, while Filters helps you further 
-refine the results.
+Each app also has its own configuration options that you can modify. For 
+example, the Retrieval configuration lets you experiment with blending 
+neural search and keyword search, while Filters help you further refine the 
+search results. All search apps let you also view the API request and response, 
+so that you can copy and paste them into your applications.
 
 ![Select an app type](/img/choose_app_type.png)
 
-## Semantic Search Option
-
-### Search your data
+## Semantic Search - Search your data
 
 The semantic search finds the most relevant responses to a query. You can 
 configure retrieval options, search filters, and show the API request.
@@ -62,9 +61,7 @@ while lower scores indicate a greater probability of hallucinations.
 When you complete a search and also use the different configuration options, click 
 **Show API request** to see the underlying API request and response.
 
-## Summarized Semantic Search Option
-
-### Ask a question of your data
+## Summarized Semantic Search - Ask a question of your data
 
 The summarized semantic search uses Retrieval-Augmented Generation (RAG) to 
 summarize information in response to a semantic search query. You get the same 
@@ -79,9 +76,7 @@ Scale users have additional generation options:
 
 [need Scale screenshot]
 
-## Chat Option
-
-### Chat with your data
+## Chat - Have conversations with your data
 
 The chat does not introduce any new configuration options, but you have the 
 same Retrieval, Generation, and Filter drawers. As you have conversations with 
