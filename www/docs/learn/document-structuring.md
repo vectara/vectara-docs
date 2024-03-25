@@ -120,82 +120,16 @@ them based on semantic similarity.
 
 ### Nested Sections
 
-Nested sections can have their own titles, text, and metadata, just like 
-their parent sections. In the following example, we took data from our PDF to 
-create sections for `Overview`, `Licensing`, and `Patent and Collaboration 
-Information`.
+You can also nest sections within sections, which also have their own 
+titles, text, and metadata, as shown in our [King Lear example](/docs/api-reference/indexing-apis/file-upload/format-for-upload#sample-json-document).
+This example document is structured with a top-level `section` array that contains the 
+parent sections, which are plays titled `King Lear` and 
+`Antony and Cleopatra`. 
 
-Under the `Licensing` section, we nested two child sections named `Commercial 
-Applications` and `Competitive Advantage`. Within Competitive Advantage, we then 
-nested two additional child sections named `Advantages Over Alternatives` and 
-`In Vivo Efficacy`.
-
-```json
-{
-   "documentId":"TAB-3843",
-   "title":"Engineered Cell-Penetrating Monoclonal Antibody for Universal Influenza Immunotherapy",
-   "description":"Home » Tech » Engineered Cell-Penetrating Monoclonal Antibody for Universal Influenza Immunotherapy",
-   "metadataJson":"{\"developmentStatus\":\"Pre-Clinical\",\"isAntibodiesProduct\":true,\"date\":\"2023-05-17\",\"patentSeriesCode\":63,\"patentApplicationNumber\":365841}",
-   "section":[
-      {
-         "title":"Overview",
-         "text":"Influenza remains a burden on public health, as current treatments of viral infections remain ineffective due to frequent virus mutations...",
-         "metadataJson":"{\"sectionType\":\"Introduction\"}",
-         "sections":[
-            {
-               "title":"Invention",
-               "metadataJson":"{\"sectionType\":\"Invention\",\"inventionType\":\"Antibody\",\"inventionTarget\":\"Nucleoprotein\"}",
-               "text":"To circumvent the challenge of targeting NP, scientists at NIAID have developed an antibody genetically fused with a cell penetrating peptide (CPP-mAb)..."
-            }
-         ]
-      },
-      {
-         "title":"Licensing",
-         "text":"This technology is available for licensing for commercial development in accordance with 35 U.S.C. § 209 and 37 CFR Part 404, as well as...",
-         "metadataJson":"{\"sectionType\":\"Licensing\"}",
-         "sections":[
-            {
-               "title":"Commercial Applications",
-               "text":"CPP-mAbs against influenza NP may be a reliable and effective method to treat patients infected with varying subtypes of influenza, by targeting a functionally conserved protein...",
-               "metadataJson":"{\"sectionType\":\"Applications\",\"applicationType\":\"Clinical Treatment\"}"
-            },
-            {
-               "title":"Competitive Advantages",
-               "text":"Current vaccines remain effective for a short time period, due to the ever-changing nature of the viral surface glycoproteins..,",
-               "metadataJson":"{\"sectionType\":\"Advantages\"}",
-               "sections":[
-                  {
-                     "title":"Advantages Over Alternatives",
-                     "text":"Other attempts to produce vaccines against conserved portions of the surface viral glycoproteins have failed to produce a robust and reliable vaccine...",
-                     "metadataJson":"{\"sectionType\":\"Applications\",\"applicationType\":\"Clinical Treatment\"}"
-                  },
-                  {
-                     "title":"In Vivo Efficacy",
-                     "text":"CPP-mAbs against NP increase survivorship in mice infected with mouse Influenza A virus, demonstrating therapeutic protection.",
-                     "metadataJson":"{\"animalType\":\"Mice\",\"virusStrain\":\"Influenza A\"}"
-                  }
-               ]
-            }
-         ]
-      },
-      {
-         "title":"Patent and Collaboration Information",
-         "sections":[
-            {
-               "title":"Patents",
-               "text":"US Application 63/365,841, Filed on 2022-06-03",
-               "metadataJson":"{\"sectionType\":\"Patents\"}"
-            },
-            {
-               "title":"Collaborations",
-               "text":"The National Institute of Allergy and Infectious Diseases is seeking statements of capability or interest from parties interested in collaborative research to further develop, evaluate or commercialize this invention. For collaboration opportunities, please contact Benjamin Hurley; 240-nnn-nnnn, benjamin.hurley@nnn.nnn.",
-               "metadataJson":"{\"sectionType\":\"Collaborations\",\"contactPerson\":\"Benjamin Hurley\",\"contactEmail\":\"benjamin.hurley@nnn.nnn\",\"contactPhone\":\"+1 240 nnn nnnn\"}"
-            }
-         ]
-      }
-   ]
-}
-```
+`King Lear` has nested sections for `Act 1` and `Act II`, 
+which contain additional text and metadata, while `Antony and Cleopatra` 
+directly contains the content for this parent section. This example demonstrates 
+the flexibility of the document structure that Vectara can ingest.
 
 ## Special Document Metadata
 
