@@ -111,16 +111,18 @@ summarization. Growth users can specify the `maxSummarizedResults` and
 
 ## Factual Consistency Score
 
-The Factual Consistency Score, based on our [Hughes Hallucination Evaluation Model (HHEM)](https://huggingface.co/vectara/hallucination_evaluation_model),
+The Factual Consistency Score, based on a more advanced version of 
+[Hughes Hallucination Evaluation Model (HHEM)](https://huggingface.co/vectara/hallucination_evaluation_model),
 enables you to evaluate the likelihood of an AI-generated summary being 
-factually correct based on the source information in a corpus. This score can 
-range from `0.0` to `1.0`. Higher scores indicate a greater probability of 
-being factually accurate, while lower scores indicate a greater probability of 
-hallucinations.
+factually correct based on search results. This calibrated score can 
+range from `0.0` to `1.0`. A higher scores indicates a greater probability of 
+being factually accurate, while a lower score indicate a greater probability 
+of hallucinations.
 
 In your summarization request, set the `factual_consistency_score` field to `true`. 
-The Factual Consistency Score returns in the `factual_consistency` field of 
-the summary message where the score field contains the value between `0.0` and `1.0`.
+The Factual Consistency Score returns a calibrated value in the 
+`factual_consistency` field of the summary message. The score field 
+contains the value between `0.0` and `1.0`.
 
 For example, a score of `0.95` suggests a 95% likelihood that the summary is 
 free of hallucinations and would align with the original content. A lower 
