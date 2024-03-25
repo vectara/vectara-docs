@@ -9,25 +9,43 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The Query tab of a corpus lets you configure and experiment with different 
-types of searches and chats. You select the search app type that you want to 
-use from the drop-down as either Semantic Search, Summarized Semantic Search, 
-or Chat, and then you can begin asking questions about your data.
+The Query tab lets you experiement with different search, summarization, and 
+chat options. Whether you want to retrieve relevant information, generate 
+summaries grounded in facts with Retrieval-Augmented Generation (RAG), or 
+engage in conversational interactions, the Query tab offers a range of 
+options. Explore these options and configurations to find the approach that 
+best suits your needs.
 
-Each app also has its own configuration options that you can modify. For 
-example, the Retrieval configuration lets you experiment with blending 
-neural search and keyword search, while Filters help you further refine the 
-search results. All search apps let you also view the API request and response, 
-so that you can copy and paste them into your applications.
+## Search Your Data
 
-![Select an app type](/img/choose_app_type.png)
+One of the primary uses for the Query tab is to search and retrieve relevant 
+information from your corpus and you have two options.
 
-## Semantic Search - Search your data
+1. **Semantic Search**: This option allows you to perform semantic searches based 
+   on natural language queries. Vectara's advanced algorithms understand the meaning 
+   and context of your queries, enabling accurate and relevant search results.
+2. **Summarized Semantic Search**: Extending the Semantic Search functionality, this 
+   option uses Retrieval-Augmented Generation (RAG) to provide concise summaries in 
+   response to your queries. This can be particularly useful when you need a
+   overview of the relevant information within your data.
 
-The semantic search finds the most relevant responses to a query. You can 
-configure retrieval options, search filters, and show the API request.
+Both search options provide various configuration settings to fine-tune the search experience
 
-![Semantic search layout](/img/query_semantic_search_option.png)
+## Engage in Conversations with Your Data
+
+The Chat option allows you to engage in conversational interactions with your 
+data. This can be particularly useful when you need to ask follow-up 
+questions, clarify information, or explore your data in a more interactive 
+manner.
+
+Chat leverages the same underlying search and summarization capabilities as 
+the other options, but presents the results in a conversational format, making 
+it easier to maintain context and engage in multi-turn interactions.
+
+## Customize the Retrieval Experience
+
+Vectara provides various configuration settings to tailor the experience to 
+your specific needs:
 
 ### Configure retrieval
 
@@ -39,9 +57,9 @@ reduce bias.
 
 ![Configure retrieval drawer](/img/configure_retrieval.png)
 
-### Specify search filters
+### Configure search filters
 
-Select Filters and enter a filter expression or select filter attributes to 
+Select Filters to enter a filter expression or select filter attributes to 
 further refine your search results. We provide some syntax examples in the 
 drawer.
 
@@ -49,40 +67,15 @@ drawer.
 
 ### Configure evaluation
 
-The Vectara Factual Consistency Score automatically evaluates and detects 
-hallucinations in generated output. This score can range from `0.0` to `1.0`. 
-Higher scores indicate a greater probability of being factually accurate, 
-while lower scores indicate a greater probability of hallucinations.
+The Factual Consistency Score automatically evaluates and detects 
+hallucinations in generated output. This calibrated score can range from `0.0` to `1.0`. 
+A higher score indicates a greater probability of being factually accurate, 
+while a lower score indicates a greater probability of hallucinations.
 
 ![Configure evaluation](/img/configure_evaluation.png)
 
 ### Show API Request and Response
 
-When you complete a search and also use the different configuration options, click 
-**Show API request** to see the underlying API request and response.
-
-## Summarized Semantic Search - Ask a question of your data
-
-The summarized semantic search uses Retrieval-Augmented Generation (RAG) to 
-summarize information in response to a semantic search query. You get the same 
-Retrieval and Filter configuration drawers as with the semantic search option, 
-but now you can also configure the generation. Growth users have access to the 
-GPT 3.5 summarizer, a language drop-down, and an option to specify the number 
-of search results to summarize:
-
-![Configure generation](/img/configure_generation.png)
-
-Scale users have additional generation options:
-
-[need Scale screenshot]
-
-## Chat - Have conversations with your data
-
-The chat does not introduce any new configuration options, but you have the 
-same Retrieval, Generation, and Filter drawers. As you have conversations with 
-your data, you can also see the API requests and responses.
-
-![Configure chat options](/img/query_chat_option.png)
-
-
-
+While you experiment with these different search options and configurations, 
+you can click **Show API request** to see the underlying API request and 
+response.
