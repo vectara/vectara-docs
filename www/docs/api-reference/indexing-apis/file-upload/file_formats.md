@@ -16,7 +16,7 @@ to individual sections within it.
 
 Below is a sample document in each format.
 
-### Format a JSON Document
+### Sample JSON Document
 
 ```json
 {
@@ -46,8 +46,32 @@ Below is a sample document in each format.
   ]
 }
 ```
+### Sample Pbtxt Document
 
-### Format a Python Document
+```
+document_id: "selected-works-of-shakespeare"
+title: "William Shakespeare, Greatest Hits"
+metadata_json: "{\"timespan\":\"26 April 1564---23 April 1616\",\"stars\":5,\"author\":\"William Shakespeare\"}"
+section {
+  title: "King Lear"
+  section {
+    title: "Act I"
+    text: "KENT: I thought the king had more affected the Duke of Albany than Cornwall.\nGLOUCESTER: It did always seem so to us..."
+    metadata_json: "{\"stage-instructions\":\"Enter KENT, GLOUCESTER, and EDMUND\"}"
+  }
+  section {
+    title: "Act II"
+    text: "EDMUND: Save thee, Curan. ..."
+    metadata_json: "{\"stage-instructions\":\"Enter EDMUND, and CURAN meets him\"}"
+  }
+}
+section {
+  title: "Antony and Cleopatra"
+  text: "PHILO: Nay, but this dotage of our general\'s\nO\'erflows the measure: those his goodly eyes, ..."
+}
+```
+
+### Python Example to Create a Document
 
 For reference, these documents were output by the following Python program:
 
@@ -98,29 +122,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-```
-
-### Format a Pbtxt Document
-
-```
-document_id: "selected-works-of-shakespeare"
-title: "William Shakespeare, Greatest Hits"
-metadata_json: "{\"timespan\":\"26 April 1564---23 April 1616\",\"stars\":5,\"author\":\"William Shakespeare\"}"
-section {
-  title: "King Lear"
-  section {
-    title: "Act I"
-    text: "KENT: I thought the king had more affected the Duke of Albany than Cornwall.\nGLOUCESTER: It did always seem so to us..."
-    metadata_json: "{\"stage-instructions\":\"Enter KENT, GLOUCESTER, and EDMUND\"}"
-  }
-  section {
-    title: "Act II"
-    text: "EDMUND: Save thee, Curan. ..."
-    metadata_json: "{\"stage-instructions\":\"Enter EDMUND, and CURAN meets him\"}"
-  }
-}
-section {
-  title: "Antony and Cleopatra"
-  text: "PHILO: Nay, but this dotage of our general\'s\nO\'erflows the measure: those his goodly eyes, ..."
-}
 ```
