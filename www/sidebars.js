@@ -35,7 +35,7 @@ module.exports = {
     {
       type: "category",
       label: "Learn",
-      collapsed: false,
+      collapsed: true,
       items: [
         {
           type: "category",
@@ -136,7 +136,7 @@ module.exports = {
     {
       type: "category",
       label: "Vectara Console",
-      collapsed: false,
+      collapsed: true,
       items: [
         {
           type: "doc",
@@ -146,9 +146,10 @@ module.exports = {
         {
           type: "category",
           label: "Manage Corpora",
-          collapsed: false,
+          collapsed: true,
           items: [
             "console-ui/creating-a-corpus",
+            "console-ui/corpus-query-configuration",
             "console-ui/reset-or-delete-corpus",
             "console-ui/configure-server-access-to-corpus",
             "console-ui/corpus-default-read-access",
@@ -162,7 +163,7 @@ module.exports = {
         {
           type: "category",
           label: "Manage Conversations",
-          collapsed: false,
+          collapsed: true,
           items: [
             "console-ui/vectara-chat-overview",
             "console-ui/chat-with-your-data",

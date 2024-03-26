@@ -49,25 +49,20 @@ questions.
 The Data tab also lets you take a Vectara test drive by loading sample 
 data from an employee handbook PDF. 
 
-
 ## Query
 
-The Query tab lets you ask questions about your data. You can also use 
-Advanced options and use the Search Inspector to copy and paste queries in 
-your application code and view responses
+The [Query tab](/docs/console-ui/corpus-query-configuration) lets you ask questions about your data. You can also use 
+Advanced options and show the API request to copy and paste queries in your 
+application code and view responses.
 
 ## Analytics
 
 The Analytics tab provides usage statistics about the corpus and you can 
 download this data in `.SVG`, `.PNG`, or `.CSV` format.
 
-
-and configuration information about the embedding model, indexing semantics, 
-and filter attributes. Click Edit to modify the filter attributes from this page.
-
 ## Access Control
 
-The Access Control tab defines the users and roles that have access to the 
+The Access control tab defines the users and roles that have access to the 
 corpus. You can also [create new user roles](/docs/learn/authentication/role-based-access-control), 
 a default role, and [API keys](/docs/console-ui/api-access-overview) associated with this corpus.
 
@@ -75,4 +70,3 @@ a default role, and [API keys](/docs/console-ui/api-access-overview) associated 
 
 The Configuration tab lets you view the embedding model and filter attributes 
 for the corpus. You can also Edit filter attributes from this page.
-
