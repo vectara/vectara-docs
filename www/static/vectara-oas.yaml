@@ -1420,6 +1420,11 @@ components:
       title: List of users and their status
     QueryRequestContextConfig:
       type: object
+      example:
+        sentences_before: 3
+        sentences_after: 3
+        start_tag: <b>
+        end_tag: </b>
       properties:
         charsBefore:
           type: integer
@@ -1483,6 +1488,11 @@ components:
             application to understand where to provide highlighting in your UI and
 
             understand where the snippet ends and the context after begins.
+      required:
+        - sentencesBefore
+        - sentencesAfter
+        - startTag
+        - endTag
     QueryRequestRerankingConfig:
       type: object
       properties:
@@ -3022,6 +3032,8 @@ components:
       description: The chat request.
     servingCorpusKey:
       type: object
+      example:
+        corpus_id: 12
       properties:
         customerId:
           type: integer
@@ -3054,12 +3066,22 @@ components:
                 example: 1.5
           example: []
       required: ['customerId', 'corpusId']
+    servingFactualConsistency:
+      type: object
+      properties:
+        score:
+          type: number
+          format: float
+          description: The probability that the summary is factually consistent with the results in the ResponseSet.
+        status:
+          $ref: "#/components/schemas/comvectaraStatus"
     servingLinearInterpolation:
       type: object
       properties:
         lambda:
           type: number
           format: float
+          example: 0.025
           title: >-
             Controls the weight given to lexical matches. The final score, S, is then:
 
@@ -3197,6 +3219,9 @@ components:
             $ref: "#/components/schemas/vectaraservingAttribute"
     servingSummarizationRequest:
       type: object
+      example:
+        max_summarized_results: 10
+        response_lang: en
       properties:
         summarizerPromptName:
           type: string
@@ -3256,6 +3281,9 @@ components:
         chat:
           $ref: "#/components/schemas/servingChatRequest"
           example: {}
+        factualConsistencyScore:
+          type: boolean
+          description: If true, the response will include the factual consistency score.
       required: ['maxSummarizedResults', 'responseLang']
     servingSummary:
       type: object
@@ -3271,6 +3299,8 @@ components:
             summary language is the same as the auto-detected language of the query.
         chat:
           $ref: "#/components/schemas/servingChat"
+        factualConsistency:
+          $ref: "#/components/schemas/servingFactualConsistency"
         status:
           type: array
           items:
@@ -3391,6 +3421,8 @@ components:
         - QRY__SMRY__UNSUPPORTED_SUMMARY_LANG
         - QRY__SMRY__PARTIAL_SUMMARY
         - QRY__SMRY__NO_QUERY_RESULTS
+        - QRY__SMRY__EVAL_UNSUPPORTED_LANG
+        - QRY__SMRY__EVAL_FAILURE
         - QRY__GEN__NO_QUERY_RESULTS
         - QRY__GEN__UNPARSEABLE_MODEL_PARAMS
         - CX_SPECS__INVALID_JSON
