@@ -887,28 +887,6 @@ paths:
             schema:
               $ref: "#/components/schemas/servingBatchQueryRequest"
             examples:
-              ChatExample:
-                value:
-                  query:
-                    - query: "what is renewable energy?"
-                      queryContext: ""
-                      start: 0
-                      numResults: 10
-                      contextConfig:
-                        charsBefore: 0
-                        charsAfter: 0
-                        startTag: "%START_SNIPPET%"
-                        endTag: "%END_SNIPPET%"
-                      corpusKey:
-                        - corpusId: 12
-                          semantics: 0
-                          metadataFilter: ""
-                      summary:
-                        - chat:
-                            store: true
-                            conversationId: "1d8f0258-3358-475a-b5eb-02a775cee09e"
-                          maxSummarizedResults: 5
-                          responseLang: "eng"
               GrowthExample:
                 value:
                   query:
@@ -922,12 +900,12 @@ paths:
                         endTag: "</b>"
                       corpusKey:
                         - corpusId: 2
-                          metadataFilter: "content.type = 'article'"
                           lexicalInterpolationConfig:
                             lambda: 0.5
                       summary:
                         - maxSummarizedResults: 3
                           responseLang: "en"
+                          factualConsistencyScore: true
               ScaleExample:
                 value:
                   query:
@@ -971,6 +949,29 @@ paths:
                             temperature: 0.6
                             frequencyPenalty: 0.2
                             presencePenalty: 0.1
+                          factualConsistencyScore: true
+              ChatExample:
+                value:
+                  query:
+                    - query: "What is renewable energy?"
+                      queryContext: ""
+                      start: 0
+                      numResults: 10
+                      contextConfig:
+                        charsBefore: 0
+                        charsAfter: 0
+                        startTag: "%START_SNIPPET%"
+                        endTag: "%END_SNIPPET%"
+                      corpusKey:
+                        - corpusId: 12
+                          semantics: 0
+                          metadataFilter: ""
+                      summary:
+                        - chat:
+                            store: true
+                            conversationId: "1d8f0258-3358-475a-b5eb-02a775cee09e"
+                          maxSummarizedResults: 5
+                          responseLang: "eng"
         required: true
       tags:
         - QueryService
