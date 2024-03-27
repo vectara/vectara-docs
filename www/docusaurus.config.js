@@ -1,6 +1,7 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "Vectara Docs",
@@ -205,6 +206,22 @@ ${content}
           position: "left",
         },
         {
+          type: 'dropdown',
+          label: 'API Playground',
+          position: 'left', // or 'right', depending on where you want it in the navbar
+          items: [
+            {
+              label: 'API Playground v1.0',
+              to: '/docs/rest-api', // Adjust path as needed
+            },
+            {
+              label: 'API Playground v2.0',
+              to: '/docs/v2/rest-api', // Adjust path as needed
+            },
+            // Add more versions as needed...
+          ],
+        },
+        /* {
           to: "docs/rest-api/",
           activeBasePath: "docs/rest-api",
           label: "API Playground",
@@ -215,7 +232,7 @@ ${content}
           activeBasePath: "docs/v2/rest-api",
           label: "API Playground V2",
           position: "left",
-        },
+        }, */
         {
           type: "search",
           className: "searchBar",
