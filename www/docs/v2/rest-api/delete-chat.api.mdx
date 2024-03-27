@@ -1,0 +1,48 @@
+---
+id: delete-chat
+title: "Delete a chat."
+description: "Delete a chat and any turns it contains permanently."
+sidebar_label: "Delete a chat."
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVU1vEzEQ/SuWhQSIJBuVXoiERNQGFImPihYOtFHl7M523Tq2sb1Jl9X+d2a8m+arcKg4cIhi74xn3rw3Htc8iBvPR5c8LUTwfNbjGfjUSRuk0XzET0FBACYY2ZnQGf4qFkqnPZOBpUYHIXFtwS2EBh1UNeA9bnAvKMQ0wyBZDHKCEdBkhRML3DpKW3NJWawIBZo0GnBHqa5lxvexTDNmchYKiGAojYOfpXSAOYIrocd9WsBC8FHNQ2UplA9O6puYNWBKHaOH60vR/zXu/xj231xfXb2dvXrGm2ZG4bw12oOnCEfDY/rbhXBepil4n5dKVawtK9tC1PT48fD14bEzZEd6jxvPMqOfI5NKmVUbAQHuFEWcIpEURVirZBqJTG49haoPazTzW0gjs45oD7LFv0Cc4qZd76L51FlY+3lOAFZFFUGAc8Yxk6Yl0kpouiTCOVHhVgZYxJBBBkWGLs3G84FyuBcLG32mmrgXinlwS3BtEmSraRUEH+U+wLnRu/PCNTZhKjSbAys9UW9YAcpiJfOSikDzCrljK2eoKBkK9h3JwZZjvrTWuDA4QEow1tVMCBl+aaKSjzTAiXG29Aw5ihdCm8ByU+rsHwr3Byp2Uu1V0NtR+6mS/Yd6fDbhPdW80SXWGgqzmSvt7S5wnyyPkjjHkrqbIQ0a26Zrp03pFPoVIVg/ShJh5WDZwhmkZoHHOY0BqXOzzdca8fhsytBlfyxdICFrlw+g4+BbAhtPmVUi5MYtBlcaTxGI9sTRYDgYUt04FvyX/BwByhS2gG2DUnAjVBJd+ybv+9Y56fpNpLHfsLEkVZYDZHOR3r3bihAJtcYHHNDk203Znck+2K+q3nTzU9+ATtUA9yFBJnDQI44oQN0Jdskjne3T0+Oj9eBHDQrESw51PRcevjnVNPQZ285V+B2XS+GkmJNAqGsmPa2xKXKhPPylmBdfuzfjJTt8Tx6FvL5Omi7TUqiSdri8g2rrsWpm6FqAyMBFRK11jM+FDVvnDgYDNdxDQ59OPk4uJijYb3zrnAg=
+sidebar_class_name: "delete api-method"
+info_path: docs/v2/rest-api/vectara-api-v-2
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>Delete a chat.</h1>
+
+<MethodEndpoint method={"delete"} path={"/v2/chats/{chat_id}"}></MethodEndpoint>
+
+
+
+Delete a chat and any turns it contains permanently.
+
+## Request
+
+<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Path Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"in":"path","name":"chat_id","description":"Id of the chat.","required":true,"schema":{"type":"string","pattern":"cht_[a-zA-Z0-9_\\=]+$"}}}></ParamsItem></ul></div></details><div><div><ApiTabs><TabItem label={"204"} value={"204"}><div>
+
+Successfully deleted the chat.
+
+</div><div></div></TabItem><TabItem label={"403"} value={"403"}><div>
+
+Permissions don't allow deleting the chat.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"messages"} required={false} schemaName={"message[]"} qualifierMessage={undefined} schema={{"description":"Messages describing why the error occured.","type":"array","items":{"title":"message","type":"string","example":"Internal server error."}}}></SchemaItem><SchemaItem collapsible={false} name={"request_id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"Id of the request that can be used to help debug what went wrong with Vectara support.","type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"messages\": [\n    \"Internal server error.\"\n  ],\n  \"request_id\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"404"} value={"404"}><div>
+
+Corpus or chat not found.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"Id not found.","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"messages"} required={false} schemaName={"message[]"} qualifierMessage={undefined} schema={{"type":"array","items":{"title":"message","type":"string"}}}></SchemaItem><SchemaItem collapsible={false} name={"request_id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"Id of the request that can be used to help debug what went wrong with Vectara support.","type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"id\": \"string\",\n  \"messages\": [\n    \"string\"\n  ],\n  \"request_id\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
+      
