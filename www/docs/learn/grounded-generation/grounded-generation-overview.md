@@ -1,7 +1,7 @@
 ---
 id: grounded-generation-overview
-title: Retrieval Augmented Generation (RAG) Overview
-sidebar_label: Retrieval Augmented Generation Overview
+title: Retrieval Augmented Generation (RAG)
+sidebar_label: Retrieval Augmented Generation (RAG)
 ---
 
 import {Config} from '@site/docs/definitions.md';
@@ -248,43 +248,4 @@ You can see in the results that the specific sources are referenced in the
 them in `[number]` format in the summary text, where `number` starts from 1
 and increases by 1 in each result in the `responseList`.
 
-## Factual Consistency Score - Evaluate Hallucinations
 
-In your summarization request, you can set the `factual_consistency_score` field 
-to `true`.
-
-```json showLineNumbers title="Enable the Factual Consistency Score"
-"summary": [
-        {
-          "max_summarized_results": 3,
-          "response_lang": "en",
-          "factual_consistency_score": true
-          },
-        }
-      ]
-```
-
-The Vectara Factual Consistency Score automatically evaluates and detects 
-hallucinations in generated output. This score can range from `0.0` to `1.0`. 
-Higher scores indicate a greater probability of being factually accurate, 
-while lower scores indicate a greater probability of hallucinations.
-
-In the following example, the summary shows a `factualConsistency` score of `0.98`, 
-which is 98%.
-
-```json showLineNumbers title="Example Factual Consistency Score"
-"summary": [
-        {
-          "text": "According to the novel 'The Hitchhiker's Guide to the Galaxy' by Douglas Adams, the answer to the ultimate question of life, the universe, and everything is 42.",
-          "lang": "en",
-          "factualConsistency": {
-            "score": 0.98
-            "status":{
-               "code":"OK",
-               "statusDetail":"",
-               "cause":null
-            }
-          },
-        }
-      ]
-```

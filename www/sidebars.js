@@ -34,61 +34,40 @@ module.exports = {
     },
     {
       type: "category",
-      label: "Learn",
+      label: "Data Privacy and Authentication",
       collapsed: true,
       items: [
-        {
-          type: "category",
-          label: "Data Privacy",
-          items: [
             "learn/data-privacy/privacy-overview",
             "learn/data-privacy/textless",
             "learn/data-privacy/encryption",
-          ],
-        },
-        {
-          type: "category",
-          label: "Authentication and Authorization",
-          items: [
             "learn/authentication/auth-overview",
             "learn/authentication/api-key-management",
             "learn/authentication/oauth-2",
             "learn/authentication/role-based-access-control",
-          ],
-        },
+      ],
+    },
+    {
+      type: "category",
+      label: "Capabilities",
+      collapsed: true,
+      items: [
         {
           type: "category",
           label: "Semantic Search",
           items: [
             "learn/semantic-search/semantic-search-overview",
             "learn/semantic-search/relevance-tuning-techniques",
-            "learn/semantic-search/enable-pagination",
-            "learn/semantic-search/add-custom-dimensions",
           ],
         },
         {
           type: "doc",
-          id: "learn/select-ideal-indexing-api",
-          label: "Select the Ideal Indexing API",
-        },
-        {
-          type: "doc",
-          id: "learn/enable-keyword-text-matching",
-          label: "Enable Exact Keyword Text Matching",
-        },
-        {
-          type: "doc",
-          id: "learn/hybrid-search",
-          label: "Blend Neural Search and Keyword Search",
-        },
-        {
-          type: "category",
+          id: "learn/grounded-generation/grounded-generation-overview",
           label: "Retrieval Augmented Generation (RAG)",
-          items: [
-            "learn/grounded-generation/grounded-generation-overview",
-            "learn/grounded-generation/select-a-summarizer",
-            "learn/grounded-generation/grounded-generation-response-languages",
-          ],
+        },
+        {
+          type: "doc",
+          id: "learn/hallucination-evaluation",
+          label: "Hallucination Evaluation",
         },
         {
           type: "doc",
@@ -110,6 +89,19 @@ module.exports = {
             "api-reference/search-apis/sql/data-types",
           ],
         },
+      ],
+    },
+    {
+      type: "category",
+      label: "Use Cases",
+      items: [
+        "learn/select-ideal-indexing-api",
+        "learn/enable-keyword-text-matching",
+        "learn/hybrid-search",
+        "learn/grounded-generation/select-a-summarizer",
+        "learn/grounded-generation/grounded-generation-response-languages",
+        "learn/semantic-search/enable-pagination",
+        "learn/semantic-search/add-custom-dimensions",
         "learn/recommendation-systems/recommender-overview",
         "learn/question-answer/question-answer-overview",
       ],
