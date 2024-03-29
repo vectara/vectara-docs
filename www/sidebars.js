@@ -385,7 +385,7 @@ module.exports = {
               },
               "api-reference/search-apis/reranking",
               "api-reference/search-apis/batched-queries",
-              {
+                            {
                 type: "category",
                 label: "Interpreting Responses",
                 items: [
@@ -394,6 +394,7 @@ module.exports = {
                   "api-reference/search-apis/interpreting-responses/highlighting",
                 ],
             },
+            "api-reference/search-apis/stream-query",
           ],
         },
         {
