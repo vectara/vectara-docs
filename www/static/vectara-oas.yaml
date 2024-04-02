@@ -882,10 +882,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/googlerpcStatus"
       requestBody:
+        $ref: "#/components/requestBodies/servingBatchQueryRequest"
         content:
           application/json:
-            schema:
-              $ref: "#/components/schemas/servingBatchQueryRequest"
             examples:
               GrowthExample:
                 value:
@@ -972,7 +971,6 @@ paths:
                             conversationId: "1d8f0258-3358-475a-b5eb-02a775cee09e"
                           maxSummarizedResults: 5
                           responseLang: "eng"
-        required: true
       tags:
         - QueryService
       parameters:
@@ -1133,6 +1131,47 @@ paths:
         * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
         * The `filter` feature applies to either the name *or* the description of a corpus.
         * If you want to delete individual documents instead of all documents in the corpus, you can use the [Delete API](https://docs.vectara.com/docs/rest-api/delete).
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
+  /v1/stream-query:
+    post:
+      operationId: StreamQuery
+      responses:
+        "200":
+          description: A successful response.(streaming responses)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    $ref: "#/components/schemas/servingQueryResponsePart"
+                  error:
+                    $ref: "#/components/schemas/googlerpcStatus"
+                title: Stream result of servingQueryResponsePart
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/googlerpcStatus"
+      requestBody:
+        $ref: "#/components/requestBodies/servingBatchQueryRequest"
+      tags:
+        - QueryService
+      parameters:
+        - $ref: '#/components/parameters/customerIdentifier'
+        - $ref: '#/components/parameters/timeout'
+      description: |
+        Stream relevant results, highlight relevant snippets, and do
+        [Retrieval Augmented Generation](https://docs.vectara.com/docs/learn/grounded-generation/grounded-generation-overview) (RAG).
+
+        Some tips for this API:
+        * This operation authenticates with either an API Key or OAuth 2.0 (in a JWT "Bearer Token"). You can find details of how to set up an API key or use OAuth 2.0 [here](https://docs.vectara.com/docs/console-ui/manage-api-access).
+        * By default, Vectara only uses its neural/semantic retrieval model, and does not attempt to use keyword matching.  To enable hybrid search with a mix of both keyword and neural results, edit the `lambda` value.  Additional documentation on hybrid search is [here](https://docs.vectara.com/docs/learn/semantic-search/hybrid-search).
+        * Vectara can automatically provide a generative summary with the query results for Retrieval Augmented Generation (RAG).  Additional details on RAG in Vectara can be found [here](https://docs.vectara.com/docs/learn/grounded-generation/grounded-generation-overview).
+        * The Stream Query API takes an *array* of queries, since you can have Vectara perform more than 1 query in a single API call.  The results that are returned are thus in an array as well, with each element in the response array corresponding to the input query array.
       security:
         - ApiKeyAuth: []
         - oAuth: []
@@ -1309,6 +1348,13 @@ paths:
         "507":
           description: There is no more indexing quota left for the corpus or customer to index more documents.  Upgrade your account, add a credit card, or contact sales.
 components:
+  requestBodies:
+    servingBatchQueryRequest:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/servingBatchQueryRequest"
+      required: true
   schemas:
     CorpusKeySemantics:
       type: string
@@ -3284,7 +3330,7 @@ components:
           example: {}
         factualConsistencyScore:
           type: boolean
-          description: If true, the response will include the factual consistency score.
+          description: If unset or true, the response will include the factual consistency score.
       required: ['maxSummarizedResults', 'responseLang']
     servingSummary:
       type: object
@@ -3302,6 +3348,14 @@ components:
           $ref: "#/components/schemas/servingChat"
         factualConsistency:
           $ref: "#/components/schemas/servingFactualConsistency"
+        done:
+          type: boolean
+          description: >-
+            Determines if the summary is done.
+
+            `false` if the summary is in-progress for streaming requests, otherwise `true`.
+
+            this only refers to summary text generation, Factual Consistency will come later if requested.
         status:
           type: array
           items:
