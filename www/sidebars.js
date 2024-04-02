@@ -395,7 +395,6 @@ module.exports = {
                   "api-reference/search-apis/interpreting-responses/highlighting",
                 ],
             },
-            "api-reference/search-apis/stream-query",
           ],
         },
         {
