@@ -25,6 +25,13 @@ The Standard Query API makes users wait for the full summarization process
 before receiving any results. Streaming processes the summary request 
 with near-zero latency, significantly enhancing the user experience.
 
+:::tip
+
+Check out our [**interactive API Playground**](/docs/rest-api/stream-query) that lets you experiment with 
+this REST endpoint to stream query responses.
+
+:::
+
 ## Stream Query Request Body
 
 The Stream Query API has the same request parameters as the [Standard Query API](/docs/api-reference/search-apis/search).
@@ -210,7 +217,7 @@ The [Vectara Chat APIs](/docs/api-reference/chat-apis/chat-apis-overview) have m
 to search content from a corpus:
 <code>https://<Config v="domains.rest.serving"/>/v1/stream-query</code>
 
-The API Playground shows the full [Stream Query REST definition](/docs/rest-api/query).
+The API Playground shows the full [Stream Query REST definition](/docs/rest-api/stream-query).
 
 ## gRPC Example
 
