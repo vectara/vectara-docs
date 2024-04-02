@@ -383,9 +383,10 @@ module.exports = {
                   },
                 ]
               },
+              "api-reference/search-apis/stream-query",
               "api-reference/search-apis/reranking",
               "api-reference/search-apis/batched-queries",
-              {
+                            {
                 type: "category",
                 label: "Interpreting Responses",
                 items: [
