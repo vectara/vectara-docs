@@ -76,7 +76,7 @@ This second response type contains the search results as the
 
 The third response type, which streams until you get the final `done` value, 
 returns the subsequent streamed chunks of the summary. Each response has a 
-`batchQueryResponse` that contains a portion of the `summary` text
+`batchQueryResponse` that contains a portion of the `summary` text.
 
 ## Query Definition
 
