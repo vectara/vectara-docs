@@ -55,7 +55,9 @@ document id and document-level metadata.
 Each streamed chunk contains a portion of the summary text, identified by a 
 unique `future_id`. Once the full summary is streamed, you receive a final 
 response with the `done` field set to `true`, allowing flexible handling and 
-processing of results. The Stream Query API request has three different types 
+processing of results. If you enabled the Factual Consistency Score, this 
+value appears after the summary shows `done` as `true`. The Stream Query API 
+request has three different types 
 of responses:
 
 ### Preamble Response
