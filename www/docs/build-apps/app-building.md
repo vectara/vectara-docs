@@ -27,6 +27,10 @@ Sample templates and crawlers for pulling data from many popular data sources.
 
 ## User interface
 
+### [React-Chatbot](/docs/build-apps/react-chatbot)
+
+UI widget for adding a chatbot to your React UI in just a few lines of code.
+
 ### [React-Search](/docs/build-apps/react-search)
 
 UI widget for adding semantic search to your React UI in just a few lines of code.
@@ -39,5 +43,3 @@ and semantic search UIs.
 ### [Vectara Answer](/docs/build-apps/vectara-answer)
 
 Demo app for Summarized Semantic Search with advanced configuration options.
-
-
