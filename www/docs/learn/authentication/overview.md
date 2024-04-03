@@ -1,7 +1,7 @@
 ---
 id: auth-overview
-title: Authentication Overview
-sidebar_label: Authentication Overview
+title: Vectara Authentication Overview
+sidebar_label: Vectara Authentication Overview
 ---
 
 import Tabs from '@theme/Tabs';
@@ -16,10 +16,10 @@ while, Admin actions (creating/deleting corpora) must be done via [Personal API 
 
 ## Choosing Personal API keys, Index API Keys, Query API Keys, or OAuth 2.0
 
-When it comes to securing your application and managing access, you have a 
-choice between three different API Keys and OAuth. API Keys can be scoped 
-either to be Adminstrative actions, query (read-only) or both query and 
-index (read-and-write). Personal API Keys inherit the permissions of their 
+To secure your application and manage access, you have a choice between three 
+different API Keys and OAuth 2.0. API Keys can be scoped either to be
+Administrative actions, query (read-only) or both query and index 
+(read-and-write). Personal API Keys inherit the permissions of their 
 associated user account. We recommend that you choose the most limited scope 
 you can for your application: it's "cheap" to create multiple API keys, but 
 having an accidental publication of an over-privileged API key is often 

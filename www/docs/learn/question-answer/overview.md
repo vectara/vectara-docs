@@ -1,7 +1,7 @@
 ---
 id: question-answer-overview
-title: Question-Answer Matching System
-sidebar_label: FAQ and Q&A Matching
+title: Create a Question-Answer Matching System
+sidebar_label: Create a Question-Answer Matching System
 ---
 
 import {Config} from '@site/docs/definitions.md';

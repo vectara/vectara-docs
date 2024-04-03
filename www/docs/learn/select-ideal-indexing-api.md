@@ -1,7 +1,7 @@
 ---
 id: select-ideal-indexing-api
-title: Select the Ideal Indexing API for Your Needs
-sidebar_label: Select the Ideal Indexing API
+title: Select the Best Indexing API for Your Data
+sidebar_label: Select the Best Indexing API for Your Data
 ---
 
 import Tabs from '@theme/Tabs';

@@ -1,7 +1,7 @@
 ---
 id: select-a-summarizer
-title: Select a Summarizer
-sidebar_label: Select a Summarizer
+title: Select a Summarizer Model
+sidebar_label: Select a Summarizer Model
 ---
 
 import {Config} from '@site/docs/definitions.md';
