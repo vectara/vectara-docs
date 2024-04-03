@@ -25,6 +25,12 @@ need to seek community support or external resources for assistance and updates.
 
 Sample templates and crawlers for pulling data from many popular data sources.
 
+## Clients
+
+### [Stream-Query-Client](/docs/build-apps/stream-query-client)
+
+JavaScript client for accessing the Stream Query API.
+
 ## User interface
 
 ### [React-Chatbot](/docs/build-apps/react-chatbot)
