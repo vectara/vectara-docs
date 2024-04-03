@@ -93,7 +93,7 @@ module.exports = {
     },
     {
       type: "category",
-      label: "Use Cases",
+      label: "Use Cases and Guides",
       items: [
         "learn/select-ideal-indexing-api",
         "learn/enable-keyword-text-matching",
