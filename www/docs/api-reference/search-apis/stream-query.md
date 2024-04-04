@@ -87,13 +87,18 @@ returns the subsequent streamed chunks of the summary. Each response has a
 
 ## Combining the Streamed Summary Response
 
-The consuming code must combing the stream's chunks as it receives them. The best method for doing so will depend on the language being used.
+The consuming code must combine the stream's chunks as it receives them. The
+best method for doing so will depend on the language being used.
 
 ### JavaScript
 
-If the consuming code is JavaScript, we recommend using our [Stream-Query-Client](https://www.npmjs.com/package/@vectara/stream-query-client) to mediate requests to the Stream Query API. It will handle the complexity of combining the streamed chunks for you.
+If the consuming code is JavaScript, we recommend using our
+[Stream-Query-Client](https://www.npmjs.com/package/@vectara/stream-query-client)
+to mediate requests to the Stream Query API. It will handle the complexity of
+combining the streamed chunks for you.
 
-To refer to how this is done, see the [Stream-Query-Client source code](https://github.com/vectara/stream-query-client).
+To refer to how this is done, see the
+[Stream-Query-Client source code](https://github.com/vectara/stream-query-client).
 
 ## Query Definition
 
