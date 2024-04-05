@@ -34,7 +34,7 @@ module.exports = {
     },
     {
       type: "category",
-      label: "Data Privacy and Authentication",
+      label: "Security and Data Privacy",
       collapsed: true,
       items: [
             "learn/data-privacy/privacy-overview",
@@ -44,6 +44,33 @@ module.exports = {
             "learn/authentication/api-key-management",
             "learn/authentication/oauth-2",
             "learn/authentication/role-based-access-control",
+            {
+              type: "category",
+              label: "API Authentication Examples",
+              items: [
+                {
+                  type: "category",
+                  label: "OAuth 2.0 Client Credentials Grant Examples",
+                  items: [
+                    "getting-started-samples/JWTFetcher.cs",
+                    "getting-started-samples/JwtFetcher.java",
+                    "getting-started-samples/getJwtToken.php",
+                    "getting-started-samples/rest_util.py",
+                  ],
+                },
+                {
+                  type: "category",
+                  label: "API Key REST Examples",
+                  items: [
+                    "getting-started-samples/RestApiKeyQueries.cs",
+                    "getting-started-samples/RestApiKeyQueries.java",
+                    "getting-started-samples/queryDataApiKey.php",
+                    "getting-started-samples/rest_api_key_queries.py",
+                    "getting-started-samples/app.js",
+                  ],
+                },
+              ],
+            },
       ],
     },
     {
@@ -63,6 +90,14 @@ module.exports = {
           type: "doc",
           id: "learn/grounded-generation/grounded-generation-overview",
           label: "Retrieval Augmented Generation (RAG)",
+        },
+        {
+          type: "category",
+          label: "Generative Prompts",
+          items: [
+            "prompts/vectara-prompt-engine",
+            "prompts/custom-prompts-with-metadata",
+          ],
         },
         {
           type: "doc",
@@ -104,14 +139,6 @@ module.exports = {
         "learn/semantic-search/add-custom-dimensions",
         "learn/recommendation-systems/recommender-overview",
         "learn/question-answer/question-answer-overview",
-      ],
-    },
-    {
-      type: "category",
-      label: "Generative Prompts",
-      items: [
-        "prompts/vectara-prompt-engine",
-        "prompts/custom-prompts-with-metadata",
       ],
     },
     {
@@ -201,7 +228,7 @@ module.exports = {
         },
         {
           type: "category",
-          label: "Access Admin APIs",
+          label: "Authentication APIs",
           items: [
             {
               type: "category",
@@ -402,33 +429,7 @@ module.exports = {
         },
       ],
     },
-    {
-      type: "category",
-      label: "API Authentication Examples",
-      items: [
-        {
-          type: "category",
-          label: "OAuth 2.0 Client Credentials Grant Examples",
-          items: [
-            "getting-started-samples/JWTFetcher.cs",
-            "getting-started-samples/JwtFetcher.java",
-            "getting-started-samples/getJwtToken.php",
-            "getting-started-samples/rest_util.py",
-          ],
-        },
-        {
-          type: "category",
-          label: "API Key REST Examples",
-          items: [
-            "getting-started-samples/RestApiKeyQueries.cs",
-            "getting-started-samples/RestApiKeyQueries.java",
-            "getting-started-samples/queryDataApiKey.php",
-            "getting-started-samples/rest_api_key_queries.py",
-            "getting-started-samples/app.js",
-          ],
-        },
-      ],
-    },
+    
   ],
   restOAS: [
     {
