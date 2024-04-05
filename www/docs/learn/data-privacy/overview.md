@@ -1,7 +1,7 @@
 ---
 id: privacy-overview
-title: Keeping Your Data Private
-sidebar_label: Keeping Your Data Private
+title: Privacy Committment
+sidebar_label: Privacy Committment
 ---
 
 import Tabs from '@theme/Tabs';

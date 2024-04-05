@@ -1,7 +1,7 @@
 ---
 id: hybrid-search
-title: 'Combine Neural Search and Keyword Search'
-sidebar_label: Combine Neural Search and Keyword Search
+title: Hybrid Search
+sidebar_label: Hybrid Search
 ---
 
 Vectara provides a Hybrid Search that offers a powerful and flexible approach 

@@ -79,18 +79,11 @@ module.exports = {
       collapsed: true,
       items: [
         {
-          type: "category",
-          label: "Semantic Search",
-          items: [
-            "learn/semantic-search/semantic-search-overview",
-            "learn/semantic-search/relevance-tuning-techniques",
-          ],
-        },
-        {
           type: "doc",
-          id: "learn/grounded-generation/grounded-generation-overview",
-          label: "Retrieval Augmented Generation (RAG)",
+          id: "learn/data-ingestion",
+          label: "Data Ingestion",
         },
+        "learn/select-ideal-indexing-api",
         {
           type: "category",
           label: "Generative Prompts",
@@ -99,21 +92,17 @@ module.exports = {
             "prompts/custom-prompts-with-metadata",
           ],
         },
+        "learn/grounded-generation/grounded-generation-response-languages",
         {
           type: "doc",
           id: "learn/hallucination-evaluation",
           label: "Hallucination Evaluation",
         },
-        {
-          type: "doc",
-          id: "learn/data-ingestion",
-          label: "Data Ingestion",
-        },
-        {
-          type: "doc",
-          id: "learn/document-data-structuring",
-          label: "Document Data Structuring",
-        },
+        
+        "learn/grounded-generation/select-a-summarizer",
+        "learn/semantic-search/enable-pagination",
+        "learn/semantic-search/add-custom-dimensions",
+        "learn/recommendation-systems/recommender-overview",
         {
           type: "category",
           label: "Metadata Search Filtering",
@@ -130,14 +119,28 @@ module.exports = {
       type: "category",
       label: "Use Cases and Guides",
       items: [
-        "learn/select-ideal-indexing-api",
+        {
+          type: "category",
+          label: "Semantic Search",
+          items: [
+            "learn/semantic-search/semantic-search-overview",
+            "learn/semantic-search/relevance-tuning-techniques",
+          ],
+        },
+        {
+          type: "doc",
+          id: "learn/grounded-generation/grounded-generation-overview",
+          label: "Retrieval Augmented Generation (RAG)",
+        },
+        {
+          type: "doc",
+          id: "learn/document-data-structuring",
+          label: "Document Data Structuring",
+        },
+        
         "learn/enable-keyword-text-matching",
         "learn/hybrid-search",
-        "learn/grounded-generation/select-a-summarizer",
-        "learn/grounded-generation/grounded-generation-response-languages",
-        "learn/semantic-search/enable-pagination",
-        "learn/semantic-search/add-custom-dimensions",
-        "learn/recommendation-systems/recommender-overview",
+        
         "learn/question-answer/question-answer-overview",
       ],
     },

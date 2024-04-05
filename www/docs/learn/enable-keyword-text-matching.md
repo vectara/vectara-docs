@@ -1,7 +1,7 @@
 ---
 id: enable-keyword-text-matching
-title: 'Enable Exact Keyword Text Matching'
-sidebar_label: Enable Exact Keyword Text Matching
+title: Keyword Search
+sidebar_label: Keyword Search
 ---
 
 By default, Vectara disables exact and Boolean text matching, which is similar 
@@ -21,6 +21,7 @@ query time, specifically under the `corpusKey`:
           },
           "dim": []
         }
+      ]
 ```
 
 ## Enable Exact Keyword Matching in the Console UI

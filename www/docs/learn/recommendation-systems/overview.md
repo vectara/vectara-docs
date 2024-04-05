@@ -1,7 +1,7 @@
 ---
 id: recommender-overview
-title: Create a Recommendation System
-sidebar_label: Create a Recommendation System
+title: Recommendation System
+sidebar_label: Recommendation System
 ---
 
 import {Config} from '@site/docs/definitions.md';
