@@ -20,6 +20,13 @@ const config = {
           editUrl: "https://github.com/vectara/vectara-docs/tree/master/www",
           docLayoutComponent: "@theme/DocPage",
           docItemComponent: "@theme/ApiItem", // Derived from docusaurus-theme-openapi-docs
+          lastVersion: "current",
+          versions: {
+            current: {
+              label: "2.0",
+              /* path: "2.0", */
+            },
+          },
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
@@ -45,8 +52,8 @@ const config = {
               categoryLinkSource: "tag",
             },
             baseUrl: "docs/rest-api/vectara-oas",
-            version: "1.0.0",
-            label: "v1.0.0",
+            version: "2.0.0",
+            label: "v2.0.0",
           },
         },
       },
@@ -198,6 +205,36 @@ ${content}
         srcDark: "img/vectara_wordmark_light.png",
       },
       items: [
+        {
+          type: "dropdown",
+          label: "Docs",
+          position: "left",
+          items: [
+            {
+              label: "Version 2.0 (Latest)",
+              to: "docs/"
+            },
+            {
+              label: "Version 1.0",
+              to: "docs/1.0/",
+            },
+          ]
+        },
+        {
+          type: "dropdown",
+          label: "API Playground",
+          position: "left",
+          items: [
+            {
+              label: "API Playground 2.0 ",
+              to: "docs/rest-api"
+            },
+            {
+              label: "API Playground 1.0",
+              to: "docs/1.0/rest-api",
+            },
+          ]
+        },
         {
           to: "docs/",
           activeBasePath: "docs",
