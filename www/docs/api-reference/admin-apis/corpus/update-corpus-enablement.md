@@ -1,7 +1,7 @@
 ---
 id: update-corpus-enablement
-title: Update Corpus Enablement API Definition
-sidebar_label: Update Corpus Enablement API Definition
+title: Update Corpus API Definition
+sidebar_label: Update Corpus API Definition
 ---
 
 import {Config} from '@site/docs/definitions.md';
@@ -18,7 +18,7 @@ incidents.
 
 :::tip
 
-Check out our [**interactive API Playground**](/docs/rest-api/update-corpus-enablement) that lets you experiment with this 
+Check out our [**interactive API Playground**](/docs/rest-api/update-corpus) that lets you experiment with this 
 REST endpoint to enable or disable corpora.
 
 :::
@@ -34,9 +34,9 @@ to `true` or `false`.
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
 to enable or disable a corpus:
-<code>https://<Config v="domains.rest.admin"/>/v1/update-corpus-enablement</code>
+<code>https://<Config v="domains.rest.admin"/>/v2/corpora/:corpus_key</code>
 
-The API Playground shows the full [Update Corpus Enablement](/docs/rest-api/update-corpus-enablement) REST definition.
+The API Playground shows the full [Update Corpus Enablement](/docs/rest-api/update-corpus) REST definition.
 
 ## gRPC Example
 

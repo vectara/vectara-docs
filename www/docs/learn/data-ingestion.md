@@ -36,5 +36,5 @@ Word Documents, Vectara attempts to automatically extract the text and any metad
 If you want to attach metadata for optimizing searches made against your data, 
 you can [format your data as JSON](/docs/api-reference/indexing-apis/file-upload/format-for-upload).
 
-Our [interactive API Playground](/docs/rest-api/file-upload) enables you
+Our [interactive API Playground](/docs/rest-api/upload-file) enables you
 to experiment with this File Upload REST endpoint.

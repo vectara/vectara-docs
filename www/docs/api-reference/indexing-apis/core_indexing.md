@@ -23,7 +23,7 @@ normal users should use the Standard Indexing API.
 
 :::tip
 
-Check out our [**interactive API Playground**](/docs/rest-api/core-index) that lets you experiment 
+Check out our [**interactive API Playground**](/docs/rest-api/create-corpus-document) that lets you experiment 
 with this endpoint to index documents from your browser.
 
 :::
@@ -82,9 +82,9 @@ defined ahead of time for the corpus, or else they'll be ignored.
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
 to index content into a corpus:
-<code>https://<Config v="domains.rest.indexing"/>/v1/core-index</code>
+<code>https://<Config v="domains.rest.indexing"/>/v2/corpora/:corpus_key/documents</code>
 
-The API Playground shows the full [Low-level Indexing REST definition](/docs/rest-api/core-index).
+The API Playground shows the full [Low-level Indexing REST definition](/docs/rest-api/create-corpus-document).
 
 ## gRPC Example
 

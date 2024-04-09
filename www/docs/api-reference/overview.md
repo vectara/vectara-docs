@@ -18,7 +18,7 @@ details, we recommend that you have a basic understanding of API concepts.
 
 ## :star2: Ready to Dive In? Check Out Our API Playground! :star2:
 
-If you're ready to dive into our APIs, make your way to our [**API Playground**](/docs/rest-api/vectara-rest-api)! 
+If you're ready to dive into our APIs, make your way to our [**API Playground**](/docs/rest-api/vectara-api-v-2)! 
 This interactive environment allows you to experiment with <Config v="names.product"/>'s REST APIs 
 directly from your browser! Tailored for developers, the API Playground 
 offers a hands-on experience to understand and demonstrate our capabilities.

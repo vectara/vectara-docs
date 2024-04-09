@@ -20,7 +20,7 @@ for optimizing searches made against your data by
 
 :::tip
 
-* Check out our [**interactive API Playground**](/docs/rest-api/file-upload) that enables you
+* Check out our [**interactive API Playground**](/docs/rest-api/upload-file) that enables you
 to experiment with this REST endpoint. You can upload a file to a corpus 
 directly from your browser or copy the curl for your command line.
 * Review the [**Supported File Types**](/docs/api-reference/indexing-apis/file-upload/file-upload-filetypes)
@@ -32,7 +32,7 @@ directly from your browser or copy the curl for your command line.
 
 <Config v="names.product"/> exposes an HTTP endpoint at the following URL
 to upload and index documents into a corpus:
-<code>https://<Config v="domains.rest.indexing"/>/v1/upload</code>
+<code>https://<Config v="domains.rest.indexing"/>/v2/corpora/:corpus_key/upload_file</code>
 
 ## File Upload Request Details
 

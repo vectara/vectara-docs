@@ -22,7 +22,7 @@ status as `true` or `false` for the API key.
 
 :::tip
 
-Check out our [**interactive API Playground**](/docs/rest-api/enable-api-key) that lets 
+Check out our [**interactive API Playground**](/docs/rest-api/update-api-key) that lets 
 you experiment with this REST endpoint to enable and disable API keys.
 
 :::
@@ -32,9 +32,9 @@ you experiment with this REST endpoint to enable and disable API keys.
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
 to enable API keys:
-<code>https://<Config v="domains.rest.indexing"/>/v1/enable-api-key</code>
+<code>https://<Config v="domains.rest.indexing"/>/v2/api_keys/:api_key_id</code>
 
-The API Playground shows the full [Enable API Key](/docs/rest-api/enable-api-key) REST definition.
+The API Playground shows the full [Enable API Key](/docs/rest-api/update-api-key) REST definition.
 
 ## gRPC Example
 

@@ -35,9 +35,9 @@ retrieve a specific page of results. Leave empty to retrieve first page.
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
 to list users:
-<code>https://<Config v="domains.rest.indexing"/>/v1/list-users</code>
+<code>https://<Config v="domains.rest.indexing"/>/v2/users</code>
 
-The API Playground shows the full [List Users](/docs/rest-api/compute-account-size) REST definition.
+The API Playground shows the full [List Users](/docs/rest-api/list-users) REST definition.
 
 ## gRPC Example
 

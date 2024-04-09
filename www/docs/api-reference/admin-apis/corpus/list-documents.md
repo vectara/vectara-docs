@@ -19,7 +19,7 @@ capabilities into their applications.
 
 :::tip
 
-Check out our [**interactive API Playground**](/docs/rest-api/list-documents) that lets you experiment with this 
+Check out our [**interactive API Playground**](/docs/rest-api/list-corpus-documents) that lets you experiment with this 
 REST endpoint to list your documents.
 
 :::
@@ -40,9 +40,9 @@ configure up to 1000.
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
 to list documents:
-<code>https://<Config v="domains.rest.admin"/>/v1/list-documents</code>
+<code>https://<Config v="domains.rest.admin"/>/v2/corpora/:corpus_key/documents</code>
 
-The API Playground shows the full [List Documents](/docs/rest-api/list-documents) REST definition.
+The API Playground shows the full [List Documents](/docs/rest-api/list-corpus-documents) REST definition.
 
 ## gRPC Example
 

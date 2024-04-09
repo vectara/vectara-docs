@@ -17,22 +17,15 @@ The `conversationId` specifies the conversation ID that contains the turn
 you want to delete, and the `turnId` specifies the Turn ID that you want to 
 delete.
 
-:::tip
-
-Check out our **interactive API Playground** that lets you experiment with this 
-REST endpoint to delete turns in specific chats.
-
-:::
-
 ## REST Example
 
 ### Delete Turns Endpoint Address
 
 <Config v="names.product"/> exposes an HTTP endpoint at the following URL
 to delete turns in a chat:
-<code>https://<Config v="domains.rest.indexing"/>/v1/delete-turns</code>
+<code>https://<Config v="domains.rest.indexing"/>/v2/chats/:chat_id/turns/:turn_id</code>
 
-The API Playground shows the full [Delete Turns](/docs/rest-api/delete-turns) REST definition.
+The API Playground shows the full [Delete Turns](/docs/rest-api/delete-chat-turn) REST definition.
 
 ## gRPC Example
 

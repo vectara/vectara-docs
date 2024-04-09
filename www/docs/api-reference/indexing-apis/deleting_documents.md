@@ -14,7 +14,7 @@ that the document no longer exists in the corpus, use the List Documents endpoin
 
 :::tip
 
-Check out our [**interactive API Playground**](/docs/rest-api/delete) that enables you
+Check out our [**interactive API Playground**](/docs/rest-api/delete-corpus-document) that enables you
 to experiment with this REST endpoint. You can delete a file from a corpus
 directly from your browser or copy the curl for your command line.
 
@@ -37,9 +37,9 @@ The reply on successful deletion is `{}`.
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
 to delete content from a corpus:
-<code>https://<Config v="domains.rest.indexing"/>/v1/delete-doc</code>
+<code>https://<Config v="domains.rest.indexing"/>/v2/corpora/:corpus_key/documents/:document_id</code>
 
-The API Playground shows the full [Delete Documents REST definition](/docs/rest-api/delete).
+The API Playground shows the full [Delete Documents REST definition](/docs/rest-api/delete-corpus-document).
 
 ## gRPC Example
 

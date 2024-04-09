@@ -53,7 +53,6 @@ const config = {
         config: {
           vectara: {
             specPath: "static/vectara-oas-v2.yaml", // Path to designated spec file
-            specPath: "static/vectara-oas-v2.yaml", // Path to designated spec file
             outputDir: "docs/rest-api", // Output directory for generated .mdx docs
             downloadUrl: "https://docs.vectara.com/vectara-oas.yaml",
             sidebarOptions: {
@@ -61,16 +60,6 @@ const config = {
               categoryLinkSource: "tag",
             },
             baseUrl: "docs/rest-api/vectara-oas",
-            version: "2.0",
-            label: "v2.0",
-            versions: {
-              "1.0": {
-              specPath: "static/vectara-oas.yaml", // path to 1.0 OAS spec
-              outputDir: "versioned_docs/version-1.0/rest-api",
-              label: "1.0",
-              baseUrl: "versioned_docs/version-1.0/rest-api/vectara-oas"
-            }
-           },
             version: "2.0",
             label: "v2.0",
             versions: {
