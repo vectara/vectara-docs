@@ -12,9 +12,9 @@ import {Config} from '@site/docs/definitions.md';
 
 Everything in <Config v="names.product"/> is driven by APIs. This section serves 
 as a roadmap to understanding and using our [gRPC APIs](/docs/api-reference/protobuf-definitions) and 
-[REST APIs](/docs/api-reference/rest) for indexing, searching, and administrative tasks.
-Before getting into more details, we 
-recommend that you have a basic understanding of API concepts.
+[REST APIs](/docs/api-reference/rest) for [indexing](/docs/learn/select-ideal-indexing-api), [querying](/docs/api-reference/search-apis/search), and administrative tasks 
+such as [managing user access](/docs/api-reference/admin-apis/manage-users/manage-user) and [corpora](/docs/api-reference/admin-apis/admin). Before getting into more 
+details, we recommend that you have a basic understanding of API concepts.
 
 ## :star2: Ready to Dive In? Check Out Our API Playground! :star2:
 
@@ -31,18 +31,13 @@ and other key concepts:
 
 * **gRPC APIs:** Understand the basics of gRPC (Remote Procedure Call) such as 
   the advantages with performance, code generation, and how it uses Protocol 
-  Buffers (**.proto** files) for schema defnitions.
-
-  You can [download the `.proto` files](https://github.com/vectara/protos/tree/main) directly from Github. 
-  For example, [`serving.proto`](https://github.com/vectara/protos/blob/main/serving.proto) 
+  Buffers (**.proto** files) for schema defnitions. You can [download the `.proto` files](https://github.com/vectara/protos/tree/main) directly 
+  from Github. For example, [`serving.proto`](https://github.com/vectara/protos/blob/main/serving.proto) 
 provides the message definitions for running queries.
-
 * **RESTful APIs:** Understand the principles of Representational State Transfer 
   (REST) and why it's commonly used in web services. Make sure to also 
-  understand how it differs from gRPC.
-
-  For example, review the [Java example](/docs/getting-started-samples/RestIndex.java) for our Standard Indexing API. 
-
+  understand how it differs from gRPC. For example, review the [Java example](/docs/getting-started-samples/RestIndex.java) for our 
+  Standard Indexing API. 
 * **HTTP Methods:** Become familar with HTTP methods like GET, POST, PUT, and DELETE.
 * **gRPC Methods:** Become familar with gRPC methods like server streaming, client
   streaming, and bidirectional streaming.
@@ -65,9 +60,9 @@ APIs and some organizations still struggle with using HTTP/2.0 due to firewalls.
 
 ### REST API
 If you'd like more details about how to use our REST APIs, including details on
-our OpenAPI specification and services, a good place to start is the [REST](rest)
+our OpenAPI specification and services, a good place to start is the [REST APIs](rest)
 page.
 
 ### gRPC API
 If you'd like more details about how to use our gRPC APIs, including details on
-how to generate strongly typed clients, see our [gRPC](protobuf-definitions) page.
+how to generate strongly typed clients, see our [gRPC APIs](protobuf-definitions) page.

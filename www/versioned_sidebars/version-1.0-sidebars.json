@@ -149,6 +149,7 @@
           "collapsed": true,
           "items": [
             "console-ui/creating-a-corpus",
+            "console-ui/corpus-query-configuration",
             "console-ui/reset-or-delete-corpus",
             "console-ui/configure-server-access-to-corpus",
             "console-ui/corpus-default-read-access"
@@ -382,6 +383,7 @@
                 }
               ]
             },
+            "api-reference/search-apis/stream-query",
             "api-reference/search-apis/reranking",
             "api-reference/search-apis/batched-queries",
             {
@@ -610,6 +612,12 @@
               "type": "doc",
               "id": "rest-api/query",
               "label": "Query",
+              "className": "api-method post"
+            },
+            {
+              "type": "doc",
+              "id": "rest-api/stream-query",
+              "label": "StreamQuery",
               "className": "api-method post"
             }
           ]

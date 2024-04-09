@@ -118,6 +118,19 @@ them based on semantic similarity.
 * `sections` specifies an optional array of child sections. Those sections 
   can also have their own child sections.
 
+### Nested Sections
+
+You can also nest sections within sections, which also have their own 
+titles, text, and metadata, as shown in our [King Lear example](/docs/api-reference/indexing-apis/file-upload/format-for-upload#sample-json-document).
+This example document is structured with a top-level `section` array that contains the 
+parent sections, which are plays titled `King Lear` and 
+`Antony and Cleopatra`. 
+
+`King Lear` has nested sections for `Act 1` and `Act II`, 
+which contain additional text and metadata, while `Antony and Cleopatra` 
+directly contains the content for this parent section. This example demonstrates 
+the flexibility of the document structure that Vectara can ingest.
+
 ## Special Document Metadata
 
 Vectara Console recognizes special metadata which have proven useful across 

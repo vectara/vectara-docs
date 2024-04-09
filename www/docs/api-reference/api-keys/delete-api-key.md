@@ -24,10 +24,6 @@ you experiment with this REST endpoint to delete API keys from an account.
 
 :::
 
-## REST Example
-
-### Delete API Key Endpoint Address
-
 <Config v="names.product"/> exposes a REST endpoint at the following URL
 to delete API keys:
 <code>https://<Config v="domains.rest.indexing"/>/v1/delete-api-key</code>

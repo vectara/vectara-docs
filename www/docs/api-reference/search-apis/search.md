@@ -11,8 +11,8 @@ import {vars} from '@site/static/variables.json';
 
 The Query API lets you perform a query while defining its parameters 
 that specify the query text, pagination details, metadata filters, and other 
-settings that enable application builders to tailor their queries to specific 
-use cases.
+search settings that enable application builders to tailor their queries to 
+specific use cases.
 
 After you index data into one or more corpora, you can run queries 
 and display the results. This page provides a detailed reference for how
@@ -70,10 +70,10 @@ see [Reranking](/docs/api-reference/search-apis/reranking).
 
 ## Corpus Key Definition
 
-The `corpusKey` specifies the ID of the corpus being searched. The `metadata_filter` allows 
-specifying a predicate expression that restricts the search to a part of the 
-corpus. The filter is written in a simplified SQL dialect and can reference 
-metadata that was marked as filterable during corpus
+The `corpusKey` specifies the ID of the corpus being searched. The 
+`metadata_filter` allows specifying a predicate expression that restricts 
+the search to a part of the corpus. The filter is written in a simplified SQL 
+dialect and can reference metadata that was marked as filterable during corpus 
 creation. 
 
 :::note
@@ -100,13 +100,35 @@ more rarely, as a response.
 
 To use Retrieval Augmented Generation (RAG), which <Config v="names.product"/> also refers to as
 "Grounded Generation" -- our groundbreaking way of producing generative 
-summaries on top of your own data -- you can submit a `SummarizationRequest` alongside your query. 
-This produces a `summary` that attempts to answer the end-user's question, 
-citing the results as references. For more information, read about [Retrieval Augmented Generation](/docs/learn/grounded-generation/grounded-generation-overview).
+summaries on top of your own data -- you can submit a `SummarizationRequest` 
+alongside your query. This produces a `summary` that attempts to answer the 
+end-user's question, citing the results as references. For more information, 
+read about [Retrieval Augmented Generation](/docs/learn/grounded-generation/grounded-generation-overview).
 
 The `summary` object enables you to tailor the results of the query 
 summarization. Growth users can specify the `maxSummarizedResults` and 
 `responseLang`.
+
+## Factual Consistency Score
+
+The Factual Consistency Score, based on a more advanced version of 
+[Hughes Hallucination Evaluation Model (HHEM)](https://huggingface.co/vectara/hallucination_evaluation_model),
+enables you to evaluate the likelihood of an AI-generated summary being 
+factually correct based on search results. This calibrated score can 
+range from `0.0` to `1.0`. A higher scores indicates a greater probability of 
+being factually accurate, while a lower score indicates a greater probability 
+of hallucinations.
+
+In your summarization request, set the `factual_consistency_score` field to `true`. 
+The Factual Consistency Score returns a calibrated value in the 
+`factual_consistency` field of the summary message. The score field 
+contains the value between `0.0` and `1.0`.
+
+For example, a score of `0.95` suggests a 95% likelihood that the summary is 
+free of hallucinations and would align with the original content. A lower 
+score of `0.40` indicates a 40% chance which would be probably much less 
+factually accurate. We suggest starting with a setting of `0.5` as an initial 
+guideline for cutoffs between good and bad. 
 
 
 ## Advanced Summarization Customization Options

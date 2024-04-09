@@ -20,7 +20,7 @@ capabilities into their applications.
 :::tip
 
 Check out our [**interactive API Playground**](/docs/rest-api/list-documents) that lets you experiment with this 
-REST endpoint to manage your documents.
+REST endpoint to list your documents.
 
 :::
 
@@ -39,7 +39,7 @@ configure up to 1000.
 ### List Documents REST Endpoint Address
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
-to list the documents in a corpus:
+to list documents:
 <code>https://<Config v="domains.rest.admin"/>/v1/list-documents</code>
 
 The API Playground shows the full [List Documents](/docs/rest-api/list-documents) REST definition.

@@ -26,7 +26,6 @@ Check out our [**interactive API Playground**](/docs/rest-api/enable-api-key) th
 you experiment with this REST endpoint to enable and disable API keys.
 
 :::
-
 ## REST Example
 
 ### Enable API Key REST Endpoint Address

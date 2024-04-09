@@ -33,7 +33,7 @@ to `true` or `false`.
 ### Update Corpus Enablement REST Endpoint Address
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
-to update the status of a corpus:
+to enable or disable a corpus:
 <code>https://<Config v="domains.rest.admin"/>/v1/update-corpus-enablement</code>
 
 The API Playground shows the full [Update Corpus Enablement](/docs/rest-api/update-corpus-enablement) REST definition.

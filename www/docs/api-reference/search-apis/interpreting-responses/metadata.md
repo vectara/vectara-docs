@@ -1,7 +1,7 @@
 ---
 id: metadata
 title: Reading Metadata
-sidebar_label: Metadata
+sidebar_label: Reading Metadata
 ---
 
 import Tabs from '@theme/Tabs';

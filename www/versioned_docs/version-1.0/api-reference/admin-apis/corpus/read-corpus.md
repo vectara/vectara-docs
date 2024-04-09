@@ -29,7 +29,7 @@ because of information returned by this endpoint.
 :::tip
 
 Check out our [**interactive API Playground**](/docs/rest-api/read-corpus) that lets you experiment with this 
-REST endpoint to manage your corpus details.
+REST endpoint to read your corpus details.
 
 :::
 
@@ -50,7 +50,7 @@ API keys with a specific corpus.
 ### Read Corpus REST Endpoint Address
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
-to read a corpus:
+to read information about the corpus:
 <code>https://<Config v="domains.rest.admin"/>/v1/read-corpus</code>
 
 The API Playground shows the full [Read Corpus](/docs/rest-api/read-corpus) REST definition.

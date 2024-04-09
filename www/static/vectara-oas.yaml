@@ -193,6 +193,22 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/adminDeleteApiKeyRequest"
+              type: object
+              properties:
+                keyIds:
+                  type: array
+                  items:
+                    type: string
+            examples:
+              DeleteSingleKey:
+                value:
+                  keyIds:
+                    - "ID of API Key"
+              DeleteMultipleKeys:
+                value:
+                  keyIds:
+                    - "ID of Key 1"
+                    - "ID of Key 2"
         required: true
       tags:
         - AdminService
@@ -389,6 +405,17 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/adminEnableApiKeyRequest"
+            examples:
+              EnableAPIKey:
+                value:
+                  keyEnablement:
+                    - keyId: "ID of the API Key"
+                      enable: true
+              DisableAPIKey:
+                value:
+                  keyEnablement:
+                    - keyId: "ID of the API Key"
+                      enable: false
         required: true
       tags:
         - AdminService
@@ -473,6 +500,67 @@ paths:
                       - title: The answer
                         text: "The Answer to the Great Question ... Of Life, the Universe and Everything ... Is ... Forty-two."
                         metadataJson: '{"speaker": "Deep Thought"}'
+              GrowthExample:
+                value:
+                  customerId: 890123
+                  corpusId: 8
+                  document:
+                    documentId: "literature-1234-5678-analysis-expanded"
+                    title: "Exploring the Depths of 'Moby Dick': An Expanded Analysis"
+                    description: "An expanded in-depth analysis of the characters, themes, narrative structure, and historical context within Herman Melville's 'Moby Dick'."
+                    metadataJson: '{"author": "Leslie Thompson", "genre": "Classic Literature", "publishedYear": "1851"}'
+                    section:
+                      - title: Character Analysis
+                        text: "A detailed look at the development of key characters, exploring their symbolic meanings within the narrative."
+                        metadataJson: '{"section": "characterAnalysis"}'
+                      - title: Thematic Exploration
+                        text: "Examination of major themes, including the struggle against fate and the exploration of good vs. evil."
+                        metadataJson: '{"section": "thematicExploration"}'
+                      - title: Narrative Structure
+                        text: "Analysis of Melville's innovative narrative structure, including the use of multiple narrators and non-linear storytelling."
+                        metadataJson: '{"section": "narrativeStructure"}'
+                      - title: Historical Context
+                        text: "A look at the historical backdrop of 'Moby Dick', including its reflection of contemporary social issues and the whaling industry."
+                        metadataJson: '{"section": "historicalContext"}'
+              ScaleExample:
+                value:
+                  customerId: 901234
+                  corpusId: 9
+                  document:
+                    documentId: "home-improvement-8765-4321-review-expanded"
+                    title: "Ultimate Guide to Power Tools: Expanded Edition"
+                    description: "An expanded comprehensive review of the latest drills, saws, safety equipment, and innovative tools available at Home Depot."
+                    metadataJson: '{"author": "Derek Lee", "category": "Power Tools", "store": "Home Depot"}'
+                    customDims:
+                      - name: "Rating"
+                        value: 4.5
+                      - name: "Affordability"
+                        value: 3.5
+                  section:
+                    - title: Drill Reviews
+                      text: "Deep dive into the best drills, comparing models based on power, battery life, and ease of use."
+                      metadataJson: '{"section": "drillReviews"}'
+                      customDims:
+                        - name: "PowerRating"
+                          value: 5
+                    - title: Saw Reviews
+                      text: "Evaluation of top saws for precision cutting, highlighting key features for woodworkers."
+                      metadataJson: '{"section": "sawReviews"}'
+                      customDims:
+                        - name: "Durability"
+                          value: 4.5
+                    - title: Safety Equipment
+                      text: "Reviews of essential safety equipment for using power tools, including goggles, gloves, and ear protection."
+                      metadataJson: '{"section": "safetyEquipment"}'
+                      customDims:
+                        - name: "SafetyRating"
+                          value: 5
+                    - title: Innovative Tools
+                      text: "Spotlight on innovative tools that are changing the game in home improvement, from smart drills to laser-guided saws."
+                      metadataJson: '{"section": "innovativeTools"}'
+                      customDims:
+                        - name: "InnovationScore"
+                          value: 4.8
               ReviewExample:
                 value:
                   customerId: 234567
@@ -533,6 +621,35 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/adminListApiKeysRequest"
+              type: object
+              properties:
+                numResults:
+                  type: integer
+                apiKeyType:
+                  type: array
+                  items:
+                    type: string
+                readCorporaInfo:
+                  type: boolean
+            examples:
+              PersonalKey:
+                value:
+                  numResults: 5
+                  apiKeyType:
+                    - "API_KEY_TYPE__PERSONAL"
+                  readCorporaInfo: true
+              QueryKey:
+                value:
+                  numResults: 5
+                  apiKeyType:
+                    - "API_KEY_TYPE__SERVING"
+                  readCorporaInfo: true
+              IndexandQueryKey:
+                value:
+                  numResults: 5
+                  apiKeyType:
+                    - "API_KEY_TYPE__SERVING_INDEXING"
+                  readCorporaInfo: true
         required: true
       tags:
         - AdminService
@@ -765,11 +882,95 @@ paths:
               schema:
                 $ref: "#/components/schemas/googlerpcStatus"
       requestBody:
+        $ref: "#/components/requestBodies/servingBatchQueryRequest"
         content:
           application/json:
-            schema:
-              $ref: "#/components/schemas/servingBatchQueryRequest"
-        required: true
+            examples:
+              GrowthExample:
+                value:
+                  query:
+                    - query: "What are they latest trends in renewable energy?"
+                      start: 0
+                      numResults: 5
+                      contextConfig:
+                        charsBefore: 20
+                        charsAfter: 20
+                        startTag: "<b>"
+                        endTag: "</b>"
+                      corpusKey:
+                        - corpusId: 2
+                          lexicalInterpolationConfig:
+                            lambda: 0.5
+                      summary:
+                        - maxSummarizedResults: 3
+                          responseLang: "en"
+                          factualConsistencyScore: true
+              ScaleExample:
+                value:
+                  query:
+                    - query: "What are they latest trends in renewable energy?"
+                      start: 0
+                      numResults: 10
+                      contextConfig:
+                        sentencesBefore: 3
+                        sentencesAfter: 3
+                        startTag: "<b>"
+                        endTag: "</b>"
+                      corpusKey:
+                        - corpusId: 3
+                          semantics: "DEFAULT"
+                          dim:
+                            - name: "relevance"
+                              weight: 1.5
+                          metadataFilter: "sector = 'energy'"
+                          lexicalInterpolationConfig:
+                            lambda: 0.7
+                      rerankingConfig:
+                        rerankerId: 272725718
+                        mmrConfig:
+                          diversityBias: 0.4
+                      summary:
+                        - summarizerPromptName: "vectara-summary-ext-v1.3.0"
+                          maxSummarizedResults: 3
+                          responseLang: "en"
+                          promptText: |
+                            [
+                              {"role": "system", "content": "You are an expert in summarizing the latest trends in renewable energy. Your summaries are insightful, concise, and highlight key innovations and challenges."},
+                              #foreach ($result in $vectaraQueryResults)
+                                {"role": "user", "content": "What are the key points in result number $vectaraIdxWord[$foreach.index] about renewable energy trends?"},
+                                {"role": "assistant", "content": "In result number $vectaraIdxWord[$foreach.index], the key points are: ${result.getText()}"},
+                              #end
+                              {"role": "user", "content": "Can you generate a comprehensive summary on 'renewable energy trends' incorporating all the key points discussed?"}
+                            ]
+                          responseChars: 500
+                          modelParams:
+                            maxTokens: 1024
+                            temperature: 0.6
+                            frequencyPenalty: 0.2
+                            presencePenalty: 0.1
+                          factualConsistencyScore: true
+              ChatExample:
+                value:
+                  query:
+                    - query: "What is renewable energy?"
+                      queryContext: ""
+                      start: 0
+                      numResults: 10
+                      contextConfig:
+                        charsBefore: 0
+                        charsAfter: 0
+                        startTag: "%START_SNIPPET%"
+                        endTag: "%END_SNIPPET%"
+                      corpusKey:
+                        - corpusId: 12
+                          semantics: 0
+                          metadataFilter: ""
+                      summary:
+                        - chat:
+                            store: true
+                            conversationId: "1d8f0258-3358-475a-b5eb-02a775cee09e"
+                          maxSummarizedResults: 5
+                          responseLang: "eng"
       tags:
         - QueryService
       parameters:
@@ -930,6 +1131,47 @@ paths:
         * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
         * The `filter` feature applies to either the name *or* the description of a corpus.
         * If you want to delete individual documents instead of all documents in the corpus, you can use the [Delete API](https://docs.vectara.com/docs/rest-api/delete).
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
+  /v1/stream-query:
+    post:
+      operationId: StreamQuery
+      responses:
+        "200":
+          description: A successful response.(streaming responses)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    $ref: "#/components/schemas/servingQueryResponsePart"
+                  error:
+                    $ref: "#/components/schemas/googlerpcStatus"
+                title: Stream result of servingQueryResponsePart
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/googlerpcStatus"
+      requestBody:
+        $ref: "#/components/requestBodies/servingBatchQueryRequest"
+      tags:
+        - QueryService
+      parameters:
+        - $ref: '#/components/parameters/customerIdentifier'
+        - $ref: '#/components/parameters/timeout'
+      description: |
+        Stream relevant results, highlight relevant snippets, and do
+        [Retrieval Augmented Generation](https://docs.vectara.com/docs/learn/grounded-generation/grounded-generation-overview) (RAG).
+
+        Some tips for this API:
+        * This operation authenticates with either an API Key or OAuth 2.0 (in a JWT "Bearer Token"). You can find details of how to set up an API key or use OAuth 2.0 [here](https://docs.vectara.com/docs/console-ui/manage-api-access).
+        * By default, Vectara only uses its neural/semantic retrieval model, and does not attempt to use keyword matching.  To enable hybrid search with a mix of both keyword and neural results, edit the `lambda` value.  Additional documentation on hybrid search is [here](https://docs.vectara.com/docs/learn/semantic-search/hybrid-search).
+        * Vectara can automatically provide a generative summary with the query results for Retrieval Augmented Generation (RAG).  Additional details on RAG in Vectara can be found [here](https://docs.vectara.com/docs/learn/grounded-generation/grounded-generation-overview).
+        * The Stream Query API takes an *array* of queries, since you can have Vectara perform more than 1 query in a single API call.  The results that are returned are thus in an array as well, with each element in the response array corresponding to the input query array.
       security:
         - ApiKeyAuth: []
         - oAuth: []
@@ -1106,6 +1348,13 @@ paths:
         "507":
           description: There is no more indexing quota left for the corpus or customer to index more documents.  Upgrade your account, add a credit card, or contact sales.
 components:
+  requestBodies:
+    servingBatchQueryRequest:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/servingBatchQueryRequest"
+      required: true
   schemas:
     CorpusKeySemantics:
       type: string
@@ -1120,6 +1369,8 @@ components:
         server, and can be used to override the default semantics assigned
 
         in the corpus definition.
+
+
 
 
 
@@ -1216,6 +1467,11 @@ components:
       title: List of users and their status
     QueryRequestContextConfig:
       type: object
+      example:
+        sentences_before: 3
+        sentences_after: 3
+        start_tag: <b>
+        end_tag: </b>
       properties:
         charsBefore:
           type: integer
@@ -1279,6 +1535,11 @@ components:
             application to understand where to provide highlighting in your UI and
 
             understand where the snippet ends and the context after begins.
+      required:
+        - sentencesBefore
+        - sentencesAfter
+        - startTag
+        - endTag
     QueryRequestRerankingConfig:
       type: object
       properties:
@@ -1290,8 +1551,6 @@ components:
             available are:
             - 272725717, HuggingFace Open Source x-attentional reranker
             - 272725718, Maximum Marginal Relevance Reranker
-          enum: [272725717]
-          example: 272725717
         mmrConfig:
           $ref: "#/components/schemas/servingMMRConfig"
       description: Configuration options to apply to the reranking.
@@ -1404,6 +1663,8 @@ components:
       default: API_KEY_TYPE__UNDEFINED
       description: >-
         Types of ApiKey.
+
+
 
 
 
@@ -1977,6 +2238,8 @@ components:
 
 
 
+
+
          - LIST_USERS_TYPE__ALL: List All the users
     adminManageUserRequest:
       type: object
@@ -2336,6 +2599,7 @@ components:
           type: integer
           format: int64
           description: Maximum number of conversations to return per page.
+          example: 0
         pageKey:
           type: string
           format: byte
@@ -2347,6 +2611,8 @@ components:
             use the page key returned in previous response, and all other
 
             fields are ignored.
+          example: ""
+          # add required headers
     chatListConversationsResponse:
       type: object
       properties:
@@ -2473,14 +2739,6 @@ components:
             through the system, without being used at indexing time. It can be
 
             retrieved at query time.
-        customDims:
-          type: array
-          items:
-            $ref: "#/components/schemas/vectaraindexingCustomDimension"
-          description: >-
-            A list of custom dimension values that are included in the generated
-
-            representation of all subsections (i.e. sections contains by this section).
         section:
           type: array
           items:
@@ -2576,8 +2834,12 @@ components:
 
 
 
+
+
               value in binary format, or produce an error.
             * Applications are allowed to cache lookup results based on the
+
+
 
 
 
@@ -2623,6 +2885,8 @@ components:
 
 
 
+
+
             Foo foo = ...;
             Any any;
             any.PackFrom(foo);
@@ -2632,6 +2896,8 @@ components:
             }
 
         Example 2: Pack and unpack a message in Java.
+
+
 
 
 
@@ -2658,6 +2924,8 @@ components:
 
 
 
+
+
             foo = Foo(...)
             any = Any()
             any.Pack(foo)
@@ -2667,6 +2935,8 @@ components:
               ...
 
         Example 4: Pack and unpack a message in Go
+
+
 
 
 
@@ -2716,6 +2986,8 @@ components:
 
 
 
+
+
             package google.profile;
             message Person {
               string first_name = 1;
@@ -2735,6 +3007,8 @@ components:
         `value` which holds the custom JSON in addition to the `@type`
 
         field. Example (for message [google.protobuf.Duration][]):
+
+
 
 
 
@@ -2805,6 +3079,8 @@ components:
       description: The chat request.
     servingCorpusKey:
       type: object
+      example:
+        corpus_id: 12
       properties:
         customerId:
           type: integer
@@ -2823,15 +3099,40 @@ components:
           example: "part.lang = 'eng'"
         lexicalInterpolationConfig:
           $ref: "#/components/schemas/servingLinearInterpolation"
+        dim:
+          type: array
+          items:
+            type: object
+            required: ['name', 'weight']
+            properties:
+              name:
+                type: string
+                example: "dimension_name"
+              weight:
+                type: number
+                example: 1.5
+          example: []
       required: ['customerId', 'corpusId']
+    servingFactualConsistency:
+      type: object
+      properties:
+        score:
+          type: number
+          format: float
+          description: The probability that the summary is factually consistent with the results in the ResponseSet.
+        status:
+          $ref: "#/components/schemas/comvectaraStatus"
     servingLinearInterpolation:
       type: object
       properties:
         lambda:
           type: number
           format: float
+          example: 0.025
           title: >-
             Controls the weight given to lexical matches. The final score, S, is then:
+
+
 
 
 
@@ -2965,20 +3266,26 @@ components:
             $ref: "#/components/schemas/vectaraservingAttribute"
     servingSummarizationRequest:
       type: object
+      example:
+        max_summarized_results: 10
+        response_lang: en
       properties:
         summarizerPromptName:
           type: string
           description: The name of the summarizer+prompt combination to use for summarization.
+          example: ""
         maxSummarizedResults:
           type: integer
           format: int64
           description: Maximum number of results to summarize.
+          example: 5
         responseLang:
           type: string
           description: >-
             ISO 639-1 or ISO 639-3 language code for the response, or "auto" to indicate that
 
             the auto-detected language of the incoming query should be used.
+          example: "en"
         promptText:
           type: string
           description: >-
@@ -2995,12 +3302,14 @@ components:
             https://docs.vectara.com/docs/prompts/vectara-prompt-engine
 
             See https://vectara.com/pricing/ for more details on becoming a Scale customer.
+          example: ""
         debug:
           type: boolean
           description: >-
             Debugging the generative prompt is currently a Scale-only feature.
 
             See https://vectara.com/pricing/ for more details on becoming a Scale customer.
+          example: false
         responseChars:
           type: integer
           format: int64
@@ -3012,10 +3321,17 @@ components:
             than this value.  This is currently a Scale-only feature.
 
             See https://vectara.com/pricing/ for more details on becoming a Scale customer.
+          example: 0
         modelParams:
           $ref: "#/components/schemas/SummarizationRequestModelParams"
+          example: {}
         chat:
           $ref: "#/components/schemas/servingChatRequest"
+          example: {}
+        factualConsistencyScore:
+          type: boolean
+          description: If unset or true, the response will include the factual consistency score.
+      required: ['maxSummarizedResults', 'responseLang']
     servingSummary:
       type: object
       properties:
@@ -3030,6 +3346,16 @@ components:
             summary language is the same as the auto-detected language of the query.
         chat:
           $ref: "#/components/schemas/servingChat"
+        factualConsistency:
+          $ref: "#/components/schemas/servingFactualConsistency"
+        done:
+          type: boolean
+          description: >-
+            Determines if the summary is done.
+
+            `false` if the summary is in-progress for streaming requests, otherwise `true`.
+
+            this only refers to summary text generation, Factual Consistency will come later if requested.
         status:
           type: array
           items:
@@ -3073,7 +3399,6 @@ components:
           format: int64
           minimum: 1
           example: 1
-          # add required headers
         document:
           $ref: "#/components/schemas/vectaraindexingDocument"
       required: ['customerId', 'corpusId', 'document']
@@ -3151,6 +3476,8 @@ components:
         - QRY__SMRY__UNSUPPORTED_SUMMARY_LANG
         - QRY__SMRY__PARTIAL_SUMMARY
         - QRY__SMRY__NO_QUERY_RESULTS
+        - QRY__SMRY__EVAL_UNSUPPORTED_LANG
+        - QRY__SMRY__EVAL_FAILURE
         - QRY__GEN__NO_QUERY_RESULTS
         - QRY__GEN__UNPARSEABLE_MODEL_PARAMS
         - CX_SPECS__INVALID_JSON
@@ -3261,13 +3588,6 @@ components:
         metadataJson:
           type: string
           description: "Metadata about the document. This is a string containing a JSON\nobject. It can be an arbitrary object except that any keys \nthat match a metadata filter of the corpus must have the\nsame value type as metadata filter's value type.\n\nA query can use this object to filter if the object's key/value pair\nhas been defined as a metadata filter.\n\nThe whole object will be in the query result."
-        customDims:
-          type: array
-          items:
-            $ref: "#/components/schemas/vectaraindexingCustomDimension"
-          description: |-
-            A list of custom dimension values that are included in the generated
-            representation of all sections.
         section:
           type: array
           items:
