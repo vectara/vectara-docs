@@ -54,5 +54,5 @@ semantic meaning.
 For example, a UPC code, barcode number, or particular named
 configuration setting has little to no semantic meaning, and if you expect your
 users to perform this type of search, it's best to look into our
-[hybrid search](/docs/learn/hybrid-search) documentation to learn about how 
+[hybrid search](/docs/1.0/learn/hybrid-search) documentation to learn about how 
 to blend neural search and keyword search.

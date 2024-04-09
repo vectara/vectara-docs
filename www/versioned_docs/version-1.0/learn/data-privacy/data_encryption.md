@@ -10,10 +10,10 @@ import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 When you send documents to the
-[index API](/docs/api-reference/indexing-apis/indexing) or
-[file upload API](/docs/api-reference/indexing-apis/file-upload/file-upload), <Config v="names.product"/> 
+[index API](/docs/1.0/api-reference/indexing-apis/indexing) or
+[file upload API](/docs/1.0/api-reference/indexing-apis/file-upload/file-upload), <Config v="names.product"/> 
 indexes both the document text and metadata. If you 
-choose the “textless” option (Scale users) for [corpus creation](/docs/api-reference/admin-apis/create-corpus), <Config v="names.product"/> converts 
+choose the “textless” option (Scale users) for [corpus creation](/docs/1.0/api-reference/admin-apis/create-corpus), <Config v="names.product"/> converts 
 the document text into vectors for indexing but **does not** store the text 
 anywhere in the platform. However, metadata is always stored. 
 

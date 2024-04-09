@@ -19,7 +19,7 @@ The `keyID` specifies the API key or list of keys that you want to delete.
 
 :::tip
 
-Check out our [**interactive API Playground**](/docs/rest-api/delete-api-key) that lets 
+Check out our [**interactive API Playground**](/docs/1.0/rest-api/delete-api-key) that lets 
 you experiment with this REST endpoint to delete API keys from an account.
 
 :::
@@ -32,7 +32,7 @@ you experiment with this REST endpoint to delete API keys from an account.
 to delete API keys:
 <code>https://<Config v="domains.rest.indexing"/>/v1/delete-api-key</code>
 
-The API Playground shows the full [Delete API Key](/docs/rest-api/delete-api-key) REST definition.
+The API Playground shows the full [Delete API Key](/docs/1.0/rest-api/delete-api-key) REST definition.
 
 ## gRPC Example
 

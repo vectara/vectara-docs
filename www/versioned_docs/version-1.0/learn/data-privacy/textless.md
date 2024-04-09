@@ -8,8 +8,8 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 
-When you create a corpus [via the API](/docs/api-reference/admin-apis/create-corpus) or the
-[Vectara Console UI](/docs/console-ui/creating-a-corpus), you have the option to **not** store 
+When you create a corpus [via the API](/docs/1.0/api-reference/admin-apis/create-corpus) or the
+[Vectara Console UI](/docs/1.0/console-ui/creating-a-corpus), you have the option to **not** store 
 the text, also known as a "textless" mode. This mode is available to our 
 [Scale plan users](https://vectara.com/pricing/) for when you have very sensitive text content. The text 
 content becomes unrecoverable to <Config v="names.product"/> or to any user who successfully 
@@ -94,6 +94,6 @@ END
 
 ### Limitations
 
-Currently, the [reranking](/docs/api-reference/search-apis/reranking) capability relies on
+Currently, the [reranking](/docs/1.0/api-reference/search-apis/reranking) capability relies on
 the text being stored. As a result, attempting to rerank search results on any
 corpora where text storage has been turned off will not work at this time.

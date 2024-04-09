@@ -13,11 +13,11 @@ The List Users API lets you list all users on your team and also their
 corpus access and customer-level authorizations.
 
 Other activities such as adding, deleting, enabling, disabling, resetting 
-passwords, and editing user roles are performed by the [Manage Users](/docs/api-reference/admin-apis/manage-users/manage-user) endpoint.
+passwords, and editing user roles are performed by the [Manage Users](/docs/1.0/api-reference/admin-apis/manage-users/manage-user) endpoint.
 
 :::tip
 
-Check out our [interactive API Playground](/docs/rest-api/list-users) that lets 
+Check out our [interactive API Playground](/docs/1.0/rest-api/list-users) that lets 
 you experiment with this REST endpoint to manage users for your Vectara
 account.
 
@@ -37,7 +37,7 @@ retrieve a specific page of results. Leave empty to retrieve first page.
 to list users:
 <code>https://<Config v="domains.rest.indexing"/>/v1/list-users</code>
 
-The API Playground shows the full [List Users](/docs/rest-api/compute-account-size) REST definition.
+The API Playground shows the full [List Users](/docs/1.0/rest-api/compute-account-size) REST definition.
 
 ## gRPC Example
 

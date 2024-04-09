@@ -15,7 +15,7 @@ to disable the API keys associated with a specific corpus or corpora.
 
 :::tip
 
-Check out our [**interactive API Playground**](/docs/rest-api/compute-corpus-size) that lets you experiment with this 
+Check out our [**interactive API Playground**](/docs/1.0/rest-api/compute-corpus-size) that lets you experiment with this 
 endpoint to compute the corpus size.
 
 :::
@@ -37,7 +37,7 @@ values.
 to compute the size of a corpus:
 <code>https://<Config v="domains.rest.admin"/>/v1/compute-corpus-size</code>
 
-The API Playground shows the full [Compute Corpus Size](/docs/rest-api/compute-corpus-size) REST definition.
+The API Playground shows the full [Compute Corpus Size](/docs/1.0/rest-api/compute-corpus-size) REST definition.
 
 ## gRPC Example
 

@@ -16,14 +16,14 @@ Markdown. The maximum file size supported by the server is 10 MB.
 We recommend the File Upload API when you have not already written your own 
 extraction logic. You can attach user-defined metadata at the document level 
 for optimizing searches made against your data by 
-[formatting your data as JSON](/docs/api-reference/indexing-apis/file-upload/format-for-upload).
+[formatting your data as JSON](/docs/1.0/api-reference/indexing-apis/file-upload/format-for-upload).
 
 :::tip
 
-* Check out our [**interactive API Playground**](/docs/rest-api/file-upload) that enables you
+* Check out our [**interactive API Playground**](/docs/1.0/rest-api/file-upload) that enables you
 to experiment with this REST endpoint. You can upload a file to a corpus 
 directly from your browser or copy the curl for your command line.
-* Review the [**Supported File Types**](/docs/api-reference/indexing-apis/file-upload/file-upload-filetypes)
+* Review the [**Supported File Types**](/docs/1.0/api-reference/indexing-apis/file-upload/file-upload-filetypes)
   for the most up-to-date list.
 
 :::

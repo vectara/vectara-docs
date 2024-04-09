@@ -19,7 +19,7 @@ control over the data segmentation and indexing process.
 Vectara offers the following indexing APIs for these different scenarios:
 
 
-* [**File Upload API**](/docs/api-reference/indexing-apis/file-upload/file-upload)
+* [**File Upload API**](/docs/1.0/api-reference/indexing-apis/file-upload/file-upload)
 
   If you want to extract text from existing, unstructured documents in common 
   file types with minimal manual intervention, use the File Upload API. This 
@@ -35,7 +35,7 @@ Vectara offers the following indexing APIs for these different scenarios:
   We recommend this option if you have not written your own extraction logic 
   already.
 
-* [**Standard Indexing API**](/docs/api-reference/indexing-apis/indexing)
+* [**Standard Indexing API**](/docs/1.0/api-reference/indexing-apis/indexing)
   
   If you have structured documents that you want Vectara to index and segment
   into chunks for you, use the standard indexing API. In Vectara, a `document` 
@@ -51,7 +51,7 @@ Vectara offers the following indexing APIs for these different scenarios:
   rows in database tables or CSV files, or records from an ERP system.
 
 
-* [**Low-Level Indexing API**](/docs/api-reference/indexing-apis/core_indexing)
+* [**Low-Level Indexing API**](/docs/1.0/api-reference/indexing-apis/core_indexing)
 
   For the most advanced use cases, if you want full, granular control to chunk 
   your document into `parts`, use the low-level indexing API. These documents 

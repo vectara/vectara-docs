@@ -21,7 +21,7 @@ permissions.
 
 :::tip
 
-Check out our [**interactive API Playground**](/docs/rest-api/manage-user) that lets 
+Check out our [**interactive API Playground**](/docs/1.0/rest-api/manage-user) that lets 
 you experiment with this REST endpoint to manage users for your Vectara
 account.
 
@@ -40,7 +40,7 @@ The `userActionType` object contains the `user` object, which specifies the
 to manage users:
 <code>https://<Config v="domains.rest.indexing"/>/v1/manage-user</code>
 
-The API Playground shows the full [Manage User](/docs/rest-api/manage-user) REST definition.
+The API Playground shows the full [Manage User](/docs/1.0/rest-api/manage-user) REST definition.
 
 ## gRPC Example
 

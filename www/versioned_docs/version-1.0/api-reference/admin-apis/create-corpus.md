@@ -12,7 +12,7 @@ properties and attributes.
 
 :::tip
 
-Check out our [**API Playground**](/docs/rest-api/create-corpus) that lets you experiment with this REST endpoint 
+Check out our [**API Playground**](/docs/1.0/rest-api/create-corpus) that lets you experiment with this REST endpoint 
 to create corpora.
 
 :::
@@ -26,12 +26,12 @@ The response message returns a unique id, `corpus_id`, by which the corpus
 can be subsequently referenced. Note that the name needn't be unique 
 within an account.
 
-In order to reference metadata in [filter expressions](/docs/learn/metadata-search-filtering/filter-overview), the
+In order to reference metadata in [filter expressions](/docs/1.0/learn/metadata-search-filtering/filter-overview), the
 referenceable attributes must be declared at creation time in the **filter
 attributes**. This list cannot be changed once the corpus is created.
 
 For information on **custom dimensions**, a Scale-only feature, please see
-[Custom Dimensions](/docs/learn/semantic-search/add-custom-dimensions).
+[Custom Dimensions](/docs/1.0/learn/semantic-search/add-custom-dimensions).
 Like filter attributes, custom dimensions cannot be changed after the corpus 
 is created.
 
@@ -64,7 +64,7 @@ values.
 to create a corpus:
 <code>https://<Config v="domains.rest.admin"/>/v1/create-corpus</code>
 
-The API Playground shows the full [Create Corpus](/docs/rest-api/create-corpus) REST definition.
+The API Playground shows the full [Create Corpus](/docs/1.0/rest-api/create-corpus) REST definition.
 
 ## gRPC Example
 

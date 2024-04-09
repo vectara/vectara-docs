@@ -32,7 +32,7 @@ REST endpoint to delete turns in specific chats.
 to disable turns in a chat:
 <code>https://<Config v="domains.rest.indexing"/>/v1/disable-turns</code>
 
-The API Playground shows the full [Disable Turns](/docs/rest-api/disable-turns) REST definition.
+The API Playground shows the full [Disable Turns](/docs/1.0/rest-api/disable-turns) REST definition.
 
 ## gRPC Example
 

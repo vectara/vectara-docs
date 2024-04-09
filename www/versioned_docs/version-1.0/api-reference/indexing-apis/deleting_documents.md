@@ -14,7 +14,7 @@ that the document no longer exists in the corpus, use the List Documents endpoin
 
 :::tip
 
-Check out our [**interactive API Playground**](/docs/rest-api/delete) that enables you
+Check out our [**interactive API Playground**](/docs/1.0/rest-api/delete) that enables you
 to experiment with this REST endpoint. You can delete a file from a corpus
 directly from your browser or copy the curl for your command line.
 
@@ -39,7 +39,7 @@ The reply on successful deletion is `{}`.
 to delete content from a corpus:
 <code>https://<Config v="domains.rest.indexing"/>/v1/delete-doc</code>
 
-The API Playground shows the full [Delete Documents REST definition](/docs/rest-api/delete).
+The API Playground shows the full [Delete Documents REST definition](/docs/1.0/rest-api/delete).
 
 ## gRPC Example
 
@@ -54,7 +54,7 @@ seconds, though it may take longer for Growth accounts.
 
 The code snippet belows illustrates how to delete a document from a corpus in Java or Python. For information
 on how to get the call credentials and metadata, please consult
-[The OAuth 2.0 documentation](/docs/learn/authentication/oauth-2).
+[The OAuth 2.0 documentation](/docs/1.0/learn/authentication/oauth-2).
 
 <Tabs
   defaultValue="java"

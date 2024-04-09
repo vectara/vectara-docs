@@ -102,7 +102,7 @@ postive values increase the overall score (sometimes called "boosting").  A dot
 product of 0 does not affect the underlying text retrieval score.
 
 For more information on how scores can be interpreted in general, see the
-documentation on [interpreting scores](/docs/api-reference/search-apis/interpreting-responses/interpreting-scores).
+documentation on [interpreting scores](/docs/1.0/api-reference/search-apis/interpreting-responses/interpreting-scores).
 
 ## Choosing values for custom dimensions
 Because scores in <Config v="names.product"/> range from -1 to 1, in general

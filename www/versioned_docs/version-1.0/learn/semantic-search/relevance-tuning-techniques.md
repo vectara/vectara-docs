@@ -15,7 +15,7 @@ the associated result rankings.
 
 ## Custom dimensions
 
-[Custom dimensions](/docs/learn/semantic-search/add-custom-dimensions) provide [our Scale users](https://vectara.com/pricing/) with a fixed set 
+[Custom dimensions](/docs/1.0/learn/semantic-search/add-custom-dimensions) provide [our Scale users](https://vectara.com/pricing/) with a fixed set 
 of additional "dimensions" that contain user-defined numerical values and are 
 stored in addition to the vectors that <Config v="names.product"/> automatically 
 extracts and stores from the text. At query time, users can use these custom 
@@ -31,7 +31,7 @@ By default, <Config v="names.product"/> uses purely semantic similarity when
 evaluating whether a document/section is responsive to a particular search.
 However, we often find that with a _slight_ introduction of keyword-focused
 algorithms, the relevance can be much better. <Config v="names.product"/>
-supports this out of the box via [hybrid search](/docs/learn/hybrid-search).
+supports this out of the box via [hybrid search](/docs/1.0/learn/hybrid-search).
 
 ## Alternative similarity measures
 
@@ -43,23 +43,23 @@ one that just has the text "where can I find great tacos") but instead a documen
 that _answers_ that question (e.g. "you can find the best tacos at **\_\_\_**").
 
 However, there are times when finding the most semantically similar documents
-is advantageous. In particular, [recommendation systems](/docs/learn/recommendation-systems/recommender-overview)
+is advantageous. In particular, [recommendation systems](/docs/1.0/learn/recommendation-systems/recommender-overview)
 tend to make heavy use of document similarity metrics. However, these can be
-useful in other use cases as well, including [matching questions](/docs/learn/question-answer/question-answer-overview)
+useful in other use cases as well, including [matching questions](/docs/1.0/learn/question-answer/question-answer-overview)
 in FAQ search systems.
 
 ## Interpreting scores
 
 If you want to understand a bit more about why <Config v="names.product"/>
 produced a particular score, have a look at our
-[interpreting scores](/docs/api-reference/search-apis/interpreting-responses/interpreting-scores)
+[interpreting scores](/docs/1.0/api-reference/search-apis/interpreting-responses/interpreting-scores)
 documentation.
 
 ## Low-level indexing controls
 
 Sometimes, the best solution to changing relevance is by adjusting the low-level
 indexing controls. <Config v="names.product"/> supports fine-grained tuning of
-this in the [low-level](/docs/api-reference/indexing-apis/core_indexing) API.
+this in the [low-level](/docs/1.0/api-reference/indexing-apis/core_indexing) API.
 There, you can pre-segment your documents into sections, and
 tell <Config v="names.product"/> what the context is around the documents.
 

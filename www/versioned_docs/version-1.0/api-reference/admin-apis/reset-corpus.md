@@ -15,7 +15,7 @@ successful completion, space quota consumed by the corpus will be freed.
 
 :::tip
 
-Check out our [**API Playground**](/docs/rest-api/reset-corpus) that lets you experiment with this REST endpoint 
+Check out our [**API Playground**](/docs/1.0/rest-api/reset-corpus) that lets you experiment with this REST endpoint 
 to reset corpora.
 
 :::
@@ -28,7 +28,7 @@ to reset corpora.
 to reset a corpus:
 <code>https://<Config v="domains.rest.admin"/>/v1/reset-corpus</code>
 
-The API Playground shows the full [Delete Corpus](/docs/rest-api/delete-corpus) REST definition.
+The API Playground shows the full [Delete Corpus](/docs/1.0/rest-api/delete-corpus) REST definition.
 
 ## gRPC Example
 

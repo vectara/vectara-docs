@@ -17,7 +17,7 @@ organizations, like tracking usage of accounts and corpora. Check out this [blog
 
 :::tip
 
-The [**interactive API Playground**](/docs/rest-api/admin-service) lets you experiment with these API endpoints.
+The [**interactive API Playground**](/docs/1.0/rest-api/admin-service) lets you experiment with these API endpoints.
 
 :::
 
@@ -46,7 +46,7 @@ their accounts and corpora.
   when you need to take a corpus offline without deleting the corpus.
 
 The REST APIs are programmatically derived from these gRPC definitions. See
-[REST APIs](/docs/api-reference/rest) for more information on endpoints or expand the 
+[REST APIs](/docs/1.0/api-reference/rest) for more information on endpoints or expand the 
 specific API in the left navigation sidebar to find REST examples in various
 programming languages. 
 

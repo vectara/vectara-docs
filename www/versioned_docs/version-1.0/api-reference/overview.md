@@ -11,14 +11,14 @@ import {vars} from '@site/static/variables.json';
 import {Config} from '@site/docs/definitions.md';
 
 Everything in <Config v="names.product"/> is driven by APIs. This section serves 
-as a roadmap to understanding and using our [gRPC APIs](/docs/api-reference/protobuf-definitions) and 
-[REST APIs](/docs/api-reference/rest) for [indexing](/docs/learn/select-ideal-indexing-api), [querying](/docs/api-reference/search-apis/search), and administrative tasks 
-such as [managing user access](/docs/api-reference/admin-apis/manage-users/manage-user) and [corpora](/docs/api-reference/admin-apis/admin). Before getting into more 
+as a roadmap to understanding and using our [gRPC APIs](/docs/1.0/api-reference/protobuf-definitions) and 
+[REST APIs](/docs/1.0/api-reference/rest) for [indexing](/docs/1.0/learn/select-ideal-indexing-api), [querying](/docs/1.0/api-reference/search-apis/search), and administrative tasks 
+such as [managing user access](/docs/1.0/api-reference/admin-apis/manage-users/manage-user) and [corpora](/docs/1.0/api-reference/admin-apis/admin). Before getting into more 
 details, we recommend that you have a basic understanding of API concepts.
 
 ## :star2: Ready to Dive In? Check Out Our API Playground! :star2:
 
-If you're ready to dive into our APIs, make your way to our [**API Playground**](/docs/rest-api/vectara-rest-api)! 
+If you're ready to dive into our APIs, make your way to our [**API Playground**](/docs/1.0/rest-api/vectara-rest-api)! 
 This interactive environment allows you to experiment with <Config v="names.product"/>'s REST APIs 
 directly from your browser! Tailored for developers, the API Playground 
 offers a hands-on experience to understand and demonstrate our capabilities.
@@ -36,7 +36,7 @@ and other key concepts:
 provides the message definitions for running queries.
 * **RESTful APIs:** Understand the principles of Representational State Transfer 
   (REST) and why it's commonly used in web services. Make sure to also 
-  understand how it differs from gRPC. For example, review the [Java example](/docs/getting-started-samples/RestIndex.java) for our 
+  understand how it differs from gRPC. For example, review the [Java example](/docs/1.0/getting-started-samples/RestIndex.java) for our 
   Standard Indexing API. 
 * **HTTP Methods:** Become familar with HTTP methods like GET, POST, PUT, and DELETE.
 * **gRPC Methods:** Become familar with gRPC methods like server streaming, client
@@ -48,7 +48,7 @@ provides the message definitions for running queries.
 ## Choosing gRPC or REST APIs
 Almost every API has both a [gRPC](https://en.wikipedia.org/wiki/GRPC) and a 
 [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) endpoint.
-The only exception at this time is the [File Upload API](/docs/api-reference/indexing-apis/file-upload/file-upload),
+The only exception at this time is the [File Upload API](/docs/1.0/api-reference/indexing-apis/file-upload/file-upload),
 which is only available via REST.
 
 gRPC has several advantages over REST:

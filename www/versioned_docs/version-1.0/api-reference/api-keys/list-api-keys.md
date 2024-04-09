@@ -22,7 +22,7 @@ The response includes a `keyData` object that shows pairs of `apiKey` and
 
 :::tip
 
-Check out our [**interactive API Playground**](/docs/rest-api/list-api-keys) that lets 
+Check out our [**interactive API Playground**](/docs/1.0/rest-api/list-api-keys) that lets 
 you experiment with this REST endpoint to list API keys in an account.
 
 :::
@@ -35,7 +35,7 @@ you experiment with this REST endpoint to list API keys in an account.
 to list API keys:
 <code>https://<Config v="domains.rest.indexing"/>/v1/list-api-keys</code>
 
-The API Playground shows the full [List API Keys](/docs/rest-api/list-api-keys) REST definition.
+The API Playground shows the full [List API Keys](/docs/1.0/rest-api/list-api-keys) REST definition.
 
 ## gRPC Example
 

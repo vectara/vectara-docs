@@ -85,10 +85,10 @@ If you created the sections yourself, you may choose to just replay the
 sectioning logic at query time and use as much of the additional sections as
 desired.  However, if you aren't certain as to the section numbers and/or if
 you uploaded documents using the
-[file upload API](/docs/api-reference/indexing-apis/file-upload/format-for-upload), then you might need
+[file upload API](/docs/1.0/api-reference/indexing-apis/file-upload/format-for-upload), then you might need
 to look up the additional sections.  This can be done by an additional query
 to <Config v="names.product"/> using
-[filters](/docs/learn/metadata-search-filtering/filter-overview).  Do do this, retrieve the
+[filters](/docs/1.0/learn/metadata-search-filtering/filter-overview).  Do do this, retrieve the
 `id` value of the document and perform a query for that ID.  For example:
 
 ```json showLineNumbers title="https://api.vectara.io/v1/query"

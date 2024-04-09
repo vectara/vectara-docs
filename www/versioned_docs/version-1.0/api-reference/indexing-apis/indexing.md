@@ -23,10 +23,10 @@ multiple document attributes and metadata.
 
 :::tip
 
-* Check out our [**interactive API Playground**](/docs/rest-api/index) that shows the full 
+* Check out our [**interactive API Playground**](/docs/1.0/rest-api/index) that shows the full 
   Index REST definition and lets you experiment with this endpoint to index 
   documents from your browser.
-* We also provide REST Index examples in [**C#**](/docs/getting-started-samples/RestIndexData.cs), [**Java**](/docs/getting-started-samples/RestIndex.java), [**NodeJS**](/docs/getting-started-samples/index_document.js), [**PHP**](/docs/getting-started-samples/indexDocument.php), and [**Python**](/docs/getting-started-samples/rest_index_document.py).
+* We also provide REST Index examples in [**C#**](/docs/1.0/getting-started-samples/RestIndexData.cs), [**Java**](/docs/1.0/getting-started-samples/RestIndex.java), [**NodeJS**](/docs/1.0/getting-started-samples/index_document.js), [**PHP**](/docs/1.0/getting-started-samples/indexDocument.php), and [**Python**](/docs/1.0/getting-started-samples/rest_index_document.py).
 
 :::
 
@@ -130,7 +130,7 @@ they'll be ignored.
 to index content into a corpus:
 <code>https://<Config v="domains.rest.indexing"/>/v1/index</code>
 
-The API Playground shows the full [Standard Indexing REST definition](/docs/rest-api/index).
+The API Playground shows the full [Standard Indexing REST definition](/docs/1.0/rest-api/index).
 
 ## gRPC Example 
 
@@ -168,5 +168,5 @@ example use cases include:
    results higher.
 
 For more information on how to use custom dimensions, refer to the
-[Custom Dimensions Usage Documentation](/docs/learn/semantic-search/add-custom-dimensions)
+[Custom Dimensions Usage Documentation](/docs/1.0/learn/semantic-search/add-custom-dimensions)
 

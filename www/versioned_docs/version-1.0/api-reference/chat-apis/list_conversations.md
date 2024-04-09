@@ -39,7 +39,7 @@ REST endpoint to list conversations in the chat history corpus.
 to list conversations in the chat history corpus:
 <code>https://<Config v="domains.rest.indexing"/>/v1/list-conversations</code>
 
-The API Playground shows the full [List Conversations](/docs/rest-api/list-conversations) REST definition.
+The API Playground shows the full [List Conversations](/docs/1.0/rest-api/list-conversations) REST definition.
 
 ## gRPC Example
 

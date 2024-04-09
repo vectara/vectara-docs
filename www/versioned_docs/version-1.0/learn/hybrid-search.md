@@ -47,7 +47,7 @@ Elasticsearch or Solr may compare to Vectara.
 
 :bulb:
 You can test queries with different `lambda` values in 
-our [**API Playground**](/docs/rest-api/query) and in the Vectara Console.
+our [**API Playground**](/docs/1.0/rest-api/query) and in the Vectara Console.
 
 :::
 

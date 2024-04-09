@@ -23,12 +23,12 @@ which can help you change your security strategy proactively. You noticed a
 corpus with an API key with read/write access that is only being used for high 
 volume reads. You may decide to switch to a read-only key.
 
-In another case, you might respond to a security incident by [disabling a specific corpus](/docs/api-reference/admin-apis/corpus/update-corpus-enablement) 
+In another case, you might respond to a security incident by [disabling a specific corpus](/docs/1.0/api-reference/admin-apis/corpus/update-corpus-enablement) 
 because of information returned by this endpoint.
 
 :::tip
 
-Check out our [**interactive API Playground**](/docs/rest-api/read-corpus) that lets you experiment with this 
+Check out our [**interactive API Playground**](/docs/1.0/rest-api/read-corpus) that lets you experiment with this 
 REST endpoint to read your corpus details.
 
 :::
@@ -53,7 +53,7 @@ API keys with a specific corpus.
 to read information about the corpus:
 <code>https://<Config v="domains.rest.admin"/>/v1/read-corpus</code>
 
-The API Playground shows the full [Read Corpus](/docs/rest-api/read-corpus) REST definition.
+The API Playground shows the full [Read Corpus](/docs/1.0/rest-api/read-corpus) REST definition.
 
 ## gRPC Example
 

@@ -8,7 +8,7 @@ import {Config} from '@site/docs/definitions.md';
 Using our APIs enable application developers and data engineers to seamlessly 
 integrate the <Config v="names.product"/> semantic search capabilities into 
 your applications. After you review this section, you can 
-check out our [API Playground](/docs/rest-api/vectara-rest-api) to experiment with Vectara's REST APIs directly 
+check out our [API Playground](/docs/1.0/rest-api/vectara-rest-api) to experiment with Vectara's REST APIs directly 
 from your browser!
 
 The Vectara Console and our APIs work hand-in-hand as part of the app development 
@@ -29,10 +29,10 @@ you can perform queries on some data.
 
 We'll show you several example API recipes that include queries with some 
 values in the parameters, and then display example responses:
-* [Search for answers in a corpus](/docs/api-recipes#search-for-answers-in-a-corpus)
-* [Upload a file to the corpus](/docs/api-recipes#upload-a-file-to-the-corpus)
-* [Issue a query and return a specific number of results](/docs/api-recipes#issue-a-query-and-return-a-specific-number-of-results)
-* [List all corpora and delete a specific corpus](/docs/api-recipes#list-all-corpora-and-delete-a-specific-corpus)
+* [Search for answers in a corpus](/docs/1.0/api-recipes#search-for-answers-in-a-corpus)
+* [Upload a file to the corpus](/docs/1.0/api-recipes#upload-a-file-to-the-corpus)
+* [Issue a query and return a specific number of results](/docs/1.0/api-recipes#issue-a-query-and-return-a-specific-number-of-results)
+* [List all corpora and delete a specific corpus](/docs/1.0/api-recipes#list-all-corpora-and-delete-a-specific-corpus)
 
 To issue the types of API calls in these recipes, you typically need the 
 following information that you can get from the Vectara Console UI:

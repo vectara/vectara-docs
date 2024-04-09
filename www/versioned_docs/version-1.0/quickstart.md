@@ -34,7 +34,7 @@ question on everyone's mind!
 2. Enter a **Name** and **Description** such as _Vectara Employee Handbook_ and _Pet Policy_.
 
    Don't worry about the Filter Attributes for now. You can read
-   about [filter expressions](/docs/learn/metadata-search-filtering/filter-overview) and
+   about [filter expressions](/docs/1.0/learn/metadata-search-filtering/filter-overview) and
    edit them later.
 
 3. Click **Create corpus**.
@@ -61,7 +61,7 @@ ingestion and search.
 3. Click the **Add Data** tab.
 
    We support `.md`, `.pdf`, `.doc`, `.docx`, `.ppt`, `.pptx`, `.txt`,
-   `.html`, `.rtf`, and `.epub` files. Review [supported file types](/docs/api-reference/indexing-apis/file-upload/file-upload-filetypes) for
+   `.html`, `.rtf`, and `.epub` files. Review [supported file types](/docs/1.0/api-reference/indexing-apis/file-upload/file-upload-filetypes) for
    a full list.
 
 4. Select or drag and drop the pet policy document `PDF` into the corpus.
@@ -110,7 +110,7 @@ summaries!
 
 ## Next steps
 
-If you want to start using our [API Recipes](/docs/api-recipes), you need
+If you want to start using our [API Recipes](/docs/1.0/api-recipes), you need
 the `customer_id` value. <Config v="names.product"/> also sent
 you a welcome email with this ID after you created the account.
 

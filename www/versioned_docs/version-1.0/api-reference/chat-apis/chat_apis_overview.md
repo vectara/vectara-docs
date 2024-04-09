@@ -24,24 +24,24 @@ information about products, technical documentation, and FAQs.
 
 Vectara Chat provides the following Chat APIs:
 
-* [**Query**](/docs/api-reference/search-apis/search) contains a `chat` object within the `summary` 
+* [**Query**](/docs/1.0/api-reference/search-apis/search) contains a `chat` object within the `summary` 
   which then has a unique `conversationId`.
-* [**List Conversations**](/docs/api-reference/chat-apis/list-conversations) in a chat history corpus 
+* [**List Conversations**](/docs/1.0/api-reference/chat-apis/list-conversations) in a chat history corpus 
   and get an an overview of the interactions between chatbots and users. 
-* [**Read Conversations**](/docs/api-reference/chat-apis/read-conversations) and retrieve detailed information about specific
+* [**Read Conversations**](/docs/1.0/api-reference/chat-apis/read-conversations) and retrieve detailed information about specific
   conversations by their IDs from a chat history corpus.
-* [**Delete Conversations**](/docs/api-reference/chat-apis/delete-conversations) by their specific Conversation IDs for 
+* [**Delete Conversations**](/docs/1.0/api-reference/chat-apis/delete-conversations) by their specific Conversation IDs for 
   data management and other purposes.
-* [**Delete Turns**](/docs/api-reference/chat-apis/delete-turns) from a conversation starting from a specific 
+* [**Delete Turns**](/docs/1.0/api-reference/chat-apis/delete-turns) from a conversation starting from a specific 
   Turn ID to manage the content of conversations.
-* [**Disable Turns**](/docs/api-reference/chat-apis/disable-turns) to exclude turns from being used in 
+* [**Disable Turns**](/docs/1.0/api-reference/chat-apis/disable-turns) to exclude turns from being used in 
   generating responses.
 
 ## Chat Object
 
 The `summary` within a Query contains the `chat` object which then specifies the `conversationId`
 and `store` status as `true` or `false`. Chats are set to `false` by default so 
-you must set them to `true` or [enable the chat option](/docs/console-ui/chat-with-your-data) 
+you must set them to `true` or [enable the chat option](/docs/1.0/console-ui/chat-with-your-data) 
 in the Vectara Console.
 
 ```json

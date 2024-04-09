@@ -11,7 +11,7 @@ Call) API</a> to all its core services. gRPC is a high-performance, open-source
 framework developed by Google that enables different services to communicate 
 with each other. 
 
-Check out our [API Overview](/docs/api-reference/api-overview) for more 
+Check out our [API Overview](/docs/1.0/api-reference/api-overview) for more 
 information. 
 
 ## Protocol Buffer Definitions

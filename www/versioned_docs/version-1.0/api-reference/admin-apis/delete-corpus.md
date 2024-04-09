@@ -20,7 +20,7 @@ The corpus_id assigned to the corpus will not be reused.
 
 :::tip
 
-Check out our [**API Playground**](/docs/rest-api/delete-corpus) that lets you experiment with this REST endpoint 
+Check out our [**API Playground**](/docs/1.0/rest-api/delete-corpus) that lets you experiment with this REST endpoint 
 to delete corpora.
 
 :::
@@ -33,7 +33,7 @@ to delete corpora.
 to delete a corpus:
 <code>https://<Config v="domains.rest.admin"/>/v1/delete-corpus</code>
 
-The API Playground shows the full [Delete Corpus](/docs/rest-api/delete-corpus) REST definition.
+The API Playground shows the full [Delete Corpus](/docs/1.0/rest-api/delete-corpus) REST definition.
 
 ## gRPC Example
 

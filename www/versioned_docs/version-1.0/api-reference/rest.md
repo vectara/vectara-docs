@@ -29,9 +29,9 @@ The translation from the protobuf definitions to REST is:
 
 ## API Authentication
 All <Config v="names.product"/> APIs are authenticated. Indexing and Search
-APIs can be authenticated via [API Keys](/docs/learn/authentication/api-key-management).
+APIs can be authenticated via [API Keys](/docs/1.0/learn/authentication/api-key-management).
 However, Admin actions for creating and deleting corpora must be done via
-[OAuth 2.0](/docs/learn/authentication/oauth-2).
+[OAuth 2.0](/docs/1.0/learn/authentication/oauth-2).
 
 ## API Playground and OpenAPI Specifications
 You can find up-to-date OpenAPI specifications at
@@ -47,5 +47,5 @@ or [Postman](https://www.postman.com/).
 3. Start making API calls directly from the tool.
 
 Want to try the REST APIs live in your browser? Head over to our
-our [API Playground](/docs/rest-api/vectara-rest-api) and make
+our [API Playground](/docs/1.0/rest-api/vectara-rest-api) and make
 real-time API calls from your browser.

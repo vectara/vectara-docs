@@ -21,7 +21,7 @@ create a read-only API key for an application that only needs to query data.
 :::note
 
 For more information about the different types of API keys, see 
-[**API Key Management**](/docs/learn/authentication/api-key-management).
+[**API Key Management**](/docs/1.0/learn/authentication/api-key-management).
 
 :::
 
@@ -30,7 +30,7 @@ indexing and querying, or personal access key), and `corpusId`.
 
 :::tip
 
-Check out our [**interactive API Playground**](/docs/rest-api/create-api-key) that lets 
+Check out our [**interactive API Playground**](/docs/1.0/rest-api/create-api-key) that lets 
 you experiment with this REST endpoint to create API keys for your account.
 
 :::
@@ -43,7 +43,7 @@ you experiment with this REST endpoint to create API keys for your account.
 to create API keys:
 <code>https://<Config v="domains.rest.indexing"/>/v1/create-api-key</code>
 
-The API Playground shows the full [Create API Key](/docs/rest-api/create-api-key) REST definition.
+The API Playground shows the full [Create API Key](/docs/1.0/rest-api/create-api-key) REST definition.
 
 ## gRPC Example
 

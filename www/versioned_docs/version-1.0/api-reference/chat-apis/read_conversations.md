@@ -35,7 +35,7 @@ REST endpoint to read conversations in the chat history corpus.
 to read conversations in the chat history corpus:
 <code>https://<Config v="domains.rest.indexing"/>/v1/read-conversations</code>
 
-The API Playground shows the full [Read Conversations](/docs/rest-api/read-conversations) REST definition.
+The API Playground shows the full [Read Conversations](/docs/1.0/rest-api/read-conversations) REST definition.
 
 ## gRPC Example
 

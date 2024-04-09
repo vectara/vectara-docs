@@ -36,8 +36,8 @@ in the `summarizerPromptName`:
 * `vectara-summary-ext-v1.3.0` (gpt-4.0)
 
 Scale customers also have 
-access to [advanced summarization customization options](/docs/api-reference/search-apis/search#advanced-summarization-customization-options) including 
-[custom prompts](/docs/prompts/vectara-prompt-engine), character limits, temperature, and frequency and presence penalties.
+access to [advanced summarization customization options](/docs/1.0/api-reference/search-apis/search#advanced-summarization-customization-options) including 
+[custom prompts](/docs/1.0/prompts/vectara-prompt-engine), character limits, temperature, and frequency and presence penalties.
 
 :::tip
 

@@ -66,12 +66,12 @@ setting `semantics` to `RESPONSE`.  For example:
 This `RESPONSE` setting disables <Config v="names.product"/>'s "question-answering" mode and
 instead tells it to find similar questions.
 
-You can also add a [filter expression](/docs/learn/metadata-search-filtering/filter-overview)
+You can also add a [filter expression](/docs/1.0/learn/metadata-search-filtering/filter-overview)
 of `part.is_title = true` to *only* match the questions.
 
 ## Combine question matching and answering
 Expanding on the previous example, we can help users find question or answer
-matches together by using [batched queries](/docs/api-reference/search-apis/batched-queries)
+matches together by using [batched queries](/docs/1.0/api-reference/search-apis/batched-queries)
 combined with filter expressions.  For example:
 
 ```json showLineNumbers title="https://api.vectara.io/v1/query"

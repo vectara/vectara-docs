@@ -51,7 +51,7 @@ data from an employee handbook PDF.
 
 ## Query
 
-The [Query tab](/docs/console-ui/corpus-query-configuration) lets you ask questions about your data. You can also use 
+The [Query tab](/docs/1.0/console-ui/corpus-query-configuration) lets you ask questions about your data. You can also use 
 Advanced options and show the API request to copy and paste queries in your 
 application code and view responses.
 
@@ -63,8 +63,8 @@ download this data in `.SVG`, `.PNG`, or `.CSV` format.
 ## Access Control
 
 The Access control tab defines the users and roles that have access to the 
-corpus. You can also [create new user roles](/docs/learn/authentication/role-based-access-control), 
-a default role, and [API keys](/docs/console-ui/api-access-overview) associated with this corpus.
+corpus. You can also [create new user roles](/docs/1.0/learn/authentication/role-based-access-control), 
+a default role, and [API keys](/docs/1.0/console-ui/api-access-overview) associated with this corpus.
 
 ## Configuration
 

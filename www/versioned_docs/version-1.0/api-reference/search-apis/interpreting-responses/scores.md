@@ -16,9 +16,9 @@ provided.
 Out of the box scores in <Config v="names.product"/>:
 1. Can be either positive or negative
 2. Are larger/more positive as relevance is increased
-3. Are between -1 and 1 when not [reranked](/docs/api-reference/search-apis/reranking)
+3. Are between -1 and 1 when not [reranked](/docs/1.0/api-reference/search-apis/reranking)
 4. Can be any real number -- positive or negative -- when
-[reranked](/docs/api-reference/search-apis/reranking).  However, scores when reranked are
+[reranked](/docs/1.0/api-reference/search-apis/reranking).  However, scores when reranked are
 *typically* between about -10 and 10
 
 See the sections below on "standard" and "reranked" results for details on
@@ -27,7 +27,7 @@ how they differ and how to use them best.
 :::note
 
 Vectara provides an important control that can affect scores:
-[**custom dimensions**](/docs/learn/semantic-search/add-custom-dimensions), which allow you to boost 
+[**custom dimensions**](/docs/1.0/learn/semantic-search/add-custom-dimensions), which allow you to boost 
 or bury results based on metadata.
 
 :::
@@ -87,7 +87,7 @@ results as no longer very relevant.  However, as a general rule, scores less
 than 0.1 tend to be of low quality and can typically be safely removed/ignored.
 
 ## Reranked Results Response
-Scores from <Config v="names.product"/> after [reranking](/docs/api-reference/search-apis/reranking) are scored on a
+Scores from <Config v="names.product"/> after [reranking](/docs/1.0/api-reference/search-apis/reranking) are scored on a
 scale from -infinity to +infinity.  Internally, the numbers returned from the
 reranker are derived from a logarithmic scoring system, which means that in
 practice, scores much higher than 10 or much lower than -10 should be rare.

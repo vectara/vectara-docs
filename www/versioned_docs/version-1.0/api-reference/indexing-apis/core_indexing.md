@@ -23,7 +23,7 @@ normal users should use the Standard Indexing API.
 
 :::tip
 
-Check out our [**interactive API Playground**](/docs/rest-api/core-index) that lets you experiment 
+Check out our [**interactive API Playground**](/docs/1.0/rest-api/core-index) that lets you experiment 
 with this endpoint to index documents from your browser.
 
 :::
@@ -84,7 +84,7 @@ defined ahead of time for the corpus, or else they'll be ignored.
 to index content into a corpus:
 <code>https://<Config v="domains.rest.indexing"/>/v1/core-index</code>
 
-The API Playground shows the full [Low-level Indexing REST definition](/docs/rest-api/core-index).
+The API Playground shows the full [Low-level Indexing REST definition](/docs/1.0/rest-api/core-index).
 
 ## gRPC Example
 

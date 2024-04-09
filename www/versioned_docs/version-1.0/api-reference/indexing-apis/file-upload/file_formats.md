@@ -4,11 +4,11 @@ title: Format Files for Upload
 sidebar_title: Format Files for Upload
 ---
 
-When uploading files using the [File Upload Service](/docs/api-reference/indexing-apis/file-upload/file-upload), you may
+When uploading files using the [File Upload Service](/docs/1.0/api-reference/indexing-apis/file-upload/file-upload), you may
 send any of the predefined formats like markdown, PDF, and MS Word.
 
 Alternatively, you may perform the text extraction yourself, and save the result
-as a JSON or text serialized [Document proto](/docs/api-reference/indexing-apis/indexing#document). The benefit
+as a JSON or text serialized [Document proto](/docs/1.0/api-reference/indexing-apis/indexing#document). The benefit
 of this approach is that you can attach your own metadata to the document, or
 to individual sections within it.
 

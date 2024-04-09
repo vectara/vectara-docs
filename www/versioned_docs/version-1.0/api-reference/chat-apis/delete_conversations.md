@@ -31,7 +31,7 @@ REST endpoint to delete conversations in the chat history corpus.
 to delete conversations in the chat history corpus:
 <code>https://<Config v="domains.rest.indexing"/>/v1/delete-conversations</code>
 
-The API Playground shows the full [Delete Conversations](/docs/rest-api/delete-conversations) REST definition.
+The API Playground shows the full [Delete Conversations](/docs/1.0/rest-api/delete-conversations) REST definition.
 
 ## gRPC Example
 

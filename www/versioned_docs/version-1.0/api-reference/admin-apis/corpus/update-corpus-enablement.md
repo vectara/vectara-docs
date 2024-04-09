@@ -18,7 +18,7 @@ incidents.
 
 :::tip
 
-Check out our [**interactive API Playground**](/docs/rest-api/update-corpus-enablement) that lets you experiment with this 
+Check out our [**interactive API Playground**](/docs/1.0/rest-api/update-corpus-enablement) that lets you experiment with this 
 REST endpoint to enable or disable corpora.
 
 :::
@@ -36,7 +36,7 @@ to `true` or `false`.
 to enable or disable a corpus:
 <code>https://<Config v="domains.rest.admin"/>/v1/update-corpus-enablement</code>
 
-The API Playground shows the full [Update Corpus Enablement](/docs/rest-api/update-corpus-enablement) REST definition.
+The API Playground shows the full [Update Corpus Enablement](/docs/1.0/rest-api/update-corpus-enablement) REST definition.
 
 ## gRPC Example
 

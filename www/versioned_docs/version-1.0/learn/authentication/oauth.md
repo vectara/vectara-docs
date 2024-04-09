@@ -25,7 +25,7 @@ you can then pass into subsequent requests as an authenticated application.
 ## :star2: Ready to Dive In? Check Out Our API Playground! :star2:
 
 If already have familiarity about how JWT tokens work and you're ready to dive 
-into our APIs, make your way to our [**API Playground**](/docs/rest-api/vectara-rest-api)! 
+into our APIs, make your way to our [**API Playground**](/docs/1.0/rest-api/vectara-rest-api)! 
 This interactive environment allows you to experiment with <Config v="names.product"/>'s REST 
 APIs directly from your browser! Tailored for developers, the API Playground 
 offers a hands-on experience to understand and demonstrate our capabilities.
@@ -143,7 +143,7 @@ URL goes here>
 :::note
 
 This method is useful if you want to try out requests in 
-our [**Vectara API Playground**](/docs/rest-api/vectara-rest-api).
+our [**Vectara API Playground**](/docs/1.0/rest-api/vectara-rest-api).
 
 :::
 
@@ -152,7 +152,7 @@ our [**Vectara API Playground**](/docs/rest-api/vectara-rest-api).
 To use a JWT token in an API request, pass the token using the `Authorization` 
 header configuration.
 
-If you're using the API Playground such as [ListCorpora](/docs/rest-api/list-corpora), 
+If you're using the API Playground such as [ListCorpora](/docs/1.0/rest-api/list-corpora), 
 use the JWT token value in the **Bearer Token** field:
 
 ![API Playground Example](/img/api_playground_listcorpora.png)

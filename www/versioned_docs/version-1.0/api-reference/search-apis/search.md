@@ -21,7 +21,7 @@ filtering, reranking, Retrieval Augmented Generation (RAG), and hybrid search.
 
 :::tip
 
-Check out our [**interactive API Playground**](/docs/rest-api/query) that lets you experiment with 
+Check out our [**interactive API Playground**](/docs/1.0/rest-api/query) that lets you experiment with 
 this REST endpoint to send queries.
 
 :::
@@ -66,7 +66,7 @@ corpus, it's sometimes useful to run against several in parallel.
 Finally, the **reranking configuration** enables reranking of results, to
 further increase relevance in certain scenarios. For details about our English 
 cross-attentional (Scale only) and Maximal Marginal Relevance (MMR) rerankers, 
-see [Reranking](/docs/api-reference/search-apis/reranking).
+see [Reranking](/docs/1.0/api-reference/search-apis/reranking).
 
 ## Corpus Key Definition
 
@@ -78,14 +78,14 @@ creation.
 
 :::note
 
-See the [**Filter Expressions Overview**](/docs/learn/metadata-search-filtering/filter-overview) for a 
-description of their syntax, and [**Corpus Administration**](/docs/api-reference/admin-apis/admin) to learn how 
+See the [**Filter Expressions Overview**](/docs/1.0/learn/metadata-search-filtering/filter-overview) for a 
+description of their syntax, and [**Corpus Administration**](/docs/1.0/api-reference/admin-apis/admin) to learn how 
 referenceable metadata is specified during corpus creation.
 
 :::
 
 By default, <Config v="names.product"/> only uses its neural/semantic retrieval model, 
-and does not attempt to use keyword matching. To enable [hybrid search](/docs/learn/hybrid-search) with a 
+and does not attempt to use keyword matching. To enable [hybrid search](/docs/1.0/learn/hybrid-search) with a 
 mix of both keyword and neural results, edit the `lambda` value.
 
 If the corpus specifies custom dimensions (Scale only), weights can be 
@@ -103,7 +103,7 @@ To use Retrieval Augmented Generation (RAG), which <Config v="names.product"/> a
 summaries on top of your own data -- you can submit a `SummarizationRequest` 
 alongside your query. This produces a `summary` that attempts to answer the 
 end-user's question, citing the results as references. For more information, 
-read about [Retrieval Augmented Generation](/docs/learn/grounded-generation/grounded-generation-overview).
+read about [Retrieval Augmented Generation](/docs/1.0/learn/grounded-generation/grounded-generation-overview).
 
 The `summary` object enables you to tailor the results of the query 
 summarization. Growth users can specify the `maxSummarizedResults` and 
@@ -137,8 +137,8 @@ guideline for cutoffs between good and bad.
 capabilities, which present a powerful toolkit for tailoring summarizations to 
 specific application and user needs. 
 
-The `summarizerPromptName` allows you to specify one of our [available summarizers](/docs/learn/grounded-generation/select-a-summarizer).
-Use `promptText` to override the default prompt text with a [custom prompt](/docs/prompts/vectara-prompt-engine). 
+The `summarizerPromptName` allows you to specify one of our [available summarizers](/docs/1.0/learn/grounded-generation/select-a-summarizer).
+Use `promptText` to override the default prompt text with a [custom prompt](/docs/1.0/prompts/vectara-prompt-engine). 
 Your use case might require a chatbot to be more human like, so you decide to 
 create a custom response format that behaves more playfully in a conversation 
 or summary. 
@@ -166,10 +166,10 @@ application requirements.
 ### Chat Conversation Located within the Summary
 
 If you enabled chat on the corpus, the `summary` object contains a 
-conversation from [Vectara Chat](/docs/api-reference/chat-apis/chat-apis-overview) which 
+conversation from [Vectara Chat](/docs/1.0/api-reference/chat-apis/chat-apis-overview) which 
 includes a `conversationId`. You enable Vectara Chat by setting the `store` value to `true`.
 
-The [Vectara Chat APIs](/docs/api-reference/chat-apis/chat-apis-overview) have more details about conversations.
+The [Vectara Chat APIs](/docs/1.0/api-reference/chat-apis/chat-apis-overview) have more details about conversations.
 
 ## REST Example
 
@@ -179,7 +179,7 @@ The [Vectara Chat APIs](/docs/api-reference/chat-apis/chat-apis-overview) have m
 to search content from a corpus:
 <code>https://<Config v="domains.rest.serving"/>/v1/query</code>
 
-The API Playground shows the full [Query REST definition](/docs/rest-api/query).
+The API Playground shows the full [Query REST definition](/docs/1.0/rest-api/query).
 
 ## gRPC Example
 
@@ -207,7 +207,7 @@ The full Query definition provides the detailed summary request. When <Config v=
 with the list of results that most semantically answer the user, it will also 
 then produce a summary of the results with its sources cited. For more details 
 on Retrieval Augmented Generation, have a look at the
-[chatbots and grounded generation overview](/docs/learn/grounded-generation/grounded-generation-overview).
+[chatbots and grounded generation overview](/docs/1.0/learn/grounded-generation/grounded-generation-overview).
 
 The summary comes back in a format where the `text` contains a summary of the 
 relevant results to the given search with those relevant results included as 

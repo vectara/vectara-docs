@@ -12,7 +12,7 @@ import {vars} from '@site/static/variables.json';
 API Keys allow controlled, anonymous access to several administrative tasks, 
 indexing your data, and running semantic searches on your corpora. This 
 greatly simplifies integration from public-facing systems like websites. You 
-can easily create a [Personal API key](/docs/console-ui/personal-api-key) or an [Index or Query API Key](/docs/console-ui/index-and-query-api-keys), 
+can easily create a [Personal API key](/docs/1.0/console-ui/personal-api-key) or an [Index or Query API Key](/docs/1.0/console-ui/index-and-query-api-keys), 
 and then simply embed the API key and directly pass it to <Config v="names.product"/> when issuing requests. If a key 
 is compromised, you can quickly revoke the key and replace it in minutes.
 

@@ -9,7 +9,7 @@ A few pieces of metadata expressions filterable out of the box, as they're very
 useful in a variety of situations.
 
 Note that you can set up additional fields to filter on by setting up
-[filter attributes](/docs/api-reference/admin-apis/create-corpus#filter-attribute) on a
+[filter attributes](/docs/1.0/api-reference/admin-apis/create-corpus#filter-attribute) on a
 corpus.
 
 

@@ -23,7 +23,7 @@ want to enable.  For example:
 Exact duplicate matching can be useful when you want to ensure no duplicate
 content exists in your corpora or to find exact matches of "known bad" documents
 like those that might violate compliance rules in your organization. In general,
-we recommend that you use [filter expressions](/docs/api-reference/search-apis/sql/func-opr)
+we recommend that you use [filter expressions](/docs/1.0/api-reference/search-apis/sql/func-opr)
 for this.
 
 Specifically:
@@ -97,7 +97,7 @@ At times, it can be useful to further refine the recommendations.  For example:
 - Only suggest results that were created by a particular user
 
 In these cases, it can be useful to use <Config v="names.product"/>'s
-[filter expressions](/docs/learn/metadata-search-filtering/filter-overview).
-There are [out of the box filters](/docs/learn/metadata-search-filtering/ootb-metadata-filters)
+[filter expressions](/docs/1.0/learn/metadata-search-filtering/filter-overview).
+There are [out of the box filters](/docs/1.0/learn/metadata-search-filtering/ootb-metadata-filters)
 for title and language and you can make use of additional metadata you add, such
 as the author or publication date.
