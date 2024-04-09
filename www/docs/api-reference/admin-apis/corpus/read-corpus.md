@@ -23,15 +23,8 @@ which can help you change your security strategy proactively. You noticed a
 corpus with an API key with read/write access that is only being used for high 
 volume reads. You may decide to switch to a read-only key.
 
-In another case, you might respond to a security incident by [disabling a specific corpus](/docs/api-reference/admin-apis/corpus/update-corpus) 
-because of information returned by this endpoint.
-
-:::tip
-
-Check out our [**interactive API Playground**](/docs/rest-api/get-corpus) that lets you experiment with this 
-REST endpoint to read your corpus details.
-
-:::
+In another case, you might respond to a security incident by disabling a 
+specific corpus because of information returned by this endpoint.
 
 ## Read Corpus Request and Response
 
