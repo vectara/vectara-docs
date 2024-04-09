@@ -21,6 +21,13 @@ const config = {
           editUrl: "https://github.com/vectara/vectara-docs/tree/master/www",
           docLayoutComponent: "@theme/DocPage",
           docItemComponent: "@theme/ApiItem", // Derived from docusaurus-theme-openapi-docs
+          lastVersion: "current",
+          versions: {
+            current: {
+              label: "2.0",
+              /* path: "2.0", */
+            },
+          },
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
@@ -39,15 +46,23 @@ const config = {
         config: {
           vectara: {
             specPath: "static/vectara-oas-v2.yaml", // Path to designated spec file
-            outputDir: "docs/v2/rest-api", // Output directory for generated .mdx docs
-            downloadUrl: "https://docs.vectara.com/vectara-oas-v2.yaml",
+            outputDir: "docs/rest-api", // Output directory for generated .mdx docs
+            downloadUrl: "https://docs.vectara.com/vectara-oas.yaml",
             sidebarOptions: {
               groupPathsBy: "tag",
               categoryLinkSource: "tag",
             },
-            baseUrl: "docs/v2/rest-api/vectara-oas",
-            version: "2.0.0",
-            label: "v2.0.0",
+            baseUrl: "docs/rest-api/vectara-oas",
+            version: "2.0",
+            label: "v2.0",
+            versions: {
+              "1.0": {
+              specPath: "static/vectara-oas.yaml", // path to 1.0 OAS spec
+              outputDir: "versioned_docs/version-1.0/rest-api",
+              label: "1.0",
+              baseUrl: "versioned_docs/version-1.0/rest-api/vectara-oas"
+            }
+           },
           },
         },
       },
@@ -200,26 +215,34 @@ ${content}
       },
       items: [
         {
-          to: "docs/",
-          activeBasePath: "docs",
+          type: "dropdown",
           label: "Docs",
           position: "left",
-        },
-        {
-          type: 'dropdown',
-          label: 'API Playground',
-          position: 'left', // or 'right', depending on where you want it in the navbar
           items: [
             {
-              label: 'API Playground v1.0',
-              to: '/docs/rest-api', // Adjust path as needed
+              label: "Version 2.0 (Latest)",
+              to: "docs/"
             },
             {
-              label: 'API Playground v2.0',
-              to: '/docs/v2/rest-api', // Adjust path as needed
+              label: "Version 1.0",
+              to: "docs/1.0/",
             },
-            // Add more versions as needed...
-          ],
+          ]
+        },
+        {
+          type: "dropdown",
+          label: "API Playground",
+          position: "left",
+          items: [
+            {
+              label: "API Playground 2.0 ",
+              to: "docs/rest-api"
+            },
+            {
+              label: "API Playground 1.0",
+              to: "docs/1.0/rest-api",
+            },
+          ]
         },
         /* {
           to: "docs/rest-api/",

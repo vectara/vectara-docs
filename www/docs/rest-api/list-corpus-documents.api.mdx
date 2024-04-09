@@ -1,0 +1,66 @@
+---
+id: list-corpus-documents
+title: "List the documents in the corpus"
+description: "List the documents in the corpus"
+sidebar_label: "List the documents in the corpus"
+hide_title: true
+hide_table_of_contents: true
+api: eJy1V21v2zYQ/iuEsA8b5relwYAZGDBjyTqjWxc0yd4SI6Cls8VWIlWSsuMa/u+7IyWZihU3KTIgcCTx7vjcc2/kNrJ8aaLxTZSouMxBWhPNepEqQHMrlJwm0TjKhLE/K12U5qwR6kUF1zwHC5rUt5GQKFlwm+KSxAV8i53O3QfY4LcETKxFQUZx6SoFVkrxsQSGy0wkaFQsNkIumcUl/K4FJMxbGKC6ho+l0IBwrC6hF5k4hZxH421kNwVtZqxGbYfLIija5Ib3P036/476P9zd3v44+/araLfrbWt0mciFRXkHnDbsRpnze5GXOZNlPgfN1II1TDGrmAZbasm4ZUoCsyKHNtoFz0wXXCEtLEGj7ELpnFv/6dUJfsiFpB2j8Xf47HfH59GI0C14mVl6Cz0p+BIqlo84c22QUERM/CJq5HcF7kXCvWVko+0cXyCNTsAxxVJu2BxAojJHb5Kn+VmFZbebkbQplDRgaP1kNKJ/bYy/Yaa1UNAmsUKupCVpXhSZiF1mDt8bUtkebqnm7yGmyBaa8tgKv+E+wZ+2bWWNa80dsxZy8/ldRHJontKorhw2PQuM1+xgoMHyhFverV0DY7VYYKMBwpNEkA7PLgJIVC5o31ilKU1Kg79dbrQ3/VWtWV7GKav0XB40KEpMpQG7SoVhQvr8RTWGr3GpNUpkGyaVrYoD026dgryVVdbVRV6b6zEuEywfVGopoO0E7km6lhzcygPC5xsL5o4QHVL3tqlZJ+Vw4+PekViV2HcIj1pznZim2n3jYUZ8AgfvVtYSXG7YXGQZaRUZl8aDOlrW35+GZT0Kwn33NPi1+GN+NGnxfCwIxgqbkUKdo5c+5tcuVboE3McwY48nE2WwscgiErh3RciqFfmmQG5ylrlKrKfP4CDaTas7IOuv1LUm7H3G1hnW6myW0pXs9/wj/kmABJnExsbdyNmwZqh1FGlABDWM32v/Hy40Q/Jd5RpKkMzp6NUh7AvQuTAGXwyG01UNzzKsPkIa5r6pCdvPxBdqjDkYinRHX3Tzr1plfmlOmNbpxkEBrRXmZ4xV7+fBoz2zoqcydsBtL4J7nhdOZippfPOMGdArTH+3ycCxXIX37rEmOz3zgYY6EfAZJ3PMJU4uXzU4AFPICvYnMoGxZqYsCqUtejcvyTEUX1NFrbVCR49nwTkha4J7eojJH5pcUBfYaZIXDNoRCtDd1o4ds2Yf8C+N2OfC8dKhOB6Jt8r+Qu7uI7J72ITcjA/HzoOCilxHSxUdeJdg/UEyxZfh6mRIItgTh9v9kXY3TILDsM9VfxIudYZqqbWFGQ+HvBCDlfdwEKscrUV0FjKARSPsho7ek0K8gc2kxO2ClUvKBB+kQCAImftYn/lS4Inr9dWZ8O/+5GLaf3P+j+OJpnQY1ZpylGGrk86GXYu8Bum6MR4WJ1OaeJamiR805LLXOBmMBiMKEbYz88fiEukQMQQ0hBRksOTZ0In21aJvvPCwKg4eu+LAKhDE4wJ79JzHH34KLDifCmVszl3RVD4/IcQtPxsqLc6JIbqGTKJhF79tFf6byPFTJQA+jdu3mvDWlCIi0thu59zAtc52O/rsj+OUGYkwfJ4Fx+UHcJre8OU3j06P3MBsLjwrnpUkE9EV4umQ/o/7wxG0waVmD3hGL1oQ4mcS+vW76qryDXv23bMTZV2FsoWwRh8kyW6G0lV5EmYvMIljKMJoHAwDcrbpSK/PrzDp/wNhRXlQ
+sidebar_class_name: "get api-method"
+info_path: docs/rest-api/vectara-api-v-2
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>List the documents in the corpus</h1>
+
+<MethodEndpoint method={"get"} path={"/v2/corpora/{corpus_key}/documents"}></MethodEndpoint>
+
+
+
+List the documents in the corpus
+
+## Request
+
+<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Path Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"in":"path","name":"corpus_key","description":"The unique key identifying the queried corpus.","required":true,"schema":{"type":"string","pattern":"[a-zA-Z0-9_\\=]+$"}}}></ParamsItem></ul></div></details><details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Query Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"limit","in":"query","description":"The maximum number of documents to return at one time.","required":false,"schema":{"type":"integer","format":"int32","minimum":1,"maximum":100,"default":10}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"page_key","in":"query","description":"Used to the retrieve the next page of documents after the limit has been reached.","required":false,"schema":{"type":"string"}}}></ParamsItem></ul></div></details><div><div><ApiTabs><TabItem label={"200"} value={"200"}><div>
+
+List of documents.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>documents</strong><span className={"openapi-schema__name"}> object[]</span></span></summary><div style={{"marginLeft":"1rem"}}><div style={{"marginTop":".5rem","marginBottom":".5rem"}}>
+
+List of documents.
+
+</div><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={false} name={"id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"The Document ID.","type":"string"}}></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>metadata</strong><span className={"openapi-schema__name"}> object</span></span></summary><div style={{"marginLeft":"1rem"}}><div style={{"marginTop":".5rem","marginBottom":".5rem"}}>
+
+The document metadata.
+
+</div><SchemaItem name={"property name*"} required={false} schemaName={"any"} qualifierMessage={undefined} schema={{"description":"The document metadata.","type":"object","additionalProperties":true}} collapsible={false} discriminator={false}></SchemaItem></div></details></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>storage_usage</strong><span className={"openapi-schema__name"}> object</span></span></summary><div style={{"marginLeft":"1rem"}}><div style={{"marginTop":".5rem","marginBottom":".5rem"}}>
+
+How much storage the document used. This information is currently not returned when
+retrieving the document, and only returned when indexing document.
+
+
+</div><SchemaItem collapsible={false} name={"bytes_used"} required={false} schemaName={"int64"} qualifierMessage={undefined} schema={{"description":"Number of bytes used by document counting towards maximum corpus size, and\ntowards any billing plans.\n","type":"integer","format":"int64","minimum":0}}></SchemaItem><SchemaItem collapsible={false} name={"metadata_bytes_used"} required={false} schemaName={"int64"} qualifierMessage={undefined} schema={{"description":"Number of metadata bytes used by document metadata.\n","type":"integer","format":"int64","minimum":0}}></SchemaItem></div></details></SchemaItem><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></div></details></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>metadata</strong><span className={"openapi-schema__name"}> object</span></span></summary><div style={{"marginLeft":"1rem"}}><div style={{"marginTop":".5rem","marginBottom":".5rem"}}>
+
+The standard metadata in the response of a list operation.
+
+</div><SchemaItem collapsible={false} name={"page_key"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"When requesting the next page of this list, this is needed as a query parameter.","type":"string"}}></SchemaItem></div></details></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"documents\": [\n    {\n      \"id\": \"string\",\n      \"metadata\": {},\n      \"storage_usage\": {\n        \"bytes_used\": 0,\n        \"metadata_bytes_used\": 0\n      }\n    }\n  ],\n  \"metadata\": {\n    \"page_key\": \"string\"\n  }\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"403"} value={"403"}><div>
+
+Permissions do not allow listing documents in the corpus.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"messages"} required={false} schemaName={"message[]"} qualifierMessage={undefined} schema={{"description":"The messages describing why the error occured.","type":"array","items":{"title":"message","type":"string","example":"Internal server error."}}}></SchemaItem><SchemaItem collapsible={false} name={"request_id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"The ID of the request that can be used to help Vectara support debug what went wrong .","type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"messages\": [\n    \"Internal server error.\"\n  ],\n  \"request_id\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"404"} value={"404"}><div>
+
+Corpus not found.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"The ID cannot found.","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"messages"} required={false} schemaName={"message[]"} qualifierMessage={undefined} schema={{"type":"array","items":{"title":"message","type":"string"}}}></SchemaItem><SchemaItem collapsible={false} name={"request_id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"ID of the request that can be used to help Vectara support debug what went wrong.","type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"id\": \"string\",\n  \"messages\": [\n    \"string\"\n  ],\n  \"request_id\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
+      

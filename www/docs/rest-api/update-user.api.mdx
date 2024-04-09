@@ -1,0 +1,48 @@
+---
+id: update-user
+title: "Update a user"
+description: "Update details about a user such as role names."
+sidebar_label: "Update a user"
+hide_title: true
+hide_table_of_contents: true
+api: eJy9Vm1v2zYQ/isEP22YbRlZP/nTvC7bjAJdkJdhQxoElHSy2MqkRlJ2DUH/fXck5cixGm9dsBgIJN37c8+R13In1pYv7nljwVj+MOE52MzI2kmt+ILf1blwwHJwQlaWiVQ3jglG2sw2WcmEZUZXwJTYgJ3xCdc1GEHWqxztG29/h+ooqoVBLUeBFvctJxNSQeGjzFEuKWItXMmfp3FTQyYLCZa5Ehi5Y6ufmNMs+Ke4Bv5qpAEM6kwDE26zEjaCL1ru9jXFsc5IteZd9xCUwbofdb4njUwrB8rRo6jrSma+gOSjpeDtqSudfoTMUUWGynWYGElBibSiDNpn6a9UTj4x/V0JWIGh1HNpSZ1pc3ik4ggOqieGSjWiKxTvJpiafCSs7WmAWzRUsBu0gulizJ0wRuwJagcbOwYOxnHSVXDoPYF9HeAicUfg2VorG/K4mM9P03mPqXiKiAK7zTY6x+YFUCmXV4JbjiBNQPyOysg0YkiB4I6gEKslRjpMUHkWmsfZdwQzxpbVuGcvYiLPEQJ71jnKNwKrjB7RNWkG1o9576VnHFOK/4Jo0Q+TlkWzAePycaYdOR0F4vDhfLJnaPtfKTtsIvryTTxiMZ09gbhv5t+f5nAFZiOtxRfLcs2UxvOtqvQuHC0Y4SinV6IuVmvF+kuQ9FIWRCklsSv3PhEwBgHXWdaYo+6dohTrj85G+Amfxab2OitFAIqKYZVb5IoPMuNh2P3oP35p2HDIYtuiJj4LxzKhWOphy+msK6GqD3Npm7rWxmF1aUOFofoOMWU7o7HQEQ4NunlJmR3a+eY0J383UBML3aj8fzhtEAAs9ijiyQgM2/21/TrXjNduxMt9eK/dz1TuUz98ma7UebjDszJMZomvyfYi8ftF0sbLvkNh4FpYBRqDJy4vnavtIknwxJhtQ46zTG/QnNOlbQFJL92e1pVlLd/Bftmg/4HkhnoZYB4oDED3H/tNowSR+70kLiJ/TJdXq+m7yz99pcSP66c14bIflsE1HxaNwfl230P10FGMQg8b26OOQRhW9HzFGd5cv4DyS9QW2HLF6ko4uktmHxRaEWbB4mI2n82pS3iC2d+KG8RTZjDAcYhhBWtRJV51qoupDcpJnA+R+fmIVx8vAPJUZJ9+GHjwoNTauo3wcxNBiwtiWAmfFzXYrL5ik4xNc/DZJYiB9FeTZ0obmXXPPZBhd53wRb9KIiVKzJQU2jYVFu5M1XX0GftpiED4uBVGUiM9Afv7kC8KUVl4oY5vruOi+S37B1vpaA09GxVRcSuqht7w8RNy82kf7ohEkaOUYpC+DYlMb8nHk/XJydZNeotllkHtXtR9GMzu1fL27a+oncbdGJc3MjJiR0s2/l/wD/jzmz658NPmv7e8Emrd0OG14MEx/f0NytNGFw==
+sidebar_class_name: "patch api-method"
+info_path: docs/rest-api/vectara-api-v-2
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>Update a user</h1>
+
+<MethodEndpoint method={"patch"} path={"/v2/users/{user_id}"}></MethodEndpoint>
+
+
+
+Update details about a user such as role names.
+
+## Request
+
+<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Path Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"user_id","in":"path","description":"Specifies the User ID to update.","required":true,"schema":{"type":"string"}}}></ParamsItem></ul></div></details><MimeTabs className={"openapi-tabs__mime"}><TabItem label={"application/json"} value={"application/json-schema"}><details style={{}} className={"openapi-markdown__details mime"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-mime"}><h3 className={"openapi-markdown__details-summary-header-body"}>Body</h3></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"enabled"} required={false} schemaName={"boolean"} qualifierMessage={undefined} schema={{"description":"Indicates whether to disable or disable the user.","type":"boolean"}}></SchemaItem><SchemaItem collapsible={false} name={"api_roles"} required={false} schemaName={"string[]"} qualifierMessage={undefined} schema={{"description":"The new role names of the user.","type":"array","items":{"type":"string"}}}></SchemaItem></ul></details></TabItem></MimeTabs><div><div><ApiTabs><TabItem label={"200"} value={"200"}><div>
+
+New user after modification.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"id"} required={false} schemaName={"string"} qualifierMessage={"**Possible values:** Value must match regular expression `usr_.+`"} schema={{"description":"The Vectara ID for the user.","type":"string","pattern":"usr_.+"}}></SchemaItem><SchemaItem collapsible={false} name={"email"} required={false} schemaName={"email"} qualifierMessage={undefined} schema={{"description":"The email address for the user.","type":"string","format":"email"}}></SchemaItem><SchemaItem collapsible={false} name={"username"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"The username for the user.","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"enabled"} required={false} schemaName={"boolean"} qualifierMessage={undefined} schema={{"description":"Indicates whether the user is enabled or disabled.","type":"boolean"}}></SchemaItem><SchemaItem collapsible={false} name={"description"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"The escription for the user.","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"api_roles"} required={false} schemaName={"string[]"} qualifierMessage={"**Possible values:** Value must match regular expression `rol_.+`"} schema={{"description":"The role names of the user.","type":"array","items":{"type":"string","pattern":"rol_.+"}}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"id\": \"string\",\n  \"email\": \"user@example.com\",\n  \"username\": \"string\",\n  \"enabled\": true,\n  \"description\": \"string\",\n  \"api_roles\": [\n    \"string\"\n  ]\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"403"} value={"403"}><div>
+
+Permissions do not allow updating the user.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"messages"} required={false} schemaName={"message[]"} qualifierMessage={undefined} schema={{"description":"The messages describing why the error occured.","type":"array","items":{"title":"message","type":"string","example":"Internal server error."}}}></SchemaItem><SchemaItem collapsible={false} name={"request_id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"The ID of the request that can be used to help Vectara support debug what went wrong .","type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"messages\": [\n    \"Internal server error.\"\n  ],\n  \"request_id\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"404"} value={"404"}><div>
+
+User not found.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"The ID cannot found.","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"messages"} required={false} schemaName={"message[]"} qualifierMessage={undefined} schema={{"type":"array","items":{"title":"message","type":"string"}}}></SchemaItem><SchemaItem collapsible={false} name={"request_id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"ID of the request that can be used to help Vectara support debug what went wrong.","type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"id\": \"string\",\n  \"messages\": [\n    \"string\"\n  ],\n  \"request_id\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
+      

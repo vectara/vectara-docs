@@ -1,0 +1,48 @@
+---
+id: delete-corpus-document
+title: "Delete a document"
+description: "Delete a document"
+sidebar_label: "Delete a document"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVlFv0zAQ/iuWxQOINqnGXqiERMUKqkAwMUDANk1uclm8JbaxnZYS5b9z56RtulYDTXuqnTufv/u+u3Nr7sW14+NznuqkKkF5xy8HXBuwwkutZikf8xQK8PBGW1O5k86ND7gRVpRosHS+5lKhqxE+R5NCA+6ScOTqFlb4LQWXWGkoKpq+5MAqJX9VwNDMZIoxZbaS6pp5NLUn2VL6POzX6JjXrIUTYUgLvyppATF6W8GAuySHUvBxzf3KEADnLUYMWD0CpYvPxfDPZPhzNHx5dXHx6vL5E940g4Po13deyfQg/DUVbHbCdPYIMJvmkpyd0cqBI/vR6Jh+du8+q5IEnMuqolh1t6Q7t0e8GfDj0Yv9o6dgS+kcbhx6M6U9E0Whl20YIl9sc5CqJwXlkWjlSXoMK4wpZBJKJL5xFLveT0vPbyAJlWKpoLxskyoRvLhu1/usrq2sNc0J1DJfBShgrbZMJ0mFbBKi7iJhraASkx7KENZLX5ChC7b13BQE/BalCT4zRZUhCubALsC2l0RUFUE4cKEADmLdCt954lp4lgjF5ljejnTRLIfCsG/IBPYLc5Ux2nrMbl5RYui+JLKXVmOi0R5SgrHOZkrI8EsT5D1QGW2LMuRoIyJJnOlKpY8o4D10YOo7N95JZrAj/kPV+5c0jy3L/ap81P4tpbtVp7k7LU5Ck/Z6ixMRPtfb6drOqBz38eIopp7TVsT1doI28WZCx3VvNDV4sq3cdgxXtsAguffGjeNYGBkt2hyjRJcYm9OQcYAtJP2KBv/EyPewmlR4ec9yRrXQytRz6IkWPpJqlGAOIgW7HZ3fh5PT2fD99EdgSqpM93Vdk44+DAEdmq1rl3egwku0ADaZMVMIn2lbRhcKT1HK7YmjaBSNSCQcb+5TdoZ0yAR6NPQpKOBaFHFwHeps6FrnuGsPkYT2wD6QxGMGkM5Fcvu6FyHkZLTzpQht0+V8SOSdxDbcefjtY8wFqcNIQbC6U/+cB0I6/XE13n1DN480WvrvEyqXIyIKUNdz4eCrLZqGPmMDWNIZlwthpZiTBFgnqXS0xgrMROFgD+tmVvCnn7v36xl7lFf7IAvrslKU5kIUFe1wSXnv/JGgx/rB2P/7yX4Axr4czSW6d01BZLceE3y3je+d3RvC1JubwXAy/TD9MsVq+wsbC1Yl
+sidebar_class_name: "delete api-method"
+info_path: docs/rest-api/vectara-api-v-2
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>Delete a document</h1>
+
+<MethodEndpoint method={"delete"} path={"/v2/corpora/{corpus_key}/documents/{document_id}"}></MethodEndpoint>
+
+
+
+Delete a document
+
+## Request
+
+<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Path Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"in":"path","name":"corpus_key","description":"The unique key identifying the corpus with the document to delete.","required":true,"schema":{"type":"string","pattern":"[a-zA-Z0-9_\\=]+$"}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"in":"path","name":"document_id","description":"The Document ID of the document to delete.","required":true,"schema":{"type":"string"}}}></ParamsItem></ul></div></details><div><div><ApiTabs><TabItem label={"204"} value={"204"}><div>
+
+Successfully deleted the document.
+
+</div><div></div></TabItem><TabItem label={"403"} value={"403"}><div>
+
+Permissions do not allow deleting a document in the corpus.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"messages"} required={false} schemaName={"message[]"} qualifierMessage={undefined} schema={{"description":"The messages describing why the error occured.","type":"array","items":{"title":"message","type":"string","example":"Internal server error."}}}></SchemaItem><SchemaItem collapsible={false} name={"request_id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"The ID of the request that can be used to help Vectara support debug what went wrong .","type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"messages\": [\n    \"Internal server error.\"\n  ],\n  \"request_id\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"404"} value={"404"}><div>
+
+Corpus or document not found.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"The ID cannot found.","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"messages"} required={false} schemaName={"message[]"} qualifierMessage={undefined} schema={{"type":"array","items":{"title":"message","type":"string"}}}></SchemaItem><SchemaItem collapsible={false} name={"request_id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"ID of the request that can be used to help Vectara support debug what went wrong.","type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"id\": \"string\",\n  \"messages\": [\n    \"string\"\n  ],\n  \"request_id\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
+      

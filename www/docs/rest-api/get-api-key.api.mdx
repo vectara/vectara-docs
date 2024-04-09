@@ -1,0 +1,44 @@
+---
+id: get-api-key
+title: "Get an API key"
+description: "Get an API key"
+sidebar_label: "Get an API key"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVV1v0zAU/SuWxQOIJqkGL1RCohLTVO2BiQ0EbFXlJreNt8Q2ttOtRPnv3OskW7Zm44WnOPHx/Tj3+KTmXmwdn11yUfmcLydcG7DCS60WGZ/xLfi5kaew5xNuhBUleLCEr7nCF0QII1c3sF/JDCFS4RcjMNKEZ+BSKw2Fwo8XOTA6wfSGeVzPzxYMj8UItPC7khYwnbcVTLhLcygFn9Xc7w2lcN5KteVNsySwM1o5cLR/NJ3S4zDTIHqqlQflCSeMKWQamkuuHYHrw2R6fQ2pp3YtUeFlmwrbG820+DzS0eO6iTmPtNERYupSRH/m0a9p9GF1dfVx+fYVbyYdm2MZ8qoUKrIgMrEuniXxCVXIIqQWPI1mPCxusMpBxqQKcWgK4LyL2XmuqyJja8IYzzBQZWE0B83e6qJlaHwKYZth/wKJzpjXzxQurBUkMumhdGOzx3Re+oK+dYpswsf303eH2c/AltI5fHEs00xpz0RR6FuGevYYD4uQrq/C/UeZlOCc2D5HSL/L2q01VXKb7wMlYK22TKdEdvYiMR0LXbARucGdKE3ALBTpThQ4RLsD2yaJOfHWzXv1b2F3SFwLz1KhSBlBOTjMHArDviMT6A3MVcZo67G7dUWNIfwWOWW3VmOjIwoazPSYKgsjbZ5axwng9FQ/LYyCJpTrzp3a25XjS7I7Sjozckn9YEsNp8tA7be+VdkC0bn3xs0SOhHv2vrjVJcYhJPNBNFLvydnbOU27/yx3zknRbSDHgAeBCJ62wyemOP1Bcv7e85/RNhOdHr8M5Ag1UYPR9sTSi1jQWNe2kNOQAW/3uGlWjBTCL/RtoyvFJ6iltsTR/E0nhL/eC/cl8050iFTGNAwpKCArSiSAI30JnItOOkuiUjDJcHbIInHDUC2FunNp0GE0JPRzqNxEbbr+WCOj7q6J87DnU+wEeQNw4Rp1d2ML3lgo58yLmeD3w8OJ8ekBKvrtXDwzRZNQ59Rv5ZGicudsJJ8NEghk47WKKWNKBwcVHRvCvz11+4n9Ya98Ccb7aDXg6KWd6Ko6A2XwZmHv89miehOKFRdC5inKbrw4OiBPZFe76/EyfEF0v8X+O2o8w==
+sidebar_class_name: "get api-method"
+info_path: docs/rest-api/vectara-api-v-2
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>Get an API key</h1>
+
+<MethodEndpoint method={"get"} path={"/v2/api_keys/{api_key_id}"}></MethodEndpoint>
+
+
+
+Get an API key
+
+## Request
+
+<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Path Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"api_key_id","in":"path","description":"The name of the API key.","required":true,"schema":{"type":"string"}}}></ParamsItem></ul></div></details><div><div><ApiTabs><TabItem label={"200"} value={"200"}><div>
+
+The API key.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"id"} required={false} schemaName={"string"} qualifierMessage={"**Possible values:** Value must match regular expression `key_[a-zA-Z0-9_\\=]+$`"} schema={{"description":"The ID of the API key.","type":"string","pattern":"key_[a-zA-Z0-9_\\=]+$"}}></SchemaItem><SchemaItem collapsible={false} name={"name"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"The human-readable name of the API key.","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"secret_key"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"The key used in API requests. Should be kept secure.","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"api_roles"} required={false} schemaName={"string[]"} qualifierMessage={undefined} schema={{"description":"The API roles attached to the API key.","type":"array","items":{"type":"string"}}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"secret_key\": \"string\",\n  \"api_roles\": [\n    \"string\"\n  ]\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"403"} value={"403"}><div>
+
+Permissions do not allow getting this API keys.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"messages"} required={false} schemaName={"message[]"} qualifierMessage={undefined} schema={{"description":"The messages describing why the error occured.","type":"array","items":{"title":"message","type":"string","example":"Internal server error."}}}></SchemaItem><SchemaItem collapsible={false} name={"request_id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"The ID of the request that can be used to help Vectara support debug what went wrong .","type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"messages\": [\n    \"Internal server error.\"\n  ],\n  \"request_id\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
+      

@@ -1,0 +1,76 @@
+---
+id: list-api-roles
+title: "Get available API roles"
+description: "Get available API roles. API roles can be attached to identities, like an API key."
+sidebar_label: "Get available API roles"
+hide_title: true
+hide_table_of_contents: true
+api: eJy1V9tuGzcQ/RWCz7KkOn3yUwXUMIS0iJFLL7ANgdodWYx3yQ3JlSMI+veeIfemi520aF4SLS8zZ86cGY53MqhHL6/upKrDWj6MZE4+c7oK2hp5JW8oCLVRulDLgsTsdi6cLciP+58iU0YsSagQVLamXAQrdE4m6KDJj0Shn7Bp4oUn2o7lSNqKnGIH8xwuCu3DrNLv2Rg2K+VUSYEco9pJg494qNQBu5pBfanJbeUx1I9rEqX6qsu6FKYul+SEXYncZnUJNJ5xOQq1M4AqrCERdEkMx9GXWjsClpUqPI2kRxylklc7GbYVe9cm0CM5nF1ZV6qQlt5cYqHUhj3Kq5/wO3nH7+mU0a1UXQT+2u9HXSSVeqQFiHg9mE8+MQnETtMGYBGdoa9B8P3DwNQKbMUDkSWxVh4JIYPLMSPfF6OHI/Mo9/sHPu0razzygf3L6ZT/O8T3G5LGKHpFwElmwZMJfFpVVaGzmOTJZ89Xdqcu7fIzZZzVyrEkWC/prl5Emy+77Vw2lpRzKjIaqPTf9pBScWycBcQ77IDZbGMb+GlJGklVFPaZ8kWn5TNo33V7sAfRKYdKSPfEcnvoQ1wjV6KzBiVvIdJimy7cmwzoleacelu7jAYmk9NlMqq6E1BKWCcNNQsbVdR0b0pVjcU8xRiXhPaomKIY8ZKJ6z0Q7LWY8aXMtrM3vjc9Mx3TKs81X1TF7QHnh9TcWshjy+ii8d6fF3qVAq89qI5gfEWZXmkgeN31kYzY8AKAF+2tUxhgYRjRMFhU+iETAxksLVKmjBwUeXA1DWTRpemMKiJc8ayRHfQBH/U8zFlsVUoUjdZbQJ1JBD87yrIPyqETRJuEf9APljbfjuLuSCAUXXJB6hAv8x4vxrvD4NmAPlZAsqRM3hm5NweMDUzwgV7d3HXIh38nlG+UdNen0FQHbe3uXL7RyvAMFXwNL0xXjkl88sRCbAtnS/vQED9Vki/jnVK5Cmd72mlvQZJMrlwu2muiobpttzHbTd6HqjvUdfeAnCjrz3Vs+pHztnYO3gwk10f7o/ST654oR8IUpzE+RaJ7gM/0vX3PA7fi39v4jzfa9/x9E1mTrp+nb860AnKl9j7Wfm6FsaHpCQyUw/gRb0xJ3oOUM+UZx4hmt22tjOJ5nTRNzqFybJbVLj2tL+q14aMxdkLmSNJXhXrhpTmCcqgE4cltULzRyVi2AkU+Fzo/j3X+a/teNSfTw9BMZXUzR6ypqMQfYALJFb6uKusColvWHBiOP4NT8ewsAn097deMLKYz6X9teYZ7pEgx2gk+JpvLSf+GY9SIMaVxrnYFTqxDqPzVhE+NNwnUOLMlLkoePzyBXB22XJNQ0lvazprhtN35wGlO2RscGDSPuNiOWGtSeZzemhHsrwtI6uLt9d8xMm1WdpivliWW3ebybCW3R27IxDLFfDabi6pQgefD1O445HTjcjwdT5lUCN2/W30AHZofo46GIQUFPapiEo9e2NWFT4cnjfJVFpUPiWvmcYXiXars6ZeBhRhTZX0olelnnZcG+ePwdn2B/ZjZv0lQQFuagDDkB3CjKnaNfu5kZL1XEPK+Rjy8s9stladPrtjveTnNzqyrXHtG2c+3L0b1n/9MOIs89uHur5M4TeFb8rz//ZD+72H/FaSDvz56sA/84TSjBZkPONxUDDOb7s2yjKphiCfNl610/eDm+iN0+A9cqgQt
+sidebar_class_name: "get api-method"
+info_path: docs/rest-api/vectara-api-v-2
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>Get available API roles</h1>
+
+<MethodEndpoint method={"get"} path={"/v2/api_roles"}></MethodEndpoint>
+
+
+
+Get available API roles. API roles can be attached to identities, like an API key.
+
+## Request
+
+<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Query Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"limit","in":"query","description":"The maximum number of documents to return at one time.","required":false,"schema":{"type":"integer","format":"int32","minimum":1,"maximum":100,"default":10}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"page_key","in":"query","description":"Used to retrieve the next page of documents after the limit has been reached.","required":false,"schema":{"type":"string"}}}></ParamsItem></ul></div></details><div><div><ApiTabs><TabItem label={"200"} value={"200"}><div>
+
+List of API roles.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>api_roles</strong><span className={"openapi-schema__name"}> object[]</span></span></summary><div style={{"marginLeft":"1rem"}}><div style={{"marginTop":".5rem","marginBottom":".5rem"}}>
+
+List of roles.
+
+</div><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={false} name={"name"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"The name of the API role.","type":"string"}}></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>allowed_operations</strong><span className={"openapi-schema__name"}> object</span><span className={"openapi-schema__divider"}></span><span className={"openapi-schema__required"}>required</span></span></summary><div style={{"marginLeft":"1rem"}}><div style={{"marginTop":".5rem","marginBottom":".5rem"}}>
+
+Operations that are allowed by the API role. Each operation may only allow
+certain resources that are described by a resource path to resource value
+map. If the value is null, then the operation is allowed on any resource.
+
+
+</div><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>property name*</strong><span className={"openapi-schema__name"}> ApiOperationPolicy</span></span></summary><div style={{"marginLeft":"1rem"}}><div style={{"marginTop":".5rem","marginBottom":".5rem"}}>
+
+Policy to allow operations if only using the specified resource.
+
+
+</div><SchemaItem collapsible={false} name={"allow_any_resource"} required={true} schemaName={"boolean"} qualifierMessage={undefined} schema={{"description":"If any resource is allowed for the operation.","type":"boolean","default":true}}></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>allowed_resources</strong><span className={"openapi-schema__name"}> object</span></span></summary><div style={{"marginLeft":"1rem"}}><div style={{"marginTop":".5rem","marginBottom":".5rem"}}>
+
+Object with keys of resource paths to a list of allowed resources.
+A resource path starts with either body, path, or implicit.
+A body or path resource is within the operation body, and implicit
+resource is a resource implied by the request.
+
+
+</div><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>property name*</strong><span className={"openapi-schema__name"}> string[]</span></span></summary><div style={{"marginLeft":"1rem"}}><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><div style={{"marginTop":".5rem","marginBottom":".5rem","marginLeft":"1rem"}}>
+
+string
+
+</div><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></div></details></SchemaItem></div></details></SchemaItem></div></details></SchemaItem></div></details></SchemaItem><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></div></details></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>metadata</strong><span className={"openapi-schema__name"}> object</span></span></summary><div style={{"marginLeft":"1rem"}}><div style={{"marginTop":".5rem","marginBottom":".5rem"}}>
+
+The standard metadata in the response of a list operation.
+
+</div><SchemaItem collapsible={false} name={"page_key"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"When requesting the next page of this list, this is needed as a query parameter.","type":"string"}}></SchemaItem></div></details></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"api_roles\": [\n    {\n      \"name\": \"string\",\n      \"allowed_operations\": {}\n    }\n  ],\n  \"metadata\": {\n    \"page_key\": \"string\"\n  }\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"403"} value={"403"}><div>
+
+Permissions do not allow listing API roles.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"messages"} required={false} schemaName={"message[]"} qualifierMessage={undefined} schema={{"description":"The messages describing why the error occured.","type":"array","items":{"title":"message","type":"string","example":"Internal server error."}}}></SchemaItem><SchemaItem collapsible={false} name={"request_id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"The ID of the request that can be used to help Vectara support debug what went wrong .","type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"messages\": [\n    \"Internal server error.\"\n  ],\n  \"request_id\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
+      

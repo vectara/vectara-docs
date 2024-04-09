@@ -1,0 +1,48 @@
+---
+id: delete-user
+title: "Delete a user"
+description: "Delete a user from the account."
+sidebar_label: "Delete a user"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVV9v0zAQ/yqWn0DKkmrsqU9UWkHVEExsQ6AxIde5NN6S2NhOSxXlu3PnJDRtx5jQnmrnzr77/em54V6sHJ/e8tqBdfwu4ik4aZXxSld8ys+hAA9MMIqzzOqS+Rz3Uuq68jGPuDZgBWUvUsxPQ/4NJmPICCtK3Fqq0PAKN5hCN/1QKcYVVTDC5/yw7JUBqTIFLlSj69jinHnNuvuproWftbKARb2tIeJO5lAKPm243xqq47xV1Yq37R0lO6MrB47ip5Mz+tmvGGpshGOulhKcy+qi2Pbl0pi3ET+bvDk+dgm2VM7hxrFUs0p7JopCb7qTWD8AIMjUs9SVh8rTNcKYQslAXHLv6K7mGIJe3oP0xKQlmr3qAJTYn1h16/12rrHYEGVdaElNbPJtaASs1ZZpKWtLqKKhkLBWbEkRD2W41itfUKC/bJfZsxpx+CVKE3IWCMpWomCIco0shiJIWduJBM6T3I/2iqLqLHTWZ+JaeCZFxZaBtpREz6Ew7AsygX5CfYzR1iO6ZU3AMH2DnLKN1Qg0PuqU2hjQzKkz/NIGOf/mAhIxQ3unLyjZEwQg2L2KB+1He3L/r17/EuOlhXhah4/avyO4Oz0CTJ/r3QwJ8wNHw5Qn69MkjKek6WdHi8HObN1kqW2Bebn3xk2TRBgVr7smY6lLPM5pBjhA1yu/pWk3M+oCtrMa7x9FrkjMjudRwoj18HEYXDmINIy5fq59PZldLk4u5t8CVFVleizMwBrmMGzocOCRF4aU91CFkboGNlswUwifaVvG3ys8RZC7E6fxJJ4QyziB3KfsCulQEkY0jCkoYCWKJKSe6OzEdclJ728hg7/RyIp4zADSpZAPb0c3BExGO1+K4Pse897zcAiq2f15nvGO9Bx7+OUTxIwUY8UgbNMb4ZYH4rqXKuLT4SFBBXPsjBKaZikc3NiibekzOtmS3rhcC6vEkqRAv6TK0RrNlonCwRN9v/rcPzOv2TPepEcxDOapyDlrUdS0w+UDWmn3GrZ3mNpbilrsojN8i4wfnTuaQeTsP/+c8/mH+fUctfoN+UWxgg==
+sidebar_class_name: "delete api-method"
+info_path: docs/rest-api/vectara-api-v-2
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>Delete a user</h1>
+
+<MethodEndpoint method={"delete"} path={"/v2/users/{user_id}"}></MethodEndpoint>
+
+
+
+Delete a user from the account.
+
+## Request
+
+<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Path Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"user_id","in":"path","description":"Specifies the User ID to delete.","required":true,"schema":{"type":"string"}}}></ParamsItem></ul></div></details><div><div><ApiTabs><TabItem label={"204"} value={"204"}><div>
+
+User was successfully deleted.
+
+</div><div></div></TabItem><TabItem label={"403"} value={"403"}><div>
+
+Permissions do not allow deleting the user.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"messages"} required={false} schemaName={"message[]"} qualifierMessage={undefined} schema={{"description":"The messages describing why the error occured.","type":"array","items":{"title":"message","type":"string","example":"Internal server error."}}}></SchemaItem><SchemaItem collapsible={false} name={"request_id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"The ID of the request that can be used to help Vectara support debug what went wrong .","type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"messages\": [\n    \"Internal server error.\"\n  ],\n  \"request_id\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"404"} value={"404"}><div>
+
+User not found.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"The ID cannot found.","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"messages"} required={false} schemaName={"message[]"} qualifierMessage={undefined} schema={{"type":"array","items":{"title":"message","type":"string"}}}></SchemaItem><SchemaItem collapsible={false} name={"request_id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"ID of the request that can be used to help Vectara support debug what went wrong.","type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"id\": \"string\",\n  \"messages\": [\n    \"string\"\n  ],\n  \"request_id\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
+      

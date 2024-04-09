@@ -1,0 +1,77 @@
+---
+id: upload-file
+title: "Upload a file to the corpus"
+description: "Upload files such as PDFs and Word Documents. Vectara will attempt to automatically extract text and any metadata."
+sidebar_label: "Upload a file to the corpus"
+hide_title: true
+hide_table_of_contents: true
+api: eJzFWG1v2zYQ/iuEsA8b5rd1xYAFGDC3abegQBs0yd6SwKCls8VWIlWSsuMa/u97jpRsOXaKdmjXL4EsHsnnnnvuTpd14uXcJSfXSV0VRmbJbS/JyKVWVV4ZnZwkV+G9mKmCnHB1mgvpxPnpcyekzsSfxmbi1KR1Sdq7gfiDUi+tFEtVFEJ6T2XlhTdC1t6U0qtUFsVK0J23MsUCHsIxUq9ESV5m0stB0ktMRVYygLMMECK050CApQrHw5Qso14nijFW0udY0ljAr9TYqnaTt7RK7jtzmZOotXpXk8CyUBlQq9lK6bnwWIo7hZmJZa7gKYDHu8MqU8DgLL2rlSUg87amXuLSnEqZnKwTv6oYgPMWJwasYMDyxdey/37c/2fU/3lyc/PL7fffJJvNbTyKnH9ishXvP8q8DBeLmbEBRctwVUiPd2Vgd0c06HEUOPW11UJpXhZZEyHExedKd5wd3OjL4Jt1njd79p6Xy7rwKrxoQIpUamzSXuIADtj20DZyDRQZmeNDAprsRremA/FKI/5GU2e3XIkpNUQT/IUkhFclARo45BthxvRsIQ3Z8T5fya8P+DfTNyCJ+bcsJK/Ihe0NzEOmx3aqoEgLZGErsEsfNQxk0SVG5o77zJ42kobV1lcAuA9IZpniO2Vx3oHGMtr0Eg7zMRWxsxIEJFOlgRHKwcHKs3GjEU6N1zFKCRZJpybjvfecbqi8jOfLqiqQjwxn+MaBhw6Ehy0NfPR9YCNZAsmGwVhyldEusvxo9MMhwZdHGRK5XDgwTLoRSqwFGaugobUR6b4ODpB/gghUdhxdW8PE2WkncE0M4OPD4uHdB7L45OA7b6yc06R2+HvMjf1LfzdLZCgSrdkXyNqiqMHlQFzmyqEARPlgm8DPtLYWFshBbTizuUiA7WVO+kbjp1W0aKthe1wvhMVw4u5twNkZ3bH1VvIhY/cJn648uQkjOqTuZV1OyXLFCVYBNx53jqSmRoFmPGYpbeZQLO5UWZdtpXbqPQV4N7q14Mo0RebyLtRI7SKohk7UQ5qT7WYVXv30GC9Kpfno5GTUCffk4+Bvq8EDfmxl8elYOsneavQixvwqSOWYQRLz8vFo9GBXif28Le1LydQWjAPK+XzZNlNUZBOy1lj3QFUIa7HgWkJPI059V1GqZioV4QBWcVBkA/fjk+t+Md2E0DomrrsqrZX8saDQRuP7htDG9rAgbLa9e/JQRTk7bVtpy3JwkrsotzsXi1xORbXt6a6uKoOOm9G0niPHuAmFrm2Nnh8pS53QP5FZ0wGeMaNbBfx4CO6cbKmcww/uZ6EQ4KsMBSW2YE6c5pvjSxXhbggOiWtXRVyaMqBlvoptlp0TJkUdi0L9rxFEl7yTZRVszjR/pclCOLILJHS4ZPBVgiw+HOX92D4+xPQ01kWO6Qy183Pm8gcogLt7Nx7pnl8+5/7ffHtp/HN2dxeR2DVywxNLZZyP3/85fg0Xj4acQ6jaw/VuOtkMY8JNZnGyieqLY01tC2zMva/cyXAoKzVYRMyD1JQ4L+HpwRHSQPkVj2/jSr2g1bjGhZ2VC45tpL1j0AlCeMlRYAZzwge43Q1Sf/XH52f9F8/+Dp7zl0Q3Ti2JsBEAdGzUak1+Ix3muQWJ8dl2conNkF2OOx4NRoMRk4765F7NLkCHSqlDQ5eCguayGAbTvpn1XTQeNnLHdyZDha4V8zgjyqYyfftr54TgE8eplCENGp/3h669AnjfxfUus77OlNwEkdeHIFWFT/ignHUjveskRKYRH55O9objrv6gmpxViz3r9VQ6urLFZsOvkUyWNYbHhbRKTjn80GimHD9D7zNZOPoAO9++bkbm78RnmcCPOt5KWrNnC1nU/AuP7OrePwU2t7ButM5+RIOnEW0/zDy7A47NnJteu2mcplT5jvnhUHXbKQvnry4uYTxtxv3SZLyHDw7n9naPYBsV5V+FXDM0
+sidebar_class_name: "post api-method"
+info_path: docs/rest-api/vectara-api-v-2
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>Upload a file to the corpus</h1>
+
+<MethodEndpoint method={"post"} path={"/v2/corpora/{corpus_key}/upload_file"}></MethodEndpoint>
+
+
+
+Upload files such as PDFs and Word Documents. Vectara will attempt to automatically extract text and any metadata.
+
+## Request
+
+<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Path Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"in":"path","name":"corpus_key","description":"The unique key identifying the corpus of which to upload the file.","required":true,"schema":{"type":"string","pattern":"[a-zA-Z0-9_\\=]+$"}}}></ParamsItem></ul></div></details><MimeTabs className={"openapi-tabs__mime"}><TabItem label={"multipart/form-data"} value={"multipart/form-data-schema"}><details style={{}} className={"openapi-markdown__details mime"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-mime"}><h3 className={"openapi-markdown__details-summary-header-body"}>Body</h3></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}><div style={{"marginTop":"1rem","marginBottom":"1rem"}}>
+
+Upload a file for the Vectara platform to attempt to parse and turn into a document within the corpus.
+The first part of the multipart request can contain any document metadata to attach to the parsed
+document. Only one document may be uploaded at a time.
+
+
+</div></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>metadata</strong><span className={"openapi-schema__name"}> object</span></span></summary><div style={{"marginLeft":"1rem"}}><div style={{"marginTop":".5rem","marginBottom":".5rem"}}>
+
+Arbitrary object that will be attached as document metadata to the extracted document.
+
+</div><SchemaItem name={"property name*"} required={false} schemaName={"any"} qualifierMessage={undefined} schema={{"description":"Arbitrary object that will be attached as document metadata to the extracted document.","type":"object","additionalProperties":true}} collapsible={false} discriminator={false}></SchemaItem></div></details></SchemaItem><SchemaItem collapsible={false} name={"file"} required={false} schemaName={"binary"} qualifierMessage={undefined} schema={{"type":"string","format":"binary"}}></SchemaItem></ul></details></TabItem></MimeTabs><div><div><ApiTabs><TabItem label={"201"} value={"201"}><div>
+
+The extracted document havs been parsed and added to the corpus.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"The Document ID.","type":"string"}}></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>metadata</strong><span className={"openapi-schema__name"}> object</span></span></summary><div style={{"marginLeft":"1rem"}}><div style={{"marginTop":".5rem","marginBottom":".5rem"}}>
+
+The document metadata.
+
+</div><SchemaItem name={"property name*"} required={false} schemaName={"any"} qualifierMessage={undefined} schema={{"description":"The document metadata.","type":"object","additionalProperties":true}} collapsible={false} discriminator={false}></SchemaItem></div></details></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>storage_usage</strong><span className={"openapi-schema__name"}> object</span></span></summary><div style={{"marginLeft":"1rem"}}><div style={{"marginTop":".5rem","marginBottom":".5rem"}}>
+
+How much storage the document used. This information is currently not returned when
+retrieving the document, and only returned when indexing document.
+
+
+</div><SchemaItem collapsible={false} name={"bytes_used"} required={false} schemaName={"int64"} qualifierMessage={undefined} schema={{"description":"Number of bytes used by document counting towards maximum corpus size, and\ntowards any billing plans.\n","type":"integer","format":"int64","minimum":0}}></SchemaItem><SchemaItem collapsible={false} name={"metadata_bytes_used"} required={false} schemaName={"int64"} qualifierMessage={undefined} schema={{"description":"Number of metadata bytes used by document metadata.\n","type":"integer","format":"int64","minimum":0}}></SchemaItem></div></details></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"id\": \"string\",\n  \"metadata\": {},\n  \"storage_usage\": {\n    \"bytes_used\": 0,\n    \"metadata_bytes_used\": 0\n  }\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"400"} value={"400"}><div>
+
+Upload files request was malformed.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>field_errors</strong><span className={"openapi-schema__name"}> object</span></span></summary><div style={{"marginLeft":"1rem"}}><div style={{"marginTop":".5rem","marginBottom":".5rem"}}>
+
+The errors that relate to specific fields in the request.
+
+</div><SchemaItem name={"property name*"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}} collapsible={false} discriminator={false}></SchemaItem></div></details></SchemaItem><SchemaItem collapsible={false} name={"messages"} required={false} schemaName={"message[]"} qualifierMessage={undefined} schema={{"type":"array","items":{"title":"message","type":"string"}}}></SchemaItem><SchemaItem collapsible={false} name={"request_id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"The ID of the request that can be used to help Vectara support debug what went wrong.","type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"field_errors\": {},\n  \"messages\": [\n    \"string\"\n  ],\n  \"request_id\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"403"} value={"403"}><div>
+
+Permissions do not allow uploading a file to the corpus.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"messages"} required={false} schemaName={"message[]"} qualifierMessage={undefined} schema={{"description":"The messages describing why the error occured.","type":"array","items":{"title":"message","type":"string","example":"Internal server error."}}}></SchemaItem><SchemaItem collapsible={false} name={"request_id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"The ID of the request that can be used to help Vectara support debug what went wrong .","type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"messages\": [\n    \"Internal server error.\"\n  ],\n  \"request_id\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"404"} value={"404"}><div>
+
+Corpus not found.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"The ID cannot found.","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"messages"} required={false} schemaName={"message[]"} qualifierMessage={undefined} schema={{"type":"array","items":{"title":"message","type":"string"}}}></SchemaItem><SchemaItem collapsible={false} name={"request_id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"ID of the request that can be used to help Vectara support debug what went wrong.","type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"id\": \"string\",\n  \"messages\": [\n    \"string\"\n  ],\n  \"request_id\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
+      

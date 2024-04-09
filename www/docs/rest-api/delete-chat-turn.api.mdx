@@ -1,0 +1,48 @@
+---
+id: delete-chat-turn
+title: "Delete a turn"
+description: "Delete a turn from a chat. This will delete all subsequent turns in the chat."
+sidebar_label: "Delete a turn"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVVFv0zAQ/iuWxQOILJkGT32iYgVVIEBsIBBMyE0ui0cSG/vSUkX579zZKW3XapOmPcWxz3ffd9/5rpeorr2c/JB5pdDLq0QW4HOnLWrTyok8hxoQhBLYuVaUzjS0ZttUXFbai5Wua1GMRrT03cLDnw5aDDe80K3ACuIVmUhjwSn2PS/Ie7z4ms4uyZiOrXKqoS3HmHqpGYJVWNFRSwf0x45+6ULeBnpJQebnwpR74Rxh0Q4oFroOEunzCholJ73EtWV3Hp1ur0NkpLBtiIC/0udP5DAkRxEwr/sRsNVDESAFiAiu2IG3pvXg+c7Z6Uv+7Ae+6PIcvC+7ul6PWhSjYqkcEvny9MXhpU/gGu09/XhRGNEaZP3MKjogRHssctMiacpulLW1zoOG2Y1nX/0hKbO4gRyZlGPFUUf4DcFU13F9mLzNqYhHCwaxqtYBCDhnnDB53lEuGdEYSDmn1vSrEZrgFjXWfDA621r+zzP8VY0NNvOWE66oasEtwcUgKQsfZAMfKu0o1q3QoyWtFYpctWIBovOkABpRQW3FV8oElTU9DWuNQ2K36JgYma/4naycIaLpAVKGsWEzY2S0MwQ5j9TAa+Ns55NQ+ImgVIX3yqqWpmuLR9TwjowQ+72It/gke/o/VMD71HlsZe4W5oPBN0x3K1CgiZXZ9rf4tiv6z5ZnWWi0WT/2sSELbTLrx64ykHGsxtgBO1fTvQrR+kmWKavTZQSd5qYhd5JbhAd6FhrX3MenVr+D9bSjeDsnFyxuzPuOwY4KYZNl4BRWoApw24737WT6aX7ybvY9UNdtaXaF2mSRbAQBOtYWNyZvoQ3tfwliOhe2Vlga16Q/ufUz5XjjLD1NTznr1KL8x/KC0qFz2EnDbgpquFZ1FkxPTHnio3E21rvKQ71TYWvOYwlQLFT++9WOh8DJGo+NCu9g5Lw3+G6T6reP6dEn5KgIwl/MKEMkCOELZdCPZfRDhjTHiZ3IyXYkBoe8tZlRVAIVUeM7fb9QHr64ehh4mxA4LhhaLpXTasFaUsEV2vOaqrdUtYc7iD/9PI62Z+L48D3KZFNwLVfbUtUd/9HyN5Xfdrrz6H0EJJvx9QAkmwwOV2Q6PgjOTzyd0sS1uHPvoKPyu/zfB85n72eXM6q0f0j/OVo=
+sidebar_class_name: "delete api-method"
+info_path: docs/rest-api/vectara-api-v-2
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>Delete a turn</h1>
+
+<MethodEndpoint method={"delete"} path={"/v2/chats/{chat_id}/turns/{turn_id}"}></MethodEndpoint>
+
+
+
+Delete a turn from a chat. This will delete all subsequent turns in the chat.
+
+## Request
+
+<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Path Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"in":"path","name":"chat_id","description":"The ID of the chat.","required":true,"schema":{"type":"string","pattern":"cht_.+$"}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"in":"path","name":"turn_id","description":"The ID of the turn.","required":true,"schema":{"type":"string","pattern":"trn_.+$"}}}></ParamsItem></ul></div></details><div><div><ApiTabs><TabItem label={"204"} value={"204"}><div>
+
+Successfully deleted a turn.
+
+</div><div></div></TabItem><TabItem label={"403"} value={"403"}><div>
+
+Permissions do not allow deleting the turn.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"messages"} required={false} schemaName={"message[]"} qualifierMessage={undefined} schema={{"description":"The messages describing why the error occured.","type":"array","items":{"title":"message","type":"string","example":"Internal server error."}}}></SchemaItem><SchemaItem collapsible={false} name={"request_id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"The ID of the request that can be used to help Vectara support debug what went wrong .","type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"messages\": [\n    \"Internal server error.\"\n  ],\n  \"request_id\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"404"} value={"404"}><div>
+
+Corpus, chat, or turn not found.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"The ID cannot found.","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"messages"} required={false} schemaName={"message[]"} qualifierMessage={undefined} schema={{"type":"array","items":{"title":"message","type":"string"}}}></SchemaItem><SchemaItem collapsible={false} name={"request_id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"ID of the request that can be used to help Vectara support debug what went wrong.","type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"id\": \"string\",\n  \"messages\": [\n    \"string\"\n  ],\n  \"request_id\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
+      
