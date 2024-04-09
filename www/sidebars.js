@@ -5,6 +5,7 @@ module.exports = {
       id: "introduction",
       label: "The Vectara Platform",
     },
+    "migration-guide-api-v2",
     {
       type: "doc",
       id: "use-case-exploration",

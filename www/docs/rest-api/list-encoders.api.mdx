@@ -1,0 +1,48 @@
+---
+id: list-encoders
+title: "List available encoders."
+description: "Encoders are used to store and retrieve from a corpus."
+sidebar_label: "List available encoders."
+hide_title: true
+hide_table_of_contents: true
+api: eJy1Vm1v2zYQ/iuEMGDA5thuOqybPy0fgsLAghV9WT9kQXCSThZbilRIyk5g+L/3jqJkOXK8NECBALHE091zd889vG3iYeWSxXWCOjM5WpfcTJIcXWZl7aXRySK5jCcCLIrGYS68Ec4begKdC4veSlyjKKypBIjM2Lpx02SSmBotsJNlTm6UdL5zRYc1WKjQ88PieptIjnTXoH2gM00n9FhIRefJYzzvcYX3AlYgtfMi4hb8jQuABtYBhsW7RlokDAUoh5PEZSVWkCy2iX+oOZCjDPSKTPEeqlrxqzVmnhBOf0l2u8lxeEpW0o/QXcG9rJpK6KZKCZYpqECuUd5x1ahWjdVCauFLFFyR5wGU2lPSXIrC2Ap8++r1Ob2opOZ4yeIV/W5j0+/5nHEVQIH5KeQQYdewwtuvyIkcZHWYxqfYZ8bZd5gfNN57wT44NeypUVCnYlJUFVGCEymipm+Bksm/qw+73Q1bu5oaiI7Pz+dz/ncI8W8q3xAEx8gMVUp7Noa6VjIL/Jt9cfzFdhzRpF+o0UxHy2z1so3XD8PeEqyFUDOPlft/DzIfA47sFzKU4zH3avBUQ7aj6LfX87M/b3796YCT/P5VsusI+JR7Pj0WYO8oNaai0eRS05Q2vm78bS4r1I5nZuz5c4nMWOn6aaOfnRJk1GLPUiCQGJ/nFGwSmJCZRocG7V2H923AvTWTZXohSrkq96agpH8QG6kU+dGuqVBUrDisO0w+V0OGE5GSI1DKbJygyWAQUjMg15L1rmn9mIKf+oiD6pyYrL5eb37/Y/doPp6q/eDtuAW7wUweKTFBbEdoUORo3xZ7w20I5eaqDZU2xqG+KgQ9xO5tgxQXNaQKj3DyibjR/hm+ybmXPtAqFoEVMyFphxz80Vk7RPDBk2iDzUX3SSePnQIwhSCIpehvlOlo4HpZO85eFh90oXAjFQvMZv+T9if9acScKk4qBiIIpOjvqyN9HdSARemqy/3xQXf9vY+ZkQGb/DZ/PUb9Dm0lXTs1udE/R54HnJzFD1A9ukAdleSIAFzFk8jvlAFsyoeWNdbS5Jksa+wBYcaCGSsRw5xUqKVmLQQlHNo1UTIEmYaCxk7eHlPYZd72E7t+02/wIiNdSPe7S4mqpkzShpOg4w3VTmys4aSkL8W/7d0vXFPXxvrTDb9kZKGRLetLw8vOCn0r6SU9zNbnM9xvPm1K7drTWEUGpfe1W8xmUMtpt3hkpqLvEr4KpS7MsIAdvot3S7E+Hw3UR0q/M3mLOkwMXd4XS1Er8Cxz0/94jhlE+8X5dD6dc5bEOfdP8YEAygwHwIagFK5AzYLpmSnOXGs8izSELNCQ+CY5s4LmKIXs618DD6F8tXG+gkDPuJeE6xzW9B1LzwG/H0lvT/eXr6axn55kYEZVoUWIMIVmbGPXrpNQ2uFaXBJmPthuU7pgPlm12/HrdoHibubSRZmNG86TwL93hz2KN6jdfkteg2rYKOFl7/lQXrCwnkDTLcUvBPMD1s4TYAer8B7vDT9YyYCpqTdkXCLwtcYdbr+7yDKsh1mOVJe99GLw9vIjcf4bYx2qfQ==
+sidebar_class_name: "get api-method"
+info_path: docs/rest-api/vectara-api-v-2
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>List available encoders.</h1>
+
+<MethodEndpoint method={"get"} path={"/v2/encoders"}></MethodEndpoint>
+
+
+
+Encoders are used to store and retrieve from a corpus.
+
+## Request
+
+<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Query Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"in":"query","name":"filter","description":"Regex against encoder names and descriptions.","required":false,"schema":{"type":"string","example":"vectara.*"}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"in":"query","name":"limit","description":"Maximum number of results to return in the list.","required":false,"schema":{"type":"integer","format":"int32","minimum":1,"maximum":100,"default":10}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"page_key","in":"query","description":"Used to the retrieve the next page of encoders after the limit has been reached.","required":false,"schema":{"type":"string"}}}></ParamsItem></ul></div></details><div><div><ApiTabs><TabItem label={"200"} value={"200"}><div>
+
+List of encoders.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>encoders</strong><span className={"openapi-schema__name"}> object[]</span></span></summary><div style={{"marginLeft":"1rem"}}><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={false} name={"id"} required={false} schemaName={"string"} qualifierMessage={"**Possible values:** Value must match regular expression `enc_[0-9]+$`"} schema={{"description":"Encoder id.","type":"string","pattern":"enc_[0-9]+$","example":"enc_1"}}></SchemaItem><SchemaItem collapsible={false} name={"name"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"Encoder name.","type":"string","example":"boomerang"}}></SchemaItem><SchemaItem collapsible={false} name={"output_dimensions"} required={false} schemaName={"int32"} qualifierMessage={undefined} schema={{"description":"When this encoder is used to create an embedding, the count of dimensions the output embedding has.A high dimensionality will consume more storage space, but allows for an increase the quality ofthe embedding.","type":"integer","format":"int32","example":768}}></SchemaItem><SchemaItem collapsible={false} name={"description"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"Encoder description.","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"default"} required={false} schemaName={"boolean"} qualifierMessage={undefined} schema={{"description":"Whether the encoder is default used when creating a corpus.","type":"boolean","example":true}}></SchemaItem><SchemaItem collapsible={false} name={"enabled"} required={false} schemaName={"boolean"} qualifierMessage={undefined} schema={{"description":"Whether the encoder is enabled.","type":"boolean","example":true}}></SchemaItem><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></div></details></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>metadata</strong><span className={"openapi-schema__name"}> object</span></span></summary><div style={{"marginLeft":"1rem"}}><div style={{"marginTop":".5rem","marginBottom":".5rem"}}>
+
+Standard metadata in the response of a list operation.
+
+</div><SchemaItem collapsible={false} name={"page_key"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"When requesting the next page of this list, this is needed as a query parameter.","type":"string"}}></SchemaItem></div></details></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"encoders\": [\n    {\n      \"id\": \"enc_1\",\n      \"name\": \"boomerang\",\n      \"output_dimensions\": 768,\n      \"description\": \"string\",\n      \"default\": true,\n      \"enabled\": true\n    }\n  ],\n  \"metadata\": {\n    \"page_key\": \"string\"\n  }\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"403"} value={"403"}><div>
+
+Permissions don't allow listing encoders.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"messages"} required={false} schemaName={"message[]"} qualifierMessage={undefined} schema={{"description":"Messages describing why the error occured.","type":"array","items":{"title":"message","type":"string","example":"Internal server error."}}}></SchemaItem><SchemaItem collapsible={false} name={"request_id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"Id of the request that can be used to help debug what went wrong with Vectara support.","type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"messages\": [\n    \"Internal server error.\"\n  ],\n  \"request_id\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
+      

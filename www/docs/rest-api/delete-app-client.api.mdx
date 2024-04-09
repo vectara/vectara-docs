@@ -1,11 +1,11 @@
 ---
-id: delete-api-key
-title: "Delete an API key."
-description: "Delete an API key."
-sidebar_label: "Delete an API key."
+id: delete-app-client
+title: "Delete an App Client."
+description: "Delete an App Client."
+sidebar_label: "Delete an App Client."
 hide_title: true
 hide_table_of_contents: true
-api: eJxtVMFu2zAM/RVBl22AawddTzmtQIMh2IYVW7dLWxS0TcdqbUmT5KSB4X8fKdtt0vRkmXokH5+e1MsAGy+XtxK6UMv7RBqLDoIyel3KpSyxwYCXVn3DvUykBQctBRyn9FLTD4HAqocn3D+okiBKU8QCFUso2xdOWa5GwcvrtSCY4KyUdh3+65RDahNch4n0RY0tyGUvw95yXR+c0hs5DPcM9tZoj573zxcX/Dkuf1OjmFvswIuRepnKIZEXi8+nCdfoWuU9/RDY6A9BQNOY3ZhIjUWolZ9LemZcGB1QBy4F1jaqiEJlj57r9acDmPwRi8C6OZY1qJF+i97DZlwfU/ox7YgxnDOLXb0nJijQOeOEKYrO8VTJ3AScAz4bFbCNJYMKDW9MbV6Rk56JxGdobcSsaSCnoREe3Rbd2IQkG8bjQR/4VE94rkthqshqQtEagihAixxF57EUwYgaG0uT5B0PQds70k7snOGhVKjFXxKHDCV8Z61xIT1hyjTmaVbMjCIDB4/ZXMWTFtR8OiyuRDatzauFo3nJlEuZbc+zybE+61+9OxBkVGE0d+caQtchWL/MOCPdjnzTwrRURLItla7MoebzSEyEIG+ZskdnyFfU8aZtybZrYRsIlXFteqcpi0mMGefpIl2wMGRW/7P6TQRVgQfEDkk1uIEmi9AzU535EZxNzoUiOpcsqniyCrHMoXj6clAhKm6NDy1ER08X/F2BjyZ7sXzA55DRMPQMUKmoYT8pfyujIrP2tFwevBwkZk2NGdb3OXj845ph4DAZzO0pTsstOAU5K00HVCrPazrjChqPJ4xebqv8+Gt6aj6Jt4/Qu7Tnm6X5Xm2h6fiPlpR4/NwN94SuEUp0kdIIuCwKtOEg9eSxYOu8GPRq9X11syLp/wNJy+U0
+api: eJx1VMFu2zAM/RVBl21AagddTzmtWIMhwIYVW7dLWxS0zMRqZUuT5KSB4X8fKTttMncny9Ij+fj4pE5G2AS5uJXQxkrez6R16CFq26xKuZAlGox46dxno7GJciYdeKhpz3NUJxv6IRw496AS5EGXhNINbTqglDPKEZTXjnPSJuUSQzLBsRkBPP5ptUeqF32LMxlUhTXIRSfj3nH2EL1uNrLv7xkcnG0CBj4/n1/w57TCTYXiqMoOghjaKDPZz+TF/OM05hp9rUOgHwLb5l0UYIzdDYFUW8RKh6OsgXkr20QWhbJR/0arpFv+GDhlN23DFo+okoaeVY56aKLGEGAzrE9ZfRtPxLBdMJFdtScyKNB764VVqvXc2OxQBLyHPU8gYp1SRh0NH4xlXpGjqjOJz1C7hFlRQ74BIwL6LfqhCKnWD0PCkMY74bkqhV0nViOK1hCFgkYUKNqApYhWVGgcdVK03AQd79J0vOWmdKzEbxKHzCVC65z1MZswZRqHbpbMjHZ63jxlc5WGLaj467w4Gbm2sq+mTl4mgy5kvj3PwemHJ9yHvDuxck+oQYvB7q03FFDF6MIi56BsO7DOlK0pj2SL6mZtj5U/NHZ5vRIE+Zcv+/UA+YJNun5bsvBKOANxbX2d3TUUxSSGiPNsns1ZHnJt+L7+SQS1wiNix6QMbsDkCXpm12dhAOejf0El/5JRNXe2RiwLUE+fjjIk3Z0NsYbk6/HK/0/mk+ZevB/xOebUDz0MlC3J2I3638okymECtFycPickaUXlGdl1BQT85U3f8zaZze9pn5Zb8BoK1pvGVOrAaxr2GkzACamXmyvf/xgfnw/ijZfpTfKHi9bwNduCafmPlkR+8hL29xRQIZToE7EBc6kUungUPXk+2EYvfr1afl3eLGkMfwF1y/OT
 sidebar_class_name: "delete api-method"
 info_path: docs/rest-api/vectara-api-v-2
 custom_edit_url: null
@@ -22,23 +22,23 @@ import SchemaItem from "@theme/SchemaItem";
 import SchemaTabs from "@theme/SchemaTabs";
 import TabItem from "@theme/TabItem";
 
-<h1 className={"openapi__heading"}>Delete an API key.</h1>
+<h1 className={"openapi__heading"}>Delete an App Client.</h1>
 
-<MethodEndpoint method={"delete"} path={"/v2/api_keys/{api_key_id}"}></MethodEndpoint>
+<MethodEndpoint method={"delete"} path={"/v2/api_keys/{app_client_id}"}></MethodEndpoint>
 
 
 
-Delete an API key.
+Delete an App Client.
 
 ## Request
 
-<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Path Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"api_key_id","in":"path","description":"API key name.","required":true,"schema":{"type":"string"}}}></ParamsItem></ul></div></details><div><div><ApiTabs><TabItem label={"204"} value={"204"}><div>
+<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Path Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"app_client_id","in":"path","description":"App Client name.","required":true,"schema":{"type":"string"}}}></ParamsItem></ul></div></details><div><div><ApiTabs><TabItem label={"204"} value={"204"}><div>
 
-The API key was deleted.
+The App Client was deleted.
 
 </div><div></div></TabItem><TabItem label={"403"} value={"403"}><div>
 
-Permissions don't allow deleting this API keys.
+Permissions don't allow deleting this App Clients.
 
 </div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"messages"} required={false} schemaName={"message[]"} qualifierMessage={undefined} schema={{"description":"Messages describing why the error occured.","type":"array","items":{"title":"message","type":"string","example":"Internal server error."}}}></SchemaItem><SchemaItem collapsible={false} name={"request_id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"Id of the request that can be used to help debug what went wrong with Vectara support.","type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"messages\": [\n    \"Internal server error.\"\n  ],\n  \"request_id\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
       

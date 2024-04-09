@@ -1,0 +1,56 @@
+---
+id: list-summarizers
+title: "List summarizers."
+description: "List summarizers that can be used with queries."
+sidebar_label: "List summarizers."
+hide_title: true
+hide_table_of_contents: true
+api: eJzNV0tv4zYQ/iuELr14Zdfbk08N0MXCQIIGm2x7yAaLsTSyuCuRWpKykxr5752hqIctxUiTFigQICY5w/nmmwdHh8jB1karu8jWZQlG/oXGRvezKEWbGFk5qVW0ii6ldWIgIVwOTiSgxAZFbTEVe+ly8aNGI9HG0SzSFRpg7XVK+gXp3wwMzKIKDJToeLG6O0SKFiSXyYK26FiyVb7uMTrF8gm3+CCcFiW4JBesaQWoVAzErNAZYcQhZkZl8EctDRKkDAqLs8gmOZYQrQ6Re6wYgXVGqm309DTrQBWylO48pit4kGVdClWXGzRs3KCtC2cZp0FXGyWk8oiYipdBkcqRq8xGpg0522y9X9JGKRXbi1Y/0+/GNv1eLBhXBmSYV0MfKtji1+/4eN6NzxxJQsw4CTXFcod+ofDBCb6DXRvmAWQUr+AXsSRysJQSqEgdyJ80/qJuc2lFF25BC6Ud3YgpGSPPvHYmje0tBPJI+Z/F7J6lbUXxR8vny8WC/03k8rEbHI9EE93KsTxUVSETn73zb5aVDmOjevMNE06LynCuO9mYHJbRS02HG8EY8AFyWE4oXwzUmEUQl5dXTfFRyLozX4SPHYX99c8AlunY1Dod108sfCDpz5sE689LnWIhZMrZDY3pgck2MCd5dmrut341YXfqOlSwKXAC+Z85kro5uYNRB5XBdRutCwTVwAtVM2KC4TRu85VB7uhq13FCHIQOKPY5qhMQX1RIfVthIjPpi2MSDQWorNxkCjRHz7RfnxFvjXhjYTrawfq/H+5g9NWhboG9Ncz9PcNoh92e6GcztLNFxpx0Be9de+2jrf4p9NvUGCEFN9ldjnHeOHrowKSiVWlflbbtMaHg3xjRvcDxKAO612CKVO7dFFnrKADj5u9p4vtnXWGEVg62TYm+209EdEADt8Or1vfTg8G48Ck4RzIs9cvi/Rj4NZpSWuvf/lSrn5yAotB7D5Ud+W+6PY0eloiZKNWrcBKmkg1j2OePnlA0hp49nSS1OcrU0QPQ8hHMjMik6niAsvIya3LIKCiERbOjsvBGYk9riOfX84UfpMa9hV6XHIuKPNnU7AQd74k7sTeaneKC+IPIoZgTy1WlzVQhD6L7gZH5WDa5n2seEbfo6QWX02K+W87t0bzYeNUMi7UpSCZ3rrKr+RwqGe8a+3GiS1KNeBCQKtNDDluIF9drsVuOKuuWGGhFPqLypUPDz8VaVAU4HsCabs0gGo1lvIgX7Chlnv09uyGAMsEBsCGoArdQzL3oO529s43wPGQiJD4TKeUke5ZRQW0g+f7r4AbPYKWtK8FnaJjrTgfz+NSxQ5/qr5jiQxAddYA58SB9F/X0H0Ko7iJP5snXQ05A+exw2IDFz6Z4euLtZurkEKbShrYehrpnQb9l3J+E7/te/6Wxg6JmoYin5ZfDesXEfwZN+4nxSjD/y7n9jLuDr5He43teGMkuU4rck3COkFKMOF8avYskwWrI06h38y1dS/n44ZbK5m+f+zdg
+sidebar_class_name: "get api-method"
+info_path: docs/rest-api/vectara-api-v-2
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>List summarizers.</h1>
+
+<MethodEndpoint method={"get"} path={"/v2/summarizers"}></MethodEndpoint>
+
+
+
+List summarizers that can be used with queries.
+
+## Request
+
+<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Query Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"filter","in":"query","description":"Regex to match names and descriptions of the summarizers.","required":false,"schema":{"type":"string"}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"limit","in":"query","description":"Maximum number of results to return in the list.","required":false,"schema":{"type":"integer","format":"int32","minimum":1,"maximum":100,"default":10}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"page_key","in":"query","description":"Used to the retrieve the next page of summarizers after the limit has been reached.\nThis parameter is not needed for the first page of results.\n","required":false,"schema":{"type":"string"}}}></ParamsItem></ul></div></details><div><div><ApiTabs><TabItem label={"200"} value={"200"}><div>
+
+List of summarizers.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>summarizers</strong><span className={"openapi-schema__name"}> object[]</span></span></summary><div style={{"marginLeft":"1rem"}}><div style={{"marginTop":".5rem","marginBottom":".5rem"}}>
+
+List of summarizers.
+
+</div><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={false} name={"id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"Id of the summarizer. This is used as the model id in a query.","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"description"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"Description of the summarizer.","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"enabled"} required={false} schemaName={"boolean"} qualifierMessage={undefined} schema={{"description":"Whether the summarizer is enabled.","type":"boolean"}}></SchemaItem><SchemaItem collapsible={false} name={"default"} required={false} schemaName={"boolean"} qualifierMessage={undefined} schema={{"description":"If this is the default summarizer it is used in queries when the summarizer\nis not specified.\n","type":"boolean"}}></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>prompts</strong><span className={"openapi-schema__name"}> object</span></span></summary><div style={{"marginLeft":"1rem"}}><div style={{"marginTop":".5rem","marginBottom":".5rem"}}>
+
+A prompt that can be used with a LLM.
+
+</div><SchemaItem collapsible={false} name={"id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"Id of the prompt. This is used as the prompt id in a query.","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"description"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"Description of the prompt.","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"enabled"} required={false} schemaName={"boolean"} qualifierMessage={undefined} schema={{"description":"Whether the prompt is enabled.","type":"boolean"}}></SchemaItem><SchemaItem collapsible={false} name={"default"} required={false} schemaName={"boolean"} qualifierMessage={undefined} schema={{"description":"If this prompt is the default prompt used with the summarizer.","type":"boolean"}}></SchemaItem></div></details></SchemaItem><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></div></details></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>metadata</strong><span className={"openapi-schema__name"}> object</span></span></summary><div style={{"marginLeft":"1rem"}}><div style={{"marginTop":".5rem","marginBottom":".5rem"}}>
+
+Standard metadata in the response of a list operation.
+
+</div><SchemaItem collapsible={false} name={"page_key"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"When requesting the next page of this list, this is needed as a query parameter.","type":"string"}}></SchemaItem></div></details></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"summarizers\": [\n    {\n      \"id\": \"string\",\n      \"description\": \"string\",\n      \"enabled\": true,\n      \"default\": true,\n      \"prompts\": {\n        \"id\": \"string\",\n        \"description\": \"string\",\n        \"enabled\": true,\n        \"default\": true\n      }\n    }\n  ],\n  \"metadata\": {\n    \"page_key\": \"string\"\n  }\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"403"} value={"403"}><div>
+
+Permissions don't allow listing summarizers.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"messages"} required={false} schemaName={"message[]"} qualifierMessage={undefined} schema={{"description":"Messages describing why the error occured.","type":"array","items":{"title":"message","type":"string","example":"Internal server error."}}}></SchemaItem><SchemaItem collapsible={false} name={"request_id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"Id of the request that can be used to help debug what went wrong with Vectara support.","type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"messages\": [\n    \"Internal server error.\"\n  ],\n  \"request_id\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
+      

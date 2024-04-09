@@ -1,0 +1,56 @@
+---
+id: list-chats
+title: "List chats."
+description: "List chats in the Vectara account."
+sidebar_label: "List chats."
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVt9v2zYQ/lcIYsAe5sie2yc/LSjawkCzFWu7PXRBcKZOFluJVEnKTmD4f98dRStKpCRFkYcCBizxjvfju+9Od5ABtl6uPktVQvDyciZz9MrpJmhr5Eq+0z6IKBPaiFCi+AdVAAcClLKtCZmcSdugA76wzulKRVdeRWsz2ZBmjQEd+zhIzSa/tehuSGZIEtVrHeR9vxdwreu2FqatN+iELYRD31YURrD0GFpnTgGxP47CqxJrkKuDDDcNW9Ym4BYdiQrragjd0YslHdTasHm5+p2eO1f0vFhwGAWQH347HmfTITewxauveDOK+pPHnAPksChIp3GH8cXgdRB8jTPp4ISCYEkJEAKiBC82iIYuAmWSc0oOv7XaIaFaQOVxIkdPTsxWHo+XrO0bazx6li8XC/6bqOYpAnagLGFkAmtC01RaxTLOv3hWP4zd2c0XKj8X1nHRg+6cdeR52l2yAs4Bg6cD1v5p6zofm17nbJjRY+MD2wkQpl4ggFlXleEq++0XeSQiaOfDVVfOkc03LBRR+Ljx3hAYvyeCPWCpkz5pCg1sKpzI8d8S6SJzRPt4XdB/0hYKDFGG6FW0rtOilhiCvLG2QjB0gNdQNxWdBdciOVTEsID5FYRJn2bgcE+kTOpTGPd9lZPGWdDUHdQ0MujA7iRPgXhAIwBIZZJJd/1/CGBycLk4XTl1+YncDCfEnhf92MlGlOk7dDpB7iv0gZIYd2dMnu3Pukf6GcScICcsINGjn2sTFR0AwA1wccr9viDOyL9TWiRl+cvFi3HI79HV2nt68SK35ldiVlXZfQySU3jubq7RewJjoqEvkkR0xxv2vi9vIojonCWyK9W6O2QZN3vCILmZoFVPWLk23MNQCY9uRySPTrIIZarh1ePTIWnRM7GZe2aDok1TusSqoUw2LSfBZCfsxN5ZTkqHsv/S+bZprJtq3kFFX3NkfRVfjmN6ZV3TEpdsEAV9OPNnLNgDENxxNRo7wyr/aKl+wjr8acMbzvm2Ht38KS3vJlsM3aehpJf5bjlXaVHp+NVtKa2rSFqG0PjVfA6NznZdBJmyNV2S/LHVprBDiE5Bnr9fi91yNNc+Djant2ji4KLhfb4WTQWB52j2H89qDqK7scwW2YJTpe73fxUfKECtcBDYMKgKt1DNo+qZLc58pzxPFAMVKUZc0pxZQeNsA+rrHwMLEcPG+lBDpF7adG7Xv+x+Sodb9n7flphqFmjYzilpWqzIZcT6kCryWUbk+lW0pHj49HDYgMdPrjoe+Th9vqlSufbp25n2owcj/IF9cjLe+E3pd9YdVC3rSN4Uvz+Y514TH4l0sKreBnvJL05ztATjJSmXCDkvMoRpd+9cKWyGKY7mE1vp++rt64/EoP8B1EVA2A==
+sidebar_class_name: "get api-method"
+info_path: docs/rest-api/vectara-api-v-2
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>List chats.</h1>
+
+<MethodEndpoint method={"get"} path={"/v2/chats"}></MethodEndpoint>
+
+
+
+List chats in the Vectara account.
+
+## Request
+
+<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Query Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"in":"query","name":"limit","description":"Maximum number of results to return in the list.","schema":{"type":"integer","format":"int32","minimum":1,"maximum":100,"default":10}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"in":"query","name":"page_key","description":"Used to the retrieve the next page of chats after the limit has been reached.","required":false,"schema":{"type":"string"}}}></ParamsItem></ul></div></details><div><div><ApiTabs><TabItem label={"200"} value={"200"}><div>
+
+List of chats.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>chats</strong><span className={"openapi-schema__name"}> object[]</span></span></summary><div style={{"marginLeft":"1rem"}}><div style={{"marginTop":".5rem","marginBottom":".5rem"}}>
+
+List of chats.
+
+</div><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={false} name={"id"} required={false} schemaName={"string"} qualifierMessage={"**Possible values:** Value must match regular expression `cht_.+$`"} schema={{"description":"Id of the chat.","type":"string","pattern":"cht_.+$"}}></SchemaItem><SchemaItem collapsible={false} name={"first_query"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"First query of the chat.","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"first_answer"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"First answer of the chat.","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"enabled"} required={false} schemaName={"boolean"} qualifierMessage={undefined} schema={{"description":"Whether this chat is enabled can have further turns.","type":"boolean","example":true}}></SchemaItem><SchemaItem collapsible={false} name={"created_at"} required={false} schemaName={"date-time"} qualifierMessage={undefined} schema={{"description":"When this chat was created.","type":"string","format":"date-time"}}></SchemaItem><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></div></details></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>metadata</strong><span className={"openapi-schema__name"}> object</span></span></summary><div style={{"marginLeft":"1rem"}}><div style={{"marginTop":".5rem","marginBottom":".5rem"}}>
+
+Standard metadata in the response of a list operation.
+
+</div><SchemaItem collapsible={false} name={"page_key"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"When requesting the next page of this list, this is needed as a query parameter.","type":"string"}}></SchemaItem></div></details></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"chats\": [\n    {\n      \"id\": \"string\",\n      \"first_query\": \"string\",\n      \"first_answer\": \"string\",\n      \"enabled\": true,\n      \"created_at\": \"2024-04-08T16:35:57.522Z\"\n    }\n  ],\n  \"metadata\": {\n    \"page_key\": \"string\"\n  }\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"403"} value={"403"}><div>
+
+Permissions don't allow listing chats.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"messages"} required={false} schemaName={"message[]"} qualifierMessage={undefined} schema={{"description":"Messages describing why the error occured.","type":"array","items":{"title":"message","type":"string","example":"Internal server error."}}}></SchemaItem><SchemaItem collapsible={false} name={"request_id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"Id of the request that can be used to help debug what went wrong with Vectara support.","type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"messages\": [\n    \"Internal server error.\"\n  ],\n  \"request_id\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"404"} value={"404"}><div>
+
+Corpus not found.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"Id not found.","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"messages"} required={false} schemaName={"message[]"} qualifierMessage={undefined} schema={{"type":"array","items":{"title":"message","type":"string"}}}></SchemaItem><SchemaItem collapsible={false} name={"request_id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"Id of the request that can be used to help debug what went wrong with Vectara support.","type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"id\": \"string\",\n  \"messages\": [\n    \"string\"\n  ],\n  \"request_id\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
+      
