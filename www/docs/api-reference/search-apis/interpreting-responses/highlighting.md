@@ -72,6 +72,23 @@ And if the query text is "striped horse-like animal," you might get back an
 an `offset` of 48 (how many characters before the sentence starting with "How"
 starts) and a `text` value of "How vexingly quick daft zebras jump!"
 
+## Configuring Context
+
+The `ContextConfiguration` object in the query request allows you to control 
+the amount of context included with each matching document part (snippet) that 
+appears in a summary. You can specify the number of characters or sentences to 
+include before and after the snippet, as well as the tags used to wrap the 
+snippet, such as `<b>` and `</b>`.
+
+```json
+"context_configuration": {
+   "characters_before": 50,
+   "characters_after": 50,
+   "start_tag": "<b>",
+   "end_tag": "</b>"
+}
+```
+
 ## Including Additional Context
 Often, just having the `text` and `offset` values are enough to create a
 compelling highlighting/snippet extraction experience for short-form documents
