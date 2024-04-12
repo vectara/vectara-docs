@@ -59,14 +59,15 @@ while `num_results` dictates how many results are returned. Thus, setting
 `start=5` and `num_results=20` would return twenty results beginning at position
 five. These fields are mainly used to provide pagination.
 
- ## Context Configuration
+## Context Configuration
 
 The `contextConfig` object lets you specify how each document part appears in 
-the results of a query by controlling the amount of surrounding context that is 
-included with each matching document part, also known as a snippet. Use 
-`characters_before` and `characters_after` to specify the number of characters 
-to include before and after the matching document part. This is useful when 
-you want to provide a fixed-length context around the matching text.
+the summary of a query. This controls the amount of surrounding context that is 
+included with each matching document part, also known as a snippet, and it 
+effects the results quality for summarization. Use `characters_before` and 
+`characters_after` to specify the number of characters to include before and 
+after the matching document part. This is useful when you want to provide a 
+fixed-length context around the matching text.
 
 These character properties are mutually exclusive with `sentences_before` 
 and `sentences_after` which specify the number of sentences to include before 

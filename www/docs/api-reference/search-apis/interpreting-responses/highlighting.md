@@ -76,18 +76,22 @@ starts) and a `text` value of "How vexingly quick daft zebras jump!"
 
 The `ContextConfiguration` object in the [query request](/docs/api-reference/search-apis/search#context-configuration) allows you to control 
 the amount of context included with each matching document part (snippet) that 
-appears in a summary. You can specify `characters_before`/`characters_after` or 
+appears in a summary. Adding this context effects the results quality for 
+summarization.You can specify `characters_before`/`characters_after` or 
 `sentences_before`/`sentences_after` to include before and after the snippet, as 
 well as `start_tag` and `end_tag` that wrap the snippet, such as `<b>` and `</b>`.
 
 ```json
 "context_configuration": {
-   "characters_before": 50,
-   "characters_after": 50,
+   "sentences_before": 2,
+   "sentences_after": 2,
    "start_tag": "<b>",
    "end_tag": "</b>"
 }
 ```
+This example uses `sentences_before` and `sentences_after`. If you enter values 
+for sentences before/after and characters before/after, then 
+characters_before/after is ignored and summary returns the sentences values.
 
 ## Including Additional Context
 Often, just having the `text` and `offset` values are enough to create a
