@@ -8,7 +8,7 @@ import {Config} from '@site/docs/definitions.md';
 Using our APIs enable application developers and data engineers to seamlessly 
 integrate the <Config v="names.product"/> semantic search capabilities into 
 your applications. After you review this section, you can 
-check out our [API Playground](/docs/rest-api/vectara-api-v-2) to experiment with Vectara's REST APIs directly 
+check out our [API Playground](/docs/rest-api/vectara-rest-api-v-2) to experiment with Vectara's REST APIs directly 
 from your browser!
 
 The Vectara Console and our APIs work hand-in-hand as part of the app development 

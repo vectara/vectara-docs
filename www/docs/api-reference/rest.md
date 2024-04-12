@@ -47,5 +47,5 @@ or [Postman](https://www.postman.com/).
 3. Start making API calls directly from the tool.
 
 Want to try the REST APIs live in your browser? Head over to our
-our [API Playground](/docs/rest-api/vectara-api-v-2) and make
+our [API Playground](/docs/rest-api/vectara-rest-api-v-2) and make
 real-time API calls from your browser.

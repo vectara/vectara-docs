@@ -28,13 +28,6 @@ const config = {
               /* path: "2.0", */
             },
           },
-          lastVersion: "current",
-          versions: {
-            current: {
-              label: "2.0",
-              /* path: "2.0", */
-            },
-          },
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),

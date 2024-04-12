@@ -7,9 +7,10 @@ sidebar_label: Update Corpus API Definition
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The Update Corpus API lets you enable or disable a corpus. 
-This is useful to manage the availability of data within the system, such as 
-when you need to take the corpus offline without having to delete the corpus. 
+The Update Corpus API lets you enable or disable a corpus and modify the 
+filter attributes of a corpus. This is useful to manage the availability of 
+data within the system, such as when you need to take the corpus offline 
+without having to delete the corpus. 
 
 This capability can help you utilize automated scripts to programmatically 
 control the availability of corpora based on certain conditions. For example, 
@@ -28,7 +29,7 @@ REST endpoint to enable or disable corpora.
 The request to enable or disable a corpus requires `corpus_id` and setting `enable` 
 to `true` or `false`.
 
-## REST Example
+## REST 2.0 Example
 
 ### Update Corpus Enablement REST Endpoint Address
 

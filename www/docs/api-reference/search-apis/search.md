@@ -19,20 +19,66 @@ and display the results. This page provides a detailed reference for how
 to run queries and also describes some of Vectara's capabilities in metadata 
 filtering, reranking, Retrieval Augmented Generation (RAG), and hybrid search.
 
-:::tip
+## Query Types
 
-Check out our [**interactive API Playground**](/docs/rest-api/query) that lets you experiment with 
-this REST endpoint to send queries.
+The Vectara REST API 2.0 has different types of queries for you use 
+depending on your search needs. Depending on the type, queries enable you to 
+define parameters that control the behavior of the query and summarization:
 
-:::
+- **Search Parameters**: Filter data by metadata, apply lexical weighting, add additional
+  context about the data, and rerank the results
+- **Summarization Parameters**: Choose model and prompt (Scale only), and response settings like
+  length and factual scoring, and even more nuanced model parameters (Scale only)
+- **Stream Response**: Optionally have the summarized response stream in real time.
 
-## Query Request Body and Response
+The exact request format depends on the specific query type that you want to 
+use.
 
-The Query request body specifies different parameters that ask questions about 
-the data within corpora. The Query request requires the following parameters:
+### Query Corpora
 
-* `query` - Contains your question and number of results to return.
-* `corpusKey` - Specifies which corpora to run the query 
+The `/v2/query` endpoint allows you to perform Retrieval Augmented Generation 
+(RAG) across one or more corpora in your account. You send a POST request in 
+the body that specifies the following:
+
+- `query` - Contains your query text
+- `stream_response` - Indicates whether to stream the response in real-time or 
+  to send a complete summary at the end of processing the request
+- `search` - Specifies the search parameters
+- `summarization` - Specifies the summarization parameters
+
+This query type is useful when you want to query all your 
+data sources at once.
+
+### Simple Single-Corpus Query
+
+Send a simplified GET request to `/v2/corpora/{corpus_key}/query` for querying 
+a single corpus that specifies the following:
+
+- `q`: Contains the query string
+- `limit`: Specifies the maximum number of results 
+- `offset`: Specifies the starting position in results
+
+This query types provides a lightweight way to search a single corpus.
+
+### Advanced Corpus Query
+
+Send a POST request to `/v2/corpora/{corpus_key}/query` to query a specific 
+corpus with more advanced capabilities. The request body is similar to the 
+Query Corpora type and specifies the same parameters:
+
+- `query` - Contains your query text
+- `stream_response` - Indicates whether to stream the response in real-time or 
+  to send a complete summary at the end of processing the request
+- `search` - Specifies the search parameters
+- `summarization` - Specifies the summarization parameters 
+
+This advanced type provides additional search filtering and customization 
+options compared to the simple GET method.
+
+## Corpus Key
+
+If you want to query a specific corpus or corpora, include the unique 
+`corpus_key` in the path of the request such as `v2/corpora/:corpus_key`.
 
 The query response message encapsulates a single query result. It is a subdocument
 provided at indexing time. The `text` is the subdocument text, the `score`
@@ -41,6 +87,8 @@ indicates how well the text answers the query (higher scores are better).
 The `metadata` list holds any subdocument-level metadata that was stored with
 the item at indexing time. The `corpus_key` indicates which corpus the result
 came from: recall that a single query can execute against multiple corpora.
+While it's most often the case that a query is run against a single
+corpus, it's sometimes useful to run against several in parallel.
 
 Finally, the `document_index` points at a specific document within the
 enclosing response set's `document` array. This is useful for retrieving the
@@ -54,23 +102,31 @@ example, *"Where can I buy the latest iPhone?"*. Optionally, the **query
 context** provides additional information that the system may use to refine the
 results. For example, *"The Apple store near my house is closed due to Covid."*
 
-The `start` field controls the starting position within the list of results,
-while `num_results` dictates how many results are returned. Thus, setting
-`start=5` and `num_results=20` would return twenty results beginning at position
-five. These fields are mainly used to provide pagination.
+Within the `search` object, add `custom_dimensions` weights (Scale only), 
+`metadata_filter` and set the `lexical_interpolation` (formerly `lambda`) in 
+the REST API v1.0. Setting to `0` disables exact and Boolean text matching, 
+while a value of `1` disabls neural retrieval. Users often see best results by 
+setting this value somewhere between 0.01 and 0.1, and we typically 
+recommend users start experimentation with a `0.025`.
 
-The `corpusKey` specifies a list of corpora against which to run the
-query. While it's most often the case that a query is run against a single
-corpus, it's sometimes useful to run against several in parallel.
+The `semantics` parameter indicates whether to consider a query against this 
+corpus as a query or a response. The `offset` field controls the starting 
+position within the list of results, while `limit` dictates how many results 
+are returned. Thus, setting `offset=5` and `limit=20` would return twenty 
+results beginning at position five. These fields are mainly used to provide 
+pagination.
+
+The `context_configuration` object lets you specify whether you want a specific 
+number of characters or sentences before or after the matching document part.
 
 Finally, the **reranking configuration** enables reranking of results, to
 further increase relevance in certain scenarios. For details about our English 
 cross-attentional (Scale only) and Maximal Marginal Relevance (MMR) rerankers, 
 see [Reranking](/docs/api-reference/search-apis/reranking).
 
-## Corpus Key Definition
+## Query Request and Response
 
-The `corpusKey` specifies the ID of the corpus being searched. The 
+The `corpus_key` specifies the ID of the corpus being searched. The 
 `metadata_filter` allows specifying a predicate expression that restricts 
 the search to a part of the corpus. The filter is written in a simplified SQL 
 dialect and can reference metadata that was marked as filterable during corpus 
@@ -100,12 +156,11 @@ more rarely, as a response.
 
 To use Retrieval Augmented Generation (RAG), which <Config v="names.product"/> also refers to as
 "Grounded Generation" -- our groundbreaking way of producing generative 
-summaries on top of your own data -- you can submit a `SummarizationRequest` 
-alongside your query. This produces a `summary` that attempts to answer the 
+summaries on top of your own data -- you can submit a `summarization` that attempts to answer the 
 end-user's question, citing the results as references. For more information, 
 read about [Retrieval Augmented Generation](/docs/learn/grounded-generation/grounded-generation-overview).
 
-The `summary` object enables you to tailor the results of the query 
+The `summarization` object enables you to tailor the results of the query 
 summarization. Growth users can specify the `maxSummarizedResults` and 
 `responseLang`.
 
@@ -119,9 +174,9 @@ range from `0.0` to `1.0`. A higher scores indicates a greater probability of
 being factually accurate, while a lower score indicates a greater probability 
 of hallucinations.
 
-In your summarization request, set the `factual_consistency_score` field to `true`. 
+In your summarization request, set the `enable_factual_consistency_score` field to `true`. 
 The Factual Consistency Score returns a calibrated value in the 
-`factual_consistency` field of the summary message. The score field 
+`factual_consistency_score` field of the summary message. The score field 
 contains the value between `0.0` and `1.0`.
 
 For example, a score of `0.95` suggests a 95% likelihood that the summary is 
@@ -137,11 +192,11 @@ guideline for cutoffs between good and bad.
 capabilities, which present a powerful toolkit for tailoring summarizations to 
 specific application and user needs. 
 
-The `summarizerPromptName` allows you to specify one of our [available summarizers](/docs/learn/grounded-generation/select-a-summarizer).
-Use `promptText` to override the default prompt text with a [custom prompt](/docs/prompts/vectara-prompt-engine). 
-Your use case might require a chatbot to be more human like, so you decide to 
-create a custom response format that behaves more playfully in a conversation 
-or summary. 
+The `model_id` allows you to specify one of our [available summarizers](/docs/learn/grounded-generation/select-a-summarizer).
+Use `prompt_id` and `prompt_text` to override the default prompt with a 
+[custom prompt](/docs/prompts/vectara-prompt-engine). Your use case might 
+require a chatbot to be more human like, so you decide to create a custom 
+response format that behaves more playfully in a conversation or summary.
 
 The `debug` option lets you view detailed logs to help in troubleshooting and 
 optimization. The `responseChars` lets you control the length of the summary, but 
@@ -163,21 +218,13 @@ the behavior and output style of the summarizer to align with your unique
 application requirements.
 
 
-### Chat Conversation Located within the Summary
-
-If you enabled chat on the corpus, the `summary` object contains a 
-conversation from [Vectara Chat](/docs/api-reference/chat-apis/chat-apis-overview) which 
-includes a `conversationId`. You enable Vectara Chat by setting the `store` value to `true`.
-
-The [Vectara Chat APIs](/docs/api-reference/chat-apis/chat-apis-overview) have more details about conversations.
-
 ## REST Example
 
 ### Query API Endpoint Address
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
 to search content from a corpus:
-<code>https://<Config v="domains.rest.serving"/>/v1/query</code>
+<code>https://<Config v="domains.rest.serving"/>/v2/query</code>
 
 The API Playground shows the full [Query REST definition](/docs/rest-api/query).
 

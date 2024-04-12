@@ -210,7 +210,7 @@ module.exports = {
         },
         {
           type: "category",
-          label: "Access Admin APIs",
+          label: "Authentication Admin APIs",
           items: [
             {
               type: "category",

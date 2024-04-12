@@ -18,7 +18,7 @@ and corpora. Check out this [blog post about managing multi-tenancy](https://vec
 
 :::tip
 
-The [**interactive API Playground**](/docs/rest-api/vectara-api-v-2) lets you experiment with these API endpoints.
+The [**interactive API Playground**](/docs/rest-api/vectara-rest-api-v-2) lets you experiment with these API endpoints.
 
 :::
 

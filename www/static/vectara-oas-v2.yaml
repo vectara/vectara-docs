@@ -1,21 +1,80 @@
 openapi: 3.0.0
 info:
-  title: Vectara API v2
+  title: Vectara REST API v2
   description: |
-    The Vectara Generative AI platform.
+    Vectara provides an end-to-end platform for creating GenAI products using 
+    a simple to use API.
+
+    You can [sign up for an account](https://console.vectara.com/signup) and 
+    then view several [API Recipes](https://docs.vectara.com/docs/api-recipes) with example queries 
+    and parameter values.
+
+    The Vectara API Playground lets you experiment with REST endpoints from 
+    your browser. Select an endpoint to view its definition, including the 
+    required or optional headers, body, responses, and sample commands. On the 
+    right side of each endpoint page, like [ReadCorpus](/docs/rest-api/get-corpus), you manually 
+    enter your API Key or OAuth Bearer Token, `customer_id`, and then any 
+    required body parameters like the `corpusID` before sending the API 
+    request.
+
+    :::note
+
+    Vectara has three kinds of API keys: the Personal API Key, Index API Keys, 
+    and Query API Keys. The Personal API Key enables administrative tasks 
+    including creating, deleting, and listing corpora, and managing Index and 
+    Query API keys for accessible corpora, reading usage data, updating 
+    corpora filters, executing queries, and indexing. Query API Keys are used
+    for read-only querying operations, while Index API Keys provide read and 
+    write access. The OAuth operations authenticate with a Bearer Token via the
+    OAuth 2.0 client credentials grant. Review the [**OAuth 2.0 section**](https://docs.vectara.com/docs/learn/authentication/oauth-2) about 
+    how to generate the token.
   version: 2.0.0
   termsOfService: https://vectara.com/legal/terms-of-service/
+  x-logo:
+    url: https://docs.vectara.com/img/vectara_wordmark.png
+    altText: Vectara
+  x-dark-logo:
+    url: https://docs.vectara.com/img/vectara_wordmark_light.png
+    altText: Vectara
   contact:
     email: feedback@vectara.com
+tags:
+  - name: Queries
+    description: Perform search and retrieval augmented generation operations on one or more corpora
+  - name: Corpora
+    description: Create, manage, and update corpora and their associated settings for administration purposes
+  - name: Upload
+    description: Upload files to a corpus for automatic parsing and document extraction
+  - name: Index
+    description: Index and manage core and structured documents for efficient search and retrieval
+  - name: Documents
+    description: Retrieve and manage documents stored in a corpus for administrative tasks
+  - name: Chats
+    description: Create, manage, and interact with chat sessions for conversational AI and administrative monitoring
+  - name: Summarizers
+    description: List available summarizers for text summarization tasks and admin-level customization
+  - name: Encoders
+    description: List available encoders for embedding such as Boomerang
+  - name: Jobs
+    description: Monitor and manage background jobs, such as rebuilding indexes or updating corpus settings
+  - name: Users
+    description: Create, manage, and authenticate users within the platform for user administration
+  - name: Auth
+    description: Manage API keys, app clients, and perform authentication operations for admin-level access control
+
 servers:
-  - url: https://api.vectara.com/v2
+  - url: https://api.vectara.io
+
 paths:
   /v2/query:
     post:
       tags:
-        - query
-      summary: Conduct Retrieval Augmented Generation (RAG) on corpora
-      description: Use this endpoint to perform a multi-purpose query that can retrieve relevant information from one or more corpora and generate a response using RAG.
+        - Queries
+      summary: Query Corpora
+      description: Perform a multi-purpose query that can retrieve relevant information from one or more corpora and generate a response using RAG.
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       operationId: query
       requestBody:
         content:
@@ -55,9 +114,12 @@ paths:
     post:
       summary: Create a corpus
       description: Create a corpus, which is a container to store documents and associated metadata.
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       operationId: createCorpus
       tags:
-        - corpora
+        - Corpora
       requestBody:
         content:
           application/json:
@@ -86,9 +148,12 @@ paths:
       summary: List corpora
       description: "List corpora in the account. The corpus objects that are returned are less \
                     detailed than the direct corpus retrieval operation." 
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       operationId: listCorpora
       tags:
-        - corpora
+        - Corpora
       parameters:
         - name: limit
           in: query
@@ -128,9 +193,12 @@ paths:
   /v2/corpora/{corpus_key}:
     get:
       tags:
-        - corpora
+        - Corpora
       summary: Retrieve metadata about a corpus
       description: Get metadata about a corpus. This operation is not a method of searching a corpus.
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       operationId: getCorpus
       parameters:
         - in: path
@@ -161,9 +229,12 @@ paths:
                 $ref: '#/components/schemas/NotFoundError'
     delete:
       tags:
-        - corpora
+        - Corpora
       summary: Delete a corpus and all its data
       description: Delete a corpus and all the data that it contains.
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       operationId: deleteCorpus
       parameters:
         - in: path
@@ -190,9 +261,12 @@ paths:
                 $ref: '#/components/schemas/NotFoundError'
     patch:
       tags:
-        - corpora
+        - Corpora
       summary: Update a corpus
       description: Enable or disable a corpus.
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       operationId: updateCorpus
       parameters:
         - in: path
@@ -229,9 +303,12 @@ paths:
   /v2/corpora/{corpus_key}/reset:
     post:
       tags:
-        - corpora
+        - Corpora
       summary: Remove all documents and data in a corpus
       description: Resets a corpus, which removs all documents and data from the specified corpus, while keeping the corpus itself.
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       operationId: resetCorpus
       parameters:
         - in: path
@@ -259,7 +336,7 @@ paths:
   /v2/corpora/{corpus_key}/replace_filter_attributes:
     post:
       tags:
-        - corpora
+        - Corpora
       summary: Replace the filter attributes of a corpus.
       description: |
         Replace the filter attributes of a corpus. This does not happen immediately, but
@@ -267,6 +344,9 @@ paths:
         job completes, using new filter attributes will not work.
 
         You can monitor the status of the filter change using the returned job id.
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       operationId: replaceFilterAttributes
       parameters:
         - in: path
@@ -303,9 +383,12 @@ paths:
   /v2/corpora/{corpus_key}/query:
     get:
       tags:
-        - query
-      summary: Simplified query method for querying a single corpus
+        - Queries
+      summary: Simple Corpus Query
       description: Search a single corpus with a simple query request.
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       operationId: searchCorpus
       parameters:
         - in: path
@@ -364,9 +447,12 @@ paths:
                 $ref: '#/components/schemas/NotFoundError'
     post:
       tags:
-        - query
-      summary: Query a specific corpus
+        - Queries
+      summary: Corpus Query
       description: Query a specific corpus and find relevant results, highlight relevant snippets, and use Retrival Augmented Generation.
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       operationId: queryCorpus
       parameters:
         - in: path
@@ -413,9 +499,12 @@ paths:
   /v2/corpora/{corpus_key}/upload_file:
     post:
       tags:
-        - upload
+        - Upload
       summary: Upload a file to the corpus
       description: Upload files such as PDFs and Word Documents. Vectara will attempt to automatically extract text and any metadata.
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       operationId: uploadFile
       parameters:
         - in: path
@@ -467,11 +556,14 @@ paths:
   /v2/corpora/{corpus_key}/documents:
     post:
       tags:
-        - index
+        - Index
       summary: Add a document to a corpus
       description: |
         Add a document to a corpus. You can add documents that are either in a typical structured format,
         or in a format that explicitly specifies each document part that becomes a search result.
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       operationId: createCorpusDocument
       parameters:
         - in: path
@@ -513,8 +605,11 @@ paths:
                 $ref: '#/components/schemas/NotFoundError'
     get:
       tags:
-        - documents
+        - Documents
       summary: List the documents in the corpus
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       operationId: listCorpusDocuments
       parameters:
         - in: path
@@ -562,8 +657,11 @@ paths:
   /v2/corpora/{corpus_key}/documents/{document_id}:
     delete:
       tags:
-        - documents
+        - Documents
       summary: Delete a document
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       operationId: deleteCorpusDocument
       parameters:
         - in: path
@@ -597,9 +695,12 @@ paths:
   /v2/chats:
     post:
       tags:
-        - chats
+        - Chats
       summary: Start a chat
       description: Create a chat while specifying the default retrieval parameters used by the prompt.
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       operationId: createChat
       requestBody:
         content:
@@ -637,9 +738,12 @@ paths:
                 $ref: '#/components/schemas/NotFoundError'
     get:
       tags:
-        - chats
+        - Chats
       summary: List chats
       description: Retrieve a list of previous chats in the Vectara account.
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       operationId: listChats
       parameters:
         - in: query
@@ -679,9 +783,12 @@ paths:
   /v2/summarizers:
     get:
       tags:
-        - summarizers
+        - Summarizers
       summary: List summarizers
       description: List of availables summarizers that can be used with queries.
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       operationId: listSummarizers
       parameters:
         - name: filter
@@ -724,9 +831,12 @@ paths:
   /v2/chats/{chat_id}:
     get:
       tags:
-        - chats
+        - Chats
       summary: Get a chat
       description: Get a chat summary to view what started the chat, but not subsequent turns.
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       operationId: getChat
       parameters:
         - in: path
@@ -757,9 +867,12 @@ paths:
                 $ref: '#/components/schemas/NotFoundError'
     delete:
       tags:
-        - chats
+        - Chats
       summary: Delete a chat
       description: Delete a chat and any turns it contains permanently.
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       operationId: deleteChat
       parameters:
         - in: path
@@ -787,9 +900,12 @@ paths:
   /v2/chats/{chat_id}/turns:
     post:
       tags:
-        - chats
+        - Chats
       summary: Create a new turn in the chat
       description: Create a new turn in the chat. Each conversation has a series of `turn` objects, which are the sequence of message and response pairs tha make up the dialog.
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       operationId: createChatTurn
       parameters:
         - in: path
@@ -835,9 +951,12 @@ paths:
                 $ref: '#/components/schemas/NotFoundError'
     get:
       tags:
-        - chats
+        - Chats
       summary: List turns in a chat
       description: List all turns in a chat to see all message and response pairs that make up the dialog.
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       operationId: listChatTurns
       parameters:
         - in: path
@@ -869,9 +988,12 @@ paths:
   /v2/chats/{chat_id}/turns/{turn_id}:
     get:
       tags:
-        - chats
+        - Chats
       summary: Get a turn
       description: Get a specific turn from a chat, which is a message and response pair from the conversation.
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       operationId: getChatTurn
       parameters:
         - in: path
@@ -909,9 +1031,12 @@ paths:
                 $ref: '#/components/schemas/NotFoundError'
     delete:
       tags:
-        - chats
+        - Chats
       summary: Delete a turn
       description: Delete a turn from a chat. This will delete all subsequent turns in the chat.
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       operationId: deleteChatTurn
       parameters:
         - in: path
@@ -945,9 +1070,12 @@ paths:
                 $ref: '#/components/schemas/NotFoundError'
     patch:
       tags:
-        - chats
+        - Chats
       summary: Update a turn
       description: Update a turn; used to disable or enable a chat.
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       operationId: updateChatTurn
       parameters:
         - in: path
@@ -991,9 +1119,12 @@ paths:
   /v2/encoders:
     get:
       tags:
-        - encoders
+        - Encoders
       summary: List the available encoders
       description: Encoders are used to store and retrieve from a corpus. 
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       operationId: listEncoders
       parameters:
         - in: query
@@ -1035,9 +1166,12 @@ paths:
   /v2/jobs:
     get:
       tags:
-        - jobs
+        - Jobs
       summary: List jobs
       description: List jobs for the account. Jobs are background processes like replacing the filterable metadata attributes.
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       operationId: listJobs
       parameters:
         - name: corpus_key
@@ -1096,9 +1230,12 @@ paths:
   /v2/jobs/{job_id}:
     get:
       tags:
-        - jobs
+        - Jobs
       summary: Get a job by ID
       description: Get a job by a specific ID. Jobs are backgrouond processes like replacing the filterable metadata attributes.
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       operationId: getJob
       parameters:
         - name: job_id
@@ -1130,9 +1267,12 @@ paths:
   /v2/users:
     post:
       tags:
-        - users
+        - Users
       summary: Create a user in the current customer account
       description: Create a user for the current customer account.
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       operationId: createUser
       requestBody:
         content:
@@ -1160,9 +1300,12 @@ paths:
                 $ref: '#/components/schemas/Error'
     get:
       tags:
-        - users
+        - Users
       summary: List users in the account
       description: Lists all users in the account.
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       operationId: listUsers
       parameters:
         - name: limit
@@ -1197,9 +1340,12 @@ paths:
   /v2/users/{user_id}:
     get:
       tags:
-        - users
+        - Users
       summary: Get a user
       description: Get a user and view details like the email, username, and roles associated with a user.
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       operationId: getUser
       parameters:
         - name: user_id
@@ -1229,9 +1375,12 @@ paths:
                 $ref: '#/components/schemas/NotFoundError'
     patch:
       tags:
-        - users
+        - Users
       summary: Update a user
       description: Update details about a user such as role names.
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       operationId: updateUser
       parameters:
         - name: user_id
@@ -1266,9 +1415,12 @@ paths:
                 $ref: '#/components/schemas/NotFoundError'
     delete:
       tags:
-        - users
+        - Users
       summary: Delete a user
       description: Delete a user from the account.
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       operationId: deleteUser
       parameters:
         - name: user_id
@@ -1295,9 +1447,12 @@ paths:
   /v2/users/{user_id}/reset_password:
     patch:
       tags:
-        - users
+        - Users
       summary: Reset the password for a user
       description: Reset the password for a user.
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       operationId: resetUserPassword
       parameters:
         - name: user_id
@@ -1324,9 +1479,11 @@ paths:
   /v2/api_keys:
     post:
       tags:
-        - auth
+        - Auth
       summary: Create an API key
       description: An API key is to authenticate when calling Vectara APIs.
+      security:
+        - oAuth: []
       operationId: createApiKey
       requestBody:
         content:
@@ -1354,8 +1511,11 @@ paths:
                 $ref: '#/components/schemas/Error'
     get:
       tags:
-        - auth
+        - Auth
       summary: List API keys
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       operationId: listApiKeys
       parameters:
         - name: limit
@@ -1396,8 +1556,11 @@ paths:
   /v2/api_keys/{api_key_id}:
     get:
       tags:
-        - auth
+        - Auth
       summary: Get an API key
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       operationId: getApiKey
       parameters:
         - name: api_key_id
@@ -1421,9 +1584,11 @@ paths:
                 $ref: '#/components/schemas/Error'
     patch:
       tags:
-        - auth
+        - Auth
       summary: Update an API key
       description: Update an API key such as the roles attached to the key.
+      security:
+        - oAuth: []
       operationId: updateApiKey
       parameters:
         - name: api_key_id
@@ -1452,9 +1617,11 @@ paths:
                 $ref: '#/components/schemas/Error'
     delete:
       tags:
-        - auth
+        - Auth
       summary: Delete an API key
       description: Delete API keys to help you manage the security and lifecycle of API keys in your application.
+      security:
+        - oAuth: []
       operationId: deleteApiKey
       parameters:
         - name: api_key_id
@@ -1475,9 +1642,11 @@ paths:
   /v2/app_clients:
     post:
       tags:
-        - auth
+        - Auth
       summary: Create an App Client
       description: An App Client is used for OAuth 2.0 authentication when calling Vectara APIs.
+      security:
+        - oAuth: []
       operationId: createAppClient
       requestBody:
         content:
@@ -1505,8 +1674,11 @@ paths:
                 $ref: '#/components/schemas/Error'
     get:
       tags:
-        - auth
+        - Auth
       summary: List App Clients
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       operationId: listAppClient
       parameters:
         - name: limit
@@ -1547,8 +1719,11 @@ paths:
   /v2/api_keys/{app_client_id}:
     get:
       tags:
-        - auth
+        - Auth
       summary: Get an App Client
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       operationId: getAppClient
       parameters:
         - name: app_client_id
@@ -1572,8 +1747,10 @@ paths:
                 $ref: '#/components/schemas/Error'
     patch:
       tags:
-        - auth
+        - Auth
       summary: Update an App Client
+      security:
+        - oAuth: []
       operationId: updateAppClient
       parameters:
         - name: app_client_id
@@ -1602,8 +1779,10 @@ paths:
                 $ref: '#/components/schemas/Error'
     delete:
       tags:
-        - auth
+        - Auth
       summary: Delete an App Client
+      security:
+        - oAuth: []
       operationId: deleteAppCLient
       parameters:
         - name: app_client_id
@@ -1624,9 +1803,12 @@ paths:
   /v2/api_roles:
     get:
       tags:
-        - auth
+        - Auth
       summary: Get available API roles
       description: Get available API roles. API roles can be attached to identities, like an API key.
+      security:
+        - ApiKeyAuth: []
+        - oAuth: []
       operationId: listApiRoles
       parameters:
         - name: limit
@@ -2180,7 +2362,7 @@ components:
           description: The summary of the search results.
           type: string
         summary_language:
-          description: THe language that the summary is expected to be a part of.
+          description: The language that the summary is expected to be a part of.
           type: string
           example: ENG
         search_results:
@@ -3063,9 +3245,16 @@ components:
           description: The ID of the request that can be used to help Vectara support debug what went wrong .
           type: string
   securitySchemes:
+    oAuth:
+      type: oauth2
+      description: OAuth2 access to Vectara
+      flows:
+        clientCredentials:
+          tokenUrl: https://vectara-prod-YOUR_VECTARA_CUSTOMER_ID.auth.us-west-2.amazoncognito.com/oauth2/token
+          scopes: {}
     ApiKeyAuth:
       type: apiKey
       in: header
-      name: X-API-KEY
+      name: x-api-key
 security:
-  - ApiKeyAuth
+  - oAuth: []
