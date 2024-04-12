@@ -74,11 +74,11 @@ starts) and a `text` value of "How vexingly quick daft zebras jump!"
 
 ## Configuring Context
 
-The `ContextConfiguration` object in the query request allows you to control 
+The `ContextConfiguration` object in the [query request](/docs/api-reference/search-apis/search#context-configuration) allows you to control 
 the amount of context included with each matching document part (snippet) that 
-appears in a summary. You can specify the number of characters or sentences to 
-include before and after the snippet, as well as the tags used to wrap the 
-snippet, such as `<b>` and `</b>`.
+appears in a summary. You can specify `characters_before`/`characters_after` or 
+`sentences_before`/`sentences_after` to include before and after the snippet, as 
+well as `start_tag` and `end_tag` that wrap the snippet, such as `<b>` and `</b>`.
 
 ```json
 "context_configuration": {
