@@ -63,8 +63,9 @@ five. These fields are mainly used to provide pagination.
 
 The `contextConfig` object lets you specify how each document part appears in 
 the summary of a query. This controls the amount of surrounding context that is 
-included with each matching document part, also known as a snippet, and it 
-effects the results quality for summarization. Use `characters_before` and 
+included with each matching document part, also known as a snippet. Configuring 
+this addition context affects the results quality for summarization by 
+enhancing relevance and reducing ambiguity. Use `characters_before` and 
 `characters_after` to specify the number of characters to include before and 
 after the matching document part. This is useful when you want to provide a 
 fixed-length context around the matching text.
@@ -77,9 +78,10 @@ context based on complete sentences rather than a fixed number of characters.
 Use `start_tag` and `end_tag` to wrap the matching document part. These tags 
 serve as delimiters to indicate where the snippet begins and ends within the 
 surrounding context. For example, you can use `<b>` as the `startTag` and `</b>` as 
-the `endTag` to wrap the snippet with bold tags.
+the `endTag` to wrap the snippet with bold tags. Experiment and iterate to
+find the optimal context configuration for your specific use case.
 
-Finally, the **reranking configuration** enables reranking of results, to
+The **reranking configuration** enables reranking of results, to
 further increase relevance in certain scenarios. For details about our English 
 cross-attentional (Scale only) and Maximal Marginal Relevance (MMR) rerankers, 
 see [Reranking](/docs/api-reference/search-apis/reranking).
@@ -180,7 +182,6 @@ model:
 By leveraging these advanced capabilities, application builders can fine-tune 
 the behavior and output style of the summarizer to align with your unique 
 application requirements.
-
 
 ### Chat Conversation Located within the Summary
 
