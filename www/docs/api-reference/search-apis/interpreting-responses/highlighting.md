@@ -72,6 +72,30 @@ And if the query text is "striped horse-like animal," you might get back an
 an `offset` of 48 (how many characters before the sentence starting with "How"
 starts) and a `text` value of "How vexingly quick daft zebras jump!"
 
+## Configuring Context
+
+The `ContextConfiguration` object in the [query request](/docs/api-reference/search-apis/search#context-configuration) allows you to control 
+the amount of context included with each matching document part (snippet) that 
+appears in a summary. Adding this context configuration affects the results 
+quality for summarization by enhancing relevance and reducing ambiguity around 
+each snippet. You can specify `characters_before` and `characters_after` or 
+`sentences_before` and `sentences_after` to include before and after the 
+snippet, as well as `start_tag` and `end_tag` that wrap the snippet, such as 
+`<b>` and `</b>`. 
+
+```json
+"context_configuration": {
+   "sentences_before": 2,
+   "sentences_after": 2,
+   "start_tag": "<b>",
+   "end_tag": "</b>"
+}
+```
+This example uses `sentences_before` and `sentences_after`. If you enter values 
+for sentences before/after and characters before/after, then 
+characters_before/after is ignored and summary returns the sentences values. 
+Experiment and iteratve with different values.
+
 ## Including Additional Context
 Often, just having the `text` and `offset` values are enough to create a
 compelling highlighting/snippet extraction experience for short-form documents

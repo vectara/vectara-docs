@@ -59,19 +59,40 @@ while `num_results` dictates how many results are returned. Thus, setting
 `start=5` and `num_results=20` would return twenty results beginning at position
 five. These fields are mainly used to provide pagination.
 
-The `corpusKey` specifies a list of corpora against which to run the
-query. While it's most often the case that a query is run against a single
-corpus, it's sometimes useful to run against several in parallel.
+## Context Configuration
 
-Finally, the **reranking configuration** enables reranking of results, to
+The `contextConfig` object lets you specify how each document part appears in 
+the summary of a query. This controls the amount of surrounding context that is 
+included with each matching document part, also known as a snippet. Configuring 
+this addition context affects the results quality for summarization by 
+enhancing relevance and reducing ambiguity. Use `characters_before` and 
+`characters_after` to specify the number of characters to include before and 
+after the matching document part. This is useful when you want to provide a 
+fixed-length context around the matching text.
+
+These character properties are mutually exclusive with `sentences_before` 
+and `sentences_after` which specify the number of sentences to include before 
+and after the matching document part. This is useful when you want to provide 
+context based on complete sentences rather than a fixed number of characters. 
+
+Use `start_tag` and `end_tag` to wrap the matching document part. These tags 
+serve as delimiters to indicate where the snippet begins and ends within the 
+surrounding context. For example, you can use `<b>` as the `startTag` and `</b>` as 
+the `endTag` to wrap the snippet with bold tags. Experiment and iterate to
+find the optimal context configuration for your specific use case.
+
+The **reranking configuration** enables reranking of results, to
 further increase relevance in certain scenarios. For details about our English 
 cross-attentional (Scale only) and Maximal Marginal Relevance (MMR) rerankers, 
 see [Reranking](/docs/api-reference/search-apis/reranking).
 
 ## Corpus Key Definition
 
-The `corpusKey` specifies the ID of the corpus being searched. The 
-`metadata_filter` allows specifying a predicate expression that restricts 
+The `corpusKey` specifies the ID of the corpus being searched. While it's most 
+often the case that a query is run against a single corpus, it's sometimes 
+useful to run against several in parallel.
+
+The `metadata_filter` allows specifying a predicate expression that restricts 
 the search to a part of the corpus. The filter is written in a simplified SQL 
 dialect and can reference metadata that was marked as filterable during corpus 
 creation. 
@@ -161,7 +182,6 @@ model:
 By leveraging these advanced capabilities, application builders can fine-tune 
 the behavior and output style of the summarizer to align with your unique 
 application requirements.
-
 
 ### Chat Conversation Located within the Summary
 
