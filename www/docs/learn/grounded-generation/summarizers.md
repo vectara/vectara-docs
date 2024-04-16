@@ -48,10 +48,12 @@ with these additional summarization options.
 
 ## Beta Summarizers
 
-We also have two new beta summarizers available for our users to try:
+We also have four beta summarizers available for our users to try:
 
 * **Growth and Scale:** `vectara-experimental-summary-ext-2023-10-23-small` (gpt-3.5-turbo)
 * **Scale only:** `vectara-experimental-summary-ext-2023-10-23-med` (gpt-4.0)
+* **Scale only:** `vectara-experimental-summary-ext-2023-12-11-sml` (gpt-3.5-turbo)
+* **Scale only:** `vectara-experimental-summary-ext-2023-12-11-large:` (gpt-4.0)
 
 These beta versions are a preview of our next improved summarizers. Since 
 they are experimental, and while we don't support them officially, we are 

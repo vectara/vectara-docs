@@ -185,7 +185,7 @@ ${content}
     announcementBar: {
       id: "genai_launch",
       content:
-        'Vectara now streamlines performance and enhances RAG capabilities across a variety of data sources through efficient data ingestion with Airbyte. For more details, see our blog <a href="https://vectara.com/blog/vectara-and-airbyte/">here<a>',
+        'For a limited time until April 23, all users can access our most advanced <a href="https://docs.vectara.com/docs/learn/grounded-generation/select-a-summarizer">summarization<a> capabilities! Click <a href="https://docs.vectara.com/docs/prompts/custom-prompts-with-metadata">here<a> for details.',
       backgroundColor: "#fafbfc",
       textColor: "#091E42",
       isCloseable: true,

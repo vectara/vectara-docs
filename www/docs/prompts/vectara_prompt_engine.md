@@ -75,7 +75,7 @@ Example content can include “You are a helpful search assistant” or
 
 The following example prompt specifies a role as a helpful search assistant. 
 It then loops through Vectara query results with specific variables and 
-functions. Finally, it generates a summary for the query. 
+functions. Finally, it generates a [summary](docs/learn/grounded-generation/select-a-summarizer) for the query. 
 
 ```javascript
 [
