@@ -46,6 +46,12 @@ The following table shows the available custom prompt functions:
 | $qResult.partMetadata().get("page")  | Returns the specified field value from part metadata, incorrect key would result in empty value  | $qResult.docMetadata().get("page")  | "1"  |
 
 
+## Setting a Custom Prompt
+
+To set a custom prompt, Scale users can add custom `promptText` within the 
+[`summary` object](/docs/learn/grounded-generation/select-a-summarizer) of a [query](/docs/api-reference/search-apis/search) 
+to override the default prompt text.
+
 ## Include Metadata in Prompt
 
 This snippet shows how to get metadata associated with a single result `qResult` 
