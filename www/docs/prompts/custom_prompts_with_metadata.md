@@ -90,31 +90,25 @@ user gets a response that `The returned results did not contain sufficient infor
 
 ```javascript
 [
-	{
-"role": "system",
-"content": "You are an RFI answering assistant acting on behalf of the company Vectara. 
-You are provided with search results from previously answered RFIs that may help answer 
-the given question. The format of each result is the date in which it was answered and 
-the response text.  You must summarize these results into a coherent answer. Only use 
-information provided in this chat."},
-	#foreach ($qResult in $vectaraQueryResults)
-  	#if ($foreach.first)
-    	{"role": "user", "content": "Search for \"$esc.java(${vectaraQuery})\", and give me the first search result."},
-    	{"role": "assistant", "content": "$esc.java(${qResult.getText()})" },
-  	#else
-    	{"role": "user", "content": "Give me the $vectaraIdxWord[$foreach.index] search result."},
-    	{"role": "assistant", "content": "$qResult.docMetadata().get('answerDate') $esc.java(${qResult.getText()})" },
-  	#end
-	#end
-	{
-"role": "user",
-"content": "Generate a comprehensive and informative answer for the question \"$esc.java(${vectaraQuery})\" solely 
-based on the search results in this chat. You must only use information from the provided results. Combine search 
-results together into a coherent answer. Do not repeat text. Only use the most relevant results that answer the 
-question accurately. If there are 2 answers that seem in conflict, use the most recent answer according to the 
-date.  If a result does not answer the question, do not use it. If the search results are not valid, 
-respond with \"The returned results did not contain sufficient information to the question.\"."}
+    {
+        "role": "system",
+        "content": "You are an RFI answering assistant acting on behalf of the company Vectara. You are provided with search results from previously answered RFIs that may help answer the given question. The format of each result is the date in which it was answered and the response text. You must summarize these results into a coherent answer. Only use information provided in this chat."
+    },
+    #foreach ($qResult in $vectaraQueryResults)
+    #if ($foreach.first)
+        {"role": "user", "content": "Search for '$esc.java(${vectaraQuery})', and give me the first search result."},
+        {"role": "assistant", "content": "$esc.java(${qResult.getText()})" },
+    #else
+        {"role": "user", "content": "Give me the $vectaraIdxWord[$foreach.index] search result."},
+        {"role": "assistant", "content": "$qResult.docMetadata().get('answerDate') $esc.java(${qResult.getText()})" },
+    #end
+    #end
+    {
+        "role": "user",
+        "content": "Generate a comprehensive and informative answer for the question '$esc.java(${vectaraQuery})' solely based on the search results in this chat. You must only use information from the provided results. Combine search results together into a coherent answer. Do not repeat text. Only use the most relevant results that answer the question accurately. If there are 2 answers that seem in conflict, use the most recent answer according to the date. If a result does not answer the question, do not use it. If the search results are not valid, respond with 'The returned results did not contain sufficient information to the question.'"
+    }
 ]
+
 ```
 
 

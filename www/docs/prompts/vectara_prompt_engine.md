@@ -84,6 +84,6 @@ functions. Finally, it generates a [summary](docs/learn/grounded-generation/sele
      {"role": "user", "content": "Give me the $vectaraIdxWord[$foreach.index] search result."},
      {"role": "assistant", "content": "${qResult.getText()}" },
   #end
-  {"role": "user", "content": "Generate a summary for the query \"${vectaraQuery}\" based on the above results."}
+  {"role": "user", "content": "Generate a summary for the query '${vectaraQuery}' based on the above results."}
 ]
 ```
