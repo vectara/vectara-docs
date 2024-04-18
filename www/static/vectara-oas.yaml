@@ -422,7 +422,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
         - $ref: '#/components/parameters/timeout'
-      description: "Enables or disables a specific API key.\n \nSome tips for this API:\n* This operation only works with OAuth 2.0 (in a JWT \"Bearer Token\") authentication. It does not work with API Keys. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).\n"
+      description: "Enables or disables a specific API key.\n \nSome tips for this API:\n* This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).\n"
       security:
         - oAuth: []
   /v1/get-usage-metrics:
