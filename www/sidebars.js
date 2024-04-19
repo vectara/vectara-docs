@@ -40,10 +40,17 @@ module.exports = {
             "learn/data-privacy/privacy-overview",
             "learn/data-privacy/textless",
             "learn/data-privacy/encryption",
+            {
+              type: "category",
+              label: "Authentication and Authorization",
+              collapsed: true,
+              items: [
             "learn/authentication/auth-overview",
             "learn/authentication/api-key-management",
             "learn/authentication/oauth-2",
             "learn/authentication/role-based-access-control",
+              ]
+            },
             {
               type: "category",
               label: "API Authentication Examples",
@@ -78,11 +85,6 @@ module.exports = {
       label: "Capabilities",
       collapsed: true,
       items: [
-        {
-          type: "doc",
-          id: "learn/data-ingestion",
-          label: "Data Ingestion",
-        },
         "learn/select-ideal-indexing-api",
         {
           type: "category",
@@ -92,14 +94,13 @@ module.exports = {
             "prompts/custom-prompts-with-metadata",
           ],
         },
-        "learn/grounded-generation/grounded-generation-response-languages",
         {
           type: "doc",
           id: "learn/hallucination-evaluation",
           label: "Hallucination Evaluation",
         },
-        
         "learn/grounded-generation/select-a-summarizer",
+        "learn/grounded-generation/grounded-generation-response-languages",
         "learn/semantic-search/enable-pagination",
         "learn/semantic-search/add-custom-dimensions",
         "learn/recommendation-systems/recommender-overview",

@@ -16,7 +16,8 @@ are times when this is not enough and you want to offer your users the ability
 to paginate through results.
 
 To enable pagination, use the `start` and `num_results` parameters under the 
-`query`.  
+`query`. `start` is not required, but it defaults to `0` if you do not specify 
+a value.
 
 ## Example: Set Results to 20 Per Page
 

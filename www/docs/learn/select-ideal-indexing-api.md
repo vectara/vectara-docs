@@ -1,7 +1,7 @@
 ---
 id: select-ideal-indexing-api
-title: Indexing Methods
-sidebar_label: Indexing Methods
+title: Data Ingestion
+sidebar_label: Data Ingestion
 ---
 
 import Tabs from '@theme/Tabs';
@@ -9,6 +9,19 @@ import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
 import {Config} from '@site/docs/definitions.md';
+
+Vectara offers multiple data ingestion methods to accommodate different types 
+of use cases. By choosing the appropriate ingestion method, users can 
+efficiently index their data and leverage our advanced search capabilities.
+
+## Vectara Ingest: Sample Data Ingestion Framework
+
+Getting data into Vectara is simple using either our REST or gRPC APIs. We 
+built a full sample ingestion framework ready to go with [Vectara Ingest](https://github.com/vectara/vectara-ingest), which 
+includes preconfigured templates that enable you to pull data from many 
+popular data sources such as websites and RSS feeds.
+
+## Indexing Methods
 
 Selecting the ideal Indexing API for your application can significantly impact 
 the effectiveness of integrating Vectara’s search functionalities into your 
