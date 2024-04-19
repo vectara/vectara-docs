@@ -23,7 +23,7 @@ The following table shows the available custom prompt variables:
 |---|---|---|---|
 | $vectaraOutChars  | Number of characters  | See below  |   |
 | $vectaraLangCode  | ISO639 v3 code for the passed language code  | See below  |   |
-| $vectaraQuery  | The query provided by the user  | Generate a summary in $vectaraOutChars characters in language '${vectaraLangCode}' for the query \"$esc.java(${vectaraQuery})\" solely based on the search results in this chat.  | Generate a summary in 512 characters in language 'ara' for the query \"Give me \"some\" search results.\" solely based on the search results in this chat.  |
+| $vectaraQuery  | The query provided by the user  | Generate a summary in $vectaraOutChars characters in language '${vectaraLangCode}' for the query '$esc.java(${vectaraQuery})' solely based on the search results in this chat.  | Generate a summary in 512 characters in language 'ara' for the query 'Give me "some" search results.' solely based on the search results in this chat.  |
 | $vectaraIdxWord  | A utility array to convert the index to words i.e "first", "second", "third", "forth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth"  | $vectaraIdxWord[0]  | first  |
 | $vectaraLangName  | Set to the requested language name. The language can either be requested explicitly or detected from the language of the query.  | You are a helpful assistant. Answer in ${vectaraLangName}.  | You are a helpful assistant. Answer in Arabic.  |
 | $vectaraQueryResults  | An array of query results is found in the response, sorted by relevance score.  | #foreach ($qResult in $vectaraQueryResults)    {"role": "user", "content": "Give me the $vectaraIdxWord[$foreach.index] search result."},    {"role": "assistant", "content": "$esc.java(${qResult.text()})" },#end  | {"role": "user", "content": "Give me the second search result."},{"role": "assistant", "content": "2nd result" },  |
@@ -45,6 +45,12 @@ The following table shows the available custom prompt functions:
 | $qResult.partMetadata()  | Returns the metadata of the part of the document this result belongs to  | $qResult.partMetadata()  | {"page": "1", ...}  |
 | $qResult.partMetadata().get("page")  | Returns the specified field value from part metadata, incorrect key would result in empty value  | $qResult.docMetadata().get("page")  | "1"  |
 
+
+## Setting a Custom Prompt
+
+To set a custom prompt, Scale users can add custom `promptText` within the 
+[`summary` object](/docs/learn/grounded-generation/select-a-summarizer) of a [query](/docs/api-reference/search-apis/search) 
+to override the default prompt text.
 
 ## Include Metadata in Prompt
 
@@ -84,31 +90,33 @@ user gets a response that `The returned results did not contain sufficient infor
 
 ```javascript
 [
-	{
-"role": "system",
-"content": "You are an RFI answering assistant acting on behalf of the company Vectara. 
-You are provided with search results from previously answered RFIs that may help answer 
-the given question. The format of each result is the date in which it was answered and 
-the response text.  You must summarize these results into a coherent answer. Only use 
-information provided in this chat."},
-	#foreach ($qResult in $vectaraQueryResults)
-  	#if ($foreach.first)
-    	{"role": "user", "content": "Search for \"$esc.java(${vectaraQuery})\", and give me the first search result."},
-    	{"role": "assistant", "content": "$esc.java(${qResult.getText()})" },
-  	#else
-    	{"role": "user", "content": "Give me the $vectaraIdxWord[$foreach.index] search result."},
-    	{"role": "assistant", "content": "$qResult.docMetadata().get('answerDate') $esc.java(${qResult.getText()})" },
-  	#end
-	#end
-	{
-"role": "user",
-"content": "Generate a comprehensive and informative answer for the question \"$esc.java(${vectaraQuery})\" solely 
-based on the search results in this chat. You must only use information from the provided results. Combine search 
-results together into a coherent answer. Do not repeat text. Only use the most relevant results that answer the 
-question accurately. If there are 2 answers that seem in conflict, use the most recent answer according to the 
-date.  If a result does not answer the question, do not use it. If the search results are not valid, 
-respond with \"The returned results did not contain sufficient information to the question.\"."}
+    {
+        "role": "system",
+        "content": "You are an RFI answering assistant acting on behalf of the company Vectara. You are provided with 
+		search results from previously answered RFIs that may help answer the given question. The format of each result 
+		is the date in which it was answered and the response text. You must summarize these results into a coherent 
+		answer. Only use information provided in this chat."
+    },
+    #foreach ($qResult in $vectaraQueryResults)
+    #if ($foreach.first)
+        {"role": "user", "content": "Search for '$esc.java(${vectaraQuery})', and give me the first search result."},
+        {"role": "assistant", "content": "$esc.java(${qResult.getText()})" },
+    #else
+        {"role": "user", "content": "Give me the $vectaraIdxWord[$foreach.index] search result."},
+        {"role": "assistant", "content": "$qResult.docMetadata().get('answerDate') $esc.java(${qResult.getText()})" },
+    #end
+    #end
+    {
+        "role": "user",
+        "content": "Generate a comprehensive and informative answer for the question '$esc.java(${vectaraQuery})' solely based 
+		on the search results in this chat. You must only use information from the provided results. Combine search results 
+		together into a coherent answer. Do not repeat text. Only use the most relevant results that answer the question 
+		accurately. If there are 2 answers that seem in conflict, use the most recent answer according to the date. If a 
+		result does not answer the question, do not use it. If the search results are not valid, respond with 'The returned 
+		results did not contain sufficient information to the question.'"
+    }
 ]
+
 ```
 
 
