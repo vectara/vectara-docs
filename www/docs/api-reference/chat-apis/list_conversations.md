@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The List Conversations API lists all the conversations in a specific corpus. 
+The List Conversations API lists all the conversations in a customer account. 
 This data enables developers to monitor chatbot interactions and understand 
 how users engage with the data. Pagination lets developers navigate through 
 large datasets.
@@ -26,8 +26,8 @@ get the first page.
 
 :::tip
 
-Check out our **interactive API Playground** that lets you experiment with this 
-REST endpoint to list conversations in the chat history corpus.
+Check out our [**interactive API Playground**](/docs/rest-api/list-conversations) that lets you experiment with this 
+REST endpoint to list conversations in the customer account.
 
 :::
 
@@ -36,7 +36,7 @@ REST endpoint to list conversations in the chat history corpus.
 ### List Conversations Endpoint Address
 
 <Config v="names.product"/> exposes an HTTP endpoint at the following URL
-to list conversations in the chat history corpus:
+to list conversations in the customer account:
 <code>https://<Config v="domains.rest.indexing"/>/v1/list-conversations</code>
 
 The API Playground shows the full [List Conversations](/docs/rest-api/list-conversations) REST definition.

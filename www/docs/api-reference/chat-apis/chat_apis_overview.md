@@ -26,8 +26,8 @@ Vectara Chat provides the following Chat APIs:
 
 * [**Query**](/docs/api-reference/search-apis/search) contains a `chat` object within the `summary` 
   which then has a unique `conversationId`.
-* [**List Conversations**](/docs/api-reference/chat-apis/list-conversations) in a chat history corpus 
-  and get an an overview of the interactions between chatbots and users. 
+* [**List Conversations**](/docs/api-reference/chat-apis/list-conversations) and get an an overview 
+  of the interactions between chatbots and users. 
 * [**Read Conversations**](/docs/api-reference/chat-apis/read-conversations) and retrieve detailed information about specific
   conversations by their IDs from a chat history corpus.
 * [**Delete Conversations**](/docs/api-reference/chat-apis/delete-conversations) by their specific Conversation IDs for 
@@ -56,7 +56,8 @@ in the Vectara Console.
 Conversations represent individual chat sessions, and a conversation starts 
 with a chat request to the Query endpoint. A unique `conversationId` is 
 generated at the initiation of the chat session, which serves as the 
-identifier for all subsequent turns within this conversation. 
+identifier for all subsequent turns within this conversation. Vectara stores 
+conversations in a single chat history corpus in the customer account.
 
 ```json
 {
