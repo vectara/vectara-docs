@@ -34,28 +34,57 @@ module.exports = {
     },
     {
       type: "category",
-      label: "Learn",
+      label: "Security and Data Privacy",
       collapsed: true,
       items: [
-        {
-          type: "category",
-          label: "Data Privacy",
-          items: [
             "learn/data-privacy/privacy-overview",
             "learn/data-privacy/textless",
             "learn/data-privacy/encryption",
-          ],
-        },
-        {
-          type: "category",
-          label: "Authentication and Authorization",
-          items: [
+            {
+              type: "category",
+              label: "Authentication and Authorization",
+              collapsed: true,
+              items: [
             "learn/authentication/auth-overview",
             "learn/authentication/api-key-management",
             "learn/authentication/oauth-2",
             "learn/authentication/role-based-access-control",
+              ]
+            },
+            {
+              type: "category",
+              label: "API Authentication Examples",
+              items: [
+                {
+                  type: "category",
+                  label: "OAuth 2.0 Client Credentials Grant Examples",
+                  items: [
+                    "getting-started-samples/JWTFetcher.cs",
+                    "getting-started-samples/JwtFetcher.java",
+                    "getting-started-samples/getJwtToken.php",
+                    "getting-started-samples/rest_util.py",
+                  ],
+                },
+                {
+                  type: "category",
+                  label: "API Key REST Examples",
+                  items: [
+                    "getting-started-samples/RestApiKeyQueries.cs",
+                    "getting-started-samples/RestApiKeyQueries.java",
+                    "getting-started-samples/queryDataApiKey.php",
+                    "getting-started-samples/rest_api_key_queries.py",
+                    "getting-started-samples/app.js",
+                  ],
+                },
+              ],
+            },
           ],
-        },
+    },
+    {
+      type: "category",
+      label: "Learn",
+      collapsed: true,
+      items: [
         {
           type: "category",
           label: "Semantic Search",
@@ -407,33 +436,6 @@ module.exports = {
             "api-reference/chat-apis/delete-conversations",
             "api-reference/chat-apis/delete-turns",
             "api-reference/chat-apis/disable-turns",
-          ],
-        },
-      ],
-    },
-    {
-      type: "category",
-      label: "API Authentication Examples",
-      items: [
-        {
-          type: "category",
-          label: "OAuth 2.0 Client Credentials Grant Examples",
-          items: [
-            "getting-started-samples/JWTFetcher.cs",
-            "getting-started-samples/JwtFetcher.java",
-            "getting-started-samples/getJwtToken.php",
-            "getting-started-samples/rest_util.py",
-          ],
-        },
-        {
-          type: "category",
-          label: "API Key REST Examples",
-          items: [
-            "getting-started-samples/RestApiKeyQueries.cs",
-            "getting-started-samples/RestApiKeyQueries.java",
-            "getting-started-samples/queryDataApiKey.php",
-            "getting-started-samples/rest_api_key_queries.py",
-            "getting-started-samples/app.js",
           ],
         },
       ],
