@@ -25,27 +25,36 @@
 
   // This function converts Payload into a format that Snow expects for Page events.
   function payloadToPageObject(payload) {
-    let userData = {
+    const userData = {
       userSub: null,
-      email: getCookie("__anon_id_email") ?? null,
-      customerId: getCookie("__anon_id_uid") ?? null,
+      email: getCookie("__anon_id_email") || null,
+      customerId: getCookie("__anon_id_uid") || null,
     };
 
     const url = new URL(payload.properties.url ?? null);
 
-    let utm = {
-      name: url?.searchParams.get("utm_campaign") ?? null,
-      medium: url?.searchParams.get("utm_medium") ?? null,
-      source: url?.searchParams.get("utm_source") ?? null,
-      term: url?.searchParams.get("utm_term") ?? null,
-      content: url?.searchParams.get("utm_content") ?? null,
+    const utm = {
+      name: url?.searchParams.get("utm_campaign") || null,
+      medium: url?.searchParams.get("utm_medium") || null,
+      source: url?.searchParams.get("utm_source") || null,
+      term: url?.searchParams.get("utm_term") || null,
+      content: url?.searchParams.get("utm_content") || null,
     };
 
-    let identity = {
-      anonymousId: payload.anonymousId,
+    const { anonymousId } = payload;
+    const ANONYMOUS_ID_COOKIE_NAME = "vectara_anonymous_id";
+    const persistedAnonymousId = getCookie(ANONYMOUS_ID_COOKIE_NAME);
+
+    if (!persistedAnonymousId) {
+      // Expire the cookie in 1 year.
+      document.cookie = `${ANONYMOUS_ID_COOKIE_NAME}=${anonymousId}; path=/; max-age=31536000; domain=${window.location.hostname}`;
+    }
+
+    const identity = {
+      anonymousId: persistedAnonymousId ?? anonymousId ?? null,
       timestamp: payload.meta.ts,
-      utm: utm,
-      userData: userData,
+      utm,
+      userData,
     };
 
     return {
