@@ -42,12 +42,15 @@
     };
 
     const { anonymousId } = payload;
-    const ANONYMOUS_ID_COOKIE_NAME = "vectara_anonymous_id";
+    const ANONYMOUS_ID_COOKIE_NAME = "vectaraAnonymousId";
     const persistedAnonymousId = getCookie(ANONYMOUS_ID_COOKIE_NAME);
+
+    const domain =
+      window.location.hostname === "localhost" ? "localhost" : "vectara.com";
 
     if (!persistedAnonymousId) {
       // Expire the cookie in 1 year.
-      document.cookie = `${ANONYMOUS_ID_COOKIE_NAME}=${anonymousId}; path=/; max-age=31536000; domain=${window.location.hostname}`;
+      document.cookie = `${ANONYMOUS_ID_COOKIE_NAME}=${anonymousId}; path=/; max-age=31536000; domain=${domain}`;
     }
 
     const identity = {
