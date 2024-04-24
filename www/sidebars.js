@@ -88,22 +88,24 @@ module.exports = {
         "learn/select-ideal-indexing-api",
         {
           type: "category",
+          label: "Retrieval",
+          items: [
+            "learn/hybrid-search",
+            "learn/enable-keyword-text-matching",
+            "learn/semantic-search/enable-pagination",
+            "learn/semantic-search/add-custom-dimensions",
+          ],
+        },
+        "learn/grounded-generation/select-a-summarizer",
+        "learn/hallucination-evaluation",
+        {
+          type: "category",
           label: "Generative Prompts",
           items: [
             "prompts/vectara-prompt-engine",
             "prompts/custom-prompts-with-metadata",
           ],
         },
-        {
-          type: "doc",
-          id: "learn/hallucination-evaluation",
-          label: "Hallucination Evaluation",
-        },
-        "learn/grounded-generation/select-a-summarizer",
-        "learn/grounded-generation/grounded-generation-response-languages",
-        "learn/semantic-search/enable-pagination",
-        "learn/semantic-search/add-custom-dimensions",
-        "learn/recommendation-systems/recommender-overview",
         {
           type: "category",
           label: "Metadata Search Filtering",
@@ -114,11 +116,12 @@ module.exports = {
             "api-reference/search-apis/sql/data-types",
           ],
         },
+        "learn/recommendation-systems/recommender-overview",
       ],
     },
     {
       type: "category",
-      label: "Use Cases and Guides",
+      label: "Use Cases",
       items: [
         {
           type: "category",
@@ -129,19 +132,19 @@ module.exports = {
           ],
         },
         {
-          type: "doc",
-          id: "learn/grounded-generation/grounded-generation-overview",
+          type: "category",
           label: "Retrieval Augmented Generation (RAG)",
+          items: [
+            "learn/grounded-generation/grounded-generation-overview",
+            "learn/grounded-generation/configure-query-summarization",
+            "learn/grounded-generation/grounded-generation-response-languages",
+          ],
         },
         {
           type: "doc",
           id: "learn/document-data-structuring",
           label: "Document Data Structuring",
         },
-        
-        "learn/enable-keyword-text-matching",
-        "learn/hybrid-search",
-        
         "learn/question-answer/question-answer-overview",
       ],
     },

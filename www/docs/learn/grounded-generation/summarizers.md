@@ -90,7 +90,7 @@ available to Scale users):
 ```
 ## Default maxSummarizedResults Limit
 
-The default limit of maxSummarizedResults is 10 search results for Growth 
+The default limit of `maxSummarizedResults` is 10 search results for Growth 
 plans and this limit can be extended for Scale plan users. Setting the values 
 closer to the limit generates a more comprehensive summary, but using a lower 
 value can balance the results with quality and response time.
@@ -98,12 +98,8 @@ value can balance the results with quality and response time.
 ### maxSummarizedResults Example
 
 This summarizer example attempts to balance creating a good quality summary 
-with a reasonably fast response by setting maxSummarizedResults to 5. To use 
-vectara-summary-ext-v1.2.0, send it as the summarizerPromptName as follows:
-
-This summarizer attempts to balance creating a good quality summary with a
-reasonably fast response.  To use `vectara-summary-ext-v1.2.0`, send it as
-the `summarizerPromptName` as follows:
+with a reasonably fast response by setting `maxSummarizedResults` to `5`. To use 
+`vectara-summary-ext-v1.2.0`, send it as the summarizerPromptName as follows:
 
 ```json showLineNumbers title="https://api.vectara.io/v1/query"
 {
@@ -129,17 +125,3 @@ the `summarizerPromptName` as follows:
   ]
 }
 ```
-
-## Add a Timeout to REST Calls
-
-Adding `grpc-timeout` to the header of your REST call lets you specify how 
-long to wait for queries that have the potential to take longer to process. We 
-recommend a timeout value of 30 seconds `30S` as typically long enough to 
-allow the call to complete successfully.
-
-You can pass this parameter in header as follows:
-
-```json
--H "grpc-timeout: 30S" 
-```
-

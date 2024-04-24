@@ -1,7 +1,7 @@
 ---
 id: select-ideal-indexing-api
-title: Data Ingestion
-sidebar_label: Data Ingestion
+title: Indexing
+sidebar_label: Indexing
 ---
 
 import Tabs from '@theme/Tabs';
@@ -12,7 +12,9 @@ import {Config} from '@site/docs/definitions.md';
 
 Vectara offers multiple data ingestion methods to accommodate different types 
 of use cases. By choosing the appropriate ingestion method, users can 
-efficiently index their data and leverage our advanced search capabilities.
+efficiently index their data and leverage our advanced search capabilities. 
+This flexible approach allows for the precise integration of Vectara’s search 
+functionalities into different applications.
 
 ## Vectara Ingest: Sample Data Ingestion Framework
 
@@ -21,7 +23,7 @@ built a full sample ingestion framework ready to go with [Vectara Ingest](https:
 includes preconfigured templates that enable you to pull data from many 
 popular data sources such as websites and RSS feeds.
 
-## Indexing Methods
+## Data Ingestion Methods with Indexing APIs
 
 Selecting the ideal Indexing API for your application can significantly impact 
 the effectiveness of integrating Vectara’s search functionalities into your 
@@ -31,11 +33,10 @@ control over the data segmentation and indexing process.
 
 Vectara offers the following indexing APIs for these different scenarios:
 
-
-* [**File Upload API**](/docs/api-reference/indexing-apis/file-upload/file-upload)
+### File Upload API
 
   If you want to extract text from existing, unstructured documents in common 
-  file types with minimal manual intervention, use the File Upload API. This 
+  file types with minimal manual intervention, use the [File Upload API](/docs/api-reference/indexing-apis/file-upload/file-upload). This 
   option enables you to attach additional, user-defined metadata at the 
   document level. 
   
@@ -48,10 +49,10 @@ Vectara offers the following indexing APIs for these different scenarios:
   We recommend this option if you have not written your own extraction logic 
   already.
 
-* [**Standard Indexing API**](/docs/api-reference/indexing-apis/indexing)
+### Standard Indexing API
   
   If you have structured documents that you want Vectara to index and segment
-  into chunks for you, use the standard indexing API. In Vectara, a `document` 
+  into chunks for you, use the [Standard Indexing API](/docs/api-reference/indexing-apis/indexing). In Vectara, a `document` 
   is very flexible in what it can represent. It can be as short as a tweet or 
   as long as the 1600 page Bible. The `document` object typically includes 
   unique identifiers like `title`, `description`, and `metadata` that you can 
@@ -64,10 +65,10 @@ Vectara offers the following indexing APIs for these different scenarios:
   rows in database tables or CSV files, or records from an ERP system.
 
 
-* [**Low-Level Indexing API**](/docs/api-reference/indexing-apis/core_indexing)
+### Low-Level Indexing API
 
   For the most advanced use cases, if you want full, granular control to chunk 
-  your document into `parts`, use the low-level indexing API. These documents 
+  your document into `parts`, use the [Low-level Indexing API](/docs/api-reference/indexing-apis/core_indexing). These documents 
   also have a unique ID and metadata, but you also define individual document 
   `parts` which make up granular sections of the overall document container. 
   These parts define the actual text to be indexed. Each part is converted 
