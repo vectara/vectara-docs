@@ -182,14 +182,14 @@ ${content}
       theme: require("prism-react-renderer/themes/vsLight"),
       darkTheme: require("prism-react-renderer/themes/dracula"),
     },
-    announcementBar: {
+    /* announcementBar: {
       id: "genai_launch",
       content:
-        'For a limited time until April 23, all users can access our most advanced <a href="https://docs.vectara.com/docs/learn/grounded-generation/select-a-summarizer">summarization</a> capabilities! Click <a href="https://docs.vectara.com/docs/prompts/custom-prompts-with-metadata">here</a> for details.',
+        '',
       backgroundColor: "#fafbfc",
       textColor: "#091E42",
       isCloseable: true,
-    },
+    }, */
     navbar: {
       title: "",
       logo: {
