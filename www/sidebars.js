@@ -437,7 +437,6 @@ module.exports = {
         },
       ],
     },
-    
   ],
   restOAS: [
     {

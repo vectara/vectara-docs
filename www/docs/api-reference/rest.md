@@ -130,5 +130,10 @@ Retrieval Augmented Generation (RAG):
 * [Delete Turns API](/docs/api-reference/chat-apis/delete-turns)
 * [Disable Turns API](/docs/api-reference/chat-apis/disable-turns)
 
+:::note
 
+Not all REST API endpoints have long-form documentation in this API Reference. 
+For example, information about [**Get Usage Metrics**](/docs/rest-api/get-usage-metrics) is in the 
+API Playground.
 
+:::
