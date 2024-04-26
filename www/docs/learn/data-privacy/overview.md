@@ -1,7 +1,7 @@
 ---
 id: privacy-overview
-title: Privacy Commitment
-sidebar_label: Privacy Commitment
+title: Privacy Overview
+sidebar_label: Privacy Overview
 ---
 
 import Tabs from '@theme/Tabs';

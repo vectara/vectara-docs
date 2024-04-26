@@ -6,35 +6,38 @@ sidebar_label: FAQ and Q&A Matching
 
 import {Config} from '@site/docs/definitions.md';
 
-Some users have frequently asked question (FAQ) databases or other forms of
-question databases where the use case demands that your users are trying to find
-the *nearest question* to their own, so you can provide them with the
+FAQ and Q&A Matching is a powerful tool for streamlining customer suport and 
+internal knowledge management. Enabling precise question-and-answer matching 
+reduces the time users spend searching for information. Some users have 
+frequently asked question (FAQ) databases or other forms of question databases 
+where the use case demands that your users are trying to find the 
+*nearest question* to their own, so you can provide them with the 
 authoritative answer from the "answer" side of the question-answer database.
 
 This approach may not offer the dynamic nature of Retrieval Augmented 
 Generation (RAG), but it allows you to establish tight controls over the 
 types of questions that users can ask and receive authorizative answers. 
 These question-answer systems can be great for building RFP-answering systems 
-for employees and FAQ lookups for customers.
+for employees and FAQ lookups for customers. 
 
-## Configure Corpus for Question Matching
+## Configure corpus for question matching
 
 During corpus creation, set `swapIenc=True` to configures the corpus to use 
 the query encoder for both indexing and querying. This is ideal for direct 
 question-to-question matching, ensuring that the encoder used for indexing is 
 aligned with the one used for querying, which improves match relevance.
 
-We do not recommend changing the `semantics` setting to `RESPONSE` for question 
+We **do not** recommend changing the `semantics` setting to `RESPONSE` for question 
 matching. This method uses an encoder that is tailored for handling arbitrary 
 textual content and would reverse the intended effect. It is often most 
 effective when used in combination with a well-structured corpus and clear 
-understanding of the user's search intent.
+understanding of the user's search intent. Leave the default `semantics` setting.
 
-## Format data for indexing
+## Format data for question indexing
 
 When you send data to <Config v="names.product"/> for this use case, we
 recommend that you index the question in the `title` field and the answer to
-that question in the `text` content.  For example:
+that question in the `text` content. For example:
 
 ```json showLineNumbers title="document.json"
 {

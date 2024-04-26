@@ -1,7 +1,7 @@
 ---
 id: reranking
-title: Rerank Search Results
-sidebar_label: Rerank Search Results
+title: Reranking
+sidebar_label: Reranking
 ---
 
 import Tabs from '@theme/Tabs';
@@ -9,11 +9,11 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-Reranking involves a process of rescoring and refining an initial set of query 
-results to achieve a more precise ranking. It employs a machine learning model 
-that while slower than the rapid retrieval step, offers more accurate results. 
-We currently have two rerankers, the English reranker and the Maximal Marginal 
-Relevance (MMR) reranker.
+Reranking search results involves a process of rescoring and refining an 
+initial set of query results to achieve a more precise ranking. It employs 
+a machine learning model that while slower than the rapid retrieval step, 
+offers more accurate results. We currently have two rerankers, the English 
+reranker and the Maximal Marginal Relevance (MMR) reranker.
 
 ## English Cross-attentional Reranker (Scale Only)
 

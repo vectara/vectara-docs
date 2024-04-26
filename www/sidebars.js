@@ -92,8 +92,20 @@ module.exports = {
           items: [
             "learn/hybrid-search",
             "learn/enable-keyword-text-matching",
-            "learn/semantic-search/enable-pagination",
+            {
+              type: "category",
+              label: "Metadata Search Filtering",
+              items: [
+                "learn/metadata-search-filtering/filter-overview",
+                "learn/metadata-search-filtering/ootb-metadata-filters",
+                "api-reference/search-apis/sql/func-opr",
+                "api-reference/search-apis/sql/data-types",
+              ],
+            },
             "learn/semantic-search/add-custom-dimensions",
+            "api-reference/search-apis/reranking",
+            "learn/semantic-search/enable-pagination",
+            "learn/recommendation-systems/recommender-overview",
           ],
         },
         "learn/grounded-generation/select-a-summarizer",
@@ -106,17 +118,6 @@ module.exports = {
             "prompts/custom-prompts-with-metadata",
           ],
         },
-        {
-          type: "category",
-          label: "Metadata Search Filtering",
-          items: [
-            "learn/metadata-search-filtering/filter-overview",
-            "learn/metadata-search-filtering/ootb-metadata-filters",
-            "api-reference/search-apis/sql/func-opr",
-            "api-reference/search-apis/sql/data-types",
-          ],
-        },
-        "learn/recommendation-systems/recommender-overview",
       ],
     },
     {
@@ -410,7 +411,6 @@ module.exports = {
                 ]
               },
               "api-reference/search-apis/stream-query",
-              "api-reference/search-apis/reranking",
               "api-reference/search-apis/batched-queries",
                             {
                 type: "category",
