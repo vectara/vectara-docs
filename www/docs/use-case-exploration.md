@@ -6,28 +6,29 @@ sidebar_label: Use Case Exploration
 
 import {Config} from './definitions.md';
 
-The AI era has changed interactions between people and information 
-dramatically. Users expect relevant answers to questions in a natural 
-language, and they expect the best results with the right context. 
-Using <Config v="names.product"/> gives you relevant results no matter how you ask. Our 
-conversational search platform generates summarized responses that speak your 
-language. Better results enable better outcomes that reduce support costs and 
-improve the customer experience.
-
-## Why Vectara? Get Answers and Better Outcomes
+The <Config v="names.product"/> **Retrieval Augmented Generation as-a-Service 
+(RAGaaS)** platform enables organizations to rapidly create GenAI experiences 
+to reduce hallucinations and provide relevant results no matter how you 
+ask. Users expect relevant answers to questions in a natural language, and 
+they expect the best results with the right context. Our conversational search 
+platform generates summarized responses that speak your language. Better 
+results enable better outcomes that reduce support costs and improve the 
+customer experience.
 
 The <Config v="names.product"/> platform has a unique ability to understand and process 
-information. Our platform uses **hybrid search** to find the most relevant 
+information. Our platform uses **semantic search** to find the most relevant 
 products, support cases, and documents that answer your user’s questions first. 
 Power chatbots, Q&A systems, conversational applications and websites that base 
-their information on what you and your users care about – information grounded 
-in facts. <Config v="names.product"/> also provides result recommendations and enables global 
-collaboration through its **cross-language** search. 
+their information on what you and your users care about – with RAG - information 
+grounded in facts from the indexed data. Vectara also provides result 
+recommendations and enables global collaboration through its 
+**cross-language** search.
 
 ## Vectara GenAI Use Cases
 
-This versatile <Config v="names.product"/> GenAI platform caters to a wide range of use 
-cases to drive better outcomes and unlock new possibilities in search 
+This versatile <Config v="names.product"/> GenAI platform caters to a wide range of 
+[Retrieval Augmented Generation (RAG)](/docs/learn/grounded-generation/grounded-generation-overview) use cases to drive better outcomes and 
+unlock new possibilities in [semantic search](/docs/learn/semantic-search/semantic-search-overview) 
 applications. <Config v="names.product"/> provides an easy entry point to generative AI 
 capabilities while protecting company IP and customer data. The data 
 is secure. <Config v="names.product"/> does not train on user data and respects data 
@@ -55,7 +56,12 @@ titles, you might struggle to find the exact information you need for understand
 a real-estate contract, complex machine repair, conducting scientific 
 research, and so on.
 
-:bulb: Check out [example Vectara applications, demos, and tutorials](http://vectara.com/demos/) to explore the many capabilities of our platform.
+:::tip
+
+:bulb: Check out [**example Vectara applications, demos, and tutorials**](http://vectara.com/demos/) to explore 
+the many capabilities of our platform using various use-cases and datasets.
+
+:::
 
 ### Conversational AI
 
@@ -81,8 +87,8 @@ precise answers that save your team valuable time and resources.
 Enable your users to ask a question and get the precise answers quickly. Embed 
 your FAQs, customer support interactions, product manuals, inform knowledge 
 workers on data, and enhance your website search. <Config v="names.product"/> empowers your 
-organization to create a dynamic, responsive, and continuous improving Question 
-and Answer system that enhances the user experience and provides context-aware answers.
+organization to create a dynamic, responsive, and continuous improving [Question 
+and Answer system](/docs/learn/question-answer/question-answer-overview) that enhances the user experience and provides context-aware answers.
 
 ### Research and Analysis
 
@@ -95,7 +101,7 @@ questions in these vast volumes of data to identify key insights.
 Using <Config v="names.product"/> is like having a global research assistant that 
 can read and understand large volumes of documents in an instant. Let the 
 platform speed up your research process, find the most relevant information, 
-and become a recommendation system for your domain.
+and become a [recommendation system](/docs/learn/recommendation-systems/recommender-overview) for your domain.
 
 Vectara can help transform data into insights which help make decision-making 
 easier. This platform can provide hidden insights and patterns from your data, 

@@ -6,19 +6,24 @@ sidebar_label: FAQ and Q&A Matching
 
 import {Config} from '@site/docs/definitions.md';
 
-FAQ and Q&A Matching is a powerful tool for streamlining customer suport and 
-internal knowledge management. Enabling precise question-and-answer matching 
-reduces the time users spend searching for information. Some users have 
-frequently asked question (FAQ) databases or other forms of question databases 
-where the use case demands that your users are trying to find the 
-*nearest question* to their own, so you can provide them with the 
+FAQ and Question-and-Answer (Q&A) matching leverages our neural retrieval 
+capabilities to deliver precise answers and can help streamline support 
+and knowledge management use cases. Enabling precise Q&A matching reduces the 
+time users spend searching for information by enhancing both the accuracy and 
+contextuality of responses. By parsing and understanding complex queries, 
+Vectara transforms how organizations engage with their users, making 
+interactions more context-aware.
+
+Some users have frequently asked question (FAQ) databases or other forms of 
+question databases where the use case demands that your users are trying to 
+find the *nearest question* to their own, so you can provide them with the 
 authoritative answer from the "answer" side of the question-answer database.
 
 This approach may not offer the dynamic nature of Retrieval Augmented 
 Generation (RAG), but it allows you to establish tight controls over the 
 types of questions that users can ask and receive authorizative answers. 
 These question-answer systems can be great for building RFP-answering systems 
-for employees and FAQ lookups for customers. 
+for employees and FAQ lookups for customers. .
 
 ## Configure corpus for question matching
 

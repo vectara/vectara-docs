@@ -15,7 +15,7 @@ queries directly while providing citations that ground these search results in
 facts from the data.
 
 Implementing Retrieval Augmented Generation can transform the way information 
-retrieval and AI interactions are conducted, especially in sectors where the 
+retrieval and AI interactions are conducted, especially in use cases where the 
 integrity of information is critical.
 
 ## Data Retrieval
@@ -39,7 +39,8 @@ select other [available summarizers](/docs/learn/grounded-generation/select-a-su
 
 :::
 
-This example shows a complex question with a summary that contains citations:
+This example shows a complex question with a summary that contains several 
+citations and the search result highlights relevant information:
 
 ![Retrieval Augmented Generation (RAG) Summary Example](/img/grounded_generation_summary_example.png)
 
