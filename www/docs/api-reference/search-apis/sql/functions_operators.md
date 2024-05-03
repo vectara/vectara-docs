@@ -25,76 +25,114 @@ Non-binary operators do not specify associativity.
 | `AND`                    | left          | logical conjunction              |
 | `OR`                     | left          | logical disjunction              |
 
-## Unary Plus and Minus (+, -)
+These operators provide a powerful way to filter and retrieve documents. By 
+using them effectively, users can create complex queries to find the most 
+relevant documents for their specific use cases.
 
-```sql
-SELECT +value AS positive_value, -value AS negative_value;
-```
+## Unary plus and minus operators (`+`, `-`)
 
-## Multiplication, Division, and Modulo (*, /, %)
+The unary plus and minus operators indicate a positive or negative numeric 
+value. They are particularly useful when you need to filter documents based 
+on numeric fields that can have both positive and negative values, such as 
+scores, ratings, or temperatures. 
 
-```sql
-SELECT value1 * value2 AS multiplication;
-SELECT value1 / value2 AS division;
-SELECT value1 % value2 AS modulo;
-```
+For example, to filter documents with a score greater than or less than 
+specific values with the positive or negative sign:
 
-## Addition and Subtraction (+, -)
-
-```sql
-SELECT value1 + value2 AS addition;
-SELECT value1 - value2 AS subtraction;
-```
-
-## Comparison Operators (<, <=, >, >=)
+* **Unary plus**: `doc.score > -10`
+* **Unary minus**: `doc.score < +5`
 
 
-```sql
-SELECT value1 < value2 AS less_than;
-SELECT value1 <= value2 AS less_than_or_equal;
-SELECT value1 > value2 AS greater_than;
-SELECT value1 >= value2 AS greater_than_or_equal;
-```
+## Multiplication, division, and modulo operators (`*`, `/` `%`)
 
-<!--
-## Equality Operators (=, ==, !=, <>) -->
+These operators perform mathematical operations on numeric values to multiply, 
+divide, and find the remainder of a value. They are commonly used for tasks 
+like calculating prices with taxes, determining the number of pages or items 
+per group, or finding documents with specific numeric patterns:
 
-```sql
-SELECT value1 = value2 AS equal;
-SELECT value1 == value2 AS double_equal;
-SELECT value1 != value2 AS not_equal;
-SELECT value1 <> value2 AS not_equal_case_sensitive;
-```
+* **Multiplication**: `doc.price * 1.1 > 100`
+* **Division**: `doc.totalpages / 10 < 20`
+* **Modulo**: `doc.pagecount % 3 = 0`
 
 
-## NULL Comparison Operators (IS NULL, IS NOT NULL)
+## Addition and subtraction operators (`+`, `-`)
 
-```sql
-SELECT value IS NULL AS is_null;
-SELECT value IS NOT NULL AS is_not_null;
-```
+These addition and subtraction operators perform arithmetic operations on 
+numeric values. They are useful for tasks like adjusting scores or prices 
+based on specific criteria or comparing values with a certain threshold.
 
-## IN Operator
-
-```sql
-SELECT value IN (value1, value2, ...) AS in_list;
-SELECT value IN (SELECT blah_blah FROM blah_table WHERE blah_condition) AS in_subquery;
-```
-
-## NOT Operator
-
-```sql
-SELECT NOT boolean_expression AS negated_expression;
-```
+* **Addition**: `doc.score + 10 >= 80`
+* **Subtraction**: `doc.price - doc.discount <= 50`
 
 
-## AND Operator
+## Less and greater comparison operators (`<`, `<=`, `>`, `>=`)
 
-```sql
-SELECT condition1 AND condition2 AS combined_condition;
-```
-## OR Operator
+These comparison operators are used to filter documents based on specific 
+conditions. They are useful for a wide range of use cases, such as finding 
+documents within a certain price range, date range, or any other numeric or 
+comparable values.
 
-```sql
-SELECT condition1 OR condition2 AS combined_condition;
-```
+* **Less than (`<`)**: `doc.price < 100`
+* **Less than or equal to (`<=`)**: `doc.rating <= 4.5`
+* **Greater than (`>`)**: `doc.publishdate > "2022-01-01"`
+* **Greater than or equal to (`>=`)**: `doc.score >= 80`
+
+
+## Equality and inequality operators (`=`, `==`, `!=`, `<>`)
+
+These comparison operators check for equality or inequality for each side 
+of the function. They are useful for filtering documents based on specific 
+values of fields, such as categories, statuses, or names:
+
+* **Equals (`=` or `==`)**: `doc.category = "Technology"` or `doc.status == "active"`
+* **Does not equal to (`!=` or `<>`)**: `doc.category != "Sports"` or `doc.category <> "Entertainment"`
+
+
+## NULL comparison operators (`IS NULL`, `IS NOT NULL`)
+
+These operators check whether or not a value is NULL (empty or missing). They 
+are useful for filtering documents based on the presence or absence of values 
+in specific fields.
+
+* **Value is null**: `doc.author IS NULL`
+* **Value is not null**: `doc.description IS NOT NULL`
+
+
+## Containment operator (`IN`)
+
+The `IN` operator checks if a value is within a specified set. They are 
+useful for filtering documents based on multiple possible values for a field, 
+such as categories, tags, or statuses:
+
+* **Value is in a category**: `doc.category IN ("Science", "History")`
+* **Value is a particular status**: `doc.status IN ("active", "pending")`
+
+
+## Negation operator (`NOT`)
+
+The `NOT` operator is used to negate a condition, returning documents that do 
+not match the specified criteria. It is useful for excluding certain documents 
+based on specific field values.
+
+* **Value is not in a specific category**: `NOT (doc.category = "Technology")`
+* **Value is not less than a score of `50`**: `NOT (doc.score < 50)`
+
+
+## Conjunction operator (`AND`)
+
+The `AND` operator combines multiple conditions, requiring all conditions to 
+be true. It is very useful for narrowing down search results based on multiple 
+factors.
+
+* **Specify score and publish date**: `doc.score > 80 AND doc.publishDate > "2022-01-01"`
+* **Specify category and author**: `doc.category = "Technology" AND doc.author = "Jane Smith"`
+
+## Logical Disjunction (`OR`)
+
+The `OR` operator combines multiple conditions, requiring at least one 
+condition to be true. It is useful for broadening search results based on 
+multiple possible values.
+
+* **Specify one of two possible categories**: `doc.category = "Technology" OR doc.category = "Business"`
+* **Status is `active` or the document has a score `>90`**: `doc.status = "active" OR doc.score > 90`
+
