@@ -12,20 +12,17 @@ info:
     The Vectara API Playground lets you experiment with REST endpoints from 
     your browser. Select an endpoint to view its definition, including the 
     required or optional headers, body, responses, and sample commands. On the 
-    right side of each endpoint page, like [ReadCorpus](/docs/rest-api/get-corpus), you manually 
+    right side of each endpoint page, like [Get Corpus](/docs/rest-api/get-corpus), you manually 
     enter your API Key or OAuth Bearer Token, `customer_id`, and then any 
     required body parameters like the `corpusID` before sending the API 
     request.
 
     :::note
 
-    Vectara has three kinds of API keys: the Personal API Key, Index API Keys, 
-    and Query API Keys. The Personal API Key enables administrative tasks 
-    including creating, deleting, and listing corpora, and managing Index and 
-    Query API keys for accessible corpora, reading usage data, updating 
-    corpora filters, executing queries, and indexing. Query API Keys are used
-    for read-only querying operations, while Index API Keys provide read and 
-    write access. The OAuth operations authenticate with a Bearer Token via the
+    Vectara supports two primary methods of authentication: API keys and OAuth 
+    2.0, which are applicable to all endpoints. Query API Keys are used for 
+    read-only querying operations, while Index API Keys provide read and write 
+    access. The OAuth 2.0 operations authenticate with a Bearer Token via the 
     OAuth 2.0 client credentials grant. Review the [**OAuth 2.0 section**](https://docs.vectara.com/docs/learn/authentication/oauth-2) about 
     how to generate the token.
   version: 2.0.0
@@ -59,8 +56,10 @@ tags:
     description: Monitor and manage background jobs, such as rebuilding indexes or updating corpus settings
   - name: Users
     description: Create, manage, and authenticate users within the platform for user administration
-  - name: Auth
-    description: Manage API keys, app clients, and perform authentication operations for admin-level access control
+  - name: Application Clients
+    description: Manage app clients, and perform authentication operations for admin-level access control
+  - name: API Keys
+    description: Manage API keys for the account
 
 servers:
   - url: https://api.vectara.io
@@ -74,7 +73,7 @@ paths:
       description: Perform a multi-purpose query that can retrieve relevant information from one or more corpora and generate a response using RAG.
       security:
         - ApiKeyAuth: []
-        - oAuth: []
+        - oAuth2: []
       operationId: query
       requestBody:
         content:
@@ -116,7 +115,7 @@ paths:
       description: Create a corpus, which is a container to store documents and associated metadata.
       security:
         - ApiKeyAuth: []
-        - oAuth: []
+        - oAuth2: []
       operationId: createCorpus
       tags:
         - Corpora
@@ -150,7 +149,7 @@ paths:
                     detailed than the direct corpus retrieval operation." 
       security:
         - ApiKeyAuth: []
-        - oAuth: []
+        - oAuth2: []
       operationId: listCorpora
       tags:
         - Corpora
@@ -198,7 +197,7 @@ paths:
       description: Get metadata about a corpus. This operation is not a method of searching a corpus.
       security:
         - ApiKeyAuth: []
-        - oAuth: []
+        - oAuth2: []
       operationId: getCorpus
       parameters:
         - in: path
@@ -206,8 +205,7 @@ paths:
           description: The unique key identifying the corpus to retrieve.
           required: true
           schema:
-            type: string
-            pattern: '[a-zA-Z0-9_\=]+$'
+            $ref: '#/components/schemas/CorpusKey'
       responses:
         '200':
           description: A corpus.
@@ -234,7 +232,7 @@ paths:
       description: Delete a corpus and all the data that it contains.
       security:
         - ApiKeyAuth: []
-        - oAuth: []
+        - oAuth2: []
       operationId: deleteCorpus
       parameters:
         - in: path
@@ -242,8 +240,7 @@ paths:
           description: The unique key identifying the corpus to delete
           required: true
           schema:
-            type: string
-            pattern: '[a-zA-Z0-9_\=]+$'
+            $ref: '#/components/schemas/CorpusKey'
       responses:
         '204':
           description: Successfully deleted a corpus.
@@ -266,7 +263,7 @@ paths:
       description: Enable or disable a corpus.
       security:
         - ApiKeyAuth: []
-        - oAuth: []
+        - oAuth2: []
       operationId: updateCorpus
       parameters:
         - in: path
@@ -274,8 +271,7 @@ paths:
           description: The unique key identifying the corpus to update.
           required: true
           schema:
-            type: string
-            pattern: '[a-zA-Z0-9_\=]+$'
+            $ref: '#/components/schemas/CorpusKey'
       requestBody:
         content:
           application/json:
@@ -308,7 +304,7 @@ paths:
       description: Resets a corpus, which removs all documents and data from the specified corpus, while keeping the corpus itself.
       security:
         - ApiKeyAuth: []
-        - oAuth: []
+        - oAuth2: []
       operationId: resetCorpus
       parameters:
         - in: path
@@ -316,8 +312,7 @@ paths:
           description: The unique key identifying the corpus to reset.
           required: true
           schema:
-            type: string
-            pattern: '[a-zA-Z0-9_\=]+$'
+            $ref: '#/components/schemas/CorpusKey'
       responses:
         '204':
           description: Succesfully reset a corpus.
@@ -346,7 +341,7 @@ paths:
         You can monitor the status of the filter change using the returned job id.
       security:
         - ApiKeyAuth: []
-        - oAuth: []
+        - oAuth2: []
       operationId: replaceFilterAttributes
       parameters:
         - in: path
@@ -354,8 +349,7 @@ paths:
           description: Key of the corpus to have filters replaced.
           required: true
           schema:
-            type: string
-            pattern: '[a-zA-Z0-9_\=]+$'
+            $ref: '#/components/schemas/CorpusKey'
       requestBody:
         content:
           application/json:
@@ -388,7 +382,7 @@ paths:
       description: Search a single corpus with a simple query request.
       security:
         - ApiKeyAuth: []
-        - oAuth: []
+        - oAuth2: []
       operationId: searchCorpus
       parameters:
         - in: path
@@ -396,8 +390,7 @@ paths:
           description: The unique key identifying the corpus to query.
           required: true
           schema:
-            type: string
-            pattern: '[a-zA-Z0-9_\=]+$'
+            $ref: '#/components/schemas/CorpusKey'
         - in: query
           name: q
           description: The search query string for the corpus.
@@ -452,7 +445,7 @@ paths:
       description: Query a specific corpus and find relevant results, highlight relevant snippets, and use Retrival Augmented Generation.
       security:
         - ApiKeyAuth: []
-        - oAuth: []
+        - oAuth2: []
       operationId: queryCorpus
       parameters:
         - in: path
@@ -460,8 +453,7 @@ paths:
           description: The unique key identifying the corpus to query.
           required: true
           schema:
-            type: string
-            pattern: '[a-zA-Z0-9_\=]+$'
+            $ref: '#/components/schemas/CorpusKey'
       requestBody:
         content:
           application/json:
@@ -504,7 +496,7 @@ paths:
       description: Upload files such as PDFs and Word Documents. Vectara will attempt to automatically extract text and any metadata.
       security:
         - ApiKeyAuth: []
-        - oAuth: []
+        - oAuth2: []
       operationId: uploadFile
       parameters:
         - in: path
@@ -512,8 +504,7 @@ paths:
           description: The unique key identifying the corpus of which to upload the file.
           required: true
           schema:
-            type: string
-            pattern: '[a-zA-Z0-9_\=]+$'
+            $ref: '#/components/schemas/CorpusKey'
       requestBody:
         description: |
           Upload a file for the Vectara platform to attempt to parse and turn into a document within the corpus.
@@ -563,7 +554,7 @@ paths:
         or in a format that explicitly specifies each document part that becomes a search result.
       security:
         - ApiKeyAuth: []
-        - oAuth: []
+        - oAuth2: []
       operationId: createCorpusDocument
       parameters:
         - in: path
@@ -571,8 +562,7 @@ paths:
           description: The unique key identifying the queried corpus.
           required: true
           schema:
-            type: string
-            pattern: '[a-zA-Z0-9_\=]+$'
+            $ref: '#/components/schemas/CorpusKey'
       requestBody:
         content:
           application/json:
@@ -609,7 +599,7 @@ paths:
       summary: List the documents in the corpus
       security:
         - ApiKeyAuth: []
-        - oAuth: []
+        - oAuth2: []
       operationId: listCorpusDocuments
       parameters:
         - in: path
@@ -617,8 +607,7 @@ paths:
           description: The unique key identifying the queried corpus.
           required: true
           schema:
-            type: string
-            pattern: '[a-zA-Z0-9_\=]+$'
+            $ref: '#/components/schemas/CorpusKey'
         - name: limit
           in: query
           description: The maximum number of documents to return at one time.
@@ -661,7 +650,7 @@ paths:
       summary: Delete a document
       security:
         - ApiKeyAuth: []
-        - oAuth: []
+        - oAuth2: []
       operationId: deleteCorpusDocument
       parameters:
         - in: path
@@ -669,8 +658,7 @@ paths:
           description: The unique key identifying the corpus with the document to delete.
           required: true
           schema:
-            type: string
-            pattern: '[a-zA-Z0-9_\=]+$'
+            $ref: '#/components/schemas/CorpusKey'
         - in: path
           name: document_id
           description: The Document ID of the document to delete.
@@ -700,7 +688,7 @@ paths:
       description: Create a chat while specifying the default retrieval parameters used by the prompt.
       security:
         - ApiKeyAuth: []
-        - oAuth: []
+        - oAuth2: []
       operationId: createChat
       requestBody:
         content:
@@ -743,7 +731,7 @@ paths:
       description: Retrieve a list of previous chats in the Vectara account.
       security:
         - ApiKeyAuth: []
-        - oAuth: []
+        - oAuth2: []
       operationId: listChats
       parameters:
         - in: query
@@ -780,20 +768,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
-  /v2/summarizers:
+  /v2/llms:
     get:
       tags:
-        - Summarizers
-      summary: List summarizers
-      description: List of availables summarizers that can be used with queries.
+        - Large Language Models
+      summary: List LLMs.
+      description: List LLMs that can be used with query and chat endpoints.
       security:
         - ApiKeyAuth: []
-        - oAuth: []
-      operationId: listSummarizers
+        - oAuth2: []
+      operationId: listLLMs
       parameters:
         - name: filter
           in: query
-          description: A regular expression to match names and descriptions of the summarizers.
+          description: A regular expression to match names and descriptions of the LLMs.
           required: false
           schema:
             type: string
@@ -810,18 +798,18 @@ paths:
         - name: page_key
           in: query
           description: |
-            Used to the retrieve the next page of summarizers after the limit has been reached.
+            Used to the retrieve the next page of LLMs after the limit has been reached.
             This parameter is not needed for the first page of results.
           required: false
           schema:
             type: string
       responses:
         '200':
-          description: List of summarizers.
+          description: List of LLMs.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListSummarizersResponse'
+                $ref: '#/components/schemas/ListLLMsResponse'
         '403':
           description: Permissions do not allow listing summarizers.
           content:
@@ -836,7 +824,7 @@ paths:
       description: Get a chat summary to view what started the chat, but not subsequent turns.
       security:
         - ApiKeyAuth: []
-        - oAuth: []
+        - oAuth2: []
       operationId: getChat
       parameters:
         - in: path
@@ -872,7 +860,7 @@ paths:
       description: Delete a chat and any turns it contains permanently.
       security:
         - ApiKeyAuth: []
-        - oAuth: []
+        - oAuth2: []
       operationId: deleteChat
       parameters:
         - in: path
@@ -905,7 +893,7 @@ paths:
       description: Create a new turn in the chat. Each conversation has a series of `turn` objects, which are the sequence of message and response pairs tha make up the dialog.
       security:
         - ApiKeyAuth: []
-        - oAuth: []
+        - oAuth2: []
       operationId: createChatTurn
       parameters:
         - in: path
@@ -956,7 +944,7 @@ paths:
       description: List all turns in a chat to see all message and response pairs that make up the dialog.
       security:
         - ApiKeyAuth: []
-        - oAuth: []
+        - oAuth2: []
       operationId: listChatTurns
       parameters:
         - in: path
@@ -993,7 +981,7 @@ paths:
       description: Get a specific turn from a chat, which is a message and response pair from the conversation.
       security:
         - ApiKeyAuth: []
-        - oAuth: []
+        - oAuth2: []
       operationId: getChatTurn
       parameters:
         - in: path
@@ -1036,7 +1024,7 @@ paths:
       description: Delete a turn from a chat. This will delete all subsequent turns in the chat.
       security:
         - ApiKeyAuth: []
-        - oAuth: []
+        - oAuth2: []
       operationId: deleteChatTurn
       parameters:
         - in: path
@@ -1075,7 +1063,7 @@ paths:
       description: Update a turn; used to disable or enable a chat.
       security:
         - ApiKeyAuth: []
-        - oAuth: []
+        - oAuth2: []
       operationId: updateChatTurn
       parameters:
         - in: path
@@ -1124,7 +1112,7 @@ paths:
       description: Encoders are used to store and retrieve from a corpus. 
       security:
         - ApiKeyAuth: []
-        - oAuth: []
+        - oAuth2: []
       operationId: listEncoders
       parameters:
         - in: query
@@ -1163,6 +1151,50 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /v2/rerankers:
+    get:
+      tags:
+        - Rerankers
+      summary: List the available rerankers
+      description: Rerankers are used to improve the ranking (ordering) of search results.
+      operationId: listRerankers
+      parameters:
+        - in: query
+          name: filter
+          description: A regular expression against reranker names and descriptions.
+          required: false
+          schema:
+            type: string
+            example: "vectara.*"
+        - in: query
+          name: limit
+          description: The maximum number of rerankers to return in the list.
+          required: false
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 100
+            default: 10
+        - name: page_key
+          in: query
+          description: Used to the retrieve the next page of rerankers after the limit has been reached. 
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of rerankers.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListRerankersResponse'
+        '403':
+          description: Permissions do not allow listing rerankers.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /v2/jobs:
     get:
       tags:
@@ -1171,7 +1203,7 @@ paths:
       description: List jobs for the account. Jobs are background processes like replacing the filterable metadata attributes.
       security:
         - ApiKeyAuth: []
-        - oAuth: []
+        - oAuth2: []
       operationId: listJobs
       parameters:
         - name: corpus_key
@@ -1181,8 +1213,7 @@ paths:
           schema:
             type: array
             items:
-              type: string
-              pattern: '[a-zA-Z0-9_\=]+$'
+              $ref: '#/components/schemas/CorpusKey'
         - name: after
           in: query
           description: Get jobs after a date time.
@@ -1235,7 +1266,7 @@ paths:
       description: Get a job by a specific ID. Jobs are backgrouond processes like replacing the filterable metadata attributes.
       security:
         - ApiKeyAuth: []
-        - oAuth: []
+        - oAuth2: []
       operationId: getJob
       parameters:
         - name: job_id
@@ -1272,7 +1303,7 @@ paths:
       description: Create a user for the current customer account.
       security:
         - ApiKeyAuth: []
-        - oAuth: []
+        - oAuth2: []
       operationId: createUser
       requestBody:
         content:
@@ -1305,7 +1336,7 @@ paths:
       description: Lists all users in the account.
       security:
         - ApiKeyAuth: []
-        - oAuth: []
+        - oAuth2: []
       operationId: listUsers
       parameters:
         - name: limit
@@ -1337,7 +1368,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /v2/users/{user_id}:
+  /v2/users/{username}:
     get:
       tags:
         - Users
@@ -1345,10 +1376,10 @@ paths:
       description: Get a user and view details like the email, username, and roles associated with a user.
       security:
         - ApiKeyAuth: []
-        - oAuth: []
+        - oAuth2: []
       operationId: getUser
       parameters:
-        - name: user_id
+        - name: username
           in: path
           description: Specifies the User ID that to retrieve.
           required: true
@@ -1380,10 +1411,10 @@ paths:
       description: Update details about a user such as role names.
       security:
         - ApiKeyAuth: []
-        - oAuth: []
+        - oAuth2: []
       operationId: updateUser
       parameters:
-        - name: user_id
+        - name: username
           in: path
           description: Specifies the User ID to update.
           required: true
@@ -1420,10 +1451,10 @@ paths:
       description: Delete a user from the account.
       security:
         - ApiKeyAuth: []
-        - oAuth: []
+        - oAuth2: []
       operationId: deleteUser
       parameters:
-        - name: user_id
+        - name: username
           in: path
           description: Specifies the User ID to delete.
           required: true
@@ -1444,18 +1475,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
-  /v2/users/{user_id}/reset_password:
-    patch:
+  /v2/users/{username}/reset_password:
+    post:
       tags:
         - Users
       summary: Reset the password for a user
       description: Reset the password for a user.
       security:
         - ApiKeyAuth: []
-        - oAuth: []
+        - oAuth2: []
       operationId: resetUserPassword
       parameters:
-        - name: user_id
+        - name: username
           in: path
           description: Specifies the User ID to update.
           required: true
@@ -1479,11 +1510,12 @@ paths:
   /v2/api_keys:
     post:
       tags:
-        - Auth
+        - API Keys
       summary: Create an API key
       description: An API key is to authenticate when calling Vectara APIs.
       security:
-        - oAuth: []
+        - ApiKeyAuth: []
+        - oAuth2: []
       operationId: createApiKey
       requestBody:
         content:
@@ -1511,11 +1543,11 @@ paths:
                 $ref: '#/components/schemas/Error'
     get:
       tags:
-        - Auth
+        - API Keys
       summary: List API keys
       security:
         - ApiKeyAuth: []
-        - oAuth: []
+        - oAuth2: []
       operationId: listApiKeys
       parameters:
         - name: limit
@@ -1556,11 +1588,11 @@ paths:
   /v2/api_keys/{api_key_id}:
     get:
       tags:
-        - Auth
+        - API Keys
       summary: Get an API key
       security:
         - ApiKeyAuth: []
-        - oAuth: []
+        - oAuth2: []
       operationId: getApiKey
       parameters:
         - name: api_key_id
@@ -1584,11 +1616,12 @@ paths:
                 $ref: '#/components/schemas/Error'
     patch:
       tags:
-        - Auth
+        - API Keys
       summary: Update an API key
       description: Update an API key such as the roles attached to the key.
       security:
-        - oAuth: []
+        - ApiKeyAuth: []
+        - oAuth2: []
       operationId: updateApiKey
       parameters:
         - name: api_key_id
@@ -1617,11 +1650,12 @@ paths:
                 $ref: '#/components/schemas/Error'
     delete:
       tags:
-        - Auth
+        - API Keys
       summary: Delete an API key
       description: Delete API keys to help you manage the security and lifecycle of API keys in your application.
       security:
-        - oAuth: []
+        - ApiKeyAuth: []
+        - oAuth2: []
       operationId: deleteApiKey
       parameters:
         - name: api_key_id
@@ -1642,11 +1676,12 @@ paths:
   /v2/app_clients:
     post:
       tags:
-        - Auth
+        - Application Clients
       summary: Create an App Client
       description: An App Client is used for OAuth 2.0 authentication when calling Vectara APIs.
       security:
-        - oAuth: []
+        - ApiKeyAuth: []
+        - oAuth2: []
       operationId: createAppClient
       requestBody:
         content:
@@ -1674,11 +1709,11 @@ paths:
                 $ref: '#/components/schemas/Error'
     get:
       tags:
-        - Auth
+        - Application Clients
       summary: List App Clients
       security:
         - ApiKeyAuth: []
-        - oAuth: []
+        - oAuth2: []
       operationId: listAppClient
       parameters:
         - name: limit
@@ -1691,6 +1726,12 @@ paths:
             minimum: 1
             maximum: 100
             default: 10
+        - name: filter
+          in: query
+          description: Regular expression to filter the names of the App Clients.
+          required: false
+          schema:
+            type: string
         - name: page_key
           in: query
           description: Used to retrieve the next page of App Clients after the limit has been reached. 
@@ -1716,14 +1757,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /v2/api_keys/{app_client_id}:
+  /v2/app_clients/{app_client_id}:
     get:
       tags:
-        - Auth
+        - Application Clients
       summary: Get an App Client
       security:
         - ApiKeyAuth: []
-        - oAuth: []
+        - oAuth2: []
       operationId: getAppClient
       parameters:
         - name: app_client_id
@@ -1747,10 +1788,11 @@ paths:
                 $ref: '#/components/schemas/Error'
     patch:
       tags:
-        - Auth
+        - Application Clients
       summary: Update an App Client
       security:
-        - oAuth: []
+        - ApiKeyAuth: []
+        - oAuth2: []
       operationId: updateAppClient
       parameters:
         - name: app_client_id
@@ -1763,14 +1805,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateApiKeyRequest'
+              $ref: '#/components/schemas/UpdateAppClientRequest'
       responses:
         '200':
           description: The App Client.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ApiKey'
+                $ref: '#/components/schemas/AppClient'
         '403':
           description: Permissions do not allow getting this App Clients.
           content:
@@ -1779,11 +1821,12 @@ paths:
                 $ref: '#/components/schemas/Error'
     delete:
       tags:
-        - Auth
+        - Application Clients
       summary: Delete an App Client
       security:
-        - oAuth: []
-      operationId: deleteAppCLient
+        - ApiKeyAuth: []
+        - oAuth2: []
+      operationId: deleteAppClient
       parameters:
         - name: app_client_id
           in: path
@@ -1800,56 +1843,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /v2/api_roles:
-    get:
-      tags:
-        - Auth
-      summary: Get available API roles
-      description: Get available API roles. API roles can be attached to identities, like an API key.
-      security:
-        - ApiKeyAuth: []
-        - oAuth: []
-      operationId: listApiRoles
-      parameters:
-        - name: limit
-          in: query
-          description: The maximum number of documents to return at one time.
-          required: false
-          schema:
-            type: integer
-            format: int32
-            minimum: 1
-            maximum: 100
-            default: 10
-        - name: page_key
-          in: query
-          description: Used to retrieve the next page of documents after the limit has been reached. 
-          required: false
-          schema:
-            type: string
-      responses:
-        '200':
-          description: List of API roles.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ListApiRolesResponse'
-        '403':
-          description: Permissions do not allow listing API roles.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
 components:
   schemas:
     CreateCorpusRequest:
       type: object
       properties:
         key:
-          description: The user-provided key for the corpus.
-          type: string
-          pattern: '[a-zA-Z0-9_\=]+$'
-          example: my-corpus
+          $ref: '#/components/schemas/CorpusKey'
         name:
           description: The name for the corpus. This value defaults to the key.
           type: string
@@ -1919,6 +1919,11 @@ components:
           pattern: 'job_.+$'
       required:
         - job_id
+    CorpusKey:
+      description: A user-provided key for a corpus.
+      type: string
+      pattern: '[a-zA-Z0-9_\=\-]+$'
+      example: my-corpus
     Corpus:
       type: object
       properties:
@@ -1927,9 +1932,7 @@ components:
           type: string
           pattern: 'crp_[0-9]+$'
         key:
-          description: The user-provided key for the corpus.
-          type: string
-          pattern: '[a-zA-Z0-9_\=]+$'
+          $ref: '#/components/schemas/CorpusKey'
         name:
           description: Name for the corpus. This value defaults to the key.
           type: string
@@ -2084,7 +2087,7 @@ components:
         context_configuration:
           $ref: '#/components/schemas/ContextConfiguration'
         reranker:
-          $ref: '#/components/schemas/Reranker'
+          $ref: '#/components/schemas/SearchReranker'
     ContextConfiguration:
       type: object
       description: Configuration on the presentation of each document part in the result set.
@@ -2185,9 +2188,7 @@ components:
           minimum: 0
         response_language:
           description: The language of the generator response.
-          type: string
-          format: lang
-          default: AUTO
+          $ref: '#/components/schemas/Language'
         model_parameters:
           title: ModelParameters
           description: |
@@ -2312,12 +2313,10 @@ components:
         - type: object
           properties:
             corpus_key:
-              description: Specifies the corpus on which to perform the search.
-              type: string
-              pattern: '[a-zA-Z0-9_\=]+$'
+              $ref: '#/components/schemas/CorpusKey'
       required:
         - corpus_key
-    Reranker:
+    SearchReranker:
       type: object
       description: Rerank results of the search.
       properties:
@@ -2336,24 +2335,32 @@ components:
     CustomerSpecificReranker:
       description: Reranker that is specific to the customer.
       type: object
-      allOf:
-        - $ref: '#/components/schemas/Reranker'
       properties:
+        type:
+          description: Always the value customer_reranker.
+          type: string
+          default: customer_reranker
         reranker_id:
           description: |
             The id of the reranker. Current cross attentional reranker that may be used by
             Scale custmers is rnk_272725717.
           type: string
+      x-vectaraParents:
+        - SearchReranker
     MMRReranker:
       type: object
-      allOf:
-        - $ref: '#/components/schemas/Reranker'
       properties:
+        type:
+          description: Always the value mmr.
+          type: string
+          default: mmr
         diversity_bias:
           description: "The diversity bias. Higher values indicate more diversity."
           type: number
           format: float
           example: .3
+      x-vectaraParents:
+        - SearchReranker
     QueryFullResponse:
       description: The full response to a RAG query when the result is not streamed.
       type: object
@@ -2362,9 +2369,7 @@ components:
           description: The summary of the search results.
           type: string
         summary_language:
-          description: The language that the summary is expected to be a part of.
-          type: string
-          example: ENG
+          $ref: '#/components/schemas/Language'
         search_results:
           description: The ranked search results.
           type: array
@@ -2418,52 +2423,91 @@ components:
       discriminator:
         propertyName: type
         mapping:
-          search_results: '#/components/schemas/QuerySearchResponse'
-          summary_chunk: '#/components/schemas/QuerySummarizationChunk'
+          search_results: '#/components/schemas/StreamSearchResponse'
+          generation_chunk: '#/components/schemas/StreamGenerationChunk'
           factual_consistency_score: '#/components/schemas/FactualConsistencyScore'
-          end: '#/components/schemas/QueryResponseEnd'
+          error: '#/components/schemas/StreamError'
+          end: '#/components/schemas/StreamResponseEnd'
       oneOf:
-        - $ref: '#/components/schemas/QuerySearchResponse'
-        - $ref: '#/components/schemas/QuerySummarizationChunk'
-        - $ref: '#/components/schemas/QueryResponseEnd'
+        - $ref: '#/components/schemas/StreamSearchResponse'
+        - $ref: '#/components/schemas/StreamGenerationChunk'
+        - $ref: '#/components/schemas/StreamResponseEnd'
         - $ref: '#/components/schemas/FactualConsistencyScore'
-    QuerySearchResponse:
+        - $ref: '#/components/schemas/StreamError'
+    StreamSearchResponse:
       description: The search response results.
       type: object
-      allOf:
-        - $ref: '#/components/schemas/QueryStreamedResponse'
       properties:
+        type:
+          description: Always the value search_results.
+          type: string
+          default: search_results
         search_results:
           description: The ranked search results.
           type: array
           items:
             $ref: '#/components/schemas/IndividualSearchResult'
-    QuerySummarizationChunk:
+      x-vectaraParents:
+        - QueryStreamedResponse
+        - ChatStreamedResponse
+    StreamGenerationChunk:
       description: The chunk response from the summarization, possibly a partial summarization.
       type: object
-      allOf:
-        - $ref: '#/components/schemas/QueryStreamedResponse'
       properties:
+        type:
+          description: Always the value generation_chunk.
+          type: string
+          default: generation_chunk
         text_chunk:
           description: |
             Part of the message from the summarizer. All summary chunks must be appended together in order
             to get the full summary.
           type: string
+      x-vectaraParents:
+        - QueryStreamedResponse
+        - ChatStreamedResponse
     FactualConsistencyScore:
       description: Event containing the factual consistency score.
       type: object
-      allOf:
-        - $ref: '#/components/schemas/QueryStreamedResponse'
       properties:
+        type:
+          description: Always the value factual_consistency_score.
+          type: string
+          default: factual_consistency_score
         factual_consistency_score:
           description: The probability that the summary is factually consistent with the results.
           type: number
           format: float
-    QueryResponseEnd:
+      x-vectaraParents:
+        - QueryStreamedResponse
+        - ChatStreamedResponse
+    StreamError:
+      description: |
+        Event signaling there was an error with the request.
+      properties:
+        type:
+          description: Always the value error.
+          type: string
+          default: error
+        messages:
+          description: The error messages.
+          type: array
+          items:
+            type: string
+      x-vectaraParents:
+        - QueryStreamedResponse
+        - ChatStreamedResponse
+    StreamResponseEnd:
       description: The end of a query response stream.
       type: object
-      allOf:
-        - $ref: '#/components/schemas/QueryStreamedResponse'
+      properties:
+        type:
+          description: Always the value end.
+          type: string
+          default: end
+      x-vectaraParents:
+        - QueryStreamedResponse
+        - ChatStreamedResponse
     UploadFileRequest:
       type: object
       properties:
@@ -2485,9 +2529,6 @@ components:
         A document part is the a search result item in search and retrieval augmeneted generation endpoints.
       type: object
       properties:
-        id:
-          description: The Document ID, must be unique within the corpus.
-          type: string
         type:
           description: |
             Whether Vectara should employ its stategy to split up a structured document into parts, 
@@ -2509,14 +2550,18 @@ components:
         - $ref: '#/components/schemas/CoreDocument'
         - $ref: '#/components/schemas/StructuredDocument'
       required:
-        - id
         - type
     StructuredDocument:
       description: A document with layout features.
       type: object
-      allOf:
-        - $ref: '#/components/schemas/CreateDocumentRequest'
       properties:
+        id:
+          description: The Document ID, must be unique within the corpus.
+          type: string
+        type:
+          description: Always the value structured.
+          type: string
+          default: structured
         title:
           description: The title of the document.
           type: string
@@ -2536,6 +2581,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/StructuredDocumentSection'
+      required:
+        - id
+        - type
+      x-vectaraParents:
+        - CreateDocumentRequest
     StructuredDocumentSection:
       description: A logical section within a structured document.
       type: object
@@ -2568,9 +2618,14 @@ components:
     CoreDocument:
       description: The document structure that most closely corresponds to Vectara's internal document data model.
       type: object
-      allOf:
-        - $ref: '#/components/schemas/CreateDocumentRequest'
       properties:
+        id:
+          description: The Document ID, must be unique within the corpus.
+          type: string
+        type:
+          description: Always the value core.
+          type: string
+          default: core
         metadata:
           description: "Arbitrary object of document level metadata. Properties of this object \
                         can be used by document filter if defined as a corpus filter attribute."
@@ -2582,6 +2637,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CoreDocumentPart'
+      required:
+        - id
+        - type
+      x-vectaraParents:
+        - CreateDocumentRequest
     CoreDocumentPart:
       description: A part of a document. This section gets converted into an embedding and directly maps to a search result. Usually a sentence.
       type: object
@@ -2647,26 +2707,34 @@ components:
             $ref: '#/components/schemas/Document'
         metadata:
           $ref: '#/components/schemas/ListMetadata'
-    Summarizer:
-      description: A summarizer is the LLM used to summarize query results.
+    LLM:
+      description: |
+        A LLM can be used to enhance query results with a response, and be used as
+        the responder during a chat.
       type: object
       properties:
         id:
-          description: The ID of the summarizer. This is used as the model ID in a query.
+          description: The ID of the LLM. This is used as the model ID in a query.
+          type: string
+          pattern: "llm_.*"
+        name:
+          description: Name of the LLM.
           type: string
         description:
-          description: The description of the summarizer.
+          description: The description of the LLM.
           type: string
         enabled:
-          description: Indicates whether the summarizer is enabled.
+          description: Indicates whether the LLM is enabled.
           type: boolean
         default:
           description: |
-            If this is the default summarizer, it is used in queries when the summarizer
+            If this is the default LLM, it is used in queries when the summarizer
             is not specified.
           type: boolean
         prompts:
-          $ref: '#/components/schemas/Prompt'
+          description: List of prompts that the model can used.
+          items:
+            $ref: '#/components/schemas/Prompt'
     Prompt:
       description: A prompt that can be used with an LLM.
       type: object
@@ -2674,6 +2742,7 @@ components:
         id:
           description: The ID of the prompt. This is used as the prompt id in a query.
           type: string
+          pattern: "pmt_.*"
         description:
           description: The description of the prompt.
           type: string
@@ -2681,16 +2750,16 @@ components:
           description: Indicates whether the prompt is enabled.
           type: boolean
         default:
-          description: Indicates if this prompt is the default prompt used with the summarizer.
+          description: Indicates if this prompt is the default prompt used with the LLM.
           type: boolean
-    ListSummarizersResponse:
+    ListLLMsResponse:
       type: object
       properties:
-        summarizers:
-          description: List of summarizers.
+        llms:
+          description: List of LLMs.
           type: array
           items:
-            $ref: '#/components/schemas/Summarizer'
+            $ref: '#/components/schemas/LLM'
         metadata:
           $ref: '#/components/schemas/ListMetadata'
     ChatRequest:
@@ -2729,8 +2798,7 @@ components:
           type: string
         answer_language:
           description: The language that the message is expected to be.
-          type: string
-          example: ENG
+          $ref: '#/components/schemas/Language'
         search_results:
           description: The ranked search results that the chat model used.
           type: array
@@ -2746,34 +2814,27 @@ components:
       discriminator:
         propertyName: type
         mapping:
-          search_results: '#/components/schemas/ChatSearchResponse'
+          search_results: '#/components/schemas/StreamSearchResponse'
           chat_info: '#/components/schemas/ChatInfoResponse'
-          message_chunk: '#/components/schemas/ChatMessageChunk'
-          factual_consistency_score: '#/components/schemas/ChatFactualConsistencyScore'
-          end: '#/components/schemas/ChatResponseEnd'
+          generation_chunk: '#/components/schemas/StreamGenerationChunk'
+          factual_consistency_score: '#/components/schemas/FactualConsistencyScore'
+          end: '#/components/schemas/StreamResponseEnd'
+          error: '#/components/schemas/StreamError'
       oneOf:
-        - $ref: '#/components/schemas/ChatSearchResponse'
+        - $ref: '#/components/schemas/StreamSearchResponse'
         - $ref: '#/components/schemas/ChatInfoResponse'
-        - $ref: '#/components/schemas/ChatMessageChunk'
-        - $ref: '#/components/schemas/ChatFactualConsistencyScore'
-        - $ref: '#/components/schemas/ChatResponseEnd'
-    ChatSearchResponse:
-      description: The search response results.
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/ChatStreamedResponse'
-      properties:
-        search_results:
-          description: The ranked search results.
-          type: array
-          items:
-            $ref: '#/components/schemas/IndividualSearchResult'
+        - $ref: '#/components/schemas/StreamGenerationChunk'
+        - $ref: '#/components/schemas/FactualConsistencyScore'
+        - $ref: '#/components/schemas/StreamResponseEnd'
+        - $ref: '#/components/schemas/StreamError'
     ChatInfoResponse:
       description: Information about the chat.
       type: object
-      allOf:
-        - $ref: '#/components/schemas/ChatStreamedResponse'
       properties:
+        type:
+          description: Always the value chat_info.
+          type: string
+          default: chat_info
         chat_id:
           description: ID of the chat.
           type: string
@@ -2782,32 +2843,8 @@ components:
           description: ID of the turn.
           type: string
           pattern: 'trn_.+$'
-    ChatMessageChunk:
-      description: A chunk of the message sent from the generator.
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/ChatStreamedResponse'
-      properties:
-        text_chunk:
-          description: |
-            Part of the message from the model. All message chunks must be appended together in order
-            to get the full message.
-          type: string
-    ChatFactualConsistencyScore:
-      description: Event containing the factual consistency score.
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/ChatStreamedResponse'
-      properties:
-        factual_consistency_score:
-          description: The probability that the summary is factually consistent with the results.
-          type: number
-          format: float
-    ChatResponseEnd:
-      description: The end of a chat response stream.
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/ChatStreamedResponse'
+      x-vectaraParents:
+        - ChatStreamedResponse
     Chat:
       type: object
       properties:
@@ -2839,14 +2876,6 @@ components:
             $ref: '#/components/schemas/Chat'
         metadata:
           $ref: '#/components/schemas/ListMetadata'
-    CreateTurnRequest:
-      type: object
-      properties:
-        query:
-          description: The initial question.
-          type: string
-      required:
-        - query
     Turn:
       type: object
       properties:
@@ -2903,39 +2932,56 @@ components:
         name:
           description: The human-readable name of the API key.
           type: string
-        api_roles:
-          description: The API roles attached to the API key.
+        api_key_role:
+          $ref: '#/components/schemas/ApiKeyRole'
+        corpus_keys:
+          description: |
+            Corpora this API key has roles on if it is not a Personal API key.
+            This property should be null of missing if this `api_key_role` is
+            `personal`.
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/CorpusKey'
+      required:
+        - name
+        - api_key_role
     ApiKey:
       type: object
       properties:
         id:
           description: The ID of the API key.
           type: string
-          pattern: 'key_[a-zA-Z0-9_\=]+$'
+          pattern: 'aky_.*'
         name:
           description: The human-readable name of the API key.
           type: string
         secret_key:
           description: The key used in API requests. Should be kept secure.
           type: string
-        api_roles:
-          description: The API roles attached to the API key.
-          type: array
-          items:
-            type: string
+        enabled:
+          description: If this API key is enabled.
+          type: boolean
+        api_key_role:
+          $ref: '#/components/schemas/ApiKeyRole'
+        api_policy:
+          $ref: '#/components/schemas/ApiPolicy'
+    ApiKeyRole:
+      description: |
+        Role of the API key. 
+        A serving API key can only perform query type requests on its corpora. A serving and
+        indexing key can perform both indexing and query type requests on its corpora.
+        A personal API key has all the same permissions as the creator of the API key.
+      type: string
+      enum:
+        - serving
+        - serving_and_indexing
+        - personal
     UpdateApiKeyRequest:
       type: object
       properties:
         enabled:
           description: Indicates whether to disable or enable an API key.
-        api_roles:
-          description: The new roles attached to the API key. These roles will replace the current roles.
-          type: array
-          items:
-            type: string
+          type: boolean
     ListApiKeysResponse:
       type: object
       properties:
@@ -2948,47 +2994,79 @@ components:
           $ref: '#/components/schemas/ListMetadata'
     CreateAppClientRequest:
       type: object
+      discriminator:
+        propertyName: type
+        mapping:
+          client_credentials: '#/components/schemas/CreateClientCredentialsRequest'
+      oneOf:
+        - $ref: '#/components/schemas/CreateClientCredentialsRequest'
+      required:
+        - type
+    CreateClientCredentialsRequest:
+      description: Create an App Client which allows you to call Vectara APIs using OAuth 2.0 client credentials.
+      type: object
       properties:
         name:
-          description: The human-readable name of the App Client.
+          description: Name of the client credentials.
           type: string
-        policy_ids:
-          description: The API policies attached to the App Client.
+        description:
+          description: Description of the client credentials.
+          type: string
+        type:
+          description: This will always be the value `client_credentials`.
+          type: string
+          default: "client_credentials"
+        api_roles:
+          description: API roles that the client credentials will have.
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/ApiRole'
+      required:
+        - name
+        - type
+      x-vectaraParents:
+        - CreateAppClientRequest
     AppClient:
       type: object
       properties:
         id:
-          description: ID of the App Client.
+          description: The Vectara App Client ID.
           type: string
-          pattern: 'key_[a-zA-Z0-9_\=]+$'
+          pattern: 'app_.+$'
         name:
           description: The human-readable name of the App Client.
           type: string
-        secret_key:
+        description:
+          description: Descritpion of the App Client.
+          type: string
+        client_id:
+          description: The client id used with the OAuth flow.
+          type: string
+        client_secret:
           description: The key used in API requests. Should be kept secure.
           type: string
         api_roles:
           description: The API roles attached to the App Client.
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/ApiRole'
+        api_policy:
+          $ref: '#/components/schemas/ApiPolicy'
     UpdateAppClientRequest:
       type: object
       properties:
-        enabled:
-          description: Indicates whether to disable or enable an App Client.
+        description:
+          description: The new App Client description.
+          type: string
         api_roles:
           description: The new roles attached to the App Client. These roles will replace the current roles.
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/ApiRole'
     ListAppClientsResponse:
       type: object
       properties:
-        api_keys:
+        app_clients:
           description: List of App Clients.
           type: array
           items:
@@ -3008,9 +3086,10 @@ components:
           type: string
           example: boomerang
         output_dimensions:
-          description: "When this encoder is used to create an embedding, it shows the count of dimensions for the output embedding.\
-                        A high dimensionality will consume more storage space, but it allows for an increase the quality of\
-                        the embedding."
+          description: |
+            When this encoder is used to create an embedding, it shows the count of dimensions for the output embedding.
+            A high dimensionality will consume more storage space, but it allows for an increase the quality of
+            the embedding.
           type: integer
           format: int32
           example: 768
@@ -3025,6 +3104,34 @@ components:
           description: Indicates whether the encoder is enabled.
           type: boolean
           example: true
+    Reranker:
+      description: |
+        A reranker can be used in query or chat endpoints to reorder the search results.
+      type: object
+      properties:
+        id:
+          description: The ID of the reranker.
+          type: string
+          pattern: 'rnk_[0-9]+$'
+        name:
+          description: The name of the reranker.
+          type: string
+        description:
+          description: The description of the reranker.
+          type: string
+        enabled:
+          description: Whether the reranker is enabled.
+          type: boolean
+    ListRerankersResponse:
+      type: object
+      properties:
+        rerankers:
+          description: An array of rerankers.
+          type: array
+          items:
+            $ref: '#/components/schemas/Reranker'
+        metadata:
+          $ref: '#/components/schemas/ListMetadata'
     Job:
       type: object
       properties:
@@ -3043,8 +3150,7 @@ components:
           description: The corpora that this job belongs to. It may not belong to any corpora.
           type: array
           items:
-            type: string
-            pattern: '[a-zA-Z0-9_\=]+$'
+            $ref: '#/components/schemas/CorpusKey'
         state:
           $ref: '#/components/schemas/JobState'
         created_at:
@@ -3073,6 +3179,7 @@ components:
       type: object
       properties:
         jobs:
+          description: An array of jobs.
           type: array
           items:
             $ref: '#/components/schemas/Job'
@@ -3095,7 +3202,7 @@ components:
           description: The role names assigned to the user.
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/ApiRole'
       required:
         - email
     UpdateUserRequest:
@@ -3108,7 +3215,7 @@ components:
           description: The new role names of the user.
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/ApiRole'
     User:
       type: object
       properties:
@@ -3129,12 +3236,21 @@ components:
         description:
           description: The escription for the user.
           type: string
+        created_at:
+          description: When the user was created.
+          type: string
+          format: date-time
+        updated_at:
+          description: When a user property was last updated.
+          type: string
+          format: date-time
         api_roles:
           description: The role names of the user.
           type: array
           items:
-            type: string
-            pattern: 'rol_.+'
+            $ref: '#/components/schemas/ApiRole'
+        api_policy:
+          $ref: '#/components/schemas/ApiPolicy'
     ListUsersResponse:
       type: object
       properties:
@@ -3146,6 +3262,15 @@ components:
         metadata:
           $ref: '#/components/schemas/ListMetadata'
     ApiRole:
+      description: Roles that a user or an app client can take on.
+      type: string
+      enum:
+        - owner
+        - administrator
+        - billing_administrator
+        - corpus_administrator
+    ApiPolicy:
+      description: What actions a principal can take on the Vectara platform.
       type: object
       properties:
         name:
@@ -3184,16 +3309,40 @@ components:
               type: string
       required:
         - allow_any_resource
-    ListApiRolesResponse:
-      type: object
-      properties:
-        api_roles:
-          description: List of roles.
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiRole'
-        metadata:
-          $ref: '#/components/schemas/ListMetadata' 
+    Language:
+      description: Languages that the Vectara platform supports.
+      type: string
+      enum:
+        - auto
+        - eng
+        - deu
+        - fra
+        - zho
+        - kor
+        - ara
+        - rus
+        - tha
+        - nld
+        - ita
+        - por
+        - spa
+        - jpn
+        - pol
+        - tur
+        - vie
+        - ind
+        - ces
+        - ukr
+        - ell
+        - heb
+        - fas
+        - hin
+        - urd
+        - swe
+        - ben
+        - msa
+        - ron
+      default: auto
     ListMetadata:
       type: object
       description: The standard metadata in the response of a list operation.
@@ -3245,7 +3394,7 @@ components:
           description: The ID of the request that can be used to help Vectara support debug what went wrong .
           type: string
   securitySchemes:
-    oAuth:
+    OAuth2:
       type: oauth2
       description: OAuth2 access to Vectara
       flows:
@@ -3257,4 +3406,5 @@ components:
       in: header
       name: x-api-key
 security:
-  - oAuth: []
+  - ApiKeyAuth:
+  - OAuth2: []
