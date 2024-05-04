@@ -422,8 +422,9 @@ paths:
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
         - $ref: '#/components/parameters/timeout'
-      description: "Enables or disables a specific API key.\n \nSome tips for this API:\n* This operation only works with OAuth 2.0 (in a JWT \"Bearer Token\") authentication. It does not work with API Keys. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).\n"
+      description: "Enables or disables a specific API key.\n \nSome tips for this API:\n* This operation works with the Personal API Key and OAuth 2.0 (in a JWT \"Bearer Token\") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).\n"
       security:
+        - ApiKeyAuth: []
         - oAuth: []
   /v1/get-usage-metrics:
     post:
@@ -836,7 +837,9 @@ paths:
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
         - $ref: '#/components/parameters/timeout'
-      description: List Users
+      description: "Lists the users in your account along with their corpus access and customer-level authorizations. \nSome tips for this API:\n* This operation only works with OAuth 2.0 (in a JWT \"Bearer Token\") authentication. It does not work with API Keys. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).\n* Use this API to view the members on your team. If you need to manage their access, use the Manage User endpoint.\n"
+      security:
+        - oAuth: []
   /v1/manage-user:
     post:
       operationId: ManageUser
@@ -864,7 +867,13 @@ paths:
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
         - $ref: '#/components/parameters/timeout'
-      description: Manage User
+      description: |
+        Lets you manage users in your account by adding, deleting, enabling, or disabling users. You can also reset their passwords and edit user roles. This endpoint can help you streamline your onboarding process by programmatically adding new users, assigning appropriate roles, and setting up permissions.
+        Some tips for this API:
+        * This operation only works with OAuth 2.0 (in a JWT "Bearer Token") authentication. It does not work with API Keys. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * Add multiple users by including additional “user” objects into the userAction array.
+      security:
+        - oAuth: []
   /v1/query:
     post:
       operationId: Query
@@ -986,6 +995,7 @@ paths:
         * Vectara can automatically provide a generative summary with the query results for Retrieval Augmented Generation (RAG).  Additional details on RAG in Vectara can be found [here](https://docs.vectara.com/docs/learn/grounded-generation/grounded-generation-overview).
         * The Query API takes an *array* of queries, since you can have Vectara perform more than 1 query in a single API call.  The results that are returned are thus in an array as well, with each element in the response array corresponding to the input query array.
         * Custom dimensions (the `dim` array) is a feature that is only available to [Scale](https://vectara.com/pricing/) accounts.
+        * Reranking enhances search accuracy and variety and more details can be found [here](https://docs.vectara.com//docs/api-reference/search-apis/reranking).
       security:
         - ApiKeyAuth: []
         - oAuth: []
@@ -1262,6 +1272,7 @@ paths:
         * You can find a full list of supported file formats [here](https://docs.vectara.com/docs/api-reference/indexing-apis/file-upload/file-upload-filetypes).
         * To provide additional metadata, set the `doc_metadata` field.  You can find some additional details [here](https://docs.vectara.com/docs/api-reference/indexing-apis/file-upload/file-upload#attach-additional-metadata)
         * PDFs must contain text: Vectara does not currently support indexing scanned images via OCR.
+        * There is a known issue with the OpenAPI plugin where the generated Python script for file uploads incorrectly uses placeholder values for the file path and filename. Mmnually replace '/path/to/file' and 'file' in the files array with the actual file path and filename.
       operationId: FileUpload
       tags:
         - IndexService
@@ -1814,9 +1825,15 @@ components:
       description: Response of the CreateApiKeyRequest.
     adminCreateCorpusRequest:
       type: object
+      example:
+        corpus:
+          name: My Corpus
+          description: This text describes my corpus.
       properties:
         corpus:
           $ref: "#/components/schemas/adminCorpus"
+      required:
+        - corpus
     adminCreateCorpusResponse:
       type: object
       properties:

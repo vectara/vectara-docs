@@ -152,6 +152,14 @@ string. Usually, the default settings for the corpus are sufficient. In more
 advanced scenarios, it's desirable to force it to be treated as a query, or,
 more rarely, as a response.
 
+### Reranking Configuration 
+
+The `rerankingConfig` object enables reranking of results, to further increase 
+relevance in certain scenarios. Scale users can modify the `rerankerId` of 
+this object. When using `mmrConfig`, specify a `diversityBias` value between `0.0` 
+and `1.0`. For details about our English cross-attentional (Scale only) and 
+Maximal Marginal Relevance (MMR) rerankers, see [Reranking](/docs/api-reference/search-apis/reranking).
+
 ## Query Summarization Request - Retrieval Augmented Generation 
 
 To use Retrieval Augmented Generation (RAG), which <Config v="names.product"/> also refers to as

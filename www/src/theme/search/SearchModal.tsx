@@ -10,7 +10,6 @@ import { SearchInput } from "./SearchInput";
 import {
   VuiFlexContainer,
   VuiFlexItem,
-  VuiLinkInternal,
   VuiPortal,
   VuiScreenBlock,
   VuiSpacer,
@@ -20,6 +19,7 @@ import {
 } from "./vui";
 import { BiSearch } from "react-icons/bi";
 import { FocusOn } from "react-focus-on";
+import Link from "@docusaurus/Link";
 
 type Props = {
   isLoading: boolean;
@@ -125,12 +125,7 @@ export const SearchModal = forwardRef(
                               <VuiTextColor color="subdued">
                                 Built with
                               </VuiTextColor>{" "}
-                              <VuiLinkInternal
-                                href="https://vectara.com"
-                                target="_blank"
-                              >
-                                Vectara
-                              </VuiLinkInternal>
+                              <Link to="https://vectara.com">Vectara</Link>
                             </strong>
                           </p>
                         </VuiText>

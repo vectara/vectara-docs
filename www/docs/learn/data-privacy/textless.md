@@ -1,7 +1,7 @@
 ---
 id: textless
 title: Textless Mode
-sidebar_label: Enable Textless Mode
+sidebar_label: Textless Mode
 ---
 
 import Tabs from '@theme/Tabs';
