@@ -1,5 +1,5 @@
 import React from "react";
-import { Search } from "./search/Search";
+import { ReactSearch } from "@vectara/react-search";
 import BrowserOnly from "@docusaurus/BrowserOnly";
 
 const CUSTOMER_ID = "3874164736";
@@ -11,11 +11,12 @@ export default function SearchBar() {
     <BrowserOnly>
       {() => {
         return (
-          <Search
+          <ReactSearch
             key={CUSTOMER_ID}
             customerId={CUSTOMER_ID}
             corpusId={CORPUS_ID}
             apiKey={API_KEY}
+            isSummaryToggleVisible={true}
           />
         );
       }}
