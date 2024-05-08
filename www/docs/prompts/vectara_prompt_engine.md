@@ -26,8 +26,8 @@ tickets from user feedback. You can even customize the formatting of results.
 
 Users can override the default prompt text with custom `promptText` in the 
 `summary` object of a [**query**](/docs/api-reference/search-apis/search). The 
-[**Query endpoint section**](/docs/rest-api/query) of the API Playground provides a Scale 
-Example with a sample `summary` object, which includes a custom prompt.
+[**Query Request section**](/docs/rest-api/query) of the API Playground provides a Scale 
+Example with a sample `summary` object, which includes a custom prompt. 
 
 :::
 
