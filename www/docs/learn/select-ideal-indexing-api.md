@@ -23,7 +23,7 @@ built a full sample ingestion framework ready to go with [Vectara Ingest](https:
 includes preconfigured templates that enable you to pull data from many 
 popular data sources such as websites and RSS feeds.
 
-## Data Ingestion Methods with Indexing APIs
+## Data Ingestion with the Indexing APIs
 
 Selecting the ideal Indexing API for your application can significantly impact 
 the effectiveness of integrating Vectara’s search functionalities into your 

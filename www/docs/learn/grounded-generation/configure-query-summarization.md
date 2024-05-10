@@ -292,35 +292,33 @@ summarizer model:
 
 Application builders can leverage these advanced capabilties to fine-tune 
 the behavior and output style of the summarizer to align with unique 
-application requirements.
+application requirements. Experiment with different values in these controls. 
 
-### Concise summary without creative interpretations
+### Concise summary without creative deviations
 
-Some use cases such as in medical and scientific sectors must provide concise, 
-factual summaries without creative interpretations. Consider the following 
-`modelParams` for a medical use case.
+Some use cases require more concise and with minimal creative interpretations:
 
 * `maxToken` = `200` – Brief summary but comprehensive enough to cover critical 
   information.
-* `temperature` = `0.0` – Factual summary with no creative deviations, accuracy 
-  is crucial.
+* `temperature` = `0.0` – Factual summary with no creative deviations, and 
+  accuracy is crucial.
 * `frequencyPenalty` = `0.1` – Minimally reduces repetition to keep essential 
-  recurring terminology, such as in medicine.
-* `presencePenalty` = `0.0` – Focuses on existing topics in a medical history 
-  without introducing new topics
+  recurring terminology.
+* `presencePenalty` = `0.0` – Focuses on existing topics in the content history 
+  without introducing new topics.
 
-### Research paper abstract summary
+### Brief abstract summary
 
 Researchers often need to distill complex research papers into abstracts that 
-convey the essence of the work creatively to capture the attention of scholars 
-and industry colleagues:
+convey the essence of the work creatively to capture the attention of other 
+scholars:
 
 * `maxToken` = `150` – Limits the summary to an abstract length, suitable for 
   quick scanning.
 * `temperature` = `0.7` – Allows for a moderate level of creativity to articulate
   the research's novelty and implications effectively.
 * `frequencyPenalty` = `0.5` – Reduces repetition to ensure the 
-  summary is succinct and to the point.
+  summary is more succinct and to the point.
 * `presencePenalty` = `0.3` – Encourages the inclusion of new topics or findings 
   from the research, adding depth to the summary.
 
@@ -338,3 +336,4 @@ decisions.
   features, keeping the summary fresh and engaging.
 * `presencePenalty` = `0.2` – Slightly encourages the introduction of new but 
   relevant topics, such as possible use-cases or product comparisons.
+

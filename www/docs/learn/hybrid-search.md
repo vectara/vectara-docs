@@ -53,7 +53,7 @@ Boolean and exact text matching](/docs/learn/enable-keyword-text-matching). Expe
 the `lambda` value is useful if you're trying to evaluate how a keyword system like one based on 
 Elasticsearch or Solr may compare to Vectara.
 
-:::note
+:::tip
 
 :bulb:
 You can test queries with different `lambda` values in 
