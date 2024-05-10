@@ -43,7 +43,7 @@ specific scores with the positive or negative sign:
 * **Unary plus** - Filter documents with a score greater than 
   positive 10:
 
-  `doc.score > +10`
+  `doc.score > 10`
 * **Unary minus**  - Filter documents with a score less 
   than negative 5:
 
@@ -91,7 +91,6 @@ For example, filter on scores above a specific number or prices after discount.
   
   `doc.price - doc.discount <= 50`
 
-
 ## Less and greater comparison operators (`<`, `<=`, `>`, `>=`)
 
 These comparison operators are used to filter documents based on specific 
@@ -112,7 +111,7 @@ number.
   `doc.rating <= 4.5`
 * **Greater than (`>`)** - Filters documents published after January 1, 2022:
   
-  `doc.publishdate > "2022-01-01"`
+  `doc.publishdate > '2022-01-01'`
 * **Greater than or equal to (`>=`)** - Filters documents with a score greater 
   than or equal to 80:
   
@@ -131,11 +130,11 @@ that category.
 * **Equals (`=` or `==`)** - Filters documents where the category is "Technology" 
   or the status is "active":
   
-  `doc.category = "Technology"` or `doc.status == "active"`
+  `doc.category = 'Technology'` or `doc.status == 'active'`
 * **Does not equal to (`!=` or `<>`)** - Filters documents where the category is 
   neither "Sports" or "Entertainment":
   
-  `doc.category != "Sports"` or `doc.category <> "Entertainment"`
+  `doc.category != 'Sports'` or `doc.category <> 'Entertainment'`
 
 
 ## NULL comparison operators (`IS NULL`, `IS NOT NULL`)
@@ -167,11 +166,11 @@ For example, filter on two specific categories or statuses.
 * **Value is in a category** - Filters documents where the category is either 
   "Science" or "History":
   
-  `doc.category IN ("Science", "History")`
+  `doc.category IN ('Science', 'History')`
 * **Value is a particular status** - Filters documents where the status is either 
   "active" or "pending":
   
-  `doc.status IN ("active", "pending")`
+  `doc.status IN ('active', 'pending')`
 
 
 ## Negation operator (`NOT`)
@@ -186,7 +185,7 @@ score.
 * **Value is not in a specific category** - Filters documents where the category is 
   not "Technology":
   
-  `NOT (doc.category = "Technology")`
+  `NOT (doc.category = 'Technology')`
 * **Value is not less than a score of `50`** - Filters documents where the score is 
   greater than or equal to 50:
   
@@ -205,13 +204,13 @@ category and author.
 * **Specify score and publish date** - Filters documents with a score greater than 
   80 and published after January 1, 2022:
   
-  `doc.score > 80 AND doc.publishdate > "2022-01-01"`
+  `doc.score > 80 AND doc.publishdate > '2022-01-01'`
 * **Specify category and author** - Filters documents where the category is 
   "Technology" and the author is "John Smith":
   
-  `doc.category = "Technology" AND doc.author = "John Smith"`
+  `doc.category = 'Technology' AND doc.author = 'John Smith'`
 
-## Logical Disjunction (`OR`)
+## Logical disjunction (`OR`)
 
 The `OR` operator combines multiple conditions, requiring at least one 
 condition to be true. Use for broadening search results based on 
@@ -223,9 +222,47 @@ documents that either active or above a certain score.
 * **Specify one of two possible categories** - Filters documents where the category 
   is either "Technology" or "Business":
   
-  `doc.category = "Technology" OR doc.category = "Business"`
-* **Specify a status or score** - Filters documents where the status is "active" 
+  `doc.category = 'Technology' OR doc.category = 'Business'`
+* **Specify one of two attributes** - Filters documents where the status is "active" 
   or the score is greater than 90:
   
-  `doc.status = "active" OR doc.score > 90`
+  `doc.status = 'active' OR doc.score > 90`
+
+## Operator combinations
+
+Combining different operators enables you to create more specific filtering 
+conditions. By using parentheses and combining these operators in different 
+ways, you can effectively narrow or broaden your query results to find the 
+most relevant documents. The following examples show combinations such as 
+"IN and AND," "NOT and AND," "OR and "AND," and "Not and IN and AND."
+
+* **Specify one of two possible categories and a published year** - Filters 
+  documents where the category is either "Science" or "Technology" AND the 
+  published year is greater than 2020:
+
+  `doc.category IN ('Science', 'Technology') AND doc.publishedyear > 2020`
+
+* **Value is NOT a status and category** - Filters documents that are both NOT 
+  in the "draft" status AND "Technology" category:
+
+  `NOT (doc.status = 'draft' AND doc.category = 'Technology)`
+
+* **Specify a status or qualified score** - Filters documents where the status 
+  is "active" or the score is greater than 90 as long as the status is also 
+  "pending":
+
+  `doc.status = 'active' OR (doc.status = 'pending' AND doc.score > 90)`
+
+* **Value is not in a category and with a specific score** - Filters 
+  documents that are NOT in the "Sports" or "Entertainment" category AND have 
+  a score greater than or equal to 50:
+
+  `NOT (doc.category IN ('Sports', 'Entertainment') AND doc.score >= 50)`
+
+* **Specify one of two possible categories after a date and with a specific status** - 
+  Filters documents where the category is either "Business" or "Finance", the 
+  publish date is after January 1, 2022, AND the status is "published":
+
+  
+  `doc.category IN ('Business', 'Finance') AND doc.publishdate > '2022-01-01' AND doc.status = 'published'`
 
