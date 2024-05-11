@@ -8,8 +8,8 @@ import {Config} from '@site/docs/definitions.md';
 
 By default, <Config v="names.product"/> uses a form of "question-answer"
 similarity to produce the scoring. This provides a very robust ability to
-answer your users questions. By default, scores go from -1 to 1 where a
-score of -1 would be "completely irrelevant" and a score of 1 would be a
+answer your users questions. By default, scores go from `-1` to `1` where a
+score of `-1` would be "completely irrelevant" and a score of `1` would be a
 near/exact match. There are several controls which affect these scores and
 the associated result rankings.
 
@@ -37,10 +37,10 @@ supports this out of the box via [hybrid search](/docs/learn/hybrid-search).
 
 While <Config v="names.product"/> uses question-answer style similarity by
 default, sometimes it's advantageous to use document-document similarity. For
-example, think of a case where a user asks "where can I find great tacos?" You
+example, think of a case where a user asks *"where can I find great tacos?"* You
 typically wouldn't want to match the _closest_ document to that question (e.g.
-one that just has the text "where can I find great tacos") but instead a document
-that _answers_ that question (e.g. "you can find the best tacos at **\_\_\_**").
+one that just has the text *"where can I find great tacos"*) but instead a document
+that _answers_ that question (e.g. "*you can find the best tacos at* **\_\_\_**").
 
 However, there are times when finding the most semantically similar documents
 is advantageous. In particular, [recommendation systems](/docs/learn/recommendation-systems/recommender-overview)
@@ -60,7 +60,7 @@ documentation.
 Sometimes, the best solution to changing relevance is by adjusting the low-level
 indexing controls. <Config v="names.product"/> supports fine-grained tuning of
 this in the [low-level](/docs/api-reference/indexing-apis/core_indexing) API.
-There, you can pre-segment your documents into sections, and
+There, you can pre-segment your documents into parts, and
 tell <Config v="names.product"/> what the context is around the documents.
 
 Note that we do consider that anyone that _needs_ to use this API as a bit of a

@@ -23,7 +23,7 @@ information leakage is very high. <Config v="names.product"/> does
 
 :::
 
-## What happens in textless mode?
+## Textless Mode Overview
 
 Let's look at when it's appropriate to enable textless, what happens on the 
 platform, and what benefits and limitations it brings.

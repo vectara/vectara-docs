@@ -22,6 +22,15 @@ questions about your business data. For example, answer questions based on
 previous answers, such as with RFI, RFP, and questionnaires. Draft support 
 tickets from user feedback. You can even customize the formatting of results.
 
+:::tip
+
+Users can override the default prompt text with custom `promptText` in the 
+`summary` object of a [**query**](/docs/api-reference/search-apis/search). The 
+[**Query Request section**](/docs/rest-api/query) of the API Playground provides a Scale 
+Example with a sample `summary` object, which includes a custom prompt. 
+
+:::
+
 ## Effective Prompts
 
 Effective prompts guide LLMs to generate responses that meet specific user 

@@ -11,6 +11,7 @@ a more traditional and sometimes simpler integration path. REST is often the
 choice for web-based applications that do not require real-time communication.
 
 ## API Formatting Guidelines
+
 You can find all of our APIs at https://<Config v="domains.rest.admin"/>/&lt;version&gt;/&lt;api-endpoint&gt;
 
 The API endpoints are outlined in the various subsections of this API Reference
@@ -28,13 +29,15 @@ The translation from the protobuf definitions to REST is:
 - JSON responses are always returned in `camelCase` form.
 
 ## API Authentication
+
 All <Config v="names.product"/> APIs are authenticated. Indexing and Search
 APIs can be authenticated via [API Keys](/docs/learn/authentication/api-key-management).
 The Personal API Key enables most Admin actions for creating and deleting 
-corpora, but for deleting accounts and accessing billing data, you need to use
+corpora, but for deleting accounts and accessing billing data, you need to use 
 [OAuth 2.0](/docs/learn/authentication/oauth-2).
 
 ## API Playground and OpenAPI Specifications
+
 You can find up-to-date OpenAPI specifications at
 [https://docs.vectara.com/vectara-oas.yaml](https://docs.vectara.com/vectara-oas.yaml).
 These REST API specifications are automatically derived from the gRPC protobuf 
@@ -50,7 +53,6 @@ or [Postman](https://www.postman.com/).
 Want to try the REST APIs live in your browser? Head over to our
 our [API Playground](/docs/rest-api/vectara-rest-api) and make
 real-time API calls from your browser.
-
 
 ## List of Vectara REST APIs
 
