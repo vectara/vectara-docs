@@ -1272,7 +1272,7 @@ paths:
         * You can find a full list of supported file formats [here](https://docs.vectara.com/docs/api-reference/indexing-apis/file-upload/file-upload-filetypes).
         * To provide additional metadata, set the `doc_metadata` field.  You can find some additional details [here](https://docs.vectara.com/docs/api-reference/indexing-apis/file-upload/file-upload#attach-additional-metadata)
         * PDFs must contain text: Vectara does not currently support indexing scanned images via OCR.
-        * There is a known issue with the OpenAPI plugin where the generated Python script for file uploads incorrectly uses placeholder values for the file path and filename. Mmnually replace '/path/to/file' and 'file' in the files array with the actual file path and filename.
+        * There is a known issue with the OpenAPI plugin where the generated Python script for file uploads incorrectly uses placeholder values for the file path and filename. Manually replace '/path/to/file' and 'file' in the files array with the actual file path and filename.
       operationId: FileUpload
       tags:
         - IndexService
@@ -1546,6 +1546,10 @@ components:
             application to understand where to provide highlighting in your UI and
 
             understand where the snippet ends and the context after begins.
+      description: |-
+        Allows processing a matched document part text before being returned
+        as a search result. Allows a search result to have more of the document
+        than just the matched document part.
       required:
         - sentencesBefore
         - sentencesAfter
@@ -1651,6 +1655,10 @@ components:
           description: Seconds sinch Epoch when the ApiKey becomes inactive.
         status:
           $ref: "#/components/schemas/adminApiKeyStatus"
+        publicId:
+          type: integer
+          format: int64
+          description: An id of the key that is not sensitive.
       description: >-
         Represents an ApiKey.
 
@@ -1825,15 +1833,9 @@ components:
       description: Response of the CreateApiKeyRequest.
     adminCreateCorpusRequest:
       type: object
-      example:
-        corpus:
-          name: My Corpus
-          description: This text describes my corpus.
       properties:
         corpus:
           $ref: "#/components/schemas/adminCorpus"
-      required:
-        - corpus
     adminCreateCorpusResponse:
       type: object
       properties:
@@ -3046,6 +3048,10 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/servingQueryRequest"
+          description: >-
+            Each request can have multiple queries that result in multiple search
+
+            results. Each query can search multiple corpora.
     servingBatchQueryResponse:
       type: object
       properties:
@@ -3082,6 +3088,7 @@ components:
           description: The id assigned to this query and answer.
         status:
           $ref: "#/components/schemas/comvectaraStatus"
+      description: Values needed to refer to the chat later.
     servingChatRequest:
       type: object
       properties:
@@ -3094,6 +3101,48 @@ components:
             The conversation id of the chat.
             If empty, a new conversation will be started.
       description: The chat request.
+    servingCitationParams:
+      type: object
+      properties:
+        style:
+          $ref: "#/components/schemas/servingCitationStyle"
+        urlPattern:
+          type: string
+          title: |-
+            The url pattern if the citation_style is set to HTML or MARKDOWN.
+            The pattern can access part and doc fields.
+            i.e. https://my.doc/foo/{doc.id}/{part.id}
+        textPattern:
+          type: string
+          title: >-
+            The text pattern if the citation_style is set to HTML or MARKDOWN.
+
+            This pattern defaults to N being the index of result if it is not set.
+
+            Final result looks like in this case: [N](https://my.doc/foo)
+
+            It can also be customized to access the part/doc fields by passing
+
+            the field name in curly braces. e.g., {doc.title} or {part.page}
+
+            Final result would look like [Title](https://my.doc/foo/2/1)
+      description: Citation parameters for the summary.
+    servingCitationStyle:
+      type: string
+      enum:
+        - NUMERIC
+        - NONE
+        - HTML
+        - MARKDOWN
+      default: NUMERIC
+      description: |-
+        The citation style to be used in summary. They are used to reference
+        the source of the information from the documents in the summary.
+
+         - NUMERIC: Default style. E.g., [1], [2]
+         - NONE: No citations.
+         - HTML: HTML E.g. <a href="https://my.doc/foo">[N]</a>
+         - MARKDOWN: MARKDOWN E.g. [N](https://my.doc/foo)
     servingCorpusKey:
       type: object
       example:
@@ -3113,6 +3162,12 @@ components:
           $ref: "#/components/schemas/CorpusKeySemantics"
         metadataFilter:
           type: string
+          description: >-
+            Filter the documents and document parts based on their metadata.
+
+            See https://docs.vectara.com/docs/learn/metadata-search-filtering/filter-overview
+
+            for a detailed explanation on how to create a metadata filter.
           example: "part.lang = 'eng'"
         lexicalInterpolationConfig:
           $ref: "#/components/schemas/servingLinearInterpolation"
@@ -3129,6 +3184,7 @@ components:
                 type: number
                 example: 1.5
           example: []
+      description: Object to specify how each corpus in a query is searched.
       required: ['customerId', 'corpusId']
     servingFactualConsistency:
       type: object
@@ -3245,6 +3301,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/vectaraservingResponse"
+          description: Search results for the query.
         status:
           type: array
           items:
@@ -3254,6 +3311,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/servingResponseSetDocument"
+          description: Document level metadata for document parts that are in the response.
         summary:
           type: array
           items:
@@ -3271,16 +3329,21 @@ components:
         futureId:
           type: integer
           format: int32
-          description: Populated for streaming requests only.
+          description: >-
+            Populated for streaming requests only. This id should matched against
+
+            the query response in order to know which query generated this object.
     servingResponseSetDocument:
       type: object
       properties:
         id:
           type: string
+          description: The document id.
         metadata:
           type: array
           items:
             $ref: "#/components/schemas/vectaraservingAttribute"
+          description: Document level metadata.
     servingSummarizationRequest:
       type: object
       example:
@@ -3342,12 +3405,15 @@ components:
         modelParams:
           $ref: "#/components/schemas/SummarizationRequestModelParams"
           example: {}
+        citationParams:
+          $ref: "#/components/schemas/servingCitationParams"
         chat:
           $ref: "#/components/schemas/servingChatRequest"
           example: {}
         factualConsistencyScore:
           type: boolean
           description: If unset or true, the response will include the factual consistency score.
+      description: How a LLM uses the search results to provide a response to a query.
       required: ['maxSummarizedResults', 'responseLang']
     servingSummary:
       type: object
@@ -3625,15 +3691,21 @@ components:
       properties:
         name:
           type: string
+          description: The name of the custom dimension.
         weight:
           type: number
           format: double
+          description: >-
+            The weight of the custom dimension on the query side. This gets multipled
+
+            by the matching index custom dimension weight and added to the score.
       description: Defined the weight of a custom dimension at query time.
     vectaraservingResponse:
       type: object
       properties:
         text:
           type: string
+          description: The text of the document part after being modified by the context config.
         score:
           type: number
           format: float
@@ -3642,12 +3714,14 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/vectaraservingAttribute"
+          description: Document part level metadata.
         documentIndex:
           type: integer
           format: int64
           description: Use this ID to find the document in the ResponseSet.
         corpusKey:
           $ref: "#/components/schemas/servingCorpusKey"
+      description: A document part that matched a query.
     indexingCoreDocument:
       type: object
       properties:

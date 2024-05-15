@@ -155,6 +155,22 @@ score of `0.40` indicates a 40% chance which would be probably much less
 factually accurate. We suggest starting with a setting of `0.5` as an initial 
 guideline for cutoffs between good and bad. 
 
+## Citation Format in Summary
+
+When generating a summary, Vectara enables you to format the `style` of 
+`citationParams` object with one of the following formats: 
+
+* `NUMERIC` (default) - Appear as numbers `[1]`, `[2]`, `[N]`, and so on.
+* `NONE` - No citations appear in the summary.
+* `HTML` - Appears as a URL such as `<a href="https://my.doc/foo">[N]</a>`
+* `MARKDOWN` - Appears in Markdown such as `[N](https://my.doc/foo)`
+
+If set to `HTML` or `MARKDOWN`, you can then customize the citation using 
+the `urlPattern` and `textPattern` fields and enable dynamic citation 
+generation. The `urlPattern` field can access {doc.id} and {part.id}, such as 
+`https://my.doc/foo/{doc.id}/{part.id}`. The `textPattern` field can specify 
+the field name in curly braces. For example, `{doc.title}` or `{part.page}` 
+and the final result appears as [Title](https://my.doc/foo/2/1).
 
 ## Advanced Summarization Customization Options
 

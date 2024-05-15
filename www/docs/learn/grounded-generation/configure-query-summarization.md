@@ -248,6 +248,11 @@ You can see in the results that the specific sources are referenced in the
 them in `[number]` format in the summary text, where `number` starts from 1
 and increases by 1 in each result in the `responseList`.
 
+## Citation Formatting
+
+Vectara also enables users to format citations in summaries so that they 
+appear as numeric (default), HTML, Markdown, or none. For details, 
+see the documentation on [formatting citations in summaries](/docs/api-reference/search-apis/search#citation-format-in-summary).
 
 ## Advanced summarization parameters
 
