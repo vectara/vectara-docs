@@ -1833,9 +1833,15 @@ components:
       description: Response of the CreateApiKeyRequest.
     adminCreateCorpusRequest:
       type: object
+      example:
+        corpus:
+          name: My Corpus
+          description: This text describes my corpus.
       properties:
         corpus:
           $ref: "#/components/schemas/adminCorpus"
+      required:
+        - corpus    
     adminCreateCorpusResponse:
       type: object
       properties:
