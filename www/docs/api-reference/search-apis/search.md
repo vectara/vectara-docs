@@ -167,9 +167,10 @@ When generating a summary, Vectara enables you to format the `style` of
 
 If set to `HTML` or `MARKDOWN`, you can then customize the citation using 
 the `urlPattern` and `textPattern` fields and enable dynamic citation 
-generation. The `urlPattern` field can access {doc.id} and {part.id}, such as 
-`https://my.doc/foo/{doc.id}/{part.id}`. The `textPattern` field can specify 
-the field name in curly braces. For example, `{doc.title}` or `{part.page}` 
+generation. Both of these parameters can access all part and document level 
+fields. For example, the `urlPattern` field can specify `{doc.id}` and `{part.page}`, 
+such as `https://mypdf.doc/foo/{doc.id}#page={part.page}`. The `textPattern` field 
+specifies the field name in curly braces. For example, use `{doc.title}`  
 and the final result appears as [Title](https://my.doc/foo/2/1).
 
 ## Advanced Summarization Customization Options
