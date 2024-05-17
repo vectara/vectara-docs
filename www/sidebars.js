@@ -7,11 +7,6 @@ module.exports = {
     },
     /* "migration-guide-api-v2", */
     {
-      type: "doc",
-      id: "use-case-exploration",
-      label: "Use Case Exploration",
-    },
-    {
       type: "category",
       label: "Getting Started",
       collapsed: false,
@@ -31,6 +26,76 @@ module.exports = {
           id: "sample-vectara-apps",
           label: "Sample Demos and Applications",
         },
+      ],
+    },
+    {
+      type: "category",
+      label: "Capabilities",
+      collapsed: true,
+      items: [
+        "learn/select-ideal-indexing-api",
+        {
+          type: "category",
+          label: "Retrieval",
+          items: [
+            "learn/hybrid-search",
+            "learn/enable-keyword-text-matching",
+            "learn/semantic-search/add-custom-dimensions",
+            "api-reference/search-apis/reranking",
+            "learn/semantic-search/enable-pagination",
+            "learn/recommendation-systems/recommender-overview",
+          ],
+        },
+        {
+          type: "category",
+          label: "Metadata Search Filtering",
+          items: [
+            "learn/metadata-search-filtering/filter-overview",
+            "learn/metadata-search-filtering/ootb-metadata-filters",
+            "api-reference/search-apis/sql/func-opr",
+            "api-reference/search-apis/sql/data-types",
+          ],
+        },
+        "learn/grounded-generation/select-a-summarizer",
+        "learn/hallucination-evaluation",
+        {
+          type: "category",
+          label: "Generative Prompts",
+          items: [
+            "prompts/vectara-prompt-engine",
+            "prompts/custom-prompts-with-metadata",
+          ],
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "Use Cases",
+      items: [
+        "use-case-exploration",
+        {
+          type: "category",
+          label: "Semantic Search",
+          items: [
+            "learn/semantic-search/semantic-search-overview",
+            "learn/semantic-search/relevance-tuning-techniques",
+          ],
+        },
+        {
+          type: "category",
+          label: "Retrieval Augmented Generation (RAG)",
+          items: [
+            "learn/grounded-generation/grounded-generation-overview",
+            "learn/grounded-generation/configure-query-summarization",
+            "learn/grounded-generation/grounded-generation-response-languages",
+          ],
+        },
+        {
+          type: "doc",
+          id: "learn/document-data-structuring",
+          label: "Document Data Structuring",
+        },
+        "learn/question-answer/question-answer-overview",
       ],
     },
     {
@@ -79,77 +144,6 @@ module.exports = {
                 },
               ],
             },
-          ],
-    },
-    {
-      type: "category",
-      label: "Learn",
-      collapsed: true,
-      items: [
-        {
-          type: "category",
-          label: "Semantic Search",
-          items: [
-            "learn/semantic-search/semantic-search-overview",
-            "learn/semantic-search/relevance-tuning-techniques",
-            "learn/semantic-search/enable-pagination",
-            "learn/semantic-search/add-custom-dimensions",
-          ],
-        },
-        {
-          type: "doc",
-          id: "learn/select-ideal-indexing-api",
-          label: "Select the Ideal Indexing API",
-        },
-        {
-          type: "doc",
-          id: "learn/enable-keyword-text-matching",
-          label: "Enable Exact Keyword Text Matching",
-        },
-        {
-          type: "doc",
-          id: "learn/hybrid-search",
-          label: "Blend Neural Search and Keyword Search",
-        },
-        {
-          type: "category",
-          label: "Retrieval Augmented Generation (RAG)",
-          items: [
-            "learn/grounded-generation/grounded-generation-overview",
-            "learn/grounded-generation/select-a-summarizer",
-            "learn/grounded-generation/grounded-generation-response-languages",
-          ],
-        },
-        {
-          type: "doc",
-          id: "learn/data-ingestion",
-          label: "Data Ingestion",
-        },
-        {
-          type: "doc",
-          id: "learn/document-data-structuring",
-          label: "Document Data Structuring",
-        },
-        {
-          type: "category",
-          label: "Metadata Search Filtering",
-          items: [
-            "learn/metadata-search-filtering/filter-overview",
-            "learn/metadata-search-filtering/ootb-metadata-filters",
-            "api-reference/search-apis/sql/func-opr",
-            "api-reference/search-apis/sql/data-types",
-          ],
-        },
-        "learn/recommendation-systems/recommender-overview",
-        "learn/question-answer/question-answer-overview",
-      ],
-    },
-    {
-      type: "category",
-      label: "Generative Prompts",
-      items: [
-        "prompts/vectara-prompt-engine",
-        "prompts/custom-prompts-with-metadata",
       ],
     },
     {

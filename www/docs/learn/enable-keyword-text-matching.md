@@ -1,13 +1,19 @@
 ---
 id: enable-keyword-text-matching
-title: 'Enable Exact Keyword Text Matching'
-sidebar_label: Enable Exact Keyword Text Matching
+title: Keyword Search
+sidebar_label: Keyword Search
 ---
 
-By default, Vectara disables exact and Boolean text matching, which is similar 
-to a traditional, keyword-based search. You enable exact keyword matching, 
-which disables neural retrieval, by specifying the `lambda` value as `1` at 
-query time, specifically under the `corpusKey`:
+Vectara disables exact and Boolean text matching by default, which is similar 
+to a traditional, keyword-based search. Exact keyword matching is particularly 
+useful in environments that do not require [semantic search](/docs/learn/semantic-search/semantic-search-overview) where specific 
+phrases and terms are crucial to the desired outcome. This can include 
+information in legal, compliance, technical fields where you might need 
+specific error codes of system specifications. 
+
+You enable exact keyword matching, which disables neural retrieval, by 
+specifying the `lambda` value as `1` at query time, specifically under 
+the `corpusKey`:
 
 ```json
       "corpusKey": [
@@ -21,20 +27,22 @@ query time, specifically under the `corpusKey`:
           },
           "dim": []
         }
+      ]
 ```
 
 ## Enable Exact Keyword Matching in the Console UI
 
-You can also set this value in the Console UI:
+You can also set this value in the Console UI and experiment with searches and 
+disable the hybrid search option.
 
 ![Set Lambda to 1.0](/img/lambda_console.png)
 
 The default value of `lambda` is `0`, which disables exact and Boolean text
 matching. 
 
-## Example Query with Exact Keyword Search Enabled
+## Enable Exact Keyword Search
 
-The following example shows the full query with the `lambda` value set to `1`:
+The following example shows the full [query](/docs/api-reference/search-apis/search) with the `lambda` value set to `1`:
 
 ```json
 
@@ -84,8 +92,6 @@ END
         
 ```
 
-
 Experimenting with the `lambda` value is useful if you're trying to evaluate 
 how a keyword system like one based on Elasticsearch or Solr may compare to 
 Vectara.
-
