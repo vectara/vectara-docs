@@ -12,18 +12,16 @@ import {vars} from '@site/static/variables.json';
 Reranking involves a process of rescoring and refining an initial set of query 
 results to achieve a more precise ranking. It employs a machine learning model 
 that while slower than the rapid retrieval step, offers more accurate results. 
-We currently have two rerankers, the English reranker and the Maximal Marginal 
-Relevance (MMR) reranker.
+We currently have the Maximal Marginal Relevance (MMR) reranker.
 
-## English Cross-attentional Reranker (Scale Only)
+## Enable Reranking
 
-The English cross-attentional reranker is only available to Scale users and you enable it by 
-specifying `272725717` as the `reranker_id`.
+You enable reranking by specifying `272725718` as the `reranker_id`.
 
 In most scenarios, it makes sense to use the default query `start` value of `0` so 
 that you're reranking all of the best initial results. You can also set 
-`numResults` to the total number of documents you wish to rerank. The
-default value is `10`.
+`numResults` of the `query` to the total number of documents you wish to rerank. 
+The default value is `10`.
 
 ## Maximal Marginal Relevance (MMR) Reranker
 
