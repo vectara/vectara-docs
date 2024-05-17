@@ -51,7 +51,7 @@ or [Postman](https://www.postman.com/).
 3. Start making API calls directly from the tool.
 
 Want to try the REST APIs live in your browser? Head over to our
-our [API Playground](/docs/rest-api/vectara-rest-api) and make
+our [API Playground](/docs/rest-api) and make
 real-time API calls from your browser.
 
 ## List of Vectara REST APIs
@@ -133,7 +133,7 @@ Retrieval Augmented Generation (RAG):
 :::note
 
 Not all REST API endpoints have long-form documentation in this API Reference. 
-For example, information about [**Get Usage Metrics**](/docs/rest-api/get-usage-metrics) is in the 
+For example, information about [**Get Usage Metrics**](/docs/1.0/rest-api/get-usage-metrics) is in the 
 API Playground.
 
 :::
