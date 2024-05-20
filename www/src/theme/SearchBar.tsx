@@ -1,9 +1,9 @@
 import React from "react";
 import BrowserOnly from "@docusaurus/BrowserOnly";
 
-const CUSTOMER_ID = "3874164736";
-const CORPUS_ID = "1";
-const API_KEY = "zqt_5usQAFwTytdQHAXn17Iq31OQMA5RrIBWLI7Fwg";
+const CUSTOMER_ID = "1526022105";
+const CORPUS_ID = "232";
+const API_KEY = "zqt_WvU_2ewh7ZGRwq8LdL2SV8B9RJmVGyUm1VAuOw";
 
 export default function SearchBar() {
   return (
@@ -34,6 +34,7 @@ export default function SearchBar() {
             isSummaryToggleInitiallyEnabled={
               isSummaryToggleInitiallyEnabled === "true"
             }
+            rerankingConfiguration={{ rerankerId: 272725719 }}
           />
         );
       }}
