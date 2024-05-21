@@ -1,17 +1,15 @@
 ---
 id: read-corpus
-title: Read Corpus API Definition
-sidebar_label: Read Corpus API Definition
+title: Get Corpus Metadata API Definition
+sidebar_label: Get Corpus Metadata API Definition
 ---
 
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The Read Corpus API lets you view detailed information about corpora 
-within your account. It enables you to view different aspects about the corpus 
-including basic information like the ID, name, whether it is enabled or 
-disabled, and other metadata. You can also view the corpus size, associated 
-API keys, custom dimensions, and filter attributes.
+The Get Corpus Metadata API lets you view metadata about a specific corpus. 
+This is useful for getting information about a corpus without performing a 
+search.
 
 This capability helps administrators understand the access control details and 
 monitor the size of corpora to understand information like the amount of quota 
@@ -26,17 +24,14 @@ volume reads. You may decide to switch to a read-only key.
 In another case, you might respond to a security incident by disabling a 
 specific corpus because of information returned by this endpoint.
 
-## Read Corpus Request and Response
+## Get Corpus Metadata Request and Response
 
-The request to read corpus data provides detailed information about the corpus.
-You specify either `true` or `false` whether you want to view basic 
-information, corpus size, associated API keys, custom dimensions, and filter 
-attributes. This read corpus request also requires `corpus_id` and `customer_id` 
-parameters.
+To get corpus metadata, send a GET request to `/v2/corpora/{corpus_key}`, where 
+`{corpus_key}` is the unique identifier for the corpus.
 
-The response includes detailed information about the corpus depending on what 
-you specified in the request. For example, you wanted to know the associated 
-API keys with a specific corpus.
+The response includes details such as the corpus ID, key, name, description, 
+enabled status, encoder information, filter attributes, custom dimensions, 
+and usage limits..
 
 ## REST Example
 
@@ -46,7 +41,7 @@ API keys with a specific corpus.
 to read information about the corpus:
 <code>https://<Config v="domains.rest.admin"/>/v2/corpora/:corpus_key</code>
 
-The API Playground shows the full [Read Corpus](/docs/rest-api/get-corpus) REST definition.
+The API Playground shows the full [Get Corpus](/docs/rest-api/get-corpus) REST definition.
 
 ## gRPC Example
 

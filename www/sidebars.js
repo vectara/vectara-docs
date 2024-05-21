@@ -260,59 +260,13 @@ module.exports = {
           label: "Corpus Admin APIs",
           items: [
             "api-reference/admin-apis/admin",
-            {
-              type: "category",
-              label: "Create Corpus",
-              items: [
-                "api-reference/admin-apis/create-corpus",
-                {
-                  type: "category",
-                  label: "Create Corpus REST Examples",
-                  items: [
-                    "getting-started-samples/RestCreateCorpus.java",
-                    "getting-started-samples/create_corpus.js",
-                    "getting-started-samples/createCorpus.php",
-                    "getting-started-samples/rest_create_corpus.py"
-                  ]
-                }
-              ]
-            },
-            {
-              type: "category",
-              label: "Delete Corpus",
-              items: [
-                "api-reference/admin-apis/delete-corpus",
-                {
-                  type: "category",
-                  label: "Delete Corpus REST Examples",
-                  items: [
-                    "getting-started-samples/RestDeleteCorpus.cs",
-                    "getting-started-samples/delete_corpus.js",
-                    "getting-started-samples/deleteCorpus.php",
-                    "getting-started-samples/rest_delete_corpus.py"
-                  ]
-                }
-              ]
-            },
-            {
-              type: "category",
-              label: "Reset Corpus",
-              items: [
-                "api-reference/admin-apis/reset-corpus",
-                {
-                  type: "category",
-                  label: "Reset Corpus REST Examples",
-                  items: [
-                    "getting-started-samples/RestResetCorpus.cs",
-                    "getting-started-samples/reset_corpus.js",
-                    "getting-started-samples/resetCorpus.php",
-                    "getting-started-samples/rest_reset_corpus.py"
-                  ]
-                }
-              ]
-            },
-            "api-reference/admin-apis/corpus/update-corpus-enablement",
+            "api-reference/admin-apis/create-corpus",
+            "api-reference/admin-apis/corpus/list-corpora",
             "api-reference/admin-apis/corpus/read-corpus",
+            "api-reference/admin-apis/delete-corpus",
+            "api-reference/admin-apis/corpus/update-corpus-enablement",
+            "api-reference/admin-apis/reset-corpus",
+            "api-reference/admin-apis/corpus/replace-filter-attributes",
             "api-reference/admin-apis/corpus/compute-corpus-size",
           ]
         },
@@ -389,24 +343,7 @@ module.exports = {
             type: "category",
             label: "Query APIs",
             items: [
-              {
-                type: "category",
-                label: "Standard Query API",
-                items: [
-                  "api-reference/search-apis/search",
-                  {
-                    type: "category",
-                    label: "Standard Query REST Examples",
-                    items: [
-                      "getting-started-samples/RestQueryData.cs",
-                      "getting-started-samples/RestQuery.java",
-                      "getting-started-samples/query.js",
-                      "getting-started-samples/queryData.php",
-                      "getting-started-samples/rest_query.py",
-                    ]
-                  },
-                ]
-              },
+              "api-reference/search-apis/search",
               /* "api-reference/search-apis/stream-query", */
               "api-reference/search-apis/reranking",
               "api-reference/search-apis/batched-queries",
