@@ -185,7 +185,7 @@ in `summarizerPromptName`:
   
 :::note
 
-For more information, see the [**documentation**](/learn/grounded-generation/select-a-summarizer) about selecting summarizers.
+For more information, see the [**documentation**](/docs/learn/grounded-generation/select-a-summarizer) about selecting summarizers.
 
 :::
 
