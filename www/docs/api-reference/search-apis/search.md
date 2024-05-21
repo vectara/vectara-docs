@@ -157,7 +157,7 @@ guideline for cutoffs between good and bad.
 
 ## Citation Format in Summary
 
-When generating a summary, Vectara enables you to format the `style` of 
+When generating a summary, Vectara enables Scale users to format the `style` of 
 `citationParams` object with one of the following formats: 
 
 * `NUMERIC` (default) - Citations appear as numbers `[1]`, `[2]`, `[N]`, and so on.
@@ -175,6 +175,19 @@ metadata as `https://mypdf.doc/foo/{doc.id}#page={part.page}`.
 The `textPattern` field specifies the document and part metadata name in curly 
 braces. For example, use `{doc.title}` and the final result appears as 
 [Title](https://my.doc/foo/2/1).
+
+To use citations, you must specify one of the following summarizers 
+in `summarizerPromptName`:
+
+* `vectara-summary-ext-24-05-sml` - (gpt-3.5-turbo)
+* `vectara-summary-ext-24-05-med` - (gpt-4.0)
+* `vectara-summary-ext-24-05-large` - (gpt-4.0-turbo)
+  
+:::note
+
+For more information, see the [**documentation**](/learn/grounded-generation/select-a-summarizer) about selecting summarizers.
+
+:::
 
 
 ### Default Citation Behavior

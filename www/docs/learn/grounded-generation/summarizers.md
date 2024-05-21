@@ -46,6 +46,19 @@ with these additional summarization options.
 
 :::
 
+## Citation Summarizers
+
+Our advanced citation summarizers enable users to specify custom citation 
+styles in the summary request. These custom summarizers provide greater 
+flexibility and accuracy in citations:
+
+* `vectara-summary-ext-24-05-sml` - (gpt-3.5-turbo)
+* `vectara-summary-ext-24-05-med` - (gpt-4.0)
+* `vectara-summary-ext-24-05-large` - (gpt-4.0-turbo)
+
+You can only use `CitationParams` with these citation prompts. Using other 
+prompts result in them being ignored.
+
 ## Beta Summarizers
 
 We also have four beta summarizers available for our users to try:
