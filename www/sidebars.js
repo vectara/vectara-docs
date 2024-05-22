@@ -293,31 +293,7 @@ module.exports = {
             type: "category",
             label: "Indexing APIs",
             items: [
-              {
-                type: "category",
-                label: "Standard Indexing API",
-                items: [
-                  "api-reference/indexing-apis/indexing",
-                  {
-                    type: "category",
-                    label: "Standard Indexing REST Examples",
-                    items: [
-                      "getting-started-samples/RestIndexData.cs",
-                      "getting-started-samples/RestIndex.java",
-                      "getting-started-samples/index_document.js",
-                      "getting-started-samples/indexDocument.php",
-                      "getting-started-samples/rest_index_document.py",
-                    ]
-                  },
-                ]
-              },
-              {
-                type: "category",
-                label: "Low-level API",
-                items: [
-                  "api-reference/indexing-apis/core_indexing"
-                ]
-              },
+              "api-reference/indexing-apis/indexing",
               {
                 type: "category",
                 label: "File Upload API",
@@ -325,16 +301,6 @@ module.exports = {
                   "api-reference/indexing-apis/file-upload/file-upload",
                   "api-reference/indexing-apis/file-upload/format-for-upload",
                   "api-reference/indexing-apis/file-upload/file-upload-filetypes",
-                  {
-                    type: "category",
-                    label: "File Upload REST Examples",
-                    items: [
-                      "getting-started-samples/RestUploadFile.java",
-                      "getting-started-samples/upload_file.js",
-                      "getting-started-samples/uploadFile.php",
-                      "getting-started-samples/rest_upload_file.py",
-                    ]
-                  },
                 ]
               },
             ],
