@@ -13,15 +13,15 @@ Reranking search results involves a process of rescoring and refining an
 initial set of query results to achieve a more precise ranking. It employs 
 a machine learning model that while slower than the rapid retrieval step, 
 offers more accurate results. We currently have the Maximal Marginal Relevance 
-(MMR) reranker.
+(MMR) reranker and the new Scale-only Multilingual Reranker v1.
 
 ## Enable Reranking
 
-To enable the reranker, specify `272725718` as the `rerankerId`. In most 
-scenarios, it makes sense to use the default query `start` value of `0` so 
-that you're reranking all of the best initial results. You can also set 
-`numResults` of the `query` to the total number of documents you wish to 
-rerank. The default value is `10`.
+To enable the reranker, specify the appropriate value for the `rerankerId`. 
+For example, the MMR reranker ID is `272725718`. In most scenarios, it makes 
+sense to use the default query `start` value of `0` so that you're reranking 
+all of the best initial results. You can also set `numResults` of the `query` 
+to the total number of documents you wish to rerank. The default value is `10`.
 
 The following example shows the `numResults` and `rerankerId` 
 values in a query. Note that this example intentionally omits the 
@@ -44,6 +44,21 @@ values in a query. Note that this example intentionally omits the
   ]
 }
 ```
+
+## Multilingual Reranker v1
+
+The new Multilingual Reranker V1 is a state-of-the-art reranking model that 
+significantly enhances the precision of retrieved results across 100+ 
+languages. To use this reranker, set the `rerankerID` as `272725719`. The Vectara 
+Reranker ensures impressive zero-shot performance on unseen data and domains, 
+and it **never** trains on customer data. In RAG use cases, this reranker 
+distinguishes the scores of relevant and irrelevant documents in a 
+query-independent manner. 
+
+Based on our experimentation we 
+suggest using a cut-off threshold of `0.5` as a good starting point. Any results 
+that achieve a score of greater than or equal to `0.5` can be considered 
+relevant and anything below that can be considered as non-relevant.
 
 ## Maximal Marginal Relevance (MMR) Reranker
 
