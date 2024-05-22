@@ -995,7 +995,7 @@ paths:
         * Vectara can automatically provide a generative summary with the query results for Retrieval Augmented Generation (RAG).  Additional details on RAG in Vectara can be found [here](https://docs.vectara.com/docs/learn/grounded-generation/grounded-generation-overview).
         * The Query API takes an *array* of queries, since you can have Vectara perform more than 1 query in a single API call.  The results that are returned are thus in an array as well, with each element in the response array corresponding to the input query array.
         * Custom dimensions (the `dim` array) is a feature that is only available to [Scale](https://vectara.com/pricing/) accounts.
-        * Reranking enhances search accuracy and variety and more details can be found [here](https://docs.vectara.com//docs/api-reference/search-apis/reranking).
+        * Reranking enhances search accuracy and variety and more details can be found [here](https://docs.vectara.com/docs/api-reference/search-apis/reranking).
       security:
         - ApiKeyAuth: []
         - oAuth: []
@@ -1174,14 +1174,19 @@ paths:
         - $ref: '#/components/parameters/customerIdentifier'
         - $ref: '#/components/parameters/timeout'
       description: |
-        Stream relevant results, highlight relevant snippets, and do
+        Stream responses as you search for relevant results, highlight relevant snippets, and do
         [Retrieval Augmented Generation](https://docs.vectara.com/docs/learn/grounded-generation/grounded-generation-overview) (RAG).
+
+        Instead of receiving a complete response like with the Standard Query API, you receive partial responses in this order:
+        1. Search results.
+        2. If summarization is enabled, you get chunks of the summary, like "This", "is", "a", "summary".
+        3. If FCS is enabled, then the FCS is the final response.
 
         Some tips for this API:
         * This operation authenticates with either an API Key or OAuth 2.0 (in a JWT "Bearer Token"). You can find details of how to set up an API key or use OAuth 2.0 [here](https://docs.vectara.com/docs/console-ui/manage-api-access).
-        * By default, Vectara only uses its neural/semantic retrieval model, and does not attempt to use keyword matching.  To enable hybrid search with a mix of both keyword and neural results, edit the `lambda` value.  Additional documentation on hybrid search is [here](https://docs.vectara.com/docs/learn/semantic-search/hybrid-search).
-        * Vectara can automatically provide a generative summary with the query results for Retrieval Augmented Generation (RAG).  Additional details on RAG in Vectara can be found [here](https://docs.vectara.com/docs/learn/grounded-generation/grounded-generation-overview).
-        * The Stream Query API takes an *array* of queries, since you can have Vectara perform more than 1 query in a single API call.  The results that are returned are thus in an array as well, with each element in the response array corresponding to the input query array.
+        * The Query API takes an *array* of queries, since you can have Vectara perform more than 1 query in a single API call.  The results that are returned are thus in an array as well, with each element in the response array corresponding to the input query array.
+        * Custom dimensions (the `dim` array) is a feature that is only available to [Scale](https://vectara.com/pricing/) accounts.
+        * Reranking enhances search accuracy and variety and more details can be found [here](https://docs.vectara.com/docs/api-reference/search-apis/reranking).
       security:
         - ApiKeyAuth: []
         - oAuth: []
@@ -1833,10 +1838,6 @@ components:
       description: Response of the CreateApiKeyRequest.
     adminCreateCorpusRequest:
       type: object
-      example:
-        corpus:
-          name: My Corpus
-          description: This text describes my corpus.
       properties:
         corpus:
           $ref: "#/components/schemas/adminCorpus"
@@ -1844,6 +1845,10 @@ components:
         - corpus    
     adminCreateCorpusResponse:
       type: object
+      example:
+        corpus:
+          name: My Corpus
+          description: This text describes my corpus.
       properties:
         corpusId:
           type: integer

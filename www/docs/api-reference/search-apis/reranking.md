@@ -12,18 +12,38 @@ import {vars} from '@site/static/variables.json';
 Reranking search results involves a process of rescoring and refining an 
 initial set of query results to achieve a more precise ranking. It employs 
 a machine learning model that while slower than the rapid retrieval step, 
-offers more accurate results. We currently have two rerankers, the English 
-reranker and the Maximal Marginal Relevance (MMR) reranker.
+offers more accurate results. We currently have the Maximal Marginal Relevance 
+(MMR) reranker.
 
-## English Cross-attentional Reranker (Scale Only)
+## Enable Reranking
 
-The English cross-attentional reranker is only available to Scale users and you enable it by 
-specifying `272725717` as the `reranker_id`.
-
-In most scenarios, it makes sense to use the default query `start` value of `0` so 
+To enable the reranker, specify `272725718` as the `rerankerId`. In most 
+scenarios, it makes sense to use the default query `start` value of `0` so 
 that you're reranking all of the best initial results. You can also set 
-`numResults` to the total number of documents you wish to rerank. The
-default value is `10`.
+`numResults` of the `query` to the total number of documents you wish to 
+rerank. The default value is `10`.
+
+The following example shows the `numResults` and `rerankerId` 
+values in a query. Note that this example intentionally omits the 
+`contextConfig`, `corpusKey`, and `summary` values.
+
+```json
+{
+  "query": [
+    {
+      "query": "What is my question?",
+      "start": 0,
+      "numResults": 10,
+      "contextConfig": {},
+      "corpusKey": [],
+      "rerankingConfig": {
+        "rerankerId": 272725718,
+      }, 
+      "summary": []
+    }
+  ]
+}
+```
 
 ## Maximal Marginal Relevance (MMR) Reranker
 
@@ -45,9 +65,19 @@ the use case:
 * Diversifying results can potentially represent all points of view in the 
   data or reduce bias.
 
-In addition to specifying the `reranker_id` as `272725718` at query time, you also 
+In addition to specifying the `rerankerId` as `272725718` at query time, you also 
 specify a `diversity bias` range between `0.0` and `1.0`. Values closer to `1.0` 
-optimize for the most diverse results. 
+optimize for the most diverse results.
+
+```json
+"rerankingConfig": {
+        "rerankerId": 272725718,
+        "mmrConfig": {
+          "diversityBias": 0.4
+        }
+      },
+```
+
 
 You can also enable the Maximal Marginal Relevance Reranker in the Console 
 UI as follows:
