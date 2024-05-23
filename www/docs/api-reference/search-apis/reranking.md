@@ -45,20 +45,29 @@ values in a query. Note that this example intentionally omits the
 }
 ```
 
-## Multilingual Reranker v1
+## Vectara Multilingual Reranker v1
 
-The new Multilingual Reranker V1 is a state-of-the-art reranking model that 
-significantly enhances the precision of retrieved results across 100+ 
-languages. To use this reranker, set the `rerankerID` as `272725719`. The Vectara 
-Reranker ensures impressive zero-shot performance on unseen data and domains, 
+The new Vectara Multilingual Reranker V1 is a state-of-the-art reranking model 
+that significantly enhances the precision of retrieved results across 100+ 
+languages. To use this reranker, set the `rerankerID` as `272725719`. 
+
+```json
+"rerankingConfig": {
+  "rerankerId": 272725719,
+},
+```
+
+
+The Vectara Multilingual Reranker ensures impressive zero-shot performance on unseen data and domains, 
 and it **never** trains on customer data. In RAG use cases, this reranker 
 distinguishes the scores of relevant and irrelevant documents in a 
-query-independent manner. 
+query-independent manner. For more details about our Multilingual Reranker v1, 
+check out this blog.
 
-Based on our experimentation we 
-suggest using a cut-off threshold of `0.5` as a good starting point. Any results 
-that achieve a score of greater than or equal to `0.5` can be considered 
-relevant and anything below that can be considered as non-relevant.
+Based on our experimentation we suggest using a cut-off threshold of `0.5` as 
+a good starting point. Any results that achieve a score of greater than or 
+equal to `0.5` can be considered relevant and anything below that can be 
+considered as non-relevant.
 
 ## Maximal Marginal Relevance (MMR) Reranker
 
