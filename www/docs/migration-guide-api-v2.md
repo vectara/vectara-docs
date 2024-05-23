@@ -57,10 +57,17 @@ carefully and the action items to use the V2 endpoints.
 
 * API v1 supports batch querying (`/v1/query` and `/v1/stream-query`).
 * API v2 does not support batch querying and uses a single query endpoint (`/v2/query`).
+* API v2 introduces a simple single-corpus query endpoint with a GET request (`/v2/corpora/{corpus_key}/query`) for lightweight searches on a specific corpus.
+* API v2 also provides an advanced corpus query endpoint with a POST request (`/v2/corpora/{corpus_key}/query`) with more filtering and customization options.
 * V2 does not have a stream-query endpoint like v1. Instead, set `stream_response` to `true` if you want to stream query responses
 
 
-**Action items:** Update your query requests to use the new single query endpoint, removing any batch-related parameters.
+**Action items:** 
+
+* Update your query requests to use the new single query endpoint, removing 
+  any batch-related parameters.
+* Remove any batch-related parameters from your query requests.
+* If you require streaming responses, set `stream_response` to `true` in the request body.
 
 ## Summarization endpoint changes
 
@@ -97,7 +104,13 @@ carefully and the action items to use the V2 endpoints.
 * To reset a corpus, API v1 uses `/v1/reset-corpus`, API v2 uses `/v2/corpora/{corpus_key}/reset`
 
 **Action items:**
-tbd
+
+* Update your corpus creation requests to use the `/v2/corpora` endpoint with a POST request.
+* Modify your corpus listing requests to use the `/v2/corpora` endpoint with a GET request.
+* Update your corpus retrieval requests to use the `/v2/corpora/{corpus_key}` endpoint with a GET request.
+* Modify your corpus deletion requests to use the` /v2/corpora/{corpus_key}` endpoint with a DELETE request.
+* Update your corpus enablement/disablement and filter update requests to use the `/v2/corpora/{corpus_key}` endpoint with a PATCH request.
+* Modify your corpus reset requests to use the `/v2/corpora/{corpus_key}/reset` endpoint with a POST request.
 
 
 ## Document management endpoint changes
@@ -106,7 +119,9 @@ tbd
 * To delete documents, API v1 uses `/v1/delete-doc`, API v2 uses `/v2/corpora/{corpus_key}/documents/{document_id}`
 
 **Action items:**
-tbd
+
+* Update your document listing requests to use the `/v2/corpora/{corpus_key}/documents` endpoint with a GET request.
+* Modify your document deletion requests to use the `/v2/corpora/{corpus_key}/documents/{document_id}` endpoint with a DELETE request.
 
 ## Job management endpoint changes
 
@@ -114,7 +129,9 @@ tbd
 * API v2 introduces `/v2/jobs/{job_id}` to retrieve jobs
 
 **Action items:**
-tbd
+
+* Update your job listing requests to use the `/v2/jobs` endpoint with a GET request.
+* Update your job retrieval requests using the `/v2/jobs/{job_id}` endpoint with a GET request.
 
 ## User management endpoint changes
 
@@ -123,7 +140,11 @@ tbd
 
 **Action items:**
 
-* Modify your list users requests to use the new endpoint and handle the updated response format.
+* Modify your list users requests to use the `/v2/users` endpoint with a GET request.
+* Update your user creation requests to use the `/v2/users` endpoint with a POST request.
+* Implement user retrieval functionality using the `/v2/users/{username}` endpoint with a GET request.
+* Update your user update requests to use the `/v2/users/{username}` endpoint with a PATCH request.
+* Modify your user deletion requests to use the `/v2/users/{username}` endpoint with a DELETE request.
   
 ### Retrieve User:
 
@@ -149,6 +170,7 @@ tbd
 * v2: `/v2/users/{user_id}`
 
 **Action items:**
+
 * Update your user creation requests to use the new endpoint and request body structure.
 
 
@@ -159,6 +181,11 @@ tbd
 
 **Action items:**
 
-* Refactor your API key and app client management code to utilize the new endpoints and request/response structures.
+* Update your API key creation requests to use the `/v2/api_keys` endpoint with a POST request.
+* Modify your API key listing requests to use the `/v2/api_keys` endpoint with a GET request.
+* Implement API key retrieval functionality using the `/v2/api_keys/{api_key_id}` endpoint with a GET request.
+* Update your API key update requests to use the `/v2/api_keys/{api_key_id}` endpoint with a PATCH request.
+* Modify your API key deletion requests to use the `/v2/api_keys/{api_key_id}` endpoint with a DELETE request.
+* Implement app client management functionality using the corresponding `/v2/app_clients` endpoints.
 
 

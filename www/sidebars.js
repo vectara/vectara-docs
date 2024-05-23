@@ -261,9 +261,7 @@ module.exports = {
           items: [
             "api-reference/search-apis/search",
             /* "api-reference/search-apis/stream-query", */
-            "api-reference/search-apis/reranking",
-            "api-reference/search-apis/batched-queries",
-                          {
+            {
               type: "category",
               label: "Interpreting Responses",
               items: [
@@ -271,8 +269,8 @@ module.exports = {
                 "api-reference/search-apis/interpreting-responses/interpreting-scores",
                 "api-reference/search-apis/interpreting-responses/highlighting",
               ],
-          },
-        ],
+            },
+          ],
         },
         {
           type: "category",
@@ -295,17 +293,6 @@ module.exports = {
           items: [
             "api-reference/admin-apis/corpus/list-documents",
             "api-reference/indexing-apis/deleting-documents",
-            {
-              type: "category",
-              label: "Delete Document REST Examples",
-              items: [
-                "getting-started-samples/RestDeleteDocument.cs",
-                "getting-started-samples/RestDeleteDocument.java",
-                "getting-started-samples/delete_document.js",
-                "getting-started-samples/deleteDocument.php",
-                "getting-started-samples/rest_delete_document.py",
-              ]
-            },
           ]
         },
         {
@@ -406,8 +393,8 @@ module.exports = {
       label: "API Playground",
       link: {
         type: "generated-index",
-        title: "Vectara API",
-        description: "Play around with Vectara's REST APIs",
+        title: "Vectara REST API 2.0",
+        description: "Play around with Vectara's REST 2.0 APIs",
         slug: "/rest-api",
       },
       items: require("./docs/rest-api/sidebar.js"),

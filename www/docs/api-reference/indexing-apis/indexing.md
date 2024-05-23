@@ -1,7 +1,7 @@
 ---
 id: indexing
-title: Standard Indexing API Definition
-sidebar_label: Standard Indexing API Definition
+title: Indexing API Definition
+sidebar_label: Indexing API Definition
 ---
 
 import Tabs from '@theme/Tabs';
@@ -12,10 +12,10 @@ import {Config} from '@site/docs/definitions.md';
 
 The first step in using <Config v="names.product"/> is to index a set of related 
 documents or content into a corpus. Indexing a document enables you to make 
-data available for search and retrieval more efficiently. The Create Corpus 
-Document API lets you add documents that are either in a typical structured 
-format, or in a format that explicitly specifies each document part that 
-becomes a search result. 
+data available for search and retrieval more efficiently. The Indexing API 
+lets you add documents that are either in a typical structured format, or in a 
+format that explicitly specifies each document part that becomes a search 
+result. 
 
 Our indexing capability transforms this structured data into a 
 format that enables the data to become easily searchable in just a few 
