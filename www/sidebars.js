@@ -5,11 +5,11 @@ module.exports = {
       id: "introduction",
       label: "The Vectara Platform",
     },
-    /* "migration-guide-api-v2", */
+    "migration-guide-api-v2",
     {
       type: "category",
       label: "Getting Started",
-      collapsed: false,
+      collapsed: true,
       items: [
         {
           type: "doc",
@@ -257,6 +257,25 @@ module.exports = {
         },
         {
           type: "category",
+          label: "Query APIs",
+          items: [
+            "api-reference/search-apis/search",
+            /* "api-reference/search-apis/stream-query", */
+            "api-reference/search-apis/reranking",
+            "api-reference/search-apis/batched-queries",
+                          {
+              type: "category",
+              label: "Interpreting Responses",
+              items: [
+                "api-reference/search-apis/interpreting-responses/metadata",
+                "api-reference/search-apis/interpreting-responses/interpreting-scores",
+                "api-reference/search-apis/interpreting-responses/highlighting",
+              ],
+          },
+        ],
+        },
+        {
+          type: "category",
           label: "Corpus Admin APIs",
           items: [
             "api-reference/admin-apis/admin",
@@ -290,6 +309,18 @@ module.exports = {
           ]
         },
         {
+          type: "category",
+          label: "Chat APIs",
+          items: [
+            "api-reference/chat-apis/chat-apis-overview",
+            "api-reference/chat-apis/list-conversations",
+            "api-reference/chat-apis/read-conversations",
+            "api-reference/chat-apis/delete-conversations",
+            "api-reference/chat-apis/delete-turns",
+            "api-reference/chat-apis/disable-turns",
+          ],
+        },
+        {
             type: "category",
             label: "Indexing APIs",
             items: [
@@ -306,34 +337,64 @@ module.exports = {
             ],
         },
         {
-            type: "category",
-            label: "Query APIs",
-            items: [
-              "api-reference/search-apis/search",
-              /* "api-reference/search-apis/stream-query", */
-              "api-reference/search-apis/reranking",
-              "api-reference/search-apis/batched-queries",
-                            {
-                type: "category",
-                label: "Interpreting Responses",
-                items: [
-                  "api-reference/search-apis/interpreting-responses/metadata",
-                  "api-reference/search-apis/interpreting-responses/interpreting-scores",
-                  "api-reference/search-apis/interpreting-responses/highlighting",
-                ],
+          type: "category",
+          label: "Encoder APIs",
+          items: [
+            "api-reference/encoder-apis/list-encoders",
+          ],
+        },
+        {
+          type: "category",
+          label: "Jobs APIs",
+          items: [
+            "api-reference/jobs-apis/list-jobs",
+            "api-reference/jobs-apis/get-job",
+          ],
+        },
+        {
+          type: "category",
+          label: "Users APIs",
+          items: [
+            "api-reference/indexing-apis/indexing",
+            {
+              type: "category",
+              label: "File Upload API",
+              items: [
+                "api-reference/indexing-apis/file-upload/file-upload",
+                "api-reference/indexing-apis/file-upload/format-for-upload",
+                "api-reference/indexing-apis/file-upload/file-upload-filetypes",
+              ]
             },
           ],
         },
         {
           type: "category",
-          label: "Chat APIs",
+          label: "Application Clients APIs",
           items: [
-            "api-reference/chat-apis/chat-apis-overview",
-            "api-reference/chat-apis/list-conversations",
-            "api-reference/chat-apis/read-conversations",
-            "api-reference/chat-apis/delete-conversations",
-            "api-reference/chat-apis/delete-turns",
-            "api-reference/chat-apis/disable-turns",
+            "api-reference/indexing-apis/indexing",
+            {
+              type: "category",
+              label: "File Upload API",
+              items: [
+                "api-reference/indexing-apis/file-upload/file-upload",
+                "api-reference/indexing-apis/file-upload/format-for-upload",
+                "api-reference/indexing-apis/file-upload/file-upload-filetypes",
+              ]
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "Large Language Models APIs",
+          items: [
+            "api-reference/llms-apis/llms-api",
+          ],
+        },
+        {
+          type: "category",
+          label: "Reranker APIs",
+          items: [
+            "api-reference/reranker-apis/reranker-apis",
           ],
         },
       ],

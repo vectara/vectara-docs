@@ -15,9 +15,150 @@ These changes do not affect gRPC.
 
 :::
 
-## Base URL Changes
+## Base URL changes
 
-* REST API v1: https://api.vectara.io
-* REST API v2: https://api.vectara.com/v2
+* REST API v1: https://api.vectara.io/v1
+* REST API v2: https://api.vectara.io/v2
 
-**Action item:** pdate all API requests to use the new base URL for v2.
+**Action item:** Update all API requests to use the new base URL for v2.
+
+## Authentication changes
+
+* API v1 requires the Customer ID header `customer_id` for all endpoints
+* API v2 only requires the Customer ID header for password authentication endpoints
+
+**Action item:** Remove the `customer_id` header from your API requests, unless using password authentication
+
+## Terminology, parameter, and property name changes
+
+* API v1 uses `num_results` for specifying the maximum number of results
+* API v2 uses `limit` for this purpose
+* API v1 uses `start` to indicate the offset in query requests
+* API v2 uses `offset` for this purpose
+
+**Action items:**
+
+* Replace `num_results` with `limit` in your list endpoint requests
+* Replace `start` with `offset` in your query requests
+
+## Endpoint changes
+
+API v2 introduces significant changes to our API endpoints. Review these changes 
+carefully and the action items to use the V2 endpoints.
+
+## Indexing endpoint changes
+
+* API v1 has separate endpoints for indexing both structured and core documents (`/v1/index` and `/v1/core/index`).
+* API v2 combines both types of document indexing into a single endpoint (`/v2/corpora/{corpus_key}/documents`).
+
+**Action items:** Update your indexing requests to use the new unified endpoint, specifying the document type in the request body.
+
+## Query endpoint changes
+
+* API v1 supports batch querying (`/v1/query` and `/v1/stream-query`).
+* API v2 does not support batch querying and uses a single query endpoint (`/v2/query`).
+* V2 does not have a stream-query endpoint like v1. Instead, set `stream_response` to `true` if you want to stream query responses
+
+
+**Action items:** Update your query requests to use the new single query endpoint, removing any batch-related parameters.
+
+## Summarization endpoint changes
+
+* API v1 allows multiple summarization requests within a single query request.
+* API v2 supports only a single summarization request per query.
+* API v1 requires only the prompt name for summarization requests
+* API v2 requires both the summarizer (model) name and the prompt name
+
+**Action items:** 
+
+* Modify your query requests to include only one summarization request.
+* Modify your summarization requests to include both the model name and prompt name.
+
+
+## Chat endpoint changes
+
+* API v1 uses `/v1/list-conversations`, `/v1/read-conversations`, `/v1/delete-conversations`, 
+  `/v1/delete-turns`, and `/v1/disable-turns` endpoints for managing chats and conversations.
+* API v2 introduces `/v2/chats` and the `/v2/chats/{chat_id}/turns` endpoints 
+  for listing, creating, retrieving, updating, and deleting chats and turns
+
+**Action items:** 
+* Modify your chat and conversation management configurations 
+  to use the new endpoints and request/response structures.
+
+## Corpus management endpoint changes
+
+* To create a corpus, API v1 uses `/v1/create-corpus`, API v2 uses `/v2/corpora`
+* To list corpora, API v1 uses `/v1/list-corpora`, API v2 uses `/v2/corpora`
+* To read corpus data, API v1 uses `/v1/read-corpus`, API v2 uses `/v2/corpora/{corpus_key}`
+* To delete a corpus, API v1 uses `/v1/delete-corpus`, API v2 uses `/v2/corpora/{corpus_key}`
+* To enable or disable a corpus, API v1 uses `/v1/update-corpus-enablement`, API v2 uses `/v2/corpora/{corpus_key}` with the PATCH method
+* To update corpus filters, API v1 uses `/v1/replace-corpus-filter-attrs`, API v2 uses `/v2/corpora/{corpus_key}` with the PATCH method
+* To reset a corpus, API v1 uses `/v1/reset-corpus`, API v2 uses `/v2/corpora/{corpus_key}/reset`
+
+**Action items:**
+tbd
+
+
+## Document management endpoint changes
+
+* To list documents, API v1 uses /`v1/list-documents`, API v2 uses `/v2/corpora/{corpus_key}/documents`
+* To delete documents, API v1 uses `/v1/delete-doc`, API v2 uses `/v2/corpora/{corpus_key}/documents/{document_id}`
+
+**Action items:**
+tbd
+
+## Job management endpoint changes
+
+* To list jobs, API v1 uses `/v1/list-jobs`, API v2 uses `/v2/jobs`
+* API v2 introduces `/v2/jobs/{job_id}` to retrieve jobs
+
+**Action items:**
+tbd
+
+## User management endpoint changes
+
+* To create a user, API v1 uses: `/v1/manage-user` with `USER_ACTION_TYPE__ADD`, API v2 uses `/v2/users`
+* To list users, API v1 uses: `/v1/list-users`, API v2 uses `/v2/users`
+
+**Action items:**
+
+* Modify your list users requests to use the new endpoint and handle the updated response format.
+  
+### Retrieve User:
+
+* v1 Does not have an equivalent endpoint
+* v2: `/v2/users/{user_id}`
+
+**Action items:** 
+
+* Implement user retrieval functionality using the new endpoint, providing the `user_id` path parameter.
+
+### Update User:
+
+* v1: `/v1/manage-user` with various user action types
+* v2: `/v2/users/{user_id}` with PATCH method
+
+**Action items:**
+
+* Consolidate your user update requests to use the new endpoint with the PATCH method, updating the request body as needed.
+  
+### Delete User:
+
+* v1:` /v1/manage-user` with `USER_ACTION_TYPE__DELETE`
+* v2: `/v2/users/{user_id}`
+
+**Action items:**
+* Update your user creation requests to use the new endpoint and request body structure.
+
+
+## API key and App client management endpoint changes
+
+* API v1 uses `/v1/create-api-key`, `/v1/delete-api-key`, `/v1/enable-api-key`, and `/v1/list-api-keys` endpoints for managing API keys.
+* API v2 introduces `/v2/api_keys` and `/v2/app_clients` endpoints for creating, retrieving, updating, and deleting API keys and app clients.
+
+**Action items:**
+
+* Refactor your API key and app client management code to utilize the new endpoints and request/response structures.
+
+

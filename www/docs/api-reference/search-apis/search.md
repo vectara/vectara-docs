@@ -41,8 +41,8 @@ The [`/v2/query` endpoint](/docs/rest-api/query) allows you to perform Retrieval
 the body that specifies the following:
 
 - `query` - Contains your query text
-- `stream_response` - Indicates whether to stream the response in real-time or 
-  to send a complete summary at the end of processing the request
+- `stream_response` - Indicates whether to stream the response in real-time (`true`) or 
+  to send a complete summary at the end of processing the request (`false`)
 - `search` - Specifies the search parameters
 - `summarization` - Specifies the summarization parameters
 

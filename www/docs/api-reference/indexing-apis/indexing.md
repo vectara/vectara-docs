@@ -15,12 +15,13 @@ documents or content into a corpus. Indexing a document enables you to make
 data available for search and retrieval more efficiently. The Create Corpus 
 Document API lets you add documents that are either in a typical structured 
 format, or in a format that explicitly specifies each document part that 
-becomes a search result.
+becomes a search result. 
 
 Our indexing capability transforms this structured data into a 
 format that enables the data to become easily searchable in just a few 
 seconds. We also support a variety of data formats by allowing you to specify 
-multiple document attributes and metadata.
+multiple document attributes and metadata. You can also specify whether to 
+stream the result or receive a complete response.
 
 :::tip
 
@@ -33,7 +34,7 @@ multiple document attributes and metadata.
 ### Index Document Request and Response
 
 To index a document, send a POST request to `/v2/corpora/{corpus_key}/documents`, 
-where {corpus_key} is the unique identifier for the corpus where you want to 
+where `{corpus_key}` is the unique identifier for the corpus where you want to 
 add the document. The request body contains a `CreateDocumentRequest` object 
 that represents the document to be indexed. This object has a `type` parameter 
 that determines the format of the document as `core` or `structured`.
@@ -53,9 +54,6 @@ indicates how much quota would have been consumed.
   `title`, `description`, `metadata`, `custom_dimensions`, and an array of 
   `sections`. These sections each have an `id`, `title`, `text`, `metadata`, 
   and nested `sections`.
-
-
-
 
 :::note
 
@@ -164,7 +162,7 @@ they'll be ignored.
 
 ## REST 2.0 Example
 
-### Standard Indexing REST Endpoint
+### Indexing REST Endpoint
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
 to index content into a corpus:
