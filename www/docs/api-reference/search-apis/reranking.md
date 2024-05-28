@@ -12,16 +12,17 @@ import {vars} from '@site/static/variables.json';
 Reranking search results involves a process of rescoring and refining an 
 initial set of query results to achieve a more precise ranking. It employs 
 a machine learning model that while slower than the rapid retrieval step, 
-offers more accurate results. We currently have the [Maximal Marginal Relevance 
+offers more accurate results. We currently support two rerankers: the [Maximal Marginal Relevance 
 (MMR) Reranker](/docs/api-reference/search-apis/reranking#maximal-marginal-relevance-mmr-reranker) and the new Scale-only [Multilingual Reranker v1](/docs/api-reference/search-apis/reranking#vectara-multilingual-reranker-v1).
 
 ## Enable Reranking
 
 To enable reranking, specify the appropriate value for the `rerankerId`. 
-For example, the MMR reranker ID is `272725718`. In most scenarios, it makes 
-sense to use the default query `start` value of `0` so that you're reranking 
-all of the best initial results. You can also set `numResults` of the `query` 
-to the total number of documents you wish to rerank. The default value is `10`.
+The MMR reranker ID is `272725718` and the Multilingual Reranker v1 ID is 
+`272725719`. In most scenarios, it makes sense to use the default query `start` 
+value of `0` so that you're reranking all of the best initial results. You can 
+also set `numResults` of the `query` to the total number of documents you wish 
+to rerank. The default value is `25`.
 
 The following example shows the `numResults` and `rerankerId` 
 values in a query. Note that this simplified example intentionally omits the 
@@ -33,7 +34,7 @@ values in a query. Note that this simplified example intentionally omits the
     {
       "query": "What is my question?",
       "start": 0,
-      "numResults": 10,
+      "numResults": 25,
       "contextConfig": {},
       "corpusKey": [],
       "rerankingConfig": {
@@ -78,7 +79,8 @@ Multilingual Reranker v1, check out these [feature announcement](https://vectara
 [technical deep dive](https://vectara.com/blog/deep-dive-into-multilingual-reranker-v1-state-of-the-art-reranker-across-100-languages) blogs.
 
 Based on our experimentation we suggest using a cut-off threshold of `0.5` as 
-a good starting point. Any results that achieve a score of greater than or 
+a good starting point. This threshold value is the relevance scor" returned by 
+Vectara with each responseAny results that achieve a score of greater than or 
 equal to `0.5` can be considered relevant and anything below that can be 
 considered as non-relevant.
 
