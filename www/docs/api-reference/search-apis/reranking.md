@@ -79,7 +79,7 @@ Multilingual Reranker v1, check out these [feature announcement](https://vectara
 [technical deep dive](https://vectara.com/blog/deep-dive-into-multilingual-reranker-v1-state-of-the-art-reranker-across-100-languages) blogs.
 
 Based on our experimentation we suggest using a cut-off threshold of `0.5` as 
-a good starting point. This threshold value is the relevance scor" returned by 
+a good starting point. This threshold value is the relevance score returned by 
 Vectara with each responseAny results that achieve a score of greater than or 
 equal to `0.5` can be considered relevant and anything below that can be 
 considered as non-relevant.
