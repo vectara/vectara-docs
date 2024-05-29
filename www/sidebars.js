@@ -104,7 +104,6 @@ module.exports = {
       collapsed: true,
       items: [
             "learn/data-privacy/privacy-overview",
-            "learn/data-privacy/textless",
             "learn/data-privacy/encryption",
             {
               type: "category",
@@ -233,30 +232,6 @@ module.exports = {
         },
         {
           type: "category",
-          label: "Authentication Admin APIs",
-          items: [
-            {
-              type: "category",
-              label: "User Admin APIs",
-              items: [
-                "api-reference/admin-apis/manage-users/list-users",
-                "api-reference/admin-apis/manage-users/manage-user",
-              ]
-            },
-            {
-              type: "category",
-              label: "API Key Admin APIs",
-              items: [
-                "api-reference/api-keys/create-api-key",
-                "api-reference/api-keys/delete-api-key",
-                "api-reference/api-keys/list-api-keys",
-                "api-reference/api-keys/enable-api-key",
-              ]
-            },
-          ]
-        },
-        {
-          type: "category",
           label: "Query APIs",
           items: [
             "api-reference/search-apis/search",
@@ -342,33 +317,35 @@ module.exports = {
           type: "category",
           label: "Users APIs",
           items: [
-            "api-reference/indexing-apis/indexing",
-            {
-              type: "category",
-              label: "File Upload API",
-              items: [
-                "api-reference/indexing-apis/file-upload/file-upload",
-                "api-reference/indexing-apis/file-upload/format-for-upload",
-                "api-reference/indexing-apis/file-upload/file-upload-filetypes",
-              ]
-            },
+            "api-reference/admin-apis/manage-users/create-user",
+            "api-reference/admin-apis/manage-users/list-users",
+            "api-reference/admin-apis/manage-users/get-user",
+            "api-reference/admin-apis/manage-users/update-user",
+            "api-reference/admin-apis/manage-users/delete-user",
+            "api-reference/admin-apis/manage-users/reset-user-password",
           ],
         },
         {
           type: "category",
           label: "Application Clients APIs",
           items: [
-            "api-reference/indexing-apis/indexing",
-            {
-              type: "category",
-              label: "File Upload API",
-              items: [
-                "api-reference/indexing-apis/file-upload/file-upload",
-                "api-reference/indexing-apis/file-upload/format-for-upload",
-                "api-reference/indexing-apis/file-upload/file-upload-filetypes",
-              ]
-            },
+            "api-reference/app-clients/create-app-client",
+            "api-reference/app-clients/list-app-clients",
+            "api-reference/app-clients/get-app-client",
+            "api-reference/app-clients/update-app-client",
+            "api-reference/app-clients/delete-app-client",
           ],
+        },
+        {
+          type: "category",
+          label: "API Key Admin APIs",
+          items: [
+            "api-reference/api-keys/create-api-key",
+            "api-reference/api-keys/list-api-keys",
+            "api-reference/api-keys/get-api-key",
+            "api-reference/api-keys/enable-api-key",
+            "api-reference/api-keys/delete-api-key",
+          ]
         },
         {
           type: "category",
