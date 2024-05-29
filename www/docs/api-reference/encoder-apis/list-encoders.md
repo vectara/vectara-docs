@@ -30,7 +30,7 @@ specify optional query parameters to filter the results.
 ### List Encoders Endpoint Address
 
 <Config v="names.product"/> exposes an HTTP endpoint at the following URL
-to delete turns in a chat:
+to list the available encoders:
 <code>https://<Config v="domains.rest.indexing"/>/v2/encoders</code>
 
-The API Playground shows the full [List Rerankers](/docs/rest-api/list-encoders) REST definition.
+The API Playground shows the full [List Encoders](/docs/rest-api/list-encoders) REST definition.

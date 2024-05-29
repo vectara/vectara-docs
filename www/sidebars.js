@@ -275,11 +275,14 @@ module.exports = {
           label: "Chat APIs",
           items: [
             "api-reference/chat-apis/chat-apis-overview",
-            "api-reference/chat-apis/list-conversations",
-            "api-reference/chat-apis/read-conversations",
+            "api-reference/chat-apis/create-chat",
+            "api-reference/chat-apis/list-chats",
+            "api-reference/chat-apis/get-chat",
             "api-reference/chat-apis/delete-conversations",
+            "api-reference/chat-apis/create-chat-turn",
+            "api-reference/chat-apis/get-chat-turn",
             "api-reference/chat-apis/delete-turns",
-            "api-reference/chat-apis/disable-turns",
+            "api-reference/chat-apis/update-chat-turn",
           ],
         },
         {
