@@ -34,8 +34,8 @@ Vectara Chat provides the following Chat APIs:
   of chats with their metadata
 * [**Delete Chat**](/docs/api-reference/chat-apis/delete-conversations) by their specific Chat IDs for 
   data management and other purposes.
-* [**Create Chat Turn**](/docs/api-reference-chat-apis/create-chat-turn) adds a new turn to an existing chat.
-* [**List Chat Turns**](/docs/api-reference/chat-apis/list-turns) returns a list of turns within a chat.
+* [**Create Chat Turn**](/docs/api-reference/chat-apis/create-chat-turn) adds a new turn to an existing chat.
+* [**List Chat Turns**](/docs/api-reference/chat-apis/list-chat-turns) returns a list of turns within a chat.
 * [**Delete Chat Turns**](/docs/api-reference/chat-apis/delete-turns) from a conversation starting from a specific 
   Turn ID to manage the content of conversations.
 * [**Update Chat Turn**](/docs/api-reference/chat-apis/update-chat-turn) modifies a specific turn within a chat.
