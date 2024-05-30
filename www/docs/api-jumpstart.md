@@ -50,9 +50,8 @@ year?”_
 To issue the cURL command in the example, you input the following 
 field values:
 
-* `customer_id` and `customerId` = 123456789
-* `x-api-key` = abc_12345defg67890hij09876
-* `corpus_id` = 1
+* `x-api-key` = `abc_12345defg67890hij09876`
+* `corpus_key` = `employee-handbook`
 * `query` = How much PTO is offered to employees each year?
 
 
@@ -61,58 +60,35 @@ field values:
 This example queries the corpus with the question about annual PTO.
 
 ```js
-curl -L -X POST 'https://api.vectara.io/v1/query' \
+curl -L -X POST 'https://api.vectara.io/v2/corpora/employee-handbook/query' \
 -H 'Content-Type: application/json' \
 -H 'Accept: application/json' \
--H 'customer-id: 123456789' \
 -H 'x-api-key: abc_12345defg67890hij09876' \
 --data-raw '{
-  "query": [
-    {
-      "query": "How much PTO is offered to employees each year?",
-      "start": 0,
-      
-      // 20 results per page
-      
-      "numResults": 20,
-      "contextConfig": {
-        "charsBefore": 30,
-        "charsAfter": 30,
-        "sentencesBefore": 3,
-        "sentencesAfter": 3,
-        "startTag": "<b>",
-        "endTag": "</b>"
-      },
-      "corpusKey": [
+  "query": "How much PTO is offered to employees each year?",
+  "stream_response": false,
+  "search": {
+    "offset": 0,
+    "limit": 20,
+    "context_configuration": {
+      "characters_before": 30,
+      "characters_after": 30,
+      "sentences_before": 3,
+      "sentences_after": 3,
+      "start_tag": "<b>",
+      "end_tag": "</b>"
+    },
+    "metadata_filter": "part.lang = '\''eng'\''",
+    "lexical_interpolation": 0.1,
+    // This value lets you balance neural search and keyword search
+    // You can specify 0.0 to 1.0, where 1.0 is exact keyword matching
+    "semantics": "default"
+    },
+     "summarization": [
         {
-          "customerId": 123456789,
-          "corpusId": 1,
-          "semantics": "DEFAULT",
-          "dim": [],
-          "metadataFilter": "part.lang = '\''eng'\''",
-          "lexicalInterpolationConfig": {
-            
-            // This value lets you balance neural search and keyword search
-            // You can specify 0.0 to 1.0, where 1.0 is exact keyword matching
-            "lambda": 0.1
-          }
-        }
-      ],
-      "rerankingConfig": {
-        "rerankerId": 272725717
-      },
-      "summary": [
-        {
-
-          // This value selects the summarizer. In this case it is using
-          // ChatGPT 3.5 Turbo. Scale users can use the 1.3.0 summarizer
-          // which is ChatGPT 4.0
-          "summarizerPromptName": "vectara-summary-ext-v1.2.0",
-          "responseLang": "en"
-
           // This value tell the summarizer to use 5 results
           // Experiment setting this value from 5-10
-          "maxSummarizedResults": 5,
+          "max_used_search_results": 5,
           
         }
       ]
@@ -127,45 +103,24 @@ Let’s take a closer look at the first response:
 
 ```js
 {
-  "responseSet": [
+  "summary": "Employee Handbook PTO is 20 days a year for all new employees. <b>Employees earn more vacation days per year of service up to 5 extra days.</b> Example: Once you begin your 5th year, you now have 25 vacation days.",
+  "summary_language": "eng",
+  "search_results": [
     {
-      "response": [
-        {
-          "text": "Employee Handbook PTO is 20 days a year for all new employees. 
-          <b>Employees earn more vacation days per year of service up to 5 extra 
-          days.</b> Example: Once you begin your 5th year, you now have 25 
-          vacation days.",
-          "score": 4.30505,
-          "metadata": [
-            {
-              "name": "lang",
-              "value": "eng"
-            },
-            {
-              "name": "section",
-              "value": "1"
-            },
-            {
-              "name": "offset",
-              "value": "63"
-            },
-            {
-              "name": "len",
-              "value": "73"
-            }
-          ],
-          "documentIndex": 0,
-          "corpusKey": {
-            "customerId": 1,
-            "corpusId": 123456789,
-            "semantics": "DEFAULT",
-            "dim": [],
-            "metadataFilter": "",
-            "lexicalInterpolationConfig": null
-          },
-          "resultOffset": 66,
-          "resultLength": 73
-        },
+      "text": "Employee Handbook PTO is 20 days a year for all new employees. <b>Employees earn more vacation days per year of service up to 5 extra days.</b> Example: Once you begin your 5th year, you now have 25 vacation days.",
+      "score": 4.30505,
+      "part_metadata": {
+        "lang": "eng",
+        "section": "1",
+        "offset": "63",
+        "len": "73"
+      },
+      "document_metadata": {},
+      "document_id": "doc_123456789",
+      "request_corpora_index": 0
+    }
+  ]
+}
 	  // More results....
 ```
 
@@ -187,19 +142,17 @@ a simple command.
 
 You need to input the following information:
 
-* `customer_id`
 * `x-api-key`
 * `corpus_id`
-* File name 
-* Path to the file
-
+* File Path
+* 
 #### Example cURL command
 
 In this example command, you have a local `doc.rtf` file that you want to 
 upload to corpus 1, which is `corpus_id` = 1.
 
 ```js
-curl -L -X POST 'https://api.vectara.io/v1/upload?c=123456789&o=1&d=true' \
+curl -L -X POST 'https://api.vectara.io/v2/corpora/employee-handbook/upload_file' \
 -H 'Content-Type: multipart/form-data' \
 -H 'Accept: application/json' \
 -H 'x-api-key: abc_12345defg67890hij09876' \
