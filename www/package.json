@@ -18,7 +18,7 @@
     "@docusaurus/core": "2.4.3",
     "@docusaurus/preset-classic": "2.4.3",
     "@mdx-js/react": "^1.6.22",
-    "@vectara/react-search": "^1.0.0",
+    "@vectara/react-search": "^1.1.0",
     "classnames": "^2.3.2",
     "clsx": "^1.2.1",
     "docusaurus": "^1.14.7",
