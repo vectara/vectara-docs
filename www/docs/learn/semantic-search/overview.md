@@ -64,18 +64,18 @@ results in these use cases.
 
 ## Advanced query configurations
 
-Application builders can define specific [query](/docs/api-reference/search-apis/search) parameters for their searches, 
-including context, pagination, metadata filters, and semantics. This 
-flexibility empowers users to tailog queries to specific use cases, ensuring 
-that the search results are as relevant and precise as possible.
+Application builders can define specific [query](/docs/api-reference/search-apis/search) parameters 
+for their searches, including context, pagination, metadata filters, and 
+semantics. This flexibility empowers users to tailog queries to specific use 
+cases, ensuring that the search results are as relevant and precise as possible.
 
-### Query Request and Response
+### Query request and response
   
-Developers can specify the `query` text and manage pagination through the `start` 
-and `num_results` parameters. This structured approach helps in managing the 
+Developers can specify the `query` text and manage pagination through the `offset` 
+and `limit` parameters. This structured approach helps in managing the 
 flow of search results effectively.
 
-### Metadata Filtering
+### Metadata filtering
 
 Vectara supports enhanced [metadata filtering](/docs/learn/metadata-search-filtering/filter-overview), which allows users to restrict  
 searches to specific parts of the corpus based on defined criteria, using 
@@ -84,7 +84,7 @@ common SQL syntax.
 ### Reranking
   
 Vectara enhances the relevance of search results through its reranking 
-configurations. The `rerankingConfig` object can be used to adjust the 
+configurations. The `reranker_id` object can be used to adjust the 
 relevance of search results based on specific needs, such as diversity or 
 precision.
 

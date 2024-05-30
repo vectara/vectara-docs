@@ -225,13 +225,6 @@ module.exports = {
         "api-reference/rest",
         {
           type: "category",
-          label: "Account Admin APIs",
-          items: [
-            "api-reference/admin-apis/compute-account-size"
-          ]
-        },
-        {
-          type: "category",
           label: "Query APIs",
           items: [
             "api-reference/search-apis/search",
@@ -281,6 +274,7 @@ module.exports = {
             "api-reference/chat-apis/delete-conversations",
             "api-reference/chat-apis/create-chat-turn",
             "api-reference/chat-apis/get-chat-turn",
+            "api-reference/chat-apis/list-chat-turns",
             "api-reference/chat-apis/delete-turns",
             "api-reference/chat-apis/update-chat-turn",
           ],

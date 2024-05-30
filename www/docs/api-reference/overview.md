@@ -18,16 +18,18 @@ details, we recommend that you have a basic understanding of API concepts.
 
 :::caution
 
-Review the [**REST API 1.0 to 2.0 migration guide**](/docs/migration-guide-api-v2) which highlights important differences between the Vectara REST API v1 and REST API v2.
+Review the [**REST API 1.0 to 2.0 migration guide**](/docs/migration-guide-api-v2) which highlights important 
+differences between the Vectara REST API v1 and REST API v2.
 
 :::
 
 ## :star2: Ready to Dive In? Check Out Our API Playground! :star2:
 
 If you're ready to dive into our APIs, make your way to our [**API Playground**](/docs/rest-api/vectara-rest-api-v-2)! 
-This interactive environment allows you to experiment with <Config v="names.product"/>'s REST APIs 
-directly from your browser! Tailored for developers, the API Playground 
-offers a hands-on experience to understand and demonstrate our capabilities.
+This interactive environment allows you to experiment with <Config v="names.product"/>'s REST 
+2.0 APIs directly from your browser! Tailored for developers, the API 
+Playground offers a hands-on experience to understand and demonstrate our 
+capabilities.
 
 ## Fundamental API Concepts
 
@@ -44,7 +46,7 @@ provides the message definitions for running queries.
   (REST) and why it's commonly used in web services. Make sure to also 
   understand how it differs from gRPC. For example, review the [Java example](/docs/getting-started-samples/RestIndex.java) for our 
   Standard Indexing API. 
-* **HTTP Methods:** Become familar with HTTP methods like GET, POST, PUT, and DELETE.
+* **HTTP Methods:** Become familar with HTTP methods like GET, POST, PATCH, and DELETE.
 * **gRPC Methods:** Become familar with gRPC methods like server streaming, client
   streaming, and bidirectional streaming.
 * **Authentication:** Become aware of common authentication methods that can be 
@@ -54,7 +56,7 @@ provides the message definitions for running queries.
 ## Choosing gRPC or REST APIs
 Almost every API has both a [gRPC](https://en.wikipedia.org/wiki/GRPC) and a 
 [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) endpoint.
-The only exception at this time is the [File Upload API](/docs/api-reference/indexing-apis/file-upload/file-upload),
+The only exception for the REST 1.0 APIs at this time is the [File Upload API](/docs/api-reference/indexing-apis/file-upload/file-upload),
 which is only available via REST.
 
 gRPC has several advantages over REST:
@@ -65,10 +67,12 @@ However, we include REST APIs as there's a lot of developer tooling around REST
 APIs and some organizations still struggle with using HTTP/2.0 due to firewalls.
 
 ### REST API
+
 If you'd like more details about how to use our REST APIs, including details on
 our OpenAPI specification and services, a good place to start is the [REST APIs](rest)
 page.
 
 ### gRPC API
+
 If you'd like more details about how to use our gRPC APIs, including details on
 how to generate strongly typed clients, see our [gRPC APIs](protobuf-definitions) page.

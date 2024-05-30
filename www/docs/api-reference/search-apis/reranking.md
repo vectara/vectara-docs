@@ -15,7 +15,7 @@ a machine learning model that while slower than the rapid retrieval step,
 offers more accurate results. We currently support two rerankers: the [Maximal Marginal Relevance 
 (MMR) Reranker](/docs/api-reference/search-apis/reranking#maximal-marginal-relevance-mmr-reranker) and the new Scale-only [Multilingual Reranker v1](/docs/api-reference/search-apis/reranking#vectara-multilingual-reranker-v1).
 
-## Enable Reranking
+## Enable reranking
 
 To enable reranking, specify the appropriate value for the `rerankerId`. 
 The MMR reranker ID is `272725718` and the Multilingual Reranker v1 ID is 
@@ -81,7 +81,7 @@ Vectara with each responseAny results that achieve a score of greater than or
 equal to `0.5` can be considered relevant and anything below that can be 
 considered as non-relevant.
 
-## Maximal Marginal Relevance (MMR) Reranker
+## Maximal Marginal Relevance (MMR) reranker
 
 The Maximal Marginal Relevance (MMR) reranker enables you to diversify search 
 results to reduce redundancy while maintaining relevance to the query. 

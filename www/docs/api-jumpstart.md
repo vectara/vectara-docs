@@ -145,11 +145,11 @@ You need to input the following information:
 * `x-api-key`
 * `corpus_id`
 * File Path
-* 
+
 #### Example cURL command
 
-In this example command, you have a local `doc.rtf` file that you want to 
-upload to corpus 1, which is `corpus_id` = 1.
+In this example, you have a local `doc.rtf` file that you want to 
+upload the corpus with the `corpus_key` as `employee-handbook`:
 
 ```js
 curl -L -X POST 'https://api.vectara.io/v2/corpora/employee-handbook/upload_file' \
@@ -189,80 +189,64 @@ only the first 5 results.
 #### Example cURL command
 
 ```js
-curl -L -X POST 'https://api.vectara.io/v1/query' \
+curl -L -X POST 'https://api.vectara.io/v2/corpora/technology-corpus/query' \
 -H 'Content-Type: application/json' \
 -H 'Accept: application/json' \
--H 'customer-id: 123456789' \
 -H 'x-api-key: abc_12345defg67890hij09876' \
 --data-raw '{
-  "query": [
-    {
-      "query": "Technology",
-      "start": 0,
-      "numResults": 5,
-      "corpusKey": [
-        {
-          "customerId": 123456789,
-          "corpusId": 2,
-          "semantics": "DEFAULT",
-          "dim": [
-            {
-              "name": "string",
-              "weight": 0
-            }
-          ],
-          "metadataFilter": "part.lang = '\''eng'\''",
-          "lexicalInterpolationConfig": {
-            "lambda": 0
-          }
-        }
-      ],
-      "rerankingConfig": {
-        "rerankerId": 272725717
-      },
-      "summary": [
-        {
-          "summarizerPromptName": "vectara-summary-ext-v1.2.0",
-          "responseLang": "en"
-          "maxSummarizedResults": 5,
-          
-        }
-      ]
-    }
-  ]
+  "query": "Technology",
+  "stream_response": false,
+  "search": {
+    "offset": 0,
+    "limit": 5,
+    "custom_dimensions": {},
+    "metadata_filter": "part.lang = '\''eng'\''",
+    "lexical_interpolation": 0,
+    "semantics": "default"
+  },
+  "summarization": {
+    "max_used_search_results": 5,
+  }
 }'
 ```
 #### Example JSON response with 5 results
 
 ```js
 {
-  "status": "OK",
-  "results": [
+  "summary": "The future of technology is AI. Technology is evolving rapidly, with 
+    generative AI technology being revolutionary. While technology has its pros and cons, 
+    it plays a significant role in modern society.",
+  "summary_language": "eng",
+  "search_results": [
     {
       "text": "The future of technology is AI.",
       "score": 0.98,
-      "documentIndex": 1
-      // More results....
+      "document_id": "doc_1",
+      "request_corpora_index": 0
     },
     {
       "text": "Technology is evolving rapidly.",
       "score": 0.95,
-      "documentIndex": 2
+      "document_id": "doc_2",
+      "request_corpora_index": 0
     },
     {
       "text": "Generative AI technology is revolutionary.",
       "score": 0.92,
-      "documentIndex": 3
+      "document_id": "doc_3",
+      "request_corpora_index": 0
     },
     {
       "text": "Technology has its pros and cons.",
       "score": 0.90,
-      "documentIndex": 4
+      "document_id": "doc_4",
+      "request_corpora_index": 0
     },
     {
       "text": "The role of technology in modern society.",
       "score": 0.88,
-      "documentIndex": 5
+      "document_id": "doc_5",
+      "request_corpora_index": 0
     }
   ]
 }
@@ -275,15 +259,10 @@ the name.
 1. Execute the following curl command to list the corpora:
 
    ```js
-   curl -L -X POST 'https://api.vectara.io/v1/list-corpora' \
+   curl -L -X GET 'https://api.vectara.io/v2/corpora?limit=8&filter=handbook' \
       -H 'Content-Type: application/json' \
       -H 'Accept: application/json' \
-      -H 'customer-id: 123456789' \
-      -H 'Authorization: Bearer zwt_bearer_token' \
-      --data-raw '{
-  "numResults": 8,
-  "filter": "handbook"
-   }'
+      -H 'x-api-key: abc_12345defg67890hij09876'
    ```
 You get the following response:
 
@@ -292,16 +271,12 @@ You get the following response:
     "corpus": [
       {
       "id": 6,
-      "name": "Employee handbook",
+      "key": "Employee handbook",
       "description": "Employee guidelines from HR",
       "enabled": true,
-      "swapQenc": false,
-      "swapIenc": false,
-      "textless": false,
-      "encrypted": false,
-      "encoderId": "0",
-      "metadataMaxBytes": 0,
-      "faissIndexType": "",
+      "queries_are_answers": false,
+      "documents_are_questions": false,
+      "encoder_id": "enc_0",
       "customDimensions": [],
       "filterAttributes": []
       },
@@ -310,13 +285,9 @@ You get the following response:
       "name": "Employee Handbook",
       "description": "Pet Policy",
       "enabled": true,
-      "swapQenc": false,
-      "swapIenc": false,
-      "textless": false,
-      "encrypted": false,
-      "encoderId": "0",
-      "metadataMaxBytes": 0,
-      "faissIndexType": "",
+      "queries_are_answers": false,
+      "documents_are_questions": false,
+      "encoder_id": "enc_0",
       "customDimensions": [],
       "filterAttributes": []
      },
@@ -325,45 +296,35 @@ You get the following response:
       "name": "2022 handbook",
       "description": "",
       "enabled": true,
-      "swapQenc": false,
-      "swapIenc": false,
-      "textless": false,
-      "encrypted": false,
-      "encoderId": "0",
-      "metadataMaxBytes": 0,
-      "faissIndexType": "",
+      "queries_are_answers": false,
+      "documents_are_questions": false,
+      "encoder_id": "enc_0",
       "customDimensions": [],
       "filterAttributes": []
     }
    ],
-   "pageKey": "",
-   "status": null
+   "metadata": {
+    "page_key": ""
+  }
   }
    ```
 
 2. Execute the following curl command to delete a specific corpus with `corpus_id` = 13.
 
   ```js
-  curl -L -X POST 'https://api.vectara.io/v1/delete-corpus' \
-      -H 'Content-Type: application/json' \
-      -H 'Accept: application/json' \
-      -H 'customer-id: 123456789' \
-      -H 'Authorization: Bearer zwt_bearer_token' \
-     --data-raw '{
-  "corpusId": 13
-  }'
+  curl -L -X DELETE 'https://api.vectara.io/v2/corpora/2022-handbook' \
+    -H 'Content-Type: application/json' \
+    -H 'Accept: application/json' \
+    -H 'x-api-key: abc_12345defg67890hij09876'
   ```
 
  You get the following response:
 
  ```js
  {
-   "status": {
-    "code": "OK",
-    "statusDetail": "Corpus Deleted",
-    "cause": null
-  }
- }
+  "status": 204,
+  "message": "Corpus deleted successfully"
+}
  ```
 
 3. Execute the curl command from Step 1 again and the corpus you deleted 

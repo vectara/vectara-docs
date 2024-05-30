@@ -16,14 +16,14 @@ efficiently index their data and leverage our advanced search capabilities.
 This flexible approach allows for the precise integration of Vectara’s search 
 functionalities into different applications.
 
-## Vectara Ingest: Sample Data Ingestion Framework
+## Vectara Ingest: sample data ingestion framework
 
 Getting data into Vectara is simple using either our REST or gRPC APIs. We 
 built a full sample ingestion framework ready to go with [Vectara Ingest](https://github.com/vectara/vectara-ingest), which 
 includes preconfigured templates that enable you to pull data from many 
 popular data sources such as websites and RSS feeds.
 
-## Data Ingestion with the Indexing APIs
+## Data ingestion with the indexing APIs
 
 Selecting the ideal Indexing API for your application can significantly impact 
 the effectiveness of integrating Vectara’s search functionalities into your 
@@ -33,7 +33,7 @@ control over the data segmentation and indexing process.
 
 Vectara offers the following indexing APIs for these different scenarios:
 
-## File Upload API
+## File upload API
 
 If you want to extract text from existing, unstructured documents in common 
 file types with minimal manual intervention, use the [File Upload API](/docs/api-reference/indexing-apis/file-upload/file-upload). This 
@@ -49,12 +49,12 @@ any other kind of JSON to the indexing endpoint will cause it to error out.
 We recommend this option if you have not written your own extraction logic 
 already.
 
-## Index Document API
+## Index document API
   
 The Index Document API has a discriminator property `type` that determines the 
 format of the document. The supported document types are `structured` and `core`.
 
-### Structured Document
+### Structured document definition
 
 If you have structured documents that you want Vectara to index and segment
 into chunks for you, use the the `structured` type, which has a document with 
@@ -71,7 +71,7 @@ clear and consistent structure like news articles, product descriptions,
 rows in database tables or CSV files, or records from an ERP system.
 
 
-### Core Document
+### Core document definition
 
 For the most advanced use cases, if you want full, granular control to chunk 
 your document into `document_parts`, use the `core` type, which has a document 

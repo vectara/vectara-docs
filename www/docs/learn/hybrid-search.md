@@ -23,40 +23,43 @@ term was absent from Vectara's training data (e.g. product SKUs)
 - Incorporate typical keyword modifiers like a `NOT` function, exact phrase
 matching, and wildcard prefixes of terms
 
-## Enabling Hybrid Search
+## Enable hybrid search
 
-Enable hybrid search by specifying `lambda` value at query time, specifically 
-under the `corpusKey`. This value can range from `0.0` to `1.0` (inclusive).
+Enable hybrid search by specifying `lexical_interpolation` value at query time, 
+specifically in the `search` object. This value can range from `0.0` to `1.0` 
+(inclusive).
 
-As you ingest data and run queries, adjust the `lambda` value to achieve the 
-perfect balance in answer quality.
+As you ingest data and run queries, adjust the `lexical_interpolation` value to 
+achieve the perfect balance in answer quality.
 
 ```json
-      "corpusKey": [
-        {
-          "customerId": 123456789,
-          "corpusId": 5,
-          "semantics": 0,
-          "metadataFilter": "",
-          "lexicalInterpolationConfig": {
-            "lambda": 0.025
-          },
-          "dim": []
-        }
+{
+  "query": "What is the meaning of life?",
+  "search": {
+    "corpora": [
+      {
+        "corpus_key": "my-corpus"
+      }
+    ],
+    "offset": 0,
+    "limit": 10,
+    "lexical_interpolation": 0.025
+  }
+}
 ```
 
-### Experimenting with different lambda values
+### Experiment with different lexical interpolation values
 
-The default value of `lambda` is `0`, which *disables* exact and Boolean text
-matching. A value of `1` would disable neural retrieval instead, [relying _only_ on
-Boolean and exact text matching](/docs/learn/enable-keyword-text-matching). Experimenting with 
-the `lambda` value is useful if you're trying to evaluate how a keyword system like one based on 
-Elasticsearch or Solr may compare to Vectara.
+The default value of `lexical_interpolation` is `0`, which *disables* exact and 
+Boolean text matching. A value of `1` would disable neural retrieval instead, 
+[relying _only_ on Boolean and exact text matching](/docs/learn/enable-keyword-text-matching). Experimenting with 
+the `lexical_interpolation` value is useful if you're trying to evaluate how a keyword 
+system like one based on Elasticsearch or Solr may compare to Vectara.
 
 :::tip
 
 :bulb:
-You can test queries with different `lambda` values in 
+You can test queries with different `lexical_interpolation` values in 
 our [**API Playground**](/docs/rest-api/query) and in the Vectara Console.
 
 :::
@@ -65,10 +68,10 @@ Vectara supports in-between values as well, which tells Vectara to try to
 consider _both_ neural _and_ Boolean and exact text matching and then to blend
 the scores of the results of the two different scoring models. Users often see
 best results by setting this lambda value somewhere between `0.01` and `0.1`, and 
-we typically recommend users start experimentation with a `lambda` value of 
-`0.025`.
+we typically recommend users start experimentation with a `lexical_interpolation` 
+value of `0.025`.
 
-## Syntax Interpretation
+## Syntax interpretation
 
 When interpreting query strings, Vectara treats the following syntax specially.
 

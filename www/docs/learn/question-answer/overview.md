@@ -27,12 +27,13 @@ for employees and FAQ lookups for customers. .
 
 ## Configure corpus for question matching
 
-During corpus creation, set `swapIenc=True` to configures the corpus to use 
-the query encoder for both indexing and querying. This is ideal for direct 
-question-to-question matching, ensuring that the encoder used for indexing is 
-aligned with the one used for querying, which improves match relevance.
+During corpus creation, set `documents_are_questions` to `true` to configures 
+the corpus to use the query encoder for both indexing and querying. This is 
+ideal for direct question-to-question matching, ensuring that the encoder 
+used for indexing is aligned with the one used for querying, which improves 
+match relevance.
 
-We **do not** recommend changing the `semantics` setting to `RESPONSE` for question 
+We **do not** recommend changing the `semantics` setting to `response` for question 
 matching. This method uses an encoder that is tailored for handling arbitrary 
 textual content and would reverse the intended effect. It is often most 
 effective when used in combination with a well-structured corpus and clear 
@@ -46,17 +47,14 @@ that question in the `text` content. For example:
 
 ```json showLineNumbers title="document.json"
 {
-  "customerId": 123456,
-  "corpusId": 1,
-  "document": {
-    "documentId": "who-is-the-king-of-england",
-    "title": "Who is the King of England?",
-    "section": [
-      {
-        "text": "Charles III"
-      }
-    ]
-  }
+  "id": "who-is-the-king-of-england",
+  "type": "structured",
+  "title": "Who is the King of England?",
+  "sections": [
+    {
+      "text": "Charles III"
+    }
+  ]
 }
 ```
 
@@ -64,28 +62,25 @@ that question in the `text` content. For example:
 
 Suppose you wanted to find the answer to a question related to this example.
 You can put <Config v="names.product"/> into a document-matching mode by
-setting `semantics` to `RESPONSE`.  For example:
+setting `semantics` to `response`. For example:
 
-```json showLineNumbers title="https://api.vectara.io/v1/query"
+```json showLineNumbers title="https://api.vectara.io/v2/query"
 {
-  "query": [
-    {
-      "query": "Who's the English monarch?",
-      "start": 0,
-      "numResults": 10,
-      "corpusKey": [
-        {
-          "customerId": 12345678,
-          "corpusId": 1,
-          "semantics": "RESPONSE"
-        }
-      ]
-    }
-  ]
+  "query": "Who's the English monarch?",
+  "search": {
+    "corpora": [
+      {
+        "corpus_key": "faq-corpus",
+        "semantics": "response"
+      }
+    ],
+    "offset": 0,
+    "limit": 10
+  }
 }
 ```
 
-This `RESPONSE` setting disables <Config v="names.product"/>'s "question-answering" mode and
+This `response` setting disables <Config v="names.product"/>'s "question-answering" mode and
 instead tells it to find similar questions. This setting is useful when the 
 objective is to discover content that is similar in context or subject matter 
 to a given query
@@ -96,37 +91,25 @@ of `part.is_title = true` to *only* match the questions.
 ## Combine question matching and answering
 
 Expanding on the previous example, we can help users find question or answer
-matches together by using [batched queries](/docs/api-reference/search-apis/batched-queries)
-combined with filter expressions.  For example:
+matches together by using querying multiple corpora. For example:
 
-```json showLineNumbers title="https://api.vectara.io/v1/query"
+```json showLineNumbers title="https://api.vectara.io/v2/query"
 {
-  "query": [
-    {
-      "query": "Who's the English monarch?",
-      "start": 0,
-      "numResults": 10,
-      "corpusKey": [
-        {
-          "customerId": 12345678,
-          "corpusId": 1,
-          "semantics": "RESPONSE",
-          "metadataFilter": "part.is_title = true"
-        }
-      ]
-    },
-    {
-      "query": "Who's the English monarch?",
-      "start": 0,
-      "numResults": 10,
-      "corpusKey": [
-        {
-          "customerId": 12345678,
-          "corpusId": 1,
-          "metadataFilter": "part.is_title IS NULL"
-        }
-      ]
-    }
-  ]
+  "query": "Who's the English monarch?",
+  "search": {
+    "corpora": [
+      {
+        "corpus_key": "faq-corpus",
+        "semantics": "response",
+        "metadata_filter": "part.metadata.is_title = true"
+      },
+      {
+        "corpus_key": "faq-corpus",
+        "metadata_filter": "part.metadata.is_title IS NULL"
+      }
+    ],
+    "offset": 0,
+    "limit": 10
+  }
 }
 ```
