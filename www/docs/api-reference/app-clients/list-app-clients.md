@@ -40,4 +40,4 @@ secret, API roles, and API policy.
 to list app clients:
 <code>https://<Config v="domains.rest.indexing"/>/v2/api_keys</code>
 
-The API Playground shows the full [Create App Client](/docs/rest-api/create-app-client) REST definition.
+The API Playground shows the full [List App Client](/docs/rest-api/list-app-clients) REST definition.

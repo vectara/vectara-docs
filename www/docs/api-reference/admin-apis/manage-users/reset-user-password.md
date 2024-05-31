@@ -24,7 +24,7 @@ email was sent to the user.
 ### Reset User Password Endpoint Address
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
-to list users:
+to reset a user's password:
 <code>https://<Config v="domains.rest.indexing"/>/v2/users:username/reset_password</code>
 
 The API Playground shows the full [Reset User Password](/docs/rest-api/reset-user-password) REST definition.

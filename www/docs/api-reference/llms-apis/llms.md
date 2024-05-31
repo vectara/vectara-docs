@@ -30,7 +30,7 @@ specify optional query parameters to filter the results.
 ### Large Language Models (LLMs) Endpoint Address
 
 <Config v="names.product"/> exposes an HTTP endpoint at the following URL
-to delete turns in a chat:
+to list LLMs:
 <code>https://<Config v="domains.rest.indexing"/>/v2/llms</code>
 
 The API Playground shows the full [Large Language Models (LLMs)](/docs/rest-api/list-ll-ms) REST definition.

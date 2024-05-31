@@ -1,12 +1,10 @@
 ---
 id: grounded-generation-overview
-title: Retrieval Augmented Generation Fundamentals
-sidebar_label: Retrieval Augmented Generation Fundamentals
+title: Retrieval Augmented Generation (RAG) Fundamentals
+sidebar_label: Retrieval Augmented Generation (RAG) Fundamentals
 ---
 
 import {Config} from '@site/docs/definitions.md';
-
-## Retrieval Augmented Generation (RAG) fundamentals
 
 Retrieval Augmented Generation (RAG) ensures that generated content is both 
 verifiable and anchored to the data you supply. This minimizes the occurrence 

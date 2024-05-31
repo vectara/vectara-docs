@@ -82,11 +82,9 @@ JWT token:
 
 Access your authentication by clicking the copy icon for the "OAuth 2.0 authentication URL."
 
-![Copy the Authentication URL](/img/copy_authentication_url.png)
-
 The URL has the following format:
 
-`https://vectara-prod-<customer-id>.auth.us-west-2.amazoncognito.com/oauth2/token`
+`https://auth.vectara.dev/oauth2/token`
 
 **Client ID**
 

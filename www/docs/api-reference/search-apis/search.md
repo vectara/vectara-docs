@@ -75,11 +75,6 @@ Query Corpora type and specifies the same parameters:
 This advanced type provides additional search filtering and customization 
 options compared to the simple GET method.
 
-## Corpus Key
-
-If you want to query a specific corpus or corpora, include the unique 
-`corpus_key` in the path of the request such as `v2/corpora/:corpus_key`.
-
 The query response message encapsulates a single query result. It is a subdocument
 provided at indexing time. The `text` is the subdocument text, the `score`
 indicates how well the text answers the query (higher scores are better).
@@ -94,6 +89,24 @@ Finally, the `document_index` points at a specific document within the
 enclosing response set's `document` array. This is useful for retrieving the
 document id and document-level metadata.
 
+## Corpus Key Definition
+
+If you want to query a specific corpus or corpora, include the unique 
+`corpus_key` in the path of the request such as `v2/corpora/:corpus_key`.
+
+When creating a new corpus, you have the flexibility to specify a custom 
+`corpus_key` that follows a naming convention of your choice. This allows you to 
+assign easily identifiable keys to your corpora, making it easier to manage and 
+reference them in your application.
+
+:::caution
+
+As part of the migration from API 1.0 to 2.0, all existing corpora have been 
+assigned a new `corpus_key` based on their original name and `corpus_id`. The `corpus_key` 
+is created by combining the name of the corpus (with underscores replacing spaces) 
+and the original numeric ID.
+
+:::
 
 ## Query Definition
 
@@ -103,8 +116,8 @@ context** provides additional information that the system may use to refine the
 results. For example, *"The Apple store near my house is closed due to Covid."*
 
 Within the `search` object, add `custom_dimensions` weights (Scale only), 
-`metadata_filter` and set the `lexical_interpolation` (formerly `lambda`) in 
-the REST API v1.0. Setting to `0` disables exact and Boolean text matching, 
+`metadata_filter` and set the `lexical_interpolation` (formerly `lambda` in 
+the REST API v1.0). Setting to `0` disables exact and Boolean text matching, 
 while a value of `1` disabls neural retrieval. Users often see best results by 
 setting this value somewhere between 0.01 and 0.1, and we typically 
 recommend users start experimentation with a `0.025`.
@@ -154,11 +167,11 @@ more rarely, as a response.
 
 ### Reranking Configuration 
 
-The `rerankingConfig` object enables reranking of results, to further increase 
-relevance in certain scenarios. Scale users can modify the `rerankerId` of 
-this object. When using `mmrConfig`, specify a `diversityBias` value between `0.0` 
-and `1.0`. For details about our English cross-attentional (Scale only) and 
-Maximal Marginal Relevance (MMR) rerankers, see [Reranking](/docs/api-reference/search-apis/reranking).
+The `rereanker` object enables reranking of results, to further increase 
+relevance in certain scenarios. Scale users can modify the `reranker_id` of 
+this object with `272725719` to use the [Multilingual Reranker v1](/docs/api-reference/search-apis/reranking#vectara-multilingual-reranker-v1).
+The MMR reranker uses the value `272725718` and also lets you specify 
+a `diversityBias` value between `0.0` and `1.0`. 
 
 ## Query Summarization Request - Retrieval Augmented Generation 
 

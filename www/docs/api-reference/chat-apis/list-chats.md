@@ -34,4 +34,4 @@ metadata about the pagination.
 to list chats:
 <code>https://<Config v="domains.rest.indexing"/>/v2/chats</code>
 
-The API Playground shows the full [Create Chat](/docs/rest-api/list-chats) REST definition.
+The API Playground shows the full [List Chats](/docs/rest-api/list-chats) REST definition.

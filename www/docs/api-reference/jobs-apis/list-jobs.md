@@ -36,7 +36,7 @@ specify optional query parameters to filter the results.
 to delete turns in a chat:
 <code>https://<Config v="domains.rest.indexing"/>/v2/job</code>
 
-The API Playground shows the full [Get Job](/docs/rest-api/list-jobs) REST definition.
+The API Playground shows the full [List Jobs](/docs/rest-api/list-jobs) REST definition.
 
 
 

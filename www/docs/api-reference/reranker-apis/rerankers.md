@@ -25,13 +25,12 @@ specify optional query parameters to filter the results.
 * `page_key` - Indicates the next page of results when the previous request 
   has reached the limit.
 
-
 ## REST 2.0 Example
 
 ### List Rerankers Endpoint Address
 
 <Config v="names.product"/> exposes an HTTP endpoint at the following URL
-to delete turns in a chat:
+to list rerankers:
 <code>https://<Config v="domains.rest.indexing"/>/v2/rerankers</code>
 
 The API Playground shows the full [List Rerankers](/docs/rest-api/list-rerankers) REST definition.

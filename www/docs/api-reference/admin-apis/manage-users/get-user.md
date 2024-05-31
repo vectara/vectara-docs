@@ -26,7 +26,7 @@ description, creation and update timestamps, and assigned API roles.
 ### Get User Endpoint Address
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
-to list users:
+to get a user:
 <code>https://<Config v="domains.rest.indexing"/>/v2/users:username</code>
 
 The API Playground shows the full [Get User](/docs/rest-api/get-user) REST definition.

@@ -15,7 +15,7 @@ customizing prompts with metadata. Our Custom Retrieval Augmented Generation
 (RAG) Prompt Engine provides several available prompt variables and functions 
 for Scale users to customize prompts in their [Queries](/docs/api-reference/search-apis/search).
 
-## Available Prompt Variables
+## Available prompt pariables
 
 The following table shows the available custom prompt variables:
 
@@ -29,7 +29,7 @@ The following table shows the available custom prompt variables:
 | $vectaraQueryResults  | An array of query results is found in the response, sorted by relevance score.  | #foreach ($qResult in $vectaraQueryResults)    {"role": "user", "content": "Give me the $vectaraIdxWord[$foreach.index] search result."},    {"role": "assistant", "content": "$esc.java(${qResult.text()})" },#end  | {"role": "user", "content": "Give me the second search result."},{"role": "assistant", "content": "2nd result" },  |
 
 
-## Available Prompt Functions
+## Available prompt functions
 
 The following table shows the available custom prompt functions: 
 
@@ -46,14 +46,14 @@ The following table shows the available custom prompt functions:
 | $qResult.partMetadata().get("page")  | Returns the specified field value from part metadata, incorrect key would result in empty value  | $qResult.docMetadata().get("page")  | "1"  |
 
 
-## Setting a Custom Prompt
+## Setting a custom prompt
 
 To set a custom prompt, Scale users can add custom `promptText` within the 
 `summary` [object](/docs/learn/grounded-generation/select-a-summarizer) of a [query](/docs/api-reference/search-apis/search) 
 to override the default prompt text. The [API Playground](/docs/rest-api/query) provides a custom 
 prompt in the Query endpoint Scale Example.
 
-## Include Metadata in Prompt
+## Include metadata in prompt
 
 This snippet shows how to get metadata associated with a single result `qResult` 
 by retrieving metadata `docMetadata` from the date that information was 
@@ -67,7 +67,7 @@ Let's dive into a full custom prompt example that shows more details about a
 custom prompt with 
 metadata.
 
-## Example Custom Prompt for an RFI Answering Bot
+## Example custom prompt for an RFI answering bot
 
 The following example prompt creates a Request for information (RFI) 
 answering bot that includes metadata. First, we ask the generative LLM to 

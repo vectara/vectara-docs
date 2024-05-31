@@ -31,7 +31,7 @@ Example with a sample `summary` object, which includes a custom prompt.
 
 :::
 
-## Effective Prompts
+## Effective prompts
 
 Effective prompts guide LLMs to generate responses that meet specific user 
 needs or objectives in generative AI applications. Define an objective 
@@ -46,7 +46,7 @@ Reach out to support if you want to modify the default prompt.
 
 :::
 
-## Prompt Design
+## Prompt design
 
 Prompt design includes a specific a `role` and `content` about this role, 
 which provide context about how you want the role to behave and the kind of 
@@ -80,7 +80,7 @@ Example content can include “You are a helpful search assistant” or
 “Generate a summary for the query”.
 
 
-## Example Prompt Template
+## Example prompt template
 
 The following example prompt specifies a role as a helpful search assistant. 
 It then loops through Vectara query results with specific variables and 

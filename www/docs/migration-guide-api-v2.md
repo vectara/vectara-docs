@@ -6,14 +6,14 @@ sidebar_label: Migration Guide from REST API 1.0 to 2.0
 import {Config} from '@site/docs/definitions.md';
 
 This guide provides information about migrating from the Vectara v1 REST 
-API to v2. Tis new version of our REST APIs uses the standard HTTP verbs 
+API to v2. This new version of our REST APIs uses the standard HTTP verbs 
 POST, GET, PATCH, and DELETE for CRUD operations. The URL structure is also 
 much more object-oriented to the objects that exist in Vectara.
 
-You will need to consider the several changes to the base URL, authentication, 
-specific endpoints, as well as changes to requests and responses. Review the 
-[API Reference Documentation](/docs/api-reference/rest) which has information about 
-each endpoint.
+To migrate from 1.0 to 2.0, you will need to consider the changes to the base 
+URL, authentication, specific endpoints, as well as changes to requests and 
+responses. Review the [API Reference Documentation](/docs/api-reference/rest) 
+which has more details about each endpoint.
 
 :::note
 
@@ -35,6 +35,53 @@ These changes do not affect gRPC and are specific to the REST 2.0 endpoints.
 
 **Action item:** Remove the `customer_id` header from your API requests, unless 
 using password authentication.
+
+## Percent encoding for special characters
+
+In v1, IDs for the customer account and corpus were in the body of the 
+request. In Vectara API v2, IDs for resources such as documents are now 
+included as part of the URL path, following RESTful design principles. This 
+change affects how you need to handle IDs that contain special characters.
+
+If a username or document contains characters that are not valid in a URL, 
+you must **percent-encode** those characters when making requests to the API. 
+Percent encoding is a mechanism for encoding special characters in a URL. It 
+replaces non-alphanumeric characters with a "`%`" followed by two hexadecimal 
+digits representing the ASCII code of the character.
+
+For example, if a document ID contains a slash ("/"), you would replace it 
+with "%2F" in the URL path:
+
+`/v2/corpora/my-corpus/documents/doc%2F123`
+
+To learn more about percent encoding and the characters that need to be 
+encoded, refer to the following resources: [Mozilla MDN Web Docs: Percent Encoding](https://developer.mozilla.org/en-US/docs/Glossary/Percent-encoding) and 
+[URL Standard: URL Path Segment Syntax](https://url.spec.whatwg.org/#syntax-url-path-segment)
+
+**Action items:** 
+
+Use percent-encoding for special characters in IDs when making requests. This 
+ensures that your requests are properly formatted and handled by the REST 2.0 
+API.
+
+## Corpus Key introduction
+
+Vectara REST API 2.0 introduces the `corpus_key` which is a unique identifier 
+for each corpus. As part of the 1.0 to 2.0 migration, all existing corpora IDs 
+have been converted with an appended ID to create the `corpus_key`. For 
+example, you had a 1.0 corpus named "employee handbook" with an ID of `10`. In 
+2.0, this `corpus_key` value is `employee_handbook_10`:
+
+* `/v1/corpora/10` - API 1.0 endpoint with corpusId
+* `/v2/corpora/Employee_Handbook_10` - API 2.0 endpoint with corpus_key
+
+Going forward, when you create a new corpus, you can specify a custom 
+`corpus_key`.
+
+**Action items:**
+
+* [Retrieva a list](/docs/rest-api/list-corpora) of corpora in the account with the [List Corpora API definition](/docs/api-reference/admin-apis/corpus/list-corpora). 
+* Update any code that references the v1 `corpusId` to use the v2 `corpus_key` format
 
 ## Terminology, parameter, and property name changes
 

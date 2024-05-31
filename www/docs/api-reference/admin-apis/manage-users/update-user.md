@@ -30,8 +30,8 @@ The response contains the updated `user` object with the modified properties.
 ### Update User Endpoint Address
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
-to list users:
+to update a user:
 <code>https://<Config v="domains.rest.indexing"/>/v2/users:username</code>
 
-The API Playground shows the full [Get User](/docs/rest-api/update-user) REST definition.
+The API Playground shows the full [Update User](/docs/rest-api/update-user) REST definition.
 

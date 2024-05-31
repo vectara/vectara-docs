@@ -27,14 +27,14 @@ The response includes an array of corpora `objects` with matching `corpora` and
 
 ## REST Example
 
-### Read Corpus REST Endpoint Address
+### List Corpora REST Endpoint Address
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
-to read information about the corpus:
-<code>https://<Config v="domains.rest.admin"/>/v2/corpora/:corpus_key</code>
+to list corpora in the account:
+<code>https://<Config v="domains.rest.admin"/>/v2/corpora</code>
 
 The API Playground shows the full [List Corpora](/docs/rest-api/list-corpora) REST definition.
 
 ## gRPC Example
 
-You can find the full Read Corpus gRPC definition at [admin.proto](https://github.com/vectara/protos/blob/main/admin.proto).
+You can find the full List Corpora gRPC definition at [admin.proto](https://github.com/vectara/protos/blob/main/admin.proto).
