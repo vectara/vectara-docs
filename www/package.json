@@ -5,7 +5,7 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start --port=5000",
-    "build": "buildStatic && docusaurus build",
+    "build": "npm run buildStatic && docusaurus build",
     "buildStatic": "node buildStatic.js",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
