@@ -35,10 +35,10 @@ and usage limits..
 
 ## REST Example
 
-### Read Corpus REST Endpoint Address
+### Get Corpus REST Endpoint Address
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
-to read information about the corpus:
+to get information about the corpus:
 <code>https://<Config v="domains.rest.admin"/>/v2/corpora/:corpus_key</code>
 
 The API Playground shows the full [Get Corpus](/docs/rest-api/get-corpus) REST definition.

@@ -29,14 +29,14 @@ Upon successful completion, space quota consumed by the corpus will be freed.
 
 ## REST 2.0 Example
 
-### Reset Corpus REST Endpoint
+### Replace Filter Attributes REST Endpoint
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
-to reset a corpus:
+to replace filter attributes:
 <code>https://<Config v="domains.rest.admin"/>/v2/corpora/:corpus_key/replace_filter_attributes</code>
 
 The API Playground shows the full [Replace Filter Attributes](/docs/rest-api/replace-filter-attributes) REST definition.
 
 ## gRPC Example
 
-You can find the full Reset Corpus gRPC definition at [admin.proto](https://github.com/vectara/protos/blob/main/admin.proto).
+You can find the full Replace Filter Attributes gRPC definition at [admin.proto](https://github.com/vectara/protos/blob/main/admin.proto).

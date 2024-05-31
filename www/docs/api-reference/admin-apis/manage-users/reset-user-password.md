@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The Reset User Password API lets you delete a user from the account.
+The Reset User Password API lets you send a password reset email to the user.
 
 ## Reset User Password Request and Response
 

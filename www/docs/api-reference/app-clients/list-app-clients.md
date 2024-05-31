@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The List App Clients API lets you create an Application Client for OAuth 2.0 
+The List App Clients API lets you list an Application Client for OAuth 2.0 
 authentication with Vectara's APIs.
 
 :::note
@@ -34,10 +34,10 @@ secret, API roles, and API policy.
 
 ## REST 2.0 API Example
 
-### Create App Client Endpoint Address
+### List App Client Endpoint Address
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
 to list app clients:
 <code>https://<Config v="domains.rest.indexing"/>/v2/api_keys</code>
 
-The API Playground shows the full [List App Client](/docs/rest-api/list-app-clients) REST definition.
+The API Playground shows the full [List App Client](/docs/rest-api/list-app-client) REST definition.
