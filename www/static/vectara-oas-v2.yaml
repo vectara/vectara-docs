@@ -301,7 +301,7 @@ paths:
       tags:
         - Corpora
       summary: Remove all documents and data in a corpus
-      description: Resets a corpus, which removs all documents and data from the specified corpus, while keeping the corpus itself.
+      description: Resets a corpus, which removes all documents and data from the specified corpus, while keeping the corpus itself.
       security:
         - ApiKeyAuth: []
         - oAuth2: []
@@ -332,7 +332,7 @@ paths:
     post:
       tags:
         - Corpora
-      summary: Replace the filter attributes of a corpus.
+      summary: Replace the filter attributes of a corpus
       description: |
         Replace the filter attributes of a corpus. This does not happen immediately, but
         instead creates a job and will complete when that job completes. Until that
@@ -392,7 +392,7 @@ paths:
           schema:
             $ref: '#/components/schemas/CorpusKey'
         - in: query
-          name: q
+          name: query
           description: The search query string for the corpus.
           required: true
           schema:
@@ -400,7 +400,7 @@ paths:
         - in: query
           name: limit
           description: Maximum number of results to return.
-          required: true
+          required: false
           schema:
             type: integer
             default: 10
@@ -408,7 +408,7 @@ paths:
         - in: query
           name: offset
           description: Position from which to start in the result set.
-          required: true
+          required: false
           schema:
             type: integer
             default: 0
@@ -661,7 +661,9 @@ paths:
             $ref: '#/components/schemas/CorpusKey'
         - in: path
           name: document_id
-          description: The Document ID of the document to delete.
+          description: |
+            The Document ID of the document to delete.
+            The `document_id` must be percent encoded.
           required: true
           schema:
             type: string
@@ -1373,7 +1375,8 @@ paths:
       tags:
         - Users
       summary: Get a user
-      description: Get a user and view details like the email, username, and roles associated with a user.
+      description: |
+        Get a user and view details like the email, username, and roles associated with a user.
       security:
         - ApiKeyAuth: []
         - oAuth2: []
@@ -1381,7 +1384,9 @@ paths:
       parameters:
         - name: username
           in: path
-          description: Specifies the User ID that to retrieve.
+          description: |
+            Specifies the User ID that to retrieve.
+            Note the username must be percent encoded.
           required: true
           schema:
             type: string
@@ -1416,7 +1421,9 @@ paths:
       parameters:
         - name: username
           in: path
-          description: Specifies the User ID to update.
+          description: |
+            Specifies the User ID to update.
+            Note the username must be percent encoded.
           required: true
           schema:
             type: string
@@ -1456,7 +1463,9 @@ paths:
       parameters:
         - name: username
           in: path
-          description: Specifies the User ID to delete.
+          description: |
+            Specifies the username to delete.
+            Note the username must be percent encoded.
           required: true
           schema:
             type: string
@@ -1488,7 +1497,9 @@ paths:
       parameters:
         - name: username
           in: path
-          description: Specifies the User ID to update.
+          description: |
+            Specifies the username to update.
+            Note the username must be percent encoded and URI safe.
           required: true
           schema:
             type: string
@@ -1880,7 +1891,11 @@ components:
           items:
             $ref: '#/components/schemas/FilterAttribute'
         custom_dimensions:
-          description: Custom dimensions of all document parts inside the corpus.
+          description: |
+            A custom dimension is an additional numerical field attached to a document part. You
+            can then multiply this numerical field with a query time custom dimension of the same
+            name. This allows boosting (or deboosting) document parts for arbitrary reasons.
+            This feature is only enabled for Scale customers.
           type: array
           default: []
           items:
@@ -1997,8 +2012,8 @@ components:
     CorpusCustomDimension:
       type: object
       description: |
-        Custom dimensions attached to all document parts in a corpus. Allows a document part
-        to have a default value for the custom dimension if not specified when indexed.
+        Custom dimensions attached to all document parts in a corpus. Allows arbitrary
+        modification of the score for many purposes.
       properties:
         name:
           description: The name of the custom dimension.
@@ -2006,8 +2021,8 @@ components:
           example: importance
         indexing_default:
           description: |
-            Default value of the custom dimension if a document part is indexed without
-            this custom dimension specified.
+            Default value of a custom dimension on a document part if the custom
+            dimension value is not specified when the document part is indexed.
 
             A value of 0 means that custom dimension is not considered.
           type: number
@@ -2016,8 +2031,8 @@ components:
           default: 0
         querying_default:
           description: |
-            Default value of the custom dimension if a document part is queried without
-            this custom dimension specified.
+            Default value of a custom dimension for a query if the value
+            of the custom dimension is not specified when querying the corpus.
 
             A value of 0 means that custom dimension is not considered.
           type: number
@@ -2149,11 +2164,10 @@ components:
       description: The parameters to control generation.
       type: object
       properties:
-        model_id:
-          description: The ID of the generator model to use.
-          type: string
-        prompt_id:
-          description: The prompt to use to feed the query results and other context to the model.
+        prompt_name:
+          description: |
+            The prompt to use to feed the query results and other context to the model. By specifying the
+            prompt name you also specify the model and other `model_parameter` defaults.
           type: string
         max_used_search_results:
           description: The maximum number of search results to be available to the prompt.
@@ -2176,7 +2190,7 @@ components:
             Debugging the generative prompt is currently a Scale-only feature.
             See https://vectara.com/pricing/ for more details on becoming a Scale customer.
           type: boolean
-        response_characters:
+        max_response_characters:
           description: |
             Controls the length of the generated output.
             This is a rough estimate and not a hard limit: the end output can be longer or shorter
@@ -2227,7 +2241,6 @@ components:
           type: boolean
           default: true
       required:
-        - model_id
         - prompt_id
     QueryRequest:
       description: Query one or more corpora.
@@ -2242,7 +2255,7 @@ components:
           default: false
         search:
           $ref: '#/components/schemas/SearchCorporaParameters'
-        summarization:
+        generation:
           $ref: '#/components/schemas/GenerationParameters'
       required:
         - query
@@ -2277,7 +2290,7 @@ components:
           allOf:
             - $ref: '#/components/schemas/SearchCorpus'
             - $ref: '#/components/schemas/SearchParameters'
-        summarization:
+        generation:
           $ref: '#/components/schemas/GenerationParameters'
       required:
         - query
@@ -2319,9 +2332,6 @@ components:
     SearchReranker:
       type: object
       description: Rerank results of the search.
-      properties:
-        type:
-          type: string
       discriminator:
         propertyName: type
         mapping:
@@ -2330,28 +2340,31 @@ components:
       oneOf:
         - $ref: '#/components/schemas/CustomerSpecificReranker'
         - $ref: '#/components/schemas/MMRReranker'
-      required:
-        - type
     CustomerSpecificReranker:
       description: Reranker that is specific to the customer.
       type: object
       properties:
         type:
-          description: Always the value customer_reranker.
+          description: |
+            When type is is `customer_reranker`, you can specify the `reranker_id` of a reranker. 
+            The retrieval engine will then rerank results using that reranker.
           type: string
           default: customer_reranker
         reranker_id:
           description: |
-            The id of the reranker. Current cross attentional reranker that may be used by
-            Scale custmers is rnk_272725717.
+            The ID of the reranker. Current reranker that may be used by Scale custmers is rnk_272725719.
+            Do not specify the MMR reranker ID here, and instead use the MMR reranker object type.
           type: string
+          pattern: rnk_(?!272725718)\d+
       x-vectaraParents:
         - SearchReranker
     MMRReranker:
       type: object
       properties:
         type:
-          description: Always the value mmr.
+          description: |
+            When the type is `mmr`, you can specify the `diversity_bias`, and the
+            the retrieval engine will use the MMR reranker.
           type: string
           default: mmr
         diversity_bias:
@@ -2368,7 +2381,7 @@ components:
         summary:
           description: The summary of the search results.
           type: string
-        summary_language:
+        response_language:
           $ref: '#/components/schemas/Language'
         search_results:
           description: The ranked search results.
@@ -2416,10 +2429,6 @@ components:
     QueryStreamedResponse:
       description: An individual event sent with SSE when the query request is streamed. 
       type: object
-      properties:
-        type:
-          description: The type of streamed response part that this chunk is.
-          type: string
       discriminator:
         propertyName: type
         mapping:
@@ -2439,7 +2448,9 @@ components:
       type: object
       properties:
         type:
-          description: Always the value search_results.
+          description: |
+            When the streaming event has the search results, the
+            type will be `search_results`.
           type: string
           default: search_results
         search_results:
@@ -2451,11 +2462,13 @@ components:
         - QueryStreamedResponse
         - ChatStreamedResponse
     StreamGenerationChunk:
-      description: The chunk response from the summarization, possibly a partial summarization.
+      description: The chunk response from the generation, possibly a partial generation.
       type: object
       properties:
         type:
-          description: Always the value generation_chunk.
+          description: |
+            When the streaming event contains the next chunk of generator output, the
+            type will be `generation_chunk`.
           type: string
           default: generation_chunk
         text_chunk:
@@ -2471,7 +2484,9 @@ components:
       type: object
       properties:
         type:
-          description: Always the value factual_consistency_score.
+          description: |
+            When the streaming event contains factual consistency score, the
+            type will be `factual_consistency_score`.
           type: string
           default: factual_consistency_score
         factual_consistency_score:
@@ -2486,7 +2501,9 @@ components:
         Event signaling there was an error with the request.
       properties:
         type:
-          description: Always the value error.
+          description: |
+            If the stream errors, an event with type `error` will
+            be sent.
           type: string
           default: error
         messages:
@@ -2502,7 +2519,9 @@ components:
       type: object
       properties:
         type:
-          description: Always the value end.
+          description: |
+            Then end of stream will be denoted with an object
+            with the type `end`.
           type: string
           default: end
       x-vectaraParents:
@@ -2528,19 +2547,6 @@ components:
 
         A document part is the a search result item in search and retrieval augmeneted generation endpoints.
       type: object
-      properties:
-        type:
-          description: |
-            Whether Vectara should employ its stategy to split up a structured document into parts, 
-            or whether the document comes processed into document parts already. A document part 
-            corresponds to a search result and will be scored by Vectara's retrieval engine. 
-
-            A structured document is a document with layout features such as titles and sections.
-            Vectara will split that structured document into document parts with an internal algorithim.
-
-            A core document closely corresponds to Vectara's internal data structure, and there is a
-            one-to-one mapping between core document parts and search results.
-          type: string
       discriminator:
         propertyName: type
         mapping:
@@ -2559,9 +2565,13 @@ components:
           description: The Document ID, must be unique within the corpus.
           type: string
         type:
-          description: Always the value structured.
-          type: string
+          description: |
+            When the type of the indexed document is `structured` the rest of
+            the object is expected to follow this schema. It allows you to create a document
+            that follows normal document conventions. The Vectara platform will then
+            create document parts using its internal algorithim.
           default: structured
+          type: string
         title:
           description: The title of the document.
           type: string
@@ -2623,12 +2633,17 @@ components:
           description: The Document ID, must be unique within the corpus.
           type: string
         type:
-          description: Always the value core.
-          type: string
+          description: |
+            When the type of the indexed document is `core` the rest of
+            the object is expected to follow this schema. This schema allows
+            precise specification of document chunks that get directly translated
+            to retrieval search results.
           default: core
+          type: string
         metadata:
-          description: "Arbitrary object of document level metadata. Properties of this object \
-                        can be used by document filter if defined as a corpus filter attribute."
+          description: |
+            Arbitrary object of document level metadata. Properties of this object
+            can be used by document filter if defined as a corpus filter attribute.
           type: object
           properties: {}
           additionalProperties: true
@@ -2740,9 +2755,12 @@ components:
       type: object
       properties:
         id:
-          description: The ID of the prompt. This is used as the prompt id in a query.
+          description: The ID of the prompt.
           type: string
           pattern: "pmt_.*"
+        name:
+          description: Name of the prompt. This is used as the prompt name in a query.
+          type: string
         description:
           description: The description of the prompt.
           type: string
@@ -2796,8 +2814,8 @@ components:
         answer:
           description: The message from the chat model for the chat message.
           type: string
-        answer_language:
-          description: The language that the message is expected to be.
+        response_language:
+          description: The language that the answer is expected to be.
           $ref: '#/components/schemas/Language'
         search_results:
           description: The ranked search results that the chat model used.
@@ -2807,10 +2825,6 @@ components:
     ChatStreamedResponse:
       description: An individual event when the response is streamed.
       type: object
-      properties:
-        type:
-          description: The type of streamed response part that this chunk is.
-          type: string
       discriminator:
         propertyName: type
         mapping:
@@ -2832,7 +2846,9 @@ components:
       type: object
       properties:
         type:
-          description: Always the value chat_info.
+          description: |
+            This will be `chat_info` when the stream event contains information
+            about how the chat is stored.
           type: string
           default: chat_info
         chat_id:
@@ -3030,7 +3046,9 @@ components:
       type: object
       properties:
         id:
-          description: The Vectara App Client ID.
+          description: |
+            The Vectara App Client ID. This ID is not used during an OAuth
+            flow but the ID used within the Vectara API.
           type: string
           pattern: 'app_.+$'
         name:
@@ -3040,7 +3058,7 @@ components:
           description: Descritpion of the App Client.
           type: string
         client_id:
-          description: The client id used with the OAuth flow.
+          description: The client ID used with the OAuth flow.
           type: string
         client_secret:
           description: The key used in API requests. Should be kept secure.
@@ -3399,7 +3417,7 @@ components:
       description: OAuth2 access to Vectara
       flows:
         clientCredentials:
-          tokenUrl: https://vectara-prod-YOUR_VECTARA_CUSTOMER_ID.auth.us-west-2.amazoncognito.com/oauth2/token
+          tokenUrl: https://auth.vectara.io/oauth2/token
           scopes: {}
     ApiKeyAuth:
       type: apiKey
