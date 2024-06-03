@@ -15,7 +15,7 @@ customizing prompts with metadata. Our Custom Retrieval Augmented Generation
 (RAG) Prompt Engine provides several available prompt variables and functions 
 for Scale users to customize prompts in their [Queries](/docs/api-reference/search-apis/search).
 
-## Available prompt pariables
+## Available prompt variables
 
 The following table shows the available custom prompt variables:
 

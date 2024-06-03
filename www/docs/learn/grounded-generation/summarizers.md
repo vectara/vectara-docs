@@ -78,7 +78,7 @@ available to Scale users):
     "limit": 10
   },
   "summarization": {
-    "model_id": "vectara-experimental-summary-ext-2023-10-23-med",
+    "prompt_name": "vectara-experimental-summary-ext-2023-10-23-med",
     "max_used_search_results": 5
   }
 }
@@ -109,7 +109,7 @@ with a reasonably fast response by setting `max_used_search_results` to `5`. To 
     "limit": 10
   },
   "summarization": {
-    "model_id": "vectara-summary-ext-v1.2.0",
+    "prompt_name": "vectara-summary-ext-v1.2.0",
     "max_used_search_results": 5
   }
 }

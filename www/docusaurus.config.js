@@ -5,7 +5,7 @@
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "Vectara Docs",
-  tagline: "Developer documentation for Vectara's Semantic Search Platform",
+  tagline: "Developer documentation for Vectara's Retrieval Augmented Generation as-a-Service (RAGaaS) Platform",
   url: "https://docs.vectara.com",
   baseUrl: "/",
   favicon: "img/vectara_logo.svg",

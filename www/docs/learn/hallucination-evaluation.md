@@ -31,8 +31,7 @@ contains the value between `0.0` and `1.0`.
 
 ```json showLineNumbers title="Enable the Factual Consistency Score"
 "summarization": {
-    "model_id": "llm_123456789",
-    "prompt_id": "pmt_987654321",
+    "prompt_name": "vectara-summary-ext-v1.3.0",
     "max_used_search_results": 3,
     "enable_factual_consistency_score": true
   }

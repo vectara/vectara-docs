@@ -56,7 +56,7 @@ with "%2F" in the URL path:
 
 To learn more about percent encoding and the characters that need to be 
 encoded, refer to the following resources: [Mozilla MDN Web Docs: Percent Encoding](https://developer.mozilla.org/en-US/docs/Glossary/Percent-encoding) and 
-[URL Standard: URL Path Segment Syntax](https://url.spec.whatwg.org/#syntax-url-path-segment)
+[URL Standard: URL Path Segment Syntax](https://url.spec.whatwg.org/#syntax-url-path-segment).
 
 **Action items:** 
 
@@ -80,7 +80,7 @@ Going forward, when you create a new corpus, you can specify a custom
 
 **Action items:**
 
-* [Retrieva a list](/docs/rest-api/list-corpora) of corpora in the account with the [List Corpora API definition](/docs/api-reference/admin-apis/corpus/list-corpora). 
+* [Retrieve a list](/docs/rest-api/list-corpora) of corpora in the account with the [List Corpora API definition](/docs/api-reference/admin-apis/corpus/list-corpora). 
 * Update any code that references the v1 `corpusId` to use the v2 `corpus_key` format
 
 ## Terminology, parameter, and property name changes
@@ -124,7 +124,7 @@ specifying the document `type` in the request body.
 **Action items:** 
 
 * Update your query requests to use the new single query endpoint, removing 
-  any batch-related parameters.
+  any batch-related parameters and make multiple requests instead.
 * Remove any batch-related parameters from your query requests.
 * If you require streaming responses, set `stream_response` to `true` in the 
   request body.

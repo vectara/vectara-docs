@@ -41,8 +41,7 @@ POST https://api.vectara.io/v2/query
     "limit": 10
   },
   "summarization": {
-    "model_id": "vectara-summary-ext-v1.2.0",
-    "prompt_id": "pmt_987654321",
+    "prompt_name": "vectara-summary-ext-v1.2.0",
     "max_used_search_results": 5
   }
 }

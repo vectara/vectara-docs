@@ -277,18 +277,18 @@ Fines](https://new.mta.info/document/36821#page=3).
 capabilities, which present a powerful toolkit for tailoring summarizations to 
 specific application and user needs. 
 
-The `model_id` allows you to specify one of our [available summarizers](/docs/learn/grounded-generation/select-a-summarizer).
-Use `prompt_id` and `prompt_text` to override the default prompt with a 
+The `prompt_name` allows you to specify one of our [available summarizers](/docs/learn/grounded-generation/select-a-summarizer).
+Use `prompt_name` and `prompt_text` to override the default prompt with a 
 [custom prompt](/docs/prompts/vectara-prompt-engine). Your use case might 
 require a chatbot to be more human like, so you decide to create a custom 
 response format that behaves more playfully in a conversation or summary.
 
 The `debug` option lets you view detailed logs to help in troubleshooting and 
 optimization. The `responseChars` lets you control the length of the summary, but 
-note that it is **not a hard limit** like with the `maxTokens` parameter. The 
+note that it is **not a hard limit** like with the `max_tokens` parameter. The 
 `modelParams` object provides even more fine-grained controls for the summarizer 
 model:
-* `maxToken` specifies a hard limit on the number of characters in a response. 
+* `max_tokens` specifies a hard limit on the number of characters in a response. 
     This value supercedes the `responseChars` parameter in the `summary` object.
 * `temperature` indicates whether you want the summarization to not be creative at all `0.0`,
     or for the summarization to take more creative liberties as you approach 
