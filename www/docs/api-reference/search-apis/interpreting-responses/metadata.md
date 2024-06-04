@@ -8,14 +8,14 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 
-In <Config v="names.product"/>, when you
-[index a document](/docs/api-reference/indexing-apis/indexing), it will consist of both a
-top-level `Document` object and a series of `Section`s which can be nested.
-Both can contain separate metadata, including some metadata
-that <Config v="names.product"/> will auto-generate.  A good example of
-this is that you could have a document which has some global attributes like
-the `URL` or `owner` but individual sections will have a `section` attribute
-and a `lang`.
+In <Config v="names.product"/>, when you [index a document](/docs/api-reference/indexing-apis/indexing), the 
+document has a `type` parameter that determines the format of the document 
+as `core` or `structured`. The `core` type has `document_parts` and the `structured` 
+type has `sections`. Both can be nested and both can contain separate `metadata`, 
+including some metadata that <Config v="names.product"/> will auto-generate. 
+A good example of this is that you could have a document which has some global 
+attributes like the `URL` or `owner` but individual sections will have a `section` 
+attribute and a `lang`.
 
 
 Here's an example response with different metadata at these different levels:
