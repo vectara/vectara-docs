@@ -48,8 +48,8 @@ tags:
     description: Retrieve and manage documents stored in a corpus for administrative tasks
   - name: Chats
     description: Create, manage, and interact with chat sessions for conversational AI and administrative monitoring
-  - name: Summarizers
-    description: List available summarizers for text summarization tasks and admin-level customization
+  - name: Large Language Models
+    description: List available LLMs for text summarization and chat
   - name: Encoders
     description: List available encoders for embedding such as Boomerang
   - name: Jobs
@@ -71,9 +71,6 @@ paths:
         - Queries
       summary: Query Corpora
       description: Perform a multi-purpose query that can retrieve relevant information from one or more corpora and generate a response using RAG.
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: query
       requestBody:
         content:
@@ -113,9 +110,6 @@ paths:
     post:
       summary: Create a corpus
       description: Create a corpus, which is a container to store documents and associated metadata.
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: createCorpus
       tags:
         - Corpora
@@ -145,11 +139,9 @@ paths:
                 $ref: '#/components/schemas/Error'
     get:
       summary: List corpora
-      description: "List corpora in the account. The corpus objects that are returned are less \
-                    detailed than the direct corpus retrieval operation." 
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
+      description: |
+        List corpora in the account. The corpus objects that are returned are less
+        detailed than the direct corpus retrieval operation.
       operationId: listCorpora
       tags:
         - Corpora
@@ -195,9 +187,6 @@ paths:
         - Corpora
       summary: Retrieve metadata about a corpus
       description: Get metadata about a corpus. This operation is not a method of searching a corpus.
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: getCorpus
       parameters:
         - in: path
@@ -230,9 +219,6 @@ paths:
         - Corpora
       summary: Delete a corpus and all its data
       description: Delete a corpus and all the data that it contains.
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: deleteCorpus
       parameters:
         - in: path
@@ -261,9 +247,6 @@ paths:
         - Corpora
       summary: Update a corpus
       description: Enable or disable a corpus.
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: updateCorpus
       parameters:
         - in: path
@@ -302,9 +285,6 @@ paths:
         - Corpora
       summary: Remove all documents and data in a corpus
       description: Resets a corpus, which removes all documents and data from the specified corpus, while keeping the corpus itself.
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: resetCorpus
       parameters:
         - in: path
@@ -339,9 +319,6 @@ paths:
         job completes, using new filter attributes will not work.
 
         You can monitor the status of the filter change using the returned job id.
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: replaceFilterAttributes
       parameters:
         - in: path
@@ -380,9 +357,6 @@ paths:
         - Queries
       summary: Simple Corpus Query
       description: Search a single corpus with a simple query request.
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: searchCorpus
       parameters:
         - in: path
@@ -443,9 +417,6 @@ paths:
         - Queries
       summary: Corpus Query
       description: Query a specific corpus and find relevant results, highlight relevant snippets, and use Retrival Augmented Generation.
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: queryCorpus
       parameters:
         - in: path
@@ -494,9 +465,6 @@ paths:
         - Upload
       summary: Upload a file to the corpus
       description: Upload files such as PDFs and Word Documents. Vectara will attempt to automatically extract text and any metadata.
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: uploadFile
       parameters:
         - in: path
@@ -552,9 +520,6 @@ paths:
       description: |
         Add a document to a corpus. You can add documents that are either in a typical structured format,
         or in a format that explicitly specifies each document part that becomes a search result.
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: createCorpusDocument
       parameters:
         - in: path
@@ -597,9 +562,6 @@ paths:
       tags:
         - Documents
       summary: List the documents in the corpus
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: listCorpusDocuments
       parameters:
         - in: path
@@ -648,9 +610,6 @@ paths:
       tags:
         - Documents
       summary: Delete a document
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: deleteCorpusDocument
       parameters:
         - in: path
@@ -688,9 +647,6 @@ paths:
         - Chats
       summary: Start a chat
       description: Create a chat while specifying the default retrieval parameters used by the prompt.
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: createChat
       requestBody:
         content:
@@ -731,9 +687,6 @@ paths:
         - Chats
       summary: List chats
       description: Retrieve a list of previous chats in the Vectara account.
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: listChats
       parameters:
         - in: query
@@ -743,8 +696,8 @@ paths:
             type: integer
             format: int32
             minimum: 1
-            maximum: 100
-            default: 10
+            maximum: 10000
+            default: 1000
         - in: query
           name: page_key
           description: Used to the retrieve the next page of chats after the limit has been reached. 
@@ -776,9 +729,6 @@ paths:
         - Large Language Models
       summary: List LLMs.
       description: List LLMs that can be used with query and chat endpoints.
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: listLLMs
       parameters:
         - name: filter
@@ -824,9 +774,6 @@ paths:
         - Chats
       summary: Get a chat
       description: Get a chat summary to view what started the chat, but not subsequent turns.
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: getChat
       parameters:
         - in: path
@@ -860,9 +807,6 @@ paths:
         - Chats
       summary: Delete a chat
       description: Delete a chat and any turns it contains permanently.
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: deleteChat
       parameters:
         - in: path
@@ -893,9 +837,6 @@ paths:
         - Chats
       summary: Create a new turn in the chat
       description: Create a new turn in the chat. Each conversation has a series of `turn` objects, which are the sequence of message and response pairs tha make up the dialog.
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: createChatTurn
       parameters:
         - in: path
@@ -944,9 +885,6 @@ paths:
         - Chats
       summary: List turns in a chat
       description: List all turns in a chat to see all message and response pairs that make up the dialog.
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: listChatTurns
       parameters:
         - in: path
@@ -981,9 +919,6 @@ paths:
         - Chats
       summary: Get a turn
       description: Get a specific turn from a chat, which is a message and response pair from the conversation.
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: getChatTurn
       parameters:
         - in: path
@@ -1024,9 +959,6 @@ paths:
         - Chats
       summary: Delete a turn
       description: Delete a turn from a chat. This will delete all subsequent turns in the chat.
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: deleteChatTurn
       parameters:
         - in: path
@@ -1063,9 +995,6 @@ paths:
         - Chats
       summary: Update a turn
       description: Update a turn; used to disable or enable a chat.
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: updateChatTurn
       parameters:
         - in: path
@@ -1112,9 +1041,6 @@ paths:
         - Encoders
       summary: List the available encoders
       description: Encoders are used to store and retrieve from a corpus. 
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: listEncoders
       parameters:
         - in: query
@@ -1203,9 +1129,6 @@ paths:
         - Jobs
       summary: List jobs
       description: List jobs for the account. Jobs are background processes like replacing the filterable metadata attributes.
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: listJobs
       parameters:
         - name: corpus_key
@@ -1266,9 +1189,6 @@ paths:
         - Jobs
       summary: Get a job by ID
       description: Get a job by a specific ID. Jobs are backgrouond processes like replacing the filterable metadata attributes.
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: getJob
       parameters:
         - name: job_id
@@ -1303,9 +1223,6 @@ paths:
         - Users
       summary: Create a user in the current customer account
       description: Create a user for the current customer account.
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: createUser
       requestBody:
         content:
@@ -1336,9 +1253,6 @@ paths:
         - Users
       summary: List users in the account
       description: Lists all users in the account.
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: listUsers
       parameters:
         - name: limit
@@ -1377,9 +1291,6 @@ paths:
       summary: Get a user
       description: |
         Get a user and view details like the email, username, and roles associated with a user.
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: getUser
       parameters:
         - name: username
@@ -1414,9 +1325,6 @@ paths:
         - Users
       summary: Update a user
       description: Update details about a user such as role names.
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: updateUser
       parameters:
         - name: username
@@ -1456,9 +1364,6 @@ paths:
         - Users
       summary: Delete a user
       description: Delete a user from the account.
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: deleteUser
       parameters:
         - name: username
@@ -1490,9 +1395,6 @@ paths:
         - Users
       summary: Reset the password for a user
       description: Reset the password for a user.
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: resetUserPassword
       parameters:
         - name: username
@@ -1524,9 +1426,6 @@ paths:
         - API Keys
       summary: Create an API key
       description: An API key is to authenticate when calling Vectara APIs.
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: createApiKey
       requestBody:
         content:
@@ -1556,9 +1455,6 @@ paths:
       tags:
         - API Keys
       summary: List API keys
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: listApiKeys
       parameters:
         - name: limit
@@ -1601,9 +1497,6 @@ paths:
       tags:
         - API Keys
       summary: Get an API key
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: getApiKey
       parameters:
         - name: api_key_id
@@ -1630,9 +1523,6 @@ paths:
         - API Keys
       summary: Update an API key
       description: Update an API key such as the roles attached to the key.
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: updateApiKey
       parameters:
         - name: api_key_id
@@ -1664,9 +1554,6 @@ paths:
         - API Keys
       summary: Delete an API key
       description: Delete API keys to help you manage the security and lifecycle of API keys in your application.
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: deleteApiKey
       parameters:
         - name: api_key_id
@@ -1690,9 +1577,6 @@ paths:
         - Application Clients
       summary: Create an App Client
       description: An App Client is used for OAuth 2.0 authentication when calling Vectara APIs.
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: createAppClient
       requestBody:
         content:
@@ -1722,9 +1606,6 @@ paths:
       tags:
         - Application Clients
       summary: List App Clients
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: listAppClient
       parameters:
         - name: limit
@@ -1773,9 +1654,6 @@ paths:
       tags:
         - Application Clients
       summary: Get an App Client
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: getAppClient
       parameters:
         - name: app_client_id
@@ -1801,9 +1679,6 @@ paths:
       tags:
         - Application Clients
       summary: Update an App Client
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: updateAppClient
       parameters:
         - name: app_client_id
@@ -1834,9 +1709,6 @@ paths:
       tags:
         - Application Clients
       summary: Delete an App Client
-      security:
-        - ApiKeyAuth: []
-        - oAuth2: []
       operationId: deleteAppClient
       parameters:
         - name: app_client_id
@@ -1910,11 +1782,6 @@ components:
           description: Set whether or not the corpus is enabled. If unset then the corpus will remain in the same state.
           type: boolean
           example: false
-        filter_attributes:
-          description: The new filter attributes. If unset then corpus filter attributes will remain the same.
-          type: array
-          items:
-            $ref: '#/components/schemas/FilterAttribute'
     ReplaceFilterAttributesRequest:
       type: object
       properties:
@@ -1939,6 +1806,7 @@ components:
       type: string
       pattern: '[a-zA-Z0-9_\=\-]+$'
       example: my-corpus
+      maxLength: 100
     Corpus:
       type: object
       properties:
@@ -2093,6 +1961,7 @@ components:
           type: integer
           format: int32
           default: 0
+          minimum: 0
         limit:
           description: The maximum number of results returned.
           type: integer
@@ -2110,8 +1979,8 @@ components:
         characters_before:
           description: |
             The number of characters before the matching document part that are shown.
-            Mutually exclusive with `sentences_before`. This is useful to show the
-            context of the document part in the wider document."
+            This is useful to show the context of the document part in the wider document.
+            Ignored if `sentences_before` is set.
           type: integer
           format: int32
           default: 0
@@ -2120,7 +1989,8 @@ components:
         characters_after:
           description: |
             The number of characters after the matching document part that are shown. 
-            Mutually exclusive with `sentences_after`.
+            This is useful to show the context of the document part in the wider document.
+            Ignored if `sentences_after` is set.
           type: integer
           format: int32
           default: 0
@@ -2129,7 +1999,7 @@ components:
         sentences_before:
           description: |
             The number of sentences before the matching document part that are shown.
-            Mutually exclusive with `characters_before`.
+            This is useful to show the context of the document part in the wider document.
           type: integer
           format: int32
           default: 0
@@ -2138,7 +2008,7 @@ components:
         sentences_after:
           description: |
             The number of sentences after the matching document part that are shown. 
-            Mutually exclusive with `characters_after`.
+            This is useful to show the context of the document part in the wider document.
           type: integer
           format: int32
           default: 0
@@ -2151,7 +2021,7 @@ components:
             application to understand where to provide highlighting in your UI and 
             understand where the context before ends and the document part begins.
           type: string
-          example: '<b>'
+          example: '<em>'
         end_tag:
           description: |
             The tag that wraps the document part at the end. This is often used to 
@@ -2159,7 +2029,7 @@ components:
             application to understand where to provide highlighting in your UI and 
             understand where the context before ends and the document part begins.
           type: string
-          example: '</b>'
+          example: '</em>'
     GenerationParameters:
       description: The parameters to control generation.
       type: object
@@ -2169,6 +2039,7 @@ components:
             The prompt to use to feed the query results and other context to the model. By specifying the
             prompt name you also specify the model and other `model_parameter` defaults.
           type: string
+          minLength: 1
         max_used_search_results:
           description: The maximum number of search results to be available to the prompt.
           type: integer
@@ -2185,11 +2056,6 @@ components:
             https://docs.vectara.com/docs/prompts/vectara-prompt-engine.
             See https://vectara.com/pricing/ for more details on becoming a Scale customer.
           type: string
-        debug:
-          description: |
-            Debugging the generative prompt is currently a Scale-only feature.
-            See https://vectara.com/pricing/ for more details on becoming a Scale customer.
-          type: boolean
         max_response_characters:
           description: |
             Controls the length of the generated output.
@@ -2240,8 +2106,6 @@ components:
           description: Enable returning the factual consistency score with query results.
           type: boolean
           default: true
-      required:
-        - prompt_id
     QueryRequest:
       description: Query one or more corpora.
       type: object
@@ -2356,6 +2220,8 @@ components:
             Do not specify the MMR reranker ID here, and instead use the MMR reranker object type.
           type: string
           pattern: rnk_(?!272725718)\d+
+      required:
+        - reranker_id
       x-vectaraParents:
         - SearchReranker
     MMRReranker:
@@ -2471,9 +2337,9 @@ components:
             type will be `generation_chunk`.
           type: string
           default: generation_chunk
-        text_chunk:
+        generation_chunk:
           description: |
-            Part of the message from the summarizer. All summary chunks must be appended together in order
+            Part of the message from the generator. All summary chunks must be appended together in order
             to get the full summary.
           type: string
       x-vectaraParents:
@@ -2535,8 +2401,11 @@ components:
           type: object
           additionalProperties: true
         file:
+          description: Binary file contents. The file name of the file will be used as the document ID.
           type: string
           format: binary
+      required:
+        - file
     CreateDocumentRequest:
       description: |
         Creating a document using this endpoint can take multiple forms depending on how much
@@ -2589,11 +2458,13 @@ components:
         sections:
           description: The subsection of the document.
           type: array
+          minItems: 1
           items:
             $ref: '#/components/schemas/StructuredDocumentSection'
       required:
         - id
         - type
+        - sections
       x-vectaraParents:
         - CreateDocumentRequest
     StructuredDocumentSection:
@@ -2650,11 +2521,13 @@ components:
         document_parts:
           description: Parts of the document that make up the document.
           type: array
+          minItems: 1
           items:
             $ref: '#/components/schemas/CoreDocumentPart'
       required:
         - id
         - type
+        - document_parts
       x-vectaraParents:
         - CreateDocumentRequest
     CoreDocumentPart:
@@ -2743,7 +2616,7 @@ components:
           type: boolean
         default:
           description: |
-            If this is the default LLM, it is used in queries when the summarizer
+            If this is the default LLM, it is used in queries when the generator
             is not specified.
           type: boolean
         prompts:
@@ -2822,6 +2695,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/IndividualSearchResult'
+        factual_consistency_score:
+          description: |
+            The probability that the summary is factually consistent with the results.
+          type: number
+          format: float
     ChatStreamedResponse:
       description: An individual event when the response is streamed.
       type: object
@@ -3424,5 +3302,5 @@ components:
       in: header
       name: x-api-key
 security:
-  - ApiKeyAuth:
+  - ApiKeyAuth: []
   - OAuth2: []
