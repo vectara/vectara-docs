@@ -72,8 +72,7 @@ have been converted with an appended ID to create the `corpus_key`. For
 example, you had a 1.0 corpus named "employee handbook" with an ID of `10`. In 
 2.0, this `corpus_key` value is `employee_handbook_10`:
 
-* `/v1/corpora/10` - API 1.0 endpoint with corpusId
-* `/v2/corpora/Employee_Handbook_10` - API 2.0 endpoint with corpus_key
+`/v2/corpora/Employee_Handbook_10` - API 2.0 endpoint with corpus_key
 
 Going forward, when you create a new corpus, you can specify a custom 
 `corpus_key`.
