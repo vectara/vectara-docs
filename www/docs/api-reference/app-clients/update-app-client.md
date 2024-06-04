@@ -24,7 +24,8 @@ request body should contain the following properties:
   `corpus_administrator`.
 
 The response includes an `AppClient` object that shows the modified 
-description and API roles.
+description and API roles. Any unset properties on the update app client
+request will result no changes for that property.
 
 ## REST 2.0 Example
 

@@ -216,14 +216,14 @@ When generating a summary, Vectara enables Scale users to format the `style` of
 * `html` - Citations appears as a URL: `<a href="https://my.doc/foo">[N]</a>`
 * `markdown` - Citations appears in Markdown: `[N](https://my.doc/foo)`
 
-If set to `HTML` or `MARKDOWN`, you must customize the citation using 
-both of the `urlPattern` and `textPattern` fields to enable dynamic citation 
+If set to `html` or `markdown`, you must customize the citation using 
+both of the `url_pattern` and `text_pattern` fields to enable dynamic citation 
 generation. Both of these parameters can access all part and document level 
 **metadata** fields.
 
 For example, the `url_pattern` field can specify `{doc.id}` and `{part.page}` 
 metadata as `https://mypdf.doc/foo/{doc.id}#page={part.page}`. 
-The `textPattern` field specifies the document and part metadata name in curly 
+The `text_pattern` field specifies the document and part metadata name in curly 
 braces. For example, use `{doc.title}` and the final result appears as 
 [Title](https://my.doc/foo/2/1).
 
@@ -255,7 +255,7 @@ link to the specific page:
 ```json
 {
   "citations": {
-    "style": "MARKDOWN",
+    "style": "markdown",
     "url_pattern": "{doc.id}#page={section.page}",
     "text_pattern": "as seen in {doc.title}"
   }

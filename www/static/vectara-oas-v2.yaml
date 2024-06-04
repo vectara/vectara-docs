@@ -2131,8 +2131,8 @@ components:
             Can be one of:
             * `numeric` - Citations formatted as simple numerals: \[1\], \[2\] ...
             * `none` - Citations removed from text.
-            * `html` - Citation formatted as url like `<a href="https://my.doc/foo">N</a>`.
-            * `markdown` - Formatted as `[1](https://my.doc/foo)`.
+            * `html` - Citation formatted as url like `<a href="url_pattern">text_pattern</a>`.
+            * `markdown` - Formatted as `[text_pattern](url_pattern)`.
           type: string
           enum:
             - none
@@ -2151,8 +2151,8 @@ components:
         text_pattern:
           description: |
             The text pattern if the citation_style is set to `html` or `markdown`.
-            This pattern sets the href for html or the text within `[]` in markdown.
-            This pattern defaults to N being the index of result if it is not set.
+            This pattern sets the href for html or the text within `[]` in markdown,
+            and defaults to N being the index of result if it is not set.
 
             The default citation style looks like `[N](<url_pattern>)` for markdown.
 
@@ -2161,7 +2161,7 @@ components:
             in final citation output like `[Title](<url_pattern>)` when
             the document's metadata includes `{"title":"Title"}`.
           type: string
-          example: {doc.title}
+          example: "{doc.title}"
     QueryRequest:
       description: Query one or more corpora.
       type: object

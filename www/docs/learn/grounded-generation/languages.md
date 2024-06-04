@@ -5,10 +5,10 @@ title: Response Languages
 
 import {Config} from '@site/docs/definitions.md';
 
-The `responseLang` field in <Config v="names.product"/> is mandatory for
-sumarization requests. You *can* ask <Config v="names.product"/> to attempt
+The `response_language` field in <Config v="names.product"/> allows control of the language
+for sumarization requests. You *can* ask <Config v="names.product"/> to attempt
 to guess the language of the query and respond in that guessed language by
-setting `responseLang` to `auto`.  However, this guessing is not perfect: 
+setting `response_language` to `auto`.  However, this guessing is not perfect: 
 many languages have many borrowed words and phrases which makes
 guessing the language difficult to impossible at times. For that reason, it's
 recommended that you send the user's preferred language when you know it.
@@ -28,3 +28,5 @@ models, see
 Both [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) and
 [ISO 639-3](https://en.wikipedia.org/wiki/ISO_639-3) language codes are supported
 in this API.
+
+Some features, such as `factual_consistency_score`, may not work on all languages.
