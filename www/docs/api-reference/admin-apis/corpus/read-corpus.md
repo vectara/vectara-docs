@@ -7,7 +7,7 @@ sidebar_label: Get Corpus Metadata API Definition
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The Get Corpus Metadata API lets you view metadata about a specific corpus. 
+The Get Corpus API lets you view metadata about a specific corpus. 
 This is useful for getting information about a corpus without performing a 
 search.
 

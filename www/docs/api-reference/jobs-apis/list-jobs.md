@@ -17,11 +17,11 @@ corpus.
 ## List Jobs Request and Response
 
 To get details about a specific job, send a GET request to `/v2/jobs`. You can 
-specify optional query parameters to filter the results. 
+specify optional query parameters to filter the results.
 
 * `corpus_key` - Filter jobs by the associated corpus keys. 
 * `after` - Retrieve jobs created after a specific date and time. 
-* `state` - Filter jobs by status: queued, started, completed. The 
+* `state` - Filter jobs by status: queued, started, completed.
 * `limit` - Provides the maximum number of jobs to return 
   in a single request, with a default value of `10` and a maximum value 
   of `100`. 

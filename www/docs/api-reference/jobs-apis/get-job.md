@@ -18,7 +18,8 @@ corpus.
 
 To get details about a specific job, send a GET request to `/v2/jobs/{job_id}`, 
 where `{job_id}` is the unique identifier of the job you want to retrieve. 
-The `job_id` should be a string that was returned when the job was created.
+The `job_id` is the string that was returned when the job was created; for
+example when replacing filter attributes on a corpus.
 
 ## REST 2.0 Example
 

@@ -21,12 +21,6 @@ defined as an array of `FilterAttribute` objects.
 * `type`: Specifies the data type of the filter attribute as `integer`, 
   `real_number`, `text`, or `boolean`.
 
-To reset a corpus, send a POST request to `/v2/corpora/{corpus_key}/reset`, 
-where `{corpus_key}` is the unique identifier for the corpus that was provided 
-during the corpus creation.
-
-Upon successful completion, space quota consumed by the corpus will be freed.
-
 ## REST 2.0 Example
 
 ### Replace Filter Attributes REST Endpoint
