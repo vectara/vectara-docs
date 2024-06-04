@@ -2117,8 +2117,8 @@ components:
             Can be one of:
             * `numeric` - Citations formatted as simple numerals: \[1\], \[2\] ...
             * `none` - Citations removed from text.
-            * `html` - Citation formatted as url like `\<a href="https://my.doc/foo"\>N\</a\>`.
-            * `markdown` - Formatted as `\[1\]\(https://my.doc/foo\)\`.
+            * `html` - Citation formatted as url like `<a href="https://my.doc/foo">N</a>`.
+            * `markdown` - Formatted as `[1](https://my.doc/foo)`.
           type: string
           enum:
             - none
@@ -2128,17 +2128,23 @@ components:
         url_pattern:
           description: |
             The url pattern if the citation_style is set to `html` or `markdown`.
-            The pattern can access part and doc fields.
+            The pattern can access metadata attributes in the document or part.
             e.g. `https://my.doc/foo/{doc.id}/{part.id}`
+
+            The default `url_pattern` is an empty string.
           type: string
         text_pattern:
           description: |
             The text pattern if the citation_style is set to `html` or `markdown`.
+            This pattern sets the href for html or the text within `[]` in markdown.
             This pattern defaults to N being the index of result if it is not set.
-            Final result looks like in this case: `\[N\]\(https://my.doc/foo\)`
-            It can also be customized to access the part/doc fields by passing
-            the field name in curly braces. e.g., {doc.title} or {part.page}
-            Final result would look like `\[Title\]\(https://my.doc/foo/2/1\)`
+
+            The default citation style looks like `[N](<url_pattern>)` for markdown.
+
+            You can use metadata attributes in the `text_pattern`. For example,
+            the pattern `{doc.title}` with citation style `markdown` would result
+            in final citation output like `[Title](<url_pattern>)` when
+            the document's metadata includes `{"title":"Title"}`.
           type: string
     QueryRequest:
       description: Query one or more corpora.
