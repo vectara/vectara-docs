@@ -17,6 +17,9 @@ while also extracting lists of documents for further analysis. For example,
 developers can utilize the metadata to to build custom search and filtering 
 capabilities into their applications.
 
+Currently Document Admin APIs do not allow you to access the text of
+your documents.
+
 ## List Documents Request and Response
 
 To list documents, send a GET request to `/v2/corpora/{corpus_key}/documents`, 
@@ -28,7 +31,7 @@ optional query parameters to control the pagination of the results.
 * `page_key` - Retrieves the next page of results when the previous request 
   has reached the limit.
 
-The response contains an array of `cocument` objects with the matching 
+The response contains an array of `document` objects with the matching 
 documents and metadata about the pagination.
 
 ## REST 2.0 Example

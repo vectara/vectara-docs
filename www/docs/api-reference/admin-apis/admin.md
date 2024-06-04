@@ -51,6 +51,3 @@ their accounts and corpora.
 
 The REST APIs are designed to be intuitive and follow RESTful principles. They 
 use standard HTTP methods (GET, POST, PATCH, DELETE) for CRUD operations and 
-provide a clear hierarchy based on resources (corpora, in this case).
-
-:::note

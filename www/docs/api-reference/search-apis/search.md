@@ -212,7 +212,7 @@ When generating a summary, Vectara enables Scale users to format the `style` of
 `citations` object with one of the following formats: 
 
 * `numeric` (default) - Citations appear as numbers `[1]`, `[2]`, `[N]`, and so on.
-* `noen` - No citations appear in the summary.
+* `none` - No citations appear in the summary.
 * `html` - Citations appears as a URL: `<a href="https://my.doc/foo">[N]</a>`
 * `markdown` - Citations appears in Markdown: `[N](https://my.doc/foo)`
 
@@ -228,7 +228,7 @@ braces. For example, use `{doc.title}` and the final result appears as
 [Title](https://my.doc/foo/2/1).
 
 To use citations, you must specify one of the following summarizers 
-in `promptName`:
+in `prompt_name`:
 
 * `vectara-summary-ext-24-05-sml` - (gpt-3.5-turbo)
 * `vectara-summary-ext-24-05-med` - (gpt-4.0)

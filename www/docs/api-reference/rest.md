@@ -28,9 +28,7 @@ RESTful structure.
 
 * The current version is **v2**.
 * `api-endpoint` follows a hierarchical structure, using lowercase and hyphens. 
-  For example, /corpora/{corpus_key}/documents`.
-* API parameters are sent in `camelCase`.
-* JSON responses are always returned in `camelCase` form.
+  For example, `/corpora/{corpus_key}/documents`.
 
 
 ## API authentication
