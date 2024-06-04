@@ -2115,10 +2115,10 @@ components:
           description: |
             The citation style to be used in summary.
             Can be one of:
-            * numeric - \[1\], \[2\] ...
-            * none - no citations
-            * html - <a href="https://my.doc/foo">N</a>'
-            * markdown - \`\[1\]\(https://my.doc/foo\)\`
+            * `numeric` - Citations formatted as simple numerals: \[1\], \[2\] ...
+            * `none` - Citations removed from text.
+            * `html` - Citation formatted as url like `\<a href="https://my.doc/foo"\>N\</a\>`.
+            * `markdown` - Formatted as `\[1\]\(https://my.doc/foo\)\`.
           type: string
           enum:
             - none
@@ -2127,18 +2127,18 @@ components:
             - markdown
         url_pattern:
           description: |
-            The url pattern if the citation_style is set to HTML or MARKDOWN.
+            The url pattern if the citation_style is set to `html` or `markdown`.
             The pattern can access part and doc fields.
-            i.e. https://my.doc/foo/{doc.id}/{part.id}
+            e.g. `https://my.doc/foo/{doc.id}/{part.id}`
           type: string
         text_pattern:
           description: |
-            The text pattern if the citation_style is set to HTML or MARKDOWN.
+            The text pattern if the citation_style is set to `html` or `markdown`.
             This pattern defaults to N being the index of result if it is not set.
-            Final result looks like in this case: \[N\]\(https://my.doc/foo\)
+            Final result looks like in this case: `\[N\]\(https://my.doc/foo\)`
             It can also be customized to access the part/doc fields by passing
             the field name in curly braces. e.g., {doc.title} or {part.page}
-            Final result would look like \[Title\]\(https://my.doc/foo/2/1\)
+            Final result would look like `\[Title\]\(https://my.doc/foo/2/1\)`
           type: string
     QueryRequest:
       description: Query one or more corpora.
