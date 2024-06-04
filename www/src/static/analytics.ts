@@ -1,3 +1,5 @@
+import googleTagManager from "@analytics/google-tag-manager";
+
 (function () {
   function loadLib() {
     const scripts = document.getElementsByTagName("script");
@@ -20,11 +22,11 @@
     }
   }
 
-  const getCookie = (name) =>
+  const getCookie = (name: string) =>
     document.cookie.match("(^|;)\\s*" + name + "\\s*=\\s*([^;]+)")?.pop() || "";
 
   // This function converts Payload into a format that Snow expects for Page events.
-  function payloadToPageObject(payload) {
+  function payloadToPageObject(payload: any) {
     const userData = {
       userSub: null,
       email: getCookie("__anon_id_email") || null,
@@ -76,7 +78,7 @@
     };
   }
 
-  function whenAvailable(name, callback) {
+  function whenAvailable(name: any, callback: (arg: any) => void) {
     var interval = 3000; // ms
     window.setTimeout(function () {
       if (window[name]) {
@@ -90,33 +92,39 @@
   loadLib();
 
   whenAvailable("_analytics", function (_analytics) {
+    const snowApp = {
+      name: "snow-plugin",
+      campaign: ({ payload }: any) => {
+        // Store utm in localstorage
+        console.log("payload", payload);
+      },
+      page: ({ payload }: any) => {
+        // Send data to snow endpoint
+        const pageObject = payloadToPageObject(payload);
+        const pageJSON = JSON.stringify(pageObject);
+        const url = "https://snow.vectara.io/ui_event";
+        fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: pageJSON,
+        }).catch((e) => {
+          console.log("Could not send analytics request.", e);
+        });
+      },
+    };
+
     // Storing in window so we can access it from the routeUpdateModule
+    // @ts-expect-error window.analytics is not defined
     var Analytics = (window.analytics = _analytics.init({
       app: "analytics-html-demo",
       debug: true,
       plugins: [
-        {
-          name: "snow-plugin",
-          campaign: ({ payload }) => {
-            // Store utm in localstorage
-            console.log("payload", payload);
-          },
-          page: ({ payload }) => {
-            // Send data to snow endpoint
-            const pageObject = payloadToPageObject(payload);
-            const pageJSON = JSON.stringify(pageObject);
-            const url = "https://snow.vectara.io/ui_event";
-            fetch(url, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: pageJSON,
-            }).catch((e) => {
-              console.log("Could not send analytics request.", e);
-            });
-          },
-        },
+        snowApp,
+        googleTagManager({
+          containerId: "GTM-N9LHSN3",
+        }),
       ],
     }));
     Analytics.page();
