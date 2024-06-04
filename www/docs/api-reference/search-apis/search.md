@@ -182,8 +182,8 @@ end-user's question, citing the results as references. For more information,
 read about [Retrieval Augmented Generation](/docs/learn/grounded-generation/grounded-generation-overview).
 
 The `summarization` object enables you to tailor the results of the query 
-summarization. Growth users can specify the `maxSummarizedResults` and 
-`responseLang`.
+summarization. Growth users can specify the `max_summarized_results` and 
+`response_language`.
 
 ## Factual Consistency Score
 
@@ -209,26 +209,26 @@ guideline for cutoffs between good and bad.
 ## Citation Format in Summary
 
 When generating a summary, Vectara enables Scale users to format the `style` of 
-`citationParams` object with one of the following formats: 
+`citations` object with one of the following formats: 
 
-* `NUMERIC` (default) - Citations appear as numbers `[1]`, `[2]`, `[N]`, and so on.
-* `NONE` - No citations appear in the summary.
-* `HTML` - Citations appears as a URL: `<a href="https://my.doc/foo">[N]</a>`
-* `MARKDOWN` - Citations appears in Markdown: `[N](https://my.doc/foo)`
+* `numeric` (default) - Citations appear as numbers `[1]`, `[2]`, `[N]`, and so on.
+* `noen` - No citations appear in the summary.
+* `html` - Citations appears as a URL: `<a href="https://my.doc/foo">[N]</a>`
+* `markdown` - Citations appears in Markdown: `[N](https://my.doc/foo)`
 
 If set to `HTML` or `MARKDOWN`, you must customize the citation using 
 both of the `urlPattern` and `textPattern` fields to enable dynamic citation 
 generation. Both of these parameters can access all part and document level 
 **metadata** fields.
 
-For example, the `urlPattern` field can specify `{doc.id}` and `{part.page}` 
+For example, the `url_pattern` field can specify `{doc.id}` and `{part.page}` 
 metadata as `https://mypdf.doc/foo/{doc.id}#page={part.page}`. 
 The `textPattern` field specifies the document and part metadata name in curly 
 braces. For example, use `{doc.title}` and the final result appears as 
 [Title](https://my.doc/foo/2/1).
 
 To use citations, you must specify one of the following summarizers 
-in `summarizerPromptName`:
+in `promptName`:
 
 * `vectara-summary-ext-24-05-sml` - (gpt-3.5-turbo)
 * `vectara-summary-ext-24-05-med` - (gpt-4.0)
@@ -243,8 +243,8 @@ For more information, see the [**documentation**](/docs/learn/grounded-generatio
 
 ### Default Citation Behavior
 
-* If `textPattern` is not specified, it defaults to the numerical position of the result ([1], [2], [N].).
-* The `urlPattern` **does not** have a default, so this field must be explicitly defined.
+* If `text_pattern` is not specified, it defaults to the numerical position of the result ([1], [2], [N].).
+* The `url_pattern` **does not** have a default, so this field must be explicitly defined.
 
 
 ### Citation Example
@@ -254,10 +254,10 @@ link to the specific page:
 
 ```json
 {
-  "citationParams": {
+  "citations": {
     "style": "MARKDOWN",
-    "urlPattern": "{doc.id}#page={section.page}",
-    "textPattern": "as seen in {doc.title}"
+    "url_pattern": "{doc.id}#page={section.page}",
+    "text_pattern": "as seen in {doc.title}"
   }
 }
 ```
@@ -283,19 +283,18 @@ Use `prompt_name` and `prompt_text` to override the default prompt with a
 require a chatbot to be more human like, so you decide to create a custom 
 response format that behaves more playfully in a conversation or summary.
 
-The `debug` option lets you view detailed logs to help in troubleshooting and 
-optimization. The `responseChars` lets you control the length of the summary, but 
+The `max_response_characters` lets you control the length of the summary, but 
 note that it is **not a hard limit** like with the `max_tokens` parameter. The 
-`modelParams` object provides even more fine-grained controls for the summarizer 
+`summarization` object provides even more fine-grained controls for the summarizer 
 model:
 * `max_tokens` specifies a hard limit on the number of characters in a response. 
     This value supercedes the `responseChars` parameter in the `summary` object.
 * `temperature` indicates whether you want the summarization to not be creative at all `0.0`,
     or for the summarization to take more creative liberties as you approach 
     the maximium value of `1.0`.
-* `frequencyPenalty` provides even more granular control to help ensure that the 
+* `frequency_penalty` provides even more granular control to help ensure that the 
   summarization decreases the likelihood of repeating words. The values range from `0.0` to `1.0`
-* `presencePenalty` provides more control over whether you want the summary to 
+* `presence_penalty` provides more control over whether you want the summary to 
   include new topics. The values also range from `0.0` to `1.0`.
 
 By leveraging these advanced capabilities, application builders can fine-tune 

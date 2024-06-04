@@ -176,22 +176,22 @@ or summary.
 
 ### Control the summary length
 
-The `response_characters` parameter enables users to suggest a preferred length for 
+The `max_response_characters` parameter enables users to suggest a preferred length for 
 the summary. While it is not a strict limit like the fine-grained `max_tokens` 
 parameter, it provides a guideline, helping to maintain a balance between verbosity and 
 conciseness.
 
 ### Fine-grained control over summarization output
 
-The `modelParams` object provides even more fine-grained controls for the 
+The `GenerationParameters` object provides even more fine-grained controls for the 
 summarizer model:
-* `maxToken` specifies a hard limit on the number of characters in a response. 
+* `max_tokens` specifies a hard limit on the number of characters in a response. 
 * `temperature` indicates whether you want the summarization to **not** be creative at all `0.0`,
     or for the summarization to take more creative liberties as you approach 
     the maximium value of `1.0`.
-* `frequencyPenalty` provides even more granular control to help ensure that the 
+* `frequency_penalty` provides even more granular control to help ensure that the 
   summarization decreases the likelihood of repeating words. These values range from `0.0` to `1.0`
-* `presencePenalty` provides more control over whether you want the summary to 
+* `presence_penalty` provides more control over whether you want the summary to 
   include new topics. These values also range from `0.0` to `1.0`.
 
 ## Example summarization use cases
@@ -204,13 +204,13 @@ application requirements. Experiment with different values in these controls.
 
 Some use cases require more concise and with minimal creative interpretations:
 
-* `maxToken` = `200` – Brief summary but comprehensive enough to cover critical 
+* `max_tokens` = `200` – Brief summary but comprehensive enough to cover critical 
   information.
 * `temperature` = `0.0` – Factual summary with no creative deviations, and 
   accuracy is crucial.
-* `frequencyPenalty` = `0.1` – Minimally reduces repetition to keep essential 
+* `frequency_penalty` = `0.1` – Minimally reduces repetition to keep essential 
   recurring terminology.
-* `presencePenalty` = `0.0` – Focuses on existing topics in the content history 
+* `presence_penalty` = `0.0` – Focuses on existing topics in the content history 
   without introducing new topics.
 
 ### Brief abstract summary
@@ -219,13 +219,13 @@ Researchers often need to distill complex research papers into abstracts that
 convey the essence of the work creatively to capture the attention of other 
 scholars:
 
-* `maxToken` = `150` – Limits the summary to an abstract length, suitable for 
+* `max_tokens` = `150` – Limits the summary to an abstract length, suitable for 
   quick scanning.
 * `temperature` = `0.7` – Allows for a moderate level of creativity to articulate
   the research's novelty and implications effectively.
-* `frequencyPenalty` = `0.5` – Reduces repetition to ensure the 
+* `frequency_penalty` = `0.5` – Reduces repetition to ensure the 
   summary is more succinct and to the point.
-* `presencePenalty` = `0.3` – Encourages the inclusion of new topics or findings 
+* `presence_penalty` = `0.3` – Encourages the inclusion of new topics or findings 
   from the research, adding depth to the summary.
 
 ### Product description summarization
@@ -234,11 +234,11 @@ E-commerce platforms require concise summarizations of product descriptions to
 provide engaging and informative summaries that can influence purchase 
 decisions.
 
-* `maxToken` = `100` – Short length for quick browsing without overwhelming the 
+* `max_tokens` = `100` – Short length for quick browsing without overwhelming the 
   customer with information.
 * `temperature` = `0.5` – Balances creativity and factus, making the description 
   more lively and appealing.
-* `frequencyPenalty` = `0.4` – Helps avoid redundancy in describing product 
+* `frequency_penalty` = `0.4` – Helps avoid redundancy in describing product 
   features, keeping the summary fresh and engaging.
-* `presencePenalty` = `0.2` – Slightly encourages the introduction of new but 
+* `presence_penalty` = `0.2` – Slightly encourages the introduction of new but 
   relevant topics, such as possible use-cases or product comparisons.
