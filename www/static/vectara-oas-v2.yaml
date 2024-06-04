@@ -1915,15 +1915,18 @@ components:
         name:
           description: The JSON path of the filter attribute in a document or document part metadata.
           type: string
+          example: "Title"
         level:
           description: Indicates whether this a document or document part metadata filter.
           type: string
           enum:
             - "document"
             - "part"
+          example: document
         description:
           description: Description of the filter. May be omitted.
           type: string
+          example: "The title of the docment."
         indexed:
           description: Whether an index is created for the filter. Creating an index will improve query latency when using the filter.
           type: boolean
@@ -1939,6 +1942,7 @@ components:
             - "list[integer]"
             - "list[real_number]"
             - "list[text]"
+          example: text
       required:
         - name
         - level
@@ -2040,6 +2044,7 @@ components:
             prompt name you also specify the model and other `model_parameter` defaults.
           type: string
           minLength: 1
+          example: vectara-summary-ext-v1.2.0
         max_used_search_results:
           description: The maximum number of search results to be available to the prompt.
           type: integer
@@ -2056,6 +2061,15 @@ components:
             https://docs.vectara.com/docs/prompts/vectara-prompt-engine.
             See https://vectara.com/pricing/ for more details on becoming a Scale customer.
           type: string
+          example: |
+            [
+              {"role": "system", "content": "You are a helpful search assistant."},
+              #foreach ($qResult in $vectaraQueryResults)
+                 {"role": "user", "content": "Given the $vectaraIdxWord[$foreach.index] search result."},
+                 {"role": "assistant", "content": "${qResult.getText()}" },
+              #end
+              {"role": "user", "content": "Generate a summary for the query '${vectaraQuery}' based on the above results."}
+            ]
         max_response_characters:
           description: |
             Controls the length of the generated output.
@@ -2133,6 +2147,7 @@ components:
 
             The default `url_pattern` is an empty string.
           type: string
+          example: https://vectara.com/documents/{doc.id}
         text_pattern:
           description: |
             The text pattern if the citation_style is set to `html` or `markdown`.
@@ -2146,6 +2161,7 @@ components:
             in final citation output like `[Title](<url_pattern>)` when
             the document's metadata includes `{"title":"Title"}`.
           type: string
+          example: {doc.title}
     QueryRequest:
       description: Query one or more corpora.
       type: object
@@ -2153,6 +2169,7 @@ components:
         query:
           description: The query to receive an answer on.
           type: string
+          example: Am I allowed to bring pets to work?
         stream_response:
           description: Indicates whether the response should be streamed or not.
           type: boolean
@@ -2260,6 +2277,7 @@ components:
             Do not specify the MMR reranker ID here, and instead use the MMR reranker object type.
           type: string
           pattern: rnk_(?!272725718)\d+
+          example: rnk_272725719
       required:
         - reranker_id
       x-vectaraParents:
@@ -2543,6 +2561,7 @@ components:
         id:
           description: The Document ID, must be unique within the corpus.
           type: string
+          example: my-doc-id
         type:
           description: |
             When the type of the indexed document is `core` the rest of
@@ -2558,6 +2577,7 @@ components:
           type: object
           properties: {}
           additionalProperties: true
+          example: {"title":"A Nice Document", "lang":"eng"}
         document_parts:
           description: Parts of the document that make up the document.
           type: array
@@ -2577,10 +2597,12 @@ components:
         text:
           description: The text of the document part.
           type: string
+          example: I'm a nice document part.
         metadata:
           description: The metadata for a document part. Attributes matching corpus document part filter attributes are used as document part filter attributes.
           type: object
           additionalProperties: true
+          example: {"nice_rank": 9000}
         context:
           description: The context text for the document part.
           type: string
@@ -2699,6 +2721,7 @@ components:
         query:
           description: The chat message or question.
           type: string
+          example: How can I use the Vectara platform?
         stream_response:
           description: Indicates whether the response should be streamed or not.
           type: boolean
@@ -2824,12 +2847,15 @@ components:
         query:
           description: The query made to produce this turn.
           type: string
+          example: How do a turn this widget?
         answer:
           description: The response to the query.
           type: string
+          example: The widget turns counter clockwise.
         enabled:
           description: Indicates whether the turn is enabled and shown in futures turns of the chat.
           type: boolean
+          example: true
         created_at:
           description: Specifies when the turn was created.
           type: string
