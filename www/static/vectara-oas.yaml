@@ -980,6 +980,8 @@ paths:
                             conversationId: "1d8f0258-3358-475a-b5eb-02a775cee09e"
                           maxSummarizedResults: 5
                           responseLang: "eng"
+            schema:
+              $ref: '#/components/schemas/servingBatchQueryRequest'
       tags:
         - QueryService
       parameters:
@@ -1395,6 +1397,7 @@ components:
 
 
 
+
          - DEFAULT: Use corpus-assigned semantics.  This is the most common setting.
          - QUERY: Use query semantics.  This is also common.
          - RESPONSE: Use response semantics.  Usage of this is rare.
@@ -1697,6 +1700,7 @@ components:
 
 
 
+
          - API_KEY_TYPE__SERVING: ApiKey for serving. Only gives access to query data.
          - API_KEY_TYPE__SERVING_INDEXING: ApiKey for serving and indexing. Gives access to both query and index data.
          - API_KEY_TYPE__PERSONAL: ApiKey for personal access key.
@@ -1841,14 +1845,8 @@ components:
       properties:
         corpus:
           $ref: "#/components/schemas/adminCorpus"
-      required:
-        - corpus    
     adminCreateCorpusResponse:
       type: object
-      example:
-        corpus:
-          name: My Corpus
-          description: This text describes my corpus.
       properties:
         corpusId:
           type: integer
@@ -2261,6 +2259,7 @@ components:
       default: LIST_USERS_TYPE__NONE
       title: >-
         - LIST_USERS_TYPE__CUSTOMER: Only List users with customer account-level authorizations.
+
 
 
 
@@ -2866,8 +2865,10 @@ components:
 
 
 
+
               value in binary format, or produce an error.
             * Applications are allowed to cache lookup results based on the
+
 
 
 
@@ -2917,6 +2918,7 @@ components:
 
 
 
+
             Foo foo = ...;
             Any any;
             any.PackFrom(foo);
@@ -2926,6 +2928,7 @@ components:
             }
 
         Example 2: Pack and unpack a message in Java.
+
 
 
 
@@ -2956,6 +2959,7 @@ components:
 
 
 
+
             foo = Foo(...)
             any = Any()
             any.Pack(foo)
@@ -2965,6 +2969,7 @@ components:
               ...
 
         Example 4: Pack and unpack a message in Go
+
 
 
 
@@ -3018,6 +3023,7 @@ components:
 
 
 
+
             package google.profile;
             message Person {
               string first_name = 1;
@@ -3048,6 +3054,7 @@ components:
 
 
 
+
             {
               "@type": "type.googleapis.com/google.protobuf.Duration",
               "value": "1.212s"
@@ -3060,9 +3067,24 @@ components:
           items:
             $ref: "#/components/schemas/servingQueryRequest"
           description: >-
-            Each request can have multiple queries that result in multiple search
-
-            results. Each query can search multiple corpora.
+            Each request can have multiple queries that result in multiple search results. Each query can search multiple corpora.
+      required: ["query"]
+      example:
+        query:
+          - query: "What is the answer to the life, the universe, and everything?"
+            start: 0
+            numResults: 10
+            contextConfig:
+              sentencesBefore: 3
+              sentencesAfter: 3
+              startTag: "<b>"
+              endTag: "</b>"
+            corpusKey:
+              - customerId: 12345
+                corpusId: 12
+            summary:
+              - maxSummarizedResults: 10
+                responseLang: "en"
     servingBatchQueryResponse:
       type: object
       properties:
@@ -3167,8 +3189,6 @@ components:
           type: integer
           format: int64
           description: The Corpus ID.
-          minimum: 1
-          example: 1
         semantics:
           $ref: "#/components/schemas/CorpusKeySemantics"
         metadataFilter:
@@ -3179,24 +3199,11 @@ components:
             See https://docs.vectara.com/docs/learn/metadata-search-filtering/filter-overview
 
             for a detailed explanation on how to create a metadata filter.
-          example: "part.lang = 'eng'"
         lexicalInterpolationConfig:
           $ref: "#/components/schemas/servingLinearInterpolation"
-        dim:
-          type: array
-          items:
-            type: object
-            required: ['name', 'weight']
-            properties:
-              name:
-                type: string
-                example: "dimension_name"
-              weight:
-                type: number
-                example: 1.5
-          example: []
       description: Object to specify how each corpus in a query is searched.
-      required: ['customerId', 'corpusId']
+      required:
+        - corpusId
     servingFactualConsistency:
       type: object
       properties:
@@ -3215,6 +3222,7 @@ components:
           example: 0.025
           title: >-
             Controls the weight given to lexical matches. The final score, S, is then:
+
 
 
 
@@ -3260,34 +3268,150 @@ components:
       properties:
         query:
           type: string
-          description: The query text to use from the end user.
-          example: "What is the answer to the life, the universe, and everything?"
+          description: "The query text to use from the end user."
         start:
           type: integer
           format: int64
           title: The start position in the result set
-          minimum: 0
+          description: "The starting point for the query."
         numResults:
           type: integer
           format: int64
-          description: The number of results to return.
+          description: "The number of results to return. Possible values: >= 1"
           minimum: 1
           example: 10
         contextConfig:
           $ref: "#/components/schemas/QueryRequestContextConfig"
+          type: object
+          description: "Allows processing a matched document part text before being returned as a search result."
+          properties:
+            charsBefore:
+              type: integer
+              description: "chars_before is used for showing the end user the characters leading up to the result snippet. Ignored if sentences_before is set."
+            charsAfter:
+              type: integer
+              description: "chars_after is used for showing the end user the characters after the result snippet. Ignored if sentences_before is set."
+            sentencesBefore:
+              type: integer
+              description: "sentences_before is used for showing the end user the sentences leading up to the result snippet."
+              example: 3
+            sentencesAfter:
+              type: integer
+              description: "sentences_after is used for showing the end user the sentences leading up to the result snippet."
+              example: 3
+            startTag:
+              type: string
+              description: "The tag that wraps the snippet at the start."
+              example: "<b>"
+            endTag:
+              type: string
+              description: "The tag that wraps the snippet at the end."
+              example: "</b>"
         corpusKey:
           type: array
           items:
             $ref: "#/components/schemas/servingCorpusKey"
+            type: object
+            properties:
+              customerId:
+                type: integer
+                description: "The Customer ID."
+              corpusId:
+                type: integer
+                description: "The Corpus ID. Possible values: >= 1"
+                minimum: 1
+                example: 12
+              semantics:
+                type: string
+                description: "Semantics controls the interpretation of the query string by the server."
+                enum: ["DEFAULT", "QUERY", "RESPONSE"]
+                default: "DEFAULT"
+              metadataFilter:
+                type: string
+                description: "Filter the documents and document parts based on their metadata."
+              lexicalInterpolationConfig:
+                type: object
+                description: "Configuration for a linear interpolation."
+                properties:
+                  lambda:
+                    type: number
+                    description: "Linear interpolation parameter."
+            required: ["corpusId"]
           description: |-
-            The query is run on all these corpora, and the results are
-            merged together in the response, ranked by score.
+            The query is run on all these corpora, and the results are merged together in the response, ranked by score.
         summary:
           type: array
           items:
             $ref: "#/components/schemas/servingSummarizationRequest"
-          description: Optionally, one or more requests to summarize the results.
-      required: ['numResults', 'corpusKey']
+            type: object
+            properties:
+              summarizerPromptName:
+                type: string
+                description: "The name of the summarizer+prompt combination to use for summarization."
+              maxSummarizedResults:
+                type: integer
+                description: "Maximum number of results to summarize."
+                example: 10
+              responseLang:
+                type: string
+                description: "ISO 639-1 or ISO 639-3 language code for the response."
+                example: "en"
+              promptText:
+                type: string
+                description: "The prompt_text is in the form of an Apache Velocity template."
+              debug:
+                type: boolean
+                description: "Debugging the generative prompt."
+              responseChars:
+                type: integer
+                description: "Controls the length of the summary."
+              modelParams:
+                type: object
+                description: "Parameters for the summarizer model."
+                properties:
+                  maxTokens:
+                    type: integer
+                    description: "Maximum tokens for the summarizer model."
+                  temperature:
+                    type: number
+                    description: "The sampling temperature to use."
+                  frequencyPenalty:
+                    type: number
+                    description: "Higher values penalize new tokens based on their existing frequency in the text so far."
+                  presencePenalty:
+                    type: number
+                    description: "Higher values penalize new tokens based on whether they appear in the text so far."
+              citationParams:
+                type: object
+                description: "Citation parameters for the summary."
+                properties:
+                  style:
+                    type: string
+                    description: "The citation style to be used in summary."
+                    enum: ["NUMERIC", "NONE", "HTML", "MARKDOWN"]
+                    default: "NUMERIC"
+                  urlPattern:
+                    type: string
+                    description: "The URL pattern if the citation_style is set to HTML or MARKDOWN."
+                  textPattern:
+                    type: string
+                    description: "The text pattern if the citation_style is set to HTML or MARKDOWN."
+              chat:
+                type: object
+                description: "The chat request."
+                properties:
+                  store:
+                    type: boolean
+                    description: "Whether to store the query/answer pair."
+                  conversationId:
+                    type: string
+                    description: "The conversation ID of the chat. If empty, a new conversation will be started."
+                  factualConsistencyScore:
+                    type: boolean
+                    description: "If unset or true, the response will include the factual consistency score."
+            required: ["maxSummarizedResults", "responseLang"]
+          description: "Optionally, one or more requests to summarize the results."
+      required: ["numResults", "corpusKey"]
     servingQueryResponsePart:
       type: object
       properties:
@@ -3364,19 +3488,16 @@ components:
         summarizerPromptName:
           type: string
           description: The name of the summarizer+prompt combination to use for summarization.
-          example: ""
         maxSummarizedResults:
           type: integer
           format: int64
           description: Maximum number of results to summarize.
-          example: 5
         responseLang:
           type: string
           description: >-
             ISO 639-1 or ISO 639-3 language code for the response, or "auto" to indicate that
 
             the auto-detected language of the incoming query should be used.
-          example: "en"
         promptText:
           type: string
           description: >-
@@ -3393,14 +3514,12 @@ components:
             https://docs.vectara.com/docs/prompts/vectara-prompt-engine
 
             See https://vectara.com/pricing/ for more details on becoming a Scale customer.
-          example: ""
         debug:
           type: boolean
           description: >-
             Debugging the generative prompt is currently a Scale-only feature.
 
             See https://vectara.com/pricing/ for more details on becoming a Scale customer.
-          example: false
         responseChars:
           type: integer
           format: int64
@@ -3412,20 +3531,19 @@ components:
             than this value.  This is currently a Scale-only feature.
 
             See https://vectara.com/pricing/ for more details on becoming a Scale customer.
-          example: 0
         modelParams:
           $ref: "#/components/schemas/SummarizationRequestModelParams"
-          example: {}
         citationParams:
           $ref: "#/components/schemas/servingCitationParams"
         chat:
           $ref: "#/components/schemas/servingChatRequest"
-          example: {}
         factualConsistencyScore:
           type: boolean
           description: If unset or true, the response will include the factual consistency score.
       description: How a LLM uses the search results to provide a response to a query.
-      required: ['maxSummarizedResults', 'responseLang']
+      required:
+        - maxSummarizedResults
+        - responseLang
     servingSummary:
       type: object
       properties:

@@ -816,13 +816,6 @@ table td {
   text-decoration: underline;
 }
 
-.details_node_modules-\@docusaurus-theme-classic-lib-theme-Details-styles-module
-  > summary::before,
-.details_node_modules-\@docusaurus-theme-classic-lib-theme-Details-styles-module
-  > div {
-  transition: none !important;
-}
-
 .alert--info code,
 .schemaItem_node_modules-docusaurus-theme-openapi-docs-lib-next-theme-SchemaItem-styles-module
   code {

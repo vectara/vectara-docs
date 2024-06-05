@@ -73,7 +73,7 @@ unseen data and domains, and it **never** trains on customer data. In RAG use
 cases, this reranker distinguishes the scores of relevant and irrelevant 
 documents in a query-independent manner. For more details about our 
 Multilingual Reranker v1, check out these [feature announcement](https://vectara.com/blog/unlocking-the-state-of-the-art-reranker-introducing-the-vectara-multilingual-reranker_v1/) and 
-[technical deep dive](https://vectara.com/blog/deep-dive-into-multilingual-reranker-v1-state-of-the-art-reranker-across-100-languages) blogs.
+[technical deep dive](https://vectara.com/blog/deep-dive-into-vectara-multilingual-reranker-v1-state-of-the-art-reranker-across-100-languages/) blogs.
 
 Based on our experimentation we suggest using a cut-off threshold of `0.5` as 
 a good starting point. This threshold value is the relevance score returned by 
