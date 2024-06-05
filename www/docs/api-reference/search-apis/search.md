@@ -302,7 +302,7 @@ the behavior and output style of the summarizer to align with your unique
 application requirements.
 
 
-## REST Example
+## REST 2.0 URL
 
 ### Query API Endpoint Address
 

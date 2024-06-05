@@ -160,7 +160,7 @@ that can be used at query time to control the ranking of results. The
 custom dimensions must be defined ahead of time for the corpus, or else 
 they'll be ignored.
 
-## REST 2.0 Example
+## REST 2.0 URL
 
 ### Indexing REST Endpoint
 

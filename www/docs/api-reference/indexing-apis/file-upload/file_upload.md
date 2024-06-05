@@ -49,9 +49,6 @@ Vectara processes the uploaded file, and the extracted text and metadata are
 used to create a new document within the corpus. Only one document can be 
 uploaded per request.
 
-
-
-
 Apart from these parameters, the servers expect a valid JWT Token in the HTTP
 headers.
 

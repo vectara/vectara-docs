@@ -25,7 +25,7 @@ results when the previous request has reached the limit.
 The response includes an array of corpora `objects` with matching `corpora` and 
 `metadata`.
 
-## REST Example
+## REST 2.0 URL
 
 ### List Corpora REST Endpoint Address
 

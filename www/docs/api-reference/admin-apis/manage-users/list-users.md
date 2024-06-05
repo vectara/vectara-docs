@@ -30,7 +30,7 @@ parameters to control the pagination of the results.
 The response contains an array of `user` objects with the users and metadata 
 about the pagination.
 
-## REST 2.0 Example
+## REST 2.0 URL
 
 ### List Users Endpoint Address
 

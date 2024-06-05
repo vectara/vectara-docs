@@ -32,7 +32,7 @@ turn. The request contains the following properties:
 The response returns assigned `turn_id`, the generated answer, `answer_language`, 
 and the `search_results` used by the chat model.
 
-## REST 2.0 Example
+## REST 2.0 URL
 
 ### Create Chat Turn Endpoint Address
 

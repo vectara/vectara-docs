@@ -20,7 +20,7 @@ To list chat turns, send a GET request to `/v2/chats/{chat_id}/turns`, where
 The response contains an array of `turn` objects representing the turns in the 
 chat, ordered chronologically.
 
-## REST 2.0 Example
+## REST 2.0 URL
 
 ### List Chat Turns Endpoint Address
 

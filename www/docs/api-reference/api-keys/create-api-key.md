@@ -37,7 +37,7 @@ properties:
 The response includes the `ApiKey` object that contains the assigned API key 
 ID, name, secret key, enabled status, API key role, and API policy.
 
-## REST 2.0 API Example
+## REST 2.0 API URL
 
 ### Create API Key Endpoint Address
 

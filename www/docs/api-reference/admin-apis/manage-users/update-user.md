@@ -25,7 +25,7 @@ following properties:
 
 The response contains the updated `user` object with the modified properties.
 
-## REST 2.0 Example
+## REST 2.0 URL
 
 ### Update User Endpoint Address
 

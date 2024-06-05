@@ -32,7 +32,7 @@ The response includes the `AppClient` object that contains the assigned App
 Client ID, name, description, client ID used within the OAuth flow, client 
 secret, API roles, and API policy.
 
-## REST 2.0 API Example
+## REST 2.0 API URL
 
 ### Create App Client Endpoint Address
 

@@ -23,7 +23,7 @@ to reset corpora.
 
 :::
 
-## REST 2.0 Example
+## REST 2.0 URL
 
 ### Reset Corpus REST Endpoint
 

@@ -23,7 +23,7 @@ REST endpoint to enable or disable corpora.
 
 :::
 
-## Update Corpus Enablement Request and Response
+## Update Corpus Request and Response
 
 To update a corpus, send a PATCH request to `/v2/corpora/{corpus_key}`, where 
 `{corpus_key}` is the unique identifier for the corpus you want to update. The 
@@ -32,15 +32,15 @@ corpus remains in its current state. The `filter_attributes` parameter lets
 you update the `name`, `level` (document or part), `description`, whether the corpus 
 is indexed, and the value `type`.
 
-## REST 2.0 Example
+## REST 2.0 URL
 
-### Update Corpus Enablement REST Endpoint Address
+### Update Corpus REST Endpoint Address
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
 to enable or disable a corpus:
 <code>https://<Config v="domains.rest.admin"/>/v2/corpora/:corpus_key</code>
 
-The API Playground shows the full [Update Corpus Enablement](/docs/rest-api/update-corpus) REST definition.
+The API Playground shows the full [Update Corpus](/docs/rest-api/update-corpus) REST definition.
 
 ## gRPC Example
 

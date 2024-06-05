@@ -27,7 +27,7 @@ to delete corpora.
 
 :::
 
-## REST 2.0 Example
+## REST 2.0 URL
 
 ### Delete Corpus REST Endpoint
 

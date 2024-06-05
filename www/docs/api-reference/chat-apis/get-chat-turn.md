@@ -22,7 +22,7 @@ unique identifier of the turn within that chat. Note that both `chat_id` and
 The response contains an array of `turn` id, chat_id, query, answer, enabled 
 status, and created_at timestamp.
 
-## REST 2.0 Example
+## REST 2.0 URL
 
 ### Get Chat Turn Endpoint Address
 

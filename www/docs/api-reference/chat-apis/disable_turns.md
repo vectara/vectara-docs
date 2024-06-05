@@ -17,7 +17,7 @@ The `conversationId` specifies the conversation ID that contains the turn
 you want to disable, and the `turnId` specifies the Turn ID that you want to 
 disable.
 
-## REST Example
+## REST 2.0 URL
 
 ### Delete Turns Endpoint Address
 

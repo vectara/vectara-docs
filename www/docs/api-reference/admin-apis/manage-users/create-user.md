@@ -33,7 +33,7 @@ The response returns a `user` object that contain sthe assigned user ID, email,
 username, enabled status, description, creation timestamp, and assigned API 
 roles.
 
-## REST 2.0 Example
+## REST 2.0 URL
 
 ### Create User Endpoint Address
 

@@ -1,7 +1,7 @@
 ---
 id: read-corpus
-title: Get Corpus Metadata API Definition
-sidebar_label: Get Corpus Metadata API Definition
+title: Get Corpus API Definition
+sidebar_label: Get Corpus API Definition
 ---
 
 import {Config} from '@site/docs/definitions.md';
@@ -33,7 +33,7 @@ The response includes details such as the corpus ID, key, name, description,
 enabled status, encoder information, filter attributes, custom dimensions, 
 and usage limits..
 
-## REST Example
+## REST 2.0 URL
 
 ### Get Corpus REST Endpoint Address
 

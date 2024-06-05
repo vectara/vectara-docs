@@ -21,7 +21,7 @@ To delete a chat, send a DELETE request to `/v2/chats/{chat_id}`, where
 The response returns a `204` status code which indicates that the chat was 
 successfully deleted.
 
-## REST 2.0 Example
+## REST 2.0 URL
 
 ### Delete Chat Endpoint Address
 

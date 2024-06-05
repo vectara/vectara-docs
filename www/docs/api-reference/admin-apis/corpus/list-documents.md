@@ -34,7 +34,7 @@ optional query parameters to control the pagination of the results.
 The response contains an array of `document` objects with the matching 
 documents and metadata about the pagination.
 
-## REST 2.0 Example
+## REST 2.0 URL
 
 ### List Documents REST Endpoint Address
 

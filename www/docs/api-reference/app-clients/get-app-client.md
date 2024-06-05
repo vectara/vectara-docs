@@ -19,7 +19,7 @@ To get an App Client, send a GET request to `/v2/api_keys/{app_client_id}`, wher
 The response includes an `AppClient` object that show the App Client name, 
 description, client ID, API roles, and API Policy.
 
-## REST 2.0 Example
+## REST 2.0 URL
 
 ### Get App Client Endpoint Address
 

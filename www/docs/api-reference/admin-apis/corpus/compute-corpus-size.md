@@ -29,7 +29,7 @@ the `corpus_id` and `customer_id` parameters.
 The response includes a `size` object that shows the `epochSecs` and corpus `size`
 values.
 
-## REST Example
+## REST 1.0 URL
 
 ### Compute Corpus Size REST Endpoint Address
 

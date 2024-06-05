@@ -21,7 +21,7 @@ a string that was returned when the chat was created.
 The response contains the chat `id`, `first_query`, `first_answer`, enabled status, 
 and `created_at` timestamp.
 
-## REST 2.0 Example
+## REST 2.0 URL
 
 ### Get Chat Endpoint Address
 

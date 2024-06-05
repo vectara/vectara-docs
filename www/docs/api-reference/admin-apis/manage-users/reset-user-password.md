@@ -19,7 +19,7 @@ where `{username}` is the User ID of the user who needs a password reset.
 The response contains the `204` status code that indicates a password reset 
 email was sent to the user.
 
-## REST 2.0 Example
+## REST 2.0 URL
 
 ### Reset User Password Endpoint Address
 

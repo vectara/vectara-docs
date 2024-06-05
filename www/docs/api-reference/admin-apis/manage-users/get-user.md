@@ -21,7 +21,7 @@ is the User ID of the user you want to retrieve.
 The response contains the user ID, email, username, enabled status, 
 description, creation and update timestamps, and assigned API roles.
 
-## REST 2.0 Example
+## REST 2.0 URL
 
 ### Get User Endpoint Address
 

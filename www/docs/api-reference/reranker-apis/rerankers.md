@@ -25,7 +25,7 @@ specify optional query parameters to filter the results.
 * `page_key` - Indicates the next page of results when the previous request 
   has reached the limit.
 
-## REST 2.0 Example
+## REST 2.0 URL
 
 ### List Rerankers Endpoint Address
 

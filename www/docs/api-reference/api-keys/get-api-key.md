@@ -22,7 +22,7 @@ To get an API key, send a GET request to `/v2/api_keys/{api_key_id}`, where
 The response includes an `ApiKey` object that show the API name, enabled 
 status, API key role, and API policy.
 
-## REST 2.0 Example
+## REST 2.0 URL
 
 ### Get API Key Endpoint Address
 

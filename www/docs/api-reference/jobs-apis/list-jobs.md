@@ -28,7 +28,7 @@ specify optional query parameters to filter the results.
 * `page_key` - Retrieves the next page of results when the previous request 
   has reached the limit.
 
-## REST 2.0 Example
+## REST 2.0 URL
 
 ### List Jobs Endpoint Address
 

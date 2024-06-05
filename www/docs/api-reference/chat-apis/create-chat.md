@@ -32,7 +32,7 @@ The response contains the assigned `chat_id`, `turn_id` (if the chat response
 was stored), the generated `answer`, `answer_language`, and the `search_results` 
 used by the chat model.
 
-## REST 2.0 Example
+## REST 2.0 URL
 
 ### Create Chat Endpoint Address
 

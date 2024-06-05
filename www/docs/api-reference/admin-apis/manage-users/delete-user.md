@@ -19,7 +19,7 @@ is the User ID of the user you want to delete.
 The response contains the `204` status code that indicates the user has been 
 successfully deleted.
 
-## REST 2.0 Example
+## REST 2.0 URL
 
 ### Delete User Endpoint Address
 

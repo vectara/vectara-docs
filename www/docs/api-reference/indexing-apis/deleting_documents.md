@@ -22,7 +22,7 @@ must be [percent encoded](https://developer.mozilla.org/en-US/docs/Glossary/Perc
 
 The reply on successful deletion is `{}`. 
 
-## REST 2.0 Example
+## REST 2.0 URL
 
 ### Delete Documents Endpoint Address
 

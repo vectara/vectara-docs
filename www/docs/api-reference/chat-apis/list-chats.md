@@ -26,7 +26,7 @@ query parameters to control the pagination of the results.
 The response contains an array of `chat` objects with matching chats and 
 metadata about the pagination.
 
-## REST 2.0 Example
+## REST 2.0 URL
 
 ### List Chats Endpoint Address
 

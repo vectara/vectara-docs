@@ -21,7 +21,7 @@ where `{job_id}` is the unique identifier of the job you want to retrieve.
 The `job_id` is the string that was returned when the job was created; for
 example when replacing filter attributes on a corpus.
 
-## REST 2.0 Example
+## REST 2.0 URL
 
 ### Get Job Endpoint Address
 

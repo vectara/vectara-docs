@@ -21,7 +21,7 @@ defined as an array of `FilterAttribute` objects.
 * `type`: Specifies the data type of the filter attribute as `integer`, 
   `real_number`, `text`, or `boolean`.
 
-## REST 2.0 Example
+## REST 2.0 URL
 
 ### Replace Filter Attributes REST Endpoint
 

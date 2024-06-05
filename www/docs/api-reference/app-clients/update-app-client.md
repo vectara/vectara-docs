@@ -12,7 +12,7 @@ import {vars} from '@site/static/variables.json';
 The Update App Client API lets you update the description and assigned API 
 roles of an App Client.
 
-## Update App Client Key Request and Response
+## Update App Client Request and Response
 
 To update an App Client, send a PATCH request to `/v2/app_clients/{app_client_id}`, 
 where `{app_client_id}` is the ID of the App Client you want to update. The 
@@ -27,7 +27,7 @@ The response includes an `AppClient` object that shows the modified
 description and API roles. Any unset properties on the update app client
 request will result no changes for that property.
 
-## REST 2.0 Example
+## REST 2.0 URL
 
 ### Update App Client Endpoint Address
 

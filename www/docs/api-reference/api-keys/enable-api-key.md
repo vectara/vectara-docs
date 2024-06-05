@@ -21,9 +21,9 @@ To update an API key, send a PATCH request to `/v2/api_keys/{api_key_id}`,
 where `{api_key_id}` is the ID of the API key you want to update with the 
 `enabled` property set to `true` or `false` for the API key.
 
-## REST 2.0 Example
+## REST 2.0 URL
 
-### Enable API Key REST Endpoint Address
+### Enable API Key Endpoint Address
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
 to enable API keys:

@@ -22,7 +22,7 @@ To list API keys, send a GET request to `/v2/api_keys`.
 The response includes a array of `ApiKey` objects that show the API keys and 
 metadata about the pagination.
 
-## REST 2.0 Example
+## REST 2.0 URL
 
 ### List API Keys Endpoint Address
 

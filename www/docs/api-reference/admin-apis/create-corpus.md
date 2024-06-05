@@ -69,7 +69,7 @@ values.
 [1]: https://en.wikipedia.org/wiki/Double-precision_floating-point_format
 [2]: https://en.wikipedia.org/wiki/UTF-8
 
-## REST 2.0 Example
+## REST 2.0 URL
 
 ### Create Corpus REST 2.0 Endpoint
 

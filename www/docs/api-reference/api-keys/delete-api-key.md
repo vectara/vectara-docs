@@ -18,6 +18,10 @@ such as when they are no longer needed or when a key is compromised.
 To delete an API key, send a DELETE request to `/v2/api_keys/{api_key_id}`, 
 where `{api_key_id}` is the ID of the API key you want to delete.
 
+## REST 2.0 URL
+
+### Delete API Key Endpoint Address
+
 <Config v="names.product"/> exposes a REST endpoint at the following URL
 to delete API keys:
 <code>https://<Config v="domains.rest.indexing"/>/v2/delete-api-key</code>

@@ -16,7 +16,7 @@ The `chat_id` specifies the conversation ID that contains the turn
 you want to delete, and the `turn_id` specifies the Turn ID that you want to 
 delete.
 
-## REST 2.0 Example
+## REST 2.0 URL
 
 ### Update Chat Turn Endpoint Address
 
