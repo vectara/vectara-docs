@@ -25,23 +25,25 @@ For more information about the different types of API keys, see
 
 :::
 
-The `apiKeyData` object includes a `description`, `apiKeyType` (query-only, 
-indexing and querying, or personal access key), and `corpusId`.
+To create an API key, send a POST request to `/v2/api_keys` with the following 
+properties:
 
-:::tip
+* `name` - (Required) Specifies the human-readable name of the API key.
+* `api_key_role` - (Required): Specifies the role of the API key as `serving`, 
+  `serving_and_indexing`, or `personal`.
+* `corpus_keys` Specifies the corpora where that which the API key has access. 
+  If the api_key_role is personal, this value be `null` or missing.
 
-Check out our [**interactive API Playground**](/docs/rest-api/create-api-key) that lets 
-you experiment with this REST endpoint to create API keys for your account.
+The response includes the `ApiKey` object that contains the assigned API key 
+ID, name, secret key, enabled status, API key role, and API policy.
 
-:::
-
-## REST API Example
+## REST 2.0 API URL
 
 ### Create API Key Endpoint Address
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
 to create API keys:
-<code>https://<Config v="domains.rest.indexing"/>/v1/create-api-key</code>
+<code>https://<Config v="domains.rest.indexing"/>/v2/api_keys</code>
 
 The API Playground shows the full [Create API Key](/docs/rest-api/create-api-key) REST definition.
 

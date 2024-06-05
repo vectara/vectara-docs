@@ -28,13 +28,12 @@ create a new application client. Applications will use the
 
 **Authentication URL**
 
-Access your authentication by clicking the copy icon for the "OAuth 2.0 authentication URL."
-
-![Copy the Authentication URL](/img/copy_authentication_url.png)
+Access your authentication by clicking the copy icon for the "OAuth 2.0 
+authentication URL."
 
 The URL has the following format:
 
-`https://vectara-prod-<customer-id>.auth.us-west-2.amazoncognito.com/oauth2/token`
+`https://auth.vectara.dev/oauth2/token`
 
 **Client ID**
 
@@ -44,7 +43,8 @@ Access the `client_id` by clicking the copy icon next to your app client's ID.
 
 **Client secret**
 
-Access the `client_secret` by clicking the drop-down to the right of your app client and selecting **Copy secret.**
+Access the `client_secret` by clicking the drop-down to the right of your app 
+client and selecting **Copy secret.**
 
 ![Copy the Client Secret](/img/copy_client_secret.png)
 

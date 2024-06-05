@@ -14,26 +14,21 @@ It also shows what corpora are accessed by these keys and with what
 permissions. This capability can provide insights into key usage and 
 status and help you manage the lifecycle and security of your API keys.
 
-Specify `numResults`, the `pageKey`, and `readCorporaInfo` which indicates whether to 
-return the corpus name and `corpus_id` associated with the API keys.
 
-The response includes a `keyData` object that shows pairs of `apiKey` and 
-`corpus` objects.
+## List API Keys Request and Response
 
-:::tip
+To list API keys, send a GET request to `/v2/api_keys`. 
 
-Check out our [**interactive API Playground**](/docs/rest-api/list-api-keys) that lets 
-you experiment with this REST endpoint to list API keys in an account.
+The response includes a array of `ApiKey` objects that show the API keys and 
+metadata about the pagination.
 
-:::
-
-## REST Example
+## REST 2.0 URL
 
 ### List API Keys Endpoint Address
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
 to list API keys:
-<code>https://<Config v="domains.rest.indexing"/>/v1/list-api-keys</code>
+<code>https://<Config v="domains.rest.indexing"/>/v2/api-keys</code>
 
 The API Playground shows the full [List API Keys](/docs/rest-api/list-api-keys) REST definition.
 

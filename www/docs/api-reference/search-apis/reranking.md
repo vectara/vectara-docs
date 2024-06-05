@@ -15,7 +15,7 @@ a machine learning model that while slower than the rapid retrieval step,
 offers more accurate results. We currently support two rerankers: the [Maximal Marginal Relevance 
 (MMR) Reranker](/docs/api-reference/search-apis/reranking#maximal-marginal-relevance-mmr-reranker) and the new Scale-only [Multilingual Reranker v1](/docs/api-reference/search-apis/reranking#vectara-multilingual-reranker-v1).
 
-## Enable Reranking
+## Enable reranking
 
 To enable reranking, specify the appropriate value for the `rerankerId`. 
 The MMR reranker ID is `272725718` and the Multilingual Reranker v1 ID is 
@@ -25,24 +25,24 @@ also set `numResults` of the `query` to the total number of documents you wish
 to rerank. The default value is `25`.
 
 The following example shows the `numResults` and `rerankerId` 
-values in a query. Note that this simplified example intentionally omits the 
-`contextConfig`, `corpusKey`, and `summary` values.
+values in a query. Note that this simplified example intentionally omits  
+several parameter values.
 
 ```json
 {
-  "query": [
-    {
-      "query": "What is my question?",
-      "start": 0,
-      "numResults": 25,
-      "contextConfig": {},
-      "corpusKey": [],
-      "rerankingConfig": {
-        "rerankerId": 272725718,
-      }, 
-      "summary": []
-    }
-  ]
+  "query": "What is my question?",
+  "stream_response": false,
+    "search": {
+    "start": 0,
+    "limit": 25,
+    "context_configuration": {},
+    },
+    "reranker": {
+          "type": "customer_reranker",
+          "reranker_id": "272725719"
+    },
+  "summarization": [],
+  "enable_factual_consistency_score": true
 }
 ```
 
@@ -55,9 +55,6 @@ Scale users have a drop-down menu to select different rerankers.
 
 :::
 
-![Reranker selection dropdown](/img/reranker-dropdown.png)
-
-
 ## Vectara Multilingual Reranker v1
 
 The new Vectara Multilingual Reranker V1 is a state-of-the-art reranking model 
@@ -65,11 +62,11 @@ that significantly enhances the precision of retrieved results across 100+
 languages. To use this reranker, set the `rerankerID` as `272725719`. 
 
 ```json
-"rerankingConfig": {
-  "rerankerId": 272725719,
-},
+"reranker": {
+      "type": "customer_reranker",
+      "reranker_id": "272725719"
+    }
 ```
-
 
 The Vectara Multilingual Reranker ensures impressive zero-shot performance on 
 unseen data and domains, and it **never** trains on customer data. In RAG use 
@@ -84,7 +81,7 @@ Vectara with each responseAny results that achieve a score of greater than or
 equal to `0.5` can be considered relevant and anything below that can be 
 considered as non-relevant.
 
-## Maximal Marginal Relevance (MMR) Reranker
+## Maximal Marginal Relevance (MMR) reranker
 
 The Maximal Marginal Relevance (MMR) reranker enables you to diversify search 
 results to reduce redundancy while maintaining relevance to the query. 
@@ -109,15 +106,14 @@ specify a `diversity bias` range between `0.0` and `1.0`. Values closer to `1.0`
 optimize for the most diverse results. This setting is only available with the 
 MMR Reranker.
 
-
-
 ```json
-"rerankingConfig": {
-        "rerankerId": 272725718,
-        "mmrConfig": {
-          "diversityBias": 0.4
-        }
-      },
+"reranker": {
+   "type": "customer_reranker",
+   "reranker_id": "272725718"
+   "mmrConfig": {
+      "diversityBias": 0.4
+    }
+ },
 ```
 
 To enable the Maximal Marginal Relevance Reranker in the Vectara Console UI:

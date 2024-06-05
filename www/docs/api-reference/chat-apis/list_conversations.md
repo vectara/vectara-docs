@@ -24,22 +24,15 @@ The `num_results` (default 5) specifies the maximum number of conversations to
 return, and `page_key` retrieves a specific page of results. Leave it blank to 
 get the first page.
 
-:::tip
-
-Check out our [**interactive API Playground**](/docs/rest-api/list-conversations) that lets you experiment with this 
-REST endpoint to list conversations in the customer account.
-
-:::
-
 ## REST Example
 
 ### List Conversations Endpoint Address
 
 <Config v="names.product"/> exposes an HTTP endpoint at the following URL
-to list conversations in the customer account:
-<code>https://<Config v="domains.rest.indexing"/>/v1/list-conversations</code>
+to list conversations in the chat history corpus:
+<code>https://<Config v="domains.rest.indexing"/>/v2/chats</code>
 
-The API Playground shows the full [List Conversations](/docs/rest-api/list-conversations) REST definition.
+The API Playground shows the full [List Conversations](/docs/rest-api/list-chats) REST definition.
 
 ## gRPC Example
 

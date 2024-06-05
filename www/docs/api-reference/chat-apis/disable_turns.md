@@ -17,22 +17,15 @@ The `conversationId` specifies the conversation ID that contains the turn
 you want to disable, and the `turnId` specifies the Turn ID that you want to 
 disable.
 
-:::tip
-
-Check out our **interactive API Playground** that lets you experiment with this 
-REST endpoint to delete turns in specific chats.
-
-:::
-
-## REST Example
+## REST 2.0 URL
 
 ### Delete Turns Endpoint Address
 
 <Config v="names.product"/> exposes an HTTP endpoint at the following URL
 to disable turns in a chat:
-<code>https://<Config v="domains.rest.indexing"/>/v1/disable-turns</code>
+<code>https://<Config v="domains.rest.indexing"/>/v2/chats/:chat_id/turns/:turn_id</code>
 
-The API Playground shows the full [Disable Turns](/docs/rest-api/disable-turns) REST definition.
+The API Playground shows the full [Disable Turns](/docs/rest-api/update-chat-turn) REST definition.
 
 ## gRPC Example
 

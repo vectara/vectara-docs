@@ -1,10 +1,11 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "Vectara Docs",
-  tagline: "Developer documentation for Vectara's Semantic Search Platform",
+  tagline: "Developer documentation for Vectara's Retrieval Augmented Generation as-a-Service (RAGaaS) Platform",
   url: "https://docs.vectara.com",
   baseUrl: "/",
   favicon: "img/vectara_logo.svg",
@@ -20,6 +21,13 @@ const config = {
           editUrl: "https://github.com/vectara/vectara-docs/tree/master/www",
           docLayoutComponent: "@theme/DocPage",
           docItemComponent: "@theme/ApiItem", // Derived from docusaurus-theme-openapi-docs
+          lastVersion: "current",
+          versions: {
+            current: {
+              label: "2.0",
+              /* path: "2.0", */
+            },
+          },
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
@@ -37,7 +45,7 @@ const config = {
         docsPluginId: "classic",
         config: {
           vectara: {
-            specPath: "static/vectara-oas.yaml", // Path to designated spec file
+            specPath: "static/vectara-oas-v2.yaml", // Path to designated spec file
             outputDir: "docs/rest-api", // Output directory for generated .mdx docs
             downloadUrl: "https://docs.vectara.com/vectara-oas.yaml",
             sidebarOptions: {
@@ -45,8 +53,16 @@ const config = {
               categoryLinkSource: "tag",
             },
             baseUrl: "docs/rest-api/vectara-oas",
-            version: "1.0.0",
-            label: "v1.0.0",
+            version: "2.0",
+            label: "v2.0",
+            versions: {
+              "1.0": {
+              specPath: "static/vectara-oas.yaml", // path to 1.0 OAS spec
+              outputDir: "versioned_docs/version-1.0/rest-api",
+              label: "1.0",
+              baseUrl: "versioned_docs/version-1.0/rest-api/vectara-oas"
+            }
+           },
           },
         },
       },
@@ -199,17 +215,47 @@ ${content}
       },
       items: [
         {
-          to: "docs/",
-          activeBasePath: "docs",
+          type: "dropdown",
           label: "Docs",
           position: "left",
+          items: [
+            {
+              label: "Version 2.0 (Latest)",
+              to: "docs/"
+            },
+            {
+              label: "Version 1.0",
+              to: "docs/1.0/",
+            },
+          ]
         },
         {
+          type: "dropdown",
+          label: "API Playground",
+          position: "left",
+          items: [
+            {
+              label: "API Playground 2.0 ",
+              to: "docs/rest-api"
+            },
+            {
+              label: "API Playground 1.0",
+              to: "docs/1.0/rest-api",
+            },
+          ]
+        },
+        /* {
           to: "docs/rest-api/",
           activeBasePath: "docs/rest-api",
           label: "API Playground",
           position: "left",
         },
+        {
+          to: "docs/v2/rest-api/",
+          activeBasePath: "docs/v2/rest-api",
+          label: "API Playground V2",
+          position: "left",
+        }, */
         {
           type: "search",
           className: "searchBar",

@@ -4,6 +4,7 @@ title: Summarizers
 sidebar_label: Summarizers
 ---
 
+import {vars} from '@site/static/variables.json';
 import {Config} from '@site/docs/definitions.md';
 
 Behind the scenes, <Config v="names.product"/> supports both selecting the
@@ -22,7 +23,7 @@ Providing the summarizer as part of the config is optional. If you do not
 provide a summarizer config at request time, <Config v="names.product"/> uses 
 the best available summarizer for your account.
 
-## Currently Available Summarizers
+## Currently available summarizers
 
 Today, the versions available are `1.2.0` which uses chatgpt-3.5-turbo 
 and `1.3.0` which uses gpt-4.0 (and only available to our paying [Scale 
@@ -30,7 +31,7 @@ customers](https://vectara.com/pricing/)). The 1.2.0 summarizer is typically fas
 slower, but it produces a more accurate summary.
 
 These are the two official summarizers available to our users that you specify 
-in the `summarizerPromptName`:
+in the `model_id`:
 
 * `vectara-summary-ext-v1.2.0` (gpt-3.5-turbo)
 * `vectara-summary-ext-v1.3.0` (gpt-4.0)
@@ -46,20 +47,7 @@ with these additional summarization options.
 
 :::
 
-## Citation Summarizers
-
-Our advanced citation summarizers enable users to specify custom citation 
-styles in the summary request. These custom summarizers provide greater 
-flexibility and accuracy in citations:
-
-* `vectara-summary-ext-24-05-sml` - (gpt-3.5-turbo)
-* `vectara-summary-ext-24-05-med` - (gpt-4.0)
-* `vectara-summary-ext-24-05-large` - (gpt-4.0-turbo)
-
-You can only use `CitationParams` with these citation prompts. Using other 
-prompts result in them being ignored.
-
-## Beta Summarizers
+## Beta summarizers
 
 We also have four beta summarizers available for our users to try:
 
@@ -72,69 +60,57 @@ These beta versions are a preview of our next improved summarizers. Since
 they are experimental, and while we don't support them officially, we are 
 currently considering promoting them to GA, pending feedback from our users.
 
-### Beta Summarizer Example
+### Beta summarizer example
 
 The following example query selects the beta GPT 4.0 summarizer (only 
 available to Scale users):
 
 ```json showLineNumbers title="https://api.vectara.io/v1/query"
 {
-  "query": [
-    {
-      "query": "What is the infinite improbability drive?",
-      "start": 0,
-      "numResults": 10,
-      "corpusKey": [
-        {
-          "customerId": 12345678,
-          "corpusId": 1
-        }
-      ],
-      "summary": [
-        {
-            "summarizerPromptName": "vectara-experimental-summary-ext-2023-10-23-med",
-            "responseLang": "en",
-            "maxSummarizedResults": 5
-        }
-      ]
-    }
-  ]
+  "query": "What is the infinite improbability drive?",
+  "search": {
+    "corpora": [
+      {
+        "corpus_key": "hitchhikers-guide"
+      }
+    ],
+    "offset": 0,
+    "limit": 10
+  },
+  "summarization": {
+    "prompt_name": "vectara-experimental-summary-ext-2023-10-23-med",
+    "max_used_search_results": 5
+  }
 }
 ```
-## Default maxSummarizedResults Limit
+## Default maxSummarizedResults limit
 
-The default limit of `maxSummarizedResults` is 10 search results for Growth 
+The default limit of `max_used_search_results` is 10 search results for Growth 
 plans and this limit can be extended for Scale plan users. Setting the values 
 closer to the limit generates a more comprehensive summary, but using a lower 
 value can balance the results with quality and response time.
 
-### maxSummarizedResults Example
+### maxSummarizedResults example
 
 This summarizer example attempts to balance creating a good quality summary 
-with a reasonably fast response by setting `maxSummarizedResults` to `5`. To use 
+with a reasonably fast response by setting `max_used_search_results` to `5`. To use 
 `vectara-summary-ext-v1.2.0`, send it as the summarizerPromptName as follows:
 
 ```json showLineNumbers title="https://api.vectara.io/v1/query"
 {
-  "query": [
-    {
-      "query": "What is the infinite improbability drive?",
-      "start": 0,
-      "numResults": 10,
-      "corpusKey": [
-        {
-          "customerId": 12345678,
-          "corpusId": 1
-        }
-      ],
-      "summary": [
-        {
-            "summarizerPromptName": "vectara-summary-ext-v1.2.0",
-            "responseLang": "en",
-            "maxSummarizedResults": 5
-        }
-      ]
-    }
-  ]
+  "query": "What is the infinite improbability drive?",
+  "search": {
+    "corpora": [
+      {
+        "corpus_key": "hitchhikers-guide"
+      }
+    ],
+    "offset": 0,
+    "limit": 10
+  },
+  "summarization": {
+    "prompt_name": "vectara-summary-ext-v1.2.0",
+    "max_used_search_results": 5
+  }
 }
 ```

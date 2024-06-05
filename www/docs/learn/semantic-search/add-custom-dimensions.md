@@ -20,78 +20,71 @@ query.
 For example, let's say we want to add a custom dimension to boost posts from a
 forum based on how many "upvotes" it has received.  We can create the corpus
 with a "votes" custom dimension as follows:
-<CodeBlock language="bash">
-{`
-curl -X POST \\
-  -H "Authorization: Bearer $\{JWT_TOKEN\}" \\
-  -H "customer-id: $\{CUSTOMER_ID\}" \\
-  https://${vars['domains.rest.admin']}:443/v1/create-corpus \\
+
+```js
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -H "x-api-key: ${API_KEY}" \
+  https://api.vectara.io/v2/corpora \
   -d @- <<END;
 {
-  "corpus":
+  "key": "acme-forums",
+  "name": "Acme Forums",
+  "description": "Contents of the Acme Forum",
+  "custom_dimensions": [
     {
-      "name": "Acme Forums",
-      "description": "Contents of the Acme Forum",
-      "custom_dimensions": [
-        {
-            "name": "votes",
-            "description": "Log of the number of votes received by this post",
-            "serving_default": 0.0,
-            "indexing_default": 0.0
-        }
-      ]
+      "name": "votes",
+      "indexing_default": 0.0,
+      "querying_default": 0.0
     }
+  ]
 }
 END
-`}
-</CodeBlock>
-
-Then, at index time, you can attach the value of the custom dimension as follows:
 ```
+
+Then, at index time, you can attach the value of the custom dimension of 
+votes with a value of `1.235` as follows:
+```js
 {
-    "documentId": "237a8b63-2826-4ee1-8d83-14c2451a3357",
-    "parts": [
-        {
-            "context": "...",
-            "text": "Yesterday I woke up and observed a rainbow out of my window.",
-            "custom_dims": [{
-                "name": "votes",
-                "value": 1.235
-            }]
-        }
-    ]
+  "id": "237a8b63-2826-4ee1-8d83-14c2451a3357",
+  "type": "core",
+  "metadata": {},
+  "document_parts": [
+    {
+      "text": "Yesterday I woke up and observed a rainbow out of my window.",
+      "context": "...",
+      "custom_dimensions": {
+        "votes": 1.235
+      }
+    }
+  ]
 }
 ```
 
 And then to boost documents based on the value of these custom dimensions, you
 can apply a query as follows:
-<CodeBlock language="bash">
-{`
-curl -X POST \\
-  -H "Authorization: Bearer $\{JWT_TOKEN\}" \\
-  -H "customer-id: $\{CUSTOMER_ID\}" \\
-  https://${vars['domains.rest.serving']}:443/v1/query \\
+
+```js
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -H "x-api-key: ${API_KEY}" \
+  https://api.vectara.io/v2/corpora/acme-forums/query \
   -d @- <<END;
 {
-  "query": [
-    { "query": "When was the last time you saw a rainbow?",
-      "num_results": 5,
-      "corpus_key": [{
-          "customer_id": $\{CUSTOMER_ID\},
-          "corpus_id": $\{CORPUS_ID\},
-          "dim": [{
-              "name": "votes",
-              "value": 0.01
-          }]
-      }]
-    }
-  ]
+  "query": "When was the last time you saw a rainbow?",
+  "search": {
+    "custom_dimensions": {
+      "votes": 0.01
+    },
+    "offset": 0,
+    "limit": 5
+  }
 }
 END
-`}
-</CodeBlock>
+```
 
 ## How custom dimensions affect scores
+
 In order to calculate the final score of a document and query that contains
 custom dimensions, <Config v="names.product"/> takes the dot product of the
 query's custom dimensions with the document's custom dimensions and the resulting
@@ -105,11 +98,13 @@ For more information on how scores can be interpreted in general, see the
 documentation on [interpreting scores](/docs/api-reference/search-apis/interpreting-responses/interpreting-scores).
 
 ## Choosing values for custom dimensions
+
 Because scores in <Config v="names.product"/> range from -1 to 1, in general
 it's best to make sure the dot product of the custom dimension values you store
 in your document and the query custom dimensions are between -1 and 1.  
 
 ### Indexing
+
 If you're tracking some underlying value that increases or decreases linearly
 (like upvotes, number of responses, total units sold, etc), then you would
 typically take the `log()` of the value first before storing it in a document to
@@ -123,6 +118,7 @@ it can be useful to apply a [sigmoid function](https://en.wikipedia.org/wiki/Sig
 to the content length or age at indexing time.
 
 ### Querying
+
 Even if the absolute value of the custom dimension is small, it will still have
 a large impact on the score.  Try to keep the document values in the -100 to +100
 range so that you don't need to suppress these values further.  Depending on how

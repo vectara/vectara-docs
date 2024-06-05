@@ -9,10 +9,10 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The Stream Query API enables continuous streamed responses as data becomes
+The Query API enables continuous streamed responses as data becomes
 available, improving responsiveness and reducing latency. Instead of receiving
-a complete response like with the [Standard Query API](/docs/api-reference/search-apis/search), consumers  
-receive partial responses in this order:
+a complete response without enabling streaming, consumers receive partial 
+responses in this order:
 
 1. Search results.
 2. If summarization is enabled, chunks of the summary, like "This", "is", "a", "summary".
@@ -27,14 +27,14 @@ with near-zero latency, significantly enhancing the user experience.
 
 :::tip
 
-Check out our [**interactive API Playground**](/docs/rest-api/stream-query) that lets you experiment with
+Check out our [**interactive API Playground**](/docs/rest-api/query) that lets you experiment with
 this REST endpoint to stream query responses.
 
 :::
 
 ## Stream Query Request Body
 
-The Stream Query API has the same request parameters as the [Standard Query API](/docs/api-reference/search-apis/search).
+The Query API has the same request parameters as the [Standard Query API](/docs/api-reference/search-apis/search).
 The `stream-query` endpoint enables streaming. Use this endpoint instead of
 the standard `query` endpoint.
 
@@ -231,7 +231,7 @@ The [Vectara Chat APIs](/docs/api-reference/chat-apis/chat-apis-overview) have m
 to search content from a corpus:
 <code>https://<Config v="domains.rest.serving"/>/v1/stream-query</code>
 
-The API Playground shows the full [Stream Query REST definition](/docs/rest-api/stream-query).
+The API Playground shows the full [Stream Query REST definition](/docs/rest-api/query).
 
 ## gRPC Example
 

@@ -19,20 +19,61 @@ and display the results. This page provides a detailed reference for how
 to run queries and also describes some of Vectara's capabilities in metadata 
 filtering, reranking, Retrieval Augmented Generation (RAG), and hybrid search.
 
-:::tip
+## Query Types
 
-Check out our [**interactive API Playground**](/docs/rest-api/query) that lets you experiment with 
-this REST endpoint to send queries.
+The Vectara REST API 2.0 has different types of queries for you use 
+depending on your search needs. Depending on the type, queries enable you to 
+define parameters that control the behavior of the query and summarization:
 
-:::
+- **Search Parameters**: Filter data by metadata, apply lexical weighting, add additional
+  context about the data, and rerank the results
+- **Summarization Parameters**: Choose model and prompt (Scale only), and response settings like
+  length and factual scoring, and even more nuanced model parameters (Scale only)
+- **Stream Response**: Optionally have the summarized response stream in real time.
 
-## Query Request Body and Response
+The exact request format depends on the specific query type that you want to 
+use.
 
-The Query request body specifies different parameters that ask questions about 
-the data within corpora. The Query request requires the following parameters:
+### Query Corpora
 
-* `query` - Contains your question and number of results to return.
-* `corpusKey` - Specifies which corpora to run the query 
+The [`/v2/query` endpoint](/docs/rest-api/query) allows you to perform Retrieval Augmented Generation 
+(RAG) across one or more corpora in your account. You send a POST request in 
+the body that specifies the following:
+
+- `query` - Contains your query text
+- `stream_response` - Indicates whether to stream the response in real-time (`true`) or 
+  to send a complete summary at the end of processing the request (`false`)
+- `search` - Specifies the search parameters
+- `summarization` - Specifies the summarization parameters
+
+This query type is useful when you want to query all your 
+data sources at once.
+
+### Simple Single-Corpus Query
+
+Send a [simplified GET request](/docs/rest-api/search-corpus) to `/v2/corpora/{corpus_key}/query` for querying 
+a single corpus that specifies the following:
+
+- `q`: Contains the query string
+- `limit`: Specifies the maximum number of results 
+- `offset`: Specifies the starting position in results
+
+This query types provides a lightweight way to search a single corpus.
+
+### Advanced Corpus Query
+
+Send a POST request to `/v2/corpora/{corpus_key}/query` to [query a specific 
+corpus](/docs/rest-api/query-corpus) with more advanced capabilities. The request body is similar to the 
+Query Corpora type and specifies the same parameters:
+
+- `query` - Contains your query text
+- `stream_response` - Indicates whether to stream the response in real-time or 
+  to send a complete summary at the end of processing the request
+- `search` - Specifies the search parameters
+- `summarization` - Specifies the summarization parameters 
+
+This advanced type provides additional search filtering and customization 
+options compared to the simple GET method.
 
 The query response message encapsulates a single query result. It is a subdocument
 provided at indexing time. The `text` is the subdocument text, the `score`
@@ -41,11 +82,31 @@ indicates how well the text answers the query (higher scores are better).
 The `metadata` list holds any subdocument-level metadata that was stored with
 the item at indexing time. The `corpus_key` indicates which corpus the result
 came from: recall that a single query can execute against multiple corpora.
+While it's most often the case that a query is run against a single
+corpus, it's sometimes useful to run against several in parallel.
 
 Finally, the `document_index` points at a specific document within the
 enclosing response set's `document` array. This is useful for retrieving the
 document id and document-level metadata.
 
+## Corpus Key Definition
+
+If you want to query a specific corpus or corpora, include the unique 
+`corpus_key` in the path of the request such as `v2/corpora/:corpus_key`.
+
+When creating a new corpus, you have the flexibility to specify a custom 
+`corpus_key` that follows a naming convention of your choice. This allows you to 
+assign easily identifiable keys to your corpora, making it easier to manage and 
+reference them in your application.
+
+:::caution
+
+As part of the migration from API 1.0 to 2.0, all existing corpora have been 
+assigned a new `corpus_key` based on their original name and `corpus_id`. The `corpus_key` 
+is created by combining the name of the corpus (with underscores replacing spaces) 
+and the original numeric ID.
+
+:::
 
 ## Query Definition
 
@@ -54,41 +115,32 @@ example, *"Where can I buy the latest iPhone?"*. Optionally, the **query
 context** provides additional information that the system may use to refine the
 results. For example, *"The Apple store near my house is closed due to Covid."*
 
-The `start` field controls the starting position within the list of results,
-while `num_results` dictates how many results are returned. Thus, setting
-`start=5` and `num_results=20` would return twenty results beginning at position
-five. These fields are mainly used to provide pagination.
+Within the `search` object, add `custom_dimensions` weights (Scale only), 
+`metadata_filter` and set the `lexical_interpolation` (formerly `lambda` in 
+the REST API v1.0). Setting to `0` disables exact and Boolean text matching, 
+while a value of `1` disabls neural retrieval. Users often see best results by 
+setting this value somewhere between 0.01 and 0.1, and we typically 
+recommend users start experimentation with a `0.025`.
 
-## Context Configuration
+The `semantics` parameter indicates whether to consider a query against this 
+corpus as a query or a response. The `offset` field controls the starting 
+position within the list of results, while `limit` dictates how many results 
+are returned. Thus, setting `offset=5` and `limit=20` would return twenty 
+results beginning at position five. These fields are mainly used to provide 
+pagination.
 
-The `contextConfig` object lets you specify how each document part appears in 
-the summary of a query. This controls the amount of surrounding context that is 
-included with each matching document part, also known as a snippet. Configuring 
-this addition context affects the results quality for summarization by 
-enhancing relevance and reducing ambiguity. Use `characters_before` and 
-`characters_after` to specify the number of characters to include before and 
-after the matching document part. This is useful when you want to provide a 
-fixed-length context around the matching text.
+The `context_configuration` object lets you specify whether you want a specific 
+number of characters or sentences before or after the matching document part.
 
-These character properties are mutually exclusive with `sentences_before` 
-and `sentences_after` which specify the number of sentences to include before 
-and after the matching document part. This is useful when you want to provide 
-context based on complete sentences rather than a fixed number of characters. 
+Finally, the **reranking configuration** enables reranking of results, to
+further increase relevance in certain scenarios. For details about our English 
+cross-attentional (Scale only) and Maximal Marginal Relevance (MMR) rerankers, 
+see [Reranking](/docs/api-reference/search-apis/reranking).
 
-Use `start_tag` and `end_tag` to wrap the matching document part. These tags 
-serve as delimiters to indicate where the snippet begins and ends within the 
-surrounding context. For example, you can use `<b>` as the `startTag` and `</b>` as 
-the `endTag` to wrap the snippet with bold tags. Experiment and iterate to
-find the optimal context configuration for your specific use case.
+## Query Request and Response
 
-
-## Corpus Key Definition
-
-The `corpusKey` specifies the ID of the corpus being searched. While it's most 
-often the case that a query is run against a single corpus, it's sometimes 
-useful to run against several in parallel.
-
-The `metadata_filter` allows specifying a predicate expression that restricts 
+The `corpus_key` specifies the ID of the corpus being searched. The 
+`metadata_filter` allows specifying a predicate expression that restricts 
 the search to a part of the corpus. The filter is written in a simplified SQL 
 dialect and can reference metadata that was marked as filterable during corpus 
 creation. 
@@ -115,24 +167,23 @@ more rarely, as a response.
 
 ### Reranking Configuration 
 
-The `rerankingConfig` object enables reranking of results, to further increase 
-relevance in certain scenarios. Scale users can modify the `rerankerId` of 
-this object. When using `mmrConfig`, specify a `diversityBias` value between `0.0` 
-and `1.0`. For details about our English cross-attentional (Scale only) and 
-Maximal Marginal Relevance (MMR) rerankers, see [Reranking](/docs/api-reference/search-apis/reranking).
+The `rereanker` object enables reranking of results, to further increase 
+relevance in certain scenarios. Scale users can modify the `reranker_id` of 
+this object with `272725719` to use the [Multilingual Reranker v1](/docs/api-reference/search-apis/reranking#vectara-multilingual-reranker-v1).
+The MMR reranker uses the value `272725718` and also lets you specify 
+a `diversityBias` value between `0.0` and `1.0`. 
 
 ## Query Summarization Request - Retrieval Augmented Generation 
 
 To use Retrieval Augmented Generation (RAG), which <Config v="names.product"/> also refers to as
 "Grounded Generation" -- our groundbreaking way of producing generative 
-summaries on top of your own data -- you can submit a `SummarizationRequest` 
-alongside your query. This produces a `summary` that attempts to answer the 
+summaries on top of your own data -- you can submit a `summarization` that attempts to answer the 
 end-user's question, citing the results as references. For more information, 
 read about [Retrieval Augmented Generation](/docs/learn/grounded-generation/grounded-generation-overview).
 
-The `summary` object enables you to tailor the results of the query 
-summarization. Growth users can specify the `maxSummarizedResults` and 
-`responseLang`.
+The `summarization` object enables you to tailor the results of the query 
+summarization. Growth users can specify the `max_summarized_results` and 
+`response_language`.
 
 ## Factual Consistency Score
 
@@ -144,9 +195,9 @@ range from `0.0` to `1.0`. A higher scores indicates a greater probability of
 being factually accurate, while a lower score indicates a greater probability 
 of hallucinations.
 
-In your summarization request, set the `factual_consistency_score` field to `true`. 
+In your summarization request, set the `enable_factual_consistency_score` field to `true`. 
 The Factual Consistency Score returns a calibrated value in the 
-`factual_consistency` field of the summary message. The score field 
+`factual_consistency_score` field of the summary message. The score field 
 contains the value between `0.0` and `1.0`.
 
 For example, a score of `0.95` suggests a 95% likelihood that the summary is 
@@ -158,26 +209,26 @@ guideline for cutoffs between good and bad.
 ## Citation Format in Summary
 
 When generating a summary, Vectara enables Scale users to format the `style` of 
-`citationParams` object with one of the following formats: 
+`citations` object with one of the following formats: 
 
-* `NUMERIC` (default) - Citations appear as numbers `[1]`, `[2]`, `[N]`, and so on.
-* `NONE` - No citations appear in the summary.
-* `HTML` - Citations appears as a URL: `<a href="https://my.doc/foo">[N]</a>`
-* `MARKDOWN` - Citations appears in Markdown: `[N](https://my.doc/foo)`
+* `numeric` (default) - Citations appear as numbers `[1]`, `[2]`, `[N]`, and so on.
+* `none` - No citations appear in the summary.
+* `html` - Citations appears as a URL: `<a href="https://my.doc/foo">[N]</a>`
+* `markdown` - Citations appears in Markdown: `[N](https://my.doc/foo)`
 
-If set to `HTML` or `MARKDOWN`, you must customize the citation using 
-both of the `urlPattern` and `textPattern` fields to enable dynamic citation 
+If set to `html` or `markdown`, you must customize the citation using 
+both of the `url_pattern` and `text_pattern` fields to enable dynamic citation 
 generation. Both of these parameters can access all part and document level 
 **metadata** fields.
 
-For example, the `urlPattern` field can specify `{doc.id}` and `{part.page}` 
+For example, the `url_pattern` field can specify `{doc.id}` and `{part.page}` 
 metadata as `https://mypdf.doc/foo/{doc.id}#page={part.page}`. 
-The `textPattern` field specifies the document and part metadata name in curly 
+The `text_pattern` field specifies the document and part metadata name in curly 
 braces. For example, use `{doc.title}` and the final result appears as 
 [Title](https://my.doc/foo/2/1).
 
 To use citations, you must specify one of the following summarizers 
-in `summarizerPromptName`:
+in `prompt_name`:
 
 * `vectara-summary-ext-24-05-sml` - (gpt-3.5-turbo)
 * `vectara-summary-ext-24-05-med` - (gpt-4.0)
@@ -192,8 +243,8 @@ For more information, see the [**documentation**](/docs/learn/grounded-generatio
 
 ### Default Citation Behavior
 
-* If `textPattern` is not specified, it defaults to the numerical position of the result ([1], [2], [N].).
-* The `urlPattern` **does not** have a default, so this field must be explicitly defined.
+* If `text_pattern` is not specified, it defaults to the numerical position of the result ([1], [2], [N].).
+* The `url_pattern` **does not** have a default, so this field must be explicitly defined.
 
 
 ### Citation Example
@@ -203,10 +254,10 @@ link to the specific page:
 
 ```json
 {
-  "citationParams": {
-    "style": "MARKDOWN",
-    "urlPattern": "{doc.id}#page={section.page}",
-    "textPattern": "as seen in {doc.title}"
+  "citations": {
+    "style": "markdown",
+    "url_pattern": "{doc.id}#page={section.page}",
+    "text_pattern": "as seen in {doc.title}"
   }
 }
 ```
@@ -226,181 +277,38 @@ Fines](https://new.mta.info/document/36821#page=3).
 capabilities, which present a powerful toolkit for tailoring summarizations to 
 specific application and user needs. 
 
-The `summarizerPromptName` allows you to specify one of our [available summarizers](/docs/learn/grounded-generation/select-a-summarizer).
-Use `promptText` to override the default prompt text with a [custom prompt](/docs/prompts/vectara-prompt-engine). 
-Your use case might require a chatbot to be more human like, so you decide to 
-create a custom response format that behaves more playfully in a conversation 
-or summary. 
+The `prompt_name` allows you to specify one of our [available summarizers](/docs/learn/grounded-generation/select-a-summarizer).
+Use `prompt_name` and `prompt_text` to override the default prompt with a 
+[custom prompt](/docs/prompts/vectara-prompt-engine). Your use case might 
+require a chatbot to be more human like, so you decide to create a custom 
+response format that behaves more playfully in a conversation or summary.
 
-The `debug` option lets you view detailed logs to help in troubleshooting and 
-optimization. The `responseChars` lets you control the length of the summary, but 
-note that it is **not a hard limit** like with the `maxTokens` parameter. The 
-`modelParams` object provides even more fine-grained controls for the summarizer 
+The `max_response_characters` lets you control the length of the summary, but 
+note that it is **not a hard limit** like with the `max_tokens` parameter. The 
+`summarization` object provides even more fine-grained controls for the summarizer 
 model:
-* `maxToken` specifies a hard limit on the number of characters in a response. 
+* `max_tokens` specifies a hard limit on the number of characters in a response. 
     This value supercedes the `responseChars` parameter in the `summary` object.
 * `temperature` indicates whether you want the summarization to not be creative at all `0.0`,
     or for the summarization to take more creative liberties as you approach 
     the maximium value of `1.0`.
-* `frequencyPenalty` provides even more granular control to help ensure that the 
+* `frequency_penalty` provides even more granular control to help ensure that the 
   summarization decreases the likelihood of repeating words. The values range from `0.0` to `1.0`
-* `presencePenalty` provides more control over whether you want the summary to 
+* `presence_penalty` provides more control over whether you want the summary to 
   include new topics. The values also range from `0.0` to `1.0`.
 
 By leveraging these advanced capabilities, application builders can fine-tune 
 the behavior and output style of the summarizer to align with your unique 
 application requirements.
 
-### Chat Conversation Located within the Summary
 
-If you enabled chat on the corpus, the `summary` object contains a 
-conversation from [Vectara Chat](/docs/api-reference/chat-apis/chat-apis-overview) which 
-includes a `conversationId`. You enable Vectara Chat by setting the `store` value to `true`.
-
-The [Vectara Chat APIs](/docs/api-reference/chat-apis/chat-apis-overview) have more details about conversations.
-
-## REST Example
+## REST 2.0 URL
 
 ### Query API Endpoint Address
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
 to search content from a corpus:
-<code>https://<Config v="domains.rest.serving"/>/v1/query</code>
+<code>https://<Config v="domains.rest.serving"/>/v2/query</code>
 
 The API Playground shows the full [Query REST definition](/docs/rest-api/query).
-
-## gRPC Example
-
-You can find the full Query gRPC definition at [serving.proto](https://github.com/vectara/protos/blob/main/serving.proto).
-
-### Query Service and Request
-
-The definition shows details about the `query` service. The system accepts a 
-`query` and returns a response, which contains a list of results. For 
-efficiency, one or more queries can be batched into a single request. `query` 
-contains the search terms that the system needs to match against 
-the data. Then `ContextConfig` specifies the amount of text or number of 
-sentences before and after the result snippet.
-
-#### Corpus Key
-
-The `corpus_key` allows the query to be executed across multiple corpora. 
-The `CorpusKey` identifies a specific corpus or corpora to include in the query.
-Specifying the `customer_id` is optional, since it defaults to the
-customer attached to the gRPC request.
-
-#### Summarization Request Example
-
-The full Query definition provides the detailed summary request. When <Config v="names.product"/> responds 
-with the list of results that most semantically answer the user, it will also 
-then produce a summary of the results with its sources cited. For more details 
-on Retrieval Augmented Generation, have a look at the
-[chatbots and grounded generation overview](/docs/learn/grounded-generation/grounded-generation-overview).
-
-The summary comes back in a format where the `text` contains a summary of the 
-relevant results to the given search with those relevant results included as 
-cited sources.  <Config v="names.product"/> cites these by `[number]` format. 
-For example, if the 1st result is in the summary, it is cited as `[1]`.
-
-#### ResponseSet
-
-The response set groups a list of responses, sorted in order of score, together
-with a list of `statuses` and enclosing `documents`. Since it's possible for
-several results to come from the same document, the length of the document list
-may be less than the length of the response list.
-
-#### Attribute
-
-Attribute represents a named piece of metadata. Both the `name` and its
-`value` are string typed.
-
-```
-message Attribute {
-  string name = 5;
-  string value = 10;
-}
-```
-
-#### Batch Query and Response
-
-The batch query request and response messages simply aggregate several
-individual queries and response sets, respectively. The response sets will match
-the queries in both number and order. For example, the third response set in
-the batch response will correspond with the third query in the batch request.
-
-```protobuf
-message BatchQueryRequest {
-  repeated QueryRequest query = 5;
-}
-
-message BatchQueryResponse {
-  repeated ResponseSet response_set = 5;
-
-  repeated Status status = 1000;
-}
-```
-
-## Advanced Scenarios
-
-### Search Multiple Corpora
-
-There are situations where searching multiple corpora simultaneously can be 
-beneficial. To do this effectively, you need two things:
-
-1. **Proper Permissions:** Setting up an API Key that grants access to all corpora 
-   that you intend to search.
-2. **Query Body Adjustment:** Specific modifications to the query body as outlined below.
-
-
-The query body modification that's necessary is that `corpusKey` can take an
-array of objects.
-
-#### Search a Single Corpus Example
-
-So if you're currently searching 1 corpus as follows:
-
-
-```json
-...
-"corpusKey": [
-  {
-    "customerId": 1234,
-    "corpusId": 5678,
-    "semantics": 0,
-    "metadataFilter": "",
-    "dim": []
-  }
-]
-...
-```
-
-#### Search Multiple Corpora Example
-
-
-As long as your API key has permissions to each of these corpora,
-you can search multiple corpora at once as follows:
-
-```json
-...
-"corpusKey": [
-  {
-    "customerId": 1234,
-    "corpusId": 5678,
-    "semantics": 0,
-    "metadataFilter": "",
-    "dim": []
-  },
-  {
-    "customerId": 1234,
-    "corpusId": 9876,
-    "semantics": 0,
-    "metadataFilter": "",
-    "dim": []
-  }
-]
-...
-```
-In this example, the `query` returns results across the queried
-corpora. The `corpusKey` is returned in the response for each document
-if you need to use it in your application.
 

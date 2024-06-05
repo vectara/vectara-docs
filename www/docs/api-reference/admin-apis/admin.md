@@ -18,7 +18,7 @@ and corpora. Check out this [blog post about managing multi-tenancy](https://vec
 
 :::tip
 
-The [**interactive API Playground**](/docs/rest-api/admin-service) lets you experiment with these API endpoints.
+The [**interactive API Playground**](/docs/rest-api/vectara-rest-api-v-2) lets you experiment with these API endpoints.
 
 :::
 
@@ -40,24 +40,14 @@ its definition.
 The Corpus Management API definitions enable administrators to track usage of 
 their accounts and corpora.
 
-* The **Compute Corpus Size API** allows you to understand how much a corpus has consumed.
-* The **Read Corpus Details API** enables you to read many aspects of a corpus, including the last 
-  computed size, associated API keys, and filter attributes.
-* The **Enable/Disable Corpus API** enables administrators to enable or disable a corpus, such as 
-  when you need to take a corpus offline without deleting the corpus.
+* The **Get Corpus API** enables you to retrieve metadata about a specific 
+  corpus, including its limits and usage information.
+* The **List Corpora API** enables you to list all corpora in your account, 
+  with pagination support.
+* The **Update Corpus API** enables you to modify corpus settings, such as 
+  enabling/disabling the corpus or updating its filter attributes..
+* The **Replace Corpus Filter Attributes API** enables you to replace the filter 
+  attributes of a corpus asynchronously.
 
-The REST APIs are programmatically derived from these gRPC definitions. See
-[REST APIs](/docs/api-reference/rest) for more information on endpoints or expand the 
-specific API in the left navigation sidebar to find REST examples in various
-programming languages. 
-
-:::note
-
-
-For more information on the programmatic conversion,
-see [**gRPC with REST and Open APIs**](https://grpc.io/blog/coreos/). It 
-goes into detail about how gRPC services were made available in both gRPC and 
-HTTP REST formats to provide flexibility to users and create a versatile API 
-framework.
-
-:::
+The REST APIs are designed to be intuitive and follow RESTful principles. They 
+use standard HTTP methods (GET, POST, PATCH, DELETE) for CRUD operations and 

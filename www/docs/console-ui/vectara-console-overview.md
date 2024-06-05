@@ -23,7 +23,7 @@ add team members, build API requests, and manage your Vectara account:
 * :moneybag: **Manage Billing Details:** View account usage information and [payment 
   details](/docs/console-ui/update-credit-card) to ensure uninterrupted service.
 * :globe_with_meridians: **Vectara Platform Overview:** Learn about the Vectara Platform and view interactive 
-  parts of our documentation like the [API Playground](/docs/rest-api/vectara-rest-api).
+  parts of our documentation like the [API Playground](/docs/rest-api/vectara-rest-api-v-2).
 
 ## Vectara Console Home Page
 

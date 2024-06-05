@@ -20,22 +20,15 @@ and it retrieves the `Conversation` object. This object has an `id` and `turn`
 object which includes the `id` of the turn, `conversationId`, the `query` text, 
 `answer`, and whether the turn is `enabled`.
 
-:::tip
-
-Check out our **interactive API Playground** that lets you experiment with this 
-REST endpoint to read conversations in the chat history corpus.
-
-:::
-
 ## REST Example
 
 ### Read Conversations Endpoint Address
 
 <Config v="names.product"/> exposes an HTTP endpoint at the following URL
 to read conversations in the chat history corpus:
-<code>https://<Config v="domains.rest.indexing"/>/v1/read-conversations</code>
+<code>https://<Config v="domains.rest.indexing"/>/v2/chats/:chat_id/turns</code>
 
-The API Playground shows the full [Read Conversations](/docs/rest-api/read-conversations) REST definition.
+The API Playground shows the full [Read Conversations](/docs/rest-api/list-chat-turns) REST definition.
 
 ## gRPC Example
 

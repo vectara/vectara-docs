@@ -15,29 +15,30 @@ corpus access and customer-level authorizations.
 Other activities such as adding, deleting, enabling, disabling, resetting 
 passwords, and editing user roles are performed by the [Manage Users](/docs/api-reference/admin-apis/manage-users/manage-user) endpoint.
 
-:::tip
 
-Check out our [interactive API Playground](/docs/rest-api/list-users) that lets 
-you experiment with this REST endpoint to manage users for your Vectara
-account.
+## List Users Request and Response
 
-:::
+To list users, send a GET request to `/v2/users`. You can specify optional query 
+parameters to control the pagination of the results. 
 
-## listUsersType
+* `limit` - Indicates the maximum number of users to return in a single 
+  request, with a default value of `10` and a maximum value of `100`. 
+* `page_key` - Retrieves the next page of results when the previous request 
+  has reached the limit.
 
-The `listUsersType` specifies the type of user as none, all, or only to list 
-users with a customer account level. You can also pass a `page_key` to 
-retrieve a specific page of results. Leave empty to retrieve first page. 
 
-## REST Example
+The response contains an array of `user` objects with the users and metadata 
+about the pagination.
+
+## REST 2.0 URL
 
 ### List Users Endpoint Address
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
 to list users:
-<code>https://<Config v="domains.rest.indexing"/>/v1/list-users</code>
+<code>https://<Config v="domains.rest.indexing"/>/v2/users</code>
 
-The API Playground shows the full [List Users](/docs/rest-api/compute-account-size) REST definition.
+The API Playground shows the full [List Users](/docs/rest-api/list-users) REST definition.
 
 ## gRPC Example
 

@@ -24,7 +24,7 @@ grounded in facts from the indexed data. Vectara also provides result
 recommendations and enables global collaboration through its 
 **cross-language** search.
 
-## Vectara GenAI Use Cases
+## Vectara RAG use cases
 
 This versatile <Config v="names.product"/> GenAI platform caters to a wide range of 
 [Retrieval Augmented Generation (RAG)](/docs/learn/grounded-generation/grounded-generation-overview) use cases to drive better outcomes and 
@@ -34,7 +34,7 @@ capabilities while protecting company IP and customer data. The data
 is secure. <Config v="names.product"/> does not train on user data and respects data 
 sovereignty and provides you with peace of mind.
 
-### Choose the Data for Ingestion
+### Choose data for ingestion
 
 You might be wondering what kind of data to select for ingestion. Our [Vectara Quick Start Tutorial](/docs/quickstart)
 provides an example that gets you set up and searching for answers quickly!
@@ -78,7 +78,7 @@ calls. Making conversational AI easier to use increases both customer
 satisfaction and engagement.
 
 
-### Question and Answering
+### Question and answering
 
 Vectara understands the context of a question and provides accurate, relevant 
 responses. The <Config v="names.product"/> advantage lets users ask complex questions to get 
@@ -90,7 +90,7 @@ workers on data, and enhance your website search. <Config v="names.product"/> em
 organization to create a dynamic, responsive, and continuous improving [Question 
 and Answer system](/docs/learn/question-answer/question-answer-overview) that enhances the user experience and provides context-aware answers.
 
-### Research and Analysis
+### Research and analysis
 
 Vectara sifts through volumes of publications, news articles, financial reports, 
 scientific and medical research, corporate documents and more and provides 
@@ -109,7 +109,7 @@ helping you make informed decisions. Not only can it answer your questions,
 but also provides citations grounded in facts from the raw data.
 
 
-### Semantic App Search
+### Semantic app search
 
 Vectara lets you embed powerful hybrid search into your applications without 
 being an LLM expert. You provide data and queries through simple APIs in 

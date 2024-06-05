@@ -20,7 +20,7 @@ for optimizing searches made against your data by
 
 :::tip
 
-* Check out our [**interactive API Playground**](/docs/rest-api/file-upload) that enables you
+* Check out our [**interactive API Playground**](/docs/rest-api/upload-file) that enables you
 to experiment with this REST endpoint. You can upload a file to a corpus 
 directly from your browser or copy the curl for your command line.
 * Review the [**Supported File Types**](/docs/api-reference/indexing-apis/file-upload/file-upload-filetypes)
@@ -32,23 +32,22 @@ directly from your browser or copy the curl for your command line.
 
 <Config v="names.product"/> exposes an HTTP endpoint at the following URL
 to upload and index documents into a corpus:
-<code>https://<Config v="domains.rest.indexing"/>/v1/upload</code>
+<code>https://<Config v="domains.rest.indexing"/>/v2/corpora/:corpus_key/upload_file</code>
 
 ## File Upload Request Details
 
-The File Upload endpoint expects an `multipart/form-data` `POST` request that includes the
-following HTTP parameters:
+To upload a file, send a POST request to `/v2/corpora/{corpus_key}/upload_file`, 
+where {corpus_key} is the unique identifier for the corpus. The File Upload 
+endpoint request expects a `multipart/form-data` request containing the 
+following parts:
 
-* `c` - Specifies the `customer_id`.
+* `metadata` - (Optional) Specifies a JSON object representing any additional 
+  metadata to be associated with the extracted document.
+* `file` - Specifies the file that you want to upload.
 
-* `o` - Specifies the `corpus_id` into which the document should be indexed.
-
-* (Optional) `d`: If set to `true`, the server returns the extracted
-document that was indexed. 
-
-  Use this parameter when uploading a raw file (pdf, docx) instead of a file 
-  that contains a `Document` proto message (pbtxt, pb, json). The caller can 
-  inspect the returned extracted `Document` proto message from the raw file.
+Vectara processes the uploaded file, and the extracted text and metadata are 
+used to create a new document within the corpus. Only one document can be 
+uploaded per request.
 
 Apart from these parameters, the servers expect a valid JWT Token in the HTTP
 headers.
@@ -84,18 +83,23 @@ doc_metadata='{ "filesize": 1234 }'
 
 ## Response Codes
 
-The server responds with `200` when the file was uploaded and indexed
-successfully. Note that it may still take a few minutes (typically 5-10 mins)
+The server responds with `201` when the file was uploaded and indexed 
+successfully, along with a `document` object in the response body that 
+contains the assigned `id`, `metadata`, and other relevant information.
+
+:::note
+
+It may still take a few minutes (typically 5-10 mins)
 before the document is served.
+
+:::
 
 Some error codes returned by the server are:
 
--  `400`: An invalid request was sent. For example, one of the required parameters
-was missing, or the corpus ID does not exist.
+-  `400`: Upload files request was malformed.
 
--  `401`: The caller is not authenticated.
-
--  `403`: The caller is not authorized to add documents to the corpus.
+-  `403`: Permissions do not allow uploading a file to the corpus.
+-  `404`: Corpus not found.
 
 -  `409`: A document already exists in the corpus with the same document ID,
 yet the contents of the indexed document are different than the file being

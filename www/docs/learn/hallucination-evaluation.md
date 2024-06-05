@@ -24,38 +24,30 @@ initial guideline.
 
 ## Enable the Factual Consistency Score
 
-In your summarization request, set the `factual_consistency_score` field to `true`. 
+In your summarization request, set the `enable_factual_consistency_score` field to `true`. 
 The Factual Consistency Score returns a calibrated value in the 
-`factual_consistency` field of the summary message. The score field 
+`factual_consistency_score` field of the summary message. The score field 
 contains the value between `0.0` and `1.0`.
 
 ```json showLineNumbers title="Enable the Factual Consistency Score"
-"summary": [
-        {
-          "max_summarized_results": 3,
-          "response_lang": "en",
-          "factual_consistency_score": true
-          },
-        }
-      ]
+"summarization": {
+    "prompt_name": "vectara-summary-ext-v1.3.0",
+    "max_used_search_results": 3,
+    "enable_factual_consistency_score": true
+  }
 ```
 
-In the following example, the summary shows a `factualConsistency` score of `0.98`, 
+In the following example, the summary shows a `factual_consistency_score` of `0.98`, 
 which is 98%.
 
 ```json showLineNumbers title="Example Factual Consistency Score"
-"summary": [
-        {
-          "text": "According to the novel 'The Hitchhiker's Guide to the Galaxy' by Douglas Adams, the answer to the ultimate question of life, the universe, and everything is 42.",
-          "lang": "en",
-          "factualConsistency": {
-            "score": 0.98
-            "status":{
-               "code":"OK",
-               "statusDetail":"",
-               "cause":null
-            }
-          },
-        }
-      ]
+{
+  "summary": "According to the novel 'The Hitchhiker's Guide to the Galaxy' by Douglas 
+    Adams, the answer to the ultimate question of life, the universe, and everything is 42.",
+  "summary_language": "en",
+  "factual_consistency_score": 0.98,
+  "search_results": [
+    // ...
+  ]
+}
 ```

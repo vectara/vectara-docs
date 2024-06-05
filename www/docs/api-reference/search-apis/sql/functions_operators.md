@@ -265,4 +265,3 @@ most relevant documents. The following examples show combinations such as
 
   
   `doc.category IN ('Business', 'Finance') AND doc.publishdate > '2022-01-01' AND doc.status = 'published'`
-

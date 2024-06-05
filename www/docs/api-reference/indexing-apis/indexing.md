@@ -1,7 +1,7 @@
 ---
 id: indexing
-title: Standard Indexing API Definition
-sidebar_label: Standard Indexing API Definition
+title: Indexing API Definition
+sidebar_label: Indexing API Definition
 ---
 
 import Tabs from '@theme/Tabs';
@@ -12,37 +12,48 @@ import {Config} from '@site/docs/definitions.md';
 
 The first step in using <Config v="names.product"/> is to index a set of related 
 documents or content into a corpus. Indexing a document enables you to make 
-data available for search and retrieval more efficiently. The Standard 
-Indexing API is recommended for applications where documents already have a 
-clear and consistent structure.
+data available for search and retrieval more efficiently. The Indexing API 
+lets you add documents that are either in a typical structured format, or in a 
+format that explicitly specifies each document part that becomes a search 
+result. 
 
-Our Standard Indexing capability transforms this structured data into a 
+Our indexing capability transforms this structured data into a 
 format that enables the data to become easily searchable in just a few 
 seconds. We also support a variety of data formats by allowing you to specify 
-multiple document attributes and metadata.
+multiple document attributes and metadata. You can also specify whether to 
+stream the result or receive a complete response.
 
 :::tip
 
-* Check out our [**interactive API Playground**](/docs/rest-api/index) that shows the full 
+* Check out our [**interactive API Playground**](/docs/rest-api/create-corpus-document) that shows the full 
   Index REST definition and lets you experiment with this endpoint to index 
   documents from your browser.
-* We also provide REST Index examples in [**C#**](/docs/getting-started-samples/RestIndexData.cs), [**Java**](/docs/getting-started-samples/RestIndex.java), [**NodeJS**](/docs/getting-started-samples/index_document.js), [**PHP**](/docs/getting-started-samples/indexDocument.php), and [**Python**](/docs/getting-started-samples/rest_index_document.py).
 
 :::
 
 ### Index Document Request and Response
 
-The request that adds data into a corpus provides essential information about 
-the document you want to index. A document is a piece of coherent textual 
-matter. This index request requires the following parameters:
+To index a document, send a POST request to `/v2/corpora/{corpus_key}/documents`, 
+where `{corpus_key}` is the unique identifier for the corpus where you want to 
+add the document. The request body contains a `CreateDocumentRequest` object 
+that represents the document to be indexed. This object has a `type` parameter 
+that determines the format of the document as `core` or `structured`.
 
-* Customer ID 
-* Corpus ID
-* Document object
+Depending on the document type, there are required properties and any optional 
+`metadata` or Scale-only properties like `custom_dimensions`.
 
 The response includes a `status` message and a `StorageQuota` message
 indicating how much quota was consumed. An `ALREADY_EXISTS` status code 
 indicates how much quota would have been consumed.
+
+* `core` - Specifies a document structure that closely corresponds to 
+  Vectara's internal document data model, containing an `id`, `metadata`, and an 
+  array of `document_parts` which contain their own `text`, `metadata`, `context`, 
+  and `custom_dimensions`.
+* `structured` - Specifies a document structure with layout features such as 
+  `title`, `description`, `metadata`, `custom_dimensions`, and an array of 
+  `sections`. These sections each have an `id`, `title`, `text`, `metadata`, 
+  and nested `sections`.
 
 :::note
 
@@ -52,9 +63,36 @@ sum of both values.
 
 :::
 
-## Document Object Definition
+## Core Document Object Definition
 
-A `document` object encapsulates the information about the data that you want 
+A `core` document object has a unique `id`, `metadata`, and an array of 
+`document_parts` which contain their own `text`, `metadata`, `context`, and 
+`custom_dimensions`. 
+
+The `document_parts` object defines the actual text items that you want to 
+index. The document part is the atomic unit of Vectara. Every part is added to 
+the index, and when search results are returned, each result is a document part.
+
+The `text` field defines the text and should generally be a sentence. It 
+should not be shorter, but may be longer, up to the length of an entire 
+paragraph, although performance may suffer.
+
+The `metadata` is returned with the document part in search query results. For 
+example, it can contain information that links the item to records in other 
+systems.
+
+The `context` defines the context of the text. It may include any additional 
+textual information that helps in disambiguating the meaning. For instance, 
+it may include the preceding or following paragraphs, the chapter title, or 
+the document title.
+
+For Scale users, `custom_dimensions` allows you to specify additional factors 
+that can be used at query time to control the ranking of results. The 
+dimensions must be defined ahead of time for the corpus, or else they'll be ignored.
+
+## Structured Document Object Definition
+
+A `structured` document object encapsulates the information about the data that you want 
 to index. A **document** in Vectara is very flexible because it represent a 
 short tweet or book with thousands of pages. This object has a `document_id` 
 which must be unique among all the documents in the same corpus. The document 
@@ -122,17 +160,17 @@ that can be used at query time to control the ranking of results. The
 custom dimensions must be defined ahead of time for the corpus, or else 
 they'll be ignored.
 
-## REST Example
+## REST 2.0 URL
 
-### Standard Indexing REST Endpoint
+### Indexing REST Endpoint
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
 to index content into a corpus:
 <code>https://<Config v="domains.rest.indexing"/>/v1/index</code>
 
-The API Playground shows the full [Standard Indexing REST definition](/docs/rest-api/index).
+The API Playground shows the full [Indexing REST definition](/docs/rest-api/create-corpus-document).
 
-## gRPC Example 
+## Standard Indexing gRPC Example 
 
 You can find the full Standard Indexing gRPC definition at [indexing.proto](https://github.com/vectara/protos/blob/main/indexing.proto).
 
@@ -142,6 +180,23 @@ index when the RPC returns. In most cases, it becomes available within a second.
 
 The full definition also shows the `Document` format, and a `Section` within 
 the document, including metadata about the section.
+
+
+## Core Document gRPC Example
+
+You can find the full core document, also known as the Low-level Indexing gRPC 
+definition at [indexing_core.proto](https://github.com/vectara/protos/blob/main/indexing_core.proto).
+
+A request to add data into a corpus consists of three key pieces of 
+information: the customer ID, the corpus ID, and the data itself, represented 
+as a `CoreDocument` message.
+
+The reply from the server consists of nothing yet. Note that the reply does 
+not block. In other words, the information in the request is not yet available 
+in the index when the RPC returns.
+
+The full definition also shows the `CoreDocument` container format, which has 
+metadata about the document, and parts within the document as `CoreDocumentPart`.
 
 ### Custom Dimensions Use Cases (Scale only)
 

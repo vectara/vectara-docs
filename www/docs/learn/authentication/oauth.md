@@ -25,7 +25,7 @@ you can then pass into subsequent requests as an authenticated application.
 ## :star2: Ready to Dive In? Check Out Our API Playground! :star2:
 
 If already have familiarity about how JWT tokens work and you're ready to dive 
-into our APIs, make your way to our [**API Playground**](/docs/rest-api/vectara-rest-api)! 
+into our APIs, make your way to our [**API Playground**](/docs/rest-api/vectara-rest-api-v-2)! 
 This interactive environment allows you to experiment with <Config v="names.product"/>'s REST 
 APIs directly from your browser! Tailored for developers, the API Playground 
 offers a hands-on experience to understand and demonstrate our capabilities.
@@ -82,11 +82,9 @@ JWT token:
 
 Access your authentication by clicking the copy icon for the "OAuth 2.0 authentication URL."
 
-![Copy the Authentication URL](/img/copy_authentication_url.png)
-
 The URL has the following format:
 
-`https://vectara-prod-<customer-id>.auth.us-west-2.amazoncognito.com/oauth2/token`
+`https://auth.vectara.dev/oauth2/token`
 
 **Client ID**
 
@@ -143,7 +141,7 @@ URL goes here>
 :::note
 
 This method is useful if you want to try out requests in 
-our [**Vectara API Playground**](/docs/rest-api/vectara-rest-api).
+our [**Vectara API Playground**](/docs/rest-api/vectara-rest-api-v-2).
 
 :::
 
