@@ -26,7 +26,7 @@ turn. The request contains the following properties:
   relevant information from the corpora.
 * `generation` - (Required) Specifies the generation parameters for the chat 
   response.
-* `store` - Indicates whether to store the request message and response 
+* `chat.store` - Indicates whether to store the request message and response 
   message. The default value is true.
 
 The response returns assigned `turn_id`, the generated answer, `answer_language`, 

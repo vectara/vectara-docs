@@ -25,7 +25,7 @@ following properties:
   `context_configuration`, and `reranker`.
 * `generation` - (Required) Specifies the generation parameters for the chat 
   response.
-* `store` - Indicates whether to store the request message and response 
+* `chat.store` - Indicates whether to store the request message and response 
   message. The default value is `true`.
 
 The response contains the assigned `chat_id`, `turn_id` (if the chat response 

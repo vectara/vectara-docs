@@ -2172,14 +2172,14 @@ components:
           description: The query to receive an answer on.
           type: string
           example: Am I allowed to bring pets to work?
-        stream_response:
-          description: Indicates whether the response should be streamed or not.
-          type: boolean
-          default: false
         search:
           $ref: '#/components/schemas/SearchCorporaParameters'
         generation:
           $ref: '#/components/schemas/GenerationParameters'
+        stream_response:
+          description: Indicates whether the response should be streamed or not.
+          type: boolean
+          default: false
       required:
         - query
         - search
@@ -2203,10 +2203,6 @@ components:
         query:
           description: The query to receive an answer on.
           type: string
-        stream_response:
-          description: Indicates whether the response should be streamed or not.
-          type: boolean
-          default: false
         search:
           title: SearchCorpusParameters
           description: The parameters to search one corpus.
@@ -2215,6 +2211,10 @@ components:
             - $ref: '#/components/schemas/SearchParameters'
         generation:
           $ref: '#/components/schemas/GenerationParameters'
+        stream_response:
+          description: Indicates whether the response should be streamed or not.
+          type: boolean
+          default: false
       required:
         - query
     SearchCorpus:
@@ -2724,21 +2724,27 @@ components:
           description: The chat message or question.
           type: string
           example: How can I use the Vectara platform?
-        stream_response:
-          description: Indicates whether the response should be streamed or not.
-          type: boolean
-          default: false
         search:
           $ref: '#/components/schemas/SearchCorporaParameters'
         generation:
           $ref: '#/components/schemas/GenerationParameters'
-        store:
-          description: Indicates whether to store request message and response message.
+        chat:
+          $ref: '#/components/schemas/ChatParameters'
+        stream_response:
+          description: Indicates whether the response should be streamed or not.
           type: boolean
-          default: true
+          default: false
       required:
         - query
         - search
+    ChatParameters:
+      type: object
+      description: Parameters to control chat behavior.
+      properties:
+        store:
+          description: Indicates whether to store chat message and response message.
+          type: boolean
+          default: true
     ChatFullResponse:
       description: Full response to a chat question when the result is not streamed.
       type: object
