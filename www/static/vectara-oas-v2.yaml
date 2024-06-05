@@ -2185,14 +2185,14 @@ components:
       description: The parameters to search one or more corpora.
       allOf:
         - $ref: '#/components/schemas/SearchParameters'
-      type: object
-      properties:
-        corpora:
-          description: The corpora that you want to search.
-          type: array
-          items:
-            $ref: '#/components/schemas/KeyedSearchCorpus'
-          minItems: 1
+        - type: object
+          properties:
+            corpora:
+              description: The corpora that you want to search.
+              type: array
+              items:
+                $ref: '#/components/schemas/KeyedSearchCorpus'
+              minItems: 1
       required:
         - corpora
     QueryCorpusRequest:
