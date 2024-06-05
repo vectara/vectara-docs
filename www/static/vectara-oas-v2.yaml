@@ -38,12 +38,12 @@ info:
 tags:
   - name: Queries
     description: Perform search and retrieval augmented generation operations on one or more corpora
-  - name: Corpora
-    description: Create, manage, and update corpora and their associated settings for administration purposes
   - name: Upload
     description: Upload files to a corpus for automatic parsing and document extraction
   - name: Index
     description: Index and manage core and structured documents for efficient search and retrieval
+  - name: Corpora
+    description: Create, manage, and update corpora and their associated settings for administration purposes
   - name: Documents
     description: Retrieve and manage documents stored in a corpus for administrative tasks
   - name: Chats
@@ -52,8 +52,10 @@ tags:
     description: List available LLMs for text summarization and chat
   - name: Encoders
     description: List available encoders for embedding such as Boomerang
+  - name: Rerankers
+    description: List available rerankers for reranking search results
   - name: Jobs
-    description: Monitor and manage background jobs, such as rebuilding indexes or updating corpus settings
+    description: Monitor background jobs such as rebuilding indexes or updating corpus settings
   - name: Users
     description: Create, manage, and authenticate users within the platform for user administration
   - name: Application Clients
