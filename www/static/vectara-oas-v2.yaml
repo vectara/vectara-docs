@@ -1806,9 +1806,9 @@ components:
     CorpusKey:
       description: A user-provided key for a corpus.
       type: string
-      pattern: '[a-zA-Z0-9_\=\-]+$'
       example: my-corpus
-      maxLength: 100
+      pattern: '[a-zA-Z0-9_\=\-]+$'
+      maxLength: 50
     Corpus:
       type: object
       properties:
