@@ -2360,12 +2360,14 @@ components:
         mapping:
           search_results: '#/components/schemas/StreamSearchResponse'
           generation_chunk: '#/components/schemas/StreamGenerationChunk'
+          generation_end: '#/components/schemas/StreamGenerationEnd'
           factual_consistency_score: '#/components/schemas/FactualConsistencyScore'
           error: '#/components/schemas/StreamError'
           end: '#/components/schemas/StreamResponseEnd'
       oneOf:
         - $ref: '#/components/schemas/StreamSearchResponse'
         - $ref: '#/components/schemas/StreamGenerationChunk'
+        - $ref: '#/components/schemas/StreamGenerationEnd'
         - $ref: '#/components/schemas/StreamResponseEnd'
         - $ref: '#/components/schemas/FactualConsistencyScore'
         - $ref: '#/components/schemas/StreamError'
@@ -2437,6 +2439,21 @@ components:
           type: array
           items:
             type: string
+      x-vectaraParents:
+        - QueryStreamedResponse
+        - ChatStreamedResponse
+    StreamGenerationEnd:
+      description: |
+        The end of generation. There may still be more information such as the
+        factual consistency score, but generation has stopped.
+      type: object
+      properties:
+        type:
+          description: |
+            Then end of generation will be denoted with an object
+            with the type `generation_end`.
+          type: string
+          default: generation_end
       x-vectaraParents:
         - QueryStreamedResponse
         - ChatStreamedResponse
@@ -2780,6 +2797,7 @@ components:
           search_results: '#/components/schemas/StreamSearchResponse'
           chat_info: '#/components/schemas/ChatInfoResponse'
           generation_chunk: '#/components/schemas/StreamGenerationChunk'
+          generation_end: '#/components/schemas/StreamGenerationEnd'
           factual_consistency_score: '#/components/schemas/FactualConsistencyScore'
           end: '#/components/schemas/StreamResponseEnd'
           error: '#/components/schemas/StreamError'
@@ -2787,6 +2805,7 @@ components:
         - $ref: '#/components/schemas/StreamSearchResponse'
         - $ref: '#/components/schemas/ChatInfoResponse'
         - $ref: '#/components/schemas/StreamGenerationChunk'
+        - $ref: '#/components/schemas/StreamGenerationEnd'
         - $ref: '#/components/schemas/FactualConsistencyScore'
         - $ref: '#/components/schemas/StreamResponseEnd'
         - $ref: '#/components/schemas/StreamError'
