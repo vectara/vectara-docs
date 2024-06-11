@@ -242,6 +242,22 @@ module.exports = {
         },
         {
           type: "category",
+          label: "File Upload APIs",
+          items: [
+            "api-reference/indexing-apis/file-upload/file-upload",
+            "api-reference/indexing-apis/file-upload/format-for-upload",
+            "api-reference/indexing-apis/file-upload/file-upload-filetypes",
+          ]
+        },
+        {
+          type: "category",
+          label: "Indexing APIs",
+          items: [
+            "api-reference/indexing-apis/indexing",
+          ],
+        },
+        {
+          type: "category",
           label: "Corpus Admin APIs",
           items: [
             "api-reference/admin-apis/admin",
@@ -280,26 +296,24 @@ module.exports = {
           ],
         },
         {
-            type: "category",
-            label: "Indexing APIs",
-            items: [
-              "api-reference/indexing-apis/indexing",
-              {
-                type: "category",
-                label: "File Upload API",
-                items: [
-                  "api-reference/indexing-apis/file-upload/file-upload",
-                  "api-reference/indexing-apis/file-upload/format-for-upload",
-                  "api-reference/indexing-apis/file-upload/file-upload-filetypes",
-                ]
-              },
-            ],
+          type: "category",
+          label: "Large Language Models APIs",
+          items: [
+            "api-reference/llms-apis/llms-api",
+          ],
         },
         {
           type: "category",
           label: "Encoder APIs",
           items: [
             "api-reference/encoder-apis/list-encoders",
+          ],
+        },
+        {
+          type: "category",
+          label: "Reranker APIs",
+          items: [
+            "api-reference/reranker-apis/reranker-apis",
           ],
         },
         {
@@ -343,20 +357,6 @@ module.exports = {
             "api-reference/api-keys/enable-api-key",
             "api-reference/api-keys/delete-api-key",
           ]
-        },
-        {
-          type: "category",
-          label: "Large Language Models APIs",
-          items: [
-            "api-reference/llms-apis/llms-api",
-          ],
-        },
-        {
-          type: "category",
-          label: "Reranker APIs",
-          items: [
-            "api-reference/reranker-apis/reranker-apis",
-          ],
         },
       ],
     },

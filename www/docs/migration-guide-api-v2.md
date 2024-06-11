@@ -50,7 +50,7 @@ replaces non-alphanumeric characters with a "`%`" followed by two hexadecimal
 digits representing the ASCII code of the character.
 
 For example, if a document ID contains a slash ("/"), you would replace it 
-with "%2F" in the URL path:
+with "`%2F`" in the URL path:
 
 `/v2/corpora/my-corpus/documents/doc%2F123`
 
@@ -81,6 +81,22 @@ Going forward, when you create a new corpus, you can specify a custom
 
 * [Retrieve a list](/docs/rest-api/list-corpora) of corpora in the account with the [List Corpora API definition](/docs/api-reference/admin-apis/corpus/list-corpora). 
 * Update any code that references the v1 `corpusId` to use the v2 `corpus_key` format
+
+### Corpus object changes
+
+In addition to the new Corpus Key:
+
+* API v1 uses the Swap Query Encoder (`swapQenc`) and Swap Index Encoder 
+  (`swapIenc`) fields
+* API v2 replaces `swapQenc` with `queries_are_answers` and `swapIenc` with 
+  `documents_are_questions` 
+* API v2 removes the `textless` and `encrypted` fields
+
+**Action items:** 
+
+* Replace `swapQenc` with `queries_are_answers` in your corpus creation requests
+* Replace `swapIenc` with `documents_are_questions` in your corpus creation requests
+
 
 ## Terminology, parameter, and property name changes
 
