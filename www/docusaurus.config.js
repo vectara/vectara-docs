@@ -1,11 +1,11 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "Vectara Docs",
-  tagline: "Developer documentation for Vectara's Retrieval Augmented Generation as-a-Service (RAGaaS) Platform",
+  tagline:
+    "Developer documentation for Vectara's Retrieval Augmented Generation as-a-Service (RAGaaS) Platform",
   url: "https://docs.vectara.com",
   baseUrl: "/",
   favicon: "img/vectara_logo.svg",
@@ -57,12 +57,12 @@ const config = {
             label: "v2.0",
             versions: {
               "1.0": {
-              specPath: "static/vectara-oas.yaml", // path to 1.0 OAS spec
-              outputDir: "versioned_docs/version-1.0/rest-api",
-              label: "1.0",
-              baseUrl: "versioned_docs/version-1.0/rest-api/vectara-oas"
-            }
-           },
+                specPath: "static/vectara-oas.yaml", // path to 1.0 OAS spec
+                outputDir: "versioned_docs/version-1.0/rest-api",
+                label: "1.0",
+                baseUrl: "versioned_docs/version-1.0/rest-api/vectara-oas",
+              },
+            },
           },
         },
       },
@@ -221,28 +221,28 @@ ${content}
           items: [
             {
               label: "Version 2.0 (Latest)",
-              to: "docs/"
+              to: "docs/",
             },
             {
               label: "Version 1.0",
               to: "docs/1.0/",
             },
-          ]
+          ],
         },
         {
           type: "dropdown",
-          label: "API Playground",
+          label: "API Reference",
           position: "left",
           items: [
             {
-              label: "API Playground 2.0 ",
-              to: "docs/rest-api"
+              label: "Version 2.0 (Latest)",
+              to: "docs/rest-api",
             },
             {
-              label: "API Playground 1.0",
+              label: "Version 1.0",
               to: "docs/1.0/rest-api",
             },
-          ]
+          ],
         },
         /* {
           to: "docs/rest-api/",

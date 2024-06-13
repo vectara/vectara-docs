@@ -103,46 +103,46 @@ module.exports = {
       label: "Security and Data Privacy",
       collapsed: true,
       items: [
-            "learn/data-privacy/privacy-overview",
-            "learn/data-privacy/encryption",
-            {
-              type: "category",
-              label: "Authentication and Authorization",
-              collapsed: true,
-              items: [
+        "learn/data-privacy/privacy-overview",
+        "learn/data-privacy/encryption",
+        {
+          type: "category",
+          label: "Authentication and Authorization",
+          collapsed: true,
+          items: [
             "learn/authentication/auth-overview",
             "learn/authentication/api-key-management",
             "learn/authentication/oauth-2",
             "learn/authentication/role-based-access-control",
-              ]
+          ],
+        },
+        {
+          type: "category",
+          label: "API Authentication Examples",
+          items: [
+            {
+              type: "category",
+              label: "OAuth 2.0 Client Credentials Grant Examples",
+              items: [
+                "getting-started-samples/JWTFetcher.cs",
+                "getting-started-samples/JwtFetcher.java",
+                "getting-started-samples/getJwtToken.php",
+                "getting-started-samples/rest_util.py",
+              ],
             },
             {
               type: "category",
-              label: "API Authentication Examples",
+              label: "API Key REST Examples",
               items: [
-                {
-                  type: "category",
-                  label: "OAuth 2.0 Client Credentials Grant Examples",
-                  items: [
-                    "getting-started-samples/JWTFetcher.cs",
-                    "getting-started-samples/JwtFetcher.java",
-                    "getting-started-samples/getJwtToken.php",
-                    "getting-started-samples/rest_util.py",
-                  ],
-                },
-                {
-                  type: "category",
-                  label: "API Key REST Examples",
-                  items: [
-                    "getting-started-samples/RestApiKeyQueries.cs",
-                    "getting-started-samples/RestApiKeyQueries.java",
-                    "getting-started-samples/queryDataApiKey.php",
-                    "getting-started-samples/rest_api_key_queries.py",
-                    "getting-started-samples/app.js",
-                  ],
-                },
+                "getting-started-samples/RestApiKeyQueries.cs",
+                "getting-started-samples/RestApiKeyQueries.java",
+                "getting-started-samples/queryDataApiKey.php",
+                "getting-started-samples/rest_api_key_queries.py",
+                "getting-started-samples/app.js",
               ],
             },
+          ],
+        },
       ],
     },
     {
@@ -217,7 +217,7 @@ module.exports = {
     },
     {
       type: "category",
-      label: "API Reference",
+      label: "API Concepts",
       collapsed: true,
       items: [
         "api-reference/api-overview",
@@ -253,7 +253,7 @@ module.exports = {
             "api-reference/admin-apis/reset-corpus",
             "api-reference/admin-apis/corpus/replace-filter-attributes",
             "api-reference/admin-apis/corpus/compute-corpus-size",
-          ]
+          ],
         },
         {
           type: "category",
@@ -261,7 +261,7 @@ module.exports = {
           items: [
             "api-reference/admin-apis/corpus/list-documents",
             "api-reference/indexing-apis/deleting-documents",
-          ]
+          ],
         },
         {
           type: "category",
@@ -280,27 +280,25 @@ module.exports = {
           ],
         },
         {
-            type: "category",
-            label: "Indexing APIs",
-            items: [
-              "api-reference/indexing-apis/indexing",
-              {
-                type: "category",
-                label: "File Upload API",
-                items: [
-                  "api-reference/indexing-apis/file-upload/file-upload",
-                  "api-reference/indexing-apis/file-upload/format-for-upload",
-                  "api-reference/indexing-apis/file-upload/file-upload-filetypes",
-                ]
-              },
-            ],
+          type: "category",
+          label: "Indexing APIs",
+          items: [
+            "api-reference/indexing-apis/indexing",
+            {
+              type: "category",
+              label: "File Upload API",
+              items: [
+                "api-reference/indexing-apis/file-upload/file-upload",
+                "api-reference/indexing-apis/file-upload/format-for-upload",
+                "api-reference/indexing-apis/file-upload/file-upload-filetypes",
+              ],
+            },
+          ],
         },
         {
           type: "category",
           label: "Encoder APIs",
-          items: [
-            "api-reference/encoder-apis/list-encoders",
-          ],
+          items: ["api-reference/encoder-apis/list-encoders"],
         },
         {
           type: "category",
@@ -342,21 +340,17 @@ module.exports = {
             "api-reference/api-keys/get-api-key",
             "api-reference/api-keys/enable-api-key",
             "api-reference/api-keys/delete-api-key",
-          ]
+          ],
         },
         {
           type: "category",
           label: "Large Language Models APIs",
-          items: [
-            "api-reference/llms-apis/llms-api",
-          ],
+          items: ["api-reference/llms-apis/llms-api"],
         },
         {
           type: "category",
           label: "Reranker APIs",
-          items: [
-            "api-reference/reranker-apis/reranker-apis",
-          ],
+          items: ["api-reference/reranker-apis/reranker-apis"],
         },
       ],
     },
