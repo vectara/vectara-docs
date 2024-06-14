@@ -9,17 +9,17 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The Get API Key API lists all existing API keys for a customer ID. 
-It also shows what corpora are accessed by these keys and with what 
-permissions. This capability can provide insights into key usage and 
+The Get API Key API lists all existing API keys for a customer ID.
+It also shows what corpora are accessed by these keys and with what
+permissions. This capability can provide insights into key usage and
 status and help you manage the lifecycle and security of your API keys.
 
 ## Get API Key Request and Response
 
-To get an API key, send a GET request to `/v2/api_keys/{api_key_id}`, where 
+To get an API key, send a GET request to `/v2/api_keys/{api_key_id}`, where
 `{api_key_id}` is the ID of the API key you want to retrieve.
 
-The response includes an `ApiKey` object that show the API name, enabled 
+The response includes an `ApiKey` object that show the API name, enabled
 status, API key role, and API policy.
 
 ## REST 2.0 URL
@@ -30,7 +30,7 @@ status, API key role, and API policy.
 to get an API key:
 <code>https://<Config v="domains.rest.indexing"/>/v2/api-keys</code>
 
-The API Playground shows the full [Get API Key](/docs/rest-api/get-api-key) REST definition.
+The API Reference shows the full [Get API Key](/docs/rest-api/get-api-key) REST definition.
 
 ## gRPC Example
 

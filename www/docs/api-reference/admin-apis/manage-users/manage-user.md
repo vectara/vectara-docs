@@ -9,19 +9,19 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The Manage User API lets you perform different user and team management 
-activities such as adding, deleting, enabling, disabling, and editing user 
-roles. This capability is useful in scenarios that require dynamic team 
+The Manage User API lets you perform different user and team management
+activities such as adding, deleting, enabling, disabling, and editing user
+roles. This capability is useful in scenarios that require dynamic team
 management.
 
 For example, a company wants to onboard new team members efficiently and this  
-endpoint lets you streamline the onboarding process by programatically 
-adding new users, assigning appropriate roles, and setting up access 
+endpoint lets you streamline the onboarding process by programatically
+adding new users, assigning appropriate roles, and setting up access
 permissions.
 
 :::tip
 
-Check out our [**interactive API Playground**](/docs/rest-api/update-user) that lets 
+Check out our [**interactive API Reference**](/docs/rest-api/update-user) that lets
 you experiment with this REST endpoint to manage users for your Vectara
 account.
 
@@ -29,7 +29,7 @@ account.
 
 ## userActionType Object
 
-The `userActionType` object contains the `user` object, which specifies the 
+The `userActionType` object contains the `user` object, which specifies the
 `id`, `handle`, `userStatus`, `role`, and other information about the user.
 
 ## REST Example
@@ -40,7 +40,7 @@ The `userActionType` object contains the `user` object, which specifies the
 to manage users:
 <code>https://<Config v="domains.rest.indexing"/>/v2/users/:user_id</code>
 
-The API Playground shows the full [Manage User](/docs/rest-api/update-user) REST definition.
+The API Reference shows the full [Manage User](/docs/rest-api/update-user) REST definition.
 
 ## gRPC Example
 

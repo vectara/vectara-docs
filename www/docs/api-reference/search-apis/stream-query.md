@@ -11,7 +11,7 @@ import {vars} from '@site/static/variables.json';
 
 The Query API enables continuous streamed responses as data becomes
 available, improving responsiveness and reducing latency. Instead of receiving
-a complete response without enabling streaming, consumers receive partial 
+a complete response without enabling streaming, consumers receive partial
 responses in this order:
 
 1. Search results.
@@ -27,7 +27,7 @@ with near-zero latency, significantly enhancing the user experience.
 
 :::tip
 
-Check out our [**interactive API Playground**](/docs/rest-api/query) that lets you experiment with
+Check out our [**interactive API Reference**](/docs/rest-api/query) that lets you experiment with
 this REST endpoint to stream query responses.
 
 :::
@@ -231,7 +231,7 @@ The [Vectara Chat APIs](/docs/api-reference/chat-apis/chat-apis-overview) have m
 to search content from a corpus:
 <code>https://<Config v="domains.rest.serving"/>/v1/stream-query</code>
 
-The API Playground shows the full [Stream Query REST definition](/docs/rest-api/query).
+The API Reference shows the full [Stream Query REST definition](/docs/rest-api/query).
 
 ## gRPC Example
 

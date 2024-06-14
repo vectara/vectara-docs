@@ -12,25 +12,25 @@ import {vars} from '@site/static/variables.json';
 The Create User API lets you create a user in the current customer account.
 
 For example, a company wants to onboard new team members efficiently and this  
-endpoint lets you streamline the onboarding process by programatically 
-adding new users, assigning appropriate roles, and setting up access 
+endpoint lets you streamline the onboarding process by programatically
+adding new users, assigning appropriate roles, and setting up access
 permissions.
 
 ## Create User Request and Response
 
-To create a user, send a POST request to `/v2/users` with the following 
+To create a user, send a POST request to `/v2/users` with the following
 properties:
 
-* `email` - (Required) Specifies the email address for the user.
-* `username` - Specifies he username for the user. If not provided, the 
+- `email` - (Required) Specifies the email address for the user.
+- `username` - Specifies he username for the user. If not provided, the
   `username` defaults to the email address.
-* `description` - A description for the user.
-* `api_roles` - An array of role names assigned to the user. The possible 
-  values are `owner`, `administrator`, `billing_administrator`, and 
+- `description` - A description for the user.
+- `api_roles` - An array of role names assigned to the user. The possible
+  values are `owner`, `administrator`, `billing_administrator`, and
   `corpus_administrator`.
 
-The response returns a `user` object that contain sthe assigned user ID, email, 
-username, enabled status, description, creation timestamp, and assigned API 
+The response returns a `user` object that contain sthe assigned user ID, email,
+username, enabled status, description, creation timestamp, and assigned API
 roles.
 
 ## REST 2.0 URL
@@ -41,7 +41,7 @@ roles.
 to manage users:
 <code>https://<Config v="domains.rest.indexing"/>/v2/users</code>
 
-The API Playground shows the full [Create User](/docs/rest-api/create-user) REST definition.
+The API Reference shows the full [Create User](/docs/rest-api/create-user) REST definition.
 
 ## gRPC Example
 
