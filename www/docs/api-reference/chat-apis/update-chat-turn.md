@@ -9,11 +9,11 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The Update Chat Turn API deletes specific turns from chat. This enables developers 
-to remove inaccurate or inappropriate responses from the conversation history. 
+The Update Chat Turn API deletes specific turns from chat. This enables developers
+to remove inaccurate or inappropriate responses from the conversation history.
 
-The `chat_id` specifies the conversation ID that contains the turn 
-you want to delete, and the `turn_id` specifies the Turn ID that you want to 
+The `chat_id` specifies the conversation ID that contains the turn
+you want to delete, and the `turn_id` specifies the Turn ID that you want to
 delete.
 
 ## REST 2.0 URL
@@ -24,5 +24,4 @@ delete.
 to update turns in a chat:
 <code>https://<Config v="domains.rest.indexing"/>/v2/chats/:chat_id/turns/:turn_id</code>
 
-The API Playground shows the full [Update Chat Turn](/docs/rest-api/update-chat-turn) REST definition.
-
+The API Reference shows the full [Update Chat Turn](/docs/rest-api/update-chat-turn) REST definition.

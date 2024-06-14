@@ -9,17 +9,16 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The List API Keys API lists all existing API keys for a customer ID. 
-It also shows what corpora are accessed by these keys and with what 
-permissions. This capability can provide insights into key usage and 
+The List API Keys API lists all existing API keys for a customer ID.
+It also shows what corpora are accessed by these keys and with what
+permissions. This capability can provide insights into key usage and
 status and help you manage the lifecycle and security of your API keys.
-
 
 ## List API Keys Request and Response
 
-To list API keys, send a GET request to `/v2/api_keys`. 
+To list API keys, send a GET request to `/v2/api_keys`.
 
-The response includes a array of `ApiKey` objects that show the API keys and 
+The response includes a array of `ApiKey` objects that show the API keys and
 metadata about the pagination.
 
 ## REST 2.0 URL
@@ -30,7 +29,7 @@ metadata about the pagination.
 to list API keys:
 <code>https://<Config v="domains.rest.indexing"/>/v2/api-keys</code>
 
-The API Playground shows the full [List API Keys](/docs/rest-api/list-api-keys) REST definition.
+The API Reference shows the full [List API Keys](/docs/rest-api/list-api-keys) REST definition.
 
 ## gRPC Example
 

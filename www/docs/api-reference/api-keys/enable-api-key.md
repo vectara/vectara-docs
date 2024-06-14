@@ -9,16 +9,16 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The Update API Key API lets you enable or disable specific API keys. You 
+The Update API Key API lets you enable or disable specific API keys. You
 can use this endpoint to temporarily disable access without deleting the key.
 
-This capability is useful for scenarios like maintenance windows, or when your 
+This capability is useful for scenarios like maintenance windows, or when your
 team no longer requires access to a specific corpus.
 
 ## Update API Key Request and Response
 
-To update an API key, send a PATCH request to `/v2/api_keys/{api_key_id}`, 
-where `{api_key_id}` is the ID of the API key you want to update with the 
+To update an API key, send a PATCH request to `/v2/api_keys/{api_key_id}`,
+where `{api_key_id}` is the ID of the API key you want to update with the
 `enabled` property set to `true` or `false` for the API key.
 
 ## REST 2.0 URL
@@ -29,7 +29,7 @@ where `{api_key_id}` is the ID of the API key you want to update with the
 to enable API keys:
 <code>https://<Config v="domains.rest.indexing"/>/v2/api_keys/:api_key_id</code>
 
-The API Playground shows the full [Update API Key](/docs/rest-api/update-api-key) REST definition.
+The API Reference shows the full [Update API Key](/docs/rest-api/update-api-key) REST definition.
 
 ## gRPC Example
 

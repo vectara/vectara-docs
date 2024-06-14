@@ -7,19 +7,19 @@ sidebar_label: Compute Account Size API Definition
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The Compute Account Size API lets you view how much quota you consumed 
-across the entire account. This capability is useful for administrators who 
-want to track and monitor usage of multiple accounts. For example, you manage 
+The Compute Account Size API lets you view how much quota you consumed
+across the entire account. This capability is useful for administrators who
+want to track and monitor usage of multiple accounts. For example, you manage
 multiple tenants and notice that your account usage is higher than expected.
 
-You use the [Compute Corpus Size API](/docs/1.0/api-reference/admin-apis/corpus/compute-corpus-size) to determine 
-that a tenant is over their quota. You decide to revoke the ability for 
-the tenant to add more data to the corpus or perform more searches by 
+You use the [Compute Corpus Size API](/docs/1.0/api-reference/admin-apis/corpus/compute-corpus-size) to determine
+that a tenant is over their quota. You decide to revoke the ability for
+the tenant to add more data to the corpus or perform more searches by
 disabling API keys.
 
 :::tip
 
-Check out our [**interactive API Playground**](/docs/1.0/rest-api/compute-account-size) that lets you experiment with this 
+Check out our [**interactive API Reference**](/docs/1.0/rest-api/compute-account-size) that lets you experiment with this
 endpoint to view the account size.
 
 :::
@@ -30,7 +30,7 @@ The request to compute the account size is an expensive operation.
 :::
 
 This request requires the Customer ID parameter and the response includes a
-`size` object which is the sum of the number of characters and metadata 
+`size` object which is the sum of the number of characters and metadata
 characters.
 
 ## REST Example
@@ -41,7 +41,7 @@ characters.
 to compute the account size:
 <code>https://<Config v="domains.rest.admin"/>/v1/compute-account-size</code>
 
-The API Playground shows the full [Compute Account Size](/docs/1.0/rest-api/compute-account-size) REST definition.
+The API Reference shows the full [Compute Account Size](/docs/1.0/rest-api/compute-account-size) REST definition.
 
 ## gRPC Example
 

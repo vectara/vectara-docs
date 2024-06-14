@@ -9,12 +9,12 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The Disable Turns API disables specific turns from a conversation within the 
-chat history corpus. This enables developers to exclude specific responses 
+The Disable Turns API disables specific turns from a conversation within the
+chat history corpus. This enables developers to exclude specific responses
 from the conversation history.
 
-The `conversationId` specifies the conversation ID that contains the turn 
-you want to disable, and the `turnId` specifies the Turn ID that you want to 
+The `conversationId` specifies the conversation ID that contains the turn
+you want to disable, and the `turnId` specifies the Turn ID that you want to
 disable.
 
 ## REST 2.0 URL
@@ -25,7 +25,7 @@ disable.
 to disable turns in a chat:
 <code>https://<Config v="domains.rest.indexing"/>/v2/chats/:chat_id/turns/:turn_id</code>
 
-The API Playground shows the full [Disable Turns](/docs/rest-api/update-chat-turn) REST definition.
+The API Reference shows the full [Disable Turns](/docs/rest-api/update-chat-turn) REST definition.
 
 ## gRPC Example
 
