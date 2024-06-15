@@ -124,13 +124,13 @@ paths:
         '201':
           description: The corpus has been created.
           content:
-            applicaton/json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/Corpus'
         '400':
           description: Invalid request body in the create corpus request.
           content:
-            applicaton/json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/BadRequestError'
         '403':
@@ -264,7 +264,7 @@ paths:
               $ref: '#/components/schemas/UpdateCorpusRequest'
       responses:
         '200':
-          description: Succcessfully modified the corpus.
+          description: Successfully modified the corpus.
           content:
             application/json:
               schema:
@@ -297,9 +297,9 @@ paths:
             $ref: '#/components/schemas/CorpusKey'
       responses:
         '204':
-          description: Succesfully reset a corpus.
+          description: Successfully reset a corpus.
         '403':
-          description: Permissions do not allow reseting the corpus.
+          description: Permissions do not allow resetting the corpus.
           content:
             application/json:
               schema:
@@ -336,7 +336,7 @@ paths:
               $ref: '#/components/schemas/ReplaceFilterAttributesRequest'
       responses:
         '200':
-          description: Succesfully created a job that will replace the filter attributes.
+          description: Successfully created a job that will replace the filter attributes.
           content:
             application/json:
               schema:
@@ -418,7 +418,7 @@ paths:
       tags:
         - Queries
       summary: Corpus Query
-      description: Query a specific corpus and find relevant results, highlight relevant snippets, and use Retrival Augmented Generation.
+      description: Query a specific corpus and find relevant results, highlight relevant snippets, and use Retrieval Augmented Generation.
       operationId: queryCorpus
       parameters:
         - in: path
@@ -491,7 +491,7 @@ paths:
                 contentType: application/octet-stream
       responses:
         '201':
-          description: The extracted document havs been parsed and added to the corpus.
+          description: The extracted document has been parsed and added to the corpus.
           content:
             application/json:
               schema:
@@ -1020,7 +1020,7 @@ paths:
               $ref: '#/components/schemas/UpdateTurnRequest'
       responses:
         '200':
-          description: Succcessfully modified the turn.
+          description: Successfully modified the turn.
           content:
             application/json:
               schema:
@@ -1190,7 +1190,7 @@ paths:
       tags:
         - Jobs
       summary: Get a job by ID
-      description: Get a job by a specific ID. Jobs are backgrouond processes like replacing the filterable metadata attributes.
+      description: Get a job by a specific ID. Jobs are background processes like replacing the filterable metadata attributes.
       operationId: getJob
       parameters:
         - name: job_id
@@ -1928,7 +1928,7 @@ components:
         description:
           description: Description of the filter. May be omitted.
           type: string
-          example: "The title of the docment."
+          example: "The title of the document."
         indexed:
           description: Whether an index is created for the filter. Creating an index will improve query latency when using the filter.
           type: boolean
@@ -1987,6 +1987,8 @@ components:
             The number of characters before the matching document part that are shown.
             This is useful to show the context of the document part in the wider document.
             Ignored if `sentences_before` is set.
+            Vectara will capture the full sentence that contains the captured characters,
+            so as to not lose the meaning caused by a truncated word or sentence.
           type: integer
           format: int32
           default: 0
@@ -1997,6 +1999,8 @@ components:
             The number of characters after the matching document part that are shown. 
             This is useful to show the context of the document part in the wider document.
             Ignored if `sentences_after` is set.
+            Vectara will capture the full sentence that contains the captured characters,
+            so as to not lose the meaning caused by a truncated word or sentence.
           type: integer
           format: int32
           default: 0
@@ -2275,7 +2279,7 @@ components:
           default: customer_reranker
         reranker_id:
           description: |
-            The ID of the reranker. Current reranker that may be used by Scale custmers is rnk_272725719.
+            The ID of the reranker. Current reranker that may be used by Scale customers is rnk_272725719.
             Do not specify the MMR reranker ID here, and instead use the MMR reranker object type.
           type: string
           pattern: rnk_(?!272725718)\d+
@@ -2343,7 +2347,7 @@ components:
           type: string
         request_corpora_index:
           description: |
-            A query request can search over multiple corpora at a time. This proprety 
+            A query request can search over multiple corpora at a time. This property 
             is set to the index in the list of corpora in the original search request that this
             search result originated from.
             
@@ -2491,7 +2495,7 @@ components:
 
         Otherwise, you can create a document with all the document parts explicitly specified.
 
-        A document part is the a search result item in search and retrieval augmeneted generation endpoints.
+        A document part is the a search result item in search and retrieval augmented generation endpoints.
       type: object
       discriminator:
         propertyName: type
@@ -2515,7 +2519,7 @@ components:
             When the type of the indexed document is `structured` the rest of
             the object is expected to follow this schema. It allows you to create a document
             that follows normal document conventions. The Vectara platform will then
-            create document parts using its internal algorithim.
+            create document parts using its internal algorithm.
           default: structured
           type: string
         title:
@@ -3026,7 +3030,7 @@ components:
           description: The human-readable name of the App Client.
           type: string
         description:
-          description: Descritpion of the App Client.
+          description: Description of the App Client.
           type: string
         client_id:
           description: The client ID used with the OAuth flow.
@@ -3223,7 +3227,7 @@ components:
           description: Indicates whether the user is enabled or disabled.
           type: boolean
         description:
-          description: The escription for the user.
+          description: The description for the user.
           type: string
         created_at:
           description: When the user was created.
@@ -3373,7 +3377,7 @@ components:
       type: object
       properties:
         messages:
-          description: The messages describing why the error occured.
+          description: The messages describing why the error occurred.
           type: array
           items:
             title: message
