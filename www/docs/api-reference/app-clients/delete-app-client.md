@@ -13,7 +13,7 @@ The Delete App Client API lets you delete one or more existing App Clients.
 
 ## Delete App Client Request and Response
 
-To delete an API key, send a DELETE request to `/v2/app_clients/{app_client_id}`, 
+To delete an API key, send a DELETE request to `/v2/app_clients/{app_client_id}`,
 where `{app_client_id}` is the ID of the App Client you want to delete.
 
 ## REST 2.0 URL
@@ -24,4 +24,4 @@ where `{app_client_id}` is the ID of the App Client you want to delete.
 to update an app client:
 <code>https://<Config v="domains.rest.indexing"/>/v2/app_clients/:app_client_id</code>
 
-The API Playground shows the full [Delete App Client](/docs/rest-api/delete-app-client) REST definition.
+The API Reference shows the full [Delete App Client](/docs/rest-api/delete-app-client) REST definition.

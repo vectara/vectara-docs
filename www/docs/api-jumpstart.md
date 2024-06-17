@@ -3,57 +3,58 @@ id: api-recipes
 title: API Recipes
 sidebar_label: API Recipes
 ---
+
 import {Config} from '@site/docs/definitions.md';
 
-Using our APIs enable application developers and data engineers to seamlessly 
-integrate the <Config v="names.product"/> semantic search capabilities into 
-your applications. After you review this section, you can 
-check out our [API Playground](/docs/rest-api/vectara-rest-api-v-2) to experiment with Vectara's REST APIs directly 
+Using our APIs enable application developers and data engineers to seamlessly
+integrate the <Config v="names.product"/> semantic search capabilities into
+your applications. After you review this section, you can
+check out our [API Reference](/docs/rest-api/vectara-rest-api-v-2) to experiment with Vectara's REST APIs directly
 from your browser!
 
-The Vectara Console and our APIs work hand-in-hand as part of the app development 
-process. For example, a builder uses this following workflow: 
+The Vectara Console and our APIs work hand-in-hand as part of the app development
+process. For example, a builder uses this following workflow:
 
-* Fine-tune a query's lambda and filters until the answer quality is just 
+- Fine-tune a query's lambda and filters until the answer quality is just
   right.
-* Copy the request directly from the Vectara Console and paste it into your IDE.
-* Copy the customer ID and API key from the Vectara Console to further configure 
+- Copy the request directly from the Vectara Console and paste it into your IDE.
+- Copy the customer ID and API key from the Vectara Console to further configure
   the request.
-* Test out the software and then verify that requests are hitting your 
+- Test out the software and then verify that requests are hitting your
   corpus by checking the querying graph on the Overview tab.
 
-Let’s get you started with using the <Config v="names.product"/> APIs so that 
+Let’s get you started with using the <Config v="names.product"/> APIs so that
 you can perform queries on some data.
 
 ## What you will learn
 
-We'll show you several example API recipes that include queries with some 
+We'll show you several example API recipes that include queries with some
 values in the parameters, and then display example responses:
-* [Search for answers in a corpus](/docs/api-recipes#search-for-answers-in-a-corpus)
-* [Upload a file to the corpus](/docs/api-recipes#upload-a-file-to-the-corpus)
-* [Issue a query and return a specific number of results](/docs/api-recipes#issue-a-query-and-return-a-specific-number-of-results)
-* [List all corpora and delete a specific corpus](/docs/api-recipes#list-all-corpora-and-delete-a-specific-corpus)
 
-To issue the types of API calls in these recipes, you typically need the 
+- [Search for answers in a corpus](/docs/api-recipes#search-for-answers-in-a-corpus)
+- [Upload a file to the corpus](/docs/api-recipes#upload-a-file-to-the-corpus)
+- [Issue a query and return a specific number of results](/docs/api-recipes#issue-a-query-and-return-a-specific-number-of-results)
+- [List all corpora and delete a specific corpus](/docs/api-recipes#list-all-corpora-and-delete-a-specific-corpus)
+
+To issue the types of API calls in these recipes, you typically need the
 following information that you can get from the Vectara Console UI:
 
-* Customer ID
-* Corpus ID
-* API Key
+- Customer ID
+- Corpus ID
+- API Key
 
 ### Search for answers in a corpus
 
-In this example, you have a corpus with uploaded data from an Employee 
-Handbook. Now you want to ask, _“How much PTO is offered to employees each 
+In this example, you have a corpus with uploaded data from an Employee
+Handbook. Now you want to ask, _“How much PTO is offered to employees each
 year?”_
 
-To issue the cURL command in the example, you input the following 
+To issue the cURL command in the example, you input the following
 field values:
 
-* `x-api-key` = `abc_12345defg67890hij09876`
-* `corpus_key` = `employee-handbook`
-* `query` = How much PTO is offered to employees each year?
-
+- `x-api-key` = `abc_12345defg67890hij09876`
+- `corpus_key` = `employee-handbook`
+- `query` = How much PTO is offered to employees each year?
 
 #### Example cURL command
 
@@ -89,7 +90,7 @@ curl -L -X POST 'https://api.vectara.io/v2/corpora/employee-handbook/query' \
           // This value tell the summarizer to use 5 results
           // Experiment setting this value from 5-10
           "max_used_search_results": 5,
-          
+
         }
       ]
     }
@@ -126,29 +127,29 @@ Let’s take a closer look at the first response:
 
 The example API call provided the following response:
 
-_"Employee Handbook PTO is 20 days a year for all new employees. <b>Employees 
-earn more vacation days per year of service up to 5 extra days.</b> 
+_"Employee Handbook PTO is 20 days a year for all new employees. <b>Employees
+earn more vacation days per year of service up to 5 extra days.</b>
 Example: Once you begin your 5th year, you now have 25 vacation days."_
 
-The result answers the question and returns additional details about the 
-query, such as the language, section, and offset. 
+The result answers the question and returns additional details about the
+query, such as the language, section, and offset.
 
 Let's take a look at some other API calls that you can make.
 
 ### Upload a file to the corpus
 
-If you want to add a file to an existing corpus, you can upload a new file with 
+If you want to add a file to an existing corpus, you can upload a new file with
 a simple command.
 
 You need to input the following information:
 
-* `x-api-key`
-* `corpus_id`
-* File Path
+- `x-api-key`
+- `corpus_id`
+- File Path
 
 #### Example cURL command
 
-In this example, you have a local `doc.rtf` file that you want to 
+In this example, you have a local `doc.rtf` file that you want to
 upload the corpus with the `corpus_key` as `employee-handbook`:
 
 ```js
@@ -178,13 +179,13 @@ The file uploads successfully and you get the following response:
     "id": 1,
     "text": "Simple test doc\n\nLorem ipsum \nLorem ipsum \nLorem ipsum \n "
    }]
-  }} 
+  }}
 ```
 
 ### Issue a query and return a specific number of results
 
-In this query, you want to search for the term "technology" and then return 
-only the first 5 results. 
+In this query, you want to search for the term "technology" and then return
+only the first 5 results.
 
 #### Example cURL command
 
@@ -209,12 +210,13 @@ curl -L -X POST 'https://api.vectara.io/v2/corpora/technology-corpus/query' \
   }
 }'
 ```
+
 #### Example JSON response with 5 results
 
 ```js
 {
-  "summary": "The future of technology is AI. Technology is evolving rapidly, with 
-    generative AI technology being revolutionary. While technology has its pros and cons, 
+  "summary": "The future of technology is AI. Technology is evolving rapidly, with
+    generative AI technology being revolutionary. While technology has its pros and cons,
     it plays a significant role in modern society.",
   "summary_language": "eng",
   "search_results": [
@@ -251,9 +253,10 @@ curl -L -X POST 'https://api.vectara.io/v2/corpora/technology-corpus/query' \
   ]
 }
 ```
+
 ### List all corpora and delete a specific corpus
 
-In this example, you want to list all corpora that contain the word "handbook" in 
+In this example, you want to list all corpora that contain the word "handbook" in
 the name.
 
 1. Execute the following curl command to list the corpora:
@@ -264,7 +267,8 @@ the name.
       -H 'Accept: application/json' \
       -H 'x-api-key: abc_12345defg67890hij09876'
    ```
-You get the following response:
+
+   You get the following response:
 
    ```js
    {
@@ -305,30 +309,30 @@ You get the following response:
    ],
    "metadata": {
     "page_key": ""
-  }
-  }
+   }
+   }
    ```
 
 2. Execute the following curl command to delete a specific corpus with `corpus_id` = 13.
 
-  ```js
-  curl -L -X DELETE 'https://api.vectara.io/v2/corpora/2022-handbook' \
-    -H 'Content-Type: application/json' \
-    -H 'Accept: application/json' \
-    -H 'x-api-key: abc_12345defg67890hij09876'
-  ```
+```js
+curl -L -X DELETE 'https://api.vectara.io/v2/corpora/2022-handbook' \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'x-api-key: abc_12345defg67890hij09876'
+```
 
- You get the following response:
+You get the following response:
 
- ```js
- {
-  "status": 204,
-  "message": "Corpus deleted successfully"
+```js
+{
+ "status": 204,
+ "message": "Corpus deleted successfully"
 }
- ```
+```
 
-3. Execute the curl command from Step 1 again and the corpus you deleted 
+3. Execute the curl command from Step 1 again and the corpus you deleted
    no longer exists.
 
-This API recipes section provided a variety of query examples that you can leverage 
+This API recipes section provided a variety of query examples that you can leverage
 as you start building with <Config v="names.product"/>.

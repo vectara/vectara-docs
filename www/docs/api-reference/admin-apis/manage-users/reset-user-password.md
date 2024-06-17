@@ -13,10 +13,10 @@ The Reset User Password API lets you send a password reset email to the user.
 
 ## Reset User Password Request and Response
 
-To reset a password for a user, send a POST request to `/v2/users/{username}/reset_password`, 
+To reset a password for a user, send a POST request to `/v2/users/{username}/reset_password`,
 where `{username}` is the User ID of the user who needs a password reset.
 
-The response contains the `204` status code that indicates a password reset 
+The response contains the `204` status code that indicates a password reset
 email was sent to the user.
 
 ## REST 2.0 URL
@@ -27,5 +27,4 @@ email was sent to the user.
 to reset a user's password:
 <code>https://<Config v="domains.rest.indexing"/>/v2/users:username/reset_password</code>
 
-The API Playground shows the full [Reset User Password](/docs/rest-api/reset-user-password) REST definition.
-
+The API Reference shows the full [Reset User Password](/docs/rest-api/reset-user-password) REST definition.

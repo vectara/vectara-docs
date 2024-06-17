@@ -9,17 +9,17 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The Get Chat Turn API allows you to retrieve a specific turn from a chat, 
+The Get Chat Turn API allows you to retrieve a specific turn from a chat,
 which represents a message and response pair in the conversation.
 
 ## Get Chat Turn Request and Response
 
-To get a chat turn, send a GET request to `/v2/chats/{chat_id}/turns/{turn_id}`, 
-where `{chat_id}` is the unique identifier of the chat and `{turn_id}` is the 
-unique identifier of the turn within that chat. Note that both `chat_id` and 
+To get a chat turn, send a GET request to `/v2/chats/{chat_id}/turns/{turn_id}`,
+where `{chat_id}` is the unique identifier of the chat and `{turn_id}` is the
+unique identifier of the turn within that chat. Note that both `chat_id` and
 `turn_id` values were returned when the chat and turn were created.
 
-The response contains an array of `turn` id, chat_id, query, answer, enabled 
+The response contains an array of `turn` id, chat_id, query, answer, enabled
 status, and created_at timestamp.
 
 ## REST 2.0 URL
@@ -30,5 +30,4 @@ status, and created_at timestamp.
 to get a chat turn:
 <code>https://<Config v="domains.rest.indexing"/>/v2/chats/:chat_id/turns</code>
 
-The API Playground shows the full [Get Chat Turn](/docs/rest-api/list-chat-turns) REST definition.
-
+The API Reference shows the full [Get Chat Turn](/docs/rest-api/list-chat-turns) REST definition.
