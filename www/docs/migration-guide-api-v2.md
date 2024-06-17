@@ -31,7 +31,8 @@ These changes do not affect gRPC and are specific to the REST 2.0 endpoints.
 ## Authentication changes
 
 * API v1 requires the Customer ID header `customer_id` for all endpoints
-* API v2 **only** requires the Customer ID header for password authentication endpoints
+* API v2 **only** requires the Customer ID header for password authentication 
+  endpoints.
 
 **Action item:** Remove the `customer_id` header from your API requests, unless 
 using password authentication.
@@ -50,7 +51,7 @@ replaces non-alphanumeric characters with a "`%`" followed by two hexadecimal
 digits representing the ASCII code of the character.
 
 For example, if a document ID contains a slash ("/"), you would replace it 
-with "%2F" in the URL path:
+with "`%2F`" in the URL path:
 
 `/v2/corpora/my-corpus/documents/doc%2F123`
 
@@ -79,8 +80,27 @@ Going forward, when you create a new corpus, you can specify a custom
 
 **Action items:**
 
-* [Retrieve a list](/docs/rest-api/list-corpora) of corpora in the account with the [List Corpora API definition](/docs/api-reference/admin-apis/corpus/list-corpora). 
-* Update any code that references the v1 `corpusId` to use the v2 `corpus_key` format
+* [Retrieve a list](/docs/rest-api/list-corpora) of corpora in the account 
+  with the [List Corpora API definition](/docs/api-reference/admin-apis/corpus/list-corpora). 
+* Update any code that references the v1 `corpusId` to use the v2 `corpus_key` format.
+
+### Corpus object changes
+
+In addition to the new Corpus Key:
+
+* API v1 uses the Swap Query Encoder (`swapQenc`) and Swap Index Encoder 
+  (`swapIenc`) fields.
+* API v2 replaces `swapQenc` with `queries_are_answers` and `swapIenc` with 
+  `documents_are_questions`.
+* API v2 removes the `textless` and `encrypted` fields.
+
+**Action items:** 
+
+* Replace `swapQenc` with `queries_are_answers` in your corpus creation 
+  requests.
+* Replace `swapIenc` with `documents_are_questions` in your corpus creation 
+  requests.
+* Remove the `textless` and `encrypted` fields from your requests.
 
 ## Terminology, parameter, and property name changes
 
@@ -128,17 +148,29 @@ specifying the document `type` in the request body.
 * If you require streaming responses, set `stream_response` to `true` in the 
   request body.
 
-## Summarization endpoint changes
+### Summarization request changes
 
 * API v1 allows multiple summarization requests within a single query request.
 * API v2 supports only a single summarization request per query.
 * API v1 requires only the prompt name for summarization requests.
 * API v2 requires both the summarizer (model) name and the prompt name.
 
+
+### Response language changes
+
+* API v1 supports two character response languages, such as `en`.
+* API v2 uses `auto` or the specific three-character 639-3 version of the following 
+  language codes: `eng`, `deu`, `fra`, `zho`, `kor`, `ara`, `rus`, `tha`, `nld`, `ita`, `por`, `spa`,
+  `jpn`, `pol`, `tur`, `vie`, `ind`, `ces`, `ukr`, `ell`, `heb`, `fas`, `hin`, `urd`, `swe`, `ben`, `msa`, `ron`
+
 **Action items:** 
 
 * Modify your query requests to include only one summarization request.
-* Modify your summarization requests to include both the model name and prompt name.
+* Modify your summarization requests to include both the model name and prompt 
+  name.
+* Modify your summarization response languages to `auto` or change a two-character 
+  language code to the supported three-character language code such as 
+  `en` to `eng`.
 
 ## Chat endpoint changes
 
