@@ -23,8 +23,8 @@ These changes do not affect gRPC and are specific to the REST 2.0 endpoints.
 
 ## Base URL changes
 
-* REST API v1: https://api.vectara.io/v1
-* REST API v2: https://api.vectara.io/v2
+* REST API v1: `https://api.vectara.io/v1`
+* REST API v2: `https://api.vectara.io/v2`
 
 **Action item:** Update all API requests to use the new base URL for v2. 
 

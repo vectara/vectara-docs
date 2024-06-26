@@ -47,7 +47,7 @@ const config = {
           vectara: {
             specPath: "static/vectara-oas-v2.yaml", // Path to designated spec file
             outputDir: "docs/rest-api", // Output directory for generated .mdx docs
-            downloadUrl: "https://docs.vectara.com/vectara-oas.yaml",
+            downloadUrl: "https://docs.vectara.com/vectara-oas-v2.yaml",
             sidebarOptions: {
               groupPathsBy: "tag",
               categoryLinkSource: "tag",

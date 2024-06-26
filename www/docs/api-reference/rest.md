@@ -38,7 +38,7 @@ The Personal API Key enables most Admin actions for creating and deleting
 corpora, but for deleting accounts and accessing billing data, you need to use
 [OAuth 2.0](/docs/learn/authentication/oauth-2).
 
-## API Refernece and OpenAPI specifications
+## API Reference and OpenAPI specifications
 
 You can find up-to-date OpenAPI specifications at
 [https://docs.vectara.com/vectara-oas.yaml](https://docs.vectara.com/vectara-oas.yaml).
