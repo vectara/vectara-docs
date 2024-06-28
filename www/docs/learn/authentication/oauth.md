@@ -125,7 +125,7 @@ const {
     client_id: "<your client ID goes here>",
     client_secret: "<your client secret goes here>",
   }),
-  url: "<your authentication URL goes here>",
+  url: "https://auth.vectara.io/oauth2/token"
 });
 ```
 
@@ -133,10 +133,9 @@ Here’s how you can generate a JWT token from the command line with a
 cURL command:
 
 ```js title="cURL Example"
-curl -XPOST -H "Content-type: application/x-www-form-urlencoded" -d
-"grant_type=client_credentials&client_id=<your client ID goes
-here>&client_secret=<your client secret goes here> <your authentication
-URL goes here>
+curl -XPOST -H "Content-type: application/x-www-form-urlencoded" \
+    -d "grant_type=client_credentials&client_id=<your client ID goes here>&client_secret=<your client secret goes here>" \
+    https://auth.vectara.io/oauth2/token
 ```
 
 :::note
