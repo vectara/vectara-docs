@@ -14,14 +14,19 @@ together in a single location for querying.
    if this is your first time accessing the console.
 
 3. Click **Create corpus** and a dialog box appears.
-4. Enter the name and description of the corpus.
-5. Select an Embedding Model, such as Boomerang.
-6. Specify any Filter Attributes.
-7. (Optional) Click **Inspect** and the request inspector appears. You can now 
+4. Select the kind of app that you want to build or select **Decide later**.
+5. Enter the **Name** of the corpus.
+6. Enter the **Key** of the corpus which will be used to uniquely identify the corpus
+7. (Optional) Enter a Description about the corpus.
+8. Select an Embedding model, such as Boomerang.
+9. Click the Filter attributes drop-down, click Add filter attribute, and 
+   configure attributes at the document or part levels.
+10. Click Add to return to the previous page.
+11. (Optional) Click **Show API Request** and the request inspector appears. You can now 
    optionally create this corpus by copying and pasting the application code 
    in NodeJS, JavaScript, Linux, or Windows.
 
-  ![Create Corpus Request Inspector](/img/create_corpus_request_inspector.png)
+  ![Create Corpus Request Inspector](/img/create-corpus-api-request.png)
 
 8. Click **Create**.
 
@@ -30,43 +35,56 @@ together in a single location for querying.
 The corpus is created and a confirmation message appears. It is now ready to 
 receive your data.
 
-## View the Corpus ID
+## View the Corpus Key
 
-Vectara API requests against a corpus require the corpus ID. Find the corpus 
-ID in the top-left corner of the corpus view, near the corpus name.
+Vectara API requests against a corpus require the Corpus Key. To view Corpus 
+Key and other information about the corpus, select the corpus name from the 
+top-menu:
 
-![View Corpus ID](/img/view_corpus_id.png)
+![View Corpus Key](/img/corpus_dropdown.png)
 
-When you create a corpus, the following tabs appear:
+If you select Manage, the following options appear:
 
-## Data
+### Settings
 
-The Data tab provides a link to the API documentation and drag-and-drop file 
-uploader. Click **Upload files** and then select your text, HTML, PDF, Word 
-files, and more. It is the quickest way to ingest your data to ask some 
-questions.
+The Settings tab displays the current embedding model, indexing semantics, 
+filter attributes and Custom dimensions (Scale only). This page also has a 
+Dangerous actions section that lets you disable the corpus, clear corpus data, 
+or delete the corpus.
 
-The Data tab also lets you take a Vectara test drive by loading sample 
-data from an employee handbook PDF. 
-
-## Query
-
-The [Query tab](/docs/console-ui/corpus-query-configuration) lets you ask questions about your data. You can also use 
-Advanced options and show the API request to copy and paste queries in your 
-application code and view responses.
-
-## Analytics
-
-The Analytics tab provides usage statistics about the corpus and you can 
-download this data in `.SVG`, `.PNG`, or `.CSV` format.
-
-## Access Control
+### Access Control
 
 The Access control tab defines the users and roles that have access to the 
 corpus. You can also [create new user roles](/docs/learn/authentication/role-based-access-control), 
 a default role, and [API keys](/docs/console-ui/api-access-overview) associated with this corpus.
 
-## Configuration
+### Analytics
 
-The Configuration tab lets you view the embedding model and filter attributes 
-for the corpus. You can also Edit filter attributes from this page.
+The Analytics tab provides usage statistics about the corpus and you can 
+download this data in `.SVG`, `.PNG`, or `.CSV` format.
+
+### Data
+
+The Data tab lets you **Load data into corpus**. It is the quickest way 
+to ingest your data to ask some questions. 
+
+## Query the corpus
+
+The corpus name drop-down has a [Query option](/docs/console-ui/corpus-query-configuration) that 
+lets you ask questions about your data. It provides Chat, Summary, and 
+Semantic search interface types, each with their own configuration.
+
+### Configure the corpus
+
+The Configuration tab lets you set options for the Chat, Summary, and Semantic 
+search user interface types.
+
+### Browse data
+
+The Browse data tab shows the documents in your corpus.
+
+### Filters
+
+The Filters tab lets you view the filter attributes for the corpus and some 
+syntax examples.
+
