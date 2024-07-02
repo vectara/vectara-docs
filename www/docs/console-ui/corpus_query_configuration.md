@@ -64,11 +64,10 @@ reduce bias.
 ### Configure context
 
 The Result context lets you configure the number of sentences or characters 
-before and after the matched text.
+before and after the matched text. If you use the number of characters,  
+Vectara captures the entire sentence that contains the captured characters.
 
 ![Configure reesult context](/img/configure_result_context.png)
-
-![Configure search filters](/img/configure_filters_drawer.png)
 
 ### Configure generation
 
@@ -92,6 +91,8 @@ while a lower score indicates a greater probability of hallucinations.
 Select the Filters tab to enter a filter expression or select filter attributes 
 to further refine your search results. We provide some syntax examples in the 
 drawer.
+
+![Configure filters](/img/configure_filters.png)
 
 
 ### Show API Request and Response

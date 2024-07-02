@@ -8,11 +8,9 @@ is a container where you upload all your data to be ingested and grouped
 together in a single location for querying.
 
 1. To get started, navigate to the [Console Overview](https://console.vectara.com/overview).
-
 2. On the left sidebar, click **Corpora**. This 
    will open an overview of the corpora you have created. It will be empty 
    if this is your first time accessing the console.
-
 3. Click **Create corpus** and a dialog box appears.
 4. Select the kind of app that you want to build or select **Decide later**.
 5. Enter the **Name** of the corpus.
@@ -25,11 +23,8 @@ together in a single location for querying.
 11. (Optional) Click **Show API Request** and the request inspector appears. You can now 
    optionally create this corpus by copying and pasting the application code 
    in NodeJS, JavaScript, Linux, or Windows.
-
-  ![Create Corpus Request Inspector](/img/create-corpus-api-request.png)
-
+     ![Create Corpus Request Inspector](/img/create-corpus-api-request.png)
 8. Click **Create**.
-
   ![Create Corpus](/img/create_corpus.png)
 
 The corpus is created and a confirmation message appears. It is now ready to 
