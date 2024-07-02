@@ -48,7 +48,7 @@ Reach out to support if you want to modify the default prompt.
 
 ## Prompt design
 
-Prompt design includes a specific a `role` and `content` about this role,
+Prompt design includes a specific `role` and `content` about this role,
 which provide context about how you want the role to behave and the kind of
 information that you want to retrieve. These values can also specify [variables
 and functions](/docs/prompts/custom-prompts-with-metadata) to provide more nuanced context. You then add different
