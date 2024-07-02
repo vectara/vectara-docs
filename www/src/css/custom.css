@@ -540,6 +540,8 @@ h1
 .tabs {
   border-bottom: 1px solid #cbcdde;
   overflow: initial;
+  /* Prevent tabs from being clipped when there are many of them. */
+  flex-wrap: wrap;
 }
 
 .tabs__item {
