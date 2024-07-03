@@ -19,6 +19,7 @@
     "@analytics/google-tag-manager": "^0.5.5",
     "@docusaurus/core": "2.4.3",
     "@docusaurus/preset-classic": "2.4.3",
+    "postman-code-generators": "git://github.com:vectara/postman-code-generators.git#reject_content_type",
     "@mdx-js/react": "^1.6.22",
     "@vectara/react-search": "^1.1.0",
     "classnames": "^2.3.2",
