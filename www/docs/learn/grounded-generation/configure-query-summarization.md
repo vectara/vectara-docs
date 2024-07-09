@@ -15,17 +15,23 @@ the efficiency of information delivery. Offering quick and concise summaries
 can lead to faster decision-making, improved user satisfaction, and higher 
 engagement levels. The versatility of summarizations makes it a valuable tool 
 across multiple industries, and any application requiring the summarization of 
-complex data into more manageable insights.
+complex data into more manageable insights. 
 
 Whether it's streamlining customer service interactions, accelerating research, 
 or enhancing educational tools, the ability to summarize vast amounts of data 
 into digestible, actionable insights can significantly boost productivity 
 across various business operations and industries.
 
-To enable summarization, send a `summary` request with your `query`. This 
+:::important
+Excluding the generation field disables summarization. For more 
+information about the `generation` object, see [**Query API Definition**](/docs/api-reference/search-apis/search).
+:::
+
+To enable summarization, send a `generation` request with your `query`. This 
 example configuration instructs Vectara not only to search for relevant data but also 
 also to generate a summary based on the most relevant five results, which 
-provides a comprehensive response rooted in the queried data.
+provides a comprehensive response rooted in the queried data. 
+
 
 ```json showLineNumbers title="https://api.vectara.io/v2/query"
 POST https://api.vectara.io/v2/query
@@ -40,7 +46,7 @@ POST https://api.vectara.io/v2/query
     "offset": 0,
     "limit": 10
   },
-  "summarization": {
+  "generation": {
     "prompt_name": "vectara-summary-ext-v1.2.0",
     "max_used_search_results": 5
   }
@@ -183,7 +189,7 @@ conciseness.
 
 ### Fine-grained control over summarization output
 
-The `GenerationParameters` object provides even more fine-grained controls for the 
+The `generation` object provides even more fine-grained controls for the 
 summarizer model:
 * `max_tokens` specifies a hard limit on the number of characters in a response. 
 * `temperature` indicates whether you want the summarization to **not** be creative at all `0.0`,

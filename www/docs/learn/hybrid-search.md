@@ -49,6 +49,14 @@ achieve the perfect balance in answer quality.
 }
 ```
 
+:::tip
+
+For more information about queries such as additional search and summarization 
+parameters, see the [**Query API Definition**](/docs/api-reference/search-apis/search) 
+section and our [**interactive API Reference**](/docs/rest-api/query). 
+
+:::
+
 ### Experiment with different lexical interpolation values
 
 The default value of `lexical_interpolation` is `0`, which _disables_ exact and

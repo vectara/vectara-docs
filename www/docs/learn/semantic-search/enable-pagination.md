@@ -42,7 +42,7 @@ To page through where each page has 20 results, you set `offset` to `0` and
       "end_tag": "%END_SNIPPET%"
     }
   },
-  "summarization": {
+  "generation": {
     // ...
   }
 }
@@ -72,7 +72,7 @@ to the `offset`.
       "end_tag": "%END_SNIPPET%"
     }
   },
-  "summarization": {
+  "generation": {
     // ...
   }
 }
