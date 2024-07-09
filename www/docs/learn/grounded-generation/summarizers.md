@@ -23,6 +23,13 @@ Providing the summarizer as part of the config is optional. If you do not
 provide a summarizer config at request time, <Config v="names.product"/> uses
 the best available summarizer for your account.
 
+:::tip
+
+The summarizer is specified in the `generation` object of a [**query**](/docs/api-reference/search-apis/search). Excluding 
+this `generation` field disables summarization.
+
+:::
+
 ## Currently available summarizers
 
 Today, the versions available are `1.2.0` which uses chatgpt-3.5-turbo
@@ -65,7 +72,7 @@ currently considering promoting them to GA, pending feedback from our users.
 The following example query selects the beta GPT 4.0 summarizer (only
 available to Scale users):
 
-```json showLineNumbers title="https://api.vectara.io/v1/query"
+```json showLineNumbers title="https://api.vectara.io/v2/query"
 {
   "query": "What is the infinite improbability drive?",
   "search": {
@@ -77,7 +84,7 @@ available to Scale users):
     "offset": 0,
     "limit": 10
   },
-  "summarization": {
+  "generation": {
     "prompt_name": "vectara-experimental-summary-ext-2023-10-23-med",
     "max_used_search_results": 5
   }
@@ -97,7 +104,7 @@ This summarizer example attempts to balance creating a good quality summary
 with a reasonably fast response by setting `max_used_search_results` to `5`. To use
 `vectara-summary-ext-v1.2.0`, send it as the summarizerPromptName as follows:
 
-```json showLineNumbers title="https://api.vectara.io/v1/query"
+```json showLineNumbers title="https://api.vectara.io/v2/query"
 {
   "query": "What is the infinite improbability drive?",
   "search": {
@@ -109,9 +116,41 @@ with a reasonably fast response by setting `max_used_search_results` to `5`. To 
     "offset": 0,
     "limit": 10
   },
-  "summarization": {
+  "generation": {
     "prompt_name": "vectara-summary-ext-v1.2.0",
     "max_used_search_results": 5
   }
 }
 ```
+
+## Advanced Summarization Customization Options
+
+[Scale users](https://vectara.com/pricing/) have access to more powerful summarization
+capabilities, which present a powerful toolkit for tailoring summarizations to
+specific application and user needs.
+
+The `prompt_name` allows you to specify one of our [available summarizers](/docs/learn/grounded-generation/select-a-summarizer).
+Use `prompt_name` and `prompt_text` to override the default prompt with a
+[custom prompt](/docs/prompts/vectara-prompt-engine). Your use case might
+require a chatbot to be more human like, so you decide to create a custom
+response format that behaves more playfully in a conversation or summary.
+
+The `max_response_characters` lets you control the length of the summary, but
+note that it is **not a hard limit** like with the `max_tokens` parameter. The
+`generation` object provides even more fine-grained controls for the summarizer
+model:
+
+- `max_tokens` specifies a hard limit on the number of characters in a response.
+  This value supercedes the `responseChars` parameter in the `summary` object.
+- `temperature` indicates whether you want the summarization to not be creative at all `0.0`,
+  or for the summarization to take more creative liberties as you approach
+  the maximium value of `1.0`.
+- `frequency_penalty` provides even more granular control to help ensure that the
+  summarization decreases the likelihood of repeating words. The values range from `0.0` to `1.0`
+- `presence_penalty` provides more control over whether you want the summary to
+  include new topics. The values also range from `0.0` to `1.0`.
+
+By leveraging these advanced capabilities, application builders can fine-tune
+the behavior and output style of the summarizer to align with your unique
+application requirements.
+

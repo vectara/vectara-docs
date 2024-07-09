@@ -41,7 +41,7 @@ corpora, but for deleting accounts and accessing billing data, you need to use
 ## API Reference and OpenAPI specifications
 
 You can find up-to-date OpenAPI specifications at
-[https://docs.vectara.com/vectara-oas.yaml](https://docs.vectara.com/vectara-oas.yaml).
+[https://docs.vectara.com/vectara-oas-2.yaml](https://docs.vectara.com/vectara-oas-v2.yaml).
 These specifications provide a comprehensive overview of the available
 endpoints, request/response formats, and authentication requirements.
 

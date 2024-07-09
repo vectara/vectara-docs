@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 
 When you receive query results from <Config v="names.product"/>, alongside the
-result, you'll receive a values for `part_metadata` and `document_metadata`. For 
+result, you'll receive values for `part_metadata` and `document_metadata`. For 
 example:
 
 ```json showLineNumbers
