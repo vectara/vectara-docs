@@ -34,6 +34,7 @@ module.exports = {
       collapsed: true,
       items: [
         "learn/select-ideal-indexing-api",
+        "learn/mockingbird-llm",
         {
           type: "category",
           label: "Retrieval",
