@@ -72,7 +72,13 @@ paths:
       tags:
         - Queries
       summary: Query Corpora
-      description: Perform a multi-purpose query that can retrieve relevant information from one or more corpora and generate a response using RAG.
+      description: |
+        Perform a multi-purpose query that can retrieve relevant information from one or more corpora and generate a response using RAG.
+
+        Generation is opt in by setting the `generation` property. By excluding the property or by setting it to null, the response
+        will not include generation.
+
+        For more detailed information please see this [api guide](https://docs.vectara.com/docs/api-reference/search-apis/search).
       operationId: query
       requestBody:
         content:
@@ -488,7 +494,7 @@ paths:
               metadata:
                 contentType: application/json
               file:
-                contentType: application/octet-stream
+                contentType: application/octet-stream, application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.oasis.opendocument.text, application/epub+zip, application/rtf, text/html, text/plain, application/vnd.ms-powerpoint, application/vnd.openxmlformats-officedocument.presentationml.presentation, text/markdown
       responses:
         '201':
           description: The extracted document has been parsed and added to the corpus.
@@ -2046,8 +2052,19 @@ components:
       properties:
         prompt_name:
           description: |
-            The prompt to use to feed the query results and other context to the model. By specifying the
-            prompt name you also specify the model and other `model_parameter` defaults.
+            The prompt to use to feed the query results and other context to the model.
+
+            A prompt is an object with a bundle of properties that specifies:
+              * The `prompt_text` that is rendered then sent to the LLM.
+              * The LLM used.
+              * `model_parameter`s such as temperature.
+             
+            All of these properties except the model can be overriden by setting them in this
+            object. Even when a `prompt_text` is set, the `prompt_name` is used to set 
+            the model used.
+
+            If `prompt_name` is not set the Vectara platform will use the default model and
+            prompt.
           type: string
           minLength: 1
           example: vectara-summary-ext-v1.2.0
@@ -2080,7 +2097,11 @@ components:
           description: |
             Controls the length of the generated output.
             This is a rough estimate and not a hard limit: the end output can be longer or shorter
-            than this value.  This is currently a Scale-only feature.
+            than this value. This is generally implemented by including the `max_response_characters` in the
+            prompt, and the LLM's instruction following capability dictates how closely the generated output
+            is limited.
+
+            So, this value This is currently a Scale-only feature.
             See https://vectara.com/pricing/ for more details on becoming a Scale customer.
           type: integer
           format: int32
@@ -2102,7 +2123,7 @@ components:
               description: The maximum number of tokens to be returned by the model.
               type: integer
               format: int32
-              minimum: 0
+              minimum: 1
             temperature:
               description: |
                 The sampling temperature to use. Higher values make the output more random, while lower
@@ -2258,15 +2279,20 @@ components:
         - corpus_key
     SearchReranker:
       type: object
-      description: Rerank results of the search.
+      description: |
+        Rerank results of the search. Rerankers are very powerful tools to better order search results.
+        By default the search will use the most powerful reranker available to the customer's plan.
+        To disable reranking set the reranker `type` to `"none"`.
       discriminator:
         propertyName: type
         mapping:
           customer_reranker: '#/components/schemas/CustomerSpecificReranker'
           mmr: '#/components/schemas/MMRReranker'
+          none: '#/components/schemas/NoneReranker'
       oneOf:
         - $ref: '#/components/schemas/CustomerSpecificReranker'
         - $ref: '#/components/schemas/MMRReranker'
+        - $ref: '#/components/schemas/NoneReranker'
     CustomerSpecificReranker:
       description: Reranker that is specific to the customer.
       type: object
@@ -2304,6 +2330,16 @@ components:
           example: .3
       x-vectaraParents:
         - SearchReranker
+    NoneReranker:
+      type: object
+      properties:
+        type:
+          description: |
+            When the type is `none`, no reranking will be done.
+          type: string
+          default: mmr
+      x-vectaraParents:
+        - SearchReranker
     QueryFullResponse:
       description: The full response to a RAG query when the result is not streamed.
       type: object
@@ -2323,6 +2359,11 @@ components:
             The probability that the summary is factually consistent with the results.
           type: number
           format: float
+        rendered_prompt:
+          description: |
+            The rendered prompt sent to the LLM. Useful when creating customer `prompt_text` templates. Only available
+            to Scale customers.
+          type: string
     IndividualSearchResult:
       description: An individual ranked search result from a query.
       type: object
@@ -2366,6 +2407,7 @@ components:
           generation_chunk: '#/components/schemas/StreamGenerationChunk'
           generation_end: '#/components/schemas/StreamGenerationEnd'
           factual_consistency_score: '#/components/schemas/FactualConsistencyScore'
+          generation_info: '#/components/schemas/GenerationInfo'
           error: '#/components/schemas/StreamError'
           end: '#/components/schemas/StreamResponseEnd'
       oneOf:
@@ -2374,6 +2416,7 @@ components:
         - $ref: '#/components/schemas/StreamGenerationEnd'
         - $ref: '#/components/schemas/StreamResponseEnd'
         - $ref: '#/components/schemas/FactualConsistencyScore'
+        - $ref: '#/components/schemas/GenerationInfo'
         - $ref: '#/components/schemas/StreamError'
     StreamSearchResponse:
       description: The search response results.
@@ -2417,7 +2460,7 @@ components:
       properties:
         type:
           description: |
-            When the streaming event contains factual consistency score, the
+            When the streaming event contains the factual consistency score, the
             type will be `factual_consistency_score`.
           type: string
           default: factual_consistency_score
@@ -2425,6 +2468,29 @@ components:
           description: The probability that the summary is factually consistent with the results.
           type: number
           format: float
+      x-vectaraParents:
+        - QueryStreamedResponse
+        - ChatStreamedResponse
+    GenerationInfo:
+      description: Event containing information on how the generation was accomplished.
+      type: object
+      properties:
+        type:
+          description: |
+            When the streaming event contains the generation information
+            type will be `generation_info`.
+          type: string
+          default: generation_info
+        rendered_prompt:
+          description: |
+            The rendered prompt sent to the LLM. Useful when creating customer `prompt_text` templates. Only available
+            to Scale customers.
+          type: string
+        rephrased_query:
+          description: |
+            If you are on the Scale plan, you can view the actual query made to backend that was rephrased 
+            by the LLM from the input query.
+          type: string
       x-vectaraParents:
         - QueryStreamedResponse
         - ChatStreamedResponse
@@ -2792,6 +2858,16 @@ components:
             The probability that the summary is factually consistent with the results.
           type: number
           format: float
+        rendered_prompt:
+          description: |
+            The rendered prompt sent to the LLM. Useful when creating customer `prompt_text` templates. Only available
+            to Scale customers.
+          type: string
+        rephrased_query:
+          description: |
+            If you are on the Scale plan, you can view the actual query made to backend that was rephrased 
+            by the LLM from the input query.
+          type: string
     ChatStreamedResponse:
       description: An individual event when the response is streamed.
       type: object
@@ -2802,6 +2878,7 @@ components:
           chat_info: '#/components/schemas/ChatInfoResponse'
           generation_chunk: '#/components/schemas/StreamGenerationChunk'
           generation_end: '#/components/schemas/StreamGenerationEnd'
+          generation_info: '#/components/schemas/GenerationInfo'
           factual_consistency_score: '#/components/schemas/FactualConsistencyScore'
           end: '#/components/schemas/StreamResponseEnd'
           error: '#/components/schemas/StreamError'
@@ -2812,6 +2889,7 @@ components:
         - $ref: '#/components/schemas/StreamGenerationEnd'
         - $ref: '#/components/schemas/FactualConsistencyScore'
         - $ref: '#/components/schemas/StreamResponseEnd'
+        - $ref: '#/components/schemas/GenerationInfo'
         - $ref: '#/components/schemas/StreamError'
     ChatInfoResponse:
       description: Information about the chat.
@@ -2928,7 +3006,7 @@ components:
         corpus_keys:
           description: |
             Corpora this API key has roles on if it is not a Personal API key.
-            This property should be null of missing if this `api_key_role` is
+            This property should be null or missing if this `api_key_role` is
             `personal`.
           type: array
           items:
