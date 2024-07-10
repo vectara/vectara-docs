@@ -8,19 +8,13 @@ import {Config} from '@site/docs/definitions.md';
 
 Mockingbird is a cutting-edge large language model developed by Vectara 
 specifically for Retrieval Augmented Generation (RAG) use cases. We designed 
-Mockingbird to provide users with enhanced accuracy, reduced hallucinations, and 
-improved performance when summarizing lists of retrieved results. Vectara's 
+Mockingbird to provide users with enhanced accuracy and improved quality and 
+performance when summarizing lists of retrieved results. Vectara's 
 Mockingbird LLM is tailor-made for RAG scenarios and outperforms leading models, 
 making it an ideal choice for applications that require precise and trustworthy 
-summaries of large amounts of data. 
+summaries of large amounts of data:
 
-## Retrieval Augmented Generation (RAG) specialization
-
-Mockingbird's capabilities are well-suited for a wide range of Retrieval 
-Augmented Generation (RAG) applications:
-
-* Summarize search results or large document collections for research and 
-  analysis
+* Summarize search results for research and analysis
 * Generate structured data from unstructured text and extract specific 
   information from documents
 * Build knowledge bases or question-answering systems that provide quick 
@@ -30,19 +24,22 @@ These features enable organizations to create comprehensive and reliable
 knowledge repositories, providing quick and precise answers to user queries 
 and improving overall information accessibility.
 
+## Significantly improved quality for Retrieval Augmented Generation
+
+Mockingbird improves quality for RAG use cases, surpassing competing LLMs in 
+crucial areas for enterprise applications. Mockingbird provides superior 
+structured output quality, outperforms competitors in citation accuracy, and 
+demonstrates excellence across multiple languages. 
+
+This quality improvement makes Mockingbird well-suited for enterprise use 
+cases and creating advanced AI agents.
+
 ## Increased accuracy in summarizing retrieved results
 
-Summarize large collections of search results or documents, enabling users to 
+Summarize large collections of search results, enabling users to 
 quickly grasp key information and insights without manual review. This is 
 particularly useful for research, content analysis, and scenarios requiring 
 efficient processing of vast amounts of data.
-
-## Significantly reduced hallucinations amd faster response times
-
-Mockingbird significantly outperforms leading models like GPT-4 and GPT-3.5 in 
-reducing hallucinations, providing more reliable and accurate summaries for 
-important data. Mockingbird also delivers improved user experience through 
-quicker response times compared to alternative models.
 
 ## Enhanced JSON output for structured data generation
 
@@ -71,11 +68,11 @@ the Generation drop-down list in a Corpus Query Configuration panel:
 screenshot tbd
 
 To use Mockingbird in an Query request, set the `prompt_name` in the `generation` 
-object to `mockingbird_summary_ext`:
+object to `mockingbird-1.0`:
 
 ```json
 "generation": {
-    "prompt_name": "ragamuffin-summary-ext-may-2024",
+    "prompt_name": "mockingbird-2024-q2",
     "max_used_search_results": 5,
     "prompt_text": "",
     "response_language": "eng",
