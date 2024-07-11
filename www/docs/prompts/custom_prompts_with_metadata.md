@@ -49,7 +49,7 @@ The following table shows the available custom prompt functions:
 
 To set a custom prompt, Scale users can add custom `promptText` within the 
 `summary` [object](/docs/learn/grounded-generation/select-a-summarizer) of a [query](/docs/api-reference/search-apis/search) 
-to override the default prompt text. The [API Playground](/docs/rest-api/query) provides a custom 
+to override the default prompt text. The [API Reference](/docs/rest-api/query) provides a custom 
 prompt in the Query endpoint Scale Example.
 
 ## Include metadata in prompt
@@ -59,8 +59,7 @@ by retrieving metadata `docMetadata` from the date that information was
 answered `answerDate`. It then extracts the text content of `qResult`.
 
 ```javascript
-{"role": "assistant", "content": "qResult.docMetadata().get('answerDate') 
-  ${qResult.getText()}" },
+{"role": "assistant", "content": "qResult.docMetadata().get('answerDate') ${qResult.getText()}" },
 ```
 
 Let's dive into a full custom prompt example that shows more details about a
