@@ -26,20 +26,19 @@ and improving overall information accessibility.
 
 ## Significantly improved quality for Retrieval Augmented Generation
 
-Mockingbird improves quality for RAG use cases, surpassing competing LLMs in 
-crucial areas for enterprise applications. Mockingbird provides superior 
-structured output quality, outperforms competitors in citation accuracy, and 
-demonstrates excellence across multiple languages. 
-
-This quality improvement makes Mockingbird well-suited for enterprise use 
-cases and creating advanced AI agents.
+Mockingbird improves quality for RAG use cases, surpassing general-purpose 
+LLMs in critical areas for enterprise applications. Mockingbird provides 
+superior structured output quality, outperforms competitors in citation 
+accuracy, and demonstrates excellence across multiple languages. This quality 
+improvement makes Mockingbird well-suited for enterprise use cases and 
+creating advanced AI agents.
 
 ## Increased accuracy in summarizing retrieved results
 
-Summarize large collections of search results, enabling users to 
-quickly grasp key information and insights without manual review. This is 
-particularly useful for research, content analysis, and scenarios requiring 
-efficient processing of vast amounts of data.
+Mockingbird excels at summarizing large collections of search results, 
+enabling users to quickly grasp key information and insights without manual 
+review. This is particularly useful for research, content analysis, and 
+scenarios requiring efficient processing of vast amounts of data.
 
 ## Enhanced JSON output for structured data generation
 
@@ -55,15 +54,29 @@ the same language as the documents being searched. Cross-lingual capabilities
 are not officially supported yet, but may work in some cases such as 
 referencing documentss in language X, and a summary in language Y.
 
+### Supported Mockingbird languages
+Mockingbird supports the following languages: Arabic, French, Spanish, 
+Portuguese, Italian, German, Chinese, Dutch, Korean, Japanese, and Russian.
+
+
 ## Secure deployment within Vectara's infrastructure
 
 Mockingbird ensures data privacy by operating entirely within Vectara's secure 
-infrastructure.
+infrastructure. Unlike some providers who face accusations of training on 
+customer data, Vectara guarantees your data is never used to train or improve 
+our models, ensuring data privacy and compliance with the strictest security 
+standards.
+
 
 ## Use Mockingbird in summaries
 
-To use Mockingbird in the Vectara Console, select the Mockingbird model from 
-the Generation drop-down list in a Corpus Query Configuration panel:
+To use Mockingbird in the Vectara Console:
+
+1. Go to a corpus.
+2. Select the **Query** tab.
+3. Click the Generation drop-down in the Corpus Query Configuration panel.
+4. Select the `Mockingbird` model.
+
 
 screenshot tbd
 
@@ -71,13 +84,16 @@ To use Mockingbird in an Query request, set the `prompt_name` in the `generation
 object to `mockingbird-1.0`:
 
 ```json
+{
+"query:" "What is the infinite probability drive?",
 "generation": {
-    "prompt_name": "mockingbird-2024-q2",
+    "prompt_name": "mockingbird-1.0",
     "max_used_search_results": 5,
     "prompt_text": "",
     "response_language": "eng",
     "enable_factual_consistency_score": true
   }
+}  
 ```
 
 
