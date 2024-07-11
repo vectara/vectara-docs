@@ -2248,9 +2248,14 @@ components:
         custom_dimensions:
           $ref: '#/components/schemas/CustomDimensions'
         metadata_filter:
-          description: The filter string to narrow the search to according to metadata attributes.
+          description: |
+            The filter string to narrow the search to according to metadata attributes. The query against this
+            corpus will be confined to document parts that match the `metadata_filter`. Only metadata
+            set as `filter_attributes` on the corpus can be filtered. Filter syntax is similiar to
+            a SQL where clause. See [metadata filters documentation](https://docs.vectara.com/docs/learn/metadata-search-filtering/filter-overview)
+            for more information.
           type: string
-          example: 'doc.title = "Adventures of Huckleberry Finn"'
+          example: "doc.title = 'Charlotte''s Web'"
         lexical_interpolation:
           description: How much to weigh lexical scores compared to the embedding score. 0 means lexical search is not used at all, and 1 means only lexical search is used.
           type: number
@@ -2337,7 +2342,7 @@ components:
           description: |
             When the type is `none`, no reranking will be done.
           type: string
-          default: mmr
+          default: none
       x-vectaraParents:
         - SearchReranker
     QueryFullResponse:
