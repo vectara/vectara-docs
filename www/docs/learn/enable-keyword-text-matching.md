@@ -12,87 +12,75 @@ information in legal, compliance, technical fields where you might need
 specific error codes of system specifications. 
 
 You enable exact keyword matching, which disables neural retrieval, by 
-specifying the `lambda` value as `1` at query time, specifically under 
-the `corpusKey`:
+specifying the `lexical_interpolation` value as `1` at query time, specifically in 
+the `search` object:
 
 ```json
-      "corpusKey": [
-        {
-          "customerId": 123456789,
-          "corpusId": 5,
-          "semantics": 0,
-          "metadataFilter": "",
-          "lexicalInterpolationConfig": {
-            "lambda": 1.0
-          },
-          "dim": []
-        }
-      ]
+"search": {
+    "corpora": [
+      {
+        "corpus_key": "sports-rules"
+      }
+    ],
+    "offset": 0,
+    "limit": 10,
+    "context_configuration": {
+      "sentences_before": 2,
+      "sentences_after": 2,
+      "start_tag": "%START_SNIPPET%",
+      "end_tag": "%END_SNIPPET%"
+    },
+    "lexical_interpolation": 1.0
+  },
 ```
 
-## Enable Exact Keyword Matching in the Console UI
+## Enable exact keyword matching in the console UI
 
 You can also set this value in the Console UI and experiment with searches and 
 disable the hybrid search option.
 
-![Set Lambda to 1.0](/img/lambda_console.png)
+![Set lexical_interpolation to 1.0](/img/lambda_console.png)
 
-The default value of `lambda` is `0`, which disables exact and Boolean text
-matching. 
+The default value of `lexical_interpolation` is `0`, which disables exact and 
+Boolean text matching. 
 
-## Enable Exact Keyword Search
+## Enable exact keyword Search
 
-The following example shows the full [query](/docs/api-reference/search-apis/search) with the `lambda` value set to `1`:
+The following example shows the full [query](/docs/api-reference/search-apis/search) with 
+the `lexical_interpolation` value set to `1`:
 
 ```json
-
 curl -X POST \
--H "Authorization: <Bearer Token>" \
--H "customer-id: 1234567899" \
-https://api.vectara.io:443/v1/query \
+-H "Content-Type: application/json" \
+-H "x-api-key: <API_KEY>" \
+https://api.vectara.io/v2/query \
 -d @- <<END;
 {
-  "query": [
-    {
-      "query": "What is offsides?",
-      "queryContext": "",
-      "start": 0,
-      "numResults": 10,
-      "contextConfig": {
-        "charsBefore": 0,
-        "charsAfter": 0,
-        "sentencesBefore": 2,
-        "sentencesAfter": 2,
-        "startTag": "%START_SNIPPET%",
-        "endTag": "%END_SNIPPET%"
-      },
-      "corpusKey": [
-        {
-          "customerId": 123456789,
-          "corpusId": 5,
-          "semantics": 0,
-          "metadataFilter": "",
-          "lexicalInterpolationConfig": {
-            "lambda": 1.0
-          },
-          "dim": []
-        }
-      ],
-      "summary": [
-        {
-          "maxSummarizedResults": 5,
-          "responseLang": "eng",
-          "summarizerPromptName": "vectara-summary-ext-v1.2.0"
-        }
-      ]
-    }
-  ]
+  "query": "What is offsides?",
+  "search": {
+    "corpora": [
+      {
+        "corpus_key": "nhl-rulebook-2024"
+      }
+    ],
+    "offset": 0,
+    "limit": 10,
+    "context_configuration": {
+      "sentences_before": 2,
+      "sentences_after": 2,
+      "start_tag": "%START_SNIPPET%",
+      "end_tag": "%END_SNIPPET%"
+    },
+    "lexical_interpolation": 1.0
+  },
+  "generation": {
+    "prompt_name": "vectara-summary-ext-v1.2.0",
+    "max_used_search_results": 5
+  }
 }
 END
-        
 ```
 
-Experimenting with the `lambda` value is useful if you're trying to evaluate 
-how a keyword system like one based on Elasticsearch or Solr may compare to 
-Vectara.
-
+Experimenting with the `lexical_interpolation` value is useful if you're trying
+to evaluate how a keyword system like one based on Elasticsearch or Solr may 
+compare to Vectara.

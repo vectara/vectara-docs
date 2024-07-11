@@ -9,13 +9,13 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-Vectara handles the system and user prompts automatically, but if you want to 
-do it yourself, Vectara now empowers developers with a flexible way of 
-customizing prompts with metadata. Our Custom Retrieval Augmented Generation 
-(RAG) Prompt Engine provides several available prompt variables and functions 
+Vectara handles the system and user prompts automatically, but if you want to
+do it yourself, Vectara now empowers developers with a flexible way of
+customizing prompts with metadata. Our Custom Retrieval Augmented Generation
+(RAG) Prompt Engine provides several available prompt variables and functions
 for Scale users to customize prompts in their [Queries](/docs/api-reference/search-apis/search).
 
-## Available Prompt Variables
+## Available prompt variables
 
 The following table shows the available custom prompt variables:
 
@@ -52,10 +52,10 @@ To set a custom prompt, Scale users can add custom `promptText` within the
 to override the default prompt text. The [API Playground](/docs/rest-api/query) provides a custom 
 prompt in the Query endpoint Scale Example.
 
-## Include Metadata in Prompt
+## Include metadata in prompt
 
-This snippet shows how to get metadata associated with a single result `qResult` 
-by retrieving metadata `docMetadata` from the date that information was 
+This snippet shows how to get metadata associated with a single result `qResult`
+by retrieving metadata `docMetadata` from the date that information was
 answered `answerDate`. It then extracts the text content of `qResult`.
 
 ```javascript
@@ -63,30 +63,30 @@ answered `answerDate`. It then extracts the text content of `qResult`.
   ${qResult.getText()}" },
 ```
 
-Let's dive into a full custom prompt example that shows more details about a 
-custom prompt with 
+Let's dive into a full custom prompt example that shows more details about a
+custom prompt with
 metadata.
 
-## Example Custom Prompt for an RFI Answering Bot
+## Example custom prompt for an RFI answering bot
 
-The following example prompt creates a Request for information (RFI) 
-answering bot that includes metadata. First, we ask the generative LLM to 
-answer an RFI question and tell it how the results will come back from the 
-query. 
+The following example prompt creates a Request for information (RFI)
+answering bot that includes metadata. First, we ask the generative LLM to
+answer an RFI question and tell it how the results will come back from the
+query.
 
-We want to iterate through `$vectaraQueryResults` inserting the results 
-in the order that we like. `$qResult.getText()` provides the most relelvant 
-snippet of text that answers the query from the result. You can iterate to 
-tell the LLM where to focuse its response, cut or omit results, and tell the 
+We want to iterate through `$vectaraQueryResults` inserting the results
+in the order that we like. `$qResult.getText()` provides the most relelvant
+snippet of text that answers the query from the result. You can iterate to
+tell the LLM where to focuse its response, cut or omit results, and tell the
 query to reference individual results or even metadata.
 
-For each result, we simulate the user requesting the next search result. Then 
-we have an assistant's response, which includes the answer date from the 
+For each result, we simulate the user requesting the next search result. Then
+we have an assistant's response, which includes the answer date from the
 metadata of the document.
 
-Finally, we generate a comprehensive summary and answer to the question with 
-additional rules and constraints. For example, if a result does not answer the 
-question, we do not use the result. If search results are not valid, then the 
+Finally, we generate a comprehensive summary and answer to the question with
+additional rules and constraints. For example, if a result does not answer the
+question, we do not use the result. If search results are not valid, then the
 user gets a response that `The returned results did not contain sufficient information to the question.`
 
 ```javascript
@@ -111,5 +111,3 @@ user gets a response that `The returned results did not contain sufficient infor
 ]
 
 ```
-
-

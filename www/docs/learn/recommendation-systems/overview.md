@@ -6,12 +6,13 @@ sidebar_label: Recommendation System
 
 import {Config} from '@site/docs/definitions.md';
 
-Vectara can be used as a semantic recommendation system out of the box in order
-to provide your users with semantically similar documents/products. This 
+Vectara can be used as a semantic recommendation system out of the box in 
+order to provide your users with semantically similar documents/products. This 
 capability is useful when your goal is to increase engagement by accurately 
 matching user interest or intent with relevant content.
 
 ## Semantic recommendation system considerations
+
 Before you begin using <Config v="names.product"/> for a semantic recommendation
 system, it's useful to think through what types of recommendation flows you
 want to enable.  For example:
@@ -22,6 +23,7 @@ want to enable.  For example:
 - Are you looking for exact duplicates or semantic similarity?
 
 ## Exact duplicate matching
+
 Exact duplicate matching can be useful when you want to ensure no duplicate
 content exists in your corpora or to find exact matches of "known bad" documents
 like those that might violate compliance rules in your organization. In general,
@@ -36,6 +38,7 @@ Specifically:
    exact hash matches
 
 ## Similar document matching and near-duplicates
+
 Sometimes, you want to recommend alternative products or web pages to a user that
 are similar to the one they're looking at or a recently purchased product. These
 use cases can be dealt with by using <Config v="names.product"/> in a
@@ -71,28 +74,26 @@ and you wanted to find other documents that are similar to this, you can pass
 this document text to <Config v="names.product"/> and set the `semantics` to
 `RESPONSE`.  For example:
 
-```json showLineNumbers title="https://api.vectara.io/v1/query"
+```json showLineNumbers title="https://api.vectara.io/v2/query"
 {
-  "query": [
-    {
-      "query": "All about me\n\nMy name is Shane and I'm ...",
-      "start": 0,
-      "numResults": 10,
-      "corpusKey": [
-        {
-          "customerId": 12345678,
-          "corpusId": 1,
-          "semantics": "RESPONSE"
-        }
-      ]
-    }
-  ]
+  "query": "All about me\n\nMy name is Shane and I'm ...",
+  "search": {
+    "corpora": [
+      {
+        "corpus_key": "my-corpus",
+        "semantics": "response"
+      }
+    ],
+    "offset": 0,
+    "limit": 10
+  }
 }
 ```
 
 This will find documents that are most semantically similar to that document.
 
 ## Further recommendation refinement
+
 At times, it can be useful to further refine the recommendations.  For example:
 - Only suggest based on similar document titles
 - Only suggest results that share the same language

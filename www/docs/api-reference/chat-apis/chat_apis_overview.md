@@ -9,12 +9,14 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
+**This topic is in-progress**
+
 Vectara's Chat APIs provide a streamlined solution for integrating chatbot 
 functionalities into domain-specific applications and websites using Retrieval 
 Augmented Generation (RAG). Designed with efficiency in mind, these Chat APIs 
 enable developers to create interactive user experiences and manage data 
-conversations for users. With the unique `conversationId` generated for each 
-chat session, developers can track and manage conversations over time.
+conversations for users. Each chat session is assigned a unique `chat_id`, 
+allowing developers to track and manage conversations over time.
 
 These Chat APIs enable operations and pagination through the history of a chat, 
 specifically the conversations and their subsequent exchanges, also known as 
@@ -24,89 +26,65 @@ information about products, technical documentation, and FAQs.
 
 Vectara Chat provides the following Chat APIs:
 
-* [**Query**](/docs/api-reference/search-apis/search) contains a `chat` object within the `summary` 
-  which then has a unique `conversationId`.
-* [**List Conversations**](/docs/api-reference/chat-apis/list-conversations) and get an an overview 
-  of the interactions between chatbots and users. 
-* [**Read Conversations**](/docs/api-reference/chat-apis/read-conversations) and retrieve detailed information about specific
-  conversations by their IDs from a chat history corpus.
-* [**Delete Conversations**](/docs/api-reference/chat-apis/delete-conversations) by their specific Conversation IDs for 
+* [**Create Chat**](/docs/api-reference/chat-apis/create-chat) contains the 
+  initial user message, search parameters, and generation settings.
+* [**Get Chat**](/docs/api-reference/chat-apis/get-chat) retrieves the chat metadata, 
+  such as the initial query and answer.
+* [**List Chats**](/docs/api-reference/chat-apis/list-chats) includes a paginated list 
+  of chats with their metadata
+* [**Delete Chat**](/docs/api-reference/chat-apis/delete-conversations) by their specific Chat IDs for 
   data management and other purposes.
-* [**Delete Turns**](/docs/api-reference/chat-apis/delete-turns) from a conversation starting from a specific 
+* [**Create Chat Turn**](/docs/api-reference/chat-apis/create-chat-turn) adds a new turn to an existing chat.
+* [**List Chat Turns**](/docs/api-reference/chat-apis/list-chat-turns) returns a list of turns within a chat.
+* [**Delete Chat Turns**](/docs/api-reference/chat-apis/delete-turns) from a conversation starting from a specific 
   Turn ID to manage the content of conversations.
-* [**Disable Turns**](/docs/api-reference/chat-apis/disable-turns) to exclude turns from being used in 
-  generating responses.
+* [**Update Chat Turn**](/docs/api-reference/chat-apis/update-chat-turn) modifies a specific turn within a chat.
 
 ## Chat Object
 
-The `summary` within a Query contains the `chat` object which then specifies the `conversationId`
-and `store` status as `true` or `false`. Chats are set to `false` by default so 
-you must set them to `true` or [enable the chat option](/docs/console-ui/chat-with-your-data) 
-in the Vectara Console.
-
-```json
-"chat": {
-  "store": true,
-  "conversationId": "string"
-}
-```
- 
-### Conversation
-
-Conversations represent individual chat sessions, and a conversation starts 
-with a chat request to the Query endpoint. A unique `conversationId` is 
+The `chat` object represents a chat session. A unique `id` is 
 generated at the initiation of the chat session, which serves as the 
 identifier for all subsequent turns within this conversation. Vectara stores 
 conversations in a single chat history corpus in the customer account.
 
+Each `chat` contains the following properties:
+
 ```json
 {
-  "conversation": [
-    {
-      "id": "ID of the conversation",
-      "turn": [
-        {
-          "id": "ID of the turn",
-          "conversation_id": "ID of the conversation",
-          "query": "First query of the turn",
-          "answer": "First answer of the turn",
-          "enabled": true,
-          "epoch_secs": 0
-        },
-      ]
-    }
-  ] 
-}    
+  "id": "cht_.+$",
+  "first_query": "string",
+  "first_answer": "string",
+  "enabled": true,
+  "created_at": "string"
+}
 ```
 
-### Turns
+## Turn Object
 
 Each conversation has a series of `turn` objects, which are the sequence of 
 message and response pairs that make up the dialog. Each `turn` represents a 
 question/answer pair between the user and the chatbot and has a unique `id` 
-that specifies its `conversation_id`.
+that specifies its `chat_id`.
 
 
 ```json
 "turn": [
   {
     "id": "ID of the turn",
-    "conversation_id": "ID of the conversation",
+    "chat_id": "ID of the conversation",
     "query": "First query of the turn",
     "answer": "First answer of the turn",
     "enabled": true,
-    "epoch_secs": 0
+    "created_at": "string"
   },
   {
     "id": "ID of the second turn",
-    "conversation_id": "ID of the conversation",
+    "chat_id": "ID of the conversation",
     "query": "Second query of the turn",
     "answer": "Second answer of the turn",
     "enabled": true,
-    "epoch_secs": 0
+    "created_at": "string"
   },
   // Additional turn IDs are created for each query and answer pair in the conversation
 ]
 ```
-
-

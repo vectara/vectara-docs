@@ -12,13 +12,15 @@ import {vars} from '@site/static/variables.json';
 API Keys allow controlled, anonymous access to several administrative tasks, 
 indexing your data, and running semantic searches on your corpora. This 
 greatly simplifies integration from public-facing systems like websites. You 
-can easily create a [Personal API key](/docs/console-ui/personal-api-key) or an [Index or Query API Key](/docs/console-ui/index-and-query-api-keys), 
-and then simply embed the API key and directly pass it to <Config v="names.product"/> when issuing requests. If a key 
-is compromised, you can quickly revoke the key and replace it in minutes.
+can easily create a [Personal API key](/docs/console-ui/personal-api-key) or 
+an [Index or Query API Key](/docs/console-ui/index-and-query-api-keys), 
+and then simply embed the API key and directly pass it to <Config v="names.product"/> when 
+issuing requests. If a key is compromised, you can quickly revoke the key and 
+replace it in minutes.
 
 Vectara has three kinds of API keys:
 
-## Personal API Key
+## Personal API key
 
 The Personal API Key helps developers in early stages of exploration and 
 prototyping with Vectara. This method provides a straightforward getting 
@@ -43,14 +45,14 @@ Personal API Keys with the same caution as passwords.
 
 :::
 
-## Query API Keys
+## Query API keys
 
-Query API Keys are recommended for read-only querying operations and are 
+Query API keys are recommended for read-only querying operations and are 
 designed for embedding in code that runs in potentially insecure environments 
 like web browsers or mobile apps. Query API Keys provide the least amount of 
 risk because they have a limited scope and do not modify account data.
 
-## Index API Keys
+## Index API keys
 
 Index API Keys offer a practical solution for development and testing phases 
 for when you need read and write access. Because they also provide write 
@@ -73,7 +75,7 @@ confidentiality as your personal credentials.
 
 :::
 
-## Use an API Key
+## Use an API key
 
 To use a Personal, Index, or Query API key, pass it using the `x-api-key` 
 header request.
@@ -90,19 +92,18 @@ header request.
 <pre>
 {`
 api_key_header = {
-    "customer-id": CUSTOMER_ID,
     "x-api-key": API_KEY
 }
  
 data_dict = {
     "query": [
         {
-            "query": "What is the meaning of life?",
-            "num_results": 10,
-            "corpus_key": [
-                {
-                    "customer_id": CUSTOMER_ID,
-                    "corpus_id": CORPUS_ID
+         query: "What is the meaning of life?",
+           search: {
+            corpora: [{ corpus_key: corpus_key }],
+            offset: 0,
+            limit: 10,
+        },
                 }
             ]
         }
@@ -122,18 +123,19 @@ response = requests.post(
 
 <pre>
 {`
-fetch("https://${vars['domains.rest.serving']}:443/v1/query", {
+fetch("https://${vars['domains.rest.serving']}:443/v2/query", {
   headers: {
     "Content-Type": "application/json",
     "x-api-key": api_key,
-    "customer-id": customer_id,
   },
   body: JSON.stringify({
     query: [
       {
         query: "What is the meaning of life?",
-        num_results: 10,
-        corpus_key: [{ customer_id: customer_id, corpus_id: corpus_id }],
+        search: {
+          corpora: [{ corpus_key: corpus_key }],
+          offset: 0,
+          limit: 10,
       },
     ],
   }),
@@ -156,8 +158,10 @@ curl -X POST \\
   {
     "query": [
       { "query": "What is the meaning of life?",
-        "num_results": 10,
-        "corpus_key": [{"customer_id": \${CUSTOMER_ID}, "corpus_id": \${CORPUS_ID}}]
+         search: {
+          corpora: [{ corpus_key: corpus_key }],
+          offset: 0,
+          limit: 10,
       }
     ]
   }
@@ -168,7 +172,7 @@ END
 </TabItem>
 </Tabs>
 
-## Disable and Enable API Keys
+## Disable and enable API keys
 
 To temporarily disable access to an API key, begin by visiting the API Keys
 screen. Select disable by clicking on the action menu (three dots) of the key
@@ -181,7 +185,7 @@ It will take around a minute for query requests using this key to be blocked.
 Once disabled, a key can be reenabled through the action menu. It will take a
 minute or two before it can serve query traffic again.
 
-## Delete API Keys
+## Delete API kys
 
 A key may be permanently deleted through its action menu. 
 
