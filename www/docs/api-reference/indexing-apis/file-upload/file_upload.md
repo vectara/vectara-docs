@@ -47,8 +47,8 @@ corpus, you specify a custom `corpus_key`.
 
 ## File Upload Request Details
 
-To upload a file, send a POST request to `/v2/corpora/{corpus_key}/upload_file`,
-where {`corpus_key`} is the unique identifier for the corpus. The File Upload
+To upload a file, send a POST request to `/v2/corpora/{corpus_key}/upload_file`, 
+where `{corpus_key}` is the unique identifier for the corpus. The File Upload
 endpoint request expects a `multipart/form-data` request containing the
 following parts:
 
@@ -73,13 +73,6 @@ curl -L -X POST 'https://api.vectara.io/v2/corpora/{corpus_key}/upload_file' \
 -F 'metadata={"key": "value"};type=application/json' \
 -F 'file=@/path/to/file/file.pdf;filename=desired_filename.pdf'
 ```
-
-If you want to add metadata to the file, structure it as a valid JSON object:
-
-```
-
-```
-
 ### Set the Document ID
 
 The `Content-Disposition` header lets you specify the Document ID of a file
