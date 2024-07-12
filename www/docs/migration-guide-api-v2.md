@@ -77,7 +77,21 @@ of `10`. In 2.0, this `corpus_key` value is `employee_handbook_10`:
 `/v2/corpora/Employee_Handbook_10` - API 2.0 endpoint with corpus_key
 
 Going forward, when you create a new corpus, you can specify a custom 
-`corpus_key`. The `corpus_id` from v1 is only retained for internal purposes 
+`corpus_key`. In v2, the new user-defined `corpus_key` is the main identifier 
+for each corpus. The `corpus_id` still remains for all corpora and new corpora 
+also get a unique `corpus_id`.
+
+:::note
+
+The gRPC API continues to use `corpus_id` as the primary identifier for 
+corpora. Even for corpora created using REST API 2.0, a `corpus_id` is still 
+generated and can be used with gRPC calls. If using REST 2.0, you work with 
+the `corpus_key`.
+
+:::
+
+
+The `corpus_id` from v1 is only retained for internal purposes 
 for users migrating to v2. In v2, the new user-defined `corpus_key` is the 
 main identifier for each corpus.
 
