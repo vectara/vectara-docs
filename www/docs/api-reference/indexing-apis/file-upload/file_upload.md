@@ -34,16 +34,29 @@ for optimizing searches made against your data by
 to upload and index documents into a corpus:
 <code>https://<Config v="domains.rest.indexing"/>/v2/corpora/:corpus_key/upload_file</code>
 
+
+:::caution
+
+As part of the [**Vectara REST API 1.0 to 2.0 migration**](/docs/migration-guide-api-v2), every existing `corpus_id` 
+has been converted with an appended ID to create the `corpus_key`. This 
+`corpus_key` is now the main identifier for each corpus. When you create a new 
+corpus, you specify a custom `corpus_key`.
+
+:::
+
+
 ## File Upload Request Details
 
 To upload a file, send a POST request to `/v2/corpora/{corpus_key}/upload_file`,
-where {corpus_key} is the unique identifier for the corpus. The File Upload
+where {`corpus_key`} is the unique identifier for the corpus. The File Upload
 endpoint request expects a `multipart/form-data` request containing the
 following parts:
 
 - `metadata` - (Optional) Specifies a JSON object representing any additional
   metadata to be associated with the extracted document.
 - `file` - Specifies the file that you want to upload.
+- `filename` - Specified as part of the `file` field with the file name that you 
+  want to associate with the uploaded file.
 
 Vectara processes the uploaded file, and the extracted text and metadata are
 used to create a new document within the corpus. Only one document can be
@@ -53,11 +66,18 @@ Apart from these parameters, the servers expect a valid JWT Token in the HTTP
 headers.
 
 ```json
-curl -L -X POST 'https://api.vectara.io/v1/upload?c=123456789&o=5' \
+curl -L -X POST 'https://api.vectara.io/v2/corpora/{corpus_key}/upload_file' \
 -H 'Content-Type: multipart/form-data' \
 -H 'Accept: application/json' \
 -H 'x-api-key: zwt_123456' \
--F 'file=@"/path/to/file"'
+-F 'metadata={"key": "value"};type=application/json' \
+-F 'file=@/path/to/file/file.pdf;filename=desired_filename.pdf'
+```
+
+If you want to add metadata to the file, structure it as a valid JSON object:
+
+```
+
 ```
 
 ### Set the Document ID
@@ -97,6 +117,7 @@ before the document is served.
 
 Some error codes returned by the server are:
 
+- `201`: The extracted document has been parsed and added to the corpus.
 - `400`: Upload files request was malformed.
 
 - `403`: Permissions do not allow uploading a file to the corpus.
