@@ -65,24 +65,27 @@ Use percent-encoding for special characters in IDs when making requests. This
 ensures that your requests are properly formatted and handled by the REST 2.0 
 API.
 
-## Corpus Key introduction
+## Corpus Key replaces Corpus ID
 
-Vectara REST API 2.0 introduces the `corpus_key` which is a unique identifier 
-for each corpus. As part of the 1.0 to 2.0 migration, all existing corpora IDs 
-have been converted with an appended ID to create the `corpus_key`. For 
-example, you had a 1.0 corpus named "employee handbook" with an ID of `10`. In 
-2.0, this `corpus_key` value is `employee_handbook_10`:
+In v1, each corpus had a unique `corpus_id` assigned at corpus creation. Vectara 
+REST API 2.0 introduces the `corpus_key` which is a user-defined, unique 
+identifier for each corpus. As part of the 1.0 to 2.0 migration, all existing 
+corpus IDs have been converted with an appended ID to create the `corpus_key`. 
+For example, you had a 1.0 corpus named "employee handbook" with an `corpus_id` 
+of `10`. In 2.0, this `corpus_key` value is `employee_handbook_10`:
 
 `/v2/corpora/Employee_Handbook_10` - API 2.0 endpoint with corpus_key
 
 Going forward, when you create a new corpus, you can specify a custom 
-`corpus_key`.
+`corpus_key`. The `corpus_id` from v1 is only retained for internal purposes 
+for users migrating to v2. In v2, the new user-defined `corpus_key` is the 
+main identifier for each corpus.
 
 **Action items:**
 
 * [Retrieve a list](/docs/rest-api/list-corpora) of corpora in the account 
   with the [List Corpora API definition](/docs/api-reference/admin-apis/corpus/list-corpora). 
-* Update any code that references the v1 `corpusId` to use the v2 `corpus_key` format.
+* Update any code that references the v1 `corpus_id` to use the v2 `corpus_key` format.
 
 ### Corpus object changes
 
