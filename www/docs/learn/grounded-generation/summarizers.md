@@ -35,13 +35,18 @@ this `generation` field disables summarization.
 Today, the versions available are `1.2.0` which uses chatgpt-3.5-turbo
 and `1.3.0` which uses gpt-4.0 (and only available to our paying [Scale
 customers](https://vectara.com/pricing/)). The 1.2.0 summarizer is typically faster while 1.3.0 is typically
-slower, but it produces a more accurate summary.
+slower, but it produces a more accurate summary. Scale users also have access 
+to summarizers ideal for citations using gpt-4o, gpt-4.0, and gpt-4.0-turbo.
 
-These are the two official summarizers available to our users that you specify
-in the `model_id`:
+These are several official summarizers available to our users that you specify
+in the `prompt_name` in the `generation` object:
 
 - `vectara-summary-ext-v1.2.0` (gpt-3.5-turbo)
 - `vectara-summary-ext-v1.3.0` (gpt-4.0)
+- `vectara-summary-ext-24-05-sml` (gpt-3.5-turbo, for citations)
+- `vectara-summary-ext-24-05-med-omni` (gpt-4o, for citations)
+- `vectara-summary-ext-24-05-med` (gpt-4.0, for citations)
+- `vectara-summary-ext-24-05-large` (gpt-4.0-turbo, for citations)
 
 Scale customers also have
 access to [advanced summarization customization options](/docs/api-reference/search-apis/search#advanced-summarization-customization-options) including

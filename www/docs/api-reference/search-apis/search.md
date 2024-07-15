@@ -240,6 +240,7 @@ To use citations, you must specify one of the following summarizers
 in `prompt_name`:
 
 - `vectara-summary-ext-24-05-sml` - (gpt-3.5-turbo)
+- `vectara-summary-ext-24-05-med-omni` - (gpt-4o)
 - `vectara-summary-ext-24-05-med` - (gpt-4.0)
 - `vectara-summary-ext-24-05-large` - (gpt-4.0-turbo)
 
