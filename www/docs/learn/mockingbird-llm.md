@@ -81,7 +81,7 @@ To use Mockingbird in the Vectara Console:
 3. Click **Model** from the Generation drop-down in the Corpus Query Configuration panel.
      ![Query model selection drop-down](/img/query_model_selection.png "The currently selected summarizer is vectara-summary-ext-v1.3.0. Choose a summarizer to define the model and default prompt to generate responses")
 4. Select the `Mockingbird` model.
-    ![Mockingbird model selection](/img/Mockingbird-10.png "Mockingbird LLM v1.0 prompt for summarizing query results as an answer. Designed for RAG.")
+    ![Mockingbird model selection](/img/mockingbird-10.png "Mockingbird LLM v1.0 prompt for summarizing query results as an answer. Designed for RAG.")
 5. Click **Model** again to minimize the list of models. This example shows a 
    Summary configuration with Mockingbird selected as the model.
     ![Query with Mockingbird selected](/img/query_with_mockingbird_selected.png)
