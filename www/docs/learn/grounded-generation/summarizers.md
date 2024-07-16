@@ -54,7 +54,7 @@ to summarizers ideal for citations using gpt-4o, gpt-4.0, and gpt-4.0-turbo.
 These are several official summarizers available to our users that you specify
 in the `prompt_name` in the `generation` object:
 
-- `mockingbird-1.0-2024-07-16` (Vectara's cutting-edge LLM for Retrieval Augmented Generation. See [Mockingbird LLM](/docs/mockingbird-llm) for more details.)
+- `mockingbird-1.0-2024-07-16` (Vectara's cutting-edge LLM for Retrieval Augmented Generation. See [Mockingbird LLM](/docs/learn/mockingbird-llm) for more details.)
 - `vectara-summary-ext-v1.2.0` (gpt-3.5-turbo)
 - `vectara-summary-ext-v1.3.0` (gpt-4.0)
 - `vectara-summary-ext-24-05-sml` (gpt-3.5-turbo, for citations)
