@@ -20,7 +20,7 @@ For example, a score of `0.95` suggests a 95% likelihood that the summary is
 free of hallucinations and would align with the original content. A lower 
 score of `0.40` indicates a 40% chance which may contain one or more factual 
 inaccuracies, however minor. We suggest starting with a setting of `0.5` as an 
-initial guideline. 
+initial guideline.
 
 ## Enable the Factual Consistency Score
 
@@ -30,7 +30,7 @@ The Factual Consistency Score returns a calibrated value in the
 contains the value between `0.0` and `1.0`.
 
 ```json showLineNumbers title="Enable the Factual Consistency Score"
-"summarization": {
+"generation": {
     "prompt_name": "vectara-summary-ext-v1.3.0",
     "max_used_search_results": 3,
     "enable_factual_consistency_score": true

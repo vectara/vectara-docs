@@ -55,6 +55,7 @@ information that you want to retrieve. These values can also specify [variables
 and functions](/docs/prompts/custom-prompts-with-metadata) to provide more nuanced context. You then 
 add different operations to customize the types of answers you want to retrieve.
 
+
 ### Role
 
 The `role` specifies the function of the individual or entity that you want to

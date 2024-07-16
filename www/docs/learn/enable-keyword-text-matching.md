@@ -73,7 +73,7 @@ https://api.vectara.io/v2/query \
     },
     "lexical_interpolation": 1.0
   },
-  "summarization": {
+  "generation": {
     "prompt_name": "vectara-summary-ext-v1.2.0",
     "max_used_search_results": 5
   }

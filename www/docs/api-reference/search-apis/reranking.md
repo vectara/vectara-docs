@@ -41,7 +41,7 @@ several parameter values.
           "type": "customer_reranker",
           "reranker_id": "272725719"
     },
-  "summarization": [],
+  "generation": [],
   "enable_factual_consistency_score": true
 }
 ```
