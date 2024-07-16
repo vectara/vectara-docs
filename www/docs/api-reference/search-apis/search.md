@@ -44,7 +44,7 @@ with these query types.
 ### Query Corpora
 
 The [`/v2/query` endpoint](/docs/rest-api/query) allows you to perform Retrieval Augmented Generation
-(RAG) across one or more corpora in your account. You send a POST request in
+(RAG) across one or more corpora in your account. You send a POST request in 
 the body that specifies the following:
 
 - `query` - Contains your query text
@@ -194,6 +194,28 @@ The `generation` object enables you to tailor the results of the query
 summarization. Growth users can specify the `max_summarized_results`, 
 `response_language`, and `enable_factual_consistency_score`.
 
+### Mockingbird: Enhanced RAG Performance
+
+For users seeking superior RAG performance, <Config v="names.product"/> offers Mockingbird, 
+our advanced LLM specifically designed for RAG tasks.
+
+To use Mockingbird for your RAG tasks, specify the following `prompt_name` in 
+the `generation` object, like in this example:
+
+```json
+{
+  "generation": {
+    "prompt_name": "mockingbird-1.0-2024-07-16",
+    "max_used_search_results": 5,
+    "response_language": "eng",
+    "enable_factual_consistency_score": true
+  }
+}
+```
+Mockingbird is particularly beneficial for enterprise applications requiring 
+high-quality summaries and structured outputs. For more details on Mockingbird's 
+capabilities and performance, see the [Mockingbird LLM section](/docs/learn/mockingbird-llm).
+
 ## Factual Consistency Score
 
 The Factual Consistency Score, based on a more advanced version of
@@ -223,7 +245,7 @@ When generating a summary, Vectara enables Scale users to format the `style` of
 - `numeric` (default) - Citations appear as numbers `[1]`, `[2]`, `[N]`, and so on.
 - `none` - No citations appear in the summary.
 - `html` - Citations appears as a URL: `<a href="https://my.doc/foo">[N]</a>`
-- `markdown` - Citations appears in Markdown: `[N](https://my.doc/foo)`
+- `MARKDOWN` - Citations appears in Markdown: `[N](https://my.doc/foo)`
 
 If set to `html` or `markdown`, you must customize the citation using
 both of the `url_pattern` and `text_pattern` fields to enable dynamic citation
@@ -239,6 +261,7 @@ braces. For example, use `{doc.title}` and the final result appears as
 To use citations, you must specify one of the following summarizers
 in `prompt_name`:
 
+- `mockingbird-1.0-2024-07-16` - (Vectara's Mockingbird LLM)
 - `vectara-summary-ext-24-05-sml` - (gpt-3.5-turbo)
 - `vectara-summary-ext-24-05-med-omni` - (gpt-4o)
 - `vectara-summary-ext-24-05-med` - (gpt-4.0)
@@ -263,7 +286,7 @@ link to the specific page:
 ```json
 {
   "citations": {
-    "style": "markdown",
+    "style": "MARKDOWN",
     "url_pattern": "{doc.id}#page={section.page}",
     "text_pattern": "as seen in {doc.title}"
   }
