@@ -34,17 +34,25 @@ define parameters that control the behavior of the query and summarization:
 The exact request format depends on the specific query type that you want to
 use.
 
+:::tip
+
+Check out our [**interactive API Reference**](/docs/rest-api/query) that you experiment
+with these query types.
+
+:::
+
 ### Query Corpora
 
 The [`/v2/query` endpoint](/docs/rest-api/query) allows you to perform Retrieval Augmented Generation
-(RAG) across one or more corpora in your account. You send a POST request in
+(RAG) across one or more corpora in your account. You send a POST request in 
 the body that specifies the following:
 
 - `query` - Contains your query text
 - `stream_response` - Indicates whether to stream the response in real-time (`true`) or
   to send a complete summary at the end of processing the request (`false`)
 - `search` - Specifies the search parameters
-- `summarization` - Specifies the summarization parameters
+- `generation` - Specifies the summarization parameters. Excluding this generation 
+  field disables summarization.
 
 This query type is useful when you want to query all your
 data sources at once.
@@ -70,7 +78,8 @@ Query Corpora type and specifies the same parameters:
 - `stream_response` - Indicates whether to stream the response in real-time or
   to send a complete summary at the end of processing the request
 - `search` - Specifies the search parameters
-- `summarization` - Specifies the summarization parameters
+- `generation` - Specifies the summarization parameters. Excluding this generation 
+  field disables summarization
 
 This advanced type provides additional search filtering and customization
 options compared to the simple GET method.
@@ -177,13 +186,35 @@ a `diversityBias` value between `0.0` and `1.0`.
 
 To use Retrieval Augmented Generation (RAG), which <Config v="names.product"/> also refers to as
 "Grounded Generation" -- our groundbreaking way of producing generative
-summaries on top of your own data -- you can submit a `summarization` that attempts to answer the
+summaries on top of your own data -- you can submit a `generation` that attempts to answer the
 end-user's question, citing the results as references. For more information,
 read about [Retrieval Augmented Generation](/docs/learn/grounded-generation/grounded-generation-overview).
 
-The `summarization` object enables you to tailor the results of the query
-summarization. Growth users can specify the `max_summarized_results` and
-`response_language`.
+The `generation` object enables you to tailor the results of the query
+summarization. Growth users can specify the `max_summarized_results`, 
+`response_language`, and `enable_factual_consistency_score`.
+
+### Mockingbird: Enhanced RAG Performance
+
+For users seeking superior RAG performance, <Config v="names.product"/> offers Mockingbird, 
+our advanced LLM specifically designed for RAG tasks.
+
+To use Mockingbird for your RAG tasks, specify the following `prompt_name` in 
+the `generation` object, like in this example:
+
+```json
+{
+  "generation": {
+    "prompt_name": "mockingbird-1.0-2024-07-16",
+    "max_used_search_results": 5,
+    "response_language": "eng",
+    "enable_factual_consistency_score": true
+  }
+}
+```
+Mockingbird is particularly beneficial for enterprise applications requiring 
+high-quality summaries and structured outputs. For more details on Mockingbird's 
+capabilities and performance, see the [Mockingbird LLM section](/docs/learn/mockingbird-llm).
 
 ## Factual Consistency Score
 
@@ -214,7 +245,7 @@ When generating a summary, Vectara enables Scale users to format the `style` of
 - `numeric` (default) - Citations appear as numbers `[1]`, `[2]`, `[N]`, and so on.
 - `none` - No citations appear in the summary.
 - `html` - Citations appears as a URL: `<a href="https://my.doc/foo">[N]</a>`
-- `markdown` - Citations appears in Markdown: `[N](https://my.doc/foo)`
+- `MARKDOWN` - Citations appears in Markdown: `[N](https://my.doc/foo)`
 
 If set to `html` or `markdown`, you must customize the citation using
 both of the `url_pattern` and `text_pattern` fields to enable dynamic citation
@@ -230,7 +261,9 @@ braces. For example, use `{doc.title}` and the final result appears as
 To use citations, you must specify one of the following summarizers
 in `prompt_name`:
 
+- `mockingbird-1.0-2024-07-16` - (Vectara's Mockingbird LLM)
 - `vectara-summary-ext-24-05-sml` - (gpt-3.5-turbo)
+- `vectara-summary-ext-24-05-med-omni` - (gpt-4o)
 - `vectara-summary-ext-24-05-med` - (gpt-4.0)
 - `vectara-summary-ext-24-05-large` - (gpt-4.0-turbo)
 
@@ -253,7 +286,7 @@ link to the specific page:
 ```json
 {
   "citations": {
-    "style": "markdown",
+    "style": "MARKDOWN",
     "url_pattern": "{doc.id}#page={section.page}",
     "text_pattern": "as seen in {doc.title}"
   }
@@ -269,6 +302,10 @@ or conveyance of the authority [as seen in Rules of Conduct and
 Fines](https://new.mta.info/document/36821#page=3).
 ```
 
+## Disable query summarization
+
+To disable summarization, exclude the `generation` object from a query.
+
 ## Advanced Summarization Customization Options
 
 [Scale users](https://vectara.com/pricing/) have access to more powerful summarization
@@ -283,7 +320,7 @@ response format that behaves more playfully in a conversation or summary.
 
 The `max_response_characters` lets you control the length of the summary, but
 note that it is **not a hard limit** like with the `max_tokens` parameter. The
-`summarization` object provides even more fine-grained controls for the summarizer
+`generation` object provides even more fine-grained controls for the summarizer
 model:
 
 - `max_tokens` specifies a hard limit on the number of characters in a response.

@@ -24,7 +24,7 @@ These features enable organizations to create comprehensive and reliable
 knowledge repositories, providing quick and precise answers to user queries 
 and improving overall information accessibility.
 
-## Significantly improved quality for Retrieval Augmented Generation
+## Significantly improved quality for Retrieval Augmented Generation (RAG)
 
 Mockingbird improves quality for RAG use cases, surpassing general-purpose 
 LLMs in critical areas for enterprise applications. Mockingbird provides 
@@ -35,17 +35,22 @@ creating advanced AI agents.
 
 ## Increased accuracy in summarizing retrieved results
 
-Mockingbird excels at summarizing large collections of search results, 
-enabling users to quickly grasp key information and insights without manual 
-review. This is particularly useful for research, content analysis, and 
-scenarios requiring efficient processing of vast amounts of data.
+Mockingbird excels at producing summaries and answers for large collections of 
+search results, allowing users to quickly grasp essential information without 
+manual review. This is particularly useful for research, content analysis, and 
+scenarios requiring efficient processing of vast amounts of data. Mockingbird 
+meets or exceeds leading models like GPT-4 and Gemini 1.5 Pro in RAG quality, 
+citation quality, multilingual quality and structured output accuracy, 
+especially being a smaller and lower cost model, while reducing hallucinations 
+and providing more reliable and accurate summaries for important data
 
 ## Enhanced JSON output for structured data generation
 
-Generate structured data from unstructured text sources. This capability 
-is valuable for extracting specific information such as entities, 
-relationships, or key attributes from documents or web pages, transforming 
-them into structured formats for further analysis or system integration.
+Mockingbird effectively generates structured data from unstructured text 
+sources. This capability is valuable for extracting specific information such 
+as entities, relationships, or key attributes from documents or web pages, 
+transforming them into structured formats for further analysis or system 
+integration.
 
 ## Multilingual capabilities
 
@@ -55,9 +60,9 @@ are not officially supported yet, but may work in some cases such as
 referencing documentss in language X, and a summary in language Y.
 
 ### Supported Mockingbird languages
+
 Mockingbird supports the following languages: Arabic, French, Spanish, 
 Portuguese, Italian, German, Chinese, Dutch, Korean, Japanese, and Russian.
-
 
 ## Secure deployment within Vectara's infrastructure
 
@@ -67,27 +72,28 @@ customer data, Vectara guarantees your data is never used to train or improve
 our models, ensuring data privacy and compliance with the strictest security 
 standards.
 
-
-## Use Mockingbird in summaries
+## Selecting Mockingbird for summarization
 
 To use Mockingbird in the Vectara Console:
 
-1. Go to a corpus.
+1. Select **Corpora** from the main menu and go to a corpus.
 2. Select the **Query** tab.
-3. Click the Generation drop-down in the Corpus Query Configuration panel.
+3. Click **Model** from the Generation drop-down in the Corpus Query Configuration panel.
+     ![Query model selection drop-down](/img/query_model_selection.png "The currently selected summarizer is vectara-summary-ext-v1.3.0. Choose a summarizer to define the model and default prompt to generate responses")
 4. Select the `Mockingbird` model.
-
-
-screenshot tbd
+    ![Mockingbird model selection](/img/Mockingbird-10.png "Mockingbird LLM v1.0 prompt for summarizing query results as an answer. Designed for RAG.")
+5. Click **Model** again to minimize the list of models. This example shows a 
+   Summary configuration with Mockingbird selected as the model.
+    ![Query with Mockingbird selected](/img/query_with_mockingbird_selected.png)
 
 To use Mockingbird in an Query request, set the `prompt_name` in the `generation` 
-object to `mockingbird-1.0`:
+object to `mockingbird-1.0-2024-07-16`:
 
 ```json
 {
 "query:" "What is the infinite probability drive?",
 "generation": {
-    "prompt_name": "mockingbird-1.0",
+    "prompt_name": "mockingbird-1.0-2024-07-16",
     "max_used_search_results": 5,
     "prompt_text": "",
     "response_language": "eng",
@@ -96,31 +102,38 @@ object to `mockingbird-1.0`:
 }  
 ```
 
+:::tip
 
+Check out our [**interactive API reference**](/docs/rest-api/query) that lets you run queries 
+directly from your browser.
+
+:::
 
 ## Default Mockingbird prompt
 
-Mockingbird uses the following `prompt_text` by default. You can use this prompt as a 
-model for building your own custom prompts when using Mockingbird:
+Mockingbird uses the following `prompt_text` by default. You can use this 
+prompt template as a model for building your own custom prompts when using 
+Mockingbird:
 
 
-```javascript
-{"role": "user", "content": "You are a search bot that takes search results and 
-summarizes them as a coherent answer. Only use information provided in this chat. 
-Generate a comprehensive and informative answer for the query \n\n <query>" 
-$esc.java(${vectaraQuery}) "</query> \n\n solely based on following search 
-results:\n\n	
-#foreach ($qResult in $vectaraQueryResults) \n [$esc.java($foreach.index + 1)] 
-$esc.java(${qResult.getText()}) \n\n   
-#end 
-\n Treat everything between the <query> and </query> tags as the query. 
-You must only use information from the provided results. Combine search results 
-together into a coherent answer. Do not repeat text. Cite search results using 
-[number] notation. Only cite the most relevant results that answer the question 
-accurately. If the search results are not valid, respond with - No result found. 
-Please generate your answer in the language of $vectaraLangName"}
+```json
+{
+  "role": "user", "content": "You are a search bot that takes search results and 
+  summarizes them as a coherent answer. Only use information provided in this chat. 
+  Generate a comprehensive and informative answer for the query \n\n <query>" ${vectaraQuery} "</query> \n\n 
+  solely based on following search results:\n\n	
+  #foreach ($qResult in $vectaraQueryResults) \n [$foreach.index + 1) 
+  ${qResult.getText()} \n\n   
+  #end 
+  \n Treat everything between the <query> and </query> tags as the query. 
+  You must only use information from the provided results. Combine search results 
+  together into a coherent answer. Do not repeat text. Cite search results using 
+  [number] notation. Only cite the most relevant results that answer the question 
+  accurately. If the search results are not valid, respond with - No result found. 
+  Please generate your answer in the language of $vectaraLangName"
+}
 ```
-Custom prompts using Mockingbird have the following rules:
+Custom prompts and prompt templates using Mockingbird have the following rules:
 
 1. You are only allowed to specify the `assistant` and `user` roles.
 2. These `assistant` and `user` roles must alternate, so there can be no two consecutive 

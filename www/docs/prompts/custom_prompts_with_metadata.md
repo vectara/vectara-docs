@@ -13,20 +13,20 @@ Vectara handles the system and user prompts automatically, but if you want to
 do it yourself, Vectara now empowers developers with a flexible way of
 customizing prompts with metadata. Our Custom Retrieval Augmented Generation
 (RAG) Prompt Engine provides several available prompt variables and functions
-for Scale users to customize prompts in their [Queries](/docs/api-reference/search-apis/search).
+for Scale users to customize prompt templates in their [Queries](/docs/api-reference/search-apis/search).
 
 ## Available prompt variables
 
-The following table shows the available custom prompt variables:
+The following table shows the available custom prompt template variables:
 
 | Variable             | Description                                                                                                                                    | Example Usage Input                                                                                                                                                                                              | Example Usage Output                                                                                                                                   |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | $vectaraOutChars     | Number of characters                                                                                                                           | See below                                                                                                                                                                                                        |                                                                                                                                                        |
 | $vectaraLangCode     | ISO639 v3 code for the passed language code                                                                                                    | See below                                                                                                                                                                                                        |                                                                                                                                                        |
-| $vectaraQuery        | The query provided by the user                                                                                                                 | Generate a summary in $vectaraOutChars characters in language '${vectaraLangCode}' for the query '$esc.java(${vectaraQuery})' solely based on the search results in this chat.                                   | Generate a summary in 512 characters in language 'ara' for the query 'Give me "some" search results.' solely based on the search results in this chat. |
+| $vectaraQuery        | The query provided by the user                                                                                                                 | Generate a summary in $vectaraOutChars characters in language '${vectaraLangCode}' for the query '${vectaraQuery}' solely based on the search results in this chat.                                   | Generate a summary in 512 characters in language 'ara' for the query 'Give me "some" search results.' solely based on the search results in this chat. |
 | $vectaraIdxWord      | A utility array to convert the index to words i.e "first", "second", "third", "forth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth" | $vectaraIdxWord[0]                                                                                                                                                                                               | first                                                                                                                                                  |
 | $vectaraLangName     | Set to the requested language name. The language can either be requested explicitly or detected from the language of the query.                | You are a helpful assistant. Answer in ${vectaraLangName}.                                                                                                                                                       | You are a helpful assistant. Answer in Arabic.                                                                                                         |
-| $vectaraQueryResults | An array of query results is found in the response, sorted by relevance score.                                                                 | #foreach ($qResult in $vectaraQueryResults)    {"role": "user", "content": "Give me the $vectaraIdxWord[$foreach.index] search result."}, {"role": "assistant", "content": "$esc.java(${qResult.text()})" },#end | {"role": "user", "content": "Give me the second search result."},{"role": "assistant", "content": "2nd result" },                                      |
+| $vectaraQueryResults | An array of query results is found in the response, sorted by relevance score.                                                                 | #foreach ($qResult in $vectaraQueryResults)    {"role": "user", "content": "Give me the $vectaraIdxWord[$foreach.index] search result."}, {"role": "assistant", "content": "${qResult.text()}" },#end | {"role": "user", "content": "Give me the second search result."},{"role": "assistant", "content": "2nd result" },                                      |
 
 ## Available prompt functions
 
@@ -34,7 +34,6 @@ The following table shows the available custom prompt functions:
 
 | Function                                    | Description                                                                                                 | Example Usage Input                            | Example Usage Output            |
 | ------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------- | ------------------------------- |
-| $esc.java(...)                              | A utility method to escape special charts, has methods such as "esc.java", "esc.url", "esc.xml", "esc.html" | See below                                      |                                 |
 | #foreach ($qResult in $vectaraQueryResults) |                                                                                                             |                                                |                                 |
 | $qResult.getText() or $qResult.text()       | Returns text of the query result                                                                            | $qResult.text()                                | Result text                     |
 | $qResult.docMetadata()                      | Returns the metadata of the document this result belongs to                                                 | $qResult.docMetadata()                         | {"title": "documentTitle", ...} |
@@ -47,7 +46,7 @@ The following table shows the available custom prompt functions:
 ## Setting a custom prompt
 
 To set a custom prompt, Scale users can add custom `promptText` within the
-`summary` [object](/docs/learn/grounded-generation/select-a-summarizer) of a [query](/docs/api-reference/search-apis/search)
+`generation` [object](/docs/learn/grounded-generation/select-a-summarizer) of a [query](/docs/api-reference/search-apis/search)
 to override the default prompt text. The [API Reference](/docs/rest-api/query) provides a custom
 prompt in the Query endpoint Scale Example.
 
@@ -58,14 +57,14 @@ by retrieving metadata `docMetadata` from the date that information was
 answered `answerDate`. It then extracts the text content of `qResult`.
 
 ```javascript
-{"role": "assistant", "content": "qResult.docMetadata().get('answerDate') $esc.java(${qResult.getText()})" },
+{"role": "assistant", "content": "qResult.docMetadata().get('answerDate') ${qResult.getText()}" },
 ```
 
 Let's dive into a full custom prompt example that shows more details about a
 custom prompt with
 metadata.
 
-## Example custom prompt for an RFI answering bot
+## Example custom prompt template for an RFI answering bot
 
 The following example prompt creates a Request for information (RFI)
 answering bot that includes metadata. First, we ask the generative LLM to
@@ -98,11 +97,11 @@ user gets a response that `The returned results did not contain sufficient infor
     },
     #foreach ($qResult in $vectaraQueryResults)
     #if ($foreach.first)
-        {"role": "user", "content": "Search for '$esc.java(${vectaraQuery})', and give me the first search result."},
-        {"role": "assistant", "content": "$esc.java(${qResult.getText()})" },
+        {"role": "user", "content": "Search for '${vectaraQuery}', and give me the first search result."},
+        {"role": "assistant", "content": "${qResult.getText()}" },
     #else
         {"role": "user", "content": "Give me the $vectaraIdxWord[$foreach.index] search result."},
-        {"role": "assistant", "content": "$qResult.docMetadata().get('answerDate') $esc.java(${qResult.getText()})" },
+        {"role": "assistant", "content": "$qResult.docMetadata().get('answerDate') ${qResult.getText()}" },
     #end
     #end
     {
