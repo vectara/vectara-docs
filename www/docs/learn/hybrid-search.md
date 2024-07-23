@@ -28,7 +28,11 @@ For example, you can use this in Vectara to:
 
 Enable hybrid search by specifying `lexical_interpolation` value at query time,
 specifically in the `search` object. This value can range from `0.0` to `1.0`
-(inclusive).
+(inclusive). 
+
+:::note
+Setting `lexical_interpolation` to `1.0` is equivalent to the original BM25.
+:::
 
 As you ingest data and run queries, adjust the `lexical_interpolation` value to
 achieve the perfect balance in answer quality.
