@@ -34,6 +34,10 @@ the `search` object:
   },
 ```
 
+:::note
+Setting `lexical_interpolation` to `1.0` is equivalent to the original BM25.
+:::
+
 ## Enable exact keyword matching in the console UI
 
 You can also set this value in the Console UI and experiment with searches and 
