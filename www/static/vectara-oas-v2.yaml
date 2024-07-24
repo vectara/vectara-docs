@@ -37,7 +37,7 @@ info:
     email: feedback@vectara.com
 tags:
   - name: Queries
-    description: Perform search and retrieval augmented generation operations on one or more corpora
+    description: Perform search and retrieval augmented generation (RAG) operations on one or more corpora
   - name: Upload
     description: Upload files to a corpus for automatic parsing and document extraction
   - name: Index
@@ -67,18 +67,220 @@ servers:
   - url: https://api.vectara.io
 
 paths:
+  /v2/corpora/{corpus_key}/reset:
+    post:
+      tags:
+        - Corpora
+      summary: Remove all documents and data in a corpus
+      description: Resets a corpus, which removes all documents and data from the specified corpus, while keeping the corpus itself.
+      operationId: resetCorpus
+      parameters:
+        - in: path
+          name: corpus_key
+          description: The unique key identifying the corpus to reset.
+          required: true
+          schema:
+            $ref: '#/components/schemas/CorpusKey'
+      responses:
+        '204':
+          description: Successfully reset a corpus.
+        '403':
+          description: Permissions do not allow resetting the corpus.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Corpus not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+  /v2/corpora/{corpus_key}/replace_filter_attributes:
+    post:
+      tags:
+        - Corpora
+      summary: Replace the filter attributes of a corpus
+      description: |
+        Replace the filter attributes of a corpus. This does not happen immediately, but
+        instead creates a job and will complete when that job completes. Until that
+        job completes, using new filter attributes will not work.
+
+        You can monitor the status of the filter change using the returned job id.
+      operationId: replaceFilterAttributes
+      parameters:
+        - in: path
+          name: corpus_key
+          description: Key of the corpus to have filters replaced.
+          required: true
+          schema:
+            $ref: '#/components/schemas/CorpusKey'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReplaceFilterAttributesRequest'
+      responses:
+        '200':
+          description: Successfully created a job that will replace the filter attributes.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReplaceFilterAttributesResponse'
+        '403':
+          description: Permissions don't allow replacing filter attributes.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Corpus not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+  /v2/corpora/{corpus_key}/query:
+    get:
+      tags:
+        - Queries
+      summary: Simple Single Corpus Query
+      description: |
+        Search a single corpus with a straightforward query request, specifying the corpus key and query parameters.
+
+        * Specify the unique `corpus_key` identifying the corpus to query.
+        * Enter the search `query` string for the corpus, which is the question you want to ask.
+        * Set the maximum number of results (`limit`) to return. **Default**: 10, **minimum**: 1
+        * Define the `offset` position from which to start in the result set.
+
+        For more detailed information, see this [Query API guide](https://docs.vectara.com/docs/api-reference/search-apis/search).
+      operationId: searchCorpus
+      parameters:
+        - in: path
+          name: corpus_key
+          description: The unique key identifying the corpus to query.
+          required: true
+          schema:
+            $ref: '#/components/schemas/CorpusKey'
+        - in: query
+          name: query
+          description: The search query string for the corpus, which is the question the user is asking.
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: limit
+          description: Maximum number of results to return.
+          required: false
+          schema:
+            type: integer
+            default: 10
+            minimum: 1
+        - in: query
+          name: offset
+          description: Position from which to start in the result set.
+          required: false
+          schema:
+            type: integer
+            default: 0
+            minimum: 0
+      responses:
+        '200':
+          description: A response to a query.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryFullResponse'
+        '400':
+          description: Query request was malformed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '403':
+          description: Permissions do not allow querying the corpus.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Corpus not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+    post:
+      tags:
+        - Queries
+      summary: Advanced Single Corpus Query
+      description: |
+        Query a specific corpus and find relevant results, highlight relevant snippets, and use Retrieval Augmented Generation:
+
+        * Customize your search by specifying the query text (`query`), pagination details (`offset` and `limit`), and metadata filters (`metadata_filter`) to tailor your search results. [Learn more](https://docs.vectara.com/docs/api-reference/search-apis/search#query-definition)
+        * Leverage advanced search capabilities like reranking (`reranker_id`), and Retrieval Augmented Generation (RAG) (`generation`) for enhanced query performance. Generation is opt in by setting the `generation` property. By excluding the property or by setting it to null, the response
+        will not include generation. [Learn more](https://docs.vectara.com/docs/learn/grounded-generation/configure-query-summarization).
+        * Use hybrid search to Achieve optimal results by setting different values for `lexical_interpolation` (e.g., `0.025`). [Learn more](https://docs.vectara.com/docs/learn/hybrid-search)
+        * Specify a RAG-specific LLM like Mockingbird (`mockingbird-1.0-2024-07-16`) for the `prompt_name`. [Learn more](https://docs.vectara.com/docs/learn/mockingbird-llm)
+        * Use advanced summarization options that utilize detailed summarization parameters such as `max_response_characters`, `temperature`, and `frequency_penalty` for generating precise and relevant summaries. [Learn more](https://docs.vectara.com/docs/api-reference/search-apis/search#advanced-summarization-options)
+
+        For more detailed information, see [Query API guide](https://docs.vectara.com/docs/api-reference/search-apis/search).
+      operationId: queryCorpus
+      parameters:
+        - in: path
+          name: corpus_key
+          description: The unique key identifying the corpus to query.
+          required: true
+          schema:
+            $ref: '#/components/schemas/CorpusKey'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryCorpusRequest'
+      x-stream-based-on-body: "streamResponse()"
+      responses:
+        '200':
+          description: A response to a query.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryFullResponse'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/QueryStreamedResponse'
+        '400':
+          description: Query request was malformed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '403':
+          description: Permissions do not allow querying the corpus.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Corpus not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
   /v2/query:
     post:
       tags:
         - Queries
-      summary: Query Corpora
+      summary: Multiple Corpora Query
       description: |
-        Perform a multi-purpose query that can retrieve relevant information from one or more corpora and generate a response using RAG.
+        Perform a multi-purpose query to retrieve relevant information from one or more corpora and generate a response using Retrieval Augmented Generation (RAG).
 
-        Generation is opt in by setting the `generation` property. By excluding the property or by setting it to null, the response
-        will not include generation.
-
-        For more detailed information please see this [api guide](https://docs.vectara.com/docs/api-reference/search-apis/search).
+        * Customize your search by specifying the query text (`query`), pagination details (`offset` and `limit`), and metadata filters (`metadata_filter`) to tailor your search results. [Learn more](https://docs.vectara.com/docs/api-reference/search-apis/search#query-definition)
+        * Leverage advanced search capabilities like reranking (`reranker_id`) and opt-in Retrieval Augmented Generation (RAG) (`generation`) for enhanced query performance. Generation is opt in by setting the `generation` property. By excluding the property or by setting it to null, the response
+        will not include generation. [Learn more](https://docs.vectara.com/docs/learn/grounded-generation/configure-query-summarization)
+        * Specify a RAG-specific LLM like Mockingbird (`mockingbird-1.0-2024-07-16`) for the `prompt_name`. [Learn more](https://docs.vectara.com/docs/learn/mockingbird-llm)
+        * Use advanced summarization options that utilize detailed summarization parameters such as `max_response_characters`, `temperature`, and `frequency_penalty` for generating precise and relevant summaries. [Learn more](https://docs.vectara.com/docs/api-reference/search-apis/search#advanced-summarization-customization-options)
+        * Customize citation formats in summaries using the `citations` object to include numeric, HTML, or Markdown links. [Learn more](https://docs.vectara.com/docs/api-reference/search-apis/search#citation-format-in-summary)
+      
+        For more detailed information, see this [Query API guide](https://docs.vectara.com/docs/api-reference/search-apis/search).      
       operationId: query
       requestBody:
         content:
@@ -277,186 +479,6 @@ paths:
                 $ref: '#/components/schemas/Corpus'
         '403':
           description: Permissions do not allow updating the corpus.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '404':
-          description: Corpus not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotFoundError'
-  /v2/corpora/{corpus_key}/reset:
-    post:
-      tags:
-        - Corpora
-      summary: Remove all documents and data in a corpus
-      description: Resets a corpus, which removes all documents and data from the specified corpus, while keeping the corpus itself.
-      operationId: resetCorpus
-      parameters:
-        - in: path
-          name: corpus_key
-          description: The unique key identifying the corpus to reset.
-          required: true
-          schema:
-            $ref: '#/components/schemas/CorpusKey'
-      responses:
-        '204':
-          description: Successfully reset a corpus.
-        '403':
-          description: Permissions do not allow resetting the corpus.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '404':
-          description: Corpus not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotFoundError'
-  /v2/corpora/{corpus_key}/replace_filter_attributes:
-    post:
-      tags:
-        - Corpora
-      summary: Replace the filter attributes of a corpus
-      description: |
-        Replace the filter attributes of a corpus. This does not happen immediately, but
-        instead creates a job and will complete when that job completes. Until that
-        job completes, using new filter attributes will not work.
-
-        You can monitor the status of the filter change using the returned job id.
-      operationId: replaceFilterAttributes
-      parameters:
-        - in: path
-          name: corpus_key
-          description: Key of the corpus to have filters replaced.
-          required: true
-          schema:
-            $ref: '#/components/schemas/CorpusKey'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ReplaceFilterAttributesRequest'
-      responses:
-        '200':
-          description: Successfully created a job that will replace the filter attributes.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ReplaceFilterAttributesResponse'
-        '403':
-          description: Permissions don't allow replacing filter attributes.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '404':
-          description: Corpus not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotFoundError'
-  /v2/corpora/{corpus_key}/query:
-    get:
-      tags:
-        - Queries
-      summary: Simple Corpus Query
-      description: Search a single corpus with a simple query request.
-      operationId: searchCorpus
-      parameters:
-        - in: path
-          name: corpus_key
-          description: The unique key identifying the corpus to query.
-          required: true
-          schema:
-            $ref: '#/components/schemas/CorpusKey'
-        - in: query
-          name: query
-          description: The search query string for the corpus.
-          required: true
-          schema:
-            type: string
-        - in: query
-          name: limit
-          description: Maximum number of results to return.
-          required: false
-          schema:
-            type: integer
-            default: 10
-            minimum: 1
-        - in: query
-          name: offset
-          description: Position from which to start in the result set.
-          required: false
-          schema:
-            type: integer
-            default: 0
-            minimum: 0
-      responses:
-        '200':
-          description: A response to a query.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/QueryFullResponse'
-        '400':
-          description: Query request was malformed.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BadRequestError'
-        '403':
-          description: Permissions do not allow querying the corpus.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '404':
-          description: Corpus not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotFoundError'
-    post:
-      tags:
-        - Queries
-      summary: Corpus Query
-      description: Query a specific corpus and find relevant results, highlight relevant snippets, and use Retrieval Augmented Generation.
-      operationId: queryCorpus
-      parameters:
-        - in: path
-          name: corpus_key
-          description: The unique key identifying the corpus to query.
-          required: true
-          schema:
-            $ref: '#/components/schemas/CorpusKey'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/QueryCorpusRequest'
-      x-stream-based-on-body: "streamResponse()"
-      responses:
-        '200':
-          description: A response to a query.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/QueryFullResponse'
-            text/event-stream:
-              schema:
-                $ref: '#/components/schemas/QueryStreamedResponse'
-        '400':
-          description: Query request was malformed.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BadRequestError'
-        '403':
-          description: Permissions do not allow querying the corpus.
           content:
             application/json:
               schema:
@@ -2067,7 +2089,7 @@ components:
             prompt.
           type: string
           minLength: 1
-          example: vectara-summary-ext-v1.2.0
+          example: mockingbird-1.0-2024-07-16
         max_used_search_results:
           description: The maximum number of search results to be available to the prompt.
           type: integer
@@ -2194,7 +2216,7 @@ components:
       type: object
       properties:
         query:
-          description: The query to receive an answer on.
+          description: The search query string, which is the question the user is asking.
           type: string
           example: Am I allowed to bring pets to work?
         search:
@@ -2226,7 +2248,7 @@ components:
       type: object
       properties:
         query:
-          description: The query to receive an answer on.
+          description: The search query string, which is the question the user is asking.
           type: string
         search:
           title: SearchCorpusParameters
