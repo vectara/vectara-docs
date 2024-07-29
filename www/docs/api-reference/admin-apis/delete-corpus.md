@@ -8,8 +8,8 @@ import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The Delete Corpus API lets you delete a corpus and all the data it contains.
-To delete a corpus, send a DELETE request to /v2/corpora/{corpus_key}, where
-`{corpus_key}` is the unique identifier of the corpus.
+To delete a corpus, send a DELETE request to `/v2/corpora/:corpus_key`, where
+`corpus_key` is the unique identifier of the corpus.
 
 Upon successful completion, space quota consumed by the corpus will be freed,
 and the corpus will no longer be useable for future indexing or querying.
