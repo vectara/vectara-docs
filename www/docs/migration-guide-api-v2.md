@@ -143,7 +143,7 @@ changes carefully and the action items to use the V2 endpoints.
 * API v1 has separate endpoints for indexing both structured and core 
   documents (`/v1/index` and `/v1/core/index`).
 * API v2 combines both types of document indexing into a single 
-  endpoint (`/v2/corpora/{corpus_key}/documents`).
+  endpoint (`/v2/corpora/:corpus_key/documents`).
 
 **Action items:** Update your indexing requests to use the new unified endpoint, 
 specifying the document `type` in the request body.
@@ -154,9 +154,9 @@ specifying the document `type` in the request body.
 * API v2 **does not** support batch querying and uses a single query 
   endpoint (`/v2/query`).
 * API v2 introduces a simple single-corpus query endpoint with a GET 
-  request (`/v2/corpora/{corpus_key}/query`) for lightweight searches on a specific corpus.
+  request (`/v2/corpora/:corpus_key/query`) for lightweight searches on a specific corpus.
 * API v2 also provides an advanced corpus query endpoint with a POST 
-  request (`/v2/corpora/{corpus_key}/query`) with more filtering and customization options.
+  request (`/v2/corpora/:corpus_key/query`) with more filtering and customization options.
 * V2 **does not** have a stream-query endpoint like v1. Instead, set 
   `stream_response` to `true` if you want to stream query responses
 
@@ -209,15 +209,15 @@ specifying the document `type` in the request body.
 * To create a corpus, API v1 uses `/v1/create-corpus`, API v2 uses `/v2/corpora`.
 * To list corpora, API v1 uses `/v1/list-corpora`, API v2 uses `/v2/corpora`.
 * To read corpus data, API v1 uses `/v1/read-corpus`, API v2 
-  uses `/v2/corpora/{corpus_key}`.
+  uses `/v2/corpora/:corpus_key`.
 * To delete a corpus, API v1 uses `/v1/delete-corpus`, API v2 
-  uses `/v2/corpora/{corpus_key}`.
+  uses `/v2/corpora/:corpus_key`.
 * To enable or disable a corpus, API v1 uses `/v1/update-corpus-enablement`, API v2 
-  uses `/v2/corpora/{corpus_key}` with the PATCH method.
+  uses `/v2/corpora/:corpus_key` with the PATCH method.
 * To update corpus filters, API v1 uses `/v1/replace-corpus-filter-attrs`, API v2 
-  uses `/v2/corpora/{corpus_key}` with the PATCH method.
+  uses `/v2/corpora/:corpus_key` with the PATCH method.
 * To reset a corpus, API v1 uses `/v1/reset-corpus`, API v2 
-  uses `/v2/corpora/{corpus_key}/reset`.
+  uses `/v2/corpora/:corpus_key/reset`.
 
 **Action items:**
 
@@ -225,28 +225,28 @@ specifying the document `type` in the request body.
   a POST request.
 * Modify your corpus listing requests to use the `/v2/corpora` endpoint with 
   a GET request.
-* Update your corpus retrieval requests to use the `/v2/corpora/{corpus_key}` 
+* Update your corpus retrieval requests to use the `/v2/corpora/:corpus_key` 
   endpoint with a GET request.
-* Modify your corpus deletion requests to use the` /v2/corpora/{corpus_key}` 
+* Modify your corpus deletion requests to use the` /v2/corpora/:corpus_key` 
   endpoint with a DELETE request.
 * Update your corpus enablement/disablement and filter update requests to use 
-  the `/v2/corpora/{corpus_key}` endpoint with a PATCH request.
-* Modify your corpus reset requests to use the `/v2/corpora/{corpus_key}/reset` 
+  the `/v2/corpora/:corpus_key` endpoint with a PATCH request.
+* Modify your corpus reset requests to use the `/v2/corpora/:corpus_key/reset` 
   endpoint with a POST request.
 
 
 ## Document management endpoint changes
 
 * To list documents, API v1 uses /`v1/list-documents`, API v2 
-  uses `/v2/corpora/{corpus_key}/documents`.
+  uses `/v2/corpora/:corpus_key/documents`.
 * To delete documents, API v1 uses `/v1/delete-doc`, API v2 
-  uses `/v2/corpora/{corpus_key}/documents/{document_id}`.
+  uses `/v2/corpora/:corpus_key/documents/{document_id}`.
 
 **Action items:**
 
-* Update your document listing requests to use the `/v2/corpora/{corpus_key}/documents` endpoint 
+* Update your document listing requests to use the `/v2/corpora/:corpus_key/documents` endpoint 
   with a GET request.
-* Modify your document deletion requests to use the `/v2/corpora/{corpus_key}/documents/{document_id}` endpoint 
+* Modify your document deletion requests to use the `/v2/corpora/:corpus_key/documents/{document_id}` endpoint 
   with a DELETE request.
 
 ## Job management endpoint changes

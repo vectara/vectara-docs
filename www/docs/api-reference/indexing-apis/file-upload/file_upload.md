@@ -66,7 +66,7 @@ Apart from these parameters, the servers expect a valid JWT Token in the HTTP
 headers.
 
 ```json
-curl -L -X POST 'https://api.vectara.io/v2/corpora/{corpus_key}/upload_file' \
+curl -L -X POST 'https://api.vectara.io/v2/corpora/:corpus_key/upload_file' \
 -H 'Content-Type: multipart/form-data' \
 -H 'Accept: application/json' \
 -H 'x-api-key: zwt_123456' \
@@ -140,7 +140,7 @@ You can pass this parameter in header as follows:
 <pre>
 {`$ jwt=eyJraWQ...
 $ curl -H "Authorization: Bearer $jwt" -H "grpc-timeout: 30S"  -F file=@/tmp/instructions.pdf \\
-    -F doc_metadata='{ "filesize\": 1234 }' \\
-    'https://${vars['domains.rest.indexing']}:443/v1/upload?c=123456\&o=151'
+    -F metadata='{ "filesize\": 1234 }' \\
+    'https://${vars['domains.rest.indexing']}:443/v2/corpora/:corpus_key/upload_file'
 `}
 </pre>
