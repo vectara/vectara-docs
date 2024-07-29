@@ -33,8 +33,8 @@ stream the result or receive a complete response.
 
 ### Index Document Request and Response
 
-To index a document, send a POST request to `/v2/corpora/{corpus_key}/documents`,
-where `{corpus_key}` is the unique identifier for the corpus where you want to
+To index a document, send a POST request to `/v2/corpora/:corpus_key/documents`,
+where `corpus_key` is the unique identifier for the corpus where you want to
 add the document. The request body contains a `CreateDocumentRequest` object
 that represents the document to be indexed. This object has a `type` parameter
 that determines the format of the document as `core` or `structured`.
