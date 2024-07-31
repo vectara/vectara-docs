@@ -16,18 +16,40 @@ A filter expression operates on the metadata attached to documents that are
 indexed in <Config v="names.product"/>. Because you can associate this 
 metadata to either the entire document, or to specific parts within it, the 
 *scope* must be explicitly specified for every metadata reference in the 
-expression. Valid scopes are `doc.` and `part.`, for document and part-level 
+expression. 
+
+## Understanding document and part scopes
+
+Valid scopes are `doc.` and `part.`, for document and part-level 
 metadata, respectively.
+When indexing data in Vectara, you associate metadata at two levels: the 
+`doc` level and `part` level:
+
+* **Document-level scope**
+    * Applies to the entire document
+    * Useful for properties that are consistent across the whole document
+    * **Examples:** 
+      * `doc.author = 'John Doe' and doc.publication_year > 2024`
+      * `doc.publication_date >= '2023-01-01' AND doc.publication_date < '2024-01-01' AND doc.category IN ('Technology', 'Science')`
+* **Part-level scope**
+    * Applies to specific sections or chunks within a document
+    * Useful for properties that may vary within different parts of the document
+    * **Examples** 
+      * `part.section = 'Introduction'`
+      * `part.clause_type = 'Liability' AND part.risk_level = 25 AND part.is_boilerplate = false`
+
 
 To learn more about setting up filterable metadata review the [filter attribute][4] 
 section of the corpus creation documentation.
+
+## Example filter expressions
 
 The following filter expression selects customer reviews in German with better than a
 3-star rating. Note that while there is a single rating for the entire document,
 the detected language is set at the part level. 
 
 ```
-doc.rating > 3.0 and part.lang = 'deu'
+doc.rating > 3.0 AND part.lang = 'deu'
 ```
 
 The `lang` metadata tag used in this example is detected and set automatically
@@ -38,7 +60,7 @@ More complicated expressions are possible, such as the one below, which
 checks for documents with a publication date in 2021.
 
 ```
-1609459200 < doc.pub_epoch and doc.pub_epoch < 1640995200
+1609459200 < doc.pub_epoch AND doc.pub_epoch < 1640995200
 ```
 
 Here, `pub_epoch` stores the date in [epoch time][3].

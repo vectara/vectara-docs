@@ -28,8 +28,9 @@ The `encoder_id` property allows you to choose the encoder for the corpus. If
 not specified, it defaults to the latest Vectara encoder.
 
 In order to reference metadata in [filter expressions](/docs/learn/metadata-search-filtering/filter-overview), the attributes
-must be declared at creation time in the `filter_attributes` array. This list
-cannot be changed once the corpus is created.
+are declared at creation time in the `filter_attributes` array. You can add, 
+edit, and remove filter attributes from the [Console UI](/docs/console-ui/creating-a-corpus) in the Corpora Settings, 
+or with the [Replace Filters Attributes API definition](/docs/api-reference/admin-apis/corpus/replace-filter-attributes).
 
 Scale users can specify `custom_dimensions` to allow weighting of document parts
 during indexing and querying. Like filter attributes, custom dimensions cannot
@@ -38,27 +39,39 @@ be changed after corpus creation.
 The response message returns a unique `id` that you use to reference the
 corpus. The `name` does not need to be unique within an account.
 
+For information on **custom dimensions**, a Scale-only feature, please see
+[Custom Dimensions](/docs/learn/semantic-search/add-custom-dimensions).
+Custom dimensions cannot be changed after the corpus
+is created.
+
 ## Filter Attribute
 
 In order to reference metadata in [filter expressions](/docs/learn/metadata-search-filtering/filter-overview), the
 referenceable attributes must be declared at creation time in the **filter
 attributes**. This list cannot be changed once the corpus is created.
 
-For information on **custom dimensions**, a Scale-only feature, please see
-[Custom Dimensions](/docs/learn/semantic-search/add-custom-dimensions).
-Like filter attributes, custom dimensions cannot be changed after the corpus
-is created.
+Filter attributes allow you to attach metadata to your data at the document (`doc`) 
+or `part` level, which you can use later in filter expressions to narrow the scope 
+of your queries.
 
-A filter attribute must specify a `name`, and a `level` which indicates
-whether it exists in the document or part level metadata. At indexing time,
-metadata with this name will be extracted and made available for filter
-expressions to operate on.
+A filter attribute must specify a unique `name` (up to 64 characters long), and 
+a `level` which indicates whether it exists in the `doc` or `part` level 
+metadata. At indexing time, metadata with this name is extracted and made 
+available for filter expressions to operate on.
+
+The `doc` attribute applies to the entire document. Use this for metadata that 
+is consistent across the whole document, such as author, publication date, and 
+document ID.
+
+The `part` attribute applies to specific sections or chunks within a document. 
+Use for metadata that may vary within different parts of the document, such as 
+sections, page numbers, and sentiment scores.
 
 If `indexed` is true, the system will build an index on the extracted values
 to further improve the performance of filter expressions involving the
 attribute.
 
-Finally, filter attributes must specify a `type`, which is validated when
+Filter attributes must specify a `type`, which is validated when
 documents are indexed. The four supported types are `integer`, which stores
 signed whole-number values up to eight bytes in length; `real`, for storing
 floating point values in [IEEE 754 8-byte format][1]; `text` for storing
@@ -67,6 +80,11 @@ values.
 
 [1]: https://en.wikipedia.org/wiki/Double-precision_floating-point_format
 [2]: https://en.wikipedia.org/wiki/UTF-8
+
+After you define filter attributes, you can use them within your queries. For example:
+
+* Document-level attribute: `doc.publication_year > 2020`
+* Part-level attribute: `part.sentiment_score > 0.7`
 
 ## REST 2.0 URL
 
