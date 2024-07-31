@@ -7,9 +7,9 @@ sidebar_label: Replace Filter Attributes API Definition
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The Replace Filter Attributes API lets you replace the filter attributes of a
-corpus. Filter attributes enable metadata filtering on the corpus and they are  
-defined as an array of `FilterAttribute` objects.
+The Replace Filter Attributes API lets you replace the filter attributes of a 
+corpus. Filter attributes enable [metadata filtering](/docs/learn/metadata-search-filtering/filter-overview) on the corpus and they are 
+defined as an array of `filter_attribute` objects.
 
 - `name` - Specifies the JSON path of the filter attribute in the document
   or part metadata.
