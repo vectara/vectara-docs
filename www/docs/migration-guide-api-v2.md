@@ -5,15 +5,19 @@ sidebar_label: Migration Guide from REST API 1.0 to 2.0
 ---
 import {Config} from '@site/docs/definitions.md';
 
-This guide provides information about migrating from the Vectara v1 REST 
-API to v2. This new version of our REST APIs uses the standard HTTP verbs 
-POST, GET, PATCH, and DELETE for CRUD operations. The URL structure is also 
-much more object-oriented to the objects that exist in Vectara.
+Migrating to a new API version can be challenging, especially when ensuring 
+that your existing applications continue to function properly. This guide 
+helps you migrate from the Vectara v1 REST API to v2, minimizing 
+disruption and enabling you to take full advantage of API v2 capabilities. 
 
-To migrate from 1.0 to 2.0, you will need to consider the changes to the base 
-URL, authentication, specific endpoints, as well as changes to requests and 
-responses. Review the [API Reference Documentation](/docs/api-reference/rest) 
-which has more details about each endpoint.
+This new version of our REST APIs uses the standard HTTP verbs POST, GET, 
+PATCH, and DELETE for CRUD operations. The URL structure is also much more 
+object-oriented to the objects that exist in Vectara.
+
+To migrate from 1.0 to 2.0, you will need to consider several important 
+changes, including updates to the base URL, authentication, specific 
+endpoints, and requests. Review the [API Reference Documentation](/docs/api-reference/rest) 
+for more details about each endpoint.
 
 :::note
 

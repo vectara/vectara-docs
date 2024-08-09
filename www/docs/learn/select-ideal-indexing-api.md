@@ -10,11 +10,15 @@ import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
 import {Config} from '@site/docs/definitions.md';
 
-Vectara offers multiple data ingestion methods to accommodate different types 
-of use cases. By choosing the appropriate ingestion method, users can 
-efficiently index their data and leverage our advanced search capabilities. 
-This flexible approach allows for the precise integration of Vectara’s search 
-functionalities into different applications.
+Efficient data ingestion is critical for ensuring that your application 
+delivers fast, accurate, and relevant query results. Whether handling 
+structured, semi-structured, or unstructured data, selecting the 
+right indexing method can significantly impact the performance and usability 
+of your applications. Vectara offers multiple indexing methods to accommodate 
+different use cases that enable users to efficiently index their data and 
+leverage our advanced search capabilities. This flexible approach allows for 
+the precise integration of Vectara’s search functionalities into different 
+applications.
 
 ## Vectara Ingest: sample data ingestion framework
 

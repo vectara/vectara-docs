@@ -4,17 +4,18 @@ title: Hybrid Search
 sidebar_label: Hybrid Search
 ---
 
-[Semantic search](/docs/learn/semantic-search/semantic-search-overview) enables users to discover information
-based not just on keywords, but on the contextual meaning and relevance of their
-queries. This neural search understands the intent behind user inquiries,
-leveraging natural language understanding to deliver more accurate and
-insightful search results.
+import {Config} from '@site/docs/definitions.md';
 
-Leveraging these semantic search capabilities, Vectara also provides a Hybrid
-Search option that offers a powerful and flexible approach to text retrieval.
-We combine partial, exact, and Boolean text matching with neural models which
-blends traditional, keyword-based search with semantic search in what is
-called a "hybrid" retrieval model.
+Traditional keyword-based search often fails to capture the context and intent 
+behind user queries, leading to irrelevant or incomplete results. Vectara's 
+Hybrid Search combines [semantic search](/docs/learn/semantic-search/semantic-search-overview) with traditional keyword-based 
+approaches to offer a powerful and flexible solution for text retrieval.
+
+We combine partial, exact, and Boolean text matching with neural models which 
+blend traditional, keyword-based search with semantic search in what is 
+called a "hybrid" retrieval model. This enables users to discover information 
+based on a combination of keywords and the contextual meaning and relevance of 
+their queries.
 
 For example, you can use this in Vectara to:
 

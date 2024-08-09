@@ -7,10 +7,12 @@ sidebar_label: Summarizers
 import {vars} from '@site/static/variables.json';
 import {Config} from '@site/docs/definitions.md';
 
-Behind the scenes, <Config v="names.product"/> supports both selecting the
-summarizer model as well as the prompt for the model. We make a range of these
-and if you are a Scale customer, or are considering becoming one and have
-any questions on your options, please
+
+Extracting concise, relevant information from large sets of search results 
+presents a significant challenge for many applications. Vectara offers 
+flexibility in selecting both the summarizer model and its associated prompt.
+We make a range of these and if you are a Scale customer, or are considering 
+becoming one and have any questions on your options, please
 [reach out to our support team](https://vectara.com/contact-us/), who can help
 guide you.
 

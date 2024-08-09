@@ -6,12 +6,17 @@ sidebar_label: Quick Start
 
 import {Config} from '@site/docs/definitions.md';
 
-Welcome to <Config v="names.product"/>'s Quick Start tutorial. In just a couple minutes,
-you'll upload this [**Vectara Employee Handbook (PDF)**](/img/vectara_employee_handbook.pdf) and begin exploring our
-company's unique pet policy. Have you ever wondered if you can bring a velociraptor
-to work? Why certain birds are allowed for the most random reason? We have part of a
-unique employee handbook ready for you to upload into a <Config v="names.product"/> corpus,
-and we'll guide you through the ingestion and question answering process step by step.
+New users often find it challenging to get started with a new product and 
+fully understand its capabilities. With <Config v="names.product"/>, we've made it simple with our 
+Quick Start tutorial. In just a couple minutes, you'll upload this 
+[**Vectara Employee Handbook (PDF)**](/img/vectara_employee_handbook.pdf) 
+and begin exploring our company's unique pet policy.
+
+Have you ever wondered if you can bring a velociraptor to work? Why certain 
+birds are allowed for the most random reason? We have part of a unique 
+employee handbook ready for you to upload into a <Config v="names.product"/> corpus, 
+and we'll guide you through uploading, querying, and uncovering insights step 
+by step.
 
 ## Step 1. Create a Vectara account
 

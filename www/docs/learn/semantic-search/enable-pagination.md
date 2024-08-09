@@ -9,11 +9,12 @@ import TabItem from '@theme/TabItem';
 import {vars} from '@site/static/variables.json';
 import {Config} from '@site/docs/definitions.md';
 
-Pagination provides you with customization options for individual preferences 
-or application requirements. Upon query, <Config v="names.product"/> 
-returns the first 10 most relevant search results by default. However, there 
-are times when this is not enough and you want to offer your users the ability 
-to paginate through results.
+Users often struggle to find relevant information when faced with long lists 
+of search results. Pagination provides customization to present search results 
+based on individual preferences or application requirements. Upon 
+query, <Config v="names.product"/> returns the first 10 most relevant search results 
+by default. However, there are times when this is not enough and you want to 
+offer your users the ability to paginate through results.
 
 To enable pagination, use the `offset` and `limit` parameters under the 
 `search` object. `offset` is not required, but it defaults to `0` if you do not specify 
