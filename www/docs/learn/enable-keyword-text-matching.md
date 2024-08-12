@@ -4,16 +4,25 @@ title: Keyword Search
 sidebar_label: Keyword Search
 ---
 
-Vectara disables exact and Boolean text matching by default, which is similar 
-to a traditional, keyword-based search. Exact keyword matching is particularly 
-useful in environments that do not require [semantic search](/docs/learn/semantic-search/semantic-search-overview) where specific 
-phrases and terms are crucial to the desired outcome. This can include 
-information in legal, compliance, technical fields where you might need 
-specific error codes of system specifications. 
+import {Config} from '@site/docs/definitions.md';
 
-You enable exact keyword matching, which disables neural retrieval, by 
-specifying the `lexical_interpolation` value as `1` at query time, specifically in 
-the `search` object:
+In some specialized fields such as legal, compliance, and technical 
+domains, relying solely on [semantic search](/docs/learn/semantic-search/semantic-search-overview) can miss information tied to 
+specific phrases or terms. By default, Vectara optimizes for semantic 
+understanding and disables exact and Boolean text matching, which is similar 
+to a traditional, keyword-based search. However, users can enable precise 
+keyword matching by setting the `lexical_interpolation` value to `1` at query 
+time.
+
+Vectara offers flexibility in balancing keyword matching with advanced semantic 
+capabilities. Keyword search is particularly useful when searching for 
+specific legal clauses, regulations, error codes, and precise identifiers. 
+This level of control enables users to tailor their searches to the specific 
+requirements of their domain, balancing between semantic understanding and 
+exact keyword matching as needed.
+
+To enable exact keyword matching and disable neural retrieval, specify the 
+`lexical_interpolation` value as `1` in the `search` object at query time:
 
 ```json
 "search": {

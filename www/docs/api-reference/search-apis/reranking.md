@@ -9,10 +9,16 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-Reranking search results involves a process of rescoring and refining an 
-initial set of query results to achieve a more precise ranking. It employs 
-a machine learning model that while slower than the rapid retrieval step, 
-offers more accurate results. We currently support two rerankers: the [Maximal Marginal Relevance 
+Initial search results often fail to capture nuanced relevance or diversity, 
+potentially leading to suboptimal user experiences. Utilizing Vectara's 
+reranking can significantly enhance the quality and usefulness of 
+search results, leading to more effective information retrieval. Reranking 
+search results involves a process of rescoring and refining an initial set 
+of query results to achieve a more precise ranking. It employs a machine 
+learning model that while slower than the rapid retrieval step, offers more 
+accurate results.
+
+We currently support two rerankers: the [Maximal Marginal Relevance 
 (MMR) Reranker](/docs/api-reference/search-apis/reranking#maximal-marginal-relevance-mmr-reranker) and the new Scale-only [Multilingual Reranker v1](/docs/api-reference/search-apis/reranking#vectara-multilingual-reranker-v1).
 
 ## Enable reranking
