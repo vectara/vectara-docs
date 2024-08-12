@@ -41,7 +41,7 @@ with these query types.
 
 :::
 
-### Query Corpora
+### Multiple Corpora Query
 
 The [`/v2/query` endpoint](/docs/rest-api/query) allows you to perform Retrieval Augmented Generation
 (RAG) across one or more corpora in your account. You send a POST request in 
@@ -57,7 +57,7 @@ the body that specifies the following:
 This query type is useful when you want to query all your
 data sources at once.
 
-### Simple Single-Corpus Query
+### Simple Single Corpus Query
 
 Send a [simplified GET request](/docs/rest-api/search-corpus) to `/v2/corpora/{corpus_key}/query` for querying
 a single corpus that specifies the following:
@@ -68,7 +68,7 @@ a single corpus that specifies the following:
 
 This query types provides a lightweight way to search a single corpus.
 
-### Advanced Corpus Query
+### Advanced Single Corpus Query
 
 Send a POST request to `/v2/corpora/{corpus_key}/query` to [query a specific
 corpus](/docs/rest-api/query-corpus) with more advanced capabilities. The request body is similar to the
@@ -176,11 +176,12 @@ more rarely, as a response.
 
 ### Reranking Configuration
 
-The `rereanker` object enables reranking of results, to further increase
-relevance in certain scenarios. Scale users can modify the `reranker_id` of
-this object with `272725719` to use the [Multilingual Reranker v1](/docs/api-reference/search-apis/reranking#vectara-multilingual-reranker-v1).
-The MMR reranker uses the value `272725718` and also lets you specify
-a `diversityBias` value between `0.0` and `1.0`.
+The `reranker` object enables the reranking of query results, to further 
+increase relevance in certain scenarios. Specify the `type` as `customer_reranker` 
+to use the [Multilingual Reranker v1](/docs/api-reference/search-apis/reranking#vectara-multilingual-reranker-v1).
+The MMR reranker uses the type `mmr` and also lets you specify
+a `diversity_bias` value between `0.0` and `1.0`. The User Defined Function 
+reranker uses type `userfn`. For more details, see [Rerank Search Results](/docs/api-reference/search-apis/reranking).
 
 ## Query Summarization Request - Retrieval Augmented Generation
 

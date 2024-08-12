@@ -20,22 +20,21 @@ accurate results.
 
 We currently provides the following rerankers: 
 
-* [Multilingual Reranker v1](/docs/learn/vectara-multi-lingual-reranker) `272725719` for accurate results across over 100 languages.
-* [Maximal Marginal Relevance (MMR) Reranker](/docs/learn/mmr-reranker) (`272725718`) for diversifying results while maintaining relevance.
-* [User Defined Function Reranker](/docs/learn/user-defined-function-reranker) `272725722` for custom scoring based on metadata.
+* [**Multilingual Reranker v1**](/docs/learn/vectara-multi-lingual-reranker) (`type=customer_specific`) for accurate results across over 100 languages.
+* [**Maximal Marginal Relevance (MMR) Reranker**](/docs/learn/mmr-reranker) (`type=mmr`) for diversifying results while maintaining relevance.
+* [**User Defined Function Reranker**](/docs/learn/user-defined-function-reranker) (`type=userfn`) for custom scoring based on metadata.
 
 ## Enable reranking
 
-To enable reranking, specify the appropriate value for the `reranker_id`. 
-The MMR reranker ID is `272725718` and the Multilingual Reranker v1 ID is 
-`272725719`. In most scenarios, it makes sense to use the default query `start` 
-value of `0` so that you're reranking all of the best initial results. You can 
-also set `limit` of the `query` to the total number of documents you wish 
-to rerank. The default value is `25`.
+To enable reranking, specify the appropriate value for the `type` in the 
+`reranker` object. For the MMR reranker, use `mmr`. In most scenarios, 
+it makes sense to use the default query `start` value of `0` so that you're 
+reranking all of the best initial results. You can also set `limit` of the 
+`query` to the total number of documents you wish to rerank. The default value 
+is `25`.
 
-The following example shows the `limit` and `reranker_id` 
-values in a query. Note that this simplified example intentionally omits 
-several parameter values.
+The following example shows the `limit` and `type` values in a query. Note that 
+this simplified example intentionally omits several parameter values.
 
 ```json
 {
@@ -47,8 +46,8 @@ several parameter values.
     "context_configuration": {},
     },
     "reranker": {
-          "type": "customer_reranker",
-          "reranker_id": "272725719"
+          "type": "mmr",
+          "diversity_bias": "0.4"
     },
   "generation": [],
   "enable_factual_consistency_score": true

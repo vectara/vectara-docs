@@ -11,12 +11,11 @@ import {vars} from '@site/static/variables.json';
 
 The new Vectara Multilingual Reranker V1 is a state-of-the-art reranking model 
 that significantly enhances the precision of retrieved results across 100+ 
-languages. To use this reranker, set the `rerankerID` as `272725719`. 
+languages. To use this reranker, set the `type` as `customer_reranker`. 
 
 ```json
 "reranker": {
       "type": "customer_reranker",
-      "reranker_id": "272725719"
     }
 ```
 

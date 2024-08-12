@@ -9,7 +9,7 @@ import {Config} from '@site/docs/definitions.md';
 The User Defined Functions Reranker enables users to define custom reranking 
 functions using document-level metadata, part-level metadata, or scores 
 generated from the request-level metadata. To use this reranker, set the 
-`reranker_id` to `272725722` in a query and specify a string within the 
+`type` to `userfn` in a query and specify a string within the 
 `reranker` section of the query. This string syntax is custom and similar to 
 SQL like filter expressions.
 
@@ -31,8 +31,8 @@ provided functions to enable computing new scores for a variety of use cases.
 
 User Function Language only has double, string, boolean, datetime, and 
 duration as types. You can define double, string, and boolean literals. String 
-literals are enclosed in single quotes (`‘`). To encode a single quote requires 
-two repeated single quotes (`‘’`).
+literals are enclosed in single quotes (`'`). To encode a single quote requires 
+two repeated single quotes (`''`).
 
 ### Types and literals examples:
 
@@ -90,7 +90,8 @@ result in the HTTP API definition.
   "scores": {
     "lexical": 234,
     "neural": .34,
-    "interpolated_score": .34
+    "interpolated": .34,
+    "last": .34
   },
   "text": "search result text",
   "document_metadata": {
@@ -105,9 +106,10 @@ result in the HTTP API definition.
 
 #### Get example:
 
-```json
+```sql
 get('$.score') * get('$.part_metadata.boost')
 ```
+
 ## Time functions
 
 The following table lists the available time functions that allow you to 
@@ -153,7 +155,7 @@ and logarithms.
 ### Function calling examples
 
 
-```
+```sql
 get('$.score') * 1 / as_days(iso_datetime_parse(get('$.document_metadata.publication_date')) - now())
 ```
 

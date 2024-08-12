@@ -9,21 +9,20 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-
-
-## Maximal Marginal Relevance (MMR) reranker
-
 The Maximal Marginal Relevance (MMR) reranker enables you to diversify search 
 results to reduce redundancy while maintaining relevance to the query. 
 Search queries often result in a collection of similar documents that, while 
 relevant, may lack variety. MMR addresses this by reranking the results to 
 include documents that are both relevant to your query but also different 
-from the documents already listed in the search results. This approach 
-provides users with a more balanced set of results as they may show 
-different perspectives related to your query.
+from the documents already listed in the search results.
 
-You enable the MMR reranker by specifying the `reranker_id` as `272725718`. 
-Having a diverse set of relevant results has different benefits depending on 
+This approach provides users with a more balanced set of results as they may 
+show different perspectives related to your query.
+
+## Enable the MMR reranker
+
+You enable the MMR reranker by specifying the `type` as `mmr`. Having a 
+diverse set of relevant results has different benefits depending on 
 the use case:
 * In a pure search scenario, it improves user engagement with results by 
   avoiding repetition.
@@ -31,18 +30,15 @@ the use case:
 * Diversifying results can potentially represent all points of view in the 
   data or reduce bias.
 
-In addition to specifying the `rerankerId` as `272725718` at query time, you also 
+In addition to specifying the `type` as `mmr` at query time, you also 
 specify a `diversity bias` range between `0.0` and `1.0`. Values closer to `1.0` 
 optimize for the most diverse results. This setting is only available with the 
 MMR Reranker.
 
 ```json
 "reranker": {
-   "type": "customer_reranker",
-   "reranker_id": "272725718"
-   "mmrConfig": {
-      "diversityBias": 0.4
-    }
+   "type": "mmr",
+   "diversity_bias": 0.4
  },
 ```
 
