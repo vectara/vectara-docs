@@ -142,9 +142,9 @@ The `context_configuration` object lets you specify whether you want a specific
 number of characters or sentences before or after the matching document part.
 
 Finally, the **reranking configuration** enables reranking of results, to
-further increase relevance in certain scenarios. For details about our English
-cross-attentional (Scale only) and Maximal Marginal Relevance (MMR) rerankers,
-see [Reranking](/docs/api-reference/search-apis/reranking).
+further increase relevance in certain scenarios. For details about our 
+Multilingual, Maximal Marginal Relevance (MMR), and User Defined Function 
+rerankers, see [Reranking](/docs/api-reference/search-apis/reranking).
 
 ## Query Request and Response
 
