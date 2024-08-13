@@ -80,18 +80,21 @@ search result is done with the function `get.`
 ### Get Function
 
 The `get` function allows you to retrieve properties of the result. The `get` 
-argument is a [JSONPath](https://en.wikipedia.org/wiki/JSONPath) string that retrieves for the search 
-result object. The search result object mirrors the definition of the search 
-result in the HTTP API definition.
+argument is a [JSONPath](https://en.wikipedia.org/wiki/JSONPath) string that retrieves values
+from a search result object. JSON paths that do not exist return null.
+The `get` function can also optionally take a second argument as a default value if the JSONPath is null.
+
+The search result object is similiar to the definition of the search 
+result in the HTTP API definition. What follows is the schema for the search result object.
 
 
 ```json
 {
   "scores": {
     "lexical": 234,
-    "neural": .34,
-    "interpolated": .34,
-    "last": .34
+    "neural": 0.34,
+    "interpolated": 0.90,
+    "previous": 0.34
   },
   "text": "search result text",
   "document_metadata": {
@@ -104,10 +107,19 @@ result in the HTTP API definition.
 }
 ```
 
+#### Scores object
+The scores object allows you to acccess the different scores computed for a search result.
+`lexical` - The lexical score before the neural score is applied. This score may be missing.
+`neural` - The neural score before the lexical score is applied.
+`interpolated` - The computed interpolation between the lexical and neural scores. This score may be missing.
+`previous` - The last score computed by the retrieval pipeline. Most often the interpolated score.
+
+
 #### Get example:
 
 ```sql
-get('$.score') * get('$.part_metadata.boost')
+get('$.scores.previous') * get('$.part_metadata.boost')
+get('$.document_metadata.reviews[0].score', 0)
 ```
 
 ## Time functions
@@ -156,7 +168,7 @@ and logarithms.
 
 
 ```sql
-get('$.score') * 1 / as_days(iso_datetime_parse(get('$.document_metadata.publication_date')) - now())
+get('$.scores.previous') * 1 / as_days(iso_datetime_parse(get('$.document_metadata.publication_date')) - now())
 ```
 
 ## API v2 example
@@ -170,7 +182,7 @@ metadata:
    "search": {
       "reranker": {
         "type": "userfn",
-        "function": "get('$.score') * get('$.document_metadata.boost')"
+        "function": "get('$.scores.previous') * get('$.document_metadata.boost')"
       }
    }
 }
@@ -185,12 +197,12 @@ This example of a toy shows how ranking in an ecommerce system would work:
         query=query, num_results=fetch)
  request.reranking_config.reranker_id = 272725722
  request.reranking_config.userfn_config.expression = \
-     "request.score + log10(doc.publish_date) + log(doc.customer_review_stars) + doc.promoted"
+     "get('$.scores.previous') + log10(get('$.document_metadata.publish_ts')) + log(get('$.document_metadata.customer_review_stars')) + get('$.document_metadata.promoted')"
 ```
 
 This example modifies the score with the following options:
 
-* Recency bias: Adds the log of the publication date (`doc.publish_date`)
+* Recency bias: Adds the log of the publication timestamp (`get('$.document_metadata.publish_ts`))
 * Popularity bias: Adds the log of the customer review, which can be 1 to 5 
-  stars (`doc.customer_review_stars`)
-* Sponsored promotions bias: Adds the value of the promoted variable (`doc.promoted`)
+  stars (`get('$.document_metadata.customer_review_stars')`)
+* Sponsored promotions bias: Adds the value of the promoted variable (`get('$.document_metadata.promoted')`)
