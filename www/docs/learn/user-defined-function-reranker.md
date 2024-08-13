@@ -132,10 +132,14 @@ current time or converting durations to different units.
 |----------------------|---------------------------------------------------------------|---------------------------------------------|
 | `now()`              | Returns the current time as a datetime.                       | `now()`                                     |
 | `iso_datetime_parse(a)` | Parses an ISO datetime string to a datetime.                 | `iso_date_time_parse('2024-12-04T10:14:50Z')` |
-| `datetime_parse(a,b)` | Parses a datetime string with a format string. The format string follows the Java format string [format](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html). | `datetime_parse('2024 02 09', 'yyyy MM dd')` |
-| `as_seconds(a)`      | Converts a duration to seconds.                               | `as_seconds(now())`                         |
-| `as_hours(a)`        | Converts a duration to hours.                                 | `as_hours(now())`                           |
-| `as_days(a)`         | Converts a duration to days.                                  | `as_days(now())`                            |
+| `datetime_parse(a,b)`| Parses a datetime string with a format string. The format string follows the Java format string [format](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html). | `datetime_parse('2024 02 09', 'yyyy MM dd')` |
+| `to_unix_timestamp(a)`| Converts a datetime to seconds from the epoch.               | `to_unix_timestamp(now())`         |
+| `seconds(a)`         | Converts a duration to the number of seconds.                 | `seconds(seconds(50))`             |
+| `minutes(a)`         | Converts a duration to the number of minutes.                 | `minutes(minutes(60))`             |
+| `hours(a)`           | Converts a duration to the number of hours.                   | `hours(hours(1))`                  |
+| `seconds(a)`         | Converts a number to a seconds duartion.                      | `seconds(50)`                      |
+| `minutes(a)`         | Converts a number to a minutes duration.                      | `minutes(80)`                      |
+| `hours(a)`           | Converts a number to a hours duration.                        | `hours(1)`                         |
 
 ## Math functions
 
