@@ -108,18 +108,91 @@ result in the HTTP API definition. What follows is the schema for the search res
 ```
 
 #### Scores object
-The scores object allows you to acccess the different scores computed for a search result.
-`lexical` - The lexical score before the neural score is applied. This score may be missing.
-`neural` - The neural score before the lexical score is applied.
-`interpolated` - The computed interpolation between the lexical and neural scores. This score may be missing.
-`previous` - The last score computed by the retrieval pipeline. Most often the interpolated score.
 
+The scores object allows you to acccess the different scores computed for a 
+search result.
+* `lexical` - The lexical score before the neural score is applied, optimized for 
+  keyword search. This score may be missing. 
+* `neural` - The neural score before the lexical score is applied, providing a 
+  semantic understanding of the query intent.
+* `interpolated` - The computed interpolation between the lexical and neural 
+  scores, blending the keyword and neural. This score may be missing.
+* `previous` - The last score computed by the retrieval pipeline. Most often 
+  the interpolated score.
 
-#### Get example:
+#### Get examples
 
 ```sql
 get('$.scores.previous') * get('$.part_metadata.boost')
 get('$.document_metadata.reviews[0].score', 0)
+```
+
+#### Lexical score example
+
+Query for an exact title match of `The Great Gatsby`:
+
+```json
+{
+  "query": "The Great Gatsby",
+  "search": {
+    "reranker": {
+      "type": "userfn",
+      "function": "get('$.scores.lexical')"
+    }
+  }
+}
+```
+#### Neural score example
+
+Query products related to `comfortable sleeping` even if 
+the exact word "comfortable" is not used:
+
+```json
+{
+  "query": "comfortable sleeping",
+  "search": {
+    "reranker": {
+      "type": "userfn",
+      "function": "get('$.scores.neural')"
+    }
+  }
+}
+```
+
+#### Interpolated score example
+
+Query example of a hybrid search that balances the scores of neural 
+and lexiccal results that find laptops which are both affordable and suitable 
+for gaming:
+
+```json
+{
+  "query": "affordable laptops for gaming",
+  "search": {
+    "reranker": {
+      "type": "userfn",
+      "function": "get('$.scores.interpolated')"
+    }
+  }
+}
+```
+
+#### Previous score example
+
+In this example, you want popular coffee shops that have ranked high in 
+previous searches:
+
+```json
+{
+  "query": "best coffee shops nearby",
+  "search": {
+    "reranker": {
+      "type": "userfn",
+      "function": "get('$.scores.previous')"
+    }
+  }
+}
+
 ```
 
 ## Time functions
