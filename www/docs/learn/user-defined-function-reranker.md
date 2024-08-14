@@ -27,12 +27,23 @@ new score for a search result. There are no statements or variables. The
 expression definition has access to the search result, and various Vectara 
 provided functions to enable computing new scores for a variety of use cases.
 
+It is expected that every expression returns a number to be used in reranking of
+search results.
+
 ## Types and literals
 
 User Function Language only has number, string, boolean, datetime, and 
 duration as types. You can define number, string, and boolean literals. String 
 literals are enclosed in single quotes (`'`). To encode a single quote requires 
 two repeated single quotes (`''`).
+
+### Duration
+Datetime operations such as subtraction result in `duration`s instead of integers
+unlike many SQL languages. This allows precise handling of datetime operations
+when doing recency boosting or other time based modifications of the score.
+
+You can convert to and from durations and numbers by using the `seconds`, `minutes`,
+and `hours` functions.
 
 ### Types and literals examples:
 
@@ -90,12 +101,7 @@ result in the HTTP API definition. What follows is the schema for the search res
 
 ```json
 {
-  "score": .9
-  "scores": {
-    "lexical": 234,
-    "neural": 0.34,
-    "interpolated": 0.90,
-  },
+  "score": .9,
   "text": "search result text",
   "document_metadata": {
     "Document level metadata": "metadata"
@@ -107,84 +113,11 @@ result in the HTTP API definition. What follows is the schema for the search res
 }
 ```
 
-#### Scores object
-
-The scores object allows you to acccess the different scores computed for a 
-search result.
-
-* `lexical` - The lexical score before the neural score is applied, optimized for traditional
-  [keyword-based search](/docs/learn/enable-keyword-text-matching). These scores do not consider the deeper semantic 
-  meanings of the words. Instead, they focus on whether the keywords in the 
-  query match the terms in the document. This score may be missing if lexical 
-  search is not enabled. 
-* `neural` - The neural score before the lexical score is applied, providing a 
-  [semantic understanding](/docs/learn/semantic-search/semantic-search-overview) of the query. These scores go 
-  beyond simple keyword matching to understand the contextual meaning behind 
-  the query. These scores are effective for achieving a deeper level of 
-  accuracy in complex queries, especially when the relationships between words 
-  matters more than specific keywords.
-* `interpolated` - The computed interpolation between the lexical and neural 
-  scores, blending them into a [hybrid search](/docs/learn/hybrid-search). These scores consider 
-  both the exact keyword matches and the semantic relationships between words, 
-  offering a balanced approach to a query. This score may be missing if 
-  lexical score is not enabled.
-
 #### Get examples
 
 ```sql
 get('$.score') * get('$.part_metadata.boost')
 get('$.document_metadata.reviews[0].score', 0)
-```
-
-#### Lexical score example
-
-Expression for only using for a lexical search of `The Great Gatsby`. This would be the same as
-setting lexical interpolation equal to 1:
-
-```json
-{
-  "query": "The Great Gatsby",
-  "search": {
-    "reranker": {
-      "type": "userfn",
-      "function": "get('$.scores.lexical')"
-    }
-  }
-}
-```
-#### Neural score example
-
-Query products related to `comfortable sleeping` even if 
-the exact word "comfortable" is not used:
-
-```json
-{
-  "query": "comfortable sleeping",
-  "search": {
-    "reranker": {
-      "type": "userfn",
-      "function": "get('$.scores.neural')"
-    }
-  }
-}
-```
-
-#### Interpolated score example
-
-Query example of a hybrid search that combines the scores of neural 
-and lexical results. When lexical interpolation is non-zero
-this expression will essentially be a no-op.
-
-```json
-{
-  "query": "affordable laptops for gaming",
-  "search": {
-    "reranker": {
-      "type": "userfn",
-      "function": "get('$.scores.interpolated')"
-    }
-  }
-}
 ```
 
 ## Time functions
@@ -202,7 +135,7 @@ current time or converting durations to different units.
 | `seconds(a)`         | Converts a duration to the number of seconds.                 | `seconds(minutes(1)) == 60`        |
 | `minutes(a)`         | Converts a duration to the number of minutes.                 | `hours(minutes(60)) == 1`          |
 | `hours(a)`           | Converts a duration to the number of hours.                   | `minutes(hours(1)) == 60`          |
-| `seconds(a)`         | Converts a number to a seconds duartion.                      | `seconds(50)`                      |
+| `seconds(a)`         | Converts a number to a seconds duration.                      | `seconds(50)`                      |
 | `minutes(a)`         | Converts a number to a minutes duration.                      | `minutes(80)`                      |
 | `hours(a)`           | Converts a number to a hours duration.                        | `hours(1)`                         |
 
