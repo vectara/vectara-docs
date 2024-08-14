@@ -108,14 +108,25 @@ result in the HTTP API definition. What follows is the schema for the search res
 ```
 
 #### Scores object
+
 The scores object allows you to acccess the different scores computed for a 
 search result.
-* `lexical` - The lexical score before the neural score is applied, optimized for 
-  keyword search. This score may be missing if lexical search is not enabled. 
+
+* `lexical` - The lexical score before the neural score is applied, optimized for traditional
+  [keyword-based search](/docs/learn/enable-keyword-text-matching). These scores do not consider the deeper semantic 
+  meanings of the words. Instead, they focus on whether the keywords in the 
+  query match the terms in the document. This score may be missing if lexical 
+  search is not enabled. 
 * `neural` - The neural score before the lexical score is applied, providing a 
-  semantic understanding of the query intent.
+  [semantic understanding](/docs/learn/semantic-search/semantic-search-overview) of the query. These scores go 
+  beyond simple keyword matching to understand the contextual meaning behind 
+  the query. These scores are effective for achieving a deeper level of 
+  accuracy in complex queries, especially when the relationships between words 
+  matters more than specific keywords.
 * `interpolated` - The computed interpolation between the lexical and neural 
-  scores, blending the keyword and neural. This score may be missing if 
+  scores, blending them into a [hybrid search](/docs/learn/hybrid-search). These scores consider 
+  both the exact keyword matches and the semantic relationships between words, 
+  offering a balanced approach to a query. This score may be missing if 
   lexical score is not enabled.
 
 #### Get examples
@@ -128,7 +139,7 @@ get('$.document_metadata.reviews[0].score', 0)
 #### Lexical score example
 
 Expression for only using for a lexical search of `The Great Gatsby`. This would be the same as
-setting leixcal interpolation equal to 1:
+setting lexical interpolation equal to 1:
 
 ```json
 {
