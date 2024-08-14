@@ -91,12 +91,14 @@ search result is done with the function `get.`
 ### Get Function
 
 The `get` function allows you to retrieve properties of the result. The `get` 
-argument is a [JSONPath](https://en.wikipedia.org/wiki/JSONPath) string that retrieves values
+argument is a [JSONPath](https://en.wikipedia.org/wiki/JSONPath) string that retrieves values 
 from a search result object. JSON paths that do not exist return null.
-The `get` function can also optionally take a second argument as a default value if the JSONPath is null.
+The `get` function can also optionally take a second argument as a default 
+value if the JSONPath is null.
 
 The search result object is similiar to the definition of the search 
-result in the HTTP API definition. What follows is the schema for the search result object.
+result in the HTTP API definition. What follows is the schema for the search 
+result object. 
 
 
 ```json
@@ -112,6 +114,8 @@ result in the HTTP API definition. What follows is the schema for the search res
    "document_id": "document id"
 }
 ```
+The `$.score` is the score that Vectara has calculated up to 
+this point in the retrieval chain.
 
 #### Get examples
 
