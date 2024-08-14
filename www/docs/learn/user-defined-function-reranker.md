@@ -10,8 +10,8 @@ The User Defined Functions Reranker enables users to define custom reranking
 functions using document-level metadata, part-level metadata, or scores 
 generated from the request-level metadata. To use this reranker, set the 
 `type` to `userfn` in a query and specify a string within the 
-`reranker` section of the query. This string syntax is custom and similar to 
-SQL like filter expressions.
+`reranker` section of the query. This string syntax is custom and similar to our
+SQL-like [filter expressions](/docs/learn/metadata-search-filtering/filter-overview).
 
 This new user-defined functions reranker allows for a wide range of use cases:
 
@@ -29,8 +29,8 @@ provided functions to enable computing new scores for a variety of use cases.
 
 ## Types and literals
 
-User Function Language only has double, string, boolean, datetime, and 
-duration as types. You can define double, string, and boolean literals. String 
+User Function Language only has number, string, boolean, datetime, and 
+duration as types. You can define number, string, and boolean literals. String 
 literals are enclosed in single quotes (`'`). To encode a single quote requires 
 two repeated single quotes (`''`).
 
@@ -90,11 +90,11 @@ result in the HTTP API definition. What follows is the schema for the search res
 
 ```json
 {
+  "score": .9
   "scores": {
     "lexical": 234,
     "neural": 0.34,
     "interpolated": 0.90,
-    "previous": 0.34
   },
   "text": "search result text",
   "document_metadata": {
@@ -108,28 +108,27 @@ result in the HTTP API definition. What follows is the schema for the search res
 ```
 
 #### Scores object
-
 The scores object allows you to acccess the different scores computed for a 
 search result.
 * `lexical` - The lexical score before the neural score is applied, optimized for 
-  keyword search. This score may be missing. 
+  keyword search. This score may be missing if lexical search is not enabled. 
 * `neural` - The neural score before the lexical score is applied, providing a 
   semantic understanding of the query intent.
 * `interpolated` - The computed interpolation between the lexical and neural 
-  scores, blending the keyword and neural. This score may be missing.
-* `previous` - The last score computed by the retrieval pipeline. Most often 
-  the interpolated score.
+  scores, blending the keyword and neural. This score may be missing if 
+  lexical score is not enabled.
 
 #### Get examples
 
 ```sql
-get('$.scores.previous') * get('$.part_metadata.boost')
+get('$.score') * get('$.part_metadata.boost')
 get('$.document_metadata.reviews[0].score', 0)
 ```
 
 #### Lexical score example
 
-Query for an exact title match of `The Great Gatsby`:
+Expression for only using for a lexical search of `The Great Gatsby`. This would be the same as
+setting leixcal interpolation equal to 1:
 
 ```json
 {
@@ -161,9 +160,9 @@ the exact word "comfortable" is not used:
 
 #### Interpolated score example
 
-Query example of a hybrid search that balances the scores of neural 
-and lexiccal results that find laptops which are both affordable and suitable 
-for gaming:
+Query example of a hybrid search that combines the scores of neural 
+and lexical results. When lexical interpolation is non-zero
+this expression will essentially be a no-op.
 
 ```json
 {
@@ -175,24 +174,6 @@ for gaming:
     }
   }
 }
-```
-
-#### Previous score example
-
-In this example, you want popular coffee shops that have ranked high in 
-previous searches:
-
-```json
-{
-  "query": "best coffee shops nearby",
-  "search": {
-    "reranker": {
-      "type": "userfn",
-      "function": "get('$.scores.previous')"
-    }
-  }
-}
-
 ```
 
 ## Time functions
@@ -207,12 +188,14 @@ current time or converting durations to different units.
 | `iso_datetime_parse(a)` | Parses an ISO datetime string to a datetime.                 | `iso_date_time_parse('2024-12-04T10:14:50Z')` |
 | `datetime_parse(a,b)`| Parses a datetime string with a format string. The format string follows the Java format string [format](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html). | `datetime_parse('2024 02 09', 'yyyy MM dd')` |
 | `to_unix_timestamp(a)`| Converts a datetime to seconds from the epoch.               | `to_unix_timestamp(now())`         |
-| `seconds(a)`         | Converts a duration to the number of seconds.                 | `seconds(seconds(50))`             |
-| `minutes(a)`         | Converts a duration to the number of minutes.                 | `minutes(minutes(60))`             |
-| `hours(a)`           | Converts a duration to the number of hours.                   | `hours(hours(1))`                  |
+| `seconds(a)`         | Converts a duration to the number of seconds.                 | `seconds(minutes(1)) == 60`        |
+| `minutes(a)`         | Converts a duration to the number of minutes.                 | `hours(minutes(60)) == 1`          |
+| `hours(a)`           | Converts a duration to the number of hours.                   | `minutes(hours(1)) == 60`          |
 | `seconds(a)`         | Converts a number to a seconds duartion.                      | `seconds(50)`                      |
 | `minutes(a)`         | Converts a number to a minutes duration.                      | `minutes(80)`                      |
 | `hours(a)`           | Converts a number to a hours duration.                        | `hours(1)`                         |
+
+The `seconds`, `minutes`, and `hours` functions allow you to convert a number to a duration, and convert a duration to a number.
 
 ## Math functions
 
@@ -245,7 +228,7 @@ and logarithms.
 
 
 ```sql
-get('$.scores.previous') * 1 / as_days(iso_datetime_parse(get('$.document_metadata.publication_date')) - now())
+get('$.score') * 1 / as_days(iso_datetime_parse(get('$.document_metadata.publication_date')) - now())
 ```
 
 ## API v2 example
@@ -259,14 +242,14 @@ metadata:
    "search": {
       "reranker": {
         "type": "userfn",
-        "function": "get('$.scores.previous') * get('$.document_metadata.boost')"
+        "function": "get('$.score') * get('$.document_metadata.boost')"
       }
    }
 }
 ```
 ## gRPC example
 
-This example of a toy shows how ranking in an ecommerce system would work:
+This example shows how ranking in an ecommerce system would work:
 
 
 ```grpc
@@ -274,7 +257,7 @@ This example of a toy shows how ranking in an ecommerce system would work:
         query=query, num_results=fetch)
  request.reranking_config.reranker_id = 272725722
  request.reranking_config.userfn_config.expression = \
-     "get('$.scores.previous') + log10(get('$.document_metadata.publish_ts')) + log(get('$.document_metadata.customer_review_stars')) + get('$.document_metadata.promoted')"
+     "get('$.score') + log10(get('$.document_metadata.publish_ts')) + log(get('$.document_metadata.customer_review_stars')) + get('$.document_metadata.promoted')"
 ```
 
 This example modifies the score with the following options:
