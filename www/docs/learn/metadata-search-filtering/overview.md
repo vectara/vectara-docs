@@ -50,4 +50,4 @@ page, and a full list of how to specify literals on [Data Types][5].
 [2]: /docs/api-reference/search-apis/sql/func-opr
 [3]: https://en.wikipedia.org/wiki/Unix_time
 [4]: /docs/api-reference/admin-apis/create-corpus#filter-attribute
-[5]: /docs/api-reference/search-apis/sql/data_types
+[5]: /docs/api-reference/search-apis/sql/data-types
