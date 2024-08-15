@@ -6,6 +6,11 @@ sidebar_label: User Defined Function Reranker
 
 import {Config} from '@site/docs/definitions.md';
 
+Our out-of-the-box rerankers are effective for general use cases, but some 
+specific use cases require fine-grained control over how search results are 
+ordered. For example, bubbling recently-added documents to the top, or 
+limiting search results to a specific geolocation.
+
 The User Defined Functions Reranker enables users to define custom reranking 
 functions using document-level metadata, part-level metadata, or scores 
 generated from the request-level metadata. To use this reranker, set the 
