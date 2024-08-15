@@ -10,7 +10,13 @@ import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
 import {Config} from '@site/docs/definitions.md';
 
-Managing a growing collection of prompt templates and generation settings can become overwhelming
+Organizations often struggle to fine-tune query responses and maintain 
+consistency across different use cases. Vectara creates and maintains 
+predefined generation presets for our users which provides a flexible and 
+powerful way to utilize generation parameters. Each preset includes a 
+complete Velocity template for the prompt along with other generation 
+parameters. Presets are typically associated with specific LLMs, though some 
+may be compatible across model families, such as GPT variants.
 
 The List Generation Presets API lets you view the generation presets used for 
 [query](/docs/api-reference/search-apis/search) or [chat](/docs/api-reference/chat-apis/create-chat) requests. Generation presets bundle several properties that  
@@ -21,10 +27,7 @@ Model (LLM), and other generation settings like `max_tokens` and `temperature`.
 Users specify a generation preset in their query or chat requests using the 
 `generation-preset-name` field.
 
-Vectara creates and maintains predefined generation presets for our users. Each 
-preset includes a complete Velocity template for the prompt along with other 
-generation parameters. Presets are typically associated with specific LLMs, 
-though some may be compatible across model families, such as GPT variants.
+
 
 :::note
 
