@@ -133,7 +133,7 @@ results. For example, _"The Apple store near my house is closed due to Covid."_
 Within the `search` object, add `custom_dimensions` weights (Scale only),
 `metadata_filter` and set the `lexical_interpolation` (formerly `lambda` in
 the REST API v1.0). Setting to `0` disables exact and Boolean text matching,
-while a value of `1` disabls neural retrieval. Users often see best results by
+while a value of `1` disables neural retrieval. Users often see best results by
 setting this value somewhere between 0.01 and 0.1, and we typically
 recommend users start experimentation with a `0.025`.
 
@@ -269,7 +269,8 @@ enables you to evaluate the likelihood of an AI-generated summary being
 factually correct based on search results. This calibrated score can
 range from `0.0` to `1.0`. A higher scores indicates a greater probability of
 being factually accurate, while a lower score indicates a greater probability
-of hallucinations.
+of hallucinations. It also supports English, German, and French (`eng`, `deu`, `fra`) 
+as the `response_language`.
 
 In your summarization request, set the `enable_factual_consistency_score` field to `true`.
 The Factual Consistency Score returns a calibrated value in the
@@ -388,7 +389,7 @@ model:
   This value supercedes the `responseChars` parameter in the `summary` object.
 - `temperature` indicates whether you want the summarization to not be creative at all `0.0`,
   or for the summarization to take more creative liberties as you approach
-  the maximium value of `1.0`.
+  the maximum value of `1.0`.
 - `frequency_penalty` provides even more granular control to help ensure that the
   summarization decreases the likelihood of repeating words. The values range from `0.0` to `1.0`
 - `presence_penalty` provides more control over whether you want the summary to

@@ -50,6 +50,8 @@ The `generation_presets` object contains the `name`, `description`, `llm_name`,
 If your account has access to a preset, then `enabled` is set to `true`. A preset 
 can also be set as a `default`.
 
+### Example generation presets response
+
 ```json
 {
   "generation_presets": [
