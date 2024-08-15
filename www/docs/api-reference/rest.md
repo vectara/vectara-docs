@@ -173,6 +173,12 @@ account:
 - [Update Application Client API](/docs/api-reference/app-clients/update-app-client): Modify an application client's details, such as assigned roles.
 - [Delete Application Client API](/docs/api-reference/app-clients/delete-app-client): Remove an application client from the account.
 
+### Generation Presets
+
+The following endpoint lets you view the available generation presets in your account:
+
+- [List Generation Presets API](/docs/api-reference/generation-presets/list-generation-presets)
+
 :::note
 
 Not all REST API endpoints have long-form documentation in this API Reference.

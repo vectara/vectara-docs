@@ -9,6 +9,12 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
+Organizations often struggle to extract relevant information from large 
+datasets and get meaningful answers to complex queries. The Vectara Query API 
+offers a powerful and flexible solution for performing sophisticated searches 
+across one or more corpora and significantly enhance the accuracy and 
+relevance of search results.
+
 The Query API lets you perform a query while defining its parameters
 that specify the query text, pagination details, metadata filters, and other
 search settings that enable application builders to tailor their queries to
@@ -51,8 +57,8 @@ the body that specifies the following:
 - `stream_response` - Indicates whether to stream the response in real-time (`true`) or
   to send a complete summary at the end of processing the request (`false`)
 - `search` - Specifies the search parameters
-- `generation` - Specifies the summarization parameters. Excluding this generation 
-  field disables summarization.
+- `generation` - Specifies the summarization parameters and generation presets. 
+  Excluding this generation field disables summarization.
 
 This query type is useful when you want to query all your
 data sources at once.
@@ -78,8 +84,8 @@ Query Corpora type and specifies the same parameters:
 - `stream_response` - Indicates whether to stream the response in real-time or
   to send a complete summary at the end of processing the request
 - `search` - Specifies the search parameters
-- `generation` - Specifies the summarization parameters. Excluding this generation 
-  field disables summarization
+- `generation` - Specifies the summarization parameters and generation presets. 
+  Excluding this generation field disables summarization.
 
 This advanced type provides additional search filtering and customization
 options compared to the simple GET method.
@@ -144,7 +150,7 @@ number of characters or sentences before or after the matching document part.
 Finally, the **reranking configuration** enables reranking of results, to
 further increase relevance in certain scenarios. For details about our 
 Multilingual, Maximal Marginal Relevance (MMR), and User Defined Function 
-rerankers, see [Reranking](/docs/api-reference/search-apis/reranking).
+rerankers, see [Rerank Search Results](/docs/api-reference/search-apis/reranking).
 
 ## Query Request and Response
 
@@ -195,18 +201,56 @@ The `generation` object enables you to tailor the results of the query
 summarization. Growth users can specify the `max_summarized_results`, 
 `response_language`, and `enable_factual_consistency_score`.
 
+
+```json
+"generation": {
+    "generation_preset_name": "vectara-summary-ext-v1.2.0",
+    "max_used_search_results": 5,
+    "prompt_template": "[\n  {\"role\": \"system\", \"content\": \"You are a helpful search assistant.\"},\n  #foreach ($qResult in $vectaraQueryResults)\n     {\"role\": \"user\", \"content\": \"Given the $vectaraIdxWord[$foreach.index] search result.\"},\n     {\"role\": \"assistant\", \"content\": \"${qResult.getText()}\" },\n  #end\n  {\"role\": \"user\", \"content\": \"Generate a summary for the query '\''${vectaraQuery}'\'' based on the above results.\"}\n]\n",
+    "max_response_characters": 300,
+    "response_language": "eng",
+    "model_parameters": {
+      "max_tokens": 0,
+      "temperature": 0,
+      "frequency_penalty": 0,
+      "presence_penalty": 0
+    },
+```
+Scale users have access to [advanced summarization customization options](/docs/api-reference/search-apis/search#advanced-summarization-customization-options).
+
+## Generation Presets
+
+The `generation-preset-name` field in `generation` object specifies the prompt 
+template to use. Generation presets bundle several properties that configure 
+generation for the request, providing more flexibility in how parameters are 
+set. The preset includes the `prompt_template`, the LLM, and other settings 
+like `max_tokens` and `temperature`.
+
+```json
+"generation-preset-name": "vectara-summary-ext-v1.3.0"
+```
+
+
+To view available generation presets, use the [List Generation Presets API](/docs/api-reference/generation-presets/list-generation-presets).
+
+:::note
+The `generation-preset-name` field replaces the `prompt_name` field that was 
+previously in the `generation` object. The `prompt_name` field is now deprecated 
+but still supported for backward compatibility.
+:::
+
 ### Mockingbird: Enhanced RAG Performance
 
 For users seeking superior RAG performance, <Config v="names.product"/> offers Mockingbird, 
 our advanced LLM specifically designed for RAG tasks.
 
-To use Mockingbird for your RAG tasks, specify the following `prompt_name` in 
-the `generation` object, like in this example:
+To use Mockingbird for your RAG tasks, specify `mockingbird-1.0-2024-07-16` in 
+the `generation-preset-name` field the `generation` object, like in this example:
 
 ```json
 {
   "generation": {
-    "prompt_name": "mockingbird-1.0-2024-07-16",
+    "generation_preset_name": "mockingbird-1.0-2024-07-16",
     "max_used_search_results": 5,
     "response_language": "eng",
     "enable_factual_consistency_score": true
@@ -260,7 +304,7 @@ braces. For example, use `{doc.title}` and the final result appears as
 [Title](https://my.doc/foo/2/1).
 
 To use citations, you must specify one of the following summarizers
-in `prompt_name`:
+in `generation_preset`:
 
 - `mockingbird-1.0-2024-07-16` - (Vectara's Mockingbird LLM)
 - `vectara-summary-ext-24-05-sml` - (gpt-3.5-turbo)
@@ -313,15 +357,31 @@ To disable summarization, exclude the `generation` object from a query.
 capabilities, which present a powerful toolkit for tailoring summarizations to
 specific application and user needs.
 
-The `prompt_name` allows you to specify one of our [available summarizers](/docs/learn/grounded-generation/select-a-summarizer).
-Use `prompt_name` and `prompt_text` to override the default prompt with a
+If you need more customization beyond what is available in the presets, 
+you can override certain parameters in your query. For example:
+
+```json
+{
+  "generation": {
+    "generation-preset-name": "vectara-summary-ext-v1.3.0",
+    "max_tokens": 300,
+    "temperature": 0.7
+  }
+}
+```
+To provide even more customization beyond, you can override certain parameters 
+in your query. This enables you to use a preset as a starting point while you 
+tailor specific aspects of the generation.
+
+The `generation_preset_name` allows you to specify one of our [available summarizers](/docs/learn/grounded-generation/select-a-summarizer).
+Use `generation_preset_name` and `prompt_template` to override the default prompt with a
 [custom prompt](/docs/prompts/vectara-prompt-engine). Your use case might
 require a chatbot to be more human like, so you decide to create a custom
 response format that behaves more playfully in a conversation or summary.
 
 The `max_response_characters` lets you control the length of the summary, but
 note that it is **not a hard limit** like with the `max_tokens` parameter. The
-`generation` object provides even more fine-grained controls for the summarizer
+`model_parameters` object provides even more fine-grained controls for the summarizer
 model:
 
 - `max_tokens` specifies a hard limit on the number of characters in a response.
