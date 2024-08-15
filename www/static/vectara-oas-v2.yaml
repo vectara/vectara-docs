@@ -37,7 +37,7 @@ info:
     email: feedback@vectara.com
 tags:
   - name: Queries
-    description: Perform search and retrieval augmented generation operations on one or more corpora
+    description: Perform search and Retrieval Augmented Generation (RAG) operations on one or more corpora
   - name: Upload
     description: Upload files to a corpus for automatic parsing and document extraction
   - name: Index
@@ -67,53 +67,6 @@ servers:
   - url: https://api.vectara.io
 
 paths:
-  /v2/query:
-    post:
-      tags:
-        - Queries
-      summary: Query Corpora
-      description: |
-        Perform a multi-purpose query that can retrieve relevant information from one or more corpora and generate a response using RAG.
-
-        Generation is opt in by setting the `generation` property. By excluding the property or by setting it to null, the response
-        will not include generation.
-
-        For more detailed information please see this [api guide](https://docs.vectara.com/docs/api-reference/search-apis/search).
-      operationId: query
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/QueryRequest'
-      x-stream-based-on-body: "streamResponse()"
-      responses:
-        '200':
-          description: A response to a query.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/QueryFullResponse'
-            text/event-stream:
-              schema:
-                $ref: '#/components/schemas/QueryStreamedResponse'
-        '400':
-          description: Query request was malformed.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BadRequestError'
-        '403':
-          description: Permissions do not allow querying one or more corpora in the request.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '404':
-          description: One or more of the corpora was not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotFoundError'
   /v2/corpora:
     post:
       summary: Create a corpus
@@ -363,8 +316,15 @@ paths:
     get:
       tags:
         - Queries
-      summary: Simple Corpus Query
-      description: Search a single corpus with a simple query request.
+      summary: Simple Single Corpus Query
+      description: |
+        Search a single corpus with a straightforward query request, specifying the corpus key and query parameters.
+        * Specify the unique `corpus_key` identifying the corpus to query.
+        * Enter the search `query` string for the corpus, which is the question you want to ask.
+        * Set the maximum number of results (`limit`) to return. **Default**: 10, **minimum**: 1
+        * Define the `offset` position from which to start in the result set.
+
+        For more detailed information, see this [Query API guide](https://docs.vectara.com/docs/api-reference/search-apis/search).
       operationId: searchCorpus
       parameters:
         - in: path
@@ -375,7 +335,7 @@ paths:
             $ref: '#/components/schemas/CorpusKey'
         - in: query
           name: query
-          description: The search query string for the corpus.
+          description: The search query string for the corpus, which is the question the user is asking.
           required: true
           schema:
             type: string
@@ -423,8 +383,18 @@ paths:
     post:
       tags:
         - Queries
-      summary: Corpus Query
-      description: Query a specific corpus and find relevant results, highlight relevant snippets, and use Retrieval Augmented Generation.
+      summary: Advanced Single Corpus Query
+      description: |
+        Query a specific corpus and find relevant results, highlight relevant snippets, and use Retrieval Augmented Generation:
+
+        * Customize your search by specifying the query text (`query`), pagination details (`offset` and `limit`), and metadata filters (`metadata_filter`) to tailor your search results. [Learn more](https://docs.vectara.com/docs/api-reference/search-apis/search#query-definition)
+        * Leverage advanced search capabilities like reranking (`reranker`) and Retrieval Augmented Generation (RAG) (`generation`) for enhanced query performance. Generation is opt in by setting the `generation` property. By excluding the property or by setting it to null, the response
+        will not include generation. [Learn more](https://docs.vectara.com/docs/learn/grounded-generation/configure-query-summarization).
+        * Use hybrid search to achieve optimal results by setting different values for `lexical_interpolation` (e.g., `0.025`). [Learn more](https://docs.vectara.com/docs/learn/hybrid-search)
+        * Specify a RAG-specific LLM like Mockingbird (`mockingbird-1.0-2024-07-16`) for the `prompt_name`. [Learn more](https://docs.vectara.com/docs/learn/mockingbird-llm)
+        * Use advanced summarization options that utilize detailed summarization parameters such as `max_response_characters`, `temperature`, and `frequency_penalty` for generating precise and relevant summaries. [Learn more](https://docs.vectara.com/docs/api-reference/search-apis/search#advanced-summarization-options)
+
+        For more detailed information, see [Query API guide](https://docs.vectara.com/docs/api-reference/search-apis/search).
       operationId: queryCorpus
       parameters:
         - in: path
@@ -467,12 +437,70 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
+  /v2/query:
+    post:
+      tags:
+        - Queries
+      summary: Multiple Corpora Query
+      description: |
+        Perform a multi-purpose query to retrieve relevant information from one or more corpora and generate a response using Retrieval Augmented Generation (RAG).
+
+        * Customize your search by specifying the query text (`query`), pagination details (`offset` and `limit`), and metadata filters (`metadata_filter`) to tailor your search results. [Learn more](https://docs.vectara.com/docs/api-reference/search-apis/search#query-definition)
+        * Leverage advanced search capabilities like reranking (`reranker`) and opt-in Retrieval Augmented Generation (RAG) (`generation`) for enhanced query performance. Generation is opt in by setting the `generation` property. By excluding the property or by setting it to null, the response
+        will not include generation. [Learn more](https://docs.vectara.com/docs/learn/grounded-generation/configure-query-summarization)
+        * Specify a RAG-specific LLM like Mockingbird (`mockingbird-1.0-2024-07-16`) for the `prompt_name`. [Learn more](https://docs.vectara.com/docs/learn/mockingbird-llm)
+        * Use advanced summarization options that utilize detailed summarization parameters such as `max_response_characters`, `temperature`, and `frequency_penalty` for generating precise and relevant summaries. [Learn more](https://docs.vectara.com/docs/api-reference/search-apis/search#advanced-summarization-customization-options)
+        * Customize citation formats in summaries using the `citations` object to include numeric, HTML, or Markdown links. [Learn more](https://docs.vectara.com/docs/api-reference/search-apis/search#citation-format-in-summary)
+      
+        For more detailed information, see this [Query API guide](https://docs.vectara.com/docs/api-reference/search-apis/search).
+      operationId: query
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+      x-stream-based-on-body: "streamResponse()"
+      responses:
+        '200':
+          description: A response to a query.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryFullResponse'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/QueryStreamedResponse'
+        '400':
+          description: Query request was malformed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '403':
+          description: Permissions do not allow querying one or more corpora in the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: One or more of the corpora was not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
   /v2/corpora/{corpus_key}/upload_file:
     post:
       tags:
         - Upload
       summary: Upload a file to the corpus
-      description: Upload files such as PDFs and Word Documents. Vectara will attempt to automatically extract text and any metadata.
+      description: |
+        Upload files such as PDFs and Word Documents. Vectara will attempt to automatically extract text and any metadata.
+        The File Upload endpoint request expects a `multipart/form-data` request containing the following parts:
+        * `metadata` - (Optional) Specifies a JSON object representing any additional metadata to be associated with the extracted document. For example, `'metadata={"key": "value"};type=application/json'`
+        * `file` - Specifies the file that you want to upload.
+        * `filename` - Specified as part of the file field with the file name that you want to associate with the uploaded file. For a curl example, use the following syntax: `'file=@/path/to/file/file.pdf;filename=desired_filename.pdf'`
+        
+        For more detailed information see this [File Upload API guide.](https://docs.vectara.com/docs/api-reference/indexing-apis/file-upload/file-upload)
       operationId: uploadFile
       parameters:
         - in: path
@@ -588,6 +616,14 @@ paths:
             minimum: 1
             maximum: 100
             default: 10
+        - name: metadata_filter
+          in: query
+          description: |
+            Filter documents by metadata. Uses the same expression as a query metadata filter, but only
+            allows filtering on document metadata.
+          required: false
+          schema:
+            type: string
         - name: page_key
           in: query
           description: Used to the retrieve the next page of documents after the limit has been reached. 
@@ -639,6 +675,45 @@ paths:
           description: Successfully deleted the document.
         '403':
           description: Permissions do not allow deleting a document in the corpus.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Corpus or document not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+    get:
+      tags:
+        - Documents
+      summary: Retrieve a document
+      operationId: getCorpusDocument
+      parameters:
+        - in: path
+          name: corpus_key
+          description: The unique key identifying the corpus containing the document to retrieve.
+          required: true
+          schema:
+            $ref: '#/components/schemas/CorpusKey'
+        - in: path
+          name: document_id
+          description: |
+            The Document ID of the document to retrieve.
+            The `document_id` must be percent encoded.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved the document.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '403':
+          description: Permissions do not allow retrieving a document from the corpus.
           content:
             application/json:
               schema:
@@ -735,8 +810,11 @@ paths:
     get:
       tags:
         - Large Language Models
-      summary: List LLMs.
-      description: List LLMs that can be used with query and chat endpoints.
+      summary: List LLMs
+      description: |
+        List LLMs that can be used with query and chat endpoints. The LLM is not directly specified in a query,
+        but instead a `generation_preset_name` is used. The `generation_preset_name` property in generation parameters
+        can be found as the `name` property on the Generations Presets retrieved from `/v2/generation_presets`.
       operationId: listLLMs
       parameters:
         - name: filter
@@ -772,6 +850,55 @@ paths:
                 $ref: '#/components/schemas/ListLLMsResponse'
         '403':
           description: Permissions do not allow listing summarizers.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /v2/generation_presets:
+    get:
+      tags:
+        - Generation Presets
+      description: List generation presets
+      summary: |
+        List generation presets used for query or chat requests. Generation presets are
+        the build of properties used to configure generation for a request. This includes
+        the template that renders the prompt, and various generation settings like
+        `temperature`.
+      operationId: listGenerationPresets
+      parameters:
+        - name: llm_name
+          in: query
+          description: Filter presets by the LLM name.
+          required: false
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The maximum number of results to return in the list.
+          required: false
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 100
+            default: 10
+        - name: page_key
+          in: query
+          description: |
+            Used to the retrieve the next page of generation presets after the limit has been reached.
+            This parameter is not needed for the first page of results.
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of Generation Presets.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListGenerationPresetsResponse'
+        '403':
+          description: Permissions do not allow listing generation presets.
           content:
             application/json:
               schema:
@@ -1864,9 +1991,18 @@ components:
             $ref: '#/components/schemas/CorpusCustomDimension'
         limits:
           type: object
+          title: CorpusLimits
           properties:
             used_bytes:
-              description: The number of bytes contained in the corpus.
+              description: |
+                The number of bytes contained in the corpus. This includes the document metadata,
+                document part metadata, and document contents.
+              type: integer
+              format: int64
+            used_characters:
+              description: |
+                The number of characters contained in the corpus. This includes the document metadata,
+                document part metadata, and document contents.
               type: integer
               format: int64
             max_bytes:
@@ -1936,7 +2072,7 @@ components:
           type: string
           example: "The title of the document."
         indexed:
-          description: Whether an index is created for the filter. Creating an index will improve query latency when using the filter.
+          description: Indicates whether an index should be created for the filter. Creating an index will improve query latency when using the filter.
           type: boolean
           default: true
         type:
@@ -2050,39 +2186,45 @@ components:
       description: The parameters to control generation.
       type: object
       properties:
-        prompt_name:
+        generation_preset_name: 
           description: |
-            The prompt to use to feed the query results and other context to the model.
+            The preset values to use to feed the query results and other context to the model.
 
-            A prompt is an object with a bundle of properties that specifies:
-              * The `prompt_text` that is rendered then sent to the LLM.
+            A `generation_preset` is an object with a bundle of properties that specifies:
+              * The `prompt_template` that is rendered then sent to the LLM.
               * The LLM used.
               * `model_parameter`s such as temperature.
              
             All of these properties except the model can be overriden by setting them in this
-            object. Even when a `prompt_text` is set, the `prompt_name` is used to set 
+            object. Even when a `prompt_template` is set, the `generation_preset_name` is used to set 
             the model used.
 
-            If `prompt_name` is not set the Vectara platform will use the default model and
+            If `generation_preset_name` is not set the Vectara platform will use the default model and
             prompt.
           type: string
           minLength: 1
           example: vectara-summary-ext-v1.2.0
+        prompt_name:
+          description: |
+            Use `generation_preset_name` instead of `prompt_name`.
+          type: string
+          minLength: 1
+          example: vectara-summary-ext-v1.2.0
+          deprecated: true
         max_used_search_results:
           description: The maximum number of search results to be available to the prompt.
           type: integer
           format: int32
           minimum: 0
           default: 5
-        prompt_text:
+        prompt_template:
           description: |
             Vectara manages both system and user roles and prompts for the generative
             LLM out of the box by default. However, Scale customers can override the
-            prompt_text via this variable. The prompt_text is in the form of an
+            `prompt_template` via this variable. The `prompt_template` is in the form of an
             Apache Velocity template. For more details on how to configure the
-            prompt_text, see the long-form documentation at
-            https://docs.vectara.com/docs/prompts/vectara-prompt-engine.
-            See https://vectara.com/pricing/ for more details on becoming a Scale customer.
+            `prompt_template`, see the [long-form documentation](https://docs.vectara.com/docs/prompts/vectara-prompt-engine).
+            See [pricing](https://vectara.com/pricing/) for more details on becoming a Scale customer.
           type: string
           example: |
             [
@@ -2093,6 +2235,21 @@ components:
               #end
               {"role": "user", "content": "Generate a summary for the query '${vectaraQuery}' based on the above results."}
             ]
+        prompt_text:
+          description: |
+            This is property is deprecated in favor clearer naming. Use `prompt_template`. This property will be
+            ignored if `prompt_template` is set.
+          type: string
+          example: |
+            [
+              {"role": "system", "content": "You are a helpful search assistant."},
+              #foreach ($qResult in $vectaraQueryResults)
+                 {"role": "user", "content": "Given the $vectaraIdxWord[$foreach.index] search result."},
+                 {"role": "assistant", "content": "${qResult.getText()}" },
+              #end
+              {"role": "user", "content": "Generate a summary for the query '${vectaraQuery}' based on the above results."}
+            ]
+          deprecated: true
         max_response_characters:
           description: |
             Controls the length of the generated output.
@@ -2102,7 +2259,7 @@ components:
             is limited.
 
             So, this value This is currently a Scale-only feature.
-            See https://vectara.com/pricing/ for more details on becoming a Scale customer.
+            See [pricing](https://vectara.com/pricing/) for more details on becoming a Scale customer.
           type: integer
           format: int32
           example: 300
@@ -2113,7 +2270,7 @@ components:
           title: ModelParameters
           description: |
             The parameters for the model.  These are currently a Scale-only feature.
-            See https://vectara.com/pricing/ for more details on becoming a Scale customer.
+            See [pricing](https://vectara.com/pricing/) for more details on becoming a Scale customer.
             WARNING: This is an experimental feature, and breakable at any point with virtually no
             notice. It is meant for experimentation to converge on optimal parameters that can then
             be set in the prompt definitions.
@@ -2194,7 +2351,7 @@ components:
       type: object
       properties:
         query:
-          description: The query to receive an answer on.
+          description: The search query string, which is the question the user is asking.
           type: string
           example: Am I allowed to bring pets to work?
         search:
@@ -2226,7 +2383,7 @@ components:
       type: object
       properties:
         query:
-          description: The query to receive an answer on.
+          description: The search query string, which is the question the user is asking.
           type: string
         search:
           title: SearchCorpusParameters
@@ -2292,10 +2449,12 @@ components:
         propertyName: type
         mapping:
           customer_reranker: '#/components/schemas/CustomerSpecificReranker'
+          userfn: '#/components/schemas/UserFunctionReranker'
           mmr: '#/components/schemas/MMRReranker'
           none: '#/components/schemas/NoneReranker'
       oneOf:
         - $ref: '#/components/schemas/CustomerSpecificReranker'
+        - $ref: '#/components/schemas/UserFunctionReranker'
         - $ref: '#/components/schemas/MMRReranker'
         - $ref: '#/components/schemas/NoneReranker'
     CustomerSpecificReranker:
@@ -2317,6 +2476,21 @@ components:
           example: rnk_272725719
       required:
         - reranker_id
+      x-vectaraParents:
+        - SearchReranker
+    UserFunctionReranker:
+      type: object
+      properties:
+        type:
+          description: |
+            When the type is `userfn`, you can define custom reranking functions using document-level metadata,
+            part-level metadata, or scores generated from the request-level metadata.
+          type: string
+          default: userfn
+        user_function:
+          description: "The user defined function."
+          type: string
+          example: "get('$.score') * get('$.document_metadata.boost')"
       x-vectaraParents:
         - SearchReranker
     MMRReranker:
@@ -2684,6 +2858,26 @@ components:
         - document_parts
       x-vectaraParents:
         - CreateDocumentRequest
+    DocumentPart:
+      description: A part of a document. This section gets converted into an embedding and directly maps to a search result. Usually a sentence.
+      type: object
+      properties:
+        text:
+          description: The text of the document part.
+          type: string
+          example: I'm a nice document part.
+        metadata:
+          description: The metadata for a document part. Attributes matching corpus document part filter attributes are used as document part filter attributes.
+          type: object
+          additionalProperties: true
+          example: { "nice_rank": 9000 }
+        context:
+          description: The context text for the document part.
+          type: string
+        custom_dimensions:
+          $ref: '#/components/schemas/CustomDimensions'
+      required:
+        - text
     CoreDocumentPart:
       description: A part of a document. This section gets converted into an embedding and directly maps to a search result. Usually a sentence.
       type: object
@@ -2716,10 +2910,19 @@ components:
         id:
           description: The Document ID.
           type: string
+          example: my-doc-id
         metadata:
           description: The document metadata.
           type: object
           additionalProperties: true
+        parts:
+          description: |
+            Parts of the document that make up the document. However, parts are not available when
+            retrieving a list of documents or when creating a document. Its only available when
+            retrieving a document by id.
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentPart'
         storage_usage:
           $ref: '#/components/schemas/DocumentStorageUsage'
     DocumentStorageUsage:
@@ -2758,7 +2961,7 @@ components:
       type: object
       properties:
         id:
-          description: The ID of the LLM. This is used as the model ID in a query.
+          description: The ID of the LLM.
           type: string
           pattern: "llm_.*"
         name:
@@ -2776,11 +2979,15 @@ components:
             is not specified.
           type: boolean
         prompts:
-          description: List of prompts that the model can used.
+          description: List of prompts that the model can use. This is deprecated; see `/v2/generation_presets` instead.
           items:
             $ref: '#/components/schemas/Prompt'
+          deprecated: true
     Prompt:
-      description: A prompt that can be used with an LLM.
+      description: |
+        A prompt that can be used with a LLM. A prompt is the template that is used to render
+        the text sent to the LLM. It also contains various default model settings such as
+        temperature.
       type: object
       properties:
         id:
@@ -2788,7 +2995,7 @@ components:
           type: string
           pattern: "pmt_.*"
         name:
-          description: Name of the prompt. This is used as the prompt name in a query.
+          description: Name of the prompt. This is used as the `prompt_name` in a query.
           type: string
         description:
           description: The description of the prompt.
@@ -2807,6 +3014,68 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LLM'
+        metadata:
+          $ref: '#/components/schemas/ListMetadata'
+    GenerationPreset:
+      description: |
+        Bundle of default values used when calling generation. All values except
+        model name can be overriden at generation time.
+      type: object
+      properties:
+        name:
+          description: Name of the generation preset to be used with configuring generation.
+          type: string
+        description:
+          description: Description of the generation preset.
+          type: string
+        llm_name:
+          description: Name of the model that these presets are used with.
+          type: string
+        prompt_template:
+          description: Preset template used to render the prompt sent to generation.
+          type: string
+        max_used_search_results:
+          description: Preset maximum number of search results to be available to the prompt.
+          type: integer
+          format: int32
+          minimum: 1
+        max_tokens:
+          description: Preset maximum number of tokens to be returned by the generation.
+          type: integer
+          format: int32
+          minimum: 1
+        temperature:
+          description: |
+            The sampling temperature to use. Higher values make the output more random, while lower
+            values make it more focused and deterministic.
+          type: number
+          format: float
+        frequency_penalty:
+          description: |
+            Higher values penalize new tokens based on their existing frequency in the text so far,
+            decreasing the model's likelihood to repeat the same line verbatim.
+          type: number
+          format: float
+        presence_penalty:
+          description: |
+            Higher values penalize new tokens based on whether they appear in the text so far,
+            increasing the model's likelihood to talk about new topics.
+          type: number
+          format: float
+        enabled:
+          description: Indicates whether the prompt is enabled.
+          type: boolean
+        default:
+          description: Indicates if this prompt is the default prompt used with the LLM.
+          type: boolean
+    ListGenerationPresetsResponse:
+      type: object
+      properties:
+        generation_presets:
+          description: List of generation presets.
+          type: array
+          items:
+            $ref: '#/components/schemas/GenerationPreset'
         metadata:
           $ref: '#/components/schemas/ListMetadata'
     ChatRequest:
@@ -3376,7 +3645,7 @@ components:
           description: |
             Object with keys of resource paths to a list of allowed resources.
             A resource path starts with either body, path, or implicit.
-            A body or path resource is within the operation body, and implicit
+            A body or path resource is within the operation body, and an implicit
             resource is a resource implied by the request.
           type: object
           additionalProperties:
