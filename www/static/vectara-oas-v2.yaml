@@ -858,8 +858,8 @@ paths:
     get:
       tags:
         - Generation Presets
-      description: List generation presets
-      summary: |
+      summary: List generation presets
+      description: |
         List generation presets used for query or chat requests. Generation presets are
         the build of properties used to configure generation for a request. This includes
         the template that renders the prompt, and various generation settings like
@@ -2918,8 +2918,8 @@ components:
         parts:
           description: |
             Parts of the document that make up the document. However, parts are not available when
-            retrieving a list of documents or when creating a document. Its only available when
-            retrieving a document by id.
+            retrieving a list of documents or when creating a document. This property is only available
+            when retrieving a document by id.
           type: array
           items:
             $ref: '#/components/schemas/DocumentPart'
