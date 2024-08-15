@@ -209,7 +209,7 @@ This example shows how ranking in an ecommerce system would work:
  request = serving_pb2.QueryRequest(
         query=query, num_results=fetch)
  request.reranking_config.reranker_id = 272725722
- request.reranking_config.userfn_config.expression = \
+ request.reranking_config.user_function = \
      "get('$.score') + log10(get('$.document_metadata.publish_ts')) + log(get('$.document_metadata.customer_review_stars')) + get('$.document_metadata.promoted')"
 ```
 
