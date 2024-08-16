@@ -57,8 +57,10 @@ the body that specifies the following:
 - `stream_response` - Indicates whether to stream the response in real-time (`true`) or
   to send a complete summary at the end of processing the request (`false`)
 - `search` - Specifies the search parameters
-- `generation` - Specifies the summarization parameters and generation presets. 
-  Excluding this generation field disables summarization.
+- `generation` - Specifies the summarization parameters and `generation_preset_name`. 
+  Excluding this generation field disables summarization. The [generation preset](/docs/rest-api/list-generation-presets) 
+  contains the `name`, `description`, `llm_name`, `prompt_template`, and other 
+  fields make up the preset.
 
 This query type is useful when you want to query all your
 data sources at once.
@@ -355,11 +357,10 @@ To disable summarization, exclude the `generation` object from a query.
 ## Advanced Summarization Customization Options
 
 [Scale users](https://vectara.com/pricing/) have access to more powerful summarization
-capabilities, which present a powerful toolkit for tailoring summarizations to
-specific application and user needs.
-
-If you need more customization beyond what is available in the presets, 
-you can override certain parameters in your query. For example:
+capabilities, which present a powerful toolkit for tailoring summarizations to 
+specific application and user needs. If they need to change generation 
+beyond what the preset specifies, Scale users can override most parameters in a  
+query. For example:
 
 ```json
 {
