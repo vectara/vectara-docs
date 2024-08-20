@@ -1885,10 +1885,16 @@ components:
           type: boolean
           default: false
         encoder_id:
-          description: The encoder used by the corpus. This value defaults to the most recent Vectara encoder.
+          description: |
+            *Deprecated*: Use `encoder_name` instead.
           type: string
           pattern: 'enc_[0-9]+$'
           example: enc_1
+          deprecated: true
+        encoder_name:
+          description: The encoder used by the corpus.
+          type: string
+          example: boomerang
         filter_attributes:
           description: |
             The new filter attributes of the corpus. 
@@ -1917,6 +1923,14 @@ components:
           description: Set whether or not the corpus is enabled. If unset then the corpus will remain in the same state.
           type: boolean
           example: false
+        name:
+          description: The name for the corpus. If unset or null then the corpus will remain in the same state.
+          type: string
+          example: new-name
+        description:
+          description: Description of the corpus. If unset or null then the corpus will remain in the same state.
+          type: string
+          example: New description for the corpus.
     ReplaceFilterAttributesRequest:
       type: object
       properties:
@@ -1976,9 +1990,16 @@ components:
           type: boolean
           default: false
         encoder_id:
-          description: The encoder used by the corpus.
+          description: |
+            The encoder used by the corpus.
+            *Deprecated*: use `encoder_name` instead
           type: string
           pattern: 'enc_[0-9]+$'
+          deprecated: true
+        encoder_name:
+          description: The encoder used by the corpus.
+          type: string
+          example: boomerang
         filter_attributes:
           description: The new filter attributes of the corpus.
           type: array
@@ -2451,11 +2472,13 @@ components:
           customer_reranker: '#/components/schemas/CustomerSpecificReranker'
           userfn: '#/components/schemas/UserFunctionReranker'
           mmr: '#/components/schemas/MMRReranker'
+          chain: '#/components/schemas/ChainReranker'
           none: '#/components/schemas/NoneReranker'
       oneOf:
         - $ref: '#/components/schemas/CustomerSpecificReranker'
         - $ref: '#/components/schemas/UserFunctionReranker'
         - $ref: '#/components/schemas/MMRReranker'
+        - $ref: '#/components/schemas/ChainReranker'
         - $ref: '#/components/schemas/NoneReranker'
     CustomerSpecificReranker:
       description: Reranker that is specific to the customer.
@@ -2507,6 +2530,30 @@ components:
           type: number
           format: float
           example: .3
+      x-vectaraParents:
+        - SearchReranker
+    ChainReranker:
+      type: object
+      properties:
+        type:
+          description: |
+            When the type is `chain`, you can then chain 2 re-rankers together.
+          type: string
+          default: chain
+        reranker:
+          type: object
+          description: |
+            Rerank results of the search. Rerankers are very powerful tools to better order search results.
+            By default the search will use the most powerful reranker available to the customer's plan.
+            To disable reranking set the reranker `type` to `"none"`.
+          discriminator:
+            propertyName: type
+            mapping:
+              customer_reranker: '#/components/schemas/CustomerSpecificReranker'
+              userfn: '#/components/schemas/UserFunctionReranker'
+              mmr: '#/components/schemas/MMRReranker'
+              chain: '#/components/schemas/ChainReranker'
+              none: '#/components/schemas/NoneReranker'
       x-vectaraParents:
         - SearchReranker
     NoneReranker:

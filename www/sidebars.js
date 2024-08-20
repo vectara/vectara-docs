@@ -50,6 +50,7 @@ module.exports = {
                 "learn/vectara-multi-lingual-reranker",
                 "learn/mmr-reranker",
                 "learn/user-defined-function-reranker",
+                "learn/chain-reranker",
               ],
             },
             "learn/semantic-search/enable-pagination",
