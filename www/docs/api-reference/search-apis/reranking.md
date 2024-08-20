@@ -23,7 +23,7 @@ We currently provides the following rerankers:
 * [**Multilingual Reranker v1**](/docs/learn/vectara-multi-lingual-reranker) (`type=customer_specific` and `reranker_id=rnk_272725719`) for accurate results across over 100 languages.
 * [**Maximal Marginal Relevance (MMR) Reranker**](/docs/learn/mmr-reranker) (`type=mmr`) for diversifying results while maintaining relevance.
 * [**User Defined Function Reranker**](/docs/learn/user-defined-function-reranker) (`type=userfn`) for custom scoring based on metadata.
-* **Chain Reranker** (`type=chain`) for combining two reranking strategies in sequence to meet 
+* [**Chain Reranker**](/docs/learn/chain-reranker) (`type=chain`) for combining two reranking strategies in sequence to meet 
   more complex search requirements.
 
 ## Enable reranking
