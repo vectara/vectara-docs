@@ -25,8 +25,8 @@ REST endpoint to enable or disable corpora.
 
 ## Update Corpus Request and Response
 
-To update a corpus, send a PATCH request to `/v2/corpora/{corpus_key}`, where
-`{corpus_key}` is the unique identifier for the corpus you want to update. The
+To update a corpus, send a PATCH request to `/v2/corpora/:corpus_key`, where
+`corpus_key` is the unique identifier for the corpus you want to update. The
 request body specifies the `enabled` as `true` or `false`. If not specified, the
 corpus remains in its current state. The `filter_attributes` parameter lets
 you update the `name`, `level` (document or part), `description`, whether the corpus

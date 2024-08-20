@@ -37,6 +37,14 @@ The File Upload endpoint request expects a `multipart/form-data` request contain
 For more detailed information see this [File Upload API guide.](https://docs.vectara.com/docs/api-reference/indexing-apis/file-upload/file-upload)
 
 
+The File Upload endpoint request expects a `multipart/form-data` request containing the following parts:
+* `metadata` - (Optional) Specifies a JSON object representing any additional metadata to be associated with the extracted document. For example, `'metadata={"key": "value"};type=application/json'`
+* `file` - Specifies the file that you want to upload.
+* `filename` - Specified as part of the file field with the file name that you want to associate with the uploaded file. For example, `'file=@/path/to/file/file.pdf;filename=desired_filename.pdf'`
+
+For more detailed information see this [File Upload API guide.](https://docs.vectara.com/docs/api-reference/indexing-apis/file-upload/file-upload)
+
+
 ## Request
 
 <details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Path Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"in":"path","name":"corpus_key","description":"The unique key identifying the corpus of which to upload the file.","required":true,"schema":{"description":"A user-provided key for a corpus.","type":"string","example":"my-corpus","pattern":"[a-zA-Z0-9_\\=\\-]+$","maxLength":50,"title":"CorpusKey"}}}></ParamsItem></ul></div></details><MimeTabs className={"openapi-tabs__mime"}><TabItem label={"multipart/form-data"} value={"multipart/form-data-schema"}><details style={{}} className={"openapi-markdown__details mime"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-mime"}><h3 className={"openapi-markdown__details-summary-header-body"}>Body</h3></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}><div style={{"marginTop":"1rem","marginBottom":"1rem"}}>

@@ -28,7 +28,7 @@ RESTful structure.
 
 - The current version is **v2**.
 - `api-endpoint` follows a hierarchical structure, using lowercase and hyphens.
-  For example, `/corpora/{corpus_key}/documents`.
+  For example, `/corpora/:corpus_key/documents`.
 
 ## API authentication
 

@@ -59,7 +59,7 @@ data sources at once.
 
 ### Simple Single Corpus Query
 
-Send a [simplified GET request](/docs/rest-api/search-corpus) to `/v2/corpora/{corpus_key}/query` for querying
+Send a [simplified GET request](/docs/rest-api/search-corpus) to `/v2/corpora/:corpus_key/query` for querying
 a single corpus that specifies the following:
 
 - `q`: Contains the query string
@@ -70,7 +70,7 @@ This query types provides a lightweight way to search a single corpus.
 
 ### Advanced Single Corpus Query
 
-Send a POST request to `/v2/corpora/{corpus_key}/query` to [query a specific
+Send a POST request to `/v2/corpora/:corpus_key/query` to [query a specific
 corpus](/docs/rest-api/query-corpus) with more advanced capabilities. The request body is similar to the
 Query Corpora type and specifies the same parameters:
 
