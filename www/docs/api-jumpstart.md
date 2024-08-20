@@ -72,8 +72,6 @@ curl -L -X POST 'https://api.vectara.io/v2/corpora/employee-handbook/query' \
     "offset": 0,
     "limit": 20,
     "context_configuration": {
-      "characters_before": 30,
-      "characters_after": 30,
       "sentences_before": 3,
       "sentences_after": 3,
       "start_tag": "<b>",
@@ -85,7 +83,7 @@ curl -L -X POST 'https://api.vectara.io/v2/corpora/employee-handbook/query' \
     // You can specify 0.0 to 1.0, where 1.0 is exact keyword matching
     "semantics": "default"
     },
-     "summarization": [
+     "generation": [
         {
           // This value tell the summarizer to use 5 results
           // Experiment setting this value from 5-10
@@ -205,7 +203,7 @@ curl -L -X POST 'https://api.vectara.io/v2/corpora/technology-corpus/query' \
     "lexical_interpolation": 0,
     "semantics": "default"
   },
-  "summarization": {
+  "generation": {
     "max_used_search_results": 5,
   }
 }'
