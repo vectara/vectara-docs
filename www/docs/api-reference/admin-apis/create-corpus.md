@@ -59,6 +59,8 @@ a `level` which indicates whether it exists in the `doc` or `part` level
 metadata. At indexing time, metadata with this name is extracted and made 
 available for filter expressions to operate on.
 
+### Doc and Part Filter Levels
+
 The `doc` attribute applies to the entire document. Use this for metadata that 
 is consistent across the whole document, such as author, publication date, and 
 document ID.
