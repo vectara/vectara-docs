@@ -184,22 +184,6 @@ and logarithms.
 get('$.score') * 1 / as_days(iso_datetime_parse(get('$.document_metadata.publication_date')) - now())
 ```
 
-## API v2 example
-
-This example multiplies the base score by a boost value from the document 
-metadata:
-
-```json
-{
-   "query": "query",
-   "search": {
-      "reranker": {
-        "type": "userfn",
-        "function": "get('$.score') * get('$.document_metadata.boost')"
-      }
-   }
-}
-```
 ## gRPC example
 
 This example shows how ranking in an ecommerce system would work:
@@ -219,3 +203,104 @@ This example modifies the score with the following options:
 * Popularity bias: Adds the log of the customer review, which can be 1 to 5 
   stars (`get('$.document_metadata.customer_review_stars')`)
 * Sponsored promotions bias: Adds the value of the promoted variable (`get('$.document_metadata.promoted')`)
+
+## API v2 examples
+
+This section provides additional examples for different use cases. You can 
+experiment with different score multipliers to provide small boosts like `1.3`, 
+or moderate to large boost values like `1.5` or `1.8`. Some examples have 
+`get('$.score')` appearing twice, which means the original relevance score 
+gets modified based by additional functions, such as metadata.
+
+### Boost on metadata
+
+This example multiplies the base score by a boost value from the document 
+metadata:
+
+```json
+{
+   "query": "query",
+   "search": {
+      "reranker": {
+        "type": "userfn",
+        "function": "get('$.score') * get('$.document_metadata.boost')"
+      }
+   }
+}
+```
+
+### Sort on metadata 
+
+Sort based on metadata like “price, increasing” and set the 
+score function to only consider the metadata. For example:
+
+`get('$.document_metadata.price', -999999)`
+
+This sets the result score to the price value but if there is no price defined 
+on the result, default the score to -999999 to place it at the bottom of the 
+list.
+
+
+### Place products with no stock at the bottom
+
+Place all products that have no stock at the bottom of the results for an 
+e-commerce use case:
+
+`if get('$.document_metadata.units_in_stock') > 0 then get('$.score') else -999999`
+
+
+### Boost products that have a higher score
+
+Boost products that have a higher review score, where `average_review_score` is 
+a metadata field with values between `0` and `10`:
+
+`get('$.score') + get('$.document_metadata.average_review_score') / 10`
+
+
+### Boost content by type
+
+Boost sections in product documentation that contain `Technical Specifications` 
+by 1.6, ensuring that these specifications are:
+
+```json
+{
+   "query": "product manual for model X",
+   "search": {
+      "reranker": {
+         "type": "userfn",
+         "function": "if(get('$.part_metadata.content_type') == 'Technical Specifications', get('$.score') * 1.6, get('$.score'))"
+      }
+   }
+}
+```
+
+### Boost content by language
+
+In multilingual documents, boost sections written in French by 1.5, ensuring 
+that users see content in this preferred language when searching for 
+`tourism industry reports`.
+
+`if(get('$.part_metadata.lang') == 'fra', get('$.score') * 1.5, get('$.score'))`
+
+
+### Rank based on age of document
+
+Rank documents for `latest cancer prevention research` based on recency, where 
+more recent documents have higher value scores and older documents receive 
+smaller calculated values.
+
+`1 / (now() - iso_datetime_parse(get('$.document_metadata.publication_date')))`
+
+### Prioritize low-rated documents
+
+Sometimes you **do not** want to prioritize high-rated documents. Instead, 
+you want to know more about bad reviews to identify issues with your products. 
+For example, boost `customer support feedback` documents with bad reviews by `1.6` 
+(`score < 3`) to help identify problem areas based on negative feedback.
+
+`if(get('$.document_metadata.customer_review_score') < 3, get('$.score') * 1.5, get('$.score'))`
+
+These are just a few examples of how the User Defined Functions (UDF) reranker 
+enables fine-tuning of search results. With the flexibility to modify  
+scores based on metadata, conditions, and custom logic, enterprises can craft 
+highly tailored search experiences that meet specific business needs.
