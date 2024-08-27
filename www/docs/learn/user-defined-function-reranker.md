@@ -4,6 +4,8 @@ title: User Defined Function Reranker
 sidebar_label: User Defined Function Reranker
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 
 Our out-of-the-box rerankers are effective for general use cases, but some 
@@ -15,15 +17,21 @@ The User Defined Functions Reranker enables users to define custom reranking
 functions using document-level metadata, part-level metadata, or scores 
 generated from the request-level metadata. To use this reranker, set the 
 `type` to `userfn` in a query and specify a string within the 
-`reranker` section of the query. This string syntax is custom and similar to our
+`reranker` section of the query. This string syntax is custom and similar to our 
 SQL-like [filter expressions](/docs/learn/metadata-search-filtering/filter-overview).
 
-This new user-defined functions reranker allows for a wide range of use cases:
+With the flexibility to modify scores based on metadata, conditions, and 
+custom logic, enterprises can craft highly tailored search experiences that 
+meet specific business needs. This new User Defined Functions reranker allows 
+for a wide range of use cases:
 
 * **Recency bias**: Prioritize the most recent results in cases where answers 
-  based on older data are less relevant than newer data.
-* **Location bias**: Prioritize results closer to the location of the user.
-* **E-commerce bias**: Prioritize promotional and sponsored merchandise.
+  based on older data are less relevant than newer data. Examples include news 
+  and current events searches, stock market queries, and recruitment searches. 
+* **Location bias**: Prioritize results closer to the location of the user such 
+  as local business searches, real estate listings, and event queries.
+* **E-commerce bias**: Prioritize promotional and sponsored merchandise for 
+  sale promotions and new product launches.
 
 ## Language definition
 
@@ -43,6 +51,7 @@ literals are enclosed in single quotes (`'`). To encode a single quote requires
 two repeated single quotes (`''`).
 
 ### Duration
+
 Datetime operations such as subtraction result in `duration`s instead of integers
 unlike many SQL languages. This allows precise handling of datetime operations
 when doing recency boosting or other time based modifications of the score.
@@ -75,7 +84,7 @@ Operator precedence is in the previous listed order.
 (1 + 2 + 3) / 6
 ```
 
-## If Expression
+## If expression
 
 Expressions may also be a conditional if expression. Both results of the 
 condition must be defined. The grammar for the if expression is 
@@ -93,7 +102,7 @@ Functions are in the normal `function(argument1, argument2)` syntax. All
 functions are predefined by Vectara, and retrieving properties of the current 
 search result is done with the function `get.`
 
-### Get Function
+### Get function
 
 The `get` function allows you to retrieve properties of the result. The `get` 
 argument is a [JSONPath](https://en.wikipedia.org/wiki/JSONPath) string that retrieves values 
@@ -101,7 +110,7 @@ from a search result object. JSON paths that do not exist return null.
 The `get` function can also optionally take a second argument as a default 
 value if the JSONPath is null.
 
-The search result object is similiar to the definition of the search 
+The search result object is similar to the definition of the search 
 result in the HTTP API definition. What follows is the schema for the search 
 result object. 
 
@@ -152,7 +161,7 @@ The `seconds`, `minutes`, and `hours` functions allow you to convert a number to
 
 ## Math functions
 
-The following table list the math functions available that allow you to perform 
+The following table lists the math functions available that allow you to perform 
 various mathematical operations, such as calculating absolute values, powers, 
 and logarithms.
 
@@ -177,19 +186,77 @@ and logarithms.
 | `tan(x)`       | Computes the tangent of x in radians            | `tan(0.78539816339) => 1.0`    |
 | `tand(x)`      | Computes the tangent of x in degrees            | `tand(45) => 1.0`              |
 
-### Function calling examples
-
+### Function calling example
 
 ```sql
 get('$.score') * 1 / as_days(iso_datetime_parse(get('$.document_metadata.publication_date')) - now())
 ```
 
-## gRPC example
+## Example document with nuanced metadata
 
-This example shows how ranking in an ecommerce system would work:
+This example document shows featured electronics for the upcoming fall season. 
+It contains metadata for information such as `customer_review_stars`, 
+`units_in_stock`, and other nuanced information about the products.
 
+```json
+{
+  "id": "DD-2025-ELECTRONICS-FALL",
+  "type": "core",
+  "metadata": {
+    "category": "Electronics",
+    "status": "Published",
+    "published": "2024-09-15",
+    "publish_ts": 1726358400,
+    "title": "Featured Electronics: Fall 2024"
+  },
+  "document_parts": [
+    {
+      "text": "Product 1: Smart Speaker",
+      "metadata": {
+        "promoted": true,
+        "customer_review_stars": 4.5,
+        "price": 199.99,
+        "units_in_stock": 20
+      },
+      "context": "A smart speaker with voice assistant integration and premium sound quality."
+    },
+    {
+      "text": "Product 2: Noise-Canceling Headphones",
+      "metadata": {
+        "promoted": false,
+        "customer_review_stars": 4.8,
+        "price": 299.99,
+        "units_in_stock": 15
+      },
+      "context": "High-fidelity noise-canceling headphones with wireless capability."
+    },
+    {
+      "text": "Product 3: 4K Ultra HD Streaming Device",
+      "metadata": {
+        "promoted": true,
+        "customer_review_stars": 4.6,
+        "price": 99.99,
+        "units_in_stock": 30
+      },
+      "context": "A 4K Ultra HD streaming device with voice control and many apps."
+    }
+  ]
+}
+```
 
-```grpc
+## Example User Defined Functions
+
+<Tabs
+  defaultValue="rest"
+  values={[
+    { label: 'REST', value: 'rest', },
+    { label: 'gRPC', value: 'grpc', },
+  ]
+}>
+
+<TabItem value="grpc">
+
+ ```grpc
  request = serving_pb2.QueryRequest(
         query=query, num_results=fetch)
  request.reranking_config.reranker_id = 272725722
@@ -197,37 +264,40 @@ This example shows how ranking in an ecommerce system would work:
      "get('$.score') + log10(get('$.document_metadata.publish_ts')) + log(get('$.document_metadata.customer_review_stars')) + get('$.document_metadata.promoted')"
 ```
 
-This example modifies the score with the following options:
-
-* Recency bias: Adds the log of the publication timestamp (`get('$.document_metadata.publish_ts`))
-* Popularity bias: Adds the log of the customer review, which can be 1 to 5 
-  stars (`get('$.document_metadata.customer_review_stars')`)
-* Sponsored promotions bias: Adds the value of the promoted variable (`get('$.document_metadata.promoted')`)
-
-## API v2 examples
-
-This section provides additional examples for different use cases. You can 
-experiment with different score multipliers to provide small boosts like `1.3`, 
-or moderate to large boost values like `1.5` or `1.8`. Some examples have 
-`get('$.score')` appearing twice, which means the original relevance score 
-gets modified based by additional functions, such as metadata.
-
-### Boost on metadata
-
-This example multiplies the base score by a boost value from the document 
-metadata:
+</TabItem>
+<TabItem value="rest">
 
 ```json
-{
-   "query": "query",
-   "search": {
-      "reranker": {
-        "type": "userfn",
-        "function": "get('$.score') * get('$.document_metadata.boost')"
-      }
-   }
-}
+ "reranker": {
+    "type": "userfn",
+    "user_function": "get('$.score') + log10(get('$.document_metadata.publish_ts')) + log(get('$.document_metadata.  customer_review_stars')) + get('$.document_metadata.promoted')"
+  }
 ```
+
+</TabItem>
+</Tabs>
+
+This example UDF modifies the score with the following options:
+
+* **Recency bias:** Ensures that newer content is more likely to appear higher in 
+  search results for queries about the *latest gadgets* or *new electronics*. 
+  This function adds the log of the publication timestamp 
+  (`get('$.document_metadata.publish_ts')`)
+* **Popularity bias:** Incorporates user feedback into the ranking to help surface 
+  content that other users found helpful like for queries about *top rated electronics*. 
+  This can improve user satisfaction by promoting popular items. This function 
+  adds the log of the customer review, which can be 1 to 5 stars 
+  (`get('$.document_metadata.customer_review_stars')`)
+* **Sponsored promotions bias:** Allows for surfacing paid or sponsored content into 
+  search results for queries about *promoted* or *clearance electronics*. This 
+  allows a business to increase visibility of certain items. This function 
+  adds the value of the promoted variable (`get('$.document_metadata.promoted')`)
+
+
+Some additional examples have `get('$.score')` appearing twice, which means 
+the original relevance score gets modified by additional functions such as 
+boosts. You can experiment with different score multipliers to provide small 
+boosts like `1.3`, or moderate to large boost values like `1.5` or `1.8`.
 
 ### Sort on metadata 
 
@@ -248,59 +318,85 @@ e-commerce use case:
 
 `if get('$.document_metadata.units_in_stock') > 0 then get('$.score') else -999999`
 
+## Boosting scores in UDFs
+
+Boosting enables increasing or decreasing the relevance of a search result 
+using multipliers. How you boost depends on your specific use case and how 
+much you want to influence the search results. For example, boosting a result 
+by 30% (`1.3`) is more subtle than a powerful multiplier like 60% (`1.6`).
+
+* Use a lower value like 1.3 and 1.4 to give a slight advantage to certain 
+  items without drastically altering the overall ranking
+* Use 1.5 to strongly favor certain items like premium content or highly 
+  relevant matches.
+* Use 1.6 or higher for items you want to almost always appear at the top, 
+  such as top-tier products.
+
+### Boost on metadata
+
+This example multiplies the base score by a boost value from the document 
+metadata:
+
+`get('$.score') * get('$.document_metadata.boost')`
 
 ### Boost products that have a higher score
 
-Boost products that have a higher review score, where `average_review_score` is 
-a metadata field with values between `0` and `10`:
+Higher customer review scores generally indicate better quality or more 
+popular products. This function is designed to boost products that have 
+higher customer review scores by factoring the review into the overall 
+relevance score. This approach is useful in e-commerce, service platforms, or 
+content recommendation systems where user feedback plays an important role in 
+ranking and relevance.
 
-`get('$.score') + get('$.document_metadata.average_review_score') / 10`
+Many customer review systems use a scale from 0 to 10. In this example, 
+dividing by 10 normalizes the impact of customer reviews on the final score and 
+prevents overweighting the review score. If the scale was 0 to 5, you would 
+divide by 5. This way the customer feedback acts as a boost rather than 
+dominating the search rankin:
 
+`get('$.score') + get('$.part_metadata.customer_review_stars', 0) / 10`
 
 ### Boost content by type
 
-Boost sections in product documentation that contain `Technical Specifications` 
-by 1.6, ensuring that these specifications are:
+Boost sections by for queries about `product manual for model X` in product 
+documentation that contain `Technical Specifications`. This example uses `1.5` 
+(50%) as a boost value which aims to have the matching result appear near  
+the top. Using a smaller boost value will make it more subtle.
 
-```json
-{
-   "query": "product manual for model X",
-   "search": {
-      "reranker": {
-         "type": "userfn",
-         "function": "if(get('$.part_metadata.content_type') == 'Technical Specifications', get('$.score') * 1.6, get('$.score'))"
-      }
-   }
-}
-```
+`if(get('$.part_metadata.content_type') == 'Technical Specifications', get('$.score') * 1.5, get('$.score'))`
+
 
 ### Boost content by language
 
-In multilingual documents, boost sections written in French by 1.5, ensuring 
-that users see content in this preferred language when searching for 
-`tourism industry reports`.
+In multilingual documents, boost sections written in French by `1.6` (60%), 
+ensuring that users see content in this preferred language when searching for 
+`tourism industry reports`. You can experiment with different boost values 
+depending on your intentions for the search results. 
 
-`if(get('$.part_metadata.lang') == 'fra', get('$.score') * 1.5, get('$.score'))`
+`if(get('$.part_metadata.lang') == 'fra') get('$.score') * 1.6 else get('$.score')`
 
+In this example, `get('$.part_metadata.lang') == 'fra'` checks whether the `lang` 
+metadata for the part is equal to `fra`. If the condition is true, it multiplies 
+the original score by 1.6. If the condition is false (the content is not in 
+French), the score remains unchanged.
 
-### Rank based on age of document
-
-Rank documents for `latest cancer prevention research` based on recency, where 
-more recent documents have higher value scores and older documents receive 
-smaller calculated values.
-
-`1 / (now() - iso_datetime_parse(get('$.document_metadata.publication_date')))`
+A `1.6` boost represents a significant increase in the ranking of French 
+content so that French content is more visible. Lowering this value may balance 
+the results so French does not completely dominate the search results. If you want 
+an even more significant boost, use `1.7` or higher.
 
 ### Prioritize low-rated documents
 
 Sometimes you **do not** want to prioritize high-rated documents. Instead, 
 you want to know more about bad reviews to identify issues with your products. 
-For example, boost `customer support feedback` documents with bad reviews by `1.6` 
-(`score < 3`) to help identify problem areas based on negative feedback.
+For example, boost `customer support feedback` documents with bad reviews 
+(scored 3 out of five or less) by 60% to help identify problem areas based on 
+negative feedback.
 
-`if(get('$.document_metadata.customer_review_score') < 3, get('$.score') * 1.5, get('$.score'))`
+`if(get('$.document_metadata.customer_review_score', 5) < 3) get('$.score') * 1.6 else get('$.score')`
 
-These are just a few examples of how the User Defined Functions (UDF) reranker 
-enables fine-tuning of search results. With the flexibility to modify  
-scores based on metadata, conditions, and custom logic, enterprises can craft 
-highly tailored search experiences that meet specific business needs.
+In this example, `get('$.document_metadata.customer_review_score', 5)` retrieves 
+the `customer_review_score`. If it does not find a score, it defaults to 5 
+(assuming a common 1-5 scale), so that documents without scores are not 
+boosted.
+
