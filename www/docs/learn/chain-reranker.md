@@ -27,8 +27,8 @@ two rerankers that you want to combine.
   "reranker": {
     "type": "chain",
     "reranker": {
-      "type": "mmr",
-      "diversityBias": 0.4
+      "type": "customer_specific",
+      "reranker_id": "rnk_272725719"
     },
     "reranker": {
       "type": "userfn",

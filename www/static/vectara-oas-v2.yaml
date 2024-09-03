@@ -49,11 +49,11 @@ tags:
   - name: Chats
     description: Create, manage, and interact with chat sessions for conversational AI and administrative monitoring
   - name: Large Language Models
-    description: List available LLMs for text summarization and chat
+    description: List LLMs for text summarization, chat, and other generation tasks
   - name: Encoders
-    description: List available encoders for embedding such as Boomerang
+    description: List encoders that turn text into vectors such as Boomerang
   - name: Rerankers
-    description: List available rerankers for reranking search results
+    description: List rerankers for reranking search results
   - name: Jobs
     description: Monitor background jobs such as rebuilding indexes or updating corpus settings
   - name: Users
@@ -207,7 +207,11 @@ paths:
       tags:
         - Corpora
       summary: Update a corpus
-      description: Enable or disable a corpus.
+      description: |
+        Enable, disable, or update the name and description of a corpus. This lets you
+        manage data availability without deleting the corpus, which is useful for 
+        maintenance and security purposes. Update the name and description of a corpus 
+        dynamically to help keep your data aligned with changing business needs.
       operationId: updateCorpus
       parameters:
         - in: path
@@ -391,7 +395,7 @@ paths:
         * Leverage advanced search capabilities like reranking (`reranker`) and Retrieval Augmented Generation (RAG) (`generation`) for enhanced query performance. Generation is opt in by setting the `generation` property. By excluding the property or by setting it to null, the response
         will not include generation. [Learn more](https://docs.vectara.com/docs/learn/grounded-generation/configure-query-summarization).
         * Use hybrid search to achieve optimal results by setting different values for `lexical_interpolation` (e.g., `0.025`). [Learn more](https://docs.vectara.com/docs/learn/hybrid-search)
-        * Specify a RAG-specific LLM like Mockingbird (`mockingbird-1.0-2024-07-16`) for the `prompt_name`. [Learn more](https://docs.vectara.com/docs/learn/mockingbird-llm)
+        * Specify a RAG-specific LLM like Mockingbird (`mockingbird-1.0-2024-07-16`) for the `generation_preset_name`. [Learn more](https://docs.vectara.com/docs/learn/mockingbird-llm)
         * Use advanced summarization options that utilize detailed summarization parameters such as `max_response_characters`, `temperature`, and `frequency_penalty` for generating precise and relevant summaries. [Learn more](https://docs.vectara.com/docs/api-reference/search-apis/search#advanced-summarization-options)
 
         For more detailed information, see [Query API guide](https://docs.vectara.com/docs/api-reference/search-apis/search).
@@ -448,7 +452,7 @@ paths:
         * Customize your search by specifying the query text (`query`), pagination details (`offset` and `limit`), and metadata filters (`metadata_filter`) to tailor your search results. [Learn more](https://docs.vectara.com/docs/api-reference/search-apis/search#query-definition)
         * Leverage advanced search capabilities like reranking (`reranker`) and opt-in Retrieval Augmented Generation (RAG) (`generation`) for enhanced query performance. Generation is opt in by setting the `generation` property. By excluding the property or by setting it to null, the response
         will not include generation. [Learn more](https://docs.vectara.com/docs/learn/grounded-generation/configure-query-summarization)
-        * Specify a RAG-specific LLM like Mockingbird (`mockingbird-1.0-2024-07-16`) for the `prompt_name`. [Learn more](https://docs.vectara.com/docs/learn/mockingbird-llm)
+        * Specify a RAG-specific LLM like Mockingbird (`mockingbird-1.0-2024-07-16`) for the `generation_preset_name`. [Learn more](https://docs.vectara.com/docs/learn/mockingbird-llm)
         * Use advanced summarization options that utilize detailed summarization parameters such as `max_response_characters`, `temperature`, and `frequency_penalty` for generating precise and relevant summaries. [Learn more](https://docs.vectara.com/docs/api-reference/search-apis/search#advanced-summarization-customization-options)
         * Customize citation formats in summaries using the `citations` object to include numeric, HTML, or Markdown links. [Learn more](https://docs.vectara.com/docs/api-reference/search-apis/search#citation-format-in-summary)
       
@@ -1174,7 +1178,7 @@ paths:
     get:
       tags:
         - Encoders
-      summary: List the available encoders
+      summary: List encoders
       description: Encoders are used to store and retrieve from a corpus. 
       operationId: listEncoders
       parameters:
@@ -1218,7 +1222,7 @@ paths:
     get:
       tags:
         - Rerankers
-      summary: List the available rerankers
+      summary: List rerankers
       description: Rerankers are used to improve the ranking (ordering) of search results.
       operationId: listRerankers
       parameters:
@@ -2486,7 +2490,7 @@ components:
       properties:
         type:
           description: |
-            When type is is `customer_reranker`, you can specify the `reranker_id` of a reranker. 
+            When type is is `customer_reranker`, you can specify the `reranker_name` of a reranker. `reranker_id` is deprecated.
             The retrieval engine will then rerank results using that reranker.
           type: string
           default: customer_reranker
@@ -2494,11 +2498,16 @@ components:
           description: |
             The ID of the reranker. Current reranker that may be used by Scale customers is rnk_272725719.
             Do not specify the MMR reranker ID here, and instead use the MMR reranker object type.
+            **Deprecated**: Use `reranker_name` instead.
           type: string
           pattern: rnk_(?!272725718)\d+
           example: rnk_272725719
-      required:
-        - reranker_id
+          deprecated: true
+        reranker_name:
+          description: |
+            The name of the reranker. Do not specify the MMR reranker name here. Instead use the MMR reranker object type.
+          type: string
+          example: Rerank_Multilingual_v1
       x-vectaraParents:
         - SearchReranker
     UserFunctionReranker:
@@ -2537,23 +2546,18 @@ components:
       properties:
         type:
           description: |
-            When the type is `chain`, you can then chain 2 re-rankers together.
+            When the type is `chain`, you can then chain re-rankers together.
           type: string
           default: chain
-        reranker:
-          type: object
+        rerankers:
+          type: array
           description: |
-            Rerank results of the search. Rerankers are very powerful tools to better order search results.
-            By default the search will use the most powerful reranker available to the customer's plan.
-            To disable reranking set the reranker `type` to `"none"`.
-          discriminator:
-            propertyName: type
-            mapping:
-              customer_reranker: '#/components/schemas/CustomerSpecificReranker'
-              userfn: '#/components/schemas/UserFunctionReranker'
-              mmr: '#/components/schemas/MMRReranker'
-              chain: '#/components/schemas/ChainReranker'
-              none: '#/components/schemas/NoneReranker'
+            Specify an array of rerankers to search results consecutively after each other.
+          items:
+            $ref: '#/components/schemas/SearchReranker' 
+          minItems: 2
+      required:
+        - rerankers
       x-vectaraParents:
         - SearchReranker
     NoneReranker:
