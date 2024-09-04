@@ -129,6 +129,7 @@ The following endpoints help you manage encoders, rerankers, and LLMs:
   improving search result ranking.
 - [List Language Models (LLMs) API](/docs/api-reference/llms-apis/llms-api): Get a list of available large
   language models for query and chat endpoints.
+- [List Generation Presets API](/docs/api-reference/generation-presets/list-generation-presets)
 
 ### Jobs
 
@@ -137,7 +138,7 @@ The following endpoints help you manage background jobs:
 - [Get Job API](/docs/api-reference/jobs-apis/get-job): Retrieve details about a specific background job.
 - [List Jobs API](/docs/api-reference/jobs-apis/list-jobs): Get a list of all background jobs for the account.
 
-## Users
+### Users
 
 The following endpoints help you manage users on your account:
 
@@ -172,12 +173,6 @@ account:
 - [List Application Clients API](/docs/api-reference/app-clients/list-app-clients): Get a list of all application clients for the account.
 - [Update Application Client API](/docs/api-reference/app-clients/update-app-client): Modify an application client's details, such as assigned roles.
 - [Delete Application Client API](/docs/api-reference/app-clients/delete-app-client): Remove an application client from the account.
-
-### Generation Presets
-
-The following endpoint lets you view the available generation presets in your account:
-
-- [List Generation Presets API](/docs/api-reference/generation-presets/list-generation-presets)
 
 :::note
 

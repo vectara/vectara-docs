@@ -58,9 +58,10 @@ the body that specifies the following:
   to send a complete summary at the end of processing the request (`false`)
 - `search` - Specifies the search parameters
 - `generation` - Specifies the summarization parameters and `generation_preset_name`. 
-  Excluding this generation field disables summarization. The [generation preset](/docs/rest-api/list-generation-presets) 
-  contains the `name`, `description`, `llm_name`, `prompt_template`, and other 
-  fields make up the preset.
+
+Excluding this generation field disables summarization. The [generation preset](/docs/rest-api/list-generation-presets) 
+contains the `name`, `description`, `llm_name`, `prompt_template`, and other 
+fields make up the preset.
 
 This query type is useful when you want to query all your
 data sources at once.
@@ -86,8 +87,11 @@ Query Corpora type and specifies the same parameters:
 - `stream_response` - Indicates whether to stream the response in real-time or
   to send a complete summary at the end of processing the request
 - `search` - Specifies the search parameters
-- `generation` - Specifies the summarization parameters and generation presets. 
-  Excluding this generation field disables summarization.
+- `generation` - Specifies the summarization parameters and `generation_preset_name`.
+
+Excluding this generation field disables summarization. The [generation preset](/docs/rest-api/list-generation-presets) 
+contains the `name`, `description`, `llm_name`, `prompt_template`, and other 
+fields make up the preset.
 
 This advanced type provides additional search filtering and customization
 options compared to the simple GET method.

@@ -18,13 +18,13 @@ complete Velocity template for the prompt along with other generation
 parameters. Presets are typically associated with a single LLM.
 
 The List Generation Presets API lets you view the generation presets used for 
-[query](/docs/api-reference/search-apis/search) or [chat](/docs/api-reference/chat-apis/create-chat) requests. Generation presets bundle several properties that  
-configure generation for a request. These presets provide more flexibility in 
-how generation parameters are configured, enabling more fine-tuned control 
-over query responses. This includes the `prompt_template`, the Large Language 
-Model (LLM), and other generation settings like `max_tokens` and `temperature`. 
-Users specify a generation preset in their query or chat requests using the 
-`generation_preset_name` field.
+[query](/docs/api-reference/search-apis/search) or [chat](/docs/api-reference/chat-apis/create-chat) requests. Generation presets bundle 
+several properties that configure generation for a request. These presets 
+provide more flexibility in how generation parameters are configured, enabling 
+more fine-tuned control over query responses. This includes the `prompt_template`, 
+the Large Language Model (LLM), and other generation settings like `max_tokens` 
+and `temperature`. Users specify a generation preset in their query or chat 
+requests using the `generation_preset_name` field.
 
 
 
