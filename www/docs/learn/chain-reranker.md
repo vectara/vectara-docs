@@ -26,17 +26,21 @@ two rerankers that you want to combine.
 {
   "reranker": {
     "type": "chain",
-    "reranker": {
-      "type": "customer_specific",
-      "reranker_id": "rnk_272725719"
-    },
-    "reranker": {
-      "type": "userfn",
-      "user_function": "get('$.metadata.popularity')"
-    }
+    "rerankers": [
+      {
+        "type": "customer_specific",
+        "reranker_id": "rnk_272725719"
+      },
+      {
+        "type": "userfn",
+        "user_function": "get('$.metadata.popularity')"
+      }
+    ]
   }
 }
+
 ```
-In this example, the MMR reranker ensures a diverse result set, while the 
-[User Defined Function reranker](/docs/learn/user-defined-function-reranker) boosts relevance based on metadata for 
-popularity.
+
+In this example, the Vectara Multilingual Reranker refines the results across 
+over 100 languages, while the [User Defined Function reranker](/docs/learn/user-defined-function-reranker) boosts 
+relevance based on metadata for popularity.
