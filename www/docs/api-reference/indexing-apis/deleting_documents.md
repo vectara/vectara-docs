@@ -14,8 +14,8 @@ that the document no longer exists in the corpus, use the List Documents endpoin
 
 ### Delete Document Request and Response
 
-To delete a document, send a DELETE request to `/v2/corpora/{corpus_key}/documents/{document_id}`,
-where `{corpus_key}` is the unique identifier for the corpus and `{document_id}`
+To delete a document, send a DELETE request to `/v2/corpora/:corpus_key/documents/{document_id}`,
+where `corpus_key` is the unique identifier for the corpus and `{document_id}`
 is the ID of the document you want to delete. The `document_id` is a string
 that uniquely identifies the document within the corpus. The `document_id`
 must be [percent encoded](https://developer.mozilla.org/en-US/docs/Glossary/Percent-encoding).

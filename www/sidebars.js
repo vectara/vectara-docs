@@ -42,7 +42,16 @@ module.exports = {
             "learn/hybrid-search",
             "learn/enable-keyword-text-matching",
             "learn/semantic-search/add-custom-dimensions",
-            "api-reference/search-apis/reranking",
+            {
+              type: "category",
+              label: "Reranking",
+              items: [
+                "api-reference/search-apis/reranking",
+                "learn/vectara-multi-lingual-reranker",
+                "learn/mmr-reranker",
+                "learn/user-defined-function-reranker",
+              ],
+            },
             "learn/semantic-search/enable-pagination",
             "learn/recommendation-systems/recommender-overview",
           ],

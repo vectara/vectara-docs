@@ -6,13 +6,14 @@ sidebar_label: Mockingbird LLM
 
 import {Config} from '@site/docs/definitions.md';
 
-Mockingbird is a cutting-edge large language model developed by Vectara 
-specifically for Retrieval Augmented Generation (RAG) use cases. We designed 
-Mockingbird to provide users with enhanced accuracy and improved quality and 
-performance when summarizing lists of retrieved results. Vectara's 
-Mockingbird LLM is tailor-made for RAG scenarios and outperforms leading models, 
-making it an ideal choice for applications that require precise and trustworthy 
-summaries of large amounts of data:
+Generating accurate and reliable summaries from large datasets can be 
+a challenge. Mockingbird is a cutting-edge Large Language Model (LLM)
+developed by Vectara specifically for Retrieval Augmented Generation (RAG) use 
+cases. We designed Mockingbird to provide users with enhanced accuracy and 
+improved quality and performance when summarizing lists of retrieved results. 
+Vectara's Mockingbird LLM is tailor-made for RAG scenarios and outperforms 
+leading models, making it an ideal choice for applications that require 
+precise and trustworthy summaries of large amounts of data:
 
 * Summarize search results for research and analysis
 * Generate structured data from unstructured text and extract specific 
