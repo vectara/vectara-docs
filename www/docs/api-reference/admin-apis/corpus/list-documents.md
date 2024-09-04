@@ -22,8 +22,8 @@ your documents.
 
 ## List Documents Request and Response
 
-To list documents, send a GET request to `/v2/corpora/{corpus_key}/documents`,
-where `{corpus_key}` is the unique identifier for the corpus. You can specify
+To list documents, send a GET request to `/v2/corpora/:corpus_key/documents`,
+where `corpus_key` is the unique identifier for the corpus. You can specify
 optional query parameters to control the pagination of the results.
 
 - `limit` - Indicates the maximum number of documents to return in a single

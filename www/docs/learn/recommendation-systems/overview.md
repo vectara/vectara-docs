@@ -6,10 +6,12 @@ sidebar_label: Recommendation System
 
 import {Config} from '@site/docs/definitions.md';
 
-Vectara can be used as a semantic recommendation system out of the box in 
-order to provide your users with semantically similar documents/products. This 
-capability is useful when your goal is to increase engagement by accurately 
-matching user interest or intent with relevant content.
+Many platforms struggle to keep users engaged with relevant content or 
+products, often relying on simplistic matching algorithms. Vectara can be used 
+as a semantic recommendation system out of the box in order to provide your 
+users with semantically similar documents or products. This capability is 
+useful when your goal is to increase engagement by accurately matching user 
+interest or intent with relevant content.
 
 ## Semantic recommendation system considerations
 

@@ -83,8 +83,8 @@ common SQL syntax.
 
 ### Reranking
   
-Vectara enhances the relevance of search results through its reranking 
-configurations. The `reranker_id` object can be used to adjust the 
+Vectara enhances the relevance of search results through its [reranking configurations](/docs/api-reference/search-apis/reranking). 
+The `reranker` object has different types that can be used to adjust the 
 relevance of search results based on specific needs, such as diversity or 
 precision.
 

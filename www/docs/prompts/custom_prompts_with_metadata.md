@@ -13,11 +13,11 @@ Vectara handles the system and user prompts automatically, but if you want to
 do it yourself, Vectara now empowers developers with a flexible way of
 customizing prompts with metadata. Our Custom Retrieval Augmented Generation
 (RAG) Prompt Engine provides several available prompt variables and functions
-for Scale users to customize prompts in their [Queries](/docs/api-reference/search-apis/search).
+for Scale users to customize prompt templates in their [Queries](/docs/api-reference/search-apis/search).
 
 ## Available prompt variables
 
-The following table shows the available custom prompt variables:
+The following table shows the available custom prompt template variables:
 
 | Variable  | Description  | Example Usage Input  | Example Usage Output  |
 |---|---|---|---|
@@ -66,7 +66,7 @@ Let's dive into a full custom prompt example that shows more details about a
 custom prompt with
 metadata.
 
-## Example custom prompt for an RFI answering bot
+## Example custom prompt template for an RFI answering bot
 
 The following example prompt creates a Request for information (RFI)
 answering bot that includes metadata. First, we ask the generative LLM to
@@ -96,8 +96,8 @@ user gets a response that `The returned results did not contain sufficient infor
     },
     #foreach ($qResult in $vectaraQueryResults)
     #if ($foreach.first)
-        {"role": "user", "content": "Search for ${vectaraQuery}, and give me the first search result."},
-        {"role": "assistant", "content": ${qResult.getText()} },
+        {"role": "user", "content": "Search for '${vectaraQuery}', and give me the first search result."},
+        {"role": "assistant", "content": "${qResult.getText()}" },
     #else
         {"role": "user", "content": "Give me the $vectaraIdxWord[$foreach.index] search result."},
         {"role": "assistant", "content": "$qResult.docMetadata().get('answerDate') ${qResult.getText()}" },

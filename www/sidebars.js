@@ -34,6 +34,7 @@ module.exports = {
       collapsed: true,
       items: [
         "learn/select-ideal-indexing-api",
+        "learn/mockingbird-llm",
         {
           type: "category",
           label: "Retrieval",
@@ -41,7 +42,16 @@ module.exports = {
             "learn/hybrid-search",
             "learn/enable-keyword-text-matching",
             "learn/semantic-search/add-custom-dimensions",
-            "api-reference/search-apis/reranking",
+            {
+              type: "category",
+              label: "Reranking",
+              items: [
+                "api-reference/search-apis/reranking",
+                "learn/vectara-multi-lingual-reranker",
+                "learn/mmr-reranker",
+                "learn/user-defined-function-reranker",
+              ],
+            },
             "learn/semantic-search/enable-pagination",
             "learn/recommendation-systems/recommender-overview",
           ],
@@ -354,6 +364,13 @@ module.exports = {
             "api-reference/api-keys/get-api-key",
             "api-reference/api-keys/enable-api-key",
             "api-reference/api-keys/delete-api-key",
+          ],
+        },
+        {
+          type: "category",
+          label: "Generation Presets APIs",
+          items: [
+            "api-reference/generation-presets/list-generation-presets",
           ],
         },
       ],

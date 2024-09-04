@@ -26,8 +26,8 @@ specific corpus because of information returned by this endpoint.
 
 ## Get Corpus Metadata Request and Response
 
-To get corpus metadata, send a GET request to `/v2/corpora/{corpus_key}`, where
-`{corpus_key}` is the unique identifier for the corpus.
+To get corpus metadata, send a GET request to `/v2/corpora/:corpus_key`, where
+`corpus_key` is the unique identifier for the corpus.
 
 The response includes details such as the corpus ID, key, name, description,
 enabled status, encoder information, filter attributes, custom dimensions,

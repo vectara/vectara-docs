@@ -13,14 +13,18 @@ the Factual Consistency Score enables you to evaluate the likelihood of an
 AI-generated summary being factually correct based on search results. This 
 calibrated score can range from `0.0` to `1.0`. A higher scores indicates a 
 greater probability of being factually accurate, while a lower score indicates 
-a greater probability 
-of hallucinations.
+a greater probability of hallucinations.
 
 For example, a score of `0.95` suggests a 95% likelihood that the summary is 
 free of hallucinations and would align with the original content. A lower 
 score of `0.40` indicates a 40% chance which may contain one or more factual 
 inaccuracies, however minor. We suggest starting with a setting of `0.5` as an 
 initial guideline.
+
+## Factual Consistency Score language support
+
+The Factual Consistency Score supports English, German, and French. Set the 
+`response_language` parameter to `eng`, `deu`, or `fra`.
 
 ## Enable the Factual Consistency Score
 

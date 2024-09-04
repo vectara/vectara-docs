@@ -33,8 +33,8 @@ stream the result or receive a complete response.
 
 ### Index Document Request and Response
 
-To index a document, send a POST request to `/v2/corpora/{corpus_key}/documents`,
-where `{corpus_key}` is the unique identifier for the corpus where you want to
+To index a document, send a POST request to `/v2/corpora/:corpus_key/documents`,
+where `corpus_key` is the unique identifier for the corpus where you want to
 add the document. The request body contains a `CreateDocumentRequest` object
 that represents the document to be indexed. This object has a `type` parameter
 that determines the format of the document as `core` or `structured`.
@@ -165,8 +165,8 @@ they'll be ignored.
 ### Indexing REST Endpoint
 
 <Config v="names.product"/> exposes a REST endpoint at the following URL
-to index content into a corpus:
-<code>https://<Config v="domains.rest.indexing"/>/v1/index</code>
+to add a document into a corpus:
+<code>https://<Config v="domains.rest.indexing"/>/v2/corpora/:corpus_key/documents</code>
 
 The API Reference shows the full [Indexing REST definition](/docs/rest-api/create-corpus-document).
 
@@ -174,9 +174,9 @@ The API Reference shows the full [Indexing REST definition](/docs/rest-api/creat
 
 You can find the full Standard Indexing gRPC definition at [indexing.proto](https://github.com/vectara/protos/blob/main/indexing.proto).
 
-For `IndexDocumentRequest`, the reply does not block. The information in the request
-is not necessarily available in the
-index when the RPC returns. In most cases, it becomes available within a second.
+For `IndexDocumentRequest`, the reply does not block. The information in the 
+request is not necessarily available in the index when the RPC returns. In 
+most cases, it becomes available within a second.
 
 The full definition also shows the `Document` format, and a `Section` within
 the document, including metadata about the section.
@@ -199,9 +199,9 @@ metadata about the document, and parts within the document as `CoreDocumentPart`
 
 ### Custom Dimensions Use Cases (Scale only)
 
-Custom dimensions are a powerful <Config v="names.product"/> capability for
-our Scale users. Custom dimensions enable you to attach numeric factors to
-every item in the index, which affect its final ranking during searches. Some
+Custom dimensions are a powerful <Config v="names.product"/> capability for 
+our Scale users. Custom dimensions enable you to attach numeric factors to 
+every item in the index, which affect its final ranking during searches. Some 
 example use cases include:
 
 1. Define the authoritativeness of the content.

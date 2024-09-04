@@ -22,9 +22,24 @@ or enhancing educational tools, the ability to summarize vast amounts of data
 into digestible, actionable insights can significantly boost productivity 
 across various business operations and industries.
 
+## Mockingbird: RAG-specific LLM
+
+For users requiring superior performance in Retrieval Augmented Generation 
+(RAG) use cases, Vectara has designed the new [**Mockingbird LLM**](/docs/learn/mockingbird-llm). Mockingbird
+provides a cutting-edge LLM designed specifically for RAG, such as enterprise 
+applications that demand high-quality summaries and structured outputs. This 
+advanced LLM was designed specifically for RAG:
+
+* Enhanced RAG output quality
+* Improved citation accuracy
+* Excellent multilingual performance
+* High-precision structured data generation
+
 :::important
-Excluding the generation field disables summarization. For more 
-information about the `generation` object, see [**Query API Definition**](/docs/api-reference/search-apis/search).
+
+Excluding the generation field disables summarization. For more information 
+about the `generation` object, see [**Query API Definition**](/docs/api-reference/search-apis/search).
+
 :::
 
 To enable summarization, send a `generation` request with your `query`. This 
@@ -47,14 +62,14 @@ POST https://api.vectara.io/v2/query
     "limit": 10
   },
   "generation": {
-    "prompt_name": "vectara-summary-ext-v1.2.0",
+    "prompt_name": "mockingbird-1.0-2024-07-16",
     "max_used_search_results": 5
   }
 }
 ```
 
 This query tells <Config v="names.product"/> to return a summary in English using the
-`vectara-summary-ext-v1.2.0` summarizer and to consider the first 5 results when
+`mockingbird-1.0-2024-07-16` summarizer and to consider the first 5 results when
 summarizing. 
 
 ### Example query response

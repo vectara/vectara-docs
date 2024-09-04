@@ -7,10 +7,12 @@ sidebar_label: Summarizers
 import {vars} from '@site/static/variables.json';
 import {Config} from '@site/docs/definitions.md';
 
-Behind the scenes, <Config v="names.product"/> supports both selecting the
-summarizer model as well as the prompt for the model. We make a range of these
-and if you are a Scale customer, or are considering becoming one and have
-any questions on your options, please
+
+Extracting concise, relevant information from large sets of search results 
+presents a significant challenge for many applications. Vectara offers 
+flexibility in selecting both the summarizer model and its associated prompt.
+We make a range of these and if you are a Scale customer, or are considering 
+becoming one and have any questions on your options, please
 [reach out to our support team](https://vectara.com/contact-us/), who can help
 guide you.
 
@@ -22,6 +24,19 @@ the results.
 Providing the summarizer as part of the config is optional. If you do not
 provide a summarizer config at request time, <Config v="names.product"/> uses
 the best available summarizer for your account.
+
+## Mockingbird
+
+[**Mockingbird**](/docs/learn/mockingbird-llm) is Vectara's cutting-edge new LLM designed specifically for 
+Retrieval Augmented Generation (RAG) use cases. Mockingbird is available to 
+all Vectara users by specifying `mockingbird-1.0-2024-07-16` as the `prompt_name`. 
+Mockingbird is ideal for enterprise applications requiring high-quality 
+summaries and structured outputs:
+
+- Superior RAG output quality
+- Enhanced citation accuracy
+- Excellent multilingual performance
+- High-precision structured data generation
 
 :::tip
 
@@ -35,17 +50,23 @@ this `generation` field disables summarization.
 Today, the versions available are `1.2.0` which uses chatgpt-3.5-turbo
 and `1.3.0` which uses gpt-4.0 (and only available to our paying [Scale
 customers](https://vectara.com/pricing/)). The 1.2.0 summarizer is typically faster while 1.3.0 is typically
-slower, but it produces a more accurate summary.
+slower, but it produces a more accurate summary. Scale users also have access 
+to summarizers ideal for citations using gpt-4o, gpt-4.0, and gpt-4.0-turbo.
 
-These are the two official summarizers available to our users that you specify
-in the `model_id`:
+These are several official summarizers available to our users that you specify
+in the `prompt_name` in the `generation` object:
 
+- `mockingbird-1.0-2024-07-16` (Vectara's cutting-edge LLM for Retrieval Augmented Generation. See [Mockingbird LLM](/docs/learn/mockingbird-llm) for more details.)
 - `vectara-summary-ext-v1.2.0` (gpt-3.5-turbo)
 - `vectara-summary-ext-v1.3.0` (gpt-4.0)
+- `vectara-summary-ext-24-05-sml` (gpt-3.5-turbo, for citations)
+- `vectara-summary-ext-24-05-med-omni` (gpt-4o, for citations)
+- `vectara-summary-ext-24-05-med` (gpt-4.0, for citations)
+- `vectara-summary-ext-24-05-large` (gpt-4.0-turbo, for citations)
 
 Scale customers also have
 access to [advanced summarization customization options](/docs/api-reference/search-apis/search#advanced-summarization-customization-options) including
-[custom prompts](/docs/prompts/vectara-prompt-engine), character limits, temperature, and frequency and presence penalties.
+[custom prompt templates](/docs/prompts/vectara-prompt-engine), character limits, temperature, and frequency and presence penalties.
 
 :::tip
 
