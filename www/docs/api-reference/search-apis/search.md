@@ -189,11 +189,13 @@ more rarely, as a response.
 ### Reranking Configuration
 
 The `reranker` object enables the reranking of query results, to further 
-increase relevance in certain scenarios. Specify the `type` as `customer_reranker` 
-to use the [Multilingual Reranker v1](/docs/api-reference/search-apis/reranking#vectara-multilingual-reranker-v1).
-The MMR reranker uses the type `mmr` and also lets you specify
-a `diversity_bias` value between `0.0` and `1.0`. The User Defined Function 
-reranker uses type `userfn`. For more details, see [Rerank Search Results](/docs/api-reference/search-apis/reranking).
+increase relevance in certain scenarios. For more details, see [Rerank Search Results](/docs/api-reference/search-apis/reranking):
+
+* Specify the `type` as `customer_reranker` to use the [Multilingual Reranker v1](/docs/api-reference/search-apis/reranking#vectara-multilingual-reranker-v1).
+* Specify the `type` as `mmr` to use the [Maximal Marginal Relevance (MMR) Reranker](/docs/learn/mmr-reranker). This reranker lets you specify a `diversity_bias` value between `0.0` and `1.0`. 
+* Specify the `type` as `userfn` to use the [User Defined Function Reranker(/docs/learn/user-defined-function-reranker)].
+* Specify the `type` as `chain` to use the [Chain Reranker](/docs/learn/chain-reranker).
+* If you do not want to use a reranker, set the type to `none`.
 
 ## Query Summarization Request - Retrieval Augmented Generation
 
