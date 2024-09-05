@@ -33,7 +33,7 @@ two rerankers that you want to combine.
       },
       {
         "type": "userfn",
-        "user_function": "get('$.metadata.popularity')"
+        "user_function": "get('$.metadata.popularity') * get('$.metadata.score')"
       }
     ]
   }
