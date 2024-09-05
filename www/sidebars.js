@@ -367,6 +367,13 @@ module.exports = {
             "api-reference/api-keys/delete-api-key",
           ],
         },
+        {
+          type: "category",
+          label: "Generation Presets APIs",
+          items: [
+            "api-reference/generation-presets/list-generation-presets",
+          ],
+        },
       ],
     },
   ],

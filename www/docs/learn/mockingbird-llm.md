@@ -58,11 +58,11 @@ integration.
 Mockingbird supports the following languages: Arabic, French, Spanish, 
 Portuguese, Italian, German, Chinese, Dutch, Korean, Japanese, and Russian.
 
-:::tip
+:::caution
 Mockingbird is multilingual and performs best when the summary requested is in 
 the same language as the documents being searched. Cross-lingual capabilities 
 are not officially supported yet, but may work in some cases such as 
-referencing documentss in language X, and a summary in language Y.
+referencing documents in language **X**, and a summary in language **Y**.
 :::
 
 ## Secure deployment within Vectara's infrastructure
