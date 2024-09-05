@@ -21,9 +21,9 @@ Each document is assigneed a unique identifier at indexing. You can use the
 
 Valid filter expressions include something like:
 
-* `doc.id` = 'my-document-2023.pdf'
-* `doc.id` = 'my-document-2022.pdf' OR 'my-document-2023.pdf'
-* `doc.id` = 'my-document-2023.pdf' AND 'my-document-2024.pdf'
+* `doc.id = 'my-document-2023.pdf'`
+* `doc.id = 'my-document-2022.pdf' OR 'my-document-2023.pdf'`
+* `doc.id = 'my-document-2023.pdf' AND 'my-document-2024.pdf'`
 
 
 ## `part.lang` field
