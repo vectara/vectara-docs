@@ -11,14 +11,22 @@ import {Config} from '@site/docs/definitions.md';
 Our out-of-the-box rerankers are effective for general use cases, but some 
 specific use cases require fine-grained control over how search results are 
 ordered. For example, bubbling recently-added documents to the top, or 
-limiting search results to a specific geolocation.
+limiting search results to a specific geolocation. This granular control 
+plays a crucial role in Generative AI experiences. Customizing how search 
+results are ranked enables you to influence which information is prioritized 
+by Large Language Models (LLMs). Boosting certain results to the top can 
+effectively guide the LLM to consider that information more prominently, 
+biasing the generated response.
 
 The User Defined Functions Reranker enables users to define custom reranking 
-functions using document-level metadata, part-level metadata, or scores 
+functions using [document-level metadata, part-level metadata](/docs/learn/metadata-search-filtering/filter-overview), or scores 
 generated from the request-level metadata. To use this reranker, set the 
 `type` to `userfn` in a query and specify a string within the 
 `reranker` section of the query. This string syntax is custom and similar to our 
-SQL-like [filter expressions](/docs/learn/metadata-search-filtering/filter-overview).
+SQL-like [filter expressions](/docs/learn/metadata-search-filtering/filter-overview). 
+You can also use our [chain reranker](/docs/learn/chain-reranker) which 
+applies multiple rerankers in complex search scenarios that require multiple 
+dimensions of relevance.
 
 With the flexibility to modify scores based on metadata, conditions, and 
 custom logic, enterprises can craft highly tailored search experiences that 
@@ -339,7 +347,7 @@ metadata:
 
 `get('$.score') * get('$.document_metadata.boost')`
 
-### Boost products that have a higher score
+### Boost products that have a higher customer rating
 
 Higher customer review scores generally indicate better quality or more 
 popular products. This function is designed to boost products that have 
@@ -358,8 +366,8 @@ dominating the search rankin:
 
 ### Boost content by type
 
-Boost sections by for queries about `product manual for model X` in product 
-documentation that contain `Technical Specifications`. This example uses `1.5` 
+Boost sections for queries about `product manual for model X` in product 
+documentation that contains `Technical Specifications`. This example uses `1.5` 
 (50%) as a boost value which aims to have the matching result appear near  
 the top. Using a smaller boost value will make it more subtle.
 
