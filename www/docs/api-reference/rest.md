@@ -60,6 +60,15 @@ real-time API calls from your browser.
 
 Vectara provides the following REST 2.0 endpoints:
 
+### Request timeouts
+By default, requests will take as long as they need to complete.  However, you
+can request a maximum time for most of the APIs to take by specifying the
+`Request-Timeout` or `Request-Timeout-Millis` parameters in the HTTP headers.
+`Request-Timeout` is specified in seconds and if you need a more granular
+timeout, you can use `Request-Timeout-Millis`.  Note that both parameters are
+considered best-effort: in the event either time lapses, Vectara will attempt
+to terminate the request as soon as possible after.
+
 ### Queries
 
 The following endpoints help you with queries:
