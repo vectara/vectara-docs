@@ -74,6 +74,9 @@ paths:
       operationId: createCorpus
       tags:
         - Corpora
+      parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
       requestBody:
         content:
           application/json:
@@ -107,6 +110,8 @@ paths:
       tags:
         - Corpora
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - name: limit
           in: query
           description: The maximum number of corpora to return at one time.
@@ -150,6 +155,8 @@ paths:
       description: Get metadata about a corpus. This operation is not a method of searching a corpus.
       operationId: getCorpus
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - in: path
           name: corpus_key
           description: The unique key identifying the corpus to retrieve.
@@ -182,6 +189,8 @@ paths:
       description: Delete a corpus and all the data that it contains.
       operationId: deleteCorpus
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - in: path
           name: corpus_key
           description: The unique key identifying the corpus to delete
@@ -214,6 +223,8 @@ paths:
         dynamically to help keep your data aligned with changing business needs.
       operationId: updateCorpus
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - in: path
           name: corpus_key
           description: The unique key identifying the corpus to update.
@@ -252,6 +263,8 @@ paths:
       description: Resets a corpus, which removes all documents and data from the specified corpus, while keeping the corpus itself.
       operationId: resetCorpus
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - in: path
           name: corpus_key
           description: The unique key identifying the corpus to reset.
@@ -286,6 +299,8 @@ paths:
         You can monitor the status of the filter change using the returned job id.
       operationId: replaceFilterAttributes
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - in: path
           name: corpus_key
           description: Key of the corpus to have filters replaced.
@@ -331,6 +346,8 @@ paths:
         For more detailed information, see this [Query API guide](https://docs.vectara.com/docs/api-reference/search-apis/search).
       operationId: searchCorpus
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - in: path
           name: corpus_key
           description: The unique key identifying the corpus to query.
@@ -401,6 +418,8 @@ paths:
         For more detailed information, see [Query API guide](https://docs.vectara.com/docs/api-reference/search-apis/search).
       operationId: queryCorpus
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - in: path
           name: corpus_key
           description: The unique key identifying the corpus to query.
@@ -458,6 +477,9 @@ paths:
       
         For more detailed information, see this [Query API guide](https://docs.vectara.com/docs/api-reference/search-apis/search).
       operationId: query
+      parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
       requestBody:
         content:
           application/json:
@@ -507,6 +529,8 @@ paths:
         For more detailed information see this [File Upload API guide.](https://docs.vectara.com/docs/api-reference/indexing-apis/file-upload/file-upload)
       operationId: uploadFile
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - in: path
           name: corpus_key
           description: The unique key identifying the corpus of which to upload the file.
@@ -562,6 +586,8 @@ paths:
         or in a format that explicitly specifies each document part that becomes a search result.
       operationId: createCorpusDocument
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - in: path
           name: corpus_key
           description: The unique key identifying the queried corpus.
@@ -604,6 +630,8 @@ paths:
       summary: List the documents in the corpus
       operationId: listCorpusDocuments
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - in: path
           name: corpus_key
           description: The unique key identifying the queried corpus.
@@ -660,6 +688,8 @@ paths:
       summary: Delete a document
       operationId: deleteCorpusDocument
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - in: path
           name: corpus_key
           description: The unique key identifying the corpus with the document to delete.
@@ -695,6 +725,8 @@ paths:
       summary: Retrieve a document
       operationId: getCorpusDocument
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - in: path
           name: corpus_key
           description: The unique key identifying the corpus containing the document to retrieve.
@@ -735,6 +767,9 @@ paths:
       summary: Start a chat
       description: Create a chat while specifying the default retrieval parameters used by the prompt.
       operationId: createChat
+      parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
       requestBody:
         content:
           application/json:
@@ -776,6 +811,8 @@ paths:
       description: Retrieve a list of previous chats in the Vectara account.
       operationId: listChats
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - in: query
           name: limit
           description: The maximum number of results to return in the list.
@@ -821,6 +858,8 @@ paths:
         can be found as the `name` property on the Generations Presets retrieved from `/v2/generation_presets`.
       operationId: listLLMs
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - name: filter
           in: query
           description: A regular expression to match names and descriptions of the LLMs.
@@ -870,6 +909,8 @@ paths:
         `temperature`.
       operationId: listGenerationPresets
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - name: llm_name
           in: query
           description: Filter presets by the LLM name.
@@ -915,6 +956,8 @@ paths:
       description: Get a chat summary to view what started the chat, but not subsequent turns.
       operationId: getChat
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - in: path
           name: chat_id
           description: The ID of the chat.
@@ -948,6 +991,8 @@ paths:
       description: Delete a chat and any turns it contains permanently.
       operationId: deleteChat
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - in: path
           name: chat_id
           description: The ID of the chat.
@@ -978,6 +1023,8 @@ paths:
       description: Create a new turn in the chat. Each conversation has a series of `turn` objects, which are the sequence of message and response pairs tha make up the dialog.
       operationId: createChatTurn
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - in: path
           name: chat_id
           description: The ID of the chat.
@@ -1026,6 +1073,8 @@ paths:
       description: List all turns in a chat to see all message and response pairs that make up the dialog.
       operationId: listChatTurns
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - in: path
           name: chat_id
           description: The ID of the chat.
@@ -1060,6 +1109,8 @@ paths:
       description: Get a specific turn from a chat, which is a message and response pair from the conversation.
       operationId: getChatTurn
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - in: path
           name: chat_id
           description: The ID of the chat.
@@ -1100,6 +1151,8 @@ paths:
       description: Delete a turn from a chat. This will delete all subsequent turns in the chat.
       operationId: deleteChatTurn
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - in: path
           name: chat_id
           description: The ID of the chat.
@@ -1136,6 +1189,8 @@ paths:
       description: Update a turn; used to disable or enable a chat.
       operationId: updateChatTurn
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - in: path
           name: chat_id
           description: The ID of the chat.
@@ -1182,6 +1237,8 @@ paths:
       description: Encoders are used to store and retrieve from a corpus. 
       operationId: listEncoders
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - in: query
           name: filter
           description: A regular expression against encoder names and descriptions.
@@ -1226,6 +1283,8 @@ paths:
       description: Rerankers are used to improve the ranking (ordering) of search results.
       operationId: listRerankers
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - in: query
           name: filter
           description: A regular expression against reranker names and descriptions.
@@ -1270,6 +1329,8 @@ paths:
       description: List jobs for the account. Jobs are background processes like replacing the filterable metadata attributes.
       operationId: listJobs
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - name: corpus_key
           in: query
           description: The unique key identifying the corpus with the job.
@@ -1330,6 +1391,8 @@ paths:
       description: Get a job by a specific ID. Jobs are background processes like replacing the filterable metadata attributes.
       operationId: getJob
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - name: job_id
           in: path
           description: The ID of job to get.
@@ -1363,6 +1426,9 @@ paths:
       summary: Create a user in the current customer account
       description: Create a user for the current customer account.
       operationId: createUser
+      parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
       requestBody:
         content:
             application/json:
@@ -1394,6 +1460,8 @@ paths:
       description: Lists all users in the account.
       operationId: listUsers
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - name: limit
           in: query
           description: The maximum number of users to return at one time.
@@ -1432,6 +1500,8 @@ paths:
         Get a user and view details like the email, username, and roles associated with a user.
       operationId: getUser
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - name: username
           in: path
           description: |
@@ -1466,6 +1536,8 @@ paths:
       description: Update details about a user such as role names.
       operationId: updateUser
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - name: username
           in: path
           description: |
@@ -1505,6 +1577,8 @@ paths:
       description: Delete a user from the account.
       operationId: deleteUser
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - name: username
           in: path
           description: |
@@ -1536,6 +1610,8 @@ paths:
       description: Reset the password for a user.
       operationId: resetUserPassword
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - name: username
           in: path
           description: |
@@ -1566,6 +1642,9 @@ paths:
       summary: Create an API key
       description: An API key is to authenticate when calling Vectara APIs.
       operationId: createApiKey
+      parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
       requestBody:
         content:
           application/json:
@@ -1596,6 +1675,8 @@ paths:
       summary: List API keys
       operationId: listApiKeys
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - name: limit
           in: query
           description: Max number of API keys to return at one time.
@@ -1638,6 +1719,8 @@ paths:
       summary: Get an API key
       operationId: getApiKey
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - name: api_key_id
           in: path
           description: The name of the API key.
@@ -1664,6 +1747,8 @@ paths:
       description: Update an API key such as the roles attached to the key.
       operationId: updateApiKey
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - name: api_key_id
           in: path
           description: The name of the API key.
@@ -1695,6 +1780,8 @@ paths:
       description: Delete API keys to help you manage the security and lifecycle of API keys in your application.
       operationId: deleteApiKey
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - name: api_key_id
           in: path
           description: The name of the API key.
@@ -1717,6 +1804,9 @@ paths:
       summary: Create an App Client
       description: An App Client is used for OAuth 2.0 authentication when calling Vectara APIs.
       operationId: createAppClient
+      parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
       requestBody:
         content:
           application/json:
@@ -1747,6 +1837,8 @@ paths:
       summary: List App Clients
       operationId: listAppClient
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - name: limit
           in: query
           description: The maximum number of App Clients to return at one time.
@@ -1795,6 +1887,8 @@ paths:
       summary: Get an App Client
       operationId: getAppClient
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - name: app_client_id
           in: path
           description: The name of the App Client.
@@ -1820,6 +1914,8 @@ paths:
       summary: Update an App Client
       operationId: updateAppClient
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - name: app_client_id
           in: path
           description: The name of App Client.
@@ -1850,6 +1946,8 @@ paths:
       summary: Delete an App Client
       operationId: deleteAppClient
       parameters:
+        - $ref: '#/components/parameters/RequestTimeout'
+        - $ref: '#/components/parameters/RequestTimeoutMillis'
         - name: app_client_id
           in: path
           description: The name of App Client.
@@ -3801,6 +3899,22 @@ components:
       type: apiKey
       in: header
       name: x-api-key
+  parameters:
+    RequestTimeout:
+      in: header
+      name: Request-Timeout
+      description: The API will make a best effort to complete the request in the specified seconds or time out.
+      schema:
+        type: integer
+        minimum: 1
+      required: false
+    RequestTimeoutMillis:
+      in: header
+      name: Request-Timeout-Millis
+      description: The API will make a best effort to complete the request in the specified milliseconds or time out.
+      schema:
+        type: integer
+        minimum: 1
 security:
   - ApiKeyAuth: []
   - OAuth2: []
