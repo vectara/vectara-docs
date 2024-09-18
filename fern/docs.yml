@@ -1,8 +1,0 @@
-instances:
-  - url: https://vectara.docs.buildwithfern.com
-title: vectara | Documentation
-navigation:
-  - api: API Reference
-colors:
-  accentPrimary: '#ffffff'
-  background: '#000000'
