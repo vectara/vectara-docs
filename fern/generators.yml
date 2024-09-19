@@ -1,0 +1,69 @@
+auth-schemes:
+  OAuthScheme:
+    scheme: oauth
+    type: client-credentials
+    client-id-env: VECTARA_CLIENT_ID
+    client-secret-env: VECTARA_CLIENT_SECRET
+    get-token:
+      endpoint: POST /oauth/token
+      response-properties:
+        access-token: $response.access_token
+        expires-in: $response.expires_in
+api:
+  default-environment: Production
+  default-url: Default
+  auth: OAuthScheme
+  environments:
+    Production:
+      urls:
+        Default: https://api.vectara.io
+        Auth: https://auth.vectara.io
+  headers:
+    x-api-key:
+      type: optional<string>
+      name: apiKey
+      env: VECTARA_API_KEY        
+  specs:
+    - openapi: ../www/static/vectara-oas-v2.yaml
+      overrides: openapi-overrides.yaml
+groups:
+  python-sdk:
+    generators:
+      - name: fernapi/fern-python-sdk
+        version: 4.2.4
+        output:
+          location: pypi
+          package-name: "vectara"
+          token: ${PYPI_TOKEN}
+        api:
+          settings:
+            unions: v1          
+        github:
+          repository: vectara/python-sdk
+          mode: push
+          branch: fern-bot/09-18-2024-0859PM
+        config:
+          client_class_name: Vectara
+          extra_dependencies:
+            PyYAML: '6.0.2'
+          extra_dev_dependencies:
+            types-PyYAML: '6.0.2'
+  ts-sdk:
+    generators:
+      - name: fernapi/fern-typescript-node-sdk
+        version: 0.39.1
+        output:
+          location: npm
+          package-name: "vectara"
+          token: ${NPM_TOKEN}
+        api:
+          settings:
+            unions: v1          
+        github:
+          repository: vectara/typescript-sdk
+        smart-casing: true
+        config:
+          namespaceExport: Vectara
+          allowCustomFetcher: true
+          skipResponseValidation: true
+          includeApiReference: true
