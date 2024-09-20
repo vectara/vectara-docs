@@ -7,6 +7,42 @@ paths:
         cursor: $request.page_key
         next_cursor: $response.metadata.page_key
         results: $response.corpora
+      x-fern-examples: 
+        - name: "No Limit"
+          response: 
+            body: 
+              metadata: 
+                page_key: "eyJ0eXAi"
+              corpora:
+                - id: "crp_123"
+                  key: "corpus_key"
+                  name: "corpus_name"
+                  description: "corpus_description"
+                  created_at: "2021-01-01T00:00:00Z"
+                - id: "crp_234"
+                  key: "my_key"
+                  name: "name"
+                  description: "corpus_description"
+                  created_at: "2021-01-01T00:00:00Z"
+                - id: "crp_345"
+                  key: "corpus_key"
+                  name: "corpus_name"
+                  description: "corpus_description"
+                  created_at: "2021-01-01T00:00:00Z"
+        - name: "Limit 1"
+          query-parameters: 
+            limit: 1
+          response: 
+            body: 
+              metadata: 
+                page_key: "eyJ0eXAi"
+              corpora:
+                - id: "crp_123"
+                  key: "corpus_key"
+                  name: "corpus_name"
+                  description: "corpus_description"
+                  created_at: "2021-01-01T00:00:00Z"
+              
     post:
       x-fern-sdk-group-name: corpora
       x-fern-sdk-method-name: create
