@@ -80,8 +80,7 @@ paths:
           $ref: "#/components/schemas/ChatFullResponse"
         response-stream:
           $ref: "#/components/schemas/ChatStreamedResponse"
-      x-fern-sdk-group-name: chats
-      x-fern-sdk-method-name: create
+      x-fern-sdk-method-name: chat
   /v2/llms:
     get:
       x-fern-sdk-group-name: llms
