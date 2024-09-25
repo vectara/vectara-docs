@@ -9,12 +9,13 @@ import {vars} from '@site/static/variables.json';
 
 When refining query results where relevance and diversity are critical to 
 getting the best answers, relying on a single ranking strategy may not be 
-enough for business-critical search scenarios. The Vectara Chain Reranker 
+flexible enough for some scenarios. The Vectara Chain Reranker 
 addresses this challenge by enabling you to apply multiple ranking strategies 
-sequentially, giving you absolute control over the ranking process. This 
-powerful capability enables you to completely customize Vectara's functionality 
-to your specific needs, ensuring that your search results align with your 
-business requirements precisely.
+sequentially, giving you absolute control over the ranking process. 
+
+This powerful capability enables you to completely customize Vectara's 
+functionality to your specific needs, ensuring that your search results and 
+generative AI applications align with your business requirements precisely.
 
 ## Why use the chain reranker?
 
@@ -28,7 +29,7 @@ specific metadata or other custom business logic with the
 1. **Multidimensional relevance**: Combine multiple ranking strategies in sequence 
    to optimize query results across various dimensions and meeting complex 
    business scenarios.
-2. **Enhance RAG outcomes**: Fine-tune the retrieval process by sequentially 
+2. **Enhance RAG outcomes**: Improve the retrieval process by sequentially 
    applying multiple rerankers that balance relevance, diversity, and custom 
    business priorities to produce more contextually appropriate AI-generated 
    responses in Retrieval Augmented Generation (RAG) systems.
@@ -45,7 +46,7 @@ You can specify up to 50 rerankers in a chain.
 ## Chain reranker examples
 
 In this example, the Vectara Multilingual Reranker first refines the results 
-across over 100 languages, while the [User Defined Function reranker](/docs/learn/user-defined-function-reranker) 
+with improved text scoring, while the [User Defined Function reranker](/docs/learn/user-defined-function-reranker) 
 then boosts relevance based on metadata for popularity. This simple chain 
 example can be useful for multilingual content platforms such as blogs, news 
 aggregators, and knowledge bases.
@@ -70,10 +71,11 @@ aggregators, and knowledge bases.
 
 ```
 Now let's take a look at a more complex chain reranker example. In this 
-e-commerce example, the Vectara Multilingual Reranker first gets the most 
-relevant product results based on the user's query. The MMR reranker then 
-diversifies the results so that the customer sees some variety, rather 
-than only very similar products. 
+e-commerce example, the Vectara Multilingual Reranker first refines the 
+initial results, providing a better ranking order than Boomerang. This 
+improves the overall relevance of the product results. The MMR reranker then 
+diversifies the results so that the customer sees some variety, rather than 
+only very similar products.
 
 ```json
 {
@@ -82,9 +84,9 @@ than only very similar products.
 },
 ```
 
-We set the diversity bias to `0.2` to have more 
-emphasis on relevance while still providing some diversity. You can increase 
-this value to `0.3` or `0.4` for more diversity.
+We set the diversity bias to `0.2` to have more emphasis on relevance while 
+still providing some diversity. You can increase this value to `0.3` or `0.4` 
+for more diversity.
 
 Finally, we apply a User Defined Function that combines several e-commerce 
 factors including a relevance score boost of 60%, a 20% boost if the product 
