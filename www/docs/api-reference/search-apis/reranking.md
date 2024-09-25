@@ -18,19 +18,21 @@ of query results to achieve a more precise ranking. It employs a machine
 learning model that while slower than the rapid retrieval step, offers more 
 accurate results.
 
-We currently provides the following rerankers: 
+## Available rerankers
 
-* [**Multilingual Reranker v1**](/docs/learn/vectara-multi-lingual-reranker) (`type=customer_specific` and 
-  `reranker_name=Rerank_Multilingual_v1`) provides more accurate neural ranking than the 
-  initial Boomerang retrieval. While computationally more expensive, it offers 
-  improved text scoring across a wide range of languages, making it suitable 
-  for diverse content.
-* [**Maximal Marginal Relevance (MMR) Reranker**](/docs/learn/mmr-reranker) (`type=mmr`) for diversifying 
-  results while maintaining relevance.
-* [**User Defined Function Reranker**](/docs/learn/user-defined-function-reranker) (`type=userfn`) for custom 
-  scoring based on metadata.
+Vectara currently provides the following rerankers: 
 
-### Chain reranking
+* [**Multilingual Reranker v1**](/docs/learn/vectara-multi-lingual-reranker) (`type=customer_specific` and `reranker_id=rnk_272725719`) 
+  provides more accurate neural ranking than the initial Boomerang retrieval. 
+  While computationally more expensive, it offers improved text scoring across 
+  a wide range of languages, making it suitable for diverse content..
+* [**Maximal Marginal Relevance (MMR) Reranker**](/docs/learn/mmr-reranker) (`type=mmr`) 
+  for diversifying results while maintaining relevance.
+* [**User Defined Function Reranker**](/docs/learn/user-defined-function-reranker) (`type=userfn`) for 
+  custom scoring based on metadata.
+
+
+### Chain Reranker
 
 The Vectara Chain Reranker (`type=chain`) lets you combine multiple reranking 
 strategies in sequence to meet more complex search requirements. This lets you 
@@ -70,8 +72,30 @@ this simplified example intentionally omits several parameter values.
 You can also enable reranking in the Vectara console after navigating to the 
 Query tab of a corpus and selecting **Retrieval**.
 
-:::note
+## Search cutoffs limit
 
-Scale users have a drop-down menu to select different rerankers.
+The `limit` property of the `reranker` object allows you to have more 
+granular control over the number of results returned after reranking. This 
+limit is applied per each reranking stage, such as if you use chain reranking, 
+and this limit affects the output and not the input to the reranker. 
+When you apply this limit to the Multilingual reranker, Maximal Marginal Relevance 
+(MMR) Reranker, or User Defined Function reranker, it performs the following 
+steps:
 
-:::
+1. Reranks all input results according to its algorithm.
+2. Eliminates results that return null scores.
+3. Sorts the reranked results based on their new scores.
+4. Returns the top *N* results, where *N* is the value specified by this limit.
+
+Imagine a scenario where you want to limit the output of results to a reranker, 
+whether a single reranker, or within rerankers that are in a chain. For 
+example, you want to process blog posts and ignore non-blog posts. You would 
+set up a UDF to filter for blog categories and return null score for non-blog 
+content. 
+
+`"get('$.document_metadata.category') === 'blog' ? get('$.score') : null";`
+
+This would remove non-blog posts from the results. Then you can set a 
+limit of `10` to get only the top 10 blog post results.
+
+

@@ -189,7 +189,9 @@ more rarely, as a response.
 ### Reranking Configuration
 
 The `reranker` object enables the reranking of query results, to further 
-increase relevance in certain scenarios. For more details, see [Rerank Search Results](/docs/api-reference/search-apis/reranking):
+increase relevance in certain scenarios. The `limit` property of the `reranker` 
+object allows you to have more granular control over the number of results 
+returned after rerankingFor more details, see [Rerank Search Results](/docs/api-reference/search-apis/reranking):
 
 * Specify the `type` as `customer_reranker` and `reranker_name` as 
   `Rerank_Multilingual_v1` to use the [Multilingual Reranker v1](/docs/api-reference/search-apis/reranking#vectara-multilingual-reranker-v1), 

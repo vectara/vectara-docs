@@ -68,7 +68,6 @@ aggregators, and knowledge bases.
     ]
   }
 }
-
 ```
 Now let's take a look at a more complex chain reranker example. In this 
 e-commerce example, the Vectara Multilingual Reranker first refines the 

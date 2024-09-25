@@ -200,6 +200,56 @@ and logarithms.
 get('$.score') * 1 / as_days(iso_datetime_parse(get('$.document_metadata.publication_date')) - now())
 ```
 
+## Null score handling
+
+The UDF reranker supports returning null scores, allowing for more flexible 
+result filtering. When a UDF returns a null score for a result, that result is 
+automatically removed from the set.
+
+:::note
+Null removal occurs before limits are applied and before results are passed to 
+the next reranker in the pipeline.
+:::
+
+## Null score usage examples
+
+In this example, you want to remove results with a score below a specific 
+threshold:
+
+`user_function: "get('$.score') < 0.5 ? null : get('$.score')";`
+
+This example filters results based on metadata:
+
+`user_function: "get('$.document_metadata.category') === 'blog' ? get('$.score') : null";`
+
+### Null score usage in a chain
+
+In this example, the UDF filter out results with scores below `0.5` and limits 
+the output to `100` results. The MMR reranker then processes these results by 
+applying a diversity bias and further limits the output to `50` results.
+
+```json
+{
+  "reranker": {
+    "type": "chain",
+    "rerankers": [
+      {
+        "type": "userfn",
+        "user_function": "get('$.score') < 0.5 ? null : get('$.score')",
+        "limit": 100
+      },
+      {
+        "type": "mmr",
+        "user_function": "get('$.metadata.popularity') * get('$.metadata.score')",
+        "limit": 50
+      }
+    ]
+  }
+}
+```
+
+
+
 ## Example document with nuanced metadata
 
 This example document shows featured electronics for the upcoming fall season. 
