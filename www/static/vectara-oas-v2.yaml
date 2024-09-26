@@ -70,7 +70,12 @@ paths:
   /v2/corpora:
     post:
       summary: Create a corpus
-      description: Create a corpus, which is a container to store documents and associated metadata.
+      description: |
+        Create a corpus, which is a container to store documents and associated metadata. This is where you 
+        create the unique `corpus_key` that identifies the corpus. The `corpus_key` can be custom-defined 
+        following your preferred naming convention, allowing you to easily manage the corpus's data and 
+        reference it in queries. For more information, see 
+        [Corpus Key Definition](https://docs.vectara.com/docs/api-reference/search-apis/search#corpus-key-definition).
       operationId: createCorpus
       tags:
         - Corpora
@@ -152,7 +157,12 @@ paths:
       tags:
         - Corpora
       summary: Retrieve metadata about a corpus
-      description: Get metadata about a corpus. This operation is not a method of searching a corpus.
+      description: |
+        Get metadata about a corpus. This operation is not a method of searching a corpus. 
+        Specify the `corpus_key` to identify the corpus whose metadata you want to 
+        retrieve. The `corpus_key` is created when the corpus is set up, either through
+        the Vectara Console UI or the Create Corpus API. For more information, 
+        see [Corpus Key Definition](https://docs.vectara.com/docs/api-reference/search-apis/search#corpus-key-definition).
       operationId: getCorpus
       parameters:
         - $ref: '#/components/parameters/RequestTimeout'
@@ -186,7 +196,9 @@ paths:
       tags:
         - Corpora
       summary: Delete a corpus and all its data
-      description: Delete a corpus and all the data that it contains.
+      description: |
+        Delete a corpus and all the data that it contains. The `corpus_key` uniquely identifies 
+        the corpus. For more information, see [Corpus Key Definition](https://docs.vectara.com/docs/api-reference/search-apis/search#corpus-key-definition).
       operationId: deleteCorpus
       parameters:
         - $ref: '#/components/parameters/RequestTimeout'
@@ -219,8 +231,10 @@ paths:
       description: |
         Enable, disable, or update the name and description of a corpus. This lets you
         manage data availability without deleting the corpus, which is useful for 
-        maintenance and security purposes. Update the name and description of a corpus 
-        dynamically to help keep your data aligned with changing business needs.
+        maintenance and security purposes. The `corpus_key` uniquely identifies the corpus. 
+        For more information, see [Corpus Key Definition](https://docs.vectara.com/docs/api-reference/search-apis/search#corpus-key-definition). 
+        Update the name and description of a corpus dynamically to help keep your data 
+        aligned with changing business needs.
       operationId: updateCorpus
       parameters:
         - $ref: '#/components/parameters/RequestTimeout'
@@ -260,7 +274,10 @@ paths:
       tags:
         - Corpora
       summary: Remove all documents and data in a corpus
-      description: Resets a corpus, which removes all documents and data from the specified corpus, while keeping the corpus itself.
+      description: |
+        Resets a corpus, which removes all documents and data from the specified corpus, 
+        while keeping the corpus itself. The `corpus_key` uniquely identifies the corpus. 
+        For more information, see [Corpus Key Definition](https://docs.vectara.com/docs/api-reference/search-apis/search#corpus-key-definition).
       operationId: resetCorpus
       parameters:
         - $ref: '#/components/parameters/RequestTimeout'
@@ -296,7 +313,9 @@ paths:
         instead creates a job and will complete when that job completes. Until that
         job completes, using new filter attributes will not work.
 
-        You can monitor the status of the filter change using the returned job id.
+        You can monitor the status of the filter change using the returned job id. The 
+        `corpus_key` uniquely identifies the corpus. For more information, see 
+        [Corpus Key Definition](https://docs.vectara.com/docs/api-reference/search-apis/search#corpus-key-definition).
       operationId: replaceFilterAttributes
       parameters:
         - $ref: '#/components/parameters/RequestTimeout'
@@ -338,7 +357,8 @@ paths:
       summary: Simple Single Corpus Query
       description: |
         Search a single corpus with a straightforward query request, specifying the corpus key and query parameters.
-        * Specify the unique `corpus_key` identifying the corpus to query.
+        * Specify the unique `corpus_key` identifying the corpus to query. The `corpus_key` is 
+        [created in the Vectara Console UI](https://docs.vectara.com/docs/console-ui/creating-a-corpus) or the [Create Corpus API definition](https://docs.vectara.com/docs/api-reference/admin-apis/create-corpus). When creating a new corpus, you have the option to assign a custom `corpus_key` following your preferred naming convention. This key serves as a unique identifier for the corpus, allowing it to be referenced in search requests. For more information, see [Corpus Key Definition](https://docs.vectara.com/docs/api-reference/search-apis/search#corpus-key-definition).
         * Enter the search `query` string for the corpus, which is the question you want to ask.
         * Set the maximum number of results (`limit`) to return. **Default**: 10, **minimum**: 1
         * Define the `offset` position from which to start in the result set.
@@ -408,6 +428,7 @@ paths:
       description: |
         Query a specific corpus and find relevant results, highlight relevant snippets, and use Retrieval Augmented Generation:
 
+        * Specify the unique `corpus_key` identifying the corpus to query. The `corpus_key` is [created in the Vectara Console UI](https://docs.vectara.com/docs/console-ui/creating-a-corpus) or the [Create Corpus API definition](https://docs.vectara.com/docs/api-reference/admin-apis/create-corpus). When creating a new corpus, you have the option to assign a custom `corpus_key` following your preferred naming convention. This key serves as a unique identifier for the corpus, allowing it to be referenced in search requests. For more information, see [Corpus Key Definition](https://docs.vectara.com/docs/api-reference/search-apis/search#corpus-key-definition).
         * Customize your search by specifying the query text (`query`), pagination details (`offset` and `limit`), and metadata filters (`metadata_filter`) to tailor your search results. [Learn more](https://docs.vectara.com/docs/api-reference/search-apis/search#query-definition)
         * Leverage advanced search capabilities like reranking (`reranker`) and Retrieval Augmented Generation (RAG) (`generation`) for enhanced query performance. Generation is opt in by setting the `generation` property. By excluding the property or by setting it to null, the response
         will not include generation. [Learn more](https://docs.vectara.com/docs/learn/grounded-generation/configure-query-summarization).
@@ -468,6 +489,7 @@ paths:
       description: |
         Perform a multi-purpose query to retrieve relevant information from one or more corpora and generate a response using Retrieval Augmented Generation (RAG).
 
+        * Specify the unique `corpus_key` identifying the corpus to query. The `corpus_key` is [created in the Vectara Console UI](https://docs.vectara.com/docs/console-ui/creating-a-corpus) or the [Create Corpus API definition](https://docs.vectara.com/docs/api-reference/admin-apis/create-corpus). When creating a new corpus, you have the option to assign a custom `corpus_key` following your preferred naming convention. This key serves as a unique identifier for the corpus, allowing it to be referenced in search requests. For more information, see [Corpus Key Definition](https://docs.vectara.com/docs/api-reference/search-apis/search#corpus-key-definition).
         * Customize your search by specifying the query text (`query`), pagination details (`offset` and `limit`), and metadata filters (`metadata_filter`) to tailor your search results. [Learn more](https://docs.vectara.com/docs/api-reference/search-apis/search#query-definition)
         * Leverage advanced search capabilities like reranking (`reranker`) and opt-in Retrieval Augmented Generation (RAG) (`generation`) for enhanced query performance. Generation is opt in by setting the `generation` property. By excluding the property or by setting it to null, the response
         will not include generation. [Learn more](https://docs.vectara.com/docs/learn/grounded-generation/configure-query-summarization)
@@ -551,6 +573,8 @@ paths:
                 contentType: application/json
               file:
                 contentType: application/octet-stream, application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.oasis.opendocument.text, application/epub+zip, application/rtf, text/html, text/plain, application/vnd.ms-powerpoint, application/vnd.openxmlformats-officedocument.presentationml.presentation, text/markdown
+              filename:
+                contentType: text/plain
       responses:
         '201':
           description: The extracted document has been parsed and added to the corpus.
@@ -1693,6 +1717,12 @@ paths:
           required: false
           schema:
             type: string
+        - name: corpus_key
+          in: query
+          description: Filters the API keys to only those with permissions on the specified corpus key.
+          required: false
+          schema:
+            $ref: '#/components/schemas/CorpusKey'
       responses:
         '200':
           description: An array of API keys.
@@ -2116,6 +2146,16 @@ components:
           type: object
           title: CorpusLimits
           properties:
+            used_docs:
+              description: |
+                The number of documents contained in the corpus.
+              type: integer
+              format: int64
+            used_parts:
+              description: |
+                The number of document parts contained in the corpus.
+              type: integer
+              format: int64
             used_bytes:
               description: |
                 The number of bytes contained in the corpus. This includes the document metadata,
@@ -2154,6 +2194,10 @@ components:
           description: The name of the custom dimension.
           type: string
           example: importance
+        description:
+          description: Description for the custom dimension.
+          type: string
+          example: Product importance.
         indexing_default:
           description: |
             Default value of a custom dimension on a document part if the custom
@@ -2606,6 +2650,20 @@ components:
             The name of the reranker. Do not specify the MMR reranker name here. Instead use the MMR reranker object type.
           type: string
           example: Rerank_Multilingual_v1
+        limit:
+          type: integer
+          description: |
+            Specifies the maximum number of results to be returned after the reranking process. 
+            When a reranker is applied, it performs the following steps:
+            1. Reranks all input results according to its algorithm.
+            2. Sorts the reranked results based on their new scores.
+            3. Returns the top N results, where N is the value specified by this limit.
+
+            Note: This limit is applied per reranking stage. In a chain of rerankers, 
+            each reranker can have its own limit, potentially reducing the number of 
+            results at each stage.
+          format: int32
+          minimum: 1
       x-vectaraParents:
         - SearchReranker
     UserFunctionReranker:
@@ -2621,6 +2679,20 @@ components:
           description: "The user defined function."
           type: string
           example: "get('$.score') * get('$.document_metadata.boost')"
+        limit:
+          type: integer
+          description: |
+            Specifies the maximum number of results to be returned after the reranking process. 
+            When a reranker is applied, it performs the following steps:
+            1. Reranks all input results according to its algorithm.
+            2. Sorts the reranked results based on their new scores.
+            3. Returns the top N results, where N is the value specified by this limit.
+
+            Note: This limit is applied per reranking stage. In a chain of rerankers, 
+            each reranker can have its own limit, potentially reducing the number of 
+            results at each stage.
+          format: int32
+          minimum: 1
       x-vectaraParents:
         - SearchReranker
     MMRReranker:
@@ -2637,6 +2709,20 @@ components:
           type: number
           format: float
           example: .3
+        limit:
+          type: integer
+          description: |
+            Specifies the maximum number of results to be returned after the reranking process. 
+            When a reranker is applied, it performs the following steps:
+            1. Reranks all input results according to its algorithm.
+            2. Sorts the reranked results based on their new scores.
+            3. Returns the top N results, where N is the value specified by this limit.
+
+            Note: This limit is applied per reranking stage. In a chain of rerankers, 
+            each reranker can have its own limit, potentially reducing the number of 
+            results at each stage.
+          format: int32
+          minimum: 1
       x-vectaraParents:
         - SearchReranker
     ChainReranker:
@@ -2652,8 +2738,8 @@ components:
           description: |
             Specify an array of rerankers to search results consecutively after each other.
           items:
-            $ref: '#/components/schemas/SearchReranker' 
-          minItems: 2
+            $ref: '#/components/schemas/SearchReranker'
+          maxItems: 50
       required:
         - rerankers
       x-vectaraParents:
@@ -2666,6 +2752,20 @@ components:
             When the type is `none`, no reranking will be done.
           type: string
           default: none
+        limit:
+          type: integer
+          description: |
+            Specifies the maximum number of results to be returned after the reranking process. 
+            When a reranker is applied, it performs the following steps:
+            1. Reranks all input results according to its algorithm.
+            2. Sorts the reranked results based on their new scores.
+            3. Returns the top N results, where N is the value specified by this limit.
+
+            Note: This limit is applied per reranking stage. In a chain of rerankers, 
+            each reranker can have its own limit, potentially reducing the number of 
+            results at each stage.
+          format: int32
+          minimum: 1
       x-vectaraParents:
         - SearchReranker
     QueryFullResponse:
@@ -2875,6 +2975,9 @@ components:
           description: Arbitrary object that will be attached as document metadata to the extracted document.
           type: object
           additionalProperties: true
+        filename:
+          description: Optional multipart section to override the filename.
+          type: string
         file:
           description: Binary file contents. The file name of the file will be used as the document ID.
           type: string
@@ -3659,6 +3762,9 @@ components:
           description: Specifies when the job was completed.
           type: string
           format: date-time
+        created_by_username:
+          description: The username of the user who created the job. This property may be missing, e.g., if the job was created by the system, not a user.
+          type: string
     JobState:
       type: string
       enum:

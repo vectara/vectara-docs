@@ -31,7 +31,20 @@ To get corpus metadata, send a GET request to `/v2/corpora/:corpus_key`, where
 
 The response includes details such as the corpus ID, key, name, description,
 enabled status, encoder information, filter attributes, custom dimensions,
-and usage limits..
+and usage limits.
+
+### Get the number of documents or document parts in a corpus
+
+Tracking the usage of documents in a corpus enables adminstrators to manage 
+resource allocation efficiently. Monitoring corpus metrics helps data usage 
+stay within allocated quotas and identify trends in document growth and 
+segmentation.
+
+The `limit` object in the response provides information about the current 
+usage and limits of the corpus. View the number of documents currently stored 
+in the corpus in `used_docs`, and `used_parts` shows the number of document 
+parts contained in the corpus, which is useful in cases where documents are 
+segmented into smaller parts.
 
 ## REST 2.0 URL
 
