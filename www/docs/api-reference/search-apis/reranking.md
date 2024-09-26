@@ -32,7 +32,7 @@ Vectara currently provides the following rerankers:
   custom scoring based on metadata.
 
 
-### Chain Reranker
+### Chain reranking
 
 The Vectara Chain Reranker (`type=chain`) lets you combine multiple reranking 
 strategies in sequence to meet more complex search requirements. This lets you 
@@ -82,7 +82,7 @@ When you apply this limit to the Multilingual reranker, Maximal Marginal Relevan
 (MMR) Reranker, or User Defined Function reranker, it performs the following 
 steps:
 
-1. Reranks all input results according to its algorithm.
+1. Reranks all input results based on the selected reranker.
 2. Eliminates results that return null scores.
 3. Sorts the reranked results based on their new scores.
 4. Returns the top *N* results, where *N* is the value specified by this limit.
