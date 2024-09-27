@@ -34,7 +34,7 @@ properties:
 - `corpus_keys` Specifies the corpora where that which the API key has access.
   If the api_key_role is personal, this value be `null` or missing.
 
-The response includes the `ApiKey` object that contains the assigned API key
+The response includes the assigned API key
 ID, name, secret key, enabled status, API key role, and API policy.
 
 ## REST 2.0 API URL

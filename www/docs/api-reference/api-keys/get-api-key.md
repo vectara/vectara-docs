@@ -19,7 +19,7 @@ status and help you manage the lifecycle and security of your API keys.
 To get an API key, send a GET request to `/v2/api_keys/{api_key_id}`, where
 `{api_key_id}` is the ID of the API key you want to retrieve.
 
-The response includes an `ApiKey` object that show the API name, enabled
+The response includes the API name, enabled 
 status, API key role, and API policy.
 
 ## REST 2.0 URL

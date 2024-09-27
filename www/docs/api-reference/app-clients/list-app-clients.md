@@ -28,7 +28,7 @@ following properties:
 - `api_roles` - Specifies the API roles associated with the client credentials
   as `owner`, `administrator`, `billing_administrator`, or `corpus_administrator`.
 
-The response includes the `AppClient` object that contains the assigned App
+The response includes the `app_clients` object that contains the assigned App
 Client ID, name, description, client ID used within the OAuth flow, client
 secret, API roles, and API policy.
 
