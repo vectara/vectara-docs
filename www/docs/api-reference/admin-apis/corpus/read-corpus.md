@@ -36,15 +36,24 @@ and usage limits.
 ### Get the number of documents or document parts in a corpus
 
 Tracking the usage of documents in a corpus enables adminstrators to manage 
-resource allocation efficiently. Monitoring corpus metrics helps data usage 
-stay within allocated quotas and identify trends in document growth and 
-segmentation.
+resource allocation efficiently. Monitoring corpus metrics also helps data 
+usage stay within allocated quotas and identify trends in document growth and 
+document segmentation.
 
-The `limit` object in the response provides information about the current 
-usage and limits of the corpus. View the number of documents currently stored 
-in the corpus in `used_docs`, and `used_parts` shows the number of document 
-parts contained in the corpus, which is useful in cases where documents are 
-segmented into smaller parts.
+The `limit` object in the response provides comprehensive information about the 
+current usage and limits of a corpus:
+
+* `used_docs` - The number of documents currently stored in the corpus.
+* `used_parts` - The number of document parts contained in the corpus, 
+  which is useful in cases where documents are segmented into smaller parts.
+* `used_bytes` - The total storage used by the corpus in bytes, including document 
+  content, metadata, and part metadata.
+* `used_characters` - The total character count in the corpus, including all 
+  content and metadata.
+* `max_bytes` - The maximum allowed storage size for the corpus in bytes.
+* `max_metadata_bytes` - The maximum allowed size for metadata per document, in bytes.
+* `index_rate` - The maximum number of new documents that can be added to the corpus 
+  per second, indicating ingestion capacity and helping manage indexing load
 
 ## REST 2.0 URL
 
