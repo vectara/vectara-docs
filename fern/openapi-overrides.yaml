@@ -7,6 +7,161 @@ paths:
         cursor: $request.page_key
         next_cursor: $response.metadata.page_key
         results: $response.corpora
+      x-fern-examples: 
+        - name: "No Limit"
+          response: 
+            body: 
+              metadata: 
+                page_key: "eyJ0eXAi"
+              corpora:
+                - id: "crp_123"
+                  key: "corpus_key"
+                  name: "corpus_name"
+                  description: "corpus_description"
+                  created_at: "2021-01-01T00:00:00Z"
+                - id: "crp_234"
+                  key: "my_key"
+                  name: "name"
+                  description: "corpus_description"
+                  created_at: "2021-01-01T00:00:00Z"
+                - id: "crp_345"
+                  key: "corpus_key"
+                  name: "corpus_name"
+                  description: "corpus_description"
+                  created_at: "2021-01-01T00:00:00Z"
+          code-samples: 
+            - sdk: typescript
+              name: Request
+              code: |-
+                const request = require('request');
+                let options = {
+                  'method': 'GET',
+                  'url': 'https://api.vectara.io/v2/corpora',
+                  'headers': {
+                    'Accept': 'application/json',
+                    'Authorization': 'Bearer <TOKEN>'
+                  }
+                };
+                request(options, (error, response) => {
+                  if (error) throw new Error(error);
+                  console.log(response.body);
+                });
+            - sdk: typescript
+              name: Axios
+              code: |-
+                const axios = require('axios');
+
+                let config = {
+                  method: 'get',
+                maxBodyLength: Infinity,
+                  url: 'https://api.vectara.io/v2/corpora',
+                  headers: { 
+                    'Accept': 'application/json', 
+                    'Authorization': 'Bearer <TOKEN>'
+                  }
+                };
+
+                axios(config)
+                .then((response) => {
+                  console.log(JSON.stringify(response.data));
+                })
+                .catch((error) => {
+                  console.log(error);
+                });
+            - sdk: typescript
+              name: Native
+              code: |-
+                const https = require('follow-redirects').https;
+                const fs = require('fs');
+
+                let options = {
+                  'method': 'GET',
+                  'hostname': 'api.vectara.io',
+                  'path': '/v2/corpora',
+                  'headers': {
+                    'Accept': 'application/json',
+                    'Authorization': 'Bearer <TOKEN>'
+                  },
+                  'maxRedirects': 20
+                };
+
+                const req = https.request(options, (res) => {
+                  let chunks = [];
+
+                  res.on("data", (chunk) => {
+                    chunks.push(chunk);
+                  });
+
+                  res.on("end", (chunk) => {
+                    let body = Buffer.concat(chunks);
+                    console.log(body.toString());
+                  });
+
+                  res.on("error", (error) => {
+                    console.error(error);
+                  });
+                });
+
+                req.end();
+            - sdk: typescript
+              name: Vectara SDK
+              code: |-
+                import { VectaraClient } from "vectara";
+                const client = new VectaraClient({ clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET", apiKey: "YOUR_API_KEY" });
+                await client.corpora.list();
+            - sdk: python
+              name: Requests
+              code: |-
+                import requests
+
+                url = "https://api.vectara.io/v2/corpora"
+
+                payload={}
+                headers = {
+                  'Accept': 'application/json',
+                  'Authorization': 'Bearer <TOKEN>'
+                }
+
+                response = requests.request("GET", url, headers=headers, data=payload)
+            - sdk: python
+              name: HTTP.client
+              code: |-
+                import http.client
+
+                conn = http.client.HTTPSConnection("api.vectara.io")
+                payload = ''
+                headers = {
+                  'Accept': 'application/json',
+                  'Authorization': 'Bearer <TOKEN>'
+                }
+                conn.request("GET", "/v2/corpora", payload, headers)
+                res = conn.getresponse()
+                data = res.read()
+                print(data.decode("utf-8"))
+            - sdk: python
+              name: Vectara SDK
+              code: |-
+                from vectara import Vectara
+                client = Vectara(
+                    api_key="YOUR_API_KEY",
+                    client_id="YOUR_CLIENT_ID",
+                    client_secret="YOUR_CLIENT_SECRET",
+                )
+                response = client.corpora.list()
+        - name: "Limit 1"
+          query-parameters: 
+            limit: 1
+          response: 
+            body: 
+              metadata: 
+                page_key: "eyJ0eXAi"
+              corpora:
+                - id: "crp_123"
+                  key: "corpus_key"
+                  name: "corpus_name"
+                  description: "corpus_description"
+                  created_at: "2021-01-01T00:00:00Z"
+              
     post:
       x-fern-sdk-group-name: corpora
       x-fern-sdk-method-name: create
