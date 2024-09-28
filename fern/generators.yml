@@ -40,8 +40,6 @@ groups:
             unions: v1          
         github:
           repository: vectara/python-sdk
-          mode: push
-          branch: fern-bot/09-18-2024-0859PM
         config:
           client_class_name: Vectara
           extra_dependencies:
@@ -67,3 +65,4 @@ groups:
           allowCustomFetcher: true
           skipResponseValidation: true
           includeApiReference: true
+
