@@ -26,6 +26,12 @@ module.exports = {
           id: "sample-vectara-apps",
           label: "Sample Demos and Applications",
         },
+        {
+          // Don't change this page's URL. It's linked from our nurture sequence emails.
+          type: "doc",
+          id: "video-tutorials",
+          label: "Video Tutorials",
+        },
       ],
     },
     {
@@ -258,14 +264,12 @@ module.exports = {
             "api-reference/indexing-apis/file-upload/file-upload",
             "api-reference/indexing-apis/file-upload/format-for-upload",
             "api-reference/indexing-apis/file-upload/file-upload-filetypes",
-          ]
+          ],
         },
         {
           type: "category",
           label: "Indexing APIs",
-          items: [
-            "api-reference/indexing-apis/indexing",
-          ],
+          items: ["api-reference/indexing-apis/indexing"],
         },
         {
           type: "category",
@@ -309,9 +313,7 @@ module.exports = {
         {
           type: "category",
           label: "Large Language Models APIs",
-          items: [
-            "api-reference/llms-apis/llms-api",
-          ],
+          items: ["api-reference/llms-apis/llms-api"],
         },
         {
           type: "category",
@@ -321,9 +323,7 @@ module.exports = {
         {
           type: "category",
           label: "Reranker APIs",
-          items: [
-            "api-reference/reranker-apis/reranker-apis",
-          ],
+          items: ["api-reference/reranker-apis/reranker-apis"],
         },
         {
           type: "category",
@@ -370,9 +370,7 @@ module.exports = {
         {
           type: "category",
           label: "Generation Presets APIs",
-          items: [
-            "api-reference/generation-presets/list-generation-presets",
-          ],
+          items: ["api-reference/generation-presets/list-generation-presets"],
         },
       ],
     },
