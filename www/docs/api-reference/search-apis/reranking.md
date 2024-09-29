@@ -9,56 +9,58 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-Reranking involves a process of rescoring and refining an initial set of query 
-results to achieve a more precise ranking. It employs a machine learning model 
-that while slower than the rapid retrieval step, offers more accurate results. 
-We currently have two rerankers, the English reranker and the Maximal Marginal 
-Relevance (MMR) reranker.
+Initial search results often fail to capture nuanced relevance or diversity, 
+potentially leading to suboptimal user experiences. Utilizing Vectara's 
+reranking can significantly enhance the quality and usefulness of 
+search results, leading to more effective information retrieval. Reranking 
+search results involves a process of rescoring and refining an initial set 
+of query results to achieve a more precise ranking. It employs a machine 
+learning model that while slower than the rapid retrieval step, offers more 
+accurate results.
 
-## English Cross-attentional Reranker (Scale Only)
+We currently provides the following rerankers: 
 
-The English cross-attentional reranker is only available to Scale users and you enable it by 
-specifying `272725717` as the `reranker_id`.
+* [**Multilingual Reranker v1**](/docs/learn/vectara-multi-lingual-reranker) (`type=customer_specific` and `reranker_id=rnk_272725719`) for accurate results across over 100 languages.
+* [**Maximal Marginal Relevance (MMR) Reranker**](/docs/learn/mmr-reranker) (`type=mmr`) for diversifying results while maintaining relevance.
+* [**User Defined Function Reranker**](/docs/learn/user-defined-function-reranker) (`type=userfn`) for custom scoring based on metadata.
+* [**Chain Reranker**](/docs/learn/chain-reranker) (`type=chain`) for combining multiple reranking strategies in sequence to meet 
+  more complex search requirements.
 
-In most scenarios, it makes sense to use the default query `start` value of `0` so 
-that you're reranking all of the best initial results. You can also set 
-`numResults` to the total number of documents you wish to rerank. The
-default value is `10`.
+## Enable reranking
 
-## Maximal Marginal Relevance (MMR) Reranker
+To enable reranking, specify the appropriate value for the `type` in the 
+`reranker` object. For the MMR reranker, use `mmr`. In most scenarios, 
+it makes sense to use the default query `start` value of `0` so that you're 
+reranking all of the best initial results. You can also set `limit` of the 
+`query` to the total number of documents you wish to rerank. The default value 
+is `25`.
 
-The Maximal Marginal Relevance (MMR) reranker enables you to diversify search 
-results to reduce redundancy while maintaining relevance to the query. 
-Search queries often result in a collection of similar documents that, while 
-relevant, may lack variety. MMR addresses this by reranking the results to 
-include documents that are both relevant to your query but also different 
-from the documents already listed in the search results. This approach 
-provides users with a more balanced set of results as they may show 
-different perspectives related to your query.
+The following example shows the `limit` and `type` values in a query. Note that 
+this simplified example intentionally omits several parameter values.
 
-You enable the MMR reranker by specifying the `reranker_id` as `272725718`. 
-Having a diverse set of relevant results has different benefits depending on 
-the use case:
-* In a pure search scenario, it improves user engagement with results by 
-  avoiding repetition.
-* In a generative AI scenario, it produces more comprehensive summaries.
-* Diversifying results can potentially represent all points of view in the 
-  data or reduce bias.
+```json
+{
+  "query": "What is my question?",
+  "stream_response": false,
+    "search": {
+    "start": 0,
+    "limit": 25,
+    "context_configuration": {},
+    },
+    "reranker": {
+          "type": "mmr",
+          "diversity_bias": "0.4"
+    },
+  "generation": [],
+  "enable_factual_consistency_score": true
+}
+```
 
-In addition to specifying the `reranker_id` as `272725718` at query time, you also 
-specify a `diversity bias` range between `0.0` and `1.0`. Values closer to `1.0` 
-optimize for the most diverse results. 
+You can also enable reranking in the Vectara console after navigating to the 
+Query tab of a corpus and selecting **Retrieval**.
 
-You can also enable the Maximal Marginal Relevance Reranker in the Console 
-UI as follows:
+:::note
 
-1. Open a corpus from the list and select the **Query** tab.
-2. Click **Configure retrieval** and a navigation drawer opens.
-3. Enable the **Rerank search results** option.
+Scale users have a drop-down menu to select different rerankers.
 
-   ![Diversity Reranker](/img/diversity_reranker.png)
-4. Enter a value between `0.0` and `1.0` in the `Diversity factor` field.
-5. Close the Configure retrieval drawer and click **Reload results**.
-
-By applying the MMR Reranker to queries, users get results that are not just 
-relevant but diverse and comprehensive.
+:::

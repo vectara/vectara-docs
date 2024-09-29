@@ -1,0 +1,31 @@
+instances:
+  - url: https://vectara.docs.buildwithfern.com
+title: Vectara | Documentation
+navigation:
+  - page: Introduction
+    path: ./pages/introduction.mdx
+  - api: API Reference
+    snippets: 
+      python: vectara
+      typescript: vectara
+colors:
+  accent-primary: 
+    light: '#264cd6'
+    dark: '#264cd6'
+  background: 
+    light: '#000000'
+    dark: '#ffffff'
+  header-background: 
+    light: '#f3f7fb'
+    dark: '#2c313a'
+typography:
+  bodyFont:
+    name: CircularXXWeb
+    path: ./assets/CircularXXWeb-Regular.woff2
+  headingsFont:
+    name: CircularXXSub
+    path: ./assets/CircularXXSub-Medium.woff2
+logo: 
+  light: ./assets/logo-light.svg 
+  dark: ./assets/logo-dark.svg
+favicon: ./assets/favicon.jpeg

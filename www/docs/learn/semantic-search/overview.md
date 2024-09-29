@@ -10,7 +10,10 @@ Vectara lets you build a semantic, LLM-powered search application. Semantic
 search is not just about finding data, but about understanding data and 
 helping you answer questions about your data. This topic outlines what <Config v="names.product"/>
 can do for this use case as well as why and how to employ these features for 
-the best overall end-user experience.
+the best overall end-user experience. By integrating advanced features such 
+as metadata filtering, reranking, and Retrieval Augmented Generation, Vectara 
+not only simplifies the search process but also enriches the quality of 
+information retrieved.
 
 ## Large Language Models (LLMs)
 
@@ -55,4 +58,38 @@ For example, a UPC code, barcode number, or particular named
 configuration setting has little to no semantic meaning, and if you expect your
 users to perform this type of search, it's best to look into our
 [hybrid search](/docs/learn/hybrid-search) documentation to learn about how 
-to blend neural search and keyword search.
+to blend neural search and keyword search. The ability to toggle between 
+neural and keyword search methodologies enhances the effectiveness of search 
+results in these use cases.
+
+## Advanced query configurations
+
+Application builders can define specific [query](/docs/api-reference/search-apis/search) parameters 
+for their searches, including context, pagination, metadata filters, and 
+semantics. This flexibility empowers users to tailog queries to specific use 
+cases, ensuring that the search results are as relevant and precise as possible.
+
+### Query request and response
+  
+Developers can specify the `query` text and manage pagination through the `offset` 
+and `limit` parameters. This structured approach helps in managing the 
+flow of search results effectively.
+
+### Metadata filtering
+
+Vectara supports enhanced [metadata filtering](/docs/learn/metadata-search-filtering/filter-overview), which allows users to restrict  
+searches to specific parts of the corpus based on defined criteria, using 
+common SQL syntax.
+
+### Reranking
+  
+Vectara enhances the relevance of search results through its [reranking configurations](/docs/api-reference/search-apis/reranking). 
+The `reranker` object has different types that can be used to adjust the 
+relevance of search results based on specific needs, such as diversity or 
+precision.
+
+Consider a scenario where a user queries about the latest advancements in 
+medical research. You can configure advanced query settings to pull relevant 
+documents from specified corpora, apply metadata filters to focus on recent 
+publications, and then use RAG to generate a concise, informative summary that 
+directly answers the user’s query.

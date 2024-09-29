@@ -9,55 +9,38 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 
 When you receive query results from <Config v="names.product"/>, alongside the
-result, you'll receive a values for `section` and `offset`.  For example:
+result, you'll receive values for `part_metadata` and `document_metadata`. For 
+example:
 
 ```json showLineNumbers
 {
-    "responseSet": [
-        {
-            "response": [
-                {
-                    "text": "Foo bar baz.",
-                    "score": 0.2553684115409851,
-                    "documentIndex": 0,
-                    "corpusKey": {
-                        "customerId": 0,
-                        "corpusId": 1234,
-                        "semantics": 0,
-                        "metadataFilter": "",
-                        "dim": []
-                    },
-                    "metadata": [
-                        {
-                            "name": "lang",
-                            "value": "eng"
-                        },
-                        {
-                            "name": "section",
-                            "value": "1"
-                        },
-                        {
-                            "name": "offset",
-                            "value": "36"
-                        }
-                    ]
-                },
-                ...
-            ]
-        }
-    ]
+  "search_results": [
+    {
+      "text": "Foo bar baz.",
+      "score": 0.2553684115409851,
+      "part_metadata": {
+        "lang": "eng",
+        "section": "1",
+        "offset": "36"
+      },
+      "document_metadata": {},
+      "document_id": "doc_123456789",
+      "request_corpora_index": 0
+    }
+  ]
 }
 ```
 
 For highlighting and snippet extraction, we need to pay attention to three key
 elements in this response:
-1. `text` under `response` which gives us the text/length to highlight
-2. `section` under `metadata` which tells us which specific section the
+1. `text` under `search_results` which gives us the text/length to highlight
+2. `section` under `part_metadata` which tells us which specific section the
 relevant snippet showed up in
-3. `offest` under `metadata` which tells us how far into the section the
+1. `offest` under `part_metadata` which tells us how far into the section the
 relevant snippet is
 
-## Text and Offset
+## Text and offset
+
 The most familiar parts of highlighting or snippet extraction if you've used
 any other search system are the `text` and `offset` values.  The `offset` tells
 you how many characters into the given section should be skipped before any
@@ -72,9 +55,9 @@ And if the query text is "striped horse-like animal," you might get back an
 an `offset` of 48 (how many characters before the sentence starting with "How"
 starts) and a `text` value of "How vexingly quick daft zebras jump!"
 
-## Configuring Context
+## Configuring context
 
-The `ContextConfiguration` object in the [query request](/docs/api-reference/search-apis/search#context-configuration) allows you to control 
+The `context_configuration` object in the [query request](/docs/api-reference/search-apis/search#context-configuration) allows you to control 
 the amount of context included with each matching document part (snippet) that 
 appears in a summary. Adding this context configuration affects the results 
 quality for summarization by enhancing relevance and reducing ambiguity around 
@@ -96,7 +79,8 @@ for sentences before/after and characters before/after, then
 characters_before/after is ignored and summary returns the sentences values. 
 Experiment and iteratve with different values.
 
-## Including Additional Context
+## Including additional context
+
 Often, just having the `text` and `offset` values are enough to create a
 compelling highlighting/snippet extraction experience for short-form documents
 like social media posts and when you just have 1 section per documents.
@@ -112,28 +96,24 @@ you uploaded documents using the
 [file upload API](/docs/api-reference/indexing-apis/file-upload/format-for-upload), then you might need
 to look up the additional sections.  This can be done by an additional query
 to <Config v="names.product"/> using
-[filters](/docs/learn/metadata-search-filtering/filter-overview).  Do do this, retrieve the
-`id` value of the document and perform a query for that ID.  For example:
+[filters](/docs/learn/metadata-search-filtering/filter-overview). To do this, retrieve the
+`document_id` value of the document and perform a query for that ID. For example:
 
-```json showLineNumbers title="https://api.vectara.io/v1/query"
+```json showLineNumbers title="https://api.vectara.io/v2/query"
+POST https://api.vectara.io/v2/query
 {
-    "query":[
-        {
-            "query": "",
-            "start":0,
-            "numResults":10,
-            "corpusKey":[
-                {
-                    "customerId":123456789,
-                    "corpusId":1234,
-                    "semantics":0,
-                    "metadataFilter":"doc.id = '5b943498-d18c-4095-92f9-7a03f026f680'",
-                    "dim":[]
-                }
-            ]
-        }
-    ]
-}          
+  "query": "",
+  "search": {
+    "corpora": [
+      {
+        "corpus_key": "my-corpus",
+        "metadata_filter": "doc.id = '5b943498-d18c-4095-92f9-7a03f026f680'"
+      }
+    ],
+    "offset": 0,
+    "limit": 10
+  }
+}         
 ```
 
 In this example, the relevant document ID is

@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The Query tab lets you experiement with different search, summarization, and 
+The Query tab lets you experiment with different search, summarization, and 
 chat options. Whether you want to retrieve relevant information, generate 
 summaries grounded in facts with Retrieval-Augmented Generation (RAG), or 
 engage in conversational interactions, the Query tab offers a range of 
@@ -26,7 +26,7 @@ information from your corpus and you have two options.
    and context of your queries, enabling accurate and relevant search results.
 2. **Summarized Semantic Search**: Extending the Semantic Search functionality, this 
    option uses Retrieval-Augmented Generation (RAG) to provide concise summaries in 
-   response to your queries. This can be particularly useful when you need a
+   response to your queries. This can be particularly useful when you need an 
    overview of the relevant information within your data.
 
 Both search options provide various configuration settings to fine-tune the search experience
@@ -49,21 +49,32 @@ your specific needs:
 
 ### Configure retrieval
 
-The retrieval configuration lets you enable hybrid search by adjusting the 
-`lambda` value, which is a balance between neural search and keyword search. The 
-reranking option lets you rerank orders of search results and Scale users can 
-use the Maximum Marginal Relevance (MMR) Reranker with a diversity factor to 
+The Retrieval configuration lets you enable hybrid search by adjusting the 
+`lambda` value, which is a balance between neural search and keyword search. 
+
+![Configure hybrid search](/img/configure_hybrid_search.png)
+
+The reranking option lets you rerank orders of search results also use the 
+Maximum Marginal Relevance (MMR) Reranker with a diversity factor to 
 reduce bias.
 
-![Configure retrieval drawer](/img/configure_retrieval.png)
+![Configure reranking](/img/configure_reranking.png)
 
-### Configure search filters
 
-Select Filters to enter a filter expression or select filter attributes to 
-further refine your search results. We provide some syntax examples in the 
-drawer.
+### Configure context
 
-![Configure search filters](/img/configure_filters_drawer.png)
+The Result context lets you configure the number of sentences or characters 
+before and after the matched text. If you use the number of characters,  
+Vectara captures the entire sentence that contains the captured characters.
+
+![Configure reesult context](/img/configure_result_context.png)
+
+### Configure generation
+
+The Generation section shows the Model and Prompt for your account and lets 
+configure the Language and Summarization options:
+
+![Configure generation options](/img/configure_generation.png)
 
 ### Configure evaluation
 
@@ -74,8 +85,20 @@ while a lower score indicates a greater probability of hallucinations.
 
 ![Configure evaluation](/img/configure_evaluation.png)
 
+
+### Configure search filters
+
+Select the Filters tab to enter a filter expression or select filter attributes 
+to further refine your search results. We provide some syntax examples in the 
+drawer.
+
+![Configure filters](/img/configure_filters.png)
+
+
 ### Show API Request and Response
 
 While you experiment with these different search options and configurations, 
-you can click **Show API request** to see the underlying API request and 
-response.
+you can click **Show API request** next to the **Send query** icon to see the 
+underlying API request and response:
+
+![Show API request and response](/img/show_api_request.png)

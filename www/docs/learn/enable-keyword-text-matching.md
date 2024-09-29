@@ -1,91 +1,99 @@
 ---
 id: enable-keyword-text-matching
-title: 'Enable Exact Keyword Text Matching'
-sidebar_label: Enable Exact Keyword Text Matching
+title: Keyword Search
+sidebar_label: Keyword Search
 ---
 
-By default, Vectara disables exact and Boolean text matching, which is similar 
-to a traditional, keyword-based search. You enable exact keyword matching, 
-which disables neural retrieval, by specifying the `lambda` value as `1` at 
-query time, specifically under the `corpusKey`:
+import {Config} from '@site/docs/definitions.md';
+
+In some specialized fields such as legal, compliance, and technical 
+domains, relying solely on [semantic search](/docs/learn/semantic-search/semantic-search-overview) can miss information tied to 
+specific phrases or terms. By default, Vectara optimizes for semantic 
+understanding and disables exact and Boolean text matching, which is similar 
+to a traditional, keyword-based search. However, users can enable precise 
+keyword matching by setting the `lexical_interpolation` value to `1` at query 
+time.
+
+Vectara offers flexibility in balancing keyword matching with advanced semantic 
+capabilities. Keyword search is particularly useful when searching for 
+specific legal clauses, regulations, error codes, and precise identifiers. 
+This level of control enables users to tailor their searches to the specific 
+requirements of their domain, balancing between semantic understanding and 
+exact keyword matching as needed.
+
+To enable exact keyword matching and disable neural retrieval, specify the 
+`lexical_interpolation` value as `1` in the `search` object at query time:
 
 ```json
-      "corpusKey": [
-        {
-          "customerId": 123456789,
-          "corpusId": 5,
-          "semantics": 0,
-          "metadataFilter": "",
-          "lexicalInterpolationConfig": {
-            "lambda": 1.0
-          },
-          "dim": []
-        }
+"search": {
+    "corpora": [
+      {
+        "corpus_key": "sports-rules"
+      }
+    ],
+    "offset": 0,
+    "limit": 10,
+    "context_configuration": {
+      "sentences_before": 2,
+      "sentences_after": 2,
+      "start_tag": "%START_SNIPPET%",
+      "end_tag": "%END_SNIPPET%"
+    },
+    "lexical_interpolation": 1.0
+  },
 ```
 
-## Enable Exact Keyword Matching in the Console UI
+:::note
+Setting `lexical_interpolation` to `1.0` is equivalent to the original BM25.
+:::
 
-You can also set this value in the Console UI:
+## Enable exact keyword matching in the console UI
 
-![Set Lambda to 1.0](/img/lambda_console.png)
+You can also set this value in the Console UI and experiment with searches and 
+disable the hybrid search option.
 
-The default value of `lambda` is `0`, which disables exact and Boolean text
-matching. 
+![Set lexical_interpolation to 1.0](/img/lambda_console.png)
 
-## Example Query with Exact Keyword Search Enabled
+The default value of `lexical_interpolation` is `0`, which disables exact and 
+Boolean text matching. 
 
-The following example shows the full query with the `lambda` value set to `1`:
+## Enable exact keyword Search
+
+The following example shows the full [query](/docs/api-reference/search-apis/search) with 
+the `lexical_interpolation` value set to `1`:
 
 ```json
-
 curl -X POST \
--H "Authorization: <Bearer Token>" \
--H "customer-id: 1234567899" \
-https://api.vectara.io:443/v1/query \
+-H "Content-Type: application/json" \
+-H "x-api-key: <API_KEY>" \
+https://api.vectara.io/v2/query \
 -d @- <<END;
 {
-  "query": [
-    {
-      "query": "What is offsides?",
-      "queryContext": "",
-      "start": 0,
-      "numResults": 10,
-      "contextConfig": {
-        "charsBefore": 0,
-        "charsAfter": 0,
-        "sentencesBefore": 2,
-        "sentencesAfter": 2,
-        "startTag": "%START_SNIPPET%",
-        "endTag": "%END_SNIPPET%"
-      },
-      "corpusKey": [
-        {
-          "customerId": 123456789,
-          "corpusId": 5,
-          "semantics": 0,
-          "metadataFilter": "",
-          "lexicalInterpolationConfig": {
-            "lambda": 1.0
-          },
-          "dim": []
-        }
-      ],
-      "summary": [
-        {
-          "maxSummarizedResults": 5,
-          "responseLang": "eng",
-          "summarizerPromptName": "vectara-summary-ext-v1.2.0"
-        }
-      ]
-    }
-  ]
+  "query": "What is offsides?",
+  "search": {
+    "corpora": [
+      {
+        "corpus_key": "nhl-rulebook-2024"
+      }
+    ],
+    "offset": 0,
+    "limit": 10,
+    "context_configuration": {
+      "sentences_before": 2,
+      "sentences_after": 2,
+      "start_tag": "%START_SNIPPET%",
+      "end_tag": "%END_SNIPPET%"
+    },
+    "lexical_interpolation": 1.0
+  },
+  "generation": {
+    "prompt_name": "vectara-summary-ext-v1.2.0",
+    "max_used_search_results": 5
+  }
 }
 END
-        
 ```
 
-
-Experimenting with the `lambda` value is useful if you're trying to evaluate 
-how a keyword system like one based on Elasticsearch or Solr may compare to 
-Vectara.
-
+Experimenting with the `lexical_interpolation` value is useful if you're trying
+to evaluate how a keyword system like one based on Elasticsearch or Solr may 
+compare to Vectara.

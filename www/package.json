@@ -5,7 +5,8 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start --port=5000",
-    "build": "docusaurus build",
+    "build": "npm run buildStatic && docusaurus build",
+    "buildStatic": "node buildStatic.js",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
@@ -15,9 +16,11 @@
     "gen-api-docs": "docusaurus gen-api-docs all"
   },
   "dependencies": {
+    "@analytics/google-tag-manager": "^0.5.5",
     "@docusaurus/core": "2.4.3",
     "@docusaurus/preset-classic": "2.4.3",
     "@mdx-js/react": "^1.6.22",
+    "@vectara/react-search": "^1.1.0",
     "classnames": "^2.3.2",
     "clsx": "^1.2.1",
     "docusaurus": "^1.14.7",
@@ -31,11 +34,11 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-focus-on": "^3.9.1",
-    "react-icons": "^4.11.0",
-    "uuid-by-string": "^4.0.0"
+    "react-icons": "^4.11.0"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "2.4.3"
+    "@docusaurus/module-type-aliases": "2.4.3",
+    "esbuild": "^0.19.9"
   },
   "browserslist": {
     "production": [

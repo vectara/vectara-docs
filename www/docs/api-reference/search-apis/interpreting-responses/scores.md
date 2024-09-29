@@ -33,12 +33,14 @@ or bury results based on metadata.
 :::
 
 
-## Comparison With Keyword Systems
+## Comparison with keyword systems
+
 If you've used a keyword-based system (BM25, TF/IDF, etc) and are used to the
 scoring mechanics, it's worth discussing the differences so you can understand
 what to expect with <Config v="names.product"/>.
 
 ### Limiting number of results
+
 Unlike keyword systems which *only* match documents that *exactly* match
 the term(s) that have been searched, <Config v="names.product"/>
 attempts to produce scores for the majority of documents in a corpus -- even
@@ -55,6 +57,7 @@ from 0.5 to 0.2 means results have gotten significantly worse, and can be used
 as a signal to stop returning results.
 
 ### Comparing results across time and corpora
+
 One of the advantages of <Config v="names.product"/>'s scoring system is that
 results are comparable across both different points in time and completely
 different corpora, even after you've indexed additional/different documents.
@@ -65,6 +68,7 @@ a term or set of terms is, but rather the absolute semantic significance of a
 document to a query.
 
 ### Multilingual
+
 Most keyword-derived search systems will instruct you to separate content for
 different languages into different corpora or indices because some terms are
 extremely common in one language but extremely rare in a different language.
@@ -76,7 +80,8 @@ like that where indexing a set of Spanish documents containing the word "hay"
 the same corpus that talks about the grain "hay" because <Config v="names.product"/>
 takes the language and context into account by default.
 
-## Standard Results Response
+## Standard results response
+
 By default, results from <Config v="names.product"/> will be scored on a scale
 from -1 to 1, with 1 being a perfect match and -1 having absolutely nothing to
 do with the query.  In practice, the vast majority will be scored between 0
@@ -86,7 +91,8 @@ As with most search systems, there is no hard rule around when to cut off
 results as no longer very relevant.  However, as a general rule, scores less
 than 0.1 tend to be of low quality and can typically be safely removed/ignored.
 
-## Reranked Results Response
+## Reranked results response
+
 Scores from <Config v="names.product"/> after [reranking](/docs/api-reference/search-apis/reranking) are scored on a
 scale from -infinity to +infinity.  Internally, the numbers returned from the
 reranker are derived from a logarithmic scoring system, which means that in
@@ -95,5 +101,3 @@ practice, scores much higher than 10 or much lower than -10 should be rare.
 As with standard results, there's no hard rule around when to cut off results,
 but scores above around 2.5 or so tend to be pretty good, though we advise
 users to test with their own data and some sample queries.
-
-

@@ -1,0 +1,418 @@
+paths:
+  /v2/corpora:
+    get:
+      x-fern-sdk-group-name: corpora
+      x-fern-sdk-method-name: list
+      x-fern-pagination: 
+        cursor: $request.page_key
+        next_cursor: $response.metadata.page_key
+        results: $response.corpora
+      x-fern-examples: 
+        - name: "No Limit"
+          response: 
+            body: 
+              metadata: 
+                page_key: "eyJ0eXAi"
+              corpora:
+                - id: "crp_123"
+                  key: "corpus_key"
+                  name: "corpus_name"
+                  description: "corpus_description"
+                  created_at: "2021-01-01T00:00:00Z"
+                - id: "crp_234"
+                  key: "my_key"
+                  name: "name"
+                  description: "corpus_description"
+                  created_at: "2021-01-01T00:00:00Z"
+                - id: "crp_345"
+                  key: "corpus_key"
+                  name: "corpus_name"
+                  description: "corpus_description"
+                  created_at: "2021-01-01T00:00:00Z"
+          code-samples: 
+            - sdk: typescript
+              name: Request
+              code: |-
+                const request = require('request');
+                let options = {
+                  'method': 'GET',
+                  'url': 'https://api.vectara.io/v2/corpora',
+                  'headers': {
+                    'Accept': 'application/json',
+                    'Authorization': 'Bearer <TOKEN>'
+                  }
+                };
+                request(options, (error, response) => {
+                  if (error) throw new Error(error);
+                  console.log(response.body);
+                });
+            - sdk: typescript
+              name: Axios
+              code: |-
+                const axios = require('axios');
+
+                let config = {
+                  method: 'get',
+                maxBodyLength: Infinity,
+                  url: 'https://api.vectara.io/v2/corpora',
+                  headers: { 
+                    'Accept': 'application/json', 
+                    'Authorization': 'Bearer <TOKEN>'
+                  }
+                };
+
+                axios(config)
+                .then((response) => {
+                  console.log(JSON.stringify(response.data));
+                })
+                .catch((error) => {
+                  console.log(error);
+                });
+            - sdk: typescript
+              name: Native
+              code: |-
+                const https = require('follow-redirects').https;
+                const fs = require('fs');
+
+                let options = {
+                  'method': 'GET',
+                  'hostname': 'api.vectara.io',
+                  'path': '/v2/corpora',
+                  'headers': {
+                    'Accept': 'application/json',
+                    'Authorization': 'Bearer <TOKEN>'
+                  },
+                  'maxRedirects': 20
+                };
+
+                const req = https.request(options, (res) => {
+                  let chunks = [];
+
+                  res.on("data", (chunk) => {
+                    chunks.push(chunk);
+                  });
+
+                  res.on("end", (chunk) => {
+                    let body = Buffer.concat(chunks);
+                    console.log(body.toString());
+                  });
+
+                  res.on("error", (error) => {
+                    console.error(error);
+                  });
+                });
+
+                req.end();
+            - sdk: typescript
+              name: Vectara SDK
+              code: |-
+                import { VectaraClient } from "vectara";
+                const client = new VectaraClient({ clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET", apiKey: "YOUR_API_KEY" });
+                await client.corpora.list();
+            - sdk: python
+              name: Requests
+              code: |-
+                import requests
+
+                url = "https://api.vectara.io/v2/corpora"
+
+                payload={}
+                headers = {
+                  'Accept': 'application/json',
+                  'Authorization': 'Bearer <TOKEN>'
+                }
+
+                response = requests.request("GET", url, headers=headers, data=payload)
+            - sdk: python
+              name: HTTP.client
+              code: |-
+                import http.client
+
+                conn = http.client.HTTPSConnection("api.vectara.io")
+                payload = ''
+                headers = {
+                  'Accept': 'application/json',
+                  'Authorization': 'Bearer <TOKEN>'
+                }
+                conn.request("GET", "/v2/corpora", payload, headers)
+                res = conn.getresponse()
+                data = res.read()
+                print(data.decode("utf-8"))
+            - sdk: python
+              name: Vectara SDK
+              code: |-
+                from vectara import Vectara
+                client = Vectara(
+                    api_key="YOUR_API_KEY",
+                    client_id="YOUR_CLIENT_ID",
+                    client_secret="YOUR_CLIENT_SECRET",
+                )
+                response = client.corpora.list()
+        - name: "Limit 1"
+          query-parameters: 
+            limit: 1
+          response: 
+            body: 
+              metadata: 
+                page_key: "eyJ0eXAi"
+              corpora:
+                - id: "crp_123"
+                  key: "corpus_key"
+                  name: "corpus_name"
+                  description: "corpus_description"
+                  created_at: "2021-01-01T00:00:00Z"
+              
+    post:
+      x-fern-sdk-group-name: corpora
+      x-fern-sdk-method-name: create
+  /v2/corpora/{corpus_key}:
+    get:
+      x-fern-sdk-group-name: corpora
+      x-fern-sdk-method-name: get
+    delete:
+      x-fern-sdk-group-name: corpora
+      x-fern-sdk-method-name: delete
+    patch:
+      x-fern-sdk-group-name: corpora
+      x-fern-sdk-method-name: update
+  /v2/corpora/{corpus_key}/reset:
+    post:
+      x-fern-sdk-group-name: corpora
+      x-fern-sdk-method-name: reset
+  /v2/corpora/{corpus_key}/replace_filter_attributes:
+    post:
+      x-fern-sdk-group-name: corpora
+      x-fern-sdk-method-name: replaceFilterAttributes
+  /v2/query:
+    post:
+      x-fern-streaming: 
+        stream-condition: $request.stream_response
+        response:
+          $ref: "#/components/schemas/QueryFullResponse"
+        response-stream:
+          $ref: "#/components/schemas/QueryStreamedResponse"
+      x-fern-sdk-method-name: query
+  /v2/corpora/{corpus_key}/query:
+    get:
+      x-fern-sdk-group-name: corpora
+      x-fern-sdk-method-name: search
+    post:
+      x-fern-streaming: 
+        stream-condition: $request.stream_response
+        response:
+          $ref: "#/components/schemas/QueryFullResponse"
+        response-stream:
+          $ref: "#/components/schemas/QueryStreamedResponse"
+      x-fern-sdk-group-name: corpora
+      x-fern-sdk-method-name: query
+  /v2/corpora/{corpus_key}/documents:
+    get:
+      x-fern-sdk-group-name: documents
+      x-fern-sdk-method-name: list
+      x-fern-pagination: 
+        cursor: $request.page_key
+        next_cursor: $response.metadata.page_key
+        results: $response.documents
+    post: 
+      x-fern-sdk-group-name: documents
+      x-fern-sdk-method-name: create
+  /v2/corpora/{corpus_key}/documents/{document_id}:
+    delete:
+      x-fern-sdk-group-name: documents
+      x-fern-sdk-method-name: delete
+  /v2/chats:
+    get:
+      x-fern-sdk-group-name: chats
+      x-fern-sdk-method-name: list
+      x-fern-pagination: 
+        cursor: $request.page_key
+        next_cursor: $response.metadata.page_key
+        results: $response.chats
+    post:
+      x-fern-streaming:
+        stream-condition: $request.stream_response
+        response:
+          $ref: "#/components/schemas/ChatFullResponse"
+        response-stream:
+          $ref: "#/components/schemas/ChatStreamedResponse"
+      x-fern-sdk-method-name: chat
+  /v2/llms:
+    get:
+      x-fern-sdk-group-name: llms
+      x-fern-sdk-method-name: list
+      x-fern-pagination: 
+        cursor: $request.page_key
+        next_cursor: $response.metadata.page_key
+        results: $response.llms
+  /v2/chats/{chat_id}:
+    get:
+      x-fern-sdk-group-name: chats
+      x-fern-sdk-method-name: get
+    delete:
+      x-fern-sdk-group-name: chats
+      x-fern-sdk-method-name: delete
+  /v2/chats/{chat_id}/turns:
+    get:
+      x-fern-sdk-group-name: chats
+      x-fern-sdk-method-name: listTurns
+    post:
+      x-fern-streaming: 
+        stream-condition: $request.stream_response
+        response:
+          $ref: "#/components/schemas/ChatFullResponse"
+        response-stream:
+          $ref: "#/components/schemas/ChatStreamedResponse"
+      x-fern-sdk-group-name: chats
+      x-fern-sdk-method-name: createTurns
+  /v2/chats/{chat_id}/turns/{turn_id}:
+    get:
+      x-fern-sdk-group-name: chats
+      x-fern-sdk-method-name: getTurn
+    delete:
+      x-fern-sdk-group-name: chats
+      x-fern-sdk-method-name: deleteTurn
+    patch:
+      x-fern-sdk-group-name: chats
+      x-fern-sdk-method-name: updateTurn
+  /v2/encoders:
+    get:
+      x-fern-sdk-group-name: encoders
+      x-fern-sdk-method-name: list
+      x-fern-pagination: 
+        cursor: $request.page_key
+        next_cursor: $response.metadata.page_key
+        results: $response.encoders
+  /v2/rerankers:
+    get:
+      x-fern-sdk-group-name: rerankers
+      x-fern-sdk-method-name: list
+      x-fern-pagination: 
+        cursor: $request.page_key
+        next_cursor: $response.metadata.page_key
+        results: $response.rerankers
+  /v2/jobs: 
+    get: 
+      x-fern-sdk-group-name: jobs
+      x-fern-sdk-method-name: list
+      x-fern-pagination: 
+        cursor: $request.page_key
+        next_cursor: $response.metadata.page_key
+        results: $response.jobs
+  /v2/jobs/{job_id}:
+    get:
+      x-fern-sdk-group-name: jobs
+      x-fern-sdk-method-name: get
+  /v2/users:
+    get:
+      x-fern-sdk-group-name: users
+      x-fern-sdk-method-name: list
+      x-fern-pagination: 
+        cursor: $request.page_key
+        next_cursor: $response.metadata.page_key
+        results: $response.users
+    post:
+      x-fern-sdk-group-name: users
+      x-fern-sdk-method-name: create
+  /v2/users/{username}:
+    get:
+      x-fern-sdk-group-name: users
+      x-fern-sdk-method-name: get
+    delete:
+      x-fern-sdk-group-name: users
+      x-fern-sdk-method-name: delete
+    patch:
+      x-fern-sdk-group-name: users
+      x-fern-sdk-method-name: update
+  /v2/users/{username}/reset_password:
+    post:
+      x-fern-sdk-group-name: users
+      x-fern-sdk-method-name: resetPassword
+  /v2/api_keys:
+    get:
+      x-fern-sdk-group-name: apiKeys
+      x-fern-sdk-method-name: list
+      x-fern-pagination: 
+        cursor: $request.page_key
+        next_cursor: $response.metadata.page_key
+        results: $response.api_keys
+    post:
+      x-fern-sdk-group-name: apiKeys
+      x-fern-sdk-method-name: create
+  /v2/api_keys/{api_key_id}:
+    get:
+      x-fern-sdk-group-name: apiKeys
+      x-fern-sdk-method-name: get
+    delete:
+      x-fern-sdk-group-name: apiKeys
+      x-fern-sdk-method-name: delete
+    patch:
+      x-fern-sdk-group-name: apiKeys
+      x-fern-sdk-method-name: update
+  /v2/app_clients:
+    get:
+      x-fern-sdk-group-name: appClients
+      x-fern-sdk-method-name: list
+      x-fern-pagination: 
+        cursor: $request.page_key
+        next_cursor: $response.metadata.page_key
+        results: $response.app_clients
+    post: 
+      x-fern-sdk-group-name: appClients
+      x-fern-sdk-method-name: create
+  /v2/app_clients/{app_client_id}:
+    get:
+      x-fern-sdk-group-name: appClients
+      x-fern-sdk-method-name: get
+    delete:
+      x-fern-sdk-group-name: appClients
+      x-fern-sdk-method-name: delete
+    patch:
+      x-fern-sdk-group-name: appClients
+      x-fern-sdk-method-name: update
+  /oauth/token:
+    post:
+      security: []
+      summary: Request an access token
+      description: Obtain an OAuth2 access token using client credentials
+      x-fern-sdk-group-name: 
+        - auth
+      x-fern-sdk-method-name: getToken
+      x-fern-server-name: Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                client_id:
+                  type: string
+                  description: The client ID of the application
+                client_secret:
+                  type: string
+                  description: The client secret of the application
+                grant_type:
+                  x-fern-type: literal<"client_credentials">
+              required:
+                - client_id
+                - client_secret
+                - grant_type      
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: 
+                x-fern-type-name: GetTokenResponse
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                  token_type:
+                    type: string
+                  expires_in:
+                    type: integer
+                required:
+                  - access_token
+                  - token_type
+                  - expires_in
