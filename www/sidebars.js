@@ -175,6 +175,18 @@ module.exports = {
     },
     {
       type: "category",
+      label: "Integrations",
+      items: [
+        "integrations/community-collaborations-and-partnerships",
+        "integrations/vectara-and-langchain",
+        "integrations/vectara-and-llamaindex",
+        "integrations/vectara-and-flowise",
+        "integrations/vectara-and-airbyte",
+        "integrations/vectara-and-unstructured",
+      ],
+    },
+    {
+      type: "category",
       label: "Vectara Console",
       collapsed: true,
       items: [
