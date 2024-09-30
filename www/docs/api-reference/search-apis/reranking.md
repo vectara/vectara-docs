@@ -23,9 +23,10 @@ accurate results.
 Vectara currently provides the following rerankers: 
 
 * [**Multilingual Reranker v1**](/docs/learn/vectara-multi-lingual-reranker) (`type=customer_specific` and `reranker_id=rnk_272725719`) 
-  provides more accurate neural ranking than the initial Boomerang retrieval. 
-  While computationally more expensive, it offers improved text scoring across 
-  a wide range of languages, making it suitable for diverse content..
+  also known as Slingshot, provides more accurate neural ranking than the 
+  initial Boomerang retrieval. While computationally more expensive, it offers 
+  improved text scoring across   a wide range of languages, making it suitable 
+  for diverse content.
 * [**Maximal Marginal Relevance (MMR) Reranker**](/docs/learn/mmr-reranker) (`type=mmr`) 
   for diversifying results while maintaining relevance.
 * [**User Defined Function Reranker**](/docs/learn/user-defined-function-reranker) (`type=userfn`) for 
@@ -68,19 +69,54 @@ this simplified example intentionally omits several parameter values.
   "enable_factual_consistency_score": true
 }
 ```
-
+:::tip
 You can also enable reranking in the Vectara console after navigating to the 
 Query tab of a corpus and selecting **Retrieval**.
+:::
 
-## Search cutoffs limit
+## Search cutoffs 
+
+Sometimes you may want to exclude results that are not relevant to a 
+query, and ensure that only results with higher scores than a specific 
+threshold are displayed. The `cutoff` property of the `reranker` object allows 
+you to specify a minimum score threshold for search results to include after 
+reranking. 
+
+By setting this cutoff value, you can control which results are considered 
+relevant enough to return, filtering out results that do not meet the desired 
+level of relevance. For example, when you set the `cutoff` to `0.5`, only results 
+with a score of `0.5` or higher are considered.
+
+```json
+"reranker": {
+  "type": "mmr",
+  "diversity_bias": "0.4",
+  "cutoff": 0.5
+}
+```
+
+When a reranker is applied with a cutoff, it performs the following steps:
+
+1. Reranks all input results based on the selected reranker.
+2. Applies the cutoff, removing any results with scores below the specified threshold.
+3. Returns the remaining results, sorted by their new scores.
+
+:::note
+This cutoff is applied per reranking stage. In a chain of rerankers, each 
+reranker can have its own cutoff value, potentially further reducing the 
+number of results at each stage. If both `limit` and `cutoff` are specified, the 
+cutoff is applied first, followed by the limit.
+:::
+
+## Search limits
 
 The `limit` property of the `reranker` object allows you to have more 
 granular control over the number of results returned after reranking. This 
 limit is applied per each reranking stage, such as if you use chain reranking, 
 and this limit affects the output and not the input to the reranker. 
-When you apply this limit to the Multilingual reranker, Maximal Marginal Relevance 
-(MMR) Reranker, or User Defined Function reranker, it performs the following 
-steps:
+When you apply this limit to the Multilingual reranker (Slingshot), Maximal 
+Marginal Relevance (MMR) reranker, or User Defined Function reranker, it 
+performs the following steps:
 
 1. Reranks all input results based on the selected reranker.
 2. Eliminates results that return null scores.
@@ -98,4 +134,42 @@ content.
 This would remove non-blog posts from the results. Then you can set a 
 limit of `10` to get only the top 10 blog post results.
 
+```json
+"reranker": {
+  "type": "mmr",
+  "diversity_bias": "0.4",
+  "limit": 10,
+}
+```
+
+## Combine cutoffs and limits
+
+Using both cutoffs and limits in a chain allow for more refined control over 
+query results. 
+
+```json
+{
+  "reranker": {
+    "type": "chain",
+    "rerankers": [
+      {
+        "type": "userfn",
+        "user_function": "get('$.document_metadata.category') === 'blog' ? get('$.score') : null",
+        "cutoff": 0.5,
+        "limit": 10
+      },
+      {
+        "type": "customer_specific",
+        "reranker_id": "rnk_272725719",
+        "cutoff": 0.5,
+        "limit": 10
+      }
+    ]
+  }
+}
+```
+This filters out non-blog content with the UDF reranker and then uses the 
+Vectara Multilingual reranker on the remaining results which both removes 
+results with a score below `0.5` and returns the top 10 results from the 
+remaining set.
 
