@@ -43,8 +43,6 @@ groups:
             unions: v1
         github:
           repository: vectara/python-sdk
-          mode: push
-          branch: fern-bot/09-30-2024-0640AM
         config:
           extra_dependencies:
             PyYAML: '6.0.2'
