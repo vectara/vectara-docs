@@ -33,8 +33,7 @@ capability serving primarily as a differentiator from other rerankers in the
 market, which are often English-only.
 
 Using this reranker requires both the `type` and `reranker_id` in the 
-`reranker` object. Set the `type` as `customer_reranker` and the `reranker_name` 
-as `Rerank_Multilingual_v1`. 
+`reranker` object. Set the `type` as `customer_reranker` and the `reranker_name` as `Rerank_Multilingual_v1`.
 
 ```json
 "reranker": {

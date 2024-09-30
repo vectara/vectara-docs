@@ -22,7 +22,7 @@ accurate results.
 
 Vectara currently provides the following rerankers: 
 
-* [**Multilingual Reranker v1**](/docs/learn/vectara-multi-lingual-reranker) (`type=customer_specific` and `reranker_id=rnk_272725719`) 
+* [**Multilingual Reranker v1**](/docs/learn/vectara-multi-lingual-reranker) (`type=customer_specific` and `reranker_name=Rerank_Multilingual_v1`) 
   also known as Slingshot, provides more accurate neural ranking than the 
   initial Boomerang retrieval. While computationally more expensive, it offers 
   improved text scoring across   a wide range of languages, making it suitable 
@@ -98,7 +98,8 @@ with a score of `0.5` or higher are considered.
 When a reranker is applied with a cutoff, it performs the following steps:
 
 1. Reranks all input results based on the selected reranker.
-2. Applies the cutoff, removing any results with scores below the specified threshold.
+2. Applies the cutoff, removing any results with scores below the specified 
+   threshold.
 3. Returns the remaining results, sorted by their new scores.
 
 :::note
@@ -118,10 +119,11 @@ When you apply this limit to the Multilingual reranker (Slingshot), Maximal
 Marginal Relevance (MMR) reranker, or User Defined Function reranker, it 
 performs the following steps:
 
-1. Reranks all input results based on the selected reranker.
-2. Eliminates results that return null scores.
-3. Sorts the reranked results based on their new scores.
-4. Returns the top *N* results, where *N* is the value specified by this limit.
+1. Applies score cutoff, if specified.
+2. Reranks all input results based on the selected reranker.
+3. Eliminates results that return null scores.
+4. Sorts the reranked results based on their new scores.
+5. Returns the top *N* results, where *N* is the value specified by this limit.
 
 Imagine a scenario where you want to limit the output of results to a reranker, 
 whether a single reranker, or within rerankers that are in a chain. For 
@@ -155,21 +157,20 @@ query results.
       {
         "type": "userfn",
         "user_function": "get('$.document_metadata.category') === 'blog' ? get('$.score') : null",
-        "cutoff": 0.5,
         "limit": 10
       },
       {
         "type": "customer_specific",
-        "reranker_id": "rnk_272725719",
+        "reranker_name": "Rerank_Multilingual_v1",
         "cutoff": 0.5,
-        "limit": 10
+        "limit": 3
       }
     ]
   }
 }
 ```
-This filters out non-blog content with the UDF reranker and then uses the 
-Vectara Multilingual reranker on the remaining results which both removes 
-results with a score below `0.5` and returns the top 10 results from the 
-remaining set.
+This filters out non-blog content where the UDF reranker limits the output to 
+10, and sends these 10 results to the Vectara Multilingual reranker which both 
+removes results with a score below `0.5` and returns the top 3 results from 
+the remaining set.
 
