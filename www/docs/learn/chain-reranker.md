@@ -105,7 +105,7 @@ products.
     "rerankers": [
       {
         "type": "customer_specific",
-        "reranker_id": "rnk_272725719"
+        "reranker_name": "Rerank_Multilingual_v1"
       },
       {
         "type": "mmr",
