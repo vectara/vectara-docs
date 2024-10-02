@@ -27,7 +27,7 @@ module.exports = {
           label: "Sample Demos and Applications",
         },
         {
-          // Don't change this page's URL. It's linked from our nurture sequence emails.
+          // Nurture sequence emails link to this page. These links will break if the URL is changed.
           type: "doc",
           id: "video-tutorials",
           label: "Video Tutorials",

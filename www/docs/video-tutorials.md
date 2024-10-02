@@ -4,9 +4,11 @@ title: Video Tutorials
 sidebar_label: Video Tutorials
 ---
 
-<!-- Don't change this page's URL. It's linked from our nurture sequence emails. -->
+<!-- Nurture sequence emails link to this page. These links will break if the URL is changed. -->
 
 import { YouTube } from 'mdx-embed';
+
+<!-- This title is slugified and will break nurture sequence links if changed. -->
 
 ### Creating a Corpus
 
@@ -16,13 +18,17 @@ Get a fast intro to the product, including how to create a corpus and upload you
 
 <br />
 
-### Querying your Data
+<!-- This title is slugified and will break nurture sequence links if changed. -->
+
+### Querying your data
 
 Learn how to ask questions of your data.
 
 <YouTube youTubeId="gRKXpbTMLBU" />
 
 <br />
+
+<!-- This title is slugified and will break nurture sequence links if changed. -->
 
 ### Building Apps – Part 1
 
@@ -31,6 +37,8 @@ Quickly build conversational features in your apps with our builder tools.
 <YouTube youTubeId="z3u2TwVUGOE" />
 
 <br />
+
+<!-- This title is slugified and will break nurture sequence links if changed. -->
 
 ### Building Apps – Part 2
 
