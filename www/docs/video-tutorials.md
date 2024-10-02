@@ -42,6 +42,6 @@ Quickly build conversational features in your apps with our builder tools.
 
 ### Building Apps – Part 2
 
-A demonstration of a React application built on top of Vectara.
+A demonstration of a React application built on the Vectara platform.
 
 <YouTube youTubeId="QTFEGVEr7-o" />
