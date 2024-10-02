@@ -39,19 +39,19 @@ tags:
   - name: Queries
     description: Perform search and Retrieval Augmented Generation (RAG) operations on one or more corpora
   - name: Upload
-    description: Upload files to a corpus for automatic parsing and document extraction
+    description: Upload files to a corpus for automatic parsing, text extraction, chunking, and indexing
   - name: Index
     description: Index and manage core and structured documents for efficient search and retrieval
   - name: Corpora
-    description: Create, manage, and update corpora and their associated settings for administration purposes
+    description: Create, manage, and update corpora and their associated settings
   - name: Documents
     description: Retrieve and manage documents stored in a corpus for administrative tasks
   - name: Chats
-    description: Create, manage, and interact with chat sessions for conversational AI and administrative monitoring
+    description: Create, manage, and interact with chat sessions for conversational AI
   - name: Large Language Models
     description: List LLMs for text summarization, chat, and other generation tasks
   - name: Encoders
-    description: List encoders that turn text into vectors such as Boomerang
+    description: List available encoders (such as Boomerang) that turn text into vectors
   - name: Rerankers
     description: List rerankers for reranking search results
   - name: Jobs
@@ -313,7 +313,7 @@ paths:
         instead creates a job and will complete when that job completes. Until that
         job completes, using new filter attributes will not work.
 
-        You can monitor the status of the filter change using the returned job id. The 
+        You can monitor the status of the filter change using the returned job ID. The 
         `corpus_key` uniquely identifies the corpus. For more information, see 
         [Corpus Key Definition](https://docs.vectara.com/docs/api-reference/search-apis/search#corpus-key-definition).
       operationId: replaceFilterAttributes
@@ -433,7 +433,7 @@ paths:
         * Leverage advanced search capabilities like reranking (`reranker`) and Retrieval Augmented Generation (RAG) (`generation`) for enhanced query performance. Generation is opt in by setting the `generation` property. By excluding the property or by setting it to null, the response
         will not include generation. [Learn more](https://docs.vectara.com/docs/learn/grounded-generation/configure-query-summarization).
         * Use hybrid search to achieve optimal results by setting different values for `lexical_interpolation` (e.g., `0.025`). [Learn more](https://docs.vectara.com/docs/learn/hybrid-search)
-        * Specify a RAG-specific LLM like Mockingbird (`mockingbird-1.0-2024-07-16`) for the `generation_preset_name`. [Learn more](https://docs.vectara.com/docs/learn/mockingbird-llm)
+        * Specify Vectara's RAG-focused LLM (Mockingbird) for the `generation_preset_name`. [Learn more](https://docs.vectara.com/docs/learn/mockingbird-llm)
         * Use advanced summarization options that utilize detailed summarization parameters such as `max_response_characters`, `temperature`, and `frequency_penalty` for generating precise and relevant summaries. [Learn more](https://docs.vectara.com/docs/api-reference/search-apis/search#advanced-summarization-options)
 
         For more detailed information, see [Query API guide](https://docs.vectara.com/docs/api-reference/search-apis/search).
@@ -487,13 +487,13 @@ paths:
         - Queries
       summary: Multiple Corpora Query
       description: |
-        Perform a multi-purpose query to retrieve relevant information from one or more corpora and generate a response using Retrieval Augmented Generation (RAG).
+        Perform a multipurpose query to retrieve relevant information from one or more corpora and generate a response using Retrieval Augmented Generation (RAG).
 
         * Specify the unique `corpus_key` identifying the corpus to query. The `corpus_key` is [created in the Vectara Console UI](https://docs.vectara.com/docs/console-ui/creating-a-corpus) or the [Create Corpus API definition](https://docs.vectara.com/docs/api-reference/admin-apis/create-corpus). When creating a new corpus, you have the option to assign a custom `corpus_key` following your preferred naming convention. This key serves as a unique identifier for the corpus, allowing it to be referenced in search requests. For more information, see [Corpus Key Definition](https://docs.vectara.com/docs/api-reference/search-apis/search#corpus-key-definition).
         * Customize your search by specifying the query text (`query`), pagination details (`offset` and `limit`), and metadata filters (`metadata_filter`) to tailor your search results. [Learn more](https://docs.vectara.com/docs/api-reference/search-apis/search#query-definition)
         * Leverage advanced search capabilities like reranking (`reranker`) and opt-in Retrieval Augmented Generation (RAG) (`generation`) for enhanced query performance. Generation is opt in by setting the `generation` property. By excluding the property or by setting it to null, the response
         will not include generation. [Learn more](https://docs.vectara.com/docs/learn/grounded-generation/configure-query-summarization)
-        * Specify a RAG-specific LLM like Mockingbird (`mockingbird-1.0-2024-07-16`) for the `generation_preset_name`. [Learn more](https://docs.vectara.com/docs/learn/mockingbird-llm)
+        * Specify Vectara's RAG-focused LLM (Mockingbird) for the `generation_preset_name`. [Learn more](https://docs.vectara.com/docs/learn/mockingbird-llm)
         * Use advanced summarization options that utilize detailed summarization parameters such as `max_response_characters`, `temperature`, and `frequency_penalty` for generating precise and relevant summaries. [Learn more](https://docs.vectara.com/docs/api-reference/search-apis/search#advanced-summarization-customization-options)
         * Customize citation formats in summaries using the `citations` object to include numeric, HTML, or Markdown links. [Learn more](https://docs.vectara.com/docs/api-reference/search-apis/search#citation-format-in-summary)
       
@@ -531,7 +531,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
         '404':
-          description: One or more of the corpora was not found.
+          description: One or more of the corpora were not found.
           content:
             application/json:
               schema:
@@ -548,7 +548,7 @@ paths:
         * `file` - Specifies the file that you want to upload.
         * `filename` - Specified as part of the file field with the file name that you want to associate with the uploaded file. For a curl example, use the following syntax: `'file=@/path/to/file/file.pdf;filename=desired_filename.pdf'`
         
-        For more detailed information see this [File Upload API guide.](https://docs.vectara.com/docs/api-reference/indexing-apis/file-upload/file-upload)
+        For more detailed information, see this [File Upload API guide.](https://docs.vectara.com/docs/api-reference/indexing-apis/file-upload/file-upload)
       operationId: uploadFile
       parameters:
         - $ref: '#/components/parameters/RequestTimeout'
@@ -583,7 +583,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Document'
         '400':
-          description: Upload files request was malformed.
+          description: Upload file request was malformed.
           content:
             application/json:
               schema:
@@ -607,7 +607,7 @@ paths:
       summary: Add a document to a corpus
       description: |
         Add a document to a corpus. You can add documents that are either in a typical structured format,
-        or in a format that explicitly specifies each document part that becomes a search result.
+        or in a format that explicitly specifies each document part.  Each part becomes a separate search result.
       operationId: createCorpusDocument
       parameters:
         - $ref: '#/components/parameters/RequestTimeout'
@@ -637,7 +637,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/BadRequestError'
         '403':
-          description: Permissions do not allow creating a file in the corpus.
+          description: Permissions do not allow adding a document to the corpus.
           content:
             application/json:
               schema:
@@ -682,7 +682,7 @@ paths:
             type: string
         - name: page_key
           in: query
-          description: Used to the retrieve the next page of documents after the limit has been reached. 
+          description: Used to retrieve the next page of documents after the limit has been reached. 
           required: false
           schema:
             type: string
@@ -848,7 +848,7 @@ paths:
             default: 1000
         - in: query
           name: page_key
-          description: Used to the retrieve the next page of chats after the limit has been reached. 
+          description: Used to retrieve the next page of chats after the limit has been reached. 
           required: false
           schema:
             type: string
@@ -903,7 +903,7 @@ paths:
         - name: page_key
           in: query
           description: |
-            Used to the retrieve the next page of LLMs after the limit has been reached.
+            Used to retrieve the next page of LLMs after the limit has been reached.
             This parameter is not needed for the first page of results.
           required: false
           schema:
@@ -954,7 +954,7 @@ paths:
         - name: page_key
           in: query
           description: |
-            Used to the retrieve the next page of generation presets after the limit has been reached.
+            Used to retrieve the next page of generation presets after the limit has been reached.
             This parameter is not needed for the first page of results.
           required: false
           schema:
@@ -1044,7 +1044,7 @@ paths:
       tags:
         - Chats
       summary: Create a new turn in the chat
-      description: Create a new turn in the chat. Each conversation has a series of `turn` objects, which are the sequence of message and response pairs tha make up the dialog.
+      description: Create a new turn in the chat. Each conversation has a series of `turn` objects, which are the sequence of message and response pairs that make up the dialog.
       operationId: createChatTurn
       parameters:
         - $ref: '#/components/parameters/RequestTimeout'
@@ -1282,7 +1282,7 @@ paths:
             default: 10
         - name: page_key
           in: query
-          description: Used to the retrieve the next page of encoders after the limit has been reached. 
+          description: Used to retrieve the next page of encoders after the limit has been reached. 
           required: false
           schema:
             type: string
@@ -1328,7 +1328,7 @@ paths:
             default: 10
         - name: page_key
           in: query
-          description: Used to the retrieve the next page of rerankers after the limit has been reached. 
+          description: Used to retrieve the next page of rerankers after the limit has been reached. 
           required: false
           schema:
             type: string
@@ -1365,14 +1365,14 @@ paths:
               $ref: '#/components/schemas/CorpusKey'
         - name: after
           in: query
-          description: Get jobs after a date time.
+          description: Filter by jobs created after a particular date-time.
           required: false
           schema:
             type: string
             format: date-time
         - name: state
           in: query
-          description: Indicates the states the jobs can be in.
+          description: Filter by jobs in particular states.
           required: false
           schema:
             type: array
@@ -1380,7 +1380,7 @@ paths:
               $ref: '#/components/schemas/JobState'
         - name: limit
           in: query
-          description: The maximum number of documents to return at one time.
+          description: The maximum number of jobs to return at one time.
           required: false
           schema:
             type: integer
@@ -1390,7 +1390,7 @@ paths:
             default: 10
         - name: page_key
           in: query
-          description: Used to the retrieve the next page of documents after the limit has been reached. 
+          description: Used to retrieve the next page of jobs after the limit has been reached. 
           required: false
           schema:
             type: string
@@ -1419,7 +1419,7 @@ paths:
         - $ref: '#/components/parameters/RequestTimeoutMillis'
         - name: job_id
           in: path
-          description: The ID of job to get.
+          description: The ID of the job to get.
           required: true
           schema:
             type: string
@@ -1498,7 +1498,7 @@ paths:
             default: 10
         - name: page_key
           in: query
-          description: Used to the retrieve the next page of users after the limit has been reached. 
+          description: Used to retrieve the next page of users after the limit has been reached. 
           required: false
           schema:
             type: string
@@ -1521,7 +1521,7 @@ paths:
         - Users
       summary: Get a user
       description: |
-        Get a user and view details like the email, username, and roles associated with a user.
+        Get a user and view details like thei email, username, and associated roles.
       operationId: getUser
       parameters:
         - $ref: '#/components/parameters/RequestTimeout'
@@ -1529,8 +1529,8 @@ paths:
         - name: username
           in: path
           description: |
-            Specifies the User ID that to retrieve.
-            Note the username must be percent encoded.
+            Specifies the user ID that to retrieve.
+            Note that the username must be percent encoded.
           required: true
           schema:
             type: string
@@ -1548,7 +1548,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
         '404':
-          description: Corpus not found.
+          description: User not found.
           content:
             application/json:
               schema:
@@ -1565,8 +1565,8 @@ paths:
         - name: username
           in: path
           description: |
-            Specifies the User ID to update.
-            Note the username must be percent encoded.
+            Specifies the user ID to update.
+            Note that the username must be percent encoded.
           required: true
           schema:
             type: string
@@ -1606,8 +1606,8 @@ paths:
         - name: username
           in: path
           description: |
-            Specifies the username to delete.
-            Note the username must be percent encoded.
+            Specifies the user ID to delete.
+            Note that the username must be percent encoded.
           required: true
           schema:
             type: string
@@ -1639,8 +1639,8 @@ paths:
         - name: username
           in: path
           description: |
-            Specifies the username to update.
-            Note the username must be percent encoded and URI safe.
+            Specifies the user ID to update.
+            Note that the username must be percent encoded and URI safe.
           required: true
           schema:
             type: string
@@ -1648,7 +1648,7 @@ paths:
         '204':
           description: User was sent the password reset email.
         '403':
-          description: Permissions do not allow resting the user password.
+          description: Permissions do not allow resetting the user password.
           content:
             application/json:
               schema:
@@ -1676,7 +1676,7 @@ paths:
               $ref: '#/components/schemas/CreateApiKeyRequest'
       responses:
         '201':
-          description: An API Key object, used to query the Vectara API with the assigned roles.
+          description: An API key object, used to query the Vectara API with the assigned roles.
           content:
             application/json:
               schema:
@@ -1713,7 +1713,7 @@ paths:
             default: 10
         - name: page_key
           in: query
-          description: Used to the retrieve the next page of API keys after the limit has been reached. 
+          description: Used to retrieve the next page of API keys after the limit has been reached. 
           required: false
           schema:
             type: string
@@ -1753,7 +1753,7 @@ paths:
         - $ref: '#/components/parameters/RequestTimeoutMillis'
         - name: api_key_id
           in: path
-          description: The name of the API key.
+          description: The ID of the API key.
           required: true
           schema:
             type: string
@@ -1781,7 +1781,7 @@ paths:
         - $ref: '#/components/parameters/RequestTimeoutMillis'
         - name: api_key_id
           in: path
-          description: The name of the API key.
+          description: The ID of the API key.
           required: true
           schema:
             type: string
@@ -1814,7 +1814,7 @@ paths:
         - $ref: '#/components/parameters/RequestTimeoutMillis'
         - name: api_key_id
           in: path
-          description: The name of the API key.
+          description: The ID of the API key.
           required: true
           schema:
             type: string
@@ -1899,13 +1899,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListAppClientsResponse'
         '400':
-          description: API key list request was malformed.
+          description: App Clients list request was malformed.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/BadRequestError'
         '403':
-          description: Permissions do not allow listing API keys.
+          description: Permissions do not allow listing App Clients.
           content:
             application/json:
               schema:
@@ -1921,7 +1921,7 @@ paths:
         - $ref: '#/components/parameters/RequestTimeoutMillis'
         - name: app_client_id
           in: path
-          description: The name of the App Client.
+          description: The ID of the App Client.
           required: true
           schema:
             type: string
@@ -1933,7 +1933,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/AppClient'
         '403':
-          description: Permissions do not allow getting this App Clients.
+          description: Permissions do not allow getting this App Client.
           content:
             application/json:
               schema:
@@ -1965,7 +1965,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/AppClient'
         '403':
-          description: Permissions do not allow getting this App Clients.
+          description: Permissions do not allow updating this App Client.
           content:
             application/json:
               schema:
@@ -1988,7 +1988,7 @@ paths:
         '204':
           description: The App Client was deleted.
         '403':
-          description: Permissions do not allow deleting this App Clients.
+          description: Permissions do not allow deleting this App Client.
           content:
             application/json:
               schema:
@@ -2005,7 +2005,7 @@ components:
           type: string
           example: My corpus
         description:
-          description: Description for the corpus.
+          description: Description of the corpus.
           type: string
           example: Documents with important information for my prompt.
         queries_are_answers:
@@ -2039,7 +2039,7 @@ components:
           description: |
             A custom dimension is an additional numerical field attached to a document part. You
             can then multiply this numerical field with a query time custom dimension of the same
-            name. This allows boosting (or deboosting) document parts for arbitrary reasons.
+            name. This allows boosting (or burying) document parts for arbitrary reasons.
             This feature is only enabled for Scale customers.
           type: array
           default: []
@@ -2056,13 +2056,13 @@ components:
           type: boolean
           example: false
         name:
-          description: The name for the corpus. If unset or null then the corpus will remain in the same state.
+          description: The name for the corpus. If unset or null, then the corpus will remain in the same state.
           type: string
           example: new-name
         description:
-          description: Description of the corpus. If unset or null then the corpus will remain in the same state.
+          description: Description of the corpus. If unset or null, then the corpus will remain in the same state.
           type: string
-          example: New description for the corpus.
+          example: New description of the corpus.
     ReplaceFilterAttributesRequest:
       type: object
       properties:
@@ -2107,7 +2107,7 @@ components:
           description: Specifies whether the corpus is enabled or not.
           type: boolean
         chat_history_corpus:
-          description: Indicates that this corpus does not store documents amd stores chats instead.
+          description: Indicates that this corpus does not store documents and stores chats instead.
           type: boolean
         queries_are_answers:
           description: |
@@ -2158,6 +2158,7 @@ components:
               format: int64
             used_bytes:
               description: |
+                NOTE: This field is currently not populated by the system.
                 The number of bytes contained in the corpus. This includes the document metadata,
                 document part metadata, and document contents.
               type: integer
@@ -2169,7 +2170,9 @@ components:
               type: integer
               format: int64
             max_bytes:
-              description: The maximum number of bytes the corpus can be.
+              description: |
+                NOTE: This field is currently not populated by the system.
+                The maximum number of bytes the corpus can be.
               type: integer
               format: int64
             max_metadata_bytes:
@@ -2177,7 +2180,9 @@ components:
               type: integer
               format: int64
             index_rate:
-              description: The maximum per-second addition of new documents to corpus.
+              description: |
+                NOTE: This field is currently not populated by the system.
+                The maximum per-second addition of new documents to corpus.
               type: integer
               format: int64
         created_at:
@@ -2195,7 +2200,7 @@ components:
           type: string
           example: importance
         description:
-          description: Description for the custom dimension.
+          description: Description of the custom dimension.
           type: string
           example: Product importance.
         indexing_default:
@@ -2228,7 +2233,7 @@ components:
           type: string
           example: "Title"
         level:
-          description: Indicates whether this a document or document part metadata filter.
+          description: Indicates whether this is a document or document part metadata filter.
           type: string
           enum:
             - "document"
@@ -2293,11 +2298,11 @@ components:
       properties:
         characters_before:
           description: |
-            The number of characters before the matching document part that are shown.
+            The number of characters that are shown before the matching document part.
             This is useful to show the context of the document part in the wider document.
             Ignored if `sentences_before` is set.
             Vectara will capture the full sentence that contains the captured characters,
-            so as to not lose the meaning caused by a truncated word or sentence.
+            to not lose the meaning caused by a truncated word or sentence.
           type: integer
           format: int32
           default: 0
@@ -2305,11 +2310,11 @@ components:
           example: 30
         characters_after:
           description: |
-            The number of characters after the matching document part that are shown. 
+            The number of characters that are shown after the matching document part. 
             This is useful to show the context of the document part in the wider document.
             Ignored if `sentences_after` is set.
             Vectara will capture the full sentence that contains the captured characters,
-            so as to not lose the meaning caused by a truncated word or sentence.
+            to not lose the meaning caused by a truncated word or sentence.
           type: integer
           format: int32
           default: 0
@@ -2317,7 +2322,7 @@ components:
           example: 30
         sentences_before:
           description: |
-            The number of sentences before the matching document part that are shown.
+            The number of sentences that are shown before the matching document part.
             This is useful to show the context of the document part in the wider document.
           type: integer
           format: int32
@@ -2326,7 +2331,7 @@ components:
           example: 3
         sentences_after:
           description: |
-            The number of sentences after the matching document part that are shown. 
+            The number of sentences that are shown after the matching document part. 
             This is useful to show the context of the document part in the wider document.
           type: integer
           format: int32
@@ -2358,7 +2363,7 @@ components:
             The preset values to use to feed the query results and other context to the model.
 
             A `generation_preset` is an object with a bundle of properties that specifies:
-              * The `prompt_template` that is rendered then sent to the LLM.
+              * The `prompt_template` that is rendered and then sent to the LLM.
               * The LLM used.
               * `model_parameter`s such as temperature.
              
@@ -2366,7 +2371,7 @@ components:
             object. Even when a `prompt_template` is set, the `generation_preset_name` is used to set 
             the model used.
 
-            If `generation_preset_name` is not set the Vectara platform will use the default model and
+            If `generation_preset_name` is not set, the Vectara platform will use the default model and
             prompt.
           type: string
           minLength: 1
@@ -2404,7 +2409,7 @@ components:
             ]
         prompt_text:
           description: |
-            This is property is deprecated in favor clearer naming. Use `prompt_template`. This property will be
+            This property is deprecated in favor clearer naming. Use `prompt_template`. This property will be
             ignored if `prompt_template` is set.
           type: string
           example: |
@@ -2425,7 +2430,7 @@ components:
             prompt, and the LLM's instruction following capability dictates how closely the generated output
             is limited.
 
-            So, this value This is currently a Scale-only feature.
+            This is currently a Scale-only feature.
             See [pricing](https://vectara.com/pricing/) for more details on becoming a Scale customer.
           type: integer
           format: int32
@@ -2482,7 +2487,7 @@ components:
             Can be one of:
             * `numeric` - Citations formatted as simple numerals: \[1\], \[2\] ...
             * `none` - Citations removed from text.
-            * `html` - Citation formatted as url like `<a href="url_pattern">text_pattern</a>`.
+            * `html` - Citation formatted as a URL like `<a href="url_pattern">text_pattern</a>`.
             * `markdown` - Formatted as `[text_pattern](url_pattern)`.
           type: string
           enum:
@@ -2492,7 +2497,7 @@ components:
             - markdown
         url_pattern:
           description: |
-            The url pattern if the citation_style is set to `html` or `markdown`.
+            The URL pattern if the citation_style is set to `html` or `markdown`.
             The pattern can access metadata attributes in the document or part.
             e.g. `https://my.doc/foo/{doc.id}/{part.id}`
 
@@ -2502,7 +2507,7 @@ components:
         text_pattern:
           description: |
             The text pattern if the citation_style is set to `html` or `markdown`.
-            This pattern sets the href for html or the text within `[]` in markdown,
+            This pattern sets the href for HTML or the text within `[]` in markdown,
             and defaults to N being the index of result if it is not set.
 
             The default citation style looks like `[N](<url_pattern>)` for markdown.
@@ -2632,14 +2637,14 @@ components:
       properties:
         type:
           description: |
-            When type is is `customer_reranker`, you can specify the `reranker_name` of a reranker. `reranker_id` is deprecated.
+            When type is `customer_reranker`, you can specify the `reranker_name` of a reranker. `reranker_id` is deprecated.
             The retrieval engine will then rerank results using that reranker.
           type: string
           default: customer_reranker
         reranker_id:
           description: |
-            The ID of the reranker. Current reranker that may be used by Scale customers is rnk_272725719.
-            Do not specify the MMR reranker ID here, and instead use the MMR reranker object type.
+            The ID of the reranker. The multilingual reranker that may be used by Scale customers is rnk_272725719.
+            Do not specify the MMR reranker ID here, and instead, use the MMR reranker object type.
             **Deprecated**: Use `reranker_name` instead.
           type: string
           pattern: rnk_(?!272725718)\d+
@@ -2647,7 +2652,7 @@ components:
           deprecated: true
         reranker_name:
           description: |
-            The name of the reranker. Do not specify the MMR reranker name here. Instead use the MMR reranker object type.
+            The name of the reranker. Do not specify the MMR reranker name here. Instead, use the MMR reranker object type.
           type: string
           example: Rerank_Multilingual_v1
         limit:
@@ -2664,6 +2669,20 @@ components:
             results at each stage.
           format: int32
           minimum: 1
+        cutoff:
+          type: number
+          description: |
+            Specifies the minimum score threshold for results to be included after the reranking process.
+            When a reranker is applied with a cutoff, it performs the following steps:
+            1. Reranks all input results according to its algorithm.
+            2. Applies the cutoff, removing any results with scores below the specified threshold.
+            3. Returns the remaining results, sorted by their new scores.
+
+            Note: This cutoff is applied per reranking stage. In a chain of rerankers,
+            each reranker can have its own cutoff, potentially further reducing the number of
+            results at each stage. If both 'limit' and 'cutoff' are specified, the cutoff
+            is applied first, followed by the limit.
+          format: float
       x-vectaraParents:
         - SearchReranker
     UserFunctionReranker:
@@ -2693,6 +2712,20 @@ components:
             results at each stage.
           format: int32
           minimum: 1
+        cutoff:
+          type: number
+          description: |
+            Specifies the minimum score threshold for results to be included after the reranking process.
+            When a reranker is applied with a cutoff, it performs the following steps:
+            1. Reranks all input results according to its algorithm.
+            2. Applies the cutoff, removing any results with scores below the specified threshold.
+            3. Returns the remaining results, sorted by their new scores.
+
+            Note: This cutoff is applied per reranking stage. In a chain of rerankers,
+            each reranker can have its own cutoff, potentially further reducing the number of
+            results at each stage. If both 'limit' and 'cutoff' are specified, the cutoff
+            is applied first, followed by the limit.
+          format: float
       x-vectaraParents:
         - SearchReranker
     MMRReranker:
@@ -2723,6 +2756,20 @@ components:
             results at each stage.
           format: int32
           minimum: 1
+        cutoff:
+          type: number
+          description: |
+            Specifies the minimum score threshold for results to be included after the reranking process.
+            When a reranker is applied with a cutoff, it performs the following steps:
+            1. Reranks all input results according to its algorithm.
+            2. Applies the cutoff, removing any results with scores below the specified threshold.
+            3. Returns the remaining results, sorted by their new scores.
+
+            Note: This cutoff is applied per reranking stage. In a chain of rerankers,
+            each reranker can have its own cutoff, potentially further reducing the number of
+            results at each stage. If both 'limit' and 'cutoff' are specified, the cutoff
+            is applied first, followed by the limit.
+          format: float
       x-vectaraParents:
         - SearchReranker
     ChainReranker:
@@ -2736,7 +2783,7 @@ components:
         rerankers:
           type: array
           description: |
-            Specify an array of rerankers to search results consecutively after each other.
+            Specify an array of rerankers to apply to search results consecutively.
           items:
             $ref: '#/components/schemas/SearchReranker'
           maxItems: 50
@@ -2826,7 +2873,7 @@ components:
           example: 0
           minimum: 0
     QueryStreamedResponse:
-      description: An individual event sent with SSE when the query request is streamed. 
+      description: An individual event sent with Server-sent Events (SSE) when the query request is streamed. 
       type: object
       discriminator:
         propertyName: type
@@ -2865,7 +2912,7 @@ components:
         - QueryStreamedResponse
         - ChatStreamedResponse
     StreamGenerationChunk:
-      description: The chunk response from the generation, possibly a partial generation.
+      description: The chunk response from the generation, which may be a partial generation.
       type: object
       properties:
         type:
@@ -3009,7 +3056,7 @@ components:
       type: object
       properties:
         id:
-          description: The Document ID, must be unique within the corpus.
+          description: The document ID, must be unique within the corpus.
           type: string
         type:
           description: |
@@ -3027,7 +3074,7 @@ components:
           type: string
         metadata:
           description: |
-            The metadata for a document and is an arbitrary JSON object. Properties of this object
+            The metadata for a document as an arbitrary JSON object. Properties of this object
             can be used by document level filter attributes.
           type: object
           additionalProperties: true
@@ -3050,7 +3097,7 @@ components:
       type: object
       properties:
         id:
-          description: The section ID. Gets converted to a metadata field.
+          description: The section ID. This gets converted to a metadata field automatically.
           type: integer
           format: int32
         title:
@@ -3079,7 +3126,7 @@ components:
       type: object
       properties:
         id:
-          description: The Document ID, must be unique within the corpus.
+          description: The document ID, must be unique within the corpus.
           type: string
           example: my-doc-id
         type:
@@ -3119,7 +3166,7 @@ components:
           type: string
           example: I'm a nice document part.
         metadata:
-          description: The metadata for a document part. Attributes matching corpus document part filter attributes are used as document part filter attributes.
+          description: The metadata for a document part. These may be used in metadata filters at query time if filter attributes are configured on the corpus.
           type: object
           additionalProperties: true
           example: { "nice_rank": 9000 }
@@ -3131,7 +3178,7 @@ components:
       required:
         - text
     CoreDocumentPart:
-      description: A part of a document. This section gets converted into an embedding and directly maps to a search result. Usually a sentence.
+      description: A part of a document. This section gets converted into an embedding and directly maps to a search result. Usually this is a sentence.
       type: object
       properties:
         text:
@@ -3139,7 +3186,7 @@ components:
           type: string
           example: I'm a nice document part.
         metadata:
-          description: The metadata for a document part. Attributes matching corpus document part filter attributes are used as document part filter attributes.
+          description: The metadata for a document part. These may be used in metadata filters at query time if filter attributes are configured on the corpus.
           type: object
           additionalProperties: true
           example: {"nice_rank": 9000}
@@ -3160,7 +3207,7 @@ components:
       type: object
       properties:
         id:
-          description: The Document ID.
+          description: The document ID.
           type: string
           example: my-doc-id
         metadata:
@@ -3171,7 +3218,7 @@ components:
           description: |
             Parts of the document that make up the document. However, parts are not available when
             retrieving a list of documents or when creating a document. This property is only available
-            when retrieving a document by id.
+            when retrieving a document by ID.
           type: array
           items:
             $ref: '#/components/schemas/DocumentPart'
@@ -3181,7 +3228,7 @@ components:
       type: object
       description: |
         How much storage the document used. This information is currently not returned when
-        retrieving the document, and only returned when indexing document.
+        retrieving the document, and only returned when indexing a document.
       properties:
         bytes_used:
           description: |
@@ -3192,7 +3239,7 @@ components:
           minimum: 0
         metadata_bytes_used:
           description: |
-            Number of metadata bytes used by document metadata.
+            Number of metadata bytes used by a document.
           type: integer
           format: int64
           minimum: 0
@@ -3287,7 +3334,7 @@ components:
           description: Preset template used to render the prompt sent to generation.
           type: string
         max_used_search_results:
-          description: Preset maximum number of search results to be available to the prompt.
+          description: Preset maximum number of search results that will be available to the prompt.
           type: integer
           format: int32
           minimum: 1
@@ -3304,13 +3351,13 @@ components:
           format: float
         frequency_penalty:
           description: |
-            Higher values penalize new tokens based on their existing frequency in the text so far,
+            Higher values penalize new tokens based on their existing frequency in the generation so far,
             decreasing the model's likelihood to repeat the same line verbatim.
           type: number
           format: float
         presence_penalty:
           description: |
-            Higher values penalize new tokens based on whether they appear in the text so far,
+            Higher values penalize new tokens based on whether they appear in the generation so far,
             increasing the model's likelihood to talk about new topics.
           type: number
           format: float
@@ -3551,7 +3598,7 @@ components:
           description: The human-readable name of the API key.
           type: string
         secret_key:
-          description: The key used in API requests. Should be kept secure.
+          description: The key used in API requests. The key should be kept secure.
           type: string
         enabled:
           description: If this API key is enabled.
@@ -3627,7 +3674,7 @@ components:
         id:
           description: |
             The Vectara App Client ID. This ID is not used during an OAuth
-            flow but the ID used within the Vectara API.
+            flow.  However, the ID used within the Vectara API.
           type: string
           pattern: 'app_.+$'
         name:
@@ -3640,7 +3687,7 @@ components:
           description: The client ID used with the OAuth flow.
           type: string
         client_secret:
-          description: The key used in API requests. Should be kept secure.
+          description: The client secret used in API requests.  The secret should be kept secure.
           type: string
         api_roles:
           description: The API roles attached to the App Client.
@@ -3685,7 +3732,7 @@ components:
         output_dimensions:
           description: |
             When this encoder is used to create an embedding, it shows the count of dimensions for the output embedding.
-            A high dimensionality will consume more storage space, but it allows for an increase the quality of
+            A high dimensionality will consume more storage space, but it allows for an increase in the quality of
             the embedding.
           type: integer
           format: int32
@@ -3694,7 +3741,7 @@ components:
           description: The encoder description.
           type: string
         default:
-          description: Indicates whether the encoder is default used when creating a corpus.
+          description: Indicates whether the default encoder is used when creating a corpus.
           type: boolean
           example: true
         enabled:
@@ -3796,7 +3843,7 @@ components:
           description: The username for the user. The value defaults to the email.
           type: string
         description:
-          description: The description for the user.
+          description: The description of the user.
           type: string
         api_roles:
           description: The role names assigned to the user.
@@ -3809,7 +3856,7 @@ components:
       type: object
       properties:
         enabled:
-          description: Indicates whether to disable or disable the user.
+          description: Indicates whether to enable or disable the user.
           type: boolean
         api_roles:
           description: The new role names of the user.
@@ -3834,7 +3881,7 @@ components:
           description: Indicates whether the user is enabled or disabled.
           type: boolean
         description:
-          description: The description for the user.
+          description: The description of the user.
           type: string
         created_at:
           description: When the user was created.
@@ -3954,7 +4001,7 @@ components:
       type: object
       properties:
         id:
-          description: The ID cannot found.
+          description: The ID cannot be found.
           type: string
         messages:
           type: array
@@ -3991,7 +4038,7 @@ components:
             type: string
             example: "Internal server error."
         request_id:
-          description: The ID of the request that can be used to help Vectara support debug what went wrong .
+          description: The ID of the request that can be used to help Vectara support debug what went wrong.
           type: string
   securitySchemes:
     OAuth2:
