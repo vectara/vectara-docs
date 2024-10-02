@@ -18,8 +18,8 @@ status and help you manage the lifecycle and security of your API keys.
 
 To list API keys, send a GET request to `/v2/api_keys`.
 
-The response includes a array of `api_keys` objects that show the API keys and
-metadata about the pagination.
+The response includes an `api_keys` array field that contains information about 
+the API keys, and a `metadata` field containing information such as pagination key.
 
 ## REST 2.0 URL
 

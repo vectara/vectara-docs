@@ -46,14 +46,9 @@ current usage and limits of a corpus:
 * `used_docs` - The number of documents currently stored in the corpus.
 * `used_parts` - The number of document parts contained in the corpus, 
   which is useful in cases where documents are segmented into smaller parts.
-* `used_bytes` - The total storage used by the corpus in bytes, including document 
-  content, metadata, and part metadata.
 * `used_characters` - The total character count in the corpus, including all 
   content and metadata.
-* `max_bytes` - The maximum allowed storage size for the corpus in bytes.
 * `max_metadata_bytes` - The maximum allowed size for metadata per document, in bytes.
-* `index_rate` - The maximum number of new documents that can be added to the corpus 
-  per second, indicating ingestion capacity and helping manage indexing load
 
 ## REST 2.0 URL
 
