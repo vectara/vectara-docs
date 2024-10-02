@@ -1,18 +1,16 @@
-<!-- Don't change this page's URL. It's linked from our nurture sequence emails. -->
-
 ---
-
 id: video-tutorials
 title: Video Tutorials
 sidebar_label: Video Tutorials
-
 ---
+
+<!-- Don't change this page's URL. It's linked from our nurture sequence emails. -->
 
 import { YouTube } from 'mdx-embed';
 
 ### Creating a Corpus
 
-Get a fast intro to the product and creating a Corpora, and uploading your data.
+Get a fast intro to the product, including how to create a corpus and upload your data.
 
 <YouTube youTubeId="ZaRsXXAmk68" />
 
@@ -20,7 +18,7 @@ Get a fast intro to the product and creating a Corpora, and uploading your data.
 
 ### Querying your Data
 
-Quickly ask questions of your data.
+Learn how to ask questions of your data.
 
 <YouTube youTubeId="gRKXpbTMLBU" />
 
