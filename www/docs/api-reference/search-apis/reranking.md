@@ -20,11 +20,22 @@ accurate results.
 
 We currently provides the following rerankers: 
 
-* [**Multilingual Reranker v1**](/docs/learn/vectara-multi-lingual-reranker) (`type=customer_specific` and `reranker_id=rnk_272725719`) for accurate results across over 100 languages.
-* [**Maximal Marginal Relevance (MMR) Reranker**](/docs/learn/mmr-reranker) (`type=mmr`) for diversifying results while maintaining relevance.
-* [**User Defined Function Reranker**](/docs/learn/user-defined-function-reranker) (`type=userfn`) for custom scoring based on metadata.
-* [**Chain Reranker**](/docs/learn/chain-reranker) (`type=chain`) for combining multiple reranking strategies in sequence to meet 
-  more complex search requirements.
+* [**Multilingual Reranker v1**](/docs/learn/vectara-multi-lingual-reranker) (`type=customer_specific` and 
+  `reranker_name=Rerank_Multilingual_v1`) provides more accurate neural ranking than the 
+  initial Boomerang retrieval. While computationally more expensive, it offers 
+  improved text scoring across a wide range of languages, making it suitable 
+  for diverse content.
+* [**Maximal Marginal Relevance (MMR) Reranker**](/docs/learn/mmr-reranker) (`type=mmr`) for diversifying 
+  results while maintaining relevance.
+* [**User Defined Function Reranker**](/docs/learn/user-defined-function-reranker) (`type=userfn`) for custom 
+  scoring based on metadata.
+
+### Chain reranking
+
+The Vectara Chain Reranker (`type=chain`) lets you combine multiple reranking 
+strategies in sequence to meet more complex search requirements. This lets you 
+completely customize the functionality of Vectara to your needs by giving you 
+absolute control over the ranking functions. For details, see [Chain Reranker](/docs/learn/chain-reranker).
 
 ## Enable reranking
 
@@ -42,7 +53,7 @@ this simplified example intentionally omits several parameter values.
 {
   "query": "What is my question?",
   "stream_response": false,
-    "search": {
+  "search": {
     "start": 0,
     "limit": 25,
     "context_configuration": {},
