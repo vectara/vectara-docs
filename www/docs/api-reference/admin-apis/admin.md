@@ -27,11 +27,11 @@ The [**interactive API Reference**](/docs/rest-api/vectara-rest-api-v-2) lets yo
 The full definitions of the Create, Reset, and Delete gRPC APIs are covered
 in [admin.proto](https://github.com/vectara/protos/blob/main/admin.proto).
 
-- The **Create Corpus API** allows corpora to be created programmatically, up to the
+- The [**Create Corpus API**](/docs/api-reference/admin-apis/create-corpus) allows corpora to be created programmatically, up to the
   limit defined for the account.
-- The **Reset Corpus API** deletes all data from a corpus, without
+- The [**Reset Corpus API**](/docs/api-reference/admin-apis/reset-corpus) deletes all data from a corpus, without
   deleting its definition.
-- The **Delete Corpus API** expunges both the data in the corpus and
+- The [**Delete Corpus API**](/docs/api-reference/admin-apis/delete-corpus) expunges both the data in the corpus and
   its definition.
 
 ## Corpus Management API Definitions
@@ -39,14 +39,15 @@ in [admin.proto](https://github.com/vectara/protos/blob/main/admin.proto).
 The Corpus Management API definitions enable administrators to track usage of
 their accounts and corpora.
 
-- The **Get Corpus API** enables you to retrieve metadata about a specific
-  corpus, including its limits and usage information.
-- The **List Corpora API** enables you to list all corpora in your account,
+- The [**Get Corpus API**](/docs/api-reference/admin-apis/corpus/read-corpus) enables you to retrieve metadata about a specific
+  corpus, including its limits and usage information, and the number of documents 
+  and document parts in the corpus.
+- The [**List Corpora API**](/docs/api-reference/admin-apis/corpus/list-corpora) enables you to list all corpora in your account,
   with pagination support.
-- The **Update Corpus API** enables you to modify corpus settings, such as
-  enabling/disabling the corpus or updating its filter attributes..
-- The **Replace Corpus Filter Attributes API** enables you to replace the filter
+- The [**Update Corpus API**](/docs/api-reference/admin-apis/corpus/update-corpus-enablement) enables you to modify corpus settings, such as
+  enabling/disabling the corpus or updating its name, description, and filter attributes.
+- The [**Replace Corpus Filter Attributes API**](/docs/api-reference/admin-apis/corpus/replace-filter-attributes) enables you to replace the filter
   attributes of a corpus asynchronously.
 
 The REST APIs are designed to be intuitive and follow RESTful principles. They
-use standard HTTP methods (GET, POST, PATCH, DELETE) for CRUD operations and
+use standard HTTP methods (GET, POST, PATCH, DELETE) for CRUD operations.

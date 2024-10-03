@@ -23,7 +23,7 @@ request body should contain the following properties:
   including `owner`, `administrator`, `billing_administrator`, or
   `corpus_administrator`.
 
-The response includes an `AppClient` object that shows the modified
+The response includes the modified 
 description and API roles. Any unset properties on the update app client
 request will result no changes for that property.
 
