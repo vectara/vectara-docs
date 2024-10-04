@@ -21,14 +21,14 @@ import ResponseSamples from "@theme/ResponseSamples";
 import SchemaItem from "@theme/SchemaItem";
 import SchemaTabs from "@theme/SchemaTabs";
 import Heading from "@theme/Heading";
-import OperationTabs from "@theme/OperationTabs";
 import TabItem from "@theme/TabItem";
 
 <h1 className={"openapi__heading"}>Update an API key</h1>
 
-<MethodEndpoint method={"patch"} path={"/v2/api_keys/{api_key_id}"}></MethodEndpoint>
-
-
+<MethodEndpoint
+  method={"patch"}
+  path={"/v2/api_keys/{api_key_id}"}
+></MethodEndpoint>
 
 Update an API key such as the roles attached to the key.
 
@@ -48,11 +48,9 @@ Operations that are allowed by the API role. Each operation may only allow
 certain resources that are described by a resource path to resource value
 map. If the value is null, then the operation is allowed on any resource.
 
-
 </div><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>property name*</strong><span className={"openapi-schema__name"}> ApiOperationPolicy</span></span></summary><div style={{"marginLeft":"1rem"}}><div style={{"marginTop":".5rem","marginBottom":".5rem"}}>
 
 Policy to allow operations if only using the specified resource.
-
 
 </div><SchemaItem collapsible={false} name={"allow_any_resource"} required={true} schemaName={"boolean"} qualifierMessage={undefined} schema={{"description":"If any resource is allowed for the operation.","type":"boolean","default":true}}></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>allowed_resources</strong><span className={"openapi-schema__name"}> object</span></span></summary><div style={{"marginLeft":"1rem"}}><div style={{"marginTop":".5rem","marginBottom":".5rem"}}>
 
@@ -60,7 +58,6 @@ Object with keys of resource paths to a list of allowed resources.
 A resource path starts with either body, path, or implicit.
 A body or path resource is within the operation body, and an implicit
 resource is a resource implied by the request.
-
 
 </div><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>property name*</strong><span className={"openapi-schema__name"}> string[]</span></span></summary><div style={{"marginLeft":"1rem"}}><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><div style={{"marginTop":".5rem","marginBottom":".5rem"}}>
 
@@ -71,4 +68,4 @@ string
 Permissions do not allow getting this API keys.
 
 </div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"messages"} required={false} schemaName={"message (string)[]"} qualifierMessage={undefined} schema={{"description":"The messages describing why the error occurred.","type":"array","items":{"title":"message","type":"string","example":"Internal server error."}}}></SchemaItem><SchemaItem collapsible={false} name={"request_id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"The ID of the request that can be used to help Vectara support debug what went wrong.","type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"messages\": [\n    \"Internal server error.\"\n  ],\n  \"request_id\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
-      
+

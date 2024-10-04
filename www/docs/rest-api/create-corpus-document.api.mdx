@@ -21,18 +21,17 @@ import ResponseSamples from "@theme/ResponseSamples";
 import SchemaItem from "@theme/SchemaItem";
 import SchemaTabs from "@theme/SchemaTabs";
 import Heading from "@theme/Heading";
-import OperationTabs from "@theme/OperationTabs";
 import TabItem from "@theme/TabItem";
 
 <h1 className={"openapi__heading"}>Add a document to a corpus</h1>
 
-<MethodEndpoint method={"post"} path={"/v2/corpora/{corpus_key}/documents"}></MethodEndpoint>
-
-
+<MethodEndpoint
+  method={"post"}
+  path={"/v2/corpora/{corpus_key}/documents"}
+></MethodEndpoint>
 
 Add a document to a corpus. You can add documents that are either in a typical structured format,
-or in a format that explicitly specifies each document part.  Each part becomes a separate search result.
-
+or in a format that explicitly specifies each document part. Each part becomes a separate search result.
 
 ## Request
 
@@ -40,7 +39,6 @@ or in a format that explicitly specifies each document part.  Each part becomes 
 
 Arbitrary object of document level metadata. Properties of this object
 can be used by document filter if defined as a corpus filter attribute.
-
 
 </div><SchemaItem collapsible={false} name={""} required={false} schemaName={"object"} qualifierMessage={undefined} schema={{}}></SchemaItem><SchemaItem name={"property name*"} required={false} schemaName={"any"} qualifierMessage={undefined} schema={{"description":"Arbitrary object of document level metadata. Properties of this object\ncan be used by document filter if defined as a corpus filter attribute.\n","type":"object","properties":{},"additionalProperties":true,"example":{"title":"A Nice Document","lang":"eng"}}} collapsible={false} discriminator={false}></SchemaItem></div></details></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>document_parts</strong><span className={"openapi-schema__name"}> object[]</span><span className={"openapi-schema__divider"}></span><span className={"openapi-schema__required"}>required</span></span></summary><div style={{"marginLeft":"1rem"}}><div style={{"marginTop":".5rem","marginBottom":".5rem"}}>
 
@@ -63,7 +61,6 @@ The custom dimensions as additional weights.
 The metadata for a document as an arbitrary JSON object. Properties of this object
 can be used by document level filter attributes.
 
-
 </div><SchemaItem name={"property name*"} required={false} schemaName={"any"} qualifierMessage={undefined} schema={{"description":"The metadata for a document as an arbitrary JSON object. Properties of this object\ncan be used by document level filter attributes.\n","type":"object","additionalProperties":true}} collapsible={false} discriminator={false}></SchemaItem></div></details></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>custom_dimensions</strong><span className={"openapi-schema__name"}> object</span></span></summary><div style={{"marginLeft":"1rem"}}><div style={{"marginTop":".5rem","marginBottom":".5rem"}}>
 
 The custom dimensions as additional weights.
@@ -78,10 +75,9 @@ The subsection of the document.
 
 </div><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={false} name={"id"} required={false} schemaName={"int32"} qualifierMessage={undefined} schema={{"description":"The section ID. This gets converted to a metadata field automatically.","type":"integer","format":"int32"}}></SchemaItem><SchemaItem collapsible={false} name={"title"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"The section title.","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"text"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"The text of the section.","type":"string"}}></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>metadata</strong><span className={"openapi-schema__name"}> object</span></span></summary><div style={{"marginLeft":"1rem"}}><div style={{"marginTop":".5rem","marginBottom":".5rem"}}>
 
-Arbitrary object that becomes document part level metadata on any document part created 
-by this section. Properties of this object can be used by document part level 
+Arbitrary object that becomes document part level metadata on any document part created
+by this section. Properties of this object can be used by document part level
 filters if defined as a corpus filter attribute.
-
 
 </div><SchemaItem collapsible={false} name={""} required={false} schemaName={"object"} qualifierMessage={undefined} schema={{}}></SchemaItem><SchemaItem name={"property name*"} required={false} schemaName={"any"} qualifierMessage={undefined} schema={{"description":"Arbitrary object that becomes document part level metadata on any document part created \nby this section. Properties of this object can be used by document part level \nfilters if defined as a corpus filter attribute.\n","type":"object","properties":{},"additionalProperties":true}} collapsible={false} discriminator={false}></SchemaItem></div></details></SchemaItem><SchemaItem collapsible={false} name={"sections"} required={false} schemaName={"undefined[]"} qualifierMessage={undefined} schema={{"description":"The sections that this section contains.","type":"array","items":"circular(StructuredDocumentSection)"}}></SchemaItem><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></div></details></SchemaItem></TabItem></SchemaTabs></div></ul></details></TabItem></MimeTabs><div><div><ApiTabs label={undefined} id={undefined}><TabItem label={"201"} value={"201"}><div>
 
@@ -97,7 +93,6 @@ Parts of the document that make up the document. However, parts are not availabl
 retrieving a list of documents or when creating a document. This property is only available
 when retrieving a document by ID.
 
-
 </div><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={false} name={"text"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"The text of the document part.","type":"string","example":"I'm a nice document part."}}></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>metadata</strong><span className={"openapi-schema__name"}> object</span></span></summary><div style={{"marginLeft":"1rem"}}><div style={{"marginTop":".5rem","marginBottom":".5rem"}}>
 
 The metadata for a document part. These may be used in metadata filters at query time if filter attributes are configured on the corpus.
@@ -110,7 +105,6 @@ The custom dimensions as additional weights.
 
 How much storage the document used. This information is currently not returned when
 retrieving the document, and only returned when indexing a document.
-
 
 </div><SchemaItem collapsible={false} name={"bytes_used"} required={false} schemaName={"int64"} qualifierMessage={undefined} schema={{"description":"Number of bytes used by document counting towards maximum corpus size, and\ntowards any billing plans.\n","type":"integer","format":"int64","minimum":0}}></SchemaItem><SchemaItem collapsible={false} name={"metadata_bytes_used"} required={false} schemaName={"int64"} qualifierMessage={undefined} schema={{"description":"Number of metadata bytes used by a document.\n","type":"integer","format":"int64","minimum":0}}></SchemaItem></div></details></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"id\": \"my-doc-id\",\n  \"metadata\": {},\n  \"parts\": [\n    {\n      \"text\": \"I'm a nice document part.\",\n      \"metadata\": {\n        \"nice_rank\": 9000\n      },\n      \"context\": \"string\",\n      \"custom_dimensions\": {}\n    }\n  ],\n  \"storage_usage\": {\n    \"bytes_used\": 0,\n    \"metadata_bytes_used\": 0\n  }\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"400"} value={"400"}><div>
 
@@ -129,4 +123,4 @@ Permissions do not allow adding a document to the corpus.
 Corpus not found.
 
 </div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"The ID cannot be found.","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"messages"} required={false} schemaName={"message (string)[]"} qualifierMessage={undefined} schema={{"type":"array","items":{"title":"message","type":"string"}}}></SchemaItem><SchemaItem collapsible={false} name={"request_id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"ID of the request that can be used to help Vectara support debug what went wrong.","type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"id\": \"string\",\n  \"messages\": [\n    \"string\"\n  ],\n  \"request_id\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
-      
+

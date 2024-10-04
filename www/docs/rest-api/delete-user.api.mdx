@@ -21,14 +21,14 @@ import ResponseSamples from "@theme/ResponseSamples";
 import SchemaItem from "@theme/SchemaItem";
 import SchemaTabs from "@theme/SchemaTabs";
 import Heading from "@theme/Heading";
-import OperationTabs from "@theme/OperationTabs";
 import TabItem from "@theme/TabItem";
 
 <h1 className={"openapi__heading"}>Delete a user</h1>
 
-<MethodEndpoint method={"delete"} path={"/v2/users/{username}"}></MethodEndpoint>
-
-
+<MethodEndpoint
+  method={"delete"}
+  path={"/v2/users/{username}"}
+></MethodEndpoint>
 
 Delete a user from the account.
 
@@ -47,4 +47,4 @@ Permissions do not allow deleting the user.
 User not found.
 
 </div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"The ID cannot be found.","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"messages"} required={false} schemaName={"message (string)[]"} qualifierMessage={undefined} schema={{"type":"array","items":{"title":"message","type":"string"}}}></SchemaItem><SchemaItem collapsible={false} name={"request_id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"ID of the request that can be used to help Vectara support debug what went wrong.","type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"id\": \"string\",\n  \"messages\": [\n    \"string\"\n  ],\n  \"request_id\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
-      
+

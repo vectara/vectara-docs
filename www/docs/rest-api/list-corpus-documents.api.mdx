@@ -21,14 +21,14 @@ import ResponseSamples from "@theme/ResponseSamples";
 import SchemaItem from "@theme/SchemaItem";
 import SchemaTabs from "@theme/SchemaTabs";
 import Heading from "@theme/Heading";
-import OperationTabs from "@theme/OperationTabs";
 import TabItem from "@theme/TabItem";
 
 <h1 className={"openapi__heading"}>List the documents in the corpus</h1>
 
-<MethodEndpoint method={"get"} path={"/v2/corpora/{corpus_key}/documents"}></MethodEndpoint>
-
-
+<MethodEndpoint
+  method={"get"}
+  path={"/v2/corpora/{corpus_key}/documents"}
+></MethodEndpoint>
 
 List the documents in the corpus
 
@@ -52,7 +52,6 @@ Parts of the document that make up the document. However, parts are not availabl
 retrieving a list of documents or when creating a document. This property is only available
 when retrieving a document by ID.
 
-
 </div><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={false} name={"text"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"The text of the document part.","type":"string","example":"I'm a nice document part."}}></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>metadata</strong><span className={"openapi-schema__name"}> object</span></span></summary><div style={{"marginLeft":"1rem"}}><div style={{"marginTop":".5rem","marginBottom":".5rem"}}>
 
 The metadata for a document part. These may be used in metadata filters at query time if filter attributes are configured on the corpus.
@@ -65,7 +64,6 @@ The custom dimensions as additional weights.
 
 How much storage the document used. This information is currently not returned when
 retrieving the document, and only returned when indexing a document.
-
 
 </div><SchemaItem collapsible={false} name={"bytes_used"} required={false} schemaName={"int64"} qualifierMessage={undefined} schema={{"description":"Number of bytes used by document counting towards maximum corpus size, and\ntowards any billing plans.\n","type":"integer","format":"int64","minimum":0}}></SchemaItem><SchemaItem collapsible={false} name={"metadata_bytes_used"} required={false} schemaName={"int64"} qualifierMessage={undefined} schema={{"description":"Number of metadata bytes used by a document.\n","type":"integer","format":"int64","minimum":0}}></SchemaItem></div></details></SchemaItem><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></div></details></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>metadata</strong><span className={"openapi-schema__name"}> object</span></span></summary><div style={{"marginLeft":"1rem"}}><div style={{"marginTop":".5rem","marginBottom":".5rem"}}>
 
@@ -80,4 +78,4 @@ Permissions do not allow listing documents in the corpus.
 Corpus not found.
 
 </div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"The ID cannot be found.","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"messages"} required={false} schemaName={"message (string)[]"} qualifierMessage={undefined} schema={{"type":"array","items":{"title":"message","type":"string"}}}></SchemaItem><SchemaItem collapsible={false} name={"request_id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"ID of the request that can be used to help Vectara support debug what went wrong.","type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"id\": \"string\",\n  \"messages\": [\n    \"string\"\n  ],\n  \"request_id\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
-      
+
