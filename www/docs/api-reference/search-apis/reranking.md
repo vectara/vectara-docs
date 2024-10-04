@@ -44,7 +44,7 @@ absolute control over the ranking functions. For details, see [Chain Reranker](/
 To enable reranking, specify the appropriate value for the `type` in the 
 `reranker` object. For the MMR reranker, use `mmr`. In most scenarios, 
 it makes sense to use the default query `start` value of `0` so that you're 
-reranking all of the best initial results. You can also set `limit` of the 
+reranking all of the best initial results. You can also set the  `limit` of the 
 `query` to the total number of documents you wish to rerank. The default value 
 is `25`.
 
@@ -68,10 +68,7 @@ this simplified example intentionally omits several parameter values.
   "enable_factual_consistency_score": true
 }
 ```
-:::tip
-You can also enable reranking in the Vectara console after navigating to the 
-Query tab of a corpus and selecting **Retrieval**.
-:::
+
 
 ## Search cutoffs 
 
@@ -126,7 +123,9 @@ performs the following steps:
 
 1. Applies score cutoff, if specified.
 2. Reranks all input results based on the selected reranker.
-3. Eliminates results that return null scores.
+3. Eliminates results that return null scores. Null scores are only returned 
+   deliberately by the User Defined Function reranker. For example, you want 
+   to eliminate some search results, have the UDF return null.
 4. Sorts the reranked results based on their new scores.
 5. Returns the top *N* results, where *N* is the value specified by this limit.
 
@@ -157,7 +156,7 @@ which can improve the quality of the generated summary.
 
 ## Combine cutoffs and limits
 
-Using both cutoffs and limits in a chain allow for more refined control over 
+Using both cutoffs and limits in a chain allows for more refined control over 
 query results. 
 
 ```json
@@ -185,3 +184,8 @@ This filters out non-blog content where the UDF reranker limits the output to
 removes results with a score below `0.5` and returns the top 3 results from 
 the remaining set.
 
+:::tip
+You can also enable reranking in the Vectara console after navigating to the 
+Query tab of a corpus and selecting **Retrieval**. Use this for exploration 
+and experimenting with the API.
+:::

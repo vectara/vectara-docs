@@ -202,13 +202,14 @@ get('$.score') * 1 / as_days(iso_datetime_parse(get('$.document_metadata.publica
 
 ## Null score handling
 
-The UDF reranker supports returning null scores, allowing for more flexible 
-result filtering. When a UDF returns a null score for a result, that result is 
-automatically removed from the set.
+The User Defined Function reranker supports returning null scores, allowing 
+for more flexible result filtering. When a UDF returns a null score for a 
+result, that result is automatically removed from the set.
 
 :::note
 Null removal occurs before limits are applied and before results are passed to 
-the next reranker in the pipeline.
+the next reranker in the pipeline. Only the UDF reranker can deliberly return 
+null scores.
 :::
 
 ## Null score usage examples
