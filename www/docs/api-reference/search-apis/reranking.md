@@ -32,7 +32,6 @@ Vectara currently provides the following rerankers:
 * [**User Defined Function Reranker**](/docs/learn/user-defined-function-reranker) (`type=userfn`) for 
   custom scoring based on metadata.
 
-
 ### Chain reranking
 
 The Vectara Chain Reranker (`type=chain`) lets you combine multiple reranking 
@@ -85,16 +84,15 @@ reranking.
 By setting this cutoff value, you can control which results are considered 
 relevant enough to return, filtering out results that do not meet the desired 
 level of relevance. For example, when you set the `cutoff` to `0.5`, only results 
-with a score of `0.5` or higher are considered.
+with a score of `0.5` or higher are considered. For example:
 
 ```json
 "reranker": {
-  "type": "mmr",
-  "diversity_bias": "0.4",
+  "type": "customer_specific",
+  "reranker_name": "Rerank_Multilingual_v1",
   "cutoff": 0.5
 }
 ```
-
 When a reranker is applied with a cutoff, it performs the following steps:
 
 1. Reranks all input results based on the selected reranker.
@@ -107,6 +105,13 @@ This cutoff is applied per reranking stage. In a chain of rerankers, each
 reranker can have its own cutoff value, potentially further reducing the 
 number of results at each stage. If both `limit` and `cutoff` are specified, the 
 cutoff is applied first, followed by the limit.
+:::
+
+:::caution
+Search cutoffs are most effective when used with neural rerankers like 
+the Vectara Multilingual reranker (Slingshot). This provides normalized 
+scores between 0 and 1. If you use hybrid search methods that involve BM25, 
+scores may be unbounded, making cutoff values less predictable.
 :::
 
 ## Search limits
@@ -143,6 +148,12 @@ limit of `10` to get only the top 10 blog post results.
   "limit": 10,
 }
 ```
+
+### Improve summarization
+
+You can also improve LLM summarization by using cutoffs and limits. For 
+example, filter out low-scoring results before sending them for summarization, 
+which can improve the quality of the generated summary.
 
 ## Combine cutoffs and limits
 
