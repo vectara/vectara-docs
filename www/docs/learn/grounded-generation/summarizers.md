@@ -11,10 +11,7 @@ import {Config} from '@site/docs/definitions.md';
 Extracting concise, relevant information from large sets of search results 
 presents a significant challenge for many applications. Vectara offers 
 flexibility in selecting both the summarizer model and its associated prompt.
-We make a range of these and if you are a Scale customer, or are considering 
-becoming one and have any questions on your options, please
-[reach out to our support team](https://vectara.com/contact-us/), who can help
-guide you.
+We make a range of these summarizers and prompts.
 
 Summarizers have prefixes and versions and they encapsulate both a prompt text,
 as well as potentially specific configuration options for the generative
@@ -48,9 +45,8 @@ this `generation` field disables summarization.
 ## Currently available summarizers
 
 Today, the versions available are `1.2.0` which uses chatgpt-3.5-turbo
-and `1.3.0` which uses gpt-4.0 (and only available to our paying [Scale
-customers](https://vectara.com/pricing/)). The 1.2.0 summarizer is typically faster while 1.3.0 is typically
-slower, but it produces a more accurate summary. Scale users also have access 
+and `1.3.0` which uses gpt-4.0. The 1.2.0 summarizer is typically faster while 1.3.0 is typically
+slower, but it produces a more accurate summary. You also have access 
 to summarizers ideal for citations using gpt-4o, gpt-4.0, and gpt-4.0-turbo.
 
 These are several official summarizers available to our users that you specify

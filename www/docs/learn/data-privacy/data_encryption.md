@@ -12,23 +12,19 @@ import {vars} from '@site/static/variables.json';
 When you send documents to the
 [index API](/docs/api-reference/indexing-apis/indexing) or
 [file upload API](/docs/api-reference/indexing-apis/file-upload/file-upload), <Config v="names.product"/> 
-indexes both the document text and metadata. If you 
-choose the “textless” option (Scale users) for [corpus creation](/docs/api-reference/admin-apis/create-corpus), <Config v="names.product"/> converts 
-the document text into vectors for indexing but **does not** store the text 
-anywhere in the platform. However, metadata is always stored. 
+indexes both the document text and metadata.
 
 :::note
 
-For the safety 
-of your data, <Config v="names.product"/> always stores your text and metadata 
-in an encrypted format. By default this encryption uses <Config v="names.product"/>'s own
- encryption key to encrypt your data (text and/or metadata).
+For the safety of your data, <Config v="names.product"/> always stores your text 
+and metadata in an encrypted format. By default this encryption uses <Config v="names.product"/>'s 
+own encryption key to encrypt your data (text and/or metadata).
 
 :::
 
-For [Scale accounts](https://vectara.com/pricing/) <Config v="names.product"/>
-also allows you to use your own AWS KMS encryption key so that you have full
-control over how your data is encrypted.  If you would like to do so, follow
+[Pro and Enterprise accounts](https://vectara.com/pricing/) <Config v="names.product"/>
+can use your own AWS KMS encryption key so that you have full
+control over how your data is encrypted. If you would like to do so, follow
 the instructions below.
 
 :::caution
@@ -47,8 +43,8 @@ depending on that key will be inaccessible forever.
 :::
 
 ## Create your AWS KMS key
-KMS keys are only available to Scale plan accounts.  If you need help with setting
-up your customer-managed key, [reach out to support](https://vectara.com/contact-us/).
+KMS keys are only available to Pro and Enterprise plan accounts. If you need 
+help with setting up your customer-managed key, [reach out to support](https://vectara.com/contact-us/).
 
 To create an AWS KMS key:
 1. Go to KMS on the AWS Console

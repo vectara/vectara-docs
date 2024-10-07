@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-The Vectara Prompt Engine empowers Scale users to customize prompt templates 
+The Vectara Prompt Engine empowers our users to customize prompt templates 
 that can reference the most relevant text and metadata for use cases that 
 require Retrieval Augmented Generation (RAG). Vectara enables developers to 
 directly add the retrieved documents and their metadata into the prompt 
@@ -42,7 +42,6 @@ uses.
 :::
 
 ## Prompt template design
- 
 Prompt template design includes a specific a `role` and `content` about this role, 
 which provide context about how you want the role to behave and the kind of 
 information that you want to retrieve. These values can also specify [variables 
@@ -72,7 +71,6 @@ prompt communicates its intent effectively.
 
 Example content can include “You are a helpful search assistant” or
 “Generate a summary for the query”.
-
 
 ## Example prompt template
 
