@@ -47,8 +47,8 @@ The following table shows the available custom prompt functions:
 
 ## Setting a Custom Prompt
 
-To set a custom prompt, Scale users can add custom `promptText` within the 
-`summary` [object](/docs/learn/grounded-generation/select-a-summarizer) of a [query](/docs/api-reference/search-apis/search) 
+To set a custom prompt, Scale users can add custom `prompt_text` within the 
+`generation` [object](/docs/learn/grounded-generation/select-a-summarizer) of a [query](/docs/api-reference/search-apis/search) 
 to override the default prompt text. The [API Reference](/docs/rest-api/query) provides a custom 
 prompt in the Query endpoint Scale Example.
 

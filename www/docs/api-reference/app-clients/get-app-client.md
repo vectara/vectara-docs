@@ -16,8 +16,8 @@ The Get App Client API retrieves details about a specific App Client.
 To get an App Client, send a GET request to `/v2/api_keys/{app_client_id}`, where
 `{app_client_id}` is the ID of the App Client you want to retrieve.
 
-The response includes an `AppClient` object that show the App Client name,
-description, client ID, API roles, and API Policy.
+The response includes the App Client name, description, client ID, API roles, 
+and API Policy.
 
 ## REST 2.0 URL
 
