@@ -148,12 +148,6 @@ limit of `10` to get only the top 10 blog post results.
 }
 ```
 
-### Improve summarization
-
-You can also improve LLM summarization by using cutoffs and limits. For 
-example, filter out low-scoring results before sending them for summarization, 
-which can improve the quality of the generated summary.
-
 ## Combine cutoffs and limits
 
 Using both cutoffs and limits in a chain allows for more refined control over 
@@ -183,6 +177,38 @@ This filters out non-blog content where the UDF reranker limits the output to
 10, and sends these 10 results to the Vectara Multilingual reranker which both 
 removes results with a score below `0.5` and returns the top 3 results from 
 the remaining set.
+
+
+### Improve summarization
+
+You can also improve LLM summarization by using cutoffs and limits. For 
+example, filter out low-scoring results with a high threshold before sending 
+them for summarization, which can improve the quality of the generated 
+summary. This example uses both Slingshot and a User Defined Function to send 
+only highly relevant and recent documents for summarization.
+
+```json
+"reranker": {
+    "type": "chain",
+    "rerankers": [
+      {
+        "type": "customer_reranker",
+        "reranker_name": "Rerank_Multilingual_v1",
+        "cutoff": 0.75,
+        "limit": 10
+      },
+      {
+        "type": "userfn",
+        "user_function": "get('$.document_metadata.publish_ts')"
+      }
+    ]
+  },
+```
+
+1. The first stage in the chain filters out documents with scores lower than 
+   `0.75` and it also limits the results to `10`.
+2. The next stage prioritizes documents based on their `publish_ts` value, 
+   which represents the publication timestamp.
 
 :::tip
 You can also enable reranking in the Vectara console after navigating to the 
