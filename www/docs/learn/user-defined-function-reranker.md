@@ -80,7 +80,7 @@ null
 ## Operators
 
 Arithmetic, logic, and comparison operators are all present in the language. 
-The current list of operators are `*, / %, +, -, &lt;, &lt;=, >=, >, ||, &&, ==, !`. 
+The current list of operators are `*, / %, +, -, <, <=, >=, >, ||, &&, ==, !`. 
 Operator precedence is in the previous listed order.
 
 ### Operators examples:
