@@ -22,7 +22,7 @@ accurate results.
 
 Vectara currently provides the following rerankers: 
 
-* [**Multilingual Reranker v1**](/docs/learn/vectara-multi-lingual-reranker) (`type=customer_specific` and `reranker_name=Rerank_Multilingual_v1`) 
+* [**Multilingual Reranker v1**](/docs/learn/vectara-multi-lingual-reranker) (`type=customer_reranker` and `reranker_name=Rerank_Multilingual_v1`) 
   also known as Slingshot, provides more accurate neural ranking than the 
   initial Boomerang retrieval. While computationally more expensive, it offers 
   improved text scoring across   a wide range of languages, making it suitable 
@@ -85,7 +85,7 @@ with a score of `0.5` or higher are considered. For example:
 
 ```json
 "reranker": {
-  "type": "customer_specific",
+  "type": "customer_reranker",
   "reranker_name": "Rerank_Multilingual_v1",
   "cutoff": 0.5
 }
@@ -170,7 +170,7 @@ query results.
         "limit": 10
       },
       {
-        "type": "customer_specific",
+        "type": "customer_reranker",
         "reranker_name": "Rerank_Multilingual_v1",
         "cutoff": 0.5,
         "limit": 3

@@ -58,7 +58,7 @@ aggregators, and knowledge bases.
     "type": "chain",
     "rerankers": [
       {
-        "type": "customer_specific",
+        "type": "customer_reranker",
         "reranker_id": "rnk_272725719"
       },
       {
@@ -107,7 +107,7 @@ products.
     "type": "chain",
     "rerankers": [
       {
-        "type": "customer_specific",
+        "type": "customer_reranker",
         "reranker_name": "Rerank_Multilingual_v1"
       },
       {
