@@ -192,6 +192,33 @@ paths:
         response-stream:
           $ref: "#/components/schemas/QueryStreamedResponse"
       x-fern-sdk-method-name: query
+      x-fern-examples: 
+        - request:
+            query: hello, world? 
+            search:
+              corpora:
+                - lexical_interpolation: 0.005
+              offset: 0
+              limit: 10
+              context_configuration: 
+                sentences_before: 2
+                sentences_after: 2
+                start_tag: "<em>"
+                end_tag: "</em>"
+            generation: 
+              max_used_search_results: 5
+              citations:  
+                style: "none"
+              response_language: "auto"
+              enable_factual_consistency_score: true
+            stream_response: true
+          response:
+            stream:
+              - type: search_results
+                search_results: 
+                  - text: "Hello, world!"
+                    score: 0.9
+                    document_id: "doc_123"
   /v2/corpora/{corpus_key}/query:
     get:
       x-fern-sdk-group-name: corpora
