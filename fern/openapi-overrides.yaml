@@ -210,7 +210,6 @@ paths:
               citations:  
                 style: "none"
               response_language: "auto"
-              enable_factual_consistency_score: true
             stream_response: true
           response:
             stream:
