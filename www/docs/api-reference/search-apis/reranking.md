@@ -140,14 +140,6 @@ content.
 This would remove non-blog posts from the results. Then you can set a 
 limit of `10` to get only the top 10 blog post results.
 
-```json
-"reranker": {
-  "type": "mmr",
-  "diversity_bias": "0.4",
-  "limit": 10,
-}
-```
-
 ## Combine cutoffs and limits
 
 Using both cutoffs and limits in a chain allows for more refined control over 
