@@ -135,7 +135,7 @@ example, you want to process blog posts and ignore non-blog posts. You would
 set up a UDF to filter for blog categories and return null score for non-blog 
 content. 
 
-`"get('$.document_metadata.category') === 'blog' ? get('$.score') : null";`
+`if (get('$.document_metadata.category') == 'blog') get('$.score') else null`
 
 This would remove non-blog posts from the results. Then you can set a 
 limit of `10` to get only the top 10 blog post results.
@@ -160,7 +160,7 @@ query results.
     "rerankers": [
       {
         "type": "userfn",
-        "user_function": "get('$.document_metadata.category') === 'blog' ? get('$.score') : null",
+        "user_function": "if (get('$.document_metadata.category') == 'blog') get('$.score') else null",
         "limit": 10
       },
       {
