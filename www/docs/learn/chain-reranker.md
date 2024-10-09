@@ -58,8 +58,8 @@ aggregators, and knowledge bases.
     "type": "chain",
     "rerankers": [
       {
-        "type": "customer_specific",
-        "reranker_id": "rnk_272725719"
+        "type": "customer_reranker",
+        "reranker_name": "Rerank_Multilingual_v1"
       },
       {
         "type": "userfn",
@@ -68,8 +68,11 @@ aggregators, and knowledge bases.
     ]
   }
 }
-
 ```
+
+In this example, the [Vectara Multilingual reranker](/docs/learn/vectara-multi-lingual-reranker) improves the precision of 
+results by refining the output of initial models like Boomerang, while the 
+[User Defined Function reranker](/docs/learn/user-defined-function-reranker) boosts relevance based on metadata for popularity.
 Now let's take a look at a more complex chain reranker example. In this 
 e-commerce example, the Vectara Multilingual Reranker first refines the 
 initial results, providing a better ranking order than Boomerang. This 
@@ -104,7 +107,7 @@ products.
     "type": "chain",
     "rerankers": [
       {
-        "type": "customer_specific",
+        "type": "customer_reranker",
         "reranker_name": "Rerank_Multilingual_v1"
       },
       {

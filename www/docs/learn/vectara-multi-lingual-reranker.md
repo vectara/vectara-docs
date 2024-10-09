@@ -32,9 +32,9 @@ reranker as a "better Boomerang" for refining results, with the multilingual
 capability serving primarily as a differentiator from other rerankers in the 
 market, which are often English-only.
 
-Using this reranker requires both the `type` and `reranker_id` in the 
+Using this reranker requires both the `type` and `reranker_name` in the 
 `reranker` object. Set the `type` as `customer_reranker` and the `reranker_name` 
-as `Rerank_Multilingual_v1`. 
+as `Rerank_Multilingual_v1`.
 
 ```json
 "reranker": {
@@ -45,7 +45,7 @@ as `Rerank_Multilingual_v1`.
 
 :::note
 The `reranker_id` and `rnk_272725719` have been deprecated. Use `reranker_name` and 
-`Rerank_Multilingual_v1` instead.
+`Rerank_Multilingual_v1`.
 :::
 
 The Vectara Multilingual Reranker ensures impressive zero-shot performance on 
