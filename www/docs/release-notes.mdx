@@ -19,14 +19,76 @@ and documentation changes can benefit your enterprise.
 
 
 ## Search Cutoffs and Limits
-_October 8, 2024_
+_October 9, 2024_
 
-TBD
+This feature introduces cutoffs and limits for search results. Cutoffs set a 
+minimum relevance threshold, while limits control the maximum number of 
+returned results after reranking. These can be applied individually or 
+combined across various reranker types.
+
+**Why it matters:** These controls allow developers to customize reranker inputs, 
+ensuring highly relevant results and optimizing resource usage. By enabling 
+more precise result filtering, application builders have more flexibility for 
+specific use cases, from content categorization to focused data retrieval.
+
+### Updated API endpoint(s): 
+
+* Advanced Single Corpus Query | Vectara Docs
+* Multiple Corpora Query | Vectara Docs 
+
+### More information: 
+
+* Search cutoffs
+* Search limits 
+
+___
+
+## Chain reranker
+_October 8, 2024_ 
+
+The Vectara chain reranker lets you apply multiple reranking strategies 
+sequentially, allowing users to combine different reranking strategies and 
+giving you absolute control. This feature enables the application of diverse 
+ranking criteria at each stage of the ranking process, from neural reranking 
+and maximal marginal relevance to custom business logic, all in a customizable 
+sequence.
+
+Why it matters: This unique innovation addresses complex search scenarios that 
+require multidimensional relevance and enables enterprises to fully customize 
+Vectara's behavior. By allowing the combination of various reranking 
+strategies, it significantly enhances the quality of Retrieval Augmented 
+Generation (RAG) outcomes. This addresses a significant gap in the GenAI 
+market, offering a solution that analysts have identified as crucial for 
+advanced AI-driven search and retrieval systems.
+
+### Updated API endpoint(s): 
+
+* Advanced Single Corpus Query | Vectara Docs
+* Multiple Corpora Query | Vectara Docs 
+
+### More information:
+
+* Introducing Vectara’s Chain Rerankers 
+* Chain Reranker
+
+___
 
 ## Document and Document Part/Vector Count API
+
 _October 1, 2024_
 
-TBD
+You can now retrieve more comprehensive metrics about a corpus, including the 
+number of documents or document parts (vectors).
+
+**Why it matters:** Administrators can now efficiently manage resource allocation 
+and monitor data usage trends. This feature helps ensure that corpus growth 
+stays within allocated quotas and provides insights into document segmentation 
+patterns.
+
+### More information:
+
+* Get Corpus API Definition 
+* Retrieve metadata about a corpus 
 
 ## GovCloud Launch
 _September 11, 2024_
@@ -39,23 +101,29 @@ _August 3, 2024_
 A new UI feature allows users to easily switch between corpora, improving the 
 experience of managing multiple datasets within the Vectara platform.
 
-**More information:** [Corpora Switcher](#)
+### More information: [Corpora Switcher](#)
 
 
----
+___
 
-## Custom Prompts in Console  
+## UI Enhancement: Custom Prompts in Console
+
 _August 20, 2024_
 
-Custom Prompts with metadata were introduced to provide enterprises with 
-better control over how prompts are processed and integrated into the 
-generative pipeline. This is particularly useful for creating tailored RAG 
-applications.
+The Vectara Prompt Engine allows users to create customized prompt templates 
+that can reference relevant text and metadata for Retrieval Augmented 
+Generation (RAG) applications.
 
-**More information:**: [Custom Prompts in Console](#)
+Why it matters: This feature enables more advanced workflows and 
+customizations for creating context-aware responses, such as answering 
+questions based on previous answers in RFIs or RFPs, drafting support tickets 
+from user feedback, and customizing result formatting. The ability to define 
+roles and provide detailed context in prompts helps guide LLMs to generate 
+more accurate and relevant responses.
 
+### More information:
 
----
+___
 
 ## User Defined Function Reranking
 _August 15, 2024_
@@ -65,9 +133,9 @@ granular control over search result ordering by applying custom ranking logic,
 such as sorting by price, date, or any custom metadata. This flexibility is 
 particularly useful for e-commerce and enterprise search applications.
 
-**More information:**: [User Defined Function Reranking](#)
+### More information:: [User Defined Function Reranking](#)
 
----
+___
 
 ## Mockingbird LLM  
 _July 16, 2024_
@@ -77,9 +145,9 @@ generative outputs with reliable citations and a focus on multilingual
 support. This model is optimized for enterprises aiming to deliver grounded, 
 trustworthy AI responses.
 
-**More information:**: [Mockingbird LLM](#)
+### More information:: [Mockingbird LLM](#)
 
----
+___
 
 ## Vectara API v2  
 _June 6, 2024_
@@ -91,9 +159,9 @@ platform.
 
 New API Endpoint(s): [Vectara API v2 Overview](#)
 
-**More information:**: [Vectara API v2 Documentation](#)
+### More information:: [Vectara API v2 Documentation](#)
 
----
+___
 
 ## Vectara Multilingual Reranker v1 (Slingshot)  
 _May 28, 2024_
@@ -105,7 +173,7 @@ wide range of languages, making it suitable for diverse content. Slingshot
 boosts enterprise search quality, especially in globally distributed 
 organizations.
 
-**More information:**: [Multilingual Reranker](#)
+### More information:: [Multilingual Reranker](#)
 
 ---
 
@@ -117,4 +185,4 @@ Markdown or HTML. This feature is essential for integrating generative
 responses into web-based applications and ensuring citations are clear and 
 appropriately formatted.
 
-**More information:**: [Generative Response Styling](#)
+### More information:: [Generative Response Styling](#)
