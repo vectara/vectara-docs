@@ -24,8 +24,13 @@ questions or answers using the `queries_are_answers` and `documents_are_question
 boolean properties. These settings affect the semantics of the encoder used at
 query time and indexing time.
 
-The `encoder_id` property allows you to choose the encoder for the corpus. If
+The `encoder_name` property allows you to choose the encoder for the corpus. If
 not specified, it defaults to the latest Vectara encoder.
+
+:::note
+The `encoder_id` property has been deprecated. Use the `encoder_name` 
+property instead.
+:::
 
 In order to reference metadata in [filter expressions](/docs/learn/metadata-search-filtering/filter-overview), the attributes
 are declared at creation time in the `filter_attributes` array. You can add, 

@@ -80,7 +80,7 @@ null
 ## Operators
 
 Arithmetic, logic, and comparison operators are all present in the language. 
-The current list of operators are `*, / %, +, -, &lt;, &lt;=, >=, >, ||, &&, ==, !`. 
+The current list of operators are `*, / %, +, -, <, <=, >=, >, ||, &&, ==, !`. 
 Operator precedence is in the previous listed order.
 
 ### Operators examples:
@@ -199,6 +199,57 @@ and logarithms.
 ```sql
 get('$.score') * 1 / as_days(iso_datetime_parse(get('$.document_metadata.publication_date')) - now())
 ```
+
+## Null score handling
+
+The User Defined Function reranker supports returning null scores, allowing 
+for more flexible result filtering. When a UDF returns a null score for a 
+result, that result is automatically removed from the set.
+
+:::note
+Null removal occurs before limits are applied and before results are passed to 
+the next reranker in the pipeline. Only the UDF reranker can deliberly return 
+null scores.
+:::
+
+## Null score usage examples
+
+In this example, you want to remove results with a score below a specific 
+threshold:
+
+`user_function: "get('$.score') < 0.5 ? null : get('$.score')";`
+
+This example filters results based on metadata:
+
+`user_function: "get('$.document_metadata.category') === 'blog' ? get('$.score') : null";`
+
+### Null score usage in a chain
+
+In this example, the UDF filter out results with scores below `0.5` and limits 
+the output to `100` results. The MMR reranker then processes these results by 
+applying a diversity bias and further limits the output to `50` results.
+
+```json
+{
+  "reranker": {
+    "type": "chain",
+    "rerankers": [
+      {
+        "type": "userfn",
+        "user_function": "get('$.score') < 0.5 ? null : get('$.score')",
+        "limit": 100
+      },
+      {
+        "type": "mmr",
+        "user_function": "get('$.metadata.popularity') * get('$.metadata.score')",
+        "limit": 50
+      }
+    ]
+  }
+}
+```
+
+
 
 ## Example document with nuanced metadata
 

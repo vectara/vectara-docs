@@ -23,23 +23,12 @@ previous answers, such as with RFI, RFP, and questionnaires. Draft support
 tickets from user feedback. You can even customize the formatting of results.
 
 :::tip
-
-Users can override the default prompt text with custom `prompt_text` in the 
-`generation` object of a [**query**](/docs/api-reference/search-apis/search). The 
-[**Query Request section**](/docs/rest-api/query) of the API Playground provides a Scale 
-Example with a sample `generation` object, which includes a custom prompt template. 
-Users can override the default prompt text with custom `prompt_text` in the 
-`generation` object of a [**query**](/docs/api-reference/search-apis/search). The 
-[**Query Request section**](/docs/rest-api/query) of the API Reference provides a Scale 
-Example with a sample `generation` object, which includes a custom prompt. 
-
+Users can override the default prompt text with custom `prompt_template` in the 
+`generation` object of a [**query**](/docs/api-reference/search-apis/search).
 :::
 
 ## Effective prompts and templates
-## Effective prompts and templates
 
-Effective prompt templates guide LLMs to generate responses that meet specific 
-user needs or objectives in generative AI applications. Define an objective 
 Effective prompt templates guide LLMs to generate responses that meet specific 
 user needs or objectives in generative AI applications. Define an objective 
 that outlines what you aim to achieve, and provide detailed context to 
@@ -48,15 +37,12 @@ understand the scenario better. Iteration and refinement are important
 processes to help you improve the outcome of your prompts.
 
 :::note
-
 Reach out to support if you want to modify the default prompt that Vectara 
 uses.
-
 :::
 
 ## Prompt template design
-
-Prompt template design includes a specific a `role` and `content` about this role, 
+ 
 Prompt template design includes a specific a `role` and `content` about this role, 
 which provide context about how you want the role to behave and the kind of 
 information that you want to retrieve. These values can also specify [variables 
@@ -87,7 +73,6 @@ prompt communicates its intent effectively.
 Example content can include “You are a helpful search assistant” or
 “Generate a summary for the query”.
 
-## Example prompt template
 
 ## Example prompt template
 
