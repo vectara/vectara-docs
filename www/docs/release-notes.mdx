@@ -12,10 +12,10 @@ import { TopicButton } from "@site/ui/TopicButton";
 
 Here’s where we keep you up to date with all the latest features and product 
 documentation updates to help you get even more out of the Vectara platform. 
-Whether you're building sophisticated GenAI applications, experimenting with 
-Retrieval Augmented Generation (RAG), or exploring our newest API endpoints, 
-this page is your go-to place to see how we’re evolving and how these product 
-and documentation changes can benefit your enterprise.
+Whether you're building sophisticated generative AI applications, 
+experimenting with Retrieval Augmented Generation (RAG), or exploring our 
+newest API endpoints, this page is your go-to place to see how we’re evolving 
+and how these product and documentation changes can benefit your enterprise.
 
 
 ## Search cutoffs and limits
@@ -55,13 +55,11 @@ ranking criteria at each stage of the ranking process, from neural reranking
 and maximal marginal relevance to custom business logic, all in a customizable 
 sequence.
 
-Why it matters: This unique innovation addresses complex search scenarios that 
-require multidimensional relevance and enables enterprises to fully customize 
+**Why it matters**: This unique innovation addresses complex search scenarios that 
+require complex relevance and business rules and enables enterprises to fully customize 
 Vectara's behavior. By allowing the combination of various reranking 
 strategies, it significantly enhances the quality of Retrieval Augmented 
-Generation (RAG) outcomes. This addresses a significant gap in the GenAI 
-market, offering a solution that analysts have identified as crucial for 
-advanced AI-driven search and retrieval systems.
+Generation (RAG) outcomes.
 
 ### Updated API endpoint(s): 
 
@@ -80,7 +78,7 @@ ___
 _October 1, 2024_
 
 You can now retrieve more comprehensive metrics about a corpus, including the 
-number of documents or document parts (vectors).
+number of documents or document parts.
 
 **Why it matters:** Administrators can now efficiently manage resource allocation 
 and monitor data usage trends. This feature helps ensure that corpus growth 
@@ -91,22 +89,6 @@ patterns.
 
 * [Get Corpus API Definition](https://docs.vectara.com/docs/api-reference/admin-apis/corpus/read-corpus#get-the-number-of-documents-or-document-parts-in-a-corpus)
 * [Retrieve metadata about a corpus](https://docs.vectara.com/docs/rest-api/get-corpus)
-
-___
-
-## GovCloud Launch
-_September 11, 2024_
-
-TBD
-
-## UI Enhancements: Corpora Switcher  
-_August 3, 2024_
-
-A new UI feature allows users to easily switch between corpora, improving the 
-experience of managing multiple datasets within the Vectara platform.
-
-### More information:
-
 
 ___
 
@@ -126,6 +108,9 @@ roles and provide detailed context in prompts helps guide LLMs to generate
 more accurate and relevant responses.
 
 ### More information:
+
+* [Introducing Vectara's Custom Prompt Engine](https://vectara.com/blog/introducing-vectaras-custom-prompt-engine/)
+* [Vectara Prompt Engine](https://docs.vectara.com/docs/prompts/vectara-prompt-engine)
 
 ___
 
@@ -156,10 +141,10 @@ ___
 
 _July 16, 2024_
 
-Vectara releases our Mockingbird LLM designed for Retrieval Augmented 
-Generation (RAG) scenarios. It offers enhanced accuracy and improved 
-performance in summarizing large datasets, generating structured data, and 
-providing multilingual support.
+Vectara releases Mockingbird, our Large Language Model optimized (LLM) 
+designed for Retrieval Augmented Generation (RAG) scenarios. It offers 
+enhanced accuracy and improved performance in summarizing large datasets, 
+generating structured data, and providing multilingual support.
 
 **Why it matters:** Mockingbird outperforms leading models in RAG quality, 
 citation accuracy, and structured output precision. It's particularly valuable 
@@ -185,11 +170,11 @@ authentication, new top-level objects, and better defaults for hybrid search
 and reranking, making it easier to develop applications with Vectara’s GenAI 
 platform.
 
-**Why it matters:** This major update significantly improves the developer 
+**Why it matters:** This update significantly improves the developer 
 experience, making it easier to integrate Vectara into applications. The 
-standardized error codes and improved defaults reduce development overhead and 
-potential silent errors. While REST API v2 is a major improvement, Vectara 
-continues to support gRPC for low-latency applications.
+standardized error codes and improved defaults reduce development overhead 
+and potential silent errors. While REST API v2 is a major improvement, Vectara 
+continues to support gRPC for low-latency applications
 
 **New API endpoint(s):** 
 
@@ -214,10 +199,9 @@ pipelines. It excels in globally distributed, multilingual environments,
 reducing irrelevant responses and minimizing hallucinations in generative 
 AI applications.
 
-
-Why it matters: Slingshot significantly enhances the precision of retrieved 
+**Why it matters:** Slingshot significantly enhances the precision of retrieved 
 results, crucial for reducing hallucinations and irrelevant responses in 
-Generative AI applications. While computationally more expensive, it offers 
+generative AI applications. While computationally more expensive, it offers 
 improved text scoring across a wide range of languages (100+), making it 
 suitable for diverse content as a powerful tool for enterprises.
 
@@ -257,11 +241,11 @@ ___
 
 _May 15, 2024_
 
-Vectara now lets users format citations in summaries using Markdown or HTML, 
-and include document and part level metadata directly in citation links. This 
-feature is useful for enterprises wanting formatted, context-rich summaries 
-for integrating generative responses into web-based applications and ensuring 
-citations are clear and appropriately formatted.
+Vectara now allows users to format citations in summaries using Markdown or 
+HTML and including document and part level metadata directly in citation 
+links. This feature is useful for enterprises that require formatted, 
+context-rich summaries for integrating generative responses into web-based 
+applications and ensuring citations are clear and appropriately formatted.
 
 **Why it matters:** By allowing structured citations, Vectara simplifies the 
 integration process for developers who need to embed references directly into 

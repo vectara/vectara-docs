@@ -390,4 +390,11 @@ module.exports = {
       items: require("./docs/rest-api/sidebar.js"),
     },
   ],
+  releaseNotes: [
+    {
+      type: "doc",
+      id: "release-notes",
+      label: "Release Notes"
+    },
+  ]
 };
