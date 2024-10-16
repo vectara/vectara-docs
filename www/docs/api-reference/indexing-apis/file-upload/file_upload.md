@@ -73,6 +73,13 @@ curl -L -X POST 'https://api.vectara.io/v2/corpora/:corpus_key/upload_file' \
 -F 'metadata={"key": "value"};type=application/json' \
 -F 'file=@/path/to/file/file.pdf;filename=desired_filename.pdf'
 ```
+
+### Filenames with Non-ASCII Characters
+
+When uploading files with non-ASCII (non-English) characters, such as Russian 
+or Chinese, ensure that the filename is URL encoded. API v2 follows web 
+standards which require URL-encoded file names.
+
 ### Set the Document ID
 
 The `Content-Disposition` header lets you specify the Document ID of a file
