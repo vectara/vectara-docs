@@ -1,0 +1,264 @@
+---
+id: release-notes
+slug: /release-notes
+title: Vectara Release Notes
+sidebar_label: Release Notes
+---
+
+import { Config } from "./definitions.md";
+import { Grid } from "@site/ui/Grid";
+import { Spacer } from "@site/ui/Spacer";
+import { TopicButton } from "@site/ui/TopicButton";
+
+Here’s where we keep you up to date with all the latest features and product 
+documentation updates to help you get even more out of the Vectara platform. 
+Whether you're building sophisticated generative AI applications, 
+experimenting with Retrieval Augmented Generation (RAG), or exploring our 
+newest API endpoints, this page is your go-to place to see how we’re evolving 
+and how these product and documentation changes can benefit your enterprise.
+
+
+## Search cutoffs and limits
+
+_October 9, 2024_
+
+This feature introduces cutoffs and limits for search results. Cutoffs set a 
+minimum relevance threshold, while limits control the maximum number of 
+returned results after reranking. These can be applied individually or 
+combined across various reranker types.
+
+**Why it matters:** These controls allow developers to customize reranker inputs, 
+ensuring highly relevant results and optimizing resource usage. By enabling 
+more precise result filtering, application builders have more flexibility for 
+specific use cases, from content categorization to focused data retrieval.
+
+**Updated API endpoints:**
+
+* [Advanced Single Corpus Query](https://docs.vectara.com/docs/rest-api/query-corpus)
+* [Multiple Corpora Query](https://docs.vectara.com/docs/rest-api/query)
+
+**More information:**
+
+* [Search cutoffs](https://docs.vectara.com/docs/api-reference/search-apis/reranking#search-cutoffs)
+* [Search limits](https://docs.vectara.com/docs/api-reference/search-apis/reranking#search-limits) 
+
+___
+
+## Chain reranker
+
+_October 8, 2024_ 
+
+The Vectara chain reranker lets you apply multiple reranking strategies 
+sequentially, allowing users to combine different reranking strategies and 
+giving you absolute control. This feature enables the application of diverse 
+ranking criteria at each stage of the ranking process, from neural reranking 
+and maximal marginal relevance to custom business logic, all in a customizable 
+sequence.
+
+**Why it matters**: This unique innovation addresses complex search scenarios that 
+require complex relevance and business rules and enables enterprises to fully customize 
+Vectara's behavior. By allowing the combination of various reranking 
+strategies, it significantly enhances the quality of Retrieval Augmented 
+Generation (RAG) outcomes.
+
+**Updated API endpoints:**
+
+* [Advanced Single Corpus Query](https://docs.vectara.com/docs/rest-api/query-corpus)
+* [Multiple Corpora Query](https://docs.vectara.com/docs/rest-api/query)
+
+**More information:**
+
+* [Introducing Vectara’s Chain Rerankers](https://vectara.com/blog/introducing-vectaras-chain-rerankers/)
+* [Chain Reranker](https://docs.vectara.com/docs/learn/chain-reranker)
+
+___
+
+## Document and Document Part/Vector Count API
+
+_October 1, 2024_
+
+You can now retrieve more comprehensive metrics about a corpus, including the 
+number of documents or document parts.
+
+**Why it matters:** Administrators can now efficiently manage resource allocation 
+and monitor data usage trends. This feature helps ensure that corpus growth 
+stays within allocated quotas and provides insights into document segmentation 
+patterns.
+
+**Updated API endpoint:**
+
+[Retrieve metadata about a corpus](https://docs.vectara.com/docs/rest-api/get-corpus)
+
+**More information:**
+
+[Get Corpus API Definition](https://docs.vectara.com/docs/api-reference/admin-apis/corpus/read-corpus#get-the-number-of-documents-or-document-parts-in-a-corpus)
+
+___
+
+## UI Enhancement: Custom Prompts in Console
+
+_August 20, 2024_
+
+The Vectara Prompt Engine allows users to create customized prompt templates 
+that can reference relevant text and metadata for Retrieval Augmented 
+Generation (RAG) applications.
+
+Why it matters: This feature enables more advanced workflows and 
+customizations for creating context-aware responses, such as answering 
+questions based on previous answers in RFIs or RFPs, drafting support tickets 
+from user feedback, and customizing result formatting. The ability to define 
+roles and provide detailed context in prompts helps guide LLMs to generate 
+more accurate and relevant responses.
+
+**More information:**
+
+* [Introducing Vectara's Custom Prompt Engine](https://vectara.com/blog/introducing-vectaras-custom-prompt-engine/)
+* [Vectara Prompt Engine](https://docs.vectara.com/docs/prompts/vectara-prompt-engine)
+
+___
+
+## User Defined Function Reranking
+
+_August 15, 2024_
+
+Vectara introduces the User Defined Function Reranker, giving enterprises more 
+granular control over search result ordering by defining custom reranking 
+functions using document-level metadata, part-level metadata, or scores 
+generated from the request-level metadata. This flexibility is particularly 
+useful for a wide range of use cases.
+
+**Why it matters:** This feature allows enterprises to modify scores based on 
+metadata, conditions, and custom logic, in order to craft highly tailored 
+search experiences. This advanced functionality can guide LLMs to prioritize 
+certain information, especially when used with the chain reranker. Use cases 
+can include recency bias for news searches, location bias for local business 
+queries, and e-commerce bias for promotional content.
+
+**More information:**
+
+* [Rerank Search Results](/docs/api-reference/search-apis/reranking)
+* [User Defined Function Reranker](https://docs.vectara.com/docs/learn/user-defined-function-reranker)
+
+___
+
+## Mockingbird LLM
+
+_July 16, 2024_
+
+Vectara releases Mockingbird, our Large Language Model optimized (LLM) 
+designed for Retrieval Augmented Generation (RAG) scenarios. It offers 
+enhanced accuracy and improved performance in summarizing large datasets, 
+generating structured data, and providing multilingual support.
+
+**Why it matters:** Mockingbird outperforms leading models in RAG quality, 
+citation accuracy, and structured output precision. It's particularly valuable 
+for enterprises requiring accurate summaries of large data volumes, structured 
+data extraction, and multilingual capabilities. Mockingbird supports critical 
+languages including Arabic, French, Spanish, Portuguese, Italian, German, 
+Chinese, Dutch, Korean, Japanese, and Russian, making it ideal for global 
+applications.
+
+**More information:** 
+
+* [Mockingbird: A RAG and Structured Output Focused LLM](https://vectara.com/blog/mockingbird-a-rag-and-structured-output-focused-llm/)
+* [Mockingbird: Vectara's LLM](https://docs.vectara.com/docs/learn/mockingbird-llm)
+
+___
+
+## Vectara REST API v2
+
+_June 6, 2024_
+
+The Vectara API v2 provides a more RESTful, intuitive structure with simpler 
+authentication, new top-level objects, and better defaults for hybrid search 
+and reranking, making it easier to develop applications with Vectara’s GenAI 
+platform.
+
+**Why it matters:** This update significantly improves the developer 
+experience, making it easier to integrate Vectara into applications. The 
+standardized error codes and improved defaults reduce development overhead 
+and potential silent errors. While REST API v2 is a major improvement, Vectara 
+continues to support gRPC for low-latency applications
+
+**New API endpoint(s):** 
+
+* [Vectara v2 REST APIs](https://docs.vectara.com/docs/rest-api)
+
+**More information:**
+
+* [Vectara API Reference v2](https://docs.vectara.com/docs/api-reference/rest)
+* [REST API 1.0 to 2.0 Migration](https://docs.vectara.com/docs/migration-guide-api-v2)
+
+___
+
+## Vectara Multilingual Reranker v1 (Slingshot)
+
+_May 28, 2024_
+
+The state-of-the-art Vectara Multilingual Reranker, also known as Slingshot, 
+provides more accurate neural ranking than the initial Boomerang retrieval. 
+By significantly improving the precision of retrieved search results, 
+Slingshot enhances the performance of Retrieval Augmented Generation (RAG) 
+pipelines. It excels in globally distributed, multilingual environments, 
+reducing irrelevant responses and minimizing hallucinations in generative 
+AI applications.
+
+**Why it matters:** Slingshot significantly enhances the precision of retrieved 
+results, crucial for reducing hallucinations and irrelevant responses in 
+generative AI applications. While computationally more expensive, it offers 
+improved text scoring across a wide range of languages (100+), making it 
+suitable for diverse content as a powerful tool for enterprises.
+
+**Deprecated:** The `reranker_id` and `rnk_272725719` have been deprecated. 
+Use `reranker_name` and `Rerank_Multilingual_v1` instead.
+
+**More information:**
+
+* [Vectara Multilingual Reranker](https://docs.vectara.com/docs/learn/vectara-multi-lingual-reranker)
+* [Unlocking the State-of-the-Art Reranker: Introducing the Vectara Multilingual Reranker_v1](https://vectara.com/blog/unlocking-the-state-of-the-art-reranker-introducing-the-vectara-multilingual-reranker_v1/)
+
+
+___
+
+## Semantic Conversation History Search​
+
+_May 15, 2024_
+
+Vectara now allows administrators to search across conversation logs for 
+specific patterns or unresolved queries. This leverages semantic search 
+capabilities to identify gaps in knowledge bases and pinpoint "unknown 
+unknowns" in conversations where users may have asked unexpected or 
+unresolved questions.
+
+**Why it matters:** With this capability, enterprises can enhance their customer 
+support by analyzing user interactions and improving response accuracy. They 
+can identify unresolved or ambiguous user questions, even if the language is 
+informal or the question does not fit specific patterns.
+
+**More information:** 
+
+[Semantic Conversation History Search](https://vectara.com/blog/vectara-launches-2-powerful-new-generative-capabilities/)
+
+___
+
+## Generative Response Styling
+
+_May 15, 2024_
+
+Vectara now allows users to format citations in summaries using Markdown or 
+HTML and including document and part level metadata directly in citation 
+links. This feature is useful for enterprises that require formatted, 
+context-rich summaries for integrating generative responses into web-based 
+applications and ensuring citations are clear and appropriately formatted.
+
+**Why it matters:** By allowing structured citations, Vectara simplifies the 
+integration process for developers who need to embed references directly into 
+user-facing applications without additional parsing logic. This improvement 
+enhances usability for various platforms, including web-based content and 
+internal systems that support HTML or Markdown.
+
+**More information:**
+
+* [Vectara Launches 2 Powerful New Generative Capabilities](https://vectara.com/blog/vectara-launches-2-powerful-new-generative-capabilities/)
+* [Citation Format in Summary](https://docs.vectara.com/docs/api-reference/search-apis/search#citation-format-in-summary)
+

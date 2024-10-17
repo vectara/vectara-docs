@@ -257,6 +257,10 @@ ${content}
           position: "left",
         }, */
         {
+          label: "Release Notes",
+          to: "docs/release-notes",
+        },
+        {
           type: "search",
           className: "searchBar",
           position: "right",

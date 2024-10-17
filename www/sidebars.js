@@ -1,6 +1,6 @@
 module.exports = {
   someSidebar: [
-    {
+        {
       type: "doc",
       id: "introduction",
       label: "The Vectara Platform",
@@ -388,4 +388,11 @@ module.exports = {
       items: require("./docs/rest-api/sidebar.js"),
     },
   ],
+  releaseNotes: [
+    {
+      type: "doc",
+      id: "release-notes",
+      label: "Release Notes"
+    },
+  ]
 };
