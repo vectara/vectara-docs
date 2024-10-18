@@ -175,6 +175,41 @@ module.exports = {
     },
     {
       type: "category",
+      label: "Integrations",
+      items: [
+        "integrations/community-collaborations-and-partnerships",
+        {
+          type: "category",
+          label: "Data Ingest",
+          items: [
+            "integrations/vectara-and-airbyte",
+            "integrations/vectara-and-unstructured",
+            "integrations/vectara-and-datavolo",
+          ],
+        },
+        {
+          type: "category",
+          label: "LLM Orchestration",
+          items: [
+            "integrations/vectara-and-langchain",
+            "integrations/vectara-and-llamaindex",
+          ],
+        },
+        {
+          type: "category",
+          label: "Low-code / No-code App Builders",
+          items: 
+          [
+            "integrations/vectara-and-flowise",
+            "integrations/vectara-and-langflow",
+          ],
+        },
+        
+        
+      ],
+    },
+    {
+      type: "category",
       label: "Vectara Console",
       collapsed: true,
       items: [
