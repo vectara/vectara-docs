@@ -20,8 +20,8 @@ more.
 ## Integration benefits
 
 * Facilitates quick and easy data ingestion into Vectara for complex document 
-  types
-* Provides advanced capabilities like table processing and image extraction
-* Complements Vectara's File Upload API with additional parsing features
+  types.
+* Provides advanced capabilities like table processing and image extraction.
+* Complements Vectara's File Upload API with additional parsing features.
 
 This [blog post](https://drive.google.com/file/d/1N9hQkcNAe2jzfaBDm_c_l8ZUxpXpLlhx/view?usp=drivesdk) demonstrates how to use [Unstructured’s Ingest](https://unstructured-io.github.io/unstructured/ingest/index.html) capability with Vectara.

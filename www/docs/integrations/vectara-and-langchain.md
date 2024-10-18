@@ -16,13 +16,14 @@ LangChain ecosystem.
 
 ## Integration benefits
 
-* Provides semantic search and full RAG pipelines
+* Provides semantic search and full RAG pipelines.
 * Vectara RAG-as-a-Service removes the need to integrate with and maintain 
   additional components like embedding model, vector database, hybrid search 
   or the LLM itself.
-* Offers tight integration with the LangChain ecosystem for low latency and reduced cost.
-* Enables enterprise grade scalability, security, and privacy features right out of the 
-  box
+* Offers tight integration with the LangChain ecosystem for low latency and 
+  reduced cost.
+* Enables enterprise grade scalability, security, and privacy features right 
+  out of the box.
 
 This [example notebook](https://github.com/vectara/example-notebooks/blob/main/notebooks/using-vectara-with-langchain.ipynb) includes code examples showing a few ways to use Vectara 
 in a LangChain application, including RAG, semantic search, as well as Self 

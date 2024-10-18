@@ -21,11 +21,11 @@ like a vector database, an embedding model or even an LLM.
 Similar to LangChain, integrating with Vectara from a LlamaIndex application 
 provides the following benefits:
 
-* Powers semantic search or a full RAG pipeline, and removes the 
-  need to integrate with and maintain additional components - all is handled 
+* Powers semantic search or a full RAG pipeline, and removes the need to 
+  integrate with and maintain additional components - all is handled 
   in a scalable manner through Vectara’s platform.
 * Offers tight integration with the LlamaIndex ecosystem for low latency and 
-  reduced cost
+  reduced cost.
 * Enables enterprise grade scalability, security, and privacy features right 
   out of the box.
 

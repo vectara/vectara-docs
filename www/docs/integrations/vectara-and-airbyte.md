@@ -7,7 +7,7 @@ sidebar_label: Vectara and Airbyte
 import {Config} from '@site/docs/definitions.md';
 
 Vectara now functions as a [destination connector in Airbyte](https://docs.airbyte.com/integrations/destinations/vectara). Leveraging Airbyte’s support for 
-350+ source connectors to various data sources, you can now quickly and easily 
+400+ source connectors to various data sources, you can now quickly and easily 
 build a data movement and ingestion pipeline by connecting any source 
 connector to the Vectara destination connector. This integration results in a 
 robust and efficient data ingestion pipeline, deployable in your own 
