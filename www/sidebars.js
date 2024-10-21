@@ -74,6 +74,7 @@ module.exports = {
           ],
         },
         "learn/grounded-generation/select-a-summarizer",
+        "learn/query-evaluation",
         "learn/hallucination-evaluation",
         {
           type: "category",
@@ -290,6 +291,14 @@ module.exports = {
                 "api-reference/search-apis/interpreting-responses/highlighting",
               ],
             },
+          ],
+        },
+        {
+          type: "category",
+          label: "Query History APIs",
+          items: [
+            "api-reference/query-history-apis/get-query-history",
+            "api-reference/query-history-apis/get-query-histories",
           ],
         },
         {
