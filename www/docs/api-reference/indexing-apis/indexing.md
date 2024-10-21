@@ -31,7 +31,7 @@ stream the result or receive a complete response.
 
 :::
 
-### Index Document Request and Response
+## Index Document Request and Response
 
 To index a document, send a POST request to `/v2/corpora/:corpus_key/documents`,
 where `corpus_key` is the unique identifier for the corpus where you want to
@@ -54,14 +54,30 @@ indicates how much quota would have been consumed.
   `title`, `description`, `metadata`, `custom_dimensions`, and an array of
   `sections`. These sections each have an `id`, `title`, `text`, `metadata`,
   and nested `sections`.
-
+  
 :::note
-
 The storage quota object returns the number of characters consumed and the
 number of metadata characters consumed. The total quota consumed is simply the
 sum of both values.
-
 :::
+
+### Structured document chunking
+
+Structured documents can also specify a `chunking_strategy` which indicates 
+how to split the document into chunks during ingestion. Set the `type` as 
+`max_chars_chunking_strategy` and then specify the `max_chars_per_chunk` to 
+the number of characters per chunk. If not set, the platform defaults to 
+sentence-based chunking, where each chunk contains one full sentence. For more 
+details, see [Chunking strategy](/docs/learn/select-ideal-indexing-api#chunking-strategy).
+
+In this example, you apply a limit of 200 characters per chunk:
+
+```json
+"chunking_strategy": {
+  "type": "max_chars_chunking_strategy",
+  "max_chars_per_chunk": 200
+}
+```
 
 ## Core Document Object Definition
 

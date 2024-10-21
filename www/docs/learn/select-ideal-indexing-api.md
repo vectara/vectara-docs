@@ -96,3 +96,22 @@ organizational stakeholders.
 By leveraging the appropriate data indexing method is based on the nature of 
 your documents, you can ingest and structure your data for optimal performance 
 with Vectara's Retrieval Augmented Generatation as-a-Service platform.
+
+## Chunking strategy
+
+Chunking refers to the process of breaking a document into smaller parts 
+(chunks) for efficient indexing and retrieval. Chunking is critical for 
+optimizing search performance, particularly for large documents.
+
+Both the [File Upload API](/docs/api-reference/indexing-apis/file-upload/file-upload) and [Indexing API](/docs/api-reference/indexing-apis/indexing) provide an optional `chunking_strategy` 
+parameter that enables you to define how documents should be chunked during 
+ingestion. When you set the `type` to `max_chars_chunking_strategy`, you can 
+then define the maximum number of characters per chunk which enables more 
+granular control over how the platform splits the document.
+
+If you do not set this option, then the platform uses the default chunking 
+strategy that defaults to each chunk containing one full sentence.
+
+
+
+
