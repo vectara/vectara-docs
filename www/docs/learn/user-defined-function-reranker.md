@@ -241,16 +241,13 @@ applying a diversity bias and further limits the output to `50` results.
       },
       {
         "type": "mmr",
-        "user_function": "get('$.metadata.popularity') * get('$.metadata.score')",
+        "user_function": "get('$.document_metadata.popularity') * get('$.document_metadata.score')",
         "limit": 50
       }
     ]
   }
 }
 ```
-
-
-
 ## Example document with nuanced metadata
 
 This example document shows featured electronics for the upcoming fall season. 
