@@ -208,7 +208,7 @@ result, that result is automatically removed from the set.
 
 :::note
 Null removal occurs before limits are applied and before results are passed to 
-the next reranker in the pipeline. Only the UDF reranker can deliberly return 
+the next reranker in the pipeline. Only the UDF reranker can deliberately return 
 null scores.
 :::
 
