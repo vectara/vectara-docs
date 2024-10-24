@@ -60,13 +60,13 @@ in the `prompt_name` in the `generation` object:
 - `vectara-summary-ext-24-05-med` (gpt-4.0, for citations)
 - `vectara-summary-ext-24-05-large` (gpt-4.0-turbo, for citations)
 
-Scale customers also have
-access to [advanced summarization customization options](/docs/api-reference/search-apis/search#advanced-summarization-customization-options) including
-[custom prompt templates](/docs/prompts/vectara-prompt-engine), character limits, temperature, and frequency and presence penalties.
+Customers also have access to [advanced summarization customization options](/docs/api-reference/search-apis/search#advanced-summarization-customization-options) 
+including [custom prompt templates](/docs/prompts/vectara-prompt-engine), character limits, 
+temperature, and frequency and presence penalties.
 
 :::tip
 
-Check out our [**interactive API Reference**](/docs/rest-api/query) that lets Scale users experiment
+Check out our [**interactive API Reference**](/docs/rest-api/query) that lets you experiment
 with these additional summarization options.
 
 :::
@@ -75,10 +75,10 @@ with these additional summarization options.
 
 We also have four beta summarizers available for our users to try:
 
-- **Growth and Scale:** `vectara-experimental-summary-ext-2023-10-23-small` (gpt-3.5-turbo)
-- **Scale only:** `vectara-experimental-summary-ext-2023-10-23-med` (gpt-4.0)
-- **Growth and Scale:** `vectara-experimental-summary-ext-2023-12-11-sml` (gpt-3.5-turbo)
-- **Scale only:** `vectara-experimental-summary-ext-2023-12-11-large:` (gpt-4.0-turbo)
+- `vectara-experimental-summary-ext-2023-10-23-small` (gpt-3.5-turbo)
+- `vectara-experimental-summary-ext-2023-10-23-med` (gpt-4.0)
+- `vectara-experimental-summary-ext-2023-12-11-sml` (gpt-3.5-turbo)
+- `vectara-experimental-summary-ext-2023-12-11-large:` (gpt-4.0-turbo)
 
 These beta versions are a preview of our next improved summarizers. Since
 they are experimental, and while we don't support them officially, we are
@@ -86,8 +86,7 @@ currently considering promoting them to GA, pending feedback from our users.
 
 ### Beta summarizer example
 
-The following example query selects the beta GPT 4.0 summarizer (only
-available to Scale users):
+The following example query selects the beta GPT 4.0 summarizer:
 
 ```json showLineNumbers title="https://api.vectara.io/v2/query"
 {
@@ -110,10 +109,9 @@ available to Scale users):
 
 ## Default maxSummarizedResults limit
 
-The default limit of `max_used_search_results` is 10 search results for Growth
-plans and this limit can be extended for Scale plan users. Setting the values
-closer to the limit generates a more comprehensive summary, but using a lower
-value can balance the results with quality and response time.
+The default limit of `max_used_search_results` is 500 search results. Setting 
+the values closer to the limit generates a more comprehensive summary, but 
+using a lower value can balance the results with quality and response time.
 
 ### maxSummarizedResults example
 
@@ -142,19 +140,19 @@ with a reasonably fast response by setting `max_used_search_results` to `5`. To 
 
 ## Advanced Summarization Customization Options
 
-[Scale users](https://vectara.com/pricing/) have access to more powerful summarization
-capabilities, which present a powerful toolkit for tailoring summarizations to
-specific application and user needs.
+Our users also have access to more powerful summarization capabilities, which 
+present a powerful toolkit for tailoring summarizations to specific 
+application and user needs.
 
-The `prompt_name` allows you to specify one of our [available summarizers](/docs/learn/grounded-generation/select-a-summarizer).
-Use `prompt_name` and `prompt_text` to override the default prompt with a
+The `generation_preset_name` allows you to specify one of our [available summarizers](/docs/learn/grounded-generation/select-a-summarizer).
+Use `generation_preset_name` and `prompt_template` to override the default prompt with a
 [custom prompt](/docs/prompts/vectara-prompt-engine). Your use case might
 require a chatbot to be more human like, so you decide to create a custom
 response format that behaves more playfully in a conversation or summary.
 
 The `max_response_characters` lets you control the length of the summary, but
 note that it is **not a hard limit** like with the `max_tokens` parameter. The
-`generation` object provides even more fine-grained controls for the summarizer
+`model_parameters` object provides even more fine-grained controls for the summarizer
 model:
 
 - `max_tokens` specifies a hard limit on the number of characters in a response.
