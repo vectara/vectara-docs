@@ -43,7 +43,8 @@ use.
 :::tip
 
 Check out our [**interactive API Reference**](/docs/rest-api/query) that you experiment
-with these query types.
+with these query types. You can also perform a **[simple single corpus query](/docs/rest-api/search-corpus)**, 
+**[advanced single corpus query](/docs/rest-api/query-corpus)**, and a **[multiple corpora query](/docs/rest-api/query)**.
 
 :::
 

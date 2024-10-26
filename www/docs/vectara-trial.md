@@ -34,18 +34,24 @@ Experiment with different models to experience how different AI models handle
 various tasks:
 
 * **Mockingbird:** Vectara’s custom LLM designed specifically for Retrieval 
-  Augmented Generation (RAG) use cases. Mockingbird delivers superior 
+  Augmented Generation (RAG) use cases. [Mockingbird](/docs/learn/mockingbird-llm) delivers superior 
   performance in summarizing retrieved results, especially in enterprise 
   environments requiring multilingual support, citation accuracy, and 
-  structured output generation
+  structured output generation.
 * **GPT 3.5, 4, 4o:** Popular models for general-purpose generative tasks, 
   particularly useful for research and knowledge-intensive applications.
 * **BYOK**: Bring your own OpenAI key.
 
+:::caution
+The Vectara trial provides up to 15,000 GPT4 requests and includes access to 
+all GPT4-based summarizers. If you upgrade to Standard, Pro, or Enterprise, 
+you can purchase separate GPT4 bundles or BYOK. Vectara bundles offer the 
+advantage of HIPAA compliance.
+:::
 
 ### Custom prompts
 
-Vectara’s Prompt Engine enables users to customize prompt templates and 
+[Vectara’s Prompt Engine](/docs/prompts/vectara-prompt-engine) enables users to customize prompt templates and 
 fine-tune responses, tailored to their specific use cases, making it an 
 ideal solution for advanced workflows such as RAG:
 
@@ -56,7 +62,7 @@ ideal solution for advanced workflows such as RAG:
 
 ### Additional Rerankers
 
-Vectara provides several powerful rerankers to enable more precise scoring of 
+Vectara provides [several powerful rerankers](/docs/api-reference/search-apis/reranking) to enable more precise scoring of 
 query results:
 
 * **Multilingual Reranker v1 (Slingshot):** Provides more accurate neural ranking than 
@@ -75,7 +81,7 @@ query results:
 
 ### Full Query Control
 
-Vectara’s Query API enables granular control over query parameters, allowing 
+Vectara’s [Query API](/docs/api-reference/search-apis/search) enables granular control over query parameters, allowing 
 developers to tailor their searches to specific use cases. You get access to 
 a comprehensive set of parameters:
 
@@ -85,7 +91,8 @@ a comprehensive set of parameters:
 ## Trial quotas and usage limits
 
 * **Queries:** 15,000
-* **Generative requests:** 15,000
+* **Generative requests (non-GPT4):** 15,000
+* **Generative requests (GPT-4):** 15,000
 * **Storage:** 500 MB
 * **Results per query:** 500
 * **Reranker requests:** 100 results per reranking request
@@ -95,10 +102,12 @@ a comprehensive set of parameters:
 * **Number of corpora:** 50 corpora
 * **Replicas:** 2
 
-**Premium features not included in the trial:**
+:::tip
+**Pro and Enterprise level features not included in the trial:**
 
-* Custom dimensions
-* Customer-managed keys
+* [**Custom dimensions**](/docs/learn/semantic-search/add-custom-dimensions)
+* [**Customer-managed keys**](/docs/learn/data-privacy/encryption#create-your-aws-kms-key)
 
 For more details about the differences between our different plans, see the Pricing page.
+:::
 

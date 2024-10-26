@@ -49,6 +49,14 @@ and `1.3.0` which uses gpt-4.0. The 1.2.0 summarizer is typically faster while 1
 slower, but it produces a more accurate summary. You also have access 
 to summarizers ideal for citations using gpt-4o, gpt-4.0, and gpt-4.0-turbo.
 
+:::caution
+The Vectara trial includes access to all GPT4-based summarizers. After the 
+trial ends and you upgrade your plan, you can purchase separate GPT4 bundles 
+or bring your own API key. Vectara bundles offer the advantage of HIPAA 
+compliance.
+:::
+
+
 These are several official summarizers available to our users that you specify
 in the `prompt_name` in the `generation` object:
 
