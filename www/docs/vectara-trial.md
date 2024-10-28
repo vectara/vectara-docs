@@ -108,6 +108,6 @@ a comprehensive set of parameters:
 * [**Custom dimensions**](/docs/learn/semantic-search/add-custom-dimensions)
 * [**Customer-managed keys**](/docs/learn/data-privacy/encryption#create-your-aws-kms-key)
 
-For more details about the differences between our different plans, see the Pricing page.
+For more details about the differences between our different plans, see [Pricing](https://vectara.com/pricing/).
 :::
 
