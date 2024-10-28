@@ -26,7 +26,7 @@ process.
 ## Included features
 
 The Vectara trial lets you access most of the advanced capabilities of our 
-Standard and Pro plan users:
+Standard and Pro plans:
 
 ### Generative AI models
 
@@ -42,7 +42,7 @@ various tasks:
   particularly useful for research and knowledge-intensive applications.
 * **BYOK**: Bring your own OpenAI key.
 
-:::caution
+:::tip
 The Vectara trial provides up to 15,000 GPT4 requests and includes access to 
 all GPT4-based summarizers. If you upgrade to Standard, Pro, or Enterprise, 
 you can purchase separate GPT4 bundles or BYOK. Vectara bundles offer the 
@@ -91,23 +91,24 @@ a comprehensive set of parameters:
 ## Trial quotas and usage limits
 
 * **Queries:** 15,000
-* **Generative requests (non-GPT4):** 15,000
+* **Generative requests (non-GPT-4):** 15,000
 * **Generative requests (GPT-4):** 15,000
 * **Storage:** 500 MB
-* **Results per query:** 500
+* **Maximum results per query:** 500
 * **Reranker requests:** 100 results per reranking request
 * **Number of users:** Unlimited
 * **Number of administrators:** 1
 * **Chat turns per chat:** 30
-* **Number of corpora:** 50 corpora
+* **Number of corpora:** 50 
 * **Replicas:** 2
 
-:::tip
-**Pro and Enterprise level features not included in the trial:**
+:::note
+Pro and Enterprise level features not included in the trial:
 
 * [**Custom dimensions**](/docs/learn/semantic-search/add-custom-dimensions)
 * [**Customer-managed keys**](/docs/learn/data-privacy/encryption#create-your-aws-kms-key)
 
-For more details about the differences between our different plans, see [Pricing](https://vectara.com/pricing/).
+For more details about our plans, such as included features and resources, 
+see [**Pricing**](https://vectara.com/pricing/).
 :::
 

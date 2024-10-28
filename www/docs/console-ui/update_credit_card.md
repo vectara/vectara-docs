@@ -34,5 +34,5 @@ Follow the steps below to update the payment information for your account.
 5. Enter your payment details, and click **Update**. A confirmation pop up
    message indicates that the payment method has been updated. 
 
-Congratulations. You have successfully updated the payment method and your 
+Congratulations! You have successfully updated the payment method and your 
 payments going forward will be processed with it.
