@@ -44,7 +44,7 @@ If you select Manage, the following options appear:
 
 The Settings tab displays the current embedding model, indexing semantics, 
 filter attributes and custom dimensions (Pro and Enterprise only). This page 
-also has a Dangerous actions section that lets you disable the corpus, clear 
+also has a _Dangerous actions_ section that lets you disable the corpus, clear 
 corpus data, or delete the corpus.
 
 ### Access Control

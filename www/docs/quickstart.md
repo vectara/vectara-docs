@@ -13,7 +13,7 @@ getting answers about your data.
 
 ## Step 1. Create a Vectara account
 
-To get started <Config v="names.product"/>'s 30-day free trial, go to https://console.vectara.com/signup or
+To get started with <Config v="names.product"/>'s 30-day free trial, go to https://console.vectara.com/signup or
 click **Get started** at vectara.com. After you make an account, sign in!
 
 You are greeted with this page which lets you try out a sample corpus with
