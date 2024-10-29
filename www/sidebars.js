@@ -13,6 +13,11 @@ module.exports = {
       items: [
         {
           type: "doc",
+          id: "vectara-trial",
+          label: "Vectara Trial",
+        },
+        {
+          type: "doc",
           id: "quickstart",
           label: "Quick Start",
         },
