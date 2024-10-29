@@ -2854,8 +2854,6 @@ components:
             The probability that the summary is factually consistent with the results.
           type: number
           format: float
-        audio_response:
-          $ref: "#/components/schemas/AudioResponse"
         rendered_prompt:
           description: |
             The rendered prompt sent to the LLM. Useful when creating customer `prompt_text` templates. Only available
@@ -2904,7 +2902,6 @@ components:
           generation_chunk: "#/components/schemas/StreamGenerationChunk"
           generation_end: "#/components/schemas/StreamGenerationEnd"
           factual_consistency_score: "#/components/schemas/FactualConsistencyScore"
-          audio_response: "#/components/schemas/AudioResponse"
           generation_info: "#/components/schemas/GenerationInfo"
           error: "#/components/schemas/StreamError"
           end: "#/components/schemas/StreamResponseEnd"
@@ -3499,8 +3496,6 @@ components:
             The probability that the summary is factually consistent with the results.
           type: number
           format: float
-        audio_response:
-          $ref: "#/components/schemas/AudioResponse"
         rendered_prompt:
           description: |
             The rendered prompt sent to the LLM. Useful when creating customer `prompt_text` templates. Only available
@@ -3523,7 +3518,6 @@ components:
           generation_end: "#/components/schemas/StreamGenerationEnd"
           generation_info: "#/components/schemas/GenerationInfo"
           factual_consistency_score: "#/components/schemas/FactualConsistencyScore"
-          audio_response: "#/components/schemas/AudioResponse"
           end: "#/components/schemas/StreamResponseEnd"
           error: "#/components/schemas/StreamError"
       oneOf:
