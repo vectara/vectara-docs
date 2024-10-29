@@ -12,7 +12,7 @@ import {Config} from '@site/docs/definitions.md';
 
 Many search scenarios require considering factors beyond the text content 
 itself, such as user engagement metrics or temporal relevance. Custom 
-dimensions enable [our Scale users](https://vectara.com/pricing/) to have a fixed set of additional 
+dimensions enable [our Pro and Enterprise users](https://vectara.com/pricing/) to have a fixed set of additional 
 "dimensions" that contain user-defined numerical values and are stored in 
 addition to the dimensions that <Config v="names.product"/> automatically 
 extracts and stores from the text. At query time, users can use these custom 

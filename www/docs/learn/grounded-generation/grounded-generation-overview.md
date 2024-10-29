@@ -47,7 +47,7 @@ summaries and structured outputs:
 
 You can test summarizations with queries in our [**API Reference**](/docs/rest-api/query) and
 in the Vectara Console. The `prompt_name` is optional and defaults to
-the best summarizer available to your account type. Scale users can
+the best summarizer available to your account type. Users can also
 select other [available summarizers](/docs/learn/grounded-generation/select-a-summarizer).
 
 :::

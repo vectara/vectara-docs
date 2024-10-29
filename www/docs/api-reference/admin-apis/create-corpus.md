@@ -24,8 +24,8 @@ questions or answers using the `queries_are_answers` and `documents_are_question
 boolean properties. These settings affect the semantics of the encoder used at
 query time and indexing time.
 
-The `encoder_name` property allows you to choose the encoder for the corpus. If
-not specified, it defaults to the latest Vectara encoder.
+The `encoder_name` property allows you to choose the encoder for the corpus. 
+If not specified, it defaults to the latest Vectara encoder.
 
 :::note
 The `encoder_id` property has been deprecated. Use the `encoder_name` 
@@ -37,17 +37,14 @@ are declared at creation time in the `filter_attributes` array. You can add,
 edit, and remove filter attributes from the [Console UI](/docs/console-ui/creating-a-corpus) in the Corpora Settings, 
 or with the [Replace Filters Attributes API definition](/docs/api-reference/admin-apis/corpus/replace-filter-attributes).
 
-Scale users can specify `custom_dimensions` to allow weighting of document parts
-during indexing and querying. Like filter attributes, custom dimensions cannot
-be changed after corpus creation.
+Pro and Enterprise users can specify `custom_dimensions` to allow weighting of 
+document parts during indexing and querying. Like filter attributes, custom 
+dimensions cannot be changed after corpus creation. For more information, see 
+[Custom Dimensions](/docs/learn/semantic-search/add-custom-dimensions). Custom dimensions cannot 
+be changed after the corpus is created.
 
 The response message returns a unique `id` that you use to reference the
 corpus. The `name` does not need to be unique within an account.
-
-For information on **custom dimensions**, a Scale-only feature, please see
-[Custom Dimensions](/docs/learn/semantic-search/add-custom-dimensions).
-Custom dimensions cannot be changed after the corpus
-is created.
 
 ## Filter Attribute
 
