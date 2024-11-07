@@ -30,7 +30,9 @@ lambda and/or reranking is used). These scores are different.
 
 ## Factual Consistency Score language support
 
-The Factual Consistency Score supports English, German, French, Portuguese, Spanish, Arabic, Chinese, and Korean. Set the `response_language` parameter to `eng`, `deu`, `fra`, `por`, `spa`, `ara`, `zho`, or `kor`.
+The Factual Consistency Score supports English, German, French, Portuguese,
+Spanish, Arabic, Chinese, and Korean. Set the `response_language` parameter to
+`eng`, `deu`, `fra`, `por`, `spa`, `ara`, `zho`, or `kor`.
 
 ## Enable the Factual Consistency Score
 
