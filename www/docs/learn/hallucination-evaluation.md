@@ -36,7 +36,10 @@ Spanish, Arabic, Chinese, and Korean. Set the `response_language` parameter to
 
 ## Enable the Factual Consistency Score
 
-In your summarization request, set the `enable_factual_consistency_score` field to `true`. The Factual Consistency Score returns a calibrated value in the `factual_consistency_score` field of the summary message. The score field contains the value between `0.0` and `1.0`.
+In your summarization request, set the `enable_factual_consistency_score` field
+to `true`. The Factual Consistency Score returns a calibrated value in the
+`factual_consistency_score` field of the summary message. The score field
+contains the value between `0.0` and `1.0`.
 
 ```json showLineNumbers title="Enable the Factual Consistency Score"
 "generation": {
