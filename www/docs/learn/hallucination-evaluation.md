@@ -49,7 +49,8 @@ contains the value between `0.0` and `1.0`.
   }
 ```
 
-In the following example, the summary shows a `factual_consistency_score` of `0.98`, which is 98%.
+In the following example, the summary shows a `factual_consistency_score` of
+`0.98`, which is 98%.
 
 ```json showLineNumbers title="Example Factual Consistency Score"
 {
