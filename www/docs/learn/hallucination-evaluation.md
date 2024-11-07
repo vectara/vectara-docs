@@ -13,7 +13,11 @@ and is included in the output. The FCS uses a scale of `0` to `1` with a higher
 score (closer to `1`) indicating a greater probability of being factually accurate,
 while a lower score indicates a greater probability of hallucinations.
 
-For example, a score of `0.95` suggests a 95% likelihood that the summary is free of hallucinations and would align with the original content. A lower score of `0.40` indicates a 40% chance the summary is free of hallucinations, meaning it's more likely to contain one or more factual inaccuracies, however minor. We suggest starting with a setting of `0.5` as an initial guideline.
+For example, a score of `0.95` suggests a 95% likelihood that the summary is
+free of hallucinations and would align with the original content. A lower score
+of `0.40` indicates a 40% chance the summary is free of hallucinations, meaning
+it's more likely to contain one or more factual inaccuracies, however minor.
+We suggest starting with a setting of `0.5` as an initial guideline.
 
 :::note
 
