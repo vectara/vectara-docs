@@ -21,7 +21,10 @@ We suggest starting with a setting of `0.5` as an initial guideline.
 
 :::note
 
-The FCS measures only the factual accuracy of a generated summary based on search results. Each search result's independent `score` is based on the query settings used for that query (e.g. which embedding model is used, whether lambda and/or reranking is used). These scores are different.
+The FCS measures only the factual accuracy of a generated summary based on  
+search results. Each search result's independent `score` is based on the query  
+settings used for that query (e.g. which embedding model is used, whether  
+lambda and/or reranking is used). These scores are different.
 
 :::
 
