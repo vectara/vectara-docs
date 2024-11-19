@@ -26,14 +26,14 @@ api:
   specs:
     - openapi: ../www/static/vectara-oas-v2.yaml
       overrides: openapi-overrides.yaml
-readme: 
+readme:
   apiReferenceLink: https://vectara.docs.buildwithfern.com/
-  defaultEndpoint: POST /v2/query  
+  defaultEndpoint: POST /v2/query
 groups:
   python-sdk:
     generators:
       - name: fernapi/fern-python-sdk
-        version: 4.2.7
+        version: 4.3.7
         output:
           location: pypi
           package-name: "vectara"
