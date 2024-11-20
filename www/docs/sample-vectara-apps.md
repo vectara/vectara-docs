@@ -6,23 +6,20 @@ sidebar_label: Sample Demos and Applications
 
 import {Config} from './definitions.md';
 
-Discover the <Config v="names.product"/> platform's potential with our diverse collection of 
-open-source demo applications. These examples showcase the power of generative 
-AI applications and Retrieval Augmented Generation (RAG) in action, 
-inspiring developers to innovate and integrate cutting-edge capabilities into 
-their own solutions.
+The <Config v="names.product"/> platform enables you to build generative AI and Retrieval 
+Augmented Generation (RAG) applications quickly and without expertise in AI or 
+ML concepts. We have a diverse set of open-source demo applications that 
+showcase the power of generative AI applications for realistic use cases. 
+These demo applications are just a sample of what developers can create with 
+<Config v="names.product"/>.
 
-Our sample demos collection spans a range of applications designed to solve 
-various industry challenges. From question-answering tools that provide 
-precise documentation support, to advanced AI agents which demonstrate agentic 
-capabilities for handling complex tasks, these applications cater to diverse 
-developer needs.
-
-Explore chatbots that leverage conversational search for real-time 
-interactions, virtual agents that automate workflows, and custom data 
-ingestion tools that simplify integrating RAG capabilities. Each demo serves 
-as a practical example to inspire developers to build robust, AI-enhanced 
-solutions tailored to their unique use cases.
+Our demo applications cover a variety of use cases that address known industry  
+challenges. They include question-answering tools for documentation support,  
+AI agents for complex tasks, chatbots that use conversational search for  
+real-time interactions, virtual agents that automate workflows, and custom  
+data ingestion tools for integrating RAG capabilities into an existing  
+application. Each demo serves as a practical example to inspire developers  
+to build AI-enhanced solutions for their specific use cases. 
 
 The following table lists several of our [sample demo applications](https://www.vectara.com/developers/build/demos):
 
