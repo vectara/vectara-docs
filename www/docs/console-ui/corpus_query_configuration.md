@@ -50,7 +50,7 @@ your specific needs:
 ### Configure retrieval
 
 The Retrieval configuration lets you enable hybrid search by adjusting the 
-`lambda` value, which is a balance between neural search and keyword search. 
+`lexical_interpolation` value, which is a balance between neural search and keyword search. 
 
 ![Configure hybrid search](/img/configure_hybrid_search.png)
 

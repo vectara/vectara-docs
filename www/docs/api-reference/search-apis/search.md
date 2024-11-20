@@ -136,7 +136,7 @@ example, _"Where can I buy the latest iPhone?"_. Optionally, the **query
 context** provides additional information that the system may use to refine the
 results. For example, _"The Apple store near my house is closed due to Covid."_
 
-Within the `search` object, add `custom_dimensions` weights (Scale only),
+Within the `search` object, add `custom_dimensions` weights (Pro or Enterprise), 
 `metadata_filter` and set the `lexical_interpolation` (formerly `lambda` in
 the REST API v1.0). Setting to `0` disables exact and Boolean text matching,
 while a value of `1` disables neural retrieval. Users often see best results by
@@ -176,9 +176,9 @@ referenceable metadata is specified during corpus creation.
 
 By default, <Config v="names.product"/> only uses its neural/semantic retrieval model,
 and does not attempt to use keyword matching. To enable [hybrid search](/docs/learn/hybrid-search) with a
-mix of both keyword and neural results, edit the `lambda` value.
+mix of both keyword and neural results, edit the `lexical_interpolation` value.
 
-If the corpus specifies custom dimensions (Scale only), weights can be
+If the corpus specifies custom dimensions (Pro or Enterprise), weights can be 
 assigned to each dimension as well.
 
 Finally, it's possible to override the semantic interpretation of the query
