@@ -41,23 +41,38 @@ module.exports = {
     },
     {
       type: "category",
-      label: "Capabilities",
-      collapsed: true,
+      label: "Data Management",
+      link: {
+        type: 'doc',
+        id: 'data-management', // This points to data-management.mdx
+      },
       items: [
         "learn/select-ideal-indexing-api",
-        "learn/mockingbird-llm",
         {
           type: "category",
-          label: "Retrieval",
+          label: "Metadata Filtering",
           items: [
-            "learn/hybrid-search",
-            "learn/enable-keyword-text-matching",
-            "learn/querying-table-data",
-            "learn/semantic-search/add-custom-dimensions",
-            "learn/semantic-search/enable-pagination",
-            "learn/recommendation-systems/recommender-overview",
+            "learn/metadata-search-filtering/filter-overview",
+            "learn/metadata-search-filtering/ootb-metadata-filters",
+            "api-reference/search-apis/sql/func-opr",
+            "api-reference/search-apis/sql/data-types",
           ],
         },
+        "learn/semantic-search/add-custom-dimensions",
+      ],
+    },
+    {
+      type: "category",
+      label: "Search and Retrieval",
+      link: {
+        type: 'doc',
+        id: 'search-and-retrieval',
+      },
+      items: [
+        "learn/hybrid-search",
+        "learn/enable-keyword-text-matching",
+        "learn/semantic-search/enable-pagination",
+        "learn/recommendation-systems/recommender-overview",
         {
           type: "category",
           label: "Reranking",
@@ -69,16 +84,17 @@ module.exports = {
             "learn/chain-reranker",
           ],
         },
-        {
-          type: "category",
-          label: "Metadata Search Filtering",
-          items: [
-            "learn/metadata-search-filtering/filter-overview",
-            "learn/metadata-search-filtering/ootb-metadata-filters",
-            "api-reference/search-apis/sql/func-opr",
-            "api-reference/search-apis/sql/data-types",
-          ],
-        },
+      ],
+    },
+    {
+      type: "category",
+      label: "Generation and Observability",
+      link: {
+        type: 'doc',
+        id: 'generation-and-observability',
+      },
+      items: [
+        "learn/mockingbird-llm",
         "learn/grounded-generation/select-a-summarizer",
         "learn/query-observability",
         "learn/hallucination-evaluation",
