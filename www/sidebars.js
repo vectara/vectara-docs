@@ -349,6 +349,8 @@ module.exports = {
           items: [
             "api-reference/admin-apis/corpus/list-documents",
             "api-reference/indexing-apis/deleting-documents",
+            "api-reference/admin-apis/corpus/list-tables",
+            "api-reference/admin-apis/corpus/retrieve-table",
           ],
         },
         {

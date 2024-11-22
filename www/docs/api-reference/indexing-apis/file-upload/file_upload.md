@@ -54,6 +54,13 @@ following parts:
 
 - `metadata` - (Optional) Specifies a JSON object representing any additional
   metadata to be associated with the extracted document.
+- `chunking_strategy` (Optional): A JSON object defining the chunking strategy 
+  for breaking the document into parts. If unspecified, the default chunking 
+  strategy creates one chunk per sentence.
+  Example: `'chunking_strategy={"type":"max_chars_chunking_strategy","max_chars_per_chunk":200};type=application/json'`
+- `table_extraction_config` (Optional): A JSON object specifying whether to extract 
+  tables from the PDF. By default, tables are not extracted.
+  Example: `'table_extraction_config={"extract_tables":true};type=application/json'`
 - `file` - Specifies the file that you want to upload.
 - `filename` - Specified as part of the `file` field with the file name that you 
   want to associate with the uploaded file.
