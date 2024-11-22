@@ -46,7 +46,7 @@ are similar to the one they're looking at or a recently purchased product. These
 use cases can be dealt with by using <Config v="names.product"/> in a
 document-to-document search/recommendation platform.  In order to do this, the
 most important change is that you'll need to use `RESPONSE` similarity measure
-(available to [our Scale plan users](https://vectara.com/pricing/)).
+(available to [our Pro and Enterprise plan users](https://vectara.com/pricing/)).
 It's easier to explain how this is different by first explaining how the `DEFAULT`
 similarity works.
 
