@@ -123,6 +123,19 @@ In addition to the new Corpus Key:
   requests.
 * Remove the `textless` and `encrypted` fields from your requests.
 
+## Metadata type conversions
+
+Metadata remains unconverted during the document upload process, even when 
+using API v2. This means that numbers return as numbers, booleans return as 
+booleans, and JSON objects retain their native structure. This behavior 
+differs from API v1, where metadata such as `section` or `publicationyear` might 
+have been returned as strings. For more details, see [Reading Metadata](/docs/api-reference/search-apis/interpreting-responses/metadata).
+
+**Action item:**
+
+Ensure client applications handle these types correctly for smooth integration.
+
+
 ## Terminology, parameter, and property name changes
 
 * API v1 uses `num_results` for specifying the maximum number of results
