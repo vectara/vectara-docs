@@ -11,7 +11,9 @@ import {Config} from '@site/docs/definitions.md';
 
 The File Upload API lets you extract text from existing, unstructured
 documents in common file types like PDFs, Microsoft Word, Text, HTML, and
-Markdown. The maximum file size supported by the server is 10 MB.
+Markdown. It also supports extracting table data from PDFs, allowing for 
+improved analysis and querying of structured tabular data.The maximum file 
+size supported by the server is 10 MB.
 
 We recommend the File Upload API when you have not already written your own
 extraction logic. You can attach user-defined metadata at the document level
@@ -99,6 +101,18 @@ you want. The primary purpose of this header is to specify the
 `form-data`, so using `filename` as the Document ID is specific to our
 platform. For more information about Content-Disposition, see
 the [Mozilla documentation on headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition).
+
+### Uploading PDFs with Tables
+
+The File Upload API supports extracting structured table data from PDFs when 
+enabled through the table_extraction_config parameter. This feature is 
+particularly useful for financial reports like 10-Q, 10-K, and S1 filings. 
+With table extraction enabled, you can query specific table cells using the 
+[List Tables](/docs/api-reference/admin-apis/corpus/list-tables) and [Retrieve Table](/docs/api-reference/admin-apis/corpus/retrieve-table) APIs.
+
+To enable table extraction, set the `extract_tables field` in the 
+`table_extraction_config` parameter to `true`.
+
 
 ### Attach Additional Metadata
 
