@@ -1,7 +1,7 @@
 ---
 id: select-ideal-indexing-api
-title: Indexing
-sidebar_label: Indexing
+title: Data Ingestion
+sidebar_label: Data Ingestion
 ---
 
 import Tabs from '@theme/Tabs';
@@ -10,15 +10,15 @@ import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
 import {Config} from '@site/docs/definitions.md';
 
-Efficient data ingestion is critical for ensuring that your application 
-delivers fast, accurate, and relevant query results. Whether handling 
-structured, semi-structured, or unstructured data, selecting the 
-right indexing method can significantly impact the performance and usability 
-of your applications. Vectara offers multiple indexing methods to accommodate 
-different use cases that enable users to efficiently index their data and 
-leverage our advanced search capabilities. This flexible approach allows for 
-the precise integration of Vectara’s search functionalities into different 
-applications.
+Efficient data ingestion, also known as indexing, is critical for ensuring 
+that your application delivers fast, accurate, and relevant query results. 
+Whether handling structured, semi-structured, or unstructured data, selecting 
+the right indexing method can significantly impact the performance and 
+usability of your applications. Vectara offers multiple indexing methods to 
+accommodate different use cases that enable users to efficiently index their 
+data and leverage our advanced search capabilities. This flexible approach 
+allows for the precise integration of Vectara’s search functionalities into 
+different applications.
 
 ## Vectara Ingest: sample data ingestion framework
 
@@ -74,7 +74,6 @@ We recommend this option for applications where documents already have a
 clear and consistent structure like news articles, product descriptions, 
 rows in database tables or CSV files, or records from an ERP system.
 
-
 ### Core document definition
 
 For the most advanced use cases, if you want full, granular control to chunk 
@@ -97,21 +96,19 @@ By leveraging the appropriate data indexing method is based on the nature of
 your documents, you can ingest and structure your data for optimal performance 
 with Vectara's Retrieval Augmented Generatation as-a-Service platform.
 
-## Chunking strategy
+## Document chunking
 
 Chunking refers to the process of breaking a document into smaller parts 
 (chunks) for efficient indexing and retrieval. Chunking is critical for 
 optimizing search performance, particularly for large documents.
 
-Both the [File Upload API](/docs/api-reference/indexing-apis/file-upload/file-upload) and [Indexing API](/docs/api-reference/indexing-apis/indexing) provide an optional `chunking_strategy` 
-parameter that enables you to define how documents should be chunked during 
-ingestion. When you set the `type` to `max_chars_chunking_strategy`, you can 
-then define the maximum number of characters per chunk which enables more 
-granular control over how the platform splits the document.
+Both the [File Upload API](/docs/api-reference/indexing-apis/file-upload/file-upload) and [Indexing API](/docs/api-reference/indexing-apis/indexing) provide an optional 
+`chunking_strategy` parameter that enables you to define how to chunk 
+documents during ingestion. When you set the `type` to 
+`max_chars_chunking_strategy`, you can then define the maximum number of 
+characters per chunk, which enables more granular control over how the 
+platform splits the document.
 
 If you do not set this option, then the platform uses the default chunking 
-strategy that defaults to each chunk containing one full sentence.
-
-
-
+strategy that splits each chunk into one full sentence.
 

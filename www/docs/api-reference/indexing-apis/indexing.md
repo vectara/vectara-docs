@@ -64,20 +64,11 @@ sum of both values.
 ### Structured document chunking
 
 Structured documents can also specify a `chunking_strategy` which indicates 
-how to split the document into chunks during ingestion. Set the `type` as 
+whether to split the document into chunks during ingestion. Set the `type` as 
 `max_chars_chunking_strategy` and then specify the `max_chars_per_chunk` to 
-the number of characters per chunk. If not set, the platform defaults to 
-sentence-based chunking, where each chunk contains one full sentence. For more 
-details, see [Chunking strategy](/docs/learn/select-ideal-indexing-api#chunking-strategy).
-
-In this example, you apply a limit of 200 characters per chunk:
-
-```json
-"chunking_strategy": {
-  "type": "max_chars_chunking_strategy",
-  "max_chars_per_chunk": 200
-}
-```
+the number of characters per chunk such as `200`. If not set, the platform 
+defaults to sentence-based chunking, where each chunk contains one full 
+sentence. For more details, see [Document chunking](/docs/learn/select-ideal-indexing-api#document-chunking).
 
 ## Core Document Object Definition
 
