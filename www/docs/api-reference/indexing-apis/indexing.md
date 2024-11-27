@@ -63,12 +63,20 @@ sum of both values.
 
 ### Structured document chunking
 
-Structured documents can also specify a `chunking_strategy` which indicates 
-whether to split the document into chunks during ingestion. Set the `type` as 
-`max_chars_chunking_strategy` and then specify the `max_chars_per_chunk` to 
-the number of characters per chunk such as `200`. If not set, the platform 
-defaults to sentence-based chunking, where each chunk contains one full 
-sentence. For more details, see [Document chunking](/docs/learn/select-ideal-indexing-api#document-chunking).
+By default, Vectara uses sentence-based chunking, where each chunk consists of 
+one complete sentence. This strategy works well but can lead to higher 
+retrieval latency because of the increased number of chunks. Alternatively, 
+you can use character-based chunking to make the chunks larger.
+
+Set the `type` to `max_chars_chunking_strategy` and define the `max_chars_per_chunk` 
+value to create larger chunks containing 3-7 sentences (`512` to `1024`). This 
+approach balances retrieval speed and contextual integrity.
+
+
+:::tip
+If not set, the platform defaults to sentence-based chunking, where each chunk 
+contains one full sentence. For more details, see [Document chunking](/docs/learn/select-ideal-indexing-api#document-chunking).
+:::
 
 ## Core Document Object Definition
 

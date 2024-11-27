@@ -100,15 +100,24 @@ with Vectara's Retrieval Augmented Generatation as-a-Service platform.
 
 Chunking refers to the process of breaking a document into smaller parts 
 (chunks) for efficient indexing and retrieval. Chunking is critical for 
-optimizing search performance, particularly for large documents.
+optimizing search performance, particularly for large documents and corpora.
 
 Both the [File Upload API](/docs/api-reference/indexing-apis/file-upload/file-upload) and [Indexing API](/docs/api-reference/indexing-apis/indexing) provide an optional 
 `chunking_strategy` parameter that enables you to define how to chunk 
-documents during ingestion. When you set the `type` to 
-`max_chars_chunking_strategy`, you can then define the maximum number of 
-characters per chunk, which enables more granular control over how the 
-platform splits the document.
+documents during ingestion. When deciding on a chunking strategy, consider 
+the trade-offs between granularity and latency.
 
-If you do not set this option, then the platform uses the default chunking 
-strategy that splits each chunk into one full sentence.
+### Default chunking
+
+By default, the platform uses sentence-based chunking, where each chunk 
+contains one complete sentence. This strategy can lead to higher retrieval 
+latency for large documents due to the increased number of chunks created.
+
+### Fixed-size chunking
+
+When you set the `type` to `max_chars_chunking_strategy`, you can then define 
+the maximum number of characters per chunk, which enables more granular control 
+over how the platform splits the document. We recommend trying 3–7 sentences 
+per chunk, which is about 512–1024 characters. This may be ideal for balancing 
+retrieval latency and context preservation
 

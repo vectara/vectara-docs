@@ -55,11 +55,12 @@ following parts:
 - `metadata` - (Optional) Specifies a JSON object representing any additional
   metadata to be associated with the extracted document.
 - `chunking_strategy` - (Optional) Specifies whether to split the document into 
-  chunks during ingestion. Set the `type` as `max_chars_chunking_strategy` and 
-  then specify the `max_chars_per_chunk` to the number of characters per chunk 
-  like `200`. If not set, the platform defaults to sentence-based chunking, where 
-  each chunk contains one full sentence. 
-- `file` - Specifies the file that you want to upload.
+  chunks during ingestion. If not set, the platform defaults to sentence-based 
+  chunking, where each chunk contains one full sentence. Set the `type` as 
+  `max_chars_chunking_strategy` and then specify the `max_chars_per_chunk` to 
+  the number of characters per chunk like `512` or `1024`. Smaller chunks may improve granularity 
+  but can lead to excessive latency, especially in applications with high 
+  document volumes or large corpora.
 - `filename` - Specified as part of the `file` field with the file name that you 
   want to associate with the uploaded file.
 
