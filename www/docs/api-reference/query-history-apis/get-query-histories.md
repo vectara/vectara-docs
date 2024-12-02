@@ -20,5 +20,5 @@ information such as the call stack of a query execution.
 To get a history of a specific query, send a GET request to 
 `/v2/queries`. You can specify the `corpus_key`, `chat_id`, and the 
 `limit` which is the maximum number of historical queries to list. The 
-response includes an array of query histories.
+response includes an array of previous queries.
 

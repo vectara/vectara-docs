@@ -49,17 +49,18 @@ When experimenting with configurations and running queries against a corpus,
 Vectara lets you log your queries into a query history. This is important for 
 troubleshooting issues, inspecting past queries, and optimizing configurations. 
 By surfacing data like query latency, search results, reranking, and 
-generative response times, users can better understand how our system performs 
-relative to their business goals.
+generative response times, users can better understand how to fine-tune 
+Vectara to meet their business goals.
 
 ### View the history of query
 
-1. Experiment with different query configurations by asking questions of 
-   your data with **Send query**.
+1. Ask questions of your data with **Send query**.
 2. Select **View query history** to review a table of past queries executed 
    against your corpus. 
 3. Select a query from the table to view its detailed configuration, execution 
    flow, and results.
+4. Use this information to optimize your configuration and submit a new query.
+
 
 ![Query histories](/img/query-histories.png)
 
