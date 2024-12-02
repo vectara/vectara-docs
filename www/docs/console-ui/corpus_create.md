@@ -65,7 +65,7 @@ to ingest your data to ask some questions.
 
 ## Query the corpus
 
-The corpus name drop-down has a [Query option](/docs/console-ui/corpus-query-configuration) that 
+The corpus name drop-down has a [Query option](/docs/console-ui/configure-queries) that 
 lets you ask questions about your data. It provides Chat, Summary, and 
 Semantic search interface types, each with their own configuration.
 
