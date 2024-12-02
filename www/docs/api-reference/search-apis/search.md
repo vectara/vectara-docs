@@ -33,8 +33,8 @@ define parameters that control the behavior of the query and summarization:
 
 - **Search Parameters**: Filter data by metadata, apply lexical weighting, add additional
   context about the data, and rerank the results
-- **Summarization Parameters**: Choose model and prompt (Scale only), and response settings like
-  length and factual scoring, and even more nuanced model parameters (Scale only)
+- **Summarization Parameters**: Choose model and prompt, and response settings like
+  length and factual scoring, and even more nuanced model parameters
 - **Stream Response**: Optionally have the summarized response stream in real time.
 
 The exact request format depends on the specific query type that you want to
@@ -43,7 +43,8 @@ use.
 :::tip
 
 Check out our [**interactive API Reference**](/docs/rest-api/query) that you experiment
-with these query types.
+with these query types. You can also perform a **[simple single corpus query](/docs/rest-api/search-corpus)**, 
+**[advanced single corpus query](/docs/rest-api/query-corpus)**, and a **[multiple corpora query](/docs/rest-api/query)**.
 
 :::
 
@@ -123,9 +124,9 @@ reference them in your application.
 :::caution
 
 As part of the migration from API 1.0 to 2.0, all existing corpora have been
-assigned a new `corpus_key` based on their original name and `corpus_id`. The `corpus_key`
-is created by combining the name of the corpus (with underscores replacing spaces)
-and the original numeric ID.
+assigned a new `corpus_key` based on their original name and `corpus_id`. The 
+`corpus_key` is created by combining the name of the corpus (with underscores 
+replacing spaces) and the original numeric ID.
 
 :::
 
@@ -231,7 +232,7 @@ summarization. Growth users can specify the `max_summarized_results`,
       "presence_penalty": 0
     },
 ```
-Scale users have access to [advanced summarization customization options](/docs/api-reference/search-apis/search#advanced-summarization-customization-options).
+Users also have access to [advanced summarization customization options](/docs/api-reference/search-apis/search#advanced-summarization-customization-options).
 
 ## Generation Presets
 
@@ -300,7 +301,7 @@ guideline for cutoffs between good and bad.
 
 ## Citation Format in Summary
 
-When generating a summary, Vectara enables Scale users to format the `style` of
+When generating a summary, Vectara enables users to format the `style` of 
 `citations` object with one of the following formats:
 
 - `numeric` (default) - Citations appear as numbers `[1]`, `[2]`, `[N]`, and so on.
@@ -369,11 +370,10 @@ To disable summarization, exclude the `generation` object from a query.
 
 ## Advanced Summarization Customization Options
 
-[Scale users](https://vectara.com/pricing/) have access to more powerful summarization
-capabilities, which present a powerful toolkit for tailoring summarizations to 
-specific application and user needs. If they need to change generation 
-beyond what the preset specifies, Scale users can override most parameters in a  
-query. For example:
+Vectara also provides more powerful summarization capabilities for tailoring 
+summarizations to specific application and user needs. If they need to change 
+generation beyond what the preset specifies, you can override most parameters 
+in a query. For example:
 
 ```json
 {
