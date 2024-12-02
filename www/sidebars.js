@@ -74,7 +74,7 @@ module.exports = {
           ],
         },
         "learn/grounded-generation/select-a-summarizer",
-        "learn/query-evaluation",
+        "learn/query-observability",
         "learn/hallucination-evaluation",
         {
           type: "category",
@@ -225,10 +225,18 @@ module.exports = {
           collapsed: true,
           items: [
             "console-ui/creating-a-corpus",
-            /* "console-ui/corpus-query-configuration", */
             "console-ui/reset-or-delete-corpus",
             "console-ui/configure-server-access-to-corpus",
             "console-ui/corpus-default-read-access",
+          ],
+        },
+        {
+          type: "category",
+          label: "Manage Queries",
+          collapsed: true,
+          items: [
+            "console-ui/configure-queries",
+            "console-ui/evaluate-queries",
           ],
         },
         {

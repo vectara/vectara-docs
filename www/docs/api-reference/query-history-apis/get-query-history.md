@@ -15,7 +15,7 @@ specific query that was made against a corpus. The response includes detailed
 information about the query, such as latency, the time it was executed, and 
 the various stages in the query pipeline.
 
-Get Query History Request and Response
+## Get Query History Request and Response
 
 To get a history of a specific query, send a GET request to 
 `/v2/queries/{query_id}`. You specify the `query_id` and the response includes 
@@ -26,6 +26,4 @@ with the `spans` object.
 The `spans` object provides information about the ordered parts of the query 
 pipeline and you get information about what happens during each stage of the 
 pipeline.
-
-
 

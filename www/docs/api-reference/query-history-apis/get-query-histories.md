@@ -15,7 +15,7 @@ history for a specific corpus. This API is particularly useful for tracking
 query performance, debugging individual queries, and retrieving detailed 
 information such as the call stack of a query execution.
 
-List Query Histories Request and Response
+## List Query Histories Request and Response
 
 To get a history of a specific query, send a GET request to 
 `/v2/queries`. You can specify the `corpus_key`, `chat_id`, and the 
