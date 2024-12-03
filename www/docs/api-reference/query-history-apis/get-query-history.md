@@ -27,3 +27,12 @@ The `spans` object provides information about the ordered parts of the query
 pipeline and you get information about what happens during each stage of the 
 pipeline.
 
+## REST 2.0 URL
+
+### Get Query History Endpoint Address
+
+<Config v="names.product"/> exposes an HTTP endpoint at the following URL
+to get a history of a specific query:
+<code>https://<Config v="domains.rest.indexing"/>/v2/queries/:query_id</code>
+
+The API Reference shows the full [Get Query History](/docs/rest-api/get-query-history) REST definition.
