@@ -49,5 +49,5 @@ stage with the timestamp and latency:
 Click **Expand all** to reveal detailed information for each execution stage, 
 including specific parameters.
 
-Select **Load into Query tab** to go back to query configuration so that you 
-can make changes to your settings.
+Select **Load into Query tab** to load this configuration into your query tab 
+so that you can make changes to your settings.
