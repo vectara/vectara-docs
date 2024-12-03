@@ -1,7 +1,7 @@
 ---
-id: tabular-data-extraction
-title: Tabular Data Extraction
-sidebar_label: Tabular Data Extraction
+id: table-querying
+title: Table Querying
+sidebar_label: Table Querying
 ---
 
 Tables in PDFs are hard to query, because their structure is unpredictable and 

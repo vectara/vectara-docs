@@ -52,6 +52,7 @@ module.exports = {
           items: [
             "learn/hybrid-search",
             "learn/enable-keyword-text-matching",
+            "learn/table-querying",
             "learn/semantic-search/add-custom-dimensions",
             "learn/semantic-search/enable-pagination",
             "learn/recommendation-systems/recommender-overview",
