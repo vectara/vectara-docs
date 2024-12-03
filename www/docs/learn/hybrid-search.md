@@ -81,7 +81,7 @@ our [**API Reference**](/docs/rest-api/query) and in the Vectara Console.
 Vectara supports in-between values as well, which tells Vectara to try to
 consider _both_ neural _and_ Boolean and exact text matching and then to blend
 the scores of the results of the two different scoring models. Users often see
-best results by setting this lambda value somewhere between `0.01` and `0.1`, and
+best results by setting this value somewhere between `0.01` and `0.1`, and
 we typically recommend users start experimentation with a `lexical_interpolation`
 value of `0.025`.
 

@@ -396,6 +396,12 @@ paths:
           type: integer
           default: 0
           minimum: 0
+      - in: query
+        name: save_history
+        description: Indicates whether to save the query in the query history.
+        schema:
+          type: boolean
+          default: false
       responses:
         '200':
           description: A response to a query.
@@ -2133,7 +2139,7 @@ paths:
       - $ref: '#/components/parameters/RequestTimeoutMillis'
       - name: app_client_id
         in: path
-        description: The name of App Client.
+        description: The ID of App Client.
         required: true
         schema:
           type: string
@@ -2142,6 +2148,114 @@ paths:
           description: The App Client was deleted.
         '403':
           description: Permissions do not allow deleting this App Client.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /v2/queries/{query_id}:
+    get:
+      tags:
+      - Query History
+      summary: Get a query history
+      description: Retrieve a detailed history of previously executed query.
+      operationId: getQueryHistory
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - name: query_id
+        in: path
+        description: The ID of the query history
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The query history.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryHistory'
+        '403':
+          description: Permissions do not allow retrieving the query history.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Query history not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+  /v2/queries:
+    get:
+      tags:
+      - Query History
+      summary: List the history of previous queries
+      description: Retrieve query histories.
+      operationId: getQueryHistories
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - name: corpus_key
+        in: query
+        description: Specifies the `corpus_key` used in the query.
+        required: false
+        schema:
+          type: string
+      - name: started_after
+        in: query
+        description: Queries that started after a particular date-time.
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: started_before
+        in: query
+        description: Queries that started before a particular date-time.
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: chat_id
+        in: query
+        description: Specifies the chat_id of the query, this will return all queries
+          in the specified chat.
+        required: false
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Specifies the maximum number of query history listed.
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 10
+      - name: page_key
+        in: query
+        description: 'Used to retrieve the next page of query histories after the
+          limit has been reached.
+
+          '
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: An array of Query Histories.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListQueryHistoriesResponse'
+        '400':
+          description: Query history list request was malformed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '403':
+          description: Permissions do not allow listing query histories.
           content:
             application/json:
               schema:
@@ -2783,6 +2897,10 @@ components:
           description: Indicates whether the response should be streamed or not.
           type: boolean
           default: false
+        save_history:
+          description: Indicates whether to save the query in the query history.
+          type: boolean
+          default: false
       required:
       - query
       - search
@@ -2817,6 +2935,10 @@ components:
           $ref: '#/components/schemas/GenerationParameters'
         stream_response:
           description: Indicates whether the response should be streamed or not.
+          type: boolean
+          default: false
+        save_history:
+          description: Indicates whether to save the query in the query history.
           type: boolean
           default: false
       required:
@@ -3190,6 +3312,22 @@ components:
           format: int32
           example: 0
           minimum: 0
+    RerankedSearchResult:
+      description: An individual reranked search result from a query.
+      type: object
+      properties:
+        text:
+          description: The document part altered by the context configuration that
+            matches the query.
+          type: string
+        score:
+          description: The score of the individual result.
+          type: number
+          format: double
+        original_score:
+          description: The original score of the individual result before reranking.
+          type: number
+          format: double
     QueryStreamedResponse:
       description: An individual event sent with Server-sent Events (SSE) when the
         query request is streamed.
@@ -3867,6 +4005,11 @@ components:
           $ref: '#/components/schemas/GenerationParameters'
         chat:
           $ref: '#/components/schemas/ChatParameters'
+        save_history:
+          description: Indicates whether to save the chat in both the chat and query
+            history. This overrides `chat.store`.
+          type: boolean
+          default: true
         stream_response:
           description: Indicates whether the response should be streamed or not.
           type: boolean
@@ -4501,6 +4644,203 @@ components:
       - msa
       - ron
       default: auto
+    QueryHistorySummary:
+      type: object
+      properties:
+        id:
+          description: The ID of the query history.
+          type: string
+        query:
+          description: The actual query made.
+          type: string
+        corpus_key:
+          description: The corpus key that the query was made on.
+          type: string
+        started_at:
+          description: ISO date time indicating when the query was first received.
+          type: string
+          format: date-time
+        latency_millis:
+          description: Time that the query took in milliseconds.
+          type: integer
+        chat_id:
+          description: The unique ID of the chat associated with the query, if this
+            query is part of a chat.
+          type: string
+        generation:
+          description: Generated response to the query, if requested.
+          type: string
+        factual_consistency_score:
+          description: The factual consistency score of the generation.
+          type: number
+          format: float
+    QueryHistory:
+      type: object
+      properties:
+        id:
+          description: The ID of the query history.
+          type: string
+        query:
+          $ref: '#/components/schemas/QueryRequest'
+        chat_id:
+          description: The ID of the chat the query is a part of.
+          type: string
+        latency_millis:
+          description: Time taken to complete the query, measured in milliseconds.
+          type: integer
+        started_at:
+          description: ISO date time indicating when the query was first received.
+          type: string
+          format: date-time
+        spans:
+          description: 'Parts of the query pipeline. Each span explains what happened
+            during that stage of the query pipeline.
+
+            '
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryHistorySpan'
+    QueryHistorySpan:
+      description: Portion of the query history.
+      type: object
+      discriminator:
+        propertyName: type
+        mapping:
+          rephrase: '#/components/schemas/RephraseSpan'
+          search: '#/components/schemas/SearchSpan'
+          rerank: '#/components/schemas/RerankSpan'
+          generation: '#/components/schemas/GenerationSpan'
+          fcs: '#/components/schemas/FactualConsistencyScoreSpan'
+      oneOf:
+      - $ref: '#/components/schemas/RephraseSpan'
+      - $ref: '#/components/schemas/SearchSpan'
+      - $ref: '#/components/schemas/RerankSpan'
+      - $ref: '#/components/schemas/GenerationSpan'
+      - $ref: '#/components/schemas/FactualConsistencyScoreSpan'
+    RephraseSpan:
+      description: During the query pipeline, the query may be rephrased to better
+        suit the corpus.
+      type: object
+      properties:
+        type:
+          description: This value is always `rephrase`.
+          type: string
+        latency_millis:
+          description: Time taken in milliseconds.
+          type: integer
+        started_at:
+          description: When the span started.
+          type: string
+          format: date-time
+        rephrased_query:
+          description: Query made to the corpora.
+          type: string
+      x-vectaraParents:
+      - QueryHistorySpan
+    SearchSpan:
+      description: 'The search portion of the query pipeline. This occurs before any
+        reranking span.
+
+        '
+      type: object
+      properties:
+        type:
+          description: This value is always `search`.
+          type: string
+        latency_millis:
+          description: Time taken in milliseconds.
+          type: integer
+        started_at:
+          description: Indicates when the span started.
+          type: string
+          format: date-time
+        search_results:
+          description: The search results before reranking.
+          type: array
+          items:
+            $ref: '#/components/schemas/IndividualSearchResult'
+      x-vectaraParents:
+      - QueryHistorySpan
+    RerankSpan:
+      description: The reranking of the search result.
+      type: object
+      properties:
+        type:
+          description: This value is always `rerank`.
+          type: string
+        latency_millis:
+          description: Time taken in milliseconds.
+          type: integer
+        started_at:
+          description: When the span started.
+          type: string
+          format: date-time
+        reranked_search_results:
+          description: The new search results after reranking.
+          type: array
+          items:
+            $ref: '#/components/schemas/RerankedSearchResult'
+      x-vectaraParents:
+      - QueryHistorySpan
+    GenerationSpan:
+      description: The generation by an LLM.
+      type: object
+      properties:
+        type:
+          description: This value is always `generation`.
+          type: string
+        latency_millis:
+          description: Time taken in milliseconds.
+          type: integer
+        started_at:
+          description: When the span started.
+          type: string
+          format: date-time
+        prompt:
+          description: The text sent as a prompt to the LLM.
+          type: string
+        generation:
+          description: The text generated from the LLM.
+          type: string
+      x-vectaraParents:
+      - QueryHistorySpan
+    FactualConsistencyScoreSpan:
+      description: The factual consistency of the generation.
+      type: object
+      properties:
+        type:
+          description: This value is always `fcs`.
+          type: string
+        latency_millis:
+          description: Time taken in milliseconds.
+          type: integer
+        started_at:
+          description: When the span started.
+          type: string
+          format: date-time
+        score:
+          description: The probability that the summary is factually consistent with
+            the results.
+          type: number
+          format: float
+      x-vectaraParents:
+      - QueryHistorySpan
+    ListQueryHistoriesResponse:
+      description: An array of query histories.
+      type: object
+      properties:
+        queries:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryHistorySummary'
+        metadata:
+          description: The metadata for the list of query histories.
+          type: object
+          properties:
+            page_key:
+              description: A query parameter required when requesting the next page
+                of results.
+              type: string
     ListMetadata:
       type: object
       description: The standard metadata in the response of a list operation.
