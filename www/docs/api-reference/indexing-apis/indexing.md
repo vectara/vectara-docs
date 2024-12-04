@@ -31,7 +31,7 @@ stream the result or receive a complete response.
 
 :::
 
-### Index Document Request and Response
+## Index Document Request and Response
 
 To index a document, send a POST request to `/v2/corpora/:corpus_key/documents`,
 where `corpus_key` is the unique identifier for the corpus where you want to
@@ -54,13 +54,28 @@ indicates how much quota would have been consumed.
   `title`, `description`, `metadata`, `custom_dimensions`, and an array of
   `sections`. These sections each have an `id`, `title`, `text`, `metadata`,
   and nested `sections`.
-
+  
 :::note
-
 The storage quota object returns the number of characters consumed and the
 number of metadata characters consumed. The total quota consumed is simply the
 sum of both values.
+:::
 
+### Structured document chunking
+
+By default, Vectara uses sentence-based chunking, where each chunk consists of 
+one complete sentence. This strategy works well but can lead to higher 
+retrieval latency because of the increased number of chunks. Alternatively, 
+you can use character-based chunking to make the chunks larger.
+
+Set the `type` to `max_chars_chunking_strategy` and define the `max_chars_per_chunk` 
+value to create larger chunks containing 3-7 sentences (`512` to `1024`). This 
+approach balances retrieval speed and contextual integrity.
+
+
+:::tip
+If not set, the platform defaults to sentence-based chunking, where each chunk 
+contains one full sentence. For more details, see [Document chunking](/docs/learn/select-ideal-indexing-api#document-chunking).
 :::
 
 ## Core Document Object Definition
