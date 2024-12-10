@@ -9,11 +9,11 @@ import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
 import {Config} from '@site/docs/definitions.md';
 
-The File Upload API lets you extract text from existing, unstructured
-documents in common file types like PDFs, Microsoft Word, Text, HTML, and
-Markdown. It also supports extracting table data from PDFs, allowing for 
-improved analysis and querying of structured tabular data.The maximum file 
-size supported by the server is 10 MB.
+The File Upload API enables you to extract text from unstructured documents in 
+common file types like PDFs, Microsoft Word, Text, HTML, and Markdown. It also 
+supports extracting table data from PDFs, allowing for improved analysis and 
+querying of structured tabular data. Each file you upload can be up to 10 MB 
+in size.
 
 We recommend the File Upload API when you have not already written your own
 extraction logic. You can attach user-defined metadata at the document level
@@ -45,7 +45,6 @@ has been converted with an appended ID to create the `corpus_key`. This
 corpus, you specify a custom `corpus_key`.
 
 :::
-
 
 ## File Upload Request Details
 
@@ -104,14 +103,14 @@ the [Mozilla documentation on headers](https://developer.mozilla.org/en-US/docs/
 
 ### Uploading PDFs with Tables
 
-The File Upload API supports extracting structured table data from PDFs when 
-enabled through the table_extraction_config parameter. This feature is 
-particularly useful for financial reports like 10-Q, 10-K, and S1 filings. 
-With table extraction enabled, you can query specific table cells using the 
-[List Tables](/docs/api-reference/admin-apis/corpus/list-tables) and [Retrieve Table](/docs/api-reference/admin-apis/corpus/retrieve-table) APIs.
+Set the `table_extraction_config` field to `true` to extract table data from a 
+PDF. This feature is particularly useful for financial reports like 10-Q, 
+10-K, and S1 filings. With table extraction enabled, you can query specific 
+table cells using the Query API.
 
-To enable table extraction, set the `extract_tables field` in the 
-`table_extraction_config` parameter to `true`.
+:::caution
+This feature does not support extracting data from scanned-in images of tables.
+:::
 
 
 ### Attach Additional Metadata
@@ -155,20 +154,3 @@ upload a raw file, the file name is used as the document ID.
 
 - `507`: There is no more indexing quota left for the corpus or customer to
   index more documents.
-
-## Add a Timeout to the File Upload
-
-Adding `grpc-timeout` to the header of your REST call lets you specify how
-long to wait for the calls that have the potential to take longer to process.
-We recommend a timeout value of 30 seconds `30S` as typically long enough to
-allow the call to complete successfully.
-
-You can pass this parameter in header as follows:
-
-<pre>
-{`$ jwt=eyJraWQ...
-$ curl -H "Authorization: Bearer $jwt" -H "grpc-timeout: 30S"  -F file=@/tmp/instructions.pdf \\
-    -F metadata='{ "filesize\": 1234 }' \\
-    'https://${vars['domains.rest.indexing']}:443/v2/corpora/:corpus_key/upload_file'
-`}
-</pre>
