@@ -67,6 +67,8 @@ in the `prompt_name` in the `generation` object:
 - `vectara-summary-ext-24-05-med-omni` (gpt-4o, for citations)
 - `vectara-summary-ext-24-05-med` (gpt-4.0, for citations)
 - `vectara-summary-ext-24-05-large` (gpt-4.0-turbo, for citations)
+- `vectara-summary-table-query-ext-dec-2024-gpt-3-5` (gpt-3-5, for tables)
+  `vectara-summary-table-query-ext-dec-2024-gpt-4o` (gpt-4o, for tables)
 
 Customers also have access to [advanced summarization customization options](/docs/api-reference/search-apis/search#advanced-summarization-customization-options) 
 including [custom prompt templates](/docs/prompts/vectara-prompt-engine), character limits, 
