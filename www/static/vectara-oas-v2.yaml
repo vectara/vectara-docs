@@ -745,7 +745,7 @@ paths:
       tags:
       - Documents
       summary: List the documents in the corpus
-      description: "Retrieve a list of documents stored in a specifi corpus. This\
+      description: "Retrieve a list of documents stored in a specific corpus. This\
         \ endpoint \nprovides an overview of document metadata without returning the\
         \ full content of \neach document.\n"
       operationId: listCorpusDocuments
@@ -884,6 +884,108 @@ paths:
                 $ref: '#/components/schemas/Document'
         '403':
           description: Permissions do not allow retrieving a document from the corpus.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Corpus or document not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+    patch:
+      tags:
+      - Index
+      summary: Update document, merging the metadata.
+      description: "Updates document identified by its unique `document_id` from a\
+        \ specific \ncorpus. The request body metadata is merged with the existing\
+        \ metadata, \nadding or modifying only the specified fields.\n"
+      operationId: updateCorpusDocument
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: path
+        name: corpus_key
+        description: The unique key identifying the corpus with the document to update.
+        required: true
+        schema:
+          $ref: '#/components/schemas/CorpusKey'
+      - in: path
+        name: document_id
+        description: 'The document ID of the document to update.
+
+          This `document_id` must be percent encoded.
+
+          '
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDocumentRequest'
+      responses:
+        '200':
+          description: Successfully updated the document.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '403':
+          description: Permissions do not allow updating a document in the corpus.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Corpus or document not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+  /v2/corpora/{corpus_key}/documents/{document_id}/metadata:
+    put:
+      tags:
+      - Index
+      summary: Replace the document metadata.
+      description: "Replaces metadata of a document identified by its unique `document_id`\
+        \ \nfrom a specific corpus.\n"
+      operationId: replaceCorpusDocumentMetadata
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: path
+        name: corpus_key
+        description: The unique key identifying the corpus with the document to update.
+        required: true
+        schema:
+          $ref: '#/components/schemas/CorpusKey'
+      - in: path
+        name: document_id
+        description: 'The document ID of the document to update.
+
+          This `document_id` must be percent encoded.
+
+          '
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDocumentRequest'
+      responses:
+        '200':
+          description: Successfully updated the document.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '403':
+          description: Permissions do not allow updating a document in the corpus.
           content:
             application/json:
               schema:
@@ -3599,6 +3701,22 @@ components:
       - $ref: '#/components/schemas/StructuredDocument'
       required:
       - type
+    UpdateDocumentRequest:
+      description: "Schema for updating the document. For PUT requests, the request\
+        \ body metadata replaces the existing\nmetadata. For PATCH requests, the request\
+        \ body metadata is merged with the existing metadata, \nadding or modifying\
+        \ only the specified fields.\n"
+      type: object
+      properties:
+        metadata:
+          description: 'The metadata for a document as an arbitrary object. Properties
+            of this object
+
+            can be used by document level filter attributes.
+
+            '
+          type: object
+          additionalProperties: true
     StructuredDocument:
       description: A document with layout features.
       type: object
@@ -3673,6 +3791,9 @@ components:
           type: object
           properties: {}
           additionalProperties: true
+        tables:
+          description: The tables that this section contains.
+          type: array
         sections:
           description: The sections that this section contains.
           type: array
@@ -3714,6 +3835,9 @@ components:
           example:
             title: A Nice Document
             lang: eng
+        tables:
+          description: The tables that this document contains.
+          type: array
         document_parts:
           description: Parts of the document that make up the document.
           type: array
@@ -3789,6 +3913,10 @@ components:
           description: The document metadata.
           type: object
           additionalProperties: true
+        tables:
+          description: The tables that this document contains. Tables are not available
+            when table extraction is not enabled.
+          type: array
         parts:
           description: 'Parts of the document that make up the document. However,
             parts are not available when
@@ -3804,6 +3932,12 @@ components:
             $ref: '#/components/schemas/DocumentPart'
         storage_usage:
           $ref: '#/components/schemas/DocumentStorageUsage'
+    Row:
+      description: A row in a table.
+      type: array
+    Header:
+      description: The header of a table.
+      type: array
     DocumentStorageUsage:
       type: object
       description: 'How much storage the document used. This information is currently
