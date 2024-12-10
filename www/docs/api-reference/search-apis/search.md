@@ -58,7 +58,9 @@ the body that specifies the following:
 - `stream_response` - Indicates whether to stream the response in real-time (`true`) or
   to send a complete summary at the end of processing the request (`false`)
 - `search` - Specifies the search parameters
-- `generation` - Specifies the summarization parameters and `generation_preset_name`. 
+- `generation` - Specifies the summarization parameters and `generation_preset_name`. Table  
+  summarization has a specific preset: `vectara-summary-table-query-ext-dec-2024-gpt-3-5` or 
+  `vectara-summary-table-query-ext-dec-2024-gpt-4o`.
 
 Excluding this generation field disables summarization. The [generation preset](/docs/rest-api/list-generation-presets) 
 contains the `name`, `description`, `llm_name`, `prompt_template`, and other 
@@ -81,8 +83,13 @@ This query types provides a lightweight way to search a single corpus.
 ### Advanced Single Corpus Query
 
 Send a POST request to `/v2/corpora/:corpus_key/query` to [query a specific
-corpus](/docs/rest-api/query-corpus) with more advanced capabilities. The request body is similar to the
-Query Corpora type and specifies the same parameters:
+corpus](/docs/rest-api/query-corpus) with more advanced capabilities. This 
+query type allows for detailed customization, including the ability to 
+summarize table data when [querying tables](/docs/learn/querying-table-data).
+
+
+The request body is similar to the Query Corpora type and specifies the same 
+parameters:
 
 - `query` - Contains your query text
 - `stream_response` - Indicates whether to stream the response in real-time or

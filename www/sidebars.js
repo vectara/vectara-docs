@@ -52,6 +52,7 @@ module.exports = {
           items: [
             "learn/hybrid-search",
             "learn/enable-keyword-text-matching",
+            "learn/querying-table-data",
             "learn/semantic-search/add-custom-dimensions",
             "learn/semantic-search/enable-pagination",
             "learn/recommendation-systems/recommender-overview",
@@ -348,6 +349,7 @@ module.exports = {
           label: "Document Admin APIs",
           items: [
             "api-reference/admin-apis/corpus/list-documents",
+            "api-reference/admin-apis/corpus/retrieve-document",
             "api-reference/indexing-apis/deleting-documents",
           ],
         },
