@@ -217,7 +217,7 @@ null scores.
 In this example, you want to remove results with a score below a specific 
 threshold:
 
-`user_function: "get('$.score') < 0.5 ? null : get('$.score')";`
+`user_function: "if (get('$.score') < 0.5) null else get('$.score')";`
 
 This example filters results based on metadata:
 
@@ -236,7 +236,7 @@ applying a diversity bias and further limits the output to `50` results.
     "rerankers": [
       {
         "type": "userfn",
-        "user_function": "get('$.score') < 0.5 ? null : get('$.score')",
+        "user_function": "if (get('$.score') < 0.5) null else get('$.score')",
         "limit": 100
       },
       {
