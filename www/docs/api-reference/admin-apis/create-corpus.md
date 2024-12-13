@@ -48,9 +48,10 @@ corpus. The `name` does not need to be unique within an account.
 
 ## Filter Attribute
 
-In order to reference metadata in [filter expressions](/docs/learn/metadata-search-filtering/filter-overview), the
-referenceable attributes must be declared at creation time in the **filter
-attributes**. This list cannot be changed once the corpus is created.
+In order to reference metadata in [filter expressions](/docs/learn/metadata-search-filtering/filter-overview), you
+declare the referenceable attributes at creation time in the **filter
+attributes**. If you already created a corpus, use the 
+[Replace Filter Attributes API](/docs/api-reference/admin-apis/corpus/replace-filter-attributes). 
 
 Filter attributes allow you to attach metadata to your data at the document (`doc`) 
 or `part` level, which you can use later in filter expressions to narrow the scope 
