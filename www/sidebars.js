@@ -50,9 +50,12 @@ module.exports = {
         "learn/select-ideal-indexing-api",
         {
           type: "category",
-          label: "Metadata Filtering",
+          label: "Metadata Filters",
+          link: {
+            type: 'doc',
+            id: 'learn/metadata-search-filtering/filter-overview', 
+          },
           items: [
-            "learn/metadata-search-filtering/filter-overview",
             "learn/metadata-search-filtering/ootb-metadata-filters",
             "api-reference/search-apis/sql/func-opr",
             "api-reference/search-apis/sql/data-types",
@@ -69,6 +72,7 @@ module.exports = {
         id: 'search-and-retrieval',
       },
       items: [
+        "learn/boomerang",
         "learn/hybrid-search",
         "learn/enable-keyword-text-matching",
         "learn/semantic-search/enable-pagination",
