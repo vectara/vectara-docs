@@ -613,6 +613,10 @@ paths:
         platform to use. If you do not set this option, the platform uses the default
         strategy, which creates one chunk per sentence. For example, `''chunking_strategy={"type":"max_chars_chunking_strategy","max_chars_per_chunk":200};type=application/json''`
 
+        * `table_extraction_config` - (Optional) Specifies whether to extract table
+        data from the uploaded file. If you do not set this option, the platform does
+        not extract tables from PDF files. Example config, `''table_extraction_config={"extract_tables":true};type=application/json''`
+
         * `file` - Specifies the file that you want to upload.
 
         * `filename` - Specified as part of the file field with the file name that
@@ -652,6 +656,8 @@ paths:
               metadata:
                 contentType: application/json
               chunking_strategy:
+                contentType: application/json
+              table_extraction_config:
                 contentType: application/json
               file:
                 contentType: application/octet-stream, application/pdf, application/msword,
@@ -745,7 +751,7 @@ paths:
       tags:
       - Documents
       summary: List the documents in the corpus
-      description: "Retrieve a list of documents stored in a specifi corpus. This\
+      description: "Retrieve a list of documents stored in a specific corpus. This\
         \ endpoint \nprovides an overview of document metadata without returning the\
         \ full content of \neach document.\n"
       operationId: listCorpusDocuments
@@ -884,6 +890,108 @@ paths:
                 $ref: '#/components/schemas/Document'
         '403':
           description: Permissions do not allow retrieving a document from the corpus.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Corpus or document not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+    patch:
+      tags:
+      - Index
+      summary: Update document, merging the metadata.
+      description: "Updates document identified by its unique `document_id` from a\
+        \ specific \ncorpus. The request body metadata is merged with the existing\
+        \ metadata, \nadding or modifying only the specified fields.\n"
+      operationId: updateCorpusDocument
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: path
+        name: corpus_key
+        description: The unique key identifying the corpus with the document to update.
+        required: true
+        schema:
+          $ref: '#/components/schemas/CorpusKey'
+      - in: path
+        name: document_id
+        description: 'The document ID of the document to update.
+
+          This `document_id` must be percent encoded.
+
+          '
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDocumentRequest'
+      responses:
+        '200':
+          description: Successfully updated the document.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '403':
+          description: Permissions do not allow updating a document in the corpus.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Corpus or document not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+  /v2/corpora/{corpus_key}/documents/{document_id}/metadata:
+    put:
+      tags:
+      - Index
+      summary: Replace the document metadata.
+      description: "Replaces metadata of a document identified by its unique `document_id`\
+        \ \nfrom a specific corpus.\n"
+      operationId: replaceCorpusDocumentMetadata
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: path
+        name: corpus_key
+        description: The unique key identifying the corpus with the document to update.
+        required: true
+        schema:
+          $ref: '#/components/schemas/CorpusKey'
+      - in: path
+        name: document_id
+        description: 'The document ID of the document to update.
+
+          This `document_id` must be percent encoded.
+
+          '
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDocumentRequest'
+      responses:
+        '200':
+          description: Successfully updated the document.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '403':
+          description: Permissions do not allow updating a document in the corpus.
           content:
             application/json:
               schema:
@@ -3303,6 +3411,9 @@ components:
         document_id:
           description: The ID of the document that contains the document part.
           type: string
+        table:
+          description: The table that the document part is from.
+          $ref: '#/components/schemas/Table'
         request_corpora_index:
           description: "A query request can search over multiple corpora at a time.\
             \ This property \nis set to the index in the list of corpora in the original\
@@ -3507,6 +3618,8 @@ components:
           additionalProperties: true
         chunking_strategy:
           $ref: '#/components/schemas/ChunkingStrategy'
+        table_extraction_config:
+          $ref: '#/components/schemas/TableExtractionConfig'
         filename:
           description: Optional multipart section to override the filename.
           type: string
@@ -3517,6 +3630,22 @@ components:
           format: binary
       required:
       - file
+    TableExtractionConfig:
+      type: object
+      description: '(Optional) Configuration for table extraction from the document.
+
+        '
+      properties:
+        extract_tables:
+          type: boolean
+          description: 'If set to true, the platform will attempt to extract tables
+            from the document.
+
+            The tables will be indexed as separate document parts.
+
+            '
+      required:
+      - extract_tables
     ChunkingStrategy:
       type: object
       description: '(Optional) Choose how to split documents into chunks during indexing.
@@ -3599,6 +3728,22 @@ components:
       - $ref: '#/components/schemas/StructuredDocument'
       required:
       - type
+    UpdateDocumentRequest:
+      description: "Schema for updating the document. For PUT requests, the request\
+        \ body metadata replaces the existing\nmetadata. For PATCH requests, the request\
+        \ body metadata is merged with the existing metadata, \nadding or modifying\
+        \ only the specified fields.\n"
+      type: object
+      properties:
+        metadata:
+          description: 'The metadata for a document as an arbitrary object. Properties
+            of this object
+
+            can be used by document level filter attributes.
+
+            '
+          type: object
+          additionalProperties: true
     StructuredDocument:
       description: A document with layout features.
       type: object
@@ -3673,6 +3818,11 @@ components:
           type: object
           properties: {}
           additionalProperties: true
+        tables:
+          description: The tables that this section contains.
+          type: array
+          items:
+            $ref: '#/components/schemas/Table'
         sections:
           description: The sections that this section contains.
           type: array
@@ -3714,6 +3864,11 @@ components:
           example:
             title: A Nice Document
             lang: eng
+        tables:
+          description: The tables that this document contains.
+          type: array
+          items:
+            $ref: '#/components/schemas/Table'
         document_parts:
           description: Parts of the document that make up the document.
           type: array
@@ -3765,6 +3920,9 @@ components:
           additionalProperties: true
           example:
             nice_rank: 9000
+        table_id:
+          description: The ID of the table that this document part belongs to.
+          type: string
         context:
           description: The context text for the document part.
           type: string
@@ -3789,6 +3947,12 @@ components:
           description: The document metadata.
           type: object
           additionalProperties: true
+        tables:
+          description: The tables that this document contains. Tables are not available
+            when table extraction is not enabled.
+          type: array
+          items:
+            $ref: '#/components/schemas/Table'
         parts:
           description: 'Parts of the document that make up the document. However,
             parts are not available when
@@ -3804,6 +3968,75 @@ components:
             $ref: '#/components/schemas/DocumentPart'
         storage_usage:
           $ref: '#/components/schemas/DocumentStorageUsage'
+    Cell:
+      description: A cell in a table.
+      type: object
+      properties:
+        text_value:
+          description: A text value.
+          type: string
+        int_value:
+          description: A signed 64-bit integer value.
+          type: integer
+          format: int64
+        float_value:
+          description: A floating-point value with double precision.
+          type: number
+          format: double
+        bool_value:
+          description: A boolean value.
+          type: boolean
+        colspan:
+          description: (Optional) The number of columns the cell spans. Default is
+            1. Must be greater than 0.
+          type: integer
+          format: int32
+        rowspan:
+          description: (Optional) The number of rows the cell spans. Default is 1.
+            Must be greater than 0.
+          type: integer
+          format: int32
+    Row:
+      description: A row in a table.
+      type: array
+      items:
+        $ref: '#/components/schemas/Cell'
+    Header:
+      description: The header of a table.
+      type: array
+      items:
+        $ref: '#/components/schemas/Cell'
+    Data:
+      description: The data of a table.
+      type: object
+      properties:
+        headers:
+          description: The headers of the table.
+          type: array
+          items:
+            $ref: '#/components/schemas/Header'
+        rows:
+          description: The rows in the data.
+          type: array
+          items:
+            $ref: '#/components/schemas/Row'
+    Table:
+      description: A table in a document.
+      type: object
+      properties:
+        id:
+          description: The unique ID of the table within the document.
+          type: string
+          example: table_1
+        title:
+          description: The title of the table.
+          type: string
+        data:
+          description: The data of the table.
+          $ref: '#/components/schemas/Data'
+        description:
+          description: The description of the table.
+          type: string
     DocumentStorageUsage:
       type: object
       description: 'How much storage the document used. This information is currently
