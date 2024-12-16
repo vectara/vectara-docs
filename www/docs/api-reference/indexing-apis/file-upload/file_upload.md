@@ -55,10 +55,14 @@ following parts:
 
 - `metadata` - (Optional) Specifies a JSON object representing any additional
   metadata to be associated with the extracted document.
-- `chunking_strategy` (Optional): A JSON object defining the chunking strategy 
-  for breaking the document into parts. If unspecified, the default chunking 
-  strategy creates one chunk per sentence.
-  Example: `'chunking_strategy={"type":"max_chars_chunking_strategy","max_chars_per_chunk":200};type=application/json'`
+- `chunking_strategy` (Optional) Specifies whether to split the document into 
+  chunks during ingestion. If not set, the platform defaults to sentence-based 
+  chunking, where each chunk contains one full sentence. Set the `type` as 
+  `max_chars_chunking_strategy` and then specify the `max_chars_per_chunk` to 
+  the number of characters per chunk like `512` or `1024`. Smaller chunks may improve granularity 
+  but can lead to excessive latency, especially in applications with high 
+  document volumes or large corpora.
+  Example: `'chunking_strategy={"type":"max_chars_chunking_strategy","max_chars_per_chunk":1024};type=application/json'`
 - `table_extraction_config` (Optional): A JSON object specifying whether to extract 
   tables from the PDF. By default, tables are not extracted.
   Example: `'table_extraction_config={"extract_tables":true};type=application/json'`
