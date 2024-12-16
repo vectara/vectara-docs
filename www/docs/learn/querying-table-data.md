@@ -66,9 +66,10 @@ To enable table data extraction in the UI:
 
 ### File Upload API
 
-To extract tables during document ingestion, set the `table_extraction_config` 
-parameter in the file upload request to `true` in the `multipart/form-data` 
-payload. By default, this parameter is set to `false`.
+To extract tables during document ingestion, set the `extract_tables` option in 
+the `table_extraction_config` parameter of the file upload request to `true` 
+in the `multipart/form-data` payload. For example, `table_extraction_config={"extract_tables":true};type=application/json`.
+By default, this parameter is set to `false`.
 
 ### Indexing API
 
