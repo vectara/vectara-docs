@@ -57,8 +57,8 @@ following parts:
   metadata to be associated with the extracted document.
 - `chunking_strategy` (Optional) Specifies whether to split the document into 
   chunks during ingestion. If not set, the platform defaults to sentence-based 
-  chunking, where each chunk contains one full sentence. Set the `type` as 
-  `max_chars_chunking_strategy` and then specify the `max_chars_per_chunk` to 
+  chunking, where each chunk contains typically one full sentence. Set the `type` 
+  as `max_chars_chunking_strategy` and then specify the `max_chars_per_chunk` to 
   the number of characters per chunk like `512` or `1024`. Smaller chunks may improve granularity 
   but can lead to excessive latency, especially in applications with high 
   document volumes or large corpora.

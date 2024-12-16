@@ -130,9 +130,9 @@ table-specific metadata that’s shaped like this:
 * **row_num:** This value is a number if the search result is for a specific row 
   of the table.
 
-When you open a corpus in the UI and select the **Data** tab, you can then 
-select the **Tables** tab to view the ingested table data as well as view the 
-rendered table. For more details, see [Manage Documents](/docs/console-ui/manage-documents).
+When you open a corpus in the UI and select the **Data** tab, you can click on 
+**each uploaded document** and select the **Tables** tab to view the ingested table 
+data as well as view the rendered table. For more details, see [Manage Documents](/docs/console-ui/manage-documents).
 
 ## Table examples
 
