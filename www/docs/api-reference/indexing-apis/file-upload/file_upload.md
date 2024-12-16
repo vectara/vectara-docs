@@ -9,9 +9,11 @@ import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
 import {Config} from '@site/docs/definitions.md';
 
-The File Upload API lets you extract text from existing, unstructured
-documents in common file types like PDFs, Microsoft Word, Text, HTML, and
-Markdown. The maximum file size supported by the server is 10 MB.
+The File Upload API enables you to extract text from unstructured documents in 
+common file types like PDFs, Microsoft Word, Text, HTML, and Markdown. It also 
+supports extracting table data from PDFs, allowing for improved analysis and 
+querying of structured tabular data. Each file you upload can be up to 10 MB 
+in size.
 
 We recommend the File Upload API when you have not already written your own
 extraction logic. You can attach user-defined metadata at the document level
@@ -44,7 +46,6 @@ corpus, you specify a custom `corpus_key`.
 
 :::
 
-
 ## File Upload Request Details
 
 To upload a file, send a POST request to `/v2/corpora/:corpus_key/upload_file`, 
@@ -54,13 +55,18 @@ following parts:
 
 - `metadata` - (Optional) Specifies a JSON object representing any additional
   metadata to be associated with the extracted document.
-- `chunking_strategy` - (Optional) Specifies whether to split the document into 
+- `chunking_strategy` (Optional) Specifies whether to split the document into 
   chunks during ingestion. If not set, the platform defaults to sentence-based 
   chunking, where each chunk contains one full sentence. Set the `type` as 
   `max_chars_chunking_strategy` and then specify the `max_chars_per_chunk` to 
   the number of characters per chunk like `512` or `1024`. Smaller chunks may improve granularity 
   but can lead to excessive latency, especially in applications with high 
   document volumes or large corpora.
+  Example: `'chunking_strategy={"type":"max_chars_chunking_strategy","max_chars_per_chunk":1024};type=application/json'`
+- `table_extraction_config` (Optional): A JSON object specifying whether to extract 
+  tables from the PDF. By default, tables are not extracted.
+  Example: `'table_extraction_config={"extract_tables":true};type=application/json'`
+- `file` - Specifies the file that you want to upload.
 - `filename` - Specified as part of the `file` field with the file name that you 
   want to associate with the uploaded file.
 
@@ -98,6 +104,18 @@ you want. The primary purpose of this header is to specify the
 `form-data`, so using `filename` as the Document ID is specific to our
 platform. For more information about Content-Disposition, see
 the [Mozilla documentation on headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition).
+
+### Uploading PDFs with Tables
+
+Set the `table_extraction_config` field to `true` to extract table data from a 
+PDF. This feature is particularly useful for financial reports like 10-Q, 
+10-K, and S1 filings. With table extraction enabled, you can query specific 
+table cells using the Query API.
+
+:::caution
+This feature does not support extracting data from scanned-in images of tables.
+:::
+
 
 ### Attach Additional Metadata
 
@@ -140,20 +158,3 @@ upload a raw file, the file name is used as the document ID.
 
 - `507`: There is no more indexing quota left for the corpus or customer to
   index more documents.
-
-## Add a Timeout to the File Upload
-
-Adding `grpc-timeout` to the header of your REST call lets you specify how
-long to wait for the calls that have the potential to take longer to process.
-We recommend a timeout value of 30 seconds `30S` as typically long enough to
-allow the call to complete successfully.
-
-You can pass this parameter in header as follows:
-
-<pre>
-{`$ jwt=eyJraWQ...
-$ curl -H "Authorization: Bearer $jwt" -H "grpc-timeout: 30S"  -F file=@/tmp/instructions.pdf \\
-    -F metadata='{ "filesize\": 1234 }' \\
-    'https://${vars['domains.rest.indexing']}:443/v2/corpora/:corpus_key/upload_file'
-`}
-</pre>

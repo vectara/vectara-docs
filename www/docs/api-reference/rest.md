@@ -80,6 +80,14 @@ The following endpoints help you with queries:
 - [Advanced Corpus Query API](/docs/api-reference/search-apis/search#advanced-corpus-query): Perform advanced queries on a specific corpus
   with additional filtering and customization options.
 
+### Query histories
+
+The following endpoints help you with query histories:
+- [Get Query History API](/docs/api-reference/query-history-apis/get-query-history): Retrieve detailed history about a specific 
+  query that was made against a corpus
+- [List Query Histories API](/docs/api-reference/query-history-apis/get-query-histories): Retrieve, update, and manage 
+  query history for a specific corpus
+
 ### Corpora
 
 The following endpoints enable you to programmatically manipulate corpora and

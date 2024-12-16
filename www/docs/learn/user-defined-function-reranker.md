@@ -208,7 +208,7 @@ result, that result is automatically removed from the set.
 
 :::note
 Null removal occurs before limits are applied and before results are passed to 
-the next reranker in the pipeline. Only the UDF reranker can deliberly return 
+the next reranker in the pipeline. Only the UDF reranker can deliberately return 
 null scores.
 :::
 
@@ -217,7 +217,7 @@ null scores.
 In this example, you want to remove results with a score below a specific 
 threshold:
 
-`user_function: "get('$.score') < 0.5 ? null : get('$.score')";`
+`user_function: "if (get('$.score') < 0.5) null else get('$.score')";`
 
 This example filters results based on metadata:
 
@@ -236,21 +236,18 @@ applying a diversity bias and further limits the output to `50` results.
     "rerankers": [
       {
         "type": "userfn",
-        "user_function": "get('$.score') < 0.5 ? null : get('$.score')",
+        "user_function": "if (get('$.score') < 0.5) null else get('$.score')",
         "limit": 100
       },
       {
         "type": "mmr",
-        "user_function": "get('$.metadata.popularity') * get('$.metadata.score')",
+        "user_function": "get('$.document_metadata.popularity') * get('$.document_metadata.score')",
         "limit": 50
       }
     ]
   }
 }
 ```
-
-
-
 ## Example document with nuanced metadata
 
 This example document shows featured electronics for the upcoming fall season. 

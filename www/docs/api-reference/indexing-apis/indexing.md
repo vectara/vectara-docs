@@ -40,7 +40,7 @@ that represents the document to be indexed. This object has a `type` parameter
 that determines the format of the document as `core` or `structured`.
 
 Depending on the document type, there are required properties and any optional
-`metadata` or Scale-only properties like `custom_dimensions`.
+`metadata` or `custom_dimensions` (Pro or Enterprise only).
 
 The response includes a `status` message and a `StorageQuota` message
 indicating how much quota was consumed. An `ALREADY_EXISTS` status code
@@ -101,7 +101,7 @@ textual information that helps in disambiguating the meaning. For instance,
 it may include the preceding or following paragraphs, the chapter title, or
 the document title.
 
-For Scale users, `custom_dimensions` allows you to specify additional factors
+The `custom_dimensions` allows you to specify additional factors
 that can be used at query time to control the ranking of results. The
 dimensions must be defined ahead of time for the corpus, or else they'll be ignored.
 
@@ -115,10 +115,10 @@ may optionally speciify a `title`, `description`, and `metadata`. The core of
 the document is also structured in `sections` that can include unique
 identifiers, titles, strings, metadata, and so on.
 
-The `custom_dims` field (Scale only) provides default values for the
-corresponding section fields, should they fail to define them explicitly.
-Most importantly, `section` defines the actual textual matter. Documents can
-also have multiple sections.
+The `custom_dimensions` (Pro and Enterprise only) field provides default values 
+for the corresponding section fields, should they fail to define them 
+explicitly. Most importantly, `section` defines the actual textual matter. 
+Documents can also have multiple sections.
 
 ### Section within a Document
 
@@ -170,10 +170,10 @@ The part metadata, held in `metadata_json`, is returned in search query
 results. It can contain, for example, information that links the item to records
 in other systems.
 
-For Scale only users, `custom_dims` allows you to specify additional factors
-that can be used at query time to control the ranking of results. The
-custom dimensions must be defined ahead of time for the corpus, or else
-they'll be ignored.
+For Pro and Enterprise users, the `custom_dimensions` allows you to specify 
+additional factors that can be used at query time to control the ranking of 
+results. The custom dimensions must be defined ahead of time for the corpus, 
+or else they'll be ignored.
 
 ## REST 2.0 URL
 
@@ -212,12 +212,11 @@ in the index when the RPC returns.
 The full definition also shows the `CoreDocument` container format, which has
 metadata about the document, and parts within the document as `CoreDocumentPart`.
 
-### Custom Dimensions Use Cases (Scale only)
+### Custom Dimensions Use Cases (Pro or Enterprise only)
 
-Custom dimensions are a powerful <Config v="names.product"/> capability for 
-our Scale users. Custom dimensions enable you to attach numeric factors to 
-every item in the index, which affect its final ranking during searches. Some 
-example use cases include:
+Custom dimensions are a powerful <Config v="names.product"/> capability that enable you 
+to attach numeric factors to every item in the index, which affect its final 
+ranking during searches. Some example use cases include:
 
 1. Define the authoritativeness of the content.
 

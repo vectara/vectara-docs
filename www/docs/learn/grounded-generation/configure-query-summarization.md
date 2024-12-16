@@ -178,15 +178,15 @@ see the documentation on [formatting citations in summaries](/docs/api-reference
 
 ## Advanced summarization parameters
 
-[Scale users](https://vectara.com/pricing/) have access to more powerful summarization 
-capabilities, which present a powerful toolkit for tailoring summarizations to 
-specific application and user needs. 
+Users also have access to more powerful summarization capabilities, which 
+present a powerful toolkit for tailoring summarizations to specific 
+application and user needs. 
 
 ### Select the summarizer model
 
 Selecting the summarizer gives you more options to try official and 
-experimental versions of our [available summarizers](/docs/learn/grounded-generation/select-a-summarizer). For example, Scale users 
-can use our GPT 4.0 and GPT 4.0-Turbo summarizers.
+experimental versions of our [available summarizers](/docs/learn/grounded-generation/select-a-summarizer),  
+like our GPT 4.0 and GPT 4.0-Turbo summarizers.
 
 ### Customize the prompt
 

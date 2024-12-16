@@ -43,9 +43,9 @@ If you select Manage, the following options appear:
 ### Settings
 
 The Settings tab displays the current embedding model, indexing semantics, 
-filter attributes and Custom dimensions (Scale only). This page also has a 
-Dangerous actions section that lets you disable the corpus, clear corpus data, 
-or delete the corpus.
+filter attributes and custom dimensions (Pro and Enterprise only). This page 
+also has a _Dangerous actions_ section that lets you disable the corpus, clear 
+corpus data, or delete the corpus.
 
 ### Access Control
 
@@ -65,7 +65,7 @@ to ingest your data to ask some questions.
 
 ## Query the corpus
 
-The corpus name drop-down has a [Query option](/docs/console-ui/corpus-query-configuration) that 
+The corpus name drop-down has a [Query option](/docs/console-ui/configure-queries) that 
 lets you ask questions about your data. It provides Chat, Summary, and 
 Semantic search interface types, each with their own configuration.
 

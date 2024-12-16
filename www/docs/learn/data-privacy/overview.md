@@ -15,6 +15,7 @@ At <Config v="names.company"/>, we treat your data with the utmost privacy:
   distinct symmetric keys. If any individual corpus is compromised, the rest 
   remain safe.
 * We encrypt your data in-flight using [Transport Layer Security (TLS)](/docs/learn/authentication/auth-overview#transport-layer-security-tls).
-* We encrypt your data on disk. [Scale plan users](https://vectara.com/pricing/) can even [create and manage their own encryption keys](encryption).
+* We encrypt your data on disk. [Pro and Enterprise plan users](https://vectara.com/pricing/) can even 
+  [create and manage their own encryption keys](encryption).
 
 To learn more about how we approach security at <Config v="names.company"/>, read https://vectara.com/legal/security-at-vectara/.

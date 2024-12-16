@@ -13,6 +13,11 @@ module.exports = {
       items: [
         {
           type: "doc",
+          id: "vectara-trial",
+          label: "Vectara Trial",
+        },
+        {
+          type: "doc",
           id: "quickstart",
           label: "Quick Start",
         },
@@ -47,20 +52,21 @@ module.exports = {
           items: [
             "learn/hybrid-search",
             "learn/enable-keyword-text-matching",
+            "learn/querying-table-data",
             "learn/semantic-search/add-custom-dimensions",
-            {
-              type: "category",
-              label: "Reranking",
-              items: [
-                "api-reference/search-apis/reranking",
-                "learn/vectara-multi-lingual-reranker",
-                "learn/mmr-reranker",
-                "learn/user-defined-function-reranker",
-                "learn/chain-reranker",
-              ],
-            },
             "learn/semantic-search/enable-pagination",
             "learn/recommendation-systems/recommender-overview",
+          ],
+        },
+        {
+          type: "category",
+          label: "Reranking",
+          items: [
+            "api-reference/search-apis/reranking",
+            "learn/vectara-multi-lingual-reranker",
+            "learn/mmr-reranker",
+            "learn/user-defined-function-reranker",
+            "learn/chain-reranker",
           ],
         },
         {
@@ -74,6 +80,7 @@ module.exports = {
           ],
         },
         "learn/grounded-generation/select-a-summarizer",
+        "learn/query-observability",
         "learn/hallucination-evaluation",
         {
           type: "category",
@@ -224,10 +231,18 @@ module.exports = {
           collapsed: true,
           items: [
             "console-ui/creating-a-corpus",
-            /* "console-ui/corpus-query-configuration", */
             "console-ui/reset-or-delete-corpus",
             "console-ui/configure-server-access-to-corpus",
             "console-ui/corpus-default-read-access",
+          ],
+        },
+        {
+          type: "category",
+          label: "Manage Queries",
+          collapsed: true,
+          items: [
+            "console-ui/configure-queries",
+            "console-ui/evaluate-queries",
           ],
         },
         {
@@ -294,6 +309,14 @@ module.exports = {
         },
         {
           type: "category",
+          label: "Query History APIs",
+          items: [
+            "api-reference/query-history-apis/get-query-history",
+            "api-reference/query-history-apis/get-query-histories",
+          ],
+        },
+        {
+          type: "category",
           label: "File Upload APIs",
           items: [
             "api-reference/indexing-apis/file-upload/file-upload",
@@ -326,6 +349,7 @@ module.exports = {
           label: "Document Admin APIs",
           items: [
             "api-reference/admin-apis/corpus/list-documents",
+            "api-reference/admin-apis/corpus/retrieve-document",
             "api-reference/indexing-apis/deleting-documents",
           ],
         },
