@@ -61,6 +61,7 @@ real-time API calls from your browser.
 Vectara provides the following REST 2.0 endpoints:
 
 ### Request timeouts
+
 By default, requests will take as long as they need to complete.  However, you
 can request a maximum time for most of the APIs to take by specifying the
 `Request-Timeout` or `Request-Timeout-Millis` parameters in the HTTP headers.
@@ -115,7 +116,10 @@ The following endpoints help you index, upload files, and manage documents:
 - [File Upload API](/docs/api-reference/indexing-apis/file-upload/file-upload): Upload files to a corpus for automatic parsing
   and document extraction.
 - [List Documents API](/docs/api-reference/admin-apis/corpus/list-documents): Retrieve a list of documents in a specific corpus.
+- [Retrieve Document API](/docs/api-reference/admin-apis/corpus/retrieve-document): Retrieve the content and metadata of a specific document.
 - [Delete Document API](/docs/api-reference/indexing-apis/deleting-documents): Remove a document from a corpus.
+- [Update Document Metadata API](/docs/api-reference/indexing-apis/update-document-metadata): Update the metadata of a document in a corpus.
+- [Replace Document Metadata API](/docs/api-reference/indexing-apis/replace-document-metadata): Completely replace the metadata of a document.
 
 ### Chats
 

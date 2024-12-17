@@ -43,9 +43,23 @@ When indexing data in Vectara, you associate metadata at these levels:
       * `part.section = 'Introduction'`
       * `part.clause_type = 'Liability' AND part.risk_level = 25 AND part.is_boilerplate = false`
 
+## Setting up metadata filters
 
-To learn more about setting up filterable metadata review the [filter attribute][4] 
-section of the corpus creation documentation.
+To use metadata filters, you must configure [filter attributes][4] for your corpus. 
+Filter attributes define the metadata fields that queries can filter on. You 
+can do this in the following ways:
+
+* **During corpus creation:** Use the `filter_attributes` parameter when [creating a 
+  corpus][4].
+* **For an existing corpus:**
+  * Use the [Update Document Metadata API](/docs/api-reference/indexing-apis/update-document-metadata) to add or update specific metadata 
+  fields for a corpus at the document level.
+  * Use the [Replace Document Metadata API](/docs/api-reference/indexing-apis/replace-document-metadata) to entirely replace the existing 
+  metadata for a document.
+
+:::note
+Updating or replacing metadata is limited only to document-level metadata.
+:::
 
 ## Use cases for metadata filtering
 

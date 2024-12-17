@@ -327,7 +327,11 @@ module.exports = {
         {
           type: "category",
           label: "Indexing APIs",
-          items: ["api-reference/indexing-apis/indexing"],
+          items: [
+            "api-reference/indexing-apis/indexing",
+            "api-reference/indexing-apis/update-document-metadata",
+            "api-reference/indexing-apis/replace-document-metadata",
+          ],
         },
         {
           type: "category",
