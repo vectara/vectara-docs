@@ -45,16 +45,17 @@ When indexing data in Vectara, you associate metadata at these levels:
 
 ## Setting up metadata filters
 
-To use metadata filters, you must first configure filter attributes when 
-[creating][4] or updating a corpus. These filter attributes define the metadata 
-fields that queries can filter on.
+To use metadata filters, you must configure [filter attributes][4] for your corpus. 
+Filter attributes define the metadata fields that queries can filter on. You 
+can do this in the following ways:
 
-* You can define metadata filters as part of the corpus creation process using 
-  the `filter_attributes` parameter.
-* To add or modify metadata filters for an existing corpus, use the 
-  [Update Document API](/docs/api-reference/indexing-apis/update-document-metadata). This request adds or updates a filter for the 
-  `publication_date` attribute at the document level.
-* To replace the metadata entirely, use the [Replace Document Metadata API](/docs/api-reference/indexing-apis/replace-document-metadata).
+* **During corpus creation:** Use the `filter_attributes` parameter when creating a 
+  corpus with the [Vectara Console](/docs/console-ui/creating-a-corpus) or [API][4].
+* **For an existing corpus:**
+  * Use the [Update Document Metadata API](/docs/api-reference/indexing-apis/update-document-metadata) to add or update specific metadata 
+  fields for a corpus at the document level.
+  * Use the [Replace Document Metadata API](/docs/api-reference/indexing-apis/replace-document-metadata) to entirely replace the existing 
+  metadata for a document.
 
 :::note
 Updating or replacing metadata is limited only to document-level metadata.

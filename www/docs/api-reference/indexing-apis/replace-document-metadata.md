@@ -13,7 +13,7 @@ object entirely with a new metadata object provided in the request. It is
 useful when you want to reset or standardize metadata fields for a document.
 
 Replacing document metadata ensures that only the fields specified in the new 
-metadata object are retained, and all existing metadata fields are replaced.
+metadata object are retained, and all previous metadata fields are replaced.
 
 This operation is particularly helpful for maintaining metadata consistency or 
 when significant changes are required in a document's metadata.
