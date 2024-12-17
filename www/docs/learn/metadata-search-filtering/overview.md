@@ -49,8 +49,8 @@ To use metadata filters, you must configure [filter attributes][4] for your corp
 Filter attributes define the metadata fields that queries can filter on. You 
 can do this in the following ways:
 
-* **During corpus creation:** Use the `filter_attributes` parameter when creating a 
-  corpus with the [Vectara Console](/docs/console-ui/creating-a-corpus) or [API][4].
+* **During corpus creation:** Use the `filter_attributes` parameter when [creating a 
+  corpus][4].
 * **For an existing corpus:**
   * Use the [Update Document Metadata API](/docs/api-reference/indexing-apis/update-document-metadata) to add or update specific metadata 
   fields for a corpus at the document level.
