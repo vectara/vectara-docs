@@ -187,6 +187,7 @@ paths:
     post:
       x-fern-streaming: 
         stream-condition: $request.stream_response
+        format: sse
         response:
           $ref: "#/components/schemas/QueryFullResponse"
         response-stream:
@@ -213,17 +214,20 @@ paths:
             stream_response: true
           response:
             stream:
-              - type: search_results
-                search_results: 
-                  - text: "Hello, world!"
-                    score: 0.9
-                    document_id: "doc_123"
+              - event: search_results
+                data: 
+                  type: search_results
+                  search_results: 
+                    - text: "Hello, world!"
+                      score: 0.9
+                      document_id: "doc_123"
   /v2/corpora/{corpus_key}/query:
     get:
       x-fern-sdk-group-name: corpora
       x-fern-sdk-method-name: search
     post:
       x-fern-streaming: 
+        format: sse
         stream-condition: $request.stream_response
         response:
           $ref: "#/components/schemas/QueryFullResponse"
@@ -256,6 +260,7 @@ paths:
         results: $response.chats
     post:
       x-fern-streaming:
+        format: sse
         stream-condition: $request.stream_response
         response:
           $ref: "#/components/schemas/ChatFullResponse"
@@ -283,6 +288,7 @@ paths:
       x-fern-sdk-method-name: listTurns
     post:
       x-fern-streaming: 
+        format: sse
         stream-condition: $request.stream_response
         response:
           $ref: "#/components/schemas/ChatFullResponse"
