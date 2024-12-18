@@ -214,11 +214,13 @@ paths:
             stream_response: true
           response:
             stream:
-              - type: search_results
-                search_results: 
-                  - text: "Hello, world!"
-                    score: 0.9
-                    document_id: "doc_123"
+              - event: search_results
+                data: 
+                  type: search_results
+                  search_results: 
+                    - text: "Hello, world!"
+                      score: 0.9
+                      document_id: "doc_123"
   /v2/corpora/{corpus_key}/query:
     get:
       x-fern-sdk-group-name: corpora
