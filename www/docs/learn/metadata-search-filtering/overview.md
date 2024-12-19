@@ -72,9 +72,8 @@ When indexing data in Vectara, you associate metadata at these levels:
       * `part.clause_type = 'Liability' AND part.risk_level = 25 AND part.is_boilerplate = false`
 
 :::note
-For more information, check out some of our [**metadata examples and use cases**](/docs/learn/metadata-examples-and-use-cases).
+For more information, check out some of our [**Metadata Examples and Use Cases**](/docs/learn/metadata-search-filtering/metadata-examples-and-use-cases).
 :::
-
 
 ## Metadata data types
 
