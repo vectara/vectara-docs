@@ -44,8 +44,8 @@ shows the Text, Context, and Metadata.
 
 ![View Document Parts](/img/parts_tab.png)
 
-Select the **Tables** tab to view information about extracted tables, including 
+Select the **Tables** tab to view information about ingested tables, including 
 their ID, Title, Rows, and Description. You can also select **View Table** in 
-the Table column.
+the Table column to view the rendered table.
 
 ![View Table Tab](/img/tables_tab.png)

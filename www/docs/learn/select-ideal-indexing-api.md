@@ -110,8 +110,9 @@ the trade-offs between granularity and latency.
 ### Default chunking
 
 By default, the platform uses sentence-based chunking, where each chunk 
-contains one complete sentence. This strategy can lead to higher retrieval 
-latency for large documents due to the increased number of chunks created.
+typically contains one complete sentence. This strategy can lead to higher 
+retrieval latency for large documents due to the increased number of chunks 
+created.
 
 ### Fixed-size chunking
 

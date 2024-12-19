@@ -63,7 +63,7 @@ sum of both values.
 
 ### Structured document chunking
 
-By default, Vectara uses sentence-based chunking, where each chunk consists of 
+By default, Vectara uses sentence-based chunking, where each chunk typically contains 
 one complete sentence. This strategy works well but can lead to higher 
 retrieval latency because of the increased number of chunks. Alternatively, 
 you can use character-based chunking to make the chunks larger.
