@@ -16,11 +16,14 @@ as a roadmap to understanding and using our [gRPC APIs](/docs/api-reference/prot
 such as [managing user access](/docs/api-reference/admin-apis/manage-users/manage-user) and [corpora](/docs/api-reference/admin-apis/admin). Before getting into more
 details, we recommend that you have a basic understanding of API concepts.
 
-:::caution
+:::warning Deprecation Notice
+REST API v1 has been deprecated and will be fully retired on **August 16, 2025**. 
+Please migrate to API v2 as soon as possible.
+:::
 
+:::caution
 Review the [**REST API 1.0 to 2.0 migration guide**](/docs/migration-guide-api-v2) which highlights important
 differences between the Vectara REST API v1 and REST API v2.
-
 :::
 
 ## :star2: Ready to Dive In? Check Out Our API Reference! :star2:
