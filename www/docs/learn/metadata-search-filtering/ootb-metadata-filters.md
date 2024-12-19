@@ -16,7 +16,7 @@ corpus.
 
 ## `doc.id` field
 
-Each document is assigneed a unique identifier at indexing. You can use the 
+Each document is assigned a unique identifier at indexing. You can use the 
 `doc.id` field to retrieve or filter specific Document IDs in your corpus.
 
 Valid filter expressions include something like:

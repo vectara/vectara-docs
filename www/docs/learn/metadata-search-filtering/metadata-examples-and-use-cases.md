@@ -28,7 +28,7 @@ by the platform at indexing time. It's set at the part level for accuracy,
 because a single document may contain content in multiple languages.
 
 
-## Date-Specific Document Retrieval
+## Date-specific document retrieval
 
 More complicated expressions are possible, such as the one below, which checks 
 for documents with a publication date in 2021.
