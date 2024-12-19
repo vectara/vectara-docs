@@ -183,48 +183,21 @@ paths:
     post:
       x-fern-sdk-group-name: corpora
       x-fern-sdk-method-name: replaceFilterAttributes
-  /v2/query:
-    post:
-      x-fern-streaming:
-        stream-condition: $request.stream_response
-        format: sse
-        response:
-          $ref: "#/components/schemas/QueryFullResponse"
-        response-stream:
-          $ref: "#/components/schemas/QueryStreamedResponse"
-      x-fern-sdk-method-name: query
-      x-fern-examples:
-        - name: "Basic Query"
-          request:
-            query: hello, world?
-            search:
-              corpora:
-                - lexical_interpolation: 0.005
-              offset: 0
-              limit: 10
-              context_configuration:
-                sentences_before: 2
-                sentences_after: 2
-                start_tag: "<em>"
-                end_tag: "</em>"
-            generation:
-              max_used_search_results: 5
-              citations:
-                style: "none"
-              response_language: "auto"
-            stream_response: true
-          response:
-            stream:
-              - event: search_results
-                data:
-                  type: search_results
-                  search_results:
-                    - text: "Hello, world!"
-                      score: 0.9
-                      document_id: "doc_123"
-        - name: "Multi Corpus Search"
-          request:
-            query: "Example search query"
+/v2/query:
+  post:
+    x-fern-streaming:
+      stream-condition: $request.stream_response
+      format: sse
+      response:
+        $ref: "#/components/schemas/QueryFullResponse"
+      response-stream:
+        $ref: "#/components/schemas/QueryStreamedResponse"
+    x-fern-sdk-method-name: query
+    x-fern-examples:
+      - name: "Streaming Query Example"
+        request:
+          body:
+            query: "hello, world?"
             search:
               corpora:
                 - corpus_key: test-search-1
@@ -240,14 +213,51 @@ paths:
                 type: customer_reranker
                 reranker_id: rnk_272725719
             generation:
-              response_language: eng
+              max_used_search_results: 5
               citations:
-                style: none
+                style: "none"
               enable_factual_consistency_score: false
-            request_options:
-              timeout_in_seconds: 100
+            stream_response: true
+        response-stream:
+          - data:
+              type: "search_results"
+              search_results:
+                - text: "Hello, world!"
+                  score: 0.9
+                  document_id: "doc_123"
+          - data:
+              type: "generation_chunk"
+              generation_chunk: "Query completed successfully"
+
+      - name: "Non-Streaming Query Example"
+        request:
+          body:
+            query: "hello, world?"
             stream_response: false
-            save_history: false
+            search:
+              corpora:
+                - corpus_key: test-search-1
+                  metadata_filter: ""
+                  lexical_interpolation: 1
+                - corpus_key: test-search-2
+                  metadata_filter: ""
+                  lexical_interpolation: 1
+              context_configuration:
+                sentences_before: 2
+                sentences_after: 2
+              reranker:
+                type: customer_reranker
+                reranker_id: rnk_272725719
+            generation:
+              max_used_search_results: 5
+              citations:
+                style: "none"
+        response:
+          text: "Hello, world!"
+          search_results:
+            - text: "Hello, world!"
+              score: 0.9
+              document_id: "doc_123"
   /v2/corpora/{corpus_key}/query:
     get:
       x-fern-sdk-group-name: corpora
