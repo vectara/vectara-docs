@@ -5,6 +5,16 @@ sidebar_label: Migration Guide from REST API 1.0 to 2.0
 ---
 import {Config} from '@site/docs/definitions.md';
 
+## Key Dates
+- **December 16, 2024**: API v1 deprecation announced.
+- **August 16, 2025**: API v1 will be fully retired.
+
+
+:::warning Deprecation Notice
+API v1 has been deprecated and will be fully retired on **August 16, 2025**. 
+Please migrate to API v2 as soon as possible.
+:::
+
 Migrating to a new API version can be challenging, especially when ensuring 
 that your existing applications continue to function properly. This guide 
 helps you migrate from the Vectara v1 REST API to v2, minimizing 
