@@ -56,7 +56,9 @@ module.exports = {
             id: 'learn/metadata-search-filtering/filter-overview', 
           },
           items: [
+            "learn/metadata-search-filtering/using-metadata-filters",
             "learn/metadata-search-filtering/ootb-metadata-filters",
+            "learn/metadata-search-filtering/metadata-examples-and-use-cases",
             "api-reference/search-apis/sql/func-opr",
             "api-reference/search-apis/sql/data-types",
           ],
@@ -75,13 +77,18 @@ module.exports = {
         "learn/boomerang",
         "learn/hybrid-search",
         "learn/enable-keyword-text-matching",
+        "learn/querying-table-data",
         "learn/semantic-search/enable-pagination",
         "learn/recommendation-systems/recommender-overview",
         {
           type: "category",
           label: "Reranking",
+          link: {
+            type: 'doc',
+            id: 'api-reference/search-apis/reranking', 
+          },
           items: [
-            "api-reference/search-apis/reranking",
+            
             "learn/vectara-multi-lingual-reranker",
             "learn/mmr-reranker",
             "learn/user-defined-function-reranker",
@@ -105,6 +112,10 @@ module.exports = {
         {
           type: "category",
           label: "Generative Prompts",
+          link: {
+            type: 'doc',
+            id: 'generative-prompts', 
+          },
           items: [
             "prompts/vectara-prompt-engine",
             "prompts/custom-prompts-with-metadata",

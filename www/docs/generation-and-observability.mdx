@@ -5,14 +5,67 @@ sidebar_label: Generation and Observability
 ---
 
 import { Config } from "./definitions.md";
+import { Grid } from "@site/ui/Grid";
+import { Spacer } from "@site/ui/Spacer";
+import { TopicButton } from "@site/ui/TopicButton";
 
 Leverage Vectara’s advanced capabilities for content generation and quality 
 assurance. This section ensures that your AI-driven outputs are accurate, 
 relevant, and aligned with your goals.
 
-* **Generative Prompts:** Design and use custom prompts to generate high-quality 
-outputs tailored to your needs.
-* **Hallucination Evaluation:** Validate generated content to ensure factual 
-accuracy and relevance.
-* **Output Summarization:** Create concise summaries that distill complex content 
-into clear, actionable insights.
+<Grid columns={3}>
+  <TopicButton
+    title="Mockingbird: Vectara's LLM"
+    href="/docs/learn/mockingbird-llm">
+    <Spacer size="l" />
+    Explore Mockingbird, Vectara's advanced LLM designed for Retrieval-Augmented 
+    Generation (RAG).
+    <Spacer size="l" />
+    Achieve superior RAG output quality, enhanced citation 
+    accuracy, structured data generation, and multilingual performance.
+  </TopicButton>
+  
+  <TopicButton
+    title="Summarizers"
+    href="/docs/learn/grounded-generation/select-a-summarizer">
+    <Spacer size="l" />
+    Discover Vectara's advanced summarization options, 
+    including Mockingbird and GPT-powered configurations for citations, tables, 
+    and RAG outputs.
+    <Spacer size="l" />
+    Tailor summarization settings like max tokens, temperature, and penalties 
+    to fit your application requirements.
+  </TopicButton>
+  
+  <TopicButton
+    title="Query Observability"
+    href="/docs/learn/query-observability">
+    <Spacer size="l" />
+    Diagnose, debug, and optimize query performance with detailed query histories 
+    and execution flow analysis to improve your generative AI applications.
+    <Spacer size="l" />
+    Gain insights into every stage of the query lifecycle for better understanding 
+    and optimization.
+  </TopicButton>
+  
+  <TopicButton
+    title="Hallucination Evaluation"
+    href="/docs/learn/hallucination-evaluation">
+    <Spacer size="l" />
+    Use the Vectara Factual Consistency Score to evaluate and detect hallucinations 
+    in AI-generated outputs. 
+    <Spacer size="l" />
+    Achieve accurate summaries with calibrated scores across multiple languages.
+  </TopicButton>
+  
+  <TopicButton
+    title="Advanced Prompt Customization"
+    href="/docs/generative-prompts">
+    <Spacer size="l" />
+    Leverage advanced options like custom prompt templates, character limits, 
+    and model-specific settings for granular summarization control. 
+    <Spacer size="l" />
+    Tailor summaries to your exact needs, including chatbot-friendly outputs.
+  </TopicButton>
+</Grid>
+

@@ -1,7 +1,7 @@
 ---
 id: reranking
-title: Rerank Search Results
-sidebar_label: Rerank Search Results
+title: Reranking
+sidebar_label: Reranking
 ---
 
 import Tabs from '@theme/Tabs';
