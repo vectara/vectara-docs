@@ -7,7 +7,7 @@ navigation:
   - api: API Reference
     snippets: 
       python: vectara
-      typescript: vectara
+      # typescript: vectara
 colors:
   accent-primary: 
     light: '#264cd6'

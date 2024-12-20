@@ -62,108 +62,42 @@ paths:
           request: 
             stream_response: false
             query: "What is a hallucination?"
-            search: {}
+            search:
+              corpora: 
+                - corpus_key: corpus_key
+                  metadata_filter: ""
+                  lexical_interpolation: 0.005
+              context_configuration: 
+                sentences_before: 2
+                sentences_after: 2
+              reranker: 
+                type: customer_reranker
+                reranker_id: "rnk_272725719"
+            generation: 
+              response_language: "eng"
+              enable_factual_consistency_score: true
           response: 
             body: {}
-          code-samples: 
-          - language: python
-            code: |
-              from vectara import (
-                  SearchCorporaParameters, ContextConfiguration, GenerationParameters, 
-                  KeyedSearchCorpus, CustomerSpecificReranker
-              )
-              from vectara import Vectara
-
-              client = Vectara(
-                  api_key="YOUR_API_KEY",
-                  # or
-                  client_id="YOUR_CLIENT_ID",
-                  client_secret="YOUR_CLIENT_SECRET",
-              )
-
-              search = SearchCorporaParameters(
-                  corpora=[
-                      KeyedSearchCorpus(
-                          corpus_key=corpus_key,
-                          metadata_filter="",
-                          lexical_interpolation=0.005,
-                      )
-                  ],
-                  context_configuration=ContextConfiguration(
-                      sentences_before=2,
-                      sentences_after=2,
-                  ),
-                  reranker=CustomerSpecificReranker(
-                      reranker_id="rnk_272725719"
-                  ),
-              )
-              generation = GenerationParameters(
-                  response_language="eng",
-                  enable_factual_consistency_score=True,
-              )
-
-              res = client.query(
-                  query="What is a hallucination?",
-                  search=search,
-                  generation=generation
-              )
         - name: Stream
           request: 
-            stream_response: false
+            stream_response: true
             query: "What is a hallucination?"
-            search: {}
+            search:
+              corpora: 
+                - corpus_key: corpus_key
+                  metadata_filter: ""
+                  lexical_interpolation: 0.005
+              context_configuration: 
+                sentences_before: 2
+                sentences_after: 2
+              reranker: 
+                type: customer_reranker
+                reranker_id: "rnk_272725719"
+            generation: 
+              response_language: "eng"
+              enable_factual_consistency_score: true
           response: 
-            body: {}
-          code-samples: 
-            - language: python
-              code: | 
-                from vectara import (
-                    SearchCorporaParameters, ContextConfiguration, GenerationParameters, 
-                    KeyedSearchCorpus, CustomerSpecificReranker
-                )
-                from vectara import Vectara
-
-                client = Vectara(
-                    api_key="YOUR_API_KEY",
-                    # or
-                    client_id="YOUR_CLIENT_ID",
-                    client_secret="YOUR_CLIENT_SECRET",
-                )        
-                
-                search = SearchCorporaParameters(
-                    corpora=[
-                        KeyedSearchCorpus(
-                            corpus_key=corpus_key,
-                            metadata_filter="",
-                            lexical_interpolation=0.005,
-                        )
-                    ],
-                    context_configuration=ContextConfiguration(
-                        sentences_before=2,
-                        sentences_after=2,
-                    ),
-                    reranker=CustomerSpecificReranker(
-                        reranker_id="rnk_272725719"
-                    ),
-                )
-                generation = GenerationParameters(
-                    response_language="eng",
-                    enable_factual_consistency_score=True,
-                )
-
-                response = client.query_stream(
-                    query="What is an LLM hallucination",
-                    search=search,
-                    generation=generation
-                )
-                summary = []
-                for chunk in response:
-                    if chunk.type == 'search_results':
-                        search_results = chunk.search_results
-
-                    elif chunk.type == 'generation_chunk':
-                        # Collect generation chunks
-                        summary.append(chunk.generation_chunk) 
+            stream: []
   /v2/corpora/{corpus_key}/query:
     get:
       x-fern-sdk-group-name: corpora
@@ -190,41 +124,26 @@ paths:
       x-fern-sdk-group-name: documents
       x-fern-sdk-method-name: create
       x-fern-examples: 
-        - code-samples: 
-            - language: python
-              code: | 
-                from vectara import StructuredDocument, StructuredDocumentSection
-                from vectara import Vectara
-
-                client = Vectara(
-                    api_key="YOUR_API_KEY",
-                    # or
-                    client_id="YOUR_CLIENT_ID",
-                    client_secret="YOUR_CLIENT_SECRET",
-                )
-                
-                client.documents.create(
-                    corpus_key="my-corpus-key",
-                    request=StructuredDocument(
-                        id="my-doc-id",
-                        type="structured",
-                        sections=[
-                          StructuredDocumentSection(
-                              id="id_1",
-                              title="A nice title.",
-                              text="I'm a nice document section.",
-                              metadata={'section': '1.1'}
-                          ),
-                          StructuredDocumentSection(
-                              id="id_2",
-                              title="Another nice title.",
-                              text="I'm another document section on something else.",
-                              metadata={'section': '1.2'}
-                          ),
-                        ],
-                        metadata={'url': 'https://example.com'}
-                    ),
-                )
+        - path-parameters: 
+            corpus_key: "my-corpus-key"
+          request: 
+            id: "my-doc-id"
+            type: "structured"
+            sections:
+              - id: 1
+                title: "A nice title."
+                text: "I'm a nice document section."
+                metadata:
+                  section: "1.1"
+              - id: 2
+                title: "Another nice title."
+                text: "I'm another document section on something else."
+                metadata:
+                  section: "1.2"
+            metadata:
+              url: "https://example.com"
+          response: 
+            body: {}
   /v2/corpora/{corpus_key}/documents/{document_id}:
     delete:
       x-fern-sdk-group-name: documents
@@ -246,52 +165,55 @@ paths:
         response-stream:
           $ref: "#/components/schemas/ChatStreamedResponse"
       x-fern-sdk-method-name: chat
-      x-fern-examples:
-        - code-samples: 
-            - language: python
-              code: | 
-                from vectara import CitationParameters, ChatParameters
-                from vectara import Vectara
-
-                client = Vectara(
-                    api_key="YOUR_API_KEY",
-                    # or
-                    client_id="YOUR_CLIENT_ID",
-                    client_secret="YOUR_CLIENT_SECRET",
-                )
-
-                search = SearchCorporaParameters(
-                    corpora=[
-                        KeyedSearchCorpus(
-                            corpus_key=corpus_key,
-                            metadata_filter="",
-                            lexical_interpolation=0.005,
-                        )
-                    ],
-                    context_configuration=ContextConfiguration(
-                        sentences_before=2,
-                        sentences_after=2,
-                    ),
-                    reranker=CustomerSpecificReranker(
-                        reranker_id="rnk_272725719"
-                    ),
-                )
-                generation = GenerationParameters(
-                    response_language="eng",
-                    citations=CitationParameters(
-                        style="none",
-                    ),
-                    enable_factual_consistency_score=True,
-                )
-                chat = ChatParameters(store=True)
-
-                session = client.create_chat_session(
-                    search=search,
-                    generation=generation,
-                    chat_config=chat,
-                )
-
-                response = session.chat(query="What are hallucinations?")
+      x-fern-examples: 
+        - name: Batch
+          request: 
+            stream_response: false
+            query: "What is a hallucination?"
+            search:
+              corpora: 
+                - corpus_key: corpus_key
+                  metadata_filter: ""
+                  lexical_interpolation: 0.005
+              context_configuration: 
+                sentences_before: 2
+                sentences_after: 2
+              reranker: 
+                type: customer_reranker
+                reranker_id: "rnk_272725719"
+            generation: 
+              response_language: "eng"
+              enable_factual_consistency_score: true
+              citations: 
+                style: "none"
+            chat: 
+              store: True
+          response: 
+            body: {}
+        - name: Stream
+          request: 
+            stream_response: true
+            query: "What is a hallucination?"
+            search:
+              corpora: 
+                - corpus_key: corpus_key
+                  metadata_filter: ""
+                  lexical_interpolation: 0.005
+              context_configuration: 
+                sentences_before: 2
+                sentences_after: 2
+              reranker: 
+                type: customer_reranker
+                reranker_id: "rnk_272725719"
+            generation: 
+              response_language: "eng"
+              citations: 
+                style: "none"
+              enable_factual_consistency_score: true
+            chat: 
+              store: True
+          response: 
+            stream: []
   /v2/llms:
     get:
       x-fern-sdk-group-name: llms
