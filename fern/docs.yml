@@ -1,13 +1,14 @@
 instances:
   - url: https://vectara.docs.buildwithfern.com
 title: Vectara | Documentation
+default-language: python
 navigation:
   - page: Introduction
     path: ./pages/introduction.mdx
   - api: API Reference
     snippets: 
       python: vectara
-      typescript: vectara
+      # typescript: vectara
 colors:
   accent-primary: 
     light: '#264cd6'
