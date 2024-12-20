@@ -12,11 +12,14 @@ of Vectara's REST API 2.0, developers can now leverage a more intuitive and
 user-friendly API design that follows RESTful principles and simplifies the
 getting started experience.
 
-:::caution
+:::warning Deprecation Notice
+REST API v1 has been deprecated and will be fully retired on **August 16, 2025**. 
+Please migrate to API v2 as soon as possible.
+:::
 
+:::caution
 Review the [**REST API 1.0 to 2.0 migration guide**](/docs/migration-guide-api-v2) which highlights important
 differences between the Vectara REST API v1 and REST API v2.
-
 :::
 
 ## API formatting guidelines
