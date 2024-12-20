@@ -41,55 +41,96 @@ module.exports = {
     },
     {
       type: "category",
-      label: "Capabilities",
-      collapsed: true,
+      label: "Data Management",
+      link: {
+        type: 'doc',
+        id: 'data-management', // This points to data-management.mdx
+      },
       items: [
         "learn/select-ideal-indexing-api",
-        "learn/mockingbird-llm",
         {
           type: "category",
-          label: "Retrieval",
+          label: "Metadata Filters",
+          link: {
+            type: 'doc',
+            id: 'learn/metadata-search-filtering/filter-overview', 
+          },
           items: [
-            "learn/hybrid-search",
-            "learn/enable-keyword-text-matching",
-            "learn/querying-table-data",
-            "learn/semantic-search/add-custom-dimensions",
-            "learn/semantic-search/enable-pagination",
-            "learn/recommendation-systems/recommender-overview",
+            "learn/metadata-search-filtering/using-metadata-filters",
+            "learn/metadata-search-filtering/ootb-metadata-filters",
+            "learn/metadata-search-filtering/metadata-examples-and-use-cases",
+            "api-reference/search-apis/sql/func-opr",
+            "api-reference/search-apis/sql/data-types",
           ],
         },
+        "learn/semantic-search/add-custom-dimensions",
+      ],
+    },
+    {
+      type: "category",
+      label: "Search and Retrieval",
+      link: {
+        type: 'doc',
+        id: 'search-and-retrieval',
+      },
+      items: [
+        "learn/boomerang",
+        "learn/hybrid-search",
+        "learn/enable-keyword-text-matching",
+        "learn/querying-table-data",
+        "learn/semantic-search/enable-pagination",
+        "learn/recommendation-systems/recommender-overview",
         {
           type: "category",
           label: "Reranking",
+          link: {
+            type: 'doc',
+            id: 'api-reference/search-apis/reranking', 
+          },
           items: [
-            "api-reference/search-apis/reranking",
+            
             "learn/vectara-multi-lingual-reranker",
             "learn/mmr-reranker",
             "learn/user-defined-function-reranker",
             "learn/chain-reranker",
           ],
         },
-        {
-          type: "category",
-          label: "Metadata Search Filtering",
-          items: [
-            "learn/metadata-search-filtering/filter-overview",
-            "learn/metadata-search-filtering/ootb-metadata-filters",
-            "api-reference/search-apis/sql/func-opr",
-            "api-reference/search-apis/sql/data-types",
-          ],
-        },
+      ],
+    },
+    {
+      type: "category",
+      label: "Generation",
+      link: {
+        type: 'doc',
+        id: 'generation',
+      },
+      items: [
+        "learn/mockingbird-llm",
         "learn/grounded-generation/select-a-summarizer",
-        "learn/query-observability",
-        "learn/hallucination-evaluation",
         {
           type: "category",
           label: "Generative Prompts",
+          link: {
+            type: 'doc',
+            id: 'generative-prompts', 
+          },
           items: [
             "prompts/vectara-prompt-engine",
             "prompts/custom-prompts-with-metadata",
           ],
         },
+      ],
+    },
+    {
+      type: "category",
+      label: "Observability and Evaluation",
+      link: {
+        type: 'doc',
+        id: 'observability',
+      },
+      items: [
+        "learn/query-observability",
+        "learn/hallucination-evaluation",
       ],
     },
     {

@@ -8,7 +8,7 @@ import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The Replace Document Metadata API enables you to overwrite the metadata of a 
-specific document in a corpus. This endpoint replaces the existing metadata 
+specific document in a corpus. This endpoint replaces the previous metadata 
 object entirely with a new metadata object provided in the request. It is 
 useful when you want to reset or standardize metadata fields for a document.
 
