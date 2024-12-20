@@ -1,6 +1,7 @@
 instances:
   - url: https://vectara.docs.buildwithfern.com
 title: Vectara | Documentation
+default-language: python
 navigation:
   - page: Introduction
     path: ./pages/introduction.mdx
