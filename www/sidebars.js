@@ -99,16 +99,14 @@ module.exports = {
     },
     {
       type: "category",
-      label: "Generation and Observability",
+      label: "Generation",
       link: {
         type: 'doc',
-        id: 'generation-and-observability',
+        id: 'generation',
       },
       items: [
         "learn/mockingbird-llm",
         "learn/grounded-generation/select-a-summarizer",
-        "learn/query-observability",
-        "learn/hallucination-evaluation",
         {
           type: "category",
           label: "Generative Prompts",
@@ -121,6 +119,18 @@ module.exports = {
             "prompts/custom-prompts-with-metadata",
           ],
         },
+      ],
+    },
+    {
+      type: "category",
+      label: "Observability and Evaluation",
+      link: {
+        type: 'doc',
+        id: 'observability',
+      },
+      items: [
+        "learn/query-observability",
+        "learn/hallucination-evaluation",
       ],
     },
     {
