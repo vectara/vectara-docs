@@ -57,7 +57,7 @@ groups:
   ts-sdk:
     generators:
       - name: fernapi/fern-typescript-node-sdk
-        version: 0.39.1
+        version: 0.44.5
         output:
           location: npm
           package-name: "vectara"
