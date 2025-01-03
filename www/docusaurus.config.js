@@ -261,6 +261,10 @@ ${content}
           to: "docs/release-notes",
         },
         {
+          label: "Changelog",
+          to: "docs/changelog",
+        },
+        {
           type: "search",
           className: "searchBar",
           position: "right",
