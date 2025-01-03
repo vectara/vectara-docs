@@ -93,6 +93,7 @@ module.exports = {
             "learn/mmr-reranker",
             "learn/user-defined-function-reranker",
             "learn/chain-reranker",
+            "learn/knee-reranker",
           ],
         },
       ],
