@@ -25,12 +25,15 @@ Vectara currently provides the following rerankers:
 * [**Multilingual Reranker v1**](/docs/learn/vectara-multi-lingual-reranker) (`type=customer_reranker` and `reranker_name=Rerank_Multilingual_v1`) 
   also known as Slingshot, provides more accurate neural ranking than the 
   initial Boomerang retrieval. While computationally more expensive, it offers 
-  improved text scoring across   a wide range of languages, making it suitable 
+  improved text scoring across a wide range of languages, making it suitable 
   for diverse content.
 * [**Maximal Marginal Relevance (MMR) Reranker**](/docs/learn/mmr-reranker) (`type=mmr`) 
   for diversifying results while maintaining relevance.
 * [**User Defined Function Reranker**](/docs/learn/user-defined-function-reranker) (`type=userfn`) for 
   custom scoring based on metadata.
+* [**Knee Reranker**](/docs/learn/knee-reranker) (`type=userfn` and `user_function=knee()`) for 
+  dynamically filtering results by detecting natural cutoff points, improving 
+  precision while maintaining recall. Best used after the Slingshot reranker.
 
 ### Chain reranking
 
