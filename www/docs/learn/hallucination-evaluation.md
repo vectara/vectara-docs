@@ -6,26 +6,39 @@ sidebar_label: Hallucination Evaluation
 
 import {Config} from '@site/docs/definitions.md';
 
-The Vectara Factual Consistency Score automatically evaluates and detects 
-hallucinations in generated output. Based on a more advanced version of 
-[Hughes Hallucination Evaluation Model (HHEM)](https://huggingface.co/vectara/hallucination_evaluation_model),
-the Factual Consistency Score enables you to evaluate the likelihood of an 
-AI-generated summary being factually consistent based on search results. This 
-calibrated score can range from `0.0` to `1.0`. A higher score indicates a
-higher confidence that the summary is factually consistent, while a lower 
-score indicates possible hallucinations.
+Vectara uses the `Hughes Hallucination Evaluation Model` (HHEM) to assess the
+likelihood of AI-generated summary being factually consistent based on search 
+results. This calibrated score can range from `0.0` to `1.0`. A higher score 
+indicates a higher confidence that the summary is factually consistent, while 
+a lower score indicates possible hallucinations.
+
+For example, a score of `0.95` suggests a 95% likelihood that the summary is
+free of hallucinations and would align with the original content. A lower score
+of `0.40` indicates a 40% chance the summary is free of hallucinations, meaning
+it's more likely to contain one or more factual inaccuracies, however minor.
+We suggest starting with a setting of `0.5` as an initial guideline.
+
+:::note
+
+The FCS measures only the factual accuracy of a generated summary based on  
+search results. Each search result's independent `score` is based on the query  
+settings used for that query (e.g. which embedding model is used, whether  
+lambda and/or reranking is used). These scores are different.
+
+:::
 
 ## Factual Consistency Score language support
 
 The Factual Consistency Score supports English, German, French, Portuguese, 
 Spanish, Arabic, Chinese-Simplified, and Korean. Set the 
-`response_language` parameter to `eng`, `deu`, `fra`, `spa`, `por`, `ara`, `kor`, `zho`.
+`response_language` parameter to `eng`, `deu`, `fra`, `spa`, `por`, `ara`, 
+`kor`, or `zho`.
 
 ## Enable the Factual Consistency Score
 
-In your summarization request, set the `enable_factual_consistency_score` field to `true`. 
-The Factual Consistency Score returns a calibrated value in the 
-`factual_consistency_score` field of the summary message. The score field 
+In your summarization request, set the `enable_factual_consistency_score` field
+to `true`. The Factual Consistency Score returns a calibrated value in the
+`factual_consistency_score` field of the summary message. The score field
 contains the value between `0.0` and `1.0`.
 
 ```json showLineNumbers title="Enable the Factual Consistency Score"
@@ -36,8 +49,8 @@ contains the value between `0.0` and `1.0`.
   }
 ```
 
-In the following example, the summary shows a `factual_consistency_score` of `0.98`, 
-which is 98%.
+In the following example, the summary shows a `factual_consistency_score` of
+`0.98`, which is 98%.
 
 ```json showLineNumbers title="Example Factual Consistency Score"
 {
