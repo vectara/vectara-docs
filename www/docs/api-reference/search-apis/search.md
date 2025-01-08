@@ -208,8 +208,11 @@ more details about these properties, see [Rerank Search Results](/docs/api-refer
   also known as Slingshot.
 * Specify the `type` as `mmr` to use the [Maximal Marginal Relevance (MMR) Reranker](/docs/learn/mmr-reranker).
   This reranker lets you specify a `diversity_bias` value between `0.0` and `1.0`. 
-* Specify the `type` as `userfn` to use the [User Defined Function Reranker(/docs/learn/user-defined-function-reranker)].
+* Specify the `type` as `userfn` to use the [User Defined Function Reranker](/docs/learn/user-defined-function-reranker).
 * Specify the `type` as `chain` to use the [Chain Reranker](/docs/learn/chain-reranker).
+* To use [Knee Reranking](/docs/learn/knee-reranking), configure the chain reranker to first 
+  use the Vectara Multilingual Reranker (Slingshot). Then specify the `type` as `userfn` and 
+  `user_function` as `knee()` to enable Knee Reranking in the chain.
 * If you do not want to use a reranker, set the type to `none`.
 
 ## Query Summarization Request - Retrieval Augmented Generation

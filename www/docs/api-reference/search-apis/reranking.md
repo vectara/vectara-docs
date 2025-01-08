@@ -12,11 +12,12 @@ import {vars} from '@site/static/variables.json';
 Initial search results often fail to capture nuanced relevance or diversity, 
 potentially leading to suboptimal user experiences. Utilizing Vectara's 
 reranking can significantly enhance the quality and usefulness of 
-search results, leading to more effective information retrieval. Reranking 
-search results involves a process of rescoring and refining an initial set 
-of query results to achieve a more precise ranking. It employs a machine 
-learning model that while slower than the rapid retrieval step, offers more 
-accurate results.
+search results, leading to more effective information retrieval. 
+
+Reranking search results involves a process of rescoring and refining an 
+initial set of query results to achieve a more precise ranking. It employs a 
+machine learning model that while slower than the rapid retrieval step, offers 
+more accurate results.
 
 ## Available rerankers
 
@@ -25,7 +26,7 @@ Vectara currently provides the following rerankers:
 * [**Multilingual Reranker v1**](/docs/learn/vectara-multi-lingual-reranker) (`type=customer_reranker` and `reranker_name=Rerank_Multilingual_v1`) 
   also known as Slingshot, provides more accurate neural ranking than the 
   initial Boomerang retrieval. While computationally more expensive, it offers 
-  improved text scoring across   a wide range of languages, making it suitable 
+  improved text scoring across a wide range of languages, making it suitable 
   for diverse content.
 * [**Maximal Marginal Relevance (MMR) Reranker**](/docs/learn/mmr-reranker) (`type=mmr`) 
   for diversifying results while maintaining relevance.
@@ -38,6 +39,13 @@ The Vectara Chain Reranker (`type=chain`) lets you combine multiple reranking
 strategies in sequence to meet more complex search requirements. This lets you 
 completely customize the functionality of Vectara to your needs by giving you 
 absolute control over the ranking functions. For details, see [Chain Reranker](/docs/learn/chain-reranker).
+
+### Knee reranking
+
+Designed to work after the Slingshot reranker in a chain 
+(`type=userfn` and `user_function=knee()`), [knee reranking](/docs/learn/knee-reranking) 
+dynamically filters results by detecting natural cutoff points, improving 
+precision while maintaining recall.
 
 ## Enable reranking
 
