@@ -1,6 +1,6 @@
 module.exports = {
   someSidebar: [
-        {
+    {
       type: "doc",
       id: "introduction",
       label: "The Vectara Platform",

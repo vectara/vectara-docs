@@ -11,6 +11,38 @@ import { Spacer } from "@site/ui/Spacer";
 import { TopicButton } from "@site/ui/TopicButton";
 
 
+---
+
+# January 2025
+
+### ✨ New Features
+- Update HHEM documentation for HHME-2.2 (#379)
+- Add documentation for the new Knee Reranking feature (#378)
+- Add new HHEM supported languages and some content enhancements (#352)
+
+### 📚 API Changes
+- No changes
+
+### 📝 Documentation or Feature Enhancements
+- Add HHEM 2.2 enhancements to Release Notes (#381)
+- Add new HHEM supported languages and some content enhancements (#352)
+
+### 📐 Information Architecture Changes
+- No changes
+
+### 🐛 Documentation Fixes
+- No changes
+
+### 🗑 Deprecated
+- No changes
+
+### 📋 Example Updates
+- No changes
+
+### 🛠 Documentation Platform Updates
+- No changes
+
+
 
 ---
 
@@ -477,3 +509,4 @@ import { TopicButton } from "@site/ui/TopicButton";
 
 ### 🛠 Documentation Platform Updates
 - No changes
+
