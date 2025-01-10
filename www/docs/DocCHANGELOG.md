@@ -273,7 +273,7 @@ import { TopicButton } from "@site/ui/TopicButton";
 # June 2024
 
 ### ✨ New Features
-- No changes
+- Add new REST API v2 specifications to the documentation (#250)
 
 ### 📚 API Changes
 - Rename API Playground references to API Reference. (#295)
@@ -282,11 +282,12 @@ import { TopicButton } from "@site/ui/TopicButton";
 - Re-enable accordion transition in API playground, to fix bug in which content height wasn't updated correctly (#287)
 
 ### 📝 Documentation or Feature Enhancements
-- No changes
+- Add new REST API v2 specifications to the documentation (#250)
 
 ### 📐 Information Architecture Changes
 - Rename API Playground references to API Reference. (#295)
 - Change nav from API Playground -> API Reference. (#293)
+- Add new REST API v2 specifications to the documentation (#250)
 
 ### 🐛 Documentation Fixes
 - Fix oauth examples. (#300)
@@ -492,6 +493,7 @@ import { TopicButton } from "@site/ui/TopicButton";
 ### 📝 Documentation or Feature Enhancements
 - Add Build Applications section (#229)
 - Update File Upload API specs (#220)
+- Fix reranker URL and update search topic with new formatting (#213)
 
 ### 📐 Information Architecture Changes
 - Add Create-UI and refine copy and layout of Build Apps landing page (#230)
@@ -499,6 +501,8 @@ import { TopicButton } from "@site/ui/TopicButton";
 
 ### 🐛 Documentation Fixes
 - Update File Upload API specs (#220)
+- Fix reranker URL and update search topic with new formatting (#213)
+- Improve the Index API Definition content (#208)
 
 ### 🗑 Deprecated
 - No changes
