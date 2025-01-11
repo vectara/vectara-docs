@@ -84,7 +84,7 @@ Access your authentication by clicking the copy icon for the "OAuth 2.0 authenti
 
 The URL has the following format:
 
-`https://auth.vectara.dev/oauth2/token`
+`https://auth.vectara.com/oauth2/token`
 
 **Client ID**
 
@@ -125,7 +125,7 @@ const {
     client_id: "<your client ID goes here>",
     client_secret: "<your client secret goes here>",
   }),
-  url: "https://auth.vectara.io/oauth2/token"
+  url: "https://auth.vectara.com/oauth2/token"
 });
 ```
 
@@ -135,10 +135,10 @@ cURL command:
 ```js title="cURL Example"
 curl -XPOST -H "Content-type: application/x-www-form-urlencoded" \
     -d "grant_type=client_credentials&client_id=<your client ID goes here>&client_secret=<your client secret goes here>" \
-    https://auth.vectara.io/oauth2/token
+    https://auth.vectara.com/oauth2/token
 ```
 
-:::note
+:::tip
 
 This method is useful if you want to try out requests in
 our [**Vectara API Reference**](/docs/rest-api/vectara-rest-api-v-2).
@@ -150,7 +150,7 @@ our [**Vectara API Reference**](/docs/rest-api/vectara-rest-api-v-2).
 To use a JWT token in an API request, pass the token using the `Authorization`
 header configuration.
 
-If you're using the API Reference such as [ListCorpora](/docs/rest-api/list-corpora),
+If you're using the API Reference such as [List corpora](/docs/rest-api/list-corpora),
 use the JWT token value in the **Bearer Token** field:
 
 ![API Reference Example](/img/api_playground_listcorpora.png)
