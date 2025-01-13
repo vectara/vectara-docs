@@ -21,9 +21,9 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: vectara/product-management-tools
-          token: ${{ secrets.GITHUB_TOKEN }}  # ✅ Switched to GITHUB_TOKEN for same org access
+          token: ${{ secrets.DOC_CHANGELOG_TOKEN }}  # Use DOC_CHANGELOG_TOKEN
           path: product-management-tools
-          persist-credentials: false  # ✅ Prevent token caching
+          persist-credentials: false  # Prevent token caching
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -37,7 +37,7 @@ jobs:
 
       - name: Generate Changelog
         env:
-          DOC_CHANGELOG_TOKEN: ${{ secrets.DOC_CHANGELOG_TOKEN }}  # ✅ Only where needed
+          DOC_CHANGELOG_TOKEN: ${{ secrets.DOC_CHANGELOG_TOKEN }}  # Only where needed
         run: |
           python product-management-tools/doc-changelog/doc-changelog.py
 
@@ -64,5 +64,5 @@ jobs:
                        --head $BRANCH_NAME \
                        --base main
         env:
-          GITHUB_TOKEN: ${{ secrets.DOC_CHANGELOG_TOKEN }}  # ✅ Switched to DOC_CHANGELOG_TOKEN
+          GITHUB_TOKEN: ${{ secrets.DOC_CHANGELOG_TOKEN }} 
 
