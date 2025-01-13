@@ -55,14 +55,14 @@ jobs:
           git add DocCHANGELOG.md
           git commit -m "📖 Auto-update DocCHANGELOG.md [skip ci]" || echo "No changes to commit"
 
-          # Push the branch
-          git push origin $BRANCH_NAME
+          # Push the branch using DOC_CHANGELOG_TOKEN
+          git push https://${{ secrets.DOC_CHANGELOG_TOKEN }}@github.com/vectara/vectara-docs.git $BRANCH_NAME
 
-      - name: Create Pull Request
-        run: |
+          # Create a Pull Request
           gh pr create --title "📖 Auto-update DocCHANGELOG.md" \
                        --body "Automated update of the documentation changelog." \
                        --head $BRANCH_NAME \
                        --base main
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # ✅ Token used ONLY for PR creation
+          GITHUB_TOKEN: ${{ secrets.DOC_CHANGELOG_TOKEN }}  # ✅ Switched to DOC_CHANGELOG_TOKEN
+
