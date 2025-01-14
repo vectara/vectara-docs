@@ -24,23 +24,26 @@ import { TopicButton } from "@site/ui/TopicButton";
 - No changes
 
 ### 📝 Documentation or Feature Enhancements
+- Add a dedicated changelog for documentation updates, API enhancements and bug fixes (#383)
 - Add HHEM 2.2 enhancements to Release Notes (#381)
 - Add new HHEM supported languages and some content enhancements (#352)
 
 ### 📐 Information Architecture Changes
-- No changes
+- Add a dedicated changelog for documentation updates, API enhancements and bug fixes (#383)
 
 ### 🐛 Documentation Fixes
-- No changes
+- Fix encoder example with correct value (#388)
+- Add documentation changelog workflow (#385)
+- Fix OAuth2 URL and update screenshot (#384)
 
 ### 🗑 Deprecated
 - No changes
 
 ### 📋 Example Updates
-- No changes
+- Fix encoder example with correct value (#388)
 
 ### 🛠 Documentation Platform Updates
-- No changes
+- Update Doc Changelog workflow action (#386)
 
 
 
