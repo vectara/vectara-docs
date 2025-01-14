@@ -951,6 +951,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
+        '429':
+          description: Too many concurrent requests. Please retry.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /v2/corpora/{corpus_key}/documents/{document_id}/metadata:
     put:
       tags:
@@ -1002,6 +1008,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
+        '429':
+          description: Too many concurrent requests. Please retry.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /v2/chats:
     post:
       tags:
@@ -2402,9 +2414,9 @@ components:
           example: enc_1
           deprecated: true
         encoder_name:
-          description: The encoder used by the corpus.
+          description: The encoder used by the corpus, `boomerang-2023-q3`.
           type: string
-          example: boomerang
+          example: boomerang-2023-q3
         filter_attributes:
           description: "The new filter attributes of the corpus. \nIf unset then the\
             \ corpus will not have filter attributes.\n"
@@ -2524,9 +2536,9 @@ components:
           pattern: enc_[0-9]+$
           deprecated: true
         encoder_name:
-          description: The encoder used by the corpus.
+          description: The encoder used by the corpus, `boomerang-2023-q3`.
           type: string
-          example: boomerang
+          example: boomerang-2023-q3
         filter_attributes:
           description: The new filter attributes of the corpus.
           type: array
@@ -3376,8 +3388,13 @@ components:
           items:
             $ref: '#/components/schemas/IndividualSearchResult'
         factual_consistency_score:
-          description: 'The probability that the summary is factually consistent with
-            the results.
+          description: 'Indicates the probability that the summary is factually consistent
+            with the results.
+
+            The system excludes this property if it encounters excessively large outputs
+            or search
+
+            results.
 
             '
           type: number
@@ -3388,6 +3405,11 @@ components:
 
             '
           type: string
+        warnings:
+          description: Non-fatal warnings that occurred during request processing
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryWarning'
     IndividualSearchResult:
       description: An individual ranked search result from a query.
       type: object
@@ -3968,6 +3990,8 @@ components:
             $ref: '#/components/schemas/DocumentPart'
         storage_usage:
           $ref: '#/components/schemas/DocumentStorageUsage'
+        extraction_usage:
+          $ref: '#/components/schemas/ExtractionUsage'
     Cell:
       description: A cell in a table.
       type: object
@@ -4058,6 +4082,23 @@ components:
           minimum: 0
         metadata_bytes_used:
           description: 'Number of metadata bytes used by a document.
+
+            '
+          type: integer
+          format: int64
+          minimum: 0
+    ExtractionUsage:
+      type: object
+      description: 'How much extraction quota the document used. This information
+        is currently not returned when
+
+        retrieving the document, and only returned when indexing a document.
+
+        '
+      properties:
+        table_extraction_used:
+          description: 'The number of pages from the document that consumed the extraction
+            quota.
 
             '
           type: integer
@@ -4280,8 +4321,13 @@ components:
           items:
             $ref: '#/components/schemas/IndividualSearchResult'
         factual_consistency_score:
-          description: 'The probability that the summary is factually consistent with
-            the results.
+          description: 'Indicates the probability that the summary is factually consistent
+            with the results.
+
+            The system excludes this property if it encounters excessively large outputs
+            or search
+
+            results.
 
             '
           type: number
@@ -4290,6 +4336,11 @@ components:
           description: "The rendered prompt sent to the LLM. Useful when creating\
             \ customer `prompt_template` templates. \n"
           type: string
+        warnings:
+          description: Non-fatal warnings that occurred during request processing
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryWarning'
         rephrased_query:
           description: "View the actual query made to backend that was rephrased \n\
             by the LLM from the input query.\n"
@@ -4594,9 +4645,9 @@ components:
           pattern: enc_[0-9]+$
           example: enc_1
         name:
-          description: The encoder name.
+          description: The encoder name, `boomerang-2023-q3`.
           type: string
-          example: boomerang
+          example: boomerang-2023-q3
         output_dimensions:
           description: 'When this encoder is used to create an embedding, it shows
             the count of dimensions for the output embedding.
@@ -5074,6 +5125,13 @@ components:
               description: A query parameter required when requesting the next page
                 of results.
               type: string
+    QueryWarning:
+      type: string
+      description: "Non-fatal warnings that occurred during query processing.\n *\
+        \  `exceeded_max_input_length_fcs`: The input to the Factual Consistency Score\
+        \ model exceeded the maximum allowed length, so no score is being returned\n"
+      enum:
+      - exceeded_max_input_length_fcs
     ListMetadata:
       type: object
       description: The standard metadata in the response of a list operation.
