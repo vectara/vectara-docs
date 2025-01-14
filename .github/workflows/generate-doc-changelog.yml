@@ -21,9 +21,9 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: vectara/product-management-tools
-          token: ${{ secrets.DOC_CHANGELOG_TOKEN }}  # Use DOC_CHANGELOG_TOKEN
+          token: ${{ secrets.DOC_CHANGELOG_TOKEN }}  # ✅ Correct token for private repo
           path: product-management-tools
-          persist-credentials: false  # Prevent token caching
+          persist-credentials: false
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -37,9 +37,13 @@ jobs:
 
       - name: Generate Changelog
         env:
-          DOC_CHANGELOG_TOKEN: ${{ secrets.DOC_CHANGELOG_TOKEN }}  # Only where needed
+          DOC_CHANGELOG_TOKEN: ${{ secrets.DOC_CHANGELOG_TOKEN }}
         run: |
-          python product-management-tools/doc-changelog/doc-changelog.py
+          python product-management-tools/doc-changelog/doc-changelog.py  # ✅ Generates DocCHANGELOG.md
+
+      - name: Move DocCHANGELOG.md to the Correct Folder
+        run: |
+          mv DocCHANGELOG.md www/docs/DocCHANGELOG.md  # ✅ Move file to the correct path
 
       - name: Commit and Push Changes
         run: |
@@ -51,8 +55,8 @@ jobs:
           # Create and switch to a new branch
           git checkout -b $BRANCH_NAME
 
-          # Add and commit changes
-          git add DocCHANGELOG.md
+          # Add and commit the moved file
+          git add www/docs/DocCHANGELOG.md
           git commit -m "📖 Auto-update DocCHANGELOG.md [skip ci]" || echo "No changes to commit"
 
           # Push the branch using DOC_CHANGELOG_TOKEN
@@ -64,5 +68,4 @@ jobs:
                        --head $BRANCH_NAME \
                        --base main
         env:
-          GITHUB_TOKEN: ${{ secrets.DOC_CHANGELOG_TOKEN }} 
-
+          GITHUB_TOKEN: ${{ secrets.DOC_CHANGELOG_TOKEN }}
