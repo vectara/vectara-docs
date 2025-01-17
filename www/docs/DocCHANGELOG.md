@@ -32,6 +32,7 @@ import { TopicButton } from "@site/ui/TopicButton";
 - Add a dedicated changelog for documentation updates, API enhancements and bug fixes (#383)
 
 ### 🐛 Documentation Fixes
+- Fix broken links in generative prompts (#391)
 - Fix encoder example with correct value (#388)
 - Add documentation changelog workflow (#385)
 - Fix OAuth2 URL and update screenshot (#384)
@@ -75,13 +76,13 @@ import { TopicButton } from "@site/ui/TopicButton";
 ### 🐛 Documentation Fixes
 - Update table_extraction_config parameter (#369)
 - Fix link to the table data blog in release notes (#368)
-- fixed to traditional if statement (#367)
+- Userfn example supports traditional if statement (#367)
 
 ### 🗑 Deprecated
 - Add API v1 deprecation notices (#375)
 
 ### 📋 Example Updates
-- No changes
+- Userfn example supports traditional if statement (#367)
 
 ### 🛠 Documentation Platform Updates
 - No changes
