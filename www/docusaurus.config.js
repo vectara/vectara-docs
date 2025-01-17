@@ -301,15 +301,15 @@ ${content}
           items: [
             {
               label: "About",
-              to: "https://vectara.com/about-vectara/",
+              to: "https://www.vectara.com/company/about-us/",
             },
             {
               label: "Careers and Culture",
-              to: "https://vectara.com/careers/",
+              to: "https://www.vectara.com/company/careers-and-culture/",
             },
             {
               label: "Contact Us",
-              to: "https://vectara.com/contact-us/",
+              to: "https://www.vectara.com/contact-us/",
             },
           ],
         },
@@ -318,19 +318,19 @@ ${content}
           items: [
             {
               label: "Trust and Security",
-              href: "https://vectara.com/legal/security-at-vectara/",
+              href: "https://www.vectara.com/legal/security-at-vectara/",
             },
             {
               label: "Privacy Policy",
-              href: "https://vectara.com/legal/privacy-policy/",
+              href: "https://www.vectara.com/legal/privacy-policy/",
             },
             {
               label: "Terms",
-              href: "https://vectara.com/legal/terms-of-service/",
+              href: "https://www.vectara.com/legal/terms-of-service/",
             },
             {
               label: "FAQs",
-              href: "https://vectara.com/faqs/",
+              href: "https://www.vectara.com/faqs/",
             },
           ],
         },
@@ -339,15 +339,15 @@ ${content}
           items: [
             {
               label: "LinkedIn",
-              href: "https://linkedin.com/company/vectara",
+              href: "https://www.linkedin.com/company/vectara/",
             },
             {
               label: "Facebook",
               href: "https://www.facebook.com/vectara/",
             },
             {
-              label: "Twitter",
-              href: "https://twitter.com/vectara",
+              label: "X",
+              href: "https://x.com/vectara",
             },
             {
               label: "Youtube",
