@@ -362,7 +362,6 @@ module.exports = {
           label: "File Upload APIs",
           items: [
             "api-reference/indexing-apis/file-upload/file-upload",
-            "api-reference/indexing-apis/file-upload/format-for-upload",
             "api-reference/indexing-apis/file-upload/file-upload-filetypes",
           ],
         },
