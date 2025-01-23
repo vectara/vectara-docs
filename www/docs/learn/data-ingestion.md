@@ -33,8 +33,5 @@ option when you do not need to define additional user-supplied metadata beyond
 what is extracted by the Vectara platform. When you upload files like PDFs and
 Word Documents, Vectara attempts to automatically extract the text and any metadata.
 
-If you want to attach metadata for optimizing searches made against your data,
-you can [format your data as JSON](/docs/api-reference/indexing-apis/file-upload/format-for-upload).
-
 Our [interactive API Reference](/docs/rest-api/upload-file) enables you
 to experiment with this File Upload REST endpoint.

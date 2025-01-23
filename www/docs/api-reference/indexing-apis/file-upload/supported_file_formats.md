@@ -28,9 +28,9 @@ types are supported:
 
 ## Semi-structured documents
 
-In addition, the [upload endpoint](/docs/api-reference/indexing-apis/file-upload/file-upload) supports
-sending semi-structured documents through this endpoint that reflect a
-`Document` proto message.  Those can be sent in the following formats:
+In API v1, the upload endpoint supports sending semi-structured documents through 
+this endpoint that reflect a `Document` proto message. Those can be sent in 
+the following formats:
 
 - `pb`: Contains binary serialized `Document` proto message.
 
@@ -38,5 +38,3 @@ sending semi-structured documents through this endpoint that reflect a
 
 - `json`: Contains `Document` proto message in json text format.
 
-For more details of how to format these types of files, read
-[the formatting document](/docs/api-reference/indexing-apis/file-upload/format-for-upload)

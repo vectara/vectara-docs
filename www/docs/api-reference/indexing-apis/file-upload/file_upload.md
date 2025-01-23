@@ -13,12 +13,8 @@ The File Upload API enables you to extract text from unstructured documents in
 common file types like PDFs, Microsoft Word, Text, HTML, and Markdown. It also 
 supports extracting table data from PDFs, allowing for improved analysis and 
 querying of structured tabular data. Each file you upload can be up to 10 MB 
-in size.
-
-We recommend the File Upload API when you have not already written your own
-extraction logic. You can attach user-defined metadata at the document level
-for optimizing searches made against your data by
-[formatting your data as JSON](/docs/api-reference/indexing-apis/file-upload/format-for-upload).
+in size. We recommend the File Upload API when you have not already written 
+your own extraction logic.
 
 :::tip
 

@@ -91,9 +91,8 @@ want to include content from other sections.
 
 If you created the sections yourself, you may choose to just replay the
 sectioning logic at query time and use as much of the additional sections as
-desired.  However, if you aren't certain as to the section numbers and/or if
-you uploaded documents using the
-[file upload API](/docs/api-reference/indexing-apis/file-upload/format-for-upload), then you might need
+desired. However, if you aren't certain as to the section numbers and/or if
+you uploaded documents using the file upload API, then you might need
 to look up the additional sections.  This can be done by an additional query
 to <Config v="names.product"/> using
 [filters](/docs/learn/metadata-search-filtering/filter-overview). To do this, retrieve the
