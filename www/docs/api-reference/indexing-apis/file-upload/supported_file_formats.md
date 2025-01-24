@@ -28,7 +28,7 @@ types are supported:
 
 ## Semi-structured documents
 
-In API v1, the upload endpoint supports sending semi-structured documents through 
+In gRPC, the upload endpoint supports sending semi-structured documents through 
 this endpoint that reflect a `Document` proto message. Those can be sent in 
 the following formats:
 
@@ -38,3 +38,4 @@ the following formats:
 
 - `json`: Contains `Document` proto message in json text format.
 
+In REST API v2, use the [Indexing API v2 endpoint](/docs/rest-api/create-corpus-document) instead.

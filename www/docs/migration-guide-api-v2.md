@@ -173,9 +173,9 @@ specifying the document `type` in the request body.
 
 ### File upload changes
 
-* API v1 has a file upload endpoint that lets you upload JSON files. 
-* API v2 deprecated this capability. The `/v2/corpora/{corpus_key}/upload_file` endpoint 
-  does not support JSON files following the v1 schema.
+* File Upload API v1 supports uploading JSON files. 
+* File Upload API v2 removes support for uploading JSON files. Use the 
+  Indexing API v2 instead, if you need to index JSON files.
 
 **Action items:** Use the [Add a document to a corpus](/docs/rest-api/create-corpus-document) 
 endpoint at `/v2/corpora/{corpus_key}/documents`.
