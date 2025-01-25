@@ -16,12 +16,13 @@ import { TopicButton } from "@site/ui/TopicButton";
 # January 2025
 
 ### ✨ New Features
+- Updated to enable Typescript SDK (#393)
 - Update HHEM documentation for HHME-2.2 (#379)
 - Add documentation for the new Knee Reranking feature (#378)
 - Add new HHEM supported languages and some content enhancements (#352)
 
 ### 📚 API Changes
-- No changes
+- Uploading JSON in API v2 (#394)
 
 ### 📝 Documentation or Feature Enhancements
 - Add a dedicated changelog for documentation updates, API enhancements and bug fixes (#383)
@@ -32,13 +33,14 @@ import { TopicButton } from "@site/ui/TopicButton";
 - Add a dedicated changelog for documentation updates, API enhancements and bug fixes (#383)
 
 ### 🐛 Documentation Fixes
+- Uploading JSON in API v2 (#394)
 - Fix broken links in generative prompts (#391)
 - Fix encoder example with correct value (#388)
 - Add documentation changelog workflow (#385)
 - Fix OAuth2 URL and update screenshot (#384)
 
 ### 🗑 Deprecated
-- No changes
+- Uploading JSON in API v2 (#394)
 
 ### 📋 Example Updates
 - Fix encoder example with correct value (#388)
