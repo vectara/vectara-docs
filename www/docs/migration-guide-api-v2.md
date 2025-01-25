@@ -171,6 +171,16 @@ changes carefully and the action items to use the V2 endpoints.
 **Action items:** Update your indexing requests to use the new unified endpoint, 
 specifying the document `type` in the request body.
 
+### File upload changes
+
+* File Upload API v1 supports uploading JSON files. 
+* File Upload API v2 removes support for uploading JSON files. Use the 
+  Indexing API v2 instead, if you need to index JSON files.
+
+**Action items:** Use the [Add a document to a corpus](/docs/rest-api/create-corpus-document) 
+endpoint at `/v2/corpora/{corpus_key}/documents`.
+
+
 ## Query endpoint changes
 
 * API v1 supports batch querying (`/v1/query` and `/v1/stream-query`).
