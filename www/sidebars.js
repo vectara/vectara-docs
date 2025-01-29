@@ -11,7 +11,7 @@ module.exports = {
       label: "Getting Started",
       link: {
         type: 'doc',
-        id: 'getting-started', // This points to data-management.mdx
+        id: 'getting-started', // This points to getting-started.mdx
       },
       collapsed: true,
       items: [
@@ -75,7 +75,7 @@ module.exports = {
       label: "Search and Retrieval",
       link: {
         type: 'doc',
-        id: 'search-and-retrieval',
+        id: 'search-and-retrieval', // This points to search-and-retrieval.mdx
       },
       items: [
         "learn/boomerang",
@@ -107,7 +107,7 @@ module.exports = {
       label: "Generation",
       link: {
         type: 'doc',
-        id: 'generation',
+        id: 'generation', // This points to generation.mdx
       },
       items: [
         "learn/mockingbird-llm",
@@ -131,7 +131,7 @@ module.exports = {
       label: "Observability and Evaluation",
       link: {
         type: 'doc',
-        id: 'observability',
+        id: 'observability', // This points to observability.mdx
       },
       items: [
         "learn/query-observability",
