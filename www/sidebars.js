@@ -9,6 +9,10 @@ module.exports = {
     {
       type: "category",
       label: "Getting Started",
+      link: {
+        type: 'doc',
+        id: 'getting-started', // This points to data-management.mdx
+      },
       collapsed: true,
       items: [
         {
