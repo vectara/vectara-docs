@@ -260,7 +260,7 @@ like `max_tokens` and `temperature`.
 To view available generation presets, use the [List Generation Presets API](/docs/api-reference/generation-presets/list-generation-presets).
 
 :::note
-The `generation-preset-name` field replaces the `prompt_name` field that was 
+The `generation_preset_name` field replaces the `prompt_name` field that was 
 previously in the `generation` object. The `prompt_name` field is now deprecated 
 but still supported for backward compatibility.
 :::
@@ -271,7 +271,7 @@ For users seeking superior RAG performance, <Config v="names.product"/> offers M
 our advanced LLM specifically designed for RAG tasks.
 
 To use Mockingbird for your RAG tasks, specify `mockingbird-1.0-2024-07-16` in 
-the `generation-preset-name` field the `generation` object, like in this example:
+the `generation_preset_name` field the `generation` object, like in this example:
 
 ```json
 {
@@ -331,7 +331,7 @@ braces. For example, use `{doc.title}` and the final result appears as
 [Title](https://my.doc/foo/2/1).
 
 To use citations, you must specify one of the following summarizers
-in `generation_preset`:
+in `generation_preset_name`:
 
 - `mockingbird-1.0-2024-07-16` - (Vectara's Mockingbird LLM)
 - `vectara-summary-ext-24-05-sml` - (gpt-3.5-turbo)
