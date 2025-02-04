@@ -24,17 +24,23 @@ import { TopicButton } from "@site/ui/TopicButton";
 ### 📚 API Changes
 - Uploading JSON in API v2 (#394)
 
-### 📝 Documentation or Feature Enhancements
+### 📝 Documentation Changes
 - Improve Getting Started section layout (#396)
+- Improve Getting Started section layout (#396)
+- Add a dedicated changelog for documentation updates, API enhancements and bug fixes (#383)
 - Add a dedicated changelog for documentation updates, API enhancements and bug fixes (#383)
 - Add HHEM 2.2 enhancements to Release Notes (#381)
 - Add new HHEM supported languages and some content enhancements (#352)
 
-### 📐 Information Architecture Changes
+### 📝 Documentation Changes
+- Improve Getting Started section layout (#396)
 - Improve Getting Started section layout (#396)
 - Add a dedicated changelog for documentation updates, API enhancements and bug fixes (#383)
+- Add a dedicated changelog for documentation updates, API enhancements and bug fixes (#383)
+- Add HHEM 2.2 enhancements to Release Notes (#381)
+- Add new HHEM supported languages and some content enhancements (#352)
 
-### 🐛 Documentation Fixes
+### 🐛 Documentation Changes
 - Uploading JSON in API v2 (#394)
 - Fix broken links in generative prompts (#391)
 - Fix encoder example with correct value (#388)
@@ -68,16 +74,21 @@ import { TopicButton } from "@site/ui/TopicButton";
 - Add documentation for the querying table data feature (#365)
 - Add query observability feature to docs (#362)
 
-### 📝 Documentation or Feature Enhancements
+### 📝 Documentation Changes
+- Improve information architecture of the Capabilities section and metadata content (#374)
 - Improve information architecture of the Capabilities section and metadata content (#374)
 - Update table extract details (#370)
 - Add documentation for the querying table data feature (#365)
 - Add documentation for new chunking strategy parameter (#361)
 
-### 📐 Information Architecture Changes
+### 📝 Documentation Changes
 - Improve information architecture of the Capabilities section and metadata content (#374)
+- Improve information architecture of the Capabilities section and metadata content (#374)
+- Update table extract details (#370)
+- Add documentation for the querying table data feature (#365)
+- Add documentation for new chunking strategy parameter (#361)
 
-### 🐛 Documentation Fixes
+### 🐛 Documentation Changes
 - Update table_extraction_config parameter (#369)
 - Fix link to the table data blog in release notes (#368)
 - Userfn example supports traditional if statement (#367)
@@ -103,15 +114,19 @@ import { TopicButton } from "@site/ui/TopicButton";
 ### 📚 API Changes
 - Add chunking strategy and update descriptions (#351)
 
-### 📝 Documentation or Feature Enhancements
+### 📝 Documentation Changes
 - Update how metadata structuring is handled in API v2 (#358)
 - Update descriptions for Pro and Enterprise (#356)
 - Enhance the list of Vectara demos and applications (#354)
-
-### 📐 Information Architecture Changes
 - Move Reranking subsection (#353)
 
-### 🐛 Documentation Fixes
+### 📝 Documentation Changes
+- Update how metadata structuring is handled in API v2 (#358)
+- Update descriptions for Pro and Enterprise (#356)
+- Enhance the list of Vectara demos and applications (#354)
+- Move Reranking subsection (#353)
+
+### 🐛 Documentation Changes
 - update `fern.config.json` and `generators.yml` to use latest version. (#355)
 - Add chunking strategy and update descriptions (#351)
 
@@ -140,20 +155,29 @@ import { TopicButton } from "@site/ui/TopicButton";
 - Get number of documents and document parts (#332)
 - Add search cutoffs, null handing, and refresh API reference (#331)
 
-### 📝 Documentation or Feature Enhancements
+### 📝 Documentation Changes
 - Reflect product transition to free trial across documentation (#350)
+- Add new Integrations section that highlights community collaborations and partnerships (#346)
 - Update docs for handling filenames with non-ASCII characters in API v2 (#345)
+- Add Release Notes to the docs (#344)
 - Upgrade OpenAPI docs theme. (#340)
+- Add Video Tutorials section. (#334)
 - Get number of documents and document parts (#332)
 - Add search cutoffs, null handing, and refresh API reference (#331)
 - Update Chain Reranker topic about the array and examples (#330)
 
-### 📐 Information Architecture Changes
+### 📝 Documentation Changes
+- Reflect product transition to free trial across documentation (#350)
 - Add new Integrations section that highlights community collaborations and partnerships (#346)
+- Update docs for handling filenames with non-ASCII characters in API v2 (#345)
 - Add Release Notes to the docs (#344)
+- Upgrade OpenAPI docs theme. (#340)
 - Add Video Tutorials section. (#334)
+- Get number of documents and document parts (#332)
+- Add search cutoffs, null handing, and refresh API reference (#331)
+- Update Chain Reranker topic about the array and examples (#330)
 
-### 🐛 Documentation Fixes
+### 🐛 Documentation Changes
 - Incorrect syntax in the null score usage chain example (#349)
 - Correct udf page misspelling. (#348)
 
@@ -183,7 +207,7 @@ import { TopicButton } from "@site/ui/TopicButton";
 - Add Chain Reranker content (#320)
 - Add Generation Presets content to docs (#318)
 
-### 📝 Documentation or Feature Enhancements
+### 📝 Documentation Changes
 - Update corpus API documentation (#324)
 - Add more UDF examples (#323)
 - Update Quick Start (#322)
@@ -193,10 +217,17 @@ import { TopicButton } from "@site/ui/TopicButton";
 - Update prompt syntax (#283)
 - Update custom prompt topics with Query endpoint details and links (#276)
 
-### 📐 Information Architecture Changes
-- No changes
+### 📝 Documentation Changes
+- Update corpus API documentation (#324)
+- Add more UDF examples (#323)
+- Update Quick Start (#322)
+- Add name and description to Update Corpus (#319)
+- Add Generation Presets content to docs (#318)
+- Update metadata filter topics (#312)
+- Update prompt syntax (#283)
+- Update custom prompt topics with Query endpoint details and links (#276)
 
-### 🐛 Documentation Fixes
+### 🐛 Documentation Changes
 - No changes
 
 ### 🗑 Deprecated
@@ -220,14 +251,17 @@ import { TopicButton } from "@site/ui/TopicButton";
 ### 📚 API Changes
 - Update query order and labels (#310)
 
-### 📝 Documentation or Feature Enhancements
+### 📝 Documentation Changes
+- Add User Defined Functions Reranker content (#314)
 - Update introductions to topics in Getting Started and Capabilities (#313)
 - Update query order and labels (#310)
 
-### 📐 Information Architecture Changes
+### 📝 Documentation Changes
 - Add User Defined Functions Reranker content (#314)
+- Update introductions to topics in Getting Started and Capabilities (#313)
+- Update query order and labels (#310)
 
-### 🐛 Documentation Fixes
+### 🐛 Documentation Changes
 - Improve grpc example for UDF (#317)
 
 ### 🗑 Deprecated
@@ -252,16 +286,19 @@ import { TopicButton } from "@site/ui/TopicButton";
 ### 📚 API Changes
 - Wrap tabs in API reference so they don't get clipped. (#301)
 
-### 📝 Documentation or Feature Enhancements
+### 📝 Documentation Changes
 - Add note about original BM25 (#309)
 - Update corpus key and file upload content (#306)
 - Fix typos and update screenshots (#299)
 - Update part.is_title field description (#216)
 
-### 📐 Information Architecture Changes
-- No changes
+### 📝 Documentation Changes
+- Add note about original BM25 (#309)
+- Update corpus key and file upload content (#306)
+- Fix typos and update screenshots (#299)
+- Update part.is_title field description (#216)
 
-### 🐛 Documentation Fixes
+### 🐛 Documentation Changes
 - Wrap tabs in API reference so they don't get clipped. (#301)
 - Fix typos and update screenshots (#299)
 
@@ -289,15 +326,19 @@ import { TopicButton } from "@site/ui/TopicButton";
 - Put generation_end into the reference. (#291)
 - Re-enable accordion transition in API playground, to fix bug in which content height wasn't updated correctly (#287)
 
-### 📝 Documentation or Feature Enhancements
-- Add new REST API v2 specifications to the documentation (#250)
-
-### 📐 Information Architecture Changes
+### 📝 Documentation Changes
 - Rename API Playground references to API Reference. (#295)
 - Change nav from API Playground -> API Reference. (#293)
 - Add new REST API v2 specifications to the documentation (#250)
+- Add new REST API v2 specifications to the documentation (#250)
 
-### 🐛 Documentation Fixes
+### 📝 Documentation Changes
+- Rename API Playground references to API Reference. (#295)
+- Change nav from API Playground -> API Reference. (#293)
+- Add new REST API v2 specifications to the documentation (#250)
+- Add new REST API v2 specifications to the documentation (#250)
+
+### 🐛 Documentation Changes
 - Fix oauth examples. (#300)
 - Update API v2 download URL (#298)
 - Fix typos in spec. (#296)
@@ -328,16 +369,21 @@ import { TopicButton } from "@site/ui/TopicButton";
 ### 📚 API Changes
 - No changes
 
-### 📝 Documentation or Feature Enhancements
+### 📝 Documentation Changes
 - Point ReactSearch to updated reranker (#280)
 - Update citation section (#279)
 - Add examples for functions and operations (#275)
 - Add summarized search (#274)
-
-### 📐 Information Architecture Changes
 - Update Information Architecture with new sections for Capabilities and Use Cases (#259)
 
-### 🐛 Documentation Fixes
+### 📝 Documentation Changes
+- Point ReactSearch to updated reranker (#280)
+- Update citation section (#279)
+- Add examples for functions and operations (#275)
+- Add summarized search (#274)
+- Update Information Architecture with new sections for Capabilities and Use Cases (#259)
+
+### 🐛 Documentation Changes
 - Fix query body request (#285)
 - Fix reranking link (#278)
 - Add summarized search (#274)
@@ -370,13 +416,13 @@ import { TopicButton } from "@site/ui/TopicButton";
 - Fix values in the query body endpoint (#258)
 - Add Stream Query to the API Playground (#257)
 
-### 📝 Documentation or Feature Enhancements
+### 📝 Documentation Changes
 - Add context configuration to Query and Highlighting topics (#261)
 
-### 📐 Information Architecture Changes
-- No changes
+### 📝 Documentation Changes
+- Add context configuration to Query and Highlighting topics (#261)
 
-### 🐛 Documentation Fixes
+### 🐛 Documentation Changes
 - Improve List Conversations API parameter descriptions (#266)
 - Improve prompt examples in query, and update the enable api key and file upload endpoints (#265)
 - Fix values in the query body endpoint (#258)
@@ -411,17 +457,23 @@ import { TopicButton } from "@site/ui/TopicButton";
 - Update Query example in API Playground (#247)
 - Update API Reference examples for consistency (#240)
 
-### 📝 Documentation or Feature Enhancements
+### 📝 Documentation Changes
 - Update file formats and document structuring (#253)
 - Update API Reference examples for consistency (#240)
 - Update Chat APIs overview (#237)
 - Update API Reference section with improved structure and flow (#231)
+- Update API Reference section with improved structure and flow (#231)
 - Add Content-Disposition header to set the Document ID (#214)
 
-### 📐 Information Architecture Changes
+### 📝 Documentation Changes
+- Update file formats and document structuring (#253)
+- Update API Reference examples for consistency (#240)
+- Update Chat APIs overview (#237)
 - Update API Reference section with improved structure and flow (#231)
+- Update API Reference section with improved structure and flow (#231)
+- Add Content-Disposition header to set the Document ID (#214)
 
-### 🐛 Documentation Fixes
+### 🐛 Documentation Changes
 - No changes
 
 ### 🗑 Deprecated
@@ -456,15 +508,19 @@ import { TopicButton } from "@site/ui/TopicButton";
 - Add documentation for the new Vectara Chat (#235)
 - Update API Playground for the Personal API Keys (#234)
 
-### 📝 Documentation or Feature Enhancements
+### 📝 Documentation Changes
+- Add Generative Prompts section (#238)
 - Update the API Playground for Chat APIs (#236)
 - Add documentation for the Personal API Key, Index, and Query Keys (#233)
 - Update console and corpus content around account and corpus creation (#224)
 
-### 📐 Information Architecture Changes
+### 📝 Documentation Changes
 - Add Generative Prompts section (#238)
+- Update the API Playground for Chat APIs (#236)
+- Add documentation for the Personal API Key, Index, and Query Keys (#233)
+- Update console and corpus content around account and corpus creation (#224)
 
-### 🐛 Documentation Fixes
+### 🐛 Documentation Changes
 - No changes
 
 ### 🗑 Deprecated
@@ -498,16 +554,21 @@ import { TopicButton } from "@site/ui/TopicButton";
 - Add Account and Corpus Management APIs to Playground (#217)
 - Add Read Corpus and Update Corpus Enablement topics (#211)
 
-### 📝 Documentation or Feature Enhancements
+### 📝 Documentation Changes
+- Add Create-UI and refine copy and layout of Build Apps landing page (#230)
+- Add Build Applications section (#229)
 - Add Build Applications section (#229)
 - Update File Upload API specs (#220)
 - Fix reranker URL and update search topic with new formatting (#213)
 
-### 📐 Information Architecture Changes
+### 📝 Documentation Changes
 - Add Create-UI and refine copy and layout of Build Apps landing page (#230)
 - Add Build Applications section (#229)
+- Add Build Applications section (#229)
+- Update File Upload API specs (#220)
+- Fix reranker URL and update search topic with new formatting (#213)
 
-### 🐛 Documentation Fixes
+### 🐛 Documentation Changes
 - Update File Upload API specs (#220)
 - Fix reranker URL and update search topic with new formatting (#213)
 - Improve the Index API Definition content (#208)
