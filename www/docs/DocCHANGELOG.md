@@ -25,11 +25,13 @@ import { TopicButton } from "@site/ui/TopicButton";
 - Uploading JSON in API v2 (#394)
 
 ### 📝 Documentation or Feature Enhancements
+- Improve Getting Started section layout (#396)
 - Add a dedicated changelog for documentation updates, API enhancements and bug fixes (#383)
 - Add HHEM 2.2 enhancements to Release Notes (#381)
 - Add new HHEM supported languages and some content enhancements (#352)
 
 ### 📐 Information Architecture Changes
+- Improve Getting Started section layout (#396)
 - Add a dedicated changelog for documentation updates, API enhancements and bug fixes (#383)
 
 ### 🐛 Documentation Fixes
