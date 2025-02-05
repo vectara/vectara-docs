@@ -20,6 +20,11 @@
 
 /* Navbar for search */
 
+.navbar__items {
+  /* Prevent items from overlapping as window gets narrower. */
+  flex: none;
+}
+
 .navbar__items--right {
   flex-grow: 1;
 }
