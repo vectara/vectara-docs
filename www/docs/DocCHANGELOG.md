@@ -13,6 +13,30 @@ import { TopicButton } from "@site/ui/TopicButton";
 
 ---
 
+# February 2025
+
+### ✨ New Features
+- No changes
+
+### 📚 API Changes
+- No changes
+
+### 📝 Documentation Changes
+- Update UI steps on how to reset or delete the corpus (#404)
+
+### 📋 Example Updates
+- No changes
+
+### 🗑 Deprecated
+- No changes
+
+### 🛠 Documentation Platform Updates
+- No changes
+
+
+
+---
+
 # January 2025
 
 ### ✨ New Features
@@ -439,6 +463,7 @@ import { TopicButton } from "@site/ui/TopicButton";
 ### 📝 Documentation Changes
 - Add Create-UI and refine copy and layout of Build Apps landing page (#230)
 - Add Build Applications section (#229)
+- Update banner with Airbyte partnership information (#225)
 - Update File Upload API specs (#220)
 - Fix reranker URL and update search topic with new formatting (#213)
 - Improve the Index API Definition content (#208)
@@ -452,4 +477,74 @@ import { TopicButton } from "@site/ui/TopicButton";
 
 ### 🛠 Documentation Platform Updates
 - No changes
+
+
+
+---
+
+# December 2023
+
+### ✨ New Features
+- Add Manager User and List Users to API Playground (#206)
+- Add List Users and Manage Users topics (#204)
+- create, delete, enable, list API keys (#201)
+
+### 📚 API Changes
+- No changes
+
+### 📝 Documentation Changes
+- Fix Q&A redirect (#209)
+- Indexing documentation is out of date. (#205)
+- Migrate from data store term to corpus. (#203)
+- Add API Keys topics to API Reference (#195)
+- Improve Information Architecture and update several examples (#193)
+- Add MMR to the Reranking topic (#191)
+- Add content about Data Ingestion (#188)
+- Add content about the Index Request Headers (#187)
+- Updated content about the English and MMR rerankers (#185)
+
+### 📋 Example Updates
+- Improve Information Architecture and update several examples (#193)
+
+### 🗑 Deprecated
+- No changes
+
+### 🛠 Documentation Platform Updates
+- Support deep-linking to a search. (#200)
+- Support search on narrower screens (e.g. mobile) (#197)
+
+
+
+---
+
+# November 2023
+
+### ✨ New Features
+- Add update filter attributes and list jobs to the OpenAPI spec (#176)
+
+### 📚 API Changes
+- No changes
+
+### 📝 Documentation Changes
+- Update banner for the new metadata filtering capability (#182)
+- Add update filter attributes and list jobs to the OpenAPI spec (#176)
+- Add content about structuring document data (#155)
+- Update Code Samples with specific category for Query Operations (#151)
+- Update Quick Start with steps, field names, and screenshots (#149)
+- Add the grpc-timeout option in header to several topics (#148)
+
+### 📋 Example Updates
+- Update Code Samples with specific category for Query Operations (#151)
+
+### 🗑 Deprecated
+- No changes
+
+### 🛠 Documentation Platform Updates
+- Customize Not Found page. (#184)
+- Make search more prominent. (#183)
+- Add a console button to the navigation bar (#168)
+- Update search with Ctrl-K shortcut. (#164)
+- Ensure rendering a single instance of search (#163)
+- Fix rendering of API Playground code in dark mode. (#159)
+- Add TopicButton, Grid, and Spacer components. (#147)
 
