@@ -46,21 +46,21 @@ Consider a corpus containing movie data with the metadata filter attribute:
 
 1. A user submits the following query:
 
-  `What are some highest grossing movies made in US, UK, or India?`
+  `What are some of the highest grossing movies made in US, UK, or India?`
 
-2. Query Intelligence processes the query by extracting the following metadata 
-filters:
+2. Intelligent Query Rewriting processes the query by extracting the following 
+   metadata filters:
 
   `doc.production_country IN ('United States of America', 'United Kingdom', 'India')`
 
 3. Rephrasing the query removes the filter context:
 
-  `What are some highest grossing movies?`
+  `What are some of the highest grossing movies?`
 
 ### Example request
 ```json
 {
-  "query": "What are some highest grossing movies made in US, UK, or India?",
+  "query": "What are some of the highest grossing movies made in US, UK, or India?",
   "intelligent_query_rewriting": true,
   "corpora": [
     {
@@ -78,7 +78,7 @@ filters:
 	    {
 	      "corpus_key": "my_corpus",
 	      "filter_extraction": {
-	        "query": "What are some highest grossing movies?",
+	        "query": "What are some of the highest grossing movies?",
 	        "metadata_filter": "doc.production_country IN ('United States of America', 'United Kingdom', 'India')"
 	      }
 	    }

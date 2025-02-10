@@ -25,9 +25,7 @@ with the `spans` object.
 
 The `spans` object provides information about the ordered parts of the query 
 pipeline and you get information about what happens during each stage of the 
-pipeline. If Intelligent Query Rewriting is enabled for a query, a span may 
-appear in the response, enabling you to track when and how metadata filters 
-were extracted or applied.
+pipeline.
 
 ## REST 2.0 URL
 
