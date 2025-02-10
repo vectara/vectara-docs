@@ -81,6 +81,7 @@ module.exports = {
         "learn/boomerang",
         "learn/hybrid-search",
         "learn/enable-keyword-text-matching",
+        "search-and-retrieval/intelligent-query-rewriting",
         "learn/querying-table-data",
         "learn/semantic-search/enable-pagination",
         "learn/recommendation-systems/recommender-overview",
