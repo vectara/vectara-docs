@@ -8,8 +8,8 @@ import {Config} from '@site/docs/definitions.md';
 
 Many datasets contain filterable metadata that can improve search relevance, 
 but users often lack knowledge of these metadata structures, or how to 
-apply filters effectively. The beta release of Intelligent Query Rewriting 
-addresses this by analyzing user queries, automatically extracting 
+apply filters effectively. The tech preview release of Intelligent Query 
+Rewriting addresses this by analyzing user queries, automatically extracting 
 and applying relevant metadata filters, and rephrasing the query. 
 
 This capability enhances search precision by automatically generating metadata 
