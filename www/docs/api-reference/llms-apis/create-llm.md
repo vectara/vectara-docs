@@ -14,15 +14,18 @@ Large Language Models (LLMs) power AI-driven applications like text
 generation, chat interfaces, and document processing. The Create LLM API 
 allows users to integrate and configure external LLMs for use with the Vectara 
 query and chat endpoints. This API enables seamless connectivity with 
-OpenAI-compatible models, including Anthropic Claude, Azure OpenAI, and 
+OpenAI API-compatible models, including Anthropic Claude, Azure OpenAI, and 
 custom-hosted LLMs.
 
-By defining authentication details, model parameters, and API endpoints, users 
-can manage multiple LLM configurations tailored to their specific use cases. 
-The API simplifies LLM onboarding and management by supporting custom 
-authentication methods and ensuring secure communication with remote 
-endpoints. Users can specify an API key, configure HTTP headers, and define 
-model parameters to fine-tune LLM performance.
+Users can configure multiple LLMs by specifying an API key (or other 
+credentials), an API endpoint, and a model name and description. This 
+flexibility allows organizations to integrate different LLM providers into the
+Vectara platform, ensuring seamless compatibility with their applications.
+
+The API makes it easy to integrate external LLMs by allowing users to define 
+custom LLM configurations. Users can specify authentication credentials, set 
+API endpoints, and provide model details to seamlessly incorporate third-party 
+models into their Vectara workflow.
 
 ## Create LLM Request and Response Details
 
