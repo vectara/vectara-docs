@@ -401,6 +401,7 @@ module.exports = {
             "api-reference/admin-apis/corpus/list-documents",
             "api-reference/admin-apis/corpus/retrieve-document",
             "api-reference/indexing-apis/deleting-documents",
+            "api-reference/documents-apis/summarize-document",
           ],
         },
         {
