@@ -44,6 +44,10 @@ The request body specifies additional parameters:
 * `stream_response`: Enables real-time streamed responses. By default, this is 
 * set to `false`.
 
+:::tip Note
+The documentation length is limited by the context window of your selected LLM.
+:::
+
 ### Example request
 
 ```json
@@ -101,4 +105,33 @@ The streamed response consists of multiple events:
 * `generation_end`: Marks the completion of the summary generation.
 * `error`: Returns an error message if summarization fails.
 * `end`: Indicates the end of the streaming session.
+
+## Prompt template example
+
+When crafting a prompt, you can access your document with the `$vectaraDocument` 
+field. This example shows a simple prompt:
+
+```json
+[
+  {
+    "role": "user",
+    "content": "Summarize the document: $vectaraDocument.json()"
+  }
+]
+```
+The document also has the following methods to support custom prompts. 
+
+* `$vectaraDocument.json()`: Provides a JSON representation of the whole document.
+* `$vectaraDocument.id()`: Specifies the unique identifier of the document (`document_id`)
+* `$vectaraDocument.metadata()`: Specifies metadata from the document.  
+  For example, 
+  `$vectaraDocument.metadata().get("key")` retrieves a specific metadata value by key.
+* `$vectaraDocument.parts()`: Returns an array of document parts which you can look 
+  through.  
+  For example, `#foreach ($part in $vectaraDocument.parts())`.  
+* `$part.text()`: Retrieves the text of the part.
+* `$part.metadata()`: Retrieves metadata of a part.
+* `$part.hasTable()`: Determines if the part contains a table.
+* `$part.table()`: Provides access to the table within the part. For example, 
+  use `$part.table().json()` to retrieve the table in JSON format.
 
