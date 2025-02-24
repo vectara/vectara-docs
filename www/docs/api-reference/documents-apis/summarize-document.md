@@ -75,7 +75,6 @@ text, enabling users to extract essential information quickly.
 
 ```json
 {
-    "document_id": "ABC1_0XYZ",
     "summary": "The ABC1 0XYZ document provides details on its energy-efficient ARM microcontroller, Bluetooth 5.2 capabilities, and security features. It includes a breakdown of its low-power operation, hardware accelerators, and applications for IoT and embedded systems. The document further details supported development tools and firmware integration."
 }
 ```
