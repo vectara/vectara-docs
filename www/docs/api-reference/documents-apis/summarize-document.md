@@ -35,11 +35,12 @@ summarize.
 
 The request body specifies additional parameters:
 
-* `llm_id`: Determines which Large Language Model (LLM) you want to generate 
+* `llm_name`: Determines which Large Language Model (LLM) you want to generate 
   the summary.
 * `prompt_template`: Enables users to customize the prompt of how the summary 
   is generated, leveraging Apache Velocity templates. 
-* `additional_properties`: Lets you modify behavior further.
+* `model_parameters`: Lets you modify behavior further with additional parameters 
+  for the specified model used when generating the summary.
 * `stream_response`: Enables real-time streamed responses. By default, this is 
 * set to `false`.
 
@@ -94,6 +95,8 @@ the final event marks the end of the summarization process.
 
 The streamed response consists of multiple events:
 
+* `generation_info`: Contains the `rendered_prompt` which is the compiled 
+  prompt sent to the LLM for document summarization.
 * `generation_chunk`: Returns partial chunk of the generated summary.
 * `generation_end`: Marks the completion of the summary generation.
 * `error`: Returns an error message if summarization fails.
