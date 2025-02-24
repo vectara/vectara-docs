@@ -3,6 +3,9 @@ id: vectara-and-confluent
 title: Vectara and Confluent
 sidebar_label: Vectara and Confluent
 ---
+
+import {Config} from '@site/docs/definitions.md';
+
 # Vectara Kafka Connect Plugin Documentation
 
 The **Vectara Kafka Connect Plugin** is a powerful tool designed to seamlessly integrate [Confluent Cloud](https://confluent.cloud/) with the Vectara
