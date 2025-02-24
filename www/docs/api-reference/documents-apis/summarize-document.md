@@ -38,7 +38,8 @@ The request body specifies additional parameters:
 * `llm_name`: Determines which Large Language Model (LLM) you want to generate 
   the summary.
 * `prompt_template`: Enables users to customize the prompt of how the summary 
-  is generated, leveraging Apache Velocity templates. 
+  is generated with a valid JSON string, leveraging Apache Velocity templates.  
+  For example, `[{\"role\":\"user\",\"content\":\"Summarize the document: $vectaraDocument.json()\"}]`
 * `model_parameters`: Lets you modify behavior further with additional parameters 
   for the specified model used when generating the summary.
 * `stream_response`: Enables real-time streamed responses. By default, this is 
@@ -52,9 +53,9 @@ The documentation length is limited by the context window of your selected LLM.
 
 ```json
 {
-  "llm_id": "llm_custom_llama3_70B",
-  "prompt_template": "Summarize this document concisely, highlighting key points.",
-  "additional_properties": {},
+  "llm_name": "llm_custom_llama3_70B",
+  "prompt_template": "[{\"role\":\"user\",\"content\":\"Summarize the document: $vectaraDocument.json()\"}]",
+  "model_parameters": {},
   "stream_response": true,
 }
 ```
@@ -75,7 +76,8 @@ text, enabling users to extract essential information quickly.
 
 ```json
 {
-    "summary": "The ABC1 0XYZ document provides details on its energy-efficient ARM microcontroller, Bluetooth 5.2 capabilities, and security features. It includes a breakdown of its low-power operation, hardware accelerators, and applications for IoT and embedded systems. The document further details supported development tools and firmware integration."
+    "summary": "The ABC1 0XYZ document provides details on its energy-efficient ARM microcontroller, Bluetooth 5.2 capabilities, and security features. It includes a breakdown of its low-power operation, hardware accelerators, and applications for IoT and embedded systems. The document further details supported development tools and firmware integration.",
+    "rendered_prompt": "[{\"role\":\"user\",\"content\":\"Summarize the document: ...\"}]"
 }
 ```
 
