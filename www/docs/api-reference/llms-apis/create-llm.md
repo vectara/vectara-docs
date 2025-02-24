@@ -38,7 +38,11 @@ request body specifies the following parameters:
 * `description:` Lets you add metadata about the model. 
 * `model:` Specifies the exact model name, such as `gpt-4`, `claude-2`. 
 * `uri:` Contains the API endpoint where to send requests, ensuring that the 
-  model is correctly connected. 
+  model is correctly connected.
+* `auth`: Specifies the authentication configuration for an LLM as bearer token 
+  authentication or custom header-based authentication.
+* `test_model_parameters`: Specifies any additional parameters that are required 
+  for the LLM during the test call.
 
 ### Authentication methods
 
