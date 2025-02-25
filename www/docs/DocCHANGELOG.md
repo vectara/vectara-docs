@@ -16,6 +16,8 @@ import { TopicButton } from "@site/ui/TopicButton";
 # February 2025
 
 ### ✨ New Features
+- Add documentation for the tech preview of Integrating External LLMs (#413)
+- Add documentation for the tech preview of Document Summarization (#412)
 - Add documentation for the tech preview of intelligent query rewriting (#408)
 
 ### 📚 API Changes
