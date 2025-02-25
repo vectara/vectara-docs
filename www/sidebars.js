@@ -423,7 +423,10 @@ module.exports = {
         {
           type: "category",
           label: "Large Language Models APIs",
-          items: ["api-reference/llms-apis/llms-api"],
+          items: [
+            "api-reference/llms-apis/llms-api",
+            "api-reference/llms-apis/create-llm",
+          ],
         },
         {
           type: "category",
