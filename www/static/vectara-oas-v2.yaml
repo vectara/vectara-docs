@@ -102,6 +102,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+        '409':
+          description: The corpus already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
     get:
       summary: List corpora
       description: 'List corpora in the account. The returned corpus objects contain
@@ -305,13 +311,13 @@ paths:
       tags:
       - Corpora
       summary: Replace the filter attributes of a corpus
+      operationId: replaceFilterAttributes
       description: "Replace the filter attributes of a corpus. This does not happen\
         \ immediately, as\nthis operation creates a job that completes asynchronously.\
         \ These new filter \nattributes will not work until the job completes.\n\n\
         You can monitor the status of the filter change using the returned job ID.\
         \ The \n`corpus_key` uniquely identifies the corpus. For more information,\
         \ see \n[Corpus Key Definition](https://docs.vectara.com/docs/api-reference/search-apis/search#corpus-key-definition).\n"
-      operationId: replaceFilterAttributes
       parameters:
       - $ref: '#/components/parameters/RequestTimeout'
       - $ref: '#/components/parameters/RequestTimeoutMillis'
@@ -335,6 +341,43 @@ paths:
                 $ref: '#/components/schemas/ReplaceFilterAttributesResponse'
         '403':
           description: Permissions do not allow replacing filter attributes.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Corpus not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+  /v2/corpora/{corpus_key}/compute_size:
+    post:
+      tags:
+      - Corpora
+      summary: Compute the current size of a corpus
+      description: "Compute the current size of a corpus, including number of documents,\
+        \ parts, and characters.\nThe `corpus_key` uniquely identifies the corpus.\
+        \ For more information, see \n[Corpus Key Definition](https://docs.vectara.com/docs/api-reference/search-apis/search#corpus-key-definition).\n"
+      operationId: computeCorpusSize
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: path
+        name: corpus_key
+        description: The unique key identifying the corpus to compute size for.
+        required: true
+        schema:
+          $ref: '#/components/schemas/CorpusKey'
+      responses:
+        '200':
+          description: Successfully computed the corpus size.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComputeCorpusSizeResponse'
+        '403':
+          description: Permissions do not allow computing size for this corpus.
           content:
             application/json:
               schema:
@@ -399,6 +442,16 @@ paths:
       - in: query
         name: save_history
         description: Indicates whether to save the query in the query history.
+        schema:
+          type: boolean
+      - in: query
+        name: intelligent_query_rewriting
+        description: 'Indicates whether to enable intelligent query rewriting. When
+          enabled, the platform will attempt to
+
+          extract metadata filter and rewrite the query to improve search results.
+
+          '
         schema:
           type: boolean
           default: false
@@ -747,6 +800,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
+        '409':
+          description: The document already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
     get:
       tags:
       - Documents
@@ -1014,6 +1073,64 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /v2/corpora/{corpus_key}/documents/{document_id}/summarize:
+    post:
+      tags:
+      - Documents
+      summary: Summarize a document
+      description: 'Summarize a document identified by its unique `document_id` from
+        a specific corpus.
+
+        '
+      operationId: summarizeCorpusDocument
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: path
+        name: corpus_key
+        description: The unique key identifying the corpus containing the document
+          to retrieve.
+        required: true
+        schema:
+          $ref: '#/components/schemas/CorpusKey'
+      - in: path
+        name: document_id
+        description: 'The document ID of the document to retrieve.
+
+          This `document_id` must be percent encoded.
+
+          '
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SummarizeDocumentRequest'
+      x-stream-based-on-body: streamResponse()
+      responses:
+        '200':
+          description: Document summarization response on success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SummarizeDocumentResponse'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/SummarizeDocumentStreamedResponse'
+        '403':
+          description: Permissions do not allow summarizing a document in the corpus.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Corpus or document not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
   /v2/chats:
     post:
       tags:
@@ -1104,6 +1221,39 @@ paths:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
   /v2/llms:
+    post:
+      tags:
+      - Large Language Models
+      summary: Create an LLM
+      description: Create a new LLM for use with query and chat endpoints
+      operationId: createLLM
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateLLMRequest'
+      responses:
+        '201':
+          description: The LLM has been created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LLM'
+        '400':
+          description: Invalid request body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '403':
+          description: Permissions do not allow creating an LLM
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
     get:
       tags:
       - Large Language Models
@@ -1725,7 +1875,24 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                allOf:
+                - $ref: '#/components/schemas/User'
+                - properties:
+                    one_time_code:
+                      type: string
+                      description: 'A one time code for the newly created user to
+                        create a password.
+
+                        This is optional, and is only populated for some Vectara deployments.
+
+                        '
+                    one_time_code_link:
+                      type: string
+                      description: 'The link where to enter the `one_time_code`.
+
+                        This is optional, and is only populated for some Vectara deployments.
+
+                        '
         '400':
           description: User creation request was malformed.
           content:
@@ -1919,6 +2086,22 @@ paths:
       responses:
         '204':
           description: User was sent the password reset email.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  one_time_code:
+                    type: string
+                    description: A one time code that can be used to reset the password.
+                      This is optional, and is only populated for some Vectara deployments.
+                  one_time_code_link:
+                    type: string
+                    description: 'The link where to enter the `one_time_code`.
+
+                      This is optional, and is only populated for some Vectara deployments.
+
+                      '
         '403':
           description: Permissions do not allow resetting the user password.
           content:
@@ -1998,6 +2181,12 @@ paths:
         required: false
         schema:
           $ref: '#/components/schemas/CorpusKey'
+      - name: api_key_role
+        in: query
+        description: Filter API keys by their role.
+        required: false
+        schema:
+          $ref: '#/components/schemas/ApiKeyRole'
       responses:
         '200':
           description: An array of API keys.
@@ -2395,6 +2584,11 @@ components:
           description: Description of the corpus.
           type: string
           example: Documents with important information for my prompt.
+        save_history:
+          description: Indicates whether to save corpus queries to query history by
+            default.
+          type: boolean
+          default: false
         queries_are_answers:
           description: Queries made to this corpus are considered answers, and not
             questions.
@@ -2461,6 +2655,10 @@ components:
             will remain in the same state.
           type: string
           example: New description of the corpus.
+        save_history:
+          description: Indicates whether to save corpus queries to query history by
+            default.
+          type: boolean
     ReplaceFilterAttributesRequest:
       type: object
       properties:
@@ -2539,6 +2737,10 @@ components:
           description: The encoder used by the corpus, `boomerang-2023-q3`.
           type: string
           example: boomerang-2023-q3
+        save_history:
+          description: Indicates whether to save corpus queries to query history by
+            default.
+          type: boolean
         filter_attributes:
           description: The new filter attributes of the corpus.
           type: array
@@ -2808,7 +3010,8 @@ components:
             \ and then sent to the LLM.\n  * The LLM used.\n  * `model_parameter`s\
             \ such as temperature.\n \nAll of these properties except the model can\
             \ be overridden by setting them in this\nobject. Even when a `prompt_template`\
-            \ is set, the `generation_preset_name` is used to set \nthe model used.\n\
+            \ is set, the `generation_preset_name` is used to set \nthe model used.\
+            \ See `model_parameters.model` if you want to set the model explicitly.\n\
             \nIf `generation_preset_name` is not set, the Vectara platform will use\
             \ the default model and\nprompt.\n"
           type: string
@@ -2901,6 +3104,15 @@ components:
             '
           type: object
           properties:
+            llm_name:
+              description: 'The model (e.g., `gpt-4`) to use for summarization. If
+                specified, it will override the model behind
+
+                `generation_preset_name`.
+
+                '
+              type: string
+              example: gpt4
             max_tokens:
               description: The maximum number of tokens to be returned by the model.
               type: integer
@@ -3018,7 +3230,15 @@ components:
           type: boolean
           default: false
         save_history:
-          description: Indicates whether to save the query in the query history.
+          description: Indicates whether to save the query to query history.
+          type: boolean
+        intelligent_query_rewriting:
+          description: 'Indicates whether to enable intelligent query rewriting. When
+            enabled, the platform will attempt to
+
+            extract metadata filter and rewrite the query to improve search results.
+
+            '
           type: boolean
           default: false
       required:
@@ -3058,7 +3278,15 @@ components:
           type: boolean
           default: false
         save_history:
-          description: Indicates whether to save the query in the query history.
+          description: Indicates whether to save the query to query history.
+          type: boolean
+        intelligent_query_rewriting:
+          description: 'Indicates whether to enable intelligent query rewriting. When
+            enabled, the platform will attempt to
+
+            extract metadata filter and rewrite the query to improve search results.
+
+            '
           type: boolean
           default: false
       required:
@@ -3112,6 +3340,10 @@ components:
         properties:
           corpus_key:
             $ref: '#/components/schemas/CorpusKey'
+          query:
+            description: Query for a particular corpus that will override the overall
+              query if present.
+            type: string
       required:
       - corpus_key
     SearchReranker:
@@ -3410,6 +3642,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/QueryWarning'
+        rewritten_queries:
+          description: "The rewritten queries for the corpora that were searched.\
+            \ Only populated when \nintelligent_query_rewriting is enabled.\n"
+          type: array
+          items:
+            $ref: '#/components/schemas/RewrittenQuery'
     IndividualSearchResult:
       description: An individual ranked search result from a query.
       type: object
@@ -3445,6 +3683,15 @@ components:
           format: int32
           example: 0
           minimum: 0
+    RewrittenQuery:
+      description: The rewritten query for a corpus that was searched.
+      type: object
+      properties:
+        corpus_key:
+          description: The corpus key that the query was made on.
+          type: string
+        filter_extraction:
+          $ref: '#/components/schemas/FilterExtraction'
     RerankedSearchResult:
       description: An individual reranked search result from a query.
       type: object
@@ -3500,6 +3747,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/IndividualSearchResult'
+        rewritten_queries:
+          description: "The rewritten queries for the corpora that were searched.\
+            \ Only populated when \nintelligent_query_rewriting is enabled.\n"
+          type: array
+          items:
+            $ref: '#/components/schemas/RewrittenQuery'
       x-vectaraParents:
       - QueryStreamedResponse
       - ChatStreamedResponse
@@ -3528,6 +3781,7 @@ components:
       x-vectaraParents:
       - QueryStreamedResponse
       - ChatStreamedResponse
+      - SummarizeDocumentStreamedResponse
     FactualConsistencyScore:
       description: Event containing the factual consistency score.
       type: object
@@ -3574,6 +3828,7 @@ components:
       x-vectaraParents:
       - QueryStreamedResponse
       - ChatStreamedResponse
+      - SummarizeDocumentStreamedResponse
     StreamError:
       description: 'Event signaling there was an error with the request.
 
@@ -3595,6 +3850,7 @@ components:
       x-vectaraParents:
       - QueryStreamedResponse
       - ChatStreamedResponse
+      - SummarizeDocumentStreamedResponse
     StreamGenerationEnd:
       description: 'The end of generation. There may still be more information such
         as the
@@ -3615,6 +3871,7 @@ components:
       x-vectaraParents:
       - QueryStreamedResponse
       - ChatStreamedResponse
+      - SummarizeDocumentStreamedResponse
     StreamResponseEnd:
       description: The end of a query response stream.
       type: object
@@ -3630,6 +3887,7 @@ components:
       x-vectaraParents:
       - QueryStreamedResponse
       - ChatStreamedResponse
+      - SummarizeDocumentStreamedResponse
     UploadFileRequest:
       type: object
       properties:
@@ -4180,6 +4438,65 @@ components:
           description: Indicates if this prompt is the default prompt used with the
             LLM.
           type: boolean
+    CreateLLMRequest:
+      type: object
+      discriminator:
+        propertyName: type
+        mapping:
+          openai-compatible: '#/components/schemas/CreateOpenAILLMRequest'
+      oneOf:
+      - $ref: '#/components/schemas/CreateOpenAILLMRequest'
+      required:
+      - type
+    CreateOpenAILLMRequest:
+      type: object
+      properties:
+        type:
+          description: Must be "openai-compatible" for OpenAI and OpenAI-compatible
+            APIs (like Anthropic Claude, Azure OpenAI, etc)
+          type: string
+          default: openai-compatible
+        name:
+          description: 'Name to reference the LLM.  This will be used in other endpoints
+            (like query) when using this LLM.
+
+            If this name conflicts with a global LLM (a LLM that is precofnigured
+            with the Vectara platform),
+
+            then it will override that LLM for all usages.
+
+            '
+          type: string
+        description:
+          description: Description of the LLM.
+          type: string
+          default: ''
+          nullable: false
+        model:
+          description: The model name to use with the API (e.g. gpt-4, claude-2, etc).
+            This is used in the API request to the remote LLM provider.
+          type: string
+        uri:
+          description: The URI endpoint for the API (can be OpenAI or any compatible
+            API endpoint)
+          type: string
+          format: uri
+        auth:
+          $ref: '#/components/schemas/RemoteAuth'
+        test_model_parameters:
+          description: 'Any additional parameters that are required for the LLM during
+            the test call.
+
+            '
+          type: object
+          additionalProperties: true
+      required:
+      - type
+      - name
+      - model
+      - uri
+      x-vectaraParents:
+      - CreateLLMRequest
     ListLLMsResponse:
       type: object
       properties:
@@ -4206,7 +4523,12 @@ components:
           description: Description of the generation preset.
           type: string
         llm_name:
-          description: Name of the model that these presets are used with.
+          description: 'Name of the model that these presets are used with. The list
+            of available names can be
+
+            fetched by the `GET /v2/llms` endpoint.
+
+            '
           type: string
         prompt_template:
           description: Preset template used to render the prompt sent to generation.
@@ -4284,6 +4606,15 @@ components:
             history. This overrides `chat.store`.
           type: boolean
           default: true
+        intelligent_query_rewriting:
+          description: 'Indicates whether to enable intelligent query rewriting. When
+            enabled, the platform will attempt to
+
+            extract metadata filter and rewrite the query to improve search results.
+
+            '
+          type: boolean
+          default: false
         stream_response:
           description: Indicates whether the response should be streamed or not.
           type: boolean
@@ -4345,6 +4676,12 @@ components:
           description: "View the actual query made to backend that was rephrased \n\
             by the LLM from the input query.\n"
           type: string
+        rewritten_queries:
+          description: "The rewritten queries for the corpora that were searched.\
+            \ Only populated when \nintelligent_query_rewriting is enabled.\n"
+          type: array
+          items:
+            $ref: '#/components/schemas/RewrittenQuery'
     ChatStreamedResponse:
       description: An individual event when the response is streamed.
       type: object
@@ -4995,12 +5332,14 @@ components:
           rerank: '#/components/schemas/RerankSpan'
           generation: '#/components/schemas/GenerationSpan'
           fcs: '#/components/schemas/FactualConsistencyScoreSpan'
+          rewritten_query: '#/components/schemas/RewrittenQuerySpan'
       oneOf:
       - $ref: '#/components/schemas/RephraseSpan'
       - $ref: '#/components/schemas/SearchSpan'
       - $ref: '#/components/schemas/RerankSpan'
       - $ref: '#/components/schemas/GenerationSpan'
       - $ref: '#/components/schemas/FactualConsistencyScoreSpan'
+      - $ref: '#/components/schemas/RewrittenQuerySpan'
     RephraseSpan:
       description: During the query pipeline, the query may be rephrased to better
         suit the corpus.
@@ -5109,6 +5448,48 @@ components:
           format: float
       x-vectaraParents:
       - QueryHistorySpan
+    RewrittenQuerySpan:
+      description: 'Provides detailed information about a rewritten query generated
+        for a specific corpus
+
+        when intelligent query rewriting is enabled.
+
+        '
+      type: object
+      properties:
+        type:
+          description: Indicates the type of span. This value is always `rewritten_query`.
+          type: string
+        corpus_key:
+          description: The corpus key that the query was made on.
+          type: string
+        latency_millis:
+          description: Time taken in milliseconds.
+          type: integer
+        started_at:
+          description: When the span started.
+          type: string
+          format: date-time
+        warnings:
+          description: Warnings that occurred during query rewriting.
+          items:
+            $ref: '#/components/schemas/RewrittenQueryWarning'
+        filter_extraction:
+          $ref: '#/components/schemas/FilterExtraction'
+      x-vectaraParents:
+      - QueryHistorySpan
+    RewrittenQueryWarning:
+      description: "The warning for the rewritten query.\n *  `no_filter_attrs`: Corpus\
+        \ has no filter attributes.\n *  `extracted_empty_filter`: No filter found\
+        \ in the query to extract or the platform failed to extract it.\n *  `failed_to_parse_extracted_filter`:\
+        \ Failed to parse the extracted filter due to invalid syntax.\n *  `failure`:\
+        \ Unexpected error occurred.\n"
+      type: string
+      enum:
+      - no_filter_attrs
+      - extracted_empty_filter
+      - failed_to_parse_extracted_filter
+      - failure
     ListQueryHistoriesResponse:
       description: An array of query histories.
       type: object
@@ -5129,9 +5510,81 @@ components:
       type: string
       description: "Non-fatal warnings that occurred during query processing.\n *\
         \  `exceeded_max_input_length_fcs`: The input to the Factual Consistency Score\
-        \ model exceeded the maximum allowed length, so no score is being returned\n"
+        \ model exceeded the maximum allowed length, so no score is being returned\n\
+        \ *  `intelligent_query_rewriting_failed`: Intelligent query rewriting failed\
+        \ due to an internal error\n"
       enum:
       - exceeded_max_input_length_fcs
+      - intelligent_query_rewriting_failed
+    ComputeCorpusSizeResponse:
+      type: object
+      description: Response containing the computed size of a corpus
+      properties:
+        used_docs:
+          description: Number of documents in the corpus
+          type: integer
+          format: int64
+        used_parts:
+          description: Number of document parts in the corpus
+          type: integer
+          format: int64
+        used_characters:
+          description: Total number of characters in the corpus
+          type: integer
+          format: int64
+        used_metadata_characters:
+          description: Number of metadata characters in the corpus
+          type: integer
+          format: int64
+    RemoteAuth:
+      type: object
+      description: Authentication configuration for an LLM
+      discriminator:
+        propertyName: type
+        mapping:
+          bearer: '#/components/schemas/BearerAuth'
+          header: '#/components/schemas/HeaderAuth'
+      oneOf:
+      - $ref: '#/components/schemas/BearerAuth'
+      - $ref: '#/components/schemas/HeaderAuth'
+      required:
+      - type
+    BearerAuth:
+      type: object
+      description: Bearer token authentication
+      properties:
+        type:
+          description: Must be "bearer" for bearer token auth
+          type: string
+          default: bearer
+        token:
+          description: The bearer token to use for authentication
+          type: string
+      required:
+      - type
+      - token
+      x-vectaraParents:
+      - RemoteAuth
+    HeaderAuth:
+      type: object
+      description: Custom header-based authentication
+      properties:
+        type:
+          description: Must be "header" for header-based auth
+          type: string
+          default: header
+        header:
+          description: The header name to use (e.g. x-api-key)
+          type: string
+        value:
+          description: The header value to use
+          type: string
+      required:
+      - type
+      - header
+      - value
+      x-vectaraParents:
+      - RemoteAuth
     ListMetadata:
       type: object
       description: The standard metadata in the response of a list operation.
@@ -5140,6 +5593,71 @@ components:
           description: When requesting the next page of this list, this is needed
             as a query parameter.
           type: string
+    FilterExtraction:
+      type: object
+      description: The result of query filter extraction.
+      properties:
+        query:
+          description: The query rephrased from the input query and executed.
+          type: string
+        metadata_filter:
+          description: The metadata filter extracted from the input query.
+          type: string
+    SummarizeDocumentRequest:
+      type: object
+      description: Request to summarize a document
+      required:
+      - llm_name
+      properties:
+        llm_name:
+          description: The name of the LLM.
+          type: string
+        prompt_template:
+          type: string
+          description: "The prompt template to use when generating the summary. \n\
+            Vectara manages both system and user roles and prompts for the generative\n\
+            LLM out of the box by default. However, users can override the\n`prompt_template`\
+            \ via this variable. The `prompt_template` is in the form of an\nApache\
+            \ Velocity template. For more details on how to configure the\n`prompt_template`,\
+            \ see the [long-form documentation](https://docs.vectara.com/docs/prompts/vectara-prompt-engine).\n"
+        model_parameters:
+          type: object
+          description: Optional parameters for the specified model used when generating
+            the summary.
+          additionalProperties: true
+        stream_response:
+          description: Indicates whether the response should be streamed or not.
+          type: boolean
+          default: false
+    SummarizeDocumentResponse:
+      type: object
+      description: Response containing the summary of a document
+      properties:
+        summary:
+          description: The summary of the document
+          type: string
+        rendered_prompt:
+          description: The rendered prompt sent to the LLM. Useful when `prompt_template`
+            is sent in the request.
+          type: string
+    SummarizeDocumentStreamedResponse:
+      description: An individual event sent with Server-sent Events (SSE) when the
+        document summarization request is streamed.
+      type: object
+      discriminator:
+        propertyName: type
+        mapping:
+          generation_chunk: '#/components/schemas/StreamGenerationChunk'
+          generation_info: '#/components/schemas/GenerationInfo'
+          generation_end: '#/components/schemas/StreamGenerationEnd'
+          error: '#/components/schemas/StreamError'
+          end: '#/components/schemas/StreamResponseEnd'
+      oneOf:
+      - $ref: '#/components/schemas/StreamGenerationChunk'
+      - $ref: '#/components/schemas/GenerationInfo'
+      - $ref: '#/components/schemas/StreamGenerationEnd'
+      - $ref: '#/components/schemas/StreamResponseEnd'
+      - $ref: '#/components/schemas/StreamError'
     NotFoundError:
       type: object
       properties:
