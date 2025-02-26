@@ -18,10 +18,12 @@ import { TopicButton } from "@site/ui/TopicButton";
 ### ✨ New Features
 - Add documentation for the tech preview of Integrating External LLMs (#413)
 - Add documentation for the tech preview of Document Summarization (#412)
-- Add documentation for the tech preview of intelligent query rewriting (#408)
+- Add documentation for the tech preview of Intelligent Query Rewriting (#408)
 
 ### 📚 API Changes
-- No changes
+- Add Summarize Document API (#417)
+- Add Create LLM API (#417)
+- Add Compute Corpus Size API (#417)
 
 ### 📝 Documentation Changes
 - Update UI steps on how to reset or delete the corpus (#404)
