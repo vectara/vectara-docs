@@ -215,6 +215,9 @@ paths:
           response: 
             stream: []
   /v2/llms:
+    post: 
+      x-fern-sdk-group-name: llms
+      x-fern-sdk-method-name: create
     get:
       x-fern-sdk-group-name: llms
       x-fern-sdk-method-name: list
