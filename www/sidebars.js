@@ -239,6 +239,7 @@ module.exports = {
             "integrations/vectara-and-airbyte",
             "integrations/vectara-and-unstructured",
             "integrations/vectara-and-datavolo",
+            "integrations/vectara-and-confluent",
           ],
         },
         {
