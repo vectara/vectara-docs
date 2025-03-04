@@ -7,15 +7,15 @@ sidebar_label: Vectara and Confluent
 import {Config} from '@site/docs/definitions.md';
 
 The **Vectara Kafka Connect Plugin** seamlessly integrates [Confluent Cloud](https://confluent.cloud/) 
-with the Vectara Vector Store. This plugin enables real-time processing of 
-data, enabling you to efficiently move data streams from Confluent directly 
-into Vectara's high-performance vector database.
+with Vectara, which enables real-time processing of data, allowing you 
+to efficiently move data streams from Confluent directly into Vectara's 
+database.
 
 This plugin simplifies the ingestion process, ensuring that your data 
 pipelines remain fast, reliable, and optimized for vector-based search and 
 retrieval workflows. Whether you are building real-time recommendation engines 
 or high-performance search platforms, the **Vectara Kafka Connect Plugin** is your 
-gateway to unlocking the full potential of vector search with Vectara.
+gateway to unlocking a more seamless experience of data ingestion with Vectara.
 
 ## Integration benefits
 - **Real-time data ingestion**: Automatically ingest and index data streams into 
@@ -86,11 +86,11 @@ Vectara corpus.
 
 ## Sink connector
 
-The Sink Connector imports data into the Vectara Vector store through the 
-[Upload File](https://docs.vectara.com/docs/rest-api/upload-file) API. The connector generates a 
-text document based on the supplied incoming records from Kafka. Each of these 
-text documents are uploaded to a document in the specified corpus based on the 
-key of the record. The record of the key must be a string.
+The Sink Connector imports data into Vectara through the [Upload File](https://docs.vectara.com/docs/rest-api/upload-file) API. The 
+connector generates a text document based on the supplied incoming records 
+from Kafka. Each of these text documents are uploaded to a document in the 
+specified corpus based on the key of the record. The record of the key must be 
+a string.
 
 Class Name: `com.vectara.kafka.connect.VectaraUploadDocumentSinkConnector`
 
