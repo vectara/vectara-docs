@@ -148,6 +148,10 @@ paths:
     delete:
       x-fern-sdk-group-name: documents
       x-fern-sdk-method-name: delete
+  /v2/corpora/{corpus_key}/documents/{document_id}/summarize:
+    post:
+      x-fern-sdk-group-name: documents
+      x-fern-sdk-method-name: summarize
   /v2/chats:
     get:
       x-fern-sdk-group-name: chats
@@ -215,6 +219,9 @@ paths:
           response: 
             stream: []
   /v2/llms:
+    post: 
+      x-fern-sdk-group-name: llms
+      x-fern-sdk-method-name: create
     get:
       x-fern-sdk-group-name: llms
       x-fern-sdk-method-name: list

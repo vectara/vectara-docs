@@ -402,6 +402,7 @@ module.exports = {
             "api-reference/admin-apis/corpus/list-documents",
             "api-reference/admin-apis/corpus/retrieve-document",
             "api-reference/indexing-apis/deleting-documents",
+            "api-reference/documents-apis/summarize-document",
           ],
         },
         {
@@ -423,7 +424,10 @@ module.exports = {
         {
           type: "category",
           label: "Large Language Models APIs",
-          items: ["api-reference/llms-apis/llms-api"],
+          items: [
+            "api-reference/llms-apis/llms-api",
+            "api-reference/llms-apis/create-llm",
+          ],
         },
         {
           type: "category",
