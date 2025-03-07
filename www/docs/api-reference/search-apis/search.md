@@ -61,6 +61,13 @@ the body that specifies the following:
 - `generation` - Specifies the summarization parameters and `generation_preset_name`. Table  
   summarization has a specific preset: `vectara-summary-table-query-ext-dec-2024-gpt-3-5` or 
   `vectara-summary-table-query-ext-dec-2024-gpt-4o`.
+    - `model_parameters` - Specifies [advanced summarization configuration parameters](/docs/api-reference/search-apis/search#advanced-summarization-customization-options) such as `llm_name` and `max_tokens`.
+    - `citations` - Specifies the citation settings for the generator to use, including 
+        `style`, `url_pattern`, and `text_pattern`.
+    - `enable_factual_consistency_score` - Indicates whether to return the factual consistency 
+        score with query results.
+- `save_history` - Indicates whether to save the query to query history.
+- `intelligent_query_rewriting` - Indicates whether to enable intelligent query rewriting.
 
 Excluding this generation field disables summarization. The [generation preset](/docs/rest-api/list-generation-presets) 
 contains the `name`, `description`, `llm_name`, `prompt_template`, and other 
@@ -96,6 +103,13 @@ parameters:
   to send a complete summary at the end of processing the request
 - `search` - Specifies the search parameters
 - `generation` - Specifies the summarization parameters and `generation_preset_name`.
+  - `model_parameters` - Specifies [advanced summarization configuration parameters](/docs/api-reference/search-apis/search#advanced-summarization-customization-options) such as `llm_name` and `max_tokens`.
+  - `citations` - Specifies the citation settings for the generator to use, including 
+        `style`, `url_pattern`, and `text_pattern`.
+  - `enable_factual_consistency_score` - Indicates whether to return the factual consistency 
+        score with query results.
+- `save_history` - Indicates whether to save the query to query history.
+- `intelligent_query_rewriting` - Indicates whether to enable intelligent query rewriting.
 
 Excluding this generation field disables summarization. The [generation preset](/docs/rest-api/list-generation-presets) 
 contains the `name`, `description`, `llm_name`, `prompt_template`, and other 
@@ -249,13 +263,12 @@ Users also have access to [advanced summarization customization options](/docs/a
 The `generation-preset-name` field in `generation` object specifies the prompt 
 template to use. Generation presets bundle several properties that configure 
 generation for the request, providing more flexibility in how parameters are 
-set. The preset includes the `prompt_template`, the LLM, and other settings 
+set. The preset includes the `prompt_template`, the `llm_name`, and other settings 
 like `max_tokens` and `temperature`.
 
 ```json
 "generation-preset-name": "vectara-summary-ext-v1.3.0"
 ```
-
 
 To view available generation presets, use the [List Generation Presets API](/docs/api-reference/generation-presets/list-generation-presets).
 
@@ -409,6 +422,8 @@ note that it is **not a hard limit** like with the `max_tokens` parameter. The
 `model_parameters` object provides even more fine-grained controls for the summarizer
 model:
 
+- `llm_name` specifies the name of the LLM model to use for summarization. If 
+  specified, it overrides the model behind `generation_preset_name`.
 - `max_tokens` specifies a hard limit on the number of characters in a response.
   This value supercedes the `responseChars` parameter in the `summary` object.
 - `temperature` indicates whether you want the summarization to not be creative at all `0.0`,
