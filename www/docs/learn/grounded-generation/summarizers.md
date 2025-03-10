@@ -171,6 +171,8 @@ note that it is **not a hard limit** like with the `max_tokens` parameter. The
 `model_parameters` object provides even more fine-grained controls for the summarizer
 model:
 
+- `llm_name` specifies the name of the LLM model to use for summarization, such as 
+  `gpt-4`. If specified, it overrides the model behind `generation_preset_name`.
 - `max_tokens` specifies a hard limit on the number of characters in a response.
   This value supercedes the `max_response_characters` parameter in the `summary` 
   object.

@@ -205,7 +205,9 @@ conciseness.
 ### Fine-grained control over summarization output
 
 The `generation` object provides even more fine-grained controls for the 
-summarizer model:
+summarizer model in the `model_parameters` object:
+* `llm_name` specifies the name of the LLM model to use for summarization, such as 
+  `gpt-4`. If specified, it overrides the model behind `generation_preset_name`.
 * `max_tokens` specifies a hard limit on the number of characters in a response. 
 * `temperature` indicates whether you want the summarization to **not** be creative at all `0.0`,
     or for the summarization to take more creative liberties as you approach 
