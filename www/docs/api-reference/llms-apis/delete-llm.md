@@ -22,7 +22,7 @@ available LLMs.
 
 ## Delete LLM Request and Response Details
 
-To delete a custom LLM, send a `DELETE` request to `/v2/llms/{llm_name}`. The 
+To delete a custom LLM, send a `DELETE` request to `/v2/llms/{llm_id}`. The 
 request must include the `llm_id` parameter in the URL path to specify which 
 LLM to delete.
 
@@ -33,3 +33,10 @@ the LLM deletion.
 * **403 Forbidden** – The user does not have permission to delete the specified LLM.
 * **404 Not Found** – The LLM ID does not exist or has already been deleted.
 
+## REST 2.0 URL
+
+### Delete LLM Endpoint Address
+
+<Config v="names.product"/> exposes an HTTP endpoint at the following URL to 
+deleted a created Large Language Model (LLM):
+<code>https://<Config v="domains.rest.indexing"/>/v2/llms/:llm_id</code>

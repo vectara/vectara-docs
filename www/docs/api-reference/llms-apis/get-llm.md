@@ -26,6 +26,29 @@ path to specify which LLM to retrieve.
 
 The response returns details about the requested LLM.
 
+### Authentication methods
+
+The request requires authentication details, and you can provide them either 
+as a Bearer token or custom header-based authentication.
+
+**Bearer token authentication**
+
+```json
+{
+  "type": "bearer",
+  "token": "your-api-key"
+}
+```
+**Header-based authentication**
+
+```json
+{
+  "type": "header",
+  "header": "x-api-key",
+  "value": "your-api-key"
+}
+```
+
 ### Example response
 ```json
 {
@@ -41,9 +64,38 @@ The response returns details about the requested LLM.
 }
 ```
 
+### Authentication methods
+
+The request requires authentication details, and you can provide them either 
+as a Bearer token or custom header-based authentication.
+
+**Bearer token authentication**
+
+```json
+{
+  "type": "bearer",
+  "token": "your-api-key"
+}
+```
+**Header-based authentication**
+
+```json
+{
+  "type": "header",
+  "header": "x-api-key",
+  "value": "your-api-key"
+}
+```
+
 ### Error Responses
 
 * **403 Forbidden** – The user does not have permission to retrieve details for the specified LLM.
 * **404 Not Found** – The LLM ID does not exist or is not accessible.
 
+## REST 2.0 URL
 
+### Get LLM Endpoint Address
+
+<Config v="names.product"/> exposes an HTTP endpoint at the following URL to 
+retrieve details about a created Large Language Model (LLM):
+<code>https://<Config v="domains.rest.indexing"/>/v2/llms/:llm_id</code>
