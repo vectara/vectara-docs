@@ -19,9 +19,20 @@ You can upload data to the corpus from the **Data** tab.
    You can upload Word, PDF, Markdown, Powerpoint, and other file types from 
    our [supported list](/docs/api-reference/indexing-apis/file-upload/file-upload-filetypes).  
    ![Upload data to the corpus](/img/upload_data_to_corpus_console.png)
-4. (Optional) Enable the **Extract data data from PDFs** option.
+4. (Optional) Enable the **Extract data data from PDFs** option. For more 
+   information, see [Querying Table Data](/docs/learn/querying-table-data).
 5. (Optional) Specify additional metadata with a JSON object that you want to 
    associate with the extracted document.
-6. (Optional) Specify the maximum number of characters per chunk.
+6. (Optional) Select a chunking strategy as **Sentence chunking** (default) or 
+   **Max-characters** chunking.
 7. Go back to the **Data** tab to view the uploaded documents.
+
+## Asynchronous uploads
+
+* Uploads continue in the background even if you navigate away from this 
+  page.
+* Monitor active uploads through the [**File uploads**](https://console.vectara.com/console/corpora/uploads) tab under 
+  [**View All Corpora**](https://console.vectara.com/console/corpora).
+* Progress indicators show upload status.
+* Navigate back to the corresponding corpus from the **File uploads** tab.
 
