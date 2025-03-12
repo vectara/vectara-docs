@@ -1,0 +1,51 @@
+---
+id: generation
+title: Generation
+sidebar_label: Generation
+---
+
+import { Config } from "./definitions.md";
+import { Grid } from "@site/ui/Grid";
+import { Spacer } from "@site/ui/Spacer";
+import { TopicButton } from "@site/ui/TopicButton";
+
+Generative AI, within the RAG context, empowers organizations to create precise,
+context-aware outputs from their data. Vectara offers advanced tools to help you
+craft tailored responses, summaries, and insights. These capabilities improve
+accuracy, and enhance the value of your AI-driven applications.
+
+<Grid columns={3}>
+  <TopicButton
+    title="Mockingbird: Vectara's LLM"
+    href="/docs/learn/mockingbird-llm">
+    <Spacer size="l" />
+    Explore Mockingbird, Vectara's advanced LLM designed for Retrieval-Augmented 
+    Generation (RAG).
+    <Spacer size="l" />
+    Achieve superior RAG output quality, enhanced citation 
+    accuracy, structured data generation, and multilingual performance.
+  </TopicButton>
+  
+  <TopicButton
+    title="Summarizers"
+    href="/docs/learn/grounded-generation/select-a-summarizer">
+    <Spacer size="l" />
+    Discover Vectara's advanced summarization options, 
+    including Mockingbird and GPT-powered configurations for citations, tables, 
+    and RAG outputs.
+    <Spacer size="l" />
+    Tailor summarization settings like max tokens, temperature, and penalties 
+    to fit your application requirements.
+  </TopicButton>
+  
+  <TopicButton
+    title="Advanced Prompt Customization"
+    href="/docs/generative-prompts">
+    <Spacer size="l" />
+    Leverage advanced options like custom prompt templates, character limits, 
+    and model-specific settings for granular summarization control. 
+    <Spacer size="l" />
+    Tailor summaries to your exact needs, including chatbot-friendly outputs.
+  </TopicButton>
+</Grid>
+

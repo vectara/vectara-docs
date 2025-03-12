@@ -499,7 +499,7 @@ module.exports = {
         description: "Play around with Vectara's REST 2.0 APIs",
         slug: "/rest-api",
       },
-      items: require("./docs/rest-api/sidebar.js"),
+      items: require("./docs/rest-api/sidebar.ts"),
     },
   ],
   releaseNotes: [
