@@ -82,7 +82,7 @@ See [Reranking](/docs/api-reference/search-apis/reranking) more advanced details
 
 Fine-tune search relevance by adjusting custom dimension weights.
 
-**Enable relevance tuning** to control how search results ranks based on 
+**Enable relevance tuning** to control how search results rank based on 
 predefined relevance factors.
 
 See [Custom Dimensions](/docs/learn/semantic-search/add-custom-dimensions) for more details.
