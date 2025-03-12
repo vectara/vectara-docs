@@ -33,7 +33,7 @@ useful for navigating complex query configurations quickly.
 
 ## Configure retrieval
 
-The Retrieval panel provides different configuration settings to tailor the 
+The Retrieval section provides different configuration settings to tailor the 
 query experience to your specific needs. For example, configuring filters, 
 reranking results, and refining output context.
 
@@ -132,28 +132,30 @@ Chat enables you to engage in conversational interactions with your data. This
 can be particularly useful when you need to ask follow-up questions, clarify 
 information, or explore your data in a more interactive manner.
 
-Select **Enable Chat** to activate interactive Q&A.
+Select **Enable Chat** to retain the conversational context across your queries.
 
 ### Save query to history
 
-When experimenting with configurations and running queries against a corpus, 
-Vectara lets you log your queries into a query history. This is important for 
-troubleshooting issues, inspecting past queries, and optimizing configurations.
+Vectara enables you to generate query histories from your queries. These are 
+analyses of your queries that give you visibility into how Vectara executed 
+your query through specific steps such as retrieval, reranking, and 
+generation. This is important for troubleshooting issues, inspecting past 
+queries, and optimizing configurations.
 
 By surfacing data like query latency, search results, reranking, and 
 generative response times, users can better understand how to fine-tune 
 Vectara to meet their business goals.
 
-### View the history of query
+### View the history of the query
 
 1. Ask questions of your data with **Send query**.
-2. Select the **Query history** tab to review log past queries executed 
-   against your corpus. 
-3. Select a query from the table to view its detailed configuration, execution 
+2. Select the **Query history** tab to reveal the query history for
+   the most recently executed query. 
+4. Select a query from the table to view its detailed configuration, execution 
    flow, and results.
-4. Use this information to optimize your configuration and submit a new query.
+5. Use this information to optimize your configuration and submit a new query.
 
-![Query histories](/img/query-histories.png)
+![Query tab](/img/query_tab.png)
 
 ## Query results
 
@@ -162,6 +164,7 @@ includes the following tabs:
 
 * **Pretty Response:** Formatted view of the query response.
 * **Response JSON:** Raw JSON representation of the query output.
-* **Query History:** Displays previously executed queries.
+* **Query History:** Displays the query history for the most recently
+  executed query.
 * **Errors:** Displays encountered errors (if any).
 
