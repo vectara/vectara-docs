@@ -1,0 +1,41 @@
+---
+id: generative-prompts
+title: Generative Prompts
+sidebar_label: Generative Prompts
+---
+
+import { Config } from "./definitions.md";
+import { Grid } from "@site/ui/Grid";
+import { Spacer } from "@site/ui/Spacer";
+import { TopicButton } from "@site/ui/TopicButton";
+
+Vectara provides powerful tools to design and customize prompt templates for 
+Retrieval-Augmented Generation (RAG) workflows. By leveraging Velocity 
+Templates and metadata variables, developers can tailor prompts for use cases 
+like RFIs, support tickets, or structured data generation, enabling precise 
+and effective outputs for complex scenarios.
+
+<Grid columns={3}>
+  <TopicButton
+    title="Vectara Prompt Engine"
+    href="/docs/prompts/vectara-prompt-engine">
+    <Spacer size="l" />
+    Empower your applications with customizable prompt templates.
+    <Spacer size="l" />
+    Design prompts that guide LLMs effectively, addressing complex queries 
+    with precision and flexibility.
+  </TopicButton>
+  
+  <TopicButton
+    title="Custom Prompts with Metadata"
+    href="/docs/prompts/custom-prompts-with-metadata">
+    <Spacer size="l" />
+    Unlock powerful customization options by integrating metadata directly into 
+    your prompts.
+    <Spacer size="l" />
+    Explore advanced capabilities like looping through results and referencing 
+    specific metadata fields.
+  </TopicButton>
+</Grid>
+
+
