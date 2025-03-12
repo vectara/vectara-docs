@@ -155,7 +155,7 @@ Vectara to meet their business goals.
    flow, and results.
 5. Use this information to optimize your configuration and submit a new query.
 
-![Query tab](/img/query_tab.png)
+![Query tab](/img/query_history_tab.png)
 
 ## Query results
 
