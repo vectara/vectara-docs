@@ -9,105 +9,157 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
-When you add data to a corpus, the Query tab lets you experiment with 
+When you add data to a corpus, the **Query** tab lets you experiment with 
 different semantic search, summarization, and chat options. Whether you want 
 to retrieve relevant information, generate summaries grounded in facts with 
 Retrieval-Augmented Generation (RAG), or engage in conversational 
 interactions, explore these options and configurations to find the optimal 
 settings for your applications.
 
-## Search Your Data
+## Search your Data
 
-The Query tab provides the following application types for search and 
-retrieval:
+The **Query** tab enables you to perform searches against your data while testing 
+different query configuration settings for retrieval and generation.
 
-1. **Semantic search**: Perform semantic searches based 
-   on natural language queries. Vectara's advanced algorithms understand the meaning 
-   and context of your queries, enabling accurate and relevant search results.
-2. **Summary**: Extending the Semantic Search functionality, this 
-   option uses Retrieval-Augmented Generation (RAG) to provide concise summaries in 
-   response to your queries. This can be particularly useful when you need an 
-   overview of the relevant information within your data.
-3. **Chat**: Engage in conversational interactions 
-   with your data. This can be particularly useful when you need to ask 
-   follow-up questions, clarify information, or explore your data in a more 
-   interactive manner.
-   :::tip
-   Chat leverages the same underlying search and summarization capabilities as 
-   the other options, but presents the results in a conversational format, making 
-   it easier to maintain context and engage in multi-turn interactions.
-   :::
+![Query tab](/img/query_tab.png)
 
-## Customize the Query Experience
+The **Pretty Request** and **Request Code** tabs allow you to view and copy the 
+request code used for executing queries. This enables easy integration of 
+query configurations into applications.
 
-These search options provide different configuration settings to tailor the 
-query experience to your specific needs:
+A magnifying glass icon allows you to locate specific controls. Use this icon 
+to search and instantly locate a retrieval or generation setting. This is 
+useful for navigating complex query configurations quickly.
 
-### Save query to history
+## Configure retrieval
 
-When experimenting with configurations and running queries against a corpus, 
-Vectara lets you log your queries into a query history. This is important for 
-troubleshooting issues, inspecting past queries, and optimizing configurations. 
-By surfacing data like query latency, search results, reranking, and 
-generative response times, users can better understand how to fine-tune 
-Vectara to meet their business goals.
-
-### View the history of query
-
-1. Ask questions of your data with **Send query**.
-2. Select **View query history** to review a table of past queries executed 
-   against your corpus. 
-3. Select a query from the table to view its detailed configuration, execution 
-   flow, and results.
-4. Use this information to optimize your configuration and submit a new query.
+The Retrieval section provides different configuration settings to tailor the 
+query experience to your specific needs. For example, configuring filters, 
+reranking results, and refining output context.
 
 
-![Query histories](/img/query-histories.png)
+### Enter your query
 
-### Configure retrieval
+Enter a natural language search query in the **Query** field. You can either 
+use the default retrieval and generation settings or experiment with different 
+configurations.
 
-The Retrieval configuration lets you enable hybrid search by adjusting the 
-`lexical_interpolation` value, also known as lambda, which is a balance 
-between neural search and keyword search. 
+### Configure search filters
+
+By default, no filter is applied to your query. Select **Filter** to 
+* Enter a custom filter expression 
+* Select predefined filter attributes to refine your search results.
+* View **Available filter attributes** and **Syntax examples**. 
+
+![Configure filters](/img/configure_filters.png)
+
+### Configure hybrid search
+
+Hybrid search improves retrieval accuracy by balancing neural search with 
+keyword-based search using the **Lambda** option.
+
+* **Enable hybrid search** to activate hybrid retrieval.
+* Adjust the **Lambda** range from `0` (pure neural search) to `1` (pure 
+  keyword-based search).
+* The recommended range is `0.005` to `0.0075`.
+* By default, Lambda is set to `0.5`.
 
 ![Configure hybrid search](/img/configure_hybrid_search.png)
 
-The reranking option lets you rerank orders of search results also use the 
-Maximum Marginal Relevance (MMR) Reranker with a diversity factor to 
-reduce bias.
+**Reranking** lets you rerank orders of search results also use our 
+available rerankers:
+
+* **Multilingual Ranker** – Optimized for multiple languages.
+* **User-Defined Function (UDF) Reranker** – Customizable ranking function.
+* **Maximum Marginal Relevance (MMR) Reranker** – Reduces bias by applying a 
+  diversity factor.
+
+See [Reranking](/docs/api-reference/search-apis/reranking) more advanced details about our reranking capabilities.
 
 ![Configure reranking](/img/configure_reranking.png)
 
-The result context option lets you configure the number of sentences or 
-characters before and after the matched text. If you use the number of 
-characters, Vectara captures the entire sentence that contains the captured 
-characters.
+### Configure relevance tuning
+
+Fine-tune search relevance by adjusting custom dimension weights.
+
+**Enable relevance tuning** to control how search results rank based on 
+predefined relevance factors.
+
+See [Custom Dimensions](/docs/learn/semantic-search/add-custom-dimensions) for more details.
+
+### Configure result context
+
+Control how much contextual information appears before and after matched 
+search results:
+
+* **Sentences Before:** Default: 2
+* **Sentences After:** Default: 2
+* **Characters Before:** Default: 0
+* **Characters After:** Default: 0
+
+If you use character-based limits, Vectara ensures that full sentences display 
+to preserve meaning.
 
 ![Configure result context](/img/configure_result_context.png)
 
-### Configure generation
+## Configure generation
 
 The Generation section shows the LLM and prompt template used and lets you
 configure the Language and Summarization options for the query:
 
 ![Configure generation options](/img/configure_generation.png)
 
+Summarization uses Retrieval-Augmented Generation (RAG) to provide concise 
+summaries in response to your queries. This can be particularly useful when 
+you need an overview of the relevant information within your data.
+
 ### Configure evaluation
 
 The Factual Consistency Score automatically evaluates and detects 
-hallucinations in generated output. This calibrated score can range from `0.0` 
-to `1.0`. A higher score indicates a greater probability of being factually 
-accurate, while a lower score indicates a greater probability of 
-hallucinations.
+hallucinations in generated output. 
+
+* **Score range:** `0.0` - `1.0`
+* **Higher score:** More factually accurate responses
+* **Lower score:** Greater probability of hallucinations
+* **Enable calculation of Factual Consistency Score:** to monitor and improve 
+  response reliability.
 
 ![Configure evaluation](/img/configure_evaluation.png)
 
+### Configure chat
 
-### Configure search filters
+Chat enables you to engage in conversational interactions with your data. This 
+can be particularly useful when you need to ask follow-up questions, clarify 
+information, or explore your data in a more interactive manner.
 
-Select the Filters tab to enter a filter expression or select filter attributes 
-to further refine your search results. We provide some syntax examples in the 
-drawer.
+Select **Enable Chat** to retain the conversational context across your queries.
 
-![Configure filters](/img/configure_filters.png)
+### Save query to history
+
+Set this toggle on to generate a query history from your query. Vectara enables you to generate query histories from your queries. These are 
+analyses of your queries that give you visibility into how Vectara executed 
+your query through specific steps such as retrieval, reranking, and 
+generation. This is important for troubleshooting issues, inspecting past 
+queries, and optimizing configurations.
+
+### View the history of the query
+
+1. Ask questions of your data with **Send query**.
+2. Select the **Query history** tab to reveal the query history for
+   the most recently executed query. 
+3. View the complete breakdown of how the query was executed.
+4. Use this information to optimize your configuration and submit a new query.
+
+![Query tab](/img/query_history_tab.png)
+
+## Query results
+
+After executing a query, the results appear in the output panel, which 
+includes the following tabs:
+
+* **Pretty Response:** Formatted view of the query response.
+* **Response JSON:** Raw JSON representation of the query output.
+* **Query History:** Displays the query history for the most recently
+  executed query.
+* **Errors:** Displays encountered errors (if any).
 

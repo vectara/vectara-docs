@@ -279,6 +279,7 @@ module.exports = {
           collapsed: true,
           items: [
             "console-ui/creating-a-corpus",
+            "console-ui/corpora/upload-data-to-corpus",
             "console-ui/reset-or-delete-corpus",
             "console-ui/configure-server-access-to-corpus",
             "console-ui/corpus-default-read-access",
