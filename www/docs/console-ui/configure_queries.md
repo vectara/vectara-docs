@@ -136,24 +136,19 @@ Select **Enable Chat** to retain the conversational context across your queries.
 
 ### Save query to history
 
-Vectara enables you to generate query histories from your queries. These are 
+Set this toggle on to generate a query history from your query. Vectara enables you to generate query histories from your queries. These are 
 analyses of your queries that give you visibility into how Vectara executed 
 your query through specific steps such as retrieval, reranking, and 
 generation. This is important for troubleshooting issues, inspecting past 
 queries, and optimizing configurations.
-
-By surfacing data like query latency, search results, reranking, and 
-generative response times, users can better understand how to fine-tune 
-Vectara to meet their business goals.
 
 ### View the history of the query
 
 1. Ask questions of your data with **Send query**.
 2. Select the **Query history** tab to reveal the query history for
    the most recently executed query. 
-4. Select a query from the table to view its detailed configuration, execution 
-   flow, and results.
-5. Use this information to optimize your configuration and submit a new query.
+3. View the complete breakdown of how the query was executed.
+4. Use this information to optimize your configuration and submit a new query.
 
 ![Query tab](/img/query_history_tab.png)
 
