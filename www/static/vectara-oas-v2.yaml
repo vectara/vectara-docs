@@ -664,7 +664,9 @@ paths:
 
         * `chunking_strategy` - (Optional) Specifies the chunking strategy for the
         platform to use. If you do not set this option, the platform uses the default
-        strategy, which creates one chunk per sentence. For example, `''chunking_strategy={"type":"max_chars_chunking_strategy","max_chars_per_chunk":200};type=application/json''`
+        strategy, which creates one chunk per sentence. You can explicitly set sentence
+        chunking with `''chunking_strategy={"type":"sentence_chunking_strategy"};type=application/json''`
+        or use max chars chunking with `''chunking_strategy={"type":"max_chars_chunking_strategy","max_chars_per_chunk":200};type=application/json''`
 
         * `table_extraction_config` - (Optional) Specifies whether to extract table
         data from the uploaded file. If you do not set this option, the platform does
@@ -745,6 +747,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
+        '415':
+          description: The media type of the uploaded file is not supported.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /v2/corpora/{corpus_key}/documents:
     post:
       tags:
@@ -1312,6 +1320,71 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /v2/llms/{llm_id}:
+    get:
+      tags:
+      - Large Language Models
+      summary: Get an LLM
+      description: Get details about a specific LLM.
+      operationId: getLLM
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - name: llm_id
+        in: path
+        description: The name of the LLM to retrieve.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The LLM details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LLM'
+        '403':
+          description: Permissions do not allow retrieving this LLM.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: LLM not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+    delete:
+      tags:
+      - Large Language Models
+      summary: Delete an LLM
+      description: Delete a custom LLM connection. Built-in LLMs cannot be deleted.
+      operationId: deleteLLM
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - name: llm_id
+        in: path
+        description: The name of the LLM to delete.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: The LLM was successfully deleted.
+        '403':
+          description: Permissions do not allow deleting this LLM.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: LLM not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
   /v2/generation_presets:
     get:
       tags:
@@ -1659,6 +1732,39 @@ paths:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
   /v2/encoders:
+    post:
+      tags:
+      - Encoders
+      summary: Create an encoder
+      description: Create a new encoder.
+      operationId: createEncoder
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEncoderRequest'
+      responses:
+        '201':
+          description: The encoder has been created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Encoder'
+        '400':
+          description: Encoder creation request was malformed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '403':
+          description: Permissions do not allow creating an encoder
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
     get:
       tags:
       - Encoders
@@ -1931,6 +2037,12 @@ paths:
         required: false
         schema:
           type: string
+      - name: corpus_key
+        in: query
+        description: Filter users by access to this corpus.
+        required: false
+        schema:
+          $ref: '#/components/schemas/CorpusKey'
       responses:
         '200':
           description: List of users.
@@ -2084,7 +2196,7 @@ paths:
         schema:
           type: string
       responses:
-        '204':
+        '200':
           description: User was sent the password reset email.
           content:
             application/json:
@@ -3939,8 +4051,10 @@ components:
         propertyName: type
         mapping:
           max_chars_chunking_strategy: '#/components/schemas/MaxCharsChunkingStrategy'
+          sentence_chunking_strategy: '#/components/schemas/SentenceChunkingStrategy'
       oneOf:
       - $ref: '#/components/schemas/MaxCharsChunkingStrategy'
+      - $ref: '#/components/schemas/SentenceChunkingStrategy'
     MaxCharsChunkingStrategy:
       type: object
       description: 'Sets a chunking strategy that limits the number of maximum characters
@@ -3977,6 +4091,23 @@ components:
           minimum: 100
       required:
       - max_chars_per_chunk
+      x-vectaraParents:
+      - ChunkingStrategy
+    SentenceChunkingStrategy:
+      type: object
+      description: 'Sets a chunking strategy that creates one chunk per sentence.
+
+        This is the default strategy used when no chunking strategy is specified.
+
+        '
+      properties:
+        type:
+          description: 'When setting the type to sentence_chunking_strategy, the platform
+            will create one chunk per sentence.
+
+            '
+          type: string
+          default: sentence_chunking_strategy
       x-vectaraParents:
       - ChunkingStrategy
     CreateDocumentRequest:
@@ -4973,6 +5104,65 @@ components:
             $ref: '#/components/schemas/AppClient'
         metadata:
           $ref: '#/components/schemas/ListMetadata'
+    CreateEncoderRequest:
+      type: object
+      description: Request to create a new encoder
+      discriminator:
+        propertyName: type
+        mapping:
+          openai: '#/components/schemas/CreateOpenAIEncoderRequest'
+      oneOf:
+      - $ref: '#/components/schemas/CreateOpenAIEncoderRequest'
+      required:
+      - type
+    CreateOpenAIEncoderRequest:
+      description: Configuration for an OpenAI-compatible encoder
+      type: object
+      properties:
+        type:
+          description: Specifies this is an OpenAI encoder
+          type: string
+          default: openai
+        name:
+          description: The unique name of the encoder
+          type: string
+          example: my-openai-encoder
+        description:
+          description: A description of what this encoder does
+          type: string
+          example: OpenAI text embedding encoder
+        output_dimensions:
+          description: 'The number of dimensions in the output embedding vector. If
+            the encoder endpoint returns
+
+            more dimensions than specified here, the response will be truncated to
+            this number of dimensions.
+
+            '
+          type: integer
+          format: int32
+          minimum: 1
+          example: 1536
+        endpoint_url:
+          description: The URL of the OpenAI-compatible embedding endpoint
+          type: string
+          format: uri
+          example: https://api.openai.com/v1/embeddings
+        model:
+          description: The model name to use for embeddings
+          type: string
+          example: text-embedding-ada-002
+        auth:
+          $ref: '#/components/schemas/RemoteAuth'
+      required:
+      - name
+      - description
+      - output_dimensions
+      - endpoint_url
+      - model
+      - auth
+      x-vectaraParents:
+      - CreateEncoderRequest
     Encoder:
       type: object
       properties:
@@ -4985,6 +5175,11 @@ components:
           description: The encoder name, `boomerang-2023-q3`.
           type: string
           example: boomerang-2023-q3
+        type:
+          description: The encoder type
+          example: vectara
+          type: string
+          default: vectara
         output_dimensions:
           description: 'When this encoder is used to create an embedding, it shows
             the count of dimensions for the output embedding.
