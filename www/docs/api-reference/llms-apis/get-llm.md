@@ -64,29 +64,6 @@ as a Bearer token or custom header-based authentication.
 }
 ```
 
-### Authentication methods
-
-The request requires authentication details, and you can provide them either 
-as a Bearer token or custom header-based authentication.
-
-**Bearer token authentication**
-
-```json
-{
-  "type": "bearer",
-  "token": "your-api-key"
-}
-```
-**Header-based authentication**
-
-```json
-{
-  "type": "header",
-  "header": "x-api-key",
-  "value": "your-api-key"
-}
-```
-
 ### Error Responses
 
 * **403 Forbidden** – The user does not have permission to retrieve details for the specified LLM.
