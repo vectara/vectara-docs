@@ -427,6 +427,9 @@ module.exports = {
           items: [
             "api-reference/llms-apis/llms-api",
             "api-reference/llms-apis/create-llm",
+            "api-reference/llms-apis/get-llm",
+            "api-reference/llms-apis/delete-llm",
+            
           ],
         },
         {
