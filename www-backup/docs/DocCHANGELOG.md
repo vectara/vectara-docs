@@ -6,9 +6,9 @@ sidebar_label: Documentation Changelog
 ---
 
 import { Config } from "./definitions.md";
-import { Grid } from "@site/ui/Grid";
-import { Spacer } from "@site/ui/Spacer";
-import { TopicButton } from "@site/ui/TopicButton";
+import { Grid } from "@site/src/components/ui//Grid";
+import { Spacer } from "@site/src/components/ui//Spacer";
+import { TopicButton } from "@site/src/components/ui//TopicButton";
 
 
 ---

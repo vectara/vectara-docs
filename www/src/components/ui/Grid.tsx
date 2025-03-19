@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import "./grid.scss"; // Change from ./grid.scss
+import "./grid.scss";
 
 export const COLUMNS = [1, 2, 3] as const;
 export type Columns = (typeof COLUMNS)[number];

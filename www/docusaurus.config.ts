@@ -11,6 +11,7 @@ const config: Config = {
   favicon: "img/vectara_logo.svg",
   organizationName: "vectara",
   projectName: "vectara-docs",
+  onBrokenLinks: "ignore",
 
   presets: [
     [
@@ -26,7 +27,7 @@ const config: Config = {
           },
         },
         theme: {
-          customCss: require.resolve("./src/css/custom.scss"),
+          customCss: require.resolve("./src/css/custom.css"),
         },
       },
     ],
@@ -62,6 +63,7 @@ const config: Config = {
         },
       },
     ],
+    "docusaurus-plugin-sass",
     [
       "docusaurus-plugin-remote-content",
       {
@@ -137,13 +139,55 @@ ${content}
             { label: "Version 1.0", to: "docs/1.0/" },
           ],
         },
-        // ... (rest of navbar items)
+        {
+          type: "dropdown",
+          label: "API Reference",
+          position: "left",
+          items: [
+            { label: "Version 2.0 (Latest)", to: "docs/rest-api", },
+            { label: "Version 1.0", to: "docs/1.0/rest-api", },
+          ],
+        },
+        {
+          label: "Release Notes",
+          to: "docs/release-notes",
+        },
+        {
+          label: "Changelog",
+          to: "docs/changelog",
+        },
+        {
+          type: "search",
+          className: "searchBar",
+          position: "right",
+        },
+        {
+          to: "https://console.vectara.com",
+          label: "Console",
+          position: "right",
+        },
       ],
     },
     footer: {
       style: "light",
       links: [
-        // ... (footer links)
+        {
+          title: "APIs",
+          items: [
+            {
+              label: "Indexing",
+              to: "docs/api-reference/indexing-apis/indexing",
+            },
+            {
+              label: "Search",
+              to: "docs/api-reference/search-apis/search",
+            },
+            {
+              label: "Admin",
+              to: "docs/api-reference/admin-apis/admin",
+            },
+          ],
+        },
       ],
       copyright: `Copyright © ${new Date().getFullYear()} Vectara, Inc. Built with Docusaurus.`,
     },

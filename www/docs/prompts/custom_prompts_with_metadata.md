@@ -23,9 +23,9 @@ The following table shows the available custom prompt template variables:
 |---|---|---|---|
 | $vectaraOutChars  | Number of characters  | See below  | See below  |
 | $vectaraLangCode  | ISO639 v3 code for the passed language code  | See below  | See below  |
-| $vectaraQuery  | The query provided by the user  | Generate a summary in $vectaraOutChars characters in language '${vectaraLangCode}' for the query ${vectaraQuery} solely based on the search results in this chat.  | Generate a summary in 512 characters in language 'ara' for the query 'Give me "some" search results.' solely based on the search results in this chat.  |
+| $vectaraQuery  | The query provided by the user  | Generate a summary in $vectaraOutChars characters in language ```'${vectaraLangCode}'``` for the query ```${vectaraQuery}``` solely based on the search results in this chat.  | Generate a summary in 512 characters in language 'ara' for the query 'Give me "some" search results.' solely based on the search results in this chat.  |
 | $vectaraIdxWord  | A utility array to convert the index to words i.e "first", "second", "third", "forth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth"  | $vectaraIdxWord[0]  | first  |
-| $vectaraLangName  | Set to the requested language name. The language can either be requested explicitly or detected from the language of the query.  | You are a helpful assistant. Answer in ${vectaraLangName}.  | You are a helpful assistant. Answer in Arabic.  |
+| $vectaraLangName  | Set to the requested language name. The language can either be requested explicitly or detected from the language of the query.  | You are a helpful assistant. Answer in ```${vectaraLangName}```.  | You are a helpful assistant. Answer in Arabic.  |
 | $vectaraQueryResults  | An array of query results is found in the response, sorted by relevance score.  | ```#foreach ($qResult in $vectaraQueryResults) {"role": "user", "content": "Give me the $vectaraIdxWord[$foreach.index] search result."}, {"role": "assistant", "content": ${qResult.text()} },#end```  | ```{"role": "user", "content": "Give me the second search result."},{"role": "assistant", "content": "2nd result" },```  |
 
 

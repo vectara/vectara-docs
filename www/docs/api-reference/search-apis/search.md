@@ -218,7 +218,7 @@ more granular control over the number of results returned after reranking. For
 more details about these properties, see [Rerank Search Results](/docs/api-reference/search-apis/reranking):
 
 * Specify the `type` as `customer_reranker` and `reranker_name` as 
-  `Rerank_Multilingual_v1` to use the [Multilingual Reranker v1](/docs/api-reference/search-apis/reranking#vectara-multilingual-reranker-v1), 
+  `Rerank_Multilingual_v1` to use the [Multilingual Reranker v1](/docs/learn/vectara-multilingual-reranker), 
   also known as Slingshot.
 * Specify the `type` as `mmr` to use the [Maximal Marginal Relevance (MMR) Reranker](/docs/learn/mmr-reranker).
   This reranker lets you specify a `diversity_bias` value between `0.0` and `1.0`. 
