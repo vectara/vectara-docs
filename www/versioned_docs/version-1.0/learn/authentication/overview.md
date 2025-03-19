@@ -7,7 +7,7 @@ sidebar_label: Authentication Overview
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
-import {vars} from '@site/static/variables.json';
+import vars from '@site/static/variables.json';
 
 In <Config v="names.product"/>, we have robust authentication and authorization 
 methods in place to secure your data and operations. All <Config v="names.product"/> APIs 

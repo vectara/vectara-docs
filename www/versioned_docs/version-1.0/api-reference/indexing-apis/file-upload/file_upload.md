@@ -6,7 +6,7 @@ title: File Upload API Definition
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
-import {vars} from '@site/static/variables.json';
+import vars from '@site/static/variables.json';
 import {Config} from '@site/docs/definitions.md';
 
 The File Upload API lets you extract text from existing, unstructured 
