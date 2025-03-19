@@ -13,6 +13,32 @@ import { TopicButton } from "@site/ui/TopicButton";
 
 ---
 
+# March 2025
+
+### ✨ New Features
+- Add documentation for the tech preview of the expanded LLM Management APIs (#420)
+- Add content for new integration between Vectara and Confluent (#414)
+
+### 📚 API Changes
+- Add the Delete LLM API, Get LLM API, and Create Encoder API and Chunking Strategy to the API Reference  (#423)
+
+### 📝 Documentation Changes
+- Update content and screenshots for the File Upload UI, the Documents UI, and the Query UI (#421)
+- Update model_parameters with new llm_name parameter in the advanced summarization options (#419)
+
+### 📋 Example Updates
+- No changes
+
+### 🗑 Deprecated
+- No changes
+
+### 🛠 Documentation Platform Updates
+- No changes
+
+
+
+---
+
 # February 2025
 
 ### ✨ New Features
@@ -21,9 +47,7 @@ import { TopicButton } from "@site/ui/TopicButton";
 - Add documentation for the tech preview of Intelligent Query Rewriting (#408)
 
 ### 📚 API Changes
-- Add Summarize Document API (#417)
-- Add Create LLM API (#417)
-- Add Compute Corpus Size API (#417)
+- Add the Summarize Document API, Create LLM API, and Compute Corpus Size API to the API Reference (#417)
 
 ### 📝 Documentation Changes
 - Update UI steps on how to reset or delete the corpus (#404)
