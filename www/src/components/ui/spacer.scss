@@ -1,0 +1,22 @@
+@import "./styleUtils";
+
+.spacer {
+  flex-shrink: 0;
+}
+
+$size: (
+  xxxs: $sizeXxxs,
+  xxs: $sizeXxs,
+  xs: $sizeXs,
+  s: $sizeS,
+  m: $sizeM,
+  l: $sizeL,
+  xl: $sizeXl,
+  xxl: $sizeXxl,
+);
+
+@each $sizeName, $sizeValue in $size {
+  .spacer--#{$sizeName} {
+    height: $sizeValue;
+  }
+}

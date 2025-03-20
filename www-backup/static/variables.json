@@ -1,0 +1,16 @@
+{
+    "vars": {
+        "domains.rest.serving": "api.vectara.io",
+        "domains.rest.admin": "api.vectara.io",
+        "domains.rest.indexing": "api.vectara.io",
+        "domains.grpc.serving": "serving.vectara.io",
+        "domains.grpc.admin": "admin.vectara.io",
+        "domains.grpc.indexing": "indexing.vectara.io",
+        "domains.oauth": "vectara-prod-${CUSTOMER_ID}.auth.us-west-2.amazoncognito.com",
+        "package.protobuf": "com.vectara",
+        "package.java": "com.vectara",
+        "package.php": "Com\\Vectara",
+        "names.company": "Vectara",
+        "names.product": "Vectara"
+    }
+}

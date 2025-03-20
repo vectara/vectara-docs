@@ -4,13 +4,9 @@
 # Production
 /build
 
-# Auto-pulled remote content
-/docs/getting-started-samples
-
 # Generated files
 .docusaurus
 .cache-loader
-static/analytics.js
 
 # Misc
 .DS_Store
