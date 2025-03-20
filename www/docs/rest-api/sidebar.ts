@@ -254,6 +254,18 @@ const sidebar: SidebarsConfig = {
           label: "List LLMs",
           className: "api-method get",
         },
+        {
+          type: "doc",
+          id: "rest-api/get-llm",
+          label: "Get an LLM",
+          className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "rest-api/delete-llm",
+          label: "Delete an LLM",
+          className: "api-method delete",
+        },
       ],
     },
     {
@@ -264,6 +276,12 @@ const sidebar: SidebarsConfig = {
         id: "rest-api/encoders",
       },
       items: [
+        {
+          type: "doc",
+          id: "rest-api/create-encoder",
+          label: "Create an encoder",
+          className: "api-method post",
+        },
         {
           type: "doc",
           id: "rest-api/list-encoders",
