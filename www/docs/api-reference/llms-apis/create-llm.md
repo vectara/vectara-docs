@@ -66,6 +66,7 @@ as a Bearer token or custom header-based authentication.
   "value": "your-api-key"
 }
 ```
+
 ### Example request
 
 ```json
@@ -86,7 +87,6 @@ The response contains the newly created LLM configuration and includes a
 unique id assigned to the LLM, along with the name, description, and an 
 enabled status indicating that the model is active and available for use.
 
-
 ### Example response
 
 ```json
@@ -96,4 +96,17 @@ enabled status indicating that the model is active and available for use.
     "description": "GPT-4 instance hosted on Azure",
     "enabled": true
 }
+```
+## Error responses
+
+* **400 Bad Request** - The request body is invalid.
+* **403 Forbidden** – The user does not have permission to delete the specified LLM.
+
+## REST 2.0 URL
+
+### Create LLM Endpoint Address
+
+<Config v="names.product"/> exposes an HTTP endpoint at the following URL to 
+create and configure a Large Language Model (LLM):
+<code>https://<Config v="domains.rest.indexing"/>/v2/llms</code>
 
