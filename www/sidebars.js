@@ -436,7 +436,10 @@ module.exports = {
         {
           type: "category",
           label: "Encoder APIs",
-          items: ["api-reference/encoder-apis/list-encoders"],
+          items: [
+            "api-reference/encoder-apis/create-encoder",
+            "api-reference/encoder-apis/list-encoders",
+          ],
         },
         {
           type: "category",
