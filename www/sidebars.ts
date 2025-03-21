@@ -183,9 +183,13 @@ const sidebars: SidebarsConfig = {
         {
           type: "category",
           label: "Authentication and Authorization",
+          link: {
+            type: 'doc',
+            id: 'learn/authentication/auth-overview', 
+          },
           collapsed: true,
           items: [
-            "learn/authentication/auth-overview",
+            "learn/authentication/transport-layer-security",
             "learn/authentication/api-key-management",
             "learn/authentication/oauth-2",
             "learn/authentication/role-based-access-control",
