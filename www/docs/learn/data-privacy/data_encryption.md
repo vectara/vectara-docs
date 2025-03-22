@@ -17,7 +17,7 @@ indexes both the document text and metadata.
 :::note
 
 For the safety of your data, <Config v="names.product"/> always stores your text 
-and metadata in an encrypted format. By default this encryption uses <Config v="names.product"/>'s 
+and metadata (except filterable metadata fields) in an encrypted format. By default this encryption uses <Config v="names.product"/>'s 
 own encryption key to encrypt your data (text and/or metadata).
 
 :::
