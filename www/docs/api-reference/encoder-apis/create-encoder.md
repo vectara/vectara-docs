@@ -45,7 +45,7 @@ This example request creates an encoder for document similarity search.
   "type": "openai",
   "name": "custom-embedding-encoder",
   "description": "Custom OpenAI embedding encoder for document similarity search.",
-  "endpoint_url": "https://api.openai.com/v1/embeddings",
+  "uri": "https://api.openai.com/v1/embeddings",
   "model": "text-embedding-ada-002",
   "auth": {
     "type": "bearer",
@@ -63,6 +63,7 @@ The response includes details about the newly created encoder.
     "id": "enc_987654321",
     "name": "custom-embedding-encoder",
     "description": "Custom OpenAI embedding encoder for document similarity search.",
+    "output_dimensions": 1536,
     "enabled": true
 }
 ```
