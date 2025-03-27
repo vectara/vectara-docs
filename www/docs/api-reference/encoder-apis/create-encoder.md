@@ -26,13 +26,11 @@ document retrieval, and advanced AI applications.
 To create a new encoder, send a `POST` request to `/v2/encoders`. The request body 
 must include the following parameters:
 
-* `type`: Set to openai to indicate compatibility with OpenAI-based embedding 
-  APIs.
-* `name`: Provides a user-defined label for the encoder configuration.
-* `description`: Adds metadata about the encoder.
-* `output_dimensions`: Specifies the number of dimensions in the output 
-  embedding vector, such as `1536`.
-* `endpoint_url`: Specifies the API endpoint of where to send the encoding 
+* `type`: Set to `openai-compatible` to indicate compatibility with OpenAI-based 
+  embedding APIs.
+* `name`: Provides a unique name for the encoder.
+* `description`: Adds a description about the encoder.
+* `uri`: Specifies the URI endpoint for the embedding API of where to send the encoding 
   requests, such as `https://api.openai.com/v1/embeddings`
 * `model`: Specifies the exact model name, such as `text-embedding-ada-002`.
 * `auth`: Defines authentication details, supporting either Bearer token 
@@ -47,7 +45,6 @@ This example request creates an encoder for document similarity search.
   "type": "openai",
   "name": "custom-embedding-encoder",
   "description": "Custom OpenAI embedding encoder for document similarity search.",
-  "output_dimensions": 1536,
   "endpoint_url": "https://api.openai.com/v1/embeddings",
   "model": "text-embedding-ada-002",
   "auth": {
@@ -66,11 +63,9 @@ The response includes details about the newly created encoder.
     "id": "enc_987654321",
     "name": "custom-embedding-encoder",
     "description": "Custom OpenAI embedding encoder for document similarity search.",
-    "output_dimensions": 1536,
     "enabled": true
 }
 ```
-
 
 
 ## Error responses
