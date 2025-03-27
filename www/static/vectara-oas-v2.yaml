@@ -5585,13 +5585,13 @@ components:
           type: string
           default: openai-compatible
         name:
-          description: The unique name of the encoder
+          description: A unique name for the encoder
           type: string
-          example: my-openai-encoder
+          example: openai-text-encoder
         description:
           description: A description of what this encoder does
           type: string
-          example: OpenAI text embedding encoder
+          example: description
         output_dimensions:
           description: 'The number of dimensions in the output embedding vector. If
             provided and the model supports truncation,
@@ -5602,7 +5602,6 @@ components:
           type: integer
           format: int32
           minimum: 1
-          example: 1536
         uri:
           description: The URI endpoint for the embedding API (can be OpenAI or any
             compatible embedding API endpoint)
@@ -5635,10 +5634,10 @@ components:
         name:
           description: The encoder name, `boomerang-2023-q3`.
           type: string
-          example: boomerang-2023-q3
+          example: openai-text-encoder
         type:
           description: The encoder type
-          example: vectara
+          example: openai-compatible
           type: string
           default: vectara
         output_dimensions:
@@ -5653,7 +5652,7 @@ components:
             '
           type: integer
           format: int32
-          example: 768
+          example: 1536
         description:
           description: The encoder description.
           type: string
