@@ -24,7 +24,6 @@
     "docusaurus-plugin-remote-content": "^4.0.0",
     "docusaurus-plugin-sass": "^0.2.6",
     "docusaurus-theme-openapi-docs": "^4.3.6",
-    "mdx-embed": "^1.1.2",
     "prism-react-renderer": "^2.4.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

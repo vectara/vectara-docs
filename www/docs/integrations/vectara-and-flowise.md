@@ -5,7 +5,7 @@ sidebar_label: Vectara and Flowise
 ---
 
 import {Config} from '@site/docs/definitions.md';
-import { YouTube } from 'mdx-embed';
+import YouTube from '@site/src/components/YouTube/YouTube.js';
 
 Flowise is an open-source UI tool that lets you build personalized LLM flows 
 using a user-friendly drag-and-drop interface. Use it to create a RAG AI 

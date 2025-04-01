@@ -6,7 +6,7 @@ sidebar_label: Video Tutorials
 
 <!-- Nurture sequence emails link to this page. These links will break if the URL is changed. -->
 
-import { YouTube } from 'mdx-embed';
+import YouTube from '../src/components/YouTube/YouTube.js';
 
 <!-- This title is slugified and will break nurture sequence links if changed. -->
 
