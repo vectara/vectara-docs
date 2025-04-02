@@ -8,6 +8,22 @@ const sidebar: SidebarsConfig = {
     },
     {
       type: "category",
+      label: "Authentication",
+      link: {
+        type: "doc",
+        id: "rest-api/authentication",
+      },
+      items: [
+        {
+          type: "doc",
+          id: "rest-api/get-o-auth-token",
+          label: "Request an access token",
+          className: "api-method post",
+        },
+      ],
+    },
+    {
+      type: "category",
       label: "Queries",
       link: {
         type: "doc",
@@ -236,6 +252,124 @@ const sidebar: SidebarsConfig = {
     },
     {
       type: "category",
+      label: "Generation Presets",
+      link: {
+        type: "doc",
+        id: "rest-api/generation-presets",
+      },
+      items: [
+        {
+          type: "doc",
+          id: "rest-api/list-generation-presets",
+          label: "List generation presets",
+          className: "api-method get",
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "Query History",
+      link: {
+        type: "doc",
+        id: "rest-api/query-history",
+      },
+      items: [
+        {
+          type: "doc",
+          id: "rest-api/get-query-history",
+          label: "Get a query history",
+          className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "rest-api/get-query-histories",
+          label: "List the history of previous queries",
+          className: "api-method get",
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "API Keys",
+      link: {
+        type: "doc",
+        id: "rest-api/api-keys",
+      },
+      items: [
+        {
+          type: "doc",
+          id: "rest-api/create-api-key",
+          label: "Create an API key",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "rest-api/list-api-keys",
+          label: "List API keys",
+          className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "rest-api/get-api-key",
+          label: "Get an API key",
+          className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "rest-api/update-api-key",
+          label: "Update an API key",
+          className: "api-method patch",
+        },
+        {
+          type: "doc",
+          id: "rest-api/delete-api-key",
+          label: "Delete an API key",
+          className: "api-method delete",
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "Application Clients",
+      link: {
+        type: "doc",
+        id: "rest-api/application-clients",
+      },
+      items: [
+        {
+          type: "doc",
+          id: "rest-api/create-app-client",
+          label: "Create an App Client",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "rest-api/list-app-client",
+          label: "List App Clients",
+          className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "rest-api/get-app-client",
+          label: "Get an App Client",
+          className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "rest-api/update-app-client",
+          label: "Update an App Client",
+          className: "api-method patch",
+        },
+        {
+          type: "doc",
+          id: "rest-api/delete-app-client",
+          label: "Delete an App Client",
+          className: "api-method delete",
+        },
+      ],
+    },
+    {
+      type: "category",
       label: "Large Language Models",
       link: {
         type: "doc",
@@ -376,110 +510,16 @@ const sidebar: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "Application Clients",
+      label: "Table Extractors",
       link: {
         type: "doc",
-        id: "rest-api/application-clients",
+        id: "rest-api/table-extractors",
       },
       items: [
         {
           type: "doc",
-          id: "rest-api/create-app-client",
-          label: "Create an App Client",
-          className: "api-method post",
-        },
-        {
-          type: "doc",
-          id: "rest-api/list-app-client",
-          label: "List App Clients",
-          className: "api-method get",
-        },
-        {
-          type: "doc",
-          id: "rest-api/get-app-client",
-          label: "Get an App Client",
-          className: "api-method get",
-        },
-        {
-          type: "doc",
-          id: "rest-api/update-app-client",
-          label: "Update an App Client",
-          className: "api-method patch",
-        },
-        {
-          type: "doc",
-          id: "rest-api/delete-app-client",
-          label: "Delete an App Client",
-          className: "api-method delete",
-        },
-      ],
-    },
-    {
-      type: "category",
-      label: "API Keys",
-      link: {
-        type: "doc",
-        id: "rest-api/api-keys",
-      },
-      items: [
-        {
-          type: "doc",
-          id: "rest-api/create-api-key",
-          label: "Create an API key",
-          className: "api-method post",
-        },
-        {
-          type: "doc",
-          id: "rest-api/list-api-keys",
-          label: "List API keys",
-          className: "api-method get",
-        },
-        {
-          type: "doc",
-          id: "rest-api/get-api-key",
-          label: "Get an API key",
-          className: "api-method get",
-        },
-        {
-          type: "doc",
-          id: "rest-api/update-api-key",
-          label: "Update an API key",
-          className: "api-method patch",
-        },
-        {
-          type: "doc",
-          id: "rest-api/delete-api-key",
-          label: "Delete an API key",
-          className: "api-method delete",
-        },
-      ],
-    },
-    {
-      type: "category",
-      label: "Generation Presets",
-      items: [
-        {
-          type: "doc",
-          id: "rest-api/list-generation-presets",
-          label: "List generation presets",
-          className: "api-method get",
-        },
-      ],
-    },
-    {
-      type: "category",
-      label: "Query History",
-      items: [
-        {
-          type: "doc",
-          id: "rest-api/get-query-history",
-          label: "Get a query history",
-          className: "api-method get",
-        },
-        {
-          type: "doc",
-          id: "rest-api/get-query-histories",
-          label: "List the history of previous queries",
+          id: "rest-api/list-table-extractors",
+          label: "List supported table extractors",
           className: "api-method get",
         },
       ],
