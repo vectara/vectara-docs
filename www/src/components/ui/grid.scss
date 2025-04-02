@@ -1,4 +1,5 @@
-@import "./styleUtils";
+@use "styleUtils";
+@use "styleUtils/sizes";
 
 .gridLayoutContainer {
   container-type: inline-size;
@@ -6,8 +7,8 @@
 
 .gridLayout {
   display: grid;
-  column-gap: $sizeL;
-  row-gap: $sizeL;
+  column-gap: sizes.$sizeL;
+  row-gap: sizes.$sizeL;
 }
 
 .gridLayout--columns1 {

@@ -1,3 +1,5 @@
+@use "colors";
+
 @use "sass:map";
 
 $fontSizeSmall: 12px;
@@ -8,8 +10,8 @@ $fontSizeXLarge: 24px;
 $fontSizeXxLarge: 30px;
 $fontSizeXxxLarge: 40px;
 
-$colorText: $colorDarkerShade;
-$colorSubdued: $colorDarkShade;
+$colorText: colors.$colorDarkerShade;
+$colorSubdued: colors.$colorDarkShade;
 
 $fontWeightNormal: 400;
 $fontWeightBold: 600;

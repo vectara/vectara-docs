@@ -1,21 +1,22 @@
-@import "./styleUtils";
+@use "styleUtils";
+@use "styleUtils/sizes";
 
 .spacer {
   flex-shrink: 0;
 }
 
-$size: (
-  xxxs: $sizeXxxs,
-  xxs: $sizeXxs,
-  xs: $sizeXs,
-  s: $sizeS,
-  m: $sizeM,
-  l: $sizeL,
-  xl: $sizeXl,
-  xxl: $sizeXxl,
+sizes.$size: (
+  xxxs: sizes.$sizeXxxs,
+  xxs: sizes.$sizeXxs,
+  xs: sizes.$sizeXs,
+  s: sizes.$sizeS,
+  m: sizes.$sizeM,
+  l: sizes.$sizeL,
+  xl: sizes.$sizeXl,
+  xxl: sizes.$sizeXxl,
 );
 
-@each $sizeName, $sizeValue in $size {
+@each $sizeName, $sizeValue in sizes.$size {
   .spacer--#{$sizeName} {
     height: $sizeValue;
   }
