@@ -4,7 +4,6 @@ title: Boomerang
 sidebar_label: Boomerang
 ---
 
-import {Config} from '@site/docs/definitions.md';
 
 Boomerang is an advanced embedding and retrieval model designed by Vectara to 
 significantly improve the performance of semantic search and 

@@ -8,7 +8,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
-import {Config} from '@site/docs/definitions.md';
 
 The List Rerankers API retrieves a list of available rerankers used to improve
 the ranking and ordering of search results.

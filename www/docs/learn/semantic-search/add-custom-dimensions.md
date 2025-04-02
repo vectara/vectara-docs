@@ -8,7 +8,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
-import {Config} from '@site/docs/definitions.md';
 
 Many search scenarios require considering factors beyond the text content 
 itself, such as user engagement metrics or temporal relevance. Custom 

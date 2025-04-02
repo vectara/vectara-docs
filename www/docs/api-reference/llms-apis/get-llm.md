@@ -8,7 +8,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
-import {Config} from '@site/docs/definitions.md';
 
 The Get LLM API allows users to retrieve details about a specific Large 
 Language Model (LLM) that has been configured within the Vectara platform. 

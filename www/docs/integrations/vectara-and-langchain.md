@@ -4,7 +4,6 @@ title: Vectara and LangChain
 sidebar_label: Vectara and LangChain
 ---
 
-import {Config} from '@site/docs/definitions.md';
 
 LangChain serves as an orchestration framework for building LLM-powered 
 applications. Vectara's [integration into LangChain](https://python.langchain.com/docs/integrations/vectorstores/vectara/) as a vectorstore empowers 

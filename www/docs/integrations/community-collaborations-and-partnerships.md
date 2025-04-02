@@ -4,7 +4,6 @@ title: Community Collaborations and Partnerships
 sidebar_label: Community Collaborations and Partnerships
 ---
 
-import {Config} from '@site/docs/definitions.md';
 
 In collaboration with the larger generative AI community, Vectara integrates 
 with other systems that empower developers to enhance their AI applications. 

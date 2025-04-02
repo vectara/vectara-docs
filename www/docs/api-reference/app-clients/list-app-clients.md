@@ -6,7 +6,6 @@ sidebar_label: List App Clients API Definition
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The List App Clients API lets you list an Application Client for OAuth 2.0

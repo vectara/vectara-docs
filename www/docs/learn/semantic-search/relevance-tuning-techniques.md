@@ -4,7 +4,6 @@ title: Relevance Tuning Techniques
 sidebar_label: Relevance Tuning Techniques
 ---
 
-import {Config} from '@site/docs/definitions.md';
 
 By default, <Config v="names.product"/> uses a form of "question-answer"
 similarity to produce the scoring. This provides a very robust ability to

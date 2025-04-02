@@ -4,7 +4,6 @@ title: Recommendation System
 sidebar_label: Recommendation System
 ---
 
-import {Config} from '@site/docs/definitions.md';
 
 Many platforms struggle to keep users engaged with relevant content or 
 products, often relying on simplistic matching algorithms. Vectara can be used 

@@ -3,7 +3,6 @@ id: file-upload-filetypes
 title: Supported File Types
 ---
 
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 ## Raw document types

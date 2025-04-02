@@ -6,7 +6,6 @@ sidebar_label: Manage User API Definition
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The Manage User API lets you perform different user and team management

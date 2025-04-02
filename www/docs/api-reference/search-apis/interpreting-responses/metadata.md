@@ -6,7 +6,6 @@ sidebar_label: Reading Metadata
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '@site/docs/definitions.md';
 
 In <Config v="names.product"/>, when you [index a document](/docs/api-reference/indexing-apis/indexing), the 
 document has a `type` parameter that determines the format of the document 

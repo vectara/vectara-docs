@@ -5,7 +5,6 @@ sidebar_label: React-Search
 ---
 
 import {vars} from '@site/static/variables.json';
-import {Config} from '@site/docs/definitions.md';
 
 ![Screenshot of React-Search search box](/img/react_search.jpg)
 

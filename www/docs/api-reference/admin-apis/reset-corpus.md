@@ -4,7 +4,6 @@ title: Reset Corpus API Definition
 sidebar_label: Reset Corpus API Definition
 ---
 
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The Reset Corpus API lets you reset a corpus, which deletes the

@@ -6,7 +6,6 @@ sidebar_label: Get User API Definition
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The Get User API lets you retrieve information about a specific user on the

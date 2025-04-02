@@ -4,7 +4,6 @@ title: REST APIs
 sidebar_label: REST APIs
 ---
 
-import {Config} from '@site/docs/definitions.md';
 
 While gRPC provides low latency and excellent scalability, REST APIs provide a
 traditional integration path for web-based applications. With the introduction

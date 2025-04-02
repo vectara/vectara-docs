@@ -6,7 +6,6 @@ sidebar_label: Transport Layer Security (TLS)
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '@site/docs/definitions.md';
 import vars from '@site/static/variables.json';
 
 All communication to and from the API endpoints take place using an encrypted

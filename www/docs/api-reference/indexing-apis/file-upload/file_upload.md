@@ -7,7 +7,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
-import {Config} from '@site/docs/definitions.md';
 
 The File Upload API enables you to extract text from unstructured documents in 
 common file types like PDFs, Microsoft Word, Text, HTML, and Markdown. It also 

@@ -6,7 +6,6 @@ sidebar_label: Privacy Overview
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '@site/docs/definitions.md';
 
 At <Config v="names.company"/>, we treat your data with the utmost privacy:
 * We do not use your data or searches to train our models.

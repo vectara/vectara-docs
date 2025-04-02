@@ -8,7 +8,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
-import {Config} from '@site/docs/definitions.md';
 
 The Get Job API retrieves details about a specific job by `job_id`. Jobs are
 background processes like replacing the filterable metadata attributes of a

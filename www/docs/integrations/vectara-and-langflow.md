@@ -4,7 +4,6 @@ title: Vectara and LangFlow
 sidebar_label: Vectara and LangFlow
 ---
 
-import {Config} from '@site/docs/definitions.md';
 import YouTube from '@site/src/components/YouTube/YouTube.js';
 
 LangFlow is a leading open-source no-code platform for building LLM-powered 

@@ -6,7 +6,6 @@ sidebar_label: Maximal Marginal Relevance (MMR) Reranker
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The Maximal Marginal Relevance (MMR) reranker enables you to diversify search 

@@ -5,7 +5,6 @@ sidebar_label: App Building Tools
 ---
 
 import {vars} from '@site/static/variables.json';
-import {Config} from '@site/docs/definitions.md';
 
 Vectara empowers developers with advanced capabilities in document indexing,
 neural retrieval, and Retrieval Augmented Generation (RAG) enhancement. Our

@@ -6,7 +6,6 @@ sidebar_label: Custom Prompts with Metadata
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 Vectara handles the system and user prompts automatically, but if you want to

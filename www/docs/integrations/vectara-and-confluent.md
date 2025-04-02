@@ -4,7 +4,6 @@ title: Vectara Kafka Connect Plugin
 sidebar_label: Vectara and Confluent
 ---
 
-import {Config} from '@site/docs/definitions.md';
 
 The **Vectara Kafka Connect Plugin** seamlessly integrates [Confluent Cloud](https://confluent.cloud/) 
 with Vectara, which enables real-time processing of data, allowing you 

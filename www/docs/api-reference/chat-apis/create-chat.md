@@ -6,7 +6,6 @@ sidebar_label: Create Chat API Definition
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The Create Chat API allows you to start a new chat while specifying the

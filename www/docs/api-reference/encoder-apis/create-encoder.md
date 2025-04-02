@@ -8,7 +8,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import vars from '@site/static/variables.json';
-import {Config} from '@site/docs/definitions.md';
 
 The Create Encoder API allows users to register a new text embedding encoder 
 for use within the Vectara platform. This API enables seamless integration 

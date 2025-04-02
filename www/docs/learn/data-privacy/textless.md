@@ -6,7 +6,6 @@ sidebar_label: Textless Mode
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '@site/docs/definitions.md';
 
 When you create a corpus [via the API](/docs/api-reference/admin-apis/create-corpus) or the
 [Vectara Console UI](/docs/console-ui/creating-a-corpus), you have the option to **not** store 

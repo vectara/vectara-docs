@@ -4,7 +4,6 @@ title: API Recipes
 sidebar_label: API Recipes
 ---
 
-import {Config} from '@site/docs/definitions.md';
 
 Using our APIs enable application developers and data engineers to seamlessly
 integrate the <Config v="names.product"/> semantic search capabilities into

@@ -6,7 +6,6 @@ sidebar_label: User Defined Function Reranker
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '@site/docs/definitions.md';
 
 Our out-of-the-box rerankers are effective for general use cases, but some 
 specific use cases require fine-grained control over how search results are 

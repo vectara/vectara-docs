@@ -4,7 +4,6 @@ title: List Corpora API Definition
 sidebar_label: List Corpora API Definition
 ---
 
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The List Corpora API lets you retrieve a list of corpora in your account. This

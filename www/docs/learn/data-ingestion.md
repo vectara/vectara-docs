@@ -4,7 +4,6 @@ title: Data Ingestion
 sidebar_label: Data Ingestion
 ---
 
-import {Config} from '@site/docs/definitions.md';
 
 Vectara offers multiple data ingestion methods to accommodate different types
 of use cases. By choosing the appropriate ingestion method, users can

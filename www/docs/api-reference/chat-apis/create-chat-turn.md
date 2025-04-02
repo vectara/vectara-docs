@@ -6,7 +6,6 @@ sidebar_label: Create Chat Turn API Definition
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The Create Chat Turn API allows you to create a new turn in a chat. Each

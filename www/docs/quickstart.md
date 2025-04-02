@@ -4,7 +4,6 @@ title: Quick Start
 sidebar_label: Quick Start
 ---
 
-import {Config} from '@site/docs/definitions.md';
 
 New users often find it challenging to get started with a new product and
 fully understand its capabilities. With <Config v="names.product"/>, we've made it simple with our

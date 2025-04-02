@@ -4,7 +4,6 @@ title: Vectara and DataVolo
 sidebar_label: Vectara and DataVolo
 ---
 
-import {Config} from '@site/docs/definitions.md';
 
 DataVolo, powered by Apache NiFi, is designed for continuous, event-driven 
 ingest that can scale up on demand to cope with bursts of high-volume data, 

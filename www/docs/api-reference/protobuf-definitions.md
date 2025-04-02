@@ -4,7 +4,6 @@ title: gRPC APIs
 sidebar_label: gRPC APIs
 ---
 
-import {Config} from '@site/docs/definitions.md';
 
 <Config v="names.product"/> implements a <a href="https://grpc.io/">gRPC (Remote Procedure 
 Call) API</a> to all its core services. gRPC is a high-performance, open-source 

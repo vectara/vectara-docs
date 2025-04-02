@@ -4,7 +4,6 @@ title: Intelligent Query Rewriting
 sidebar_label: Intelligent Query Rewriting
 ---
 
-import {Config} from '@site/docs/definitions.md';
 
 Many datasets contain filterable metadata that can improve search relevance, 
 but users often lack knowledge of these metadata structures, or how to 

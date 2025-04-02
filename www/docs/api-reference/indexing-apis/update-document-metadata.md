@@ -4,7 +4,6 @@ title: Update Document Metadata API Definition
 sidebar_label: Update Document Metadata API Definition
 ---
 
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The Update Document Metadata API enables you to modify the metadata of a 

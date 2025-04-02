@@ -4,7 +4,6 @@ title: Document Data Structuring
 sidebar_label: Document Data Structuring
 ---
 
-import {Config} from '@site/docs/definitions.md';
 
 Munging files into a structured data format helps preserve relationships 
 between bits of data, retains special meaning of specific data types, and 

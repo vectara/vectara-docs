@@ -3,7 +3,6 @@ id: func-opr
 title: Functions and Operators
 ---
 
-import {Config} from '@site/docs/definitions.md';
 
 Most operators in <Config v="names.product"/> have the same precedence and are left-associative.
 You need to use parenthesis to enforce a different precedence.

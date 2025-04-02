@@ -6,7 +6,6 @@ sidebar_label: Query API Definition
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 Organizations often struggle to extract relevant information from large 

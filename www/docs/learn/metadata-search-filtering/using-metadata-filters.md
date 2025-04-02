@@ -4,7 +4,6 @@ title: Using Metadata
 sidebar_title: UsingMetadata
 ---
 
-import {Config} from '@site/docs/definitions.md';
 
 To effectively use metadata filters in Vectara, you need to configure the 
 metadata fields that your queries can filter on. This process involves 

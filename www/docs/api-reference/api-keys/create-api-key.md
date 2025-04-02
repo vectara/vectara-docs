@@ -6,7 +6,6 @@ sidebar_label: Create API Key API Definition
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The Create API Key API lets you create new API keys, which you can

@@ -4,7 +4,6 @@ title: Hybrid Search
 sidebar_label: Hybrid Search
 ---
 
-import {Config} from '@site/docs/definitions.md';
 
 Traditional keyword-based search often fails to capture the context and intent 
 behind user queries, leading to irrelevant or incomplete results. Vectara's 

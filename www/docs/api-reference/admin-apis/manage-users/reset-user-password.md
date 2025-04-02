@@ -6,7 +6,6 @@ sidebar_label: Reset User Password API Definition
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The Reset User Password API lets you send a password reset email to the user.

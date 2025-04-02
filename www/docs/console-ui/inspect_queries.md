@@ -6,7 +6,6 @@ sidebar_label: Evaluate Queries
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 Developers often struggle to understand why certain queries fall short of 

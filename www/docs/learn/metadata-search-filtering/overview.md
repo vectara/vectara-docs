@@ -4,7 +4,6 @@ title: Metadata Filters
 sidebar_title: Metadata Filters
 ---
 
-import {Config} from '@site/docs/definitions.md';
 
 In many search scenarios, retrieving all available documents is not enough to 
 meet your application needs. It may be necessary to narrow the query results 

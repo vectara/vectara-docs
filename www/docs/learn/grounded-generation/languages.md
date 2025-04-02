@@ -3,7 +3,6 @@ id: grounded-generation-response-languages
 title: Response Languages
 ---
 
-import {Config} from '@site/docs/definitions.md';
 
 The `response_language` field in <Config v="names.product"/> allows control of the language
 for sumarization requests. You *can* ask <Config v="names.product"/> to attempt

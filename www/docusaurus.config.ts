@@ -12,6 +12,7 @@ const config: Config = {
   organizationName: "vectara",
   projectName: "vectara-docs",
   onBrokenLinks: "ignore",
+  onBrokenAnchors: "ignore",
 
   presets: [
     [

@@ -4,7 +4,6 @@ title: OAuth 2.0 Tokens
 sidebar_label: OAuth 2.0 Tokens
 ---
 
-import {Config} from '@site/docs/definitions.md';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 

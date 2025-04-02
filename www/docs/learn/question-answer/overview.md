@@ -4,7 +4,6 @@ title: FAQ and Q&A Matching
 sidebar_label: FAQ and Q&A Matching
 ---
 
-import {Config} from '@site/docs/definitions.md';
 
 FAQ and Question-and-Answer (Q&A) matching leverages our neural retrieval 
 capabilities to deliver precise answers and can help streamline support 
