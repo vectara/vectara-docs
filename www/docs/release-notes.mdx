@@ -19,34 +19,29 @@ and how these product and documentation changes can benefit your enterprise.
 
 ---
 
-## Expanded Available Large Language Model (LLM) Management APIs
+## Expanded Encoder Management
 
-_March 10, 2025_
+_March 20, 2025_
 
-Vectara expands its Large Language Model (LLM) management capabilities with 
-the introduction of the Delete LLM API and Get LLM API, joining the previously 
-released Create LLM API. These new LLM endpoints provide organizations with 
-greater flexibility in tracking, modifying, and removing external LLM 
-configurations, streamlining AI model management while ensuring security and 
-compliance.
+Vectara introduces the Create Encoder API, allowing users to register and 
+configure custom text embedding encoders for seamless integration within the 
+Vectara platform. This API supports OpenAI-compatible encoders, enabling users 
+to define authentication details, model parameters, and API endpoints for 
+enhanced embedding workflows.
 
-**Why it matters:** With these enhancements, users can retrieve LLM configurations 
-instantly, securely remove outdated models, and maintain an optimized AI 
-deployment. The Get LLM API enables users to verify model settings, such as 
-authentication and endpoint details, while the Delete LLM API allows 
-organizations to clean up unused or deprecated models efficiently.
+**Why it matters:** Organizations using AI-powered search and retrieval 
+applications can now manage multiple encoder configurations tailored to their 
+specific needs. This capability provides greater flexibility in defining 
+custom embedding models, optimizing similarity search, document retrieval, 
+and other AI-driven use cases.
 
-**New API Endpoints**
+**New API Endpoint:**
 
-* [Get an LLM](/docs/rest-api/large-language-models)
-* [Delete an LLM](/docs/rest-api/large-language-models)
+* [Create an Encoder](/docs/rest-api/create-encoder)
 
 **More information:**
 
-* [Get an LLM API Definition](/docs/api-reference/llms-apis/get-llm)
-* [Delete LLM API Definition](/docs/api-reference/llms-apis/delete-llm)
-
----
+* [Create Encoder API Definition](/docs/api-reference/encoder-apis/create-encoder)
 
 ## Vectara Kafka Connect Plugin Integration
 
@@ -63,7 +58,7 @@ analytics, optimizing knowledge retrieval from streaming data.
 
 **More information:**
 
-[Vectara and Confluent](/docs/integrations/vectara-and-confluent)
+* [Vectara and Confluent](/docs/integrations/vectara-and-confluent)
 
 ## Integrate External Large Language Models (LLMs) 
 
