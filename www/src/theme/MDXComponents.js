@@ -1,9 +1,11 @@
-import variables from '@site/static/variables.json'; // Renamed for clarity
+import DefaultMDXComponents from '@theme-original/MDXComponents';
+import variables from '@site/static/variables.json';
 
 const Config = ({ v }) => {
-  return variables.vars[v] || `Unknown config: ${v}`; // Access nested vars
+  return variables.vars[v] || `Unknown config: ${v}`;
 };
 
 export default {
-  Config
+  ...DefaultMDXComponents, // Preserve default components, including Admonition
+  Config // Add your custom component
 };
