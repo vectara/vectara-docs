@@ -758,9 +758,23 @@ paths:
         chunking with `''chunking_strategy={"type":"sentence_chunking_strategy"};type=application/json''`
         or use max chars chunking with `''chunking_strategy={"type":"max_chars_chunking_strategy","max_chars_per_chunk":200};type=application/json''`
 
-        * `table_extraction_config` - (Optional) Specifies whether to extract table
-        data from the uploaded file. If you do not set this option, the platform does
-        not extract tables from PDF files. Example config, `''table_extraction_config={"extract_tables":true};type=application/json''`
+        * `table_extraction_config` - (Optional) This configuration object controls
+        table extraction and summarization for uploaded documents. If you do not set
+        this option, the platform does not extract tables from PDF files. `extract_tables`:
+        A required flag to enable or disable table extraction from the uploaded document.
+        All other parameters override the platform''s default behavior: `extractor.name`:
+        Overrides the default table extraction engine with the specified one (e.g.,
+        "gmft"). `generation`: Overrides default generation settings for extracted
+        tables: `llm_name`: Specifies the language model to use for summarization
+        (e.g., "gpt-4o"). `prompt_template`: Custom prompt template used to guide
+        summarization. `model_parameters`: Custom parameters to modify model behavior
+        (e.g., temperature, other key-value pairs).
+
+        Example config:
+
+        `''table_extraction_config={ "extract_tables": true, "extractor": { "name":
+        "gmft" }, "generation": { "llm_name": "gpt-4o", "prompt_template": "custom
+        prompt", "model_parameters": { "temperature": 0, "max_tokens": "512" } } };type=application/json''`
 
         * `file` - Specifies the file that you want to upload.
 
@@ -4464,6 +4478,8 @@ components:
             '
         extractor:
           $ref: '#/components/schemas/TableExtractorSpec'
+        generation:
+          $ref: '#/components/schemas/TableGenerationSpec'
       required:
       - extract_tables
     ChunkingStrategy:
@@ -5049,6 +5065,12 @@ components:
           format: uri
         auth:
           $ref: '#/components/schemas/RemoteAuth'
+        headers:
+          description: Additional HTTP headers to include with requests to the LLM
+            API.
+          type: object
+          additionalProperties:
+            type: string
         test_model_parameters:
           description: 'Any additional parameters that are required for the LLM during
             the test call.
@@ -5710,6 +5732,33 @@ components:
           example: textract
       required:
       - name
+    TableGenerationSpec:
+      description: 'Specification for which generation to use during table summarization.
+        If not specified, the platform uses the default summarizer.
+
+        '
+      type: object
+      properties:
+        llm_name:
+          description: The name of the LLM to use.
+          type: string
+          example: gpt-4o
+        prompt_template:
+          type: string
+          description: "The prompt template to use when generating the table summary.\
+            \ \nVectara manages both system and user roles and prompts for the generative\n\
+            LLM out of the box by default. However, users can override the\n`prompt_template`\
+            \ via this variable. The `prompt_template` is in the form of an\nApache\
+            \ Velocity template. For more details on how to configure the\n`prompt_template`,\
+            \ see the [long-form documentation](https://docs.vectara.com/docs/prompts/vectara-prompt-engine).\n"
+        model_parameters:
+          type: object
+          description: Optional parameters for the specified model used when generating
+            the table summary.
+          example:
+            temperature: 0
+            max_tokens: 512
+          additionalProperties: true
     TableExtractor:
       description: 'A table extractor can be used to extract tabular data from documents
         during indexing.
@@ -5729,6 +5778,8 @@ components:
           description: The description of the table extractor.
           type: string
           example: Uses the AWS Textract service to extract tables.
+        generation:
+          $ref: '#/components/schemas/TableGenerationSpec'
     ListTableExtractorsResponse:
       type: object
       description: Response containing a list of available table extractors for document
