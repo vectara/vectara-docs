@@ -6,7 +6,6 @@ sidebar_label: Query Observability
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 As developers build generative AI applications, one of the biggest challenges 

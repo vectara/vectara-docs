@@ -4,7 +4,6 @@ title: REST APIs
 sidebar_label: REST APIs
 ---
 
-import {Config} from '@site/docs/definitions.md';
 
 While gRPC provides low latency and excellent scalability, REST APIs provide a
 traditional integration path for web-based applications. With the introduction
@@ -81,7 +80,7 @@ The following endpoints help you with queries:
   using advanced filtering, pagination, and summarization options.
 - [Simple Corpus Query API](/docs/api-reference/search-apis/search#simple-single-corpus-query): Execute lightweight
   searches on a single corpus.
-- [Advanced Corpus Query API](/docs/api-reference/search-apis/search#advanced-corpus-query): Perform advanced queries on a specific corpus
+- [Advanced Corpus Query API](/docs/api-reference/search-apis/search#advanced-single-corpus-query): Perform advanced queries on a specific corpus
   with additional filtering and customization options.
 
 ### Query histories

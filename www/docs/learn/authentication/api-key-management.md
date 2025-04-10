@@ -6,8 +6,7 @@ sidebar_label: API Key Management
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '@site/docs/definitions.md';
-import {vars} from '@site/static/variables.json';
+import vars from '@site/static/variables.json';
 
 API Keys allow controlled, anonymous access to several administrative tasks, 
 indexing your data, and running semantic searches on your corpora. This 

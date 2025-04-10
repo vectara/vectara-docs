@@ -4,7 +4,6 @@ title: Knee Reranking
 sidebar_label: Knee Reranking
 ---
 
-import {Config} from '@site/docs/definitions.md';
 
 Retrieval Augmented Generation (RAG) systems often struggle with determining 
 optimal cutoff points for query results. Fixed score thresholds provide a 

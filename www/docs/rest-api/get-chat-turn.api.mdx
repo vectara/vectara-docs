@@ -5,44 +5,67 @@ description: "Get a specific turn from a chat, which is a message and response p
 sidebar_label: "Get a turn"
 hide_title: true
 hide_table_of_contents: true
-api: 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
+api: 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
 sidebar_class_name: "get api-method"
 info_path: docs/rest-api/vectara-rest-api-v-2
 custom_edit_url: null
 ---
 
-import ApiTabs from "@theme/ApiTabs";
-import DiscriminatorTabs from "@theme/DiscriminatorTabs";
 import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
-import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
-import MimeTabs from "@theme/MimeTabs";
-import ParamsItem from "@theme/ParamsItem";
-import ResponseSamples from "@theme/ResponseSamples";
-import SchemaItem from "@theme/SchemaItem";
-import SchemaTabs from "@theme/SchemaTabs";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
 import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
 
-<h1 className={"openapi__heading"}>Get a turn</h1>
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get a turn"}
+>
+</Heading>
 
-<MethodEndpoint method={"get"} path={"/v2/chats/{chat_id}/turns/{turn_id}"}></MethodEndpoint>
+<MethodEndpoint
+  method={"get"}
+  path={"/v2/chats/{chat_id}/turns/{turn_id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
 
 
 
 Get a specific turn from a chat, which is a message and response pair from the conversation.
 
-## Request
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
 
-<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Path Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"in":"path","name":"chat_id","description":"The ID of the chat.","required":true,"schema":{"type":"string","pattern":"cht_.+$"}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"in":"path","name":"turn_id","description":"The ID of the turn.","required":true,"schema":{"type":"string","pattern":"trn_.+$"}}}></ParamsItem></ul></div></details><details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Header Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"in":"header","name":"Request-Timeout","description":"The API will make a best effort to complete the request in the specified seconds or time out.","schema":{"type":"integer","minimum":1},"required":false}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"in":"header","name":"Request-Timeout-Millis","description":"The API will make a best effort to complete the request in the specified milliseconds or time out.","schema":{"type":"integer","minimum":1}}}></ParamsItem></ul></div></details><div><div><ApiTabs><TabItem label={"200"} value={"200"}><div>
+<ParamsDetails
+  parameters={[{"in":"header","name":"Request-Timeout","description":"The API will make a best effort to complete the request in the specified seconds or time out.","schema":{"type":"integer","minimum":1},"required":false},{"in":"header","name":"Request-Timeout-Millis","description":"The API will make a best effort to complete the request in the specified milliseconds or time out.","schema":{"type":"integer","minimum":1}},{"in":"path","name":"chat_id","description":"The ID of the chat.","required":true,"schema":{"type":"string","pattern":"cht_.+$"}},{"in":"path","name":"turn_id","description":"The ID of the turn.","required":true,"schema":{"type":"string","pattern":"trn_.+$"}}]}
+>
+  
+</ParamsDetails>
 
-The turn.
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
 
-</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"id"} required={false} schemaName={"string"} qualifierMessage={"**Possible values:** Value must match regular expression `trn_.+$`"} schema={{"description":"The ID of the turn.","type":"string","pattern":"trn_.+$"}}></SchemaItem><SchemaItem collapsible={false} name={"chat_id"} required={false} schemaName={"string"} qualifierMessage={"**Possible values:** Value must match regular expression `cht_.+$`"} schema={{"description":"The ID of the chat the turn resides in.","type":"string","pattern":"cht_.+$"}}></SchemaItem><SchemaItem collapsible={false} name={"query"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"The query made to produce this turn.","type":"string","example":"How do you turn this widget?"}}></SchemaItem><SchemaItem collapsible={false} name={"answer"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"The response to the query.","type":"string","example":"The widget turns counter clockwise."}}></SchemaItem><SchemaItem collapsible={false} name={"enabled"} required={false} schemaName={"boolean"} qualifierMessage={undefined} schema={{"description":"Indicates whether the turn is enabled and shown in future turns of the chat.","type":"boolean","example":true}}></SchemaItem><SchemaItem collapsible={false} name={"created_at"} required={false} schemaName={"date-time"} qualifierMessage={undefined} schema={{"description":"Specifies when the turn was created.","type":"string","format":"date-time"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"id\": \"string\",\n  \"chat_id\": \"string\",\n  \"query\": \"How do you turn this widget?\",\n  \"answer\": \"The widget turns counter clockwise.\",\n  \"enabled\": true,\n  \"created_at\": \"2025-03-27T18:53:39.542Z\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"403"} value={"403"}><div>
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"The turn.","content":{"application/json":{"schema":{"description":"A single message exchange in a chat conversation, representing one user input and the corresponding response.","type":"object","properties":{"id":{"description":"The ID of the turn.","type":"string","pattern":"trn_.+$"},"chat_id":{"description":"The ID of the chat the turn resides in.","type":"string","pattern":"cht_.+$"},"query":{"description":"The query made to produce this turn.","type":"string","example":"How do you turn this widget?"},"answer":{"description":"The response to the query.","type":"string","example":"The widget turns counter clockwise."},"enabled":{"description":"Indicates whether the turn is enabled and shown in future turns of the chat.","type":"boolean","example":true},"created_at":{"description":"Specifies when the turn was created.","type":"string","format":"date-time"}},"title":"Turn"}}}},"403":{"description":"Permissions do not allow getting the turn.","content":{"application/json":{"schema":{"description":"A general error response with an error code and message.","type":"object","properties":{"messages":{"description":"The messages describing why the error occurred.","type":"array","items":{"title":"message","type":"string","example":"Internal server error."}},"request_id":{"description":"The ID of the request that can be used to help Vectara support debug what went wrong.","type":"string"}},"title":"Error"}}}},"404":{"description":"Corpus, chat, or turn not found.","content":{"application/json":{"schema":{"description":"Error returned when a requested resource does not exist.","type":"object","properties":{"id":{"description":"The ID cannot be found.","type":"string"},"messages":{"type":"array","items":{"title":"message","type":"string"}},"request_id":{"description":"ID of the request that can be used to help Vectara support debug what went wrong.","type":"string"}},"title":"NotFoundError"}}}}}}
+>
+  
+</StatusCodes>
 
-Permissions do not allow getting the turn.
 
-</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"messages"} required={false} schemaName={"message[]"} qualifierMessage={undefined} schema={{"description":"The messages describing why the error occurred.","type":"array","items":{"title":"message","type":"string","example":"Internal server error."}}}></SchemaItem><SchemaItem collapsible={false} name={"request_id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"The ID of the request that can be used to help Vectara support debug what went wrong.","type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"messages\": [\n    \"Internal server error.\"\n  ],\n  \"request_id\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"404"} value={"404"}><div>
-
-Corpus, chat, or turn not found.
-
-</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"The ID cannot be found.","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"messages"} required={false} schemaName={"message[]"} qualifierMessage={undefined} schema={{"type":"array","items":{"title":"message","type":"string"}}}></SchemaItem><SchemaItem collapsible={false} name={"request_id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"ID of the request that can be used to help Vectara support debug what went wrong.","type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"id\": \"string\",\n  \"messages\": [\n    \"string\"\n  ],\n  \"request_id\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
       

@@ -6,7 +6,6 @@ sidebar_label: Corpus Administration
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The Vectara Console is a good way for you to get started with <Config v="names.product"/>. Once

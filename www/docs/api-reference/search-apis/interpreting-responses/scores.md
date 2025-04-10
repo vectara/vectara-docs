@@ -6,7 +6,6 @@ sidebar_label: Interpreting Scores
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '@site/docs/definitions.md';
 
 Like all information retrieval systems, <Config v="names.product"/> scores documents on how
 relevant they are to the query. It's important to understand the scoring 

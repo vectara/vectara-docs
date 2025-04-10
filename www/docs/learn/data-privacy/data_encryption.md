@@ -6,7 +6,6 @@ sidebar_label: Data Encryption
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 When you send documents to the

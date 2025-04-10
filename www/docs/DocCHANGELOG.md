@@ -5,10 +5,9 @@ title: Vectara Documentation Changelog
 sidebar_label: Documentation Changelog
 ---
 
-import { Config } from "./definitions.md";
-import { Grid } from "@site/ui/Grid";
-import { Spacer } from "@site/ui/Spacer";
-import { TopicButton } from "@site/ui/TopicButton";
+import { Grid } from "/src/components/ui/Grid";
+import { Spacer } from "/src/components/ui/Spacer";
+import { TopicButton } from "/src/components/ui/TopicButton";
 
 
 ---

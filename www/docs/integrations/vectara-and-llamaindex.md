@@ -4,7 +4,6 @@ title: Vectara and LlamaIndex
 sidebar_label: Vectara and LlamaIndex
 ---
 
-import {Config} from '@site/docs/definitions.md';
 
 LlamaIndex is an LLM orchestration framework that focuses more on the data 
 aspect of building LLM-based applications. LlamaIndex provides a different set 

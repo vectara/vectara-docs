@@ -5,36 +5,67 @@ description: "Obtain an OAuth2 access token using client credentials"
 sidebar_label: "Request an access token"
 hide_title: true
 hide_table_of_contents: true
-api: eJylV99v4zYM/lcIPa0HJyn6GAzDej9wKO6ht7Y3YEiKlpEZW1dZ8klyEiPI/z5QsmOn2d1wW1/a2uIn8iP5kd4LT7JxKrRivnjMRE5eOlUHZY2Yi9tVQGUADdxeN6G8ApSSvIdgX8hA45UpQGpFJoB0lJMJCrUXmdhN1uTMxOcvk8LZpp4YrEjMFwKbUIrHkwMVhdLm3QlRUHhg9BEIuQ25/j37ITLh6FtDPry1eSvm+/ivcpSLeXANZUJaE8gEfoV1rZVEjmj21XNYe+FlSRXyX6GtGdWuvpIMIhO1szW5oMjz2xTbk8pHR31wyhTiNVUPJfVU3LwHu4ZQEozuFoesh/MkHYWfgkwm34EtHJrwlLD2PWsdtFaBHOpfl/3lozwtxW/icMhG5C1GEb929+Sex8MhWfraGp/Iurq85F+nMdw3sWLWjYb+sPiJ9IyC6QvgY1cgdwPcj5OYavYp1uw56YdMxDdH/s5e065WjvyTGlsrE6ggd8bfyWUn0CdAkb9DJtjPGPtNnmo/9lnfAAELz6D8jHPWpfyRoQIZr6zh93vxQq2Yf6fpMrFB3Yya75D9g8G4CY8WQzOe24yacjgfm/PwmIkEJ+aitj5mBEMp5mJm2YVZz04CSSE0Tou5KEOo/Xw2w1pNNyQDOpwqGyF7nbrn4kiZTaI0bmOMD85k7JV4wZ8JWmRire121OrvRirGsOzol1PPmlCOXEsRXQ0hSVtH51J+r2v1idpIy+AlxociE1xRoiTMyYlMdPW9m2CtJkw2A3BL3A1a92GHVa3plTYNAvJKYUZVrMzaRh9UYHvRUQB3H+4f4PrzDWzOeevP1M5uVE6eBwGZfBLshEwOtcawtq6CtXWs/xh4Hnwkc33DJnkjg++GxNIgeMWuM/2NJ75yujRL85dtQKKBhVeFgaaOYGg4WbYx4fGXnnhpjbeajtxLW83YpqkvAE0OS8NNAhtFW/C0YdWDBQd2R1LV5Aek3Ep/AsMPuOQmLh29gK0KJVAiG7415BR5DoKjRocVBXIQq97HKFiqe7b4zs8aW+5Bk4Om4KG1DdCuJqcqlvMIH5knk9dWmeBh7WwFS9PaxsHK2a0nN4V70iRDx3s8yPzFGFXwkNNaGcXZykAZqZucyeYRsTS9KoF1YGNGUUMqNp/ByuZtdpRkn0UKfYpX2qpCk/sp3JoeTBVlAK9y4hlEKMvBoRoLykCrF4LFRwrwzrq68Y+/JFod+cAVPSsoTGR8dZFFPio0DWrdwtKQYT5j6MzeJ2rZ69i28JbQkYOoQxk8y8YHW5F7Uvlz8jqmHU07jpnDGzLlk3ccynNy4eb9M6xobR2BJ3NkjS9PKORDTOx8Pjc2EP/Z59c3dW1d8BC2FmqnKnQtJMHzzA6eqPU8gr5Q66OzKaaluZpeZrAtlSwB3XGir1J/oNZDYUzhj4Zc2xPj4/nGUx47hb3FfGKNbmOdthzKcar4eIcmuDE57QaIrqGBbaNbW6cC5zlJ5BS4npOrV9PLEd44OEpljCcZgo3CrmYG+/MVEeIuMYU7irXMBos3bwYLT5Lve/Pm37pWEzozO6U8afLk6gJwZZsAS1PaLfNakOFAUiVExZ4uWbR5CCXFu5peTi958pKr/O36ntxGSRrJ/9gBTQXqWTw6ses4EpWkWdxctS2i3J6OtbMYVFX0kE9b6/IK3cu0jlKOOjzQLgwyzCq+m+ToXv4P+pPmVv7RHbycoYzLGVWo+IY1Ub5C+fL7CD2OJx7vFcbFqBtf3bDqJPz4sfB6tuyHHfC/f2V08zTQLsxqjSpuw5GTfbdxLNJK0G9ivDqVvJHMF2K/X6GnL04fDvw4Nk/6BtqgU9yK/N8h6wf0sGe9S55PHtJa1y8/Z5vssDRdS0l1+OHZ8dL0+fb+QWRi1X3cVDZnG4db/vDBrZiLpVgKwetjSDvgPj3fC42maLDg8wmXf/4GBUPmDA==
+api: eJylV9tu4zYQ/RVCT91AsoM8GkXR7AWLoA/ZJmmBwg4SWhrL3EikSlJ2DMP/3jOkZMlxd4u2eYhtceZw5sxV+8RR3lrld8ls/pgmBbncqsYro5NZcrv0Umkhtbi9bv36Ssg8J+eENy+kReuULkVeKdJe5JYKfCpZuSRNXrMVWZ254iUrrWmbTMuacEMiAZM8ngjU5Nem6CSSkvwDo49AyG7I9udsB84s/dmS8+9NAcP34aeCBcnM25bSJDfawxo+kk1TqVyyR9Ovjt3aJy5fUy35m981jGqWXyn3wG2sach6RY5Po29PqhiJOm/hdvKWqoc19VTcfBRmJTwejO5ODmkPB8Yt+X8FGVW+AVtaCdSIte9Z66Ar5cnK6sdFf/koTovkp+RwSEfkzUcevzX35J7HwyFqusZoF8m6urzkj1Mf7tuQMau2Er1w8i/CM3KmT4DPXYLcDXDfD2LM2aeQs+ekw4twcuTv7JheG7DjntRYW8GBkuwZfyeXnUCfAAX+oMp2Bt9vipj7oc76AvCydAzKzzhmXcgfGQr8Ofzg833yQqiCbxRdmmxk1Y6K75D+jcK4CI8aQzGe64yKcpAPxXmAfREOTxrjQkQkDmbJ1LAJ056dCBJdaG0FgbX3jZtNp7JRkw2CKa2cKBMg+z51z8kRIxub0riMZXhw1sbeNC/xe4SG4Koy21Gpfxh1MYZlQ387tQxQI9OiR1eDSzlCyroxvteN+oV2gZbBShkeQpgzKlmTLJBIadLl92uG84zJZgAuibuh1316lXVT0ZveNDSQNx1mlMVKr0ywQXnWTzoKxN2n+wdx/eVGbM5562VQTxuFIx4EpIvMmwwfoqmkXxlbC/zj/o/sxDz4TPr6hlWKNveuGxILLYVTbDrT3zriKycLvdB/mFbkwJ07VWKkNAEMvxEs02r/+ENPPHqGMxUduc9NPWWdtnkH+QJXcJGIjaIt2uWGu56Ys2N3lCvEZEAqTO5OYPgBp1xmo+g7sVV+LSiSLcC+RS9hJ9hraCG9yYqQ9S54wa26Z4vv/FLJHdcg5CsCCzt4ifIHTs3tPMAH5sFjY9BMnFhZU+MKSFqxtMhKshNxTxVQO96DIPMXfFTQKWiltOJopULpvGoLJptHxEL3XUmATxMiCkJisrlULJFM6bEl4wG75qK/oKTGTzcRt7oHU+UaUwhJwDOIZL4eDGpkSamo1AuJOZqz+GBs04LuSCuu8JzRU/SSLA9H79LAB+5oZVXtAA9OwGdwndlDdbDVoWzFe5IWh6EPpeI5b503NVkk/nO0OoRd6t3YZ3ZviJSL1rErz9GEm4/PYklINUKu6CNrfHlEgdUhsLPZTBtP/LWPr2ubxliw77cGea5qaXciNjzH7MiTbj0LoChnF4yNPi301eQyFdu1ApFwr5/oy1gfYGVIjIn4Ffm364lxQR4VVIRKYWtlkRkNHjlPd+zKcaq4cAdAb3RBrwNEV9CCdYNZW3RWjnNskRPB+RxNhaEjvLFzFNNYnkQIuSm7nBn0z1dEEXaJCWoz5DIrzC8uBg00ML7v4uKfqrbC3Xp6SnnsydkV+sLStB6mrM2WeS1JsyMxE0LHRox5fCFFYsfD3ZNLnrxka3e7useAUjmN2v/YgIpKWU2DaGZWYSRCeBo218qUod2ejrUzH1Rd9pBPW2ML5NLLpAmtXFb+AWN+aMPcxV+zAhL/B/2p4lL+3h28nMk8LGfYwhTfsCIqljJ/+XmEHsYTj3fUMct246sbVl0LP74svJ0t+2EH/O9vGd089XBhimGkwjYcONl3G8c8rgT9Jsar05o3Ehzs90vpCMP9cODHoXjiO9BGWsWlyL8A2A3oYc/6EC3PHuJa1y8/Z5vssDRdw6HGf1d2vDR9ub1/gPCye7mpTcE6Vm75xQf/Z0nCq6OP+98+PtsnldRli2aM84jJf38Bf9vlEA==
 sidebar_class_name: "post api-method"
 info_path: docs/rest-api/vectara-rest-api-v-2
 custom_edit_url: null
 ---
 
-import ApiTabs from "@theme/ApiTabs";
-import DiscriminatorTabs from "@theme/DiscriminatorTabs";
 import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
-import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
-import MimeTabs from "@theme/MimeTabs";
-import ParamsItem from "@theme/ParamsItem";
-import ResponseSamples from "@theme/ResponseSamples";
-import SchemaItem from "@theme/SchemaItem";
-import SchemaTabs from "@theme/SchemaTabs";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
 import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
 
-<h1 className={"openapi__heading"}>Request an access token</h1>
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Request an access token"}
+>
+</Heading>
 
-<MethodEndpoint method={"post"} path={"/oauth/token"}></MethodEndpoint>
+<MethodEndpoint
+  method={"post"}
+  path={"/oauth/token"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
 
 
 
 Obtain an OAuth2 access token using client credentials
 
-## Request
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
 
-<MimeTabs className={"openapi-tabs__mime"}><TabItem label={"application/json"} value={"application/json-schema"}><details style={{}} className={"openapi-markdown__details mime"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-mime"}><h3 className={"openapi-markdown__details-summary-header-body"}>Body</h3><strong className={"openapi-schema__required"}>required</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"client_id"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","description":"The client ID of the application"}}></SchemaItem><SchemaItem collapsible={false} name={"client_secret"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","description":"The client secret of the application"}}></SchemaItem><SchemaItem collapsible={false} name={"grant_type"} required={true} schemaName={""} qualifierMessage={undefined} schema={{"x-fern-type":"literal<\"client_credentials\">"}}></SchemaItem></ul></details></TabItem></MimeTabs><div><div><ApiTabs><TabItem label={"200"} value={"200"}><div>
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
 
-Successful response
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"client_id":{"type":"string","description":"The client ID of the application"},"client_secret":{"type":"string","description":"The client secret of the application"},"grant_type":{"x-fern-type":"literal<\"client_credentials\">"}},"required":["client_id","client_secret","grant_type"]}}}}}
+>
+  
+</RequestSchema>
 
-</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"access_token"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"token_type"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"expires_in"} required={true} schemaName={"integer"} qualifierMessage={undefined} schema={{"type":"integer"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"access_token\": \"string\",\n  \"token_type\": \"string\",\n  \"expires_in\": 0\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Successful response","content":{"application/json":{"schema":{"x-fern-type-name":"GetTokenResponse","type":"object","properties":{"access_token":{"type":"string"},"token_type":{"type":"string"},"expires_in":{"type":"integer"}},"required":["access_token","token_type","expires_in"]}}}}}}
+>
+  
+</StatusCodes>
+
+
       

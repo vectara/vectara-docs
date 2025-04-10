@@ -4,7 +4,6 @@ title: Keyword Search
 sidebar_label: Keyword Search
 ---
 
-import {Config} from '@site/docs/definitions.md';
 
 In some specialized fields such as legal, compliance, and technical 
 domains, relying solely on [semantic search](/docs/learn/semantic-search/semantic-search-overview) can miss information tied to 

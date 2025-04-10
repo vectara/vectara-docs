@@ -6,7 +6,6 @@ sidebar_label: Create User API Definition
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The Create User API lets you create a user in the current customer account.

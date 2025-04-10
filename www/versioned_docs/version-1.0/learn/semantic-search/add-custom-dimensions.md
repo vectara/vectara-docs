@@ -7,7 +7,7 @@ sidebar_label: Add Custom Dimensions to Enhance Scoring
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
-import {vars} from '@site/static/variables.json';
+import vars from '@site/static/variables.json';
 import {Config} from '@site/docs/definitions.md';
 
 Custom dimensions enable [our Scale users](https://vectara.com/pricing/) to have a fixed set of additional 

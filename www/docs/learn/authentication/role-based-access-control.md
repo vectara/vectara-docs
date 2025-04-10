@@ -4,7 +4,6 @@ title: Role-Based Access Control (RBAC)
 sidebar_label: Role-Based Access Control
 ---
 
-import {Config} from '@site/docs/definitions.md';
 
 Authorization refers to the role-based access control policies in <Config v="names.product"/> that define
 what actions an authenticated entity may perform. In this system, **permissions** are 

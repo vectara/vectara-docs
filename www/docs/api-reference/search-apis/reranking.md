@@ -6,7 +6,6 @@ sidebar_label: Reranking
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 Initial search results often fail to capture nuanced relevance or diversity, 

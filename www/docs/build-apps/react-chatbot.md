@@ -5,7 +5,6 @@ sidebar_label: React-Chatbot
 ---
 
 import {vars} from '@site/static/variables.json';
-import {Config} from '@site/docs/definitions.md';
 
 ![Screenshot of React-Chatbot chat interface](/img/react_chatbot.jpg)
 

@@ -6,7 +6,6 @@ sidebar_label: Vectara Chat Overview
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 Vectara Chat provides an interactive user experience that enables you to build 

@@ -6,13 +6,12 @@ sidebar_label: Vectara Authentication Overview
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '@site/docs/definitions.md';
-import {vars} from '@site/static/variables.json';
+import vars from '@site/static/variables.json';
 
 In <Config v="names.product"/>, we have robust authentication and authorization 
 methods in place to secure your data and operations. All <Config v="names.product"/> APIs 
 are authenticated. Indexing and Search APIs can be authenticated via [Index or Query API Keys](/docs/learn/authentication/api-key-management#query-api-keys) 
-while, Admin actions (creating/deleting corpora) must be done via [Personal API Keys](/docs/learn/authentication/api-key-management#personal-api-keys) or [OAuth 2.0](/docs/learn/authentication/oauth-2).
+while, Admin actions (creating/deleting corpora) must be done via [Personal API Keys](/docs/learn/authentication/api-key-management) or [OAuth 2.0](/docs/learn/authentication/oauth-2).
 
 ## Choosing Personal API keys, Index API Keys, Query API Keys, or OAuth 2.0
 

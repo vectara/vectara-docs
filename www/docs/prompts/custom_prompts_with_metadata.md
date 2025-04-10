@@ -6,7 +6,6 @@ sidebar_label: Custom Prompts with Metadata
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 Vectara handles the system and user prompts automatically, but if you want to
@@ -23,10 +22,10 @@ The following table shows the available custom prompt template variables:
 |---|---|---|---|
 | $vectaraOutChars  | Number of characters  | See below  | See below  |
 | $vectaraLangCode  | ISO639 v3 code for the passed language code  | See below  | See below  |
-| $vectaraQuery  | The query provided by the user  | Generate a summary in $vectaraOutChars characters in language '${vectaraLangCode}' for the query ${vectaraQuery} solely based on the search results in this chat.  | Generate a summary in 512 characters in language 'ara' for the query 'Give me "some" search results.' solely based on the search results in this chat.  |
+| $vectaraQuery  | The query provided by the user  | Generate a summary in $vectaraOutChars characters in language ```'${vectaraLangCode}'``` for the query ```${vectaraQuery}``` solely based on the search results in this chat.  | Generate a summary in 512 characters in language 'ara' for the query 'Give me "some" search results.' solely based on the search results in this chat.  |
 | $vectaraIdxWord  | A utility array to convert the index to words i.e "first", "second", "third", "forth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth"  | $vectaraIdxWord[0]  | first  |
-| $vectaraLangName  | Set to the requested language name. The language can either be requested explicitly or detected from the language of the query.  | You are a helpful assistant. Answer in ${vectaraLangName}.  | You are a helpful assistant. Answer in Arabic.  |
-| $vectaraQueryResults  | An array of query results is found in the response, sorted by relevance score.  | #foreach ($qResult in $vectaraQueryResults)    {"role": "user", "content": "Give me the $vectaraIdxWord[$foreach.index] search result."},    {"role": "assistant", "content": ${qResult.text()} },#end  | {"role": "user", "content": "Give me the second search result."},{"role": "assistant", "content": "2nd result" },  |
+| $vectaraLangName  | Set to the requested language name. The language can either be requested explicitly or detected from the language of the query.  | You are a helpful assistant. Answer in ```${vectaraLangName}```.  | You are a helpful assistant. Answer in Arabic.  |
+| $vectaraQueryResults  | An array of query results is found in the response, sorted by relevance score.  | ```#foreach ($qResult in $vectaraQueryResults) {"role": "user", "content": "Give me the $vectaraIdxWord[$foreach.index] search result."}, {"role": "assistant", "content": ${qResult.text()} },#end```  | ```{"role": "user", "content": "Give me the second search result."},{"role": "assistant", "content": "2nd result" },```  |
 
 
 ## Available Prompt Functions
@@ -35,13 +34,13 @@ The following table shows the available custom prompt functions:
 
 | Function | Description  | Example Usage Input  | Example Usage Output  |
 |---|---|---|---|
-| #foreach ($qResult in $vectaraQueryResults)  | Iterates through each query result  | -  | -  |
+| ```#foreach ($qResult in $vectaraQueryResults)```  | Iterates through each query result  | -  | -  |
 | $qResult.getText() or $qResult.text()  | Returns text of the query result  | $qResult.text()  | Result text  |
-| $qResult.docMetadata()  | Returns the metadata of the document this result belongs to  | $qResult.docMetadata()  | {"title": "documentTitle", ...}  |
-| $qResult.docMetadata().present()  | Returns true/false if there are any values present in the metadata  | #if ($qResult.docMetadata().present())...#end  |   |
+| $qResult.docMetadata()  | Returns the metadata of the document this result belongs to  | $qResult.docMetadata()  | ```{"title": "documentTitle", ...}```  |
+| $qResult.docMetadata().present()  | Returns true/false if there are any values present in the metadata  | ```#if ($qResult.docMetadata().present())...#end```  |   |
 | $qResult.docMetadata().get("title")  | Returns the specified field value from doc metadata, an incorrect key would result in an empty value  | $qResult.docMetadata().get("title")  | documentTitle  |
-| $qResult.partMetadata().present()  | Returns true/false if there are any values present in the metadata  | #if ($qResult.partMetadata().present())...#end  |   |
-| $qResult.partMetadata()  | Returns the metadata of the part of the document this result belongs to  | $qResult.partMetadata()  | {"page": "1", ...}  |
+| $qResult.partMetadata().present()  | Returns true/false if there are any values present in the metadata  | ```#if ($qResult.partMetadata().present())...#end```  |   |
+| $qResult.partMetadata()  | Returns the metadata of the part of the document this result belongs to  | $qResult.partMetadata()  | ```{"page": "1", ...}```  |
 | $qResult.partMetadata().get("page")  | Returns the specified field value from part metadata, incorrect key would result in empty value  | $qResult.docMetadata().get("page")  | "1"  |
 
 

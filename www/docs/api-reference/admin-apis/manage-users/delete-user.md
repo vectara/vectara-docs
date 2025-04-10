@@ -6,7 +6,6 @@ sidebar_label: Delete User API Definition
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The Delete User API lets you delete a user from the account.

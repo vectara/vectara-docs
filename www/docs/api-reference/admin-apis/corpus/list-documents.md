@@ -4,7 +4,6 @@ title: List Documents API Definition
 sidebar_label: List Documents API Definition
 ---
 
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The List Documents API enables you to retrieve a list of documents stored in a 

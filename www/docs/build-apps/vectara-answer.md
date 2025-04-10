@@ -5,7 +5,6 @@ sidebar_label: Vectara Answer
 ---
 
 import {vars} from '@site/static/variables.json';
-import {Config} from '@site/docs/definitions.md';
 
 Vectara Answer provides a configurable sample UI that you can use as a 
 starting point. This UI enables users to create custom conversational search 

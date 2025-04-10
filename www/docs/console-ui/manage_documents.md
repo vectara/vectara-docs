@@ -4,7 +4,6 @@ title: Manage Documents
 sidebar_label: Manage Documents
 ---
 
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The Data view provides information about each document ingested into 

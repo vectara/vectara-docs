@@ -4,7 +4,6 @@ title: Vectara and Unstructured.io
 sidebar_label: Vectara and Unstructured.io
 ---
 
-import {Config} from '@site/docs/definitions.md';
 
 Unstructured is a well known Python package for parsing and dealing with 
 unstructured data. Vectara is integrated into [Unstructured’s ingest library](https://unstructured-io.github.io/unstructured/ingest/index.html), 

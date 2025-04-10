@@ -6,7 +6,6 @@ sidebar_label: Delete Chat API Definition
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The Delete Chat API lets you permanently delete a chat and all its associated

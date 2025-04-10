@@ -5,7 +5,6 @@ sidebar_label: Generation Presets
 ---
 
 import {vars} from '@site/static/variables.json';
-import {Config} from '@site/docs/definitions.md';
 
 
 Extracting concise, relevant information from large sets of search results 

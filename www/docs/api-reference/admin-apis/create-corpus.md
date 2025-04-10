@@ -4,7 +4,6 @@ title: Create Corpus API Definition
 sidebar_label: Create Corpus API Definition
 ---
 
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The [Create Corpus API](/docs/rest-api/create-corpus) lets you create a corpus to store and manage your

@@ -6,7 +6,6 @@ sidebar_label: List Chats API Definition
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The List Chats API allows you to retrieve a list of previous chats in your

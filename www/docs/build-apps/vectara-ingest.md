@@ -5,7 +5,6 @@ sidebar_label: Vectara Ingest
 ---
 
 import {vars} from '@site/static/variables.json';
-import {Config} from '@site/docs/definitions.md';
 
 Vectara Ingest crawls datasets from pre-built crawlers (websites, RSS feeds, 
 Jira, Notion, Docusaurus) and ingests them into Vectara. This sample ingestion 

@@ -4,7 +4,6 @@ title: Semantic Search Fundamentals
 sidebar_label: Semantic Search Fundamentals
 ---
 
-import {Config} from '@site/docs/definitions.md';
 
 Vectara lets you build a semantic, LLM-powered search application. Semantic 
 search is not just about finding data, but about understanding data and 

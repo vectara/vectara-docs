@@ -8,7 +8,7 @@ When uploading files using the [File Upload Service](/docs/1.0/api-reference/ind
 send any of the predefined formats like markdown, PDF, and MS Word.
 
 Alternatively, you may perform the text extraction yourself, and save the result
-as a JSON or text serialized [Document proto](/docs/1.0/api-reference/indexing-apis/indexing#document). The benefit
+as a JSON or text serialized [Document proto](/docs/1.0/api-reference/indexing-apis/indexing). The benefit
 of this approach is that you can attach your own metadata to the document, or
 to individual sections within it.
 

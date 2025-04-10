@@ -7,7 +7,7 @@ sidebar_label: Delete Documents API Definition
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
-import {vars} from '@site/static/variables.json';
+import vars from '@site/static/variables.json';
 
 The Delete Documents API lets you delete a document from a corpus. To verify 
 that the document no longer exists in the corpus, use the List Documents endpoint.

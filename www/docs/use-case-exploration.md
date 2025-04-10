@@ -4,8 +4,6 @@ title: Explore the Vectara Use Cases
 sidebar_label: Use Case Exploration
 ---
 
-import {Config} from './definitions.md';
-
 The <Config v="names.product"/> **Retrieval Augmented Generation as-a-Service 
 (RAGaaS)** platform enables organizations to rapidly create GenAI experiences 
 to reduce hallucinations and provide relevant results no matter how you 

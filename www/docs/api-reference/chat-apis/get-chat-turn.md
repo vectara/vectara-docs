@@ -6,7 +6,6 @@ sidebar_label: Get Chat Turn API Definition
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The Get Chat Turn API allows you to retrieve a specific turn from a chat,

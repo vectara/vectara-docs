@@ -8,7 +8,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
-import {Config} from '@site/docs/definitions.md';
 
 Everything in <Config v="names.product"/> is driven by APIs. This section serves
 as a roadmap to understanding and using our [gRPC APIs](/docs/api-reference/protobuf-definitions) and

@@ -4,7 +4,6 @@ title: Chain Reranker
 sidebar_label: Chain Reranker
 ---
 
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 When refining query results where relevance and diversity are critical to 

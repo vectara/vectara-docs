@@ -6,7 +6,6 @@ sidebar_label: Delete Turns API Definition
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The Delete Turns API deletes specific turns from chat. This enables developers

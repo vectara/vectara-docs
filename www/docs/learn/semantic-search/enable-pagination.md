@@ -7,7 +7,6 @@ sidebar_label: Pagination
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {vars} from '@site/static/variables.json';
-import {Config} from '@site/docs/definitions.md';
 
 Users often struggle to find relevant information when faced with long lists 
 of search results. Pagination provides customization to present search results 

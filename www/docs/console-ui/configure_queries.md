@@ -6,7 +6,6 @@ sidebar_label: Configure Queries
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 When you add data to a corpus, the **Query** tab lets you experiment with 

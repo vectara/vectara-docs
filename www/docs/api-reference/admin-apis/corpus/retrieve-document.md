@@ -4,7 +4,6 @@ title: Retrieve Document API Definition
 sidebar_label: Retrieve Document API Definition
 ---
 
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The Retrieve Document API enables you to fetch the content and metadata of a 

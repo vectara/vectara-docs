@@ -4,7 +4,6 @@ title: Delete Corpus API Definition
 sidebar_label: Delete Corpus API Definition
 ---
 
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The Delete Corpus API lets you delete a corpus and all the data it contains.

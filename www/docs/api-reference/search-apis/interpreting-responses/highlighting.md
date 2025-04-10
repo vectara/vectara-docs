@@ -6,7 +6,6 @@ sidebar_label: Highlighting and Snippet Extraction
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '@site/docs/definitions.md';
 
 When you receive query results from <Config v="names.product"/>, alongside the
 result, you'll receive values for `part_metadata` and `document_metadata`. For 
@@ -57,7 +56,7 @@ starts) and a `text` value of "How vexingly quick daft zebras jump!"
 
 ## Configuring context
 
-The `context_configuration` object in the [query request](/docs/api-reference/search-apis/search#context-configuration) allows you to control 
+The `context_configuration` object in the [query request](/docs/api-reference/search-apis/search#query-definition) allows you to control 
 the amount of context included with each matching document part (snippet) that 
 appears in a summary. Adding this context configuration affects the results 
 quality for summarization by enhancing relevance and reducing ambiguity around 

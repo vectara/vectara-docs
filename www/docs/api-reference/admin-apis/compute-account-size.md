@@ -4,7 +4,6 @@ title: Compute Account Size API Definition
 sidebar_label: Compute Account Size API Definition
 ---
 
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The Compute Account Size API lets you view how much quota you consumed

@@ -4,7 +4,6 @@ title: Hallucination Evaluation
 sidebar_label: Hallucination Evaluation
 ---
 
-import {Config} from '@site/docs/definitions.md';
 
 Vectara uses the `Hughes Hallucination Evaluation Model` (HHEM) to assess the
 likelihood of AI-generated summary being factually consistent based on search 

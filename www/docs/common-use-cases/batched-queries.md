@@ -6,7 +6,6 @@ sidebar_label: Batched Queries
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 Some applications may be designed to be powered by different queries in

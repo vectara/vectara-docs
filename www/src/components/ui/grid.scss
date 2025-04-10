@@ -1,0 +1,37 @@
+@use "styleUtils";
+@use "styleUtils/sizes";
+
+.gridLayoutContainer {
+  container-type: inline-size;
+}
+
+.gridLayout {
+  display: grid;
+  column-gap: sizes.$sizeL;
+  row-gap: sizes.$sizeL;
+}
+
+.gridLayout--columns1 {
+  grid-template-columns: 1fr;
+}
+
+.gridLayout--columns2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+.gridLayout--columns3 {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+@container (width < 800px) {
+  .gridLayout--columns3 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@container (width < 500px) {
+  .gridLayout--columns2,
+  .gridLayout--columns3 {
+    grid-template-columns: 1fr;
+  }
+}

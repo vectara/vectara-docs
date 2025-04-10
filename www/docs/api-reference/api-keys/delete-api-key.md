@@ -6,7 +6,6 @@ sidebar_label: Delete API Key API Definition
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The Delete API Key API lets you delete one or more existing API keys.

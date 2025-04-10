@@ -5,7 +5,6 @@ sidebar_label: Create-UI
 ---
 
 import {vars} from '@site/static/variables.json';
-import {Config} from '@site/docs/definitions.md';
 
 ![Create-UI command line interface](/img/create_ui.jpg)
 

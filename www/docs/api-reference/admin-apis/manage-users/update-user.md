@@ -6,7 +6,6 @@ sidebar_label: Update User API Definition
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The Update User API lets you update details about a user, such as their

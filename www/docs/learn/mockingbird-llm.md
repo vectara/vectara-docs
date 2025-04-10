@@ -4,7 +4,6 @@ title: "Mockingbird: Vectara's LLM"
 sidebar_label: Mockingbird LLM
 ---
 
-import {Config} from '@site/docs/definitions.md';
 
 Generating accurate and reliable summaries from large datasets can be 
 a challenge. Mockingbird is a cutting-edge Large Language Model (LLM)

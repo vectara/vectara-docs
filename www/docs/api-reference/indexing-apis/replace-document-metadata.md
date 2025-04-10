@@ -4,7 +4,6 @@ title: Replace Document Metadata API Definition
 sidebar_label: Replace Document Metadata API Definition
 ---
 
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The Replace Document Metadata API enables you to overwrite the metadata of a 

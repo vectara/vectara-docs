@@ -4,7 +4,6 @@ title: Compute Corpus Size API Definition
 sidebar_label: Compute Corpus Size API Definition
 ---
 
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
 The Compute Corpus Size API (API 1.0 only) lets you dynamically compute amount of quota consumed

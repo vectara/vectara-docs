@@ -4,7 +4,6 @@ title: Metadata Examples and Use Cases
 sidebar_title: Examples and Use Cases
 ---
 
-import {Config} from '@site/docs/definitions.md';
 
 Metadata filters enable highly versatile and granular control over query 
 results. This section provides real-world examples and use cases to illustrate 
