@@ -1,0 +1,90 @@
+---
+id: multi-tenant-corpus-isolation
+title: Isolate Tenants with Corpora
+sidebar_label: Isolate Tenants with Corpora
+---
+
+import {Config} from '@site/docs/definitions.md';
+
+Without isolation, a compromised key could lead to unauthorized access across 
+tenants. Shared corpora with filters are error-prone and hard to audit. 
+Vectara enables you to create completely isolated corpora—making it an ideal 
+platform for multi-tenant applications. Each tenant can have their own secure 
+data container (corpus), API keys scoped only to that corpus, and complete 
+separation from other customers.
+
+This guide walks you through isolating tenants at the corpus level for strong 
+security, predictable access patterns, and simplified troubleshooting.
+
+## Corpus isolation benefits
+
+| **Benefit**                        | **Why It Matters**                                              |
+|------------------------------------|------------------------------------------------------------------|
+| Hard security boundary             | API keys are only valid for specific corpora                    |
+| No need for metadata filters       | Access enforcement is at the platform level                    |
+| Tenant self-service readiness      | Easier to automate onboarding and offboarding                  |
+| Per-tenant billing & monitoring    | Enables per-corpus usage tracking                              |
+
+## Best Practices
+
+- ✅ Automate corpus creation and key generation during onboarding
+- ✅ Rotate keys per tenant on schedule or revocation
+- ✅ Log all usage per corpus for traceability
+- ❌ Avoid sharing corpora across tenants unless absolutely necessary
+
+## Prerequisites
+
+- Admin access to create corpora and API keys
+- A tenant onboarding workflow or script
+- App logic that maps each user to their assigned corpus/key
+
+
+## Configure tenant isolation per corpus
+
+1. Create a corpus for each tenant and use a predictable naming convention 
+2. like `tenant_<id>_docs`.
+    ```json
+    {
+    "name": "Tenant: Acme Inc",
+    "corpus_key": "acme_docs"
+    }
+    ```
+3. Generate scoped API Keys. Store the secret safely in your application 
+   backend or secrets manager.
+    ```json
+    {
+    "api_key_role": "serving_and_indexing",
+    "corpus_keys": ["acme_docs"]
+    }
+    ```
+4. Use the key and corpus in requests:
+    ```json
+    {
+    "x-api-key": "zwt_abc123",
+    "query": [{
+        "search": {
+        "corpora": [{ "corpus_key": "acme_docs" }],
+        "limit": 5
+        }
+    }]
+    }
+    ```
+Any request using a key tied only to `acme_docs` cannot access other corpora.
+
+---
+
+## Common use case mapping
+
+| **Scenario**                    | **Recommended setup**              |
+|----------------------------------|------------------------------------|
+| Self-contained customer app     | Per-corpus API keys                |
+| Dedicated user dashboards       | App backend maps user → corpus     |
+| Customer billing per data use   | One corpus = one billing unit      |
+
+## When not to use corpus isolation
+
+| **Scenario**                                      | **Consider this alternative**                     |
+|------------------------------------------------|-------------------------------------------|
+| You have 10,000+ low-security tenants          | Shared corpus + ABAC filters              |
+| You want to allow dynamic role-based sharing   | ABAC + app logic                          |
+| You must allow inter-tenant document sharing   | Metadata filters + group-based ABAC       |

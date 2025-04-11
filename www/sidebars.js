@@ -176,21 +176,27 @@ module.exports = {
       items: [
         "learn/data-privacy/privacy-overview",
         "learn/data-privacy/encryption",
-        {
-          type: "category",
-          label: "Authentication and Authorization",
-          link: {
-            type: 'doc',
-            id: 'learn/authentication/auth-overview', 
-          },
-          collapsed: true,
-          items: [
-            "learn/authentication/transport-layer-security",
-            "learn/authentication/api-key-management",
-            "learn/authentication/oauth-2",
-            "learn/authentication/role-based-access-control",
-          ],
+        "learn/authentication/transport-layer-security",
+      ],
+    },
+    {
+      type: "category",
+      label: "Authentication and Authorization in Vectara",
+      link: {
+        type: 'doc',
+        id: 'learn/authentication/authentication-authorization-vectara', 
         },
+        collapsed: true,
+        items: [
+          "learn/authentication/personas-and-access-patterns",
+          "learn/authentication/auth-overview",
+          "learn/authentication/choose-auth-method",
+          "learn/authentication/api-key-management",
+          "learn/authentication/oauth-2",
+          "learn/authentication/role-based-access-control",
+          "learn/authentication/attribute-based-access-control",
+          "learn/authentication/multi-tenant-corpus-isolation",
+          "learn/authentication/combine-access-control-with-app-filters",
         {
           type: "category",
           label: "API Authentication Examples",
@@ -205,7 +211,7 @@ module.exports = {
                 "getting-started-samples/rest_util.py",
               ],
             },
-            {
+            { 
               type: "category",
               label: "API Key REST Examples",
               items: [
@@ -217,8 +223,8 @@ module.exports = {
               ],
             },
           ],
-        },
-      ],
+         },
+        ],
     },
     {
       type: "category",
