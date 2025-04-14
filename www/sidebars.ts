@@ -128,6 +128,7 @@ const sidebars: SidebarsConfig = {
             "prompts/custom-prompts-with-metadata",
           ],
         },
+       "generation/custom-prompt-templates-customization", 
       ],
     },
     {
