@@ -19,7 +19,8 @@ custom-hosted LLMs.
 Users can configure multiple LLMs by specifying an API key (or other 
 credentials), an API endpoint, and a model name and description. This 
 flexibility allows organizations to integrate different LLM providers into the
-Vectara platform, ensuring seamless compatibility with their applications.
+Vectara platform, ensuring seamless compatibility with their applications. For 
+example, use a [custom LLM for sending queries](/docs/search-and-retrieval/bring-your-own-llm).
 
 The API makes it easy to integrate external LLMs by allowing users to define 
 custom LLM configurations. Users can specify authentication credentials, set 
