@@ -6,7 +6,8 @@ sidebar_label: Create and Use API Keys
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import vars from '@site/static/variables.json';
+import {Config} from '@site/docs/definitions.md';
+import {vars} from '@site/static/variables.json';
 
 API Keys allow controlled, anonymous access to several administrative tasks, 
 indexing your data, and running semantic searches on your corpora—handy for 
@@ -18,6 +19,13 @@ Selecting the wrong key type, or using it incorrectly, can result in errors
 or expose your system to unnecessary risk, a concern for Dev Team Leads 
 overseeing secure workflows. If a key is compromised, you can quickly revoke 
 the key and replace it in minutes.
+
+
+:::caution Note
+If you create a new corpus, generate a new Index and/or Query API keys. 
+Existing keys are bound to their original corpus, a common oversight for 
+Developers.
+:::
 
 This guide helps you:
 - Select the right key type for your use case, whether admin or app-focused
@@ -38,16 +46,13 @@ This guide helps you:
 | Query Key         | `zqt_`     | Read-only search                    | Corpus-specific  | App Developers for public-facing search, front-end apps   |
 | Index Key         | `zwt_`     | Index + query                       | Corpus-specific  | ML Engineers for ingestion, App Developers for server-side testing       |
 
-:::warning
-Personal and Index keys should never be exposed in browser or mobile code.
-:::
-
 ## Best Practices
 
-- ✅ Use separate keys per use case or microservice
+- ✅ Use unique keys per use case or microservice
 - ✅ Apply the **principle of least privilege**
 - 🔄 Rotate API keys periodically and revoke unused ones
-- 🔒 Never embed Personal or Index keys in client-side code
+- 🔒 Never embed Personal or Index keys in client-side code. Store them on your 
+  server instead.
 
 ### Personal API key
 
@@ -209,6 +214,15 @@ END
 </TabItem>
 </Tabs>
 
+## Common issues and how to resolve them
+| Issue                            | Cause                                      | Fix                                               |
+|----------------------------------|--------------------------------------------|----------------------------------------------------|
+| 403: Permission Denied           | Key not scoped to corpus                   | Recreate key with correct `corpus_key`             |
+| 401: Unauthorized                | Invalid or missing key in header           | Ensure `x-api-key` is correctly included           |
+| Indexing fails with Query key   | Used wrong key type                        | Use Index (`zwt_`) or Personal (`zut_`) key        |
+| Personal key used in browser    | Security vulnerability                     | Use Query key for public search apps               |
+
+
 ## Disable and enable API keys
 
 To temporarily disable access to an API key, begin by visiting the API Keys
@@ -234,19 +248,8 @@ issue queries using the key will be blocked.
 :::
 
 
-## Common issues and how to resolve them
-| Issue                            | Cause                                      | Fix                                               |
-|----------------------------------|--------------------------------------------|----------------------------------------------------|
-| 403: Permission Denied           | Key not scoped to corpus                   | Recreate key with correct `corpus_key`             |
-| 401: Unauthorized                | Invalid or missing key in header           | Ensure `x-api-key` is correctly included           |
-| Indexing fails with Query key   | Used wrong key type                        | Use Index (`zwt_`) or Personal (`zut_`) key        |
-| Personal key used in browser    | Security vulnerability                     | Use Query key for public search apps               |
-
 ## Next Steps
 
 - Assign Corpus Roles
 - Use Metadata Filters for Per-User Access
-
-
-
 

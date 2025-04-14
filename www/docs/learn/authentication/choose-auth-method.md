@@ -14,11 +14,10 @@ and [**OAuth 2.0 tokens**](/docs/learn/authentication/oauth-2). Choosing the rig
 application or team interacts with Vectara’s APIs, whether you are a Developer 
 prototyping or a Platform Admin securing operations.
 
-Query and Index API keys are scoped to individual corpora and cannot access 
-others unless explicitly configured, perfect for App Developers building 
-targeted apps. Always apply the principle of least privilege—create separate 
-keys for each use case to reduce risk, a key practice for Platform Admins 
-managing access. 
+Query and Index API keys are scoped to individual corpora—ideal for Developers. 
+OAuth 2.0 suits Client Apps, while SSO (e.g., Google, soon SAML/OIDC) secures 
+Admins and Developers. Always apply the principle of least privilege and create 
+separate keys for each use case to reduce risk.
 
 :::tip 
 We recommend that you use OAuth 2.0 wherever possible in production. It offers 
@@ -34,80 +33,64 @@ This guide helps you select the best method based on:
 
 ## Authenticaion method comparison table
 
+
 | Feature / Need                             | Use API Keys                   | Use OAuth 2.0                     |
 |-------------------------------------------|--------------------------------|-----------------------------------|
-| Simplest setup for prototyping            | ✅ Yes                         | ❌ Not ideal                      |
-| Works in browser/client-side code         | ✅ (Query key only)            | ❌ Not supported directly         |
+| Simplest setup for prototyping            | ✅ Yes                         | ❌ Overkill                    |
+| Secure for production use | ⚠️ Use with care, rotate manually | ✅ Expiring tokens enhance safety |
+| Works in browser/client-side code         | ✅ Query API key               | ❌ Not recommended         |
 | Requires read-only access only            | ✅ Query API Key               | ✅ Use role-scoped token          |
-| Requires read/write/indexing              | ✅ Index API Key               | ✅ Use indexing role in OAuth     |
-| Backend server access (secure)            | ✅ (Server key)                | ✅ Preferred                      |
+| Requires read/write/indexing              | ✅ Index API Key               | ✅ Use role with indexing permissions     |
+| Backend server access (Only if API key is on server)    | ✅ Server key                  | ✅ Preferred                      |
 | Rotating credentials automatically        | ❌ Manual rotation             | ✅ Built-in token expiration      |
 | Fine-grained access scopes                | ⚠️ Corpus-level only           | ✅ Role-based per corpus/account  |
 | Ideal for public integrations             | ❌ Use carefully               | ✅ Token-based control preferred  |
-| Safe for long-term use in production      | ⚠️ Rotate keys manually        | ✅ Expiring tokens = safer        |
-
+| Safe for long-term use in production      | ⚠️ Rotate keys manually        | ✅ Expiring tokens is safer        |
+| Access to all APIs beyond indexing/querying | ❌ Not supported             | ✅ Yes                            |
 ---
 
 ## Authentication methods by use case
 
 ### Prototyping or admin tasks
 
-> **Use:** Personal API Key  
-> **Why:** Inherits your user account’s permissions and works across all 
+* **Use:** Personal API Key  
+* **Why:** Inherits your user account’s permissions and works across all 
 accessible corpora.
-
-**Example:** A Platform Admin creating corpora or a Developer testing ingestion 
+* **Example:** A Platform Admin creating corpora or a Developer testing ingestion 
 in development.
-
-```bash
-x-api-key: zut_1234...
-```
 
 :::danger
 Never use Personal API keys in production. They have broad access and should 
-be treated like passwords. Platform Admins must avoid this risk in live 
+be treated like passwords. Admins must avoid this risk in live 
 systems.
 :::
 
 ### Public-facing query interface
 
-> **Use:** Query API Key  
-> **Why:** Read-only and scoped to specific corpora — safe for front-end embedding.
-
-**Example:** An App Developer adding search to a marketing website or help center.
-
-```bash
-x-api-key: zqt_abcd...
-```
+* **Use:** Query API Key  
+* **Why:** Read-only and scoped to specific corpora — safe for front-end embedding.
+* **Example:** An App Developer adding search to a marketing website or help center.
 
 Ideal for usage in web or mobile apps when security is scoped and no indexing 
 is required. This is great for Application End Users’ query needs.
 
 ### Secure indexing and backend workloads
 
-> **Use:** Index API Key  
-> **Why:** Enables document ingestion and querying. Use in secure backend services.
+* **Use:** Index API Key  
+* **Why:** Enables document ingestion and querying. Use in secure backend services.
+* **Example:** An ML Engineer optimizing RAG by indexing data from an internal CMS.
 
-**Example:** An ML Engineer optimizing RAG by indexing data from an internal CMS.
-
-```bash
-x-api-key: zwt_5678...
-```
 Do not expose index keys to browser-based clients — treat them as secrets, 
 a rule App Developers must follow.
 
 ### Production-grade security and role control
 
-> **Use:** OAuth 2.0 (JWT Token)  
-> **Why:**: Scoped, expiring tokens managed by app clients. Best for services 
+* **Use:** OAuth 2.0 (JWT Token)  
+* **Why:**: Scoped, expiring tokens managed by app clients. Best for services 
 and third-party apps.
-
-**Example:** A Dev Team Lead deploying a microservice querying corpora based 
+* **Example:** A Dev Team Lead deploying a microservice querying corpora based 
 on user roles.
 
-```bash
-Authorization: Bearer eyJhbGciOi...
-```
 Use OAuth to:
 
 * Limit access by role (query/index/admin)
@@ -132,4 +115,3 @@ Use OAuth to:
 * Create and Use API Keys
 * Authenticate with OAuth 2.0
 * Assign Roles to Users and Clients
-

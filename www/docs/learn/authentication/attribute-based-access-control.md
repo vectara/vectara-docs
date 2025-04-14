@@ -101,4 +101,3 @@ This ensures access control remains enforced while supporting contextual filteri
 | Filters are not enforced at platform level | Rely on backend to inject correct filters |
 | No per-document ACLs          | Use metadata + filters instead               |
 | Query access gives full access | Scope keys narrowly and use ABAC consistently|
-

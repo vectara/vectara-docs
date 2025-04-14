@@ -185,7 +185,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "Authentication and Authorization in Vectara",
+      label: "Authentication and Authorization",
       link: {
         type: 'doc',
         id: 'learn/authentication/authentication-authorization-vectara', 

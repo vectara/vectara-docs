@@ -1,12 +1,13 @@
 ---
 id: auth-overview
-title: Authentication and Authorization Overview
-sidebar_label: Authentication and Authorization Overview
+title: Authentication Methods and Authorization Levels
+sidebar_label: Authentication Methods and Authorization Levels
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import vars from '@site/static/variables.json';
+import {Config} from '@site/docs/definitions.md';
+import {vars} from '@site/static/variables.json';
 
 Vectara has robust authentication and authorization methods in place to secure 
 your data and operations, whether you are a Platform Admin configuring the 
@@ -37,7 +38,7 @@ corpora.
 
 | API Key Type       | Key Prefix | Allowed Operations                                                 | Access Scope                            | Intended Use                                              |
 |--------------------|------------|--------------------------------------------------------------------|------------------------------------------|------------------------------------------------------------|
-| **Personal API Key**  | `zut_...`  | Some limitations such as not deleting your account or creating users | Account-wide (inherits user’s permissions) | Administrative tasks, prototyping, full access across corpora |
+| **Personal API Key**  | `zut_...`  | All operations, with some limitations such as not deleting your account or creating users | Account-wide (inherits user’s permissions) | Administrative tasks, prototyping, full access across corpora |
 | **Query API Key**      | `zqt_...`  | Read-only search operations                                        | Corpus-specific                          | Front-end applications, public-facing query requests       |
 | **Index API Key**      | `zwt_...`  | Read and write (indexing and querying)                             | Corpus-specific                          | Server-side indexing and querying                          |
 | **OAuth 2.0 Token**    | (JWT token)| Scoped by roles granted to OAuth client                           | Account or corpus scope                  | Secure production authentication, third-party integrations |
@@ -53,7 +54,7 @@ to use API keys or OAuth based on your use case.
 Vectara primarily enforces authorization at the **account** and **corpus** level 
 through [Role-Based Access Control (RBAC)](/docs/learn/authentication/role-based-access-control), critical for 
 Platform Admins managing users or Developers scoping corpus access. You can 
-layer Attribute-Based Access Control (ABAC) by applying metadata-based filters
+layer [Attribute-Based Access Control (ABAC)](/docs/learn/authentication/attribute-based-access-control) by applying metadata-based filters
 at query time.
 
 
@@ -61,8 +62,8 @@ at query time.
 |----------------------------------|---------------------------------------------------------------------|---------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
 | **Account-level** (application-level) | High-level admin and management actions across corpora              | Vectara Account Roles (Owner, Admin, Billing, etc.)                        | Grants full admin access across corpora and user management                                    | None. Fully supported. No access to specific document contents.                                 |
 | **Corpus-level** (primary authorization layer) | Which users, API keys, or apps can query, index, or administer a corpus | Corpus Roles: Query (QRY), Index (IDX), Admin (ADM)                        | API keys and OAuth tokens are assigned access per corpus. No cross-corpus access unless explicitly granted. | Fully supported. Primary method for data segmentation.                                           |
-| **Document-level** (per-user data isolation within corpus) | Ensures users only see their documents within a shared corpus      | No direct document-level roles                                             | Use metadata filters at query time (e.g., `metadata_filter: "user_id = X"`)                   | Workaround required. Not an enforced security model. Users with Query access could bypass filters if misused. |
-| **Field-level** (granular document access) | Control over specific fields in a document                         | No built-in field-level roles                                              | Entire document contents are visible to anyone with Query (QRY) access to the corpus.         | Not supported natively. Workaround: store sensitive fields in a separate restricted corpus, or use metadata filters during queries. |
+| **Coarse-grained (document-level)** (per-user data isolation within corpus) | Ensures users only see their documents within a shared corpus      | No direct document-level roles                                             | Use metadata filters at query time (e.g., `metadata_filter: "user_id = X"`)                   | Workaround required. Not an enforced security model. Users with Query access could bypass filters if misused. |
+| **Fine-grained (part-level)** (granular document access) | Control over specific document parts                       | No built-in field-level roles                                              | Entire document contents are visible to anyone with Query (QRY) access to the corpus.         | Not supported natively. Workaround: store sensitive fields in a separate restricted corpus, or use metadata filters during queries. |
 | **Multi-tenant** (per-customer access control) | Enforcing isolation for different customers                         | Segmentation per corpus (recommended)                                     | Assign each customer their own corpus, and grant API keys per corpus. Corpus isolation = platform-enforced; filters = app-enforced                        | Requires corpus management. Alternative (filters) offers weaker security.                        |
 
 
@@ -74,7 +75,6 @@ Use the following task guides to implement secure access and authorization:
 - 🔐 [Use OAuth 2.0](/docs/learn/authentication/oauth-2)
 - 👥 [Assign Roles to Users and Clients (RBAC)](/docs/learn/authentication/role-based-access-control)
 - 🎯 [Apply Metadata Filters for Attribute-Based Access Control (ABAC)](/docs/learn/authentication/attribute-based-access-control)
-- 🏢 [Isolate Tenants with Corpora](/docs/learn/authentication//docs/learn/authentication/multi-tenant-corpus-isolation)
+- 🏢 [Isolate Tenants with Corpora](/docs/learn/authentication/multi-tenant-corpus-isolation)
 - 🧠 [Combine ABAC with Application-Specific Filters](/docs/learn/authentication/combine-access-control-with-app-filters)
-
 

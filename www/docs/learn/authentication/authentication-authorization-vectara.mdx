@@ -8,37 +8,30 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
-import { Grid } from "@site/ui/Grid";
-import { Spacer } from "@site/ui/Spacer";
-import { TopicButton } from "@site/ui/TopicButton";
+import { Grid } from "@site/src/components/ui/Grid";
+import { Spacer } from "@site/src/components/ui/Spacer";
+import { TopicButton } from "@site/src/components/ui/TopicButton";
+
 
 Vectara’s authentication and authorization framework secures access to our 
-platform. Whether you are an administrator configuring corpora, a developer 
-integrating APIs, or an end user querying with an application, this section 
+platform. Whether you are an Admin configuring corpora, a Developer 
+integrating APIs, or an End User querying via an application, this section 
 provides the tools and strategies to control access effectively. From API keys 
 for quick setups to OAuth 2.0 for enterprise-grade security, Vectara balances 
 usability with robust protection.
 
-
 ## Who uses Vectara?
 
-Our platform serves diverse personas: Platform Admins manage systems, 
-Developers (like Dev Team Leads, App Developers, and ML Engineers) build and 
-test integrations, Client Apps bridge to Application End Users, and leaders 
-(Technical and Business) oversee strategy. This blueprint guides you through 
-their access needs:
+Admins manage the platform, Developers build and test integrations, and End 
+Users access data through apps. This blueprint guides their needs:
 
 ```
---------------------------------------------------
-| Technical/Business Leaders (Oversight)         | 
---------------------------------------------------
 +- - - - - - - - - - - - - - - - - - - - - -+ 
 | Vectara Users                             |
 |  +----------------+  +------------------+ |
-|  | Platform Admin |  | Developers       | | 
-|  |                |  | (Leads, App, ML) | |
-|  |                |  |                  | |         
-|  |  Manage        |  |  Query/Index     | |
+|  |   Admins       |  |   Developers     | | 
+|  |                |  |                  | |
+|  |  Manage        |  |   Query/Index    | |
 |  +----------------+  +------------------+ |
 |         |                 |               |
 |         v                 v               |
@@ -56,12 +49,10 @@ their access needs:
             v
   +-----------------------+ 
   | Application End User  |
-  |                       |
   +-----------------------+
 ```
-*This diagram shows key access layers: Platform Admins and Developers interact 
-with Vectara directly, Client Apps connect to Application End Users, and 
-leaders oversee it all. Dive into the topics below for details.*
+*Admins and Developers interact with Vectara directly, Client Apps connect to 
+End User.*
 
 Review the following key topics, guiding you through Vectara personas, 
 concepts, and practical steps. Start here to grasp the big picture
@@ -69,7 +60,7 @@ concepts, and practical steps. Start here to grasp the big picture
 <Grid columns={3}>
   <TopicButton title="Vectara Personas and Access Patterns" href="/docs/learn/authentication/personas-and-access-patterns">
     <Spacer size="l" />
-    Introduces common personas (leaders, admins, developers, end users) and their access patterns. 
+    Introduces Admins, Developer, and End User access patterns. 
     <Spacer size="l" />
     Clarifies who needs what access, grounding your auth/authz strategy.
     <Spacer size="l" />

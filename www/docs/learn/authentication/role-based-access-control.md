@@ -4,6 +4,12 @@ title: Assign Roles to Users and Clients (RBAC)
 sidebar_label: Assign Roles to Users and Clients (RBAC)
 ---
 
+import {Config} from '@site/docs/definitions.md';
+
+Developers often forget to assign roles after creating corpora or API clients, 
+resulting in blocked access or overly broad permissions. This guide helps you 
+assign precise access to the right identities—whether human users or 
+programmatic clients—using roles scoped to each corpus.
 
 Developers often forget to assign roles after creating corpora or API clients, 
 resulting in blocked access or overly broad permissions. This guide helps you 
@@ -130,6 +136,5 @@ account and are generally tied to account tier. These features include:
 | 403 Forbidden (API key)        | Missing corpus role assignment        | Assign QRY or IDX to key’s corpus            |
 | OAuth token returns empty data | App client lacks Query permission     | Assign QRY to app client in corpus           |
 | Index fails with QRY role      | Wrong role assigned                   | Switch to IDX or Admin                       |
-
 
 

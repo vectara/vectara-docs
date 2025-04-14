@@ -4,6 +4,7 @@ title: Use OAuth 2.0
 sidebar_label: Use OAuth 2.0
 ---
 
+import {Config} from '@site/docs/definitions.md';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -192,4 +193,3 @@ Click **Send API Request** to test the API call.
 | 401 Unauthorized           | Missing or expired JWT token              | Regenerate token before expiry                    |
 | Role mismatch              | App client not assigned correct role      | Edit roles in Console or recreate App Client       |
 | Exposing credentials       | client_secret used in frontend app       | Never expose secrets or JWTs to end users         |
-

@@ -9,6 +9,28 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
 
+
+#### Who Uses Vectara and How
+| Persona   | Role                                      | Primary Access Layer | Auth & Authz Scope                     | PII Access? |
+|-----------|-------------------------------------------|----------------------|----------------------------------------|-------------|
+| **Admin** | Manages system config, user access, uptime| Console and Admin API| SSO (e.g., Google), OAuth 2.0; full RBAC | No          |
+| **Developer** | Builds integrations, tests APIs       | Console and API      | SSO, API Keys (zut_, zqt_, zwt_); scoped RBAC | Test data |
+| **End User** | Uses apps (e.g., search, chatbots)     | Client App Only      | SSO/IdP → App (ABAC); no direct access | Yes         |
+
+*Streams*: Admins configure and monitor; Developers design corpora, ingest data, tune queries, or integrate UIs; End Users query via apps.
+
+#### Access Scope and Trust Boundaries
+[Update diagram to match landing page, adjust callouts: Admin [Manage], Developer [Query/Index], Client App [Serve], End User [View]]
+
+
+
+
+
+
+
+
+
+
 Understanding who uses Vectara—and how they interact with it—is essential for 
 implementing secure, efficient authentication and authorization strategies. 
 This section introduces the key personas, maps their access patterns across 
@@ -64,8 +86,8 @@ bounded by trust and responsibility:
 --------------------------------------------------
    +- -- -- -- -- -- -- -- -- -- -- -- -- -- -+ 
    | Vectara Users                            |
-   |  +----------------+  +-----------------+ |
-   |  | Platform Admin  |  | Developer      | | 
+   |  +-----------------+  +----------------+ |
+   |  |      Admin      |  | Developer      | | 
    |  |                 |  | Dev Team Lead  | |
    |  |                 |  | ML Engineer    | |
    |  |                 |  |                | |
@@ -136,6 +158,5 @@ follow, and pitfalls to avoid.
 | **App Developer**    | Query/Index API Keys (zqt_, zwt_), OAuth 2.0   | Separate keys for query/index, secure secrets       | Sharing keys across corpora                 |
 | **ML Engineer**      | API Keys (zqt_, zwt_), OAuth 2.0 (optional)    | Use training corpora, avoid broad-scope keys        | Accessing prod corpora with broad keys      |
 | **End User**         | SSO to app → Metadata filters via app logic    | Apply ABAC filters, validate identity in app        | Allowing direct Vectara access or unfiltered queries |
-
 
 

@@ -82,4 +82,3 @@ selected project.
 
 `((doc.owner in ("mary", "global")) OR ("history" IN doc.groups AND (doc.roles is null OR "dean" IN doc.roles))) AND (doc.project = "orientation") AND ("safety" IN doc.tags)`
 
-
