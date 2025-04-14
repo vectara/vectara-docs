@@ -123,7 +123,7 @@ curl -L -X POST 'https://api.vectara.io/v2/llms' \
 -H 'x-api-key: zut_...' \
 --data-raw '{
   "type": "openai-compatible",
-  "name": "Google Gemini 2.0 Flashi",
+  "name": "Google Gemini 2.0 Flash",
   "description": "Google 2.0 Flash",
   "model": "gemini-2.0-flash",
   "uri": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
