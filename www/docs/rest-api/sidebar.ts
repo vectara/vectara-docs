@@ -524,6 +524,22 @@ const sidebar: SidebarsConfig = {
         },
       ],
     },
+    {
+      type: "category",
+      label: "Factual Consistency Evaluation",
+      link: {
+        type: "doc",
+        id: "rest-api/factual-consistency-evaluation",
+      },
+      items: [
+        {
+          type: "doc",
+          id: "rest-api/evaluate-factual-consistency",
+          label: "Evaluate factual consistency",
+          className: "api-method post",
+        },
+      ],
+    },
   ],
 };
 

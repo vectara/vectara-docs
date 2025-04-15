@@ -70,6 +70,9 @@ tags:
     administration
 - name: Table Extractors
   description: List available extractors for tabular data from documents
+- name: Factual Consistency Evaluation
+  description: Evaluate text quality metrics like factual consistency and hallucination
+    detection
 servers:
 - url: https://api.vectara.io
 paths:
@@ -748,19 +751,19 @@ paths:
         The request expects a `multipart/form-data` format containing the following
         parts:
 
-        * `metadata` - (Optional) Specifies a JSON object representing any additional
+        * `metadata` - Optionally specifies a JSON object representing any additional
         metadata to be associated with the extracted document. For example, `''metadata={"key":
         "value"};type=application/json''`
 
-        * `chunking_strategy` - (Optional) Specifies the chunking strategy for the
+        * `chunking_strategy` - If provided, specifies the chunking strategy for the
         platform to use. If you do not set this option, the platform uses the default
         strategy, which creates one chunk per sentence. You can explicitly set sentence
         chunking with `''chunking_strategy={"type":"sentence_chunking_strategy"};type=application/json''`
         or use max chars chunking with `''chunking_strategy={"type":"max_chars_chunking_strategy","max_chars_per_chunk":200};type=application/json''`
 
-        * `table_extraction_config` - (Optional) Specifies whether to extract table
-        data from the uploaded file. If you do not set this option, the platform does
-        not extract tables from PDF files. Example config, `''table_extraction_config={"extract_tables":true};type=application/json''`
+        * `table_extraction_config` - You can optionally specify whether to extract
+        table data from the uploaded file. If you do not set this option, the platform
+        does not extract tables from PDF files. Example config, `''table_extraction_config={"extract_tables":true};type=application/json''`
 
         * `file` - Specifies the file that you want to upload.
 
@@ -1972,6 +1975,56 @@ paths:
                 $ref: '#/components/schemas/NotFoundError'
       x-fern-sdk-group-name: chats
       x-fern-sdk-method-name: updateTurn
+  /v2/evaluate_factual_consistency:
+    post:
+      tags:
+      - Factual Consistency Evaluation
+      summary: Evaluate factual consistency
+      description: 'Evaluate the factual consistency of a generated text (like a summary)
+        against source documents.
+
+        This determines how accurately the generated text reflects the information
+        in the source documents,
+
+        helping identify potential hallucinations or misrepresentations.
+
+        '
+      operationId: evaluateFactualConsistency
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EvaluateFactualConsistencyRequest'
+      responses:
+        '200':
+          description: The factual consistency evaluation results.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EvaluateFactualConsistencyResponse'
+        '400':
+          description: Invalid request body.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '403':
+          description: Permissions do not allow factual consistency evaluation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '422':
+          description: Language not supported by the factual consistency service.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-fern-sdk-group-name: factual-consistency
+      x-fern-sdk-method-name: evaluate
   /v2/encoders:
     post:
       tags:
@@ -4450,7 +4503,8 @@ components:
     TableExtractionConfig:
       type: object
       description: 'Configuration for table extraction from the document. This is
-        optional and if not provided, default table extraction behavior will be used.
+        optional and if not provided, the platform does not extract tables from PDF
+        files.
 
         '
       properties:
@@ -4464,6 +4518,8 @@ components:
             '
         extractor:
           $ref: '#/components/schemas/TableExtractorSpec'
+        generation:
+          $ref: '#/components/schemas/TableGenerationSpec'
       required:
       - extract_tables
     ChunkingStrategy:
@@ -4881,6 +4937,49 @@ components:
         description:
           description: The description of the table.
           type: string
+    EvaluateFactualConsistencyRequest:
+      description: Request to evaluate the factual consistency of a generated text
+        against source documents.
+      type: object
+      required:
+      - generated_text
+      - source_texts
+      - language
+      properties:
+        model_parameters:
+          description: The model parameters for the evaluation.
+          type: object
+          properties:
+            model_name:
+              description: The name of the model to use for evaluation.
+              type: string
+              example: hhem_v2.2
+              default: hhem_v2.2
+        generated_text:
+          type: string
+          description: The generated text (e.g., summary or answer) to evaluate for
+            factual consistency.
+        source_texts:
+          type: array
+          description: The source documents or text snippets against which to evaluate
+            factual consistency.
+          items:
+            type: string
+        language:
+          $ref: '#/components/schemas/Language'
+    EvaluateFactualConsistencyResponse:
+      description: Results of the factual consistency evaluation.
+      type: object
+      required:
+      - score
+      properties:
+        score:
+          type: number
+          format: double
+          description: A prediction score (0.0-1.0) from HHEM, monotonically indicates
+            the likelihood of hallucinations.
+          minimum: 0.0
+          maximum: 1.0
     DocumentStorageUsage:
       type: object
       description: 'How much storage the document used. This information is currently
@@ -5049,6 +5148,12 @@ components:
           format: uri
         auth:
           $ref: '#/components/schemas/RemoteAuth'
+        headers:
+          description: Additional HTTP headers to include with requests to the LLM
+            API.
+          type: object
+          additionalProperties:
+            type: string
         test_model_parameters:
           description: 'Any additional parameters that are required for the LLM during
             the test call.
@@ -5710,6 +5815,34 @@ components:
           example: textract
       required:
       - name
+    TableGenerationSpec:
+      description: 'Specification for which generation to use during table summarization.
+        If not specified, the platform uses the default summarizer. All parameters
+        are optional and overrides the default values.
+
+        '
+      type: object
+      properties:
+        llm_name:
+          description: The name of the LLM to use.
+          type: string
+          example: gpt-4o
+        prompt_template:
+          type: string
+          description: "The prompt template to use when generating the table summary.\
+            \ \nVectara manages both system and user roles and prompts for the generative\n\
+            LLM out of the box by default. However, users can override the\n`prompt_template`\
+            \ via this variable. The `prompt_template` is in the form of an\nApache\
+            \ Velocity template. For more details on how to configure the\n`prompt_template`,\
+            \ see the [long-form documentation](https://docs.vectara.com/docs/prompts/vectara-prompt-engine).\n"
+        model_parameters:
+          type: object
+          description: Optional parameters for the specified model used when generating
+            the table summary.
+          example:
+            temperature: 0
+            max_tokens: 512
+          additionalProperties: true
     TableExtractor:
       description: 'A table extractor can be used to extract tabular data from documents
         during indexing.
@@ -5729,6 +5862,8 @@ components:
           description: The description of the table extractor.
           type: string
           example: Uses the AWS Textract service to extract tables.
+        generation:
+          $ref: '#/components/schemas/TableGenerationSpec'
     ListTableExtractorsResponse:
       type: object
       description: Response containing a list of available table extractors for document
