@@ -111,6 +111,13 @@ table cells using the Query API.
 This feature does not support extracting data from scanned-in images of tables.
 :::
 
+### Custom Table Summarization with Prompt Templates
+
+Vectara supports [table summarization using custom prompt templates](/docs/generation/custom-prompt-templates-customization) during 
+document upload. This lets you define [custom prompt templates](/docs/prompts/vectara-prompt-engine) that control how the 
+LLM interprets and summarizes table data during extraction. By customizing the 
+`prompt_template`, you can tailor summaries for domain-specific language, 
+analytical perspectives, or formatting preferences.
 
 ### Attach Additional Metadata
 

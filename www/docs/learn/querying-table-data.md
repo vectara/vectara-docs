@@ -13,7 +13,8 @@ in PDFs, enhancing the overall data retrieval and analysis process.
 Users can query specific table cells, entire rows, or even whole tables to 
 access actionable insights from structured data in PDFs. Querying tables 
 provides enhanced context by displaying relevant tables, titles, and row-level 
-details.
+details. In addition to querying raw table data, Vectara supports [table 
+summarization using custom prompt templates](/docs/generation/custom-prompt-templates-customization). 
 
 This tabular data extraction capability is especially beneficial for 
 organizations working with financial reports like 10-Q, 10-K, and S1 filings. 
