@@ -82,6 +82,7 @@ const sidebars: SidebarsConfig = {
       },
       items: [
         "learn/boomerang",
+        "search-and-retrieval/bring-your-own-llm",
         "learn/hybrid-search",
         "learn/enable-keyword-text-matching",
         "search-and-retrieval/intelligent-query-rewriting",

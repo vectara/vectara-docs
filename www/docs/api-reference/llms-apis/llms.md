@@ -1,7 +1,7 @@
 ---
 id: llms-api
-title: Large Language Models (LLMs) API Definition
-sidebar_title: Large Language Models (LLMs) API Definition
+title: List Large Language Models (LLMs) API Definition
+sidebar_title: List Large Language Models (LLMs) API Definition
 ---
 
 import Tabs from '@theme/Tabs';
