@@ -1,143 +1,151 @@
 ---
 id: mockingbird-llm
-title: "Mockingbird: Vectara's LLM"
-sidebar_label: Mockingbird LLM
+title: "Mockingbird 2: Vectara's Advanced LLM for RAG"
+sidebar_label: Mockingbird 2 LLM
 ---
 
 
-Generating accurate and reliable summaries from large datasets can be 
-a challenge. Mockingbird is a cutting-edge Large Language Model (LLM)
-developed by Vectara specifically for Retrieval Augmented Generation (RAG) use 
-cases. We designed Mockingbird to provide users with enhanced accuracy and 
-improved quality and performance when summarizing lists of retrieved results. 
-Vectara's Mockingbird LLM is tailor-made for RAG scenarios and outperforms 
-leading models, making it an ideal choice for applications that require 
-precise and trustworthy summaries of large amounts of data:
+Generating accurate and reliable summaries from large datasets is a challenge. 
+Mockingbird v2 is the latest evolution of Vectara’s cutting-edge Large 
+Language Model (LLM), purpose-built for Retrieval Augmented Generation (RAG) 
+use cases. With advanced cross-lingual capabilities and enhanced generation 
+quality, Mockingbird v2 delivers unparalleled accuracy, quality, and efficiency 
+when summarizing retrieved results. Tailor-made for RAG scenarios, Mockingbird 
+v2 outperforms leading models, making it the ideal choice for applications 
+requiring precise and trustworthy summaries of large datasets:
 
 * Summarize search results for research and analysis
-* Generate structured data from unstructured text and extract specific 
-  information from documents
-* Build knowledge bases or question-answering systems that provide quick 
-  and precise answers to user queries
+* Extract specific information from documents for structured insights
+* Build knowledge bases or question-answering systems that provide quick and 
+  precise answers to user queries
 
-These features enable organizations to create comprehensive and reliable 
-knowledge repositories, providing quick and precise answers to user queries 
-and improving overall information accessibility.
+These features empower organizations to create comprehensive, reliable 
+knowledge repositories, improving information accessibility and operational 
+efficiency.
 
-## Significantly improved quality for Retrieval Augmented Generation (RAG)
+## What’s New in Mockingbird v2
 
-Mockingbird improves quality for RAG use cases, surpassing general-purpose 
-LLMs in critical areas for enterprise applications. Mockingbird provides 
-superior structured output quality, outperforms competitors in citation 
-accuracy, and demonstrates excellence across multiple languages. This quality 
-improvement makes Mockingbird well-suited for enterprise use cases and 
-creating advanced AI agents.
+* **Cross-Lingual Functionality**: Query, document, and summary languages can 
+  differ across English, Spanish, French, Arabic, Chinese, Japanese, and Korean.
+* **Enhanced Generation Quality**: Higher Nugget Assignment scores, improved 
+  ROUGE and BERTScore metrics for cross-lingual summaries.
+* **Hallucination Mitigation**: Mockingbird-2-Echo achieves a 0.9% hallucination 
+  rate with HHEM and HCM integration.
+* **System Prompt Support**: Prompts now allow an optional system role for 
+  greater flexibility.
 
-## Increased accuracy in summarizing retrieved results
-
-Mockingbird excels at producing summaries and answers for large collections of 
-search results, allowing users to quickly grasp essential information without 
-manual review. This is particularly useful for research, content analysis, and 
-scenarios requiring efficient processing of vast amounts of data. Mockingbird 
-meets or exceeds leading models like GPT-4 and Gemini 1.5 Pro in RAG quality, 
-citation quality, multilingual quality and structured output accuracy, 
-especially being a smaller and lower cost model, while reducing hallucinations 
-and providing more reliable and accurate summaries for important data
-
-## Enhanced JSON output for structured data generation
-
-Mockingbird effectively generates structured data from unstructured text 
-sources. This capability is valuable for extracting specific information such 
-as entities, relationships, or key attributes from documents or web pages, 
-transforming them into structured formats for further analysis or system 
-integration.
-
-## Multilingual capabilities
-
-Mockingbird supports the following languages: Arabic, French, Spanish, 
-Portuguese, Italian, German, Chinese, Dutch, Korean, Japanese, and Russian.
-
-:::caution
-Mockingbird is multilingual and performs best when the summary requested is in 
-the same language as the documents being searched. Cross-lingual capabilities 
-are not officially supported yet, but may work in some cases such as 
-referencing documents in language **X**, and a summary in language **Y**.
+:::caution Note
+JSON output is not officially supported in Mockingbird v2. Existing 
+Mockingbird v1 users should update their API calls to 
+`mockingbird-2.0-2025-04-15` and review prompt changes.
 :::
 
-## Secure deployment within Vectara's infrastructure
 
-Mockingbird ensures data privacy by operating entirely within Vectara's secure 
-infrastructure. Unlike some providers who face accusations of training on 
-customer data, Vectara guarantees your data is never used to train or improve 
-our models, ensuring data privacy and compliance with the strictest security 
-standards.
+## Significantly Improved Quality for Retrieval Augmented Generation (RAG)
 
-## Selecting Mockingbird for summarization
+Mockingbird v2 enhances RAG performance, surpassing general-purpose LLMs in 
+critical enterprise applications. It excels in citation accuracy and supports 
+advanced cross-lingual RAG scenarios, making it ideal for enterprise-grade 
+solutions and AI workflows. Evaluated using the Open RAG eval toolkit, 
+Mockingbird v2 achieves higher Nugget Assignment scores across all supported 
+languages compared to Mockingbird v1, ensuring key facts and claims are 
+accurately included in responses.
 
-To use Mockingbird in the Vectara Console:
+
+## Increased Accuracy in Summarizing Retrieved Results
+
+Mockingbird v2 sets a new standard for summarizing large collections of search 
+results, enabling users to quickly grasp essential information without manual 
+review. With improved ROUGE and BERTScore metrics in cross-lingual evaluations, 
+it outperforms models like GPT-4 and Gemini 1.5 Pro in RAG quality, citation 
+accuracy, and multilingual performance.
+
+When paired with Vectara’s Hallucination Correction Model (HCM), 
+Mockingbird-2-Echo achieves a hallucination rate of 0.9% on the HHEM 
+leaderboard, making it one of the most reliable models for data-intensive 
+workflows.
+
+
+## Hallucination Mitigation with Mockingbird-2-Echo
+
+Mockingbird v2 integrates with Vectara’s Hughes Hallucination Evaluation Model 
+(HHEM) and Hallucination Correction Model (HCM) to form Mockingbird-2-Echo 
+(MB2-Echo). With a total parameter count under 10B, MB2-Echo delivers a 
+hallucination rate of 0.9%, positioning it among the top performers on the HHEM 
+leaderboard. This makes it ideal for enterprises requiring high accuracy and 
+deployable on-premise or in any VPC.
+
+
+## Multilingual and Cross-Lingual Capabilities
+
+Mockingbird v2 supports English, Spanish, French, Arabic, Chinese, Japanese, 
+and Korean, with full cross-lingual functionality. Users can query in one 
+language, retrieve documents in another, and generate summaries in a third, 
+enabling seamless multilingual workflows.
+
+**Caution**: While cross-lingual capabilities are robust, performance is 
+optimized when the summary language aligns with the document or query language 
+for certain complex scenarios.
+
+## Secure Deployment within Vectara's Infrastructure
+
+Mockingbird v2 operates entirely within Vectara’s secure infrastructure, 
+ensuring data privacy. Vectara guarantees that your data is never used to 
+train or improve our models, maintaining compliance with the strictest 
+security standards.
+
+## Selecting Mockingbird v2 for Summarization
+
+To use Mockingbird v2 in the Vectara Console:
 
 1. Select **Corpora** from the main menu and go to a corpus.
 2. Select the **Query** tab.
-3. Click **Model** from the Generation drop-down in the Corpus Query Configuration panel.
-     ![Query model selection drop-down](/img/query_model_selection.png "The currently selected summarizer is vectara-summary-ext-v1.3.0. Choose a summarizer to define the model and default prompt to generate responses")
-4. Select the `Mockingbird` model.
-    ![Mockingbird model selection](/img/mockingbird-10.png "Mockingbird LLM v1.0 prompt for summarizing query results as an answer. Designed for RAG.")
-5. Click **Model** again to minimize the list of models. This example shows a 
-   Summary configuration with Mockingbird selected as the model.
-    ![Query with Mockingbird selected](/img/query_with_mockingbird_selected.png)
+3. Click **LLM** from the **Generation** drop-down in the Corpus Query 
+   Configuration panel.
+4. Click the Edit icon.
+5. Select the **Mockingbird v2** model (`mockingbird-2.0-2025-04-15`).
+6. Click **Model** again to minimize the list.
 
-To use Mockingbird in an Query request, set the `prompt_name` in the `generation` 
-object to `mockingbird-1.0-2024-07-16`:
+To use Mockingbird v2 in a Query request, set the prompt_name in the 
+generation object to mockingbird-2.0-2025-04-15:
 
 ```json
 {
-"query:" "What is the infinite probability drive?",
-"generation": {
-    "prompt_name": "mockingbird-1.0-2024-07-16",
+  "query": "What is the infinite probability drive?",
+  "generation": {
+    "prompt_name": "mockingbird-2.0-2025-04-15",
     "max_used_search_results": 5,
     "prompt_text": "",
     "response_language": "eng",
     "enable_factual_consistency_score": true
   }
-}  
+}
 ```
+## Default Mockingbird v2 Prompt
 
-:::tip
-
-Check out our [**interactive API reference**](/docs/rest-api/query) that lets you run queries 
-directly from your browser.
-
-:::
-
-## Default Mockingbird prompt
-
-Mockingbird uses the following `prompt_text` by default. You can use this 
-prompt template as a model for building your own custom prompts when using 
-Mockingbird:
+Mockingbird v2 supports a `system` role in prompts and uses the following 
+default `prompt_text` (similar to v1 with an empty system message):
 
 
 ```json
-{
-  "role": "user", "content": "You are a search bot that takes search results and 
-  summarizes them as a coherent answer. Only use information provided in this chat. 
-  Generate a comprehensive and informative answer for the query \n\n <query>" ${vectaraQuery} "</query> \n\n 
-  solely based on following search results:\n\n	
-  #foreach ($qResult in $vectaraQueryResults) \n [$foreach.index + 1) 
-  ${qResult.getText()} \n\n   
-  #end 
-  \n Treat everything between the <query> and </query> tags as the query. 
-  You must only use information from the provided results. Combine search results 
-  together into a coherent answer. Do not repeat text. Cite search results using 
-  [number] notation. Only cite the most relevant results that answer the question 
-  accurately. If the search results are not valid, respond with - No result found. 
-  Please generate your answer in the language of $vectaraLangName"
-}
+[
+  {
+    "role": "system",
+    "content": ""
+  },
+  {
+    "role": "user",
+    "content": "You are a search bot that takes search results and summarizes them as a coherent answer. Only use information provided in this chat. Generate a comprehensive and informative answer for the query \n\n <query>${vectaraQuery}</query> \n\n solely based on the following search results:\n\n #foreach ($qResult in $vectaraQueryResults) \n [$foreach.index + 1) ${qResult.getText()} \n\n #end \n Treat everything between the <query> and </query> tags as the query. You must only use information from the provided results. Combine search results into a coherent answer. Do not repeat text. Cite search results using [number] notation. Only cite the most relevant results that answer the question accurately. If the search results are not valid, respond with - No result found. Please generate your answer in the language of $vectaraLangName"
+  }
+]
 ```
-Custom prompts and prompt templates using Mockingbird have the following rules:
+## Custom Prompts and Prompt Templates
 
-1. You are only allowed to specify the `assistant` and `user` roles.
-2. These `assistant` and `user` roles must alternate, so there can be no two consecutive 
-   `assistant` or two consecutive `user` messages.
-3. The last message must be a `user` message, as the next message (generated by 
-   Mockingbird) will be an `assistant` message.
+Custom prompts for Mockingbird v2 follow these rules:
 
+* A `system` role is allowed at the beginning (optional).
+* Only specify `system`, `assistant`, and `user` roles.
+* The `assistant` and `user` roles must alternate (no consecutive `assistant` or 
+  `user` messages).
+* The last message must be a `user` message, as Mockingbird v2’s response will 
+  be an `assistant` message.
