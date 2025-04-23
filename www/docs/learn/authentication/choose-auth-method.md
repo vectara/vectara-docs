@@ -105,4 +105,4 @@ Use OAuth to:
 
 * [Create and Use API Keys](/docs/learn/authentication/api-key-management)
 * [Authenticate with OAuth 2.0](/docs/learn/authentication/oauth-2)
-* [Assign Roles to Users and Clients](/docs/learn/authentication/role-based-access-control)
+* [Configure Administration Permissions](/docs/learn/authentication/role-based-access-control)

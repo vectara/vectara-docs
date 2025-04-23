@@ -42,9 +42,9 @@ This guide helps you:
 
 | API Key Type      | Key Prefix | Allowed Operations                  | Scope           | Recommended Usage                     |
 |-------------------|------------|-------------------------------------|------------------|----------------------------------------|
-| Personal Key      | `zut_`     | All user-level operations           | Account-wide     | Platform Admin tasks, Developers for testing, internal scripts |
-| Query Key         | `zqt_`     | Read-only search                    | Corpus-specific  | App Developers for public-facing search, front-end apps   |
-| Index Key         | `zwt_`     | Index + query                       | Corpus-specific  | ML Engineers for ingestion, App Developers for server-side testing       |
+| Personal Key      | `zut_`     | All user-level operations           | Account-wide     | Admin tasks, Developers for testing, internal scripts |
+| Query Key         | `zqt_`     | Read-only search                    | Corpus-specific  | Developers for public-facing search, front-end apps   |
+| Index Key         | `zwt_`     | Index + query                       | Corpus-specific  | Developers for ingestion and server-side testing       |
 
 ## Best practices
 
@@ -214,7 +214,7 @@ END
 </TabItem>
 </Tabs>
 
-## Common issues and how to resolve them
+### Common issues and how to resolve them
 | Issue                            | Cause                                      | Fix                                               |
 |----------------------------------|--------------------------------------------|----------------------------------------------------|
 | 403: Permission Denied           | Key not scoped to corpus                   | Recreate key with correct `corpus_key`             |
@@ -250,6 +250,6 @@ issue queries using the key will be blocked.
 
 ## Next Steps
 
-- Assign Corpus Roles
-- Use Metadata Filters for Per-User Access
+- [Configure Administration Permissions (RBAC)](/docs/learn/authentication/role-based-access-control)
+- [Apply Metadata Filters for Attribute-Based Access Control (ABAC)](/docs/learn/authentication/attribute-based-access-control)
 

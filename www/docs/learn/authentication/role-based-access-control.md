@@ -1,21 +1,29 @@
 ---
 id: role-based-access-control
-title: Assign Roles to Users and Clients (RBAC)
-sidebar_label: Assign Roles to Users and Clients (RBAC)
+title: Configure Administration Permissions (RBAC)
+sidebar_label: Configure Administration Permissions (RBAC)
 ---
 
 import {Config} from '@site/docs/definitions.md';
 
-Developers often overlook assigning roles after creating corpora or API 
-clients, leading to blocked access or overly broad permissions. This guide 
-helps you assign precise roles to authenticated entities, whether human users 
-or Client Apps using Role-Based Access Control (RBAC) scoped to accounts or 
-corpora.
+Vectara Administrators can configure permissions for three key areas using 
+Role-Based Access Control (RBAC):
+
+- **Account**: Manage users, API keys, and account-wide settings, with full control 
+  including account deletion (Owner role).
+- **Billing**: View and edit billing activity, restricted to financial tasks (Billing 
+  Admin role).
+- **Corpora**: Control access to specific corpora for querying, indexing, or full 
+  administration (Query, Index, Administrator roles).
+
+This guide helps Admins and Developers assign precise roles to authenticated 
+entities, whether human users or Client Apps—scoped to accounts or corpora, 
+ensuring secure and efficient access management.
 
 Authorization in Vectara defines what actions an authenticated entity (a user 
 or app client verified by a JWT token) can perform through **permissions** (for 
 example, querying a corpus, resetting its contents). These permissions are 
-grouped into **roles**, assigned via the Vectara Console. Entities without 
+grouped into **roles**, assigned through the Vectara Console. Entities without 
 explicit roles may still access operations through **default permissions**, a 
 feature Admins can configure.
 
@@ -124,18 +132,18 @@ Developers to query, index, or administer data securely.
 |         |                         |
 |         v                         |
 | +-------------------------------+ |
-| | 3. Grant User Access         | |
-| | - Select  a user:            | |
-| |   - Query:  Read-Only        | |
-| |   - Index:  Write+Query      | |
-| |   - Query and Index          | |
-| |   - Admin: InheritControl    | | 
+| | 3. Grant User Access          | |
+| | - Select  a user:             | |
+| |   - Query:  Read-Only         | |
+| |   - Index:  Write+Query       | |
+| |   - Query and Index           | |
+| |   - Admin: Inherit control    | | 
 | +-------------------------------+ |
 |         |                         |
 |         v                         |
 | +-------------------------------+ |
-| | 4. Grant access              | |
-| | (Corpus-specific Access)     | |
+| | 4. Grant access               | |
+| | (Corpus-specific Access)      | |
 | +-------------------------------+ |
 +-----------------------------------+
 ```

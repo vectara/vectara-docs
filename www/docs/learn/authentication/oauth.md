@@ -168,10 +168,8 @@ curl -XPOST -H "Content-type: application/x-www-form-urlencoded" \
 ```
 
 :::tip
-
 This method is useful if you want to try out requests in
 our [**Vectara API Reference**](/docs/rest-api/vectara-rest-api-v-2).
-
 :::
 
 ### Use the JWT token in an API request
@@ -193,3 +191,8 @@ Click **Send API Request** to test the API call.
 | 401 Unauthorized           | Missing or expired JWT token              | Regenerate token before expiry                    |
 | Role mismatch              | App client not assigned correct role      | Edit roles in Console or recreate App Client       |
 | Exposing credentials       | client_secret used in frontend app       | Never expose secrets or JWTs to end users         |
+
+## Next Steps
+
+- [Configure Administration Permissions (RBAC)](/docs/learn/authentication/role-based-access-control)
+- [Apply Metadata Filters for Attribute-Based Access Control (ABAC)](/docs/learn/authentication/attribute-based-access-control)
