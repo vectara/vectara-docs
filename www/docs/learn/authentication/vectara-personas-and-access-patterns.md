@@ -52,15 +52,11 @@ showing where each persona operates (platform, application, or external layer)
 and their authentication/authorization scope. Title variations help align 
 internal roles with Vectara’s model.
 
-| Persona              | Also Known As                              | Role                                                                 | Primary Access Layer       | Authentication & Authorization Scope                  | PII Access? |
-|----------------------|--------------------------------------------|----------------------------------------------------------------------|----------------------------|-------------------------------------------------------|-------------|
-| **Technical Leader** | Director of AI/ML, VP of Data Science, Chief Architect            | Oversees AI strategy, standardizes RAG, consolidates vendors         | Reporting / Dashboards     | TBD (SSO/Federated Identity optional); read-only dashboards, no APIs | No          |
-| **Business Leader**  | CRO, CMO, VP of Sales, VP of Product                             | Drives revenue via GenAI, focuses on ROI and trust                   | Reporting / Dashboards     | TBD (SSO/Federated Identity optional); read-only dashboards, no APIs | No          |
-| **Platform Admin**   | DevOps Engineer, Systems Admin, SRE                              | Manages system config, user access, uptime, and resource optimization| Console and Admin API        | OAuth 2.0 (MFA), Personal API Key (zut_); full RBAC across account | No          |
-| **Dev Team Lead**    | Engineering Manager, Technical Lead                              | Oversees AI feature dev, corpus setup, and team workflows            | Console and Scoped API       | OAuth 2.0, Personal API Key (zut_); scoped RBAC on project corpora | No          |
-| **App Developer**    | Software Engineer, Full Stack Dev, AI App Dev                    | Builds apps using Vectara APIs for query/index workflows             | API only (via App)         | Query/Index API Keys (zqt_, zwt_), OAuth 2.0; per-corpus scopes   | Test data   |
-| **ML Engineer**      | AI Engineer, Data Scientist                                      | Designs models, integrates with Vectara, optimizes RAG               | API only                   | API Keys (zqt_, zwt_), OAuth 2.0; scoped RBAC on data corpora     | Test data   |
-| **End User**         | Customer, Employee, B2B Client                                   | Uses Vectara-powered apps (e.g., search, chatbots)                   | Client Application Only    | SSO/IdP → Filtered via app (ABAC); no direct Vectara access       | Yes         |
+| Persona   | Role                                      | Primary Access Layer | Auth & Authz Scope                     | PII Access? |
+|-----------|-------------------------------------------|----------------------|----------------------------------------|-------------|
+| **Admin** | Manages system config, user access, uptime| Console and Admin API| SSO (e.g., Google), OAuth 2.0; full RBAC | No          |
+| **Developer** | Builds integrations, tests APIs       | Console and API      | SSO, API Keys (zut_, zqt_, zwt_); scoped RBAC | Test data |
+| **End User** | Uses apps (e.g., search, chatbots)     | Client App Only      | SSO/IdP → App (ABAC); no direct access | Yes         |
 
 
 ## Access scope and trust boundaries
@@ -80,10 +76,6 @@ bounded by trust and responsibility:
   data through app-mediated queries and UI.
 
 ```
---------------------------------------------------
-| Technical Leaders, Business Leaders            | 
-| (Oversight from Dashboards, No Direct Access)  |
---------------------------------------------------
    +- -- -- -- -- -- -- -- -- -- -- -- -- -- -+ 
    | Vectara Users                            |
    |  +-----------------+  +----------------+ |
@@ -143,8 +135,6 @@ bounded by trust and responsibility:
    |                  |
    +------------------+
    ```
-
-
 
 ## Typical Authentication Paths per Persona
 

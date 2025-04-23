@@ -167,7 +167,7 @@ curl -XPOST -H "Content-type: application/x-www-form-urlencoded" \
     https://auth.vectara.com/oauth2/token
 ```
 
-:::**tip**
+:::tip
 
 This method is useful if you want to try out requests in
 our [**Vectara API Reference**](/docs/rest-api/vectara-rest-api-v-2).

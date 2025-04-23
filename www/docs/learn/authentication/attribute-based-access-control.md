@@ -5,6 +5,7 @@ sidebar_label: Apply Metadata Filters for Attribute-Based Access Control (ABAC)
 ---
 
 import {Config} from '@site/docs/definitions.md';
+import vars from '@site/static/variables.json';
 
 Vectara does not support native field-level or document-level access control 
 levels (ACLs). Developers may assume they can restrict access inside a corpus, 

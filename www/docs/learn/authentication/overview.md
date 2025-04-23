@@ -7,7 +7,7 @@ sidebar_label: Authentication Methods and Authorization Levels
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
-import {vars} from '@site/static/variables.json';
+import vars from '@site/static/variables.json';
 
 Vectara has robust authentication and authorization methods in place to secure 
 your data and operations, whether you are a Platform Admin configuring the 
@@ -53,9 +53,109 @@ to use API keys or OAuth based on your use case.
 
 Vectara primarily enforces authorization at the **account** and **corpus** level 
 through [Role-Based Access Control (RBAC)](/docs/learn/authentication/role-based-access-control), critical for 
-Platform Admins managing users or Developers scoping corpus access. You can 
+Admins managing users on the Vectara Platform, or Developers scoping corpus access. You can 
 layer [Attribute-Based Access Control (ABAC)](/docs/learn/authentication/attribute-based-access-control) by applying metadata-based filters
-at query time.
+at query time. Let's explore the five authorization levels—**account administration**, 
+**corpus access**, **coarse-grained** (document-level), **fine-grained** 
+(part-level), and **multi-tenancy**—to help you implement secure access control.
+
+### Account Administration Roles
+
+- **What It Controls**: High-level admin and management actions across all corpora, 
+  such as user management, account settings, and corpus creation.
+- **How It Works**: Vectara assigns account-level roles (Owner, Account Admin, 
+  Billing Admin) to grant full administrative access. Owners have unrestricted 
+  control, including account deletion, while Account Admins manage corpora and 
+  users (excluding billing). Billing Admins focus solely on billing tasks. 
+  These roles do not allow direct access to document contents.
+- **Supported Mechanisms**: RBAC with predefined roles, managed by Admins 
+  through the Console.
+- **Use Case**: A platform Admin assigns an Account Admin role to a team member 
+  to oversee all corpora without touching billing data.
+- **Limitations**: Fully supported with no restrictions, but roles do not provide 
+  granular document access—use corpus-level roles for data-specific tasks.
+- **Key Question Answered**: *How do I define administrators?* Assign Owner or 
+  Account Admin roles in the Console for broad control, ensuring only trusted 
+  Admins get these privileges.
+
+### Corpus Access Management
+
+- **What It Controls**: Determines which users, API keys, or apps can query, index, 
+  or administer a specific corpus. This is essential for Developers scoping 
+  access.
+- **How It Works**: Corpus-level roles—Query (QRY) for read-only searches, Index (IDX) 
+  for write and query, and Admin (ADM) for full control—are assigned per corpus. 
+  API keys (`zqt_`, `zwt_`) or OAuth tokens are scoped to individual corpora, 
+  preventing cross-corpus access unless explicitly granted. Admins manage these 
+  roles with the Console.
+- **Supported Mechanisms**: Role-based access control with QRY, IDX, and ADM roles, 
+- configurable by   Admins.
+- **Use Case**: A Dev Team Lead assigns a Query role to an App Developer’s API 
+  key for read-only access to a marketing corpus.
+- **Limitations**: Fully supported and the primary method for data segmentation. 
+  This is ideal for secure, isolated access.
+- **Key Question Answered**: *How do I limit access to corpora?* Use QRY, IDX, or 
+  ADM roles per corpus, scoping keys or tokens to specific corpora via the Console.
+
+### Coarse-Grained (Document-Level) Access Control
+
+- **What It Controls**: Ensures users see only their authorized documents within 
+  a shared corpus, a common need for Application End Users like Mary accessing 
+  personal data.
+- **How It Works**: Since Vectara lacks native document-level ACLs, you apply 
+  metadata filters at query time (`metadata_filter: "user_id = X"`) to simulate 
+  isolation. Client Apps, coded by App Developers, enforce these filters to 
+  restrict visibility based on metadata like `owner` or `groups`.
+- **Supported Mechanisms**: Attribute-based access control with metadata filters, 
+  implemented at the application level.
+- **Use Case**: An App Developer configures a Client App to filter HR documents 
+  so only Mary sees her records (`user_id = mary`).
+- **Limitations**: Not platform-enforced. It relies on application logic. Users with 
+  Query access could bypass filters if misused, requiring careful Client App design.
+- **Key Question Answered**: *How do I restrict document access?* Use Attribute-based 
+  access control filters in your app’s query logic, ensuring metadata like `user_id` 
+  is set during indexing.
+
+### Fine-Grained (Part-Level) Access Control
+
+- **What It Controls**: Limits visibility to specific parts (chunks) of a document, a 
+  granular need for sensitive data—often a concern for App Developers securing 
+  Client Apps.
+- **How It Works**: Vectara does not natively support part-level ACLs. Instead, 
+  you store sensitive parts in a separate, restricted corpus or use metadata 
+  filters to obscure them during queries. Anyone with Query (QRY) access to a 
+  corpus sees the entire document, so workarounds are critical.
+- **Supported Mechanisms**: Attribute-based access control with metadata filters 
+  or corpus segmentation, enforced by the application.
+- **Use Case**: A Developer indexes sensitive fields (salary data) in a restricted 
+  corpus, accessible only to authorized Client Apps with specific keys.
+- **Limitations**: Not natively supported. It requires careful corpus design or 
+  filter logic. Workarounds add complexity for App Developers.
+- **Key Question Answered**: *How do I control specific document parts?* Segregate 
+  sensitive parts into a restricted corpus or apply strict metadata filters in your app.
+
+### Multi-Tenancy
+
+- **What It Controls**: Enforces isolation for different customers or teams, ensuring 
+  each tenant, like an Application End User group, accesses only their data. 
+  This is a priority for Admins managing enterprise deployments.
+- **How It Works**: Assign each tenant a dedicated corpus with its own API keys or 
+  OAuth tokens, managed with the Console. This platform-enforced isolation prevents 
+  cross-tenant access. Alternatively, use app-enforced filters (ABAC) within a 
+  shared corpus, but they may be less secure.
+- **Supported Mechanisms**: Corpus-level RBAC for isolation, with optional ABAC 
+  filters for shared corpora.
+- **Use Case**: An Admin creates a corpus (`tenant_acme_docs`) for Acme Inc., 
+  granting scoped keys to their Client App, ensuring no access to data from 
+  other tenants.
+- **Limitations**: Corpus management adds overhead, but it provides the most secure 
+  approach. Filter-based alternatives may risk exposure if misconfigured.
+- **Key Question Answered**: *How do I isolate tenant data?* Dedicate a corpus per 
+  tenant with scoped keys, configured by Admins in the Console for robust security.
+
+
+
+Note to reviewers. I may use this table somewhere else. TBD
 
 
 | Authorization level               | What it controls                                                    | Supported roles and mechanisms                                            | How it works                                                                                  | Limitations                                                                                      |

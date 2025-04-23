@@ -6,93 +6,175 @@ sidebar_label: Assign Roles to Users and Clients (RBAC)
 
 import {Config} from '@site/docs/definitions.md';
 
-Developers often forget to assign roles after creating corpora or API clients, 
-resulting in blocked access or overly broad permissions. This guide helps you 
-assign precise access to the right identities—whether human users or 
-programmatic clients—using roles scoped to each corpus.
+Developers often overlook assigning roles after creating corpora or API 
+clients, leading to blocked access or overly broad permissions. This guide 
+helps you assign precise roles to authenticated entities, whether human users 
+or Client Apps using Role-Based Access Control (RBAC) scoped to accounts or 
+corpora.
 
-Developers often forget to assign roles after creating corpora or API clients, 
-resulting in blocked access or overly broad permissions. This guide helps you 
-assign precise access to the right identities—whether human users or 
-programmatic clients—using roles scoped to each corpus.
+Authorization in Vectara defines what actions an authenticated entity (a user 
+or app client verified by a JWT token) can perform through **permissions** (for 
+example, querying a corpus, resetting its contents). These permissions are 
+grouped into **roles**, assigned via the Vectara Console. Entities without 
+explicit roles may still access operations through **default permissions**, a 
+feature Admins can configure.
 
-Authorization refers to the role-based access control policies in <Config v="names.product"/> that define
-what actions an authenticated entity may perform. In this system, **permissions** are 
-specific actions, like running a query against a specific corpus, or resetting
-its contents. These permissions are grouped together into **roles**, and
-authenticated entites may be assigned one or more roles.
+### Best practices
 
-In this context, an **authenticated entity** refers to a user or an app client 
-able to attest its identity by presenting a valid JWT token. Even entities that 
-lack explicit roles may still be able to perform operations on the platform 
-through the use of **default permissions**.
-
-## Best Practices
-
-- ✅ Use least privilege: assign only needed roles
+- ✅ Use the principle of least privilege: assign only needed roles
 - ✅ Review role assignments when rotating keys or changing team structure
-- ✅ Separate roles for production vs development corpora
-- ❌ Do not give Admin role to clients unless absolutely necessary
+- ✅ Separate roles for production vs. development corpora
+- ❌ Do not give Admin roles to Client Apps unless essential
 
-## Roles in Vectara
-
-| **Scope**       | **Role**        | **Access Level**                                                          |
-|------------------|------------------|----------------------------------------------------------------------------|
-| Account-level    | Owner             | Full admin rights across account                                          |
-| Account-level    | Account Admin     | All actions except billing                                                |
-| Corpus-level     | Query (QRY)       | Read-only access to search documents                                      |
-| Corpus-level     | Indexing (IDX)    | Write access to index content (includes query access)                     |
-| Corpus-level     | Administrator     | Full control over corpus: query, index, reset, delete, manage permissions |
-
-:::note
-Each corpus has its own role assignments—you must grant access per corpus.
-:::
-
-
-## Prerequisites
+### Prerequisites
 
 - Admin access to Vectara Console
 - A corpus already created
 - Email address of the user or App Client ID for the OAuth client
 
+## Account administration workflow
+
+This workflow focuses on managing account-wide settings, users, and corpora, 
+tasks typically handled by Admins configuring the platform.
+
+```
++------------------------------------------+
+| Vectara Console (Admin)                  |
+| +--------------------------------------+ |
+| | 1. Navigate to Billing               | |
+| +--------------------------------------+ |
+|         |                                |
+|         v                                |
+| +--------------------------------------+ |
+| | 2. View usage data                   | |
+| +--------------------------------------+ |
+|         |                                |
+|         v                                |
+| +--------------------------------------+ |
+| | 3. Navigate to Team                  | |
+| +--------------------------------------+ |
+| | - Invite team member                 | |
+| |   - Email                            | |
+| |   - Username                         | |
+| |   - Description                      | |
+| |   - Roles                            | |
+| |     - Account Admin                  | |
+| |     - Corpus Admin                   | |
+| |     - Billing Admin                  | |
+| |   - Send invitation                  | |
+| +------------------------------------+ | |
+|         |                         |
+|         v                         |
+| +-------------------------------+ |
+| | 4. Go to Corpus Page         | |
+| +--------------------------------------+ |
+| | - Manage corpora                     | |
+| +-------------------------------+ |
+| +-------------------------------+ |
+| | 3. Send invitation         | |
+| | (Account-Wide Access)         | |
+| +-------------------------------+ |
++-----------------------------------+
+```
+
 ### Account-level roles
 
-- **Owner** is initially granted to whoever created the account. It grants
-  all the permissions of the admin roles, below, as well as the ability to
-  delete the account.
-- **Account Administrators** can perform all actions on a account, except
-  managing billing activity. These actions include managing users, API keys,
-  managing corpora etc.
-- **Corpus Administrators** can perform all corpus related actions within the
-  account. This includes authorizing user roles on an account, deleting a corpus,
-  creating corpora, and transferring ownership of a corpus.
-- **Billing Administrators** can view and edit account billing activity.
+Account-level roles grant broad control across the entire account, ideal for 
+administrative oversight without direct data access.
 
-### Corpus-level roles
+- **Owner**: Assigned to the account creator, often an Admin. Grants all 
+  permissions, including account deletion, user management, and corpus creation.
+- **Account Admin**: Manages all actions except billing (users, API keys, 
+  corpora), suitable for Admins overseeing operations.
+- **Billing Admin**: Views and edits billing activity only, a specialized role 
+  for financial tasks.
 
-Users can also be authorized to perform various actions per corpus. You can 
-assign roles in the Authorization tab on the Corpus page.
+**Assign account-level roles**
+
+1. Navigate to Team.
+2. Add a user by email and select role.
+3. Navigate to Authorization.
+4. Create and manage API keys and App clients.
+
+**Use case**: An Admin assigns an Account Admin role to a team member to 
+manage all corpora without billing access.
+
+:::note
+Account-level roles do not provide document-level access. Use corpus-level 
+roles for data interactions.
+:::
+
+## Corpus management workflow
+
+This workflow centers on controlling access to specific corpora, enabling 
+Developers to query, index, or administer data securely.
+
+```
++-----------------------------------+
+| Vectara Console (Admin/Developer) |
+| +-------------------------------+ |
+| | 1. Go to Corpus Page         | |
+| | (Corpus A)                   | |
+| +-------------------------------+ |
+|         |                         |
+|         v                         |
+| +-------------------------------+ |
+| | 2. Open Access Control tab    | |
+| +-------------------------------+ |
+|         |                         |
+|         v                         |
+| +-------------------------------+ |
+| | 3. Grant User Access         | |
+| | - Select  a user:            | |
+| |   - Query:  Read-Only        | |
+| |   - Index:  Write+Query      | |
+| |   - Query and Index          | |
+| |   - Admin: InheritControl    | | 
+| +-------------------------------+ |
+|         |                         |
+|         v                         |
+| +-------------------------------+ |
+| | 4. Grant access              | |
+| | (Corpus-specific Access)     | |
+| +-------------------------------+ |
++-----------------------------------+
+```
+
+### Corpus-Level Roles
+
+Corpus-level roles are scoped to individual corpora, assigned from the 
+**Access control** tab on the Corpus page.
 
 ![Edit user](/img/corpus_auth.png)
 
-- The **Query** role (QRY) allows querying the corpus.
-- The **Indexing** role (IDX) allows data to be added to the corpus.
-- The **Administrator** role (ADM) allows query and indexing the corpus, but
-  also resetting it, deleting it, adding and removing user access, and
-  transferring its ownership.
+- **Query (QRY)**: Permits read-only searches—ideal for Developers or End Users 
+ through Client Apps accessing data.
+- **Indexing (IDX)**: Allows adding data and querying—used by Developers indexing content.
+- **Administrator (ADM)**: Grants full control (query, index, reset, delete, manage permissions)—reserved for Admins managing a corpus.
 
-A corpus may also specifying querying or indexing as **default roles**. A default
-role is a role that is granted to any authenticated user in the account. For
-example, if you want any authenticated user to be able to run queries on the
-corpus, you would add the query role as default. 
+**Default Roles**: A corpus can set Query or Indexing as default, granting access to any authenticated account user. For example, an Admin might set Query as default to allow all users to search a public corpus.
 
-## How account features differ from roles
+**Assign corpus-level roles**:
+1. Go to Corpora in the Vectara Console.
+2. Open the **Access control**  tab.
+3. Click **Grant user access**.
+4. Select a user and permissions.
+5. Save to apply the role to the corpus.
 
-Account features differ from roles in that they are enforced for the entire
-account and are generally tied to account tier. These features include:
+**Use Case**: A Developer assigns query permissions to a user  
+for read-only access to a customer support corpus.
 
-1. Custom dimensions. Whether custom dimensions may be defined for corpora.
-2. Maximum corpora per query.
+:::note
+Each corpus requires separate user assignment. No automatic cross-corpus access 
+unless explicitly granted.
+:::
+
+## How Account Features Differ from Roles
+
+Account features, unlike roles, apply account-wide and are tied to your account 
+tier, often configured by Admins:
+1. Custom dimensions
+2. Maximum corpora per query
 3. Score retrieval. Whether or not downstream systems have access to the raw
    answer score. Advanced applications can utilize this information for
    thresholding, and for incorporation into downstream machine-learning systems.
@@ -117,24 +199,19 @@ account and are generally tied to account tier. These features include:
 11. Document part metadata. Specifies whether part level metadata may be stored
    while indexing. This is currently enabled for all accounts.
 
+## Example Scenarios
 
-## Example scenarios
-
-| **Use Case**                      | **Assigned Role** | **Scope**        |
+| **Scenario**                      | **Assigned Role** | **Scope**        |
 |-----------------------------------|-------------------|------------------|
-| Frontend search app (read only)   | QRY               | Specific corpus  |
+| Frontend search app (read-only)   | QRY               | Specific corpus  |
 | Backend service indexing data     | IDX               | Specific corpus  |
 | Admin user managing all corpora   | Owner             | Account-wide     |
 | OAuth client with query rights    | QRY               | One or more corpora |
 
----
-
-## Common issues
+## Common Issues
 
 | **Symptom**                    | **Cause**                            | **Solution**                                 |
 |--------------------------------|---------------------------------------|----------------------------------------------|
-| 403 Forbidden (API key)        | Missing corpus role assignment        | Assign QRY or IDX to key’s corpus            |
-| OAuth token returns empty data | App client lacks Query permission     | Assign QRY to app client in corpus           |
-| Index fails with QRY role      | Wrong role assigned                   | Switch to IDX or Admin                       |
-
-
+| 403 Forbidden (API key)        | Missing corpus role assignment        | Assign QRY or IDX—Admins check               |
+| OAuth token returns empty data | App client lacks Query permission     | Assign QRY to app client—Developers note     |
+| Index fails with QRY role      | Wrong role assigned                   | Switch to IDX or Admin—Developers adjust     |
