@@ -46,7 +46,7 @@ This guide helps you:
 | Query Key         | `zqt_`     | Read-only search                    | Corpus-specific  | App Developers for public-facing search, front-end apps   |
 | Index Key         | `zwt_`     | Index + query                       | Corpus-specific  | ML Engineers for ingestion, App Developers for server-side testing       |
 
-## Best Practices
+## Best practices
 
 - ✅ Use unique keys per use case or microservice
 - ✅ Apply the **principle of least privilege**

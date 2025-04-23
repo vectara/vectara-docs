@@ -10,9 +10,9 @@ import {Config} from '@site/docs/definitions.md';
 import vars from '@site/static/variables.json';
 
 Vectara has robust authentication and authorization methods in place to secure 
-your data and operations, whether you are a Platform Admin configuring the 
-system or tenant, a Development lead building applications for your enterprise, 
-or an Application End User issuing queries through an app. We provide a 
+your data and operations, whether you are an Admin configuring the 
+system or tenant, a Developor building applications for your enterprise, 
+or an End User issuing queries through an application. We provide a 
 structured authentication and authorization model to control access to our 
 platform and your data. 
 
@@ -59,7 +59,7 @@ at query time. Let's explore the five authorization levels—**account administr
 **corpus access**, **coarse-grained** (document-level), **fine-grained** 
 (part-level), and **multi-tenancy**—to help you implement secure access control.
 
-### Account Administration Roles
+### Account administration roles
 
 - **What It Controls**: High-level admin and management actions across all corpora, 
   such as user management, account settings, and corpus creation.
@@ -78,7 +78,7 @@ at query time. Let's explore the five authorization levels—**account administr
   Account Admin roles in the Console for broad control, ensuring only trusted 
   Admins get these privileges.
 
-### Corpus Access Management
+### Corpus access management
 
 - **What It Controls**: Determines which users, API keys, or apps can query, index, 
   or administer a specific corpus. This is essential for Developers scoping 
@@ -97,7 +97,7 @@ at query time. Let's explore the five authorization levels—**account administr
 - **Key Question Answered**: *How do I limit access to corpora?* Use QRY, IDX, or 
   ADM roles per corpus, scoping keys or tokens to specific corpora via the Console.
 
-### Coarse-Grained (Document-Level) Access Control
+### Coarse-grained (document-level) access control
 
 - **What It Controls**: Ensures users see only their authorized documents within 
   a shared corpus, a common need for Application End Users like Mary accessing 
@@ -116,7 +116,7 @@ at query time. Let's explore the five authorization levels—**account administr
   access control filters in your app’s query logic, ensuring metadata like `user_id` 
   is set during indexing.
 
-### Fine-Grained (Part-Level) Access Control
+### Fine-grained (part-level) access control
 
 - **What It Controls**: Limits visibility to specific parts (chunks) of a document, a 
   granular need for sensitive data—often a concern for App Developers securing 
@@ -134,7 +134,7 @@ at query time. Let's explore the five authorization levels—**account administr
 - **Key Question Answered**: *How do I control specific document parts?* Segregate 
   sensitive parts into a restricted corpus or apply strict metadata filters in your app.
 
-### Multi-Tenancy
+### Multi-tenancy
 
 - **What It Controls**: Enforces isolation for different customers or teams, ensuring 
   each tenant, like an Application End User group, accesses only their data. 
@@ -153,21 +153,7 @@ at query time. Let's explore the five authorization levels—**account administr
 - **Key Question Answered**: *How do I isolate tenant data?* Dedicate a corpus per 
   tenant with scoped keys, configured by Admins in the Console for robust security.
 
-
-
-Note to reviewers. I may use this table somewhere else. TBD
-
-
-| Authorization level               | What it controls                                                    | Supported roles and mechanisms                                            | How it works                                                                                  | Limitations                                                                                      |
-|----------------------------------|---------------------------------------------------------------------|---------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
-| **Account-level** (application-level) | High-level admin and management actions across corpora              | Vectara Account Roles (Owner, Admin, Billing, etc.)                        | Grants full admin access across corpora and user management                                    | None. Fully supported. No access to specific document contents.                                 |
-| **Corpus-level** (primary authorization layer) | Which users, API keys, or apps can query, index, or administer a corpus | Corpus Roles: Query (QRY), Index (IDX), Admin (ADM)                        | API keys and OAuth tokens are assigned access per corpus. No cross-corpus access unless explicitly granted. | Fully supported. Primary method for data segmentation.                                           |
-| **Coarse-grained (document-level)** (per-user data isolation within corpus) | Ensures users only see their documents within a shared corpus      | No direct document-level roles                                             | Use metadata filters at query time (e.g., `metadata_filter: "user_id = X"`)                   | Workaround required. Not an enforced security model. Users with Query access could bypass filters if misused. |
-| **Fine-grained (part-level)** (granular document access) | Control over specific document parts                       | No built-in field-level roles                                              | Entire document contents are visible to anyone with Query (QRY) access to the corpus.         | Not supported natively. Workaround: store sensitive fields in a separate restricted corpus, or use metadata filters during queries. |
-| **Multi-tenant** (per-customer access control) | Enforcing isolation for different customers                         | Segmentation per corpus (recommended)                                     | Assign each customer their own corpus, and grant API keys per corpus. Corpus isolation = platform-enforced; filters = app-enforced                        | Requires corpus management. Alternative (filters) offers weaker security.                        |
-
-
-## Where to Go Next
+## Next steps
 
 Use the following task guides to implement secure access and authorization:
 

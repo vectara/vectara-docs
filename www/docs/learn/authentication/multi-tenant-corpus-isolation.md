@@ -25,7 +25,7 @@ security, predictable access patterns, and simplified troubleshooting.
 | Tenant self-service readiness      | Easier to automate onboarding and offboarding                  |
 | Per-tenant billing & monitoring    | Enables per-corpus usage tracking                              |
 
-## Best Practices
+## Best practices
 
 - ✅ Automate corpus creation and key generation during onboarding
 - ✅ Rotate keys per tenant on schedule or revocation
@@ -85,6 +85,6 @@ Any request using a key tied only to `acme_docs` cannot access other corpora.
 
 | **Scenario**                                      | **Consider this alternative**                     |
 |------------------------------------------------|-------------------------------------------|
-| You have 10,000+ low-security tenants          | Shared corpus + ABAC filters              |
-| You want to allow dynamic role-based sharing   | ABAC + app logic                          |
-| You must allow inter-tenant document sharing   | Metadata filters + group-based ABAC       |
+| You have 10,000+ low-security tenants          | Shared corpus and ABAC filters              |
+| You want to allow dynamic role-based sharing   | ABAC and app logic                          |
+| You must allow inter-tenant document sharing   | Metadata filters and group-based ABAC       |

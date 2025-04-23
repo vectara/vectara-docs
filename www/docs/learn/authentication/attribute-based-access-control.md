@@ -21,43 +21,45 @@ control—ensuring each user sees only what you want to allow based on
 ownership, group, role, or other attributes.
 
 
-## ABAC use cases
+## Attribute-based access control scenarios
 
-| **Scenario**                                  | **Metadata Fields Used**              |
-|-----------------------------------------------|----------------------------------------|
-| Personal/private documents                    | `owner`                                |
-| Group-shared documents                        | `groups`                               |
-| Role-based access (e.g., "only professors")   | `roles`                                |
-| Project- or tag-based filtering               | `project`, `tag`, etc.                 |
+| **Scenario**                                  | **Example Metadata Fields**              |
+|-----------------------------------------------|------------------------------------------|
+| Restrict access to user-specific data         | `user_id`, `account_id`                  |
+| Limit visibility to specific teams or departments | `team`, `department`                  |
+| Control access based on user privileges       | `access_level`, `role`                   |
+| Filter by context or category                 | `category`, `project`, `tag`             |
 
 ## Prerequisites
 
-- Metadata fields defined for your corpus
-- Documents indexed with access-relevant metadata
-- Backend logic that knows the roles and groups of the current user
+- Metadata fields defined for your corpus—an Admin setup
+- Documents indexed with access-relevant metadata—a Developer task
+- Backend logic that maps user attributes (ID, team, role) to filters—typically 
+  coded by Developers
 
 ## ABAC best practices
 
-- ✅ Construct filters in your backend using known user attributes
-- ✅ Use `doc.owner`, `doc.groups`, and `doc.roles` consistently
+- ✅ Construct filters server-side using verified user attributes
+- ✅ Use consistent metadata naming (e.g., `user_id`, `team`) across 
+  corpora
 - ❌ Never allow users to provide arbitrary filter expressions
 - 🔒 Keep Query keys private; expose only through secure APIs
 
 ## Configure attribute-based access control
 
 1. Add metadata when indexing data.
-    ```json
-    {
+   ```json
+   {
      "document": {
-        "title": "Faculty Policies",
-        "metadataJson": {
-        "owner": "mary",
-        "groups": ["faculty", "history"],
-        "roles": ["professor"],
-        "project": "orientation"
-        }
+       "title": "Customer Report",
+       "metadataJson": {
+         "user_id": "user123",
+         "team": ["sales", "executive"],
+         "access_level": "manager",
+         "category": "q2_metrics"
+       }
      }
-    }
+   }
     ```
 
     :::note

@@ -140,7 +140,7 @@ Developers to query, index, or administer data securely.
 +-----------------------------------+
 ```
 
-### Corpus-Level Roles
+### Corpus-level roles
 
 Corpus-level roles are scoped to individual corpora, assigned from the 
 **Access control** tab on the Corpus page.
@@ -169,7 +169,7 @@ Each corpus requires separate user assignment. No automatic cross-corpus access
 unless explicitly granted.
 :::
 
-## How Account Features Differ from Roles
+## How account access differs from role access
 
 Account features, unlike roles, apply account-wide and are tied to your account 
 tier, often configured by Admins:
@@ -199,7 +199,7 @@ tier, often configured by Admins:
 11. Document part metadata. Specifies whether part level metadata may be stored
    while indexing. This is currently enabled for all accounts.
 
-## Example Scenarios
+## Example scenarios
 
 | **Scenario**                      | **Assigned Role** | **Scope**        |
 |-----------------------------------|-------------------|------------------|
@@ -208,7 +208,7 @@ tier, often configured by Admins:
 | Admin user managing all corpora   | Owner             | Account-wide     |
 | OAuth client with query rights    | QRY               | One or more corpora |
 
-## Common Issues
+## Common issues and solutions
 
 | **Symptom**                    | **Cause**                            | **Solution**                                 |
 |--------------------------------|---------------------------------------|----------------------------------------------|
