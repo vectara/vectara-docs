@@ -141,6 +141,7 @@ const sidebars: SidebarsConfig = {
       items: [
         "learn/query-observability",
         "learn/hallucination-evaluation",
+        "learn/hallucination-correction-model",
       ],
     },
     {
@@ -431,6 +432,7 @@ const sidebars: SidebarsConfig = {
           items: [
             "api-reference/llms-apis/llms-api",
             "api-reference/llms-apis/create-llm",
+            "api-reference/llms-apis/hcm",
           ],
         },
         {
