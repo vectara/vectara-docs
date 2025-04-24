@@ -1,4 +1,3 @@
-// docusaurus.config.ts
 import { themes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
 
@@ -73,9 +72,8 @@ const config: Config = {
           "https://raw.githubusercontent.com/vectara/getting-started/main/language-examples",
         outDir: "docs/getting-started-samples",
         documents: [
-          // Same list as before, omitted for brevity
           "java/rest/src/main/java/com/vectara/examples/rest/RestApiKeyQueries.java",
-          // ... (add the full list from your original config)
+          // ... (rest of your document list)
         ],
         modifyContent(filename, content) {
           return {
@@ -117,6 +115,15 @@ ${content}
 
   clientModules: ["./static/routeUpdateModule.js"],
 
+  themes: [
+    "docusaurus-theme-openapi-docs",
+    "@docusaurus/theme-mermaid",
+  ],
+
+  markdown: {
+    mermaid: true, // Enable Mermaid parsing
+  },
+
   themeConfig: {
     prism: {
       additionalLanguages: ["java", "php", "csharp"],
@@ -145,8 +152,8 @@ ${content}
           label: "API Reference",
           position: "left",
           items: [
-            { label: "Version 2.0 (Latest)", to: "docs/rest-api", },
-            { label: "Version 1.0", to: "docs/1.0/rest-api", },
+            { label: "Version 2.0 (Latest)", to: "docs/rest-api" },
+            { label: "Version 1.0", to: "docs/1.0/rest-api" },
           ],
         },
         {
@@ -192,9 +199,14 @@ ${content}
       ],
       copyright: `Copyright © ${new Date().getFullYear()} Vectara, Inc. Built with Docusaurus.`,
     },
+    mermaid: {
+      theme: { light: "neutral", dark: "forest" },
+      options: {
+        maxTextSize: 50000,
+        fontFamily: "Inter, sans-serif",
+      },
+    },
   },
-
-  themes: ["docusaurus-theme-openapi-docs"],
 };
 
 export default config;
