@@ -427,6 +427,11 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "category",
+          label: "Generation Presets APIs",
+          items: ["api-reference/generation-presets/list-generation-presets"],
+        },
+        {
+          type: "category",
           label: "Large Language Models APIs",
           items: [
             "api-reference/llms-apis/llms-api",
@@ -487,8 +492,8 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "category",
-          label: "Generation Presets APIs",
-          items: ["api-reference/generation-presets/list-generation-presets"],
+          label: "Factual Consistency Evaluation APIs",
+          items: ["api-reference/hhem-apis/evaluate-factual-consistency"],
         },
         {
           type: "category",
