@@ -495,6 +495,11 @@ const sidebars: SidebarsConfig = {
           label: "Factual Consistency Evaluation APIs",
           items: ["api-reference/hhem-apis/evaluate-factual-consistency"],
         },
+        {
+          type: "category",
+          label: "LLM Chat Completions APIs",
+          items: ["api-reference/llm-chat-completions/chat-completions"],
+        },
       ],
     },
   ],
