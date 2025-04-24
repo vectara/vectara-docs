@@ -55,9 +55,8 @@ Vectara primarily enforces authorization at the **account** and **corpus** level
 through [Role-Based Access Control (RBAC)](/docs/learn/authentication/role-based-access-control), critical for 
 Admins managing users on the Vectara Platform, or Developers scoping corpus access. You can 
 layer [Attribute-Based Access Control (ABAC)](/docs/learn/authentication/attribute-based-access-control) by applying metadata-based filters
-at query time. Let's explore the five authorization levels—**account administration**, 
-**corpus access**, **coarse-grained** (document-level), **fine-grained** 
-(part-level), and **multi-tenancy**—to help you implement secure access control.
+at query time. Let's explore the various authorization levels to help you 
+implement secure access control.
 
 ### Account administration roles
 
@@ -152,6 +151,30 @@ at query time. Let's explore the five authorization levels—**account administr
   approach. Filter-based alternatives may risk exposure if misconfigured.
 - **Key Question Answered**: *How do I isolate tenant data?* Dedicate a corpus per 
   tenant with scoped keys, configured by Admins in the Console for robust security.
+
+### Transient data for real-time queries
+
+- **What It Controls**: Enables users to upload data for real-time question-answering 
+  or summarization without permanently storing it in a corpus, ideal for temporary 
+  or sensitive data.
+- **How It Works**: Vectara requires data to be indexed in a corpus for querying. 
+  For transient use:
+  - **Temporary Corpus**: Create a corpus for the user session and delete it 
+  programmatically after use with the API.
+  - **Document Deletion**: Upload documents to a corpus, query them, then delete 
+  specific documents using the API.
+  - Application logic in the client app manages session-based deletion, 
+  requiring Index (`zwt_`) or Admin (`zut_`) API keys.
+- **Supported Mechanisms**: API-driven corpus or document management, using RBAC 
+  for Index or Admin roles.
+- **Use Case**: An End User uploads a contract for summarization in a client app, 
+  which indexes it in a temporary corpus, delivers results, and deletes the corpus 
+  or document afterward.
+- **Limitations**: Requires custom application logic to detect session end and 
+  execute deletion. Ensure API keys are scoped appropriately to avoid unauthorized 
+  access.
+- **Key Question Answered**: *Can I query data without storing it permanently?* 
+  Yes, by indexing in a temporary corpus or deleting documents post-session using API calls.
 
 ## Next steps
 
