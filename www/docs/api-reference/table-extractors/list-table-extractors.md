@@ -24,7 +24,7 @@ capabilities, or rely on the default extractor provided by Vectara.
 ## List Table Extractors Request and Response Details
 
 To retrieve the available table extractors, send a `GET` request to 
-`/v2/table_extractor`s. This request returns a list of all supported table 
+`/v2/table_extractors`. This request returns a list of all supported table 
 extractors, their names, descriptions, and whether they are the default 
 extractor for document indexing.
 
