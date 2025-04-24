@@ -4,10 +4,11 @@ title: Isolate Tenants with Corpora
 sidebar_label: Isolate Tenants with Corpora
 ---
 
-import {Config} from '@site/docs/definitions.md';
-
 Without isolation, a compromised key could lead to unauthorized access across 
-tenants. Shared corpora with filters are error-prone and hard to audit. 
+tenants. Relying on metadata filters in a shared corpus risks errors, such as 
+misconfigured filters exposing sensitive data, and complicates auditing due to 
+complex filter logic and lack of clear access boundaries.
+
 Vectara enables you to create completely isolated corpora—making it an ideal 
 platform for multi-tenant applications. Each tenant can have their own secure 
 data container (corpus), API keys scoped only to that corpus, and complete 

@@ -8,23 +8,24 @@ import {Config} from '@site/docs/definitions.md';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Developers often use personal API keys during testing but fail to transition 
-to a production-ready method. OAuth 2.0 fixes this by letting your 
-applications authenticate securely without exposing long-lived credentials.
+Personal API keys enable rapid application development in a testing 
+environment, but they are a security risk when moving to production. OAuth 2.0 
+fixes this by letting your applications authenticate securely without exposing 
+long-lived credentials.
 
-Vectara uses "Application clients" to support authentication with OAuth 2.0.
+Vectara uses "application clients" to support authentication with OAuth 2.0.
 These application clients enable you to generate JWT tokens which are used by
 Vectara to authenticate API requests. If you are not familiar with OAuth,
 think of it as a more secure way to send API calls, similar to
 an API key or username/password combination but with enhanced features. The
-client credentials grant is the OAuth flow that Vectara supports at this time.
+[client credentials grant](https://oauth.net/2/grant-types/client-credentials/) is the OAuth flow that Vectara supports at this time.
 
 Here is how it works. You provide the OAuth 2.0 authentication provider with a
 `client_id` (similar to a username) and a `client_secret` (similar to a
 password). A successful authentication returns a [JWT token](https://jwt.io/), which
 you can then pass into subsequent requests as an authenticated application.
 
-## OAuth 2.0 Best Practices
+## OAuth 2.0 best practices
 
 - ✅ Use OAuth in production environments
 - ✅ Store `client_id` and `client_secret` securely (e.g., in secrets manager)
@@ -38,8 +39,7 @@ you can then pass into subsequent requests as an authenticated application.
 - Your backend system can make HTTP POST requests
 - Secrets manager or vault system to store credentials
 
-
-## Why Use OAuth 2.0 Instead of API Keys?
+## Why use OAuth 2.0 instead of API keys?
 
 If you build backend services, third-party integrations, or require role-based 
 access with tighter control, we recommend the OAuth 2.0 method.
@@ -66,7 +66,7 @@ OAuth 2.0 takes more work to set up but offer several advantages over API keys:
 - JWT tokens are detected by many security scanning tools, allowing them to
   more easily be flagged in the case of accidental publication.
 
-## :star2: Ready to Dive In? Check Out Our API Reference! :star2:
+## :star2: Ready to dive in? Check out our API reference! :star2:
 
 If already have familiarity about how JWT tokens work and you're ready to dive
 into our APIs, make your way to our [**API Reference**](/docs/rest-api/vectara-rest-api-v-2)!
@@ -132,7 +132,7 @@ you can generate a JWT token with a `client-credentials` grant. We provide [clie
 credentials grant examples](/docs/getting-started-samples/JWTFetcher.cs) in different
 programming languages.
 
-### Generate a JWT Token
+### Generate a JWT token
 
 Use the information from the previous step to send a request to generate a JWT
 token. The client credentials grant is OAuth flow that Vectara supports at
@@ -192,7 +192,7 @@ Click **Send API Request** to test the API call.
 | Role mismatch              | App client not assigned correct role      | Edit roles in Console or recreate App Client       |
 | Exposing credentials       | client_secret used in frontend app       | Never expose secrets or JWTs to end users         |
 
-## Next Steps
+## Next steps
 
 - [Configure Administration Permissions (RBAC)](/docs/learn/authentication/role-based-access-control)
 - [Apply Metadata Filters for Attribute-Based Access Control (ABAC)](/docs/learn/authentication/attribute-based-access-control)

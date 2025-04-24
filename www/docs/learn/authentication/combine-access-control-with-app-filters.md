@@ -11,23 +11,23 @@ and how that data is filtered based on user input like categories, tags, or
 projects.
 
 Vectara supports a flexible metadata filtering system that lets you combine 
-attribute-based access control (ABAC) with user-selected filters in a single 
+[attribute-based access control (ABAC)](/docs/learn/authentication/attribute-based-access-control) with user-input filters in a single 
 query. This ensures users see only what they are authorized to access and what 
 is relevant to their current task.
 
 ## Why combine filters?
 
-If you rely only on end-user filters without enforcing access rules, your 
+If you rely only on user-input filters without enforcing ABAC, your 
 application could expose sensitive data to unauthorized users. However, if you 
 apply access rules but ignore application context, you may return irrelevant 
 results.
 
-Combining both ABAC and functional filters ensures secure, relevant, and 
+Combining both ABAC and user-input filters ensures secure, relevant, and 
 personalized access to data.
 
 ## Best practices
 
-| ✅ Things to do                          | 🚫 Things to avoid                             |
+| ✅ Do's                         | 🚫 Don'ts                             |
 |------------------------------------------|------------------------------------------------|
 | Build filters server-side                | Letting users inject raw filters               |
 | Combine ABAC and content-specific logic         | Using only project and category filters  |
@@ -40,17 +40,19 @@ Suppose an application serves documents filtered by project, and users must
 only see content based on ownership or group membership.
 
 **User:** user1  
-**User-selected context::** `project = "orientation"`  
+**User-selected context:** `project = "orientation"`  
 **Access rights:** The owner is user1 or member of `history`
 
-## ABAC filter only
+### ABAC filter only
 
-`(doc.owner in ("user1", "global")) OR ("history" IN doc.groups)`
+```sql
+(doc.owner in ("user1", "global")) OR ("history" IN doc.groups)
+```
 
 This limits access but ignores the user's functional context (project 
 selection).
 
-## Functional filter only
+### Functional filter only
 
 `doc.project = "orientation"`
 
@@ -62,16 +64,18 @@ Without ABAC, functional filters could expose sensitive content to the wrong
 users.
 :::
 
-## Combined filter (safe pattern)
+### Combined filter (safe pattern)
 
-`((doc.owner in ("user1", "global")) OR ("history" IN doc.groups)) AND (doc.project = "orientation")`
+```sql
+((doc.owner in ("user1", "global")) OR ("history" IN doc.groups)) AND (doc.project = "orientation")
+```
 
 This combination ensures that `user1` only sees docs they can access *within* 
 the selected project.
 
 ---
 
-## Implement this combination of access control with application filters
+### Implement this combination of access control with application filters
 
 1. Index documents with all metadata
     ```json
@@ -95,9 +99,11 @@ the selected project.
     This logic should live in your backend API and not exposed to clients or 
     end users.
 
-## Advanced Example
+## Advanced example
 
-`((doc.owner in ("user1", "global")) OR ("history" IN doc.groups AND (doc.roles is null OR "dean" IN doc.roles))) AND (doc.project = "orientation") AND ("safety" IN doc.tags)`
+```sql
+((doc.owner in ("user1", "global")) OR ("history" IN doc.groups AND (doc.roles is null OR "dean" IN doc.roles))) AND (doc.project = "orientation") AND ("safety" IN doc.tags)
+```
 
 This advanced example combines ABAC rules, project scoping, and tag-based 
 filtering in one secure filter expression. 
@@ -113,7 +119,9 @@ Let's break down the filter in more detail:
 
 `user1` can always see the documents that they own and `user1` can also see `global` documents (visible to all users)
 
-`OR ("history" IN doc.groups AND (doc.roles is null OR "dean" IN doc.roles)))`
+```sql
+OR ("history" IN doc.groups AND (doc.roles is null OR "dean" IN doc.roles)))
+```
 
 However, if `user1` is also part of the `history` group, they must either:
 * Access a document that has no role restriction

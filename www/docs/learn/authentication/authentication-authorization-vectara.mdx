@@ -14,8 +14,8 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 
 
 Vectara’s authentication and authorization framework secures access to our 
-platform and its data. Whether you are an Admin configuring corpora, a 
-Developer integrating APIs, or an End User querying data through an 
+platform and its data. Whether you are an admin configuring corpora, a 
+developer integrating APIs, or an end user querying data through an 
 application, this section provides the tools and strategies to control access 
 and manage data effectively. From API keys for quick setups to OAuth 2.0 for 
 enterprise-grade security, and corpus-level permissions for precise data 
@@ -23,8 +23,8 @@ control, Vectara balances usability with robust protection.
 
 ## Who uses Vectara?
 
-Admins manage the platform, Developers build and test integrations, and End 
-Users access data through apps. This blueprint guides their needs:
+Admins manage the platform, developers build and test integrations, and end 
+users access data through apps. This blueprint guides their needs:
 
 ```
 +- - - - - - - - - - - - - - - - - - - - - -+ 
@@ -40,23 +40,24 @@ Users access data through apps. This blueprint guides their needs:
 |  | Vectara Platform          |            |
 |  | (Identities & Corpora)    |            |
 |  +----------------------------+           |
+|         ^                                 |
 |         | API Requests                    |
-|         v                                 |
+|                                           |
 |  +------------------+                     |
 |  | Client App       |                     |
 |  +------------------+                     |
 +- - - - - - - - - - - - - - - - - - - - - -+
+            ^                               |
             | End User Auth/Access
-            v
   +-----------------------+ 
   | Application End User  |
   +-----------------------+
 ```
-*Admins and Developers interact with Vectara directly, Client Apps connect to 
-End User.*
+*Admins and developers interact with Vectara directly, end users connect to 
+client apps.*
 
 Review the following key topics, guiding you through Vectara personas, 
-concepts, and practical steps. Start here to grasp the big picture
+concepts, and practical steps.
 
 <Grid columns={3}>
   <TopicButton title="Vectara Personas and Access Patterns" href="/docs/learn/authentication/personas-and-access-patterns">
@@ -66,27 +67,27 @@ concepts, and practical steps. Start here to grasp the big picture
     Clarifies who needs what access, grounding your auth/authz strategy.
     <Spacer size="l" />
   </TopicButton>
-  <TopicButton title="Authentication and Authorization Overview" href="/docs/learn/overview">
+  <TopicButton title="Authentication and Authorization Overview" href="/docs/learn/authentication/auth-overview">
     <Spacer size="l" />
     Outlines Vectara’s auth mechanisms (API keys, OAuth 2.0) and authz models (RBAC, ABAC).
     <Spacer size="l" />
     Builds a technical foundation for understanding Vectara’s security model.
   </TopicButton>
-  <TopicButton title="Choose the Right Authentication Method" href="/docs/learn/choose-auth-method">
+  <TopicButton title="Choose the Right Authentication Method" href="/docs/learn/authentication/choose-auth-method">
     <Spacer size="l" />
     Compares API keys and OAuth 2.0 for different situations.
     <Spacer size="l" />
     Helps you select the best auth method for your scenario.
     <Spacer size="l" />
   </TopicButton>
-  <TopicButton title="Create and Use API Keys" href="/docs/learn/api-key-management">
+  <TopicButton title="Create and Use API Keys" href="/docs/learn/authentication/api-key-management">
     <Spacer size="l" />
     Guides you through generating and using API keys (Personal, Query, Index).
     <Spacer size="l" />
     Enables fast, secure integration for common tasks.
     <Spacer size="l" />
   </TopicButton>  
-  <TopicButton title="Use OAuth 2.0" href="/docs/learn/oauth">
+  <TopicButton title="Use OAuth 2.0" href="/docs/learn/authentication/oauth-2">
     <Spacer size="l" />
     Explains setting up OAuth 2.0 for production-ready access.
     <Spacer size="l" />

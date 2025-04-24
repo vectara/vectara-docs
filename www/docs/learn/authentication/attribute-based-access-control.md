@@ -7,19 +7,17 @@ sidebar_label: Apply Metadata Filters for Attribute-Based Access Control (ABAC)
 import {Config} from '@site/docs/definitions.md';
 import vars from '@site/static/variables.json';
 
-Vectara does not support native field-level or document-level access control 
-levels (ACLs). Developers may assume they can restrict access inside a corpus, 
-but without filters, anyone with query access to that corpus can see all its 
-content.
+Vectara does not currently offer native field-level or document-level access 
+control levels (ACLs). Without these controls, anyone with query access to a 
+corpus can see all its content.
 
-Attribute-Based Access Control (ABAC) enables you to 
-attach metadata to documents and apply filters at query time. This lets your 
-application define *who* can see *what*, based on dynamic rules.
+Vectara solves this problem with Attribute-Based Access Control (ABAC). ABAC 
+enables you to attach metadata to documents and apply filters at query time. 
+This lets your application define *who* can see *what*, based on dynamic rules.
 
-This guide shows how to use metadata filters to simulate fine-grained access 
+This guide shows how to use metadata filters to implement fine-grained access 
 control—ensuring each user sees only what you want to allow based on 
 ownership, group, role, or other attributes.
-
 
 ## Attribute-based access control scenarios
 
@@ -61,7 +59,6 @@ ownership, group, role, or other attributes.
      }
    }
     ```
-
     :::note
     Each metadata field must be declared in your corpus schema.
     :::
@@ -101,6 +98,6 @@ This ensures access control remains enforced while supporting contextual filteri
 
 | **Limitation**                | **Recommendation**                          |
 |-------------------------------|----------------------------------------------|
-| Filters are not enforced at platform level | Rely on backend to inject correct filters |
-| No per-document ACLs          | Use metadata + filters instead               |
+| Filters are enforced per query, not at platform level | Rely on backend to inject correct filters |
+| No per-document ACLs          | Use metadata and filters instead               |
 | Query access gives full access | Scope keys narrowly and use ABAC consistently|
