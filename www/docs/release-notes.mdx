@@ -18,6 +18,76 @@ and how these product and documentation changes can benefit your enterprise.
 
 ---
 
+## Chat Completions API
+
+_April 24, 2025_
+
+Vectara now offers an OpenAI-compatible Chat Completions API, enabling 
+seamless integration of Vectara’s language models into applications already 
+built for OpenAI’s chat endpoint. This API supports both synchronous and 
+streaming response formats and adheres to the familiar message-based interface 
+used for conversational AI.
+
+**Why it matters:** Developers can now integrate Vectara’s models into chat 
+interfaces, agents, and customer-facing applications without needing to 
+rearchitect prompt flows or backend systems. The compatibility layer makes it 
+easy to switch between providers or test performance across models, all while 
+tracking usage and applying fine-grained generation controls.
+
+**New API endpoint:**
+* Chat Completions
+
+**More information:**
+* [Chat Completions API Definition](/docs/api-reference/llm-chat-completions/chat-completions)
+
+---
+
+## Evaluate Factual Consistency API
+
+_April 24, 2025_
+
+Vectara introduces the tech preview of the Evaluate Factual Consistency API, a 
+new endpoint that assesses how well a generated summary or response aligns 
+with its supporting source documents. This API provides a confidence score 
+indicating whether a given text is grounded in the referenced material—helping 
+developers detect and respond to hallucinated content in LLM outputs.
+
+**Why it matters:** As enterprises rely more heavily on generative AI for 
+summarization, Q&A, and knowledge tasks, the ability to detect factual 
+inconsistencies becomes critical. This API enables automated quality control 
+by scoring alignment between generated text and source documents, improving 
+the reliability and auditability of AI-generated content.
+
+**New API endpoint:**
+* Evaluate Factual Consistency
+
+**More information:**
+* [Evaluate Factual Consistency API Definition](/docs/api-reference/hhem-apis/evaluate-factual-consistency)
+
+---
+
+## Mockingbird 2: Vectara's Advanced LLM for RAG
+
+_April 17, 2025_
+
+Vectara releases Mockingbird v2, an advanced Large Language Model (LLM) 
+optimized for Retrieval Augmented Generation (RAG) with cross-lingual 
+capabilities. Mockingbird v2 introduces support for queries, documents, and 
+summaries in different languages, enhanced generation quality, and robust 
+hallucination mitigation, making it ideal for global enterprise applications.
+
+**Why it matters:** Mockingbird v2 enables organizations to process multilingual 
+datasets seamlessly, delivering precise summaries across English, Spanish, 
+French, Arabic, Chinese, Japanese, and Korean. With a 0.9% hallucination rate 
+in its Mockingbird-2-Echo configuration, it ensures trustworthy outputs for 
+research, knowledge bases, and question-answering systems.
+
+**More information:**
+* [Mockingbird: Vectara's LLM](https://docs.vectara.com/docs/learn/mockingbird-llm)
+* [Introducing Mockingbird 2 - Vectara’s crosslingual grounded generation model](https://www.vectara.com/blog/introducing-mockingbird-2-vectaras-crosslingual-grounded-generation-model)
+
+---
+
 ## Custom Table Summarization with Prompt Templates
 
 _April 15, 2025_
