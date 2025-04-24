@@ -490,6 +490,11 @@ const sidebars: SidebarsConfig = {
           label: "Generation Presets APIs",
           items: ["api-reference/generation-presets/list-generation-presets"],
         },
+        {
+          type: "category",
+          label: "LLM Chat Completions APIs",
+          items: ["api-reference/llm-chat-completions/chat-completions"],
+        },
       ],
     },
   ],
