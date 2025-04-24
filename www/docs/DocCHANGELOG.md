@@ -5,9 +5,39 @@ title: Vectara Documentation Changelog
 sidebar_label: Documentation Changelog
 ---
 
-import { Grid } from "/src/components/ui/Grid";
-import { Spacer } from "/src/components/ui/Spacer";
-import { TopicButton } from "/src/components/ui/TopicButton";
+import { Config } from "./definitions.md";
+import { Grid } from "@site/ui/Grid";
+import { Spacer } from "@site/ui/Spacer";
+import { TopicButton } from "@site/ui/TopicButton";
+
+
+---
+
+# April 2025
+
+### ✨ New Features
+- Add documentation for the Chat Completions API (#446)
+- Add documentation for the Evaluate Factual Consistency (HHEM) API (#445)
+- Add documentation for Mockingbird 2 (#439)
+- Add documentation to define a custom LLM configuration to use models from OpenAI, Anthropic, and Google (#437)
+
+### 📚 API Changes
+- Add the Evaluate Factual Consistency API and the Chat Completions API to the API Reference (#444)
+
+### 📝 Documentation Changes
+- No changes
+
+### 📋 Example Updates
+- No changes
+
+### 🗑 Deprecated
+- No changes
+
+### 🛠 Documentation Platform Updates
+- Install Mermaid for creating diagrams (#443)
+- Update package.json with API documentation build script (#438)
+- Upgrade Docusaurus Platform from 2.4.3 to 3.7 (#422)
+
 
 
 ---
