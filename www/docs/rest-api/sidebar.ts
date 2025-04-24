@@ -524,6 +524,38 @@ const sidebar: SidebarsConfig = {
         },
       ],
     },
+    {
+      type: "category",
+      label: "LLM Chat Completions",
+      link: {
+        type: "doc",
+        id: "rest-api/llm-chat-completions",
+      },
+      items: [
+        {
+          type: "doc",
+          id: "rest-api/create-chat-completion",
+          label: "Creates a model response for the given chat conversation",
+          className: "api-method post",
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "Factual Consistency Evaluation",
+      link: {
+        type: "doc",
+        id: "rest-api/factual-consistency-evaluation",
+      },
+      items: [
+        {
+          type: "doc",
+          id: "rest-api/evaluate-factual-consistency",
+          label: "Evaluate factual consistency",
+          className: "api-method post",
+        },
+      ],
+    },
   ],
 };
 

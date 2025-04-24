@@ -82,6 +82,7 @@ const sidebars: SidebarsConfig = {
       },
       items: [
         "learn/boomerang",
+        "search-and-retrieval/bring-your-own-llm",
         "learn/hybrid-search",
         "learn/enable-keyword-text-matching",
         "search-and-retrieval/intelligent-query-rewriting",
@@ -494,6 +495,13 @@ const sidebars: SidebarsConfig = {
           type: "category",
           label: "Table Extractors APIs",
           items: ["api-reference/table-extractors/list-table-extractors"],
+          label: "Factual Consistency Evaluation APIs",
+          items: ["api-reference/hhem-apis/evaluate-factual-consistency"],
+        },
+        {
+          type: "category",
+          label: "LLM Chat Completions APIs",
+          items: ["api-reference/llm-chat-completions/chat-completions"],
         },
       ],
     },
