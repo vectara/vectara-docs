@@ -26,32 +26,27 @@ control, Vectara balances usability with robust protection.
 Admins manage the platform, developers build and test integrations, and end 
 users access data through apps. This blueprint guides their needs:
 
-```
-+- - - - - - - - - - - - - - - - - - - - - -+ 
-| Vectara Users                             |
-|  +----------------+  +------------------+ |
-|  |   Admins       |  |   Developers     | | 
-|  |                |  |                  | |
-|  |  Manage        |  |   Query/Index    | |
-|  +----------------+  +------------------+ |
-|         |                 |               |
-|         v                 v               |
-|  +----------------------------+           |
-|  | Vectara Platform          |            |
-|  | (Identities & Corpora)    |            |
-|  +----------------------------+           |
-|         ^                                 |
-|         | API Requests                    |
-|                                           |
-|  +------------------+                     |
-|  | Client App       |                     |
-|  +------------------+                     |
-+- - - - - - - - - - - - - - - - - - - - - -+
-            ^                               |
-            | End User Auth/Access
-  +-----------------------+ 
-  | Application End User  |
-  +-----------------------+
+```mermaid
+graph TD
+    subgraph Vectara_Users[Vectara Users]
+        A[Admin<br>Manage]
+        B[Developer<br>Query/Index]
+        A --> C
+        B --> C
+        C[Vectara Platform<br>Identities & Corpora]
+        D --> |API Requests|C
+        D[Client App]
+    end
+    E[Application End User] -->|End User Auth/Access| D
+
+    classDef blue stroke:#00f,stroke-dasharray: 5 5;
+    classDef blueFill fill:#00f,color:#fff;
+    classDef green fill:#008000,color:#fff;
+    classDef gray fill:#808080,color:#fff;
+    class Vectara_Users blue;
+    class C blueFill;
+    class D green;
+    class E gray;
 ```
 *Admins and developers interact with Vectara directly, end users connect to 
 client apps.*

@@ -6,30 +6,7 @@ sidebar_label: Vectara Personas and Access Patterns
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {Config} from '@site/docs/definitions.md';
 import {vars} from '@site/static/variables.json';
-
-
-#### Who Uses Vectara and How
-| Persona   | Role                                      | Primary Access Layer | Auth & Authz Scope                     | PII Access? |
-|-----------|-------------------------------------------|----------------------|----------------------------------------|-------------|
-| **Admin** | Manages system config, user access, uptime| Console and Admin API| SSO (e.g., Google), OAuth 2.0; full RBAC | No          |
-| **Developer** | Builds integrations, tests APIs       | Console and API      | SSO, API Keys (zut_, zqt_, zwt_); scoped RBAC | Test data |
-| **End User** | Uses apps (e.g., search, chatbots)     | Client App Only      | SSO/IdP → App (ABAC); no direct access | Yes         |
-
-*Streams*: Admins configure and monitor; Developers design corpora, ingest data, tune queries, or integrate UIs; End Users query via apps.
-
-#### Access Scope and Trust Boundaries
-[Update diagram to match landing page, adjust callouts: Admin [Manage], Developer [Query/Index], Client App [Serve], End User [View]]
-
-
-
-
-
-
-
-
-
 
 Understanding who uses Vectara—and how they interact with it—is essential for 
 implementing secure, efficient authentication and authorization strategies. 
