@@ -21,7 +21,7 @@ flowchart TD
     
     B --> B1(Invite team members)
     B --> B2(Assign account-level roles)
-    B2 --> B3(Owner / Account admin / Billing admin)
+    B2 --> B3(Owner / Account admin / <br>Corpus admin / Billing admin)
 
     C --> C1(Select a corpus, click Access control)
     C1 --> C2(Grant user or app client access)
