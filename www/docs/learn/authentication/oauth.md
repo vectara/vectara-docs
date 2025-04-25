@@ -1,26 +1,72 @@
 ---
 id: oauth-2
-title: OAuth 2.0 Tokens
-sidebar_label: OAuth 2.0 Tokens
+title: Use OAuth 2.0
+sidebar_label: Use OAuth 2.0
 ---
 
+import {Config} from '@site/docs/definitions.md';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Vectara uses "Application clients" to support authentication with OAuth 2.0.
-These application clients enable you to generate JWT tokens which are used by
+Personal API keys enable rapid application development in a testing 
+environment, but they are a security risk when moving to production. OAuth 2.0 
+fixes this by letting your applications authenticate securely without exposing 
+long-lived credentials.
 
+Vectara uses "application clients" to support authentication with OAuth 2.0.
+These application clients enable you to generate JWT tokens which are used by
 Vectara to authenticate API requests. If you are not familiar with OAuth,
 think of it as a more secure way to send API calls, similar to
 an API key or username/password combination but with enhanced features. The
-client credentials grant is the OAuth flow that Vectara supports at this time.
+[client credentials grant](https://oauth.net/2/grant-types/client-credentials/) is the OAuth flow that Vectara supports at this time.
 
 Here is how it works. You provide the OAuth 2.0 authentication provider with a
 `client_id` (similar to a username) and a `client_secret` (similar to a
 password). A successful authentication returns a [JWT token](https://jwt.io/), which
 you can then pass into subsequent requests as an authenticated application.
 
-## :star2: Ready to Dive In? Check Out Our API Reference! :star2:
+## OAuth 2.0 best practices
+
+- ✅ Use OAuth in production environments
+- ✅ Store `client_id` and `client_secret` securely (e.g., in secrets manager)
+- ✅ Automatically refresh tokens in your app
+- ❌ Never expose `client_secret` or JWT tokens in public code
+- 🔄 Rotate app clients periodically and revoke unused clients
+
+## Prerequisites
+
+- Admin access to [Vectara Console](https://console.vectara.com/)
+- Your backend system can make HTTP POST requests
+- Secrets manager or vault system to store credentials
+
+## Why use OAuth 2.0 instead of API keys?
+
+If you build backend services, third-party integrations, or require role-based 
+access with tighter control, we recommend the OAuth 2.0 method.
+
+| **Factor**                 | **OAuth 2.0**                              | **API Keys**                             |
+|----------------------------|--------------------------------------------|------------------------------------------|
+| Expiration                 | ✅ Yes (e.g., 30 minutes)                  | ❌ No (manually rotated)                  |
+| Revocation support         | ✅ Built-in                                | ⚠️ Manual deletion                        |
+| Token scoping              | ✅ Role-based at client creation           | ⚠️ Corpus-scoped, not user-based         |
+| Secure for production use  | ✅ Yes                                     | ⚠️ Risky if exposed                      |
+| Good for CI/CD workflows   | ✅ Yes                                     | ⚠️ Requires manual rotation              |
+
+OAuth 2.0 takes more work to set up but offer several advantages over API keys:
+
+- OAuth 2.0 has built-in revocation flows in case a key is compromised.
+
+- The JWT token expires automatically after 30 minutes, so if a JWT token ever
+  does get posted to a public place, it's less likely to be valid by the
+  time an attacker discovers it.
+
+- OAuth 2.0 doesn't suffer from information leakage such as the username
+  that created the client.
+- OAuth 2.0 is inherently more tightly scoped than API keys.
+- JWT tokens are detected by many security scanning tools, allowing them to
+  more easily be flagged in the case of accidental publication.
+
+## :star2: Ready to dive in? Check out our API reference! :star2:
 
 If already have familiarity about how JWT tokens work and you're ready to dive
 into our APIs, make your way to our [**API Reference**](/docs/rest-api/vectara-rest-api-v-2)!
@@ -36,22 +82,6 @@ unauthorized access. Treat these tokens with the same confidentiality as your
 personal credentials.
 
 :::
-
-## Advantages of OAuth 2.0 vs API Keys
-
-OAuth 2.0 takes more work to set up but offer several advantages over API keys:
-
-- OAuth 2.0 has built-in revocation flows in case a key is compromised.
-
-- The JWT token expires automatically after 30 minutes, so if a JWT token ever
-  does get posted to a public place, it's less likely to be valid by the
-  time an attacker discovers it.
-
-- OAuth 2.0 doesn't suffer from information leakage such as the username
-  that created the client.
-- OAuth 2.0 is inherently more tightly scoped than API keys.
-- JWT tokens are detected by many security scanning tools, allowing them to
-  more easily be flagged in the case of accidental publication.
 
 ## Authenticate with OAuth 2.0
 
@@ -102,7 +132,7 @@ you can generate a JWT token with a `client-credentials` grant. We provide [clie
 credentials grant examples](/docs/getting-started-samples/JWTFetcher.cs) in different
 programming languages.
 
-### Generate a JWT Token
+### Generate a JWT token
 
 Use the information from the previous step to send a request to generate a JWT
 token. The client credentials grant is OAuth flow that Vectara supports at
@@ -138,10 +168,8 @@ curl -XPOST -H "Content-type: application/x-www-form-urlencoded" \
 ```
 
 :::tip
-
 This method is useful if you want to try out requests in
 our [**Vectara API Reference**](/docs/rest-api/vectara-rest-api-v-2).
-
 :::
 
 ### Use the JWT token in an API request
@@ -155,3 +183,16 @@ use the JWT token value in the **Bearer Token** field:
 ![API Reference Example](/img/api_playground_listcorpora.png)
 
 Click **Send API Request** to test the API call.
+
+## Common issues with OAuth 2.0
+
+| **Issue**                  | **Cause**                                | **Fix**                                           |
+|----------------------------|-------------------------------------------|----------------------------------------------------|
+| 401 Unauthorized           | Missing or expired JWT token              | Regenerate token before expiry                    |
+| Role mismatch              | App client not assigned correct role      | Edit roles in Console or recreate App Client       |
+| Exposing credentials       | client_secret used in frontend app       | Never expose secrets or JWTs to end users         |
+
+## Next steps
+
+- [Set Up Account and Corpus Permissions (RBAC)](/docs/learn/authentication/role-based-access-control)
+- [Apply Metadata Filters for Attribute-Based Access Control (ABAC)](/docs/learn/authentication/attribute-based-access-control)
