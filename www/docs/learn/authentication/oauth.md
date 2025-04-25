@@ -194,5 +194,5 @@ Click **Send API Request** to test the API call.
 
 ## Next steps
 
-- [Configure Administration Permissions (RBAC)](/docs/learn/authentication/role-based-access-control)
+- [Set Up Account and Corpus Permissions (RBAC)](/docs/learn/authentication/role-based-access-control)
 - [Apply Metadata Filters for Attribute-Based Access Control (ABAC)](/docs/learn/authentication/attribute-based-access-control)

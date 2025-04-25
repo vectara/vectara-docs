@@ -177,7 +177,7 @@ Use the following task guides to implement secure access and authorization:
 
 - 🔑 [Create and Use API Keys](/docs/learn/authentication/api-key-management)
 - 🔐 [Use OAuth 2.0](/docs/learn/authentication/oauth-2)
-- 👥 [Configure Administration Permissions (RBAC)](/docs/learn/authentication/role-based-access-control)
+- 👥 [Set Up Account and Corpus Permissions (RBAC)](/docs/learn/authentication/role-based-access-control)
 - 🎯 [Apply Metadata Filters for Attribute-Based Access Control (ABAC)](/docs/learn/authentication/attribute-based-access-control)
 - 🏢 [Isolate Tenants with Corpora](/docs/learn/authentication/multi-tenant-corpus-isolation)
 - 🧠 [Combine ABAC with Application-Specific Filters](/docs/learn/authentication/combine-access-control-with-app-filters)
