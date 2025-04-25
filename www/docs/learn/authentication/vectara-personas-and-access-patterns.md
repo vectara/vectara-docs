@@ -1,32 +1,40 @@
 ---
 id: personas-and-access-patterns
-title: Vectara Personas and Access Patterns
-sidebar_label: Vectara Personas and Access Patterns
+title: Enterprise Access Patterns
+sidebar_label: Enterprise Access Patterns
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {vars} from '@site/static/variables.json';
 
-Understanding who uses Vectara—and how they interact with it—is essential for 
-implementing secure, efficient authentication and authorization strategies. 
-This section introduces the key personas, maps their access patterns across 
-our platform, and clarifies their roles and responsibilities. By aligning 
-personas with Vectara’s architecture, it lays the groundwork for choosing 
-authentication methods, assigning permissions, and enforcing access boundaries.
+Understanding **who** interacts with Vectara, and **how** they interact with it, 
+is essential for implementing secure, efficient authentication and 
+authorization strategies. This guide introduces key organizational roles, maps 
+their access patterns across Vectara, and offers recommendations tailored for 
+**enterprise deployments**.
 
-## Why personas matter for authentication and authorization
+By aligning access needs with Vectara’s architecture, you can confidently 
+choose authentication methods, assign permissions, and enforce clear access 
+boundaries.
 
-Different personas require distinct access levels. A developer testing queries 
-in a sandbox should not wield the same privileges as an administrator managing 
-user roles or a production app serving end users. Missteps, like using an admin 
-API key in a client app, or granting broad corpus access to a test environment, 
-can compromise security or stability. This section helps you match personas to 
-the right tools and scopes, ensuring a robust security model.
+## Why access patterns matter for authentication and authorization
+
+Different organizational roles require **different access levels**:
+* A developer testing queries in a sandbox **should not** have the same privileges 
+  as an administrator managing user roles.
+* A client app serving end users should use **scoped credentials**, not broad 
+  admin keys.
+
+Missteps like exposing a personal API key or granting broad access across corpora 
+can compromise security or operational stability.
+
+This section helps you **match organizational role** to the right authentication 
+method and authorization scope.
 
 ```
    +- -- -- -- -- -- -- -- -- -- -- -- -- -- -+ 
-   | Vectara Users                            |
+   |              Vectara Users               |
    |  +-----------------+  +----------------+ |
    |  |      Admin      |  | Developer      | | 
    |  |                 |  |                | |
@@ -86,11 +94,11 @@ the right tools and scopes, ensuring a robust security model.
 
 ## Who uses Vectara and how
 
-The following table maps common enterprise roles to Vectara access patterns, 
-showing where each persona operates (platform, application, or external layer) 
+The following table maps common organizational roles to Vectara access patterns, 
+showing where each role operates (platform, application, or external layer) 
 and their authentication/authorization scope.
 
-| Persona      | Tasks                                      | Primary Access Layer | How They Authenticate                          | Best Practices                                      | Common Mistakes to Avoid                     |
+| Organizational role     | Tasks                                      | Primary Access Layer | How They Authenticate                          | Best Practices                                      | Common Mistakes to Avoid                     |
 |--------------|-------------------------------------------|----------------------|------------------------------------------------|----------------------------------------------------|---------------------------------------------|
 | **Admin**    | Manages and monitors system config, user access, corpora access, uptime | Console and Admin API | SSO (Google, SAML/OIDC), OAuth 2.0 and MFA, Personal API Key (`zut_`) | Enforce MFA, rotate keys regularly <br/><br/>Limit corpus access with RBAC | Using admin key in client-side apps <br/><br/>Reusing keys in production |
 | **Developer** | Builds apps and integrations, ingests data, tests APIs, tunes queries | Console and API      | SSO (Google, soon SAML/OIDC), Personal API Key (`zut_`), Query/Index API Keys (`zqt_`, `zwt_`), OAuth 2.0 | Start with read-only Query API keys (`zqt_`) for safe querying <br/><br/>Use separate corpora per environment, scope keys tightly, secure secrets, use training corpora for tests | Sharing keys across corpora <br/><br/>Accessing production corpora with broad keys <br/><br/>Reusing dev keys in production |
@@ -98,8 +106,8 @@ and their authentication/authorization scope.
 
 ## Access scope and trust boundaries
 
-Each persona interacts with the platform at a different layer of access, 
-bounded by trust and responsibility:
+Each organizational role interacts with the platform at a different layer of 
+access, bounded by trust and responsibility:
 
 * **Vectara Platform Layer:** Includes the Vectara Console and direct API access, 
   where Admins manage account-level settings and corpora, and Developers 
