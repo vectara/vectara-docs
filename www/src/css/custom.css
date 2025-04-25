@@ -66,7 +66,7 @@ h1 {
 
 h2 {
   font-size: 24px;
-  font-weight: 600;
+  font-weight: 500;
   color: #2c313a;
 }
 
@@ -75,9 +75,9 @@ h2 {
 }
 
 h3 {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
-  color: #69707d;
+  color: #2c313a;
 }
 
 [data-theme="dark"] h3 {
@@ -85,7 +85,7 @@ h3 {
 }
 
 h4 {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
 }
 
