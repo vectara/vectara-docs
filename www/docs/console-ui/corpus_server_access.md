@@ -9,28 +9,20 @@ commonly needed when your systems will be indexing data into the corpus or
 running queries against it.
 
 1. Make sure that you have an [app client] for your server already created.
-
 2. Navigate to your desired corpus by either clicking its name in the left
    sidebar or through the **Corpora** page.
-
-3. Click the **Authorization** tab.
-   
-:::note
-   
-   If you don't see an Authorization tab, you lack sufficient privileges. Ask your Account 
-   or Corpus Admin to grant you privileges on this corpus.
-
-:::
-
-  ![Corpus Authorization](/img/corpus_authorization_tab.png)
-
-1. Click **Create user role**.
-2. Select a user in the Name dropdown, select the
-   desired role(s) and add an optional description.  Usually, the appropriate
-   roles will be indexing (IDX), or querying (QRY), or both.
-
-  ![Authorize User](/img/authorization_create_user_role.gif)
-
-6. Click **Create**. This will create a new role for your user. 
+3. Click the gear icon in the top-right corner open the **Settings** page.
+4. Click the **Access control** tab.
+   :::note
+   If you do not see an **Access control tab**, you lack sufficient privileges. 
+   Ask your Account or Corpus Admin to grant you privileges on this corpus.
+   :::
+    ![Corpus Authorization](/img/access_control_tab.png)
+5. Click **Grant user access**.
+6. Select a user, permissions (Query, Index, Query and index, or Admin), and 
+   add an optional description. If you do not see the user, [invite them](https://console.vectara.com/console/team) to 
+   your team.
+   ![Grant User Access](/img/grant_user_access.png)
+7. Click **Grant access**. 
 
 Congratulations. You have successfully authorized a server to access the corpus.

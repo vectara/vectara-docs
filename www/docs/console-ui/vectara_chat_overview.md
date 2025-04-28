@@ -21,13 +21,10 @@ Query tab of a corpus.
 
 You enable chat in the Query tab of a specific corpus.
 
-1. Click **Data** and select a corpus from the list.
-2. Select the **Query** tab.
-3. Select **Chat** and a navigation drawer appears.
-   ![Chat Option on the Query Tab](/img/chat_query_tab.png)
-4. Enable the Chat toggle:
-   ![Enable Chat Toggle Option](/img/enable_chat.png)
-5. Now you can [chat with your data](/docs/console-ui/chat-with-your-data)!
+1. Navigate to a corpus from the list.
+2. Select the **Query** tab and go to the Generation section.
+3. Select **Chat** enable the Chat toggle.
+4. Now you can [chat with your data](/docs/console-ui/chat-with-your-data)!
 
 ## Manage Conversations
 
