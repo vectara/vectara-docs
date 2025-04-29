@@ -19,7 +19,7 @@ The **Clear corpus data** and **Delete** operations are irreversible.
 
 1. Navigate to your corpus.
 2. Click the gear icon in the top-right corner open the **Settings** page.
-3. Go to the **Danagerous actions** section at the bottom of the page.
+3. Go to the **Dangerous actions** section at the bottom of the page.
 4. Select one of the following options:
    * Click **Disable corpus**.
    * Click **Clear corpus data**.
