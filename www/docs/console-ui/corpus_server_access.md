@@ -11,7 +11,7 @@ running queries against it.
 1. Make sure that you have an [app client] for your server already created.
 2. Navigate to your desired corpus by either clicking its name in the left
    sidebar or through the **Corpora** page.
-3. Click the gear icon in the top-right corner open the **Settings** page.
+3. Click the gear icon in the top-right corner to open the **Settings** page.
 4. Click the **Access control** tab.
    :::note
    If you do not see an **Access control tab**, you lack sufficient privileges. 
