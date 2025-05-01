@@ -280,7 +280,7 @@ const sidebars: SidebarsConfig = {
       label: "Vectara Console",
       link: {
         type: 'doc',
-        id: 'console-ui/vectara-console-overview', // This points to data-management.mdx
+        id: 'console-ui/vectara-console-overview', // This points to the Vectara Console Overview document
       },
       collapsed: true,
       items: [
