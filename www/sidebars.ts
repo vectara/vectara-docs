@@ -129,6 +129,7 @@ const sidebars: SidebarsConfig = {
             "prompts/custom-prompts-with-metadata",
           ],
         },
+       "generation/custom-prompt-templates-customization", 
       ],
     },
     {
@@ -502,13 +503,18 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "category",
-          label: "Factual Consistency Evaluation APIs",
-          items: ["api-reference/hhem-apis/evaluate-factual-consistency"],
+          label: "Table Extractors APIs",
+          items: ["api-reference/table-extractors/list-table-extractors"],
         },
         {
           type: "category",
           label: "LLM Chat Completions APIs",
           items: ["api-reference/llm-chat-completions/chat-completions"],
+        },
+        {
+          type: "category",
+          label: "Factual Consistency Evaluation APIs",
+          items: ["api-reference/hhem-apis/evaluate-factual-consistency"],
         },
       ],
     },
