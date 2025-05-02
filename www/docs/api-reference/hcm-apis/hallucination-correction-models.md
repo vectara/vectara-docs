@@ -28,7 +28,7 @@ optional query parameters:
 
 ### Example response
 
-The response includes a list of available models and a `page_key`for pagination.
+The response includes a list of available models and a `page_key` for pagination.
 
 ```json
 {
