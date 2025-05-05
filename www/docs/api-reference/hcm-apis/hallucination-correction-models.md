@@ -18,7 +18,7 @@ evaluation pipelines.
 ## List Hallucination Correction Models request and response details
 
 To retrieve available correction models, send a `GET` request to 
-`/v2/hallucination_correction_models`. The request supports the following 
+`/v2/hcms`. The request supports the following 
 optional query parameters:
 
 * **`filter`**: A regular expression used to match model names and descriptions.
@@ -59,5 +59,5 @@ The response includes a list of available models and a `page_key` for pagination
 <Config v="names.product"/> exposes an HTTP endpoint for listing hallucination 
 correction models:
 
-<code>https://<Config v="domains.rest.indexing"/>/v2/hallucination_correction_models</code>
+<code>https://<Config v="domains.rest.indexing"/>/v2/hcms</code>
 
