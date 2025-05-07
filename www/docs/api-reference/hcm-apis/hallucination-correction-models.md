@@ -1,40 +1,43 @@
 ---
-id: list-hallucination-correction-models
-title: List Hallucination Correction Models (HCM) API Definition
-sidebar_label: List Hallucination Correction Models (HCM) Definition
+id: list-hallucination-correctors
+title: List Hallucination Correctors API Definition
+sidebar_label: List Hallucination Correctors API Definition
 ---
 
-The List Hallucination Correction Models API enables users to list available 
-models used for detecting and correcting hallucinations in AI-generated 
-content. Vectara provides these models as part of its broader hallucination 
-evaluation framework, and the Hallucination Correction Model (HCM) endpoint 
+The List Hallucination Correctors API enables users to list available 
+hallucinaton correctors used for detecting and correcting hallucinations in 
+AI-generated content. Vectara provides these models as part of its broader 
+hallucination evaluation framework, and the Hallucination Correctors endpoint 
 uses these models to propose factual corrections to summaries and other 
 generative outputs.
 
-Use this API to inspect available models, filter results, and determine which 
-hallucination correction model to reference in downstream workflows or 
+Use this API to inspect available correctors, filter results, and determine 
+which hallucination corrector to reference in downstream workflows or 
 evaluation pipelines.
 
-## List Hallucination Correction Models request and response details
+## List Hallucination Correctors request and response details
 
-To retrieve available correction models, send a `GET` request to 
-`/v2/hcms`. The request supports the following 
+To retrieve available correctors, send a `GET` request to 
+`/v2/hcs`. The request supports the following 
 optional query parameters:
 
-* **`filter`**: A regular expression used to match model names and descriptions.
-* **`limit`**: The maximum number of models to return (default is 10, max is 100).
+* **`filter`**: A regular expression used to match corrector names and descriptions.
+* **`limit`**: The maximum number of correctors to return.  
+  - **Default:** 10  
+  - **Maximum:** 100
 * **`page_key`**: A cursor to fetch the next page of results in a paginated 
   response.
 
 ### Example response
 
-The response includes a list of available models and a `page_key` for pagination.
+The response includes a list of available correctors and a `page_key` for 
+pagination.
 
 ```json
 {
   "hallucination_correction_models": [
     {
-      "id": "hcm_123",
+      "id": "hc_123",
       "name": "qwen2.5-7b-instruct-hcm",
       "type": "vectara",
       "description": "Qwen/Qwen2.5-7B-Instruct LLM for hallucination correction in AI-generated text.",
@@ -50,14 +53,15 @@ The response includes a list of available models and a `page_key` for pagination
 
 * **400 Bad Request:** The request contained invalid parameters or malformed 
   input.
-* **403 Forbidden:** The user does not have permission to access the model list.
+* **403 Forbidden:** The user does not have permission to access the correctors 
+  list.
 
 ## REST 2.0 URL
 
-### List Hallucination Correction Models Endpoint Address
+### List Hallucination Correctors Endpoint Address
 
 <Config v="names.product"/> exposes an HTTP endpoint for listing hallucination 
-correction models:
+correctors:
 
-<code>https://<Config v="domains.rest.indexing"/>/v2/hcms</code>
+<code>https://<Config v="domains.rest.indexing"/>/v2/hcs</code>
 
