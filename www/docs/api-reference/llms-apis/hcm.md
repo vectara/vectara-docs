@@ -1,10 +1,10 @@
 ---
 id: hcm
-title: Hallucination Correction Model (HCM) API Definition
-sidebar_label: Hallucination Correction Model (HCM) API Definition
+title: Hallucination Correctors API Definition
+sidebar_label: Hallucination Correctors API Definition
 ---
 
-The Hallucination Correction Model (HCM) API enables users to automatically 
+The Hallucination Correctors API enables users to automatically 
 detect and correct factual inaccuracies, commonly referred to as 
 hallucinations, in generated summaries or responses. By comparing a 
 user-provided summary against one or more source documents, the API returns a 
@@ -16,10 +16,10 @@ that the output remains grounded in trusted source content. If HCM does not
 detect hallucination, it preserves the original summary.
 
 
-## Hallucination Correction Model Request and Response Details
+## Hallucination Correctors Request and Response Details
 
 To correct a potentially hallucinated summary, send a `POST` request to 
-`/v2/llms/hcm`. The request body must include:
+`/v2/llms/hcs`. The request body must include:
 * `summary`: The generated text to evaluate and potentially correct.
 * `documents`: One or more source documents containing the factual information that 
   the summary should be based on.
@@ -67,8 +67,7 @@ If the input summary is accurate, the `corrected_summary` matches the `original_
 
 ## REST 2.0 URL
 
-### Hallucination Correction Model Endpoint Address
+### Hallucination Correctors Endpoint Address
 
-<Config v="names.product"/> exposes an HTTP endpoint for the Hallucination Correction 
-Model (HCM):
-<code>https://<Config v="domains.rest.indexing"/>/v2/llms/hcm</code>
+<Config v="names.product"/> exposes an HTTP endpoint for the Hallucination Correctors:
+<code>https://<Config v="domains.rest.indexing"/>/v2/llms/hcs</code>

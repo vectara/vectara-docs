@@ -141,7 +141,7 @@ const sidebars: SidebarsConfig = {
       items: [
         "learn/query-observability",
         "learn/hallucination-evaluation",
-        "learn/hallucination-correction-model",
+        "learn/vectara-hallucination-corrector",
       ],
     },
     {
