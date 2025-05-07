@@ -1,5 +1,5 @@
 ---
-id: hcm
+id: hallucination_correctors
 title: Hallucination Correctors API Definition
 sidebar_label: Hallucination Correctors API Definition
 ---
@@ -19,7 +19,7 @@ detect hallucination, it preserves the original summary.
 ## Hallucination Correctors Request and Response Details
 
 To correct a potentially hallucinated summary, send a `POST` request to 
-`/v2/llms/hcs`. The request body must include:
+`/v2/hallucination_correctors`. The request body must include:
 * `summary`: The generated text to evaluate and potentially correct.
 * `documents`: One or more source documents containing the factual information that 
   the summary should be based on.
@@ -70,4 +70,4 @@ If the input summary is accurate, the `corrected_summary` matches the `original_
 ### Hallucination Correctors Endpoint Address
 
 <Config v="names.product"/> exposes an HTTP endpoint for the Hallucination Correctors:
-<code>https://<Config v="domains.rest.indexing"/>/v2/llms/hcs</code>
+<code>https://<Config v="domains.rest.indexing"/>/v2/hallucination_correctors</code>

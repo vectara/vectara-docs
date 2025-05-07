@@ -20,7 +20,7 @@ ensure that the correct LLM is being utilized within their workflows.
 ## Get LLM Request and Response Details
 
 To retrieve details for a specific LLM, send a `GET` request to 
-`/v2/llms/{llm_id}`. The request must include the `llm_id` parameter in the URL 
+`/v2/llms/llm_id`. The request must include the `llm_id` parameter in the URL 
 path to specify which LLM to retrieve.
 
 The response returns details about the requested LLM.
