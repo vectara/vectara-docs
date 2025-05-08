@@ -18,6 +18,32 @@ and how these product and documentation changes can benefit your enterprise.
 
 ---
 
+## Vectara Hallucination Corrector (VHC) API
+
+_May 8, 2025_
+
+Vectara introduces the tech preview release of the Vectara Hallucination Corrector  
+(VHC) API, a new capability designed to evaluate and revise AI-generated 
+summaries for factual accuracy. The VHC endpoint compares a generated summary 
+to one or more source documents and returns a corrected version, applying only 
+the minimal changes needed to align the summary with the source material.
+
+**Why it matters:** In Retrieval Augmented Generation (RAG) workflows, LLMs 
+commonly introduce inaccuracies or hallucinations. The Vectara Hallucination 
+Corrector offers a targeted solution by enabling automatic, explainable corrections 
+to text based on reliable context—preserving the original phrasing wherever possible. 
+This improves trust, precision, and usability of AI-generated outputs across 
+enterprise applications.
+
+**New API endpoint:**
+* Hallucination Correction Model
+
+**More information:**
+* [Hallucination Correction Model](/docs/learn/vectara-hallucination-corrector)
+* [Hallucination Correction Model API Definition](/docs/api-reference/llms-apis/hallucination_correctors)
+
+---
+
 ## Chat Completions API
 
 _April 24, 2025_
@@ -35,7 +61,7 @@ easy to switch between providers or test performance across models, all while
 tracking usage and applying fine-grained generation controls.
 
 **New API endpoint:**
-* Chat Completions
+* [Chat Completions](/docs/rest-api/create-chat-completion)
 
 **More information:**
 * [Chat Completions API Definition](/docs/api-reference/llm-chat-completions/chat-completions)
@@ -59,7 +85,7 @@ by scoring alignment between generated text and source documents, improving
 the reliability and auditability of AI-generated content.
 
 **New API endpoint:**
-* Evaluate Factual Consistency
+* [Evaluate Factual Consistency](/docs/rest-api/evaluate-factual-consistency)
 
 **More information:**
 * [Evaluate Factual Consistency API Definition](/docs/api-reference/hhem-apis/evaluate-factual-consistency)

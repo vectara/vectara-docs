@@ -4,6 +4,7 @@ title: Observability and Evaluation
 sidebar_label: Observability and Evaluation
 ---
 
+import { Config } from "./definitions.md";
 import { Grid } from "@site/src/components/ui/Grid";
 import { Spacer } from "@site/src/components/ui/Spacer";
 import { TopicButton } from "@site/src/components/ui/TopicButton";
@@ -34,6 +35,16 @@ confidence in AI-driven outputs.
     in AI-generated outputs. 
     <Spacer size="l" />
     Achieve accurate summaries with calibrated scores across multiple languages.
+  </TopicButton>
+
+  <TopicButton
+    title="Hallucination Corrector"
+    href="/docs/learn/vectara-hallucination-corrector">
+    <Spacer size="l" />
+    Detect hallucinations in AI-generated summaries and view corrected versions 
+    updated with factual source material.
+    <Spacer size="l" />
+    Ensures that summaries passed through HCM retain their intended meaning.
   </TopicButton>
 </Grid>
 
