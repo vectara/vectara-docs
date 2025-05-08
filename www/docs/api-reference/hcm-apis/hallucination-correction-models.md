@@ -18,7 +18,7 @@ evaluation pipelines.
 ## List Hallucination Correctors request and response details
 
 To retrieve available correctors, send a `GET` request to 
-`/v2/hcs`. The request supports the following 
+`/v2/hallucination_correctors`. The request supports the following 
 optional query parameters:
 
 * **`filter`**: A regular expression used to match corrector names and descriptions.
@@ -58,7 +58,7 @@ pagination.
 
 ## REST 2.0 URL
 
-### List Hallucination Correctors Endpoint Address
+### List Hallucination Correctors endpoint address
 
 <Config v="names.product"/> exposes an HTTP endpoint for listing hallucination 
 correctors:
