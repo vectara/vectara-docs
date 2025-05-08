@@ -526,6 +526,22 @@ const sidebar: SidebarsConfig = {
     },
     {
       type: "category",
+      label: "Hallucination Correctors",
+      link: {
+        type: "doc",
+        id: "rest-api/hallucination-correctors",
+      },
+      items: [
+        {
+          type: "doc",
+          id: "rest-api/list-hallucination-correctors",
+          label: "List hallucination correctors",
+          className: "api-method get",
+        },
+      ],
+    },
+    {
+      type: "category",
       label: "LLM Chat Completions",
       link: {
         type: "doc",

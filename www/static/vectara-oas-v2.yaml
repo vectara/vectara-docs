@@ -70,6 +70,9 @@ tags:
     administration
 - name: Table Extractors
   description: List available extractors for tabular data from documents
+- name: Hallucination Correctors
+  description: List available hallucination correctors for detecting and correcting
+    hallucinations in generated text
 - name: LLM Chat Completions
   description: Create model responses for chat conversations using OpenAI-compatible
     endpoints
@@ -155,6 +158,15 @@ paths:
         required: false
         schema:
           type: string
+      - name: corpus_id
+        in: query
+        description: Filter corpora to only include corpora with these IDs.
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+            pattern: crp_[0-9]+$
       - name: page_key
         in: query
         description: Used to retrieve the next page of corpora after the limit has
@@ -481,10 +493,11 @@ paths:
           type: boolean
       - in: query
         name: intelligent_query_rewriting
-        description: 'Indicates whether to enable intelligent query rewriting. When
-          enabled, the platform will attempt to
+        description: '[Tech Preview] Indicates whether to enable intelligent query
+          rewriting. When enabled, the platform will attempt to
 
           extract metadata filter and rewrite the query to improve search results.
+          For more details: https://docs.vectara.com/docs/search-and-retrieval/intelligent-query-rewriting
 
           '
         schema:
@@ -2196,6 +2209,64 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /v2/hallucination_correctors:
+    get:
+      tags:
+      - Hallucination Correctors
+      summary: List hallucination correctors
+      description: Retrieves a list of available hallucination correctors used for
+        detecting and correcting hallucinations in AI-generated content. This endpoint
+        supports filtering by name or description, pagination, and metadata for navigating
+        large result sets.
+      operationId: listHallucinationCorrectors
+      x-fern-sdk-group-name: hallucination_correctors
+      x-fern-sdk-method-name: list
+      x-fern-pagination:
+        cursor: $request.page_key
+        next_cursor: $response.metadata.page_key
+        results: $response.hallucinationCorrectionModels
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: query
+        name: filter
+        description: A regular expression applied to the name and description fields.
+          Use this to return only hallucination correctors that match specific keywords
+          or naming conventions.
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: limit
+        description: The maximum number of hallucination correctors to return in the
+          list. Defaults to 10. Range is between 1 and 100.
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 100
+          default: 10
+      - name: page_key
+        in: query
+        description: Retrieves the next page of hallucination correctors after reaching
+          the limit.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of hallucination correctors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListHallucinationCorrectorsResponse'
+        '403':
+          description: Permissions do not allow listing hallucination correctors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /v2/jobs:
     get:
       tags:
@@ -3856,10 +3927,11 @@ components:
           description: Indicates whether to save the query to query history.
           type: boolean
         intelligent_query_rewriting:
-          description: 'Indicates whether to enable intelligent query rewriting. When
-            enabled, the platform will attempt to
+          description: '[Tech Preview] Indicates whether to enable intelligent query
+            rewriting. When enabled, the platform will attempt to
 
             extract metadata filter and rewrite the query to improve search results.
+            For more details: https://docs.vectara.com/docs/search-and-retrieval/intelligent-query-rewriting
 
             '
           type: boolean
@@ -3906,10 +3978,11 @@ components:
           description: Indicates whether to save the query to query history.
           type: boolean
         intelligent_query_rewriting:
-          description: 'Indicates whether to enable intelligent query rewriting. When
-            enabled, the platform will attempt to
+          description: '[Tech Preview] Indicates whether to enable intelligent query
+            rewriting. When enabled, the platform will attempt to
 
             extract metadata filter and rewrite the query to improve search results.
+            For more details: https://docs.vectara.com/docs/search-and-retrieval/intelligent-query-rewriting
 
             '
           type: boolean
@@ -4073,6 +4146,12 @@ components:
 
             '
           format: float
+        experimental_use_text_with_context:
+          type: boolean
+          default: true
+          description: 'If true, the reranker will use text with context (see "context_configuration")
+            for scoring. WARNING: This is an experimental feature, and breakable at
+            any point with virtually no notice. It is meant for experimentation only. '
       x-vectaraParents:
       - SearchReranker
     UserFunctionReranker:
@@ -5329,10 +5408,11 @@ components:
           type: boolean
           default: true
         intelligent_query_rewriting:
-          description: 'Indicates whether to enable intelligent query rewriting. When
-            enabled, the platform will attempt to
+          description: '[Tech Preview] Indicates whether to enable intelligent query
+            rewriting. When enabled, the platform will attempt to
 
             extract metadata filter and rewrite the query to improve search results.
+            For more details: https://docs.vectara.com/docs/search-and-retrieval/intelligent-query-rewriting
 
             '
           type: boolean
@@ -5919,6 +5999,48 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TableExtractor'
+    HallucinationCorrector:
+      description: A hallucination corrector that detects and corrects hallucinations
+        in generated text.
+      type: object
+      properties:
+        id:
+          description: The unique ID for the Hallucination Corrector (HC).
+          type: string
+          pattern: hcm_[0-9]+$
+          example: hcm_123
+        name:
+          description: The hallucination corrector name, typically including the base
+            name and variant.
+          type: string
+          example: qwen2.5-7b-instruct-hcm
+        type:
+          description: The hallucination corrector type. Defaults to `vectara`.
+          type: string
+          default: vectara
+        description:
+          description: "A short description of the hallucination corrector\u2019s\
+            \ purpose."
+          type: string
+          example: Qwen/Qwen2.5-7B-Instruct for hallucination correction in AI-generated
+            text.
+        enabled:
+          description: Indicates whether the hallucination corrector is enabled and
+            available for use in hallucination correction workflows.
+          type: boolean
+          example: true
+    ListHallucinationCorrectorsResponse:
+      description: Response containing a list of hallucination correctors.
+      type: object
+      properties:
+        hallucination_correctors:
+          description: An array of hallucination correctors that match the request
+            parameters.
+          type: array
+          items:
+            $ref: '#/components/schemas/HallucinationCorrector'
+        metadata:
+          $ref: '#/components/schemas/ListMetadata'
     Job:
       description: A background job for processing long-running operations on the
         platform.
@@ -6602,7 +6724,7 @@ components:
           type: string
     CreateChatCompletionRequest:
       description: The request object for creating a chat completion with an OpenAI-compatible
-        interface. \nThis object is compatible with OpenAI's chat completion schema
+        interface. This object is compatible with OpenAI's chat completion schema
         and supports customizable parameters for response generation.
       type: object
       required:
