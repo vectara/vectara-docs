@@ -454,7 +454,7 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "category",
-          label: "Hallucinator Correctors APIs",
+          label: "Hallucination Correctors APIs",
           items: [
             "api-reference/llms-apis/hallucination_correctors",
           ],
