@@ -18,20 +18,20 @@ and how these product and documentation changes can benefit your enterprise.
 
 ---
 
-## Hallucination Correction Model (HCM) API
+## Vectara Hallucination Corrector (VHC) API
 
-_April 24, 2025_
+_May 8, 2025_
 
-Vectara introduces the tech preview release of the Hallucination Correction 
-Model (HCM) API, a new capability designed to evaluate and revise AI-generated 
-summaries for factual accuracy. The HCM endpoint compares a generated summary 
+Vectara introduces the tech preview release of the Vectara Hallucination Corrector  
+(VHC) API, a new capability designed to evaluate and revise AI-generated 
+summaries for factual accuracy. The VHC endpoint compares a generated summary 
 to one or more source documents and returns a corrected version, applying only 
 the minimal changes needed to align the summary with the source material.
 
 **Why it matters:** In Retrieval Augmented Generation (RAG) workflows, LLMs 
-commonly introduce inaccuracies or hallucinations. The HCM API offers a 
-targeted solution by enabling automatic, explainable corrections to text 
-based on reliable context—preserving the original phrasing wherever possible. 
+commonly introduce inaccuracies or hallucinations. The Vectara Hallucination 
+Corrector offers a targeted solution by enabling automatic, explainable corrections 
+to text based on reliable context—preserving the original phrasing wherever possible. 
 This improves trust, precision, and usability of AI-generated outputs across 
 enterprise applications.
 
@@ -39,8 +39,56 @@ enterprise applications.
 * Hallucination Correction Model
 
 **More information:**
-* [Hallucination Correction Model](/docs/learn/hallucination-correction-model)
-* [Hallucination Correction Model API Definition](/docs/api-reference/llms-apis/hcm)
+* [Hallucination Correction Model](/docs/learn/vectara-hallucination-corrector)
+* [Hallucination Correction Model API Definition](/docs/api-reference/llms-apis/hallucination_correctors)
+
+---
+
+## Chat Completions API
+
+_April 24, 2025_
+
+Vectara now offers an OpenAI-compatible Chat Completions API, enabling 
+seamless integration of Vectara’s language models into applications already 
+built for OpenAI’s chat endpoint. This API supports both synchronous and 
+streaming response formats and adheres to the familiar message-based interface 
+used for conversational AI.
+
+**Why it matters:** Developers can now integrate Vectara’s models into chat 
+interfaces, agents, and customer-facing applications without needing to 
+rearchitect prompt flows or backend systems. The compatibility layer makes it 
+easy to switch between providers or test performance across models, all while 
+tracking usage and applying fine-grained generation controls.
+
+**New API endpoint:**
+* [Chat Completions](/docs/rest-api/create-chat-completion)
+
+**More information:**
+* [Chat Completions API Definition](/docs/api-reference/llm-chat-completions/chat-completions)
+
+---
+
+## Evaluate Factual Consistency API
+
+_April 24, 2025_
+
+Vectara introduces the tech preview of the Evaluate Factual Consistency API, a 
+new endpoint that assesses how well a generated summary or response aligns 
+with its supporting source documents. This API provides a confidence score 
+indicating whether a given text is grounded in the referenced material—helping 
+developers detect and respond to hallucinated content in LLM outputs.
+
+**Why it matters:** As enterprises rely more heavily on generative AI for 
+summarization, Q&A, and knowledge tasks, the ability to detect factual 
+inconsistencies becomes critical. This API enables automated quality control 
+by scoring alignment between generated text and source documents, improving 
+the reliability and auditability of AI-generated content.
+
+**New API endpoint:**
+* [Evaluate Factual Consistency](/docs/rest-api/evaluate-factual-consistency)
+
+**More information:**
+* [Evaluate Factual Consistency API Definition](/docs/api-reference/hhem-apis/evaluate-factual-consistency)
 
 ---
 
@@ -63,6 +111,32 @@ research, knowledge bases, and question-answering systems.
 **More information:**
 * [Mockingbird: Vectara's LLM](https://docs.vectara.com/docs/learn/mockingbird-llm)
 * [Introducing Mockingbird 2 - Vectara’s crosslingual grounded generation model](https://www.vectara.com/blog/introducing-mockingbird-2-vectaras-crosslingual-grounded-generation-model)
+
+---
+
+## Custom Table Summarization with Prompt Templates
+
+_April 15, 2025_
+
+Vectara now supports custom prompt templates for table summarization during 
+document upload. This enhancement enables users to define exactly how extracted 
+table data should be summarized using an OpenAI-compatible LLM. The 
+`prompt_template` is configured with the `table_extraction_config` parameter 
+in the File Upload API and supports Apache Velocity syntax for referencing 
+table structure and content.
+
+**Why it matters:** If you work in a domain with structured tabular data, 
+summarizing tables with LLMs can surface key insights automatically. This 
+capability allows you to tailor how summaries are generated by injecting 
+domain-specific language, tone, and formatting preferences—resulting in more 
+relevant, actionable outputs.
+
+**Updated API Endpoint:**
+* [Upload a file to the corpus](/docs/rest-api/upload-file)
+
+**More information:**
+* [File Upload API](/docs/generation/custom-prompt-templates-customizations)
+* [Querying Table Data](/docs/learn/querying-table-data)
 
 ---
 
@@ -177,7 +251,6 @@ filters and rephrased queries in the API response and query history.
 * [Intelligent Query Rewriting](/docs/search-and-retrieval/intelligent-query-rewriting)
 * [Query API Definition](/docs/api-reference/search-apis/search)
 * [Advanced Single Corpus Query](/docs/rest-api/query-corpus)
-
 
 ---
 

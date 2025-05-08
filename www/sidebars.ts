@@ -129,6 +129,7 @@ const sidebars: SidebarsConfig = {
             "prompts/custom-prompts-with-metadata",
           ],
         },
+       "generation/custom-prompt-templates-customization", 
       ],
     },
     {
@@ -181,17 +182,27 @@ const sidebars: SidebarsConfig = {
       items: [
         "learn/data-privacy/privacy-overview",
         "learn/data-privacy/encryption",
-        {
-          type: "category",
-          label: "Authentication and Authorization",
-          collapsed: true,
-          items: [
-            "learn/authentication/auth-overview",
-            "learn/authentication/api-key-management",
-            "learn/authentication/oauth-2",
-            "learn/authentication/role-based-access-control",
-          ],
+        "learn/authentication/transport-layer-security",
+      ],
+    },
+    {
+      type: "category",
+      label: "Authentication and Authorization",
+      link: {
+        type: 'doc',
+        id: 'learn/authentication/authentication-authorization-vectara', 
         },
+        collapsed: true,
+        items: [
+          "learn/authentication/personas-and-access-patterns",
+          "learn/authentication/auth-overview",
+          "learn/authentication/choose-auth-method",
+          "learn/authentication/api-key-management",
+          "learn/authentication/oauth-2",
+          "learn/authentication/role-based-access-control",
+          "learn/authentication/attribute-based-access-control",
+          "learn/authentication/multi-tenant-corpus-isolation",
+          "learn/authentication/combine-access-control-with-app-filters",
         {
           type: "category",
           label: "API Authentication Examples",
@@ -206,7 +217,7 @@ const sidebars: SidebarsConfig = {
                 "getting-started-samples/rest_util.py",
               ],
             },
-            {
+            { 
               type: "category",
               label: "API Key REST Examples",
               items: [
@@ -218,8 +229,8 @@ const sidebars: SidebarsConfig = {
               ],
             },
           ],
-        },
-      ],
+         },
+        ],
     },
     {
       type: "category",
@@ -428,6 +439,11 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "category",
+          label: "Generation Presets APIs",
+          items: ["api-reference/generation-presets/list-generation-presets"],
+        },
+        {
+          type: "category",
           label: "Large Language Models APIs",
           items: [
             "api-reference/llms-apis/llms-api",
@@ -497,8 +513,18 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "category",
-          label: "Generation Presets APIs",
-          items: ["api-reference/generation-presets/list-generation-presets"],
+          label: "Table Extractors APIs",
+          items: ["api-reference/table-extractors/list-table-extractors"],
+        },
+        {
+          type: "category",
+          label: "LLM Chat Completions APIs",
+          items: ["api-reference/llm-chat-completions/chat-completions"],
+        },
+        {
+          type: "category",
+          label: "Factual Consistency Evaluation APIs",
+          items: ["api-reference/hhem-apis/evaluate-factual-consistency"],
         },
       ],
     },

@@ -1,83 +1,179 @@
 ---
 id: role-based-access-control
-title: Role-Based Access Control (RBAC)
-sidebar_label: Role-Based Access Control
+title: Set Up Account and Corpus Permissions (RBAC)
+sidebar_label: Set Up Account and Corpus Permissions (RBAC)
 ---
 
+This guide helps you configure account, billing, and corpus permissions in 
+Vectara using Role-Based Access Control (RBAC). Assign precise account and 
+corpus-level access for users and Client Apps.
 
-Authorization refers to the role-based access control policies in <Config v="names.product"/> that define
-what actions an authenticated entity may perform. In this system, **permissions** are 
-specific actions, like running a query against a specific corpus, or resetting
-its contents. These permissions are grouped together into **roles**, and
-authenticated entites may be assigned one or more roles.
+RBAC defines what actions an authenticated entity (a user or app client 
+verified by a JWT token) can perform through **permissions** (such as querying 
+a corpus or managing users). Vectara groups permissions into **roles**, assigned 
+through the Vectara Console. Admins can also set **default permissions** (such 
+as default Query access) to simplify access to corpora.
 
-In this context, an **authenticated entity** refers to a user or an app client 
-able to attest its identity by presenting a valid JWT token. Even entities that 
-lack explicit roles may still be able to perform operations on the platform 
-through the use of **default permissions**.
+```mermaid
+flowchart TD
+    A(Admin logs into console) --> B(Manage account settings)
+    A --> C(Manage corpora)
+    
+    B --> B1(Invite team members)
+    B --> B2(Assign account-level roles)
+    B2 --> B3(Owner / Account admin / <br>Corpus admin / Billing admin)
 
-## RBAC Roles
+    C --> C1(Select a corpus, click Access control)
+    C1 --> C2(Grant user or app client access)
+    C2 --> C3(Assign corpus-level roles)
+    C3 --> C4(Query / Index / Admin roles)
 
-This section explains these concepts in further detail:
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#bbf,stroke:#333
+    style C fill:#bbf,stroke:#333
+    style B1 fill:#ccf
+    style B2 fill:#ccf
+    style C1 fill:#ccf
+    style C2 fill:#ccf
+    style C3 fill:#ccf
+```
 
-### Account Level Roles
+## Configure account and billing permissions
 
-- **Owner** is initially granted to whoever created the account. It grants
-  all the permissions of the admin roles, below, as well as the ability to
-  delete the account.
-- **Account Administrators** can perform all actions on a account, except
-  managing billing activity. These actions include managing users, API keys,
-  managing corpora etc.
-- **Corpus Administrators** can perform all corpus related actions within the
-  account. This includes authorizing user roles on an account, deleting a corpus,
-  creating corpora, and transferring ownership of a corpus.
-- **Billing Administrators** can view and edit account billing activity.
+Admins manage account-wide settings (users, API keys) and billing tasks using 
+account-level roles, ideal for oversight without direct data access.
 
-### Corpus Level Roles
+### Account-level roles
+- **Owner**: Initial role granted to the account creator. Grants 
+  full permissions including account deletion.
+- **Account admin**: Manages all actions except billing (users, API keys, corpora).
+- **Corpus admin**: Manages corpora across the account.
+- **Billing admin**: Views and edits billing activity only. This role is 
+  specialized for financial tasks.
 
-Users can also be authorized to perform various actions per corpus. You can 
-assign roles in the Authorization tab on the Corpus page.
+### Assign account-level roles
 
-![Edit user](/img/corpus_auth.png)
+1. Go to **Team** in the Vectara Console.
+2. Click **Invite team member**.
+3. Add a user by email, entering a description, and selecting **Account Admin**,
+   **Corpus Admin**, or **Billing Admin**.  
+4. Click **Send invitation**.
+5. Go to **Authorization** to [manage API keys](/docs/learn/authentication/api-key-management) or [OAuth 2.0 app clients](/docs/learn/authentication/oauth-2).
 
-- The **Query** role (QRY) allows querying the corpus.
-- The **Indexing** role (IDX) allows data to be added to the corpus.
-- The **Administrator** role (ADM) allows query and indexing the corpus, but
-  also resetting it, deleting it, adding and removing user access, and
-  transferring its ownership.
+**Use Case:** An owner assigns an Account Admin role to a team member to oversee 
+corpora without billing access.
 
-A corpus may also specifying querying or indexing as **default roles**. A default
-role is a role that is granted to any authenticated user in the account. For
-example, if you want any authenticated user to be able to run queries on the
-corpus, you would add the query role as default. 
+:::note
+Account-level roles do not provide document-level access. Use corpus-level 
+roles for data interactions.
+:::
 
-## Account Features
+## Configure corpus permissions
 
-Account features differ from roles in that they are enforced for the entire
-account and are generally tied to account tier. These features include:
+Admins and Developers control access to specific corpora for querying, 
+indexing, or administration, ensuring secure data interactions.
 
-1. Custom dimensions. Whether custom dimensions may be defined for corpora.
-2. Maximum corpora per query.
+### Corpus-level roles
+
+* **Query (QRY)**: Permits read-only searches. This is ideal for developers or 
+  end users through Client Apps.
+* **Indexing (IDX)**: Enables adding data and querying, used by developers indexing 
+  content.
+* **Administrator (ADM)**: Grants control (query, index, reset, delete, manage 
+  permissions) for Admins managing a corpus.
+
+### Assign corpus-level roles
+
+1. Navigate to Corpora in the Vectara Console and select a corpus.
+2. Open the **Access control** tab.
+3. Click **Grant user access**.
+4. Select a user.
+5. Select **Query**, **Index, Query** and **index**, or **Admin**.
+6. Add a description for the user.
+7. Click **Grant access**.
+
+**Use Case:** A developer assigns Query permissions to a client app for read-only 
+access to a customer support corpus.
+
+:::note
+Each corpus requires separate role assignments. There is no automatic 
+cross-corpus access unless explicitly granted.
+:::
+
+## Best practices
+
+✅ Use the **principle of least privilege**: assign only needed roles.
+✅ Review role assignments when rotating keys or changing team structure
+✅ Separate roles for production versus development corpora
+❌ Do not give Admin roles to Client Apps unless essential
+
+## Common issues and solutions
+
+| **Symptom**                    | **Cause**                            | **Solution**                                 |
+|--------------------------------|---------------------------------------|----------------------------------------------|
+| 403 Forbidden (API key)        | Missing corpus role assignment        | Assign QRY or IDX—Admins check               |
+| OAuth token returns empty data | App client lacks Query permission     | Assign QRY to app client—Developers note     |
+| Index fails with QRY role      | Wrong role assigned                   | Switch to IDX or Admin—Developers adjust     |
+
+In addition to role-based permissions, Vectara offers account-wide feature 
+controls.
+
+## Understand account features (beyond roles)
+
+Account features, unlike roles, apply account-wide and are tied to your account 
+tier, often configured by Admins:
+1. Custom dimensions
+2. Maximum corpora per query
 3. Score retrieval. Whether or not downstream systems have access to the raw
    answer score. Advanced applications can utilize this information for
    thresholding, and for incorporation into downstream machine-learning systems.
 4. Encoder swapping. Whether the indexing and querying encoders be swapped to
    support semantic similarity matching in addition to question-answer matching.
-5. Textless. Defines whether corpora be built without storing the indexed text.
-   Although all textual content is encrypted with per-corpus keys, this option
-   may appeal when an even higher level of security is desired. Enabling this
-   can potentially reduce the quality of search.
-6. User rate limit. Whether per-user rate limits can be defined.
-7. Corpus rate limit. Whether per-corpus rate limits can be defined.
-8. Corpus encryption key. Whether every corpus uses a separate encryption key
+5. User rate limit. Whether per-user rate limits can be defined.
+6. Corpus rate limit. Whether per-corpus rate limits can be defined.
+7. Corpus encryption key. Whether every corpus uses a separate encryption key
    for maximum security. Currently this feature is enabled for all accounts and
    cannot be disabled.
-9. Customer managed encryption key. Whether the account may use a customer
+8. Customer managed encryption key. Whether the account may use a customer
    managed master encryption key. This is an advanced feature that gives the
    customer total control over their data. By revoking access to the master
    key, the account will become inaccessible within minutes to the entire
    platform.
-10. Document metadata. Specifies whether document level metadata may be stored
+9. Document metadata. Specifies whether document level metadata may be stored
    while indexing. This is currently enabled for all accounts.
-11. Document part metadata. Specifies whether part level metadata may be stored
+10. Document part metadata. Specifies whether part level metadata may be stored
    while indexing. This is currently enabled for all accounts.
+
+## Example role assignments
+
+| **Scenario**                      | **Assigned Role** | **Scope**        |
+|-----------------------------------|-------------------|------------------|
+| Frontend search app (read-only)   | QRY               | Specific corpus  |
+| Backend service indexing data     | IDX               | Specific corpus  |
+| Admin user managing all corpora   | Owner             | Account-wide     |
+| OAuth client with query rights    | QRY               | One or more corpora |
+
+## ✅ Quick Checklist: Configure RBAC in Vectara
+
+Follow this checklist to set up secure, least-privilege access across accounts 
+and corpora.
+
+### 🔐 Account Permissions
+- [ ] Invite team members via the **Team** page
+- [ ] Assign **Owner**, **Account admin**, or **Billing admin** roles
+- [ ] Avoid giving full account access unless required
+- [ ] Use **OAuth 2.0 and MFA** for the most secure access
+
+### 📂 Corpus Access
+- [ ] Navigate to the **Corpus** page → **Access control**
+- [ ] Assign roles:
+  - [ ] **Query** – Read-only
+  - [ ] **Index** – Write and query
+  - [ ] **Admin** – Full access
+- [ ] Scope access per corpus—**no cross-corpus by default**
+
+### 🛡️ Best Practices
+- [ ] Use the **least privilege principle**
+- [ ] Use separate API keys per environment (dev/prod)
+- [ ] Rotate keys regularly and monitor usage
+- [ ] Re-audit access when staff or project roles change
