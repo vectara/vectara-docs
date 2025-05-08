@@ -518,6 +518,11 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "category",
+          label: "Hallucination Correctors APIs",
+          items: ["api-reference/hcm-apis/list-hallucination-correctors"],
+        },
+        {
+          type: "category",
           label: "LLM Chat Completions APIs",
           items: ["api-reference/llm-chat-completions/chat-completions"],
         },
