@@ -457,6 +457,7 @@ const sidebars: SidebarsConfig = {
           label: "Hallucination Correctors APIs",
           items: [
             "api-reference/llms-apis/hallucination_correctors",
+            "api-reference/hcm-apis/list-hallucination-correctors"
           ],
         },
         {
@@ -515,11 +516,6 @@ const sidebars: SidebarsConfig = {
           type: "category",
           label: "Table Extractors APIs",
           items: ["api-reference/table-extractors/list-table-extractors"],
-        },
-        {
-          type: "category",
-          label: "Hallucination Correctors APIs",
-          items: ["api-reference/hcm-apis/list-hallucination-correctors"],
         },
         {
           type: "category",
