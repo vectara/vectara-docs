@@ -12,6 +12,32 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 
 ---
 
+# May 2025
+
+### ✨ New Features
+- Add documentation for the List Hallucination Correctors API (#453)
+- Add documentation for the tech preview of the Vectara Hallucination Corrector (#442)
+- Add documentation for Table Summarization with Custom Prompts (#436)
+
+### 📚 API Changes
+- Add Hallucination Correctors endpoint to the API Reference (#454)
+
+### 📝 Documentation Changes
+- No changes
+
+### 📋 Example Updates
+- No changes
+
+### 🗑 Deprecated
+- No changes
+
+### 🛠 Documentation Platform Updates
+- No changes
+
+
+
+---
+
 # April 2025
 
 ### ✨ New Features
@@ -24,7 +50,7 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 - Add the Evaluate Factual Consistency API and the Chat Completions API to the API Reference (#444)
 
 ### 📝 Documentation Changes
-- No changes
+- Expand Authentication section with new guides on enterprise access patterns, organizational role scoping, and authorization workflows (#426)
 
 ### 📋 Example Updates
 - No changes
@@ -33,6 +59,7 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 - No changes
 
 ### 🛠 Documentation Platform Updates
+- Refine design of heading styles (#450)
 - Install Mermaid for creating diagrams (#443)
 - Update package.json with API documentation build script (#438)
 - Upgrade Docusaurus Platform from 2.4.3 to 3.7 (#422)
