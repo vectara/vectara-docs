@@ -21,11 +21,11 @@ To retrieve available correctors, send a `GET` request to
 `/v2/hallucination_correctors`. The request supports the following 
 optional query parameters:
 
-* **`filter`**: A regular expression used to match corrector names and descriptions.
-* **`limit`**: The maximum number of correctors to return.  
+* `filter`: A regular expression used to match corrector names and descriptions.
+* `limit`: The maximum number of correctors to return.  
   - **Default:** 10  
   - **Maximum:** 100
-* **`page_key`**: A cursor to fetch the next page of results in a paginated 
+* `page_key`: A cursor to fetch the next page of results in a paginated 
   response.
 
 ### Example response
