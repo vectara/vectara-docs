@@ -71,8 +71,8 @@ tags:
 - name: Table Extractors
   description: List available extractors for tabular data from documents
 - name: Hallucination Correctors
-  description: List available hallucination correctors for detecting and correcting
-    hallucinations in generated text
+  description: API for managing hallucination correction, including listing available
+    models and correcting hallucinated content in generated text
 - name: LLM Chat Completions
   description: Create model responses for chat conversations using OpenAI-compatible
     endpoints
@@ -2267,6 +2267,46 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /v2/hallucination_correctors/correct_hallucinations:
+    post:
+      tags:
+      - Hallucination Correctors
+      summary: Corrects hallucinations in generated text based on source documents
+      description: This endpoint identifies information in generated text that is
+        not supported by the provided source documents and offers corrections with
+        minimal changes. This can be used standalone or as part of a RAG workflow
+        where the HHEM score indicates potential hallucinations.
+      operationId: correctHallucinations
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HallucinationCorrectionRequest'
+      responses:
+        '200':
+          description: Successfully analyzed the text for hallucinations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HallucinationCorrectionResponse'
+        '400':
+          description: Request was malformed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '403':
+          description: Permissions do not allow hallucination correction
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-fern-sdk-group-name: hallucination_correctors
+      x-fern-sdk-method-name: hallucinationCorrection
   /v2/jobs:
     get:
       tags:
@@ -4146,12 +4186,11 @@ components:
 
             '
           format: float
-        experimental_use_text_with_context:
+        include_context:
           type: boolean
           default: true
-          description: 'If true, the reranker will use text with context (see "context_configuration")
-            for scoring. WARNING: This is an experimental feature, and breakable at
-            any point with virtually no notice. It is meant for experimentation only. '
+          description: If true, the reranker will use text with context (see "context_configuration")
+            for scoring.
       x-vectaraParents:
       - SearchReranker
     UserFunctionReranker:
@@ -6672,6 +6711,78 @@ components:
       - $ref: '#/components/schemas/StreamGenerationEnd'
       - $ref: '#/components/schemas/StreamResponseEnd'
       - $ref: '#/components/schemas/StreamError'
+    HallucinationCorrectionRequest:
+      description: The request to detect and correct hallucinations in generated text.
+      type: object
+      required:
+      - generated_text
+      - documents
+      - model
+      properties:
+        generated_text:
+          type: string
+          description: The generated text to be evaluated. The hallucination corrector
+            reviews this text and applies corrections based on the provided source
+            documents.
+        documents:
+          type: array
+          description: The source documents that were used to generate the text.
+          items:
+            $ref: '#/components/schemas/HcmSourceDocument'
+        model:
+          type: string
+          description: The name of the LLM model to use for hallucination correction.
+    HcmSourceDocument:
+      description: An array of source documents used to verify the factual accuracy
+        of the generated text. Each document should reflect the context used to generate
+        the original text.
+      type: object
+      required:
+      - text
+      properties:
+        text:
+          type: string
+          description: The full text content of the source document. Hallucination
+            correction uses this content as the factual basis for correcting the generated
+            text.
+    HallucinationCorrectionResponse:
+      description: The response that contains the hallucination correction results.
+      type: object
+      required:
+      - corrected_text
+      - corrections
+      properties:
+        corrections:
+          type: array
+          description: A list of corrections applied to the text, with explanations.
+          items:
+            $ref: '#/components/schemas/CorrectionItem'
+        corrected_text:
+          type: string
+          description: The revised version of the text, with minimal edits made to
+            correct unsupported or inaccurate statements. If no corrections are needed,
+            this value is identical to the original text.
+        model:
+          type: string
+          description: The name of the model used for hallucination correction.
+    CorrectionItem:
+      description: A single correction applied to a span of text in the generated
+        text.
+      type: object
+      required:
+      - original_text
+      - corrected_text
+      - explanation
+      properties:
+        original_text:
+          type: string
+          description: The original text containing a hallucination or error.
+        corrected_text:
+          type: string
+          description: The corrected version of the text.
+        explanation:
+          type: string
+          description: An explanation of why the correction was needed for the text.
     NotFoundError:
       description: Error returned when a requested resource does not exist.
       type: object

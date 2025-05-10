@@ -1,0 +1,71 @@
+---
+id: correct-hallucinations
+title: "Corrects hallucinations in generated text based on source documents"
+description: "This endpoint identifies information in generated text that is not supported by the provided source documents and offers corrections with minimal changes. This can be used standalone or as part of a RAG workflow where the HHEM score indicates potential hallucinations."
+sidebar_label: "Corrects hallucinations in generated text based on source documents"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "post api-method"
+info_path: docs/rest-api/vectara-rest-api-v-2
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Corrects hallucinations in generated text based on source documents"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/v2/hallucination_correctors/correct_hallucinations"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+This endpoint identifies information in generated text that is not supported by the provided source documents and offers corrections with minimal changes. This can be used standalone or as part of a RAG workflow where the HHEM score indicates potential hallucinations.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"in":"header","name":"Request-Timeout","description":"The API will make a best effort to complete the request in the specified seconds or time out.","schema":{"type":"integer","minimum":1},"required":false},{"in":"header","name":"Request-Timeout-Millis","description":"The API will make a best effort to complete the request in the specified milliseconds or time out.","schema":{"type":"integer","minimum":1}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"description":"The request to detect and correct hallucinations in generated text.","type":"object","required":["generated_text","documents","model"],"properties":{"generated_text":{"type":"string","description":"The generated text to be evaluated. The hallucination corrector reviews this text and applies corrections based on the provided source documents."},"documents":{"type":"array","description":"The source documents that were used to generate the text.","items":{"description":"An array of source documents used to verify the factual accuracy of the generated text. Each document should reflect the context used to generate the original text.","type":"object","required":["text"],"properties":{"text":{"type":"string","description":"The full text content of the source document. Hallucination correction uses this content as the factual basis for correcting the generated text."}},"title":"HcmSourceDocument"}},"model":{"type":"string","description":"The name of the LLM model to use for hallucination correction."}},"title":"HallucinationCorrectionRequest"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Successfully analyzed the text for hallucinations","content":{"application/json":{"schema":{"description":"The response that contains the hallucination correction results.","type":"object","required":["corrected_text","corrections"],"properties":{"corrections":{"type":"array","description":"A list of corrections applied to the text, with explanations.","items":{"description":"A single correction applied to a span of text in the generated text.","type":"object","required":["original_text","corrected_text","explanation"],"properties":{"original_text":{"type":"string","description":"The original text containing a hallucination or error."},"corrected_text":{"type":"string","description":"The corrected version of the text."},"explanation":{"type":"string","description":"An explanation of why the correction was needed for the text."}},"title":"CorrectionItem"}},"corrected_text":{"type":"string","description":"The revised version of the text, with minimal edits made to correct unsupported or inaccurate statements. If no corrections are needed, this value is identical to the original text."},"model":{"type":"string","description":"The name of the model used for hallucination correction."}},"title":"HallucinationCorrectionResponse"}}}},"400":{"description":"Request was malformed","content":{"application/json":{"schema":{"description":"Error returned when a request contains invalid parameters or violates schema validation.","type":"object","properties":{"field_errors":{"description":"The errors that relate to specific fields in the request.","type":"object","additionalProperties":{"type":"string"}},"messages":{"type":"array","items":{"title":"message","type":"string"}},"request_id":{"description":"The ID of the request that can be used to help Vectara support debug what went wrong.","type":"string"}},"title":"BadRequestError"}}}},"403":{"description":"Permissions do not allow hallucination correction","content":{"application/json":{"schema":{"description":"A general error response with an error code and message.","type":"object","properties":{"messages":{"description":"The messages describing why the error occurred.","type":"array","items":{"title":"message","type":"string","example":"Internal server error."}},"request_id":{"description":"The ID of the request that can be used to help Vectara support debug what went wrong.","type":"string"}},"title":"Error"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      
