@@ -19,10 +19,11 @@ detect hallucination, it preserves the original summary.
 
 To correct a potentially hallucinated summary, send a `POST` request to 
 `/v2/hallucination_correctors/correct_hallucinations`. The request body must include:
-* `summary`: The generated text to evaluate and potentially correct.
+* `generated_text`: The generated text to evaluate and potentially correct.
 * `documents`: One or more source documents containing the factual information that 
   the summary should be based on.
 * `text`: The full content of a source document.
+* `model`: The name of the LLM model to use for hallucination correction.
 
 ### Example request
 
@@ -35,11 +36,13 @@ This example provides a summary about a historical event.
   "documents": [
     {
       "text": "The Treaty of Versailles was signed on June 28, 1919. The United States 
-      played a major role, represented by President Woodrow Wilson."
+      played a major role, represented by President Woodrow Wilson.",
     }
-  ]
+  ],
+  "model": "qwen2.5-7b-instruct-hcm",
 }
 ```
+
 ### Example response
 
 The response corrects the original summary.
