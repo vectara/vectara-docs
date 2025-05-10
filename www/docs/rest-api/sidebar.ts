@@ -538,6 +538,12 @@ const sidebar: SidebarsConfig = {
           label: "List hallucination correctors",
           className: "api-method get",
         },
+        {
+          type: "doc",
+          id: "rest-api/correct-hallucinations",
+          label: "Corrects hallucinations in generated text based on source documents",
+          className: "api-method post",
+        },
       ],
     },
     {
