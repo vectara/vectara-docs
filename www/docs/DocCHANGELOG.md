@@ -20,19 +20,11 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 - Add documentation for Table Summarization with Custom Prompts (#436)
 
 ### 📚 API Changes
+- Update the Correct Hallucinations endpoint in the API Reference (#456)
 - Add Hallucination Correctors endpoint to the API Reference (#454)
 
 ### 📝 Documentation Changes
-- No changes
-
-### 📋 Example Updates
-- No changes
-
-### 🗑 Deprecated
-- No changes
-
-### 🛠 Documentation Platform Updates
-- No changes
+- Update the Correct Hallucinations API Definition (#457)
 
 
 
@@ -51,12 +43,6 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 
 ### 📝 Documentation Changes
 - Expand Authentication section with new guides on enterprise access patterns, organizational role scoping, and authorization workflows (#426)
-
-### 📋 Example Updates
-- No changes
-
-### 🗑 Deprecated
-- No changes
 
 ### 🛠 Documentation Platform Updates
 - Refine design of heading styles (#450)
@@ -88,12 +74,6 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 ### 📋 Example Updates
 - Update Encoder examples (#431)
 
-### 🗑 Deprecated
-- No changes
-
-### 🛠 Documentation Platform Updates
-- No changes
-
 
 
 ---
@@ -110,15 +90,6 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 
 ### 📝 Documentation Changes
 - Update UI steps on how to reset or delete the corpus (#404)
-
-### 📋 Example Updates
-- No changes
-
-### 🗑 Deprecated
-- No changes
-
-### 🛠 Documentation Platform Updates
-- No changes
 
 
 
@@ -188,9 +159,6 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 ### 🗑 Deprecated
 - Add API v1 deprecation notices (#375)
 
-### 🛠 Documentation Platform Updates
-- No changes
-
 
 
 ---
@@ -210,15 +178,6 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 - Enhance the list of Vectara demos and applications (#354)
 - Move Reranking subsection (#353)
 - Add chunking strategy and update descriptions (#351)
-
-### 📋 Example Updates
-- No changes
-
-### 🗑 Deprecated
-- No changes
-
-### 🛠 Documentation Platform Updates
-- No changes
 
 
 
@@ -254,12 +213,6 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 - ✨ Add query snippet example (#342)
 - Update Chain Reranker topic about the array and examples (#330)
 
-### 🗑 Deprecated
-- No changes
-
-### 🛠 Documentation Platform Updates
-- No changes
-
 
 
 ---
@@ -288,12 +241,6 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 ### 📋 Example Updates
 - Add more UDF examples (#323)
 
-### 🗑 Deprecated
-- No changes
-
-### 🛠 Documentation Platform Updates
-- No changes
-
 
 
 ---
@@ -314,12 +261,6 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 
 ### 📋 Example Updates
 - Improve grpc example for UDF (#317)
-
-### 🗑 Deprecated
-- No changes
-
-### 🛠 Documentation Platform Updates
-- No changes
 
 
 
@@ -343,12 +284,6 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 
 ### 📋 Example Updates
 - Update part.is_title field description (#216)
-
-### 🗑 Deprecated
-- No changes
-
-### 🛠 Documentation Platform Updates
-- No changes
 
 
 
@@ -379,12 +314,6 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 ### 📋 Example Updates
 - Fix oauth examples. (#300)
 
-### 🗑 Deprecated
-- No changes
-
-### 🛠 Documentation Platform Updates
-- No changes
-
 
 
 ---
@@ -395,9 +324,6 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 - Update Reranker topic with the new Vectara Multilingual Reranker v1 (#281)
 - Add citation summary feature content (#277)
 
-### 📚 API Changes
-- No changes
-
 ### 📝 Documentation Changes
 - Fix query body request (#285)
 - Point ReactSearch to updated reranker (#280)
@@ -406,15 +332,6 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 - Add examples for functions and operations (#275)
 - Add summarized search (#274)
 - Update Information Architecture with new sections for Capabilities and Use Cases (#259)
-
-### 📋 Example Updates
-- No changes
-
-### 🗑 Deprecated
-- No changes
-
-### 🛠 Documentation Platform Updates
-- No changes
 
 
 
@@ -447,12 +364,6 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 - Update Create Corpus default example (#262)
 - Add context configuration to Query and Highlighting topics (#261)
 - Fix values in the query body endpoint (#258)
-
-### 🗑 Deprecated
-- No changes
-
-### 🛠 Documentation Platform Updates
-- No changes
 
 
 
@@ -487,12 +398,6 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 - Update API Reference examples for consistency (#240)
 - Add Content-Disposition header to set the Document ID (#214)
 
-### 🗑 Deprecated
-- No changes
-
-### 🛠 Documentation Platform Updates
-- No changes
-
 
 
 ---
@@ -519,12 +424,6 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 ### 📋 Example Updates
 - Add custom prompts to Query (#239)
 - Add documentation for the new Vectara Chat (#235)
-
-### 🗑 Deprecated
-- No changes
-
-### 🛠 Documentation Platform Updates
-- No changes
 
 
 
@@ -559,12 +458,6 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 - Update List Documents response example (#221)
 - Add Read Corpus and Update Corpus Enablement topics (#211)
 
-### 🗑 Deprecated
-- No changes
-
-### 🛠 Documentation Platform Updates
-- No changes
-
 
 
 ---
@@ -575,9 +468,6 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 - Add Manager User and List Users to API Playground (#206)
 - Add List Users and Manage Users topics (#204)
 - create, delete, enable, list API keys (#201)
-
-### 📚 API Changes
-- No changes
 
 ### 📝 Documentation Changes
 - Fix Q&A redirect (#209)
@@ -593,9 +483,6 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 ### 📋 Example Updates
 - Improve Information Architecture and update several examples (#193)
 
-### 🗑 Deprecated
-- No changes
-
 ### 🛠 Documentation Platform Updates
 - Support deep-linking to a search. (#200)
 - Support search on narrower screens (e.g. mobile) (#197)
@@ -609,9 +496,6 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 ### ✨ New Features
 - Add update filter attributes and list jobs to the OpenAPI spec (#176)
 
-### 📚 API Changes
-- No changes
-
 ### 📝 Documentation Changes
 - Update banner for the new metadata filtering capability (#182)
 - Add update filter attributes and list jobs to the OpenAPI spec (#176)
@@ -622,9 +506,6 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 
 ### 📋 Example Updates
 - Update Code Samples with specific category for Query Operations (#151)
-
-### 🗑 Deprecated
-- No changes
 
 ### 🛠 Documentation Platform Updates
 - Customize Not Found page. (#184)
