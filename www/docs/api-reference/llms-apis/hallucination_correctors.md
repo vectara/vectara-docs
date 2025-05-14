@@ -39,7 +39,7 @@ This example provides a summary about a historical event.
       played a major role, represented by President Woodrow Wilson.",
     }
   ],
-  "model": "qwen2.5-7b-instruct-hcm",
+  "model": "vhc-small-1.0",
 }
 ```
 
