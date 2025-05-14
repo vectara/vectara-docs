@@ -35,10 +35,10 @@ pagination.
 
 ```json
 {
-  "hallucination_correction_models": [
+  "hallucination_correctors": [
     {
       "id": "hc_123",
-      "name": "qwen2.5-7b-instruct-hcm",
+      "name": "vhc-small-1.0",
       "type": "vectara",
       "description": "Qwen/Qwen2.5-7B-Instruct LLM for hallucination correction in AI-generated text.",
       "enabled": true
