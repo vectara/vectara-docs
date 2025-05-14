@@ -49,9 +49,9 @@ The response corrects the original summary.
 
 ```json
 {
-  "original_summary": "The Treaty of Versailles was signed in 1920, officially ending World War I. 
+  "original_text": "The Treaty of Versailles was signed in 1920, officially ending World War I. 
   It was primarily negotiated by France, Britain, Italy, and Japan.",
-  "corrected_summary": "The Treaty of Versailles was signed in 1919, officially ending World War I. 
+  "corrected_text": "The Treaty of Versailles was signed in 1919, officially ending World War I. 
   It was primarily negotiated by France, Britain, Italy, and the United States."
 }
 ```
