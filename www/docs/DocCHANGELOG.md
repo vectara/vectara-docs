@@ -24,7 +24,11 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 - Add Hallucination Correctors endpoint to the API Reference (#454)
 
 ### 📝 Documentation Changes
+- Improve API Reference description formatting (#460)
 - Update the Correct Hallucinations API Definition (#457)
+
+### 📋 Example Updates
+- Update Hallucination Corrector model example (#459)
 
 
 
