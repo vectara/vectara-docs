@@ -22,6 +22,8 @@ const config: Config = {
           editUrl: "https://github.com/vectara/vectara-docs/tree/master/www",
           docItemComponent: "@theme/ApiItem",
           lastVersion: "current",
+          showLastUpdateTime: true,
+          showLastUpdateAuthor: true,
           versions: {
             current: { label: "2.0" },
           },
