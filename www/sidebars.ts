@@ -241,6 +241,7 @@ const sidebars: SidebarsConfig = {
         "build-apps/react-search",
         "build-apps/create-ui",
         "build-apps/vectara-answer",
+        "build-apps/build-a-chatbot",
       ],
     },
     {
