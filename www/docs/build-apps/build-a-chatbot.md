@@ -294,15 +294,15 @@ improve the user experience.
 ```ts
 export const generateMetadataFilter = (question: string): string => {
   const lowerQuestion = question.toLowerCase();
-  
-  // Example metadata filtering based on question content
   if (lowerQuestion.includes('machine') || lowerQuestion.includes('equipment')) {
     return "doc.equipment = 'CNC_Machine_X'";
   } else if (lowerQuestion.includes('safety') || lowerQuestion.includes('protection')) {
     return "doc.document_type = 'safety_protocol'";
+  } else if (lowerQuestion.includes('onboarding') || lowerQuestion.includes('new employee')) {
+    return "doc.document_type = 'onboarding_guide'";
+  } else if (lowerQuestion.includes('machining')) {
+    return "doc.process = 'machining'";
   }
-  
-  // Return empty string for most queries
   return '';
 };
 
@@ -316,6 +316,17 @@ export const handleApiError = (error: Error): string => {
   return `⚠️ Error: ${error.message}`;
 };
 ```
+#### Customization options
+* **Metadata filters**: Modify the `generateMetadataFilter` function in 
+* `src/services/vectara/utils.ts` to match your corpus’s metadata fields. For 
+* example, add filters for `document_type` or `process` to narrow searches:
+  ```ts
+  if (lowerQuestion.includes('onboarding')) {
+    return "doc.document_type = 'onboarding_guide'";
+  }
+Use filters to improve response accuracy by targeting specific document 
+subsets, especially in large corpora.
+
 ### Implement API communication
 
 `src/services/vectara/api.ts`
