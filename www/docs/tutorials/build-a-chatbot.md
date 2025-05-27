@@ -1,7 +1,9 @@
 ---
 id: build-a-chatbot
-title: Build a Chatbot
-sidebar_label: Build a Chatbot with Vectara's Chat API
+title: Build a Chatbot with the Chat API
+sidebar_label: Build a Chatbot
+toc_max_heading_level: 2
+hide_table_of_contents: true
 ---
 This tutorial guides you through creating a web-based chatbot application 
 using Vectara’s `/v2/chats` API. In this example, a fictional manufacturing 
@@ -44,21 +46,41 @@ Before starting this tutorial, ensure you have the following:
 
 ```mermaid
 graph TD
-    B[React App]
-    B -->|Renders UI| C[ChatContainer.tsx]
-    C -->|Sends Queries| D[Vectara Services]
-    D -->|HTTP POST| E[Vectara API]
-    E -->|Returns Responses| D
-    D -->|Updates UI| C
+  classDef base fill:#fff,stroke:#ff007f,stroke-width:2px,color:#111
+  classDef alt fill:#fff,stroke:#007bff,stroke-width:2px,color:#111
+
+  A[User]
+  B[Chat UI - ChatContainer]
+  C[ChatInput - onSendMessage]
+  D[API Call - queryVectara or createChatTurn]
+  E[Vectara API - /v2/chats]
+  F[Semantic Search and RAG]
+  G[Response - Answer in Markdown]
+  H[ChatMessage]
+
+  A --> B
+  B --> C
+  C --> D
+  D --> E
+  E --> F
+  F --> G
+  G --> H
+  H --> B
+
+  class A,B,C,H base
+  class D,E,F,G alt
 ```
-1. Set up your Vectara corpus
-2. Create a new React project
-3. Install required dependencies
-4. Create the project file structure
-5. Create the core files
-6. Create a basic CSS file
-7. Update the configuration with your API key and corpus key
-8. Run the development server
+Follow this process to create the chatbot. 
+
+1. Set up your Vectara corpus.
+2. Create a new React project.
+3. Install required dependencies.
+4. Configure the Tailwind CSS file.
+5. Create the project file structure.
+6. Create the core chatbot files.
+7. Create a basic CSS file to style the application.
+8. Update the configuration and run the development server.
+9. Test your chatbot.
 
 ## Step 1. Set Up Your Vectara Corpus
 
@@ -80,7 +102,7 @@ these steps:
    }
 
 ## Step 2. Create a new React project with Vite
-
+ 
 ```
 npm create vite@latest factory-friend -- --template react-ts
 cd factory-friend
@@ -1032,16 +1054,16 @@ button:disabled {
 ## Step 8. Update the configuration and run the development server
 
 1. Open `src/services/vectara/config.ts` and replace the placeholder `corpus_key` with 
-   your actual corpus key:
-   ```ts
-   export const DEFAULT_CONFIG: VectaraConfig = {
-     apiKey: '', // Will be provided by user through the UI
-     corpusKey: 'your_corpus_key' // Replace with your actual corpus key
-   };
-  ```
-2. Update the corpus key in `src/components/ChatContainer.tsx`:
+   your actual corpus key, such as `acme_onboarding`:
+    ```ts
+      export const DEFAULT_CONFIG: VectaraConfig = {
+        apiKey: '', // Will be provided by user through the UI
+        corpusKey: 'your_corpus_key' // Replace with your actual corpus key
+      };  
+    ```
+2. Update the corpus key in `src/components/ChatContainer.tsx`:  
     `const corpusKey = 'your_corpus_key'; // Replace with your corpus key`
-3. Run the development server
+3. Run the development server:
     `npm run dev`
 
 ## Step 9. Test Your Chatbot
