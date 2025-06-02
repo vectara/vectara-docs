@@ -2,6 +2,10 @@ instances:
   - url: https://vectara.docs.buildwithfern.com
 title: Vectara | Documentation
 default-language: python
+
+experimental:
+  openapi-parser-v3: true
+ 
 navigation:
   - page: Introduction
     path: ./pages/introduction.mdx
@@ -13,3 +17,20 @@ logo:
   light: ./assets/logo-light.svg 
   dark: ./assets/logo-dark.svg
 favicon: ./assets/favicon.jpeg
+
+# versions:
+#   - display-name: v2.0 (Latest)
+#     path: ./versions/v2.yml
+#   - display-name: v1.0
+#     path: ./versions/v1.yml
+
+ai-search:
+  system-prompt: |
+    You are an AI assistant for Vectora's API documentation. Help developers understand our SDK and API endpoints.
+    Only respond using information from the documents. Provide code examples when helpful.
+
+tabs:
+  changelog:
+    display-name: Changelog
+    icon: light clock
+    changelog: ./changelog

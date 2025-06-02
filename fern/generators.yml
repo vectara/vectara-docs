@@ -25,6 +25,7 @@ api:
       env: VECTARA_API_KEY
   specs:
     - openapi: ../www/static/vectara-oas-v2.yaml
+    #- openapiV1: ../www/static/vectara-oas.yaml
 readme:
   apiReferenceLink: https://vectara.docs.buildwithfern.com/
   defaultEndpoint: POST /v2/query
