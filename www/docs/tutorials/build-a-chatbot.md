@@ -25,8 +25,11 @@ links. The application has the following features:
 * **Displays responses**: Shows answers in a chat format with numbered lists and Markdown 
   links (for example, [Source](https://support.acme.com)).
 * **Maintains conversation**: Tracks chat sessions for follow-up questions.
+
+After you complete the tutorial, the chatbot will look like this 
+example:
   
-**Estimated time to complete:** 60 minutes
+![Chatbot example](/img/build-a-chatbot.png)
 
 ## Prerequisites
 
@@ -35,12 +38,13 @@ Before starting this tutorial, ensure you have the following:
 - Basic knowledge of React and TypeScript
 - **Vectara account**: [Sign up](https://console.vectara.com) and get an API key with serving 
   permissions, or use your Personal API key.
-- **Corpus**: Create a corpus (`acme_onboarding`) and upload documents with manufacturing 
-- information. If you do not have this information available, you can use 
-  LLMs to generate dummy data for testing purposes. You can 
+- **Corpus**: Create a corpus like (`acme_onboarding`) and upload documents with 
+  manufacturing information.  
+  If you do not have this information available, use LLMs to generate data for 
+  testing purposes. You can 
   also set metadata fields for each document like `safety_category`, `equipment`, 
   `process`, and `document_type`. 
-- Node.js and npm installed
+- Install the latest releases of Node.js and npm
 
 ## Chatbot build overview
 
@@ -1072,16 +1076,19 @@ To verify your chatbot works:
 
 1. Open the app in your browser (`http://localhost:5173` after running `npm run dev`).
 2. Enter your Vectara API key in the form.
-3. Try these sample questions aligned with the `acme_onboarding` corpus:
+3. Try these sample questions (or similar questions, based on your uploaded 
+   data) aligned with the `acme_onboarding` corpus:
    - "What are the safety protocols for operating CNC Machine X?"
    - "How do I maintain the equipment?"
    - "What is the onboarding process for new employees?"
 4. Check that responses include Markdown formatting (numbered lists, links like `[Source](https://support.acme.com)`). Example response:
 
-### Customization options
+### Additional customization options
 
-* **Metadata filters**: Modify the generateMetadataFilter function to match your 
-corpus structure
-* **UI styling**: Update the CSS classes to match your company's branding
-* **Welcome message**: Customize the initial greeting in ChatContainer.tsx
-* **Error handling**: Enhance the error messages and fallback strategies
+Consider these updates after completing the tutorial:
+
+* **Metadata filters**: Modify the `generateMetadataFilter` function to match 
+  your corpus structure.
+* **UI styling**: Update the CSS classes to match your company's branding.
+* **Welcome message**: Customize the initial greeting in `ChatContainer.tsx`.
+* **Error handling**: Enhance the error messages and fallback strategies.
