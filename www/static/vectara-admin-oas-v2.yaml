@@ -1,0 +1,148 @@
+components:
+  parameters:
+    RequestTimeout:
+      description: The API will make a best effort to complete the request in the
+        specified seconds or time out.
+      in: header
+      name: Request-Timeout
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+    RequestTimeoutMillis:
+      description: The API will make a best effort to complete the request in the
+        specified milliseconds or time out.
+      in: header
+      name: Request-Timeout-Millis
+      schema:
+        minimum: 1
+        type: integer
+  schemas:
+    Customer:
+      description: Represents a customer in the Vectara platform
+      properties:
+        created_at:
+          description: When the customer was created
+          format: date-time
+          type: string
+        id:
+          description: Unique customer identifier
+          format: int64
+          type: integer
+        name:
+          description: Customer name
+          type: string
+        operational_status:
+          description: Customer operational status
+          enum:
+          - ACT
+          - MDEL
+          - DEL
+          - EXP
+          type: string
+        root_email:
+          description: Customer email address
+          type: string
+        updated_at:
+          description: When the customer was last updated
+          format: date-time
+          type: string
+      type: object
+    Error:
+      description: A general error response with an error code and message.
+      properties:
+        messages:
+          description: The messages describing why the error occurred.
+          items:
+            example: Internal server error.
+            title: message
+            type: string
+          type: array
+        request_id:
+          description: The ID of the request that can be used to help Vectara support
+            debug what went wrong.
+          type: string
+      type: object
+    ListCustomersResponse:
+      description: Response containing a list of customers and pagination information
+      properties:
+        customers:
+          description: List of customers
+          items:
+            $ref: '#/components/schemas/Customer'
+          type: array
+        next_page_token:
+          description: Token for getting the next page of results
+          type: string
+      type: object
+  securitySchemes:
+    ApiKeyAuth:
+      in: header
+      name: x-api-key
+      type: apiKey
+info:
+  contact:
+    email: feedback@vectara.com
+  description: These are administrative endpoints for managing Vectara platform operations.
+  termsOfService: https://vectara.com/legal/terms-of-service/
+  title: Vectara Admin REST API
+  version: 2.0.0
+  x-dark-logo:
+    altText: Vectara
+    url: https://docs.vectara.com/img/vectara_wordmark_light.png
+  x-logo:
+    altText: Vectara
+    url: https://docs.vectara.com/img/vectara_wordmark.png
+openapi: 3.0.0
+servers:
+  - url: https://api.vectara.io
+    description: Production server
+paths:
+  /admin/customers:
+    get:
+      description: Lists all customers in the platform
+      operationId: listCustomers
+      x-fern-sdk-group-name: customers
+      x-fern-sdk-method-name: list
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - description: Maximum number of customers to return
+        in: query
+        name: limit
+        schema:
+          default: 100
+          maximum: 1000
+          minimum: 1
+          type: integer
+      - description: Token for pagination to get the next page of results
+        in: query
+        name: page_token
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListCustomersResponse'
+          description: Successfully retrieved customers list
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Permissions do not allow listing customers.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error
+      summary: List customers
+      tags:
+      - Customers
+security: []
+tags:
+- description: Administrative APIs for managing customers
+  name: Customers

@@ -62,6 +62,18 @@ const config: Config = {
               },
             },
           },
+          vectara_admin: {
+            specPath: "static/vectara-admin-oas-v2.yaml",
+            outputDir: "docs/admin-api",
+            downloadUrl: "https://docs.vectara.com/vectara-admin-oas-v2.yaml",
+            sidebarOptions: {
+              groupPathsBy: "tag",
+              categoryLinkSource: "tag",
+            },
+            baseUrl: "docs/admin-api/vectara-admin-oas",
+            version: "2.0",
+            label: "v2.0",
+          },
         },
       },
     ],

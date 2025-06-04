@@ -1,5 +1,6 @@
 import type { SidebarsConfig } from "@docusaurus/plugin-content-docs";
 import apiSidebar from "./docs/rest-api/sidebar"; // TS import, .ts extension optional
+import adminApiSidebar from "./docs/admin-api/sidebar";
 
 const sidebars: SidebarsConfig = {
   someSidebar: [
@@ -541,6 +542,19 @@ const sidebars: SidebarsConfig = {
         slug: "/rest-api",
       },
       items: apiSidebar,
+    },
+  ],
+  adminOAS: [
+    {
+      type: "category",
+      label: "Admin API Reference",
+      link: {
+        type: "generated-index",
+        title: "Vectara Admin API 2.0",
+        description: "Administration APIs for managing Vectara resources",
+        slug: "/admin-api",
+      },
+      items: adminApiSidebar,
     },
   ],
   releaseNotes: [
