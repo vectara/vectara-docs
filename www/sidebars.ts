@@ -147,7 +147,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "Use Cases",
+      label: "Use Cases and Tutorials",
       items: [
         "use-case-exploration",
         {
@@ -173,6 +173,7 @@ const sidebars: SidebarsConfig = {
           label: "Document Data Structuring",
         },
         "learn/question-answer/question-answer-overview",
+        "tutorials/build-a-chatbot",
       ],
     },
     {
