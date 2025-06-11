@@ -276,20 +276,17 @@ const sidebars: SidebarsConfig = {
             "integrations/vectara-and-langflow",
           ],
         },
-        
-        
       ],
     },
     {
       type: "category",
       label: "Vectara Console",
+      link: {
+        type: 'doc',
+        id: 'console-ui/vectara-console-overview', // This points to the Vectara Console Overview document
+      },
       collapsed: true,
       items: [
-        {
-          type: "doc",
-          id: "console-ui/vectara-console-overview",
-          label: "Vectara Console Overview",
-        },
         {
           type: "category",
           label: "Manage Corpora",
