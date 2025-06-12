@@ -23,7 +23,13 @@ To correct a potentially hallucinated summary, send a `POST` request to
 * `documents`: One or more source documents containing the factual information that 
   the summary should be based on.
 * `text`: The full content of a source document.
-* `model`: The name of the LLM model to use for hallucination correction.
+* `model_name`: The name of the LLM model to use for hallucination correction.
+* `query`: (Optional) The original user query that led to the generated text. 
+  Including this field enables query-aware correction. The model may use the 
+  query to understand expected formatting or context that is not explicit in 
+  the source documents. To use this field, you must also specify `vhc-large-1.0`
+  as the `model_name`.
+
 
 ### Example request
 
@@ -61,10 +67,10 @@ If the input summary is accurate, the `corrected_summary` matches the `original_
 ### Error responses
 
 * **400 Bad Request** – The request body was malformed or contained invalid 
-  parameters.
+  parameters. This can occur if you use `model` instead of the required `model_name` 
+  parameter.
 * **403 Forbidden** – The user does not have permission to perform factual 
   consistency evaluation.
-
 
 ## REST 2.0 URL
 

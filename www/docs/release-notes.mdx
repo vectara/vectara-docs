@@ -16,6 +16,42 @@ experimenting with Retrieval Augmented Generation (RAG), or exploring our
 newest API endpoints, this page is your go-to place to see how we’re evolving 
 and how these product and documentation changes can benefit your enterprise.
 
+
+---
+
+## VHC Enhanced for Query-Aware Hallucination Detection and Correction
+
+_June 12, 2025_
+
+Vectara has enhanced the Hallucination Corrector (VHC) API with support for 
+query-aware hallucination detection and correction. This upgrade introduces 
+the ability to include the original user query in VHC requests, enabling more 
+accurate analysis of model-generated text.
+
+**Why it matters:** In RAG workflows, generated responses often reflect both 
+the retrieved context and the phrasing or intent of the user query. By adding 
+the optional query field to VHC requests, you now allow the model to better 
+interpret response formatting, resolve ambiguities, and attribute facts that 
+are inferred from the query rather than the source alone. This results in 
+improved correction accuracy—particularly for instructions like “Answer True or False,” “List the top 3,” or “Summarize concisely.”
+
+**What’s new:**
+
+* The `model` parameter renamed to `model_name`
+* Added an optional `query` field for VHC requests
+* Query-aware prompt activates when specifying `vhc-large-1.0` as the 
+`model_name`.
+* Improved correction precision in prompt-sensitive use cases
+
+Usage note: The query parameter is currently supported only with the vhc-large-1.0 model.
+
+**More information:**
+
+* [Hallucination Corrector](/docs/learn/vectara-hallucination-corrector)
+* [Correct Hallucinations API Definition](/docs/api-reference/llms-apis/hallucination_correctors)
+* [Correct hallucinations in generated text based on source documents](/docs/rest-api/correct-hallucinations)
+
+
 ---
 
 ## Vectara Hallucination Corrector (VHC) API
@@ -35,8 +71,9 @@ to text based on reliable context—preserving the original phrasing wherever po
 This improves trust, precision, and usability of AI-generated outputs across 
 enterprise applications.
 
-**New API endpoint:**
-* Hallucination Correction Model
+**New API endpoints:**
+* [List Halluncation Correctors](/docs/rest-api/correct-hallucinations)
+* [Correct hallucinations in generated text based on source documents](/docs/rest-api/correct-hallucinations)
 
 **More information:**
 * [Hallucination Correction Model](/docs/learn/vectara-hallucination-corrector)
