@@ -29,28 +29,26 @@ the ability to include the original user query in VHC requests, enabling more
 accurate analysis of model-generated text.
 
 **Why it matters:** In RAG workflows, generated responses often reflect both 
-the retrieved context and the phrasing or intent of the user query. By adding 
-the optional query field to VHC requests, you now allow the model to better 
-interpret response formatting, resolve ambiguities, and attribute facts that 
-are inferred from the query rather than the source alone. This results in 
-improved correction accuracy—particularly for instructions like “Answer True or False,” “List the top 3,” or “Summarize concisely.”
+the retrieved context and the phrasing or intent of the user query. Adding 
+the optional query field to VHC requests enables the model to interpret 
+response formatting better. This helps resolve ambiguities, and attribute 
+facts that are inferred from the query rather than only the source. This 
+results in improved correction accuracy, particularly for instructions like 
+_“Answer True or False,”_ _“List the top 3,”_ or _“Summarize concisely.”_
 
 **What’s new:**
 
-* The `model` parameter renamed to `model_name`
-* Added an optional `query` field for VHC requests
+* The `model` parameter has been renamed to `model_name`,
+* Added an optional `query` field for VHC requests. You must use `vhc-large-1.0` as the `model_name`. 
 * Query-aware prompt activates when specifying `vhc-large-1.0` as the 
 `model_name`.
-* Improved correction precision in prompt-sensitive use cases
-
-Usage note: The query parameter is currently supported only with the vhc-large-1.0 model.
+* Improved correction precision in prompt-sensitive use cases,
 
 **More information:**
 
 * [Hallucination Corrector](/docs/learn/vectara-hallucination-corrector)
 * [Correct Hallucinations API Definition](/docs/api-reference/llms-apis/hallucination_correctors)
 * [Correct hallucinations in generated text based on source documents](/docs/rest-api/correct-hallucinations)
-
 
 ---
 
@@ -72,7 +70,7 @@ This improves trust, precision, and usability of AI-generated outputs across
 enterprise applications.
 
 **New API endpoints:**
-* [List Halluncation Correctors](/docs/rest-api/correct-hallucinations)
+* [List Hallucination Correctors](/docs/rest-api/correct-hallucinations)
 * [Correct hallucinations in generated text based on source documents](/docs/rest-api/correct-hallucinations)
 
 **More information:**
