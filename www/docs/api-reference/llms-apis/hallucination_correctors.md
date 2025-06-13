@@ -63,6 +63,31 @@ The response corrects the original summary.
 
 If the input summary is accurate, the `corrected_summary` matches the `original_summary`.
 
+## Interpreting empty corrections
+
+In some cases, the `corrected_text` field in the response may be an empty 
+string. This indicates VHC determined that the entire input text was 
+hallucinated, and VHC recommends removing it completely.
+
+This outcome is valid and typically occurs when none of the content in the 
+`generated_text` is supported by the provided source documents or query. The 
+response still includes an explanation of why VHC removed the text. For 
+example:
+
+```json
+{
+  "original_text": "The Earth has three moons.",
+  "corrected_text": "",
+  "corrections": [
+    {
+      "original_text": "The Earth has three moons.",
+      "corrected_text": "",
+      "explanation": "The source states that the Earth has only one moon. The entire statement is factually incorrect."
+    }
+  ]
+}
+```
+
 ### Error responses
 
 * **400 Bad Request** – The request body was malformed or contained invalid 
