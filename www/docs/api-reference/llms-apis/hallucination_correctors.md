@@ -76,15 +76,9 @@ example:
 
 ```json
 {
-  "original_text": "The Earth has three moons.",
+  "original_text": "According to Martian Guide to Humanity, The Earth has three moons..",
   "corrected_text": "",
-  "corrections": [
-    {
-      "original_text": "The Earth has three moons.",
-      "corrected_text": "",
-      "explanation": "The source states that the Earth has only one moon. The entire statement is factually incorrect."
-    }
-  ]
+  "explanation": "There is no source found for Martian Guide to Humanity (hallucinated source), and there is no source for the earth having three moons. The entire statement is factually incorrect"
 }
 ```
 
