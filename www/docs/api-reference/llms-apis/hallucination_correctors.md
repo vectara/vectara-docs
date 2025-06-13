@@ -25,10 +25,9 @@ To correct a potentially hallucinated summary, send a `POST` request to
 * `text`: The full content of a source document.
 * `model_name`: The name of the LLM model to use for hallucination correction.
 * `query`: (Optional) The original user query that led to the generated text. 
-  Including this field enables query-aware correction. The model may use the 
-  query to understand expected formatting or context that is not explicit in 
-  the source documents. To use this field, you must also specify `vhc-large-1.0`
-  as the `model_name`.
+  This helps improve accuracy by giving the model additional 
+  context about the user's intent and expected output format. It works well 
+  with the `vhc-large-1.0` model.
 
 
 ### Example request
