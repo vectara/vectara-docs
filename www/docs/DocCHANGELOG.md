@@ -12,6 +12,20 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 
 ---
 
+# June 2025
+
+### ✨ New Features
+- Add Query-Aware Hallucination Detection and Correction to the Vectara Hallucination Corrector (#468)
+- Add new supported languages and enhancements with HHEM 2.3 (#467)
+
+### 📝 Documentation Changes
+- Add tutorial about how to build a chatbot with the Chat API (#463)
+- Update screenshots for console updates (#452)
+
+
+
+---
+
 # May 2025
 
 ### ✨ New Features
@@ -29,6 +43,9 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 
 ### 📋 Example Updates
 - Update Hallucination Corrector model example (#459)
+
+### 🛠 Documentation Platform Updates
+- Update Docusaurus configuration to show last date a topic was updated (#462)
 
 
 
