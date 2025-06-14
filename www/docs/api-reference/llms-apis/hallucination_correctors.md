@@ -23,7 +23,12 @@ To correct a potentially hallucinated summary, send a `POST` request to
 * `documents`: One or more source documents containing the factual information that 
   the summary should be based on.
 * `text`: The full content of a source document.
-* `model`: The name of the LLM model to use for hallucination correction.
+* `model_name`: The name of the LLM model to use for hallucination correction.
+* `query`: (Optional) The original user query that led to the generated text. 
+  This helps improve accuracy by giving the model additional 
+  context about the user's intent and expected output format. It works well 
+  with the `vhc-large-1.0` model.
+
 
 ### Example request
 
@@ -58,13 +63,32 @@ The response corrects the original summary.
 
 If the input summary is accurate, the `corrected_summary` matches the `original_summary`.
 
+## Interpreting empty corrections
+
+In some cases, the `corrected_text` field in the response may be an empty 
+string. This indicates VHC determined that the entire input text was 
+hallucinated, and VHC recommends removing it completely.
+
+This outcome is valid and typically occurs when none of the content in the 
+`generated_text` is supported by the provided source documents or query. The 
+response still includes an explanation of why VHC removed the text. For 
+example:
+
+```json
+{
+  "original_text": "According to Martian Guide to Humanity, The Earth has three moons..",
+  "corrected_text": "",
+  "explanation": "There is no source found for Martian Guide to Humanity (hallucinated source), and there is no source for the earth having three moons. The entire statement is factually incorrect"
+}
+```
+
 ### Error responses
 
 * **400 Bad Request** – The request body was malformed or contained invalid 
-  parameters.
+  parameters. This can occur if you use `model` instead of the required `model_name` 
+  parameter.
 * **403 Forbidden** – The user does not have permission to perform factual 
   consistency evaluation.
-
 
 ## REST 2.0 URL
 
