@@ -91,7 +91,7 @@ If an error occurs during filter extraction, Intelligent Query Rewriting is
 aborted for the affected corpus, and the original query is executed. A warning 
 message is returned in the response.
 
-**Example Error Response**
+**Example error response**
 
 ```json
 {
@@ -129,7 +129,7 @@ filter using a logical `AND`.
   }
 }
 ```
-#### Example Response
+#### Example response
 
 ```json
 {
@@ -144,24 +144,29 @@ filter using a logical `AND`.
   ]
 }
 ```
-
 ## Best practices for intelligent query rewriting
 
 ### Define filter attributes clearly
 
 Providing detailed descriptions of filter attributes improves filter 
-extraction and search accuracy. Consider including the following information:
+extraction and search accuracy. To ensure intelligent query rewriting works 
+correctly with metadata filters, you must document the expected value format 
+in the description of the filter. For example:
 
-* **Content and Format Descriptions**
+`"description": "Company name in ALL CAPS (e.g., MICROSOFT, INTEL, GOOGLE)"`
+
+Consider including the following information:
+
+* **Content and format descriptions**
       Explain the purpose and structure of each attribute.  
     `doc.production_country (Text): The production country of a movie.`
-* **Possible Values**  
+* **Possible values**  
   For text attributes, list possible values where applicable.  
    * **direction:** Specifies the compass direction. Possible values: `[NORTH, SOUTH, EAST, WEST]`.
    * **color:** Indicates product color. Possible values: `[WHITE, BLACK, GREY]`.
-* **Case Sensitivity**  
+* **Case sensitivity**  
   Specify if values are case-sensitive, such as all lowercase or PascalCase.
-* **Value Format**  
+* **Value format**  
   Indicate whether values use abbreviations (`USA`, `UK`) or full names (`United States of America`).
 
 ### Handling date attributes
