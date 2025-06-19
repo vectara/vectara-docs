@@ -331,9 +331,9 @@ only the first 5 results.
 In this example, you want to list all corpora that contain the word "handbook" in
 the name.
 
-1. Execute the following curl command to list the corpora:
+1. Execute the following curl command to list the corpora:  
 
-  <CodePanel
+<CodePanel
   snippets={[
     {
       language: 'bash',
@@ -405,7 +405,7 @@ the name.
   layout="stacked"
 />
 
-1. Execute the following curl command to delete a specific corpus with `corpus_id` = 13.
+2. Execute the following curl command to delete a specific corpus with `corpus_id` = 13.
 
 <CodePanel
   snippets={[
