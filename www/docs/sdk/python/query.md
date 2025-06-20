@@ -1,61 +1,71 @@
 ---
 id: query
 title: Querying Corpora
+hide_table_of_contents: true
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';
 import { Spacer } from "@site/src/components/ui/Spacer";
 
-This guide covers the Vectara Python SDK for querying corpora, enabling search and Retrieval Augmented Generation (RAG) operations. These methods allow you to search a single corpus for relevant documents and generate summarized responses using Vectara’s RAG-focused LLM (Mockingbird).
+This guide covers the Vectara Python SDK for querying corpora, enabling search 
+and Retrieval Augmented Generation (RAG) operations. These methods enables you 
+to search a single corpus for relevant documents and generate summarized responses 
+using Vectara’s RAG-focused LLM (Mockingbird), supporting enterprise needs like
+legal research or customer insights.
 
-## Prerequisites
+## Install the Vectara SDK
 
-1. **Install the SDK**:
-   <CodePanel
-     title="Install Vectara SDK"
-     defaultLanguage="bash"
-     snippets={[
-       { language: 'bash', code: `pip install vectara` }
-     ]}
-     annotations={{
-       bash: [{ line: 1, text: 'Installs the Vectara Python SDK via pip.' }]
-     }}
-     layout="stacked"
-   />
+<CodePanel
+  title="Install Vectara SDK"
+  defaultLanguage="bash"
+  snippets={[
+    { language: 'bash', code: `pip install vectara` }
+  ]}
+  annotations={{
+    bash: [{ line: 1, text: 'Installs the Vectara Python SDK via pip.' }]
+  }}
+  customWidth="50%"
+/>
 
-2. **Authentication**:
-   - Obtain an API key or OAuth 2.0 token from the [Vectara Console](https://console.vectara.com).
-   - Initialize the `VectaraClient` with your credentials.
+Install the Vectara Python SDK to enable querying capabilities for your 
+enterprise search and RAG applications.
 
-   <CodePanel
-     title="Initialize VectaraClient"
-     defaultLanguage="python"
-     snippets={[
-       { language: 'python', code: `from vectara import VectaraClient\n\n# Using API key\nclient = VectaraClient(api_key="your_api_key", customer_id="your_customer_id")\n\n# Using OAuth 2.0\nclient = VectaraClient(bearer_token="your_bearer_token", customer_id="your_customer_id")` }
-     ]}
-     annotations={{
-       python: [
-         { line: 3, text: 'Use a Query or Index API Key for querying operations.' },
-         { line: 6, text: 'OAuth 2.0 is recommended for production environments.' }
-       ]
-     }}
-     layout="stacked"
-   />
+<Spacer size="l" />
 
-3. **Corpus Setup**: Ensure a corpus exists with indexed documents (see [Corpus Management Guide](vectara_python_sdk_corpora.md) and [Indexing Documents Guide](vectara_python_sdk_indexing.md)).
-4. Vectara’s API uses natural-language queries for retrieval, not prompt-based interactions like many GenAI platforms. For RAG, configure `generation` parameters to generate prompt-like responses.
+## Initialize the Vectara Client
+
+<CodePanel
+  title="Initialize VectaraClient"
+  defaultLanguage="python"
+  snippets={[
+    { language: 'python', code: `from vectara import VectaraClient\n\n# Using API key\nclient = VectaraClient(api_key="your_api_key", customer_id="your_customer_id")\n\n# Using OAuth 2.0\nclient = VectaraClient(bearer_token="your_bearer_token", customer_id="your_customer_id")` }
+  ]}
+  annotations={{
+    python: [
+      { line: 3, text: 'Use a Query or Index API Key for querying operations.' },
+      { line: 6, text: 'OAuth 2.0 is recommended for production environments.' }
+    ]
+  }}
+  customWidth="50%"
+/>
+
+Set up authentication to securely access querying methods, using an API key or 
+OAuth 2.0 token.
+
+- **Authentication**: Obtain credentials from the [Vectara Console](https://console.vectara.com).
+- **Corpus Setup**: Ensure a corpus exists with indexed documents.
+
+---
 
 ## Query methods
 
 ### 1. Simple single Corpus query
 
-**Purpose**: Perform a straightforward search on a single corpus, returning relevant documents and an optional summarized response.
-
 <CodePanel
-     title="Method"
-     defaultLanguage="python"
-     snippets={[
-       { language: 'python', code: `client.corpora.search(
+  title="Method"
+  defaultLanguage="python"
+  snippets={[
+    { language: 'python', code: `client.corpora.search(
     corpus_key: str,
     query: str,
     limit: int = 10,
@@ -65,9 +75,21 @@ This guide covers the Vectara Python SDK for querying corpora, enabling search a
     timeout: int = None,
     timeout_millis: int = None
 ) -> dict` }
-     ]}
-     layout="stacked"
-   />
+  ]}
+  customWidth="50%"
+/>
+
+Perform a basic search on a single corpus to retrieve relevant documents, with 
+an option for a summarized response using RAG. This section supports quick 
+searches for enterprise data exploration.
+
+- Uses `corpus_key="legal_docs"` to target a legal corpus for context.
+- Sets `query="What does the indemnification clause mean..."` for legal
+  inquiries, intuitive for users.
+- Applies `limit=3` to return top three results, balancing performance
+  and precision for quick insights.
+- Includes try-except block to handle errors (e.g., invalid keys),
+  ensuring robustness in enterprise use.
 
 **Parameters**:
 - `corpus_key`: Unique identifier of the corpus ("legal_docs").
@@ -84,12 +106,39 @@ This guide covers the Vectara Python SDK for querying corpora, enabling search a
 - `search_results`: List of results with `text`, `score`, and `document_metadata`.
 - `factual_consistency_score`: Reliability score for the summary (0.0–1.0, if applicable).
 
+### Example: Simple Query for Legal Contract
+
 <CodePanel
   title="Example: Simple Query for Legal Contract"
   defaultLanguage="python"
   snippets={[
-    { language: 'python', code: `try:\n    response = client.corpora.search(\n        corpus_key="legal_docs",\n        query="What does the indemnification clause mean in this contract?",\n        limit=3\n    )\n    print(f"Summary: {response['summary']}")\n    for result in response['search_results']:\n        print(f"Result: {result['text']} (Score: {result['score']})")\nexcept Exception as e:\n    print(f"Query failed: {e}")` },
-    { language: 'json', code: `{\n  "summary": "The indemnification clause transfers liability to the vendor in case of third-party claims.",\n  "response_language": "eng",\n  "search_results": [\n    {\n      "text": "Under this agreement, the vendor agrees to indemnify the client...",\n      "score": 0.89,\n      "document_id": "vendor_contract_2024",\n      "document_metadata": {\n        "type": "contract",\n        "version": "v2"\n      }\n    }\n  ],\n  "factual_consistency_score": 0.95\n}` }
+    { language: 'python', code: `try:
+    response = client.corpora.search(
+        corpus_key="legal_docs",
+        query="What does the indemnification clause mean in this contract?",
+        limit=3
+    )
+    print(f"Summary: {response['summary']}")
+    for result in response['search_results']:
+        print(f"Result: {result['text']} (Score: {result['score']})")
+except Exception as e:
+    print(f"Query failed: {e}")` },
+    { language: 'json', code: `{
+  "summary": "The indemnification clause transfers liability to the vendor in case of third-party claims.",
+  "response_language": "eng",
+  "search_results": [
+    {
+      "text": "Under this agreement, the vendor agrees to indemnify the client...",
+      "score": 0.89,
+      "document_id": "vendor_contract_2024",
+      "document_metadata": {
+        "type": "contract",
+        "version": "v2"
+      }
+    }
+  ],
+  "factual_consistency_score": 0.95
+}` }
   ]}
   annotations={{
     python: [
@@ -102,31 +151,33 @@ This guide covers the Vectara Python SDK for querying corpora, enabling search a
       { line: 6, text: 'Search result text and score.' }
     ]
   }}
-  layout="stacked"
+  customWidth="50%"
 />
 
-**Error handling**:
-- **400 Bad Request**: Malformed query or invalid parameters.
-  - *Resolution*: Ensure `query` is a non-empty string and `limit` is positive.
-- **403 Forbidden**: Insufficient permissions.
-  - *Resolution*: Use a Query or Index API Key with query access.
-- **404 Not Found**: Corpus doesn’t exist.
-  - *Resolution*: Verify `corpus_key` using `client.corpora.list`.
+Execute a simple query to retrieve and summarize information about a 
+legal contract, demonstrating basic RAG usage.
 
-**Notes**:
 - This method is retrieval-focused but includes a summary if the corpus is configured for RAG.
 - For advanced RAG, metadata filtering, or custom prompts, use `client.corpora.query` (below).
 - `intelligent_query_rewriting` may improve results but is experimental (see [Intelligent Query Rewriting](https://docs.vectara.com/docs/search-and-retrieval/intelligent-query-rewriting)).
 
-### 2. Advanced single corpus query
+**Error handling**:
+- **400 Bad Request**: Malformed query or invalid parameters.
+  - **Resolution**: Ensure `query` is a non-empty string and `limit` is positive.
+- **403 Forbidden**: Insufficient permissions.
+  - **Resolution**: Use a Query or Index API Key with query access.
+- **404 Not Found**: Corpus doesn’t exist.
+  - **Resolution**: Verify `corpus_key` using `client.corpora.list`.
 
-**Purpose**: Perform a customized search with metadata filters, reranking, and RAG, including detailed summarization options and prompt templates.
+---
+
+## 2. Advanced single corpus query
 
 <CodePanel
-     title="Method"
-     defaultLanguage="python"
-     snippets={[
-       { language: 'python', code: `client.corpora.query(
+  title="Method"
+  defaultLanguage="python"
+  snippets={[
+    { language: 'python', code: `client.corpora.query(
     corpus_key: str,
     query: str,
     search: dict = None,
@@ -138,15 +189,19 @@ This guide covers the Vectara Python SDK for querying corpora, enabling search a
     timeout: int = None,
     timeout_millis: int = None
 ) -> dict` }
-     ]}
-     layout="stacked"
-   />
+  ]}
+  customWidth="50%"
+/>
+
+Conduct a customized search with metadata filters, reranking, and RAG to 
+deliver tailored summaries for complex enterprise needs. This section 
+enhances query precision and response quality.
 
 **Parameters**:
 - `corpus_key`: Unique identifier of the corpus ("legal_docs").
 - `query`: Natural-language search query ("Summarize recent IP rulings in California").
 - `search`: Optional dictionary with:
-  - `metadata_filter`: Filter expression ("doc.jurisdiction = 'California'").
+  - `metadata_filter`: Filter expression ("doc.jurisdiction = 'California' AND doc.legal_domain = 'IP'").
   - `lexical_interpolation`: Float (0–1) for hybrid search (0.3).
   - `semantics`: Query semantics (default: "query").
   - `offset`, `limit`: Pagination controls.
@@ -175,11 +230,57 @@ This guide covers the Vectara Python SDK for querying corpora, enabling search a
 - `rendered_prompt`: Rendered prompt sent to the LLM (if `prompt_template` is used).
 - `rephrased_query`: Rewritten query (if `intelligent_query_rewriting` is enabled).
 
+---
+
+### Example: Advanced query for IP rulings
+
 <CodePanel
   title="Example: Advanced Query for IP Rulings"
   defaultLanguage="python"
   snippets={[
-    { language: 'python', code: `try:\n    response = client.corpora.query(\n        corpus_key="legal_docs",\n        query="Summarize recent court rulings on IP rights in California",\n        search={\n            "metadata_filter": "doc.jurisdiction = 'California' AND doc.legal_domain = 'IP'",\n            "lexical_interpolation": 0.3,\n            "limit": 5\n        },\n        context_configuration={\n            "sentences_before": 3,\n            "sentences_after": 3,\n            "start_tag": "<em>",\n            "end_tag": "</em>"\n        },\n        reranker={\n            "type": "customer_reranker",\n            "reranker_name": "Rerank_Multilingual_v1",\n            "limit": 100\n        },\n        generation={\n            "generation_preset_name": "mockingbird-2.0",\n            "prompt_template": '''[\n  {"role": "system", "content": "You are a legal research assistant. Summarize the provided search results concisely."},\n  {"role": "user", "content": "Summarize recent court rulings on intellectual property rights in California based on the search results."}\n]''',\n            "max_response_characters": 500,\n            "response_language": "eng",\n            "citations": {\n                "style": "markdown",\n                "url_pattern": "https://docs.example.com/cases/{doc.id}",\n                "text_pattern": "{doc.title}"\n            }\n        },\n        save_history=True,\n        intelligent_query_rewriting=True\n    )\n    print(f"Response: {response['summary']}")\n    print(f"Factual Consistency: {response.get('factual_consistency_score', 'N/A')}")\n    for result in response['search_results']:\n        print(f"Result: {result['text']} (Score: {result.get('score', 'N/A')})")\nexcept Exception as e:\n    print(f"Advanced query failed: {e}")` },
+    { language: 'python', code: `try:
+    response = client.corpora.query(
+        corpus_key="legal_docs",
+        query="Summarize recent court rulings on IP rights in California",
+        search={
+            "metadata_filter": "doc.jurisdiction = 'California' AND doc.legal_domain = 'IP'",
+            "lexical_interpolation": 0.3,
+            "limit": 5
+        },
+        context_configuration={
+            "sentences_before": 3,
+            "sentences_after": 3,
+            "start_tag": "<em>",
+            "end_tag": "</em>"
+        },
+        reranker={
+            "type": "customer_reranker",
+            "reranker_name": "Rerank_Multilingual_v1",
+            "limit": 100
+        },
+        generation={
+            "generation_preset_name": "mockingbird-2.0",
+            "prompt_template": '''[
+  {"role": "system", "content": "You are a legal research assistant. Summarize the provided search results concisely."},
+  {"role": "user", "content": "Summarize recent court rulings on intellectual property rights in California based on the search results."}
+]''',
+            "max_response_characters": 500,
+            "response_language": "eng",
+            "citations": {
+                "style": "markdown",
+                "url_pattern": "https://docs.example.com/cases/{doc.id}",
+                "text_pattern": "{doc.title}"
+            }
+        },
+        save_history=True,
+        intelligent_query_rewriting=True
+    )
+    print(f"Response: {response['summary']}")
+    print(f"Factual Consistency: {response.get('factual_consistency_score', 'N/A')}")
+    for result in response['search_results']:
+        print(f"Result: {result['text']} (Score: {result.get('score', 'N/A')})")
+except Exception as e:
+    print(f"Advanced query failed: {e}")` },
     { language: 'json', code: `{
   "corpus_key": "legal_docs",
   "query": "Summarize recent court rulings on IP rights in California",
@@ -226,9 +327,37 @@ This guide covers the Vectara Python SDK for querying corpora, enabling search a
       { line: 20, text: 'Static prompt template for RAG, without Velocity variables.' }
     ]
   }}
-  layout="stacked"
+  customWidth="50%"
 />
-Let'see an example using requests.
+
+Perform an advanced query to summarize IP rulings with custom RAG settings, 
+demonstrating metadata filtering and reranking.
+
+- Sets `corpus_key="legal_docs"` to focus on a legal corpus for IP
+  queries.
+- Uses `query="Summarize recent court rulings on IP rights..."` for
+  legal research needs.
+- Applies `search={"metadata_filter": "doc.jurisdiction = 'California'
+  AND doc.legal_domain = 'IP'"}` to filter California IP cases.
+- Sets `lexical_interpolation=0.3` for balanced keyword-semantic
+  matching, enhancing accuracy.
+- Limits `search["limit"]=5` for efficiency in result retrieval.
+- Configures `context_configuration={"sentences_before": 3, ...}` with
+  `<em>` tags for 3-sentence context and readability.
+- Uses `reranker={"type": "customer_reranker", "reranker_name":
+  "Rerank_Multilingual_v1", "limit": 100}` for multilingual refinement.
+- Applies `generation={"generation_preset_name": "mockingbird-2.0", ...}`
+  with Mockingbird for concise summaries.
+- Sets `max_response_characters=500` to allow detailed legal output.
+- Adds `citations={"style": "markdown", ...}` for traceability in
+  documentation.
+- Enables `save_history=True` for auditing purposes.
+- Turns on `intelligent_query_rewriting=True` to optimize the query.
+- Includes try-except for error handling, ensuring reliability.
+
+---
+
+### Example: Advanced query using requests
 
 <CodePanel
   title="Example: Advanced Query using requests"
@@ -291,10 +420,37 @@ print(response.text)`
       { line: 40, text: 'Insert your actual Vectara API key.' }
     ]
   }}
-  layout="stacked"
+  customWidth="50%"
 />
 
-Let's query a corpus with generation and reranking
+Conduct an advanced query using HTTP requests to summarize ESG reports, 
+demonstrating API integration and customization.
+
+- Uses `url="https://api.vectara.io/v2/corpora/legal_docs/query"` with
+  `legal_docs` as a placeholder corpus for legal data.
+- Sets `query="Recent ESG compliance reports for European banks"` to
+  focus on compliance trends.
+- Applies `search={"metadata_filter": "doc.industry = 'banking' AND
+  doc.region = 'EU' AND doc.year = 2023"}` for specific filtering.
+- Sets `lexical_interpolation=0.15` for slight lexical emphasis in
+  search.
+- Limits `search["limit"]=5` for brevity and relevance.
+- Configures `context_configuration={"sentences_before": 2, ...}` with
+  `<mark>` tags for 2-sentence context and readability.
+- Uses `reranker={"type": "mmr", "limit": 50, "cutoff": 0.6, ...}` for
+  diversity with a 50-limit and 0.6 cutoff.
+- Applies `generation={"generation_preset_name": "mockingbird-2.0", ...}`
+  with a custom ESG prompt.
+- Sets `max_response_characters=400` for concise ESG summaries.
+- Uses `response_language="eng"` for English responses.
+- Enables `save_history=True` for auditing purposes.
+- Turns on `intelligent_query_rewriting=True` to optimize the query.
+- Includes `headers={"x-api-key": "<your-api-key>"}` for secure access
+  with a valid key.
+
+---
+
+### Example: Query corpus with generation and reranking
 
 <CodePanel
   title="Example: query corpus with generation and reranking"
@@ -332,10 +488,28 @@ response = requests.request("POST", url, headers=headers, data=payload)
 print(response.text)`
     }
   ]}
-  layout="stacked"
+  customWidth="50%"
 />
 
+Query a corpus to summarize a legal clause, enhancing result relevance and 
+accuracy.
 
+- Uses `url="https://api.vectara.io/v2/query"` for multi-corpus
+  queries, flexible for various data.
+- Sets `corpusKey="legal_docs"` as a placeholder for a legal corpus.
+- Uses `query="Summarize the arbitration clause in our vendor NDA..."`
+  to focus on NDA terms.
+- Applies `metadataFilter="doc_type = 'contract' AND doc_region = 'US'
+  AND doc_industry = 'SaaS'"` for US SaaS contract relevance.
+- Configures `generation={"responseLanguage": "eng", ...}` for English
+  responses.
+- Enables `enableFactualConsistencyScore=True` for reliability in
+  legal accuracy.
+- Uses `reranker={"type": "customer_reranker", "reranker_name":
+  "Rerank_Multilingual_v1", "cutoff": 0.6, "limit": 100}` for
+  precision with a 0.6 cutoff and 100-limit.
+- Includes `headers={"x-api-key": "<x-api-key>"}` for secure access
+  with a valid key.
 
 **Error handling**:
 - **400 Bad Request**: Invalid query, metadata filter, or generation parameters.
@@ -345,23 +519,3 @@ print(response.text)`
 - **404 Not Found**: Corpus doesn’t exist.
   - *Resolution*: Verify `corpus_key` using `client.corpora.list`.
 
-:::tip Tips
-- **Retrieval Augmented Generation**: Enable generation by setting `generation` parameters. Use `prompt_template` to create prompt-like summaries, aligning with GenAI expectations.
-- **Query vs. prompt**: The `query` parameter is a search term, not a prompt. Use `generation.prompt_template` to define how search results are summarized (see [Vectara Prompt Engine](https://docs.vectara.com/docs/prompts/vectara-prompt-engine)).
-- **Advanced features**: Metadata filters improve precision, reranking enhances result ordering, and `intelligent_query_rewriting` optimizes queries. See [Hybrid Search](https://docs.vectara.com/docs/learn/hybrid-search) and [Mockingbird LLM](https://docs.vectara.com/docs/learn/mockingbird-llm).
-- **Factual consistency**: A `factual_consistency_score` below 0.9 may indicate potential inaccuracies in the summary. Review `search_results` for verification.
-:::
-
-## Additional notes
-
-- **Generation tasks**: The `query` method supports RAG via `generation` parameters, addressing user needs for generation beyond retrieval. For conversational generation, use `client.chats.create` (forthcoming guide).
-- **Query vs. prompt confusion**: Unlike prompt-based GenAI APIs, Vectara’s queries are retrieval-focused. The `prompt_template` in `generation` mimics prompt-based interactions by structuring search results into a conversational summary.
-- **Improving usability**: If parameters like `metadata_filter` or `prompt_template` are unclear, provide feedback to `feedback@vectara.com` with specific examples, as suggested internally.
-- **Testing**: Use the [Vectara API Playground](https://console.vectara.com) to test queries and refine `prompt_template` before coding.
-
-## Next steps
-
-- Populate corpora with documents using `client.documents.index` (see [Indexing Documents Guide](vectara_python_sdk_indexing.md)).
-- Explore conversational AI with `client.chats.create` (forthcoming guide).
-- Review the [Vectara API Recipes](https://docs.vectara.com/docs/api-recipes) for query examples.
-- Experiment with advanced features in the [Vectara API Playground](https://console.vectara.com).

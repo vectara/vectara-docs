@@ -2,6 +2,7 @@
 id: vectara-python-sdk
 title: Vectara Python
 sidebar_label: Python
+hide_table_of_contents: true
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';
@@ -22,16 +23,14 @@ applications quickly.
       code: `pip install vectara`,
     },
   ]}
+  customWidth="50%"
 />
 
 Start by installing the Vectara SDK using pip. The SDK requires Python 3.7 or higher 
 and includes all necessary dependencies for making API calls to the Vectara platform. 
 The installation process is straightforward and should complete within a few seconds.  
 
-
 ---
-
-
 
 ## Get started
 
@@ -48,6 +47,7 @@ The installation process is straightforward and should complete within a few sec
       { line: 3, text: "Initialize client with your API key" }
     ]
   }}
+  customWidth="50%"
 />
 
 <CodePanel
@@ -63,13 +63,14 @@ The installation process is straightforward and should complete within a few sec
       { line: 3, text: "Use OAuth credentials for authentication" }
     ]
   }}
+  customWidth="50%"
 />
 
-To use the SDK, authenticate with either an API key or OAuth credentials 
-(client ID and client secret). Create a Vectara client using one of our 
-example:
-
-Obtain your API key or OAuth credentials from the Vectara platform. 
+To get started with the Vectara Python SDK:
+* Authenticate with either an API key or OAuth credentials 
+(client ID and client secret).
+* Create a Vectara client using one of our examples.
+* Obtain your API key or OAuth credentials from the Vectara platform. 
 
 ---
 
@@ -93,6 +94,7 @@ Obtain your API key or OAuth credentials from the Vectara platform.
       { line: 4, text: 'Description helps organize your corpora' },
     ],
   }}
+  customWidth="50%"
 />
 
 
@@ -116,7 +118,10 @@ Alternatively, upload files like PDFs for automatic parsing.
 
 ### Add a structured Document
 
-Structured documents organize content into sections with titles and metadata.
+Structured documents organize content into sections with titles and metadata. 
+
+Build a structured document with multiple sections and metadata, perfect for 
+detailed content organization.
 
 <CodePanel
   title="Add Structured Document"
@@ -142,6 +147,10 @@ Structured documents organize content into sections with titles and metadata.
 Core documents consist of simple text parts, each with optional metadata, 
 suitable for straightforward content indexing.
 
+Streamline document ingestion by uploading files like PDFs for automatic text 
+extraction and indexing. This example demonstrates how to add a file with 
+metadata, accelerating the process of enriching your corpus with existing content.
+
 <CodePanel
   title="Add Core Document"
   snippets={[
@@ -166,6 +175,8 @@ suitable for straightforward content indexing.
 Upload files (Word documents, txt files, and PDFs) for automatic text 
 extraction and indexing.
 
+In this example, you upload a file to your corpus with metadata.
+
 <CodePanel
   title="Upload File"
   snippets={[
@@ -188,12 +199,13 @@ extraction and indexing.
   layout="stacked"
 />
 
-
-
 ## Query a corpus
 
-Search one or more corpora with customizable parameters for hybrid search, 
-filtering, and reranking.
+Execute a query with advanced search parameters, including filtering and 
+generation, to retrieve targeted results.
+
+This example shows how to perform a hybrid search with filtering, context, reranking, and generation, 
+delivering precise answers to enhance business intelligence.
 
 <CodePanel
   title="Query a Corpus"
@@ -216,11 +228,3 @@ filtering, and reranking.
 
 
 
-
-
-
-
-
-
-
----

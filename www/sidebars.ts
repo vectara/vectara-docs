@@ -553,15 +553,21 @@ const sidebars: SidebarsConfig = {
       },
       items: [
         "sdk/python/corpus",
-        "sdk/python/index",
+        "sdk/python/ingest_data",
         "sdk/python/documents",
         "sdk/python/query",
         "sdk/python/upload",
         "sdk/python/chats",
         "sdk/python/generation_presets",
-        "sdk/python/customer-support-kb"
       ],
     },
+    {
+       type: "category",
+       label: "Tutorials",
+       items: [
+         "sdk/python/tutorials/customer-support-kb",
+       ],
+  },
   ],
   releaseNotes: [
     {

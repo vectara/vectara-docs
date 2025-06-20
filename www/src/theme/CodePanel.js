@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import Prism from 'prismjs';
 
 import 'prismjs/components/prism-python';
 import 'prismjs/components/prism-bash';
-import 'prismjs/components/prism-javascript'; 
+import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-json';
 import 'prismjs/components/prism-yaml';
 import 'prismjs/components/prism-sql';
@@ -17,7 +17,7 @@ export default function CodePanel({
   defaultLanguage = 'bash',
   annotations = {},
   layout = 'floating',
-  customWidth // New prop for manual width override
+  customWidth,
 }) {
   /* ---------------------------------------------------------- */
   /* State                                                     */
@@ -36,7 +36,7 @@ export default function CodePanel({
   const validSnippets =
     Array.isArray(snippets) && snippets.length
       ? snippets
-      : [{language: defaultLanguage, code: '// No code provided'}];
+      : [{ language: defaultLanguage, code: '// No code provided' }];
 
   const snippet =
     validSnippets.find((s) => s.language === selectedLanguage) ??
@@ -66,15 +66,17 @@ export default function CodePanel({
   useEffect(() => {
     const grammar = Prism.languages[snippet.language] ?? Prism.languages.markup;
     const highlightedCode = Prism.highlight(snippet.code, grammar, snippet.language);
-    // Clean HTML and preserve original line breaks
-    const cleanHighlighted = highlightedCode
-      .replace(/<\/?span[^>]*>/g, '') // Remove span tags
-      .replace(/\\n/g, '\n') // Replace escaped newlines with actual newlines
-      .trim(); // Remove trailing whitespace
-    setHighlighted(cleanHighlighted);
-    console.log('Original code lines:', snippet.code.split('\n'));
-    console.log('Cleaned highlighted lines:', cleanHighlighted.split('\n'));
+    setHighlighted(highlightedCode); // Preserve Prism's HTML with token classes
+    console.log('Highlighted code:', highlightedCode);
   }, [snippet]);
+
+  /* Debug rendered DOM */
+  useEffect(() => {
+    const codeHtmlElements = document.querySelectorAll(`.${styles.codeHtml}`);
+    codeHtmlElements.forEach((el, idx) => {
+      console.log(`CodeHtml element ${idx} content:`, el.innerHTML);
+    });
+  }, [highlighted]);
 
   /* Strip tags when copying an individual line */
   const stripHtml = (h) => h.replace(/<[^>]*>?/gm, '');
@@ -82,7 +84,10 @@ export default function CodePanel({
   /* Build line-by-line DOM so we can attach markers & numbers */
   const renderLines = () => {
     const originalLines = snippet.code.split('\n');
-    const highlightedLines = highlighted.split('\n');
+    const highlightedLines = highlighted.split('\n').map((line) => {
+      // Wrap each line in a span to preserve Prism's token classes
+      return `<span>${line}</span>`;
+    });
     console.log('Original lines count:', originalLines.length);
     console.log('Highlighted lines count:', highlightedLines.length);
     return originalLines.map((_, idx) => {
@@ -107,7 +112,7 @@ export default function CodePanel({
           )}
           <span
             className={styles.codeHtml}
-            dangerouslySetInnerHTML={{__html: html}}
+            dangerouslySetInnerHTML={{ __html: html }}
           />
         </div>
       );
@@ -120,8 +125,12 @@ export default function CodePanel({
   const panelStyle = layout === 'floating' && customWidth ? { width: customWidth, maxWidth: customWidth } : {};
 
   return (
-    <div 
-      className={`${styles.codePanel} ${layout === 'stacked' ? styles.stackedLayout : styles.floatingLayout}`}
+    <div
+      className={clsx(
+        styles.codePanel,
+        'codePanelScope', // Unique scoping class
+        layout === 'stacked' ? styles.stackedLayout : styles.floatingLayout
+      )}
       style={panelStyle}
     >
       {/* Header ------------------------------------------------ */}
@@ -133,7 +142,7 @@ export default function CodePanel({
           value={selectedLanguage}
           onChange={(e) => setSelectedLanguage(e.target.value)}
         >
-          {validSnippets.map(({language}) => (
+          {validSnippets.map(({ language }) => (
             <option key={language} value={language}>
               {language}
             </option>

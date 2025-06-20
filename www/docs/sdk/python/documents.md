@@ -7,9 +7,20 @@ hide_table_of_contents: true
 import CodePanel from '@site/src/theme/CodePanel';
 import { Spacer } from "@site/src/components/ui/Spacer";
 
-Example Types from DocumentsClient
+Manage document data efficiently by addressing challenges like data sprawl and 
+metadata inconsistencies for creating, querying, and maintaining documents. 
+This is ideal for building scalable search solutions or automating content 
+governance.
+
+- How to list and filter documents in a corpus
+- Techniques for creating and structuring new documents
+- Methods to retrieve, update, and delete specific documents
+- Strategies for summarizing content with LLM-powered tools
 
 ## List documents in a corpus
+
+Explore powerful methods to retrieve and manage document listings within a 
+corpus, enabling efficient data access and organization.
 
 ### Example 1. List all documents in a corpus
 
@@ -29,10 +40,11 @@ for document in response:
     ],
   }}
   customWidth="50%"
+  isSequential={true}
 />
 
-This basic example retrieves all document metadata from a corpus, using the 
-default page size and no filters.
+Discover a straightforward approach to fetch all document metadata 
+from a corpus, leveraging default settings for a comprehensive overview.
 
 ---
 
@@ -57,9 +69,11 @@ for document in response:
     ],
   }}
   customWidth="50%"
+  isSequential={true}
 />
 
-Retrieve and iterate over all documents in a corpus. Supports filtering, limits, and pagination.
+Learn how to constrain the number of documents retrieved, perfect for 
+paginated views or performance optimization in large corpora.
 
 ---
 
@@ -84,17 +98,20 @@ for document in response:
     ],
   }}
   customWidth="50%"
+  isSequential={true}
 />
 
-Retrieve only documents that match certain metadata criteria.
+Retrieve only documents that match certain metadata, unlocking targeted data 
+retrieval based on specific criteria.
 
 ---
 
 ## 2. Create a Document
 
-Index new content for search and retrieval.
+Unlock the process of indexing new content into your corpus, supporting 
+diverse document structures for enhanced search capabilities.
 
-### Example 1: Create a StructuredDocument
+### Example 1: Create a Structured Document
 
 <CodePanel
   snippets={[
@@ -129,7 +146,8 @@ client.documents.create(document)
   customWidth="50%"
 />
 
-This example creates a `StructuredDocument` with multiple sections and custom metadata.
+Dive into creating a `StructuredDocument` with multiple sections, ideal for 
+organizing complex content with custom metadata.
 
 ---
 
@@ -164,7 +182,8 @@ client.documents.create(document)
   customWidth="50%"
 />
 
-This example creates a `CoreDocument` with a single text block and a different metadata structure.
+Explore the simplicity of adding a `CoreDocument` with a single text block, tailored for 
+straightforward content indexing.
 
 ---
 
@@ -206,40 +225,384 @@ client.documents.create(document)
   customWidth="50%"
 />
 
-This example shows a `StructuredDocument` with nested metadata and a larger section structure.
+Create an advanced `StructuredDocument` with nested metadata and multi-section 
+content for robust data management.
+
+---
+
+## 3. Get a Document by ID
+
+Access specific documents efficiently by their unique IDs, enabling 
+detailed inspection or display within your corpus.
+
+### Example 1: Basic Document Retrieval
+
+<CodePanel
+  snippets={[
+    {
+      language: 'python',
+      code: `document = client.documents.get(
+    corpus_key="employee_handbook",
+    document_id="policy_manual_v1"
+)
+print(document.text, document.metadata)
+`
+    }
+  ]}
+  title="Basic Document Retrieval"
+  annotations={{
+    python: [
+      { line: 2, text: 'Specifies the corpus containing the document.' },
+      { line: 3, text: 'Unique identifier of the document to fetch.' },
+      { line: 5, text: 'Displays the document text and metadata.' }
+    ]
+  }}
+  customWidth="50%"
+/>
+
+See how to perform a basic retrieval of a document using its ID, showcasing 
+default settings for simplicity.
+
+---
+
+### Example 2: Retrieve with Specific Metadata Fields
 
 
-Description: Add a new document (either StructuredDocument or CoreDocument) to your corpus.
+<CodePanel
+  snippets={[
+    {
+      language: 'python',
+      code: `document = client.documents.get(
+    corpus_key="tech_guides",
+    document_id="network_setup_v2",
+    metadata_fields=["category", "version"]
+)
+print(f"Category: {document.metadata.get('category')}, Version: {document.metadata.get('version')}")
+`
+    }
+  ]}
+  title="Document Retrieval with Metadata Fields"
+  annotations={{
+    python: [
+      { line: 2, text: 'Targets a different corpus for this document.' },
+      { line: 3, text: 'ID of the document to retrieve.' },
+      { line: 4, text: 'Limits metadata to specified fields only.' },
+      { line: 6, text: 'Accesses and prints specific metadata values.' }
+    ]
+  }}
+  customWidth="50%"
+/>
 
-Use case: Index new content for search and retrieval.
+Learn to fetch a document while selectively retrieving only specified metadata 
+fields for targeted insights.
 
-3. Get a Document by ID
-Description: Fetch the content and metadata for a specific document in a corpus.
+---
 
-Use case: Inspect or display a single document.
+### Example 3: Error Handling for Missing Document
 
-4. Delete a Document
-Description: Permanently remove a document by its ID.
+<CodePanel
+  snippets={[
+    {
+      language: 'python',
+      code: `try:
+    document = client.documents.get(
+        corpus_key="training_materials",
+        document_id="non_existent_doc"
+    )
+    print(document.text)
+except Exception as e:
+    print(f"Error fetching document: {e}")
+`
+    }
+  ]}
+  title="Document Retrieval with Error Handling"
+  annotations={{
+    python: [
+      { line: 2, text: 'Starts a try block to catch potential errors.' },
+      { line: 3, text: 'Specifies the corpus to search in.' },
+      { line: 4, text: 'Uses an invalid ID to demonstrate error handling.' },
+      { line: 6, text: 'Prints the document text if successful.' },
+      { line: 7, text: 'Catches and displays any exception message.' }
+    ]
+  }}
+  customWidth="50%"
+/>
 
-Use case: Data cleanup, document lifecycle management.
+Understand how to implement error handling when retrieving a document that may 
+not exist, ensuring robust application behavior.
 
-5. Update a Document (Partial/Metadata Merge)
-Description: Add or modify metadata fields for an existing document (merge, not replace).
+---
+## 4. Delete a Document
 
-Use case: Tagging, categorization, correcting metadata.
+Manage your corpus effectively by learning to permanently remove documents, 
+supporting data cleanup and lifecycle management.
 
-6. Replace Document Metadata
-Description: Completely replace the metadata object for a document.
+### Example: Delete a Document by ID
 
-Use case: Overwriting tags/categories, resetting metadata.
+<CodePanel
+  snippets={[
+    {
+      language: 'python',
+      code: `try:
+    client.documents.delete(
+        corpus_key="employee_handbook",
+        document_id="policy_manual_v1"
+    )
+    print("Document deleted successfully")
+except Exception as e:
+    print(f"Error deleting document: {e}")
+`
+    }
+  ]}
+  title="Delete Document"
+  annotations={{
+    python: [
+      { line: 2, text: 'Starts a try block to handle potential errors.' },
+      { line: 3, text: 'Specifies the corpus containing the document.' },
+      { line: 4, text: 'ID of the document to delete.' },
+      { line: 6, text: 'Confirms deletion if successful.' },
+      { line: 7, text: 'Catches and displays any error message.' }
+    ]
+  }}
+  customWidth="50%"
+/>
+
+Review this practical example of deleting a document by its ID, complete 
+with error handling for reliability.
+
+---
+
+## 5. Update a Document (Partial/Metadata Merge)
+
+Enhance document management by mastering partial metadata updates, 
+perfect for tagging, categorization, and corrections.
+
+### Example 1: Add New Metadata Fields
+
+
+<CodePanel
+  snippets={[
+    {
+      language: 'python',
+      code: `document = client.documents.get(
+    corpus_key="employee_handbook",
+    document_id="policy_manual_v1"
+)
+document.metadata.update({"status": "active", "review_date": "2025-06-19"})
+client.documents.update(document)
+print("Metadata updated successfully")
+`
+    }
+  ]}
+  title="Add New Metadata Fields"
+  annotations={{
+    python: [
+      { line: 2, text: 'Fetches the existing document to update.' },
+      { line: 3, text: 'Specifies the corpus and document ID.' },
+      { line: 5, text: 'Merges new metadata fields (status and review date).' },
+      { line: 6, text: 'Commits the updated document to the corpus.' },
+      { line: 7, text: 'Confirms the update operation.' }
+    ]
+  }}
+  customWidth="50%"
+/>
+
+Discover how to add new metadata fields to an existing document, merging 
+them seamlessly with current data.
+
+---
+
+### Example 2: Modify Existing Metadata
+
+
+<CodePanel
+  snippets={[
+    {
+      language: 'python',
+      code: `document = client.documents.get(
+    corpus_key="tech_guides",
+    document_id="network_setup_v2"
+)
+document.metadata["priority"] = "urgent"
+client.documents.update(document)
+print(f"Priority updated to: {document.metadata.get('priority')}")
+`
+    }
+  ]}
+  title="Modify Existing Metadata"
+  annotations={{
+    python: [
+      { line: 2, text: 'Retrieves the document from a different corpus.' },
+      { line: 3, text: 'ID of the document to modify.' },
+      { line: 5, text: 'Updates the existing "priority" field, merging with other data.' },
+      { line: 6, text: 'Saves the changes to the corpus.' },
+      { line: 7, text: 'Verifies the updated priority value.' }
+    ]
+  }}
+  customWidth="50%"
+/>
+
+Learn to modify specific metadata fields of a document while preserving other 
+existing data for flexibility.
+
+---
+
+### Example 3: Update with Error Handling
+
+<CodePanel
+  snippets={[
+    {
+      language: 'python',
+      code: `try:
+    document = client.documents.get(
+        corpus_key="training_materials",
+        document_id="safety_training_v3"
+    )
+    document.metadata.update({"trainer": "John Doe", "duration": "2 hours"})
+    client.documents.update(document)
+    print("Metadata updated with new trainer and duration")
+except Exception as e:
+    print(f"Error updating metadata: {e}")
+`
+    }
+  ]}
+  title="Update Metadata with Error Handling"
+  annotations={{
+    python: [
+      { line: 2, text: 'Begins a try block for error management.' },
+      { line: 3, text: 'Fetches the document from the training corpus.' },
+      { line: 4, text: 'Specifies the document ID to update.' },
+      { line: 6, text: 'Merges new metadata fields for trainer and duration.' },
+      { line: 7, text: 'Applies the metadata changes.' },
+      { line: 8, text: 'Confirms success if no errors occur.' },
+      { line: 9, text: 'Catches and displays any errors encountered.' }
+    ]
+  }}
+  customWidth="50%"
+/>
+
+Gain insight into updating metadata with robust error handling, ensuring 
+smooth operations even with potential issues.
+
+---
+
+## 6. Replace Document Metadata
+
+Completely replace the metadata object for a document. Use this for 
+overwriting tags or categories, and resetting metadata.
+
+### Example 1: Replace Metadata with New Tags
+
+
+<CodePanel
+  snippets={[
+    {
+      language: 'python',
+      code: `document = client.documents.get(
+    corpus_key="employee_handbook",
+    document_id="policy_manual_v1"
+)
+document.metadata = {"tags": ["active", "2025"], "category": "policies"}
+client.documents.update(document)
+print("Metadata replaced successfully")
+`
+    }
+  ]}
+  title="Replace Metadata with New Tags"
+  annotations={{
+    python: [
+      { line: 2, text: 'Fetches the document to update its metadata.' },
+      { line: 3, text: 'Specifies the corpus and document ID.' },
+      { line: 5, text: 'Completely replaces metadata with new tags and category.' },
+      { line: 6, text: 'Commits the updated document to the corpus.' },
+      { line: 7, text: 'Confirms the metadata replacement.' }
+    ]
+  }}
+  customWidth="50%"
+/>
+
+See how to replace all existing metadata with a new set of tags, offering a 
+clean slate for categorization.
+
+---
+
+### Example 2: Reset Metadata to Empty
+
+
+<CodePanel
+  snippets={[
+    {
+      language: 'python',
+      code: `document = client.documents.get(
+    corpus_key="tech_guides",
+    document_id="network_setup_v2"
+)
+document.metadata = {}
+client.documents.update(document)
+print("Metadata reset to empty")
+`
+    }
+  ]}
+  title="Reset Metadata to Empty"
+  annotations={{
+    python: [
+      { line: 2, text: 'Retrieves the document from a different corpus.' },
+      { line: 3, text: 'ID of the document to reset.' },
+      { line: 5, text: 'Replaces all metadata with an empty object.' },
+      { line: 6, text: 'Saves the changes to the corpus.' },
+      { line: 7, text: 'Indicates the metadata has been cleared.' }
+    ]
+  }}
+  customWidth="50%"
+/>
+
+Explore the process of resetting a document’s metadata to an empty state, 
+effectively clearing all previous data.
+
+---
+
+### Example 3: Replace with Nested Metadata
+
+<CodePanel
+  snippets={[
+    {
+      language: 'python',
+      code: `document = client.documents.get(
+    corpus_key="training_materials",
+    document_id="safety_training_v3"
+)
+document.metadata = {"training": {"level": "intermediate", "date": "2025-06-19"}, "status": "completed"}
+client.documents.update(document)
+print("Metadata replaced with nested structure")
+`
+    }
+  ]}
+  title="Replace Metadata with Nested Structure"
+  annotations={{
+    python: [
+      { line: 2, text: 'Fetches the document from the training corpus.' },
+      { line: 3, text: 'Specifies the document ID to update.' },
+      { line: 5, text: 'Replaces metadata with a nested training object and status.' },
+      { line: 6, text: 'Applies the new metadata to the corpus.' },
+      { line: 7, text: 'Confirms the replacement with nested data.' }
+    ]
+  }}
+  customWidth="50%"
+/>
+
+Dive into replacing metadata with a nested structure, enabling advanced 
+categorization and detailed tracking.
+
+---
 
 ## Summarize a Document
 
+The summarize method lets you generate an LLM-powered summary for a 
+specific document in your corpus. Preview content, create search 
+snippets, or power generative UIs.
 
-Use case: Preview content, create search snippets, or power generative UIs.
-
-The summarize method lets you generate an LLM-powered summary for a specific document in your corpus.
-You can control the LLM, provide a custom prompt template, or set additional model parameters.
+You can control the LLM, provide a custom prompt template, or set additional 
+model parameters.
 
 ### Example 1: Basic Document Summarization
 
@@ -264,11 +627,11 @@ print(summary.summary)
 }}
   customWidth="50%"
 />
-Generate a summary using the default LLM and default settings.
 
+Learn to generate a summary using the default LLM settings, providing a 
+quick overview of document content.
 
 ---
-
 
 
 ### Example 2: Summarize with a Custom Prompt Template and Model Parameters
@@ -296,5 +659,6 @@ print(summary.summary)`    }
   customWidth="50%"
 />
 
-Customize the prompt for the LLM and add model parameters to influence the summary style.
+Customize the summarization process with a tailored prompt and model 
+parameters for precise control.
 

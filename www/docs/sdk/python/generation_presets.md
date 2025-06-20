@@ -1,275 +1,202 @@
 ---
 id: generation_presets
 title: Generation Presets
+hide_table_of_contents: true
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';
 import { Spacer } from "@site/src/components/ui/Spacer";
 
-This guide covers the Vectara Python SDK for managing generation presets, which are configurations for controlling Retrieval Augmented Generation (RAG) behavior in queries and chats. Generation presets define default settings for large language models (LLMs), such as prompt templates, token limits, and response characteristics, enabling customized conversational AI and summarization.
+The Vectara SDK's Generation Presets module empowers enterprise developers to 
+enhance Retrieval Augmented Generation (RAG) for queries and chats using 
+preconfigured LLM settings. Optimize your generative AI solutions with presets 
+like **Mockingbird 2.0** and **vectara-summary-ext-24-05-med-omni**—. This guide 
+helps you apply these presets to address business needs like personalized 
+customer support and data-driven insights. You will learn:
 
-## Prerequisites
+- How to apply presets to tailor query and chat responses
+- Techniques for customizing presets with filters and parameters
+- Strategies for handling async generation with error management
 
-   <CodePanel
-     title="Install Vectara SDK"
-     defaultLanguage="bash"
-     snippets={[
-       { language: 'bash', code: `pip install vectara` }
-     ]}
-     annotations={{
-       bash: [{ line: 1, text: 'Installs the Vectara Python SDK via pip.' }]
-     }}
-   />
+## Install the Vectara SDK
 
-1. **Install the SDK**:
-
-   <CodePanel
-     title="Initialize VectaraClient"
-     defaultLanguage="python"
-     snippets={[
-       { language: 'python', code: `from vectara import VectaraClient\n\n# Using API key\nclient = VectaraClient(api_key="your_api_key", customer_id="your_customer_id")\n\n# Using OAuth 2.0\nclient = VectaraClient(bearer_token="your_bearer_token", customer_id="your_customer_id")` }
-     ]}
-     annotations={{
-       python: [
-         { line: 3, text: 'Use a Query or Index API Key for accessing presets.' },
-         { line: 6, text: 'OAuth 2.0 is recommended for production environments.' }
-       ]
-     }}
-   />
-
-2. **Authentication**:
- - Obtain an API key or OAuth 2.0 token from the [Vectara Console](https://console.vectara.com). 
- - Initialize the `VectaraClient` with your credentials.
-
-3. **Corpus setup**: Create a corpus with indexed documents using `client.corpora.create` and `client.documents.index` or `client.upload.file` (see [Corpus Management Guide](corpus.md), [Indexing Documents Guide](index.md), [Uploading Files Guide](upload_file.md)).
-4. Generation presets configure RAG for queries and chats, not direct document management. Use presets in `client.corpora.query` or `client.chats.create` to customize responses (see [Querying Corpora Guide](query.md), [Managing Chats Guide](chats.md)).
-
-## Generation presets method
-
-### List generation presets
-
-**Purpose**: Retrieve a paginated list of generation presets available for configuring RAG in queries and chats, including LLM settings and prompt templates.
 
 <CodePanel
-     title="Method"
-     defaultLanguage="python"
-     snippets={[
-       { language: 'python', code: `client.generation_presets.list(
-    limit: int = 10,
-    page_key: str = None,
-    timeout: int = None,
-    timeout_millis: int = None
-) -> dict` }
-     ]}
-     layout="stacked"
-   />
+  title="Install Vectara SDK"
+  defaultLanguage="bash"
+  snippets={[
+    { language: 'bash', code: `pip install vectara` }
+  ]}
+  annotations={{
+    bash: [{ line: 1, text: 'Installs the Vectara Python SDK via pip.' }]
+  }}
+  customWidth="55%"
+/>
 
-**Parameters**:
-- `limit`: Maximum number of presets to return (1–100, default: 10).
-- `page_key`: Optional token for pagination.
-- `timeout`, `timeout_millis`: Optional timeouts.
+Install the Vectara Python SDK to access generation preset functionality.
 
-**Returns**: Dictionary with:
-- `generation_presets`: List of preset metadata, including `name`, `description`, `llm_name`, `prompt_template`, `max_used_search_results`, `max_tokens`, `temperature`, `frequency_penalty`, `presence_penalty`, `enabled`, and `default`.
-- `metadata`: Pagination info (e.g., `page_key`).
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+
+## Initialize the Vectara client
 
 <CodePanel
-  title="Example: List Generation Presets for a Support Chatbot"
+  title="Initialize VectaraClient"
   defaultLanguage="python"
   snippets={[
-    { language: 'python', code: `try:\n    response = client.generation_presets.list(\n        limit=5\n    )\n    for preset in response["generation_presets"]:\n        print(f"Preset: {preset['name']} (LLM: {preset['llm_name']}, Default: {preset['default']})")\n    if response["metadata"]["page_key"]:\n        print(f"Next page key: {response['metadata']['page_key']}")\nexcept Exception as e:\n    print(f"Listing presets failed: {e}")` },
-    { language: 'json', code: `{\n  "generation_presets": [\n    {\n      "name": "support_chat",\n      "description": "Preset for technical support chat responses",\n      "llm_name": "mockingbird-2.0",\n      "prompt_template": "[{\\"role\\": \\"system\\", \\"content\\": \\"You are a technical support assistant. Provide concise answers based on search results.\\"},{\\"role\\": \\"user\\", \\"content\\": \\"Answer the query based on the provided search results.\\"}]",\n      "max_used_search_results": 5,\n      "max_tokens": 200,\n      "temperature": 0.7,\n      "frequency_penalty": 0.5,\n      "presence_penalty": 0.3,\n      "enabled": true,\n      "default": false\n    }\n  ],\n  "metadata": {\n    "page_key": "next_page_token"\n  }\n}` }
+    { language: 'python', code: `from vectara import VectaraClient\n\n# Using API key\nclient = VectaraClient(api_key="your_api_key", customer_id="your_customer_id")\n\n# Using OAuth 2.0\nclient = VectaraClient(bearer_token="your_bearer_token", customer_id="your_customer_id")` }
   ]}
   annotations={{
     python: [
-      { line: 3, text: 'Limit the number of presets returned.' },
-      { line: 5, text: 'Access preset details like name and LLM.' },
-      { line: 7, text: 'Use page_key for pagination.' }
-    ],
-    json: [
-      { line: 4, text: 'Preset name for use in queries or chats.' },
-      { line: 7, text: 'Prompt template for RAG configuration.' },
-      { line: 16, text: 'Pagination token for next page.' }
+      { line: 3, text: 'Initialize with an API key for preset usage.' },
+      { line: 6, text: 'Use OAuth 2.0 for secure production environments.' }
     ]
   }}
-  layout="stacked"
+  customWidth="55%"
 />
 
+Set up authentication with API key or OAuth 2.0 for secure preset access.
+
+- **Authentication**: Obtain credentials from the [Vectara Console](https://console.vectara.com).
+- **Corpus Setup**: Index documents using .
+  - `client.corpora.create`
+  - `client.documents.index`
+  - `client.upload.file`
+
+---
+
+## Using Generation Presets
+
+### Example 1: Financial summary with Mockingbird 2.0
+
+
 <CodePanel
-  title="Example: Financial summary using generation"
-  defaultLanguage="python"
   snippets={[
     {
       language: 'python',
-      code: `import requests
-import json
+      code: `from vectara import VectaraClient
 
-url = "https://api.vectara.io/v2/chats"
-
-payload = json.dumps({
-  "query": "Summarize Q1 2024 earnings for all European banking clients.",
-  "generation": {
-    "generation_preset_name": "mockingbird-2.0",
-    "response_language": "eng"
-  },
-  "search": {
-    "corpora": [
-      {
-        "corpus_key": "finance_docs"
-      }
-    ],
-    "metadataFilter": "doc_region = 'EU' AND doc_quarter = 'Q1-2024' AND doc_industry = 'banking'"
-  },
-  "chat": {
-    "store": false
-  }
-})
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'x-api-key': '<x-api-key>'
-}
-
-response = requests.post(url, headers=headers, data=payload)
-print(response.text)`
+client = VectaraClient(api_key="your_api_key", customer_id="your_customer_id")
+response = client.corpora.query(
+    query="Summarize Q1 2024 earnings for European banking clients",
+    generation_preset_name="mockingbird-2.0",
+    corpora=[{"corpus_key": "finance_docs"}],
+    metadata_filter="doc_region = 'EU' AND doc_quarter = 'Q1-2024' AND \ndoc_industry = 'banking'",
+    max_used_search_results=10
+)
+print(response.generation.response)
+`
     }
   ]}
+  title="Financial Summary with Mockingbird 2.0"
   annotations={{
     python: [
-      { line: 7, text: 'Query focused on summarizing Q1 earnings for EU banking sector.' },
-      { line: 9, text: 'Use the Mockingbird 2.0 preset for financial reporting.' },
-      { line: 15, text: 'Scoped to a finance-specific corpus.' },
-      { line: 18, text: 'Filter by region, quarter, and industry.' }
+      { line: 4, text: 'Initializes the client with API credentials.' },
+      { line: 5, text: 'Uses Mockingbird 2.0 for high-quality RAG output.' },
+      { line: 6, text: 'Targets the finance documents corpus.' },
+      { line: 7, text: 'Filters for relevant financial data.' },
+      { line: 8, text: 'Sets max search results for comprehensive summary.' }
     ]
   }}
-  layout="stacked"
+  customWidth="55%"
 />
 
+Generate a tailored financial summary using Mockingbird 2.0 with precise metadata filtering.
+
+---
+
+### Example 2: Support chat
+
+
 <CodePanel
-  title="Example: Support troubleshooting generation"
-  defaultLanguage="python"
   snippets={[
     {
       language: 'python',
-      code: `import requests
-import json
+      code: `from vectara import VectaraClient
 
-url = "https://api.vectara.io/v2/chats"
-
-payload = json.dumps({
-  "query": "What causes repeated login failures in our mobile app?",
-  "generation": {
-    "generation_preset_name": "mockingbird-2.0",
-    "response_language": "eng"
-  },
-  "search": {
-    "corpora": [
-      {
-        "corpus_key": "support_kb"
-      }
-    ],
-    "metadataFilter": "doc_platform = 'mobile' AND doc_issue_type = 'auth_failure'"
-  },
-  "chat": {
-    "store": false
-  }
-})
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'x-api-key': '<x-api-key>'
-}
-
-response = requests.post(url, headers=headers, data=payload)
-print(response.text)`
+client = VectaraClient(api_key="your_api_key", customer_id="your_customer_id")
+response = client.chats.create(
+    query="What causes login failures in our mobile app?",
+    generation_preset_name="vectara-summary-ext-24-05-med-omni",
+    corpora=[{"corpus_key": "support_kb"}],
+    metadata_filter="doc_platform = 'mobile' AND doc_issue_type = 'auth_failure'",
+    max_response_characters=500
+)
+print(response.generation.response)
+`
     }
   ]}
+  title="Support Chat with GPT-4o Preset"
   annotations={{
     python: [
-      { line: 7, text: 'Troubleshooting question targeting mobile authentication issues.' },
-      { line: 9, text: 'Use generation preset optimized for support responses.' },
-      { line: 15, text: 'Reference corpus for technical support knowledge base.' },
-      { line: 18, text: 'Narrow results to mobile platform and auth failures.' }
+      { line: 4, text: 'Sets up the client with secure credentials.' },
+      { line: 5, text: 'Uses GPT-4o preset for advanced summarization.' },
+      { line: 6, text: 'Targets the support knowledge base corpus.' },
+      { line: 7, text: 'Filters for mobile authentication issues.' },
+      { line: 8, text: 'Limits response length for concise answers.' }
     ]
   }}
-  layout="stacked"
+  customWidth="55%"
 />
 
+Deliver concise support responses with the GPT-4o-based vectara-summary-ext-24-05-med-omni preset.
+
+---
+
+### Example 3: Legal analysis with custom parameters
+
 <CodePanel
-  title="Example: legal clause generation example"
-  defaultLanguage="python"
   snippets={[
     {
       language: 'python',
-      code: `import requests
-import json
+      code: `from vectara import VectaraClient
 
-url = "https://api.vectara.io/v2/chats"
-
-payload = json.dumps({
-  "query": "Explain whether this arbitration clause excludes class actions.",
-  "generation": {
-    "generation_preset_name": "mockingbird-2.0",
-    "response_language": "eng"
-  },
-  "search": {
-    "corpora": [
-      {
-        "corpus_key": "legal_docs"
-      }
-    ],
-    "metadataFilter": "doc_clause_type = 'arbitration' AND doc_jurisdiction = 'US'"
-  },
-  "chat": {
-    "store": false
-  }
-})
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'x-api-key': '<x-api-key>'
-}
-
-response = requests.post(url, headers=headers, data=payload)
-print(response.text)`
+client = VectaraClient(api_key="your_api_key", customer_id="your_customer_id")
+response = client.corpora.query(
+    query="Explain arbitration clause class action exclusion",
+    generation_preset_name="mockingbird-2.0",
+    corpora=[{"corpus_key": "legal_docs"}],
+    metadata_filter="doc_clause_type = 'arbitration' AND doc_jurisdiction = 'US'",
+    model_parameters={
+        "temperature": 0.5,
+        "max_tokens": 400
+    }
+)
+print(response.generation.response)
+`
     }
   ]}
+  title="Legal Analysis with Custom Mockingbird 2.0"
   annotations={{
     python: [
-      { line: 7, text: 'Prompt focused on class-action implications in arbitration clauses.' },
-      { line: 9, text: 'Use the legal-tuned generation preset.' },
-      { line: 15, text: 'Corpora dedicated to contracts and legal language.' },
-      { line: 18, text: 'Filter for US-based arbitration clauses.' }
+      { line: 4, text: 'Initializes the client for legal query access.' },
+      { line: 5, text: 'Applies Mockingbird 2.0 for precise RAG output.' },
+      { line: 6, text: 'Targets the legal documents corpus.' },
+      { line: 7, text: 'Filters for US arbitration clauses.' },
+      { line: 9, text: 'Sets moderate creativity with temperature.' },
+      { line: 10, text: 'Limits response to 400 tokens.' }
     ]
   }}
-  layout="stacked"
+  customWidth="55%"
 />
 
+Perform legal analysis with Mockingbird 2.0, customized for creativity and token limits.
 
-**Error handling**:
-- **400 Bad Request**: Invalid parameters.
-  - *Resolution*: Ensure `limit` is within 1–100 and `page_key` is a valid token if provided.
+---
+
+## Error Handling
+- **400 Bad Request**: Invalid parameters (e.g., `max_tokens` < 0).
+  - *Resolution*: Validate all parameters against their constraints.
 - **403 Forbidden**: Insufficient permissions.
-  - *Resolution*: Use a Query or Index API Key with read access.
+  - *Resolution*: Use a Query or Index API Key with appropriate access.
+- **408 Request Timeout**: Request exceeds timeout limit.
+  - *Resolution*: Increase `request_timeout` or optimize the query.
 
 :::tip Tips
-- Use preset names (e.g., `support_chat`) in `client.corpora.query` or `client.chats.create` via the `generation_preset_name` parameter to apply preset settings.
-- The `prompt_template` defines how search results are processed for RAG (see [Vectara Prompt Engine](https://docs.vectara.com/docs/prompts/vectara-prompt-engine)).
-- `default` presets are used when no `generation_preset_name` is specified.
-- To create or modify presets, contact Vectara support, as these operations are not exposed in the API.
+- Use `generation_preset_name` in `client.corpora.query` or `client.chats.create` to apply presets like `mockingbird-2.0` or `vectara-summary-ext-24-05-med-omni`.
+- Customize with `model_parameters` to override preset settings (e.g., `temperature`, `max_tokens`).
+- Explore the [Vectara Prompt Engine](https://docs.vectara.com/docs/prompts/vectara-prompt-engine) for prompt template details.
+- Contact `feedback@vectara.com` or use the Vectara Console to create new presets.
 :::
 
-## Additional notes
-
-- **Generation tasks**: Generation presets enhance RAG in queries and chats, addressing user needs for customized conversational AI. Use presets to streamline LLM configuration, aligning with GenAI expectations.
-- **Query vs. prompt confusion**: Presets configure RAG prompts, not direct queries. Apply presets in `client.corpora.query` or `client.chats.create` to mimic prompt-based interactions (see [Querying Corpora Guide](vectara_python_sdk_queries.md), [Managing Chats Guide](vectara_python_sdk_chats.md)).
-- **Preset management**: The API only supports listing presets. For creating or updating presets, contact `feedback@vectara.com` or use the Vectara Console.
-- **Improving usability**: If preset parameters (e.g., `temperature`, `prompt_template`) are unclear, provide feedback to `feedback@vectara.com` with specific examples, as suggested internally.
-
-## Next steps
-
-- Use listed presets in `client.corpora.query` or `client.chats.create` to customize RAG responses.
-- Index documents or upload files to enrich RAG context (see [Indexing Documents Guide](index.md), [Uploading Files Guide](upload_file.md)).
-- Explore chat functionality with `client.chats.create` for conversational AI (see [Managing Chats Guide](chats.md)).
-- Review the [Vectara API Recipes](https://docs.vectara.com/docs/api-recipes) for RAG configuration examples.
-- Test presets in the [Vectara API Playground](https://console.vectara.com) to validate settings.
