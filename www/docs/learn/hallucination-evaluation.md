@@ -18,20 +18,21 @@ it's more likely to contain one or more factual inaccuracies, however minor.
 We suggest starting with a setting of `0.5` as an initial guideline.
 
 :::note
-
 The FCS measures only the factual accuracy of a generated summary based on  
 search results. Each search result's independent `score` is based on the query  
 settings used for that query (e.g. which embedding model is used, whether  
 lambda and/or reranking is used). These scores are different.
-
 :::
 
 ## Factual Consistency Score language support
 
 The Factual Consistency Score supports English, German, French, Portuguese, 
-Spanish, Arabic, Chinese-Simplified, and Korean. Set the 
-`response_language` parameter to `eng`, `deu`, `fra`, `spa`, `por`, `ara`, 
-`kor`, or `zho`.
+Spanish, Arabic, Chinese-Simplified, Korean, Russian (rus), Japanese (jpn), 
+and Hindi (hin). Set the `response_language` parameter to `eng`, `deu`, `fra`, 
+`spa`, `por`, `ara`, `kor`, `zho`, `rus`, `jpn`, or `hin`.
+
+HHEM 2.3 also introduces architectural improvements that significantly reduce 
+latency and computational costs, enhancing overall model performance.
 
 ## Enable the Factual Consistency Score
 
@@ -42,8 +43,8 @@ contains the value between `0.0` and `1.0`.
 
 ```json showLineNumbers title="Enable the Factual Consistency Score"
 "generation": {
-    "prompt_name": "vectara-summary-ext-v1.3.0",
-    "max_used_search_results": 3,
+    "generation_preset_name": "vectara-summary-ext-24-05-med-omni",
+    "max_used_search_results": 5,
     "enable_factual_consistency_score": true
   }
 ```

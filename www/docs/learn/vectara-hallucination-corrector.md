@@ -29,6 +29,10 @@ The impact of AI hallucinations extends far beyond user frustration:
 The Vectara Hallucination Corrector helps reduce these risks by acting as a 
 factual safeguard before content is delivered or acted upon.
 
+:::tip Note
+For more information, see the [**Correct Hallucination API**](/docs/api-reference/llms-apis/hallucination_correctors) documentation.
+:::
+
 ### What the Vectara Hallucination Corrector does
 
 The Vectara Hallucination Corrector provides:

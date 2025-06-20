@@ -85,12 +85,13 @@ indexing, or administration, ensuring secure data interactions.
 ### Assign corpus-level roles
 
 1. Navigate to Corpora in the Vectara Console and select a corpus.
-2. Open the **Access control** tab.
-3. Click **Grant user access**.
-4. Select a user.
-5. Select **Query**, **Index, Query** and **index**, or **Admin**.
-6. Add a description for the user.
-7. Click **Grant access**.
+2. Click the **gear icon** in the top-right corner to open the Settings page.
+3. Click the **Access control** tab.
+4. Click **Grant user access**.
+5. Select a user.
+6. Select **Query**, **Index, Query** and **index**, or **Admin**.
+7. Add a description for the user.
+8. Click **Grant access**.
 
 **Use Case:** A developer assigns Query permissions to a client app for read-only 
 access to a customer support corpus.
@@ -102,10 +103,10 @@ cross-corpus access unless explicitly granted.
 
 ## Best practices
 
-✅ Use the **principle of least privilege**: assign only needed roles.
-✅ Review role assignments when rotating keys or changing team structure
-✅ Separate roles for production versus development corpora
-❌ Do not give Admin roles to Client Apps unless essential
+* ✅ Use the **principle of least privilege**: assign only needed roles.
+* ✅ Review role assignments when rotating keys or changing team structure
+* ✅ Separate roles for production versus development corpora
+* ❌ Do not give Admin roles to Client Apps unless essential
 
 ## Common issues and solutions
 

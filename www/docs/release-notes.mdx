@@ -16,6 +16,65 @@ experimenting with Retrieval Augmented Generation (RAG), or exploring our
 newest API endpoints, this page is your go-to place to see how we’re evolving 
 and how these product and documentation changes can benefit your enterprise.
 
+
+---
+
+## VHC Enhanced for Query-Aware Hallucination Detection and Correction
+
+_June 12, 2025_
+
+Vectara has enhanced the Hallucination Corrector (VHC) API with support for 
+query-aware hallucination detection and correction. This upgrade introduces 
+the ability to include the original user query in VHC requests, enabling more 
+accurate analysis of model-generated text.
+
+**Why it matters:** In RAG workflows, generated responses often reflect both 
+the retrieved context and the phrasing or intent of the user query. Adding 
+the optional query field to VHC requests enables the model to interpret 
+response formatting better. This helps resolve ambiguities, and attribute 
+facts that are inferred from the query rather than only the source. This 
+results in improved correction accuracy, particularly for instructions like 
+_“Answer True or False,”_ _“List the top 3,”_ or _“Summarize concisely.”_
+
+**What’s new:**
+
+* The `model` parameter has been renamed to `model_name`,
+* Added an optional `query` field for VHC requests to activate a query-aware prompt.
+* Improved correction precision in prompt-sensitive use cases
+
+**More information:**
+
+* [Hallucination Corrector](/docs/learn/vectara-hallucination-corrector)
+* [Correct Hallucinations API Definition](/docs/api-reference/llms-apis/hallucination_correctors)
+* [Correct hallucinations in generated text based on source documents](/docs/rest-api/correct-hallucinations)
+
+---
+
+## HHEM 2.3 - Additional Language Support and Enhanced Architecture
+
+_June 12, 2025_
+
+Vectara’s Hughes Hallucination Evaluation Model (HHEM) now supports three 
+additional languages: Russian, Japanese, and Hindi. This update increases 
+the total supported languages from 8 to 11, further enhancing accessibility 
+and global usability.
+
+Languages now supported: English, German, French, Spanish, Portuguese, Arabic, 
+Chinese (Simplified), Korean, Japanese, Hindi, and Russian.
+
+This release also introduces a significant update to HHEM’s architecture, 
+resulting in reduced operational costs and improved performance and accuracy.
+
+**Why it matters:** By expanding multilingual support, Vectara further reduces 
+reliance on manual translations, enabling global teams to directly evaluate AI 
+accuracy in their native languages. The enhanced architecture delivers 
+cost-effective performance improvements, promoting broader, confident 
+adoption of trustworthy AI solutions.
+
+**More information:**
+
+* [Hallucination Evaluation](/docs/learn/hallucination-evaluation)
+
 ---
 
 ## Vectara Hallucination Corrector (VHC) API
@@ -35,8 +94,9 @@ to text based on reliable context—preserving the original phrasing wherever po
 This improves trust, precision, and usability of AI-generated outputs across 
 enterprise applications.
 
-**New API endpoint:**
-* Hallucination Correction Model
+**New API endpoints:**
+* [List Hallucination Correctors](/docs/rest-api/correct-hallucinations)
+* [Correct hallucinations in generated text based on source documents](/docs/rest-api/correct-hallucinations)
 
 **More information:**
 * [Hallucination Correction Model](/docs/learn/vectara-hallucination-corrector)

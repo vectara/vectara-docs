@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import Prism from 'prismjs';
@@ -17,7 +18,7 @@ export default function CodePanel({
   defaultLanguage = 'bash',
   annotations = {},
   layout = 'floating',
-  customWidth,
+  customWidth // New prop for manual width override
 }) {
   /* ---------------------------------------------------------- */
   /* State                                                     */
@@ -77,7 +78,6 @@ export default function CodePanel({
       console.log(`CodeHtml element ${idx} content:`, el.innerHTML);
     });
   }, [highlighted]);
-
   /* Strip tags when copying an individual line */
   const stripHtml = (h) => h.replace(/<[^>]*>?/gm, '');
 

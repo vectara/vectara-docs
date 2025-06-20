@@ -147,7 +147,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "Use Cases",
+      label: "Use Cases and Tutorials",
       items: [
         "use-case-exploration",
         {
@@ -173,6 +173,7 @@ const sidebars: SidebarsConfig = {
           label: "Document Data Structuring",
         },
         "learn/question-answer/question-answer-overview",
+        "tutorials/build-a-chatbot",
       ],
     },
     {
@@ -275,20 +276,17 @@ const sidebars: SidebarsConfig = {
             "integrations/vectara-and-langflow",
           ],
         },
-        
-        
       ],
     },
     {
       type: "category",
       label: "Vectara Console",
+      link: {
+        type: 'doc',
+        id: 'console-ui/vectara-console-overview', // This points to the Vectara Console Overview document
+      },
       collapsed: true,
       items: [
-        {
-          type: "doc",
-          id: "console-ui/vectara-console-overview",
-          label: "Vectara Console Overview",
-        },
         {
           type: "category",
           label: "Manage Corpora",
