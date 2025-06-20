@@ -192,8 +192,6 @@ except Exception as e:
   layout="stacked"
 />
 
-NUpdated to use `upload_manager.file()` with `core.File` for SDK compliance.
-
 ## 7. Query the Knowledge Base
 
 Ask a question and get the most relevant answer from your support 
