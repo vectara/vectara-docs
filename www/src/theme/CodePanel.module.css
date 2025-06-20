@@ -147,6 +147,7 @@
   cursor: pointer;
   border-radius: 2px;
   transition: background-color 0.1s ease;
+  justify-content: space-between; /* Distribute space, pushing marker to end */
 }
 
 .codeLine:hover {
@@ -177,12 +178,13 @@
   position: relative;
   flex-shrink: 0;
   margin-top: 1px;
+  order: 2; /* Move marker to the end */
 }
 
 .marker::after {
   content: attr(data-tooltip);
   position: absolute;
-  left: 24px;
+  right: 24px; /* Adjust position to left of marker */
   top: 50%;
   transform: translateY(-50%);
   background: var(--header-bg);

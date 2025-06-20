@@ -1,0 +1,368 @@
+---
+id: vectara-python-sdk
+title: Vectara Python SDK
+sidebar_label: Python SDK
+---
+
+import CodePanel from '@site/src/theme/CodePanel';
+import { Spacer } from "@site/src/components/ui/Spacer";
+
+
+<CodePanel
+  snippets={[
+    { language: 'python', code: `def hello(): return "world"` },
+    { language: 'bash', code: `curl -X GET https://api.example.com` },
+    { language: 'json', code: `{"status": "success", "data": []}` }
+  ]}
+/>
+
+
+# Vectara Python SDK
+
+The Vectara Python SDK provides a simple and intuitive way to interact with the Vectara platform. This guide walks you through installation, authentication, and core operations to get you building AI-powered applications quickly.
+
+## Installation
+
+<CodePanel
+  title="Install SDK"
+  layout="stacked"
+  snippets={[
+    {
+      language: 'bash',
+      code: `pip install vectara`,
+    },
+  ]}
+/>
+
+Start by installing the Vectara SDK using pip. The SDK requires Python 3.7 or higher and includes all necessary dependencies for making API calls to the Vectara platform. The installation process is straightforward and should complete within a few seconds.
+
+
+
+## Authentication
+
+<CodePanel
+  title="API Key Setup"
+  snippets={[
+    {
+      language: 'python',
+      code: `from vectara import Vectara
+
+client = Vectara(api_key="YOUR_API_KEY")`,
+    },
+  ]}
+  annotations={{
+    python: [
+      { line: 3, text: 'Replace with your actual API key from the Console' },
+    ],
+  }}
+/>
+
+The Vectara SDK supports two authentication methods. API keys are perfect for getting started quickly, while OAuth 2.0 provides enterprise-grade security for production applications. API keys provide the simplest authentication method. You can generate API keys in the Vectara Console and use them immediately in your applications. This method is ideal for development, testing, and single-user applications.
+
+## Verify Connection
+
+<CodePanel
+  title="Health Check"
+  snippets={[
+    {
+      language: 'python',
+      code: `# Test the connection
+status = client.health.check()
+print(f"Connection status: {status}")`,
+    },
+  ]}
+  annotations={{
+    python: [
+      { line: 2, text: 'Returns connection status and API health information' },
+    ],
+  }}
+/>
+
+Once you've created a client, it's good practice to verify that your authentication credentials are working properly. The health check endpoint provides a quick way to test connectivity and ensure your API key is valid and your account is accessible.
+
+## OAuth 2.0 Authentication
+
+<CodePanel
+  title="OAuth Setup"
+  snippets={[
+    {
+      language: 'python',
+      code: `client = Vectara(
+    client_id="YOUR_CLIENT_ID",
+    client_secret="YOUR_CLIENT_SECRET",
+    customer_id="YOUR_CUSTOMER_ID"
+)`,
+    },
+  ]}
+  annotations={{
+    python: [
+      { line: 1, text: 'OAuth credentials from your Vectara Console' },
+      { line: 4, text: 'Customer ID identifies your Vectara account' },
+    ],
+  }}
+/>
+
+For production applications requiring enhanced security, OAuth 2.0 provides automatic token refresh and granular permissions. This method is recommended for multi-user applications and enterprise deployments where you need more sophisticated access control and audit trails.  
+
+## Create a Corpus
+
+<CodePanel
+  title="Create Corpus"
+  snippets={[
+    {
+      language: 'python',
+      code: `corpus = client.corpora.create({
+    "corpus_key": "product_docs",
+    "name": "Product Documentation", 
+    "description": "User guides and technical manuals"
+})`,
+    },
+  ]}
+  annotations={{
+    python: [
+      { line: 2, text: 'Corpus key must be unique within your account' },
+      { line: 4, text: 'Description helps organize your corpora' },
+    ],
+  }}
+/>
+
+A corpus is a collection of documents that you can search and query. Think of it as a database for your text content. Each corpus can have its own configuration, metadata schema, and access controls. Creating a corpus requires a unique key and descriptive name. The corpus key acts as an identifier for all future operations, so choose something memorable and descriptive.
+
+## List Corpora
+
+<CodePanel
+  title="List Corpora"
+  snippets={[
+    {
+      language: 'python',
+      code: `response = client.corpora.list()
+for corpus in response["corpora"]:
+    print(f"{corpus['corpus_key']}: {corpus['name']}")`,
+    },
+  ]}
+  annotations={{
+    python: [
+      { line: 1, text: 'Returns all corpora accessible with your credentials' },
+    ],
+  }}
+/>
+
+You can retrieve a list of all corpora in your account. This is useful for applications that need to dynamically discover available document collections or provide users with corpus selection options. The response includes metadata about each corpus including creation dates and document counts.
+
+## Upload Files
+
+<CodePanel
+  title="Upload File"
+  snippets={[
+    {
+      language: 'python',
+      code: `response = client.upload.file(
+    corpus_key="product_docs",
+    file=open("user_guide.pdf", "rb"),
+    filename="user_guide.pdf",
+    metadata={"type": "manual", "version": "2.1"}
+)`,
+    },
+  ]}
+  annotations={{
+    python: [
+      { line: 3, text: 'Open file in binary mode for upload' },
+      { line: 5, text: 'Metadata helps with filtering and organization' },
+    ],
+  }}
+/>
+
+Once you have a corpus, you can upload documents for indexing. Vectara supports various file formats including PDF, Word documents, plain text, and structured data formats. The simplest way to add content is by uploading files directly. The SDK handles the file processing and chunking automatically, making your documents searchable within minutes.  
+
+---
+
+## Structured Documents
+
+<CodePanel
+  title="Structured Document"
+  snippets={[
+    {
+      language: 'python',
+      code: `document = {
+    "id": "setup_guide",
+    "type": "structured", 
+    "sections": [
+        {
+            "id": 1,
+            "title": "Getting Started",
+            "text": "Welcome to our platform..."
+        }
+    ]
+}
+
+client.documents.create("product_docs", document)`,
+    },
+  ]}
+  annotations={{
+    python: [
+      { line: 3, text: 'Structured type allows section-based organization' },
+      { line: 13, text: 'Creates the document in the specified corpus' },
+    ],
+  }}
+/>
+
+For more control over document organization, you can create structured documents with explicit sections. This approach is ideal when you need precise control over how content is chunked and indexed. Structured documents allow you to define logical sections with titles and metadata, which can improve search relevance and result presentation.
+
+---
+
+
+
+## Basic Search
+
+<CodePanel
+  title="Basic Query"
+  snippets={[
+    {
+      language: 'python',
+      code: `results = client.corpora.query(
+    corpus_key="product_docs",
+    query="How do I reset my password?",
+    limit=5
+)
+
+for result in results["results"]:
+    print(f"Score: {result['score']:.3f}")
+    print(f"Text: {result['text']}")`,
+    },
+  ]}
+  annotations={{
+    python: [
+      { line: 4, text: 'Limit controls the number of results returned' },
+      { line: 7, text: 'Score indicates relevance (higher is more relevant)' },
+    ],
+  }}
+/>
+
+Vectara's semantic search capabilities let you find relevant information using natural language queries. The platform understands context and meaning, not just keyword matches. Simple queries return ranked results based on semantic similarity. Each result includes a relevance score and the most relevant text snippet from your documents.
+
+---
+
+## Advanced Search
+
+<CodePanel
+  title="Filtered Query"
+  snippets={[
+    {
+      language: 'python',
+      code: `results = client.corpora.query(
+    corpus_key="product_docs",
+    query="troubleshooting steps",
+    metadata_filter='type = "manual" AND version = "2.1"',
+    limit=3
+)`,
+    },
+  ]}
+  annotations={{
+    python: [
+      { line: 4, text: 'SQL-like syntax for filtering by metadata fields' },
+    ],
+  }}
+/>
+
+Metadata filters allow you to narrow search results to specific document types, dates, or other criteria. This is particularly useful for large document collections with diverse content types. You can combine multiple filter conditions using AND/OR logic to create sophisticated search queries that return exactly the content you need.
+
+## RAG Generation
+
+<CodePanel
+  title="Generate Answers"
+  snippets={[
+    {
+      language: 'python',
+      code: `response = client.corpora.query(
+    corpus_key="product_docs",
+    query="What are the system requirements?",
+    generation={
+        "generation_preset_name": "mockingbird_default",
+        "enable_factual_consistency_score": True,
+        "max_response_characters": 500
+    }
+)
+
+print("Generated Answer:")
+print(response["summary"])
+print(f"Factual Consistency: {response['factual_consistency_score']}")`,
+    },
+  ]}
+  annotations={{
+    python: [
+      { line: 5, text: 'Mockingbird provides high-quality text generation' },
+      { line: 6, text: 'Consistency score helps verify answer accuracy' },
+    ],
+  }}
+/>
+
+Beyond search, Vectara can generate comprehensive answers using Retrieval Augmented Generation (RAG). This combines search results with large language models to create contextual, accurate responses. RAG generation creates human-like responses based on your document content. The factual consistency score helps you evaluate the reliability of generated answers.
+
+## Streaming Responses
+
+<CodePanel
+  title="Stream Generation"
+  snippets={[
+    {
+      language: 'python',
+      code: `for chunk in client.corpora.query_stream(
+    corpus_key="product_docs",
+    query="Explain the setup process",
+    generation={
+        "generation_preset_name": "mockingbird_default",
+        "stream_response": True
+    }
+):
+    if chunk.get("text"):
+        print(chunk["text"], end="", flush=True)`,
+    },
+  ]}
+  annotations={{
+    python: [
+      { line: 1, text: 'Yields response chunks as they become available' },
+      { line: 9, text: 'Print without newlines for smooth streaming effect' },
+    ],
+  }}
+/>
+
+For real-time applications, you can stream generated responses as they're created. This provides immediate feedback to users and enables responsive user interfaces. Streaming is particularly valuable for longer responses where users can start reading the answer before generation is complete.
+
+## Error Handling
+
+<CodePanel
+  title="Handle Errors"
+  snippets={[
+    {
+      language: 'python',
+      code: `from vectara.exceptions import VectaraException, AuthenticationError
+
+try:
+    results = client.corpora.query(
+        corpus_key="product_docs",
+        query="test query"
+    )
+except AuthenticationError as e:
+    print(f"Authentication failed: {e}")
+except VectaraException as e:
+    print(f"API error: {e.status_code} - {e.message}")
+except Exception as e:
+    print(f"Unexpected error: {e}")`,
+    },
+  ]}
+  annotations={{
+    python: [
+      { line: 8, text: 'Handle authentication issues for token refresh' },
+      { line: 10, text: 'VectaraException includes HTTP status and details' },
+    ],
+  }}
+/>
+
+Production applications need robust error handling to gracefully manage API issues, rate limits, and authentication problems. The SDK provides specific exception types for different error conditions. This allows your application to respond appropriately to various failure scenarios, including network timeouts, rate limiting, and invalid requests.
+
+---
+
+## Next Steps
+
+You're now ready to build powerful AI applications with the Vectara Python SDK. Consider exploring advanced features like custom rerankers, hybrid search, and batch operations for production deployments.
+
+For complete API reference and advanced examples, visit the [Vectara Documentation](https://docs.vectara.com).
