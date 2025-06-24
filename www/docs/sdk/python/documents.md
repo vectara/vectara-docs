@@ -22,18 +22,19 @@ governance.
 Explore powerful methods to retrieve and manage document listings within a 
 corpus, enabling efficient data access and organization.
 
-* `corpus_key`: Unique identifier for the corpus.
-* `limit`: (Optional) Maximum number of documents to return.
-* `metadata_filter`: (Optional) Filter expression for document metadata 
-  (`type = "manual"`).
-* `page_key`: (Optional) Token for retrieving the next page.
-* `request_timeout`: (Optional) Timeout in seconds.
-* `request_timeout_millis`: (Optional) Timeout in milliseconds (overrides 
-  request_timeout).
+- `corpus_key` (str): Unique identifier for the corpus (required)
+- `limit` (int, optional): Maximum number of documents to return per page
+- `metadata_filter` (str, optional): Filter expression for document metadata, 
+  `type = "manual"`
+- `page_key` (str, optional): Token to fetch the next page of results
+- `request_timeout` (int, optional): Timeout in seconds
+- `request_timeout_millis` (int, optional): Timeout in milliseconds (overrides 
+  `request_timeout`)
+
 
 **Returns:**
 
-Iterator of Document objects (with id, metadata, but not full content).
+Iterator of Document objects (containing `id`,` metadata`, but not full content).
 
 <CodePanel
 title="List documents in a corpus"
