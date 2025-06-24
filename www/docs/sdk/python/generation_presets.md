@@ -102,7 +102,18 @@ print(response.generation.response)
   customWidth="55%"
 />
 
-Generate a tailored financial summary using Mockingbird 2.0 with precise metadata filtering.
+Generate a tailored financial summary using Mockingbird 2.0 with precise 
+metadata filtering.
+
+
+- `generation_preset_name="mockingbird-2.0"`
+  - High accuracy, up-to-date factuality, and balanced tone in enterprise summaries.
+- `corpora=[{"corpus_key": "finance_docs"}]`
+  - Limits search to your company’s trusted finance corpus.
+- `metadata_filter="doc_region = 'EU' AND doc_quarter = 'Q1-2024' AND doc_industry = 'banking'"`
+  - Ensures only documents relevant to *European* banks in *Q1 2024* are used—critical for regulatory and reporting accuracy.
+- `max_used_search_results=10`
+  - Maximizes context coverage but stays concise for summarization.
 
 ---
 
@@ -140,7 +151,20 @@ print(response.generation.response)
   customWidth="55%"
 />
 
-Deliver concise support responses with the GPT-4o-based vectara-summary-ext-24-05-med-omni preset.
+Deliver concise support responses with the GPT-4o-based 
+`vectara-summary-ext-24-05-med-omni` preset. This preset leverages a 
+GPT-4o-based model, ideal for responsive, conversational support and broad 
+knowledge coverage.
+
+- `generation_preset_name="vectara-summary-ext-24-05-med-omni"`
+  - Advanced summarization, up-to-date knowledge, and conversational tone.
+- `corpora=[{"corpus_key": "support_kb"}]`
+  - Focuses the model only on vetted support knowledge base articles.
+- `metadata_filter="doc_platform = 'mobile' AND doc_issue_type = 'auth_failure'"`
+  - Surfaces only mobile-specific authentication problems—preventing noise from irrelevant issues.
+- `max_response_characters=500`
+  - Enforces concise, agent-ready responses (ideal for chatbots or customer-facing UIs).
+
 
 ---
 
@@ -181,12 +205,28 @@ print(response.generation.response)
   customWidth="55%"
 />
 
-Perform legal analysis with Mockingbird 2.0, customized for creativity and token limits.
+Perform legal analysis with Mockingbird 2.0, customized for creativity and 
+token limits. This preset overrides the default creativity and length for a 
+legal use case. Useful for RAG scenarios requiring both precision and readable 
+outputs.
+
+- `generation_preset_name="mockingbird-2.0"`
+  - Proven performance on long, technical documents with nuanced legal language.
+- `corpora=[{"corpus_key": "legal_docs"}]`
+  - Isolates analysis to legal contracts, not general company data.
+- `metadata_filter="doc_clause_type = 'arbitration' AND doc_jurisdiction = 'US'"`
+  - Ensures only relevant US arbitration clauses are summarized.
+- `model_parameters={"temperature": 0.5, "max_tokens": 400}`
+  - `temperature: 0.5` — Balance between creativity (for plain English 
+  explanations) and factuality (to avoid hallucinations).
+  - `max_tokens: 400` — Restricts answer to a length suitable for summaries that 
+  can be cited or attached to legal memos.
+
 
 ---
 
 ## Error Handling
-- **400 Bad Request**: Invalid parameters (e.g., `max_tokens` < 0).
+- **400 Bad Request**: Invalid parameters (`max_tokens` < 0).
   - *Resolution*: Validate all parameters against their constraints.
 - **403 Forbidden**: Insufficient permissions.
   - *Resolution*: Use a Query or Index API Key with appropriate access.

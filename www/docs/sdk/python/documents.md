@@ -12,15 +12,37 @@ metadata inconsistencies for creating, querying, and maintaining documents.
 This is ideal for building scalable search solutions or automating content 
 governance.
 
-- How to list and filter documents in a corpus
-- Techniques for creating and structuring new documents
-- Methods to retrieve, update, and delete specific documents
-- Strategies for summarizing content with LLM-powered tools
+- List and filter documents in a corpus
+- Create structured or core documents with custom metadata
+- Retrieve, update, and delete documents by ID
+- Summarize content using LLM-powered tools
 
 ## List documents in a corpus
 
 Explore powerful methods to retrieve and manage document listings within a 
 corpus, enabling efficient data access and organization.
+
+* `corpus_key`: Unique identifier for the corpus.
+* `limit`: (Optional) Maximum number of documents to return.
+* `metadata_filter`: (Optional) Filter expression for document metadata 
+  (`type = "manual"`).
+* `page_key`: (Optional) Token for retrieving the next page.
+* `request_timeout`: (Optional) Timeout in seconds.
+* `request_timeout_millis`: (Optional) Timeout in milliseconds (overrides 
+  request_timeout).
+
+**Returns:**
+
+Iterator of Document objects (with id, metadata, but not full content).
+
+<CodePanel
+title="List documents in a corpus"
+snippets={[
+{ language: 'python', code: `client.documents.list( corpus_key: str, limit: int = None, metadata_filter: str = None, page_key: str = None, request_timeout: int = None, request_timeout_millis: int = None ) -> Iterator[Document]` }
+]}
+layout="stacked"
+/>
+
 
 ### Example 1. List all documents in a corpus
 
@@ -44,7 +66,8 @@ for document in response:
 />
 
 Discover a straightforward approach to fetch all document metadata 
-from a corpus, leveraging default settings for a comprehensive overview.
+from a corpus with the corpus key of `product_docs`, leveraging 
+default settings for a comprehensive overview.
 
 ---
 

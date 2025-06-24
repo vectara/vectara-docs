@@ -1,6 +1,6 @@
 ---
 id: query
-title: Querying Corpora
+title: Queries
 hide_table_of_contents: true
 ---
 

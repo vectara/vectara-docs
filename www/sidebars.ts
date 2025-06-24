@@ -550,6 +550,7 @@ const sidebars: SidebarsConfig = {
         id: 'sdk/vectara-python-sdk',
       },
       items: [
+
         "sdk/python/corpus",
         "sdk/python/ingest_data",
         "sdk/python/documents",
@@ -557,6 +558,9 @@ const sidebars: SidebarsConfig = {
         "sdk/python/upload",
         "sdk/python/chats",
         "sdk/python/generation_presets",
+        "sdk/python/rerankers",
+        "sdk/python/users",
+        "sdk/python/api_keys",
       ],
     },
     {

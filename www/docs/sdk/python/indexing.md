@@ -1,6 +1,6 @@
 ---
 id: ingest_data
-title: Ingesting Data
+title: Index
 hide_table_of_contents: true
 ---
 

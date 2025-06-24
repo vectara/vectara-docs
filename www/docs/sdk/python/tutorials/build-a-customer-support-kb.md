@@ -1,7 +1,7 @@
 ---
 id: customer-support-kb
 title: Build a Customer Support Knowledge Base with Vectara
-
+sidebar_label: Build a Customer Support Knowledge Base 
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';
@@ -11,7 +11,7 @@ In this tutorial, you want to power a support assistant that can instantly
 answer customer questions using all your help center articles, troubleshooting 
 guides, and product FAQs. Here’s how you can build this the Vectara’s Python SDK:
 
-## 1. Configure Authentication Profile
+## 1. Configure authentication profile
 
 First, set up your credentials in a named profile.
 This allows your support automation to securely connect to Vectara with the 
@@ -36,7 +36,7 @@ except Exception as e:
   layout="stacked"
 />
 
-## 2. Create Client Using Profile
+## 2. Create client using profile
 
 Now, create a Vectara client using your profile credentials.
 This client will be used for all following operations with your support 
@@ -61,7 +61,7 @@ except Exception as e:
   layout="stacked"
 />
 
-## 3. Create a support kb corpus
+## 3. Create a support KB corpus
 
 Create a new corpus for your support knowledge base. This is the data store 
 for all support content.
@@ -192,7 +192,7 @@ except Exception as e:
   layout="stacked"
 />
 
-## 7. Query the Knowledge Base
+## 7. Query the knowledge base
 
 Ask a question and get the most relevant answer from your support 
 corpus—perfect for chatbot integration or agent assist.

@@ -1,6 +1,6 @@
 ---
 id: corpus
-title: Managing Corpora
+title: Corpora
 hide_table_of_contents: true
 ---
 
