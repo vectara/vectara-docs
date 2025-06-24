@@ -18,16 +18,11 @@ logo:
   dark: ./assets/logo-dark.svg
 favicon: ./assets/favicon.jpeg
 
-# versions:
-#   - display-name: v2.0 (Latest)
-#     path: ./versions/v2.yml
-#   - display-name: v1.0
-#     path: ./versions/v1.yml
-
-ai-search:
-  system-prompt: |
-    You are an AI assistant for Vectora's API documentation. Help developers understand our SDK and API endpoints.
-    Only respond using information from the documents. Provide code examples when helpful.
+versions:
+  - display-name: v2.0 (Latest)
+    path: ./versions/v2.yml
+  - display-name: v1.0
+    path: ./versions/v1.yml
 
 tabs:
   changelog:
