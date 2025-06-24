@@ -6,13 +6,6 @@ default-language: python
 experimental:
   openapi-parser-v3: true
  
-navigation:
-  - page: Introduction
-    path: ./pages/introduction.mdx
-  - api: API Reference
-    snippets: 
-      python: vectara
-      typescript: vectara
 logo: 
   light: ./assets/logo-light.svg 
   dark: ./assets/logo-dark.svg
@@ -23,9 +16,3 @@ versions:
     path: ./versions/v2.yml
   - display-name: v1.0
     path: ./versions/v1.yml
-
-tabs:
-  changelog:
-    display-name: Changelog
-    icon: light clock
-    changelog: ./changelog
