@@ -550,9 +550,10 @@ const sidebars: SidebarsConfig = {
         id: 'sdk/vectara-python-sdk',
       },
       items: [
-
+        "sdk/python/python-quickstart",
         "sdk/python/corpus",
         "sdk/python/ingest_data",
+        "sdk/python/metadata",
         "sdk/python/documents",
         "sdk/python/query",
         "sdk/python/upload",
