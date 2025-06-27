@@ -1,39 +1,15 @@
 tabs:
-  docs:
-    display-name: docs
-    icon: light book
   api:
     display-name: API Reference
-    icon: light code
-  home:
-    display-name: Home
-    icon: light home
-  changelog:
-    display-name: Changelog
-    icon: light clock
-    changelog: ./changelog
+    icon: fa-regular fa-code
+    skip-slug: true
   
-
 navigation:
-  - tab: home
+  - tab: api
     layout:
-      - section: Introduction
-        skip-slug: true
-        contents:
-          - page: Introduction
-            path: ../pages/introduction.mdx
-    
-  - tab: docs
-    layout:
-      - section: Getting Started
-        contents:
-          - page: Vectara Trial
-            path: ../../www/docs/vectara-trial.mdx
-          - page: Quick Start
-            path: ../../www/docs/quick-start.mdx
+      - api: API Reference
+        api-name: v2
+      - changelog: ./changelog
+        title: Changelog
+        slug: changelog
         
-  - api: API Reference
-    snippets: 
-      python: vectara
-      typescript: vectara
-    api-name: 

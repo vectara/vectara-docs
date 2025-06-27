@@ -1,0 +1,15 @@
+tabs:
+  api:
+    display-name: API Reference
+    icon: fa-regular fa-code
+    skip-slug: true
+  
+navigation:
+  - tab: api
+    layout:
+      - api: API Reference
+        api-name: v2
+      - changelog: ./changelog
+        title: Changelog
+        slug: v2-changelog
+
