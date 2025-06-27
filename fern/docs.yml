@@ -5,6 +5,11 @@ default-language: python
 
 experimental:
   openapi-parser-v3: true
+
+layout:
+  searchbar-placement: header
+  page-width: full
+  tabs-placement: header
  
 logo: 
   light: ./assets/logo-light.svg 

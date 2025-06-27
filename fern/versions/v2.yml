@@ -1,10 +1,22 @@
 tabs:
+  home:
+    display-name: Home
+    icon: fa-regular fa-home
+    skip-slug: true
   api:
     display-name: API Reference
     icon: fa-regular fa-code
     skip-slug: true
   
+  
 navigation:
+  - tab: home
+    layout:
+      - section: Introduction
+        skip-slug: true
+        contents:
+          - page: Introduction
+            path: ../pages/introduction.mdx
   - tab: api
     layout:
       - api: API Reference
