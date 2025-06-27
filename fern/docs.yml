@@ -2,14 +2,22 @@ instances:
   - url: https://vectara.docs.buildwithfern.com
 title: Vectara | Documentation
 default-language: python
-navigation:
-  - page: Introduction
-    path: ./pages/introduction.mdx
-  - api: API Reference
-    snippets: 
-      python: vectara
-      typescript: vectara
+
+experimental:
+  openapi-parser-v3: true
+
+layout:
+  searchbar-placement: header
+  page-width: full
+  tabs-placement: header
+ 
 logo: 
   light: ./assets/logo-light.svg 
   dark: ./assets/logo-dark.svg
 favicon: ./assets/favicon.jpeg
+
+versions:
+  - display-name: v2.0 (Latest)
+    path: ./versions/v2.yml
+  - display-name: v1.0
+    path: ./versions/v1.yml
