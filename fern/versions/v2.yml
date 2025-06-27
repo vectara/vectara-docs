@@ -21,7 +21,7 @@ navigation:
     layout:
       - api: API Reference
         api-name: v2
-      - changelog: ./changelog
+      - changelog: ../changelog
         title: Changelog
         slug: changelog
         
