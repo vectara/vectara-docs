@@ -21,6 +21,9 @@ navigation:
     layout:
       - api: API Reference
         api-name: v2
+        snippets:
+          python: vectara 
+          typescript: vectara
       - changelog: ../changelog
         title: Changelog
         slug: changelog
