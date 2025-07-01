@@ -103,14 +103,23 @@ to preserve meaning.
 
 ## Configure generation
 
-The Generation section shows the LLM and prompt template used and lets you
-configure the Language and Summarization options for the query:
+The Generation section shows the following options:
 
-![Configure generation options](/img/configure_generation.png)
+### Configure model
+
+Select a generation preset, LLM, and prompt template to use for the query:
+
+![Configure generation options](/img/configuration_generation.png)  
+
+You can also copy the prompt template from the generation preset.
+
+### Configure summarization
 
 Summarization uses Retrieval-Augmented Generation (RAG) to provide concise 
 summaries in response to your queries. This can be particularly useful when 
 you need an overview of the relevant information within your data.
+
+![Configure summarization](/img/configure_summarization.png) 
 
 ### Configure evaluation
 
@@ -144,12 +153,16 @@ queries, and optimizing configurations.
 ### View the history of the query
 
 1. Ask questions of your data with **Send query**.
-2. Select the **Query history** tab to reveal the query history for
+2. Select the **Analysis** or **Usage** tab to see a list of query histories.  
+   ![Query history tab](/img/query_history_tab.png)
+3. Click Reload to refresh the list. 
+4. Select an ID to reveal the query history for a specific query 
    the most recently executed query. 
-3. View the complete breakdown of how the query was executed.
-4. Use this information to optimize your configuration and submit a new query.
+   ![Query tab](/img/query_analysis.png)
+5. View the complete breakdown of how the query was executed.
+6. Use this information to optimize your configuration and submit a new query.
 
-![Query tab](/img/query_history_tab.png)
+
 
 ## Query results
 
@@ -158,7 +171,7 @@ includes the following tabs:
 
 * **Pretty Response:** Formatted view of the query response.
 * **Response JSON:** Raw JSON representation of the query output.
-* **Query History:** Displays the query history for the most recently
-  executed query.
+* **Analysis:** Displays the query history analysis including the rephrased 
+  query (if IQR enabled), compiled prompt and query history.
 * **Errors:** Displays encountered errors (if any).
 

@@ -16,19 +16,21 @@ makes it difficult to debug and improve query performance.
 
 Vectara’s query observability provides users with detailed insights into the 
 execution of past queries by offering a comprehensive breakdown of each 
-query’s configuration, response, and execution flow. This allows users to 
+query’s configuration, response, and execution flow. This enables users to 
 inspect queries at each stage of the query lifecycle which helps diagnose, 
 debug, and optimize their searches.
 
 :::tip
-For more details about query configurations, see [Configure Queries](/docs/console-ui/configure-queries).
+For more details about query configurations, see [**Configure Queries**](/docs/console-ui/configure-queries).
 :::
 
 ## Query histories
 
-The Query histories tab presents a table of previous queries executed against a 
-selected corpus. A query history explains the actions taken by our platform in 
-service of the query. 
+A query history explains the actions taken by our platform in service of the 
+query. You view query histories from the **Analysis** tab after sending a query, or 
+the **Usage** tab of a specific corpus. 
+The Query histories tab presents a table of previous queries executed against 
+a selected corpus. 
 
 Use this table to inspect query details, mark queries for special 
 consideration, and annotate them with comments. The table lists each query ID, 
@@ -43,7 +45,7 @@ this input, along with the responses and errors.
 
 ## Query details
 
-The query details page provides detailed visibility into how a our platform 
+The query details page provides detailed visibility into how our platform 
 processed the query, offering valuable insights for both troubleshooting and 
 optimization. These details include the query text, search results, generated 
 response, and factual consistency score. 
@@ -54,15 +56,11 @@ For example:
 
 This example query detail shows the following configuration for the query:
 
-* The application type is `Summary`.
-* The hybrid search parameters set the lambda value to` 0.025`.
+* The hybrid search parameters set the lambda value to  `0.0005`.
 * Reranking is enabled and using `Rerank_Multilingual_v1`.
-* The relevance tuning does not show any custom dimensions.
+* The query does not use any custom dimensions.
 * The result context is 2 sentences before and after.
-* This query used the `Mockingbird 1.0` prompt template with an English 
-  summary language and 5 summarized results.
-* The user enabled FCS with both 2 sentences before and after.
+* The number of search results for summarization is 5.
 
 Click **Expand all** to reveal detailed information for each execution stage, 
 including specific parameters.
-
