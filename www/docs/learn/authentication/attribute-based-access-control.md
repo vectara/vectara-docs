@@ -41,7 +41,7 @@ ownership, group, role, or other attributes.
 - ✅ Use consistent metadata naming (e.g., `user_id`, `team`) across 
   corpora
 - ❌ Never allow users to provide arbitrary filter expressions
-- 🔒 Keep Query keys private; expose only through secure APIs
+- 🔒 Keep QueryService API keys private; expose only through secure APIs
 
 ## Configure attribute-based access control
 
@@ -100,4 +100,4 @@ This ensures access control remains enforced while supporting contextual filteri
 |-------------------------------|----------------------------------------------|
 | Filters are enforced per query, not at platform level | Rely on backend to inject correct filters |
 | No per-document ACLs          | Use metadata and filters instead               |
-| Query access gives full access | Scope keys narrowly and use ABAC consistently|
+| QueryService access gives full access | Scope keys narrowly and use ABAC consistently|
