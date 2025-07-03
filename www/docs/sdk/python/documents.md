@@ -1,688 +1,276 @@
 ---
-id: documents
-title: Documents
+id: ingest_data
+title: Index
 hide_table_of_contents: true
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';
 import { Spacer } from "@site/src/components/ui/Spacer";
 
-Manage document data efficiently by addressing challenges like data sprawl and 
-metadata inconsistencies for creating, querying, and maintaining documents. 
-This is ideal for building scalable search solutions or automating content 
-governance.
+This guide covers the Vectara Python SDK for indexing and managing documents 
+within corpora. Indexing involves ingesting documents into a corpus, enabling 
+them for search and Retrieval Augmented Generation (RAG) operations. These 
+methods allow you to add, retrieve, list, and delete documents, preparing your data for querying.
 
-- List and filter documents in a corpus
-- Create structured or core documents with custom metadata
-- Retrieve, update, and delete documents by ID
-- Summarize content using LLM-powered tools
-
-## List documents in a corpus
-
-Explore powerful methods to retrieve and manage document listings within a 
-corpus, enabling efficient data access and organization.
-
-- `corpus_key` (str): Unique identifier for the corpus (required)
-- `limit` (int, optional): Maximum number of documents to return per page
-- `metadata_filter` (str, optional): Filter expression for document metadata, 
-  `type = "manual"`
-- `page_key` (str, optional): Token to fetch the next page of results
-- `request_timeout` (int, optional): Timeout in seconds
-- `request_timeout_millis` (int, optional): Timeout in milliseconds (overrides 
-  `request_timeout`)
-
-
-**Returns:**
-
-Iterator of Document objects (containing `id`,` metadata`, but not full content).
+## Install the Vectara SDK
 
 <CodePanel
-title="List documents in a corpus"
-snippets={[
-{ language: 'python', code: `client.documents.list( corpus_key: str, limit: int = None, metadata_filter: str = None, page_key: str = None, request_timeout: int = None, request_timeout_millis: int = None ) -> Iterator[Document]` }
-]}
-layout="stacked"
-/>
-
-
-### Example 1. List all documents in a corpus
-
-<CodePanel
-  title="List all documents in a corpus"
-  defaultLanguage="python"
+  title="Install Vectara"
   snippets={[
-  { language: 'python', code: `response = client.documents.list(corpus_key="product_docs")
-for document in response:
-    print(document.id, document.metadata)
-` }
-]}
-  annotations={{
-    python: [
-      { line: 1, text: 'Returns an iterator for all documents in the corpus.' },
-      { line: 2, text: 'Iterate over each document returned in the current page.' },
-    ],
-  }}
+    { language: 'bash', code: `pip install vectara` }
+  ]}
   customWidth="50%"
-  isSequential={true}
 />
 
-Discover a straightforward approach to fetch all document metadata 
-from a corpus with the corpus key of `product_docs`, leveraging 
-default settings for a comprehensive overview.
+Install the Vectara Python SDK to enable document indexing capabilities for 
+your enterprise applications.
 
----
+<Spacer size="l" />
 
-### Example 2: Limit number of documents returned
-
-<CodePanel
-  title="List first 5 documents"
-  defaultLanguage="python"
-  snippets={[
-  { language: 'python', code: `response = client.documents.list(
-    corpus_key="product_docs",
-    limit=5
-
-for document in response:
-    print(document.id, document.metadata)
-` }
-]}
-  annotations={{
-    python: [
-      { line: 2, text: 'Only 5 documents will be retrieved at a time.' },
-      { line: 5, text: 'Process the results (for example, show a preview or for pagination).' },
-    ],
-  }}
-  customWidth="50%"
-  isSequential={true}
-/>
-
-Learn how to constrain the number of documents retrieved, perfect for 
-paginated views or performance optimization in large corpora.
-
----
-
-### Example 3: Filter Documents by Metadata
+## Initialize the Vectara Client
 
 <CodePanel
-  title="List documents filtered by metadata"
-  defaultLanguage="python"
-  snippets={[
-  { language: 'python', code: `response = client.documents.list(
-    corpus_key="product_docs",
-    metadata_filter='type = "manual"'
-)
-for document in response:
-    print(document.id, document.metadata)
-`}
-]}
-  annotations={{
-    python: [
-      { line: 3, text: 'Only documents with metadata type = "manual" are returned.' },
-      { line: 5, text: 'You can combine filters for advanced queries.' },
-    ],
-  }}
-  customWidth="50%"
-  isSequential={true}
-/>
-
-Retrieve only documents that match certain metadata, unlocking targeted data 
-retrieval based on specific criteria.
-
----
-
-## 2. Create a Document
-
-Unlock the process of indexing new content into your corpus, supporting 
-diverse document structures for enhanced search capabilities.
-
-### Example 1: Create a Structured Document
-
-<CodePanel
+  title="Initialize the Vectara client"
   snippets={[
     {
       language: 'python',
-      code: `from vectara.client import StructuredDocument
+      code: `from vectara import Vectara
+from vectara.core.api_error import ApiError
 
-document = StructuredDocument(
-    corpus_key="employee_handbook",
-    document_id="policy_manual_v1",
-    metadata={"department": "HR", "version": "1.0"},
-    sections=[
-        {"id": "section1", "text": "Employee leave policy details."},
-        {"id": "section2", "text": "Overtime compensation rules."}
-    ]
-)
-client.documents.create(document)
-`
+# Initialize client with API key
+client = Vectara(api_key="YOUR_API_KEY")`
     }
   ]}
-  title="Create StructuredDocument"
   annotations={{
     python: [
-      { line: 3, text: 'Specifies the corpus to add the document to.' },
-      { line: 4, text: 'Unique identifier for the document.' },
-      { line: 5, text: 'Custom metadata for filtering or categorization.' },
-      { line: 7, text: 'First section with a unique ID and text.' },
-      { line: 8, text: 'Second section with different content.' },
-      { line: 10, text: 'Commits the document to the corpus.' }
+      { line: 4, text: 'Use an API key with indexing permissions for write operations.' }
     ]
   }}
   customWidth="50%"
 />
 
-Dive into creating a `StructuredDocument` with multiple sections, ideal for 
-organizing complex content with custom metadata.
+Set up authentication to securely access indexing methods using an API key.
+Ensure your API key has indexing (write) permissions for the target corpus.
 
 ---
 
-## Example 2: Create a CoreDocument
+## Index a structured document
 
 <CodePanel
+  title="Index a structured document"
   snippets={[
     {
       language: 'python',
-      code: `from vectara.client import CoreDocument
+      code: `from vectara import StructuredDocument, StructuredDocumentSection
 
-document = CoreDocument(
-    corpus_key="tech_guides",
-    document_id="network_setup_v2",
-    text="Step-by-step guide to network configuration.",
-    metadata={"category": "IT", "priority": "high"}
-)
-client.documents.create(document)
-`
-    }
-  ]}
-  title="Create CoreDocument"
-  annotations={{
-    python: [
-      { line: 3, text: 'Targets a different corpus for this document.' },
-      { line: 4, text: 'Unique ID for the network setup guide.' },
-      { line: 5, text: 'Single text block containing the full content.' },
-      { line: 6, text: 'Alternative metadata with category and priority.' },
-      { line: 8, text: 'Saves the document to the corpus.' }
-    ]
-  }}
-  customWidth="50%"
-/>
-
-Explore the simplicity of adding a `CoreDocument` with a single text block, tailored for 
-straightforward content indexing.
-
----
-
-## Example 3: Create a StructuredDocument with Advanced Metadata
-
-
-<CodePanel
-  snippets={[
-    {
-      language: 'python',
-      code: `from vectara.client import StructuredDocument
-
-document = StructuredDocument(
-    corpus_key="training_materials",
-    document_id="safety_training_v3",
-    metadata={"training": {"level": "advanced", "date": "2025-06-19"}},
-    sections=[
-        {"id": "intro", "text": "Introduction to safety protocols."},
-        {"id": "procedures", "text": "Detailed safety procedures.\nStep 1: Wear PPE.\nStep 2: Follow signage."},
-        {"id": "conclusion", "text": "Summary of safety training."}
-    ]
-)
-client.documents.create(document)
-`
-    }
-  ]}
-  title="Create StructuredDocument with Advanced Metadata"
-  annotations={{
-    python: [
-      { line: 3, text: 'Uses a corpus for training materials.' },
-      { line: 4, text: 'Unique ID with version number.' },
-      { line: 5, text: 'Nested metadata with level and date.' },
-      { line: 7, text: 'Introduction section with basic text.' },
-      { line: 8, text: 'Procedures section with multi-line content.' },
-      { line: 10, text: 'Conclusion section summarizing the training.' },
-      { line: 12, text: 'Persists the document with all sections.' }
-    ]
-  }}
-  customWidth="50%"
-/>
-
-Create an advanced `StructuredDocument` with nested metadata and multi-section 
-content for robust data management.
-
----
-
-## 3. Get a Document by ID
-
-Access specific documents efficiently by their unique IDs, enabling 
-detailed inspection or display within your corpus.
-
-### Example 1: Basic Document Retrieval
-
-<CodePanel
-  snippets={[
-    {
-      language: 'python',
-      code: `document = client.documents.get(
-    corpus_key="employee_handbook",
-    document_id="policy_manual_v1"
-)
-print(document.text, document.metadata)
-`
-    }
-  ]}
-  title="Basic Document Retrieval"
-  annotations={{
-    python: [
-      { line: 2, text: 'Specifies the corpus containing the document.' },
-      { line: 3, text: 'Unique identifier of the document to fetch.' },
-      { line: 5, text: 'Displays the document text and metadata.' }
-    ]
-  }}
-  customWidth="50%"
-/>
-
-See how to perform a basic retrieval of a document using its ID, showcasing 
-default settings for simplicity.
-
----
-
-### Example 2: Retrieve with Specific Metadata Fields
-
-
-<CodePanel
-  snippets={[
-    {
-      language: 'python',
-      code: `document = client.documents.get(
-    corpus_key="tech_guides",
-    document_id="network_setup_v2",
-    metadata_fields=["category", "version"]
-)
-print(f"Category: {document.metadata.get('category')}, Version: {document.metadata.get('version')}")
-`
-    }
-  ]}
-  title="Document Retrieval with Metadata Fields"
-  annotations={{
-    python: [
-      { line: 2, text: 'Targets a different corpus for this document.' },
-      { line: 3, text: 'ID of the document to retrieve.' },
-      { line: 4, text: 'Limits metadata to specified fields only.' },
-      { line: 6, text: 'Accesses and prints specific metadata values.' }
-    ]
-  }}
-  customWidth="50%"
-/>
-
-Learn to fetch a document while selectively retrieving only specified metadata 
-fields for targeted insights.
-
----
-
-### Example 3: Error Handling for Missing Document
-
-<CodePanel
-  snippets={[
-    {
-      language: 'python',
-      code: `try:
-    document = client.documents.get(
-        corpus_key="training_materials",
-        document_id="non_existent_doc"
+try:
+    # Create structured document
+    document = StructuredDocument(
+        id="legal-contract-001",
+        type="structured",
+        sections=[
+            StructuredDocumentSection(
+                title="Contract Overview",
+                text="This vendor agreement establishes terms and obligations for service delivery...",
+                metadata={"section_type": "overview"}
+            ),
+            StructuredDocumentSection(
+                title="Payment Terms", 
+                text="Payment shall be made within 30 days of invoice receipt...",
+                metadata={"section_type": "payment"}
+            )
+        ],
+        metadata={"document_type": "contract", "year": "2025"}
     )
-    print(document.text)
-except Exception as e:
-    print(f"Error fetching document: {e}")
-`
-    }
-  ]}
-  title="Document Retrieval with Error Handling"
-  annotations={{
-    python: [
-      { line: 2, text: 'Starts a try block to catch potential errors.' },
-      { line: 3, text: 'Specifies the corpus to search in.' },
-      { line: 4, text: 'Uses an invalid ID to demonstrate error handling.' },
-      { line: 6, text: 'Prints the document text if successful.' },
-      { line: 7, text: 'Catches and displays any exception message.' }
-    ]
-  }}
-  customWidth="50%"
-/>
-
-Understand how to implement error handling when retrieving a document that may 
-not exist, ensuring robust application behavior.
-
----
-## 4. Delete a Document
-
-Manage your corpus effectively by learning to permanently remove documents, 
-supporting data cleanup and lifecycle management.
-
-### Example: Delete a Document by ID
-
-<CodePanel
-  snippets={[
-    {
-      language: 'python',
-      code: `try:
-    client.documents.delete(
-        corpus_key="employee_handbook",
-        document_id="policy_manual_v1"
+    
+    # Index the document
+    response = client.documents.create(
+        corpus_key="legal-docs",
+        request=document
     )
-    print("Document deleted successfully")
-except Exception as e:
-    print(f"Error deleting document: {e}")
-`
+    
+    print(f"Document indexed successfully: {response}")
+    
+except ApiError as e:
+    print(f"Failed to index document: {e.status_code} - {e.body}")`
     }
   ]}
-  title="Delete Document"
   annotations={{
     python: [
-      { line: 2, text: 'Starts a try block to handle potential errors.' },
-      { line: 3, text: 'Specifies the corpus containing the document.' },
-      { line: 4, text: 'ID of the document to delete.' },
-      { line: 6, text: 'Confirms deletion if successful.' },
-      { line: 7, text: 'Catches and displays any error message.' }
+      { line: 6, text: 'Document ID must be unique within the corpus' },
+      { line: 7, text: 'Type must be "structured" for section-based documents' },
+      { line: 12, text: 'Each section can have optional title and metadata' },
+      { line: 19, text: 'Document-level metadata for filtering queries' },
+      { line: 23, text: 'Use documents.create() method to index the document' }
     ]
   }}
-  customWidth="50%"
+  customWidth="70%"
 />
 
-Review this practical example of deleting a document by its ID, complete 
-with error handling for reliability.
+Ingest a structured document into a corpus to make it searchable. Structured documents
+are organized into sections, each with optional titles and metadata, making them ideal
+for contracts, reports, or other organized content.
+
+**Key Parameters:**
+- `id` (string, required): Unique identifier for the document within the corpus
+- `type` (string, required): Must be "structured" for section-based documents  
+- `sections` (array, required): List of document sections with text content
+- `metadata` (object, optional): Document-level metadata for filtering
+
+**Section Parameters:**
+- `title` (string, optional): Section heading or title
+- `text` (string, required): The actual content text for this section
+- `metadata` (object, optional): Section-level metadata for fine-grained filtering
+
+**Error Handling:**
+- **400 Bad Request**: Invalid document structure or parameters
+- **403 Forbidden**: Insufficient permissions - ensure API key has indexing rights
+- **404 Not Found**: Corpus doesn't exist
+- **409 Conflict**: Document with the same ID already exists
 
 ---
 
-## 5. Update a Document (Partial/Metadata Merge)
-
-Enhance document management by mastering partial metadata updates, 
-perfect for tagging, categorization, and corrections.
-
-### Example 1: Add New Metadata Fields
-
+## Index a core document
 
 <CodePanel
+  title="Index a core document"
   snippets={[
     {
       language: 'python',
-      code: `document = client.documents.get(
-    corpus_key="employee_handbook",
-    document_id="policy_manual_v1"
-)
-document.metadata.update({"status": "active", "review_date": "2025-06-19"})
-client.documents.update(document)
-print("Metadata updated successfully")
-`
-    }
-  ]}
-  title="Add New Metadata Fields"
-  annotations={{
-    python: [
-      { line: 2, text: 'Fetches the existing document to update.' },
-      { line: 3, text: 'Specifies the corpus and document ID.' },
-      { line: 5, text: 'Merges new metadata fields (status and review date).' },
-      { line: 6, text: 'Commits the updated document to the corpus.' },
-      { line: 7, text: 'Confirms the update operation.' }
-    ]
-  }}
-  customWidth="50%"
-/>
+      code: `from vectara import CoreDocument, CoreDocumentPart
 
-Discover how to add new metadata fields to an existing document, merging 
-them seamlessly with current data.
-
----
-
-### Example 2: Modify Existing Metadata
-
-
-<CodePanel
-  snippets={[
-    {
-      language: 'python',
-      code: `document = client.documents.get(
-    corpus_key="tech_guides",
-    document_id="network_setup_v2"
-)
-document.metadata["priority"] = "urgent"
-client.documents.update(document)
-print(f"Priority updated to: {document.metadata.get('priority')}")
-`
-    }
-  ]}
-  title="Modify Existing Metadata"
-  annotations={{
-    python: [
-      { line: 2, text: 'Retrieves the document from a different corpus.' },
-      { line: 3, text: 'ID of the document to modify.' },
-      { line: 5, text: 'Updates the existing "priority" field, merging with other data.' },
-      { line: 6, text: 'Saves the changes to the corpus.' },
-      { line: 7, text: 'Verifies the updated priority value.' }
-    ]
-  }}
-  customWidth="50%"
-/>
-
-Learn to modify specific metadata fields of a document while preserving other 
-existing data for flexibility.
-
----
-
-### Example 3: Update with Error Handling
-
-<CodePanel
-  snippets={[
-    {
-      language: 'python',
-      code: `try:
-    document = client.documents.get(
-        corpus_key="training_materials",
-        document_id="safety_training_v3"
+try:
+    # Create core document
+    document = CoreDocument(
+        id="support-guide-001",
+        type="core",
+        document_parts=[
+            CoreDocumentPart(
+                text="Troubleshooting 403 authentication errors in the web portal requires clearing browser cache.",
+                metadata={"part_type": "solution", "error_code": "403"}
+            ),
+            CoreDocumentPart(
+                text="Token expiration is the most common cause of 403 errors in authenticated sessions.",
+                metadata={"part_type": "explanation", "error_code": "403"}
+            )
+        ],
+        metadata={"category": "support", "priority": "high"}
     )
-    document.metadata.update({"trainer": "John Doe", "duration": "2 hours"})
-    client.documents.update(document)
-    print("Metadata updated with new trainer and duration")
-except Exception as e:
-    print(f"Error updating metadata: {e}")
-`
+    
+    # Index the document
+    response = client.documents.create(
+        corpus_key="support-docs",
+        request=document
+    )
+    
+    print(f"Core document indexed successfully: {response}")
+    
+except ApiError as e:
+    print(f"Failed to index core document: {e.status_code} - {e.body}")`
     }
   ]}
-  title="Update Metadata with Error Handling"
   annotations={{
     python: [
-      { line: 2, text: 'Begins a try block for error management.' },
-      { line: 3, text: 'Fetches the document from the training corpus.' },
-      { line: 4, text: 'Specifies the document ID to update.' },
-      { line: 6, text: 'Merges new metadata fields for trainer and duration.' },
-      { line: 7, text: 'Applies the metadata changes.' },
-      { line: 8, text: 'Confirms success if no errors occur.' },
-      { line: 9, text: 'Catches and displays any errors encountered.' }
+      { line: 6, text: 'Type must be "core" for part-based documents' },
+      { line: 8, text: 'Core documents use document_parts instead of sections' },
+      { line: 11, text: 'Each part can have metadata for filtering' }
     ]
   }}
-  customWidth="50%"
+  customWidth="70%"
 />
 
-Gain insight into updating metadata with robust error handling, ensuring 
-smooth operations even with potential issues.
+Index a core document using document parts. Core documents are more flexible than 
+structured documents and work well for unstructured content like support articles,
+FAQs, or knowledge base entries.
+
+**Key Differences from Structured Documents:**
+- Uses `document_parts` instead of `sections`
+- Parts don't have titles, only text content and optional metadata
+- Better suited for unstructured or semi-structured content
+
+**Use Core Documents When:**
+- Content doesn't have clear section structure
+- You want maximum flexibility in document organization
+- Working with imported content from various sources
 
 ---
 
-## 6. Replace Document Metadata
-
-Completely replace the metadata object for a document. Use this for 
-overwriting tags or categories, and resetting metadata.
-
-### Example 1: Replace Metadata with New Tags
-
+## Complete workflow example
 
 <CodePanel
+  title="Complete workflow: Create corpus and index document"
   snippets={[
     {
       language: 'python',
-      code: `document = client.documents.get(
-    corpus_key="employee_handbook",
-    document_id="policy_manual_v1"
-)
-document.metadata = {"tags": ["active", "2025"], "category": "policies"}
-client.documents.update(document)
-print("Metadata replaced successfully")
-`
+      code: `from vectara import Vectara, StructuredDocument, StructuredDocumentSection
+from vectara.managers import CreateCorpusRequest
+from vectara.core.api_error import ApiError
+
+client = Vectara(api_key="YOUR_API_KEY")
+
+try:
+    # Step 1: Create corpus
+    corpus_request = CreateCorpusRequest(
+        key="legal-knowledge-base",
+        name="Legal Knowledge Base"
+    )
+    corpus_response = client.corpora.create(corpus_request)
+    print(f"Corpus created: {corpus_response.key}")
+    
+    # Step 2: Create and index document
+    document = StructuredDocument(
+        id="contract-template-001",
+        type="structured",
+        sections=[
+            StructuredDocumentSection(
+                title="Service Agreement Template",
+                text="Standard template for service provider agreements with liability and payment terms...",
+                metadata={"template_type": "service"}
+            )
+        ],
+        metadata={"document_category": "template"}
+    )
+    
+    doc_response = client.documents.create(
+        corpus_key="legal-knowledge-base",
+        request=document
+    )
+    
+    print(f"Document indexed successfully in new corpus")
+    
+except ApiError as e:
+    print(f"Workflow failed: {e.status_code} - {e.body}")`
     }
   ]}
-  title="Replace Metadata with New Tags"
   annotations={{
     python: [
-      { line: 2, text: 'Fetches the document to update its metadata.' },
-      { line: 3, text: 'Specifies the corpus and document ID.' },
-      { line: 5, text: 'Completely replaces metadata with new tags and category.' },
-      { line: 6, text: 'Commits the updated document to the corpus.' },
-      { line: 7, text: 'Confirms the metadata replacement.' }
+      { line: 9, text: 'Create corpus first before indexing documents' },
+      { line: 17, text: 'Use the corpus key from the creation step' },
+      { line: 29, text: 'Index document into the newly created corpus' }
     ]
   }}
-  customWidth="50%"
+  customWidth="70%"
 />
 
-See how to replace all existing metadata with a new set of tags, offering a 
-clean slate for categorization.
+Complete example showing corpus creation followed by document indexing. This workflow
+demonstrates the typical process of setting up a new knowledge base and populating 
+it with content.
+
+**Best Practices:**
+- Create corpus with descriptive key and name
+- Use consistent metadata schemas across documents
+- Handle errors gracefully with try-catch blocks
+- Verify corpus exists before attempting to index documents
 
 ---
 
-### Example 2: Reset Metadata to Empty
+## Next steps
 
+After indexing documents, you can:
 
-<CodePanel
-  snippets={[
-    {
-      language: 'python',
-      code: `document = client.documents.get(
-    corpus_key="tech_guides",
-    document_id="network_setup_v2"
-)
-document.metadata = {}
-client.documents.update(document)
-print("Metadata reset to empty")
-`
-    }
-  ]}
-  title="Reset Metadata to Empty"
-  annotations={{
-    python: [
-      { line: 2, text: 'Retrieves the document from a different corpus.' },
-      { line: 3, text: 'ID of the document to reset.' },
-      { line: 5, text: 'Replaces all metadata with an empty object.' },
-      { line: 6, text: 'Saves the changes to the corpus.' },
-      { line: 7, text: 'Indicates the metadata has been cleared.' }
-    ]
-  }}
-  customWidth="50%"
-/>
+- **Query your corpus**: Use `client.query()` with `SearchCorporaParameters` to search indexed content
+- **Add more documents**: Continue indexing additional documents to build your knowledge base
+- **Update documents**: Re-index with the same document ID to update existing content
+- **Filter by metadata**: Use the metadata you've added during indexing to refine search results
 
-Explore the process of resetting a document’s metadata to an empty state, 
-effectively clearing all previous data.
-
----
-
-### Example 3: Replace with Nested Metadata
-
-<CodePanel
-  snippets={[
-    {
-      language: 'python',
-      code: `document = client.documents.get(
-    corpus_key="training_materials",
-    document_id="safety_training_v3"
-)
-document.metadata = {"training": {"level": "intermediate", "date": "2025-06-19"}, "status": "completed"}
-client.documents.update(document)
-print("Metadata replaced with nested structure")
-`
-    }
-  ]}
-  title="Replace Metadata with Nested Structure"
-  annotations={{
-    python: [
-      { line: 2, text: 'Fetches the document from the training corpus.' },
-      { line: 3, text: 'Specifies the document ID to update.' },
-      { line: 5, text: 'Replaces metadata with a nested training object and status.' },
-      { line: 6, text: 'Applies the new metadata to the corpus.' },
-      { line: 7, text: 'Confirms the replacement with nested data.' }
-    ]
-  }}
-  customWidth="50%"
-/>
-
-Dive into replacing metadata with a nested structure, enabling advanced 
-categorization and detailed tracking.
-
----
-
-## Summarize a Document
-
-The summarize method lets you generate an LLM-powered summary for a 
-specific document in your corpus. Preview content, create search 
-snippets, or power generative UIs.
-
-You can control the LLM, provide a custom prompt template, or set additional 
-model parameters.
-
-### Example 1: Basic Document Summarization
-
-
-<CodePanel
-  title="Summarize a document with default LLM"
-  language="python"
-  snippets={[
-  { code: `summary = client.documents.summarize(
-    corpus_key="product_docs",
-    document_id="user_guide_v2",
-    llm_name="vectara-summary-llm"
-)
-print(summary.summary)
-`}
-]}
-  annotations={{
-    python: [
-      { line: 4, text: 'Specify the LLM to use for summarization.' },
-      { line: 5, text: 'Access the generated summary from the response.' },
-    ],
-}}
-  customWidth="50%"
-/>
-
-Learn to generate a summary using the default LLM settings, providing a 
-quick overview of document content.
-
----
-
-
-### Example 2: Summarize with a Custom Prompt Template and Model Parameters
-
-<CodePanel
-  title="Summarize with custom prompt and model parameters"
-  snippets={[
-    {
-      language: 'python',
-      code: `summary = client.documents.summarize(
-    corpus_key="product_docs",
-    document_id="troubleshooting_faq",
-    llm_name="mockingbird-2.0",
-    prompt_template="Summarize the following document for customer support \nagents: $document_content",
-    model_parameters={"temperature": 0.2}
-)
-print(summary.summary)`    }
-  ]}
-  annotations={{
-    python: [
-      { line: 5, text: 'Use a custom prompt template for your use case.' },
-      { line: 6, text: 'Control summary style/creativity with model parameters.' },
-    ],
-  }}
-  customWidth="50%"
-/>
-
-Customize the summarization process with a tailored prompt and model 
-parameters for precise control.
-
+For querying indexed documents, see the [Query API guide](https://docs.vectara.com/docs/api-reference/search-apis/search).

@@ -12,7 +12,7 @@ guides you through installing the SDK, authenticating with an API key, creating
 a corpus, uploading a document, and running a semantic query.
 
 Each step builds toward a functional setup for indexing and querying content, 
-enabling you to leverage Vectara’s Retrieval Augmented Generation (RAG) 
+enabling you to leverage Vectara's Retrieval Augmented Generation (RAG) 
 capabilities for applications like enterprise search, chatbots, or knowledge 
 bases.
 
@@ -32,7 +32,7 @@ bases.
 />
 
 Install the Vectara Python SDK using pip to access its core functionality for 
-interacting with Vectara’s API.
+interacting with Vectara's API.
 
 This step prepares your Python environment 
 (version 3.7 or higher recommended) for corpus management, document indexing, 
@@ -67,17 +67,17 @@ client = Vectara(api_key="YOUR_API_KEY")`
 />
 
 Authenticate with the Vectara API using an API key to securely access your 
-account’s resources.  
+account's resources.  
 
 The `Vectara` client initializes a connection to 
-Vectara’s services, enabling subsequent operations like corpus creation and 
+Vectara's services, enabling subsequent operations like corpus creation and 
 querying.
 
  - `api_key` (string, required): A unique API key from the Vectara Console, used 
   for authentication.  
   Example: `zwt_abc123...`.  
   Keep this secret to prevent unauthorized access.
-- **Purpose**: Establishes a secure session with Vectara’s API, required for all SDK 
+- **Purpose**: Establishes a secure session with Vectara's API, required for all SDK 
   operations.
 - **Constraints**: Obtain the API key from the Vectara Console under your 
   account settings.  
@@ -95,16 +95,19 @@ Store API keys in environment variables or secure vaults (`.env`
   snippets={[
     {
       language: 'python',
-      code: `client.corpora.create(
+      code: `from vectara.managers import CreateCorpusRequest
+
+request = CreateCorpusRequest(
     key="quickstart-corpus",
     name="Quick Start Docs"
-)`
+)
+response = client.corpora.create(request)`
     }
   ]}
   annotations={{
     python: [
-      { line: 2, text: "Corpus key must be unique in your account" },
-      { line: 3, text: "Give your corpus a descriptive name" }
+      { line: 3, text: "Corpus key must be unique in your account" },
+      { line: 4, text: "Give your corpus a descriptive name" }
     ]
   }}
   customWidth="50%"
@@ -128,7 +131,7 @@ the foundation for storing and querying content.
 - `name` (string, required): A human-readable name (`Quick Start Docs`).  
   Maximum length: 255 characters.  
   Helps identify the corpus in the Vectara Console.
-- `description` (string, optional): A brief description of the corpus’s 
+- `description` (string, optional): A brief description of the corpus's 
   purpose (`Demo corpus for quickstart`).  
   Maximum length: 1000 characters.
 - `request_timeout` (integer, optional): Timeout in seconds for the 
@@ -156,25 +159,27 @@ API key permissions to control access.
       language: 'python',
       code: `from vectara import StructuredDocument, StructuredDocumentSection
 
-client.documents.create(
+document = StructuredDocument(
+    id="welcome-doc",
+    type="structured",
+    sections=[
+        StructuredDocumentSection(
+            title="Welcome",
+            text="Welcome to Vectara! This is your first document."
+        )
+    ]
+)
+
+response = client.documents.create(
     corpus_key="quickstart-corpus",
-    request=StructuredDocument(
-        id="welcome-doc",
-        type="structured",
-        sections=[
-            StructuredDocumentSection(
-                title="Welcome",
-                text="Welcome to Vectara! This is your first document."
-            )
-        ]
-    )
+    request=document
 )`
     }
   ]}
   annotations={{
     python: [
       { line: 4, text: "Document must have a unique ID" },
-      { line: 8, text: "Add a simple section and text" }
+      { line: 8, text: "Add a simple section with title and text" }
     ]
   }}
   customWidth="50%"
@@ -189,10 +194,10 @@ This step populates your corpus with content for querying.
 
 - `corpus_key` (string, required): The target corpus identifier (`quickstart-corpus`), matching the key from step 3.
  - `request` (StructuredDocument, required): Defines the document structure.
-   - `id` (string, required): A unique document ID within `welcome-doc`. 
+   - `id` (string, required): A unique document ID within the corpus (`welcome-doc`). 
   Alphanumeric, underscores, or hyphens, maximum 100 characters.
    - `type` (string, required): Set to `"structured"` for section-based documents.
-   - `sections` (list[dict], required for `structured`): List of document sections.
+   - `sections` (list[StructuredDocumentSection], required): List of document sections.
      - `title` (string, optional): Section title (`Welcome`).  
   Maximum length: 255 characters.
      - `text` (string, required): Section content (`Welcome to Vectara! This is your first document.`).  
@@ -218,22 +223,24 @@ datasets, consider uploading files (PDFs).
   snippets={[
     {
       language: 'python',
-      code: `from vectara import SearchCorporaParameters, KeyedSearchCorpus
+      code: `from vectara import SearchCorporaParameters
 
 search = SearchCorporaParameters(
-    corpora=[KeyedSearchCorpus(corpus_key="quickstart-corpus")]
+    corpora=[{"corpus_key": "quickstart-corpus"}]
 )
+
 response = client.query(
     query="What is Vectara?",
     search=search
 )
+
 print(response.results)`
     }
   ]}
   annotations={{
     python: [
-      { line: 6, text: "Query your corpus with natural language" },
-      { line: 9, text: "Print search results" }
+      { line: 7, text: "Query your corpus with natural language" },
+      { line: 12, text: "Print search results" }
     ]
   }}
   customWidth="50%"
@@ -245,10 +252,10 @@ natural language.
 The `client.query` endpoint (HTTP POST `/query`) searches the corpus and 
 returns results ordered by relevance.
 
- - `query` (string, required): The natural language query ("What is Vectara?"`).  
+ - `query` (string, required): The natural language query (`"What is Vectara?"`).  
   Maximum length: 1000 characters.
  - `search` (SearchCorporaParameters, required): Configures the search parameters.
-   - `corpora` (list[KeyedSearchCorpus], required): List of corpora to query.
+   - `corpora` (list[dict], required): List of corpora to query.
      - `corpus_key` (string, required): The corpus to search (`quickstart-corpus`).
      - `metadata_filter` (string, optional): Filters results by metadata (`doc.category = 'intro'`).  
   Default: empty string.
