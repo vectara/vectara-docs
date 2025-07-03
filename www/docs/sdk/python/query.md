@@ -104,7 +104,7 @@ except ApiError as e:
       { line: 24, text: 'Access generated summary from RAG' }
     ]
   }}
-  customWidth="70%"
+  customWidth="50%"
 />
 
 Perform a query with Retrieval Augmented Generation (RAG) to get both search results 
@@ -186,7 +186,7 @@ except ApiError as e:
       { line: 25, text: 'Custom prompt template for specialized responses' }
     ]
   }}
-  customWidth="70%"
+  layout="stacked"
 />
 
 Execute sophisticated queries with metadata filtering, reranking, and custom generation 
@@ -219,7 +219,7 @@ prompts for specialized use cases.
     )
     
     generation = GenerationParameters(
-        generation_preset_name="vectara-omni-1.0",
+        generation_preset_name="vectara-summary-ext-24-05-med-omni",
         max_used_search_results=20,
         response_language="eng"
     )
@@ -248,7 +248,7 @@ except ApiError as e:
       { line: 21, text: 'Display text immediately for better user experience' }
     ]
   }}
-  customWidth="70%"
+  customWidth="50%"
 />
 
 Stream query responses in real-time for better user experience in interactive applications 

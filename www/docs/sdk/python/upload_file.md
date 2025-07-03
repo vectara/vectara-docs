@@ -103,7 +103,7 @@ except FileNotFoundError:
       { line: 18, text: 'Handle API errors with status codes' }
     ]
   }}
-  customWidth="70%"
+  customWidth="50%"
 />
 
 Upload a document (HR policy or compliance guide) to a corpus. Vectara automatically 
@@ -160,7 +160,7 @@ except ApiError as e:
       { line: 13, text: 'Mark documents that contain tabular data' }
     ]
   }}
-  customWidth="70%"
+  customWidth="50%"
 />
 
 Upload documents containing tables, charts, or structured data with enhanced extraction 
@@ -219,7 +219,7 @@ except ApiError as e:
       { line: 15, text: 'Boolean metadata values for precise filtering' }
     ]
   }}
-  customWidth="70%"
+  customWidth="50%"
 />
 
 Upload files directly from file objects, perfect for streaming scenarios where files 
@@ -286,7 +286,7 @@ results = batch_upload_files(client, "legal-docs", file_paths)`
       { line: 16, text: 'Include batch identifier for tracking related uploads' }
     ]
   }}
-  customWidth="70%"
+  customWidth="50%"
 />
 
 Efficiently upload multiple files with automatic categorization, error handling, 
@@ -348,7 +348,7 @@ except ApiError as e:
       { line: 23, text: 'Use smaller chunks for precise table data retrieval' }
     ]
   }}
-  customWidth="70%"
+  customWidth="50%"
 />
 
 Upload invoices with enhanced table extraction to capture line items, amounts, 
@@ -419,7 +419,7 @@ precise financial queries and analysis.
         return {"success": False, "error": f"Unexpected error: {str(e)}"}`
     }
   ]}
-  customWidth="70%"
+  customWidth="50%"
 />
 
 **Production Guidelines:**

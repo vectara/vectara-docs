@@ -73,7 +73,7 @@ except ApiError as e:
       { line: 23, text: 'Execute query with enhanced result ordering' }
     ]
   }}
-  customWidth="70%"
+  customWidth="50%"
 />
 
 This example demonstrates using Vectara's multilingual reranker, which provides 
@@ -132,7 +132,7 @@ except ApiError as e:
       { line: 11, text: 'Filter out results below 0.3 relevance score' }
     ]
   }}
-  customWidth="70%"
+  customWidth="50%"
 />
 
 **MMR Configuration Parameters:**
@@ -190,7 +190,7 @@ except ApiError as e:
       { line: 9, text: 'Boost in-stock products by 50%, reduce out-of-stock by 90%' }
     ]
   }}
-  customWidth="70%"
+  layout="stacked"
 />
 
 **UDF Function Examples:**
@@ -275,7 +275,7 @@ except ApiError as e:
       { line: 19, text: 'Boost products with high customer ratings' }
     ]
   }}
-  customWidth="70%"
+  layout="stacked"
 />
 
 **Chain Reranker Strategy:**
@@ -350,7 +350,7 @@ except ApiError as e:
       { line: 21, text: 'Process reranked chunks as they arrive' }
     ]
   }}
-  customWidth="70%"
+  customWidth="50%"
 />
 
 **Streaming with Rerankers Benefits:**
@@ -395,7 +395,7 @@ except ApiError as e:
       { line: 9, text: 'Access reranker properties for configuration' }
     ]
   }}
-  customWidth="70%"
+  customWidth="50%"
 />
 
 **Listing Parameters:**
@@ -451,7 +451,7 @@ performance_config = {
 }`
     }
   ]}
-  customWidth="70%"
+  layout="stacked"
 />
 
 **Performance Guidelines:**
@@ -513,7 +513,7 @@ performance_config = {
             return {"success": False, "error": f"{e.status_code}: {e.body}"}`
     }
   ]}
-  customWidth="70%"
+  customWidth="52%"
 />
 
 **Common Error Scenarios:**

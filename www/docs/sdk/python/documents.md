@@ -52,7 +52,7 @@ except ApiError as e:
       { line: 15, text: 'Document objects contain ID and metadata, not full content' }
     ]
   }}
-  customWidth="70%"
+  customWidth="50%"
 />
 
 Explore powerful methods to retrieve and manage document listings within a 
@@ -120,7 +120,7 @@ except ApiError as e:
       { line: 23, text: 'Use documents.create() method to index the document' }
     ]
   }}
-  customWidth="70%"
+  customWidth="50%"
 />
 
 Unlock the process of indexing new content into your corpus, supporting 
@@ -294,7 +294,7 @@ except ApiError as e:
       { line: 9, text: 'Access the generated summary from the response' }
     ]
   }}
-  customWidth="70%"
+  customWidth="50%"
 />
 
 Generate LLM-powered summaries for specific documents in your corpus. Use this for 

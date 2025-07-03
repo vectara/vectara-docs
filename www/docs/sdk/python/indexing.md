@@ -104,7 +104,7 @@ except ApiError as e:
       { line: 23, text: 'Use documents.create() method to index the document' }
     ]
   }}
-  customWidth="70%"
+  customWidth="50%"
 />
 
 Ingest a structured document into a corpus to make it searchable. Structured documents
@@ -176,7 +176,7 @@ except ApiError as e:
       { line: 11, text: 'Each part can have metadata for filtering' }
     ]
   }}
-  customWidth="70%"
+  customWidth="50%"
 />
 
 Index a core document using document parts. Core documents are more flexible than 
@@ -249,7 +249,7 @@ except ApiError as e:
       { line: 29, text: 'Index document into the newly created corpus' }
     ]
   }}
-  customWidth="70%"
+  customWidth="50%"
 />
 
 Complete example showing corpus creation followed by document indexing. This workflow

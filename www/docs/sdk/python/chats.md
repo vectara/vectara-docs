@@ -109,7 +109,7 @@ except ApiError as e:
       { line: 26, text: 'Start conversation with first message' }
     ]
   }}
-  customWidth="70%"
+  layout="stacked"
 />
 
 Create a chat session that can maintain conversation context across multiple exchanges.
@@ -190,7 +190,7 @@ except ApiError as e:
       { line: 34, text: 'Third turn builds on "supervised learning" from context' }
     ]
   }}
-  customWidth="70%"
+  layout="stacked"
 />
 
 Demonstrate a natural multi-turn conversation where the AI maintains context across 
@@ -290,7 +290,7 @@ except ApiError as e:
       { line: 15, text: 'Process and display chunks immediately' }
     ]
   }}
-  customWidth="70%"
+  customWidth="50%"
 />
 
 Stream chat responses in real-time for better user experience in interactive applications.
@@ -425,7 +425,7 @@ if response:
     print(f"Quality Score: {response['score']}")`
     }
   ]}
-  customWidth="70%"
+  customWidth="50%"
 />
 
 **Best Practices:**
