@@ -1,0 +1,30 @@
+tabs:
+  home:
+    display-name: Home
+    icon: fa-regular fa-home
+    skip-slug: true
+  api:
+    display-name: API Reference
+    icon: fa-regular fa-code
+    skip-slug: true
+  
+  
+navigation:
+  - tab: home
+    layout:
+      - section: Introduction
+        skip-slug: true
+        contents:
+          - page: Introduction
+            path: ../pages/introduction.mdx
+  - tab: api
+    layout:
+      - api: API Reference
+        api-name: v2
+        snippets:
+          python: vectara 
+          typescript: vectara
+      - changelog: ../changelog
+        title: Changelog
+        slug: changelog
+        
