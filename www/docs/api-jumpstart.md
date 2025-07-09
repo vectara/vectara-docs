@@ -68,35 +68,35 @@ This example queries the corpus with the question about annual PTO.
 -H 'Content-Type: application/json' \\
 -H 'Accept: application/json' \\
 -H 'x-api-key: abc_12345defg67890hij09876' \\
---data-raw '{
-  "query": "How much PTO is offered to employees each year?",
-  "stream_response": false,
-  "search": {
-    "limit": 20,
-    "context_configuration": {
-      "sentences_before": 3,
-      "sentences_after": 3,
-      "start_tag": "<b>",
-      "end_tag": "</b>"
+-d '{
+    "query": "How much PTO is offered to employees each year?",
+    "stream_response": false,
+    "search": {
+      "limit": 20,
+      "context_configuration": {
+        "sentences_before": 3,
+        "sentences_after": 3,
+        "start_tag": "<b>",
+        "end_tag": "</b>"
+      },
+      "metadata_filter": "part.lang = \'eng\'",
+      "lexical_interpolation": 0.005,
     },
-    "metadata_filter": "part.lang = \'eng\'",
-    "lexical_interpolation": 0.1,
-    "semantics": "default"
-  },
-  "generation": [
-    {
-      "generation_preset_name": "mockingbird-2.0",
-      "max_used_search_results": 5
-    }
-  ]
-}'`
+    "generation": [
+      {
+        "generation_preset_name": "mockingbird-2.0",
+        "max_used_search_results": 20
+      }
+    ]
+  }'`
     }
   ]}
   title="Vectara API Query"
   annotations={{
     bash: [
       { line: 4, text: 'Replace with your actual API key.' },
-      { line: 13, text: 'Limits summarization to 5 results.' }
+      { line: 9, text: 'Limits summarization to 20 results.' },
+      { line: 21, text: 'Specifies Mockingbird 2.0 as the generation preset.' }
     ]
   }}
   layout="stacked"
@@ -171,6 +171,7 @@ In this example, you have a local `doc.rtf` file that you want to
 upload the corpus with the `corpus_key` as `employee-handbook`:
 
 <CodePanel
+  title="Upload File to Corpus"
   snippets={[
     {
       language: 'bash',
@@ -181,7 +182,6 @@ upload the corpus with the `corpus_key` as `employee-handbook`:
 -F 'file=@"//Users/username/Documents/tmp/doc.rtf"'`
     }
   ]}
-  title="Upload File to Corpus"
   annotations={{
     bash: [
       { line: 4, text: 'Replace with your actual API key.' },
@@ -196,6 +196,7 @@ upload the corpus with the `corpus_key` as `employee-handbook`:
 The file uploads successfully and you get the following response:
 
 <CodePanel
+  title="Upload File Response"
   snippets={[
     {
       language: 'json',
@@ -217,8 +218,7 @@ The file uploads successfully and you get the following response:
   }
 }`
     }
-  ]}
-  title="Upload File Response"
+  ]}  
   annotations={{
     json: [
       { line: 3, text: 'Quota consumption details for the upload.' },
@@ -231,7 +231,7 @@ The file uploads successfully and you get the following response:
 ### Issue a query and return a specific number of results
 
 In this query, you want to search for the term "technology" and then return
-only the first 5 results.
+only the first 50 results.
 
 #### Example cURL command
 
@@ -243,28 +243,28 @@ only the first 5 results.
 -H 'Content-Type: application/json' \\
 -H 'Accept: application/json' \\
 -H 'x-api-key: abc_12345defg67890hij09876' \\
---data-raw '{
-  "query": "Technology",
-  "stream_response": false,
-  "search": {
-    "offset": 0,
-    "limit": 5,
-    "custom_dimensions": {},
-    "metadata_filter": "part.lang = \'eng\'",
-    "lexical_interpolation": 0,
-    "semantics": "default"
-  },
-  "generation": {
-    "max_used_search_results": 5
-  }
-}'`
+-d '{
+      "query": "Technology",
+      "stream_response": false,
+      "search": {
+        "limit": 50,
+        "metadata_filter": "part.lang = \'eng\'",
+        "lexical_interpolation": 0.005,
+        "semantics": "default"
+      },
+      "generation": {
+        "generation_preset_name": "vectara-summary-ext-24-05-med-omni",
+        "max_used_search_results": 50
+      }
+    }'`
     }
   ]}
-  title="Query with 5 Results"
+  title="Query with 50 Results"
   annotations={{
     bash: [
       { line: 4, text: 'Replace with your actual API key.' },
-      { line: 10, text: 'Limits the number of results to 5.' }
+      { line: 9, text: 'Limits the number of results to 50.' },
+      { line: 15, text: 'Specifies the GPT-4o generation preset.' }
     ]
   }}
   layout="stacked"
@@ -347,7 +347,7 @@ the name.
   annotations={{
     bash: [
       { line: 4, text: 'Replace with your actual API key.' },
-      { line: 2, text: 'Filters corpora containing "handbook" and limits to 8.' }
+      { line: 1, text: 'Filters corpora containing "handbook" and limits to 8.' }
     ]
   }}
   layout="stacked"
@@ -411,7 +411,7 @@ the name.
   snippets={[
     {
       language: 'bash',
-      code: `curl -L -X DELETE 'https://api.vectara.io/v2/corpora/2022-handbook' \\
+      code: `curl -L -X DELETE 'https://api.vectara.io/v2/corpora/2025-handbook' \\
   -H 'Content-Type: application/json' \\
   -H 'Accept: application/json' \\
   -H 'x-api-key: abc_12345defg67890hij09876'`
@@ -420,7 +420,7 @@ the name.
   title="Delete Corpus"
   annotations={{
     bash: [
-      { line: 2, text: 'Specifies the corpus to delete (e.g., "2022-handbook").' },
+      { line: 1, text: 'Specifies the corpus to delete ("2025-handbook").' },
       { line: 4, text: 'Replace with your actual API key.' }
     ]
   }}
