@@ -58,21 +58,27 @@ Ensure your API key has querying permissions for the target corpora.
 ## Simple query with generation
 
 <CodePanel
-  title="Simple query with generation"
+  title="Simple Query with Generation (RAG)"
   snippets={[
     {
-      language: 'python',
-      code: `from vectara import SearchCorporaParameters, GenerationParameters
+      language: "python", 
+      code: `import os
+from vectara import Vectara, SearchCorporaParameters, GenerationParameters
+from vectara.core.api_error import ApiError
+
+# Initialize client
+api_key = os.getenv("VECTARA_API_KEY", "YOUR_API_KEY")
+client = Vectara(api_key=api_key)
 
 try:
     # Configure search parameters
     search = SearchCorporaParameters(
-        corpora=[{"corpus_key": "legal-docs"}]
+        corpora=[{"corpus_key": "support-docs"}]
     )
     
     # Configure generation with recommended settings
     generation = GenerationParameters(
-        generation_preset_name="vectara-omni-1.0",
+        generation_preset_name="vectara-summary-ext-24-05-med-omni",
         max_used_search_results=50,
         response_language="eng",
         enable_factual_consistency_score=True
@@ -80,7 +86,7 @@ try:
     
     # Execute query with RAG
     response = client.query(
-        query="What does the indemnification clause mean in this contract?",
+        query="What does error 403 mean?",
         search=search,
         generation=generation
     )
@@ -97,11 +103,12 @@ except ApiError as e:
   ]}
   annotations={{
     python: [
-      { line: 5, text: 'Specify the corpus to search' },
-      { line: 10, text: 'Use omni generation preset for best quality' },
-      { line: 11, text: 'Set 50 max search results for comprehensive coverage' },
-      { line: 18, text: 'Execute query with both search and generation' },
-      { line: 24, text: 'Access generated summary from RAG' }
+      { line: 12, text: "Target specific corpus for search" },
+      { line: 16, text: "Use recommended preset for high-quality responses" },
+      { line: 18, text: "Include more results for better context" },
+      { line: 20, text: "Enable confidence scoring for generated summaries" },
+      { line: 30, text: "AI-generated summary based on search results" },
+      { line: 33, text: "Access individual search results with relevance scores" }
     ]
   }}
   customWidth="50%"
@@ -112,8 +119,10 @@ and an AI-generated summary. This is the most common pattern for getting compreh
 answers from your corpus.
 
 **Key Parameters:**
-- `generation_preset_name`: "vectara-omni-1.0" provides high-quality, comprehensive responses
-- `max_used_search_results`: 50 ensures the LLM has substantial context for generation
+- `generation_preset_name`: `vectara-summary-ext-24-05-med-omni` provides high-quality, 
+  comprehensive responses using GPT-4o
+- `max_used_search_results`: 50 results ensures the LLM has substantial context for 
+  generation
 - `enable_factual_consistency_score`: Provides confidence score for the generated summary
 
 **Returns:**
@@ -133,48 +142,47 @@ Use this pattern when you need both specific document excerpts and a synthesized
     {
       language: 'python',
       code: `try:
-    # Advanced search with metadata filtering
-    search = SearchCorporaParameters(
-        corpora=[{
-            "corpus_key": "legal-docs",
-            "metadata_filter": "doc.jurisdiction = 'California' AND doc.legal_domain = 'IP'",
-            "lexical_interpolation": 0.3
-        }],
-        context_configuration={
-            "sentences_before": 3,
-            "sentences_after": 3,
-            "start_tag": "<em>",
-            "end_tag": "</em>"
-        },
-        reranker={
-            "type": "customer_reranker",
-            "reranker_name": "Rerank_Multilingual_v1",
-            "limit": 100,
-            "cutoff": 0.6
-        }
-    )
-    
-    # Advanced generation with custom prompt
-    generation = GenerationParameters(
-        generation_preset_name="vectara-omni-1.0",
-        max_used_search_results=25,
-        max_response_characters=500,
-        response_language="eng",
-        enable_factual_consistency_score=True,
-        prompt_template="You are a legal research assistant. Summarize the following search results about IP rulings: $vectaraQueryResults"
-    )
-    
-    response = client.query(
-        query="Summarize recent court rulings on IP rights in California",
-        search=search,
-        generation=generation
-    )
-    
-    print(f"Summary: {response.summary}")
-    print(f"Response based on {len(response.search_results)} filtered results")
-    
+  # Advanced search with metadata filtering
+  search = SearchCorporaParameters(
+      corpora=[{
+          "corpus_key": "legal-docs",
+          "metadata_filter": "doc.jurisdiction = 'California'",
+          "lexical_interpolation": 0.3
+      }],
+      context_configuration={
+          "sentences_before": 3,
+          "sentences_after": 3,
+          "start_tag": "<em>",
+          "end_tag": "</em>"
+      },
+      reranker={
+          "type": "customer_reranker",
+          "reranker_name": "Rerank_Multilingual_v1",
+          "limit": 100,
+          "cutoff": 0.6
+      }
+  )
+  
+  # Advanced generation with custom prompt
+  generation = GenerationParameters(
+      generation_preset_name="vectara-summary-ext-24-05-med-omni",
+      max_used_search_results=25,
+      response_language="eng",
+      enable_factual_consistency_score=True,
+      prompt_template="You are a legal research assistant. Summarize the \nfollowing search results about IP rulings: $vectaraQueryResults"
+  )
+  
+  response = client.query(
+      query="Summarize recent court rulings on IP rights in California",
+      search=search,
+      generation=generation
+  )
+  
+  print(f"Summary: {response.summary}")
+  print(f"Response based on {len(response.search_results)} filtered results")
+  
 except ApiError as e:
-    print(f"Advanced query failed: {e.status_code} - {e.body}")`
+  print(f"Advanced query failed: {e.status_code} - {e.body}")`
     }
   ]}
   annotations={{
@@ -186,7 +194,7 @@ except ApiError as e:
       { line: 25, text: 'Custom prompt template for specialized responses' }
     ]
   }}
-  layout="stacked"
+  customWidth="50%"
 />
 
 Execute sophisticated queries with metadata filtering, reranking, and custom generation 

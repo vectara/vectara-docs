@@ -38,35 +38,42 @@ You can set metadata at:
   snippets={[
     {
       language: "python",
-      code: `from vectara import StructuredDocument, StructuredDocumentSection
+      code: `import os
+from vectara import Vectara, StructuredDocument, StructuredDocumentSection
+from vectara.core.api_error import ApiError
 
-doc = StructuredDocument(
-    id="employee-handbook-2024",
-    type="structured",
-    title="Employee Handbook",
-    metadata={
-        "department": "hr",
-        "year": 2024,
-        "doc_type": "policy"
-    },
-    sections=[
-        StructuredDocumentSection(
-            title="Vacation Policy",
-            text="Employees receive 20 days of PTO.",
-            metadata={"section": "vacation", "policy_level": "global"}
-        )
-    ]
-)
-client.documents.create(
-    corpus_key="company-policies",
-    request=doc
-)`
+try:  
+    doc = StructuredDocument(
+        id="employee-handbook-2025",
+        type="structured",
+        metadata={
+            "department": "hr",
+            "year": 2024,
+            "doc_type": "policy"
+        },
+        sections=[
+            StructuredDocumentSection(
+                title="Vacation Policy",
+                text="Employees receive 20 days of PTO.",
+                metadata={"section": "vacation", "policy_level": "global"}
+            )
+        ]
+    )
+    
+    response = client.documents.create(
+        corpus_key="hr-docs",
+        request=doc
+    )
+    print(f"✅ Document indexed: {doc.id}")
+    
+except ApiError as e:
+    print(f"❌ Failed: {e.status_code} - {e.body}")`
     }
   ]}
   annotations={{
     python: [
-      { line: 7, text: "Document-level metadata (available for filtering)" },
-      { line: 13, text: "Section-level metadata (for part-level filters)" }
+      { line: 9, text: 'Document-level metadata (available for filtering)' },
+      { line: 18, text: 'Section-level metadata (for part-level filters)' }
     ]
   }}
   layout="stacked"
@@ -88,21 +95,36 @@ parts.
   snippets={[
     {
       language: "python",
-      code: `from vectara import SearchCorporaParameters, KeyedSearchCorpus
+      code: `import os
+from vectara import Vectara, SearchCorporaParameters, KeyedSearchCorpus
+from vectara.core.api_error import ApiError
 
-search = SearchCorporaParameters(
-    corpora=[
-        KeyedSearchCorpus(
-            corpus_key="company-policies",
-            metadata_filter="department = 'hr' AND year = 2024 AND section = 'vacation'"
-        )
-    ]
-)
-response = client.query(
-    query="How much PTO do employees receive?",
-    search=search
-)
-print(response.results)`
+try:
+    search = SearchCorporaParameters(
+        corpora=[
+            KeyedSearchCorpus(
+                corpus_key="hr-docs",
+                metadata_filter="department = 'hr' AND year = 2024"
+            )
+        ]
+    )
+    
+    response = client.query(
+        query="How much PTO do employees receive?",
+        search=search
+    )
+    
+    if hasattr(response, 'search_results') and response.search_results:
+        print(f"✅ Found {len(response.search_results)} results")
+        for result in response.search_results:
+            print(f"Score: {result.score:.3f}")
+            print(f"Text: {result.text[:100]}...")
+            print("---")
+    else:
+        print("⚠️ No results found")
+        
+except ApiError as e:
+    print(f"❌ Query failed: {e.status_code} - {e.body}")`
     }
   ]}
   annotations={{
