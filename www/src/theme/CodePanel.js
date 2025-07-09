@@ -9,6 +9,9 @@ import 'prismjs/components/prism-json';
 import 'prismjs/components/prism-yaml';
 import 'prismjs/components/prism-sql';
 
+// Import Prism CSS theme for proper syntax highlighting
+import 'prismjs/themes/prism-tomorrow.css';
+
 import styles from './CodePanel.module.css';
 
 export default function CodePanel({
@@ -59,11 +62,29 @@ export default function CodePanel({
   /* Re-highlight whenever language or code changes            */
   /* ---------------------------------------------------------- */
   useEffect(() => {
-    const grammar =
-      Prism.languages[snippet.language] ?? Prism.languages.markup;
-    setHighlighted(
-      Prism.highlight(snippet.code, grammar, snippet.language),
-    );
+    // Ensure proper language mapping and fallback
+    const languageMap = {
+      'sh': 'bash',
+      'shell': 'bash',
+      'js': 'javascript',
+      'jsx': 'javascript',
+      'ts': 'typescript',
+      'tsx': 'typescript',
+      'py': 'python'
+    };
+    
+    const normalizedLanguage = languageMap[snippet.language] || snippet.language;
+    const grammar = Prism.languages[normalizedLanguage] || Prism.languages.markup;
+    
+    try {
+      setHighlighted(
+        Prism.highlight(snippet.code, grammar, normalizedLanguage)
+      );
+    } catch (error) {
+      console.warn('Syntax highlighting failed:', error);
+      // Fallback to plain text if highlighting fails
+      setHighlighted(snippet.code);
+    }
   }, [snippet]);
 
   /* Strip tags when copying an individual line */
@@ -83,17 +104,17 @@ export default function CodePanel({
         >
           <span className={styles.lineNumber}>{num}</span>
 
-          {anno && (
-            <span className={styles.marker} data-tooltip={anno.text}>
-              ?
-            </span>
-          )}
-
-          {/* eslint-disable-next-line react/no-danger */}
+                    {/* eslint-disable-next-line react/no-danger */}
           <span
             className={styles.codeHtml}
             dangerouslySetInnerHTML={{__html: html || ''}}
           />
+
+          {anno && (
+            <span className={styles.marker} data-tooltip={anno.text}>
+              ?
+            </span>
+          )}          
         </div>
       );
     });
