@@ -62,55 +62,54 @@ Ensure your API key has query permissions for the target corpora.
   snippets={[
     {
       language: 'python',
-      code: `from vectara import SearchCorporaParameters, GenerationParameters, ChatParameters
+      code: `import os
+from vectara import Vectara, SearchCorporaParameters, GenerationParameters, \nChatParameters
+from vectara.core.api_error import ApiError
+
+api_key = os.getenv("VECTARA_API_KEY", "YOUR_API_KEY")
+
+if api_key == "YOUR_API_KEY":
+    print("Please set VECTARA_API_KEY environment variable")
+    exit(1)
+
+client = Vectara(api_key=api_key)
 
 try:
-    # Configure search parameters
     search = SearchCorporaParameters(
-        corpora=[{"corpus_key": "support-kb"}]
+        corpora=[{"corpus_key": "support-docs"}]
     )
-    
-    # Configure generation with optimal settings
     generation = GenerationParameters(
-        generation_preset_name="vectara-omni-1.0",
+        generation_preset_name="vectara-summary-ext-24-05-med-omni",
         max_used_search_results=20,
         response_language="eng",
         enable_factual_consistency_score=True,
-        prompt_template="You are a helpful technical support assistant. Answer based on: $vectaraQueryResults"
     )
-    
-    # Configure chat to store history
     chat = ChatParameters(store=True)
-    
-    # Create chat session
     session = client.create_chat_session(
         search=search,
         generation=generation,
         chat_config=chat
     )
-    
-    # Start the conversation
     response = session.chat(query="How do I reset my password?")
-    
     print(f"Chat ID: {response.chat_id}")
     print(f"Answer: {response.answer}")
     print(f"Factual Consistency: {response.factual_consistency_score}")
-    
 except ApiError as e:
     print(f"Chat creation failed: {e.status_code} - {e.body}")`
     }
   ]}
   annotations={{
     python: [
-      { line: 5, text: 'Specify corpus to search for context' },
-      { line: 10, text: 'Use omni generation preset for best quality' },
-      { line: 11, text: 'Limit search results for focused responses' },
-      { line: 18, text: 'Enable chat history storage for multi-turn conversations' },
-      { line: 26, text: 'Start conversation with first message' }
+      { line: 13, text: 'Specify corpus to search for context.' },
+      { line: 17, text: 'Use an optimal generation preset for summary quality.' },
+      { line: 18, text: 'Control number of results used for generation.' },
+      { line: 22, text: 'Enable chat history for multi-turn support.' },
+      { line: 30, text: 'Send the user\'s first message to start the chat.' }
     ]
   }}
-  layout="stacked"
+  customWidth="50%"
 />
+
 
 Create a chat session that can maintain conversation context across multiple exchanges.
 The session handles RAG integration automatically, providing contextual responses based 
@@ -137,48 +136,48 @@ on your corpus content.
     {
       language: 'python',
       code: `try:
-    # Configure chat session (same as above)
+    # Configure chat session
     search = SearchCorporaParameters(
-        corpora=[{"corpus_key": "technical-docs"}]
+        corpora=[{"corpus_key": "quickstart-docs"}]
     )
-    
+
     generation = GenerationParameters(
-        generation_preset_name="vectara-omni-1.0",
+        generation_preset_name="vectara-summary-ext-24-05-med-omni",
         max_used_search_results=20,
         response_language="eng",
         enable_factual_consistency_score=True
     )
-    
+
     chat = ChatParameters(store=True)
-    
+
     # Create session
     session = client.create_chat_session(
         search=search,
         generation=generation,
         chat_config=chat
     )
-    
+
     print("=== Multi-Turn Chat Example ===")
-    
+
     # Turn 1: Initial question
     response1 = session.chat(query="What is machine learning?")
     print(f"User: What is machine learning?")
     print(f"Assistant: {response1.answer}")
     print(f"Factual Score: {response1.factual_consistency_score}")
     print()
-    
+
     # Turn 2: Follow-up question (context maintained automatically)
     response2 = session.chat(query="What are the main types?")
     print(f"User: What are the main types?")
     print(f"Assistant: {response2.answer}")
     print()
-    
+
     # Turn 3: Deeper dive (builds on previous context)
     response3 = session.chat(query="Can you give examples of supervised learning?")
     print(f"User: Can you give examples of supervised learning?")
     print(f"Assistant: {response3.answer}")
     print()
-    
+
 except ApiError as e:
     print(f"Multi-turn chat failed: {e.status_code} - {e.body}")`
     }
@@ -190,7 +189,7 @@ except ApiError as e:
       { line: 34, text: 'Third turn builds on "supervised learning" from context' }
     ]
   }}
-  layout="stacked"
+  customWidth="50%"
 />
 
 Demonstrate a natural multi-turn conversation where the AI maintains context across 
