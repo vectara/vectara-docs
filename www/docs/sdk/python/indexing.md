@@ -71,12 +71,12 @@ try:
         sections=[
             StructuredDocumentSection(
                 title="Contract Overview",
-                text="This vendor agreement establishes terms and obligations for service delivery...",
+                text="This vendor agreement establishes terms and...",
                 metadata={"section_type": "overview"}
             ),
             StructuredDocumentSection(
                 title="Payment Terms", 
-                text="Payment shall be made within 30 days of invoice receipt...",
+                text="Payment shall be made within 30 days of invoice...",
                 metadata={"section_type": "payment"}
             )
         ],
@@ -146,11 +146,11 @@ try:
         type="core",
         document_parts=[
             CoreDocumentPart(
-                text="Troubleshooting 403 authentication errors in the web portal requires clearing browser cache.",
+                text="Troubleshooting 403 authentication errors in...",
                 metadata={"part_type": "solution", "error_code": "403"}
             ),
             CoreDocumentPart(
-                text="Token expiration is the most common cause of 403 errors in authenticated sessions.",
+                text="Token expiration is the most common cause of...",
                 metadata={"part_type": "explanation", "error_code": "403"}
             )
         ],
@@ -202,19 +202,27 @@ FAQs, or knowledge base entries.
   snippets={[
     {
       language: 'python',
-      code: `from vectara import Vectara, StructuredDocument, StructuredDocumentSection
-from vectara.managers import CreateCorpusRequest
+      code: `import os
+import time
+from vectara import Vectara, StructuredDocument, StructuredDocumentSection
 from vectara.core.api_error import ApiError
 
-client = Vectara(api_key="YOUR_API_KEY")
+# Set your API key
+api_key = os.getenv("VECTARA_API_KEY", "YOUR_API_KEY")
+if api_key == "YOUR_API_KEY":
+    print("Please set VECTARA_API_KEY environment variable")
+    exit(1)
+
+# 1. Authenticate
+print("1. Authenticating...")
+client = Vectara(api_key=api_key)
 
 try:
     # Step 1: Create corpus
-    corpus_request = CreateCorpusRequest(
-        key="legal-knowledge-base",
-        name="Legal Knowledge Base"
+    corpus_response = client.corpora.create(
+        key="support-docs",
+        name="Support Knowledge Base"
     )
-    corpus_response = client.corpora.create(corpus_request)
     print(f"Corpus created: {corpus_response.key}")
     
     # Step 2: Create and index document
@@ -224,7 +232,7 @@ try:
         sections=[
             StructuredDocumentSection(
                 title="Service Agreement Template",
-                text="Standard template for service provider agreements with liability and payment terms...",
+                text="Standard template for service provider...",
                 metadata={"template_type": "service"}
             )
         ],
@@ -232,14 +240,17 @@ try:
     )
     
     doc_response = client.documents.create(
-        corpus_key="legal-knowledge-base",
+        corpus_key="support-docs-workflow",
         request=document
     )
     
     print(f"Document indexed successfully in new corpus")
     
 except ApiError as e:
-    print(f"Workflow failed: {e.status_code} - {e.body}")`
+    if "already exists" in str(e.body).lower():
+        print("✅ Resources already exist")
+    else:
+        print(f"Workflow failed: {e.status_code} - {e.body}")`
     }
   ]}
   annotations={{
@@ -252,15 +263,35 @@ except ApiError as e:
   customWidth="50%"
 />
 
-Complete example showing corpus creation followed by document indexing. This workflow
-demonstrates the typical process of setting up a new knowledge base and populating 
-it with content.
+This example demonstrates the fundamental two-step workflow for establishing 
+a new knowledge base in Vectara.
 
-**Best Practices:**
-- Create corpus with descriptive key and name
-- Use consistent metadata schemas across documents
-- Handle errors gracefully with try-catch blocks
-- Verify corpus exists before attempting to index documents
+1. **Corpus creation**: The first step creates a new corpus with a 
+   unique identifier (`key`) and human-readable name. The corpus acts as a 
+   namespace for your documents and defines important characteristics like metadata 
+   schemas, filter attributes, and access controls. Once created, the corpus is 
+   available for document indexing operations immediately.  
+   The `corpus_key` from becomes the target identifier for document indexing in Step 2.  
+2. **Document ingestion**: The second step uploads and indexes a structured document 
+   into the newly created corpus. The document is parsed into searchable sections, 
+   with each section containing both text content and optional metadata. Vectara 
+   processes the content automatically, making it immediately queryable through the 
+   search API.  
+   Both operations return response objects that can be used for verification and 
+   error handling.
+
+### Best Practices
+
+* **Descriptive naming**: Use meaningful corpus keys and names that clearly 
+  identify the content domain and purpose.
+* **Consistent metadata**: Establish a uniform metadata schema across all documents 
+  within a corpus to enable effective filtering.
+* **Robust error handling**: Implement comprehensive logic that handles 
+  both creation failures and "already exists" scenarios gracefully.
+* **Verification steps**: Confirm corpus creation success before attempting document 
+  indexing to avoid orphaned content.
+* **Resource management**: Consider using unique corpus keys for testing to avoid 
+  conflicts with existing resources.
 
 ---
 

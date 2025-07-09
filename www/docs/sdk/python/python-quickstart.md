@@ -21,7 +21,7 @@ bases.
 ## 1. Install the SDK
 
 <CodePanel
-  title="Install"
+  title="Install the SDK"
   snippets={[
     {
       language: 'bash',
