@@ -95,19 +95,27 @@ Store API keys in environment variables or secure vaults (`.env`
   snippets={[
     {
       language: 'python',
-      code: `from vectara.managers import CreateCorpusRequest
-
-request = CreateCorpusRequest(
-    key="quickstart-corpus",
-    name="Quick Start Docs"
-)
-response = client.corpora.create(request)`
+      code: `print("Creating corpus...")
+corpus_key = "quickstart-docs"
+try:
+    response = client.corpora.create(
+        key=corpus_key,
+        name="Quick Start Docs"
+    )
+    print(f"✅ Created: {response.name}")
+    time.sleep(2)  # Allow corpus to propagate
+except ApiError as e:
+    if "already exists" in str(e.body).lower():
+        print("✅ Corpus already exists")
+    else:
+        print(f"❌ Failed: {e.status_code} - {e.body}")
+        exit(1)`
     }
   ]}
   annotations={{
     python: [
-      { line: 3, text: "Corpus key must be unique in your account" },
-      { line: 4, text: "Give your corpus a descriptive name" }
+      { line: 2, text: "Corpus key must be unique in your account" },
+      { line: 6, text: "Give your corpus a descriptive name" }
     ]
   }}
   customWidth="50%"
@@ -272,6 +280,150 @@ returns results ordered by relevance.
   - `results` (list): Search results, each with `text`, `score` (float, 0.0 to 1.0), and metadata.
   - `answer` (string, optional): Generated answer if `generation` is configured.
 - **Constraints**: The `corpus_key` must exist and contain indexed documents. Queries exceeding length limits result in an API error (HTTP 400).
+
+---
+
+## Quick start validation script
+
+<CodePanel
+title="Complete Validation Script"
+snippets={[
+{
+language: 'python',
+code: `#!/usr/bin/env python3
+import os
+import time
+from vectara import Vectara
+from vectara import StructuredDocument, StructuredDocumentSection, SearchCorporaParameters
+from vectara.core.api_error import ApiError
+
+# Set your API key
+api_key = os.getenv("VECTARA_API_KEY", "YOUR_API_KEY")
+
+if api_key == "YOUR_API_KEY":
+    print("Please set VECTARA_API_KEY environment variable")
+    exit(1)
+
+# 1. Authenticate
+print("1. Authenticating...")
+client = Vectara(api_key=api_key)
+
+# 2. Create corpus
+print("2. Creating corpus...")
+corpus_key = "quickstart-docs"
+try:
+    response = client.corpora.create(
+        key=corpus_key,
+        name="Quick Start Docs"
+    )
+    print(f"✅ Created: {response.name}")
+    time.sleep(2)  # Allow corpus to propagate
+except ApiError as e:
+    if "already exists" in str(e.body).lower():
+        print("✅ Corpus already exists")
+    else:
+        print(f"❌ Failed: {e.status_code} - {e.body}")
+        exit(1)
+
+# 3. Upload document
+print("3. Uploading document...")
+document = StructuredDocument(
+    id="welcome-doc",
+    type="structured",
+    sections=[
+        StructuredDocumentSection(
+            title="Welcome",
+            text="Welcome to Vectara! This is your first document."
+        )
+    ]
+)
+
+try:
+    response = client.documents.create(
+        corpus_key=corpus_key,
+        request=document
+    )
+    print(f"✅ Uploaded: {document.id}")
+except ApiError as e:
+    if "ALREADY_EXISTS" in str(e.body):
+        print("✅ Document already exists")
+    else:
+        print(f"❌ Upload failed: {e.status_code} - {e.body}")
+        exit(1)
+
+# 4. Query
+print("4. Running query...")
+response = client.corpora.search(
+    corpus_key=corpus_key,
+    query="What is Vectara?"
+)
+
+if hasattr(response, 'search_results') and response.search_results:
+    print(f"✅ Found {len(response.search_results)} results")
+    top_result = response.search_results[0]
+    print(f"Top result: {top_result.text[:100]}...")
+
+print("🎉 Quickstart validation complete!")`
+}
+]}
+annotations={{
+python: [
+{ line: 9, text: "Get API key from environment variable for security" },
+{ line: 17, text: "Initialize the Vectara client with your API key" },
+{ line: 21, text: "Use a simple, descriptive corpus key" },
+{ line: 23, text: "Create corpus with direct method parameters" },
+{ line: 28, text: "Small delay ensures corpus is ready for document upload" },
+{ line: 30, text: "Handle 'already exists' errors gracefully" },
+{ line: 38, text: "Create a structured document with sections" },
+{ line: 51, text: "Upload document using the corpus key" },
+{ line: 56, text: "Check for duplicate document errors" },
+{ line: 64, text: "Use single-corpus search method" },
+{ line: 69, text: "Access results via search_results attribute" }
+]
+}}
+layout="stacked"
+/>
+
+
+This full validation script demonstrates all the quickstart concepts working 
+together in a single, executable file. The script handles common edge cases 
+and provides clear feedback at each step.
+
+* **Environment Variables:** The script securely retrieves the API key from 
+  environment variables (`VECTARA_API_KEY`) rather than hardcoding sensitive 
+  credentials.
+* **Error handling:** Uses `ApiError` for proper exception handling, catching 
+  specific error conditions like "already exists" scenarios that commonly 
+  occur during testing.
+* **Corpus Propagation:** Includes a small delay (`time.sleep(2)`) after corpus 
+  creation to ensure the corpus is fully available before attempting document 
+  upload.
+* **Simple Corpus Keys:** Uses straightforward naming conventions (`quickstart-docs`) 
+  that are reliable across different environments.
+* **Single-Corpus Search:** Demonstrates the simplified `client.corpora.search()` 
+  method for querying a specific corpus directly.
+
+### Run the validation script
+
+1. Set your API key: `export VECTARA_API_KEY=your_key_here`.
+2. Save the script as `validate_quickstart.py`.
+3. Run python3 `validate_quickstart.py`.
+
+The script outputs step-by-step progress and handles cases where resources 
+already exist from previous runs.
+
+Expected Output
+```
+1. Authenticating...
+2. Creating corpus...
+✅ Created: Quick Start Docs
+1. Uploading document...
+✅ Uploaded: welcome-doc
+1. Running query...
+✅ Found 1 results
+Top result: Welcome to Vectara! This is your first document...
+🎉 Quickstart validation complete!
+```
 
 This quickstart uses a simple query for demonstration. Enhance queries with 
 rerankers or metadata filters for precision (see Types of Rerankers). For 

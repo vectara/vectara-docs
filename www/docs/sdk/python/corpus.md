@@ -29,19 +29,19 @@ client = Vectara(api_key="YOUR_API_KEY")
 
 try:
     corpus = client.corpora.create(
-        key="legal-docs",
-        name="Legal Knowledge Base", 
-        description="Contains case law, contracts, and legal templates",
+        key="support-docs",
+        name="Support Knowledge Base", 
+        description="Contains documents from our support knowledge base",
         filter_attributes=[
             {
-                "name": "document_type",
-                "level": "doc",
+                "name": "sector",
+                "level": "document",
                 "type": "text",
                 "indexed": True
             },
             {
                 "name": "jurisdiction", 
-                "level": "doc",
+                "level": "document",
                 "type": "text",
                 "indexed": True
             }
@@ -136,7 +136,7 @@ pattern to handle large numbers of corpora efficiently.
     {
       language: 'python',
       code: `try:
-    corpus = client.corpora.get(corpus_key="legal-docs")
+    corpus = client.corpora.get(corpus_key="support-docs")
     print(f"Corpus Name: {corpus.name}")
     print(f"Description: {corpus.description}")
     print(f"Filter Attributes: {len(corpus.filter_attributes)} defined")
@@ -178,8 +178,8 @@ Returns a corpus object with complete metadata, including `id`, `name`, `descrip
       language: 'python',
       code: `try:
     client.corpora.update(
-        corpus_key="legal-docs",
-        name="Legal Knowledge Base - Updated",
+        corpus_key="support-docs",
+        name="Support Knowledge Base - Updated",
         description="Updated description with enhanced metadata",
         enabled=True
     )
@@ -223,7 +223,7 @@ This is useful for archiving or maintenance scenarios.
     {
       language: 'python',
       code: `try:
-    client.corpora.delete(corpus_key="old-corpus")
+    client.corpora.delete(corpus_key="support-corpus")
     print("Corpus deleted successfully")
 except ApiError as e:
     print(f"Failed to delete corpus: {e.status_code} - {e.body}")`
