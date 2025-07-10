@@ -49,7 +49,7 @@ Install the Vectara Python SDK to access generation preset functionality.
   ]}
   annotations={{
     python: [
-      { line: 3, text: 'Initialize with an API key for preset usage.' },
+      { line: 4, text: 'Initialize with an API key for preset usage.' },
       { line: 6, text: 'Use OAuth 2.0 for secure production environments.' }
     ]
   }}
@@ -83,7 +83,7 @@ response = client.corpora.query(
     generation_preset_name="mockingbird-2.0",
     corpora=[{"corpus_key": "finance_docs"}],
     metadata_filter="doc_region = 'EU' AND doc_quarter = 'Q1-2024' AND \ndoc_industry = 'banking'",
-    max_used_search_results=10
+    max_used_search_results=50
 )
 print(response.generation.response)
 `
@@ -92,11 +92,11 @@ print(response.generation.response)
   title="Financial Summary with Mockingbird 2.0"
   annotations={{
     python: [
-      { line: 4, text: 'Initializes the client with API credentials.' },
-      { line: 5, text: 'Uses Mockingbird 2.0 for high-quality RAG output.' },
-      { line: 6, text: 'Targets the finance documents corpus.' },
-      { line: 7, text: 'Filters for relevant financial data.' },
-      { line: 8, text: 'Sets max search results for comprehensive summary.' }
+      { line: 3, text: 'Initializes the client with API credentials.' },
+      { line: 6, text: 'Uses Mockingbird 2.0 for high-quality RAG output.' },
+      { line: 7, text: 'Targets the finance documents corpus.' },
+      { line: 8, text: 'Filters for relevant financial data.' },
+      { line: 10, text: 'Sets max search results for comprehensive summary.' }
     ]
   }}
   customWidth="55%"
@@ -117,7 +117,7 @@ metadata filtering.
 
 ---
 
-### Example 2: Support chat
+### Example 2: Support chat with GPT-4o
 
 
 <CodePanel
@@ -141,11 +141,11 @@ print(response.generation.response)
   title="Support Chat with GPT-4o Preset"
   annotations={{
     python: [
-      { line: 4, text: 'Sets up the client with secure credentials.' },
-      { line: 5, text: 'Uses GPT-4o preset for advanced summarization.' },
-      { line: 6, text: 'Targets the support knowledge base corpus.' },
-      { line: 7, text: 'Filters for mobile authentication issues.' },
-      { line: 8, text: 'Limits response length for concise answers.' }
+      { line: 3, text: 'Sets up the client with secure credentials.' },
+      { line: 6, text: 'Uses GPT-4o preset for advanced summarization.' },
+      { line: 7, text: 'Targets the support knowledge base corpus.' },
+      { line: 8, text: 'Filters for mobile authentication issues.' },
+      { line: 9, text: 'Limits the number of returned characters.' }
     ]
   }}
   customWidth="55%"
@@ -164,63 +164,6 @@ knowledge coverage.
   - Surfaces only mobile-specific authentication problems—preventing noise from irrelevant issues.
 - `max_response_characters=500`
   - Enforces concise, agent-ready responses (ideal for chatbots or customer-facing UIs).
-
-
----
-
-### Example 3: Legal analysis with custom parameters
-
-<CodePanel
-  snippets={[
-    {
-      language: 'python',
-      code: `from vectara import VectaraClient
-
-client = VectaraClient(api_key="your_api_key", customer_id="your_customer_id")
-response = client.corpora.query(
-    query="Explain arbitration clause class action exclusion",
-    generation_preset_name="mockingbird-2.0",
-    corpora=[{"corpus_key": "legal_docs"}],
-    metadata_filter="doc_clause_type = 'arbitration' AND doc_jurisdiction = 'US'",
-    model_parameters={
-        "temperature": 0.5,
-        "max_tokens": 400
-    }
-)
-print(response.generation.response)
-`
-    }
-  ]}
-  title="Legal Analysis with Custom Mockingbird 2.0"
-  annotations={{
-    python: [
-      { line: 4, text: 'Initializes the client for legal query access.' },
-      { line: 5, text: 'Applies Mockingbird 2.0 for precise RAG output.' },
-      { line: 6, text: 'Targets the legal documents corpus.' },
-      { line: 7, text: 'Filters for US arbitration clauses.' },
-      { line: 9, text: 'Sets moderate creativity with temperature.' },
-      { line: 10, text: 'Limits response to 400 tokens.' }
-    ]
-  }}
-  customWidth="55%"
-/>
-
-Perform legal analysis with Mockingbird 2.0, customized for creativity and 
-token limits. This preset overrides the default creativity and length for a 
-legal use case. Useful for RAG scenarios requiring both precision and readable 
-outputs.
-
-- `generation_preset_name="mockingbird-2.0"`
-  - Proven performance on long, technical documents with nuanced legal language.
-- `corpora=[{"corpus_key": "legal_docs"}]`
-  - Isolates analysis to legal contracts, not general company data.
-- `metadata_filter="doc_clause_type = 'arbitration' AND doc_jurisdiction = 'US'"`
-  - Ensures only relevant US arbitration clauses are summarized.
-- `model_parameters={"temperature": 0.5, "max_tokens": 400}`
-  - `temperature: 0.5` — Balance between creativity (for plain English 
-  explanations) and factuality (to avoid hallucinations).
-  - `max_tokens: 400` — Restricts answer to a length suitable for summaries that 
-  can be cited or attached to legal memos.
 
 
 ---

@@ -68,9 +68,9 @@ except ApiError as e:
   ]}
   annotations={{
     python: [
-      { line: 16, text: 'Use customer reranker for neural ranking precision' },
-      { line: 17, text: 'Specify the multilingual reranker by name' },
-      { line: 23, text: 'Execute query with enhanced result ordering' }
+      { line: 18, text: 'Use customer reranker for neural ranking precision' },
+      { line: 19, text: 'Specify the multilingual reranker by name' },
+      { line: 26, text: 'Execute query with enhanced result ordering' }
     ]
   }}
   customWidth="50%"
@@ -346,8 +346,8 @@ except ApiError as e:
   annotations={{
     python: [
       { line: 7, text: 'Include reranker in streaming configuration' },
-      { line: 14, text: 'Use query_stream for real-time response generation' },
-      { line: 21, text: 'Process reranked chunks as they arrive' }
+      { line: 15, text: 'Use query_stream for real-time response generation' },
+      { line: 22, text: 'Process reranked chunks as they arrive' }
     ]
   }}
   customWidth="50%"
@@ -391,7 +391,7 @@ except ApiError as e:
   ]}
   annotations={{
     python: [
-      { line: 3, text: 'Filter for rerankers containing "multilingual" in name or description' },
+      { line: 4, text: 'Filter for rerankers containing "multilingual" in name or description' },
       { line: 9, text: 'Access reranker properties for configuration' }
     ]
   }}

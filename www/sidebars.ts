@@ -552,11 +552,11 @@ const sidebars: SidebarsConfig = {
       items: [
         "sdk/python/python-quickstart",
         "sdk/python/corpus",
+        "sdk/python/upload",
         "sdk/python/ingest_data",
+        "sdk/python/query",
         "sdk/python/metadata",
         "sdk/python/documents",
-        "sdk/python/query",
-        "sdk/python/upload",
         "sdk/python/chats",
         "sdk/python/generation_presets",
         "sdk/python/rerankers",

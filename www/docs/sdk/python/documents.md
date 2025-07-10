@@ -88,12 +88,12 @@ try:
         sections=[
             StructuredDocumentSection(
                 title="Employee Leave Policy",
-                text="Detailed employee leave policy information including vacation, sick leave, and personal time...",
+                text="Detailed employee leave policy information...",
                 metadata={"section_type": "policy"}
             ),
             StructuredDocumentSection(
                 title="Overtime Compensation",
-                text="Rules and procedures for overtime compensation and time tracking...",
+                text="Rules and procedures for overtime compensation...",
                 metadata={"section_type": "compensation"}
             )
         ],
@@ -116,8 +116,8 @@ except ApiError as e:
     python: [
       { line: 6, text: 'Document ID must be unique within the corpus' },
       { line: 10, text: 'Each section can have optional title and metadata' },
-      { line: 19, text: 'Document-level metadata for filtering queries' },
-      { line: 23, text: 'Use documents.create() method to index the document' }
+      { line: 20, text: 'Document-level metadata for filtering queries' },
+      { line: 24, text: 'Use documents.create() method to index the document' }
     ]
   }}
   customWidth="50%"
@@ -159,9 +159,9 @@ except ApiError as e:
   ]}
   annotations={{
     python: [
-      { line: 2, text: 'Specify the corpus containing the document' },
-      { line: 3, text: 'Unique identifier of the document to fetch' },
-      { line: 6, text: 'Access document content and metadata' }
+      { line: 3, text: 'Specify the corpus containing the document' },
+      { line: 4, text: 'Unique identifier of the document to fetch' },
+      { line: 7, text: 'Access document content and metadata' }
     ]
   }}
   customWidth="50%"
@@ -204,7 +204,7 @@ except ApiError as e:
   ]}
   annotations={{
     python: [
-      { line: 3, text: 'Update specific document by corpus and ID' },
+      { line: 4, text: 'Update specific document by corpus and ID' },
       { line: 6, text: 'Provide new metadata to merge with existing data' }
     ]
   }}
@@ -245,7 +245,7 @@ except ApiError as e:
   ]}
   annotations={{
     python: [
-      { line: 2, text: 'Specify the corpus and document to delete' },
+      { line: 3, text: 'Specify the corpus and document to delete' },
       { line: 7, text: 'Confirm successful deletion' }
     ]
   }}
@@ -277,8 +277,8 @@ might be needed later.
     summary = client.documents.summarize(
         corpus_key="product-docs",
         document_id="user-guide-v2",
-        llm_name="vectara-summary-ext-24-05-sml",
-        prompt_template="Provide a concise summary of the following document: $document_content"
+        llm_name="vectara-summary-ext-24-05-med-omni",
+        prompt_template="Provide a concise summary of the following \ndocument: $document_content"
     )
     
     print(f"Document summary: {summary.summary}")

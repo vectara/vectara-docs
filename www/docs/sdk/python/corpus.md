@@ -54,9 +54,12 @@ except ApiError as e:
   ]}
   annotations={{
     python: [
-      { line: 6, text: "Corpus key must be unique in your account" },
-      { line: 7, text: "Give your corpus a descriptive name" },
-      { line: 10, text: "Define filter attributes for metadata queries" }
+      { line: 7, text: "Corpus key must be unique in your account" },
+      { line: 8, text: "Give your corpus a descriptive name" },
+      { line: 11, text: "Define filter attributes for metadata queries" },
+      { line: 14, text: "Specify that this is a document-level filter attribute" },
+      { line: 11, text: "Specify that this filter attribute is the text type" },
+      { line: 16, text: "Indicate that you want this filter attribute indexed" },
     ]
   }}
   customWidth="50%"

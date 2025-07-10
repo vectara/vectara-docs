@@ -44,7 +44,7 @@ client = Vectara(api_key="YOUR_API_KEY")`
   ]}
   annotations={{
     python: [
-      { line: 4, text: 'Use a Query or Index API Key for chat operations' }
+      { line: 5, text: 'Use a Query or Index API Key for chat operations' }
     ]
   }}
   customWidth="50%"
@@ -100,10 +100,10 @@ except ApiError as e:
   ]}
   annotations={{
     python: [
-      { line: 13, text: 'Specify corpus to search for context.' },
-      { line: 17, text: 'Use an optimal generation preset for summary quality.' },
-      { line: 18, text: 'Control number of results used for generation.' },
-      { line: 22, text: 'Enable chat history for multi-turn support.' },
+      { line: 16, text: 'Specify corpus to search for context.' },
+      { line: 19, text: 'Use an optimal generation preset for summary quality.' },
+      { line: 20, text: 'Control number of results used for generation.' },
+      { line: 24, text: 'Enable chat history for multi-turn support.' },
       { line: 30, text: 'Send the user\'s first message to start the chat.' }
     ]
   }}
@@ -184,9 +184,11 @@ except ApiError as e:
   ]}
   annotations={{
     python: [
-      { line: 22, text: 'First turn establishes the topic' },
-      { line: 29, text: 'Second turn references "main types" - context understood' },
-      { line: 34, text: 'Third turn builds on "supervised learning" from context' }
+      { line: 4, text: 'Enter the corpus key' },
+      { line: 8, text: 'Specify a generation preset' },
+      { line: 25, text: 'First turn establishes the topic' },
+      { line: 33, text: 'Second turn references "main types" - context understood' },
+      { line: 39, text: 'Third turn builds on "supervised learning" from context' }
     ]
   }}
   customWidth="50%"
@@ -234,7 +236,7 @@ except ApiError as e:
   ]}
   annotations={{
     python: [
-      { line: 2, text: 'Retrieve list of chat sessions' },
+      { line: 3, text: 'Retrieve list of 10 chat sessions' },
       { line: 6, text: 'Each chat includes metadata and first message' }
     ]
   }}
@@ -285,8 +287,8 @@ except ApiError as e:
   ]}
   annotations={{
     python: [
-      { line: 10, text: 'Use chat_stream for real-time response generation' },
-      { line: 15, text: 'Process and display chunks immediately' }
+      { line: 11, text: 'Use chat_stream for real-time response generation' },
+      { line: 16, text: 'Process and display chunks immediately' }
     ]
   }}
   customWidth="50%"
@@ -334,7 +336,7 @@ except ApiError as e:
   annotations={{
     python: [
       { line: 2, text: 'Retrieve detailed information about a specific chat' },
-      { line: 6, text: 'Get all conversation turns (messages) in the chat' },
+      { line: 7, text: 'Get all conversation turns (messages) in the chat' },
       { line: 10, text: 'Display the complete conversation history' }
     ]
   }}

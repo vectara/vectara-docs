@@ -247,7 +247,7 @@ print(response.results)`
   ]}
   annotations={{
     python: [
-      { line: 7, text: "Query your corpus with natural language" },
+      { line: 8, text: "Query your corpus with natural language" },
       { line: 12, text: "Print search results" }
     ]
   }}

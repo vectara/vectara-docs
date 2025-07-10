@@ -88,7 +88,7 @@ parts.
 - **Document-level filter**: Applies to whole documents.
 - **Part-level filter**: Targets individual sections/parts based on their metadata.
 
-### Example: Query with a mtadata filter
+### Example: Query with a metadata filter
 
 <CodePanel
   title="Query by Metadata"
@@ -129,8 +129,8 @@ except ApiError as e:
   ]}
   annotations={{
     python: [
-      { line: 6, text: "Use AND/OR for advanced filtering" },
-      { line: 7, text: "Supports both doc and part metadata fields" }
+      { line: 10, text: "Use AND/OR for advanced filtering" },
+      { line: 16, text: "Enter your search query" }
     ]
   }}
   layout="stacked"

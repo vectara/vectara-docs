@@ -44,7 +44,7 @@ client = Vectara(api_key="YOUR_API_KEY")`
   ]}
   annotations={{
     python: [
-      { line: 4, text: 'Use a Query or Index API Key for querying operations' }
+      { line: 5, text: 'Use a Query or Index API Key for querying operations' }
     ]
   }}
   customWidth="50%"
@@ -104,7 +104,7 @@ except ApiError as e:
   annotations={{
     python: [
       { line: 12, text: "Target specific corpus for search" },
-      { line: 16, text: "Use recommended preset for high-quality responses" },
+      { line: 17, text: "Use recommended preset for high-quality responses" },
       { line: 18, text: "Include more results for better context" },
       { line: 20, text: "Enable confidence scoring for generated summaries" },
       { line: 30, text: "AI-generated summary based on search results" },
@@ -145,8 +145,8 @@ Use this pattern when you need both specific document excerpts and a synthesized
   # Advanced search with metadata filtering
   search = SearchCorporaParameters(
       corpora=[{
-          "corpus_key": "legal-docs",
-          "metadata_filter": "doc.jurisdiction = 'California'",
+          "corpus_key": "support-docs",
+          "metadata_filter": "doc.os = 'MacOS'",
           "lexical_interpolation": 0.3
       }],
       context_configuration={
@@ -169,7 +169,7 @@ Use this pattern when you need both specific document excerpts and a synthesized
       max_used_search_results=25,
       response_language="eng",
       enable_factual_consistency_score=True,
-      prompt_template="You are a legal research assistant. Summarize the \nfollowing search results about IP rulings: $vectaraQueryResults"
+      prompt_template="You are a technical support assistant. Summarize the \nfollowing search results $vectaraQueryResults"
   )
   
   response = client.query(
@@ -191,7 +191,7 @@ except ApiError as e:
       { line: 7, text: 'Balance lexical and semantic search (0.3 = 30% lexical)' },
       { line: 10, text: 'Add context sentences around matches' },
       { line: 15, text: 'Use reranker to improve result quality' },
-      { line: 25, text: 'Custom prompt template for specialized responses' }
+      { line: 29, text: 'Custom prompt template for specialized responses' }
     ]
   }}
   customWidth="50%"
@@ -251,9 +251,9 @@ except ApiError as e:
   ]}
   annotations={{
     python: [
-      { line: 12, text: 'Use query_stream for real-time response generation' },
-      { line: 20, text: 'Process chunks as they arrive' },
-      { line: 21, text: 'Display text immediately for better user experience' }
+      { line: 13, text: 'Use query_stream for real-time response generation' },
+      { line: 21, text: 'Process chunks as they arrive' },
+      { line: 22, text: 'Display text immediately for better user experience' }
     ]
   }}
   customWidth="50%"

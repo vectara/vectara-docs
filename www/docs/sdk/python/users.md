@@ -11,7 +11,7 @@ The Vectara Python SDK provides methods to manage users in your account,
 including listing, creating, retrieving, updating, deleting, and resetting 
 passwords. The UsersClient (synchronous) and AsyncUsersClient (asynchronous) 
 support these operations, with options to filter by corpus access, assign 
-roles, and configure timeouts. Usernames must be percent-encoded for API calls.
+roles, and configure timeouts. Usernames must be percent-encoded for API calls. 
 
 ## List users
 
@@ -28,7 +28,7 @@ roles, and configure timeouts. Usernames must be percent-encoded for API calls.
     python: [
       { line: 5, text: "Filter users with access to a specific corpus" },
       { line: 6, text: "Limit to 10 users per page" },
-      { line: 8, text: "Access user details like username and email" }
+      { line: 9, text: "Access user details like username and email" }
     ]
   }}
   customWidth="50%"
@@ -70,7 +70,7 @@ Iterator of user objects, each with:
     python: [
       { line: 5, text: "Specify user email (required)" },
       { line: 8, text: "Assign roles like corpus_admin or query_writer" },
-      { line: 9, text: "Access created user details" }
+      { line: 10, text: "Access created user details" }
     ]
   }}
   customWidth="50%"
@@ -247,38 +247,3 @@ User object for whom the reset was sent:
 **Error handling:**
 - `404 Not Found`: User does not exist.
 - `403 Forbidden`: Insufficient permissions.
-
----
-
-## Asynchronous user management
-
-<CodePanel
-  title="List Users Asynchronously"
-  snippets={[
-    {
-      language: "python",
-      code: "from vectara import AsyncVectara\nimport asyncio\n\nasync def main():\n    client = AsyncVectara(api_key=\"YOUR_API_KEY\")\n    response = await client.users.list(\n        corpus_key=\"my-corpus-key\",\n        limit=5\n    )\n    async for user in response:\n        print(f\"Username: {user.username}, Email: {user.email}\")\n\nasyncio.run(main())"
-    }
-  ]}
-  annotations={{
-    python: [
-      { line: 5, text: "Initialize asynchronous client" },
-      { line: 7, text: "Filter users by corpus access" },
-      { line: 10, text: "Asynchronously iterate through users" }
-    ]
-  }}
-  customWidth="50%"
-/>
-
-Perform user management operations asynchronously for non-blocking 
-applications.
-
-- `corpus_key` (str, optional): Filter by corpus
-- `limit` (int, optional): Number of users per page
-
-Returns: Async iterator of user objects.
-
-## Error handling
-
-
-

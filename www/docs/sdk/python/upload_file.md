@@ -51,7 +51,7 @@ client = Vectara(api_key="YOUR_API_KEY")`
   ]}
   annotations={{
     python: [
-      { line: 4, text: 'Use an API key with indexing permissions for file uploads' }
+      { line: 5, text: 'Use an API key with indexing permissions for file uploads' }
     ]
   }}
   customWidth="50%"
@@ -97,10 +97,10 @@ except FileNotFoundError:
   ]}
   annotations={{
     python: [
-      { line: 2, text: 'Open file in binary mode for upload' },
-      { line: 6, text: 'Upload to specified corpus' },
-      { line: 9, text: 'Include descriptive metadata for filtering and search' },
-      { line: 18, text: 'Handle API errors with status codes' }
+      { line: 4, text: 'Open file in binary mode for upload' },
+      { line: 8, text: 'Upload to specified corpus' },
+      { line: 11, text: 'Include descriptive metadata for filtering and search' },
+      { line: 21, text: 'Handle API errors with status codes' }
     ]
   }}
   customWidth="50%"
@@ -156,7 +156,7 @@ except ApiError as e:
   annotations={{
     python: [
       { line: 16, text: 'Enable table extraction for structured data processing' },
-      { line: 17, text: 'Configure chunking strategy for optimal text segmentation' },
+      { line: 19, text: 'Configure chunking strategy for optimal text segmentation' },
       { line: 13, text: 'Mark documents that contain tabular data' }
     ]
   }}
@@ -216,7 +216,7 @@ except ApiError as e:
   annotations={{
     python: [
       { line: 5, text: 'Process file object directly without intermediate storage' },
-      { line: 15, text: 'Boolean metadata values for precise filtering' }
+      { line: 16, text: 'Boolean metadata values for precise filtering' }
     ]
   }}
   customWidth="50%"
@@ -282,8 +282,8 @@ results = batch_upload_files(client, "legal-docs", file_paths)`
   annotations={{
     python: [
       { line: 11, text: 'Automatically categorize files based on filename patterns' },
-      { line: 20, text: 'Enable table extraction for all uploads in batch' },
-      { line: 16, text: 'Include batch identifier for tracking related uploads' }
+      { line: 23, text: 'Enable table extraction for all uploads in batch' },
+      { line: 15, text: 'Include batch identifier for tracking related uploads' }
     ]
   }}
   customWidth="50%"
@@ -345,7 +345,7 @@ except ApiError as e:
     python: [
       { line: 19, text: 'Flag documents containing itemized data' },
       { line: 21, text: 'Enable extraction of invoice line items and totals' },
-      { line: 23, text: 'Use smaller chunks for precise table data retrieval' }
+      { line: 24, text: 'Use smaller chunks for precise table data retrieval' }
     ]
   }}
   customWidth="50%"
