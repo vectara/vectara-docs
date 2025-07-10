@@ -564,13 +564,6 @@ const sidebars: SidebarsConfig = {
         "sdk/python/api_keys",
       ],
     },
-    {
-       type: "category",
-       label: "Tutorials",
-       items: [
-         "sdk/python/tutorials/customer-support-kb",
-       ],
-  },
   ],
   releaseNotes: [
     {
