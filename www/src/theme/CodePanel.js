@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import clsx from 'clsx';
-import Prism from 'prismjs';
+import Prism from 'prismjs'; 
 
 import 'prismjs/components/prism-python';
 import 'prismjs/components/prism-bash';
@@ -25,7 +25,10 @@ export default function CodePanel({
   /* ---------------------------------------------------------- */
   /* State                                                     */
   /* ---------------------------------------------------------- */
-  const [selectedLanguage, setSelectedLanguage] = useState(defaultLanguage);
+  const [selectedLanguage, setSelectedLanguage] = useState(
+  snippets[0]?.language || defaultLanguage
+  );
+
   const [toast, setToast] = useState(null);
   const [highlighted, setHighlighted] = useState('');
 
@@ -91,6 +94,7 @@ export default function CodePanel({
   const stripHtml = (h) => h.replace(/<[^>]*>?/gm, '');
 
   /* Build line-by-line DOM so we can attach markers & numbers */
+
   const renderLines = () =>
     highlighted.split('\n').map((html, idx) => {
       const num = idx + 1;
