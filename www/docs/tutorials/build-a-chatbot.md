@@ -1102,7 +1102,7 @@ your chatbot with the Vectara Chat API, take additional steps to prepare your
 application for production use. 
 
 This section highlights key changes from the tutorial environment and provides 
-tips for in a real-world environment. Here is a summary of the key changes:
+tips in a real-world environment. Here is a summary of the key changes:
 
 * **API security:** Move secrets out of source code and implement secure storage 
   and transmission for API keys.
