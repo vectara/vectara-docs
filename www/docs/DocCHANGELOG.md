@@ -12,6 +12,23 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 
 ---
 
+# July 2025
+
+### ✨ New Features
+- New Consistency-Adjusted Index Capability in Open RAG Eval (#479)
+
+### 📝 Documentation Changes
+- Update Query History and Configure Queries sections, enhancing descriptions and screenshots (#476)
+- Enhance chatbot tutorial with production readiness guidance (#473)
+- Add guidance on using expected value formats with Intelligent Query Rewriting (#464)
+
+### 🛠 Documentation Platform Updates
+- Enable syntax highlighting in CodePanel component (#478)
+
+
+
+---
+
 # June 2025
 
 ### ✨ New Features
@@ -19,8 +36,16 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 - Add new supported languages and enhancements with HHEM 2.3 (#467)
 
 ### 📝 Documentation Changes
+- Enhance API Documentation with Production-Ready Examples for Query, Upload, Index, and Chat Endpoints (#472)
+- Refresh list of currently available generation presets (prompts) (#466)
 - Add tutorial about how to build a chatbot with the Chat API (#463)
 - Update screenshots for console updates (#452)
+
+### 📋 Example Updates
+- Enhance API Documentation with Production-Ready Examples for Query, Upload, Index, and Chat Endpoints (#472)
+
+### 🛠 Documentation Platform Updates
+- Create new CodePanel component for customizable code samples with language selection, annotations, and layout configuration (#470)
 
 
 
