@@ -4,6 +4,9 @@ title: List Hallucination Correctors API Definition
 sidebar_label: List Hallucination Correctors API Definition
 ---
 
+
+import CodePanel from '@site/src/theme/CodePanel';
+
 The List Hallucination Correctors API enables users to list available 
 hallucinaton correctors used for detecting and correcting hallucinations in 
 AI-generated content. Vectara provides these models as part of its broader 
@@ -33,8 +36,7 @@ optional query parameters:
 The response includes a list of available correctors and a `page_key` for 
 pagination.
 
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
   "hallucination_correctors": [
     {
       "id": "hc_123",
@@ -47,8 +49,7 @@ pagination.
   "metadata": {
     "page_key": "eyJzIjoiNTY3OGEifQ=="
   }
-}
-```
+}`}]} title="Code Example" layout="stacked" />
 ### Error responses
 
 * **400 Bad Request:** The request contained invalid parameters or malformed 

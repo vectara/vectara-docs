@@ -18,6 +18,9 @@ import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.util.*;
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 public class RestIndex {
   /**
    * Indexes a document with a single section and a title.

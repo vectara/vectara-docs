@@ -9,6 +9,9 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import vars from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Vectara has robust authentication and authorization methods in place to secure 
 your data and operations, whether you are an Admin configuring the 
 system or tenant, a developer building applications for your enterprise, 

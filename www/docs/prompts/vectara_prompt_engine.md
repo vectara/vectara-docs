@@ -8,6 +8,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The Vectara Prompt Engine empowers our users to customize prompt templates 
 that can reference the most relevant text and metadata for use cases that 
 require Retrieval Augmented Generation (RAG). Vectara enables developers to 
@@ -77,13 +80,11 @@ The following example prompt specifies a role as a helpful search assistant.
 It then loops through Vectara query results with specific variables and 
 functions. Finally, it generates a [summary](docs/learn/grounded-generation/select-a-summarizer) for the query. 
 
-```javascript
-[
+<CodePanel snippets={[{language: "javascript", code: `[
   {"role": "system", "content": "You are a helpful search assistant."},
-  #foreach ($qResult in $vectaraQueryResults)
-     {"role": "user", "content": "Give me the $vectaraIdxWord[$foreach.index] search result."},
-     {"role": "assistant", "content": "${qResult.getText()}" },
+  #foreach (\$qResult in \$vectaraQueryResults)
+     {"role": "user", "content": "Give me the \$vectaraIdxWord[\$foreach.index] search result."},
+     {"role": "assistant", "content": "\${qResult.getText()}" },
   #end
-  {"role": "user", "content": "Generate a summary for the query '${vectaraQuery}' based on the above results."}
-]
-```
+  {"role": "user", "content": "Generate a summary for the query '\${vectaraQuery}' based on the above results."}
+]`}]} title="Code Example" layout="stacked" />

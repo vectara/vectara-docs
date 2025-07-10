@@ -8,6 +8,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The Create API Key API lets you create new API keys, which you can
 bind to one or multiple corpora. You can also decide whether to designate each
 key for specific access like personal API keys, only querying (read-only) or

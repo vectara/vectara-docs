@@ -5,6 +5,9 @@ sidebar_label: Hybrid Search
 ---
 
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Traditional keyword-based search often fails to capture the context and intent 
 behind user queries, leading to irrelevant or incomplete results. Vectara's 
 Hybrid Search combines [semantic search](/docs/learn/semantic-search/semantic-search-overview) with traditional keyword-based 
@@ -37,8 +40,7 @@ Setting `lexical_interpolation` to `1.0` is equivalent to the original BM25.
 As you ingest data and run queries, adjust the `lexical_interpolation` value to
 achieve the perfect balance in answer quality.
 
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
   "query": "What is the meaning of life?",
   "search": {
     "corpora": [
@@ -50,8 +52,7 @@ achieve the perfect balance in answer quality.
     "limit": 10,
     "lexical_interpolation": 0.025
   }
-}
-```
+}`}]} title="Code Example" layout="stacked" />
 
 :::tip
 

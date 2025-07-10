@@ -23,6 +23,9 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 public class RestUploadFile {
   
   /**

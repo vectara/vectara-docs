@@ -2,6 +2,9 @@
 sidebar_position: 2
 ---
 
+
+import CodePanel from '@site/src/theme/CodePanel';
+
 # Translate your site
 
 Let's translate `docs/intro.md` to French.
@@ -17,29 +20,19 @@ export default {
     locales: ['en', 'fr'],
   },
 };
-```
+<CodePanel snippets={[{language: "bash", code: `## Translate a doc
 
-## Translate a doc
-
-Copy the `docs/intro.md` file to the `i18n/fr` folder:
-
-```bash
+Copy the \`docs/intro.md\` file to the \`i18n/fr\` folder:`}]} title="Code Example" layout="stacked" />bash
 mkdir -p i18n/fr/docusaurus-plugin-content-docs/current/
 
 cp docs/intro.md i18n/fr/docusaurus-plugin-content-docs/current/intro.md
-```
-
-Translate `i18n/fr/docusaurus-plugin-content-docs/current/intro.md` in French.
+<CodePanel snippets={[{language: "bash", code: `Translate \`i18n/fr/docusaurus-plugin-content-docs/current/intro.md\` in French.
 
 ## Start your localized site
 
-Start your site on the French locale:
-
-```bash
+Start your site on the French locale:`}]} title="Code Example" layout="stacked" />bash
 npm run start -- --locale fr
-```
-
-Your localized site is accessible at [http://localhost:3000/fr/](http://localhost:3000/fr/) and the `Getting Started` page is translated.
+<CodePanel snippets={[{language: "bash", code: `Your localized site is accessible at [http://localhost:3000/fr/](http://localhost:3000/fr/) and the \`Getting Started\` page is translated.
 
 :::caution
 
@@ -51,9 +44,7 @@ In development, you can only use one locale at a time.
 
 To navigate seamlessly across languages, add a locale dropdown.
 
-Modify the `docusaurus.config.js` file:
-
-```js title="docusaurus.config.js"
+Modify the \`docusaurus.config.js\` file:`}]} title="Code Example" layout="stacked" />js title="docusaurus.config.js"
 export default {
   themeConfig: {
     navbar: {
@@ -67,22 +58,14 @@ export default {
     },
   },
 };
-```
-
-The locale dropdown now appears in your navbar:
+<CodePanel snippets={[{language: "bash", code: `The locale dropdown now appears in your navbar:
 
 ![Locale Dropdown](./img/localeDropdown.png)
 
 ## Build your localized site
 
-Build your site for a specific locale:
-
-```bash
+Build your site for a specific locale:`}]} title="Code Example" layout="stacked" />bash
 npm run build -- --locale fr
-```
-
-Or build your site to include all the locales at once:
-
-```bash
+<CodePanel snippets={[{language: "bash", code: `Or build your site to include all the locales at once:`}]} title="Code Example" layout="stacked" />bash
 npm run build
 ```

@@ -8,6 +8,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Organizations often struggle to extract relevant information from large 
 datasets and get meaningful answers to complex queries. The Vectara Query API 
 offers a powerful and flexible solution for performing sophisticated searches 
@@ -241,11 +244,10 @@ summarization. Growth users can specify the `max_summarized_results`,
 `response_language`, and `enable_factual_consistency_score`.
 
 
-```json
-"generation": {
+<CodePanel snippets={[{language: "json", code: `"generation": {
     "generation_preset_name": "vectara-summary-ext-v1.2.0",
     "max_used_search_results": 5,
-    "prompt_template": "[\n  {\"role\": \"system\", \"content\": \"You are a helpful search assistant.\"},\n  #foreach ($qResult in $vectaraQueryResults)\n     {\"role\": \"user\", \"content\": \"Given the $vectaraIdxWord[$foreach.index] search result.\"},\n     {\"role\": \"assistant\", \"content\": \"${qResult.getText()}\" },\n  #end\n  {\"role\": \"user\", \"content\": \"Generate a summary for the query '\''${vectaraQuery}'\'' based on the above results.\"}\n]\n",
+    "prompt_template": "[\\n  {\\"role\\": \\"system\\", \\"content\\": \\"You are a helpful search assistant.\\"},\\n  #foreach (\$qResult in \$vectaraQueryResults)\\n     {\\"role\\": \\"user\\", \\"content\\": \\"Given the \$vectaraIdxWord[\$foreach.index] search result.\\"},\\n     {\\"role\\": \\"assistant\\", \\"content\\": \\"\${qResult.getText()}\\" },\\n  #end\\n  {\\"role\\": \\"user\\", \\"content\\": \\"Generate a summary for the query '\\''\${vectaraQuery}'\\'' based on the above results.\\"}\\n]\\n",
     "max_response_characters": 300,
     "response_language": "eng",
     "model_parameters": {
@@ -253,8 +255,7 @@ summarization. Growth users can specify the `max_summarized_results`,
       "temperature": 0,
       "frequency_penalty": 0,
       "presence_penalty": 0
-    },
-```
+    },`}]} title="Code Example" layout="stacked" />
 Users also have access to [advanced summarization customization options](/docs/api-reference/search-apis/search#advanced-summarization-customization-options).
 
 ## Generation Presets
@@ -265,9 +266,7 @@ generation for the request, providing more flexibility in how parameters are
 set. The preset includes the `prompt_template`, the `llm_name`, and other settings 
 like `max_tokens` and `temperature`.
 
-```json
-"generation-preset-name": "vectara-summary-ext-v1.3.0"
-```
+<CodePanel snippets={[{language: "json", code: `"generation-preset-name": "vectara-summary-ext-v1.3.0"`}]} title="Code Example" layout="stacked" />
 
 To view available generation presets, use the [List Generation Presets API](/docs/api-reference/generation-presets/list-generation-presets).
 
@@ -285,16 +284,14 @@ our advanced LLM specifically designed for RAG tasks.
 To use Mockingbird for your RAG tasks, specify `mockingbird-1.0-2024-07-16` in 
 the `generation_preset_name` field the `generation` object, like in this example:
 
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
   "generation": {
     "generation_preset_name": "mockingbird-1.0-2024-07-16",
     "max_used_search_results": 5,
     "response_language": "eng",
     "enable_factual_consistency_score": true
   }
-}
-```
+}`}]} title="Code Example" layout="stacked" />
 Mockingbird is particularly beneficial for enterprise applications requiring 
 high-quality summaries and structured outputs. For more details on Mockingbird's 
 capabilities and performance, see the [Mockingbird LLM section](/docs/learn/mockingbird-llm).
@@ -367,24 +364,20 @@ For more information, see the [**documentation**](/docs/learn/grounded-generatio
 In this example, you want Vectara to say `as seen in [Document-Title]` with a
 link to the specific page:
 
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
   "citations": {
     "style": "MARKDOWN",
     "url_pattern": "{doc.id}#page={section.page}",
     "text_pattern": "as seen in {doc.title}"
   }
-}
-```
+}`}]} title="Code Example" layout="stacked" />
 
 The response will look something like this:
 
-```
-In the Metropolitan Transportation Authority (MTA) rules, it is prohibited to
+<CodePanel snippets={[{language: "bash", code: `In the Metropolitan Transportation Authority (MTA) rules, it is prohibited to
 destroy, mark, soil, paint, draw, inscribe, or place graffiti on any facility
 or conveyance of the authority [as seen in Rules of Conduct and
-Fines](https://new.mta.info/document/36821#page=3).
-```
+Fines](https://new.mta.info/document/36821#page=3).`}]} title="Code Example" layout="stacked" />
 
 ## Disable query summarization
 
@@ -397,15 +390,13 @@ summarizations to specific application and user needs. If they need to change
 generation beyond what the preset specifies, you can override most parameters 
 in a query. For example:
 
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
   "generation": {
     "generation-preset-name": "vectara-summary-ext-v1.3.0",
     "max_tokens": 300,
     "temperature": 0.7
   }
-}
-```
+}`}]} title="Code Example" layout="stacked" />
 To provide even more customization beyond, you can override certain parameters 
 in your query. This enables you to use a preset as a starting point while you 
 tailor specific aspects of the generation.

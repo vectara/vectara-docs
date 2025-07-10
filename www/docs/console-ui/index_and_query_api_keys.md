@@ -9,6 +9,9 @@ import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Index API Keys and Query API Keys enable user-facing applications to either 
 index and query or only query data. The Authorization page lets you view and 
 manage the Index API Keys and Query API keys associated with your account.

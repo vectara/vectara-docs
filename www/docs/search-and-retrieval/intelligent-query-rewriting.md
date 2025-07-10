@@ -5,6 +5,9 @@ sidebar_label: Intelligent Query Rewriting
 ---
 
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Many datasets contain filterable metadata that can improve search relevance, 
 but users often lack knowledge of these metadata structures, or how to 
 apply filters effectively. The tech preview release of Intelligent Query 
@@ -57,8 +60,7 @@ Consider a corpus containing movie data with the metadata filter attribute:
   `What are some of the highest grossing movies?`
 
 ### Example request
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
   "query": "What are some of the highest grossing movies made in US, UK, or India?",
   "intelligent_query_rewriting": true,
   "corpora": [
@@ -66,12 +68,10 @@ Consider a corpus containing movie data with the metadata filter attribute:
       "corpus_key": "movie_database"
     }
   ]
-}  
-```
+}`}]} title="Code Example" layout="stacked" />
 ### Example response
 
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
 	  ...
 	  "rewritten_queries": [
 	    {
@@ -82,8 +82,7 @@ Consider a corpus containing movie data with the metadata filter attribute:
 	      }
 	    }
 	  ]
-  }
-```
+  }`}]} title="Code Example" layout="stacked" />
 
 ### Error handling
 
@@ -93,8 +92,7 @@ message is returned in the response.
 
 **Example error response**
 
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
   "warnings": [
     "intelligent_query_rewriting_failed"
   ],
@@ -104,8 +102,7 @@ message is returned in the response.
       "filter_extraction": {}
     }
   ]
-}
-```
+}`}]} title="Code Example" layout="stacked" />
 
 ## Behavior with existing metadata filters in requests
 
@@ -115,8 +112,7 @@ filter using a logical `AND`.
 
 ### Example request with metadata filter
 
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
   "query": "What are some of the highest grossing movies made in US, UK or India?",
   "intelligent_query_rewriting": true,
   "search": {
@@ -127,12 +123,10 @@ filter using a logical `AND`.
       }
     ]
   }
-}
-```
+}`}]} title="Code Example" layout="stacked" />
 #### Example response
 
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
   "rewritten_queries": [
     {
       "corpus_key": "my_corpus",
@@ -142,8 +136,7 @@ filter using a logical `AND`.
       }
     }
   ]
-}
-```
+}`}]} title="Code Example" layout="stacked" />
 ## Best practices for intelligent query rewriting
 
 ### Define filter attributes clearly

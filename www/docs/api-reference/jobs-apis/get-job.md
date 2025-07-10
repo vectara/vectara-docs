@@ -9,6 +9,9 @@ import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The Get Job API retrieves details about a specific job by `job_id`. Jobs are
 background processes like replacing the filterable metadata attributes of a
 corpus.

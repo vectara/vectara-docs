@@ -8,6 +8,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The Reset User Password API lets you send a password reset email to the user.
 
 ## Reset User Password Request and Response

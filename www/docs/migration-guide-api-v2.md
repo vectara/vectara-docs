@@ -4,6 +4,9 @@ title: REST API 1.0 to 2.0 Migration
 sidebar_label: Migration Guide from REST API 1.0 to 2.0
 ---
 
+
+import CodePanel from '@site/src/theme/CodePanel';
+
 ## Key Dates
 - **December 16, 2024**: API v1 deprecation announced.
 - **August 16, 2025**: API v1 will be fully retired.

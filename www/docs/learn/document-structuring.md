@@ -5,6 +5,9 @@ sidebar_label: Document Data Structuring
 ---
 
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Munging files into a structured data format helps preserve relationships 
 between bits of data, retains special meaning of specific data types, and 
 enables users to query the data with filters.
@@ -25,8 +28,7 @@ Let's use this National Institute of Health PDF as an example:
 Vectara offers a structured data format where users can convert PDFs to a 
 format like the following structure:
 
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
   "type": "structured",
   "id": "TAB‑3843",
   "title": "Engineered Cell‑Penetrating Monoclonal Antibody for Universal Influenza Immunotherapy",
@@ -54,9 +56,7 @@ format like the following structure:
       "text": "Current vaccines remain effective for a short time period..."
     }
   ]
-}
-
-```
+}`}]} title="Code Example" layout="stacked" />
 
 This data structure is built upon three core concepts:
 * Document
@@ -69,11 +69,9 @@ The document format provides high-level information that gets encoded into
 Vectara and allows users to retrieve this information using semantic search, 
 keyword-based search, and hybrid search:
 
-```json
-"documentId": "TAB‑3843",
+<CodePanel snippets={[{language: "json", code: `"documentId": "TAB‑3843",
   "title": "Engineered Cell‑Penetrating Monoclonal Antibody for Universal Inuenza Immunotherapy",
-  "description": "Home » Tech » Engineered Cell‑Penetrating Monoclonal Antibody for Universal Inuenza Immunotherapy",
-```
+  "description": "Home » Tech » Engineered Cell‑Penetrating Monoclonal Antibody for Universal Inuenza Immunotherapy",`}]} title="Code Example" layout="stacked" />
 
 * `documentId` specifies a unique identifier for the document.
 * `title` specifies the heading of the document.
@@ -96,8 +94,7 @@ Let's look at these metadata properties in more detail.
 
 ### Example Metadata Properties
 
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
   "metadata": {
     "developmentStatus": "Pre‑Clinical",
     "isAntibodiesProduct": true,
@@ -105,8 +102,7 @@ Let's look at these metadata properties in more detail.
     "patentSeriesCode": 63,
     "patentApplicationNumber": 365841
   }
-}
-```
+}`}]} title="Code Example" layout="stacked" />
 
 * `developmentStatus` specifies status of the patent, such as pre-clinical.
 * `isAntibodiesProduct` indicates whether the patent applies to "antibodies-related" 
@@ -126,8 +122,7 @@ When Vectara ingests a document, it splits the text in these sections into
 chunks and encodes them in vectors. This enables queries to retrieve 
 them based on semantic similarity.
 
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
   "sections": [
     {
       "title": "body",
@@ -141,9 +136,7 @@ them based on semantic similarity.
       }
     }
   ]
-}
-
-  ```
+}`}]} title="Code Example" layout="stacked" />
 
 * `text` specifies the body of text.
 * `title` specifies an optional name for identifying the body of text. 
@@ -160,8 +153,7 @@ titles, text, and metadata. The document is structured with a top-level
 `section` array that contains the parent sections. For example, the plays 
 titled `King Lear` and `Antony and Cleopatra`.
 
-
-```json
+```
 {
   "type": "structured",
   "id": "selected-works-of-shakespeare",

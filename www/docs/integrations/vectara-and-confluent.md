@@ -5,6 +5,9 @@ sidebar_label: Vectara and Confluent
 ---
 
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The **Vectara Kafka Connect Plugin** seamlessly integrates [Confluent Cloud](https://confluent.cloud/) 
 with Vectara, which enables real-time processing of data, allowing you 
 to efficiently move data streams from Confluent directly into Vectara's 
@@ -62,8 +65,7 @@ connector.
 
 ### Example configuration
 
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
     "connector.class": "com.vectara.kafka.connect.VectaraUploadDocumentSinkConnector",
     "tasks.max": "1",
     "key.converter": "io.confluent.connect.avro.AvroConverter",
@@ -75,9 +77,8 @@ connector.
     "document.metadata.fields": "Id,OwnerUserId",
     "transforms": "Cast",
     "transforms.Cast.spec": "string",
-    "transforms.Cast.type": "org.apache.kafka.connect.transforms.Cast$Key"
-}
-```
+    "transforms.Cast.type": "org.apache.kafka.connect.transforms.Cast\$Key"
+}`}]} title="Code Example" layout="stacked" />
 
 This example consumes data from a topic and converts the key of the message 
 to a string. Kafka-Connect-Vectara uses the key of the topic as the key in the 

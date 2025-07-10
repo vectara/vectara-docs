@@ -5,6 +5,9 @@ sidebar_label: Retrieval Augmented Generation (RAG) Fundamentals
 ---
 
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Retrieval Augmented Generation (RAG) ensures that generated content is both
 verifiable and anchored to the data you supply. This minimizes the occurrence
 of [hallucinations](https://vectara.com/avoiding-hallucinations-in-llm-powered-applications/) (inaccurate or

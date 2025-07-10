@@ -6,6 +6,9 @@ sidebar_label: Compute Account Size API Definition
 
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The Compute Account Size API lets you view how much quota you consumed
 across the entire account. This capability is useful for administrators who
 want to track and monitor usage of multiple accounts. For example, you manage

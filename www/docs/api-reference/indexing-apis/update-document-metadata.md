@@ -6,6 +6,9 @@ sidebar_label: Update Document Metadata API Definition
 
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The Update Document Metadata API enables you to modify the metadata of a 
 specific document in a corpus by merging the new metadata with the existing 
 metadata. This operation allows you to add or update specific fields without 

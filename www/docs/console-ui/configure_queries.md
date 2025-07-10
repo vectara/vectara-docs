@@ -8,6 +8,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 When you add data to a corpus, the **Query** tab lets you experiment with 
 different semantic search, summarization, and chat options. Whether you want 
 to retrieve relevant information, generate summaries grounded in facts with 

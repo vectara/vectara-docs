@@ -6,6 +6,9 @@ sidebar_label: Replace Document Metadata API Definition
 
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The Replace Document Metadata API enables you to overwrite the metadata of a 
 specific document in a corpus. This endpoint replaces the previous metadata 
 object entirely with a new metadata object provided in the request. It is 

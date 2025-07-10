@@ -9,6 +9,9 @@ import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 You can upload data to the corpus from the **Data** tab.
 
 1. Navigate to your corpus.

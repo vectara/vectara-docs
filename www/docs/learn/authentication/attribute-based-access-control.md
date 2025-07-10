@@ -7,6 +7,9 @@ sidebar_label: Apply Metadata Filters for Attribute-Based Access Control (ABAC)
 import {Config} from '@site/docs/definitions.md';
 import vars from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Vectara does not currently offer native field-level or document-level access 
 control levels (ACLs). Without these controls, anyone with query access to a 
 corpus can see all its content.
@@ -46,34 +49,34 @@ ownership, group, role, or other attributes.
 ## Configure attribute-based access control
 
 1. Add metadata when indexing data.
-   ```json
-   {
-     "document": {
-       "title": "Customer Report",
-       "metadataJson": {
-         "user_id": "user123",
-         "team": ["sales", "executive"],
-         "access_level": "manager",
-         "category": "q2_metrics"
-       }
-     }
-   }
-    ```
-    :::note
-    Each metadata field must be declared in your corpus schema.
-    :::
+
+<CodePanel snippets={[{language: "json", code: `{
+  "document": {
+    "title": "Customer Report",
+    "metadataJson": {
+      "user_id": "user123",
+      "team": ["sales", "executive"],
+      "access_level": "manager",
+      "category": "q2_metrics"
+    }
+  }
+}`}]} title="Code Example" layout="stacked" />
+
+:::note
+Each metadata field must be declared in your corpus schema.
+:::
 
 2. Construct the access filter.  
    Build a filter string that enforces access control where Mary can access 
    her own documents and anyone in the `history` group with role `professor` 
    can also access these documents
 
-    `(doc.owner in ("mary", "global")) OR ("history" IN doc.groups AND (doc.roles is null OR "professor" IN doc.roles))`
+   `(doc.owner in ("mary", "global")) OR ("history" IN doc.groups AND (doc.roles is null OR "professor" IN doc.roles))`
 
 3. Combine metadata with the application-specific filters.  
    You can layer filters for user access and functional context:
 
-    `((doc.owner = "mary") OR ("history" IN doc.groups)) AND (doc.project = "orientation")`
+   `((doc.owner = "mary") OR ("history" IN doc.groups)) AND (doc.project = "orientation")`
 
 This ensures access control remains enforced while supporting contextual filtering.
 
@@ -81,18 +84,16 @@ This ensures access control remains enforced while supporting contextual filteri
 
 ## Example ABAC request
 
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
   "query": [{
     "query": "school policies",
     "search": {
       "corpora": [{ "corpus_key": "faculty_corpus" }],
-      "metadata_filter": "((doc.owner in (\"mary\", \"global\")) OR (\"history\" IN doc.groups)) AND (doc.project = \"orientation\")",
+      "metadata_filter": "((doc.owner in (\\"mary\\", \\"global\\")) OR (\\"history\\" IN doc.groups)) AND (doc.project = \\"orientation\\")",
       "limit": 10
     }
   }]
-}
-```
+}`}]} title="Code Example" layout="stacked" />
 
 ## ABAC Limitations
 

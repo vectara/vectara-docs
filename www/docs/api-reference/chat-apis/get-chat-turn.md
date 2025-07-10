@@ -8,6 +8,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The Get Chat Turn API allows you to retrieve a specific turn from a chat,
 which represents a message and response pair in the conversation.
 

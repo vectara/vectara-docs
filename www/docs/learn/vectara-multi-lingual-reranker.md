@@ -8,6 +8,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Generative AI applications often struggle with ranking the most relevant 
 information, leading to hallucinations and irrelevant responses. The new 
 Vectara Multilingual Reranker V1, also known as Slingshot, is a 
@@ -35,12 +38,10 @@ Using this reranker requires both the `type` and `reranker_name` in the
 `reranker` object. Set the `type` as `customer_reranker` and the `reranker_name` 
 as `Rerank_Multilingual_v1`.
 
-```json
-"reranker": {
+<CodePanel snippets={[{language: "json", code: `"reranker": {
       "type": "customer_reranker",
       "reranker_name": "Rerank_Multilingual_v1"
-    }
-```
+    }`}]} title="Code Example" layout="stacked" />
 
 :::note
 The `reranker_id` and `rnk_272725719` have been deprecated. Use `reranker_name` and 

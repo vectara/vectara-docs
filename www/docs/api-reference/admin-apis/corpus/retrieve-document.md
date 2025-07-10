@@ -6,6 +6,9 @@ sidebar_label: Retrieve Document API Definition
 
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The Retrieve Document API enables you to fetch the content and metadata of a 
 specific document from a corpus. Use this endpoint to view the full details of 
 a document, including its text, metadata, and associated tables, if table 

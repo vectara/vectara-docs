@@ -9,6 +9,9 @@ import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The Chat Completions API provides an OpenAI-compatible interface for 
 generating model responses in multi-turn chat conversations. This API enables 
 you to integrate Vectara’s language models directly into applications designed 
@@ -59,8 +62,7 @@ This example sends a simple chat conversation to the API, asking the assistant
 for the capital of France. The request includes a system prompt, a user 
 message, and a temperature setting for response variability.
 
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
   "model": "chat-model-001",
   "messages": [
     { "role": "system", "content": "You are a helpful assistant." },
@@ -68,16 +70,14 @@ message, and a temperature setting for response variability.
   ],
   "temperature": 0.7,
   "stream": false
-}
-```
+}`}]} title="Code Example" layout="stacked" />
 ### Example response
 
 The response includes a generated reply from the assistant, along with token 
 usage statistics. In this example, the model returns a direct answer to the 
 user’s question.
 
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
   "id": "chatcmpl-abc123",
   "object": "chat.completion",
   "created": 1712454830,
@@ -97,8 +97,7 @@ user’s question.
     "completion_tokens": 9,
     "total_tokens": 30
   }
-}
-```
+}`}]} title="Code Example" layout="stacked" />
 
 If the input summary is accurate, the `corrected_summary` matches the 
 `original_summary`.

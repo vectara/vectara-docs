@@ -2,6 +2,9 @@
 sidebar_position: 4
 ---
 
+
+import CodePanel from '@site/src/theme/CodePanel';
+
 # Markdown Features
 
 Docusaurus supports **[Markdown](https://daringfireball.net/projects/markdown/syntax)** and a few **additional features**.
@@ -23,19 +26,12 @@ slug: /my-custom-url
 ## Markdown heading
 
 Markdown text with [links](./hello.md)
-```
+<CodePanel snippets={[{language: "bash", code: `## Links
 
-## Links
-
-Regular Markdown links are supported, using url paths or relative file paths.
-
-```md
+Regular Markdown links are supported, using url paths or relative file paths.`}]} title="Code Example" layout="stacked" />md
 Let's see how to [Create a page](/create-a-page).
-```
-
-```md
-Let's see how to [Create a page](./create-a-page.md).
-```
+<CodePanel snippets={[{language: "bash", code: `\`\`\`md
+Let's see how to [Create a page](./create-a-page.md).`}]} title="Code Example" layout="stacked" />
 
 **Result:** Let's see how to [Create a page](./create-a-page.md).
 
@@ -45,42 +41,32 @@ Regular Markdown images are supported.
 
 You can use absolute paths to reference images in the static directory (`static/img/docusaurus.png`):
 
-```md
-![Docusaurus logo](/img/docusaurus.png)
-```
+<CodePanel snippets={[{language: "md", code: `![Docusaurus logo](/img/docusaurus.png)`}]} title="Code Example" layout="stacked" />
 
 ![Docusaurus logo](/img/docusaurus.png)
 
 You can reference images relative to the current file as well. This is particularly useful to colocate images close to the Markdown files using them:
 
-```md
-![Docusaurus logo](./img/docusaurus.png)
-```
+<CodePanel snippets={[{language: "md", code: `![Docusaurus logo](./img/docusaurus.png)`}]} title="Code Example" layout="stacked" />
 
 ## Code Blocks
 
 Markdown code blocks are supported with Syntax highlighting.
 
-````md
-```jsx title="src/components/HelloDocusaurus.js"
+`<CodePanel snippets={[{language: "md", code: `\`\`\`jsx title="src/components/HelloDocusaurus.js"
 function HelloDocusaurus() {
   return <h1>Hello, Docusaurus!</h1>;
-}
-```
-````
-
-```jsx title="src/components/HelloDocusaurus.js"
+}`}]} title="Code Example" layout="stacked" />
+`<CodePanel snippets={[{language: "bash", code: `\`\`\`jsx title="src/components/HelloDocusaurus.js"
 function HelloDocusaurus() {
   return <h1>Hello, Docusaurus!</h1>;
-}
-```
+}`}]} title="Code Example" layout="stacked" />
 
 ## Admonitions
 
 Docusaurus has a special syntax to create admonitions and callouts:
 
-```md
-:::tip My tip
+<CodePanel snippets={[{language: "md", code: `:::tip My tip
 
 Use this awesome feature option
 
@@ -90,8 +76,7 @@ Use this awesome feature option
 
 This action is dangerous
 
-:::
-```
+:::`}]} title="Code Example" layout="stacked" />
 
 :::tip My tip
 
@@ -109,8 +94,7 @@ This action is dangerous
 
 [MDX](https://mdxjs.com/) can make your documentation more **interactive** and allows using any **React components inside Markdown**:
 
-```jsx
-export const Highlight = ({children, color}) => (
+<CodePanel snippets={[{language: "jsx", code: `export const Highlight = ({children, color}) => (
   <span
     style={{
       backgroundColor: color,
@@ -120,7 +104,7 @@ export const Highlight = ({children, color}) => (
       cursor: 'pointer',
     }}
     onClick={() => {
-      alert(`You clicked the color ${color} with label ${children}`)
+      alert(\`You clicked the color \${color} with label \${children}\`)
     }}>
     {children}
   </span>
@@ -128,8 +112,7 @@ export const Highlight = ({children, color}) => (
 
 This is <Highlight color="#25c2a0">Docusaurus green</Highlight> !
 
-This is <Highlight color="#1877F2">Facebook blue</Highlight> !
-```
+This is <Highlight color="#1877F2">Facebook blue</Highlight> !`}]} title="Code Example" layout="stacked" />
 
 export const Highlight = ({children, color}) => (
   <span

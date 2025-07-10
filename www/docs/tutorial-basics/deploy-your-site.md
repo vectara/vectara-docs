@@ -2,6 +2,9 @@
 sidebar_position: 5
 ---
 
+
+import CodePanel from '@site/src/theme/CodePanel';
+
 # Deploy your site
 
 Docusaurus is a **static-site-generator** (also called **[Jamstack](https://jamstack.org/)**).
@@ -12,9 +15,7 @@ It builds your site as simple **static HTML, JavaScript and CSS files**.
 
 Build your site **for production**:
 
-```bash
-npm run build
-```
+<CodePanel snippets={[{language: "bash", code: `npm run build`}]} title="Code Example" layout="stacked" />
 
 The static files are generated in the `build` folder.
 
@@ -22,9 +23,7 @@ The static files are generated in the `build` folder.
 
 Test your production build locally:
 
-```bash
-npm run serve
-```
+<CodePanel snippets={[{language: "bash", code: `npm run serve`}]} title="Code Example" layout="stacked" />
 
 The `build` folder is now served at [http://localhost:3000/](http://localhost:3000/).
 

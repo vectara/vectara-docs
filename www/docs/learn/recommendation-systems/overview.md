@@ -5,6 +5,9 @@ sidebar_label: Recommendation System
 ---
 
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Many platforms struggle to keep users engaged with relevant content or 
 products, often relying on simplistic matching algorithms. Vectara can be used 
 as a semantic recommendation system out of the box in order to provide your 
@@ -65,11 +68,9 @@ of question answering. You do that via the semantics key which is inside of the
 corpusKey block in the query.
 
 If a user is looking at a document that has the text:
-```
-All about me
+<CodePanel snippets={[{language: "bash", code: `All about me
 
-My name is Shane and I'm ...
-```
+My name is Shane and I'm ...`}]} title="Code Example" layout="stacked" />
 
 and you wanted to find other documents that are similar to this, you can pass
 this document text to <Config v="names.product"/> and set the `semantics` to

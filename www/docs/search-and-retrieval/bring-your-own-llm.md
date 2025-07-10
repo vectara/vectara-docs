@@ -4,6 +4,9 @@ title: Bring Your Own LLM
 sidebar_label: Bring Your Own LLM
 ---
 
+
+import CodePanel from '@site/src/theme/CodePanel';
+
 Organizations often need to integrate multiple Large Language Models (LLMs) 
 from different providers to optimize cost, performance, or compliance. 
 Vectara’s Bring Your Own LLM (BYO-LLM) capability allows seamless integration 
@@ -37,11 +40,10 @@ the custom LLM configuration fields:
 
 #### Request Body
 
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
   "type": "openai-compatible",
   "name": "Claude 3.7 Sonnet",
-  "description": "Anthropic'\''s Claude 3.7 Sonnet model",
+  "description": "Anthropic'\\''s Claude 3.7 Sonnet model",
   "model": "claude-3-7-sonnet-20250219",
   "uri": "https://api.anthropic.com/v1/chat/completions",
   "auth": {
@@ -52,20 +54,18 @@ the custom LLM configuration fields:
   "test_model_parameters": {
     "max_tokens": 256
   }
-}
-```
+}`}]} title="Code Example" layout="stacked" />
 
 #### cURL Example
 
-```json
-curl -L -X POST 'https://api.vectara.io/v2/llms' \
--H 'Content-Type: application/json' \
--H 'Accept: application/json' \
--H 'x-api-key: YOUR-VECTARA-API-KEY' \
+<CodePanel snippets={[{language: "json", code: `curl -L -X POST 'https://api.vectara.io/v2/llms' \\
+-H 'Content-Type: application/json' \\
+-H 'Accept: application/json' \\
+-H 'x-api-key: YOUR-VECTARA-API-KEY' \\
 --data-raw '{
   "type": "openai-compatible",
   "name": "Claude 3.7 Sonnet",
-  "description": "Anthropic'\''s Claude 3.7 Sonnet model",
+  "description": "Anthropic'\\''s Claude 3.7 Sonnet model",
   "model": "claude-3-7-sonnet-20250219",
   "uri": "https://api.anthropic.com/v1/chat/completions",
   "auth": {
@@ -76,31 +76,27 @@ curl -L -X POST 'https://api.vectara.io/v2/llms' \
   "test_model_parameters": {
     "max_tokens": 256
   }
-}'
-```
+}'`}]} title="Code Example" layout="stacked" />
 
 #### Successful Response
 
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
   "id": "llm_520721844",
   "name": "Claude 3.7 Sonnet",
   "description": "Anthropic's Claude 3.7 Sonnet model",
   "enabled": true
-}
-```
+}`}]} title="Code Example" layout="stacked" />
 
 ## Add OpenAI GPT-4
 
-```json
-curl -L -X POST 'https://api.vectara.io/v2/llms' \
--H 'Content-Type: application/json' \
--H 'Accept: application/json' \
--H 'x-api-key: zut_' \
+<CodePanel snippets={[{language: "json", code: `curl -L -X POST 'https://api.vectara.io/v2/llms' \\
+-H 'Content-Type: application/json' \\
+-H 'Accept: application/json' \\
+-H 'x-api-key: zut_' \\
 --data-raw '{
   "type": "openai-compatible",
   "name": "GPT-4o Mini",
-  "description": "OpenAI'\''s 4o mini",
+  "description": "OpenAI'\\''s 4o mini",
   "model": "gpt-4o-mini",
   "uri": "https://api.openai.com/v1/chat/completions",
   "auth": {
@@ -111,16 +107,14 @@ curl -L -X POST 'https://api.vectara.io/v2/llms' \
   "test_model_parameters": {
     "max_tokens": 256
   }
-}'
-```
+}'`}]} title="Code Example" layout="stacked" />
 
 ## Add Google Gemini 2.0 Flash
 
-```json
-curl -L -X POST 'https://api.vectara.io/v2/llms' \
--H 'Content-Type: application/json' \
--H 'Accept: application/json' \
--H 'x-api-key: zut_...' \
+<CodePanel snippets={[{language: "json", code: `curl -L -X POST 'https://api.vectara.io/v2/llms' \\
+-H 'Content-Type: application/json' \\
+-H 'Accept: application/json' \\
+-H 'x-api-key: zut_...' \\
 --data-raw '{
   "type": "openai-compatible",
   "name": "Google Gemini 2.0 Flash",
@@ -135,18 +129,14 @@ curl -L -X POST 'https://api.vectara.io/v2/llms' \
   "test_model_parameters": {
     "max_tokens": 256
   }
-}'
-
-```
+}'`}]} title="Code Example" layout="stacked" />
 ## Verify your configuration
 
 To confirm your model was added successfully:
 
-```
-curl -L -X GET 'https://api.vectara.io/v2/llms' \
--H 'Accept: application/json' \
--H 'x-api-key: YOUR-VECTARA-API-KEY'
-```
+<CodePanel snippets={[{language: "bash", code: `curl -L -X GET 'https://api.vectara.io/v2/llms' \\
+-H 'Accept: application/json' \\
+-H 'x-api-key: YOUR-VECTARA-API-KEY'`}]} title="Code Example" layout="stacked" />
 
 Look for your model in the response JSON and verify it has `"enabled": true`.
 
@@ -162,11 +152,10 @@ preset and explicitly specify the registered model by name.
 
 ### Example query 
 
-```json
-curl -X POST 'https://api.vectara.io/v2/query' \
--H 'Content-Type: application/json' \
--H 'Accept: application/json' \
--H 'x-api-key: zut_...' \
+<CodePanel snippets={[{language: "json", code: `curl -X POST 'https://api.vectara.io/v2/query' \\
+-H 'Content-Type: application/json' \\
+-H 'Accept: application/json' \\
+-H 'x-api-key: zut_...' \\
 -d '{
   "query": "Here is my query",
   "search": {
@@ -181,10 +170,9 @@ curl -X POST 'https://api.vectara.io/v2/query' \
   },
   "generation": {
     "generation_preset_name": "custom-llm",
-    "prompt_template": "[ {\"role\": \"user\", \"content\": \"custom instructions\"} ]",
+    "prompt_template": "[ {\\"role\\": \\"user\\", \\"content\\": \\"custom instructions\\"} ]",
     "model_parameters": {
       "llm_name": "claude-3-7-sonnet"
     }
   }
-}'
-```
+}'`}]} title="Code Example" layout="stacked" />

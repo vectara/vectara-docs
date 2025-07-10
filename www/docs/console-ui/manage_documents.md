@@ -6,6 +6,9 @@ sidebar_label: Manage Documents
 
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The Data view provides information about each document ingested into 
 the corpus, including the Document ID, title, size, date added, metadata, 
 document parts, and table information.

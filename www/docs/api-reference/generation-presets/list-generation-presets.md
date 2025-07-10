@@ -9,6 +9,9 @@ import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Organizations often struggle to fine-tune query responses and maintain 
 consistency across different use cases. Vectara creates and maintains 
 predefined generation presets for our users which provides a flexible and 
@@ -52,14 +55,13 @@ can also be set as a `default`.
 
 ### Example generation presets response
 
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
   "generation_presets": [
     {
       "name": "vectara-summary-ext-v1.2.0",
       "description": "Better than base. Generate a summary with references.",
       "llm_name": "gpt-3.5-turbo",
-      "prompt_template": "{\"type\": \"VELOCITY\", \"text\": ...",
+      "prompt_template": "{\\"type\\": \\"VELOCITY\\", \\"text\\": ...",
       "max_used_search_results": 25,
       "max_tokens": 1024,
       "temperature": 0.7,
@@ -72,7 +74,7 @@ can also be set as a `default`.
       "name": "vectara-summary-ext-v1.3.0",
       "description": "Slower but better than vectara-summary-ext-v1.2.x. Generate a summary with references.",
       "llm_name": "gpt-4",
-      "prompt_template": "{\"type\": \"VELOCITY\", \"text\": ...",
+      "prompt_template": "{\\"type\\": \\"VELOCITY\\", \\"text\\": ...",
       "max_used_search_results": 25,
       "max_tokens": 1024,
       "temperature": 0.7,
@@ -84,8 +86,7 @@ can also be set as a `default`.
     // ... 
   ],
   "metadata": {}
-}
-```
+}`}]} title="Code Example" layout="stacked" />
 
 ## REST 2.0 URL
 
@@ -94,8 +95,6 @@ can also be set as a `default`.
 Vectara exposes a REST endpoint at the following URL to list generation 
 presets in the account:
 
-```
-https://api.vectara.io/v2/generation_preset
-```
+<CodePanel snippets={[{language: "bash", code: `https://api.vectara.io/v2/generation_preset`}]} title="Code Example" layout="stacked" />
 
 The API Reference shows the full [List Generation Presets](/docs/rest-api/list-generation-presets) REST definition.

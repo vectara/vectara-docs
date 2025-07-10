@@ -5,6 +5,9 @@ sidebar_label: Keyword Search
 ---
 
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 In some specialized fields such as legal, compliance, and technical 
 domains, relying solely on [semantic search](/docs/learn/semantic-search/semantic-search-overview) can miss information tied to 
 specific phrases or terms. By default, Vectara optimizes for semantic 
@@ -23,8 +26,7 @@ exact keyword matching as needed.
 To enable exact keyword matching and disable neural retrieval, specify the 
 `lexical_interpolation` value as `1` in the `search` object at query time:
 
-```json
-"search": {
+<CodePanel snippets={[{language: "json", code: `"search": {
     "corpora": [
       {
         "corpus_key": "sports-rules"
@@ -39,8 +41,7 @@ To enable exact keyword matching and disable neural retrieval, specify the
       "end_tag": "%END_SNIPPET%"
     },
     "lexical_interpolation": 1.0
-  },
-```
+  },`}]} title="Code Example" layout="stacked" />
 
 :::note
 Setting `lexical_interpolation` to `1.0` is equivalent to the original BM25.
@@ -61,11 +62,10 @@ Boolean text matching.
 The following example shows the full [query](/docs/api-reference/search-apis/search) with 
 the `lexical_interpolation` value set to `1`:
 
-```json
-curl -X POST \
--H "Content-Type: application/json" \
--H "x-api-key: <API_KEY>" \
-https://api.vectara.io/v2/query \
+<CodePanel snippets={[{language: "json", code: `curl -X POST \\
+-H "Content-Type: application/json" \\
+-H "x-api-key: <API_KEY>" \\
+https://api.vectara.io/v2/query \\
 -d @- <<END;
 {
   "query": "What is offsides?",
@@ -90,8 +90,7 @@ https://api.vectara.io/v2/query \
     "max_used_search_results": 5
   }
 }
-END
-```
+END`}]} title="Code Example" layout="stacked" />
 
 Experimenting with the `lexical_interpolation` value is useful if you're trying
 to evaluate how a keyword system like one based on Elasticsearch or Solr may 

@@ -6,6 +6,9 @@ sidebar_label: Compute Corpus Size API Definition
 
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The Compute Corpus Size API (API 1.0 only) lets you dynamically compute amount of quota consumed
 by a corpus. This capability is useful for administrators to track and monitor
 the amount of usage for specific corpora. For example, you manage multiple

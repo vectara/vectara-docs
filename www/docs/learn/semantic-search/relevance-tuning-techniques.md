@@ -5,6 +5,9 @@ sidebar_label: Relevance Tuning Techniques
 ---
 
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 By default, <Config v="names.product"/> uses a form of "question-answer"
 similarity to produce the scoring. This provides a very robust ability to
 answer your users questions. By default, scores go from `-1` to `1` where a

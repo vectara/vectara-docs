@@ -4,6 +4,9 @@ title: Configure Server Access to a Corpus
 sidebar_label: Configure Server Access
 ---
 
+
+import CodePanel from '@site/src/theme/CodePanel';
+
 Follow the steps below to configure server access to a corpus. This access is
 commonly needed when your systems will be indexing data into the corpus or
 running queries against it.

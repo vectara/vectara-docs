@@ -2,6 +2,9 @@
 sidebar_position: 1
 ---
 
+
+import CodePanel from '@site/src/theme/CodePanel';
+
 # Manage Docs Versions
 
 Docusaurus can manage multiple versions of your docs.
@@ -10,9 +13,7 @@ Docusaurus can manage multiple versions of your docs.
 
 Release a version 1.0 of your project:
 
-```bash
-npm run docusaurus docs:version 1.0
-```
+<CodePanel snippets={[{language: "bash", code: `npm run docusaurus docs:version 1.0`}]} title="Code Example" layout="stacked" />
 
 The `docs` folder is copied into `versioned_docs/version-1.0` and `versions.json` is created.
 

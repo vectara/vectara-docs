@@ -9,6 +9,9 @@ import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Many search scenarios require considering factors beyond the text content 
 itself, such as user engagement metrics or temporal relevance. Custom 
 dimensions enable [our Pro and Enterprise users](https://vectara.com/pricing/) to have a fixed set of additional 
@@ -22,11 +25,10 @@ For example, let's say we want to add a custom dimension to boost posts from a
 forum based on how many "upvotes" it has received.  We can create the corpus
 with a "votes" custom dimension as follows:
 
-```js
-curl -X POST \
-  -H "Content-Type: application/json" \
-  -H "x-api-key: ${API_KEY}" \
-  https://api.vectara.io/v2/corpora \
+<CodePanel snippets={[{language: "js", code: `curl -X POST \\
+  -H "Content-Type: application/json" \\
+  -H "x-api-key: \${API_KEY}" \\
+  https://api.vectara.io/v2/corpora \\
   -d @- <<END;
 {
   "key": "acme-forums",
@@ -40,13 +42,11 @@ curl -X POST \
     }
   ]
 }
-END
-```
+END`}]} title="Code Example" layout="stacked" />
 
 Then, at index time, you can attach the value of the custom dimension of 
 votes with a value of `1.235` as follows:
-```js
-{
+<CodePanel snippets={[{language: "js", code: `{
   "id": "237a8b63-2826-4ee1-8d83-14c2451a3357",
   "type": "core",
   "metadata": {},
@@ -59,17 +59,15 @@ votes with a value of `1.235` as follows:
       }
     }
   ]
-}
-```
+}`}]} title="Code Example" layout="stacked" />
 
 And then to boost documents based on the value of these custom dimensions, you
 can apply a query as follows:
 
-```js
-curl -X POST \
-  -H "Content-Type: application/json" \
-  -H "x-api-key: ${API_KEY}" \
-  https://api.vectara.io/v2/corpora/acme-forums/query \
+<CodePanel snippets={[{language: "js", code: `curl -X POST \\
+  -H "Content-Type: application/json" \\
+  -H "x-api-key: \${API_KEY}" \\
+  https://api.vectara.io/v2/corpora/acme-forums/query \\
   -d @- <<END;
 {
   "query": "When was the last time you saw a rainbow?",
@@ -81,8 +79,7 @@ curl -X POST \
     "limit": 5
   }
 }
-END
-```
+END`}]} title="Code Example" layout="stacked" />
 
 ## How custom dimensions affect scores
 

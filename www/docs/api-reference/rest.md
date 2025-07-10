@@ -5,6 +5,9 @@ sidebar_label: REST APIs
 ---
 
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 While gRPC provides low latency and excellent scalability, REST APIs provide a
 traditional integration path for web-based applications. With the introduction
 of Vectara's REST API 2.0, developers can now leverage a more intuitive and

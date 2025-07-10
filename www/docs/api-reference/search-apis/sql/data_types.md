@@ -3,6 +3,9 @@ id: data-types
 title: Data Types
 ---
 
+
+import CodePanel from '@site/src/theme/CodePanel';
+
 This section provides a list of the various data types supported by Vectara, 
 helping you make informed decisions when working with different data types.
 

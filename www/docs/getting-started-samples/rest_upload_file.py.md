@@ -14,6 +14,9 @@ import json
 import logging
 import requests
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 
 def _get_upload_file_json():
     """Returns some example JSON file upload data."""

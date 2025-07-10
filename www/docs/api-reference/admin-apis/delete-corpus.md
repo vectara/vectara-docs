@@ -6,6 +6,9 @@ sidebar_label: Delete Corpus API Definition
 
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The Delete Corpus API lets you delete a corpus and all the data it contains.
 To delete a corpus, send a DELETE request to `/v2/corpora/:corpus_key`, where
 `corpus_key` is the unique identifier of the corpus.

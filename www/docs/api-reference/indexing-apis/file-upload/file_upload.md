@@ -8,6 +8,9 @@ import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The File Upload API enables you to extract text from unstructured documents in 
 common file types like PDFs, Microsoft Word, Text, HTML, and Markdown. It also 
 supports extracting table data from PDFs, allowing for improved analysis and 
@@ -72,14 +75,12 @@ uploaded per request.
 Apart from these parameters, the servers expect a valid JWT Token in the HTTP
 headers.
 
-```json
-curl -L -X POST 'https://api.vectara.io/v2/corpora/:corpus_key/upload_file' \
--H 'Content-Type: multipart/form-data' \
--H 'Accept: application/json' \
--H 'x-api-key: zwt_123456' \
--F 'metadata={"key": "value"};type=application/json' \
--F 'file=@/path/to/file/file.pdf;filename=desired_filename.pdf'
-```
+<CodePanel snippets={[{language: "json", code: `curl -L -X POST 'https://api.vectara.io/v2/corpora/:corpus_key/upload_file' \\
+-H 'Content-Type: multipart/form-data' \\
+-H 'Accept: application/json' \\
+-H 'x-api-key: zwt_123456' \\
+-F 'metadata={"key": "value"};type=application/json' \\
+-F 'file=@/path/to/file/file.pdf;filename=desired_filename.pdf'`}]} title="Code Example" layout="stacked" />
 
 ### Filenames with Non-ASCII Characters
 
@@ -124,9 +125,7 @@ analytical perspectives, or formatting preferences.
 You can attach additional metadata to the file by specifying a `metadata`
 form field, which can contain a JSON string:
 
-```json
-metadata='{ "filesize": 1234 }'
-```
+<CodePanel snippets={[{language: "json", code: `metadata='{ "filesize": 1234 }'`}]} title="Code Example" layout="stacked" />
 
 ## Response Codes
 

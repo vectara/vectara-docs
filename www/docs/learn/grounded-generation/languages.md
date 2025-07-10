@@ -4,6 +4,9 @@ title: Response Languages
 ---
 
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The `response_language` field in <Config v="names.product"/> allows control of the language
 for sumarization requests. You *can* ask <Config v="names.product"/> to attempt
 to guess the language of the query and respond in that guessed language by

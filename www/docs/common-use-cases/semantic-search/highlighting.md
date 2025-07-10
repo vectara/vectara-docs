@@ -5,3 +5,6 @@ sidebar_label: Highlighting
 ---
 
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+

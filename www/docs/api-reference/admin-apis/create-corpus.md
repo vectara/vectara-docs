@@ -6,6 +6,9 @@ sidebar_label: Create Corpus API Definition
 
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The [Create Corpus API](/docs/rest-api/create-corpus) lets you create a corpus to store and manage your
 documents. A corpus is a container for documents and their associated
 metadata. When creating a corpus, you can specify various settings such as the

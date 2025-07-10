@@ -9,6 +9,9 @@ import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Efficient data ingestion, also known as indexing, is critical for ensuring 
 that your application delivers fast, accurate, and relevant query results. 
 Whether handling structured, semi-structured, or unstructured data, selecting 

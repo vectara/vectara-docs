@@ -5,6 +5,9 @@ sidebar_label: Vectara and LlamaIndex
 ---
 
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 LlamaIndex is an LLM orchestration framework that focuses more on the data 
 aspect of building LLM-based applications. LlamaIndex provides a different set 
 of abstractions and tools than LangChain, focusing more on data quality.

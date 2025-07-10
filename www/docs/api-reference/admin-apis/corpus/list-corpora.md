@@ -6,6 +6,9 @@ sidebar_label: List Corpora API Definition
 
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The List Corpora API lets you retrieve a list of corpora in your account. This
 endpoint returns a paginated list of `corpora` objects, which contain basic
 information about each corpus.

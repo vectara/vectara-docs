@@ -5,6 +5,9 @@ sidebar_title: Metadata Filters
 ---
 
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 In many search scenarios, retrieving all available documents is not enough to 
 meet your application needs. It may be necessary to narrow the query results 
 to documents with specific, granular attributes. This is where metadata 
@@ -38,8 +41,7 @@ Metadata filters provide the following benefits:
 After you define filter attributes, you can use them within your queries. 
 For example:
 
-```json
-"filter_attributes": [
+<CodePanel snippets={[{language: "json", code: `"filter_attributes": [
     {
       "name": "Title",
       "level": "document",
@@ -47,8 +49,7 @@ For example:
       "indexed": True,
       "type": "text"
     }
-  ],
-```
+  ],`}]} title="Code Example" layout="stacked" />
 
 ## Document-level and part-level metadata
 

@@ -5,6 +5,9 @@ sidebar_label: Knee Reranking
 ---
 
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Retrieval Augmented Generation (RAG) systems often struggle with determining 
 optimal cutoff points for query results. Fixed score thresholds provide a 
 simple solution but lack the flexibility to adapt to varying score 

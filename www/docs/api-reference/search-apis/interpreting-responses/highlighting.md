@@ -7,6 +7,9 @@ sidebar_label: Highlighting and Snippet Extraction
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 When you receive query results from <Config v="names.product"/>, alongside the
 result, you'll receive values for `part_metadata` and `document_metadata`. For 
 example:
@@ -28,22 +31,20 @@ example:
     }
   ]
 }
-```
-
-For highlighting and snippet extraction, we need to pay attention to three key
+<CodePanel snippets={[{language: "bash", code: `For highlighting and snippet extraction, we need to pay attention to three key
 elements in this response:
-1. `text` under `search_results` which gives us the text/length to highlight
-2. `section` under `part_metadata` which tells us which specific section the
+1. \`text\` under \`search_results\` which gives us the text/length to highlight
+2. \`section\` under \`part_metadata\` which tells us which specific section the
 relevant snippet showed up in
-1. `offest` under `part_metadata` which tells us how far into the section the
+1. \`offest\` under \`part_metadata\` which tells us how far into the section the
 relevant snippet is
 
 ## Text and offset
 
 The most familiar parts of highlighting or snippet extraction if you've used
-any other search system are the `text` and `offset` values.  The `offset` tells
+any other search system are the \`text\` and \`offset\` values.  The \`offset\` tells
 you how many characters into the given section should be skipped before any
-highlighting.  Following that, the `text` tells you what the specific text is
+highlighting.  Following that, the \`text\` tells you what the specific text is
 to highlight.
 
 For example, if the original text was:
@@ -51,36 +52,33 @@ For example, if the original text was:
 jump!
 
 And if the query text is "striped horse-like animal," you might get back an
-an `offset` of 48 (how many characters before the sentence starting with "How"
-starts) and a `text` value of "How vexingly quick daft zebras jump!"
+an \`offset\` of 48 (how many characters before the sentence starting with "How"
+starts) and a \`text\` value of "How vexingly quick daft zebras jump!"
 
 ## Configuring context
 
-The `context_configuration` object in the [query request](/docs/api-reference/search-apis/search#query-definition) allows you to control 
+The \`context_configuration\` object in the [query request](/docs/api-reference/search-apis/search#query-definition) allows you to control 
 the amount of context included with each matching document part (snippet) that 
 appears in a summary. Adding this context configuration affects the results 
 quality for summarization by enhancing relevance and reducing ambiguity around 
-each snippet. You can specify `characters_before` and `characters_after` or 
-`sentences_before` and `sentences_after` to include before and after the 
-snippet, as well as `start_tag` and `end_tag` that wrap the snippet, such as 
-`<b>` and `</b>`. 
-
-```json
+each snippet. You can specify \`characters_before\` and \`characters_after\` or 
+\`sentences_before\` and \`sentences_after\` to include before and after the 
+snippet, as well as \`start_tag\` and \`end_tag\` that wrap the snippet, such as 
+\`<b>\` and \`</b>\`.`}]} title="Code Example" layout="stacked" />json
 "context_configuration": {
    "sentences_before": 2,
    "sentences_after": 2,
    "start_tag": "<b>",
    "end_tag": "</b>"
 }
-```
-This example uses `sentences_before` and `sentences_after`. If you enter values 
+<CodePanel snippets={[{language: "bash", code: `This example uses \`sentences_before\` and \`sentences_after\`. If you enter values 
 for sentences before/after and characters before/after, then 
 characters_before/after is ignored and summary returns the sentences values. 
 Experiment and iteratve with different values.
 
 ## Including additional context
 
-Often, just having the `text` and `offset` values are enough to create a
+Often, just having the \`text\` and \`offset\` values are enough to create a
 compelling highlighting/snippet extraction experience for short-form documents
 like social media posts and when you just have 1 section per documents.
 However, if you'd like to expand the snippet to include additional context,
@@ -95,9 +93,7 @@ you uploaded documents using the File Upload API, then you might need
 to look up the additional sections.  This can be done by an additional query
 to <Config v="names.product"/> using
 [filters](/docs/learn/metadata-search-filtering/filter-overview). To do this, retrieve the
-`document_id` value of the document and perform a query for that ID. For example:
-
-```json showLineNumbers title="https://api.vectara.io/v2/query"
+\`document_id\` value of the document and perform a query for that ID. For example:`}]} title="Code Example" layout="stacked" />json showLineNumbers title="https://api.vectara.io/v2/query"
 POST https://api.vectara.io/v2/query
 {
   "query": "",

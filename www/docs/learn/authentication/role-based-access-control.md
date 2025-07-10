@@ -4,6 +4,9 @@ title: Set Up Account and Corpus Permissions (RBAC)
 sidebar_label: Set Up Account and Corpus Permissions (RBAC)
 ---
 
+
+import CodePanel from '@site/src/theme/CodePanel';
+
 This guide helps you configure account, billing, and corpus permissions in 
 Vectara using Role-Based Access Control (RBAC). Assign precise account and 
 corpus-level access for users and Client Apps.
@@ -14,8 +17,7 @@ a corpus or managing users). Vectara groups permissions into **roles**, assigned
 through the Vectara Console. Admins can also set **default permissions** (such 
 as default Query access) to simplify access to corpora.
 
-```mermaid
-flowchart TD
+<CodePanel snippets={[{language: "mermaid", code: `flowchart TD
     A(Admin logs into console) --> B(Manage account settings)
     A --> C(Manage corpora)
     
@@ -35,8 +37,7 @@ flowchart TD
     style B2 fill:#ccf
     style C1 fill:#ccf
     style C2 fill:#ccf
-    style C3 fill:#ccf
-```
+    style C3 fill:#ccf`}]} title="Code Example" layout="stacked" />
 
 ## Configure account and billing permissions
 

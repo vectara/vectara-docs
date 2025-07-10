@@ -8,6 +8,9 @@ import {Config} from '@site/docs/definitions.md';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Personal API keys enable rapid application development in a testing 
 environment, but they are a security risk when moving to production. OAuth 2.0 
 fixes this by letting your applications authenticate securely without exposing 
@@ -156,12 +159,8 @@ const {
   }),
   url: "https://auth.vectara.com/oauth2/token"
 });
-```
-
-Here’s how you can generate a JWT token from the command line with a
-cURL command:
-
-```js title="cURL Example"
+<CodePanel snippets={[{language: "bash", code: `Here’s how you can generate a JWT token from the command line with a
+cURL command:`}]} title="Code Example" layout="stacked" />js title="cURL Example"
 curl -XPOST -H "Content-type: application/x-www-form-urlencoded" \
     -d "grant_type=client_credentials&client_id=<your client ID goes here>&client_secret=<your client secret goes here>" \
     https://auth.vectara.com/oauth2/token

@@ -4,6 +4,9 @@ title: Isolate Tenants with Corpora
 sidebar_label: Isolate Tenants with Corpora
 ---
 
+
+import CodePanel from '@site/src/theme/CodePanel';
+
 Without isolation, a compromised key could lead to unauthorized access across 
 tenants. Relying on metadata filters in a shared corpus risks errors, such as 
 misconfigured filters exposing sensitive data, and complicates auditing due to 
