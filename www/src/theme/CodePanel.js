@@ -9,8 +9,7 @@ import 'prismjs/components/prism-json';
 import 'prismjs/components/prism-yaml';
 import 'prismjs/components/prism-sql';
 
-// Import Prism CSS theme for proper syntax highlighting
-import 'prismjs/themes/prism-tomorrow.css';
+
 
 import styles from './CodePanel.module.css';
 
