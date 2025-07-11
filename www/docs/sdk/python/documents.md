@@ -24,14 +24,7 @@ governance.
   snippets={[
     {
       language: 'python',
-      code: `from vectara import Vectara
-from vectara.core.api_error import ApiError
-
-client = Vectara(api_key="YOUR_API_KEY")
-
-try:
-    # List documents with filtering
-    documents = client.documents.list(
+      code: `documents = client.documents.list(
         corpus_key="product-docs",
         limit=10,
         metadata_filter='type = "manual"'
@@ -39,17 +32,14 @@ try:
     
     for document in documents:
         print(f"Document ID: {document.id}")
-        print(f"Metadata: {document.metadata}")
-        
-except ApiError as e:
-    print(f"Failed to list documents: {e.status_code} - {e.body}")`
+        print(f"Metadata: {document.metadata}")3`
     }
   ]}
   annotations={{
     python: [
-      { line: 8, text: 'Returns an iterator for documents in the corpus' },
-      { line: 11, text: 'Filter documents by metadata criteria' },
-      { line: 15, text: 'Document objects contain ID and metadata, not full content' }
+      { line: 3, text: 'Returns an iterator for documents in the corpus' },
+      { line: 4, text: 'Filter documents by metadata criteria' },
+      { line: 8, text: 'Document objects contain ID and metadata, not full content' }
     ]
   }}
   customWidth="50%"
@@ -78,11 +68,7 @@ paginated results for efficient handling of large document collections.
   snippets={[
     {
       language: 'python',
-      code: `from vectara import StructuredDocument, StructuredDocumentSection
-
-try:
-    # Create structured document
-    document = StructuredDocument(
+      code: `document = StructuredDocument(
         id="policy-manual-v2",
         type="structured",
         sections=[
@@ -104,20 +90,15 @@ try:
     response = client.documents.create(
         corpus_key="employee-handbook",
         request=document
-    )
-    
-    print(f"Document created successfully: {response}")
-    
-except ApiError as e:
-    print(f"Failed to create document: {e.status_code} - {e.body}")`
+    )`
     }
   ]}
   annotations={{
     python: [
-      { line: 6, text: 'Document ID must be unique within the corpus' },
-      { line: 10, text: 'Each section can have optional title and metadata' },
-      { line: 20, text: 'Document-level metadata for filtering queries' },
-      { line: 24, text: 'Use documents.create() method to index the document' }
+      { line: 2, text: 'Document ID must be unique within the corpus' },
+      { line: 5, text: 'Each section can have optional title and metadata' },
+      { line: 8, text: 'Document-level metadata for filtering queries' },
+      { line: 20, text: 'Use documents.create() method to index the document' }
     ]
   }}
   customWidth="50%"
@@ -144,24 +125,16 @@ or technical manuals where clear section organization improves searchability.
   snippets={[
     {
       language: 'python',
-      code: `try:
-    document = client.documents.get(
+      code: `document = client.documents.get(
         corpus_key="employee-handbook",
         document_id="policy-manual-v2"
-    )
-    
-    print(f"Document text: {document.text}")
-    print(f"Document metadata: {document.metadata}")
-    
-except ApiError as e:
-    print(f"Failed to get document: {e.status_code} - {e.body}")`
+    )`
     }
   ]}
   annotations={{
     python: [
-      { line: 3, text: 'Specify the corpus containing the document' },
-      { line: 4, text: 'Unique identifier of the document to fetch' },
-      { line: 7, text: 'Access document content and metadata' }
+      { line: 2, text: 'Specify the corpus containing the document' },
+      { line: 3, text: 'Unique identifier of the document to fetch' },
     ]
   }}
   customWidth="50%"
@@ -188,24 +161,18 @@ not just the metadata returned by the list operation.
   snippets={[
     {
       language: 'python',
-      code: `try:
-    # Update document metadata
-    client.documents.update(
+      code: `client.documents.update(
         corpus_key="tech-guides",
         document_id="network-setup-v2",
         metadata={"priority": "urgent", "last_updated": "2025-07-02"}
-    )
-    
-    print("Document metadata updated successfully")
-    
-except ApiError as e:
-    print(f"Failed to update document: {e.status_code} - {e.body}")`
+    )`
     }
   ]}
   annotations={{
     python: [
-      { line: 4, text: 'Update specific document by corpus and ID' },
-      { line: 6, text: 'Provide new metadata to merge with existing data' }
+      { line: 2, text: 'Update specific document by the corpus key' },
+      { line: 3, text: 'Update specific document by the Document ID' },
+      { line: 4, text: 'Provide new metadata to merge with existing data' }
     ]
   }}
   customWidth="50%"
@@ -231,22 +198,16 @@ allowing you to add new fields or modify existing ones without losing other data
   snippets={[
     {
       language: 'python',
-      code: `try:
-    client.documents.delete(
+      code: `client.documents.delete(
         corpus_key="employee-handbook",
-        document_id="old-policy-manual"
-    )
-    
-    print("Document deleted successfully")
-    
-except ApiError as e:
-    print(f"Failed to delete document: {e.status_code} - {e.body}")`
+        document_id="policy-manual-2024"
+    )`
     }
   ]}
   annotations={{
     python: [
-      { line: 3, text: 'Specify the corpus and document to delete' },
-      { line: 7, text: 'Confirm successful deletion' }
+      { line: 2, text: 'Specify the corpus key that contains the document for deletion' },
+      { line: 2, text: 'Specify the document ID to delete' },
     ]
   }}
   customWidth="50%"
@@ -273,25 +234,20 @@ might be needed later.
   snippets={[
     {
       language: 'python',
-      code: `try:
-    summary = client.documents.summarize(
+      code: `summary = client.documents.summarize(
         corpus_key="product-docs",
         document_id="user-guide-v2",
         llm_name="vectara-summary-ext-24-05-med-omni",
         prompt_template="Provide a concise summary of the following \ndocument: $document_content"
-    )
-    
-    print(f"Document summary: {summary.summary}")
-    
-except ApiError as e:
-    print(f"Failed to summarize document: {e.status_code} - {e.body}")`
+    )`
     }
   ]}
   annotations={{
     python: [
+      { line: 2, text: 'Specify the corpus key' },
+      { line: 2, text: 'Specify the document ID' },
       { line: 5, text: 'Specify the LLM model for summarization' },
       { line: 6, text: 'Custom prompt template with $document_content placeholder' },
-      { line: 9, text: 'Access the generated summary from the response' }
     ]
   }}
   customWidth="50%"
@@ -315,11 +271,9 @@ support, technical documentation, or content previews.
 
 ## Next steps
 
-After mastering document management, you can:
+After understanding document management, you can:
 
 - **Query documents**: Use `client.query()` to search across document content
 - **Manage corpora**: Create and configure corpora with `client.corpora.create()`
 - **Batch operations**: Process multiple documents efficiently for large-scale content management
 - **Advanced filtering**: Leverage metadata for sophisticated document organization
-
-For comprehensive search capabilities, see the [Query API guide](https://docs.vectara.com/docs/api-reference/search-apis/search).

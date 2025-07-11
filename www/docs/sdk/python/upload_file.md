@@ -69,9 +69,7 @@ API key has indexing (write) permissions for the target corpus.
   snippets={[
     {
       language: 'python',
-      code: `try:
-    # Read and upload file
-    filename = "Employee_Benefits_2025.pdf"
+      code: `filename = "Employee_Benefits_2025.pdf"
     with open(filename, "rb") as f:
         file_content = f.read()
     
@@ -85,22 +83,14 @@ API key has indexing (write) permissions for the target corpus.
             "year": "2025",
             "document_category": "employee_handbook"
         }
-    )
-    
-    print(f"File uploaded successfully: {response}")
-    
-except ApiError as e:
-    print(f"Upload failed: {e.status_code} - {e.body}")
-except FileNotFoundError:
-    print("File not found - check the file path")`
+    )`
     }
   ]}
   annotations={{
     python: [
-      { line: 4, text: 'Open file in binary mode for upload' },
-      { line: 8, text: 'Upload to specified corpus' },
-      { line: 11, text: 'Include descriptive metadata for filtering and search' },
-      { line: 21, text: 'Handle API errors with status codes' }
+      { line: 2, text: 'Open file in binary mode for upload' },
+      { line: 6, text: 'Upload to specified corpus' },
+      { line: 9, text: 'Include descriptive metadata for filtering and search' },
     ]
   }}
   customWidth="50%"
@@ -126,9 +116,7 @@ parses, chunks, and indexes the content for semantic search—no manual processi
   snippets={[
     {
       language: 'python',
-      code: `try:
-    # Upload document with table extraction enabled
-    filename = "Q4_Financial_Report_2025.pdf"
+      code: `filename = "Q4_Financial_Report_2025.pdf"
     with open(filename, "rb") as f:
         file_content = f.read()
     
@@ -145,18 +133,14 @@ parses, chunks, and indexes the content for semantic search—no manual processi
         },
         table_extraction_config={"extract_tables": True},
         chunking_strategy={"type": "sentence_chunking_strategy"}
-    )
-    
-    print(f"Financial document with tables uploaded: {response}")
-    
-except ApiError as e:
-    print(f"Table extraction upload failed: {e.status_code} - {e.body}")`
+    )`
     }
   ]}
   annotations={{
     python: [
+      { line: 6, text: 'Specify the corpus key of where to upload the tabular document' },
       { line: 16, text: 'Enable table extraction for structured data processing' },
-      { line: 19, text: 'Configure chunking strategy for optimal text segmentation' },
+      { line: 17, text: 'Configure chunking strategy for optimal text segmentation' },
       { line: 13, text: 'Mark documents that contain tabular data' }
     ]
   }}
@@ -188,9 +172,7 @@ with tabular information.
   snippets={[
     {
       language: 'python',
-      code: `try:
-    # Upload directly from file object (useful for streaming)
-    filename = "research_paper_2025.pdf"
+      code: `filename = "research_paper_2025.pdf"
     
     with open(filename, "rb") as file_obj:
         file_content = file_obj.read()
@@ -205,18 +187,13 @@ with tabular information.
                 "publication_year": "2025",
                 "peer_reviewed": True
             }
-        )
-    
-    print(f"Research paper uploaded: {response}")
-    
-except ApiError as e:
-    print(f"File object upload failed: {e.status_code} - {e.body}")`
+        )`
     }
   ]}
   annotations={{
     python: [
-      { line: 5, text: 'Process file object directly without intermediate storage' },
-      { line: 16, text: 'Boolean metadata values for precise filtering' }
+      { line: 3, text: 'Process file object directly without intermediate storage' },
+      { line: 14, text: 'Boolean metadata values for precise filtering' }
     ]
   }}
   customWidth="50%"
@@ -233,74 +210,6 @@ come from cloud storage, APIs, or other dynamic sources without local file stora
 
 ---
 
-## Batch file upload
-
-<CodePanel
-  title="Batch upload multiple files"
-  snippets={[
-    {
-      language: 'python',
-      code: `def batch_upload_files(client, corpus_key, file_paths):
-    """Upload multiple files with error handling"""
-    results = []
-    
-    for file_path in file_paths:
-        try:
-            with open(file_path, "rb") as f:
-                content = f.read()
-            
-            # Extract file info for metadata
-            filename = file_path.split('/')[-1]
-            doc_type = "contract" if "contract" in filename else "invoice"
-            
-            response = client.upload.file(
-                corpus_key=corpus_key,
-                file=content,
-                filename=filename,
-                metadata={
-                    "document_type": doc_type,
-                    "upload_batch": "batch_001",
-                    "file_size": len(content)
-                },
-                table_extraction_config={"extract_tables": True}
-            )
-            
-            results.append({"file": file_path, "success": True})
-            print(f"✓ Uploaded: {file_path}")
-            
-        except Exception as e:
-            results.append({"file": file_path, "success": False, "error": str(e)})
-            print(f"✗ Failed: {file_path} - {e}")
-    
-    return results
-
-# Usage example
-file_paths = ["contract_001.pdf", "contract_002.pdf", "invoice_001.pdf"]
-results = batch_upload_files(client, "legal-docs", file_paths)`
-    }
-  ]}
-  annotations={{
-    python: [
-      { line: 11, text: 'Automatically categorize files based on filename patterns' },
-      { line: 23, text: 'Enable table extraction for all uploads in batch' },
-      { line: 15, text: 'Include batch identifier for tracking related uploads' }
-    ]
-  }}
-  customWidth="50%"
-/>
-
-Efficiently upload multiple files with automatic categorization, error handling, 
-and progress tracking. Ideal for bulk document processing and migration scenarios.
-
-**Batch Processing Benefits:**
-- Parallel processing capability for faster uploads
-- Consistent metadata application across files
-- Individual error handling per file
-- Progress tracking and reporting
-- Automatic file categorization based on naming patterns
-
----
-
 ## Advanced table extraction for invoices
 
 <CodePanel
@@ -308,9 +217,7 @@ and progress tracking. Ideal for bulk document processing and migration scenario
   snippets={[
     {
       language: 'python',
-      code: `try:
-    # Upload invoice with optimized table extraction
-    filename = "AcmeCorp_Invoice_2025_Q4.pdf" 
+      code: `filename = "AcmeCorp_Invoice_2025_Q4.pdf" 
     with open(filename, "rb") as f:
         file_content = f.read()
     
@@ -333,19 +240,14 @@ and progress tracking. Ideal for bulk document processing and migration scenario
             "type": "max_chars_chunking_strategy",
             "max_chars_per_chunk": 256
         }
-    )
-    
-    print(f"Invoice with line items uploaded: {response}")
-    
-except ApiError as e:
-    print(f"Invoice upload failed: {e.status_code} - {e.body}")`
+    )`
     }
   ]}
   annotations={{
     python: [
-      { line: 19, text: 'Flag documents containing itemized data' },
-      { line: 21, text: 'Enable extraction of invoice line items and totals' },
-      { line: 24, text: 'Use smaller chunks for precise table data retrieval' }
+      { line: 9, text: 'Flag documents containing itemized data' },
+      { line: 19, text: 'Enable extraction of invoice line items and totals' },
+      { line: 22, text: 'Use smaller chunks for precise table data retrieval' }
     ]
   }}
   customWidth="50%"
@@ -379,10 +281,7 @@ precise financial queries and analysis.
   snippets={[
     {
       language: 'python',
-      code: `def safe_file_upload(client, corpus_key, file_path, metadata=None):
-    """Production-ready file upload with comprehensive error handling"""
-    try:
-        # Validate file exists and is readable
+      code: `# Validate file exists and is readable
         with open(file_path, "rb") as f:
             content = f.read()
         
@@ -407,16 +306,7 @@ precise financial queries and analysis.
             table_extraction_config={"extract_tables": True}
         )
         
-        return {"success": True, "response": response}
-        
-    except FileNotFoundError:
-        return {"success": False, "error": "File not found"}
-    except PermissionError:
-        return {"success": False, "error": "Permission denied"}
-    except ApiError as e:
-        return {"success": False, "error": f"API Error {e.status_code}: {e.body}"}
-    except Exception as e:
-        return {"success": False, "error": f"Unexpected error: {str(e)}"}`
+        return {"success": True, "response": response}`
     }
   ]}
   customWidth="50%"
@@ -446,9 +336,11 @@ precise financial queries and analysis.
 
 ## Next steps
 
-After mastering file uploads:
+After understanding file uploads:
 
-- **Query Uploaded Content**: Use the [Query API](https://docs.vectara.com/docs/api-reference/search-apis/search) to search uploaded documents
-- **Document Management**: Use the [Documents API](https://docs.vectara.com/docs/api-reference/indexing-apis/indexing) to manage uploaded content
-- **Chat Integration**: Build conversational interfaces with uploaded documents using [Chat API](https://docs.vectara.com/docs/api-reference/chat-apis/chat)
-- **Analytics**: Track upload success rates and content usage patterns
+- **Query uploaded content**: Use [Queries](/docs/sdk/python/query) to search 
+  uploaded documents.
+- **Document management**: Use [Documents](/docs/sdk/python/documents) to manage 
+  uploaded content.
+- **Chat integration**: Build conversational interfaces with uploaded documents 
+  using [Chats](/docs/sdk/python/chats).

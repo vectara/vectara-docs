@@ -75,28 +75,22 @@ Set up authentication with API key or OAuth 2.0 for secure preset access.
   snippets={[
     {
       language: 'python',
-      code: `from vectara import VectaraClient
-
-client = VectaraClient(api_key="your_api_key", customer_id="your_customer_id")
-response = client.corpora.query(
+      code: `response = client.corpora.query(
     query="Summarize Q1 2024 earnings for European banking clients",
     generation_preset_name="mockingbird-2.0",
     corpora=[{"corpus_key": "finance_docs"}],
     metadata_filter="doc_region = 'EU' AND doc_quarter = 'Q1-2024' AND \ndoc_industry = 'banking'",
     max_used_search_results=50
-)
-print(response.generation.response)
-`
+)`
     }
   ]}
   title="Financial Summary with Mockingbird 2.0"
   annotations={{
     python: [
-      { line: 3, text: 'Initializes the client with API credentials.' },
-      { line: 6, text: 'Uses Mockingbird 2.0 for high-quality RAG output.' },
-      { line: 7, text: 'Targets the finance documents corpus.' },
-      { line: 8, text: 'Filters for relevant financial data.' },
-      { line: 10, text: 'Sets max search results for comprehensive summary.' }
+      { line: 3, text: 'Uses Mockingbird 2.0 for high-quality RAG output.' },
+      { line: 4, text: 'Targets the finance documents corpus.' },
+      { line: 5, text: 'Filters for relevant financial data.' },
+      { line: 7, text: 'Sets max search results for comprehensive summary.' }
     ]
   }}
   customWidth="55%"
@@ -124,28 +118,22 @@ metadata filtering.
   snippets={[
     {
       language: 'python',
-      code: `from vectara import VectaraClient
-
-client = VectaraClient(api_key="your_api_key", customer_id="your_customer_id")
-response = client.chats.create(
+      code: `response = client.chats.create(
     query="What causes login failures in our mobile app?",
     generation_preset_name="vectara-summary-ext-24-05-med-omni",
     corpora=[{"corpus_key": "support_kb"}],
     metadata_filter="doc_platform = 'mobile' AND doc_issue_type = 'auth_failure'",
     max_response_characters=500
-)
-print(response.generation.response)
-`
+)`
     }
   ]}
   title="Support Chat with GPT-4o Preset"
   annotations={{
     python: [
-      { line: 3, text: 'Sets up the client with secure credentials.' },
-      { line: 6, text: 'Uses GPT-4o preset for advanced summarization.' },
-      { line: 7, text: 'Targets the support knowledge base corpus.' },
-      { line: 8, text: 'Filters for mobile authentication issues.' },
-      { line: 9, text: 'Limits the number of returned characters.' }
+      { line: 3, text: 'Uses GPT-4o preset for advanced summarization.' },
+      { line: 4, text: 'Targets the support knowledge base corpus.' },
+      { line: 5, text: 'Filters for mobile authentication issues.' },
+      { line: 6, text: 'Limits the number of returned characters.' }
     ]
   }}
   customWidth="55%"

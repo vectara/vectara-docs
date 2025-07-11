@@ -22,13 +22,7 @@ not direct search or generation. For querying corpora (including RAG), see the
   snippets={[
     {
       language: 'python',
-      code: `from vectara import Vectara
-from vectara.core.api_error import ApiError
-
-client = Vectara(api_key="YOUR_API_KEY")
-
-try:
-    corpus = client.corpora.create(
+      code: `corpus = client.corpora.create(
         key="support-docs",
         name="Support Knowledge Base", 
         description="Contains documents from our support knowledge base",
@@ -46,20 +40,17 @@ try:
                 "indexed": True
             }
         ]
-    )
-    print(f"Created corpus: {corpus.key}")
-except ApiError as e:
-    print(f"Failed to create corpus: {e.status_code} - {e.body}")`
+    )`
     }
   ]}
   annotations={{
     python: [
-      { line: 7, text: "Corpus key must be unique in your account" },
-      { line: 8, text: "Give your corpus a descriptive name" },
-      { line: 11, text: "Define filter attributes for metadata queries" },
-      { line: 14, text: "Specify that this is a document-level filter attribute" },
-      { line: 11, text: "Specify that this filter attribute is the text type" },
-      { line: 16, text: "Indicate that you want this filter attribute indexed" },
+      { line: 2, text: "Corpus key must be unique in your account" },
+      { line: 3, text: "Give your corpus a descriptive name" },
+      { line: 5, text: "Define filter attributes for metadata queries" },
+      { line: 8, text: "Specify that this is a document-level filter attribute" },
+      { line: 9, text: "Specify that this filter attribute is the text type" },
+      { line: 10, text: "Indicate that you want this filter attribute indexed" },
     ]
   }}
   customWidth="50%"
@@ -99,18 +90,14 @@ search refinement. This method sets up the corpus structure but doesn't index do
   snippets={[
     {
       language: 'python',
-      code: `try:
-    corpora_list = client.corpora.list(limit=10)
+      code: `corpora_list = client.corpora.list(limit=10)
     for corpus in corpora_list:
-        print(f"Corpus: {corpus.name} (Key: {corpus.key})")
-except ApiError as e:
-    print(f"Failed to list corpora: {e.status_code} - {e.body}")`
+        print(f"Corpus: {corpus.name} (Key: {corpus.key})")`
     }
   ]}
   annotations={{
     python: [
-      { line: 2, text: "Limit results per page for better performance" },
-      { line: 3, text: "Iterate through the paginated results" }
+      { line: 1, text: "Limit results per page for better performance" },
     ]
   }}
   customWidth="50%"
@@ -138,19 +125,16 @@ pattern to handle large numbers of corpora efficiently.
   snippets={[
     {
       language: 'python',
-      code: `try:
-    corpus = client.corpora.get(corpus_key="support-docs")
+      code: `corpus = client.corpora.get(corpus_key="support-docs")
     print(f"Corpus Name: {corpus.name}")
     print(f"Description: {corpus.description}")
-    print(f"Filter Attributes: {len(corpus.filter_attributes)} defined")
-except ApiError as e:
-    print(f"Failed to retrieve corpus: {e.status_code} - {e.body}")`
+    print(f"Filter Attributes: {len(corpus.filter_attributes)} defined")`
     }
   ]}
   annotations={{
     python: [
-      { line: 2, text: "Get detailed metadata for a specific corpus" },
-      { line: 5, text: "Access filter attributes and other configuration" }
+      { line: 1, text: "Get detailed metadata for a specific corpus" },
+      { line: 2, text: "Access filter attributes and other configuration" }
     ]
   }}
   customWidth="50%"
@@ -179,22 +163,18 @@ Returns a corpus object with complete metadata, including `id`, `name`, `descrip
   snippets={[
     {
       language: 'python',
-      code: `try:
-    client.corpora.update(
+      code: `client.corpora.update(
         corpus_key="support-docs",
         name="Support Knowledge Base - Updated",
         description="Updated description with enhanced metadata",
         enabled=True
-    )
-    print("Corpus updated successfully")
-except ApiError as e:
-    print(f"Failed to update corpus: {e.status_code} - {e.body}")`
+    )`
     }
   ]}
   annotations={{
     python: [
-      { line: 2, text: "Update corpus properties" },
-      { line: 6, text: "Enable or disable corpus access" }
+      { line: 3, text: "Update corpus properties" },
+      { line: 5, text: "Enable or disable corpus access" }
     ]
   }}
   customWidth="50%"
@@ -225,16 +205,12 @@ This is useful for archiving or maintenance scenarios.
   snippets={[
     {
       language: 'python',
-      code: `try:
-    client.corpora.delete(corpus_key="support-corpus")
-    print("Corpus deleted successfully")
-except ApiError as e:
-    print(f"Failed to delete corpus: {e.status_code} - {e.body}")`
+      code: `client.corpora.delete(corpus_key="support-corpus")`
     }
   ]}
   annotations={{
     python: [
-      { line: 2, text: "Permanently delete the corpus and all its data" }
+      { line: 1, text: "Permanently delete the corpus and all its data" }
     ]
   }}
   customWidth="50%"
@@ -259,13 +235,13 @@ update option to disable rather than delete.
 
 ## Differences from generation and query tasks
 
-- **Generation Tasks**: Corpus management methods are administrative and do not 
+- **Generation tasks**: Corpus management methods are administrative and do not 
   directly support generation. For RAG or chat-based generation, use 
-  `client.query()` with generation parameters. See the [Query API guide](https://docs.vectara.com/docs/api-reference/search-apis/search) 
-  for details.
-- **Query vs. prompt confusion**: Vectara's API uses a retrieval-centric model with 
+  `client.query()` with generation parameters.
+- **Query vs. prompt confusion**: Vectara uses a retrieval-centric model with 
   natural-language queries, not prompt-based interactions like many GenAI 
-  platforms. For prompt-like behavior, configure generation parameters in query methods.
+  platforms. For prompt-like behavior, configure generation parameters in 
+  query methods.
 
 ## Next steps
 

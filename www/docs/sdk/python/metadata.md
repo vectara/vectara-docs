@@ -38,15 +38,11 @@ You can set metadata at:
   snippets={[
     {
       language: "python",
-      code: `import os
-from vectara import Vectara, StructuredDocument, StructuredDocumentSection
-from vectara.core.api_error import ApiError
-
-try:  
-    doc = StructuredDocument(
+      code: `doc = StructuredDocument(
         id="employee-handbook-2025",
         type="structured",
         metadata={
+            "level": "document",
             "department": "hr",
             "year": 2024,
             "doc_type": "policy"
@@ -63,17 +59,13 @@ try:
     response = client.documents.create(
         corpus_key="hr-docs",
         request=doc
-    )
-    print(f"✅ Document indexed: {doc.id}")
-    
-except ApiError as e:
-    print(f"❌ Failed: {e.status_code} - {e.body}")`
+    )`
     }
   ]}
   annotations={{
     python: [
-      { line: 9, text: 'Document-level metadata (available for filtering)' },
-      { line: 18, text: 'Section-level metadata (for part-level filters)' }
+      { line: 4, text: 'Document-level metadata (available for filtering)' },
+      { line: 14, text: 'Section-level metadata (for part-level filters)' }
     ]
   }}
   layout="stacked"
@@ -95,12 +87,7 @@ parts.
   snippets={[
     {
       language: "python",
-      code: `import os
-from vectara import Vectara, SearchCorporaParameters, KeyedSearchCorpus
-from vectara.core.api_error import ApiError
-
-try:
-    search = SearchCorporaParameters(
+      code: `search = SearchCorporaParameters(
         corpora=[
             KeyedSearchCorpus(
                 corpus_key="hr-docs",
@@ -121,16 +108,13 @@ try:
             print(f"Text: {result.text[:100]}...")
             print("---")
     else:
-        print("⚠️ No results found")
-        
-except ApiError as e:
-    print(f"❌ Query failed: {e.status_code} - {e.body}")`
+        print("⚠️ No results found")`
     }
   ]}
   annotations={{
     python: [
-      { line: 10, text: "Use AND/OR for advanced filtering" },
-      { line: 16, text: "Enter your search query" }
+      { line: 5, text: "Use AND/OR for advanced filtering" },
+      { line: 11, text: "Enter your search query" }
     ]
   }}
   layout="stacked"

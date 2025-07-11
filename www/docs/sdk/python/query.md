@@ -62,17 +62,7 @@ Ensure your API key has querying permissions for the target corpora.
   snippets={[
     {
       language: "python", 
-      code: `import os
-from vectara import Vectara, SearchCorporaParameters, GenerationParameters
-from vectara.core.api_error import ApiError
-
-# Initialize client
-api_key = os.getenv("VECTARA_API_KEY", "YOUR_API_KEY")
-client = Vectara(api_key=api_key)
-
-try:
-    # Configure search parameters
-    search = SearchCorporaParameters(
+      code: `search = SearchCorporaParameters(
         corpora=[{"corpus_key": "support-docs"}]
     )
     
@@ -95,20 +85,17 @@ try:
     print(f"Factual Consistency Score: {response.factual_consistency_score}")
     
     for result in response.search_results:
-        print(f"Result: {result.text} (Score: {result.score})")
-        
-except ApiError as e:
-    print(f"Query failed: {e.status_code} - {e.body}")`
+        print(f"Result: {result.text} (Score: {result.score})")`
     }
   ]}
   annotations={{
     python: [
-      { line: 12, text: "Target specific corpus for search" },
-      { line: 17, text: "Use recommended preset for high-quality responses" },
-      { line: 18, text: "Include more results for better context" },
-      { line: 20, text: "Enable confidence scoring for generated summaries" },
-      { line: 30, text: "AI-generated summary based on search results" },
-      { line: 33, text: "Access individual search results with relevance scores" }
+      { line: 2, text: "Target specific corpus for search" },
+      { line: 7, text: "Use recommended preset for high-quality responses" },
+      { line: 8, text: "Include 50 results for better context" },
+      { line: 10, text: "Enable confidence scoring for generated summaries" },
+      { line: 20, text: "AI-generated summary based on search results" },
+      { line: 23, text: "Access individual search results with relevance scores" }
     ]
   }}
   customWidth="50%"
@@ -141,9 +128,7 @@ Use this pattern when you need both specific document excerpts and a synthesized
   snippets={[
     {
       language: 'python',
-      code: `try:
-  # Advanced search with metadata filtering
-  search = SearchCorporaParameters(
+      code: `search = SearchCorporaParameters(
       corpora=[{
           "corpus_key": "support-docs",
           "metadata_filter": "doc.os = 'MacOS'",
@@ -162,8 +147,6 @@ Use this pattern when you need both specific document excerpts and a synthesized
           "cutoff": 0.6
       }
   )
-  
-  # Advanced generation with custom prompt
   generation = GenerationParameters(
       generation_preset_name="vectara-summary-ext-24-05-med-omni",
       max_used_search_results=25,
@@ -173,25 +156,23 @@ Use this pattern when you need both specific document excerpts and a synthesized
   )
   
   response = client.query(
-      query="Summarize recent court rulings on IP rights in California",
+      query="Summarize recent MacOS issues after the latest upgrade",
       search=search,
       generation=generation
   )
   
   print(f"Summary: {response.summary}")
-  print(f"Response based on {len(response.search_results)} filtered results")
-  
-except ApiError as e:
-  print(f"Advanced query failed: {e.status_code} - {e.body}")`
+  print(f"Response based on {len(response.search_results)} filtered results"))`
     }
   ]}
   annotations={{
     python: [
-      { line: 6, text: 'Filter results by metadata criteria' },
-      { line: 7, text: 'Balance lexical and semantic search (0.3 = 30% lexical)' },
-      { line: 10, text: 'Add context sentences around matches' },
-      { line: 15, text: 'Use reranker to improve result quality' },
-      { line: 29, text: 'Custom prompt template for specialized responses' }
+      { line: 4, text: 'Filter results by metadata criteria' },
+      { line: 5, text: 'Balance lexical and semantic search (0.3 = 30% lexical)' },
+      { line: 7, text: 'Add context sentences around matches' },
+      { line: 13, text: 'Use reranker to improve result quality' },
+      { line: 21, text: 'Use the GPT-4o generation preset' },
+      { line: 25, text: 'Custom prompt template for specialized responses' }
     ]
   }}
   customWidth="50%"
@@ -221,8 +202,7 @@ prompts for specialized use cases.
   snippets={[
     {
       language: 'python',
-      code: `try:
-    search = SearchCorporaParameters(
+      code: `search = SearchCorporaParameters(
         corpora=[{"corpus_key": "support-docs"}]
     )
     
@@ -243,24 +223,22 @@ prompts for specialized use cases.
     for chunk in response:
         if hasattr(chunk, 'generation_chunk') and chunk.generation_chunk:
             print(chunk.generation_chunk, end='', flush=True)
-    print("\\n")  # New line after streaming complete
-    
-except ApiError as e:
-    print(f"Streaming query failed: {e.status_code} - {e.body}")`
+    print("\\n")  # New line after streaming complete`
     }
   ]}
   annotations={{
     python: [
-      { line: 13, text: 'Use query_stream for real-time response generation' },
-      { line: 21, text: 'Process chunks as they arrive' },
-      { line: 22, text: 'Display text immediately for better user experience' }
+      { line: 6, text: 'Use the GPT-4o generation preset' },
+      { line: 12, text: 'Use query_stream for real-time response generation' },
+      { line: 20, text: 'Process chunks as they arrive' },
+      { line: 21, text: 'Display text immediately for better user experience' }
     ]
   }}
   customWidth="50%"
 />
 
-Stream query responses in real-time for better user experience in interactive applications 
-like chatbots or live search interfaces.
+Stream query responses in real-time for better user experience in interactive 
+applications like chatbots or live search interfaces.
 
 **Streaming Benefits:**
 - Immediate feedback to users as content generates
@@ -283,8 +261,7 @@ like chatbots or live search interfaces.
   snippets={[
     {
       language: 'python',
-      code: `try:
-    response = client.query(
+      code: `response = client.query(
         query="search term",
         search=search_params,
         generation=generation_params
@@ -292,17 +269,7 @@ like chatbots or live search interfaces.
     
     # Check for warnings or issues
     if response.factual_consistency_score < 0.5:
-        print("Warning: Low factual consistency score")
-    
-except ApiError as e:
-    if e.status_code == 400:
-        print("Bad request - check query parameters")
-    elif e.status_code == 403:
-        print("Insufficient permissions - check API key")
-    elif e.status_code == 404:
-        print("Corpus not found - verify corpus_key")
-    else:
-        print(f"Unexpected error: {e.status_code} - {e.body}")`
+        print("Warning: Low factual consistency score")`
     }
   ]}
   customWidth="50%"
@@ -325,11 +292,11 @@ except ApiError as e:
 
 ## Next steps
 
-After mastering queries, explore:
+After understanding queries, explore:
 
-- **Chat Sessions**: Use `client.chats.create()` for conversational interfaces
-- **Batch Processing**: Process multiple queries efficiently
-- **Custom Rerankers**: Train domain-specific reranking models
-- **Advanced Analytics**: Track query performance and user patterns
+- **Chat sessions**: Use `client.chats.create()` for conversational interfaces
+- **Batch processing**: Process multiple queries efficiently
+- **Custom rerankers**: Train domain-specific reranking models
+- **Advanced analytics**: Track query performance and user patterns
 
-For building conversational experiences, see the [Chat API guide](https://docs.vectara.com/docs/api-reference/chat-apis/chat).
+For building conversational experiences, see the [Chats guide](/docs/sdk/python/chats).

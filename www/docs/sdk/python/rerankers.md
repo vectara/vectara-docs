@@ -30,14 +30,7 @@ to your chosen ranking logic.
   snippets={[
     {
       language: 'python',
-      code: `from vectara import Vectara, SearchCorporaParameters, GenerationParameters
-from vectara.core.api_error import ApiError
-
-client = Vectara(api_key="YOUR_API_KEY")
-
-try:
-    # Configure search with reranker
-    search = SearchCorporaParameters(
+      code: `search = SearchCorporaParameters(
         corpora=[{
             "corpus_key": "knowledge-base",
             "metadata_filter": ""
@@ -58,19 +51,14 @@ try:
         query="What are the key features of machine learning?",
         search=search,
         generation=generation
-    )
-    
-    print(f"Reranked response: {response.answer}")
-    
-except ApiError as e:
-    print(f"Query with reranker failed: {e.status_code} - {e.body}")`
+    )`
     }
   ]}
   annotations={{
     python: [
-      { line: 18, text: 'Use customer reranker for neural ranking precision' },
-      { line: 19, text: 'Specify the multilingual reranker by name' },
-      { line: 26, text: 'Execute query with enhanced result ordering' }
+      { line: 11, text: 'Use customer reranker for neural ranking precision' },
+      { line: 12, text: 'Specify the multilingual reranker by name' },
+      { line: 196, text: 'Enter the search query' }
     ]
   }}
   customWidth="50%"
@@ -97,9 +85,7 @@ reducing redundancy in search results while maintaining high quality.
   snippets={[
     {
       language: 'python',
-      code: `try:
-    # MMR reranker for diverse results
-    search = SearchCorporaParameters(
+      code: `search = SearchCorporaParameters(
         corpora=[{
             "corpus_key": "product-catalog"
         }],
@@ -117,19 +103,14 @@ reducing redundancy in search results while maintaining high quality.
         query="Latest smartphone features and specifications",
         search=search,
         generation=generation
-    )
-    
-    print(f"Diverse results: {response.answer}")
-    
-except ApiError as e:
-    print(f"MMR reranker failed: {e.status_code} - {e.body}")`
+    )`
     }
   ]}
   annotations={{
     python: [
-      { line: 8, text: 'Use MMR type for diversity-focused reranking' },
-      { line: 9, text: 'Balance between relevance (0.6) and diversity (0.4)' },
-      { line: 11, text: 'Filter out results below 0.3 relevance score' }
+      { line: 6, text: 'Use MMR type for diversity-focused reranking' },
+      { line: 7, text: 'Balance values between relevance and diversity' },
+      { line: 9, text: 'Filter out results below 0.3 relevance score' }
     ]
   }}
   customWidth="50%"
@@ -158,9 +139,7 @@ results based on metadata, business rules, or dynamic conditions.
   snippets={[
     {
       language: 'python',
-      code: `try:
-    # UDF reranker for e-commerce with inventory boost
-    search = SearchCorporaParameters(
+      code: `search = SearchCorporaParameters(
         corpora=[{
             "corpus_key": "product-catalog"
         }],
@@ -176,18 +155,13 @@ results based on metadata, business rules, or dynamic conditions.
         query="Smart speakers available for purchase",
         search=search,
         generation=generation
-    )
-    
-    print(f"Inventory-optimized results: {response.answer}")
-    
-except ApiError as e:
-    print(f"UDF reranker failed: {e.status_code} - {e.body}")`
+    )`
     }
   ]}
   annotations={{
     python: [
-      { line: 8, text: 'Use userfn type for custom scoring logic' },
-      { line: 9, text: 'Boost in-stock products by 50%, reduce out-of-stock by 90%' }
+      { line: 6, text: 'Use userfn type for custom scoring logic' },
+      { line: 7, text: 'Boost in-stock products by 50%, reduce out-of-stock by 90%' }
     ]
   }}
   layout="stacked"
@@ -195,20 +169,40 @@ except ApiError as e:
 
 **UDF Function Examples:**
 
-**Recency Boost:**
-```javascript
-get('$.score') * (1 + (now() - get('$.document_metadata.published_date')) / 86400 * 0.01)
-```
+<CodePanel
+  title="Recency boost"
+  snippets={[
+    {
+      language: 'javascript',
+      code: `get('$.score') * (1 + (now() - get('$.document_metadata.published_date')) / 86400 * 0.01)`
+    }
+  ]}
+  layout="stacked"
+/>
 
-**Rating Boost:**
-```javascript
-get('$.score') * (1 + get('$.document_metadata.rating', 0) / 5 * 0.2)
-```
+<CodePanel
+  title="Rating boost"
+  snippets={[
+    {
+      language: 'javascript',
+      code: `get('$.score') * (1 + get('$.document_metadata.rating', 0) / 5 * 0.2)`
+    }
+  ]}
+  layout="stacked"
+/>
 
-**Price Range Filter:**
-```javascript
-if (get('$.document_metadata.price') <= 100) get('$.score') else null
-```
+<CodePanel
+  title="Price range filter"
+  snippets={[
+    {
+      language: 'javascript',
+      code: `if (get('$.document_metadata.price') <= 100) get('$.score') else null`
+    }
+  ]}
+  layout="stacked"
+/>
+
+
 
 **Use Cases:**
 - E-commerce inventory management
@@ -228,9 +222,7 @@ that incorporate relevance, diversity, and custom business logic.
   snippets={[
     {
       language: 'python',
-      code: `try:
-    # Chain reranker combining multiple approaches
-    search = SearchCorporaParameters(
+      code: `search = SearchCorporaParameters(
         corpora=[{
             "corpus_key": "product-reviews"
         }],
@@ -259,20 +251,15 @@ that incorporate relevance, diversity, and custom business logic.
         query="Best wireless headphones under $200",
         search=search,
         generation=generation
-    )
-    
-    print(f"Multi-stage ranked results: {response.answer}")
-    
-except ApiError as e:
-    print(f"Chain reranker failed: {e.status_code} - {e.body}")`
+    )`
     }
   ]}
   annotations={{
     python: [
-      { line: 8, text: 'Use chain type to apply multiple rerankers sequentially' },
-      { line: 11, text: 'Start with neural reranking for precision' },
-      { line: 15, text: 'Add diversity with low bias to maintain quality' },
-      { line: 19, text: 'Boost products with high customer ratings' }
+      { line: 6, text: 'Use chain type to apply multiple rerankers sequentially' },
+      { line: 9, text: 'Start with neural reranking for precision' },
+      { line: 14, text: 'Add diversity with low bias to maintain quality' },
+      { line: 18, text: 'Boost products with high customer ratings' }
     ]
   }}
   layout="stacked"
@@ -283,23 +270,37 @@ except ApiError as e:
 2. **Diversity**: Apply MMR with low bias to reduce redundancy while preserving relevance
 3. **Business Logic**: Boost results with high customer ratings for business optimization
 
-**Advanced Chain Examples:**
+### Advanced Chain Examples
 
-**Academic Research:**
-```python
-"rerankers": [
+
+<CodePanel
+  title="Academic research"
+  snippets={[
+    {
+      language: 'javascript',
+      code: `"rerankers": [
     {"type": "customer_reranker", "reranker_name": "Rerank_Multilingual_v1"},
     {"type": "userfn", "user_function": "get('$.score') * (1 + log(get('$.document_metadata.citation_count', 1) + 1) * 0.1)"}
-]
-```
+]`
+    }
+  ]}
+  layout="stacked"
+/>
 
-**Content with Recency Bias:**
-```python
-"rerankers": [
+
+<CodePanel
+  title="Content with recency bias"
+  snippets={[
+    {
+      language: 'javascript',
+      code: `"rerankers": [
     {"type": "customer_reranker", "reranker_name": "Rerank_Multilingual_v1"},
     {"type": "userfn", "user_function": "get('$.score') * max(0.5, 1 - (now() - get('$.document_metadata.published_date')) / 31536000)"}
-]
-```
+]`
+    }
+  ]}
+  layout="stacked"
+/>
 
 ---
 
@@ -313,9 +314,7 @@ improved result quality as each chunk is received.
   snippets={[
     {
       language: 'python',
-      code: `try:
-    # Streaming query with reranker
-    search = SearchCorporaParameters(
+      code: `search = SearchCorporaParameters(
         corpora=[{
             "corpus_key": "knowledge-base"
         }],
@@ -337,17 +336,14 @@ improved result quality as each chunk is received.
     for chunk in response:
         if hasattr(chunk, 'generation_chunk') and chunk.generation_chunk:
             print(chunk.generation_chunk, end='', flush=True)
-    print("\\n")
-    
-except ApiError as e:
-    print(f"Streaming with reranker failed: {e.status_code} - {e.body}")`
+    print("\\n")`
     }
   ]}
   annotations={{
     python: [
-      { line: 7, text: 'Include reranker in streaming configuration' },
-      { line: 15, text: 'Use query_stream for real-time response generation' },
-      { line: 22, text: 'Process reranked chunks as they arrive' }
+      { line: 6, text: 'Include reranker in streaming configuration' },
+      { line: 13, text: 'Use query_stream for real-time response generation' },
+      { line: 20, text: 'Process reranked chunks as they arrive' }
     ]
   }}
   customWidth="50%"
@@ -371,9 +367,7 @@ and configurations for use in queries.
   snippets={[
     {
       language: 'python',
-      code: `try:
-    # List rerankers with optional filtering
-    response = client.rerankers.list(
+      code: `response = client.rerankers.list(
         filter=".*multilingual.*",
         limit=10
     )
@@ -383,16 +377,13 @@ and configurations for use in queries.
         print(f"ID: {reranker.id}")
         print(f"Name: {reranker.name}")
         print(f"Description: {reranker.description}")
-        print("---")
-        
-except ApiError as e:
-    print(f"List rerankers failed: {e.status_code} - {e.body}")`
+        print("---")`
     }
   ]}
   annotations={{
     python: [
-      { line: 4, text: 'Filter for rerankers containing "multilingual" in name or description' },
-      { line: 9, text: 'Access reranker properties for configuration' }
+      { line: 2, text: 'Filter for rerankers containing "multilingual" in name or description' },
+      { line: 7, text: 'Access reranker properties for configuration' }
     ]
   }}
   customWidth="50%"
@@ -532,11 +523,9 @@ performance_config = {
 
 ## Next steps
 
-After mastering rerankers:
+After understanding rerankers:
 
-- **Query Optimization**: Combine rerankers with metadata filtering for precise results
-- **Performance Tuning**: Monitor and optimize reranker configurations for your use case
-- **Custom Business Logic**: Develop sophisticated UDF functions for domain-specific ranking
-- **A/B Testing**: Compare different reranker configurations to optimize user experience
-
-For advanced search capabilities, see the [Query API guide](https://docs.vectara.com/docs/api-reference/search-apis/search). For metadata-based filtering, see the [Metadata guide](https://docs.vectara.com/docs/api-reference/indexing-apis/metadata).
+- **Query optimization**: Combine rerankers with metadata filtering for precise results
+- **Performance tuning**: Monitor and optimize reranker configurations for your use case
+- **Custom business logic**: Develop sophisticated UDF functions for domain-specific ranking
+- **A/B testing**: Compare different reranker configurations to optimize user experience

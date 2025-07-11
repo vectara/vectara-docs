@@ -95,27 +95,16 @@ Store API keys in environment variables or secure vaults (`.env`
   snippets={[
     {
       language: 'python',
-      code: `print("Creating corpus...")
-corpus_key = "quickstart-docs"
-try:
-    response = client.corpora.create(
-        key=corpus_key,
-        name="Quick Start Docs"
-    )
-    print(f"✅ Created: {response.name}")
-    time.sleep(2)  # Allow corpus to propagate
-except ApiError as e:
-    if "already exists" in str(e.body).lower():
-        print("✅ Corpus already exists")
-    else:
-        print(f"❌ Failed: {e.status_code} - {e.body}")
-        exit(1)`
+      code: `response = client.corpora.create(
+      key=corpus_key,
+      name="Quick Start Docs"
+  )`
     }
   ]}
   annotations={{
     python: [
       { line: 2, text: "Corpus key must be unique in your account" },
-      { line: 6, text: "Give your corpus a descriptive name" }
+      { line: 3, text: "Give your corpus a descriptive name" }
     ]
   }}
   customWidth="50%"
@@ -290,8 +279,7 @@ title="Complete Validation Script"
 snippets={[
 {
 language: 'python',
-code: `#!/usr/bin/env python3
-import os
+code: `import os
 import time
 from vectara import Vectara
 from vectara import StructuredDocument, StructuredDocumentSection, SearchCorporaParameters
@@ -311,19 +299,12 @@ client = Vectara(api_key=api_key)
 # 2. Create corpus
 print("2. Creating corpus...")
 corpus_key = "quickstart-docs"
-try:
-    response = client.corpora.create(
+response = client.corpora.create(
         key=corpus_key,
         name="Quick Start Docs"
     )
     print(f"✅ Created: {response.name}")
     time.sleep(2)  # Allow corpus to propagate
-except ApiError as e:
-    if "already exists" in str(e.body).lower():
-        print("✅ Corpus already exists")
-    else:
-        print(f"❌ Failed: {e.status_code} - {e.body}")
-        exit(1)
 
 # 3. Upload document
 print("3. Uploading document...")
@@ -338,18 +319,11 @@ document = StructuredDocument(
     ]
 )
 
-try:
-    response = client.documents.create(
+response = client.documents.create(
         corpus_key=corpus_key,
         request=document
     )
     print(f"✅ Uploaded: {document.id}")
-except ApiError as e:
-    if "ALREADY_EXISTS" in str(e.body):
-        print("✅ Document already exists")
-    else:
-        print(f"❌ Upload failed: {e.status_code} - {e.body}")
-        exit(1)
 
 # 4. Query
 print("4. Running query...")
@@ -368,17 +342,15 @@ print("🎉 Quickstart validation complete!")`
 ]}
 annotations={{
 python: [
-{ line: 9, text: "Get API key from environment variable for security" },
-{ line: 17, text: "Initialize the Vectara client with your API key" },
-{ line: 21, text: "Use a simple, descriptive corpus key" },
-{ line: 23, text: "Create corpus with direct method parameters" },
-{ line: 28, text: "Small delay ensures corpus is ready for document upload" },
-{ line: 30, text: "Handle 'already exists' errors gracefully" },
-{ line: 38, text: "Create a structured document with sections" },
-{ line: 51, text: "Upload document using the corpus key" },
-{ line: 56, text: "Check for duplicate document errors" },
-{ line: 64, text: "Use single-corpus search method" },
-{ line: 69, text: "Access results via search_results attribute" }
+{ line: 8, text: "Get API key from environment variable for security" },
+{ line: 16, text: "Initialize the Vectara client with your API key" },
+{ line: 22, text: "Use a simple, descriptive corpus key" },
+{ line: 21, text: "Create corpus with direct method parameters" },
+{ line: 26, text: "Small delay ensures corpus is ready for document upload" },
+{ line: 30, text: "Create a structured document with sections" },
+{ line: 50, text: "Upload document using the corpus key" },
+{ line: 51, text: "Use single-corpus search method" },
+{ line: 56, text: "Access results via search_results attribute" }
 ]
 }}
 layout="stacked"

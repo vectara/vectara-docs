@@ -61,10 +61,7 @@ Ensure your API key has indexing (write) permissions for the target corpus.
   snippets={[
     {
       language: 'python',
-      code: `from vectara import StructuredDocument, StructuredDocumentSection
-
-try:
-    # Create structured document
+      code: `# Create structured document
     document = StructuredDocument(
         id="support-contract-001",
         type="structured",
@@ -87,21 +84,16 @@ try:
     response = client.documents.create(
         corpus_key="legal-docs",
         request=document
-    )
-    
-    print(f"Document indexed successfully: {response}")
-    
-except ApiError as e:
-    print(f"Failed to index document: {e.status_code} - {e.body}")`
+    )`
     }
   ]}
   annotations={{
     python: [
-      { line: 6, text: 'Document ID must be unique within the corpus' },
-      { line: 7, text: 'Type must be "structured" for section-based documents' },
-      { line: 12, text: 'Each section can have optional title and metadata' },
-      { line: 20, text: 'Document-level metadata for filtering queries' },
-      { line: 24, text: 'Use documents.create() method to index the document' }
+      { line: 3, text: 'Document ID must be unique within the corpus' },
+      { line: 6, text: 'Type must be "structured" for section-based documents' },
+      { line: 7, text: 'Each section can have optional title and metadata' },
+      { line: 17, text: 'Document-level metadata for filtering queries' },
+      { line: 21, text: 'Use documents.create() method to index the document' }
     ]
   }}
   customWidth="50%"
@@ -137,10 +129,7 @@ for contracts, reports, or other organized content.
   snippets={[
     {
       language: 'python',
-      code: `from vectara import CoreDocument, CoreDocumentPart
-
-try:
-    # Create core document
+      code: `# Create core document
     document = CoreDocument(
         id="support-guide-001",
         type="core",
@@ -161,19 +150,14 @@ try:
     response = client.documents.create(
         corpus_key="support-docs",
         request=document
-    )
-    
-    print(f"Core document indexed successfully: {response}")
-    
-except ApiError as e:
-    print(f"Failed to index core document: {e.status_code} - {e.body}")`
+    )`
     }
   ]}
   annotations={{
     python: [
-      { line: 7, text: 'Type must be "core" for part-based documents' },
-      { line: 8, text: 'Core documents use document_parts instead of sections' },
-      { line: 11, text: 'Each part can have metadata for filtering' }
+      { line: 4, text: 'Type must be "core" for part-based documents' },
+      { line: 6, text: 'Core documents use document_parts instead of sections' },
+      { line: 8, text: 'Each part can have metadata for filtering' }
     ]
   }}
   customWidth="50%"
@@ -195,7 +179,7 @@ FAQs, or knowledge base entries.
 
 ---
 
-## Complete workflow example
+## Corpus and index workflow
 
 <CodePanel
   title="Complete workflow: Create corpus and index document"
@@ -217,15 +201,14 @@ if api_key == "YOUR_API_KEY":
 print("1. Authenticating...")
 client = Vectara(api_key=api_key)
 
-try:
-    # Step 1: Create corpus
+# Step 1: Create corpus
     corpus_response = client.corpora.create(
         key="support-docs",
         name="Support Knowledge Base"
     )
     print(f"Corpus created: {corpus_response.key}")
     
-    # Step 2: Create and index document
+  # Step 2: Create and index document
     document = StructuredDocument(
         id="contract-template-001",
         type="structured",
@@ -242,21 +225,13 @@ try:
     doc_response = client.documents.create(
         corpus_key="support-docs",
         request=document
-    )
-    
-    print(f"Document indexed successfully in new corpus")
-    
-except ApiError as e:
-    if "already exists" in str(e.body).lower():
-        print("✅ Resources already exist")
-    else:
-        print(f"Workflow failed: {e.status_code} - {e.body}")`
+    )`
     }
   ]}
   annotations={{
     python: [
-      { line: 18, text: 'Create corpus first before indexing documents' },
-      { line: 19, text: 'Use the corpus key from the creation step' },
+      { line: 17, text: 'Create corpus first before indexing documents' },
+      { line: 18, text: 'Use the corpus key from the creation step' },
       { line: 25, text: 'Index document into the newly created corpus' }
     ]
   }}

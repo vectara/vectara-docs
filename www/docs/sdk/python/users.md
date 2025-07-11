@@ -11,7 +11,7 @@ The Vectara Python SDK provides methods to manage users in your account,
 including listing, creating, retrieving, updating, deleting, and resetting 
 passwords. The UsersClient (synchronous) and AsyncUsersClient (asynchronous) 
 support these operations, with options to filter by corpus access, assign 
-roles, and configure timeouts. Usernames must be percent-encoded for API calls. 
+roles, and configure timeouts. Usernames must be percent-encoded for API calls.
 
 ## List users
 
@@ -21,14 +21,14 @@ roles, and configure timeouts. Usernames must be percent-encoded for API calls.
   snippets={[
     {
       language: "python",
-      code: "from vectara import Vectara\n\nclient = Vectara(api_key=\"YOUR_API_KEY\")\nresponse = client.users.list(\n    corpus_key=\"my-corpus-key\",\n    limit=10\n)\nfor user in response:\n    print(f\"Username: {user.username}, Email: {user.email}\")"
+      code: "response = client.users.list(\n    corpus_key=\"my-corpus-key\",\n    limit=10\n)\nfor user in response:\n    print(f\"Username: {user.username}, Email: {user.email}\")"
     }
   ]}
   annotations={{
     python: [
-      { line: 5, text: "Filter users with access to a specific corpus" },
-      { line: 6, text: "Limit to 10 users per page" },
-      { line: 9, text: "Access user details like username and email" }
+      { line: 2, text: "Filter users with access to a specific corpus" },
+      { line: 3, text: "Limit to 10 users per page" },
+      { line: 6, text: "Access user details like username and email" }
     ]
   }}
   customWidth="50%"
@@ -48,7 +48,8 @@ Iterator of user objects, each with:
 - `description`
 - `api_roles`
 - `enabled`
-- 
+  
+
 **Error handling:**
 - `403 Forbidden`: Insufficient API key permissions.
 - `404 Not Found`: Corpus does not exist (if filtering by `corpus_key`).
@@ -63,14 +64,14 @@ Iterator of user objects, each with:
   snippets={[
     {
       language: "python",
-      code: "from vectara import Vectara\n\nclient = Vectara(api_key=\"YOUR_API_KEY\")\nresponse = client.users.create(\n    email=\"alice@example.com\",\n    username=\"alice\",\n    description=\"Content Manager\",\n    api_roles=[\"corpus_admin\", \"query_writer\"]\n)\nprint(f\"Created user: {response.user.username}\")"
+      code: "response = client.users.create(\n    email=\"alice@example.com\",\n    username=\"alice\",\n    description=\"Content Manager\",\n    api_roles=[\"corpus_admin\", \"query_writer\"]\n)\nprint(f\"Created user: {response.user.username}\")"
     }
   ]}
   annotations={{
     python: [
-      { line: 5, text: "Specify user email (required)" },
-      { line: 8, text: "Assign roles like corpus_admin or query_writer" },
-      { line: 10, text: "Access created user details" }
+      { line: 2, text: "Specify user email (required)" },
+      { line: 4, text: "Assign roles like corpus_admin or query_writer" },
+      { line: 7, text: "Access created user details" }
     ]
   }}
   customWidth="50%"
@@ -104,14 +105,14 @@ User object with:
   snippets={[
     {
       language: "python",
-      code: "from vectara import Vectara\nimport urllib.parse\n\nclient = Vectara(api_key=\"YOUR_API_KEY\")\nusername = urllib.parse.quote(\"alice@example.com\")\nuser = client.users.get(username=username)\nprint(f\"Username: {user.username}, Roles: {user.api_roles}\")"
+      code: "username = urllib.parse.quote(\"alice@example.com\")\nuser = client.users.get(username=username)\nprint(f\"Username: {user.username}, Roles: {user.api_roles}\")"
     }
   ]}
   annotations={{
     python: [
-      { line: 5, text: "Percent-encode username for API safety" },
-      { line: 6, text: "Retrieve user by username" },
-      { line: 7, text: "Access user details like roles" }
+      { line: 1, text: "Percent-encode username for API safety" },
+      { line: 2, text: "Retrieve user by username" },
+      { line: 3, text: "Access user details like roles" }
     ]
   }}
   customWidth="50%"
@@ -143,14 +144,14 @@ User object with fields:
   snippets={[
     {
       language: "python",
-      code: "from vectara import Vectara\nimport urllib.parse\n\nclient = Vectara(api_key=\"YOUR_API_KEY\")\nusername = urllib.parse.quote(\"alice@example.com\")\nuser = client.users.update(\n    username=username,\n    enabled=True,\n    api_roles=[\"corpus_admin\"]\n)\nprint(f\"Updated user: {user.username}, Enabled: {user.enabled}\")"
+      code: "username = urllib.parse.quote(\"alice@example.com\")\nuser = client.users.update(\n    username=username,\n    enabled=True,\n    api_roles=[\"corpus_admin\"]\n)"
     }
   ]}
   annotations={{
     python: [
-      { line: 5, text: "Percent-encode username for update" },
-      { line: 8, text: "Enable user account" },
-      { line: 9, text: "Update roles to corpus_admin only" }
+      { line: 1, text: "Percent-encode username for update" },
+      { line: 2, text: "Enable user account" },
+      { line: 5, text: "Update roles to corpus_admin only" }
     ]
   }}
   customWidth="50%"
@@ -188,14 +189,13 @@ Updated user object with:
   snippets={[
     {
       language: "python",
-      code: "from vectara import Vectara\nimport urllib.parse\n\nclient = Vectara(api_key=\"YOUR_API_KEY\")\nusername = urllib.parse.quote(\"alice@example.com\")\nclient.users.delete(username=username)\nprint(f\"Deleted user: {username}\")"
+      code: "username = urllib.parse.quote(\"alice@example.com\")\nclient.users.delete(username=username)\n)"
     }
   ]}
   annotations={{
     python: [
-      { line: 5, text: "Percent-encode username for deletion" },
-      { line: 6, text: "Delete user from account" },
-      { line: 7, text: "Confirm deletion (no response data)" }
+      { line: 1, text: "Percent-encode username for deletion" },
+      { line: 2, text: "Delete user from account" },
     ]
   }}
   customWidth="50%"
@@ -222,7 +222,7 @@ None (success is silent)
   snippets={[
     {
       language: "python",
-      code: "from vectara import Vectara\nimport urllib.parse\n\nclient = Vectara(api_key=\"YOUR_API_KEY\")\nusername = urllib.parse.quote(\"alice@example.com\")\nresponse = client.users.reset_password(username=username)\nprint(f\"Password reset sent for: {response.user.username}\")"
+      code: "username = urllib.parse.quote(\"alice@example.com\")\nresponse = client.users.reset_password(username=username)\n)"
     }
   ]}
   annotations={{

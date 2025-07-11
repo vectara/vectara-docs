@@ -62,20 +62,7 @@ Ensure your API key has query permissions for the target corpora.
   snippets={[
     {
       language: 'python',
-      code: `import os
-from vectara import Vectara, SearchCorporaParameters, GenerationParameters, \nChatParameters
-from vectara.core.api_error import ApiError
-
-api_key = os.getenv("VECTARA_API_KEY", "YOUR_API_KEY")
-
-if api_key == "YOUR_API_KEY":
-    print("Please set VECTARA_API_KEY environment variable")
-    exit(1)
-
-client = Vectara(api_key=api_key)
-
-try:
-    search = SearchCorporaParameters(
+      code: `search = SearchCorporaParameters(
         corpora=[{"corpus_key": "support-docs"}]
     )
     generation = GenerationParameters(
@@ -93,18 +80,16 @@ try:
     response = session.chat(query="How do I reset my password?")
     print(f"Chat ID: {response.chat_id}")
     print(f"Answer: {response.answer}")
-    print(f"Factual Consistency: {response.factual_consistency_score}")
-except ApiError as e:
-    print(f"Chat creation failed: {e.status_code} - {e.body}")`
+    print(f"Factual Consistency: {response.factual_consistency_score}")`
     }
   ]}
   annotations={{
     python: [
-      { line: 16, text: 'Specify corpus to search for context.' },
-      { line: 19, text: 'Use an optimal generation preset for summary quality.' },
-      { line: 20, text: 'Control number of results used for generation.' },
-      { line: 24, text: 'Enable chat history for multi-turn support.' },
-      { line: 30, text: 'Send the user\'s first message to start the chat.' }
+      { line: 2, text: 'Specify corpus to search for context.' },
+      { line: 5, text: 'Use an optimal generation preset for summary quality.' },
+      { line: 6, text: 'Limite the number of results used for generation.' },
+      { line: 10, text: 'Enable chat history for multi-turn support.' },
+      { line: 16, text: 'Send the user\'s first message to start the chat.' }
     ]
   }}
   customWidth="50%"
@@ -135,9 +120,7 @@ on your corpus content.
   snippets={[
     {
       language: 'python',
-      code: `try:
-    # Configure chat session
-    search = SearchCorporaParameters(
+      code: `search = SearchCorporaParameters(
         corpora=[{"corpus_key": "quickstart-docs"}]
     )
 
@@ -173,22 +156,19 @@ on your corpus content.
     print()
 
     # Turn 3: Deeper dive (builds on previous context)
-    response3 = session.chat(query="Can you give examples of supervised learning?")
+    response3 = session.chat(query="Give examples of supervised learning?")
     print(f"User: Can you give examples of supervised learning?")
     print(f"Assistant: {response3.answer}")
-    print()
-
-except ApiError as e:
-    print(f"Multi-turn chat failed: {e.status_code} - {e.body}")`
+    print()`
     }
   ]}
   annotations={{
     python: [
-      { line: 4, text: 'Enter the corpus key' },
-      { line: 8, text: 'Specify a generation preset' },
-      { line: 25, text: 'First turn establishes the topic' },
-      { line: 33, text: 'Second turn references "main types" - context understood' },
-      { line: 39, text: 'Third turn builds on "supervised learning" from context' }
+      { line: 2, text: 'Enter the corpus key' },
+      { line: 6, text: 'Specify a generation preset' },
+      { line: 24, text: 'First turn establishes the topic' },
+      { line: 31, text: 'Second turn references "main types" - context understood' },
+      { line: 37, text: 'Third turn builds on "supervised learning" from context' }
     ]
   }}
   customWidth="50%"
@@ -218,9 +198,7 @@ requiring explicit context management.
   snippets={[
     {
       language: 'python',
-      code: `try:
-    # List recent chats
-    chats = client.chats.list(limit=10)
+      code: `chats = client.chats.list(limit=10)
     
     print("Recent Chat Conversations:")
     for chat in chats:
@@ -228,15 +206,12 @@ requiring explicit context management.
         print(f"First Query: {chat.first_query}")
         print(f"Created: {chat.created_at}")
         print(f"Enabled: {chat.enabled}")
-        print("---")
-        
-except ApiError as e:
-    print(f"List chats failed: {e.status_code} - {e.body}")`
+        print("---")`
     }
   ]}
   annotations={{
     python: [
-      { line: 3, text: 'Retrieve list of 10 chat sessions' },
+      { line: 1, text: 'Retrieve list of 10 chat sessions' },
       { line: 6, text: 'Each chat includes metadata and first message' }
     ]
   }}
@@ -261,9 +236,7 @@ interface display. Useful for building chat interfaces that show conversation li
   snippets={[
     {
       language: 'python',
-      code: `try:
-    # Create session (same configuration as above)
-    session = client.create_chat_session(
+      code: `session = client.create_chat_session(
         search=search,
         generation=generation,
         chat_config=chat
@@ -279,16 +252,13 @@ interface display. Useful for building chat interfaces that show conversation li
     for chunk in response_stream:
         if hasattr(chunk, 'generation_chunk') and chunk.generation_chunk:
             print(chunk.generation_chunk, end='', flush=True)
-    print("\\n")  # Complete the stream
-    
-except ApiError as e:
-    print(f"Streaming chat failed: {e.status_code} - {e.body}")`
+    print("\\n")`
     }
   ]}
   annotations={{
     python: [
-      { line: 11, text: 'Use chat_stream for real-time response generation' },
-      { line: 16, text: 'Process and display chunks immediately' }
+      { line: 9, text: 'Use chat_stream for real-time response generation' },
+      { line: 14, text: 'Process and display chunks immediately' }
     ]
   }}
   customWidth="50%"
@@ -312,9 +282,7 @@ Perfect for creating responsive chat interfaces where users see responses as the
   snippets={[
     {
       language: 'python',
-      code: `try:
-    # Get specific chat details
-    chat_details = client.chats.get(chat_id="your-chat-id")
+      code: `chat_details = client.chats.get(chat_id="your-chat-id")
     print(f"Chat: {chat_details.id}")
     print(f"Created: {chat_details.created_at}")
     
@@ -327,17 +295,14 @@ Perfect for creating responsive chat interfaces where users see responses as the
         print(f"  User: {turn.query}")
         print(f"  Assistant: {turn.answer}")
         print(f"  Created: {turn.created_at}")
-        print()
-        
-except ApiError as e:
-    print(f"Chat history retrieval failed: {e.status_code} - {e.body}")`
+        print()`
     }
   ]}
   annotations={{
     python: [
       { line: 2, text: 'Retrieve detailed information about a specific chat' },
-      { line: 7, text: 'Get all conversation turns (messages) in the chat' },
-      { line: 10, text: 'Display the complete conversation history' }
+      { line: 6, text: 'Get all conversation turns (messages) in the chat' },
+      { line: 8, text: 'Display the complete conversation history' }
     ]
   }}
   customWidth="50%"
@@ -351,86 +316,7 @@ Useful for building chat interfaces, conversation analytics, or audit trails.
 - **Turns**: Individual message exchanges between user and assistant
 - **Turn Details**: Each turn includes query, answer, and timestamp
 
----
-
-## Best practices and error handling
-
-**Production Tips:**
-
-<CodePanel
-  title="Production-ready chat implementation"
-  snippets={[
-    {
-      language: 'python',
-      code: `class ChatManager:
-    def __init__(self, api_key, corpus_key):
-        self.client = Vectara(api_key=api_key)
-        self.corpus_key = corpus_key
-        self.session = None
-        
-    def start_conversation(self):
-        """Initialize a new chat session"""
-        try:
-            search = SearchCorporaParameters(
-                corpora=[{"corpus_key": self.corpus_key}]
-            )
-            
-            generation = GenerationParameters(
-                generation_preset_name="vectara-omni-1.0",
-                max_used_search_results=25,
-                response_language="eng",
-                enable_factual_consistency_score=True
-            )
-            
-            chat = ChatParameters(store=True)
-            
-            self.session = self.client.create_chat_session(
-                search=search,
-                generation=generation,
-                chat_config=chat
-            )
-            return True
-            
-        except ApiError as e:
-            print(f"Failed to start conversation: {e.status_code} - {e.body}")
-            return False
-    
-    def send_message(self, message):
-        """Send a message and get response"""
-        if not self.session:
-            if not self.start_conversation():
-                return None
-                
-        try:
-            response = self.session.chat(query=message)
-            
-            # Check response quality
-            if response.factual_consistency_score < 0.5:
-                print("Warning: Low factual consistency score")
-                
-            return {
-                "answer": response.answer,
-                "score": response.factual_consistency_score,
-                "chat_id": response.chat_id
-            }
-            
-        except ApiError as e:
-            print(f"Failed to send message: {e.status_code} - {e.body}")
-            return None
-
-# Usage example
-chat_manager = ChatManager(api_key="YOUR_API_KEY", corpus_key="support-kb")
-response = chat_manager.send_message("How do I reset my password?")
-if response:
-    print(f"Answer: {response['answer']}")
-    print(f"Quality Score: {response['score']}")`
-    }
-  ]}
-  customWidth="50%"
-/>
-
 **Best Practices:**
-- Always handle `ApiError` exceptions in production code
 - Monitor factual consistency scores for quality control
 - Use appropriate `max_used_search_results` (15-25 for most cases)
 - Enable chat storage (`store=True`) for multi-turn conversations
@@ -447,11 +333,9 @@ if response:
 
 ## Next steps
 
-After mastering chat functionality:
+After understanding chat functionality:
 
 - **Integration**: Combine with document indexing for dynamic knowledge bases
 - **Customization**: Experiment with different generation presets and prompts
 - **Analytics**: Track conversation patterns and user satisfaction
 - **Scaling**: Implement session management for multiple concurrent users
-
-For document management, see the [Documents guide](https://docs.vectara.com/docs/api-reference/indexing-apis/indexing). For direct search without conversation, see the [Query guide](https://docs.vectara.com/docs/api-reference/search-apis/search).
