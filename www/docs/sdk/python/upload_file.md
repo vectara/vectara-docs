@@ -35,6 +35,8 @@ Use file upload for:
 
 <Spacer size="l" />
 
+---
+
 ## Initialize the Vectara Client
 
 <CodePanel
@@ -59,6 +61,11 @@ client = Vectara(api_key="YOUR_API_KEY")`
 
 Set up authentication to securely access file upload capabilities. Ensure your 
 API key has indexing (write) permissions for the target corpus.
+
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
 
 ---
 
@@ -106,6 +113,8 @@ parses, chunks, and indexes the content for semantic search—no manual processi
 - `metadata`: Optional key-value pairs for filtering and categorization
 
 **Supported File Types:** PDF, DOCX, DOC, TXT, HTML, Markdown
+
+<Spacer size="l" />
 
 ---
 
@@ -208,6 +217,12 @@ come from cloud storage, APIs, or other dynamic sources without local file stora
 - Temporary files that don't need local persistence
 - Batch processing from external systems
 
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+
 ---
 
 ## Advanced table extraction for invoices
@@ -269,6 +284,8 @@ precise financial queries and analysis.
 - Analyze spending patterns: "Show all invoices over $100k"
 - Track payment terms: "Which invoices have NET_30 terms?"
 - Vendor analysis: "Total billing from AcmeCorp in 2025"
+
+<Spacer size="l" />
 
 ---
 

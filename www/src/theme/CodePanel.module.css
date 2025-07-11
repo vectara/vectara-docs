@@ -306,157 +306,61 @@
 }
 
 /* -------------------------------------------------- */
-/*  Enhanced Syntax highlighting (Prism theme override) */
+/*  Syntax highlighting - Simple and direct           */
 /* -------------------------------------------------- */
 
-/* Base token reset */
-.codePanel pre .codeHtml * {
-  color: inherit !important;
+/* KEYWORDS: import, def, class, function, etc. - BRIGHT BLUE */
+:global(.token.keyword) {
+  color: #0070f3 !important;
 }
 
-/* Dark mode syntax highlighting (One Dark theme to match Stripe) */
-.codePanel pre .codeHtml .token.comment,
-.codePanel pre .codeHtml .token.prolog,
-.codePanel pre .codeHtml .token.doctype,
-.codePanel pre .codeHtml .token.cdata {
-  color: var(--comment-color) !important;
+/* STRINGS: "values", 'text' - BRIGHT GREEN */
+:global(.token.string),
+:global(.token.string-interpolation) {
+  color: #00d924 !important;
+}
+
+/* NUMBERS: 123, true, false - ORANGE */
+:global(.token.number),
+:global(.token.boolean) {
+  color: #ff6b35 !important;
+}
+
+/* COMMENTS: # this is a comment - GRAY */
+:global(.token.comment) {
+  color: #d3e0fb !important;
   font-style: italic !important;
 }
 
-.codePanel pre .codeHtml .token.punctuation {
-  color: var(--punctuation-color) !important;
+/* FUNCTIONS: function names - BRIGHT BLUE */
+:global(.token.function),
+:global(.token.builtin) {
+  color: #0070f3 !important;
 }
 
-.codePanel pre .codeHtml .token.namespace {
-  opacity: 0.7 !important;
+/* PUNCTUATION: (){}[].,; - LIGHT GRAY */
+:global(.token.punctuation) {
+  color: #abb2bf !important;
 }
 
-.codePanel pre .codeHtml .token.property,
-.codePanel pre .codeHtml .token.tag,
-.codePanel pre .codeHtml .token.constant,
-.codePanel pre .codeHtml .token.symbol,
-.codePanel pre .codeHtml .token.deleted {
-  color: var(--property-color) !important;
+/* OPERATORS: +, -, =, etc. - LIGHT GRAY */
+:global(.token.operator) {
+  color: #abb2bf !important;
 }
 
-.codePanel pre .codeHtml .token.boolean,
-.codePanel pre .codeHtml .token.number {
-  color: var(--number-color) !important;
+/* PROPERTIES/ATTRIBUTES - RED */
+:global(.token.property),
+:global(.token.tag) {
+  color: #0070f3 !important;
 }
 
-.codePanel pre .codeHtml .token.selector,
-.codePanel pre .codeHtml .token.attr-name,
-.codePanel pre .codeHtml .token.string,
-.codePanel pre .codeHtml .token.char,
-.codePanel pre .codeHtml .token.builtin,
-.codePanel pre .codeHtml .token.inserted {
-  color: var(--string-color) !important;
+/* CLASS NAMES - BLUE */
+:global(.token.class-name) {
+  color: #0070f3 !important;
 }
 
-.codePanel pre .codeHtml .token.operator,
-.codePanel pre .codeHtml .token.entity,
-.codePanel pre .codeHtml .token.url,
-.codePanel pre .codeHtml .language-css .token.string,
-.codePanel pre .codeHtml .style .token.string,
-.codePanel pre .codeHtml .token.variable {
-  color: var(--operator-color) !important;
-}
-
-.codePanel pre .codeHtml .token.atrule,
-.codePanel pre .codeHtml .token.attr-value,
-.codePanel pre .codeHtml .token.keyword {
-  color: var(--keyword-color) !important;
-}
-
-.codePanel pre .codeHtml .token.function,
-.codePanel pre .codeHtml .token.class-name {
-  color: var(--function-color) !important;
-}
-
-.codePanel pre .codeHtml .token.regex,
-.codePanel pre .codeHtml .token.important {
-  color: var(--regex-color) !important;
-}
-
-.codePanel pre .codeHtml .token.important,
-.codePanel pre .codeHtml .token.bold {
-  font-weight: bold !important;
-}
-
-.codePanel pre .codeHtml .token.italic {
-  font-style: italic !important;
-}
-
-.codePanel pre .codeHtml .token.entity {
-  cursor: help !important;
-}
-
-/* Light mode syntax highlighting overrides (GitHub-inspired) */
-[data-theme='light'] .codePanel pre .codeHtml .token.comment,
-[data-theme='light'] .codePanel pre .codeHtml .token.prolog,
-[data-theme='light'] .codePanel pre .codeHtml .token.doctype,
-[data-theme='light'] .codePanel pre .codeHtml .token.cdata {
-  color: var(--comment-color) !important;
-  font-style: italic !important;
-}
-
-[data-theme='light'] .codePanel pre .codeHtml .token.punctuation {
-  color: var(--punctuation-color) !important;
-}
-
-[data-theme='light'] .codePanel pre .codeHtml .token.property,
-[data-theme='light'] .codePanel pre .codeHtml .token.tag,
-[data-theme='light'] .codePanel pre .codeHtml .token.boolean,
-[data-theme='light'] .codePanel pre .codeHtml .token.number,
-[data-theme='light'] .codePanel pre .codeHtml .token.constant,
-[data-theme='light'] .codePanel pre .codeHtml .token.symbol,
-[data-theme='light'] .codePanel pre .codeHtml .token.deleted {
-  color: var(--property-color) !important;
-}
-
-[data-theme='light'] .codePanel pre .codeHtml .token.selector,
-[data-theme='light'] .codePanel pre .codeHtml .token.attr-name,
-[data-theme='light'] .codePanel pre .codeHtml .token.string,
-[data-theme='light'] .codePanel pre .codeHtml .token.char,
-[data-theme='light'] .codePanel pre .codeHtml .token.builtin,
-[data-theme='light'] .codePanel pre .codeHtml .token.inserted {
-  color: var(--string-color) !important;
-}
-
-[data-theme='light'] .codePanel pre .codeHtml .token.operator,
-[data-theme='light'] .codePanel pre .codeHtml .token.entity,
-[data-theme='light'] .codePanel pre .codeHtml .token.url,
-[data-theme='light'] .codePanel pre .codeHtml .language-css .token.string,
-[data-theme='light'] .codePanel pre .codeHtml .style .token.string {
-  color: var(--operator-color) !important;
-}
-
-[data-theme='light'] .codePanel pre .codeHtml .token.atrule,
-[data-theme='light'] .codePanel pre .codeHtml .token.attr-value,
-[data-theme='light'] .codePanel pre .codeHtml .token.keyword {
-  color: var(--keyword-color) !important;
-}
-
-[data-theme='light'] .codePanel pre .codeHtml .token.function,
-[data-theme='light'] .codePanel pre .codeHtml .token.class-name {
-  color: var(--function-color) !important;
-}
-
-[data-theme='light'] .codePanel pre .codeHtml .token.regex,
-[data-theme='light'] .codePanel pre .codeHtml .token.important,
-[data-theme='light'] .codePanel pre .codeHtml .token.variable {
-  color: var(--regex-color) !important;
-}
-
-[data-theme='light'] .codePanel pre .codeHtml .token.important,
-[data-theme='light'] .codePanel pre .codeHtml .token.bold {
-  font-weight: bold !important;
-}
-
-[data-theme='light'] .codePanel pre .codeHtml .token.italic {
-  font-style: italic !important;
-}
-
-[data-theme='light'] .codePanel pre .codeHtml .token.entity {
-  cursor: help !important;
+/* NULL/UNDEFINED - PURPLE */
+:global(.token.null),
+:global(.token.undefined) {
+  color: #a855f7 !important;
 }

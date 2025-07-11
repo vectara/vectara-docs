@@ -27,6 +27,8 @@ your enterprise applications.
 
 <Spacer size="l" />
 
+---
+
 ## Initialize the Vectara Client
 
 <CodePanel
@@ -51,6 +53,11 @@ client = Vectara(api_key="YOUR_API_KEY")`
 
 Set up authentication to securely access indexing methods using an API key.
 Ensure your API key has indexing (write) permissions for the target corpus.
+
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
 
 ---
 
@@ -177,6 +184,10 @@ FAQs, or knowledge base entries.
 - You want maximum flexibility in document organization
 - Working with imported content from various sources
 
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+
 ---
 
 ## Corpus and index workflow
@@ -267,6 +278,8 @@ a new knowledge base in Vectara.
   indexing to avoid orphaned content.
 * **Resource management**: Consider using unique corpus keys for testing to avoid 
   conflicts with existing resources.
+
+<Spacer size="l" />
 
 ---
 
