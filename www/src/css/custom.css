@@ -828,3 +828,9 @@ table td {
   code {
   border: none !important;
 }
+
+/* API Key Badges styling */
+.api-method .badge {
+  display: inline-block;
+  margin-right: 4px;
+}
