@@ -834,3 +834,22 @@ table td {
   display: inline-block;
   margin-right: 4px;
 }
+
+/* Hide badges on parent topic pages (category pages with DocCardList) */
+/* Target badges that appear within card descriptions on category pages */
+.theme-doc-category-generated-index-page .badge,
+.theme-doc-category-generated-index-page .badge--success,
+.theme-doc-category-generated-index-page .badge--primary,
+.theme-doc-category-generated-index-page .badge--secondary,
+.theme-doc-category-generated-index-page .badge--info,
+.theme-doc-category-generated-index-page .badge--warning,
+.theme-doc-category-generated-index-page .badge--danger {
+  display: none !important;
+}
+
+/* Alternative approach: Hide badges in DocCardList items */
+[class*="docCardList"] .badge,
+[class*="docCard"] .badge {
+  display: none !important;
+}
+

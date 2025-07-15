@@ -113,6 +113,7 @@ ${content}
   scripts: [
     { src: "/analytics.js", async: true },
     { src: "/scripts/reodev.js", async: true },
+    { src: "/js/cleanCardDescriptions.js", async: true },
   ],
 
   clientModules: ["./static/routeUpdateModule.js"],
