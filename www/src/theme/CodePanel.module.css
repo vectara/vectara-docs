@@ -1,33 +1,50 @@
 /* -------------------------------------------------- */
 /*  Code panel colour tokens                          */
 /* -------------------------------------------------- */
-:root {
-  /* Dark mode (default) */
-  --header-bg: #0a2540;
-  --body-bg: #1a1f36;
-  --border-color: #2c3e50;
-  --text-color: #ffffff;
-  --muted-color: #8892b0;
-  --accent-color: #00d4aa;
-  --hover-color: #0070f3;
+/* Dark mode (default) */
+.codePanel {
+  --header-bg: #505865;
+  --body-bg: #282c34;
+  --border-color: #434a65;
+  --text-color: #FFFFFF;
+  --muted-color: #FFFFFF;
+  --accent-color: #98c379;
+  --hover-color: #528bff;
+  --keyword-color: #61afef; /* Blue for keywords like "import" */
+  --string-color: #98c379; /* Green for strings/API keys */
+  --comment-color: #5c6370; /* Gray for comments */
+  --punctuation-color: #abb2bf; /* Light gray for punctuation */
+  --property-color: #e06c75; /* Red for properties/tags */
+  --number-color: #d19a66; /* Orange for numbers/booleans */
+  --function-color: #61afef; /* Blue for functions/class names */
+  --operator-color: #abb2bf; /* Light gray for operators */
+  --regex-color: #d19a66; /* Orange for regex/important */  
 }
 
 /* Light mode override */
-[data-theme='light'] :root,
-.light :root {
-  --header-bg: #f8fafc;
-  --body-bg: #ffffff;
-  --border-color: #e2e8f0;
-  --text-color: #1a202c;
-  --muted-color: #718096;
-  --accent-color: #0070f3;
-  --hover-color: #0056d6;
+[data-theme='light'] .codePanel {
+  --header-bg: #505865;
+  --body-bg: #3E444F;
+  --border-color: #434a65;
+  --text-color: #FFFFFF;
+  --muted-color: #FFFFFF;
+  --accent-color: #98c379;
+  --hover-color: #528bff;
+  --keyword-color: #0366d6; /* Dark blue for keywords */
+  --string-color: #22863a; /* Dark green for strings */
+  --comment-color: #6a737d; /* Gray for comments */
+  --punctuation-color: #24292e; /* Dark for punctuation */
+  --property-color: #d73a49; /* Red for properties */
+  --number-color: #e36209; /* Orange for numbers */
+  --function-color: #6f42c1; /* Purple for functions */
+  --operator-color: #24292e; /* Dark for operators */
+  --regex-color: #e36209; /* Orange for regex */  
 }
 
 /* -------------------------------------------------- */
 /*  Container                                         */
 /* -------------------------------------------------- */
-/* Default floating layout (current Stripe-like behavior) */
+/* Default floating layout */
 .floatingLayout {
   float: right;
   width: 50%;
@@ -53,7 +70,7 @@
   border-radius: 8px;
   overflow: hidden;
   font-family: 'SF Mono', Monaco, 'Inconsolata', 'Roboto Mono', 'Source Code Pro', monospace;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   background: var(--body-bg);
   position: relative;           /* anchors the toast        */
 }
@@ -67,15 +84,15 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 16px;
+  padding: 8px 12px;
   border-bottom: 1px solid var(--border-color);
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: 0.05em;
 }
 
 .headerTitle {
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -88,16 +105,16 @@
   border: 1px solid var(--border-color);
   border-radius: 4px;
   color: var(--text-color);
-  font-size: 0.70rem;
+  font-size: 0.80rem;
   font-weight: 500;
   padding: 4px 24px 4px 8px;
   cursor: pointer;
   appearance: none;
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23abb2bf' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
   background-position: right 6px center;
   background-repeat: no-repeat;
   background-size: 16px;
-  min-width: 80px;
+  min-width: 90px;
 }
 
 .languageSelect:hover,
@@ -111,9 +128,9 @@
   background: transparent;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 0.775rem;
+  font-size: 0.875rem;
   color: var(--muted-color);
-  padding: 6px 8px;
+  padding: 7px 9px;
   display: flex;
   align-items: center;
   transition: all 0.15s ease;
@@ -122,7 +139,7 @@
 .iconButton:hover {
   border-color: var(--accent-color);
   color: var(--accent-color);
-  background: rgba(0, 212, 170, 0.1);
+  background: rgba(152, 195, 121, 0.1); /* Matches accent opacity */
 }
 
 /* -------------------------------------------------- */
@@ -130,11 +147,11 @@
 /* -------------------------------------------------- */
 .pre {
   margin: 0;
-  padding: 16px;
+  padding: 12px 16px;
   background: var(--body-bg);
   color: var(--text-color);
-  font-size: 0.775rem;
-  line-height: 1.5;
+  font-size: 0.875rem;
+  line-height: 1.6;
   overflow-x: auto;
   font-family: inherit;
 }
@@ -142,8 +159,8 @@
 .codeLine {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
-  min-height: 1.5em;
+  gap: 14px;
+  min-height: 1.6em;
   cursor: pointer;
   border-radius: 2px;
   transition: background-color 0.1s ease;
@@ -152,7 +169,7 @@
 }
 
 .codeLine:hover {
-  background: rgba(0, 212, 170, 0.05);
+  background: rgba(152, 195, 121, 0.05); /* Matches accent */
 }
 
 .lineNumber {
@@ -160,20 +177,20 @@
   width: 32px;
   text-align: right;
   color: var(--muted-color);
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   line-height: 1.5;
   flex-shrink: 0;
 }
 
 .marker {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   background: var(--accent-color);
   border-radius: 50%;
-  color: white;
-  font-size: 0.625rem;
+  color: #282c34; /* Dark for contrast on green */
+  font-size: 0.7rem;
   font-weight: 600;
-  line-height: 16px;
+  line-height: 18px;
   text-align: center;
   cursor: help;
   position: relative;
@@ -191,9 +208,9 @@
   transform: translateY(-50%);
   background: var(--header-bg);
   color: var(--text-color);
-  padding: 6px 10px;
+  padding: 7px 11px;
   border-radius: 6px;
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   white-space: nowrap;
   opacity: 0;
   pointer-events: none;
@@ -210,6 +227,29 @@
 .codeHtml {
   flex: 1;
   line-height: 1.5;
+  white-space: pre !important;
+  word-spacing: normal !important;
+  word-break: normal !important;
+  word-wrap: normal !important;
+  -moz-tab-size: 4 !important;
+  -o-tab-size: 4 !important;
+  tab-size: 4 !important;
+  -webkit-hyphens: none !important;
+  -moz-hyphens: none !important;
+  -ms-hyphens: none !important;
+  hyphens: none !important;
+}
+
+/* Overrides for isolation from custom.css */
+.codePanel pre,
+.codePanel code {
+  background: var(--body-bg) !important;
+  text-shadow: none !important;
+  border: none !important;
+}
+
+.codePanel .token.operator {
+  background: transparent !important;
 }
 
 /* -------------------------------------------------- */
@@ -220,9 +260,9 @@
   top: 12px;
   right: 60px;
   background: var(--accent-color);
-  color: white;
+  color: #282c34;
   padding: 4px 10px;
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   font-weight: 500;
   border-radius: 4px;
   animation: fadeInOut 2s forwards;
@@ -256,155 +296,71 @@
   
   .pre {
     padding: 12px;
-    font-size: 0.8125rem;
+    font-size: 0.925rem;
   }
   
   .languageSelect {
     min-width: 70px;
-    font-size: 0.8125rem;
+    font-size: 0.85rem;
   }
 }
 
 /* -------------------------------------------------- */
-/*  Enhanced Syntax highlighting (Prism theme override) */
+/*  Syntax highlighting - Simple and direct           */
 /* -------------------------------------------------- */
 
-/* Override Prism's default styles to work with our theme */
-.codeHtml * {
-  color: inherit;
+/* KEYWORDS: import, def, class, function, etc. - BRIGHT BLUE */
+:global(.token.keyword) {
+  color: #0070f3 !important;
 }
 
-/* Dark mode syntax highlighting */
-.codeHtml .token.comment,
-.codeHtml .token.prolog,
-.codeHtml .token.doctype,
-.codeHtml .token.cdata {
-  color: #6a737d;
-  font-style: italic;
+/* STRINGS: "values", 'text' - BRIGHT GREEN */
+:global(.token.string),
+:global(.token.string-interpolation) {
+  color: #00d924 !important;
 }
 
-.codeHtml .token.punctuation {
-  color: #f8f8f2;
+/* NUMBERS: 123, true, false - ORANGE */
+:global(.token.number),
+:global(.token.boolean) {
+  color: #ff6b35 !important;
 }
 
-.codeHtml .token.property,
-.codeHtml .token.tag,
-.codeHtml .token.boolean,
-.codeHtml .token.number,
-.codeHtml .token.constant,
-.codeHtml .token.symbol,
-.codeHtml .token.deleted {
-  color: #ff6b6b;
+/* COMMENTS: # this is a comment - GRAY */
+:global(.token.comment) {
+  color: #d3e0fb !important;
+  font-style: italic !important;
 }
 
-.codeHtml .token.selector,
-.codeHtml .token.attr-name,
-.codeHtml .token.string,
-.codeHtml .token.char,
-.codeHtml .token.builtin,
-.codeHtml .token.inserted {
-  color: #4ecdc4;
+/* FUNCTIONS: function names - BRIGHT BLUE */
+:global(.token.function),
+:global(.token.builtin) {
+  color: #0070f3 !important;
 }
 
-.codeHtml .token.operator,
-.codeHtml .token.entity,
-.codeHtml .token.url,
-.codeHtml .language-css .token.string,
-.codeHtml .style .token.string {
-  color: #f8f8f2;
+/* PUNCTUATION: (){}[].,; - LIGHT GRAY */
+:global(.token.punctuation) {
+  color: #abb2bf !important;
 }
 
-.codeHtml .token.atrule,
-.codeHtml .token.attr-value,
-.codeHtml .token.keyword {
-  color: #c678dd;
-  font-weight: 500;
+/* OPERATORS: +, -, =, etc. - LIGHT GRAY */
+:global(.token.operator) {
+  color: #abb2bf !important;
 }
 
-.codeHtml .token.function,
-.codeHtml .token.class-name {
-  color: #61dafb;
+/* PROPERTIES/ATTRIBUTES - RED */
+:global(.token.property),
+:global(.token.tag) {
+  color: #0070f3 !important;
 }
 
-.codeHtml .token.regex,
-.codeHtml .token.important,
-.codeHtml .token.variable {
-  color: #fd9170;
+/* CLASS NAMES - BLUE */
+:global(.token.class-name) {
+  color: #0070f3 !important;
 }
 
-.codeHtml .token.important,
-.codeHtml .token.bold {
-  font-weight: bold;
-}
-
-.codeHtml .token.italic {
-  font-style: italic;
-}
-
-.codeHtml .token.entity {
-  cursor: help;
-}
-
-/* Light mode syntax highlighting overrides */
-[data-theme='light'] .codeHtml .token.comment,
-[data-theme='light'] .codeHtml .token.prolog,
-[data-theme='light'] .codeHtml .token.doctype,
-[data-theme='light'] .codeHtml .token.cdata {
-  color: #6a737d;
-  font-style: italic;
-}
-
-[data-theme='light'] .codeHtml .token.punctuation {
-  color: #24292e;
-}
-
-[data-theme='light'] .codeHtml .token.property,
-[data-theme='light'] .codeHtml .token.tag,
-[data-theme='light'] .codeHtml .token.boolean,
-[data-theme='light'] .codeHtml .token.number,
-[data-theme='light'] .codeHtml .token.constant,
-[data-theme='light'] .codeHtml .token.symbol,
-[data-theme='light'] .codeHtml .token.deleted {
-  color: #d73a49;
-}
-
-[data-theme='light'] .codeHtml .token.selector,
-[data-theme='light'] .codeHtml .token.attr-name,
-[data-theme='light'] .codeHtml .token.string,
-[data-theme='light'] .codeHtml .token.char,
-[data-theme='light'] .codeHtml .token.builtin,
-[data-theme='light'] .codeHtml .token.inserted {
-  color: #032f62;
-}
-
-[data-theme='light'] .codeHtml .token.operator,
-[data-theme='light'] .codeHtml .token.entity,
-[data-theme='light'] .codeHtml .token.url,
-[data-theme='light'] .codeHtml .language-css .token.string,
-[data-theme='light'] .codeHtml .style .token.string {
-  color: #24292e;
-}
-
-[data-theme='light'] .codeHtml .token.atrule,
-[data-theme='light'] .codeHtml .token.attr-value,
-[data-theme='light'] .codeHtml .token.keyword {
-  color: #d73a49;
-  font-weight: 500;
-}
-
-[data-theme='light'] .codeHtml .token.function,
-[data-theme='light'] .codeHtml .token.class-name {
-  color: #6f42c1;
-}
-
-[data-theme='light'] .codeHtml .token.regex,
-[data-theme='light'] .codeHtml .token.important,
-[data-theme='light'] .codeHtml .token.variable {
-  color: #e36209;
-}
-
-hr {
-  clear: both;
-  border: none;
-  margin: 2rem 0;
-}
+/* NULL/UNDEFINED - PURPLE */
+:global(.token.null),
+:global(.token.undefined) {
+  color: #a855f7 !important;
+} 
