@@ -49,7 +49,7 @@ For example:
       "indexed": True,
       "type": "text"
     }
-  ],`}]} title="Code Example" layout="stacked" />
+  ],`}]} title="Filter Attribute Example" layout="stacked" />
 
 ## Document-level and part-level metadata
 

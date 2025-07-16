@@ -42,19 +42,21 @@ To enable table extraction and custom summarization, pass the
 `table_extraction_config` in the multipart form data of your upload request.
 
 <CodePanel snippets={[{language: "json", code: `{
-  "extract_tables": true,
-  "extractor": {
-    "name": "gmft"
-  },
-  "generation": {
-    "llm_name": "gpt-4o-mini",
-    "prompt_template": "Adopt the perspective of a data analyst and summarize the table below:\\n\\n\$vectaraTable.markdown()",
-    "model_parameters": {
-      "temperature": 0.7,
-      "max_tokens": 1024
-    }
-  }
-}`}]} title="Code Example" layout="stacked" />
+   "extract_tables": true,
+   "extractor": {
+     "name": "gmft"
+   },
+   "generation": {
+     "llm_name": "gpt-4o-mini",
+     "prompt_template": "Adopt the perspective of a data analyst and summarize the table below:\\n\\n\$vectaraTable.markdown()",
+     "model_parameters": {
+       "temperature": 0.7,
+       "max_tokens": 1024
+     }
+   }
+}`
+}]} title="`table_extraction_config Example" layout="stacked" />
+
 * The `gmft` extractor extracts table data.
 * The `gpt-4o-mini` model is used for summarization.
 * The `prompt_template` uses Velocity to refer to the table in markdown format.
@@ -75,27 +77,30 @@ content may not parse correctly.
 
 Inline JSON is a cleaner option for single-use or dynamic configs.
 
-<CodePanel snippets={[{language: "json", code: `curl -i -L -X POST 'https://api.vectara.io/v2/corpora/<corpus_id>/upload_file' \\
+<CodePanel snippets={[{language: "bash", code: `curl -i -L -X POST 'https://api.vectara.io/v2/corpora/<corpus_id>/upload_file' \\
 -H 'Content-Type: multipart/form-data' \\
 -H 'Accept: application/json' \\
 -H "x-api-key: <your-api-key>" \\
 -F 'file=@"/path/to/document.pdf"' \\
--F 'table_extraction_config={"extract_tables":true,"extractor":{"name":"gmft"}};type=application/json'`}]} title="Code Example" layout="stacked" />
+-F 'table_extraction_config={"extract_tables":true,"extractor":{"name":"gmft"}};type=application/json'`
+}]} title="Inline JSON Example" layout="stacked" />
 
 ### Using a config file
 
-<CodePanel snippets={[{language: "json", code: `curl -i -L -X POST 'https://api.vectara.io/v2/corpora/<corpus_id>/upload_file' \\
+<CodePanel snippets={[{language: "bash", code: `curl -i -L -X POST 'https://api.vectara.io/v2/corpora/<corpus_id>/upload_file' \\
 -H 'Content-Type: multipart/form-data' \\
 -H 'Accept: application/json' \\
 -H "x-api-key: <your-api-key>" \\
 -F 'file=@"/path/to/document.pdf"' \\
--F 'table_extraction_config=@"/path/to/config-extractor.json";type=application/json'`}]} title="Code Example" layout="stacked" />
+-F 'table_extraction_config=@"/path/to/config-extractor.json";type=application/json'`
+}]} title="Config File Example" layout="stacked" />
 
 Where `config-extractor.json` contains:
 
 <CodePanel snippets={[{language: "json", code: `{
-  "extract_tables": true,
-  "extractor": {
-    "name": "gmft"
-  }
-}`}]} title="Code Example" layout="stacked" />
+   "extract_tables": true,
+   "extractor": {
+     "name": "gmft"
+   }
+}`
+}]} title="config-extractor.json Example" layout="stacked" />

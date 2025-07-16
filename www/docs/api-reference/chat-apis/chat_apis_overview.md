@@ -52,12 +52,13 @@ conversations in a single chat history corpus in the customer account.
 Each `chat` contains the following properties:
 
 <CodePanel snippets={[{language: "json", code: `{
-  "id": "cht_.+\$",
-  "first_query": "string",
-  "first_answer": "string",
-  "enabled": true,
-  "created_at": "string"
-}`}]} title="Code Example" layout="stacked" />
+   "id": "cht_.+\$",
+   "first_query": "string",
+   "first_answer": "string",
+   "enabled": true,
+   "created_at": "string"
+}`
+}]} title="Chat Example" layout="stacked" />
 
 ## Turn Object
 
@@ -85,4 +86,4 @@ that specifies its `chat_id`.
     "created_at": "string"
   },
   // Additional turn IDs are created for each query and answer pair in the conversation
-]`}]} title="Code Example" layout="stacked" />
+]`}]} title="Turn Example" layout="stacked" />

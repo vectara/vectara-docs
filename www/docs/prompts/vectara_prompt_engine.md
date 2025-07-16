@@ -87,4 +87,5 @@ functions. Finally, it generates a [summary](docs/learn/grounded-generation/sele
      {"role": "assistant", "content": "\${qResult.getText()}" },
   #end
   {"role": "user", "content": "Generate a summary for the query '\${vectaraQuery}' based on the above results."}
-]`}]} title="Code Example" layout="stacked" />
+]`
+}]} title="Code Example" layout="stacked" />

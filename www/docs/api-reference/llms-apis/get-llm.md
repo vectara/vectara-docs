@@ -33,33 +33,6 @@ The response returns details about the requested LLM.
 The request requires authentication details, and you can provide them either 
 as a Bearer token or custom header-based authentication.
 
-**Bearer token authentication**
-
-<CodePanel snippets={[{language: "json", code: `{
-  "type": "bearer",
-  "token": "your-api-key"
-}`}]} title="Code Example" layout="stacked" />
-**Header-based authentication**
-
-<CodePanel snippets={[{language: "json", code: `{
-  "type": "header",
-  "header": "x-api-key",
-  "value": "your-api-key"
-}`}]} title="Code Example" layout="stacked" />
-
-### Example response
-<CodePanel snippets={[{language: "json", code: `{
-    "id": "llm_123456789",
-    "name": "CustomGPT-4",
-    "description": "GPT-4 instance hosted on Azure",
-    "model": "gpt-4",
-    "uri": "https://api.openai.com/v1/chat/completions",
-    "auth": {
-        "type": "bearer"
-    },
-    "enabled": true
-}`}]} title="Code Example" layout="stacked" />
-
 ### Error Responses
 
 * **403 Forbidden** – The user does not have permission to retrieve details for the specified LLM.

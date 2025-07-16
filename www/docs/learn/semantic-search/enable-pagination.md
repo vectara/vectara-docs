@@ -28,26 +28,27 @@ To page through where each page has 20 results, you set `offset` to `0` and
 `limit` to `20`.
 
 <CodePanel snippets={[{language: "json", code: `{
-  "query": "What is offsides?",
-  "search": {
-    "corpora": [
+   "query": "What is offsides?",
+   "search": {
+     "corpora": [
       {
-        "corpus_key": "nhl-rulebook-2024"
+        "corpus_key": "nhl-rulebook-2025"
       }
-    ],
-    "offset": 0,
-    "limit": 20,
-    "context_configuration": {
-      "sentences_before": 2,
-      "sentences_after": 2,
-      "start_tag": "%START_SNIPPET%",
-      "end_tag": "%END_SNIPPET%"
-    }
-  },
-  "generation": {
-    // ...
-  }
-}`}]} title="Code Example" layout="stacked" />
+     ],
+     "offset": 0,
+     "limit": 20,
+     "context_configuration": {
+       "sentences_before": 2,
+       "sentences_after": 2,
+       "start_tag": "%START_SNIPPET%",
+       "end_tag": "%END_SNIPPET%"
+     }
+   },
+   "generation": {
+     // ...
+   }
+}`
+}]} title="Pagination Example" layout="stacked" />
 
 ## Example: set results to begin on page 2
 
@@ -56,23 +57,24 @@ Then if your users want to paginate to page 2, you would send `offset` as
 to the `offset`.
 
 <CodePanel snippets={[{language: "json", code: `{
-  "query": "What is offsides?",
-  "search": {
-    "corpora": [
+   "query": "What is offsides?",
+   "search": {
+     "corpora": [
       {
-        "corpus_key": "nhl-rulebook-2024"
+        "corpus_key": "nhl-rulebook-2025"
       }
     ],
-    "offset": 20,
-    "limit": 20,
-    "context_configuration": {
-      "sentences_before": 2,
-      "sentences_after": 2,
-      "start_tag": "%START_SNIPPET%",
-      "end_tag": "%END_SNIPPET%"
-    }
-  },
-  "generation": {
-    // ...
-  }
-}`}]} title="Code Example" layout="stacked" />
+     "offset": 20,
+     "limit": 20,
+     "context_configuration": {
+       "sentences_before": 2,
+       "sentences_after": 2,
+       "start_tag": "%START_SNIPPET%",
+       "end_tag": "%END_SNIPPET%"
+     }
+   },
+   "generation": {
+     // ...
+   }
+}`
+}]} title="Offset Example" layout="stacked" />

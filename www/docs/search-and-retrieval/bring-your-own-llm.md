@@ -41,20 +41,21 @@ the custom LLM configuration fields:
 #### Request Body
 
 <CodePanel snippets={[{language: "json", code: `{
-  "type": "openai-compatible",
-  "name": "Claude 3.7 Sonnet",
-  "description": "Anthropic'\\''s Claude 3.7 Sonnet model",
+   "type": "openai-compatible",
+   "name": "Claude 3.7 Sonnet",
+   "description": "Anthropic'\\''s Claude 3.7 Sonnet model",
   "model": "claude-3-7-sonnet-20250219",
-  "uri": "https://api.anthropic.com/v1/chat/completions",
-  "auth": {
-    "type": "header",
-    "header": "x-api-key",
-    "value": "sk-ant-......"
-  },
-  "test_model_parameters": {
-    "max_tokens": 256
-  }
-}`}]} title="Code Example" layout="stacked" />
+   "uri": "https://api.anthropic.com/v1/chat/completions",
+   "auth": {
+     "type": "header",
+     "header": "x-api-key",
+     "value": "sk-ant-......"
+    },
+   "test_model_parameters": {
+     "max_tokens": 256
+   }
+}`
+}]} title="Request Example" layout="stacked" />
 
 #### cURL Example
 
@@ -72,22 +73,24 @@ the custom LLM configuration fields:
     "type": "header",
     "header": "x-api-key",
     "value": "sk-ant-..."
-  },
-  "test_model_parameters": {
-    "max_tokens": 256
-  }
-}'`}]} title="Code Example" layout="stacked" />
+   },
+   "test_model_parameters": {
+     "max_tokens": 256
+   }
+}`
+}]} title="Claude Example" layout="stacked" />
 
 #### Successful Response
 
 <CodePanel snippets={[{language: "json", code: `{
-  "id": "llm_520721844",
-  "name": "Claude 3.7 Sonnet",
-  "description": "Anthropic's Claude 3.7 Sonnet model",
-  "enabled": true
-}`}]} title="Code Example" layout="stacked" />
+   "id": "llm_520721844",
+   "name": "Claude 3.7 Sonnet",
+   "description": "Anthropic's Claude 3.7 Sonnet model",
+   "enabled": true
+}`
+}]} title="Response Example" layout="stacked" />
 
-## Add OpenAI GPT-4
+## Add OpenAI GPT-4o
 
 <CodePanel snippets={[{language: "json", code: `curl -L -X POST 'https://api.vectara.io/v2/llms' \\
 -H 'Content-Type: application/json' \\
@@ -103,11 +106,12 @@ the custom LLM configuration fields:
     "type": "header",
     "header": "Authorization",
     "value": "Bearer sk-..."
-  },
+   },
   "test_model_parameters": {
     "max_tokens": 256
-  }
-}'`}]} title="Code Example" layout="stacked" />
+   }
+}'`
+}]} title="GPT-4o Mini Example" layout="stacked" />
 
 ## Add Google Gemini 2.0 Flash
 
@@ -125,18 +129,19 @@ the custom LLM configuration fields:
     "type": "header",
     "header": "Authorization",
     "value": "Bearer AI..."
-  },
-  "test_model_parameters": {
-    "max_tokens": 256
-  }
-}'`}]} title="Code Example" layout="stacked" />
+   },
+   "test_model_parameters": {
+     "max_tokens": 256
+   }
+}'`}]} title="Google Gemini Example" layout="stacked" />
 ## Verify your configuration
 
 To confirm your model was added successfully:
 
 <CodePanel snippets={[{language: "bash", code: `curl -L -X GET 'https://api.vectara.io/v2/llms' \\
 -H 'Accept: application/json' \\
--H 'x-api-key: YOUR-VECTARA-API-KEY'`}]} title="Code Example" layout="stacked" />
+-H 'x-api-key: YOUR-VECTARA-API-KEY'`
+}]} title="Verification Example" layout="stacked" />
 
 Look for your model in the response JSON and verify it has `"enabled": true`.
 
@@ -175,4 +180,5 @@ preset and explicitly specify the registered model by name.
       "llm_name": "claude-3-7-sonnet"
     }
   }
-}'`}]} title="Code Example" layout="stacked" />
+}'`
+}]} title="Query Custom LLM Example" layout="stacked" />

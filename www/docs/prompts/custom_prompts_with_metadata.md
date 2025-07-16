@@ -59,7 +59,8 @@ This snippet shows how to get metadata associated with a single result `qResult`
 by retrieving metadata `docMetadata` from the date that information was
 answered `answerDate`. It then extracts the text content of `qResult`.
 
-<CodePanel snippets={[{language: "javascript", code: `{"role": "assistant", "content": "qResult.docMetadata().get('answerDate') \${qResult.getText()}" },`}]} title="Code Example" layout="stacked" />
+<CodePanel snippets={[{language: "javascript", code: `{"role": "assistant", "content": "qResult.docMetadata().get('answerDate') \${qResult.getText()}" },`
+}]} title="Code Example" layout="stacked" />
 
 Let's dive into a full custom prompt example that shows more details about a
 custom prompt with

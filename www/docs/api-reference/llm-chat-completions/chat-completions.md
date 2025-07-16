@@ -70,7 +70,9 @@ message, and a temperature setting for response variability.
   ],
   "temperature": 0.7,
   "stream": false
-}`}]} title="Code Example" layout="stacked" />
+}`
+}]} title="Simple Chat Example" layout="stacked" />
+
 ### Example response
 
 The response includes a generated reply from the assistant, along with token 
@@ -78,26 +80,27 @@ usage statistics. In this example, the model returns a direct answer to the
 user’s question.
 
 <CodePanel snippets={[{language: "json", code: `{
-  "id": "chatcmpl-abc123",
-  "object": "chat.completion",
-  "created": 1712454830,
-  "model": "chat-model-001",
-  "choices": [
-    {
+   "id": "chatcmpl-abc123",
+   "object": "chat.completion",
+   "created": 1712454830,
+   "model": "chat-model-001",
+   "choices": [
+     {
       "index": 0,
       "message": {
         "role": "assistant",
         "content": "The capital of France is Paris."
-      },
+     },
       "finish_reason": "stop"
     }
-  ],
-  "usage": {
-    "prompt_tokens": 21,
-    "completion_tokens": 9,
-    "total_tokens": 30
-  }
-}`}]} title="Code Example" layout="stacked" />
+   ],
+   "usage": {
+     "prompt_tokens": 21,
+     "completion_tokens": 9,
+     "total_tokens": 30
+    }
+}`
+}]} title="Response Example" layout="stacked" />
 
 If the input summary is accurate, the `corrected_summary` matches the 
 `original_summary`.

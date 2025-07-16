@@ -55,30 +55,34 @@ as a Bearer token or custom header-based authentication.
 **Bearer token authentication**
 
 <CodePanel snippets={[{language: "json", code: `{
-  "type": "bearer",
-  "token": "your-api-key"
-}`}]} title="Code Example" layout="stacked" />
+   "type": "bearer",
+   "token": "your-api-key"
+}`
+}]} title="Bearer token" layout="stacked" />
+
 **Header-based authentication**
 
 <CodePanel snippets={[{language: "json", code: `{
-  "type": "header",
-  "header": "x-api-key",
-  "value": "your-api-key"
-}`}]} title="Code Example" layout="stacked" />
+   "type": "header",
+   "header": "x-api-key",
+   "value": "your-api-key"
+}`
+}]} title="Header authentication" layout="stacked" />
 
 ### Example request
 
 <CodePanel snippets={[{language: "json", code: `{
-  "type": "openai-compatible",
-  "name": "CustomGPT-4",
-  "description": "GPT-4 instance hosted on Azure",
-  "model": "gpt-4",
-  "uri": "https://api.openai.com/v1/chat/completions",
-  "auth": {
-    "type": "bearer",
-    "token": "your-api-key"
-  }
-}`}]} title="Code Example" layout="stacked" />
+   "type": "openai-compatible",
+   "name": "CustomGPT-4",
+   "description": "GPT-4 instance hosted on Azure",
+   "model": "gpt-4",
+   "uri": "https://api.openai.com/v1/chat/completions",
+   "auth": {
+     "type": "bearer",
+     "token": "your-api-key"
+   }
+}`
+}]} title="Request Example" layout="stacked" />
 
 The response contains the newly created LLM configuration and includes a 
 unique id assigned to the LLM, along with the name, description, and an 
@@ -91,7 +95,9 @@ enabled status indicating that the model is active and available for use.
     "name": "CustomGPT-4",
     "description": "GPT-4 instance hosted on Azure",
     "enabled": true
-}`}]} title="Code Example" layout="stacked" />
+}`
+}]} title="Response Example" layout="stacked" />
+
 ## Error responses
 
 * **400 Bad Request** - The request body is invalid.

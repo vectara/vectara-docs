@@ -37,19 +37,20 @@ The response includes a list of available correctors and a `page_key` for
 pagination.
 
 <CodePanel snippets={[{language: "json", code: `{
-  "hallucination_correctors": [
-    {
+   "hallucination_correctors": [
+     {
       "id": "hc_123",
       "name": "vhc-small-1.0",
       "type": "vectara",
       "description": "Qwen/Qwen2.5-7B-Instruct LLM for hallucination correction in AI-generated text.",
       "enabled": true
-    }
-  ],
-  "metadata": {
-    "page_key": "eyJzIjoiNTY3OGEifQ=="
-  }
-}`}]} title="Code Example" layout="stacked" />
+     }
+   ],
+   "metadata": {
+     "page_key": "eyJzIjoiNTY3OGEifQ=="
+   }
+}`}]} title="Response Example" layout="stacked" />
+
 ### Error responses
 
 * **400 Bad Request:** The request contained invalid parameters or malformed 

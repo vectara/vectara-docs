@@ -67,8 +67,9 @@ extractor for document indexing.
         }
       }
     }
-  ]
-}`}]} title="Code Example" layout="stacked" />
+   ]
+}`}]} title="Table Extractors Example" layout="stacked" />
+
 ### Error responses
 
 * **403 Forbidden** – The user does not have permission to list table extractors.

@@ -50,21 +50,21 @@ ownership, group, role, or other attributes.
 
 1. Add metadata when indexing data.
 
-<CodePanel snippets={[{language: "json", code: `{
-  "document": {
-    "title": "Customer Report",
-    "metadataJson": {
-      "user_id": "user123",
-      "team": ["sales", "executive"],
-      "access_level": "manager",
-      "category": "q2_metrics"
-    }
-  }
-}`}]} title="Code Example" layout="stacked" />
+    <CodePanel snippets={[{language: "json", code: `{
+      "document": {
+        "title": "Customer Report",
+        "metadataJson": {
+          "user_id": "user123",
+          "team": ["sales", "executive"],
+          "access_level": "manager",
+          "category": "q2_metrics"
+        }
+      }
+    }`}]} title="Metadata Example" layout="stacked" />
 
-:::note
-Each metadata field must be declared in your corpus schema.
-:::
+    :::note
+    Each metadata field must be declared in your corpus schema.
+    :::
 
 2. Construct the access filter.  
    Build a filter string that enforces access control where Mary can access 
@@ -85,15 +85,16 @@ This ensures access control remains enforced while supporting contextual filteri
 ## Example ABAC request
 
 <CodePanel snippets={[{language: "json", code: `{
-  "query": [{
-    "query": "school policies",
-    "search": {
-      "corpora": [{ "corpus_key": "faculty_corpus" }],
-      "metadata_filter": "((doc.owner in (\\"mary\\", \\"global\\")) OR (\\"history\\" IN doc.groups)) AND (doc.project = \\"orientation\\")",
-      "limit": 10
-    }
-  }]
-}`}]} title="Code Example" layout="stacked" />
+   "query": [{
+     "query": "school policies",
+     "search": {
+       "corpora": [{ "corpus_key": "faculty_corpus" }],
+       "metadata_filter": "((doc.owner in (\\"mary\\", \\"global\\")) OR (\\"history\\" IN doc.groups)) AND (doc.project = \\"orientation\\")",
+       "limit": 10
+     }
+   }]
+}`
+}]} title="ABAC request Example" layout="stacked" />
 
 ## ABAC Limitations
 

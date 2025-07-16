@@ -45,8 +45,7 @@ summaries and structured outputs:
 
 The following example query selects Mockingbird 2.0 generation preset:
 
-```json showLineNumbers title="https://api.vectara.io/v2/query"
-{
+<CodePanel snippets={[{language: "json", code: `{
   "query": "What is the infinite improbability drive?",
   "search": {
     "corpora": [
@@ -60,10 +59,11 @@ The following example query selects Mockingbird 2.0 generation preset:
     "generation_preset_name": "mockingbird-2.0",
     "max_used_search_results": 10
   }
-}
-<CodePanel snippets={[{language: "bash", code: `:::tip
-The \`generation_preset_name\` is specified in the \`generation\` object of a [**query**](/docs/api-reference/search-apis/search). 
-Excluding this \`generation\` field disables summarization.
+}`}]} title="Mockingbird 2.0 Example" layout="stacked" />
+
+:::tip
+The `generation_preset_name` is specified in the `generation` object of a [**query**](/docs/api-reference/search-apis/search). 
+Excluding this `generation` field disables summarization.
 :::
 
 :::caution
@@ -76,28 +76,28 @@ HIPAA compliance.
 ## Currently available generation presets
 
 Vectara provides several official generation presets to our users that you 
-specify in the \`generation_preset_name\` within the \`generation\` object:
+specify in the `generation_preset_name` within the `generation` object:
 
 ### Recommended prompts
 
-- \`mockingbird-2.0\` (Vectara's cutting-edge LLM for Retrieval Augmented Generation. See [Mockingbird LLM](/docs/learn/mockingbird-llm) for more details.)
-- \`vectara-summary-ext-24-05-med-omni\` (gpt-4o, for citations)
-- \`vectara-summary-ext-24-05-large\` (gpt-4.0-turbo, for citations)
-- \`vectara-summary-ext-24-05-med\` (gpt-4.0, for citations)
-- \`vectara-summary-ext-24-05-sml\` (gpt-3.5-turbo, for citations)
+- `mockingbird-2.0` (Vectara's cutting-edge LLM for Retrieval Augmented Generation. See [Mockingbird LLM](/docs/learn/mockingbird-llm) for more details.)
+- `vectara-summary-ext-24-05-med-omni` (gpt-4o, for citations)
+- `vectara-summary-ext-24-05-large` (gpt-4.0-turbo, for citations)
+- `vectara-summary-ext-24-05-med` (gpt-4.0, for citations)
+- `vectara-summary-ext-24-05-sml` (gpt-3.5-turbo, for citations)
 
 ### Prompts for table data
 
 Use the following if you have tables:
 
-- \`vectara-summary-table-query-ext-dec-2024-gpt-4o\`
+- `vectara-summary-table-query-ext-dec-2024-gpt-4o`
 
 ### Legacy prompts
 
 These prompts will soon be deprecated:
 
-- \`vectara-summary-ext-v1.2.0\`
-- \`vectara-summary-ext-v1.3.0\`
+- `vectara-summary-ext-v1.2.0`
+- `vectara-summary-ext-v1.3.0`
 
 ### Advanced summarization customization options
 
@@ -113,7 +113,7 @@ with these additional summarization options.
 
 ## Default max_used_search_results limit
 
-The default limit of \`max_used_search_results\` is 25 search results. Setting 
+The default limit of `max_used_search_results` is 25 search results. Setting 
 the values closer to the limit generates a more comprehensive summary, but 
 using a lower value can balance the results with quality and response time.
 
@@ -125,25 +125,26 @@ happens, try reducing this number.
 ### max_used_search_results example
 
 This generation preset example attempts to balance creating a good quality 
-summary with a reasonably fast response by setting \`max_used_search_results\` to 
-\`5\`. To use \`vectara-summary-ext-24-05-med-omni\` (GPT-4o), set 
-\`generation_preset_name\` as follows:`}]} title="Code Example" layout="stacked" />json showLineNumbers title="https://api.vectara.io/v2/query"
-{
-  "query": "What is the infinite improbability drive?",
-  "search": {
-    "corpora": [
-      {
-        "corpus_key": "hitchhikers-guide"
-      }
-    ],
-    "limit": 10
-  },
-  "generation": {
-    "generation_preset_name": "vectara-summary-ext-24-05-med-omni",
-    "max_used_search_results": 10
-  }
-}
-```
+summary with a reasonably fast response by setting `max_used_search_results` to 
+`5`. To use `vectara-summary-ext-24-05-med-omni` (GPT-4o), set 
+`generation_preset_name` as follows:
+
+<CodePanel snippets={[{language: "json", code: `{
+   "query": "What is the infinite improbability drive?",
+   "search": {
+     "corpora": [
+       {
+         "corpus_key": "hitchhikers-guide"
+       }
+     ],
+     "limit": 50
+   },
+   "generation": {
+     "generation_preset_name": "vectara-summary-ext-24-05-med-omni",
+     "max_used_search_results": 50
+   }
+ }`
+ }]} title="GPT-4o Example" layout="stacked" />
 
 ## Advanced Summarization Customization Options
 

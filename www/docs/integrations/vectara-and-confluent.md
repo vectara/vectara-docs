@@ -78,7 +78,8 @@ connector.
     "transforms": "Cast",
     "transforms.Cast.spec": "string",
     "transforms.Cast.type": "org.apache.kafka.connect.transforms.Cast\$Key"
-}`}]} title="Code Example" layout="stacked" />
+}`
+}]} title="Example Configuration" layout="stacked" />
 
 This example consumes data from a topic and converts the key of the message 
 to a string. Kafka-Connect-Vectara uses the key of the topic as the key in the 

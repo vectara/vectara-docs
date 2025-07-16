@@ -41,25 +41,23 @@ As you ingest data and run queries, adjust the `lexical_interpolation` value to
 achieve the perfect balance in answer quality.
 
 <CodePanel snippets={[{language: "json", code: `{
-  "query": "What is the meaning of life?",
-  "search": {
-    "corpora": [
+   "query": "What is the meaning of life?",
+   "search": {
+     "corpora": [
       {
         "corpus_key": "my-corpus"
       }
-    ],
-    "offset": 0,
-    "limit": 10,
-    "lexical_interpolation": 0.025
-  }
-}`}]} title="Code Example" layout="stacked" />
+     ],
+    "limit": 25,
+    "lexical_interpolation": 0.005
+   }
+}`
+}]} title="Lexical Interpolation Example" layout="stacked" />
 
 :::tip
-
 For more information about queries such as additional search and summarization 
 parameters, see the [**Query API Definition**](/docs/api-reference/search-apis/search) 
 section and our [**interactive API Reference**](/docs/rest-api/query). 
-
 :::
 
 ### Experiment with different lexical interpolation values
@@ -71,11 +69,9 @@ the `lexical_interpolation` value is useful if you're trying to evaluate how a k
 system like one based on Elasticsearch or Solr may compare to Vectara.
 
 :::tip
-
 :bulb:
 You can test queries with different `lexical_interpolation` values in
 our [**API Reference**](/docs/rest-api/query) and in the Vectara Console.
-
 :::
 
 Vectara supports in-between values as well, which tells Vectara to try to

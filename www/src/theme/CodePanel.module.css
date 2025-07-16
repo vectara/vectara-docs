@@ -314,6 +314,14 @@
   color: #0070f3 !important;
 }
 
+:global(.token.constant) {
+  color: #ff495b !important;
+}
+
+:global(.token.string-property.property) {
+  color: #1680fa !important;
+}
+
 /* STRINGS: "values", 'text' - BRIGHT GREEN */
 :global(.token.string),
 :global(.token.string-interpolation) {
@@ -351,7 +359,7 @@
 /* PROPERTIES/ATTRIBUTES - RED */
 :global(.token.property),
 :global(.token.tag) {
-  color: #0070f3 !important;
+  color: #0077ff !important;
 }
 
 /* CLASS NAMES - BLUE */

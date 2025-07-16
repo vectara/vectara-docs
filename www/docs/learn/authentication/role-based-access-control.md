@@ -17,7 +17,8 @@ a corpus or managing users). Vectara groups permissions into **roles**, assigned
 through the Vectara Console. Admins can also set **default permissions** (such 
 as default Query access) to simplify access to corpora.
 
-<CodePanel snippets={[{language: "mermaid", code: `flowchart TD
+```mermaid
+flowchart TD
     A(Admin logs into console) --> B(Manage account settings)
     A --> C(Manage corpora)
     
@@ -37,7 +38,8 @@ as default Query access) to simplify access to corpora.
     style B2 fill:#ccf
     style C1 fill:#ccf
     style C2 fill:#ccf
-    style C3 fill:#ccf`}]} title="Code Example" layout="stacked" />
+    style C3 fill:#ccf
+```
 
 ## Configure account and billing permissions
 

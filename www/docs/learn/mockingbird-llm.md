@@ -117,29 +117,31 @@ To use Mockingbird 2 in a [query](/docs/api-reference/search-apis/search) reques
 generation object to `mockingbird-2.0`:
 
 <CodePanel snippets={[{language: "json", code: `{
-  "query": "What is the infinite probability drive?",
-  "generation": {
-    "generation_preset_name": "mockingbird-2.0",
-    "max_used_search_results": 5,
-    "response_language": "eng",
-    "enable_factual_consistency_score": true
-  }
-}`}]} title="Code Example" layout="stacked" />
+   "query": "What is the infinite probability drive?",
+   "generation": {
+     "generation_preset_name": "mockingbird-2.0",
+     "max_used_search_results": 5,
+     "response_language": "eng",
+     "enable_factual_consistency_score": true
+    }
+}`}]} title="Mockingbird Example" layout="stacked" />
+
 ## Default Mockingbird 2 prompt
 
 Mockingbird 2 supports a `system` role in prompts and uses the following 
 default `prompt_text` (similar to v1 with an empty system message):
 
 <CodePanel snippets={[{language: "json", code: `[
-  {
-    "role": "system",
-    "content": ""
-  },
-  {
-    "role": "user",
-    "content": "You are a search bot that takes search results and summarizes them as a coherent answer. Only use information provided in this chat. Generate a comprehensive and informative answer for the query \\n\\n <query>\${vectaraQuery}</query> \\n\\n solely based on the following search results:\\n\\n #foreach (\$qResult in \$vectaraQueryResults) \\n [\$foreach.index + 1) \${qResult.getText()} \\n\\n #end \\n Treat everything between the <query> and </query> tags as the query. You must only use information from the provided results. Combine search results into a coherent answer. Do not repeat text. Cite search results using [number] notation. Only cite the most relevant results that answer the question accurately. If the search results are not valid, respond with - No result found. Please generate your answer in the language of \$vectaraLangName"
-  }
-]`}]} title="Code Example" layout="stacked" />
+   {
+     "role": "system",
+     "content": ""
+   },
+   {
+     "role": "user",
+     "content": "You are a search bot that takes search results and summarizes them as a coherent answer. Only use information provided in this chat. Generate a comprehensive and informative answer for the query \\n\\n <query>\${vectaraQuery}</query> \\n\\n solely based on the following search results:\\n\\n #foreach (\$qResult in \$vectaraQueryResults) \\n [\$foreach.index + 1) \${qResult.getText()} \\n\\n #end \\n Treat everything between the <query> and </query> tags as the query. You must only use information from the provided results. Combine search results into a coherent answer. Do not repeat text. Cite search results using [number] notation. Only cite the most relevant results that answer the question accurately. If the search results are not valid, respond with - No result found. Please generate your answer in the language of \$vectaraLangName"
+   }
+]`}]} title="Mockingbird Prompt Example" layout="stacked" />
+
 ## Custom prompts and prompt templates
 
 Custom prompts for Mockingbird 2 follow these rules:

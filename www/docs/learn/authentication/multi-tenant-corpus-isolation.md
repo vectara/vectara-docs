@@ -42,37 +42,36 @@ security, predictable access patterns, and simplified troubleshooting.
 - A tenant onboarding workflow or script
 - App logic that maps each user to their assigned corpus/key
 
-
 ## Configure tenant isolation per corpus
 
 1. Create a corpus for each tenant and use a predictable naming convention 
-2. like `tenant_<id>_docs`.
-    ```json
-    {
-    "name": "Tenant: Acme Inc",
-    "corpus_key": "acme_docs"
-    }
-    ```
-3. Generate scoped API Keys. Store the secret safely in your application 
+   like `tenant_<id>_docs`.
+    <CodePanel snippets={[{language: "json", code: `{
+      "name": "Tenant: Acme Inc",
+      "corpus_key": "acme_docs"
+    }`
+    }]} title="Naming Convention Example" layout="stacked" />
+
+2. Generate scoped API Keys. Store the secret safely in your application 
    backend or secrets manager.
-    ```json
-    {
-    "api_key_role": "serving_and_indexing",
-    "corpus_keys": ["acme_docs"]
-    }
-    ```
-4. Use the key and corpus in requests:
-    ```json
-    {
-    "x-api-key": "zwt_abc123",
-    "query": [{
-        "search": {
-        "corpora": [{ "corpus_key": "acme_docs" }],
-        "limit": 5
-        }
-    }]
-    }
-    ```
+    <CodePanel snippets={[{language: "json", code: `{
+      "api_key_role": "serving_and_indexing",
+      "corpus_keys": ["acme_docs"]
+    }`
+    }]} title="Scoped API Key Example" layout="stacked" />
+
+3. Use the key and corpus in requests:
+    <CodePanel snippets={[{language: "json", code: `{
+      "x-api-key": "zwt_abc123",
+      "query": [{
+          "search": {
+          "corpora": [{ "corpus_key": "acme_docs" }],
+          "limit": 10
+          }
+      }]
+    }`
+    }]} title="Scoped API Key Example" layout="stacked" />
+
 Any request using a key tied only to `acme_docs` cannot access other corpora.
 
 ---

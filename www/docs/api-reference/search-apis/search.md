@@ -245,17 +245,13 @@ summarization. Growth users can specify the `max_summarized_results`,
 
 
 <CodePanel snippets={[{language: "json", code: `"generation": {
-    "generation_preset_name": "vectara-summary-ext-v1.2.0",
-    "max_used_search_results": 5,
+    "generation_preset_name": "vectara-summary-ext-24-05-med-omni",
+    "max_used_search_results": 50,
     "prompt_template": "[\\n  {\\"role\\": \\"system\\", \\"content\\": \\"You are a helpful search assistant.\\"},\\n  #foreach (\$qResult in \$vectaraQueryResults)\\n     {\\"role\\": \\"user\\", \\"content\\": \\"Given the \$vectaraIdxWord[\$foreach.index] search result.\\"},\\n     {\\"role\\": \\"assistant\\", \\"content\\": \\"\${qResult.getText()}\\" },\\n  #end\\n  {\\"role\\": \\"user\\", \\"content\\": \\"Generate a summary for the query '\\''\${vectaraQuery}'\\'' based on the above results.\\"}\\n]\\n",
-    "max_response_characters": 300,
     "response_language": "eng",
-    "model_parameters": {
-      "max_tokens": 0,
-      "temperature": 0,
-      "frequency_penalty": 0,
-      "presence_penalty": 0
-    },`}]} title="Code Example" layout="stacked" />
+    "enable_factual_consistency_score": true
+    },`
+    }]} title="Query Summarization Example" layout="stacked" />
 Users also have access to [advanced summarization customization options](/docs/api-reference/search-apis/search#advanced-summarization-customization-options).
 
 ## Generation Presets
@@ -266,7 +262,8 @@ generation for the request, providing more flexibility in how parameters are
 set. The preset includes the `prompt_template`, the `llm_name`, and other settings 
 like `max_tokens` and `temperature`.
 
-<CodePanel snippets={[{language: "json", code: `"generation-preset-name": "vectara-summary-ext-v1.3.0"`}]} title="Code Example" layout="stacked" />
+<CodePanel snippets={[{language: "json", code: `"generation-preset-name": "vectara-summary-ext-24-05-med-omni"`
+}]} title="Generation Preset Example" layout="stacked" />
 
 To view available generation presets, use the [List Generation Presets API](/docs/api-reference/generation-presets/list-generation-presets).
 
@@ -281,17 +278,19 @@ but still supported for backward compatibility.
 For users seeking superior RAG performance, <Config v="names.product"/> offers Mockingbird, 
 our advanced LLM specifically designed for RAG tasks.
 
-To use Mockingbird for your RAG tasks, specify `mockingbird-1.0-2024-07-16` in 
+To use Mockingbird for your RAG tasks, specify `mockingbird-2.0` in 
 the `generation_preset_name` field the `generation` object, like in this example:
 
 <CodePanel snippets={[{language: "json", code: `{
   "generation": {
-    "generation_preset_name": "mockingbird-1.0-2024-07-16",
-    "max_used_search_results": 5,
+    "generation_preset_name": "mockingbird-2.0",
+    "max_used_search_results": 50,
     "response_language": "eng",
     "enable_factual_consistency_score": true
   }
-}`}]} title="Code Example" layout="stacked" />
+}`
+}]} title="Mockingbird Example" layout="stacked" />
+
 Mockingbird is particularly beneficial for enterprise applications requiring 
 high-quality summaries and structured outputs. For more details on Mockingbird's 
 capabilities and performance, see the [Mockingbird LLM section](/docs/learn/mockingbird-llm).
@@ -370,14 +369,16 @@ link to the specific page:
     "url_pattern": "{doc.id}#page={section.page}",
     "text_pattern": "as seen in {doc.title}"
   }
-}`}]} title="Code Example" layout="stacked" />
+}`}]} title="Citation Example" layout="stacked" />
 
 The response will look something like this:
 
-<CodePanel snippets={[{language: "bash", code: `In the Metropolitan Transportation Authority (MTA) rules, it is prohibited to
+<CodePanel snippets={[{language: "bash", code: 
+`In the Metropolitan Transportation Authority (MTA) rules, it is prohibited to
 destroy, mark, soil, paint, draw, inscribe, or place graffiti on any facility
 or conveyance of the authority [as seen in Rules of Conduct and
-Fines](https://new.mta.info/document/36821#page=3).`}]} title="Code Example" layout="stacked" />
+Fines](https://new.mta.info/document/36821#page=3).`
+}]} title="Citation Response Example" layout="stacked" />
 
 ## Disable query summarization
 
@@ -392,11 +393,13 @@ in a query. For example:
 
 <CodePanel snippets={[{language: "json", code: `{
   "generation": {
-    "generation-preset-name": "vectara-summary-ext-v1.3.0",
+    "generation-preset-name": "vectara-summary-ext-24-05-med-omni",
     "max_tokens": 300,
     "temperature": 0.7
   }
-}`}]} title="Code Example" layout="stacked" />
+}`
+}]} title="Advanced Summarization Example" layout="stacked" />
+
 To provide even more customization beyond, you can override certain parameters 
 in your query. This enables you to use a preset as a starting point while you 
 tailor specific aspects of the generation.

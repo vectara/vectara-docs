@@ -8,9 +8,8 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
-
+import {Config} from '@site/docs/definitions.md';
 import CodePanel from '@site/src/theme/CodePanel';
-
 
 Organizations often struggle to fine-tune query responses and maintain 
 consistency across different use cases. Vectara creates and maintains 
@@ -27,8 +26,6 @@ more fine-tuned control over query responses. This includes the `prompt_template
 the Large Language Model (LLM), and other generation settings like `max_tokens` 
 and `temperature`. Users specify a generation preset in their query or chat 
 requests using the `generation_preset_name` field.
-
-
 
 :::note
 
@@ -58,35 +55,21 @@ can also be set as a `default`.
 <CodePanel snippets={[{language: "json", code: `{
   "generation_presets": [
     {
-      "name": "vectara-summary-ext-v1.2.0",
-      "description": "Better than base. Generate a summary with references.",
-      "llm_name": "gpt-3.5-turbo",
-      "prompt_template": "{\\"type\\": \\"VELOCITY\\", \\"text\\": ...",
+      "name": "vectara-summary-ext-24-05-med-omni",
+      "description": "Generate summary with controllable citations, Uses GPT-4o with 2,048 max tokens",
+      "llm_name": "gpt-4o",
+      "prompt_template": "[\n    {\"role\": \"system\", \"content\": \"Follow these detailed step-by-step",
       "max_used_search_results": 25,
-      "max_tokens": 1024,
-      "temperature": 0.7,
-      "frequency_penalty": 0,
-      "presence_penalty": 0,
-      "enabled": true,
-      "default": true
-    },
-    {
-      "name": "vectara-summary-ext-v1.3.0",
-      "description": "Slower but better than vectara-summary-ext-v1.2.x. Generate a summary with references.",
-      "llm_name": "gpt-4",
-      "prompt_template": "{\\"type\\": \\"VELOCITY\\", \\"text\\": ...",
-      "max_used_search_results": 25,
-      "max_tokens": 1024,
-      "temperature": 0.7,
+      "max_tokens": 2048,
+      "temperature": 0,
       "frequency_penalty": 0,
       "presence_penalty": 0,
       "enabled": true,
       "default": false
     },
-    // ... 
-  ],
-  "metadata": {}
-}`}]} title="Code Example" layout="stacked" />
+    // More presets appear here
+}`
+}]} title="Metadata Example" layout="stacked" />
 
 ## REST 2.0 URL
 
@@ -95,6 +78,8 @@ can also be set as a `default`.
 Vectara exposes a REST endpoint at the following URL to list generation 
 presets in the account:
 
-<CodePanel snippets={[{language: "bash", code: `https://api.vectara.io/v2/generation_preset`}]} title="Code Example" layout="stacked" />
+```
+https://api.vectara.io/v2/generation_preset
+```
 
 The API Reference shows the full [List Generation Presets](/docs/rest-api/list-generation-presets) REST definition.

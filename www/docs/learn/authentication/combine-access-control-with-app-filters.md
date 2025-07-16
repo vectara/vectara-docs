@@ -48,7 +48,7 @@ only see content based on ownership or group membership.
 
 ### ABAC filter only
 
-<CodePanel snippets={[{language: "sql", code: `(doc.owner in ("user1", "global")) OR ("history" IN doc.groups)`}]} title="Code Example" layout="stacked" />
+<CodePanel snippets={[{language: "sql", code: `(doc.owner in ("user1", "global")) OR ("history" IN doc.groups)`}]} title="ABAC filter Example" layout="stacked" />
 
 This limits access but ignores the user's functional context (project 
 selection).
@@ -67,7 +67,7 @@ users.
 
 ### Combined filter (safe pattern)
 
-<CodePanel snippets={[{language: "sql", code: `((doc.owner in ("user1", "global")) OR ("history" IN doc.groups)) AND (doc.project = "orientation")`}]} title="Code Example" layout="stacked" />
+<CodePanel snippets={[{language: "sql", code: `((doc.owner in ("user1", "global")) OR ("history" IN doc.groups)) AND (doc.project = "orientation")`}]} title="Combined filter Example" layout="stacked" />
 
 This combination ensures that `user1` only sees docs they can access *within* 
 the selected project.
@@ -84,7 +84,8 @@ the selected project.
   "roles": ["dean"],
   "project": "orientation",
   "tags": ["safety", "onboarding"]
-}`}]} title="Code Example" layout="stacked" />
+}`
+}]} title="Index documents with metadata Example" layout="stacked" />
 
 2. Construct filters server-side in your backend:
    * Retrieve user attributes (ID, groups, roles)
@@ -93,16 +94,16 @@ the selected project.
 3. Use this python filter example:
 
 <CodePanel snippets={[{language: "python", code: `abac = f'(doc.owner in ("{user_id}", "global")) OR ({group_expr})'
-final_filter = f'({abac}) AND (doc.project = "{user_project}")'`}]} title="Code Example" layout="stacked" />
+final_filter = f'({abac}) AND (doc.project = "{user_project}")'`}]} title="Python Filter Example" layout="stacked" />
 
 This logic should live in your backend API and not exposed to clients or 
 end users.
 
 ## Advanced example
 
-<CodePanel snippets={[{language: "sql", code: `((doc.owner in ("user1", "global")) OR ("history" IN doc.groups AND (doc.roles is null OR "dean" IN doc.roles))) AND (doc.project = "orientation") AND ("safety" IN doc.tags)`}]} title="Code Example" layout="stacked" />
+<CodePanel snippets={[{language: "sql", code: `((doc.owner in ("user1", "global")) OR ("history" IN doc.groups AND (doc.roles is null OR "dean" IN doc.roles))) AND (doc.project = "orientation") AND ("safety" IN doc.tags)`}]} title="Advanced Example" layout="stacked" />
 
-<CodePanel snippets={[{language: "bash", code: `This advanced example combines ABAC rules, project scoping, and tag-based 
+This advanced example combines ABAC rules, project scoping, and tag-based 
 filtering in one secure filter expression. 
 
 * user1 owns the document or it is public (global)
@@ -112,9 +113,10 @@ filtering in one secure filter expression.
 
 Let's break down the filter in more detail:
 
-((doc.owner in ("user1", "global"))`}]} title="Code Example" layout="stacked" />
+<CodePanel snippets={[{language: "sql", code: `((doc.owner in ("user1", "global"))`
+}]} title="Part 1 of 2" layout="stacked" />
 
-<CodePanel snippets={[{language: "sql", code: `OR ("history" IN doc.groups AND (doc.roles is null OR "dean" IN doc.roles)))`}]} title="Code Example" layout="stacked" />
+<CodePanel snippets={[{language: "sql", code: `OR ("history" IN doc.groups AND (doc.roles is null OR "dean" IN doc.roles)))`}]} title="Part 2 of 2" layout="stacked" />
 
 However, if `user1` is also part of the `history` group, they must either:
 * Access a document that has no role restriction
@@ -134,5 +136,3 @@ the app.
 
 Finally, only return documents tagged with `safety`. This could reflect a 
 checkbox or category selected by the user.
-
-

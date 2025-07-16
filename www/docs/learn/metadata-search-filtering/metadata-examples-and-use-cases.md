@@ -21,7 +21,7 @@ Use part-level metadata to target specific language segments.
 **Example: **Filter for German-language customer reviews with a rating higher 
 than 3 stars.
 
-<CodePanel snippets={[{language: "sql", code: `doc.rating > 3 AND part.lang = 'de'`}]} title="Code Example" layout="stacked" />
+<CodePanel snippets={[{language: "sql", code: `doc.rating > 3 AND part.lang = 'de'`}]} title="Language filter" layout="stacked" />
 
 The `lang` metadata tag used in this example is detected and set automatically 
 by the platform at indexing time. It's set at the part level for accuracy, 
@@ -35,7 +35,7 @@ for documents with a publication date in 2021.
 
 **Example:** Retrieve documents published in 2021 using epoch time.
 
-<CodePanel snippets={[{language: "sql", code: `1609459200 < doc.pub_epoch AND doc.pub_epoch < 1640995200`}]} title="Code Example" layout="stacked" />
+<CodePanel snippets={[{language: "sql", code: `1609459200 < doc.pub_epoch AND doc.pub_epoch < 1640995200`}]} title="Data-specific filter" layout="stacked" />
 Here, `pub_epoch` stores the date in [epoch time][3].
 
 You can find a full list of supported operations on the [Functions and Operators][2]
@@ -63,7 +63,7 @@ such as priority, category, or internal tags.
 **Example:** Filter documents tagged as **High Priority** in the **Technology** 
 category.
 
-<CodePanel snippets={[{language: "sql", code: `doc.priority = 'High' AND doc.category = 'Technology'`}]} title="Code Example" layout="stacked" />
+<CodePanel snippets={[{language: "sql", code: `doc.priority = 'High' AND doc.category = 'Technology'`}]} title="Business-specific criteria" layout="stacked" />
 ## Example query with a document-level filter
 
 This example asks the question `"What are the key benefits of cloud computing?"` 
@@ -110,7 +110,7 @@ https://api.vectara.io:443/v2/query \\
     "enable_factual_consistency_score": true
   }
 }
-END`}]} title="Code Example" layout="stacked" />
+END`}]} title="Metadata Example" layout="stacked" />
 
 ## Example response with a document-level filter
 
@@ -178,7 +178,8 @@ metadata. This response also shows other metadata associated with each `document
             }
         ] 
    }      
-]`}]} title="Code Example" layout="stacked" />
+]`}]} title="Response Example" layout="stacked" />
+
 ## Example query with part-level metadata
 
 Now let's send a query with part-level meta for `part.concept = 'Overview'`.
@@ -192,7 +193,7 @@ that it filters for this part-level metadata:
         "metadata_filter": "part.concept = 'Overview'",
         "lexical_interpolation": 0.005,
         "custom_dimensions": {}
-      }`}]} title="Code Example" layout="stacked" />
+      }`}]} title="Metadata Example" layout="stacked" />
 
 ## Example response with part-level metadata
 
@@ -257,5 +258,5 @@ that it filters for this part-level metadata:
             }
         ]
     },
-]`}]} title="Code Example" layout="stacked" />
+]`}]} title="Part-level metadata Example" layout="stacked" />
 

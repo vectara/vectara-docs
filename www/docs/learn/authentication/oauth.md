@@ -146,25 +146,29 @@ generate the token correctly.
 Here's how you can generate a JWT token in JavaScript which is how you
 authenticate Vectara API requests in a JavaScript application:
 
-```js title="JavaScript Example"
-const {
-  data: { access_token: jwt },
-} = await axios({
-  method: "POST",
-  headers: { "content-type": "application/x-www-form-urlencoded" },
-  data: qs.stringify({
-    grant_type: "client_credentials",
-    client_id: "<your client ID goes here>",
-    client_secret: "<your client secret goes here>",
-  }),
-  url: "https://auth.vectara.com/oauth2/token"
-});
-<CodePanel snippets={[{language: "bash", code: `Here’s how you can generate a JWT token from the command line with a
-cURL command:`}]} title="Code Example" layout="stacked" />js title="cURL Example"
-curl -XPOST -H "Content-type: application/x-www-form-urlencoded" \
+
+<CodePanel snippets={[{language: "js", code: `const {
+    data: { access_token: jwt },
+    } = await axios({
+      method: "POST",
+      headers: { "content-type": "application/x-www-form-urlencoded" },
+      data: qs.stringify({
+        grant_type: "client_credentials",
+        client_id: "<your client ID goes here>",
+        client_secret: "<your client secret goes here>",
+      }),
+      url: "https://auth.vectara.com/oauth2/token"
+    });`
+}]} title="JavaScript Example" layout="stacked" />
+
+Here’s how you can generate a JWT token from the command line with a
+cURL command:`
+
+<CodePanel snippets={[{language: "bash", code: `curl -XPOST -H "Content-type: application/x-www-form-urlencoded" \
+
     -d "grant_type=client_credentials&client_id=<your client ID goes here>&client_secret=<your client secret goes here>" \
-    https://auth.vectara.com/oauth2/token
-```
+    https://auth.vectara.com/oauth2/token`
+}]} title="cURL Example" layout="stacked" />
 
 :::tip
 This method is useful if you want to try out requests in

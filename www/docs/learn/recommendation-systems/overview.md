@@ -68,17 +68,18 @@ of question answering. You do that via the semantics key which is inside of the
 corpusKey block in the query.
 
 If a user is looking at a document that has the text:
+
 <CodePanel snippets={[{language: "bash", code: `All about me
 
-My name is Shane and I'm ...`}]} title="Code Example" layout="stacked" />
+My name is Paul and I'm ...`
+}]} title="Example Text" layout="stacked" />
 
 and you wanted to find other documents that are similar to this, you can pass
 this document text to <Config v="names.product"/> and set the `semantics` to
 `RESPONSE`.  For example:
 
-```json showLineNumbers title="https://api.vectara.io/v2/query"
-{
-  "query": "All about me\n\nMy name is Shane and I'm ...",
+<CodePanel snippets={[{language: "json", code: `{
+  "query": "All about me my name is Paul and I'm ...",
   "search": {
     "corpora": [
       {
@@ -88,9 +89,8 @@ this document text to <Config v="names.product"/> and set the `semantics` to
     ],
     "offset": 0,
     "limit": 10
-  }
-}
-```
+   }
+}`}]} title="Response Semantics Example" layout="stacked" />
 
 This will find documents that are most semantically similar to that document.
 

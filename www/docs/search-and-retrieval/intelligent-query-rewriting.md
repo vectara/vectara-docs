@@ -60,6 +60,7 @@ Consider a corpus containing movie data with the metadata filter attribute:
   `What are some of the highest grossing movies?`
 
 ### Example request
+
 <CodePanel snippets={[{language: "json", code: `{
   "query": "What are some of the highest grossing movies made in US, UK, or India?",
   "intelligent_query_rewriting": true,
@@ -68,7 +69,8 @@ Consider a corpus containing movie data with the metadata filter attribute:
       "corpus_key": "movie_database"
     }
   ]
-}`}]} title="Code Example" layout="stacked" />
+}`}]} title="Request Example" layout="stacked" />
+
 ### Example response
 
 <CodePanel snippets={[{language: "json", code: `{
@@ -82,7 +84,7 @@ Consider a corpus containing movie data with the metadata filter attribute:
 	      }
 	    }
 	  ]
-  }`}]} title="Code Example" layout="stacked" />
+  }`}]} title="Response Example" layout="stacked" />
 
 ### Error handling
 
@@ -102,7 +104,7 @@ message is returned in the response.
       "filter_extraction": {}
     }
   ]
-}`}]} title="Code Example" layout="stacked" />
+}`}]} title="Error Response Example" layout="stacked" />
 
 ## Behavior with existing metadata filters in requests
 
@@ -123,7 +125,8 @@ filter using a logical `AND`.
       }
     ]
   }
-}`}]} title="Code Example" layout="stacked" />
+}`}]} title="Metadata filter Example" layout="stacked" />
+
 #### Example response
 
 <CodePanel snippets={[{language: "json", code: `{
@@ -136,7 +139,7 @@ filter using a logical `AND`.
       }
     }
   ]
-}`}]} title="Code Example" layout="stacked" />
+}`}]} title="Response Example" layout="stacked" />
 ## Best practices for intelligent query rewriting
 
 ### Define filter attributes clearly
