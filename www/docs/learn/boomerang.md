@@ -5,6 +5,9 @@ sidebar_label: Boomerang
 ---
 
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Boomerang is an advanced embedding and retrieval model designed by Vectara to 
 significantly improve the performance of semantic search and 
 Retrieval-Augmented Generation (RAG) systems. Boomerang introduces substantial 

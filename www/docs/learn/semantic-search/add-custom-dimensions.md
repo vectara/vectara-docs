@@ -9,6 +9,9 @@ import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Many search scenarios require considering factors beyond the text content 
 itself, such as user engagement metrics or temporal relevance. Custom 
 dimensions enable [our Pro and Enterprise users](https://vectara.com/pricing/) to have a fixed set of additional 
@@ -22,35 +25,33 @@ For example, let's say we want to add a custom dimension to boost posts from a
 forum based on how many "upvotes" it has received.  We can create the corpus
 with a "votes" custom dimension as follows:
 
-```js
-curl -X POST \
-  -H "Content-Type: application/json" \
-  -H "x-api-key: ${API_KEY}" \
-  https://api.vectara.io/v2/corpora \
+<CodePanel snippets={[{language: "js", code: `curl -X POST \\
+  -H "Content-Type: application/json" \\
+  -H "x-api-key: \${API_KEY}" \\
+  https://api.vectara.io/v2/corpora \\
   -d @- <<END;
 {
-  "key": "acme-forums",
-  "name": "Acme Forums",
-  "description": "Contents of the Acme Forum",
-  "custom_dimensions": [
+   "key": "acme-forums",
+   "name": "Acme Forums",
+   "description": "Contents of the Acme Forum",
+   "custom_dimensions": [
     {
       "name": "votes",
       "indexing_default": 0.0,
       "querying_default": 0.0
     }
-  ]
+   ]
 }
-END
-```
+END`
+}]} title="Votes Custom Dimension Example" layout="stacked" />
 
 Then, at index time, you can attach the value of the custom dimension of 
 votes with a value of `1.235` as follows:
-```js
-{
-  "id": "237a8b63-2826-4ee1-8d83-14c2451a3357",
-  "type": "core",
-  "metadata": {},
-  "document_parts": [
+
+<CodePanel snippets={[{language: "js", code: `{
+   "id": "237a8b63-2826-4ee1-8d83-14c2451a3357",
+   "type": "core",
+   "document_parts": [
     {
       "text": "Yesterday I woke up and observed a rainbow out of my window.",
       "context": "...",
@@ -58,31 +59,29 @@ votes with a value of `1.235` as follows:
         "votes": 1.235
       }
     }
-  ]
-}
-```
+   ]
+}`
+}]} title="Attach Custom Dimension Value Example" layout="stacked" />
 
 And then to boost documents based on the value of these custom dimensions, you
 can apply a query as follows:
 
-```js
-curl -X POST \
-  -H "Content-Type: application/json" \
-  -H "x-api-key: ${API_KEY}" \
-  https://api.vectara.io/v2/corpora/acme-forums/query \
+<CodePanel snippets={[{language: "js", code: `curl -X POST \\
+  -H "Content-Type: application/json" \\
+  -H "x-api-key: \${API_KEY}" \\
+  https://api.vectara.io/v2/corpora/acme-forums/query \\
   -d @- <<END;
 {
-  "query": "When was the last time you saw a rainbow?",
-  "search": {
-    "custom_dimensions": {
-      "votes": 0.01
-    },
-    "offset": 0,
-    "limit": 5
-  }
+   "query": "When was the last time you saw a rainbow?",
+   "search": {
+     "custom_dimensions": {
+       "votes": 0.01
+     },
+    "limit": 25
+   }
 }
-END
-```
+END`
+}]} title="Boost Documents Example" layout="stacked" />
 
 ## How custom dimensions affect scores
 
@@ -125,4 +124,4 @@ a large impact on the score.  Try to keep the document values in the -100 to +10
 range so that you don't need to suppress these values further.  Depending on how
 your document values scale, query values for a custom dimension should
 normally be in a range of -0.1 to 0.1, or even smaller like -0.01 to 0.01 if
-document values on the larger side of that. 
+document values on the larger side of that.

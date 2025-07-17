@@ -9,6 +9,9 @@ import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Everything in <Config v="names.product"/> is driven by APIs. This section serves
 as a roadmap to understanding and using our [gRPC APIs](/docs/api-reference/protobuf-definitions) and
 [REST APIs](/docs/api-reference/rest) for [indexing](/docs/learn/select-ideal-indexing-api), [querying](/docs/api-reference/search-apis/search), and administrative tasks

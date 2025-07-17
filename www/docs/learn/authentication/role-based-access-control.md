@@ -4,6 +4,9 @@ title: Set Up Account and Corpus Permissions (RBAC)
 sidebar_label: Set Up Account and Corpus Permissions (RBAC)
 ---
 
+
+import CodePanel from '@site/src/theme/CodePanel';
+
 This guide helps you configure account, billing, and corpus permissions in 
 Vectara using Role-Based Access Control (RBAC). Assign precise account and 
 corpus-level access for users and Client Apps.

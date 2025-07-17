@@ -5,3 +5,6 @@ sidebar_label: Filtering
 ---
 
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+

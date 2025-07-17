@@ -6,6 +6,9 @@ sidebar_label: Get Corpus API Definition
 
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The Get Corpus API lets you view metadata about a specific corpus.
 This is useful for getting information about a corpus without performing a
 search.

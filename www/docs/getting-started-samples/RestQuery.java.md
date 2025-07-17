@@ -20,6 +20,9 @@ import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.util.Iterator;
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 public class RestQuery {
 
   /**

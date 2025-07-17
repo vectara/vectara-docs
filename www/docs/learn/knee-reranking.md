@@ -5,6 +5,9 @@ sidebar_label: Knee Reranking
 ---
 
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Retrieval Augmented Generation (RAG) systems often struggle with determining 
 optimal cutoff points for query results. Fixed score thresholds provide a 
 simple solution but lack the flexibility to adapt to varying score 
@@ -25,8 +28,7 @@ Enable knee reranking by adding it your reranking chain after the Slingshot
 reranker. The default settings balance precision and recall, making them 
 suitable for most use cases.
 
-```json title="Default Configuration"
-{
+<CodePanel snippets={[{language: "json", code: `{
   "reranker": {
     "type": "chain",
     "rerankers": [
@@ -34,8 +36,8 @@ suitable for most use cases.
       { "type": "userfn", "user_function": "knee()", "cutoff": 0.5 }
     ]
   }
-}
-```
+}`}]} title="Default Configuration Example" layout="stacked" />
+
 Customize the behavior of knee reranking through two key parameters:
 
 * **Sensitivity:** Controls how sharply the score must drop to identify a cutoff.

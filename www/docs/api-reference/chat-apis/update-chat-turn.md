@@ -8,6 +8,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The Update Chat Turn API deletes specific turns from chat. This enables developers
 to remove inaccurate or inappropriate responses from the conversation history.
 

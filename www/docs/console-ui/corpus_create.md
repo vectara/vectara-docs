@@ -3,6 +3,9 @@ id: creating-a-corpus
 title: Create a Corpus
 ---
 
+
+import CodePanel from '@site/src/theme/CodePanel';
+
 To begin searching your data, you first have to create a corpus. A corpus 
 is a container where you upload all your data to be ingested and grouped 
 together in a single location for querying.

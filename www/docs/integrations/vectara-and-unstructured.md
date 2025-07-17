@@ -5,6 +5,9 @@ sidebar_label: Vectara and Unstructured.io
 ---
 
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Unstructured is a well known Python package for parsing and dealing with 
 unstructured data. Vectara is integrated into [Unstructured’s ingest library](https://unstructured-io.github.io/unstructured/ingest/index.html), 
 allowing developers to quickly and easily build data ingestion into Vectara 

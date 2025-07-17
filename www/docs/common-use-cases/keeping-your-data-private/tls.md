@@ -8,6 +8,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import vars from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 All communication to and from the API endpoints take place using an encrypted
 communication channel (TLS). gRPC handles configuration of the TLS channel
 using [channel credentials](https://grpc.io/docs/guides/auth/#credential-types),
@@ -27,32 +30,26 @@ sufficient.
 }>
 <TabItem value="php">
 
-```php
-$channel_creds = Grpc\ChannelCredentials::createSsl();
-```
+<CodePanel snippets={[{language: "php", code: `\$channel_creds = Grpc\\ChannelCredentials::createSsl();`}]} title="Code Example" layout="stacked" />
 
 </TabItem>
 <TabItem value="py">
-<pre>
-{`# Allow the gRPC runtime to load root certificates from the default location.
+<CodePanel snippets={[{language: "text", code: `{\`# Allow the gRPC runtime to load root certificates from the default location.
 # This is sufficient for most cases.
 channel_creds = grpc.ssl_channel_credentials()
-grpc.secure_channel("${vars['domains.grpc.serving']}:443", channel_creds)
-`}
-</pre>
+grpc.secure_channel("\${vars['domains.grpc.serving']}:443", channel_creds)
+\`}`}]} title="Code Example" layout="stacked" />
 
 </TabItem>
 <TabItem value="java">
 
-<pre>
-{`NettyChannelBuilder
-    .forAddress("${vars['domains.grpc.serving']}", 443)
+<CodePanel snippets={[{language: "text", code: `{\`NettyChannelBuilder
+    .forAddress("\${vars['domains.grpc.serving']}", 443)
     .sslContext(GrpcSslContexts.forClient()
         .trustManager(null)  // load root certificates from the default location
         .build())
     .build();
-`}
-</pre>
+\`}`}]} title="Code Example" layout="stacked" />
 
 </TabItem>
 </Tabs>

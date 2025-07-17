@@ -8,6 +8,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 As developers build generative AI applications, one of the biggest challenges 
 is understanding why some queries fail to produce the expected results. 
 Diagnosing these issues can be complex, and without clear insights into query 

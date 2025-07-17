@@ -6,6 +6,9 @@ sidebar_label: React-Search
 
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 ![Screenshot of React-Search search box](/img/react_search.jpg)
 
 The React-Search component queries your Vectara data and adds semantic

@@ -6,6 +6,9 @@ sidebar_label: Combine Access Control with Application Filters
 
 import {Config} from '@site/docs/definitions.md';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 In most applications, you need to control both who can access specific data 
 and how that data is filtered based on user input like categories, tags, or 
 projects.
@@ -45,9 +48,7 @@ only see content based on ownership or group membership.
 
 ### ABAC filter only
 
-```sql
-(doc.owner in ("user1", "global")) OR ("history" IN doc.groups)
-```
+<CodePanel snippets={[{language: "sql", code: `(doc.owner in ("user1", "global")) OR ("history" IN doc.groups)`}]} title="ABAC filter Example" layout="stacked" />
 
 This limits access but ignores the user's functional context (project 
 selection).
@@ -66,9 +67,7 @@ users.
 
 ### Combined filter (safe pattern)
 
-```sql
-((doc.owner in ("user1", "global")) OR ("history" IN doc.groups)) AND (doc.project = "orientation")
-```
+<CodePanel snippets={[{language: "sql", code: `((doc.owner in ("user1", "global")) OR ("history" IN doc.groups)) AND (doc.project = "orientation")`}]} title="Combined filter Example" layout="stacked" />
 
 This combination ensures that `user1` only sees docs they can access *within* 
 the selected project.
@@ -78,32 +77,31 @@ the selected project.
 ### Implement this combination of access control with application filters
 
 1. Index documents with all metadata
-    ```json
-    "metadataJson": {
-    "owner": "user1",
-    "groups": ["history"],
-    "roles": ["dean"],
-    "project": "orientation",
-    "tags": ["safety", "onboarding"]
-    }
-    ```
-2. Construct filters server-side in your backen:
+
+<CodePanel snippets={[{language: "json", code: `"metadataJson": {
+  "owner": "user1",
+  "groups": ["history"],
+  "roles": ["dean"],
+  "project": "orientation",
+  "tags": ["safety", "onboarding"]
+}`
+}]} title="Index documents with metadata Example" layout="stacked" />
+
+2. Construct filters server-side in your backend:
    * Retrieve user attributes (ID, groups, roles)
    * Build the ABAC clause
    * Append user-selected filters (such as `project`)  
 3. Use this python filter example:
-    ```python
-    abac = f'(doc.owner in ("{user_id}", "global")) OR ({group_expr})'
-    final_filter = f'({abac}) AND (doc.project = "{user_project}")'
-    ```  
-    This logic should live in your backend API and not exposed to clients or 
-    end users.
+
+<CodePanel snippets={[{language: "python", code: `abac = f'(doc.owner in ("{user_id}", "global")) OR ({group_expr})'
+final_filter = f'({abac}) AND (doc.project = "{user_project}")'`}]} title="Python Filter Example" layout="stacked" />
+
+This logic should live in your backend API and not exposed to clients or 
+end users.
 
 ## Advanced example
 
-```sql
-((doc.owner in ("user1", "global")) OR ("history" IN doc.groups AND (doc.roles is null OR "dean" IN doc.roles))) AND (doc.project = "orientation") AND ("safety" IN doc.tags)
-```
+<CodePanel snippets={[{language: "sql", code: `((doc.owner in ("user1", "global")) OR ("history" IN doc.groups AND (doc.roles is null OR "dean" IN doc.roles))) AND (doc.project = "orientation") AND ("safety" IN doc.tags)`}]} title="Advanced Example" layout="stacked" />
 
 This advanced example combines ABAC rules, project scoping, and tag-based 
 filtering in one secure filter expression. 
@@ -115,13 +113,10 @@ filtering in one secure filter expression.
 
 Let's break down the filter in more detail:
 
-`((doc.owner in ("user1", "global"))`
+<CodePanel snippets={[{language: "sql", code: `((doc.owner in ("user1", "global"))`
+}]} title="Part 1 of 2" layout="stacked" />
 
-`user1` can always see the documents that they own and `user1` can also see `global` documents (visible to all users)
-
-```sql
-OR ("history" IN doc.groups AND (doc.roles is null OR "dean" IN doc.roles)))
-```
+<CodePanel snippets={[{language: "sql", code: `OR ("history" IN doc.groups AND (doc.roles is null OR "dean" IN doc.roles)))`}]} title="Part 2 of 2" layout="stacked" />
 
 However, if `user1` is also part of the `history` group, they must either:
 * Access a document that has no role restriction
@@ -141,5 +136,3 @@ the app.
 
 Finally, only return documents tagged with `safety`. This could reflect a 
 checkbox or category selected by the user.
-
-

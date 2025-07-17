@@ -9,6 +9,9 @@ import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The Delete LLM API allows users to remove a previously configured custom Large 
 Language Model (LLM) from their Vectara account. This functionality is 
 essential for managing active LLM configurations and ensuring that only 

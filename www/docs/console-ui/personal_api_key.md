@@ -9,6 +9,9 @@ import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The **Personal API Key** provides a broad range of functionality related to 
 user and corpus administration, including creating and listing corpora, 
 reading usage data, executing queries, indexing, and more. Your Personal API 

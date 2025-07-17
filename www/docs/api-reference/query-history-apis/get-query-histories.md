@@ -9,6 +9,9 @@ import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The List Query Histories API allows you to retrieve, update, and manage query 
 history for a specific corpus. This API is particularly useful for tracking 
 query performance, debugging individual queries, and retrieving detailed 

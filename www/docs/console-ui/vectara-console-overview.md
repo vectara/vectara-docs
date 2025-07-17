@@ -4,6 +4,9 @@ title: Vectara Console Overview
 sidebar_label: Vectara Console Overview
 ---
 
+
+import CodePanel from '@site/src/theme/CodePanel';
+
 The Vectara Console enables you to create corpora, manage data and API access,
 add team members, build API requests, and manage your Vectara account:
 

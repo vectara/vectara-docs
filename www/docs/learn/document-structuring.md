@@ -5,6 +5,9 @@ sidebar_label: Document Data Structuring
 ---
 
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Munging files into a structured data format helps preserve relationships 
 between bits of data, retains special meaning of specific data types, and 
 enables users to query the data with filters.
@@ -25,38 +28,35 @@ Let's use this National Institute of Health PDF as an example:
 Vectara offers a structured data format where users can convert PDFs to a 
 format like the following structure:
 
-```json
-{
-  "type": "structured",
-  "id": "TAB‑3843",
-  "title": "Engineered Cell‑Penetrating Monoclonal Antibody for Universal Influenza Immunotherapy",
-  "description": "Home » Tech » Engineered Cell‑Penetrating Monoclonal Antibody for Universal Influenza Immunotherapy",
-  "metadata": {
-    "developmentStatus": "Pre‑Clinical",
-    "isAntibodiesProduct": true,
-    "date": "2023‑05‑17",
-    "patentSeriesCode": 63,
-    "patentApplicationNumber": 365841
-  },
-  "sections": [
-    {
-      "title": "body",
-      "text": "Influenza remains a burden on public health..."
-    },
-    {
-      "title": "Clinical treatment",
-      "text": "Clinical Treatment: CPP‑mAbs against influenza NP may...",
-      "metadata": {
-        "clinicalTreatment": "CPP‑mAbs against influenza NP may..."
-      }
-    },
-    {
-      "text": "Current vaccines remain effective for a short time period..."
-    }
-  ]
-}
-
-```
+<CodePanel snippets={[{language: "json", code: `{
+   "type": "structured",
+   "id": "TAB‑3843",
+   "title": "Engineered Cell‑Penetrating Monoclonal Antibody for Universal Influenza Immunotherapy",
+   "description": "Home » Tech » Engineered Cell‑Penetrating Monoclonal Antibody for Universal Influenza Immunotherapy",
+   "metadata": {
+     "developmentStatus": "Pre‑Clinical",
+     "isAntibodiesProduct": true,
+     "date": "2023‑05‑17",
+     "patentSeriesCode": 63,
+     "patentApplicationNumber": 365841
+   },
+   "sections": [
+     {
+       "title": "body",
+       "text": "Influenza remains a burden on public health..."
+     },
+     {
+       "title": "Clinical treatment",
+       "text": "Clinical Treatment: CPP‑mAbs against influenza NP may...",
+       "metadata": {
+         "clinicalTreatment": "CPP‑mAbs against influenza NP may..."
+       }
+     },
+     {
+       "text": "Current vaccines remain effective for a short time period..."
+     }
+   ]
+}`}]} title="Structured Format Example" layout="stacked" />
 
 This data structure is built upon three core concepts:
 * Document
@@ -69,11 +69,10 @@ The document format provides high-level information that gets encoded into
 Vectara and allows users to retrieve this information using semantic search, 
 keyword-based search, and hybrid search:
 
-```json
-"documentId": "TAB‑3843",
+<CodePanel snippets={[{language: "json", code: `"documentId": "TAB‑3843",
   "title": "Engineered Cell‑Penetrating Monoclonal Antibody for Universal Inuenza Immunotherapy",
-  "description": "Home » Tech » Engineered Cell‑Penetrating Monoclonal Antibody for Universal Inuenza Immunotherapy",
-```
+  "description": "Home » Tech » Engineered Cell‑Penetrating Monoclonal Antibody for Universal Inuenza Immunotherapy",`
+  }]} title="Document Format Example" layout="stacked" />
 
 * `documentId` specifies a unique identifier for the document.
 * `title` specifies the heading of the document.
@@ -96,17 +95,15 @@ Let's look at these metadata properties in more detail.
 
 ### Example Metadata Properties
 
-```json
-{
-  "metadata": {
-    "developmentStatus": "Pre‑Clinical",
-    "isAntibodiesProduct": true,
-    "date": "2023‑05‑17",
-    "patentSeriesCode": 63,
-    "patentApplicationNumber": 365841
-  }
-}
-```
+<CodePanel snippets={[{language: "json", code: `{
+   "metadata": {
+     "developmentStatus": "Pre‑Clinical",
+     "isAntibodiesProduct": true,
+     "date": "2023‑05‑17",
+     "patentSeriesCode": 63,
+     "patentApplicationNumber": 365841
+   }
+}`}]} title="Metadata Example" layout="stacked" />
 
 * `developmentStatus` specifies status of the patent, such as pre-clinical.
 * `isAntibodiesProduct` indicates whether the patent applies to "antibodies-related" 
@@ -126,24 +123,21 @@ When Vectara ingests a document, it splits the text in these sections into
 chunks and encodes them in vectors. This enables queries to retrieve 
 them based on semantic similarity.
 
-```json
-{
-  "sections": [
-    {
-      "title": "body",
-      "text": "Influenza remains a burden on public health..."
-    },
-    {
-      "title": "Clinical treatment",
-      "text": "Clinical Treatment: CPP‑mAbs against influenza NP may...",
-      "metadata": {
-        "clinicalTreatment": "CPP‑mAbs against influenza NP may..."
-      }
-    }
-  ]
-}
-
-  ```
+<CodePanel snippets={[{language: "json", code: `{
+   "sections": [
+     {
+       "title": "body",
+       "text": "Influenza remains a burden on public health..."
+     },
+     {
+       "title": "Clinical treatment",
+       "text": "Clinical Treatment: CPP‑mAbs against influenza NP may...",
+       "metadata": {
+         "clinicalTreatment": "CPP‑mAbs against influenza NP may..."
+       }
+     }
+   ]
+}`}]} title="Section Example" layout="stacked" />
 
 * `text` specifies the body of text.
 * `title` specifies an optional name for identifying the body of text. 
@@ -160,44 +154,42 @@ titles, text, and metadata. The document is structured with a top-level
 `section` array that contains the parent sections. For example, the plays 
 titled `King Lear` and `Antony and Cleopatra`.
 
-
-```json
-{
-  "type": "structured",
-  "id": "selected-works-of-shakespeare",
-  "title": "William Shakespeare, Greatest Hits",
-  "metadata": {
-    "timespan": "26 April 1564---23 April 1616",
-    "stars": 5,
+<CodePanel snippets={[{language: "json", code: `{
+   "type": "structured",
+   "id": "selected-works-of-shakespeare",
+   "title": "William Shakespeare, Greatest Hits",
+   "metadata": {
+     "timespan": "26 April 1564---23 April 1616",
+     "stars": 5,
     "author": "William Shakespeare"
-  },
-  "sections": [
-    {
-      "title": "King Lear",
-      "sections": [
-        {
-          "title": "Act I",
-          "text": "KENT: I thought the king had more affected the Duke of Albany than Cornwall.\nGLOUCESTER: It did always seem so to us...",
-          "metadata": {
-            "stage-instructions": "Enter KENT, GLOUCESTER, and EDMUND"
-          }
-        },
-        {
-          "title": "Act II",
-          "text": "EDMUND: Save thee, Curan. ...",
-          "metadata": {
-            "stage-instructions": "Enter EDMUND, and CURAN meets him"
-          }
-        }
-      ]
-    },
-    {
-      "title": "Antony and Cleopatra",
-      "text": "PHILO: Nay, but this dotage of our general's\nO'erflows the measure: those his goodly eyes, ..."
-    }
-  ]
-}
-```
+   },
+   "sections": [
+     {
+       "title": "King Lear",
+       "sections": [
+         {
+           "title": "Act I",
+           "text": "KENT: I thought the king had more affected the Duke of Albany than Cornwall....",
+           "metadata": {
+             "stage-instructions": "Enter KENT, GLOUCESTER, and EDMUND"
+           }
+         },
+         {
+           "title": "Act II",
+           "text": "EDMUND: Save thee, Curan. ...",
+           "metadata": {
+             "stage-instructions": "Enter EDMUND, and CURAN meets him"
+           }
+         }
+       ]
+     },
+     {
+       "title": "Antony and Cleopatra",
+       "text": "PHILO: Nay, but this dotage of our general's O'erflows the measure: those his..."
+     }
+   ]
+}`
+}]} title="Section Example" layout="stacked" />
 
 `King Lear` has nested sections for `Act 1` and `Act II`, 
 which contain additional text and metadata, while `Antony and Cleopatra` 

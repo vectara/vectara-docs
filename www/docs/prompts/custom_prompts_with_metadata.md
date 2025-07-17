@@ -8,6 +8,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Vectara handles the system and user prompts automatically, but if you want to
 do it yourself, Vectara now empowers developers with a flexible way of
 customizing prompts with metadata. Our Custom Retrieval Augmented Generation
@@ -56,9 +59,8 @@ This snippet shows how to get metadata associated with a single result `qResult`
 by retrieving metadata `docMetadata` from the date that information was
 answered `answerDate`. It then extracts the text content of `qResult`.
 
-```javascript
-{"role": "assistant", "content": "qResult.docMetadata().get('answerDate') ${qResult.getText()}" },
-```
+<CodePanel snippets={[{language: "javascript", code: `{"role": "assistant", "content": "qResult.docMetadata().get('answerDate') \${qResult.getText()}" },`
+}]} title="Code Example" layout="stacked" />
 
 Let's dive into a full custom prompt example that shows more details about a
 custom prompt with
@@ -86,25 +88,22 @@ additional rules and constraints. For example, if a result does not answer the
 question, we do not use the result. If search results are not valid, then the
 user gets a response that `The returned results did not contain sufficient information to the question.`
 
-```javascript
-[
+<CodePanel snippets={[{language: "javascript", code: `[
     {
         "role": "system",
         "content": "You are an RFI answering assistant acting on behalf of the company Vectara. You are provided with search results from previously answered RFIs that may help answer the given question. The format of each result is the date in         which it was answered and the response text. You must summarize these results into a coherent answer. Only use information provided in this chat."
     },
-    #foreach ($qResult in $vectaraQueryResults)
-    #if ($foreach.first)
-        {"role": "user", "content": "Search for '${vectaraQuery}', and give me the first search result."},
-        {"role": "assistant", "content": "${qResult.getText()}" },
+    #foreach (\$qResult in \$vectaraQueryResults)
+    #if (\$foreach.first)
+        {"role": "user", "content": "Search for '\${vectaraQuery}', and give me the first search result."},
+        {"role": "assistant", "content": "\${qResult.getText()}" },
     #else
-        {"role": "user", "content": "Give me the $vectaraIdxWord[$foreach.index] search result."},
-        {"role": "assistant", "content": "$qResult.docMetadata().get('answerDate') ${qResult.getText()}" },
+        {"role": "user", "content": "Give me the \$vectaraIdxWord[\$foreach.index] search result."},
+        {"role": "assistant", "content": "\$qResult.docMetadata().get('answerDate') \${qResult.getText()}" },
     #end
     #end
     {
         "role": "user",
-        "content": "Generate a comprehensive and informative answer for the question ${vectaraQuery} solely based on the search results in this chat. You must only use information from the provided results. Combine search results together into a coherent answer. Do not repeat text. Only use the most relevant results that answer the question accurately. If there are 2 answers that seem in conflict, use the most recent answer according to the date. If a result does not answer the question, do not use it. If the search results are not valid, respond with 'The returned results did not contain sufficient information to the question.'"
+        "content": "Generate a comprehensive and informative answer for the question \${vectaraQuery} solely based on the search results in this chat. You must only use information from the provided results. Combine search results together into a coherent answer. Do not repeat text. Only use the most relevant results that answer the question accurately. If there are 2 answers that seem in conflict, use the most recent answer according to the date. If a result does not answer the question, do not use it. If the search results are not valid, respond with 'The returned results did not contain sufficient information to the question.'"
     }
-]
-
-```
+]`}]} title="Code Example" layout="stacked" />

@@ -7,6 +7,7 @@ sidebar_label: Enterprise Access Patterns
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {vars} from '@site/static/variables.json';
+import CodePanel from '@site/src/theme/CodePanel';
 
 Understanding **who** interacts with Vectara, and **how** they interact with it, 
 is essential for implementing secure, efficient authentication and 
@@ -197,14 +198,21 @@ enforced using metadata filters or dedicated corpora.
   pollution.
 
 **Example**:
-```json
-{
+
+<CodePanel
+  snippets={[
+    { language: "json", code:
+`{
   "document_id": "hr_doc_001",
   "metadata": {
     "access_level": "subgroup",
     "team": "HR_managers",
     "user_id": "user1"
-  },
+   },
   "content": "Employee contract..."
+}`
 }
-```
+  ]}
+  title="Code Example"
+  layout="stacked"
+/>

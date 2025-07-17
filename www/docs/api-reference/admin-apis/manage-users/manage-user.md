@@ -8,6 +8,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The Manage User API lets you perform different user and team management
 activities such as adding, deleting, enabling, disabling, and editing user
 roles. This capability is useful in scenarios that require dynamic team

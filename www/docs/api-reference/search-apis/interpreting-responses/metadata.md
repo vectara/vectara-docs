@@ -7,6 +7,9 @@ sidebar_label: Reading Metadata
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 In <Config v="names.product"/>, when you [index a document](/docs/api-reference/indexing-apis/indexing), the 
 document has a `type` parameter that determines the format of the document 
 as `core` or `structured`. The `core` type has `document_parts` and the `structured` 
@@ -20,9 +23,8 @@ but individual sections have a `section` attribute and a `lang`.
 
 Here's an example response with different metadata at these different levels:
 
-```json
-{
-  "search_results": [
+<CodePanel snippets={[{language: "json", code: `{
+   "search_results": [
     {
       "text": "Answer to the Ultimate Question of Life, the Universe, and Everything, is 42.",
       "score": 0.1401531994342804,
@@ -38,24 +40,24 @@ Here's an example response with different metadata at these different levels:
       },
       "document_id": "hitchhikers-guide",
       "request_corpora_index": 0
-    },
-    {
+     },
+     {
       "text": "Sometimes the questions are complicated and the answers are simple.",
       "score": 0.13511724770069122,
       "part_metadata": {
         "lang": "eng",
         "section": 17,
         "offset": 171
-      },
+     },
       "document_metadata": {
         "author": "Dr. Seuss"
       },
       "document_id": "authors-quotes",
       "request_corpora_index": 0
-    }
-  ]
-}
-```
+     }
+   ]
+}`
+}]} title="Code Example" layout="stacked" />
 
 Within a given item in the `search_results` array, you'll see there's a `part_metadata`
 and a `document_metadata` section (among others). The `part_metadata` section holds

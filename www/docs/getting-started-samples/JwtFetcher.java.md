@@ -27,6 +27,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Nullable;
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 /**
  * A helper that retrieves a JSON Web Token from an authorization code grant. Most of the details
  * for how to format the HTTP request can be found at:

@@ -8,6 +8,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The Disable Turns API disables specific turns from a conversation within the
 chat history corpus. This enables developers to exclude specific responses
 from the conversation history.

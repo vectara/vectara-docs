@@ -5,6 +5,9 @@
     sidebar_label: NodeJS
 ---
 
+
+import CodePanel from '@site/src/theme/CodePanel';
+
 This is an example of using the platform via REST.  For more sample code, including any dependencies this file has, please have a look at our GitHub examples repository.  This file can be found in that repo at <a href="https://github.com/vectara/getting-started/tree/main/language-examples/nodejs/rest/index_document.js">nodejs/rest/index_document.js</a>
 
 ```js title="nodejs/rest/index_document.js"

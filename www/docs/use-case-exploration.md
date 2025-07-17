@@ -4,6 +4,9 @@ title: Explore the Vectara Use Cases
 sidebar_label: Use Case Exploration
 ---
 
+
+import CodePanel from '@site/src/theme/CodePanel';
+
 The <Config v="names.product"/> **Retrieval Augmented Generation as-a-Service 
 (RAGaaS)** platform enables organizations to rapidly create GenAI experiences 
 to reduce hallucinations and provide relevant results no matter how you 

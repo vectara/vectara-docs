@@ -8,6 +8,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import vars from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 API Keys enable controlled, anonymous access to several administrative tasks, 
 indexing your data, and running semantic searches on your corpora—handy for 
 platform admins setting up systems or app developers integrating public-facing 
@@ -124,8 +127,7 @@ header request.
   ]
 }>
 <TabItem value="py">
-<pre>
-{`
+<CodePanel snippets={[{language: "text", code: `{\`
 api_key_header = {
     "x-api-key": API_KEY
 }
@@ -146,19 +148,17 @@ data_dict = {
 }
 payload = json.dumps(data_dict)
 response = requests.post(
-    "https://${vars['domains.rest.serving']}/v1/query",
+    "https://\${vars['domains.rest.serving']}/v1/query",
     data=payload,
     verify=True,
     headers=api_key_header)
-`}
-</pre>
+\`}`}]} title="Code Example" layout="stacked" />
 
 </TabItem>
 <TabItem value="js">
 
-<pre>
-{`
-fetch("https://${vars['domains.rest.serving']}:443/v2/query", {
+<CodePanel snippets={[{language: "text", code: `{\`
+fetch("https://\${vars['domains.rest.serving']}:443/v2/query", {
   headers: {
     "Content-Type": "application/json",
     "x-api-key": api_key,
@@ -179,16 +179,14 @@ fetch("https://${vars['domains.rest.serving']}:443/v2/query", {
   .then((res) => res.json())
   .then((data) => console.log(data))
   .catch((error) => console.log(error));
-`}
-</pre>
+\`}`}]} title="Code Example" layout="stacked" />
 </TabItem>
 <TabItem value="curl">
-<pre>
-{`
-curl -X POST \\
-  -H "x-api-key: \${API_KEY}" \\
-  -H "customer-id: \${CUSTOMER_ID}" \\
-  https://${vars['domains.rest.serving']}:443/v1/query \\
+<CodePanel snippets={[{language: "text", code: `{\`
+curl -X POST \\\\
+  -H "x-api-key: \\\${API_KEY}" \\\\
+  -H "customer-id: \\\${CUSTOMER_ID}" \\\\
+  https://\${vars['domains.rest.serving']}:443/v1/query \\\\
   -d @- <<END;
   {
     "query": [
@@ -201,8 +199,7 @@ curl -X POST \\
     ]
   }
 END
-`}
-</pre>
+\`}`}]} title="Code Example" layout="stacked" />
 
 </TabItem>
 </Tabs>

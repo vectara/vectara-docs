@@ -4,6 +4,9 @@ title: Querying Table Data
 sidebar_label: Querying Table Data
 ---
 
+
+import CodePanel from '@site/src/theme/CodePanel';
+
 Tables in PDFs are hard to query, because their structure is unpredictable and 
 often complex. This can prevent researchers and analysts from extracting 
 specific data points. Our tabular data extraction capability enables users to 
@@ -111,16 +114,15 @@ LLM, if one is configured as part of the query.
 When an application consumes these table-based search results, it can key off 
 table-specific metadata that’s shaped like this:
 
-```json
-{
-  vectara: {
+<CodePanel snippets={[{language: "json", code: 
+`vectara: {
     table_id: string,
     is_table_summary: boolean (optional),
     is_table_title: boolean (optional),
     row_num: integer (optional)
-  }
-}
-```
+  }`
+  }]} title="Extracted Tables Example" layout="stacked" />
+  
 * **table_id:** The ID that identifies the table. You can use it to retrieve 
   the entire table with the Documents API.
 * **is_table_summary:** This value is “true” if the search result is for the 

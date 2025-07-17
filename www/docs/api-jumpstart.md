@@ -112,27 +112,26 @@ Let’s take a closer look at the first response:
     {
       language: 'json',
       code: `{
-  "summary": "Employee Handbook PTO is 20 days a year for all new employees. \n<b>Employees earn more vacation days per year of service up to 5 extra days.\n</b> Example: Once you begin your 5th year, you now have 25 vacation days.",
-  "summary_language": "eng",
-  "search_results": [
-    {
-      "text": "Employee Handbook PTO is 20 days a year for all new employees. \n<b>Employees earn more vacation days per year of service up to 5 extra days.\n</b> Example: Once you begin your 5th year, you now have 25 vacation days.",
-      "score": 4.30505,
-      "part_metadata": {
-        "lang": "eng",
-        "section": "1",
-        "offset": "63",
-        "len": "73"
-      },
-      "document_metadata": {},
-      "document_id": "doc_123456789",
-      "request_corpora_index": 0
-    }
-  ]
-  // More results....
+    "summary": "Employee Handbook PTO is 20 days a year for all new employees. \n<b>Employees earn more vacation days per year of service up to 5 extra days.\n</b> Example: Once you begin your 5th year, you now have 25 vacation days.",
+    "summary_language": "eng",
+    "search_results": [
+      {
+       "text": "Employee Handbook PTO is 20 days a year for all new employees. \n<b>Employees earn more vacation days per year of service up to 5 extra days.\n</b> Example: Once you begin your 5th year, you now have 25 vacation days.",
+       "score": 4.30505,
+       "part_metadata": {
+         "lang": "eng",
+         "section": "1",
+         "offset": "63",
+         "len": "73"
+       },
+       "document_metadata": {},
+       "document_id": "doc_123456789",
+       "request_corpora_index": 0
+     }
+   ]
+   // More results....
 }`
-    }
-  ]}
+    }]}
   title="Example JSON Response"
   annotations={{
     json: [
@@ -201,24 +200,23 @@ The file uploads successfully and you get the following response:
     {
       language: 'json',
       code: `{
-  "response": {
-    "status": {},
-    "quotaConsumed": {
-      "numChars": "60",
-      "numMetadataChars": "148"
-    }
-  },
-  "document": {
-    "documentId": "doc.rtf",
-    "metadataJson": "{\"X-TIKA:Parsed-By\":\"org.apache.tika.parser.microsoft.rtf.RTFParser\",\"Content-Type\":\"application/rtf\"}",
-    "section": [{
-      "id": 1,
-      "text": "Simple test doc\\n\\nLorem ipsum \\nLorem ipsum \\nLorem ipsum \\n "
-    }]
-  }
+   "response": {
+     "status": {},
+     "quotaConsumed": {
+       "numChars": "60",
+       "numMetadataChars": "148"
+     }
+   },
+   "document": {
+     "documentId": "doc.rtf",
+     "metadataJson": "{\"X-TIKA:Parsed-By\":\"org.apache.tika.parser.microsoft.rtf.RTFParser\",\"Content-Type\":\"application/rtf\"}",
+     "section": [{
+       "id": 1,
+       "text": "Simple test doc\\n\\nLorem ipsum \\nLorem ipsum \\nLorem ipsum \\n "
+     }]
+   }
 }`
-    }
-  ]}  
+    }]}  
   annotations={{
     json: [
       { line: 3, text: 'Quota consumption details for the upload.' },
@@ -453,3 +451,5 @@ You get the following response:
 
 This API recipes section provided a variety of query examples that you can leverage
 as you start building with <Config v="names.product"/>.
+
+

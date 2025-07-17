@@ -7,6 +7,9 @@ sidebar_label: User Defined Function Reranker
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Our out-of-the-box rerankers are effective for general use cases, but some 
 specific use cases require fine-grained control over how search results are 
 ordered. For example, bubbling recently-added documents to the top, or 
@@ -68,13 +71,11 @@ and `hours` functions.
 
 ### Types and literals examples:
 
-```
-2.45
+<CodePanel snippets={[{language: "bash", code: `2.45
 true
 false
 null
-'Vectara''s string'
-```
+'Vectara''s string'`}]} title="Code Example" layout="stacked" />
 
 ## Operators
 
@@ -84,12 +85,10 @@ Operator precedence is in the previous listed order.
 
 ### Operators examples:
 
-```
-2 + 3
+<CodePanel snippets={[{language: "bash", code: `2 + 3
 100 % 10
 (true != false)
-(1 + 2 + 3) / 6
-```
+(1 + 2 + 3) / 6`}]} title="Code Example" layout="stacked" />
 
 ## If expression
 
@@ -99,9 +98,7 @@ condition must be defined. The grammar for the if expression is
 
 ### If example:
 
-```
-if (now() < iso_datetime_parse('2024-12-04T10:14:50Z')) 1 else 2
-```
+<CodePanel snippets={[{language: "bash", code: `if (now() < iso_datetime_parse('2024-12-04T10:14:50Z')) 1 else 2`}]} title="Code Example" layout="stacked" />
 
 ## Functions
 
@@ -122,8 +119,7 @@ result in the HTTP API definition. What follows is the schema for the search
 result object. 
 
 
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
   "score": .9,
   "text": "search result text",
   "document_metadata": {
@@ -133,17 +129,14 @@ result object.
      "Part level metadata": "metadata"
    },
    "document_id": "document id"
-}
-```
+}`}]} title="Code Example" layout="stacked" />
 The `$.score` is the score that Vectara has calculated up to 
 this point in the retrieval chain.
 
 #### Get examples
 
-```sql
-get('$.score') * get('$.part_metadata.boost')
-get('$.document_metadata.reviews[0].score', 0)
-```
+<CodePanel snippets={[{language: "sql", code: `get('\$.score') * get('\$.part_metadata.boost')
+get('\$.document_metadata.reviews[0].score', 0)`}]} title="Code Example" layout="stacked" />
 
 ## Time functions
 
@@ -195,9 +188,7 @@ and logarithms.
 
 ### Function calling example
 
-```sql
-get('$.score') * 1 / as_days(iso_datetime_parse(get('$.document_metadata.publication_date')) - now())
-```
+<CodePanel snippets={[{language: "sql", code: `get('\$.score') * 1 / as_days(iso_datetime_parse(get('\$.document_metadata.publication_date')) - now())`}]} title="Code Example" layout="stacked" />
 
 ## Null score handling
 
@@ -228,33 +219,30 @@ In this example, the UDF filter out results with scores below `0.5` and limits
 the output to `100` results. The MMR reranker then processes these results by 
 applying a diversity bias and further limits the output to `50` results.
 
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
   "reranker": {
     "type": "chain",
     "rerankers": [
       {
         "type": "userfn",
-        "user_function": "if (get('$.score') < 0.5) null else get('$.score')",
+        "user_function": "if (get('\$.score') < 0.5) null else get('\$.score')",
         "limit": 100
       },
       {
         "type": "mmr",
-        "user_function": "get('$.document_metadata.popularity') * get('$.document_metadata.score')",
+        "user_function": "get('\$.document_metadata.popularity') * get('\$.document_metadata.score')",
         "limit": 50
       }
     ]
   }
-}
-```
+}`}]} title="Code Example" layout="stacked" />
 ## Example document with nuanced metadata
 
 This example document shows featured electronics for the upcoming fall season. 
 It contains metadata for information such as `customer_review_stars`, 
 `units_in_stock`, and other nuanced information about the products.
 
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
   "id": "DD-2025-ELECTRONICS-FALL",
   "type": "core",
   "metadata": {
@@ -296,8 +284,7 @@ It contains metadata for information such as `customer_review_stars`,
       "context": "A 4K Ultra HD streaming device with voice control and many apps."
     }
   ]
-}
-```
+}`}]} title="Code Example" layout="stacked" />
 
 ## Example User Defined Functions
 
@@ -311,23 +298,19 @@ It contains metadata for information such as `customer_review_stars`,
 
 <TabItem value="grpc">
 
- ```grpc
- request = serving_pb2.QueryRequest(
+ <CodePanel snippets={[{language: "grpc", code: `request = serving_pb2.QueryRequest(
         query=query, num_results=fetch)
  request.reranking_config.reranker_id = 272725722
- request.reranking_config.user_function = \
-     "get('$.score') + log10(get('$.document_metadata.publish_ts')) + log(get('$.document_metadata.customer_review_stars')) + get('$.document_metadata.promoted')"
-```
+ request.reranking_config.user_function = \\
+     "get('\$.score') + log10(get('\$.document_metadata.publish_ts')) + log(get('\$.document_metadata.customer_review_stars')) + get('\$.document_metadata.promoted')"`}]} title="Code Example" layout="stacked" />
 
 </TabItem>
 <TabItem value="rest">
 
-```json
- "reranker": {
+<CodePanel snippets={[{language: "json", code: `"reranker": {
     "type": "userfn",
-    "user_function": "get('$.score') + log10(get('$.document_metadata.publish_ts')) + log(get('$.document_metadata.  customer_review_stars')) + get('$.document_metadata.promoted')"
-  }
-```
+    "user_function": "get('\$.score') + log10(get('\$.document_metadata.publish_ts')) + log(get('\$.document_metadata.  customer_review_stars')) + get('\$.document_metadata.promoted')"
+  }`}]} title="Code Example" layout="stacked" />
 
 </TabItem>
 </Tabs>

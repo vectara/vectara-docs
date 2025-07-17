@@ -4,6 +4,9 @@ title: Manage Team Members
 sidebar_label: Manage Team Members
 ---
 
+
+import CodePanel from '@site/src/theme/CodePanel';
+
 This section lets you add team members and manage the access levels of these 
 users. For example, you can adjust account and corpus level authorizations. 
 You can also transfer your Vectara account ownership to another user.

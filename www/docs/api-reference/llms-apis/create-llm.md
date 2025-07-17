@@ -9,6 +9,9 @@ import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Large Language Models (LLMs) power AI-driven applications like text 
 generation, chat interfaces, and document processing. The Create LLM API 
 allows users to integrate and configure external LLMs for use with the Vectara 
@@ -51,37 +54,35 @@ as a Bearer token or custom header-based authentication.
 
 **Bearer token authentication**
 
-```json
-{
-  "type": "bearer",
-  "token": "your-api-key"
-}
-```
+<CodePanel snippets={[{language: "json", code: `{
+   "type": "bearer",
+   "token": "your-api-key"
+}`
+}]} title="Bearer token" layout="stacked" />
+
 **Header-based authentication**
 
-```json
-{
-  "type": "header",
-  "header": "x-api-key",
-  "value": "your-api-key"
-}
-```
+<CodePanel snippets={[{language: "json", code: `{
+   "type": "header",
+   "header": "x-api-key",
+   "value": "your-api-key"
+}`
+}]} title="Header authentication" layout="stacked" />
 
 ### Example request
 
-```json
-{
-  "type": "openai-compatible",
-  "name": "CustomGPT-4",
-  "description": "GPT-4 instance hosted on Azure",
-  "model": "gpt-4",
-  "uri": "https://api.openai.com/v1/chat/completions",
-  "auth": {
-    "type": "bearer",
-    "token": "your-api-key"
-  }
-}
-```
+<CodePanel snippets={[{language: "json", code: `{
+   "type": "openai-compatible",
+   "name": "CustomGPT-4",
+   "description": "GPT-4 instance hosted on Azure",
+   "model": "gpt-4",
+   "uri": "https://api.openai.com/v1/chat/completions",
+   "auth": {
+     "type": "bearer",
+     "token": "your-api-key"
+   }
+}`
+}]} title="Request Example" layout="stacked" />
 
 The response contains the newly created LLM configuration and includes a 
 unique id assigned to the LLM, along with the name, description, and an 
@@ -89,14 +90,14 @@ enabled status indicating that the model is active and available for use.
 
 ### Example response
 
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
     "id": "llm_123456789",
     "name": "CustomGPT-4",
     "description": "GPT-4 instance hosted on Azure",
     "enabled": true
-}
-```
+}`
+}]} title="Response Example" layout="stacked" />
+
 ## Error responses
 
 * **400 Bad Request** - The request body is invalid.

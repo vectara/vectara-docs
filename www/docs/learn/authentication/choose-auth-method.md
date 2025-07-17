@@ -9,6 +9,9 @@ import TabItem from '@theme/TabItem';
 import {Config} from '@site/docs/definitions.md';
 import vars from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Vectara supports two main methods for authenticating API requests: [**API keys**](/docs/learn/authentication/api-key-management) 
 and [**OAuth 2.0 tokens**](/docs/learn/authentication/oauth-2). Choosing the right one depends on where and how your 
 application or team interacts with Vectara’s APIs, whether you are a Developer 

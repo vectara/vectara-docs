@@ -8,6 +8,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The List API Keys API lists all existing API keys for a customer ID.
 It also shows what corpora are accessed by these keys and with what
 permissions. This capability can provide insights into key usage and

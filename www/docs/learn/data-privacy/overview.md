@@ -7,6 +7,9 @@ sidebar_label: Privacy Overview
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 At <Config v="names.company"/>, we treat your data with the utmost privacy:
 * We do not use your data or searches to train our models.
 * We isolate all customer instances from each other.
