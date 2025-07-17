@@ -319,7 +319,7 @@
 }
 
 :global(.token.string-property.property) {
-  color: #1680fa !important;
+  color: #78B6FC !important;
 }
 
 /* STRINGS: "values", 'text' - BRIGHT GREEN */
@@ -359,7 +359,7 @@
 /* PROPERTIES/ATTRIBUTES - RED */
 :global(.token.property),
 :global(.token.tag) {
-  color: #0077ff !important;
+  color: #78B6FC !important;
 }
 
 /* CLASS NAMES - BLUE */
