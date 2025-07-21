@@ -95,6 +95,8 @@ paths:
   /v2/corpora:
     post:
       summary: Create a corpus
+      x-required-api-key-type:
+       - Personal
       description: Create a corpus, which is a container to store documents and associated
         metadata. Here, you define the unique `corpus_key` that identifies the corpus.
         The `corpus_key` can be custom-defined following your preferred naming convention,
@@ -362,6 +364,9 @@ paths:
       x-fern-sdk-method-name: create
     get:
       summary: List corpora
+      x-required-api-key-type:
+       - QueryService
+       - Personal
       description: List corpora in the account. The returned corpus objects contain
         less detail compared to those retrieved the direct corpus retrieval operation.
       operationId: listCorpora
@@ -1206,6 +1211,9 @@ paths:
       tags:
       - Index
       summary: Replace the document metadata.
+      x-required-api-key-type:
+       - IndexService
+       - Personal
       description: Replaces metadata of a document identified by its unique `document_id`
         from a specific corpus.
       operationId: replaceCorpusDocumentMetadata
