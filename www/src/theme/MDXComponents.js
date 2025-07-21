@@ -7,5 +7,5 @@ const Config = ({ v }) => {
 
 export default {
   ...DefaultMDXComponents, // Preserve default components, including Admonition
-  Config // Add your custom component
+  Config, // Add your custom component
 };
