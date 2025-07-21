@@ -5,6 +5,9 @@
     sidebar_label: Python
 ---
 
+
+import CodePanel from '@site/src/theme/CodePanel';
+
 This is an example of using the platform via REST.  For more sample code, including any dependencies this file has, please have a look at our GitHub examples repository.  This file can be found in that repo at <a href="https://github.com/vectara/getting-started/tree/main/language-examples/python/vectara-rest/rest_util.py">python/vectara-rest/rest_util.py</a>
 
 ```py title="python/vectara-rest/rest_util.py"

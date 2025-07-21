@@ -14,6 +14,9 @@ import json
 import logging
 import requests
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 def _get_delete_request_json(customer_id: int, corpus_id: int, doc_id: str):
     """Returns a JSON delete request."""
     request = {

@@ -15,6 +15,9 @@ import json
 import logging
 import requests
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 def _get_reset_corpus_json(customer_id: int, corpus_id: int):
     """ Returns a reset corpus json. """
     corpus = {

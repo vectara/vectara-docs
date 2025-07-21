@@ -4,6 +4,9 @@ title: Default Metadata Filters
 ---
 
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 A few pieces of metadata expressions are filterable out of the box, including 
 Document ID, Language, and Titles. These filters are very useful in a variety 
 of situations.

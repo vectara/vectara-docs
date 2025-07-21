@@ -9,6 +9,9 @@ import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 <Config v="names.product"/> provides a comprehensive authorization system that accommodates a wide 
 range of use cases and caters to different development and deployment 
 environments. Your Generative AI journey may be in the early stages of 

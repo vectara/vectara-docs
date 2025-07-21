@@ -9,6 +9,9 @@ import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Tabular data extraction plays a crucial role in document processing, enabling 
 efficient indexing and retrieval of structured information. The List Table 
 Extractors API allows users to query available table extractors, ensuring 
@@ -30,8 +33,7 @@ extractor for document indexing.
 
 ### Example response
 
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
   "table_extractors": [
     {
       "name": "gmft",
@@ -39,7 +41,7 @@ extractor for document indexing.
       "description": "GMFT table extraction service",
       "generation": {
         "llm_name": "gpt-4o",
-        "prompt_template": "[\n{\n\"role\": \"system\",\n\"content\": \"You are a helpful assistant tasked with summarizing tables...",
+        "prompt_template": "[\\n{\\n\\"role\\": \\"system\\",\\n\\"content\\": \\"You are a helpful assistant tasked with summarizing tables...",
         "model_parameters": {
           "temperature": 0,
           "max_tokens": 1024,
@@ -55,7 +57,7 @@ extractor for document indexing.
       "description": "AWS Textract service",
       "generation": {
         "llm_name": "gpt-4o",
-        "prompt_template": "[\n{\n\"role\": \"system\",\n\"content\": \"You are a helpful assistant tasked with summarizing tables.. .",
+        "prompt_template": "[\\n{\\n\\"role\\": \\"system\\",\\n\\"content\\": \\"You are a helpful assistant tasked with summarizing tables.. .",
         "model_parameters": {
           "temperature": 0,
           "max_tokens": 1024,
@@ -65,9 +67,9 @@ extractor for document indexing.
         }
       }
     }
-  ]
-}
-```
+   ]
+}`}]} title="Table Extractors Example" layout="stacked" />
+
 ### Error responses
 
 * **403 Forbidden** – The user does not have permission to list table extractors.

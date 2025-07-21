@@ -6,6 +6,9 @@ sidebar_label: Chain Reranker
 
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 When refining query results where relevance and diversity are critical to 
 getting the best answers, relying on a single ranking strategy may not be 
 flexible enough for some scenarios. The Vectara Chain Reranker 
@@ -51,8 +54,7 @@ example can be useful for multilingual content platforms such as blogs, news
 aggregators, and knowledge bases.
 
 
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
   "reranker": {
     "type": "chain",
     "rerankers": [
@@ -62,12 +64,11 @@ aggregators, and knowledge bases.
       },
       {
         "type": "userfn",
-        "user_function": "get('$.metadata.popularity') * get('$.metadata.score')"
+        "user_function": "get('\$.metadata.popularity') * get('\$.metadata.score')"
       }
     ]
   }
-}
-```
+}`}]} title="Code Example" layout="stacked" />
 
 In this example, the [Vectara Multilingual reranker](/docs/learn/vectara-multi-lingual-reranker) improves the precision of 
 results by refining the output of initial models like Boomerang, while the 
@@ -79,12 +80,10 @@ improves the overall relevance of the product results. The MMR reranker then
 diversifies the results so that the customer sees some variety, rather than 
 only very similar products.
 
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
   "type": "mmr",
   "diversity_bias": 0.2
-},
-```
+},`}]} title="Code Example" layout="stacked" />
 
 We set the diversity bias to `0.2` to have more emphasis on relevance while 
 still providing some diversity. You can increase this value to `0.3` or `0.4` 
@@ -100,8 +99,7 @@ match what the customer is looking for, ensuring that the products are in
 stock, and also takes into account customer satisfaction rating of the 
 products.
 
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
   "reranker": {
     "type": "chain",
     "rerankers": [
@@ -115,10 +113,9 @@ products.
       },
       {
         "type": "userfn",
-        "user_function": "get('$.metadata.relevance_score') * 0.6 + (get('$.metadata.in_stock') ? 0.2 : 0) + get('$.metadata.customer_rating') * 0.2"
+        "user_function": "get('\$.metadata.relevance_score') * 0.6 + (get('\$.metadata.in_stock') ? 0.2 : 0) + get('\$.metadata.customer_rating') * 0.2"
       }
     ]
   }
-}
-```
+}`}]} title="Code Example" layout="stacked" />
 

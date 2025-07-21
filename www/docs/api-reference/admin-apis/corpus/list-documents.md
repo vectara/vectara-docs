@@ -6,6 +6,9 @@ sidebar_label: List Documents API Definition
 
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The List Documents API enables you to retrieve a list of documents stored in a 
 specific corpus. This endpoint provides an overview of document metadata, 
 including document IDs, tables (if table extraction is enabled), and 

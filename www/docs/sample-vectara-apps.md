@@ -4,6 +4,9 @@ title: Sample Vectara Demos and Applications
 sidebar_label: Sample Demos and Applications
 ---
 
+
+import CodePanel from '@site/src/theme/CodePanel';
+
 The <Config v="names.product"/> platform enables you to build generative AI and Retrieval 
 Augmented Generation (RAG) applications quickly and without expertise in AI or 
 ML concepts. We have a diverse set of open-source demo applications that 

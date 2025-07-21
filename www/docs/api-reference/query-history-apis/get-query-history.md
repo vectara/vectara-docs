@@ -9,6 +9,9 @@ import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The Get Query History API allows you to retrieve detailed history about a 
 specific query that was made against a corpus. The response includes detailed 
 information about the query, such as latency, the time it was executed, and 

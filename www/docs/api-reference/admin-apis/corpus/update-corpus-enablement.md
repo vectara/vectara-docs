@@ -6,6 +6,9 @@ sidebar_label: Update Corpus API Definition
 
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The Update Corpus API lets you enable or disable a corpus, and it also lets 
 you modify the name and description of a corpus. This is useful to manage the 
 availability of data within the system, such as when you need to take the 

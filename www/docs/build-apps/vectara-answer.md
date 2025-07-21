@@ -6,6 +6,9 @@ sidebar_label: Vectara Answer
 
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Vectara Answer provides a configurable sample UI that you can use as a 
 starting point. This UI enables users to create custom conversational search 
 applications, such as chatbots, semantic search, and workplace search by 

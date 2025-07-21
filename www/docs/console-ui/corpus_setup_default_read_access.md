@@ -4,6 +4,9 @@ title: Configure Default Read Access to a Corpus
 sidebar_label: Configure Default Read Access
 ---
 
+
+import CodePanel from '@site/src/theme/CodePanel';
+
 Sometimes, you’ll want to make a corpus searchable by any authenticated user.
 This guide explains how to accomplish this by setting default read access on the
 corpus.

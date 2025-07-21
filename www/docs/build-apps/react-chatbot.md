@@ -6,6 +6,9 @@ sidebar_label: React-Chatbot
 
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 ![Screenshot of React-Chatbot chat interface](/img/react_chatbot.jpg)
 
 React-Chatbot is a UI widget for adding Vectara-powered chatbot to your React apps with a few lines of

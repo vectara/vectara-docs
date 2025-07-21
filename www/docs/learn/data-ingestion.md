@@ -5,6 +5,9 @@ sidebar_label: Data Ingestion
 ---
 
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Vectara offers multiple data ingestion methods to accommodate different types
 of use cases. By choosing the appropriate ingestion method, users can
 efficiently index their data and leverage our advanced search capabilities.

@@ -5,6 +5,9 @@ sidebar_label: Semantic Search Fundamentals
 ---
 
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Vectara lets you build a semantic, LLM-powered search application. Semantic 
 search is not just about finding data, but about understanding data and 
 helping you answer questions about your data. This topic outlines what <Config v="names.product"/>

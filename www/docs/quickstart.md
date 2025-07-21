@@ -5,6 +5,9 @@ sidebar_label: Quick Start
 ---
 
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 New users often find it challenging to get started with a new product and
 fully understand its capabilities. With <Config v="names.product"/>, we've made it simple with our
 Quick Start tutorial. In just a couple minutes, you'll be issuing queries and

@@ -8,6 +8,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Developers often struggle to understand why certain queries fall short of 
 expectations. Without detailed insights, diagnosing issues becomes guesswork, 
 making it harder to identify problems and improve query performance. Our 

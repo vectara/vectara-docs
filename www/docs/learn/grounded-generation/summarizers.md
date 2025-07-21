@@ -6,6 +6,9 @@ sidebar_label: Generation Presets
 
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Extracting concise, relevant information from large sets of search results 
 presents a significant challenge for many applications. Vectara offers 
 flexibility in selecting both the summarizer model and its associated prompt 
@@ -42,8 +45,7 @@ summaries and structured outputs:
 
 The following example query selects Mockingbird 2.0 generation preset:
 
-```json showLineNumbers title="https://api.vectara.io/v2/query"
-{
+<CodePanel snippets={[{language: "json", code: `{
   "query": "What is the infinite improbability drive?",
   "search": {
     "corpora": [
@@ -57,8 +59,7 @@ The following example query selects Mockingbird 2.0 generation preset:
     "generation_preset_name": "mockingbird-2.0",
     "max_used_search_results": 10
   }
-}
-```
+}`}]} title="Mockingbird 2.0 Example" layout="stacked" />
 
 :::tip
 The `generation_preset_name` is specified in the `generation` object of a [**query**](/docs/api-reference/search-apis/search). 
@@ -128,23 +129,22 @@ summary with a reasonably fast response by setting `max_used_search_results` to
 `5`. To use `vectara-summary-ext-24-05-med-omni` (GPT-4o), set 
 `generation_preset_name` as follows:
 
-```json showLineNumbers title="https://api.vectara.io/v2/query"
-{
-  "query": "What is the infinite improbability drive?",
-  "search": {
-    "corpora": [
-      {
-        "corpus_key": "hitchhikers-guide"
-      }
-    ],
-    "limit": 10
-  },
-  "generation": {
-    "generation_preset_name": "vectara-summary-ext-24-05-med-omni",
-    "max_used_search_results": 10
-  }
-}
-```
+<CodePanel snippets={[{language: "json", code: `{
+   "query": "What is the infinite improbability drive?",
+   "search": {
+     "corpora": [
+       {
+         "corpus_key": "hitchhikers-guide"
+       }
+     ],
+     "limit": 50
+   },
+   "generation": {
+     "generation_preset_name": "vectara-summary-ext-24-05-med-omni",
+     "max_used_search_results": 50
+   }
+ }`
+ }]} title="GPT-4o Example" layout="stacked" />
 
 ## Advanced Summarization Customization Options
 

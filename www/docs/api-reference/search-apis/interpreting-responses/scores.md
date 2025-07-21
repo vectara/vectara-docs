@@ -7,6 +7,9 @@ sidebar_label: Interpreting Scores
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Like all information retrieval systems, <Config v="names.product"/> scores documents on how
 relevant they are to the query. It's important to understand the scoring 
 system and how it changes based on the controls and query parameters you have 

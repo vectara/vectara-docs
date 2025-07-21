@@ -8,6 +8,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The Maximal Marginal Relevance (MMR) reranker enables you to diversify search 
 results to reduce redundancy while maintaining relevance to the query. 
 Search queries often result in a collection of similar documents that, while 
@@ -34,12 +37,10 @@ specify a `diversity bias` range between `0.0` and `1.0`. Values closer to `1.0`
 optimize for the most diverse results. This setting is only available with the 
 MMR Reranker.
 
-```json
-"reranker": {
+<CodePanel snippets={[{language: "json", code: `"reranker": {
    "type": "mmr",
    "diversity_bias": 0.4
- },
-```
+ },`}]} title="Code Example" layout="stacked" />
 
 To enable the Maximal Marginal Relevance Reranker in the Vectara Console UI:
 

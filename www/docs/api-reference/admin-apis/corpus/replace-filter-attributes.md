@@ -6,6 +6,9 @@ sidebar_label: Replace Filter Attributes API Definition
 
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The Replace Filter Attributes API lets you replace the filter attributes of a 
 corpus. Filter attributes enable [metadata filtering](/docs/learn/metadata-search-filtering/filter-overview) on the corpus and they are 
 defined as an array of `filter_attribute` objects.

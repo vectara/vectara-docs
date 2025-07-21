@@ -9,6 +9,9 @@ import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Summarization provides a chatbot-like experience to your users by enhancing 
 the efficiency of information delivery. Offering quick and concise summaries 
 can lead to faster decision-making, improved user satisfaction, and higher 
@@ -65,20 +68,16 @@ POST https://api.vectara.io/v2/query
     "max_used_search_results": 5
   }
 }
-```
-
-This query tells <Config v="names.product"/> to return a summary in English using the
-`mockingbird-1.0-2024-07-16` summarizer and to consider the first 5 results when
+<CodePanel snippets={[{language: "bash", code: `This query tells <Config v="names.product"/> to return a summary in English using the
+\`mockingbird-1.0-2024-07-16\` summarizer and to consider the first 5 results when
 summarizing. 
 
 ### Example query response
 
 When <Config v="names.product"/> responds, it will contain the list of results
 as well as the generative summary. Here is an example response to the query
-`What is the infinite improbability drive?` when searching across the
-Hitchhiker's Guide to the Galaxy:
-
-```json showLineNumbers title="response.json"
+\`What is the infinite improbability drive?\` when searching across the
+Hitchhiker's Guide to the Galaxy:`}]} title="Code Example" layout="stacked" />json showLineNumbers title="response.json"
 {
   "summary": "The Infinite Improbability Drive is a form of propulsion developed by the Galactic 
     Government on Damogran which allows for vast interstellar distances to be crossed in a 

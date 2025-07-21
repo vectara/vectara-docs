@@ -16,6 +16,9 @@ import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 public class RestCreateCorpus {
 
   /**

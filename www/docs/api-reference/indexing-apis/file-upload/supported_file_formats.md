@@ -5,6 +5,9 @@ title: Supported File Types
 
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 ## Raw document types
 
 The upload endpoint supports several raw document types. Vectara extracts text

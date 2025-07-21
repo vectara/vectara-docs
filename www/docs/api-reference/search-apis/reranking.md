@@ -8,6 +8,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Initial search results often fail to capture nuanced relevance or diversity, 
 potentially leading to suboptimal user experiences. Utilizing Vectara's 
 reranking can significantly enhance the quality and usefulness of 
@@ -58,8 +61,7 @@ is `25`.
 The following example shows the `limit` and `type` values in a query. Note that 
 this simplified example intentionally omits several parameter values.
 
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
   "query": "What is my question?",
   "stream_response": false,
   "search": {
@@ -73,8 +75,7 @@ this simplified example intentionally omits several parameter values.
     },
   "generation": [],
   "enable_factual_consistency_score": true
-}
-```
+}`}]} title="Code Example" layout="stacked" />
 
 
 ## Search cutoffs 
@@ -90,13 +91,11 @@ relevant enough to return, filtering out results that do not meet the desired
 level of relevance. For example, when you set the `cutoff` to `0.5`, only results 
 with a score of `0.5` or higher are considered. For example:
 
-```json
-"reranker": {
+<CodePanel snippets={[{language: "json", code: `"reranker": {
   "type": "customer_reranker",
   "reranker_name": "Rerank_Multilingual_v1",
   "cutoff": 0.5
-}
-```
+}`}]} title="Code Example" layout="stacked" />
 When a reranker is applied with a cutoff, it performs the following steps:
 
 1. Reranks all input results based on the selected reranker.
@@ -152,14 +151,13 @@ limit of `10` to get only the top 10 blog post results.
 Using both cutoffs and limits in a chain allows for more refined control over 
 query results. 
 
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
   "reranker": {
     "type": "chain",
     "rerankers": [
       {
         "type": "userfn",
-        "user_function": "if (get('$.document_metadata.category') == 'blog') get('$.score') else null",
+        "user_function": "if (get('\$.document_metadata.category') == 'blog') get('\$.score') else null",
         "limit": 10
       },
       {
@@ -170,8 +168,7 @@ query results.
       }
     ]
   }
-}
-```
+}`}]} title="Code Example" layout="stacked" />
 This filters out non-blog content where the UDF reranker limits the output to 
 10, and sends these 10 results to the Vectara Multilingual reranker which both 
 removes results with a score below `0.5` and returns the top 3 results from 
@@ -186,8 +183,7 @@ them for summarization, which can improve the quality of the generated
 summary. This example uses both Slingshot and a User Defined Function to send 
 only highly relevant and recent documents for summarization.
 
-```json
-"reranker": {
+<CodePanel snippets={[{language: "json", code: `"reranker": {
     "type": "chain",
     "rerankers": [
       {
@@ -198,11 +194,10 @@ only highly relevant and recent documents for summarization.
       },
       {
         "type": "userfn",
-        "user_function": "get('$.document_metadata.publish_ts')"
+        "user_function": "get('\$.document_metadata.publish_ts')"
       }
     ]
-  },
-```
+  },`}]} title="Code Example" layout="stacked" />
 
 1. The first stage in the chain filters out documents with scores lower than 
    `0.75` and it also limits the results to `10`.

@@ -7,6 +7,9 @@ sidebar_label: Textless Mode
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 When you create a corpus [via the API](/docs/api-reference/admin-apis/create-corpus) or the
 [Vectara Console UI](/docs/console-ui/creating-a-corpus), you have the option to **not** store 
 the text, also known as a "textless" mode. This mode is available to our 
@@ -46,12 +49,10 @@ filtering on the document.
 
 To enable textless mode, set the `textless` value to `true` under `corpus`:
 
-```json
-
-curl -X POST \
--H "Authorization: Bearer abcefg..." \
--H "customer-id: 123456789" \
-https://api.vectara.io:443/v1/create-corpus \
+<CodePanel snippets={[{language: "json", code: `curl -X POST \\
+-H "Authorization: Bearer abcefg..." \\
+-H "customer-id: 123456789" \\
+https://api.vectara.io:443/v1/create-corpus \\
 -d @- <<END;
 {
   "corpus": {
@@ -87,9 +88,7 @@ https://api.vectara.io:443/v1/create-corpus \
     ]
   }
 }
-END
-        
-```
+END`}]} title="Code Example" layout="stacked" />
 
 ### Limitations
 

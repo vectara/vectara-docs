@@ -8,6 +8,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The Read Conversations API retrieves detailed information about specific
 conversations and chat interactions. This information enables developers to
 analyze the flow of user chats and understand the context of interactions,

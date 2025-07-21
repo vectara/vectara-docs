@@ -4,6 +4,9 @@ title: Functions and Operators
 ---
 
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Most operators in <Config v="names.product"/> have the same precedence and are left-associative.
 You need to use parenthesis to enforce a different precedence.
 

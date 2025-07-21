@@ -9,6 +9,9 @@ import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import vars from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The Create Encoder API allows users to register a new text embedding encoder 
 for use within the Vectara platform. This API enables seamless integration 
 with OpenAI-compatible encoders, such as those used for retrieving embeddings 
@@ -39,8 +42,7 @@ must include the following parameters:
 
 This example request creates an encoder for document similarity search.
 
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
   "type": "openai",
   "name": "custom-embedding-encoder",
   "description": "Custom OpenAI embedding encoder for document similarity search.",
@@ -50,22 +52,19 @@ This example request creates an encoder for document similarity search.
     "type": "bearer",
     "token": "your-api-key"
   }
-}
-```
+}`}]} title="Code Example" layout="stacked" />
 
 ### Example response
 
 The response includes details about the newly created encoder.
 
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
     "id": "enc_987654321",
     "name": "custom-embedding-encoder",
     "description": "Custom OpenAI embedding encoder for document similarity search.",
     "output_dimensions": 1536,
     "enabled": true
-}
-```
+}`}]} title="Code Example" layout="stacked" />
 
 
 ## Error responses

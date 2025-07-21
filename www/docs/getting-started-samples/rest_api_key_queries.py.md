@@ -17,6 +17,9 @@ import sys
 
 import requests
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 
 def _get_query_json(customer_id: int, corpus_id: int, query_value: str):
     """Returns a query JSON."""

@@ -8,6 +8,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The Create Chat Turn API allows you to create a new turn in a chat. Each
 conversation consists of a series of `turn` objects, which represent the
 sequence of message and response pairs that make up the dialog.

@@ -18,6 +18,9 @@ import java.net.http.HttpResponse;
 import java.util.HashMap;
 import java.util.Map;
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 public class RestDeleteDocument {
   /**
    * Deletes a document from a corpus.

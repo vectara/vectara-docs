@@ -8,6 +8,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The Vectara Console is a good way for you to get started with <Config v="names.product"/>. Once
 you're ready to integrate the platform more deeply into your application, the
 Corpus Admin APIs allow you to programmatically manipulate corpora and perform

@@ -135,6 +135,7 @@ code {
 
 [data-theme="dark"] code {
   border-color: #69707d;
+  color: #494949;
 }
 
 .codeBlockTitle_node_modules-\@docusaurus-theme-classic-lib-theme-CodeBlock-Content-styles-module {
@@ -877,4 +878,4 @@ table td {
 
 [data-theme='dark'] .theme-api-markdown .token.property {
   color: #e06c75 !important; /* Red for properties */
-} 
+}

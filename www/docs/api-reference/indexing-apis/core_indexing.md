@@ -9,6 +9,9 @@ import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The Low-level Indexing API provides low-level access to the semantic indexing
 capabilities of the <Config v="names.product"/> platform. It focuses on document `parts` which allow for
 specific text and context definitions within a document. This approach differs

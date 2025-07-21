@@ -4,6 +4,9 @@ title: Hallucination Corrector
 sidebar_label: Hallucination Corrector
 ---
 
+
+import CodePanel from '@site/src/theme/CodePanel';
+
 Hallucinations remain one of the most pressing challenges in deploying Large 
 Language Models (LLMs) in real-world applications. These inaccuracies can 
 erode user trust and expose organizations to serious business risks.
