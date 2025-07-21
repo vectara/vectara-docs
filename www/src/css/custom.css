@@ -135,6 +135,7 @@ code {
 
 [data-theme="dark"] code {
   border-color: #69707d;
+  color: #494949;
 }
 
 .codeBlockTitle_node_modules-\@docusaurus-theme-classic-lib-theme-CodeBlock-Content-styles-module {
@@ -827,4 +828,54 @@ table td {
 .schemaItem_node_modules-docusaurus-theme-openapi-docs-lib-next-theme-SchemaItem-styles-module
   code {
   border: none !important;
+}
+
+/* Target API code blocks specifically */
+.theme-api-markdown pre,
+.theme-api-markdown code {
+  background-color: #f6f8fa !important; /* Light gray */
+  color: #24292e !important; /* Dark text */
+}
+
+/* Override any leaked tokens in API pages */
+.theme-api-markdown .token.keyword {
+  color: #d73a49 !important; /* Example: red for keywords, adjust to match OpenAPI theme */
+}
+
+/* Dark mode overrides for API code blocks */
+[data-theme='dark'] .theme-api-markdown pre,
+[data-theme='dark'] .theme-api-markdown code {
+  background-color: #282c34 !important; /* Dark gray background (matches common dark themes like VS Code) */
+  color: #abb2bf !important; /* Light gray text for base content */
+}
+
+/* Dark mode token overrides in API pages (adjust for your preferred palette) */
+[data-theme='dark'] .theme-api-markdown .token.keyword {
+  color: #61afef !important; /* Bright blue for keywords */
+}
+
+[data-theme='dark'] .theme-api-markdown .token.string {
+  color: #98c379 !important; /* Green for strings */
+}
+
+[data-theme='dark'] .theme-api-markdown .token.number,
+[data-theme='dark'] .theme-api-markdown .token.boolean {
+  color: #d19a66 !important; /* Orange for numbers/booleans */
+}
+
+[data-theme='dark'] .theme-api-markdown .token.comment {
+  color: #5c6370 !important; /* Muted gray for comments */
+}
+
+[data-theme='dark'] .theme-api-markdown .token.punctuation,
+[data-theme='dark'] .theme-api-markdown .token.operator {
+  color: #abb2bf !important; /* Light gray for punctuation/operators */
+}
+
+[data-theme='dark'] .theme-api-markdown .token.function {
+  color: #61afef !important; /* Blue for functions */
+}
+
+[data-theme='dark'] .theme-api-markdown .token.property {
+  color: #e06c75 !important; /* Red for properties */
 }
