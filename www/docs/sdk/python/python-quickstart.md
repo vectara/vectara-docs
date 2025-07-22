@@ -5,6 +5,7 @@ sidebar_label: Quick Start
 hide_table_of_contents: true
 ---
 
+import { Spacer } from "@site/src/components/ui/Spacer";
 import CodePanel from '@site/src/theme/CodePanel';
 
 Get up and running with the Vectara Python SDK in minutes. This quick start 
@@ -15,6 +16,17 @@ Each step builds toward a functional setup for indexing and querying content,
 enabling you to leverage Vectara's Retrieval Augmented Generation (RAG) 
 capabilities for applications like enterprise search, chatbots, or knowledge 
 bases.
+
+## Prerequisites
+
+1. Install Python 3.7 or later.
+2. Get an API key from the [Vectara Console](https://console.vectara.com).
+  
+API keys can have multiple types and roles from Personal (most 
+administrative functions) to QueryService (read-only) to read and write 
+(IndexService). For more information, see 
+[Authentication Methods and Authorization Levels](https://docs.vectara.com/docs/learn/authentication/auth-overview).
+
 
 ---
 
@@ -81,10 +93,40 @@ querying.
   operations.
 - **Constraints**: Obtain the API key from the Vectara Console under your 
   account settings.  
-  Ensure the key has appropriate roles (`serving` for querying, `admin` for corpus creation).
+  Ensure the key has appropriate roles (`serving` for querying, `admin` for corpus creation).  
 
 Store API keys in environment variables or secure vaults (`.env` 
-  files) to avoid hardcoding in production code. 
+files) to avoid hardcoding in production code. 
+
+<CodePanel
+  title="Authenticate with OAuth"
+  snippets={[
+    {
+      language: 'python',
+      code: `from vectara import Vectara
+
+client = Vectara(
+    client_id="YOUR_CLIENT_ID",
+    client_secret="YOUR_CLIENT_SECRET"
+)`
+    }
+  ]}
+  annotations={{
+    python: [
+      { line: 4, text: "Replace with your OAuth client ID" },
+      { line: 5, text: "Replace with your OAuth client secret" }
+    ]
+  }}
+  customWidth="50%"
+/>
+
+Alternatively, authenticate using OAuth2:
+
+Obtain your OAuth credentials from the Vectara Console. This method is 
+suitable for applications requiring token-based authentication.
+
+<Spacer size="l" />
+<Spacer size="l" />
 
 ---
 
@@ -118,9 +160,10 @@ Creating a corpus requires a unique key and descriptive name. The corpus key
 acts as an identifier for all future operations, so choose something memorable 
 and descriptive. 
 
-The `corpora.create` endpoint 
-(HTTP POST `/corpora`) sets up a new corpus with a unique identifier, forming 
-the foundation for storing and querying content.
+The `corpora.create` endpoint (HTTP POST `/corpora`) sets up a new corpus with a 
+unique identifier, forming the foundation for storing and querying content. 
+For more details on request and response parameters, see the 
+[Create Corpus REST API](https://docs.vectara.com/docs/rest-api/create-corpus).
 
 - `key` (string, required): A unique identifier for the corpus 
   (`quickstart-corpus`).  
@@ -182,24 +225,63 @@ response = client.documents.create(
   customWidth="50%"
 />
 
-Upload a document to your corpus to make its content searchable. The 
-`documents.create` endpoint (HTTP POST `/documents`) indexes a structured 
+Vectara supports two types of documents: `structured` and `core`. Upload a 
+document to your corpus to make its content searchable. The `documents.create` 
+endpoint (HTTP POST `/documents`) indexes a structured 
 document, consisting of sections with titles and text, into the specified 
 corpus. 
 
-This step populates your corpus with content for querying.
+This step populates your corpus with content for querying. For more details on 
+request and response parameters, see the [Index Document REST API](https://docs.vectara.com/docs/rest-api/index-document).
+
+<CodePanel
+  title="Upload Core Document"
+  snippets={[
+    {
+      language: 'python',
+      code: `from vectara import CoreDocument, CoreDocumentPart
+
+document = CoreDocument(
+    id="welcome-doc",
+    type="core",
+    document_parts=[
+        CoreDocumentPart(
+            text="Welcome to Vectara! This is your first document."
+        )
+    ]
+)
+
+response = client.documents.create(
+    corpus_key="quickstart-corpus",
+    request=document
+)`
+    }
+  ]}
+  annotations={{
+    python: [
+      { line: 4, text: "Document must have a unique ID" },
+      { line: 8, text: "Add a simple part with text" }
+    ]
+  }}
+  customWidth="50%"
+/>
+
+To upload a core document:
 
 - `corpus_key` (string, required): The target corpus identifier (`quickstart-corpus`), matching the key from step 3.
- - `request` (StructuredDocument, required): Defines the document structure.
+ - `request` (StructuredDocument or CoreDocument, required): Defines the document structure.
    - `id` (string, required): A unique document ID within the corpus (`welcome-doc`). 
   Alphanumeric, underscores, or hyphens, maximum 100 characters.
-   - `type` (string, required): Set to `"structured"` for section-based documents.
-   - `sections` (list[StructuredDocumentSection], required): List of document sections.
+   - `type` (string, required): Set to `"structured"` for section-based documents or `"core"` for part-based documents.
+   - For structured: `sections` (list[StructuredDocumentSection], required): List of document sections.
      - `title` (string, optional): Section title (`Welcome`).  
   Maximum length: 255 characters.
      - `text` (string, required): Section content (`Welcome to Vectara! This is your first document.`).  
   Maximum length: varies by account limits.
      - `metadata` (dict, optional): Key-value pairs for filtering (`{"category": "intro"}`).
+   - For core: `document_parts` (list[CoreDocumentPart], required): List of document parts.
+     - `text` (string, required): Part content.
+     - `metadata` (dict, optional): Key-value pairs.
    - `metadata` (dict, optional): Document-level metadata (`{"source": "quickstart"}`).
 - **Purpose**: Indexes a document for semantic search, enabling queries to retrieve relevant 
   content.
@@ -208,8 +290,9 @@ This step populates your corpus with content for querying.
   invalid characters results in an API error (HTTP 400).
 
 Structured documents support section-based organization, ideal for manuals or 
-reports. Use metadata to enable filtering in queries (by category). For larger 
-datasets, consider uploading files (PDFs).
+reports. Core documents are simpler, with sequential parts. Use metadata to 
+enable filtering in queries (by category). For larger datasets, consider 
+uploading files (PDFs).
 
 ---
 
@@ -247,7 +330,8 @@ Run a semantic query against your corpus to retrieve relevant content using
 natural language. 
 
 The `client.query` endpoint (HTTP POST `/query`) searches the corpus and 
-returns results ordered by relevance.
+returns results ordered by relevance. For more details on request and response 
+parameters, see the [Query REST API](https://docs.vectara.com/docs/rest-api/query-corpus).
 
  - `query` (string, required): The natural language query (`"What is Vectara?"`).  
   Maximum length: 1000 characters.
@@ -404,3 +488,26 @@ real-time applications, consider streaming queries (`query_stream`).
 Your SDK and corpus are live, with a document indexed and a query executed. 
 Next, explore advanced features like rerankers, chat sessions, or generation 
 presets.
+
+---
+
+## Cleanup: Delete the Corpus
+
+<CodePanel
+  title="Delete Corpus"
+  snippets={[
+    {
+      language: 'python',
+      code: `from vectara import Vectara
+
+# Assuming client is already created as in step 2
+response = client.corpora.delete(key="quickstart-docs")
+print("✅ Corpus deleted")`
+    }
+  ]}
+  customWidth="50%"
+/>
+
+If you want to delete the corpus to clean up or retry the quickstart:
+
+This calls the delete corpus API to remove the corpus and all its documents. Note that this operation is irreversible.

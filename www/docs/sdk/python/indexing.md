@@ -12,6 +12,25 @@ within corpora. Indexing involves ingesting documents into a corpus, enabling
 them for search and Retrieval Augmented Generation (RAG) operations. These 
 methods allow you to add, retrieve, list, and delete documents, preparing your data for querying.
 
+## Prerequisites
+
+<CodePanel
+  title="Install Vectara SDK"
+  snippets={[
+    { language: 'bash', code: `pip install vectara` }
+  ]}
+  customWidth="50%"
+/>
+
+**Setup Requirements:**
+1. **Install the SDK** with `pip install vectara`
+2. **Get an API key** from the [Vectara Console](https://console.vectara.com)
+3. **Create a corpus** with `client.corpora.create()` (see [Corpus Management](https://docs.vectara.com/docs/api-reference/indexing-apis/corpus))
+
+<Spacer size="l" />
+
+---
+
 ## Install the Vectara SDK
 
 <CodePanel
@@ -174,6 +193,10 @@ Index a core document using document parts. Core documents are more flexible tha
 structured documents and work well for unstructured content like support articles,
 FAQs, or knowledge base entries.
 
+The `documents.create` method corresponds to the HTTP POST 
+`/v2/corpora/{corpus_key}/documents` endpoint. For more details on request 
+and response parameters, see the [Index Document REST API](https://docs.vectara.com/docs/rest-api/index-document).
+
 **Key Differences from Structured Documents:**
 - Uses `document_parts` instead of `sections`
 - Parts don't have titles, only text content and optional metadata
@@ -183,6 +206,18 @@ FAQs, or knowledge base entries.
 - Content doesn't have clear section structure
 - You want maximum flexibility in document organization
 - Working with imported content from various sources
+
+To update or overwrite the document, you must delete it using 
+`client.documents.delete()` and then re-index it, as direct updates to 
+content are not supported. Attempting to re-index with the same ID and 
+different content will result in a 409 error.
+
+**Error Handling:**
+- **400 Bad Request**: Invalid document structure or parameters
+- **403 Forbidden**: Insufficient permissions - ensure API key has indexing rights
+- **404 Not Found**: Corpus doesn't exist
+- **409 Conflict**: Document with the same ID already exists with different content
+- **413 Payload Too Large**: Document exceeds size limit
 
 <Spacer size="l" />
 <Spacer size="l" />

@@ -13,7 +13,7 @@ to search corpora for relevant documents and generate summarized responses
 using Vectara's RAG-focused LLMs, supporting enterprise needs like
 legal research or customer insights.
 
-## Install the Vectara SDK
+## Prerequisites
 
 <CodePanel
   title="Install Vectara SDK"
@@ -23,8 +23,11 @@ legal research or customer insights.
   customWidth="50%"
 />
 
-Install the Vectara Python SDK to enable querying capabilities for your 
-enterprise search and RAG applications.
+**Setup Requirements:**
+1. **Install the SDK** with `pip install vectara`
+2. **Get an API key** from the [Vectara Console](https://console.vectara.com)
+3. **Create a corpus** with `client.corpora.create()` (see 
+   [Corpus Management](https://docs.vectara.com/docs/api-reference/indexing-apis/corpus))
 
 <Spacer size="l" />
 
@@ -52,6 +55,11 @@ client = Vectara(api_key="YOUR_API_KEY")`
 
 Set up authentication to securely access querying methods using an API key.
 Ensure your API key has querying permissions for the target corpora.
+
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
 
 ---
 

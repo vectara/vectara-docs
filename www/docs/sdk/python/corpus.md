@@ -13,7 +13,57 @@ methods support administrative tasks like creating, listing, updating, and
 deleting corpora, enabling you to organize data for search and Retrieval 
 Augmented Generation (RAG) operations. This guide focuses on corpus management, 
 not direct search or generation. For querying corpora (including RAG), see the 
-`query_corpus` method in the [Query API guide](https://docs.vectara.com/docs/api-reference/search-apis/search).
+`corpora.search` method in the [Query API guide](https://docs.vectara.com/docs/api-reference/search-apis/search).
+
+## Prerequisites
+
+<CodePanel
+  title="Install Vectara SDK"
+  snippets={[
+    { language: 'bash', code: `pip install vectara` }
+  ]}
+  customWidth="50%"
+/>
+
+**Setup Requirements:**
+1. **Install the SDK** with `pip install vectara`
+2. **Get an API key** from the [Vectara Console](https://console.vectara.com)
+3. **Create a corpus** with `client.corpora.create()` (see [Corpus Management](https://github.com/vectara/python-sdk/blob/main/src/vectara/corpora/client.py))
+4. **Prepare files** on disk or as file objects (PDFs, DOCX, etc.)
+
+---
+
+## Initialize the Vectara Client
+
+<CodePanel
+  title="Initialize Vectara Client"
+  snippets={[
+    {
+      language: 'python',
+      code: `from vectara import Vectara
+from vectara.core.api_error import ApiError
+
+# Initialize client with API key
+client = Vectara(api_key="YOUR_API_KEY")`
+    }
+  ]}
+  annotations={{
+    python: [
+      { line: 5, text: 'Use an API key with indexing permissions for file uploads' }
+    ]
+  }}
+  customWidth="50%"
+/>
+
+Set up authentication to securely access file upload capabilities. Ensure your 
+API key has indexing (write) permissions for the target corpus.
+
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+
+---
 
 ## Create a corpus
 
@@ -62,6 +112,10 @@ documents and metadata, enabling efficient search and RAG operations.
 This section guides you through creating a corpus with a unique identifier, making 
 it a foundational step for managing enterprise data.
 
+The `corpora.create` method corresponds to the HTTP POST `/v2/corpora` endpoint. 
+For more details on request and response parameters, see the 
+[Create Corpus REST API](https://docs.vectara.com/docs/rest-api/create-corpus).
+
 - `key` (string, required): Unique identifier for the corpus, such as "legal-docs". Must follow 
   naming conventions (alphanumeric, underscores, hyphens).
 - `name` (string, optional): Human-readable name ("Legal Knowledge Base"). Defaults to key value.
@@ -107,7 +161,10 @@ Efficiently manage your account's corpora by retrieving a paginated list. This s
 oversee multiple corpora, ensuring you can monitor and maintain your enterprise 
 data infrastructure.
 
-- `limit` (integer, optional): Maximum number of corpora to return per page (default varies).
+The `corpora.list` method corresponds to the HTTP GET `/v2/corpora` endpoint. For 
+more details on request and response parameters, see the [List Corpora REST API](https://docs.vectara.com/docs/rest-api/list-corpora).
+
+- `limit` (integer, optional): Maximum number of corpora to return per page (default: 10).
 - `page_key` (string, optional): Token for pagination, returned in previous responses.
 
 The method returns a paginated iterator that you can loop through directly. Use the iterator 
@@ -145,7 +202,12 @@ configuration and usage. This section supports administrative tasks like
 auditing or verifying corpus settings, critical for enterprise data 
 governance.
 
-- `corpus_key` (string, required): Unique identifier of the corpus (e.g., "legal-docs").
+The `corpora.get` method corresponds to the HTTP GET `/v2/corpora/{corpus_key}` 
+endpoint. For more details on request and response parameters, see the 
+[Get Corpus REST API](https://docs.vectara.com/docs/rest-api/get-corpus).
+
+- `corpus_key` (string, required): Unique identifier of the corpus 
+  ("support-docs").
 
 Returns a corpus object with complete metadata, including `id`, `name`, `description`, 
 `filter_attributes`, and usage statistics.
@@ -184,6 +246,10 @@ Modify an existing corpus's properties, such as its name or status, to adapt
 to changing business requirements. This section supports maintenance tasks 
 like archiving or enabling/disabling corpora for operational flexibility.
 
+The `corpora.update` method corresponds to the HTTP PATCH `/v2/corpora/{corpus_key}` 
+endpoint. For more details on request and response parameters, see the 
+[Update Corpus REST API](https://docs.vectara.com/docs/rest-api/update-corpus).
+
 - `corpus_key` (string, required): Unique identifier of the corpus.
 - `name` (string, optional): New name for the corpus.
 - `description` (string, optional): New description.
@@ -219,6 +285,10 @@ This is useful for archiving or maintenance scenarios.
 Permanently remove a corpus and its data to manage storage and lifecycle 
 effectively. This section is essential for enterprise data cleanup and 
 compliance with retention policies.
+
+The `corpora.delete` method corresponds to the HTTP DELETE 
+`/v2/corpora/{corpus_key}` endpoint. For more details on request and response 
+parameters, see the [Delete Corpus REST API](https://docs.vectara.com/docs/rest-api/delete-corpus).
 
 - `corpus_key` (string, required): Unique identifier of the corpus.
 
