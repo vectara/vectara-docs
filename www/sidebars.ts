@@ -562,6 +562,7 @@ const sidebars: SidebarsConfig = {
         "sdk/python/rerankers",
         "sdk/python/users",
         "sdk/python/api_keys",
+        "sdk/python/python-error-handling",
       ],
     },
   ],

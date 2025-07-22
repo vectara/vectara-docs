@@ -73,6 +73,17 @@ making it ideal for improving result quality in RAG applications.
 - Multilingual support for global applications
 - Optimized for RAG and question-answering scenarios
 
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+
+
 ---
 
 ## MMR reranker for diversity
@@ -126,6 +137,12 @@ reducing redundancy in search results while maintaining high quality.
 - Research queries requiring diverse perspectives
 - Content discovery applications
 - Recommendation systems
+
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+
 
 ---
 
@@ -355,6 +372,21 @@ improved result quality as each chunk is received.
 - Optimized result quality for chatbots and live search
 - Enhanced performance for long-form content generation
 
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+
 ---
 
 ## List available rerankers
@@ -395,6 +427,8 @@ and configurations for use in queries.
 - `page_key`: Pagination token for retrieving additional results
 
 Use the reranker names from this list in your `customer_reranker` configurations.
+
+<Spacer size="l" />
 
 ---
 
@@ -504,7 +538,7 @@ performance_config = {
             return {"success": False, "error": f"{e.status_code}: {e.body}"}`
     }
   ]}
-  customWidth="52%"
+  layout="stacked"
 />
 
 **Common Error Scenarios:**
@@ -519,7 +553,19 @@ performance_config = {
 - Use appropriate error handling for production reliability
 - Monitor reranker performance and adjust configurations
 
----
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+
+
 
 ## Next steps
 

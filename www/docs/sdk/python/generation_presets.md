@@ -18,42 +18,40 @@ customer support and data-driven insights. You will learn:
 - Techniques for customizing presets with filters and parameters
 - Strategies for handling async generation with error management
 
-## Install the Vectara SDK
+For more details on generation presets, see the 
+[Generation Presets documentation](/docs/learn/grounded-generation/select-a-summarizer).
 
+## Prerequisites
 
 <CodePanel
   title="Install Vectara SDK"
-  defaultLanguage="bash"
   snippets={[
     { language: 'bash', code: `pip install vectara` }
   ]}
-  annotations={{
-    bash: [{ line: 1, text: 'Installs the Vectara Python SDK via pip.' }]
-  }}
-  customWidth="55%"
+  customWidth="50%"
 />
 
-Install the Vectara Python SDK to access generation preset functionality.
+**Setup Requirements:**
+1. **Install the SDK** with `pip install vectara`.
+2. **Get an API key** from the [Vectara Console](https://console.vectara.com).
+3. **Create a corpus** with `client.corpora.create()`.
 
-<Spacer size="l" />
-<Spacer size="l" />
-<Spacer size="l" />
+---
 
 ## Initialize the Vectara client
 
 <CodePanel
   title="Initialize VectaraClient"
-  defaultLanguage="python"
   snippets={[
     { language: 'python', code: `from vectara import VectaraClient\n\n# Using API key\nclient = VectaraClient(api_key="your_api_key", customer_id="your_customer_id")\n\n# Using OAuth 2.0\nclient = VectaraClient(bearer_token="your_bearer_token", customer_id="your_customer_id")` }
   ]}
   annotations={{
     python: [
       { line: 4, text: 'Initialize with an API key for preset usage.' },
-      { line: 6, text: 'Use OAuth 2.0 for secure production environments.' }
+      { line: 7, text: 'Use OAuth 2.0 for secure production environments.' }
     ]
   }}
-  customWidth="55%"
+  customWidth="50%"
 />
 
 Set up authentication with API key or OAuth 2.0 for secure preset access.
@@ -64,9 +62,16 @@ Set up authentication with API key or OAuth 2.0 for secure preset access.
   - `client.documents.index`
   - `client.upload.file`
 
+<Spacer size="l" />
+
 ---
 
 ## Using Generation Presets
+
+Available presets include:
+- **mockingbird-2.0**: High accuracy and factuality for enterprise summaries.
+- **vectara-summary-ext-24-05-med-omni**: GPT-4o-based for advanced summarization 
+  and conversational responses.
 
 ### Example 1: Financial summary with Mockingbird 2.0
 

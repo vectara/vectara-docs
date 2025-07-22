@@ -28,6 +28,8 @@ conversational AI solutions.
 
 <Spacer size="l" />
 
+---
+
 ## Initialize the Vectara Client
 
 <CodePanel
@@ -52,6 +54,11 @@ client = Vectara(api_key="YOUR_API_KEY")`
 
 Configure authentication to securely access chat methods using an API key.
 Ensure your API key has query permissions for the target corpora.
+
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
 
 ---
 
@@ -100,6 +107,10 @@ Create a chat session that can maintain conversation context across multiple exc
 The session handles RAG integration automatically, providing contextual responses based 
 on your corpus content.
 
+The `create_chat_session` method corresponds to the HTTP POST `/v2/chats` endpoint. 
+For more details on request and response parameters, see the 
+[Create Chat REST API](https://docs.vectara.com/docs/rest-api/create-chat).
+
 **Key Parameters:**
 - `SearchCorporaParameters`: Defines which corpora to search and filtering options
 - `GenerationParameters`: Controls response generation quality and style
@@ -114,6 +125,26 @@ on your corpus content.
 ---
 
 ## Multi-turn conversation
+
+Demonstrate a natural multi-turn conversation where the AI maintains context 
+across exchanges. Each subsequent message builds on the previous conversation 
+history without requiring explicit context management.
+
+The chat turn method corresponds to the HTTP POST `/v2/chats/{chat_id}/turns` 
+endpoint. For more details on request and response parameters, see the 
+[Create Chat Turn REST API](https://docs.vectara.com/docs/rest-api/create-chat-turn).
+
+**Conversation Flow:**
+1. **Initial Question**: Establishes the topic and context
+2. **Follow-up Questions**: Reference previous answers using pronouns and implicit context
+3. **Automatic Context**: The session maintains conversation history transparently
+
+**Benefits:**
+- Natural conversation flow without manual context passing
+- Each response considers the full conversation history
+- Factual consistency maintained across all turns
+- Easy to implement - just call `session.chat()` for each turn
+
 
 <CodePanel
   title="Multi-turn conversation example"
@@ -171,23 +202,8 @@ on your corpus content.
       { line: 37, text: 'Third turn builds on "supervised learning" from context' }
     ]
   }}
-  customWidth="50%"
+  layout="stacked"
 />
-
-Demonstrate a natural multi-turn conversation where the AI maintains context across 
-exchanges. Each subsequent message builds on the previous conversation history without 
-requiring explicit context management.
-
-**Conversation Flow:**
-1. **Initial Question**: Establishes the topic and context
-2. **Follow-up Questions**: Reference previous answers using pronouns and implicit context
-3. **Automatic Context**: The session maintains conversation history transparently
-
-**Benefits:**
-- Natural conversation flow without manual context passing
-- Each response considers the full conversation history
-- Factual consistency maintained across all turns
-- Easy to implement - just call `session.chat()` for each turn
 
 ---
 
@@ -218,8 +234,21 @@ requiring explicit context management.
   customWidth="50%"
 />
 
-Retrieve and display chat conversation history for monitoring, analytics, or user 
-interface display. Useful for building chat interfaces that show conversation lists.
+Retrieve and display chat conversation history for monitoring, analytics, or 
+user interface display. Useful for building chat interfaces that show 
+conversation lists.
+
+The `chats.list` method corresponds to the HTTP GET `/v2/chats` endpoint. 
+For more details on request and response parameters, see the 
+[List Chats REST API](https://docs.vectara.com/docs/rest-api/list-chats).
+
+**Chat Metadata Includes:**
+- `id`: Unique chat identifier
+- `first_query`: Opening message of the conversation
+- `created_at`: Timestamp of chat creation
+- `enabled`: Whether the chat is active
+
+<Spacer size="l" />
 
 **Chat Metadata Includes:**
 - `id`: Unique chat identifier
@@ -264,14 +293,21 @@ interface display. Useful for building chat interfaces that show conversation li
   customWidth="50%"
 />
 
-Stream chat responses in real-time for better user experience in interactive applications.
-Perfect for creating responsive chat interfaces where users see responses as they're generated.
+Stream chat responses in real-time for better user experience in interactive 
+applications. Perfect for creating responsive chat interfaces where users see 
+responses as they're generated.
+
+The chat stream method corresponds to the HTTP POST
+`/v2/chats/{chat_id}/turns/stream` endpoint. 
 
 **Streaming Benefits:**
 - Immediate feedback as the response generates
 - Better perceived performance for longer responses
 - Natural conversation feel in interactive applications
 - Can be stopped early if needed
+
+<Spacer size="l" />
+<Spacer size="l" />
 
 ---
 
@@ -300,36 +336,47 @@ Perfect for creating responsive chat interfaces where users see responses as the
   ]}
   annotations={{
     python: [
-      { line: 2, text: 'Retrieve detailed information about a specific chat' },
-      { line: 6, text: 'Get all conversation turns (messages) in the chat' },
-      { line: 8, text: 'Display the complete conversation history' }
+      { line: 1, text: 'Retrieve detailed information about a specific chat' },
+      { line: 5, text: 'Get all conversation turns (messages) in the chat' },
+      { line: 9, text: 'Display the complete conversation history' }
     ]
   }}
   customWidth="50%"
 />
 
-Access and display complete conversation history for a specific chat session.
-Useful for building chat interfaces, conversation analytics, or audit trails.
+Access and display complete conversation history for a specific chat session for 
+audit, analysis, or display purposes.
+
+The `chats.get` method corresponds to the HTTP GET `/v2/chats/{chat_id}` 
+endpoint. For more details on request and response parameters, see the 
+[Get Chat REST API](https://docs.vectara.com/docs/rest-api/get-chat).
+
+The `chats.turns.list` method corresponds to the HTTP GET `/v2/chats/{chat_id}/turns` 
+endpoint. For more details on request and response parameters, see the 
+[List Chat Turns REST API](https://docs.vectara.com/docs/rest-api/list-chat-turns).
 
 **History Components:**
 - **Chat Metadata**: Overall conversation information
 - **Turns**: Individual message exchanges between user and assistant
 - **Turn Details**: Each turn includes query, answer, and timestamp
 
-**Best Practices:**
+
+## Best Practices
+
 - Monitor factual consistency scores for quality control
-- Use appropriate `max_used_search_results` (15-25 for most cases)
+- Use appropriate `max_used_search_results` (25-50 for most cases)
 - Enable chat storage (`store=True`) for multi-turn conversations
 - Implement session management for user conversations
 - Consider streaming for better user experience
+- Limit conversations to 50-100 turns to maintain context quality
 
-**Error Handling:**
+## Error Handling
+
 - **400 Bad Request**: Check query parameters and corpus configuration
 - **403 Forbidden**: Verify API key has chat permissions
 - **404 Not Found**: Ensure corpus exists and is accessible
 - **Rate Limiting**: Implement retry logic with exponential backoff
 
----
 
 ## Next steps
 

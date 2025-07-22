@@ -17,6 +17,55 @@ governance.
 - Retrieve, update, and delete documents by ID
 - Summarize content using LLM-powered tools
 
+## Prerequisites
+
+<CodePanel
+  title="Install Vectara SDK"
+  snippets={[
+    { language: 'bash', code: `pip install vectara` }
+  ]}
+  customWidth="50%"
+/>
+
+**Setup Requirements:**
+1. **Install the SDK** with `pip install vectara`.
+2. **Get an API key** from the [Vectara Console](https://console.vectara.com).
+3. **Create a corpus** with `client.corpora.create()`.
+
+---
+
+## Initialize the Vectara Client
+
+<CodePanel
+  title="Initialize Vectara Client"
+  snippets={[
+    {
+      language: 'python',
+      code: `from vectara import Vectara
+from vectara.core.api_error import ApiError
+
+# Initialize client with API key
+client = Vectara(api_key="YOUR_API_KEY")`
+    }
+  ]}
+  annotations={{
+    python: [
+      { line: 5, text: 'Use an API key with appropriate permissions' }
+    ]
+  }}
+  customWidth="50%"
+/>
+
+Set up authentication to securely access document management methods.
+
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+
+
+---
+
 ## List documents in a corpus
 
 <CodePanel
@@ -32,14 +81,14 @@ governance.
     
     for document in documents:
         print(f"Document ID: {document.id}")
-        print(f"Metadata: {document.metadata}")3`
+        print(f"Metadata: {document.metadata}")`
     }
   ]}
   annotations={{
     python: [
-      { line: 3, text: 'Returns an iterator for documents in the corpus' },
+      { line: 2, text: 'Returns an iterator for documents in the corpus' },
       { line: 4, text: 'Filter documents by metadata criteria' },
-      { line: 8, text: 'Document objects contain ID and metadata, not full content' }
+      { line: 9, text: 'Document objects contain ID and metadata, not full content' }
     ]
   }}
   customWidth="50%"
@@ -48,9 +97,11 @@ governance.
 Explore powerful methods to retrieve and manage document listings within a 
 corpus, enabling efficient data access and organization.
 
+The `documents.list` method corresponds to the HTTP GET `/v2/corpora/{corpus_key}/documents` endpoint. For more details on request and response parameters, see the [List Documents REST API](https://docs.vectara.com/docs/rest-api/list-documents).
+
 **Parameters:**
 - `corpus_key` (string, required): Unique identifier for the corpus
-- `limit` (int, optional): Maximum number of documents to return per page
+- `limit` (int, optional): Maximum number of documents to return per page (default: 10)
 - `metadata_filter` (string, optional): Filter expression for document metadata
 - `page_key` (string, optional): Token to fetch the next page of results
 
@@ -97,7 +148,7 @@ paginated results for efficient handling of large document collections.
     python: [
       { line: 2, text: 'Document ID must be unique within the corpus' },
       { line: 5, text: 'Each section can have optional title and metadata' },
-      { line: 8, text: 'Document-level metadata for filtering queries' },
+      { line: 16, text: 'Document-level metadata for filtering queries' },
       { line: 20, text: 'Use documents.create() method to index the document' }
     ]
   }}
@@ -107,6 +158,9 @@ paginated results for efficient handling of large document collections.
 Unlock the process of indexing new content into your corpus, supporting 
 structured document formats with multiple sections for enhanced search capabilities.
 
+The `documents.create` method corresponds to the HTTP POST 
+`/v2/corpora/{corpus_key}/documents` endpoint.
+
 **Key Parameters:**
 - `id` (string, required): Unique identifier for the document within the corpus
 - `type` (string, required): Must be "structured" for section-based documents  
@@ -115,6 +169,7 @@ structured document formats with multiple sections for enhanced search capabilit
 
 Use structured documents for organized content like employee handbooks, policies, 
 or technical manuals where clear section organization improves searchability.
+
 
 ---
 
@@ -142,6 +197,9 @@ or technical manuals where clear section organization improves searchability.
 
 Access specific documents efficiently by their unique IDs, enabling 
 detailed inspection or display within your corpus.
+
+The `documents.get` method corresponds to the HTTP GET 
+`/v2/corpora/{corpus_key}/documents/{document_id}` endpoint.
 
 **Parameters:**
 - `corpus_key` (string, required): Unique identifier of the corpus
@@ -181,6 +239,9 @@ not just the metadata returned by the list operation.
 Enhance document management by updating metadata fields, perfect for tagging, 
 categorization, and maintaining document status.
 
+The `documents.update` method corresponds to the HTTP PATCH 
+`/v2/corpora/{corpus_key}/documents/{document_id}` endpoint.
+
 **Parameters:**
 - `corpus_key` (string, required): Unique identifier of the corpus
 - `document_id` (string, required): Unique identifier of the document
@@ -215,6 +276,9 @@ allowing you to add new fields or modify existing ones without losing other data
 
 Manage your corpus effectively by permanently removing documents, 
 supporting data cleanup and lifecycle management.
+
+The `documents.delete` method corresponds to the HTTP DELETE 
+`/v2/corpora/{corpus_key}/documents/{document_id}` endpoint.
 
 **Parameters:**
 - `corpus_key` (string, required): Unique identifier of the corpus
@@ -255,6 +319,9 @@ might be needed later.
 
 Generate LLM-powered summaries for specific documents in your corpus. Use this for 
 content previews, search snippets, or generative UI applications.
+
+The `documents.summarize` method corresponds to the HTTP POST 
+`/v2/corpora/{corpus_key}/documents/{document_id}/summarize` endpoint.
 
 **Parameters:**
 - `corpus_key` (string, required): Unique identifier of the corpus

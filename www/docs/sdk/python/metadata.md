@@ -38,39 +38,64 @@ You can set metadata at:
   snippets={[
     {
       language: "python",
-      code: `doc = StructuredDocument(
-        id="employee-handbook-2025",
-        type="structured",
-        metadata={
-            "level": "document",
-            "department": "hr",
-            "year": 2024,
-            "doc_type": "policy"
-        },
-        sections=[
-            StructuredDocumentSection(
-                title="Vacation Policy",
-                text="Employees receive 20 days of PTO.",
-                metadata={"section": "vacation", "policy_level": "global"}
-            )
-        ]
-    )
-    
-    response = client.documents.create(
-        corpus_key="hr-docs",
-        request=doc
-    )`
+      code: `import os
+from vectara import Vectara, StructuredDocument, StructuredDocumentSection
+from vectara.core.api_error import ApiError
+
+# Set your API key
+api_key = os.getenv("VECTARA_API_KEY", "YOUR_API_KEY")
+if api_key == "YOUR_API_KEY":
+    print("Please set VECTARA_API_KEY environment variable")
+    exit(1)
+
+# Initialize client
+client = Vectara(api_key=api_key)
+
+# Create corpus if not exists (assumes admin permissions)
+client.corpora.create(
+    key="hr-docs",
+    name="HR Documents"
+)
+
+# Create document with metadata
+doc = StructuredDocument(
+    id="employee-handbook-2025",
+    type="structured",
+    metadata={
+        "level": "document",
+        "department": "hr",
+        "year": 2024,
+        "doc_type": "policy"
+    },
+    sections=[
+        StructuredDocumentSection(
+            title="Vacation Policy",
+            text="Employees receive 20 days of PTO.",
+            metadata={"section": "vacation", "policy_level": "global"}
+        )
+    ]
+)
+
+# Index the document
+response = client.documents.create(
+    corpus_key="hr-docs",
+    request=doc
+)`
     }
   ]}
   annotations={{
     python: [
-      { line: 4, text: 'Document-level metadata (available for filtering)' },
-      { line: 14, text: 'Section-level metadata (for part-level filters)' }
+      { line: 15, text: 'Create corpus first (requires admin permissions)' },
+      { line: 21, text: 'Document-level metadata (available for filtering)' },
+      { line: 31, text: 'Section-level metadata (for part-level filters)' },
+      { line: 39, text: 'Index into the corpus' }
     ]
   }}
   layout="stacked"
 />
 
+Assumes you have created filter attributes in the corpus for the metadata 
+fields you want to filter on.
 
 ## Querying with metadata filters
 
@@ -87,34 +112,48 @@ parts.
   snippets={[
     {
       language: "python",
-      code: `search = SearchCorporaParameters(
-        corpora=[
-            KeyedSearchCorpus(
-                corpus_key="hr-docs",
-                metadata_filter="department = 'hr' AND year = 2024"
-            )
-        ]
-    )
-    
-    response = client.query(
-        query="How much PTO do employees receive?",
-        search=search
-    )
-    
-    if hasattr(response, 'search_results') and response.search_results:
-        print(f"✅ Found {len(response.search_results)} results")
-        for result in response.search_results:
-            print(f"Score: {result.score:.3f}")
-            print(f"Text: {result.text[:100]}...")
-            print("---")
-    else:
-        print("⚠️ No results found")`
+      code: `import os
+from vectara import Vectara, SearchCorporaParameters, KeyedSearchCorpus
+from vectara.core.api_error import ApiError
+
+# Set your API key
+api_key = os.getenv("VECTARA_API_KEY", "YOUR_API_KEY")
+if api_key == "YOUR_API_KEY":
+    print("Please set VECTARA_API_KEY environment variable")
+    exit(1)
+
+# Initialize client
+client = Vectara(api_key=api_key)
+
+# Query with filter
+search = SearchCorporaParameters(
+    corpora=[
+        KeyedSearchCorpus(
+            corpus_key="hr-docs",
+            metadata_filter="department = 'hr' AND year = 2024"
+        )
+    ]
+)
+
+response = client.query(
+    query="How much PTO do employees receive?",
+    search=search
+)
+
+if hasattr(response, 'search_results') and response.search_results:
+    print(f"✅ Found {len(response.search_results)} results")
+    for result in response.search_results:
+        print(f"Score: {result.score:.3f}")
+        print(f"Text: {result.text[:100]}...")
+        print("---")
+else:
+    print("⚠️ No results found")`
     }
   ]}
   annotations={{
     python: [
-      { line: 5, text: "Use AND/OR for advanced filtering" },
-      { line: 11, text: "Enter your search query" }
+      { line: 19, text: "Use AND/OR for advanced filtering" },
+      { line: 24, text: "Enter your search query" }
     ]
   }}
   layout="stacked"

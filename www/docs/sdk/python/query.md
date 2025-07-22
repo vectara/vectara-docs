@@ -24,12 +24,13 @@ legal research or customer insights.
 />
 
 **Setup Requirements:**
-1. **Install the SDK** with `pip install vectara`
-2. **Get an API key** from the [Vectara Console](https://console.vectara.com)
-3. **Create a corpus** with `client.corpora.create()` (see 
-   [Corpus Management](https://docs.vectara.com/docs/api-reference/indexing-apis/corpus))
+1. **Install the SDK** with `pip install vectara`.
+2. **Get an API key** from the [Vectara Console](https://console.vectara.com).
+3. **Create a corpus** with `client.corpora.create()`.
 
 <Spacer size="l" />
+
+---
 
 ## Initialize the Vectara Client
 
@@ -113,12 +114,18 @@ Perform a query with Retrieval Augmented Generation (RAG) to get both search res
 and an AI-generated summary. This is the most common pattern for getting comprehensive 
 answers from your corpus.
 
+The `client.query` method corresponds to the HTTP POST `/v2/query` endpoint. For 
+more details on request and response parameters, see the 
+[Query REST API](https://docs.vectara.com/docs/rest-api/query-corpus).
+
 **Key Parameters:**
 - `generation_preset_name`: `vectara-summary-ext-24-05-med-omni` provides high-quality, 
-  comprehensive responses using GPT-4o
+  comprehensive responses using GPT-4o.  
+  See [Generation Presets](/docs/learn/grounded-generation/select-a-summarizer) for a list of currently 
+  supported prompts.
 - `max_used_search_results`: 50 results ensures the LLM has substantial context for 
-  generation
-- `enable_factual_consistency_score`: Provides confidence score for the generated summary
+  generation.
+- `enable_factual_consistency_score`: Provides confidence score for the generated summary.
 
 **Returns:**
 - `summary`: AI-generated summary based on search results
@@ -196,10 +203,20 @@ prompts for specialized use cases.
 - **Reranking**: Improves result relevance using specialized models
 - **Custom Prompts**: Tailor AI responses for specific domains or formats
 
-**Best Practices:**
-- Use metadata filters to narrow scope before expensive generation
-- Rerankers improve quality but add latency - use for important queries
-- Custom prompts work best with domain-specific instructions
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+
 
 ---
 
@@ -217,7 +234,8 @@ prompts for specialized use cases.
     generation = GenerationParameters(
         generation_preset_name="vectara-summary-ext-24-05-med-omni",
         max_used_search_results=20,
-        response_language="eng"
+        response_language="eng",
+        enable_factual_consistency_score=True
     )
     
     # Stream the response for real-time display
@@ -228,18 +246,25 @@ prompts for specialized use cases.
     )
     
     print("Streaming response:")
+    summary = ""
+    fcs = None
     for chunk in response:
         if hasattr(chunk, 'generation_chunk') and chunk.generation_chunk:
+            summary += chunk.generation_chunk
             print(chunk.generation_chunk, end='', flush=True)
-    print("\\n")  # New line after streaming complete`
+        elif hasattr(chunk, 'factual_consistency_score'):
+            fcs = chunk.factual_consistency_score
+    print("\\n")  # New line after streaming complete
+    print(f"Factual Consistency Score: {fcs}")`
     }
   ]}
   annotations={{
     python: [
       { line: 6, text: 'Use the GPT-4o generation preset' },
-      { line: 12, text: 'Use query_stream for real-time response generation' },
-      { line: 20, text: 'Process chunks as they arrive' },
-      { line: 21, text: 'Display text immediately for better user experience' }
+      { line: 9, text: 'Enable FCS for streaming queries' },
+      { line: 13, text: 'Use query_stream for real-time response generation' },
+      { line: 22, text: 'Process generation chunks as they arrive' },
+      { line: 25, text: 'Capture FCS when it arrives in the stream' }
     ]
   }}
   customWidth="50%"
@@ -247,6 +272,9 @@ prompts for specialized use cases.
 
 Stream query responses in real-time for better user experience in interactive 
 applications like chatbots or live search interfaces.
+
+The `client.query_stream` method corresponds to the HTTP POST `/v2/query_stream` 
+endpoint.
 
 **Streaming Benefits:**
 - Immediate feedback to users as content generates
@@ -257,6 +285,12 @@ applications like chatbots or live search interfaces.
 - Interactive chat interfaces
 - Live search suggestions
 - Long-form content generation where users want to see progress
+
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
 
 ---
 
