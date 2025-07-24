@@ -271,7 +271,7 @@ This is useful for archiving or maintenance scenarios.
   snippets={[
     {
       language: 'python',
-      code: `client.corpora.delete(corpus_key="support-corpus")`
+      code: `client.corpora.delete(corpus_key="support-docs")`
     }
   ]}
   annotations={{

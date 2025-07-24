@@ -138,7 +138,7 @@ suitable for applications requiring token-based authentication.
     {
       language: 'python',
       code: `response = client.corpora.create(
-      key=corpus_key,
+      key=quickstart-corpus,
       name="Quick Start Docs"
   )`
     }
@@ -303,7 +303,9 @@ uploading files (PDFs).
   snippets={[
     {
       language: 'python',
-      code: `from vectara import SearchCorporaParameters
+      code: `from vectara import SearchCorporaParameters, Vectara
+
+client = Vectara(api_key="YOUR_API_KEY")
 
 search = SearchCorporaParameters(
     corpora=[{"corpus_key": "quickstart-corpus"}]
@@ -314,13 +316,13 @@ response = client.query(
     search=search
 )
 
-print(response.results)`
+print(response.search_result)`
     }
   ]}
   annotations={{
     python: [
-      { line: 8, text: "Query your corpus with natural language" },
-      { line: 12, text: "Print search results" }
+      { line: 10, text: "Query your corpus with natural language" },
+      { line: 14, text: "Print search results" }
     ]
   }}
   customWidth="50%"
@@ -501,7 +503,7 @@ presets.
       code: `from vectara import Vectara
 
 # Assuming client is already created as in step 2
-response = client.corpora.delete(key="quickstart-docs")
+response = client.corpora.delete("quickstart-docs")
 print("✅ Corpus deleted")`
     }
   ]}

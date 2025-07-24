@@ -130,7 +130,7 @@ search = SearchCorporaParameters(
     corpora=[
         KeyedSearchCorpus(
             corpus_key="hr-docs",
-            metadata_filter="department = 'hr' AND year = 2024"
+            metadata_filter="doc.department = 'hr' AND doc.year = 2024"
         )
     ]
 )

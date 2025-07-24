@@ -62,6 +62,8 @@ Set up authentication to securely access document management methods.
 <Spacer size="l" />
 <Spacer size="l" />
 <Spacer size="l" />
+<Spacer size="l" />
+
 
 
 ---
@@ -170,6 +172,11 @@ The `documents.create` method corresponds to the HTTP POST
 Use structured documents for organized content like employee handbooks, policies, 
 or technical manuals where clear section organization improves searchability.
 
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+
 
 ---
 
@@ -220,8 +227,8 @@ not just the metadata returned by the list operation.
     {
       language: 'python',
       code: `client.documents.update(
-        corpus_key="tech-guides",
-        document_id="network-setup-v2",
+        corpus_key="employee-handbook",
+        document_id="policy-manual-v2",
         metadata={"priority": "urgent", "last_updated": "2025-07-02"}
     )`
     }
@@ -261,7 +268,7 @@ allowing you to add new fields or modify existing ones without losing other data
       language: 'python',
       code: `client.documents.delete(
         corpus_key="employee-handbook",
-        document_id="policy-manual-2024"
+        document_id="policy-manual-v2"
     )`
     }
   ]}
@@ -302,16 +309,16 @@ might be needed later.
         corpus_key="product-docs",
         document_id="user-guide-v2",
         llm_name="vectara-summary-ext-24-05-med-omni",
-        prompt_template="Provide a concise summary of the following \ndocument: $document_content"
-    )`
+        prompt_template="Provide a concise summary of the following document: $document_content"
+      )`
     }
   ]}
   annotations={{
     python: [
       { line: 2, text: 'Specify the corpus key' },
-      { line: 2, text: 'Specify the document ID' },
-      { line: 5, text: 'Specify the LLM model for summarization' },
-      { line: 6, text: 'Custom prompt template with $document_content placeholder' },
+      { line: 3, text: 'Specify the document ID' },
+      { line: 4, text: 'Specify the LLM model for summarization' },
+      { line: 5, text: 'Custom prompt template with $document_content placeholder' },
     ]
   }}
   customWidth="50%"

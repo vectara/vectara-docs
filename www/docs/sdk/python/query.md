@@ -177,7 +177,7 @@ Use this pattern when you need both specific document excerpts and a synthesized
   )
   
   print(f"Summary: {response.summary}")
-  print(f"Response based on {len(response.search_results)} filtered results"))`
+  print(f"Response based on {len(response.search_results)} filtered results")`
     }
   ]}
   annotations={{
@@ -203,6 +203,11 @@ prompts for specialized use cases.
 - **Reranking**: Improves result relevance using specialized models
 - **Custom Prompts**: Tailor AI responses for specific domains or formats
 
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
 <Spacer size="l" />
 <Spacer size="l" />
 <Spacer size="l" />
@@ -291,6 +296,9 @@ endpoint.
 <Spacer size="l" />
 <Spacer size="l" />
 <Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+
 
 ---
 
