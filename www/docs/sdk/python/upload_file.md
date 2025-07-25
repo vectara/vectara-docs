@@ -214,7 +214,7 @@ result in a 409 error.
 
 ---
 
-## Upload from file object
+## Upload from file object (streaming)
 
 <CodePanel
   title="Upload from file object (streaming)"
@@ -224,11 +224,10 @@ result in a 409 error.
       code: `filename = "research_paper_2025.pdf"
     
     with open(filename, "rb") as file_obj:
-        file_content = file_obj.read()
-        
+        # No read() here - pass the file object directly for streaming
         response = client.upload.file(
             corpus_key="research-papers",
-            file=file_content,
+            file=file_obj,
             filename=filename,
             metadata={
                 "document_type": "research_paper",
@@ -241,27 +240,22 @@ result in a 409 error.
   ]}
   annotations={{
     python: [
-      { line: 3, text: 'Process file object directly without intermediate storage' },
-      { line: 14, text: 'Boolean metadata values for precise filtering' }
+      { line: 3, text: 'Pass file object directly without reading into memory' },
+      { line: 13, text: 'Boolean metadata values for precise filtering' }
     ]
   }}
   customWidth="50%"
 />
 
-Upload files directly from file objects, perfect for streaming scenarios where files 
-come from cloud storage, APIs, or other dynamic sources without local file storage.
+Upload files directly from file objects without loading the entire content into memory. 
+This is ideal for streaming scenarios where files are large or come from dynamic sources 
+like cloud storage (e.g., S3 downloads), APIs, or webhooks, avoiding memory overhead.
 
 **Streaming Use Cases:**
 - Files downloaded from cloud storage (S3, Google Cloud, etc.)
 - Content received through APIs or webhooks
 - Temporary files that don't need local persistence
 - Batch processing from external systems
-
-To update or overwrite an existing file, you must first delete the document 
-using `client.documents.delete()` and then re-upload it, as direct updates 
-to content are not supported. The file name is used as the document ID. 
-Attempting to upload a file with the same name but different content will 
-result in a 409 error.
 
 **Error Handling:**
 - **400 Bad Request**: Invalid parameters or unsupported file type
@@ -270,11 +264,6 @@ result in a 409 error.
 - **409 Conflict**: Document with same ID exists but different content
 - **413 Payload Too Large**: File exceeds size limit
 
-<Spacer size="l" />
-<Spacer size="l" />
-<Spacer size="l" />
-<Spacer size="l" />
-<Spacer size="l" />
 
 ---
 
