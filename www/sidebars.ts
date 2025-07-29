@@ -134,6 +134,21 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: "category",
+      label: "Agent Platform",
+      link: {
+        type: 'doc',
+        id: 'agents/agent-platform-overview',
+      },
+      items: [
+        "agents/agents",
+        "agents/tool-servers",
+        "agents/tools",
+        "agents/instructions",
+        "agents/sessions",
+      ],
+    },
+    {
+      type: "category",
       label: "Observability and Evaluation",
       link: {
         type: 'doc',
@@ -524,6 +539,28 @@ const sidebars: SidebarsConfig = {
           type: "category",
           label: "Factual Consistency Evaluation APIs",
           items: ["api-reference/hhem-apis/evaluate-factual-consistency"],
+        },
+        {
+          type: "category",
+          label: "Agent APIs",
+          link: {
+            type: 'doc',
+            id: 'api-reference/agent-apis/agent-apis-overview',
+          },
+          items: [
+            {
+              type: 'category',
+              label: 'Agent Management APIs',
+              collapsed: false,
+              items: [
+                "api-reference/agent-apis/create-agent",
+                "api-reference/agent-apis/list-agents",
+                "api-reference/agent-apis/get-agent",
+                "api-reference/agent-apis/update-agent",
+                "api-reference/agent-apis/delete-agent"
+              ]
+            },
+         ],
         },
       ],
     },

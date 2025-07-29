@@ -8,110 +8,77 @@ sidebar_label: The Vectara Platform
 import { Grid } from "@site/src/components/ui/Grid";
 import { Spacer } from "@site/src/components/ui/Spacer";
 import { TopicButton } from "@site/src/components/ui/TopicButton";
-
 import CodePanel from '@site/src/theme/CodePanel';
 
-
-<Grid columns={2}>
-  <TopicButton
-    title="Release Notes"
-    href="/docs/release-notes"
-  >
-    Discover new product features, major updates, and key improvements to the documentation.
-  </TopicButton>
-  <TopicButton title="Changelog" href="/docs/changelog">
-    Track all documentation updates, improvement, API enhancements, and bug fixes.
-  </TopicButton>
-</Grid>
+Vectara is the trusted AI Agent and Assistant platform that enables enterprises 
+to quickly build GenAI applications grounded in their own data. Our end-to-end 
+Retrieval Augmented Generation (RAG) platform minimizes hallucinations, 
+supports 100+ languages, and delivers enterprise-grade security for 
+production-ready AI solutions. User data remains secure because{" "}
+<Config v="names.product" /> never trains on customer data.
 
 <Spacer size="l" />
 
-<Grid columns={2}>
-  <TopicButton
-    title="API Reference V2"
-    href="/docs/rest-api/vectara-rest-api-v-2"
-  >
-    Try out Vectara's REST APIs directly in your browser.
-  </TopicButton>
-  <TopicButton title="Quick Start tutorial" href="/docs/quickstart">
-    Use Vectara to ground answers in your data in a few minutes.
-  </TopicButton>
-</Grid>
+<div style={{ display: 'flex', gap: '20px' }}>
+  <div style={{ flex: 1 }}>
+    <h3>Business Overview</h3>
+    <p>For decision-makers evaluating Vectara, transform your documents and data into intelligent AI assistants that provide accurate, instant answers.</p>
+    <p><ul>
+    <li>Reduce information search time by 70%</li>
+    <li>Deploy production-ready AI in a few days</li>
+    <li>Reduce AI hallucinations with grounded responses</li>
+    <li>Enterprise-grade security (SOC 2, HIPAA compliant)</li>
+    <li>Check out the [**Release notes**](/docs/release-notes) for the latest features and enhancements.</li>
 
-<Spacer size="l" />
+    </ul></p>
+  </div>
+  <div style={{ flex: 1 }}>
+    <h3>Developer Quick Start</h3>
+    <p>For technical teams building with Vectara, integrate powerful RAG capabilities into your applications with simple REST APIs and pre-built components.</p>
+    <p><ul>
+    <li>Complete the [**quick start tutorial**](quickstart) and use Vectara to ground answers in your data in a few minutes.</li>
+    <li>Try the [**Vectara REST APIs**](/docs/rest-api) directly in your browser.</li>
+    <li>View [**API recipes**](api-recipes) to upload a file and query the data.</li>
+    <li>Explore our developer resources to accelerate integration and see examples for [**common use cases**](/docs/use-case-exploration).</li>
+    </ul></p>
+  </div>
+</div>
 
-<p>
-  <Config v="names.product" /> is an end-to-end Retrieval Augmented Generation
-  as-a-Service (RAGaaS) platform for product builders to embed powerful
-  generative AI capabilities into applications with extraordinary results.{" "}
-  <Config v="names.product" /> offers significant improvements over traditional
-  searches by understanding the context and meaning of your data. This
-  revolutionary technology enables <Config v="names.product" /> to drive
-  insights and provide more accurate responses to user queries, assisting
-  decision-making processes. User data remains secure because{" "}
-  <Config v="names.product" /> never trains on customer data.
-</p>
 
-## Welcome to the Answer Engine
+## **AI assistants and agents**
 
-The <Config v="names.product"/> team envisions a future where generative AI powers every
-application to deliver contextually accurate responses and give the right
-answers and actions. <Config v="names.product"/> is built on a solid **hybrid search** core
-to enable better generative outcomes. Traditional search technologies focus
-on keywords, which limit their ability to understand complex queries. <Config v="names.product"/>
-deploys advanced **zero-shot** models and **conversational search**
-capabilities to understand, interpret, and respond to user queries with remarkable
-precision.
+Build intelligent systems that go beyond simple Q&A:
 
-Vectara summarizes search results on complex queries while providing factual
-citations from your data. <Config v="names.product"/> provides the best hybrid search
-core and superior language understanding for ingestion and retrieval. <Config v="names.product"/>
-can become your answer engine.
+- **AI Assistants**: Answer complex questions by forming research plans and 
+executing multi-step queries across your data.
+- **AI Agents**: Take autonomous actions on behalf of users - schedule 
+meetings, send notifications, update systems
+- **Agentic RAG**: Leverage our Python package for building trusted, 
+hallucination-resistant autonomous agents
 
-## Developer-focused, API-first, Secure
+### **Hallucination-resistant AI**
+Unlike generic AI models, Vectara's responses are grounded in your actual data:
 
-Designed for developers with an API-first approach, <Config v="names.product"/> is
-the optimal choice to **integrate generative AI search** into your
-applications. This complete end-to-end platform provides easy ingestion and
-simple APIs. The <Config v="names.product"/> Generative AI platform enables
-developers with the flexibility to build a [wide range of applications](/docs/use-case-exploration) with
-powerful search experiences.
+- **Factual Consistency Scoring**: Confidence ratings for every AI-generated response
+- **Source Citations**: Every answer links back to specific documents and passages
+- **Retrieval-First Architecture**: AI can only use information that exists in your indexed content
 
-The <Config v="names.product"/> platform never trains on customer data which enables
-businesses to embed generative AI capabilities without the risk of data or
-privacy violations. <Config v="names.product"/> provides support for customer-managed
-keys, encryption at rest and during transit, client-configurable data
-retention, and more.
+### **Best-in-class search technology**
+Our hybrid search combines the best of semantic and keyword search:
 
-### :star2: Ready to Dive In? Check Out Our API Reference! :star2:
+- **Semantic Understanding**: Find information by meaning, not just keywords
+- **100+ Language Support**: Search across documents in different languages simultaneously  
+- **Sub-100ms Response Times**: Ultra-fast retrieval for real-time applications
+- **Advanced Filtering**: Narrow results by metadata, document type, recency, and custom attributes
 
-If you're ready to dive into our APIs, make your way to our [**API Reference V2.0**](/docs/rest-api/vectara-rest-api-v-2)!
-This interactive environment allows you to experiment with <Config v="names.product"/>'s REST APIs
-directly from your browser! Tailored for developers, the API Reference
-offers a hands-on experience to understand and demonstrate our capabilities.
+### **Enterprise-Ready Security**
+Built for mission-critical applications with complete data control:
 
-## Solve the Hallucination Problem
+- **Zero Training on Customer Data**: Your content remains private and secure
+- **SOC 2 Type II Certified**: Enterprise-grade security and compliance
+- **Flexible Deployment**: Cloud, hybrid, or on-premises options
+- **Fine-Grained Access Control**: Role-based permissions and audit logging
 
-AI content generators often create **hallucinations** – false information
-outside of the raw, factual data - they make stuff up. These hallucinations
-lead to inaccurate and misleading responses <Config v="names.product"/> addresses
-this problem through **Retrieval Augmented Generation (RAG)**, meaning it grounds the search
-results in the uploaded data. By focusing on facts and reducing
-hallucinations, <Config v="names.product"/> enhances trust in AI-powered decision making.
-
-## Language Agnostic
-
-Use <Config v="names.product"/> to search across multiple languages, eliminating language
-barriers and enabling users to find what they need, regardless of the
-language they use. This **cross-language** approach provides a seamless
-search experience for users around the world. The best answer may be
-written in German but a user asked the question in Spanish.
-
-The <Config v="names.product"/> platform is more than just an AI product. It is
-a pioneer in the realm of **neural search**, leading the way to harness the
-power of your data. <Config v="names.product"/> wants to transform the way
-developers interact with data and unlock a world of insights at their
-fingertips. Welcome to the future of information interaction!
 
 ## Not sure where to start?
 
@@ -125,3 +92,8 @@ start your [30-day free trial](/docs/vectara-trial). Here are some other ideas:
 - View our code samples about how to use the Vectara platform at our [GitHub getting started repository](https://github.com/vectara/getting-started).
 - Grab the [full protobuf definitions](/docs/api-reference/protobuf-definitions) and start building using gRPC.
 - Visit our [forums](https://discuss.vectara.com/) to ask any questions or provide any suggestions.
+
+
+*Vectara enables you to build trusted AI assistants and agents that deliver accurate, hallucination-resistant responses grounded in your own data. Get production-ready in days, not months.*
+
+
