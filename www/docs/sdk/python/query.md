@@ -14,7 +14,9 @@ using Vectara's RAG-focused LLMs, supporting enterprise needs like
 legal research or customer insights.
 
 :::info Prerequisites
-This guide assumes you have a corpus called `my-docs` with indexed documents. If you haven't created a corpus yet, follow the [Quick Start](/docs/sdk/python/python-quickstart) guide to set up your first corpus and add some documents.
+This guide assumes you have a corpus called `my-docs` with indexed documents and filter attributes 
+defined. If you haven't created a corpus yet, follow the [Quick Start](/docs/sdk/python/python-quickstart) guide 
+to set up your first corpus and add some documents.
 :::
 
 ## Prerequisites
@@ -147,10 +149,13 @@ Use this pattern when you need both specific document excerpts and a synthesized
   snippets={[
     {
       language: 'python',
-      code: `search = SearchCorporaParameters(
+      code: `# Note: This example assumes your corpus has filter attributes defined
+# for 'department' and 'year'. See Corpus guide for creating filter attributes.
+
+search = SearchCorporaParameters(
     corpora=[{
         "corpus_key": "my-docs",
-        "metadata_filter": "doc.os = 'MacOS'",
+        "metadata_filter": "doc.department = 'hr' AND doc.year >= 2024",
         "lexical_interpolation": 0.3
     }],
     context_configuration={
@@ -171,11 +176,11 @@ generation = GenerationParameters(
     max_used_search_results=25,
     response_language="eng",
     enable_factual_consistency_score=True,
-    prompt_template="You are a technical support assistant. Summarize the \nfollowing search results $vectaraQueryResults"
+    prompt_template="You are a technical support assistant. Summarize the \\nfollowing search results $vectaraQueryResults"
 )
 
 response = client.query(
-    query="Summarize recent MacOS issues after the latest upgrade",
+    query="What are the current HR policies?",
     search=search,
     generation=generation
 )
@@ -186,12 +191,12 @@ print(f"Response based on {len(response.search_results)} filtered results")`
   ]}
   annotations={{
     python: [
-      { line: 4, text: 'Filter results by metadata criteria' },
-      { line: 5, text: 'Balance lexical and semantic search (0.3 = 30% lexical)' },
-      { line: 7, text: 'Add context sentences around matches' },
-      { line: 13, text: 'Use reranker to improve result quality' },
-      { line: 21, text: 'Use the GPT-4o generation preset' },
-      { line: 25, text: 'Custom prompt template for specialized responses' }
+      { line: 7, text: 'Filter results by metadata - requires corpus filter attributes' },
+      { line: 8, text: 'Balance lexical and semantic search (0.3 = 30% lexical)' },
+      { line: 10, text: 'Add context sentences around matches' },
+      { line: 16, text: 'Use reranker to improve result quality' },
+      { line: 24, text: 'Use the GPT-4o generation preset' },
+      { line: 28, text: 'Custom prompt template for specialized responses' }
     ]
   }}
   customWidth="50%"
@@ -201,11 +206,13 @@ Execute sophisticated queries with metadata filtering, reranking, and custom gen
 prompts for specialized use cases.
 
 **Advanced Features:**
-- **Metadata Filtering**: Use `doc.field = 'value'` syntax to filter by document properties
+- **Metadata Filtering**: Use `doc.field = 'value'` syntax to filter by document properties (requires corpus filter attributes)
 - **Lexical Interpolation**: 0.3 balances keyword matching (30%) with semantic search (70%)
 - **Context Configuration**: Adds surrounding sentences for better understanding
 - **Reranking**: Improves result relevance using specialized models
 - **Custom Prompts**: Tailor AI responses for specific domains or formats
+
+**Important:** Metadata filtering requires that your corpus has filter attributes defined for the fields you want to filter on. See the [Corpus guide](/docs/sdk/python/corpus) for creating filter attributes.
 
 <Spacer size="l" />
 <Spacer size="l" />
@@ -315,17 +322,39 @@ endpoint.
   snippets={[
     {
       language: 'python',
-      code: `response = client.query(
-    query="search term",
-    search=search_params,
-    generation=generation_params
-)
-
-# Check for warnings or issues
-if response.factual_consistency_score < 0.5:
-    print("Warning: Low factual consistency score")`
+      code: `try:
+    search = SearchCorporaParameters(
+        corpora=[{
+            "corpus_key": "my-docs",
+            "metadata_filter": "doc.department = 'hr'"  # Requires filter attribute
+        }]
+    )
+    
+    response = client.query(
+        query="search term",
+        search=search,
+        generation=generation_params
+    )
+    
+    # Check for warnings or issues
+    if response.factual_consistency_score < 0.5:
+        print("Warning: Low factual consistency score")
+        
+except BadRequestError as e:
+    if "Unrecognized references" in str(e):
+        print("Error: Corpus missing filter attributes for metadata filtering")
+        print("Create corpus with filter_attributes to enable metadata filtering")
+    else:
+        print(f"Query error: {e}")`
     }
   ]}
+  annotations={{
+    python: [
+      { line: 5, text: 'Metadata filter requires corpus filter attributes' },
+      { line: 18, text: 'Handle filter attribute errors gracefully' },
+      { line: 19, text: 'Provide helpful error messages for common issues' }
+    ]
+  }}
   customWidth="50%"
 />
 
@@ -334,7 +363,7 @@ if response.factual_consistency_score < 0.5:
 - Monitor factual consistency scores for quality control
 - Start with simple queries before adding advanced features
 - Use appropriate `max_used_search_results` (50 for comprehensive, 10-20 for fast responses)
-- Test metadata filters with small result sets first
+- Ensure corpus has filter attributes before using metadata filters
 
 **Performance Tips:**
 - Cache frequently used search configurations
@@ -342,15 +371,19 @@ if response.factual_consistency_score < 0.5:
 - Consider pagination for very large result sets
 - Monitor query latency and adjust parameters accordingly
 
+**Metadata Filtering Requirements:**
+- Filter attributes must be defined when creating the corpus
+- Metadata field names must exactly match filter attribute names
+- Use `doc.` prefix for document-level and `part.` for part-level filters
+
 ---
 
 ## Next steps
 
 After understanding queries, explore:
 
-- **Chat sessions**: Use `client.chats.create()` for conversational interfaces
+- **Chat sessions**: Use `client.chats.create()` for conversational interfaces with the [Chats guide](/docs/sdk/python/chats)
+- **Metadata filtering**: Learn advanced filtering techniques with the [Metadata guide](/docs/sdk/python/metadata)
 - **Batch processing**: Process multiple queries efficiently
 - **Custom rerankers**: Train domain-specific reranking models
 - **Advanced analytics**: Track query performance and user patterns
-
-For building conversational experiences, see the [Chats guide](/docs/sdk/python/chats).

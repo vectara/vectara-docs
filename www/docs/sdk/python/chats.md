@@ -13,56 +13,11 @@ chat history. These methods enable you to create chats, maintain multi-turn conv
 and manage chat history, ideal for building interactive applications like support chatbots 
 or customer service platforms.
 
-## Prerequisites
-
-<CodePanel
-  title="Install Vectara SDK"
-  snippets={[
-    { language: 'bash', code: `pip install vectara` }
-  ]}
-  customWidth="50%"
-/>
-
-**Setup Requirements:**
-1. **Install the SDK** with `pip install vectara`
-2. **Get an API key** from the [Vectara Console](https://console.vectara.com)
-3. **Create a corpus** with `client.corpora.create()` (see [Corpus Management](https://github.com/vectara/python-sdk/blob/main/src/vectara/corpora/client.py))
-4. **Prepare files** on disk or as file objects (PDFs, DOCX, etc.)
-
----
-
-## Initialize the Vectara Client
-
-<CodePanel
-  title="Initialize Vectara Client"
-  snippets={[
-    {
-      language: 'python',
-      code: `from vectara import Vectara
-from vectara.core.api_error import ApiError
-
-# Initialize client with API key
-client = Vectara(api_key="YOUR_API_KEY")`
-    }
-  ]}
-  annotations={{
-    python: [
-      { line: 5, text: 'Use an API key with indexing permissions for file uploads' }
-    ]
-  }}
-  customWidth="50%"
-/>
-
-Set up authentication to securely access file upload capabilities. Ensure your 
-API key has indexing (write) permissions for the target corpus.
-
-<Spacer size="l" />
-<Spacer size="l" />
-<Spacer size="l" />
-<Spacer size="l" />
-
-
----
+:::info Prerequisites
+This guide assumes you have a corpus called `my-docs` with indexed documents. If you haven't 
+created a corpus yet, follow the [Quick Start](/docs/sdk/python/python-quickstart) guide to set 
+up your first corpus and add some documents.
+:::
 
 ## Create a chat session
 
@@ -72,24 +27,24 @@ API key has indexing (write) permissions for the target corpus.
     {
       language: 'python',
       code: `search = SearchCorporaParameters(
-        corpora=[{"corpus_key": "support-docs"}]
-    )
-    generation = GenerationParameters(
-        generation_preset_name="vectara-summary-ext-24-05-med-omni",
-        max_used_search_results=20,
-        response_language="eng",
-        enable_factual_consistency_score=True,
-    )
-    chat = ChatParameters(store=True)
-    session = client.create_chat_session(
-        search=search,
-        generation=generation,
-        chat_config=chat
-    )
-    response = session.chat(query="How do I reset my password?")
-    print(f"Chat ID: {response.chat_id}")
-    print(f"Answer: {response.answer}")
-    print(f"Factual Consistency: {response.factual_consistency_score}")`
+    corpora=[{"corpus_key": "my-docs"}]
+)
+generation = GenerationParameters(
+    generation_preset_name="vectara-summary-ext-24-05-med-omni",
+    max_used_search_results=20,
+    response_language="eng",
+    enable_factual_consistency_score=True,
+)
+chat = ChatParameters(store=True)
+session = client.create_chat_session(
+    search=search,
+    generation=generation,
+    chat_config=chat
+)
+response = session.chat(query="How do I reset my password?")
+print(f"Chat ID: {response.chat_id}")
+print(f"Answer: {response.answer}")
+print(f"Factual Consistency: {response.factual_consistency_score}")`
     }
   ]}
   annotations={{
@@ -128,6 +83,65 @@ For more details on request and response parameters, see the
 
 ## Multi-turn conversation
 
+<CodePanel
+  title="Multi-turn conversation example"
+  snippets={[
+    {
+      language: 'python',
+      code: `search = SearchCorporaParameters(
+    corpora=[{"corpus_key": "my-docs"}]
+)
+
+generation = GenerationParameters(
+    generation_preset_name="vectara-summary-ext-24-05-med-omni",
+    max_used_search_results=20,
+    response_language="eng",
+    enable_factual_consistency_score=True
+)
+
+chat = ChatParameters(store=True)
+
+# Create session
+session = client.create_chat_session(
+    search=search,
+    generation=generation,
+    chat_config=chat
+)
+
+print("=== Multi-Turn Chat Example ===")
+
+# Turn 1: Initial question
+response1 = session.chat(query="What is machine learning?")
+print(f"User: What is machine learning?")
+print(f"Assistant: {response1.answer}")
+print(f"Factual Score: {response1.factual_consistency_score}")
+print()
+
+# Turn 2: Follow-up question (context maintained automatically)
+response2 = session.chat(query="What are the main types?")
+print(f"User: What are the main types?")
+print(f"Assistant: {response2.answer}")
+print()
+
+# Turn 3: Deeper dive (builds on previous context)
+response3 = session.chat(query="Give examples of supervised learning?")
+print(f"User: Can you give examples of supervised learning?")
+print(f"Assistant: {response3.answer}")
+print()`
+    }
+  ]}
+  annotations={{
+    python: [
+      { line: 2, text: 'Use consistent my-docs corpus key' },
+      { line: 6, text: 'Specify a generation preset' },
+      { line: 24, text: 'First turn establishes the topic' },
+      { line: 31, text: 'Second turn references "main types" - context understood' },
+      { line: 37, text: 'Third turn builds on "supervised learning" from context' }
+    ]
+  }}
+  layout="stacked"
+/>
+
 Demonstrate a natural multi-turn conversation where the AI maintains context 
 across exchanges. Each subsequent message builds on the previous conversation 
 history without requiring explicit context management.
@@ -147,66 +161,6 @@ endpoint. For more details on request and response parameters, see the
 - Factual consistency maintained across all turns
 - Easy to implement - just call `session.chat()` for each turn
 
-
-<CodePanel
-  title="Multi-turn conversation example"
-  snippets={[
-    {
-      language: 'python',
-      code: `search = SearchCorporaParameters(
-        corpora=[{"corpus_key": "quickstart-docs"}]
-    )
-
-    generation = GenerationParameters(
-        generation_preset_name="vectara-summary-ext-24-05-med-omni",
-        max_used_search_results=20,
-        response_language="eng",
-        enable_factual_consistency_score=True
-    )
-
-    chat = ChatParameters(store=True)
-
-    # Create session
-    session = client.create_chat_session(
-        search=search,
-        generation=generation,
-        chat_config=chat
-    )
-
-    print("=== Multi-Turn Chat Example ===")
-
-    # Turn 1: Initial question
-    response1 = session.chat(query="What is machine learning?")
-    print(f"User: What is machine learning?")
-    print(f"Assistant: {response1.answer}")
-    print(f"Factual Score: {response1.factual_consistency_score}")
-    print()
-
-    # Turn 2: Follow-up question (context maintained automatically)
-    response2 = session.chat(query="What are the main types?")
-    print(f"User: What are the main types?")
-    print(f"Assistant: {response2.answer}")
-    print()
-
-    # Turn 3: Deeper dive (builds on previous context)
-    response3 = session.chat(query="Give examples of supervised learning?")
-    print(f"User: Can you give examples of supervised learning?")
-    print(f"Assistant: {response3.answer}")
-    print()`
-    }
-  ]}
-  annotations={{
-    python: [
-      { line: 2, text: 'Enter the corpus key' },
-      { line: 6, text: 'Specify a generation preset' },
-      { line: 24, text: 'First turn establishes the topic' },
-      { line: 31, text: 'Second turn references "main types" - context understood' },
-      { line: 37, text: 'Third turn builds on "supervised learning" from context' }
-    ]
-  }}
-  layout="stacked"
-/>
-
 ---
 
 ## List chat conversations
@@ -217,14 +171,14 @@ endpoint. For more details on request and response parameters, see the
     {
       language: 'python',
       code: `chats = client.chats.list(limit=10)
-    
-    print("Recent Chat Conversations:")
-    for chat in chats:
-        print(f"Chat ID: {chat.id}")
-        print(f"First Query: {chat.first_query}")
-        print(f"Created: {chat.created_at}")
-        print(f"Enabled: {chat.enabled}")
-        print("---")`
+
+print("Recent Chat Conversations:")
+for chat in chats:
+    print(f"Chat ID: {chat.id}")
+    print(f"First Query: {chat.first_query}")
+    print(f"Created: {chat.created_at}")
+    print(f"Enabled: {chat.enabled}")
+    print("---")`
     }
   ]}
   annotations={{
@@ -252,12 +206,6 @@ For more details on request and response parameters, see the
 
 <Spacer size="l" />
 
-**Chat Metadata Includes:**
-- `id`: Unique chat identifier
-- `first_query`: Opening message of the conversation
-- `created_at`: Timestamp of chat creation
-- `enabled`: Whether the chat is active
-
 ---
 
 ## Streaming chat responses
@@ -267,29 +215,30 @@ For more details on request and response parameters, see the
   snippets={[
     {
       language: 'python',
-      code: `session = client.create_chat_session(
-        search=search,
-        generation=generation,
-        chat_config=chat
-    )
-    
-    # Stream the response for real-time display
-    print("Streaming chat response:")
-    response_stream = session.chat_stream(
-        query="Explain how to troubleshoot network connectivity issues"
-    )
-    
-    # Display chunks as they arrive
-    for chunk in response_stream:
-        if hasattr(chunk, 'generation_chunk') and chunk.generation_chunk:
-            print(chunk.generation_chunk, end='', flush=True)
-    print("\\n")`
+      code: `# Using the same search, generation, and chat parameters from above
+session = client.create_chat_session(
+    search=search,
+    generation=generation,
+    chat_config=chat
+)
+
+# Stream the response for real-time display
+print("Streaming chat response:")
+response_stream = session.chat_stream(
+    query="Explain how to troubleshoot network connectivity issues"
+)
+
+# Display chunks as they arrive
+for chunk in response_stream:
+    if hasattr(chunk, 'generation_chunk') and chunk.generation_chunk:
+        print(chunk.generation_chunk, end='', flush=True)
+print("\\n")`
     }
   ]}
   annotations={{
     python: [
-      { line: 9, text: 'Use chat_stream for real-time response generation' },
-      { line: 14, text: 'Process and display chunks immediately' }
+      { line: 10, text: 'Use chat_stream for real-time response generation' },
+      { line: 15, text: 'Process and display chunks immediately' }
     ]
   }}
   customWidth="50%"
@@ -321,25 +270,25 @@ The chat stream method corresponds to the HTTP POST
     {
       language: 'python',
       code: `chat_details = client.chats.get(chat_id="your-chat-id")
-    print(f"Chat: {chat_details.id}")
-    print(f"Created: {chat_details.created_at}")
-    
-    # List all turns in the chat
-    turns = client.chats.turns.list(chat_id="your-chat-id", limit=10)
-    
-    print("\\nConversation History:")
-    for turn in turns:
-        print(f"Turn {turn.id}:")
-        print(f"  User: {turn.query}")
-        print(f"  Assistant: {turn.answer}")
-        print(f"  Created: {turn.created_at}")
-        print()`
+print(f"Chat: {chat_details.id}")
+print(f"Created: {chat_details.created_at}")
+
+# List all turns in the chat
+turns = client.chats.turns.list(chat_id="your-chat-id", limit=10)
+
+print("\\nConversation History:")
+for turn in turns:
+    print(f"Turn {turn.id}:")
+    print(f"  User: {turn.query}")
+    print(f"  Assistant: {turn.answer}")
+    print(f"  Created: {turn.created_at}")
+    print()`
     }
   ]}
   annotations={{
     python: [
       { line: 1, text: 'Retrieve detailed information about a specific chat' },
-      { line: 5, text: 'Get all conversation turns (messages) in the chat' },
+      { line: 6, text: 'Get all conversation turns (messages) in the chat' },
       { line: 9, text: 'Display the complete conversation history' }
     ]
   }}

@@ -21,50 +21,10 @@ customer support and data-driven insights. You will learn:
 For more details on generation presets, see the 
 [Generation Presets documentation](/docs/learn/grounded-generation/select-a-summarizer).
 
-## Prerequisites
-
-<CodePanel
-  title="Install Vectara SDK"
-  snippets={[
-    { language: 'bash', code: `pip install vectara` }
-  ]}
-  customWidth="50%"
-/>
-
-**Setup Requirements:**
-1. **Install the SDK** with `pip install vectara`.
-2. **Get an API key** from the [Vectara Console](https://console.vectara.com).
-3. **Create a corpus** with `client.corpora.create()`.
-
----
-
-## Initialize the Vectara client
-
-<CodePanel
-  title="Initialize VectaraClient"
-  snippets={[
-    { language: 'python', code: `from vectara import VectaraClient\n\n# Using API key\nclient = VectaraClient(api_key="your_api_key", customer_id="your_customer_id")\n\n# Using OAuth 2.0\nclient = VectaraClient(bearer_token="your_bearer_token", customer_id="your_customer_id")` }
-  ]}
-  annotations={{
-    python: [
-      { line: 4, text: 'Initialize with an API key for preset usage.' },
-      { line: 7, text: 'Use OAuth 2.0 for secure production environments.' }
-    ]
-  }}
-  customWidth="50%"
-/>
-
-Set up authentication with API key or OAuth 2.0 for secure preset access.
-
-- **Authentication**: Obtain credentials from the [Vectara Console](https://console.vectara.com).
-- **Corpus Setup**: Index documents using .
-  - `client.corpora.create`
-  - `client.documents.index`
-  - `client.upload.file`
-
-<Spacer size="l" />
-
----
+:::info Prerequisites
+This guide assumes you have a corpus called `my-docs`. If you haven't created a corpus yet, follow 
+the [Quick Start](/docs/sdk/python/python-quickstart) guide to set up your first corpus.
+:::
 
 ## Using Generation Presets
 

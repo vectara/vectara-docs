@@ -15,55 +15,10 @@ roles, and configure timeouts. Usernames must be percent-encoded for API calls.
 
 Note: User management operations require OAuth authentication, not API keys.
 
-## Prerequisites
-
-<CodePanel
-  title="Install Vectara SDK"
-  snippets={[
-    { language: 'bash', code: `pip install vectara` }
-  ]}
-  customWidth="50%"
-/>
-
-**Setup Requirements:**
-1. **Install the SDK** with `pip install vectara`
-2. **Get OAuth credentials** from the [Vectara Console](https://console.vectara.com) (client_id and client_secret)
-
-
----
-
-## Initialize the Vectara Client
-
-<CodePanel
-  title="Initialize Vectara Client with OAuth"
-  snippets={[
-    {
-      language: 'python',
-      code: `from vectara import Vectara
-from vectara.core.api_error import ApiError
-
-# Initialize client with OAuth
-client = Vectara(client_id="YOUR_CLIENT_ID", client_secret="YOUR_CLIENT_SECRET")`
-    }
-  ]}
-  annotations={{
-    python: [
-      { line: 5, text: 'Use OAuth credentials for user management operations' }
-    ]
-  }}
-  customWidth="50%"
-/>
-
-Configure authentication using OAuth credentials (client_id and client_secret) 
-for user management operations.
-
-<Spacer size="l" />
-<Spacer size="l" />
-<Spacer size="l" />
-<Spacer size="l" />
-<Spacer size="l" />
-
----
+:::info Prerequisites
+This guide assumes you have a corpus called `my-docs`. If you haven't created a corpus yet, follow 
+the [Quick Start](/docs/sdk/python/python-quickstart) guide to set up your first corpus.
+:::
 
 ## List users
 

@@ -19,65 +19,9 @@ Use file upload for:
 - Processing documents with tables, charts, and structured data
 
 :::info Prerequisites
-This guide assumes you have a corpus called `my-docs`. If you haven't created a corpus yet, follow the [Quick Start](/docs/sdk/python/python-quickstart) guide to set up your first corpus.
+This guide assumes you have a corpus called `my-docs`. If you haven't created a corpus yet, follow 
+the [Quick Start](/docs/sdk/python/python-quickstart) guide to set up your first corpus.
 :::
-
-## Prerequisites
-
-<CodePanel
-  title="Install Vectara SDK"
-  snippets={[
-    { language: 'bash', code: `pip install vectara` }
-  ]}
-  customWidth="50%"
-/>
-
-**Setup Requirements:**
-1. **Install the SDK** with `pip install vectara`
-2. **Get an API key** from the [Vectara Console](https://console.vectara.com)
-3. **Create a corpus** with `client.corpora.create()` (see [Corpus Management](https://docs.vectara.com/docs/api-reference/indexing-apis/corpus))
-4. **Download sample files** or prepare your own files (PDFs, DOCX, etc.)
-
-**Sample Files for Testing:**
-- [Employee Handbook (TXT)](../../../static/sample-files/sample-employee-handbook.txt) - Company policies and procedures
-- [Security Policy (TXT)](../../../static/sample-files/sample-security-policy.txt) - Information security guidelines  
-- [API Documentation (TXT)](../../../static/sample-files/sample-api-documentation.txt) - Technical documentation example
-
-<Spacer size="l" />
-
----
-
-## Initialize the Vectara Client
-
-<CodePanel
-  title="Initialize Vectara Client"
-  snippets={[
-    {
-      language: 'python',
-      code: `from vectara import Vectara
-from vectara.core.api_error import ApiError
-
-# Initialize client with API key
-client = Vectara(api_key="YOUR_API_KEY")`
-    }
-  ]}
-  annotations={{
-    python: [
-      { line: 5, text: 'Use an API key with indexing permissions for file uploads' }
-    ]
-  }}
-  customWidth="50%"
-/>
-
-Set up authentication to securely access file upload capabilities. Ensure your 
-API key has indexing (write) permissions for the target corpus.
-
-<Spacer size="l" />
-<Spacer size="l" />
-<Spacer size="l" />
-<Spacer size="l" />
-
----
 
 ## Upload a basic file
 

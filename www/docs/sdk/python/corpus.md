@@ -15,55 +15,10 @@ Augmented Generation (RAG) operations. This guide focuses on corpus management,
 not direct search or generation. For querying corpora (including RAG), see the 
 `corpora.search` method in the [Query API guide](https://docs.vectara.com/docs/api-reference/search-apis/search).
 
-## Prerequisites
-
-<CodePanel
-  title="Install Vectara SDK"
-  snippets={[
-    { language: 'bash', code: `pip install vectara` }
-  ]}
-  customWidth="50%"
-/>
-
-**Setup Requirements:**
-1. **Install the SDK** with `pip install vectara`
-2. **Get an API key** from the [Vectara Console](https://console.vectara.com)
-3. **Create a corpus** with `client.corpora.create()` (see [Corpus Management](https://github.com/vectara/python-sdk/blob/main/src/vectara/corpora/client.py))
-4. **Prepare files** on disk or as file objects (PDFs, DOCX, etc.)
-
----
-
-## Initialize the Vectara Client
-
-<CodePanel
-  title="Initialize Vectara Client"
-  snippets={[
-    {
-      language: 'python',
-      code: `from vectara import Vectara
-from vectara.core.api_error import ApiError
-
-# Initialize client with API key
-client = Vectara(api_key="YOUR_API_KEY")`
-    }
-  ]}
-  annotations={{
-    python: [
-      { line: 5, text: 'Use an API key with indexing permissions for file uploads' }
-    ]
-  }}
-  customWidth="50%"
-/>
-
-Set up authentication to securely access file upload capabilities. Ensure your 
-API key has indexing (write) permissions for the target corpus.
-
-<Spacer size="l" />
-<Spacer size="l" />
-<Spacer size="l" />
-<Spacer size="l" />
-
----
+:::info Prerequisites
+This guide assumes you have a corpus called `my-docs`. If you haven't created a corpus yet, follow 
+the [Quick Start](/docs/sdk/python/python-quickstart) guide to set up your first corpus.
+:::
 
 ## Create a corpus
 
@@ -84,8 +39,20 @@ API key has indexing (write) permissions for the target corpus.
             "indexed": True
         },
         {
-            "name": "classification", 
+            "name": "year", 
             "level": "document",
+            "type": "integer",
+            "indexed": True
+        },
+        {
+            "name": "doc_type",
+            "level": "document",
+            "type": "text",
+            "indexed": True
+        },
+        {
+            "name": "category",
+            "level": "document", 
             "type": "text",
             "indexed": True
         }
@@ -98,9 +65,9 @@ API key has indexing (write) permissions for the target corpus.
       { line: 2, text: "Corpus key must be unique in your account" },
       { line: 3, text: "Give your corpus a descriptive name" },
       { line: 5, text: "Define filter attributes for metadata queries" },
-      { line: 8, text: "Specify that this is a document-level filter attribute" },
-      { line: 9, text: "Specify that this filter attribute is the text type" },
-      { line: 10, text: "Indicate that you want this filter attribute indexed" },
+      { line: 8, text: "Document-level filter for department metadata" },
+      { line: 14, text: "Integer filter for year-based filtering" },
+      { line: 20, text: "Text filter for document type classification" }
     ]
   }}
   customWidth="50%"
@@ -109,8 +76,8 @@ API key has indexing (write) permissions for the target corpus.
 Set up a new corpus to serve as a centralized container for your organization's 
 documents and metadata, enabling efficient search and RAG operations.
 
-This section guides you through creating a corpus with a unique identifier, making 
-it a foundational step for managing enterprise data.
+This section guides you through creating a corpus with a unique identifier and 
+filter attributes, making it a foundational step for managing enterprise data.
 
 The `corpora.create` method corresponds to the HTTP POST `/v2/corpora` endpoint. 
 For more details on request and response parameters, see the 
@@ -123,12 +90,17 @@ For more details on request and response parameters, see the
   project documentation").
 - `filter_attributes` (list, optional): List of metadata attributes for filtering queries.
   - `name`: Unique attribute name (max 64 characters)
-  - `level`: "doc" (document-level) or "part" (section-level)
+  - `level`: "document" (document-level) or "part" (section-level)
   - `type`: "integer", "real", "text", or "boolean"
   - `indexed`: Performance optimization flag
 
 Use descriptive `key` values to simplify querying. Filter attributes enable metadata-based 
 search refinement. This method sets up the corpus structure but doesn't index documents.
+
+:::warning Important
+Filter attributes must be defined at corpus creation time and cannot be 
+modified later. Plan your metadata schema carefully.
+:::
 
 **Error Handling**:
 - **400 Bad Request**: Invalid `key` or request body.
@@ -191,7 +163,7 @@ print(f"Filter Attributes: {len(corpus.filter_attributes)} defined")`
   annotations={{
     python: [
       { line: 1, text: "Get detailed metadata for a specific corpus" },
-      { line: 2, text: "Access filter attributes and other configuration" }
+      { line: 4, text: "Access filter attributes and other configuration" }
     ]
   }}
   customWidth="50%"
@@ -255,6 +227,8 @@ endpoint. For more details on request and response parameters, see the
 - `description` (string, optional): New description.
 - `enabled` (boolean, optional): Enable/disable the corpus for queries.
 
+**Note:** Filter attributes cannot be modified after corpus creation. Only name, description, and enabled status can be updated.
+
 Disabling a corpus (`enabled=False`) prevents new indexing but allows read-only queries. 
 This is useful for archiving or maintenance scenarios.
 
@@ -317,5 +291,6 @@ update option to disable rather than delete.
 
 - Explore document indexing with `client.documents.create()` using the [Documents guide](/docs/sdk/python/documents).
 - Learn about querying with `client.query()` for search and RAG using the [Query guide](/docs/sdk/python/query).
+- Learn about metadata filtering with the [Metadata guide](/docs/sdk/python/metadata).
 - Experiment with the [Vectara Console](https://console.vectara.com) 
   to test endpoints before coding.
