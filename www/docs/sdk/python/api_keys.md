@@ -21,6 +21,55 @@ common API key management tasks.
 - Delete keys to immediately revoke API access
 - Use async methods for large-scale, automated environments
 
+## Prerequisites
+
+<CodePanel
+  title="Install Vectara SDK"
+  snippets={[
+    { language: 'bash', code: `pip install vectara` }
+  ]}
+  customWidth="50%"
+/>
+
+**Setup Requirements:**
+1. **Install the SDK** with `pip install vectara`
+2. **Get an API key** from the [Vectara Console](https://console.vectara.com)
+
+---
+
+## Initialize the Vectara Client
+
+<CodePanel
+  title="Initialize Vectara Client"
+  snippets={[
+    {
+      language: 'python',
+      code: `from vectara import Vectara
+from vectara.core.api_error import ApiError
+
+# Initialize client with API key
+client = Vectara(api_key="YOUR_API_KEY")`
+    }
+  ]}
+  annotations={{
+    python: [
+      { line: 5, text: 'Use an API key with indexing permissions for file uploads' }
+    ]
+  }}
+  customWidth="50%"
+/>
+
+Set up authentication to securely access file upload capabilities. Ensure your 
+API key has indexing (write) permissions for the target corpus.
+
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+
+---
+
+
 ## List API Keys
 
 <CodePanel
@@ -48,6 +97,10 @@ List API keys in the account, optionally filtering by corpus or role.
 - `api_key_role`: (Optional) Restrict results to a specific key role, such as 
   `'serving'`, `'query'`, or `'admin'`.
 - `limit`: (Optional) Page size—limit the number of keys per request.
+
+<Spacer size="l" />
+<Spacer size="l" />
+
 
 ---
 
@@ -142,6 +195,10 @@ Update an API key’s status (enable/disable).
 - `enabled`: Set to `false` to disable the key (recommended best practice 
   for temporary revocation instead of deletion).
 
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+
 ---
 
 ## Delete an API Key
@@ -168,6 +225,9 @@ access—critical after role changes, deprovisioning, or breach response.
 
 - `api_key_id`: The key’s unique identifier.
 
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
 
 ---
 

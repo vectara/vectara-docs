@@ -138,9 +138,9 @@ suitable for applications requiring token-based authentication.
     {
       language: 'python',
       code: `response = client.corpora.create(
-      key=quickstart-corpus,
-      name="Quick Start Docs"
-  )`
+    key="my-docs",
+    name="My Documentation"
+)`
     }
   ]}
   annotations={{
@@ -166,9 +166,9 @@ For more details on request and response parameters, see the
 [Create Corpus REST API](https://docs.vectara.com/docs/rest-api/create-corpus).
 
 - `key` (string, required): A unique identifier for the corpus 
-  (`quickstart-corpus`).  
+  (`my-docs`).  
   Must be alphanumeric, underscores, or hyphens, with a maximum length of 100 characters.  
-- `name` (string, required): A human-readable name (`Quick Start Docs`).  
+- `name` (string, required): A human-readable name (`My Documentation`).  
   Maximum length: 255 characters.  
   Helps identify the corpus in the Vectara Console.
 - `description` (string, optional): A brief description of the corpus's 
@@ -211,7 +211,7 @@ document = StructuredDocument(
 )
 
 response = client.documents.create(
-    corpus_key="quickstart-corpus",
+    corpus_key="my-docs",
     request=document
 )`
     }
@@ -232,7 +232,7 @@ document, consisting of sections with titles and text, into the specified
 corpus. 
 
 This step populates your corpus with content for querying. For more details on 
-request and response parameters, see the [Index Document REST API](https://docs.vectara.com/docs/rest-api/index-document).
+request and response parameters, see the [Index APIs](https://docs.vectara.com/docs/rest-api/index).
 
 <CodePanel
   title="Upload Core Document"
@@ -252,7 +252,7 @@ document = CoreDocument(
 )
 
 response = client.documents.create(
-    corpus_key="quickstart-corpus",
+    corpus_key="my-docs",
     request=document
 )`
     }
@@ -268,7 +268,7 @@ response = client.documents.create(
 
 To upload a core document:
 
-- `corpus_key` (string, required): The target corpus identifier (`quickstart-corpus`), matching the key from step 3.
+- `corpus_key` (string, required): The target corpus identifier (`my-docs`), matching the key from step 3.
  - `request` (StructuredDocument or CoreDocument, required): Defines the document structure.
    - `id` (string, required): A unique document ID within the corpus (`welcome-doc`). 
   Alphanumeric, underscores, or hyphens, maximum 100 characters.
@@ -308,7 +308,7 @@ uploading files (PDFs).
 client = Vectara(api_key="YOUR_API_KEY")
 
 search = SearchCorporaParameters(
-    corpora=[{"corpus_key": "quickstart-corpus"}]
+    corpora=[{"corpus_key": "my-docs"}]
 )
 
 response = client.query(
@@ -339,7 +339,7 @@ parameters, see the [Query REST API](https://docs.vectara.com/docs/rest-api/quer
   Maximum length: 1000 characters.
  - `search` (SearchCorporaParameters, required): Configures the search parameters.
    - `corpora` (list[dict], required): List of corpora to query.
-     - `corpus_key` (string, required): The corpus to search (`quickstart-corpus`).
+     - `corpus_key` (string, required): The corpus to search (`my-docs`).
      - `metadata_filter` (string, optional): Filters results by metadata (`doc.category = 'intro'`).  
   Default: empty string.
      - `lexical_interpolation` (float, optional): Balances lexical and semantic search 
@@ -382,18 +382,16 @@ if api_key == "YOUR_API_KEY":
 print("1. Authenticating...")
 client = Vectara(api_key=api_key)
 
-# 2. Create corpus
-print("2. Creating corpus...")
-corpus_key = "quickstart-docs"
-response = client.corpora.create(
-        key=corpus_key,
-        name="Quick Start Docs"
-    )
-    print(f"✅ Created: {response.name}")
-    time.sleep(2)  # Allow corpus to propagate
+# Step 1: Create corpus
+corpus_response = client.corpora.create(
+    key="my-docs",
+    name="My Documentation"
+)
+print(f"Corpus created: {corpus_response.name}")
+time.sleep(2)  # Allow corpus to propagate
 
-# 3. Upload document
-print("3. Uploading document...")
+# Step 2: Create and index document
+print("2. Uploading document...")
 document = StructuredDocument(
     id="welcome-doc",
     type="structured",
@@ -405,16 +403,16 @@ document = StructuredDocument(
     ]
 )
 
-response = client.documents.create(
-        corpus_key=corpus_key,
-        request=document
-    )
-    print(f"✅ Uploaded: {document.id}")
+doc_response = client.documents.create(
+    corpus_key="my-docs",
+    request=document
+)
+print(f"✅ Uploaded: {document.id}")
 
-# 4. Query
-print("4. Running query...")
+# Step 3: Query
+print("3. Running query...")
 response = client.corpora.search(
-    corpus_key=corpus_key,
+    corpus_key="my-docs",
     query="What is Vectara?"
 )
 
@@ -430,13 +428,13 @@ annotations={{
 python: [
 { line: 8, text: "Get API key from environment variable for security" },
 { line: 16, text: "Initialize the Vectara client with your API key" },
-{ line: 22, text: "Use a simple, descriptive corpus key" },
-{ line: 21, text: "Create corpus with direct method parameters" },
-{ line: 26, text: "Small delay ensures corpus is ready for document upload" },
-{ line: 30, text: "Create a structured document with sections" },
-{ line: 50, text: "Upload document using the corpus key" },
-{ line: 51, text: "Use single-corpus search method" },
-{ line: 56, text: "Access results via search_results attribute" }
+{ line: 19, text: "Use consistent 'my-docs' corpus key" },
+{ line: 22, text: "Create corpus with direct method parameters" },
+{ line: 24, text: "Small delay ensures corpus is ready for document upload" },
+{ line: 27, text: "Create a structured document with sections" },
+{ line: 37, text: "Upload document using the corpus key" },
+{ line: 42, text: "Use single-corpus search method" },
+{ line: 47, text: "Access results via search_results attribute" }
 ]
 }}
 layout="stacked"
@@ -456,8 +454,8 @@ and provides clear feedback at each step.
 * **Corpus Propagation:** Includes a small delay (`time.sleep(2)`) after corpus 
   creation to ensure the corpus is fully available before attempting document 
   upload.
-* **Simple Corpus Keys:** Uses straightforward naming conventions (`quickstart-docs`) 
-  that are reliable across different environments.
+* **Consistent Corpus Keys:** Uses the standardized `my-docs` naming convention 
+  that is used throughout all documentation examples.
 * **Single-Corpus Search:** Demonstrates the simplified `client.corpora.search()` 
   method for querying a specific corpus directly.
 
@@ -473,11 +471,9 @@ already exist from previous runs.
 Expected Output
 ```
 1. Authenticating...
-2. Creating corpus...
-✅ Created: Quick Start Docs
-1. Uploading document...
+2. Uploading document...
 ✅ Uploaded: welcome-doc
-1. Running query...
+3. Running query...
 ✅ Found 1 results
 Top result: Welcome to Vectara! This is your first document...
 🎉 Quickstart validation complete!
@@ -503,7 +499,7 @@ presets.
       code: `from vectara import Vectara
 
 # Assuming client is already created as in step 2
-response = client.corpora.delete("quickstart-docs")
+response = client.corpora.delete("my-docs")
 print("✅ Corpus deleted")`
     }
   ]}

@@ -13,6 +13,10 @@ to search corpora for relevant documents and generate summarized responses
 using Vectara's RAG-focused LLMs, supporting enterprise needs like
 legal research or customer insights.
 
+:::info Prerequisites
+This guide assumes you have a corpus called `my-docs` with indexed documents. If you haven't created a corpus yet, follow the [Quick Start](/docs/sdk/python/python-quickstart) guide to set up your first corpus and add some documents.
+:::
+
 ## Prerequisites
 
 <CodePanel
@@ -72,29 +76,29 @@ Ensure your API key has querying permissions for the target corpora.
     {
       language: "python", 
       code: `search = SearchCorporaParameters(
-        corpora=[{"corpus_key": "support-docs"}]
-    )
-    
-    # Configure generation with recommended settings
-    generation = GenerationParameters(
-        generation_preset_name="vectara-summary-ext-24-05-med-omni",
-        max_used_search_results=50,
-        response_language="eng",
-        enable_factual_consistency_score=True
-    )
-    
-    # Execute query with RAG
-    response = client.query(
-        query="What does error 403 mean?",
-        search=search,
-        generation=generation
-    )
-    
-    print(f"Summary: {response.summary}")
-    print(f"Factual Consistency Score: {response.factual_consistency_score}")
-    
-    for result in response.search_results:
-        print(f"Result: {result.text} (Score: {result.score})")`
+    corpora=[{"corpus_key": "my-docs"}]
+)
+
+# Configure generation with recommended settings
+generation = GenerationParameters(
+    generation_preset_name="vectara-summary-ext-24-05-med-omni",
+    max_used_search_results=50,
+    response_language="eng",
+    enable_factual_consistency_score=True
+)
+
+# Execute query with RAG
+response = client.query(
+    query="What does error 403 mean?",
+    search=search,
+    generation=generation
+)
+
+print(f"Summary: {response.summary}")
+print(f"Factual Consistency Score: {response.factual_consistency_score}")
+
+for result in response.search_results:
+    print(f"Result: {result.text} (Score: {result.score})")`
     }
   ]}
   annotations={{
@@ -144,40 +148,40 @@ Use this pattern when you need both specific document excerpts and a synthesized
     {
       language: 'python',
       code: `search = SearchCorporaParameters(
-      corpora=[{
-          "corpus_key": "support-docs",
-          "metadata_filter": "doc.os = 'MacOS'",
-          "lexical_interpolation": 0.3
-      }],
-      context_configuration={
-          "sentences_before": 3,
-          "sentences_after": 3,
-          "start_tag": "<em>",
-          "end_tag": "</em>"
-      },
-      reranker={
-          "type": "customer_reranker",
-          "reranker_name": "Rerank_Multilingual_v1",
-          "limit": 100,
-          "cutoff": 0.6
-      }
-  )
-  generation = GenerationParameters(
-      generation_preset_name="vectara-summary-ext-24-05-med-omni",
-      max_used_search_results=25,
-      response_language="eng",
-      enable_factual_consistency_score=True,
-      prompt_template="You are a technical support assistant. Summarize the \nfollowing search results $vectaraQueryResults"
-  )
-  
-  response = client.query(
-      query="Summarize recent MacOS issues after the latest upgrade",
-      search=search,
-      generation=generation
-  )
-  
-  print(f"Summary: {response.summary}")
-  print(f"Response based on {len(response.search_results)} filtered results")`
+    corpora=[{
+        "corpus_key": "my-docs",
+        "metadata_filter": "doc.os = 'MacOS'",
+        "lexical_interpolation": 0.3
+    }],
+    context_configuration={
+        "sentences_before": 3,
+        "sentences_after": 3,
+        "start_tag": "<em>",
+        "end_tag": "</em>"
+    },
+    reranker={
+        "type": "customer_reranker",
+        "reranker_name": "Rerank_Multilingual_v1",
+        "limit": 100,
+        "cutoff": 0.6
+    }
+)
+generation = GenerationParameters(
+    generation_preset_name="vectara-summary-ext-24-05-med-omni",
+    max_used_search_results=25,
+    response_language="eng",
+    enable_factual_consistency_score=True,
+    prompt_template="You are a technical support assistant. Summarize the \nfollowing search results $vectaraQueryResults"
+)
+
+response = client.query(
+    query="Summarize recent MacOS issues after the latest upgrade",
+    search=search,
+    generation=generation
+)
+
+print(f"Summary: {response.summary}")
+print(f"Response based on {len(response.search_results)} filtered results")`
     }
   ]}
   annotations={{
@@ -233,34 +237,34 @@ prompts for specialized use cases.
     {
       language: 'python',
       code: `search = SearchCorporaParameters(
-        corpora=[{"corpus_key": "support-docs"}]
-    )
-    
-    generation = GenerationParameters(
-        generation_preset_name="vectara-summary-ext-24-05-med-omni",
-        max_used_search_results=20,
-        response_language="eng",
-        enable_factual_consistency_score=True
-    )
-    
-    # Stream the response for real-time display
-    response = client.query_stream(
-        query="How do I troubleshoot login issues?",
-        search=search,
-        generation=generation
-    )
-    
-    print("Streaming response:")
-    summary = ""
-    fcs = None
-    for chunk in response:
-        if hasattr(chunk, 'generation_chunk') and chunk.generation_chunk:
-            summary += chunk.generation_chunk
-            print(chunk.generation_chunk, end='', flush=True)
-        elif hasattr(chunk, 'factual_consistency_score'):
-            fcs = chunk.factual_consistency_score
-    print("\\n")  # New line after streaming complete
-    print(f"Factual Consistency Score: {fcs}")`
+    corpora=[{"corpus_key": "my-docs"}]
+)
+
+generation = GenerationParameters(
+    generation_preset_name="vectara-summary-ext-24-05-med-omni",
+    max_used_search_results=20,
+    response_language="eng",
+    enable_factual_consistency_score=True
+)
+
+# Stream the response for real-time display
+response = client.query_stream(
+    query="How do I troubleshoot login issues?",
+    search=search,
+    generation=generation
+)
+
+print("Streaming response:")
+summary = ""
+fcs = None
+for chunk in response:
+    if hasattr(chunk, 'generation_chunk') and chunk.generation_chunk:
+        summary += chunk.generation_chunk
+        print(chunk.generation_chunk, end='', flush=True)
+    elif hasattr(chunk, 'factual_consistency_score'):
+        fcs = chunk.factual_consistency_score
+print("\\n")  # New line after streaming complete
+print(f"Factual Consistency Score: {fcs}")`
     }
   ]}
   annotations={{
@@ -312,14 +316,14 @@ endpoint.
     {
       language: 'python',
       code: `response = client.query(
-        query="search term",
-        search=search_params,
-        generation=generation_params
-    )
-    
-    # Check for warnings or issues
-    if response.factual_consistency_score < 0.5:
-        print("Warning: Low factual consistency score")`
+    query="search term",
+    search=search_params,
+    generation=generation_params
+)
+
+# Check for warnings or issues
+if response.factual_consistency_score < 0.5:
+    print("Warning: Low factual consistency score")`
     }
   ]}
   customWidth="50%"

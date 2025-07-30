@@ -23,6 +23,56 @@ or document part. You use metadata to:
 - Add business context (`part.customer_id, 'doc.location')
 - Support structured retrieval for complex applications
 
+## Prerequisites
+
+<CodePanel
+  title="Install Vectara SDK"
+  snippets={[
+    { language: 'bash', code: `pip install vectara` }
+  ]}
+  customWidth="50%"
+/>
+
+**Setup Requirements:**
+1. **Install the SDK** with `pip install vectara`
+2. **Get an API key** from the [Vectara Console](https://console.vectara.com)
+3. **Create a corpus** with `client.corpora.create()` (see [Corpus Management](https://github.com/vectara/python-sdk/blob/main/src/vectara/corpora/client.py))
+4. **Prepare files** on disk or as file objects (PDFs, DOCX, etc.)
+
+---
+
+## Initialize the Vectara Client
+
+<CodePanel
+  title="Initialize Vectara Client"
+  snippets={[
+    {
+      language: 'python',
+      code: `from vectara import Vectara
+from vectara.core.api_error import ApiError
+
+# Initialize client with API key
+client = Vectara(api_key="YOUR_API_KEY")`
+    }
+  ]}
+  annotations={{
+    python: [
+      { line: 5, text: 'Use an API key with indexing permissions for file uploads' }
+    ]
+  }}
+  customWidth="50%"
+/>
+
+Set up authentication to securely access file upload capabilities. Ensure your 
+API key has indexing (write) permissions for the target corpus.
+
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
+
+---
+
 ## Add metadata at ingestion
 
 Add metadata when indexing documents using the Python SDK.  

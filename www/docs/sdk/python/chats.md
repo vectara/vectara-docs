@@ -13,7 +13,7 @@ chat history. These methods enable you to create chats, maintain multi-turn conv
 and manage chat history, ideal for building interactive applications like support chatbots 
 or customer service platforms.
 
-## Install the Vectara SDK
+## Prerequisites
 
 <CodePanel
   title="Install Vectara SDK"
@@ -23,10 +23,11 @@ or customer service platforms.
   customWidth="50%"
 />
 
-Install the Vectara Python SDK to enable chat functionality for your enterprise 
-conversational AI solutions.
-
-<Spacer size="l" />
+**Setup Requirements:**
+1. **Install the SDK** with `pip install vectara`
+2. **Get an API key** from the [Vectara Console](https://console.vectara.com)
+3. **Create a corpus** with `client.corpora.create()` (see [Corpus Management](https://github.com/vectara/python-sdk/blob/main/src/vectara/corpora/client.py))
+4. **Prepare files** on disk or as file objects (PDFs, DOCX, etc.)
 
 ---
 
@@ -46,19 +47,20 @@ client = Vectara(api_key="YOUR_API_KEY")`
   ]}
   annotations={{
     python: [
-      { line: 5, text: 'Use a Query or Index API Key for chat operations' }
+      { line: 5, text: 'Use an API key with indexing permissions for file uploads' }
     ]
   }}
   customWidth="50%"
 />
 
-Configure authentication to securely access chat methods using an API key.
-Ensure your API key has query permissions for the target corpora.
+Set up authentication to securely access file upload capabilities. Ensure your 
+API key has indexing (write) permissions for the target corpus.
 
 <Spacer size="l" />
 <Spacer size="l" />
 <Spacer size="l" />
 <Spacer size="l" />
+
 
 ---
 

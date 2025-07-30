@@ -29,7 +29,8 @@ Note: User management operations require OAuth authentication, not API keys.
 1. **Install the SDK** with `pip install vectara`
 2. **Get OAuth credentials** from the [Vectara Console](https://console.vectara.com) (client_id and client_secret)
 
-<Spacer size="l" />
+
+---
 
 ## Initialize the Vectara Client
 

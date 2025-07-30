@@ -73,24 +73,24 @@ API key has indexing (write) permissions for the target corpus.
     {
       language: 'python',
       code: `corpus = client.corpora.create(
-        key="support-docs",
-        name="Support Knowledge Base", 
-        description="Contains documents from our support knowledge base",
-        filter_attributes=[
-            {
-                "name": "sector",
-                "level": "document",
-                "type": "text",
-                "indexed": True
-            },
-            {
-                "name": "jurisdiction", 
-                "level": "document",
-                "type": "text",
-                "indexed": True
-            }
-        ]
-    )`
+    key="my-docs",
+    name="My Documentation", 
+    description="Contains documents for my project or organization",
+    filter_attributes=[
+        {
+            "name": "department",
+            "level": "document",
+            "type": "text",
+            "indexed": True
+        },
+        {
+            "name": "classification", 
+            "level": "document",
+            "type": "text",
+            "indexed": True
+        }
+    ]
+)`
     }
   ]}
   annotations={{
@@ -116,11 +116,11 @@ The `corpora.create` method corresponds to the HTTP POST `/v2/corpora` endpoint.
 For more details on request and response parameters, see the 
 [Create Corpus REST API](https://docs.vectara.com/docs/rest-api/create-corpus).
 
-- `key` (string, required): Unique identifier for the corpus, such as "legal-docs". Must follow 
+- `key` (string, required): Unique identifier for the corpus, such as "my-docs". Must follow 
   naming conventions (alphanumeric, underscores, hyphens).
-- `name` (string, optional): Human-readable name ("Legal Knowledge Base"). Defaults to key value.
-- `description` (string, optional): Optional description of the corpus's purpose ("Contains case 
-  law, contracts").
+- `name` (string, optional): Human-readable name ("My Documentation"). Defaults to key value.
+- `description` (string, optional): Optional description of the corpus's purpose ("Contains 
+  project documentation").
 - `filter_attributes` (list, optional): List of metadata attributes for filtering queries.
   - `name`: Unique attribute name (max 64 characters)
   - `level`: "doc" (document-level) or "part" (section-level)
@@ -145,8 +145,8 @@ search refinement. This method sets up the corpus structure but doesn't index do
     {
       language: 'python',
       code: `corpora_list = client.corpora.list(limit=10)
-    for corpus in corpora_list:
-        print(f"Corpus: {corpus.name} (Key: {corpus.key})")`
+for corpus in corpora_list:
+    print(f"Corpus: {corpus.name} (Key: {corpus.key})")`
     }
   ]}
   annotations={{
@@ -182,10 +182,10 @@ pattern to handle large numbers of corpora efficiently.
   snippets={[
     {
       language: 'python',
-      code: `corpus = client.corpora.get(corpus_key="support-docs")
-    print(f"Corpus Name: {corpus.name}")
-    print(f"Description: {corpus.description}")
-    print(f"Filter Attributes: {len(corpus.filter_attributes)} defined")`
+      code: `corpus = client.corpora.get(corpus_key="my-docs")
+print(f"Corpus Name: {corpus.name}")
+print(f"Description: {corpus.description}")
+print(f"Filter Attributes: {len(corpus.filter_attributes)} defined")`
     }
   ]}
   annotations={{
@@ -207,7 +207,7 @@ endpoint. For more details on request and response parameters, see the
 [Get Corpus REST API](https://docs.vectara.com/docs/rest-api/get-corpus).
 
 - `corpus_key` (string, required): Unique identifier of the corpus 
-  ("support-docs").
+  ("my-docs").
 
 Returns a corpus object with complete metadata, including `id`, `name`, `description`, 
 `filter_attributes`, and usage statistics.
@@ -226,11 +226,11 @@ Returns a corpus object with complete metadata, including `id`, `name`, `descrip
     {
       language: 'python',
       code: `client.corpora.update(
-        corpus_key="support-docs",
-        name="Support Knowledge Base - Updated",
-        description="Updated description with enhanced metadata",
-        enabled=True
-    )`
+    corpus_key="my-docs",
+    name="My Documentation - Updated",
+    description="Updated description with enhanced metadata",
+    enabled=True
+)`
     }
   ]}
   annotations={{
@@ -271,7 +271,7 @@ This is useful for archiving or maintenance scenarios.
   snippets={[
     {
       language: 'python',
-      code: `client.corpora.delete(corpus_key="support-docs")`
+      code: `client.corpora.delete(corpus_key="my-docs")`
     }
   ]}
   annotations={{
@@ -315,7 +315,7 @@ update option to disable rather than delete.
 
 ## Next steps
 
-- Explore document indexing with `client.documents.create()`.
-- Learn about querying with `client.query()` for search and RAG.
+- Explore document indexing with `client.documents.create()` using the [Documents guide](/docs/sdk/python/documents).
+- Learn about querying with `client.query()` for search and RAG using the [Query guide](/docs/sdk/python/query).
 - Experiment with the [Vectara Console](https://console.vectara.com) 
   to test endpoints before coding.
