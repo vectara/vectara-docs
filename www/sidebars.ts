@@ -345,6 +345,10 @@ const sidebars: SidebarsConfig = {
       ],
     },
     {
+      type: "doc",
+      id: "console-ui/admin-center",
+    },
+    {
       type: "category",
       label: "API Concepts",
       collapsed: true,
