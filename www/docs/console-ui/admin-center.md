@@ -47,101 +47,71 @@ data-driven decisions that enhance platform reliability and boost customer
 satisfaction by ensuring consistent performance.
 * **Access detailed account views**: Manage accounts effectively by accessing detailed 
   views, including query graphs, user lists, and corpora.  
-Reviewing query graphs and user lists for an account enables precise resource allocation, improving operational efficiency and enhancing the customer experience.
-* **Create new accounts and users**: Expand platform usage by initiating new account or user creation.  
-Adding a new account supports new customers, driving platform adoption and increasing revenue potential for Vectara.
-* **Assess performance**: Identify bottlenecks by reviewing metrics like Global FCS Average and average query time.  
+Reviewing query graphs and user lists for an account enables precise resource 
+allocation, improving operational efficiency and enhancing the customer experience.
+* **Create new accounts and users**: Expand platform usage by initiating new account 
+  or user creation.  
+Adding a new account supports new customers, driving platform adoption and increasing 
+revenue potential for Vectara.
+* **Assess performance**: Identify bottlenecks by reviewing metrics like Global FCS 
+  Average and average query time.  
 Monitoring a 582 ms query time helps optimize performance, ensuring fast responses 
 and enhancing user satisfaction, which supports customer retention.
 
 
 ### Dashboard Actions
 
-* Click **View tenants**, **View latest queries**, or **View latest indexing requests** for detailed insights.
-* Click **New Tenant** to add a name and email address.
+* Click **View tenants** to see a list of all tenants. You can also view total 
+  queries or indexing requests across tenants.
 
 ## Manage Tenants
 
 **Tenant management** enables administrators to oversee all tenant accounts within 
-a Vectara on-premise environment. It provides a centralized view of tenant activity, user distribution, storage consumption, and allows you to adjust tenant-specific quotas.
+a Vectara on-premise environment. It provides a centralized view of tenant 
+activity, user distribution, storage consumption, and allows you to adjust 
+tenant-specific quotas.
 
-
-* **View tenant details**: Monitor key metrics such as account ID, owner, user count, 
-  corpora count, and storage usage to assess platform adoption and resource utilization.
-* **Manage tenant details**: Edit tenant account details including contact email and 
-  associated metadata to ensure accurate account configuration.
-* **Adjust tenant quotas:** Update global defaults for users, corpora, and storage at 
-  the tenant level to accommodate specific customer needs or enforce usage constraints.
-* **Remove accounts**: Decommission inactive or redundant tenants to improve platform performance.
+* **View users:** View users that are part of a specific tenant.
+* **Adjust tenant quotas:** Update global defaults for users, corpora, and storage 
+  at the tenant level to accommodate specific customer needs or enforce usage 
+  constraints.
 
 
 ### Tenant Actions
 
 * Filter tenants by ID or status using the dashboard filters.
-* Use the Actions column to Edit, View Users, or Manage Quotas for each tenant.
-* Launch the Manage Quotas model to update user, corpora, or storage quotas.
+* Use the Actions column to View Users or Manage Quotas for each tenant.
+* Launch the Manage Quotas model to update corpora or storage quotas.
 
 
 ## Manage Users
 
-**User and access management** provides tools to oversee users within a specific tenant 
-account, displaying details like ID, email, account ID, role, status, last login, queries, data ingestion, storage, and usage of standard and gpt-4.
-
-
-### Tasks and Goals
-
-* **View user details**: Monitor user activity and roles for effective oversight.  
-Reviewing a user’s role as Account owner and their storage usage ensures proper access, maintaining security and compliance with enterprise policies, which safeguards customer trust.
-* **Manage permissions**: Maintain secure access control by assigning and editing roles and permissions.  
-Assigning a Corpus administrator role restricts access appropriately, reducing unauthorized access risks and enhancing the enterprise’s security posture.
-* **Remove users**: Keep account access clean and secure by deleting users.  
-Removing an inactive user prevents potential security breaches, safeguarding customer data and ensuring compliance with regulatory standards.
-
-
-### User Actions
-
-* Click **Invite user** to add a user to the platform
-* Edit or remove users from the Action column in the user table.
-
+**User and access management** provides tools to oversee users within a specific 
+tenant account, displaying details like ID, email, account ID, role, status, 
+last login, queries, data ingestion, storage, and usage of standard and gpt-4.
 
 ### Manage Corpora
 
-**Corpora management** enables administrators to view and manage corpora within a specific customer account, providing details like ID, name, owner email, status, documents, parts, and storage. Administrators cannot create new corpora, ensuring clear separation of responsibilities.
-
-
-### Tasks and Goals
-
-
-* **View corpora details**: Gain visibility into resource usage by listing corpora details.  \
-Viewing a corpus named prod_app with 76 MB storage provides insight into resource usage, aiding capacity planning and cost management for efficient operations.
-* **Edit corpora**: Customize corpus behavior by modifying settings like filter attributes.  \
-Updating filter attributes optimizes search results, improving user experience and platform efficiency, which enhances customer satisfaction.
-* **Delete corpora**: Optimize storage and performance by removing corpora.  \
-Deleting a disabled corpus frees up 997 MB, reducing storage costs and enhancing system performance, which supports cost-effective scaling.
-* **Migrate corpus to a different retrieval server**: When a corpus has issues tied to a specific retrieval engine, admins can rebuild and migrate the corpus to another retrieval server.
-
+**Corpora management** enables administrators to view and manage corpora within 
+a specific customer account, providing details like key, name, description, 
+type, status, and creation date.
 
 ### Corpora Actions
 
-* Click **View more** for additional details about a corpus.
-* Edit or delete corpora from the Action column.
 * Rebuild a corpus.
 
 
 ## Model Management
 
-**Model management** enables administrators to manage custom LLMs globally, displaying details like ID, model name, owner email, status, description, endpoint, and last used. Changes apply to all accounts, ensuring consistent functionality.
+**Model management** enables administrators to manage custom LLMs globally, displaying 
+details like ID, model name, description, and whether or not it's enabled. 
+Registered models are available to all accounts, ensuring consistent functionality.
 
 #### Tasks and Goals
 
-* **View model details**: Ensure proper integration by listing model details.  \
-Reviewing a Llama 3.3 model with an api.example.com endpoint supports advanced features, increasing customer value through enhanced platform capabilities.
-* **Enable/disable models**: Control model availability to optimize resources.  \
-Disabling a Sonnet 3.7 model prevents unnecessary resource use, reducing costs and improving system performance for enterprises.
-* **Edit models**: Meet system requirements by modifying model settings.  \
-Updating an endpoint ensures compatibility, maintaining platform reliability and functionality, which supports seamless operations.
-* **Add new models**: Expand capabilities by registering custom models.  \
-Adding a new LLM supports advanced RAG applications, increasing platform adoption and delivering enterprise value.
+* **View model parameters**: Ensure proper integration by listing model parameters.  
+Reviewing a Llama 3.3 model with an api.example.com endpoint supports advanced 
+features, increasing customer value through enhanced platform capabilities.
 
 
 ### Model Actions
@@ -151,16 +121,21 @@ Adding a new LLM supports advanced RAG applications, increasing platform adoptio
 
 ## Add Model
 
-The **Add model** section provides a form to register new custom models for global use, capturing details like name, description, API endpoint, and API key (partially masked for security). This ensures secure and centralized model integration across the platform.
+The **Add model** section provides a form to register new custom models for global use, 
+capturing details like name, description, API endpoint, and API key (partially masked 
+for security). This ensures secure and centralized model integration across the platform.
 
 #### Tasks and Goals
 
-* **Register new model**: Add a model to enable advanced functionality.  \
-Registering a Llama 3.3 model enables on-prem generation, enhancing platform flexibility and supporting advanced customer use cases, which drives adoption.
-* **Save configuration**: Store model details for immediate global availability.  \
-Saving a model configuration ensures usability, accelerating deployment and improving customer satisfaction by enabling rapid feature access.
-* **Cancel registration**: Prevent misconfigurations by discarding changes.  \
-Canceling a model addition maintains system integrity, ensuring reliability and avoiding costly errors for enterprises.
+* **Register new model**: Add a model to enable advanced functionality.  
+Registering a Llama 3.3 model enables on-prem generation, enhancing platform 
+flexibility and supporting advanced customer use cases, which drives adoption.
+* **Save configuration**: Store model details for immediate global availability.  
+Saving a model configuration ensures usability, accelerating deployment and improving 
+customer satisfaction by enabling rapid feature access.
+* **Cancel registration**: Prevent misconfigurations by discarding changes.  
+Canceling a model addition maintains system integrity, ensuring reliability 
+and avoiding costly errors for enterprises.
 
 
 ### Actions
