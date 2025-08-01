@@ -6,25 +6,37 @@ sidebar_label: Agents
 
 import CodePanel from '@site/src/theme/CodePanel';
 
-An agent represents the core orchestration unit in the Vectara platform. The 
-agent decides how to respond to user input, when to invoke tools, and how to 
-manage conversation state. Each agent is configured with:
+An agent is the core orchestration unit in Vectara's platform. It decides how 
+to respond to user input, when to invoke tools, and how to manage conversation 
+state. 
 
-* A unique ID and name
+## Agent Prerequisites
+
+Before creating an agent, you must:
+1. **Define tools**: Configure tools first, as they are mandatory for agent 
+   creation
+2. **Configure instructions**: Instructions are required to guide the behavior 
+3. of the agent
+
+Each agent is configured with:
+
+* A unique ID and name following the pattern agt_[identifier]
 * A human-readable description
-* One or more instructions (referenced by name)
-* A global list of available tools (referenced by name or ID)
-* Optional access to corpora for retrieval
-* Metadata (owner, department, version)
-* A _first_step_ definition that a configures the agent’s entry point.  
-  This includes the initial instructions and output parsing logic.
+* **(Required)** Tool configuration specifying available MCP tools and argument 
+  bindings
+* Model configuration including parameters like temperature and max tokens
+* **(Required)** Instructions that guide agent reasoning and behavior (referenced 
+  by ID or defined inline)
+* Metadata for tracking (owner, department, version)
+* Enabled status for availability control
 
-Because agents are structured as a _step machine,_ they can be extended to 
-support more advanced, multi-step workflows in the future.
+A timer tool is automatically provided as a default to ensure agents have 
+basic functionality and don't fail due to lack of tool configuration.
 
-Agents operate in a conversational loop by default, continually interpreting 
-new input and responding appropriately, but the API design anticipates 
-conditional branching and workflow orchestration in future releases.
+Agents operate through a conversational step architecture, processing user 
+input through reasoning, tool execution, and response generation phases. 
+The step-based design enables complex multi-turn workflows and intelligent 
+tool orchestration.
 
 ### Example Agent Definition
 

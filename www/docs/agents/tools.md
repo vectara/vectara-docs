@@ -17,10 +17,10 @@ dynamically. They are defined by:
 
 ## Examples of tools:
 
-* **tool_web_search:** Retrieves web search results
-* **tool_email_sender:** Sends templated emails
-* **tool_ticket_creator:** Opens support tickets
-* **tool_corpus_search:** Searches across selected corpora
+* **tol_web_search:** Retrieves web search results
+* **tol_email_sender:** Sends templated emails
+* **tol_ticket_creator:** Opens support tickets
+* **tol_corpus_search:** Searches across selected corpora
 
 Tools are discovered and synchronized from registered MCP servers. When a tool 
 is updated on its source server, the changes are automatically reflected in 

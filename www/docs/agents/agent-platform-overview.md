@@ -1,7 +1,7 @@
 ---
 id: agent-platform-overview
-title: Agent Platform
-sidebar_label: Agents Platform
+title: Vectara Agentic Platform
+sidebar_label: Vectara Agentic Platform
 ---
 
 The Vectara Agentic Platform enables enterprises to build intelligent, agentic 
@@ -66,34 +66,7 @@ Agents are not limited to reactive question-answering. They are proactive,
 configurable digital workers, capable of executing multi-turn tasks and 
 integrating with enterprise systems.
 
-## Core Concepts
-
-```mermaid
-flowchart TD
-    User["User / Application"]
-    Session["Agent Session"]
-    Agent["Agent"]
-    Inst["Instructions"]
-    Query["Agent Query"]
-    Tool["Tool"]
-    ToolServer["Tool Server"]
-    Corpus["Corpus"]
-
-    User -->|Sends message| Session
-    Session -->|Provides context & history| Agent
-    Agent -->|Applies| Inst
-    Agent -->|Creates| Query
-    Query -->|Direct Answer| Session
-    Query -->|Invoke Tool| Tool
-    Tool -->|Executes via| ToolServer
-    ToolServer -->|Returns data| Tool
-    Tool -->|Retrieves| Corpus
-    Tool -->|Returns result| Query
-    Query -->|Synthesized Response| Session
-    Session -->|Delivers answer| User
-
-```
----
+## Core Components
 
 ```mermaid
 flowchart TD
@@ -178,4 +151,3 @@ mechanisms. All tool calls, whether internal or external, are subject to the
 same permission model. This ensures that agents can only access the resources 
 and perform the actions that they have been explicitly granted permission to 
 use. This provides a secure and auditable way to manage agent capabilities.
-
