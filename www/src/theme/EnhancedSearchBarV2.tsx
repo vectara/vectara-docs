@@ -1,5 +1,5 @@
-// Enhanced SearchBar with Intelligent Code Generation
-// Testing version for platform/react-chatbot branch
+// Enhanced SearchBar V2 - Test Version for platform/react-chatbot branch
+// Uses the enhanced VectaraEnhanced components with intelligent code generation
 
 import React, { useState, useCallback } from 'react';
 import BrowserOnly from '@docusaurus/BrowserOnly';
@@ -9,7 +9,7 @@ import { getVectaraConfig, USE_V2_API } from '../components/VectaraEnhanced/conf
 // Get the active Vectara configuration (v1 or v2)
 const VECTARA_CONFIG = getVectaraConfig();
 
-export default function SearchBar(): JSX.Element {
+export default function EnhancedSearchBarV2(): JSX.Element {
   
   const [searchResults, setSearchResults] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -23,18 +23,18 @@ export default function SearchBar(): JSX.Element {
     // Integration with existing analytics
     if (typeof gtag !== 'undefined') {
       gtag('event', event.type, {
-        event_category: 'vectara_enhanced_chatbot',
+        event_category: 'vectara_enhanced_chatbot_v2',
         event_label: event.sessionId,
         search_query: event.searchContext?.originalQuery,
         custom_parameter: event.data
       });
     }
     
-    console.log('Enhanced Chatbot Event:', event);
+    console.log('Enhanced Chatbot V2 Event:', event);
   }, []);
 
   return (
-    <BrowserOnly fallback={<div>Loading Search...</div>}>
+    <BrowserOnly fallback={<div>Loading Enhanced Search...</div>}>
       {() => {
         // Original search functionality (from SearchBar.tsx)
         const ReactSearch = require("@vectara/react-search").ReactSearch;
@@ -96,7 +96,7 @@ export default function SearchBar(): JSX.Element {
               }}
               
               onIntegrationEvent={(event, data) => {
-                console.log('Integration Event:', event, data);
+                console.log('Integration Event V2:', event, data);
               }}
             />
           </>
