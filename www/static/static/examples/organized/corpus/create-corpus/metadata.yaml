@@ -1,0 +1,8 @@
+description: Create a new corpus
+category: corpus
+tags:
+  - create
+hasRequestExample: true
+responseStatusCodes:
+  - '201'
+  - '400'

@@ -1,0 +1,42 @@
+{
+  "response_set": [
+    {
+      "text": "To use the reranker in Vectara, you need to configure it in your query request...",
+      "score": 0.92,
+      "document_index": 0,
+      "metadata": {
+        "title": "Query Configuration Guide",
+        "author": "Documentation Team",
+        "product": "Vectara",
+        "version": "2.0",
+        "category": "User Guide"
+      }
+    },
+    {
+      "text": "The reranker helps improve search relevance by reordering results...",
+      "score": 0.87,
+      "document_index": 1,
+      "metadata": {
+        "title": "Advanced Search Features",
+        "author": "Documentation Team",
+        "product": "Vectara",
+        "version": "2.0",
+        "category": "Developer Guide"
+      }
+    }
+  ],
+  "summary": "To use the reranker in Vectara, configure it in your query request. The reranker improves search relevance by reordering results.",
+  "summary_text": "To use the reranker in Vectara, configure it in your query request. The reranker improves search relevance by reordering results.",
+  "citation_metadata": [
+    {
+      "start": 0,
+      "end": 45,
+      "document_index": 0
+    },
+    {
+      "start": 46,
+      "end": 120,
+      "document_index": 1
+    }
+  ]
+}

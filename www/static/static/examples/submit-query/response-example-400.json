@@ -1,0 +1,4 @@
+{
+  "error": "invalid_query",
+  "error_description": "Query text is required"
+}

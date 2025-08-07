@@ -1,0 +1,414 @@
+{
+  "createCorpus": {
+    "path": "/v2/corpora",
+    "method": "POST",
+    "description": "Create a corpus"
+  },
+  "Corpora": [
+    "createCorpus",
+    "listCorpora",
+    "getCorpus",
+    "deleteCorpus",
+    "updateCorpus",
+    "resetCorpus",
+    "replaceFilterAttributes",
+    "computeCorpusSize"
+  ],
+  "listCorpora": {
+    "path": "/v2/corpora",
+    "method": "GET",
+    "description": "List corpora"
+  },
+  "getCorpus": {
+    "path": "/v2/corpora/{corpus_key}",
+    "method": "GET",
+    "description": "Retrieve metadata about a corpus"
+  },
+  "deleteCorpus": {
+    "path": "/v2/corpora/{corpus_key}",
+    "method": "DELETE",
+    "description": "Delete a corpus and all its data"
+  },
+  "updateCorpus": {
+    "path": "/v2/corpora/{corpus_key}",
+    "method": "PATCH",
+    "description": "Update a corpus"
+  },
+  "resetCorpus": {
+    "path": "/v2/corpora/{corpus_key}/reset",
+    "method": "POST",
+    "description": "Remove all documents and data in a corpus"
+  },
+  "replaceFilterAttributes": {
+    "path": "/v2/corpora/{corpus_key}/replace_filter_attributes",
+    "method": "POST",
+    "description": "Replace the filter attributes of a corpus"
+  },
+  "computeCorpusSize": {
+    "path": "/v2/corpora/{corpus_key}/compute_size",
+    "method": "POST",
+    "description": "Compute the current size of a corpus"
+  },
+  "uploadFile": {
+    "path": "/v2/corpora/{corpus_key}/upload_file",
+    "method": "POST",
+    "description": "Upload a file to the corpus"
+  },
+  "Upload": [
+    "uploadFile"
+  ],
+  "createCorpusDocument": {
+    "path": "/v2/corpora/{corpus_key}/documents",
+    "method": "POST",
+    "description": "Add a document to a corpus"
+  },
+  "Index": [
+    "createCorpusDocument",
+    "updateCorpusDocument",
+    "replaceCorpusDocumentMetadata"
+  ],
+  "listCorpusDocuments": {
+    "path": "/v2/corpora/{corpus_key}/documents",
+    "method": "GET",
+    "description": "List the documents in the corpus"
+  },
+  "Documents": [
+    "listCorpusDocuments",
+    "deleteCorpusDocument",
+    "getCorpusDocument",
+    "summarizeCorpusDocument"
+  ],
+  "deleteCorpusDocument": {
+    "path": "/v2/corpora/{corpus_key}/documents/{document_id}",
+    "method": "DELETE",
+    "description": "Delete a document"
+  },
+  "getCorpusDocument": {
+    "path": "/v2/corpora/{corpus_key}/documents/{document_id}",
+    "method": "GET",
+    "description": "Retrieve a document"
+  },
+  "updateCorpusDocument": {
+    "path": "/v2/corpora/{corpus_key}/documents/{document_id}",
+    "method": "PATCH",
+    "description": "Update document, merging the metadata."
+  },
+  "replaceCorpusDocumentMetadata": {
+    "path": "/v2/corpora/{corpus_key}/documents/{document_id}/metadata",
+    "method": "PUT",
+    "description": "Replace the document metadata."
+  },
+  "summarizeCorpusDocument": {
+    "path": "/v2/corpora/{corpus_key}/documents/{document_id}/summarize",
+    "method": "POST",
+    "description": "Summarize a document"
+  },
+  "searchCorpus": {
+    "path": "/v2/corpora/{corpus_key}/query",
+    "method": "GET",
+    "description": "Simple Single Corpus Query"
+  },
+  "Queries": [
+    "searchCorpus",
+    "queryCorpus",
+    "query"
+  ],
+  "queryCorpus": {
+    "path": "/v2/corpora/{corpus_key}/query",
+    "method": "POST",
+    "description": "Advanced Single Corpus Query"
+  },
+  "query": {
+    "path": "/v2/query",
+    "method": "POST",
+    "description": "Multiple Corpora Query"
+  },
+  "getQueryHistory": {
+    "path": "/v2/queries/{query_id}",
+    "method": "GET",
+    "description": "Get a query history"
+  },
+  "Query History": [
+    "getQueryHistory",
+    "getQueryHistories"
+  ],
+  "getQueryHistories": {
+    "path": "/v2/queries",
+    "method": "GET",
+    "description": "List the history of previous queries"
+  },
+  "createChat": {
+    "path": "/v2/chats",
+    "method": "POST",
+    "description": "Start a chat"
+  },
+  "Chats": [
+    "createChat",
+    "listChats",
+    "getChat",
+    "deleteChat",
+    "createChatTurn",
+    "listChatTurns",
+    "getChatTurn",
+    "deleteChatTurn",
+    "updateChatTurn"
+  ],
+  "listChats": {
+    "path": "/v2/chats",
+    "method": "GET",
+    "description": "List chats"
+  },
+  "getChat": {
+    "path": "/v2/chats/{chat_id}",
+    "method": "GET",
+    "description": "Get a chat"
+  },
+  "deleteChat": {
+    "path": "/v2/chats/{chat_id}",
+    "method": "DELETE",
+    "description": "Delete a chat"
+  },
+  "createChatTurn": {
+    "path": "/v2/chats/{chat_id}/turns",
+    "method": "POST",
+    "description": "Create a new turn in the chat"
+  },
+  "listChatTurns": {
+    "path": "/v2/chats/{chat_id}/turns",
+    "method": "GET",
+    "description": "List turns in a chat"
+  },
+  "getChatTurn": {
+    "path": "/v2/chats/{chat_id}/turns/{turn_id}",
+    "method": "GET",
+    "description": "Get a turn"
+  },
+  "deleteChatTurn": {
+    "path": "/v2/chats/{chat_id}/turns/{turn_id}",
+    "method": "DELETE",
+    "description": "Delete a turn"
+  },
+  "updateChatTurn": {
+    "path": "/v2/chats/{chat_id}/turns/{turn_id}",
+    "method": "PATCH",
+    "description": "Update a turn"
+  },
+  "createLLM": {
+    "path": "/v2/llms",
+    "method": "POST",
+    "description": "Create an LLM"
+  },
+  "Large Language Models": [
+    "createLLM",
+    "listLLMs",
+    "getLLM",
+    "deleteLLM"
+  ],
+  "listLLMs": {
+    "path": "/v2/llms",
+    "method": "GET",
+    "description": "List LLMs"
+  },
+  "getLLM": {
+    "path": "/v2/llms/{llm_id}",
+    "method": "GET",
+    "description": "Get an LLM"
+  },
+  "deleteLLM": {
+    "path": "/v2/llms/{llm_id}",
+    "method": "DELETE",
+    "description": "Delete an LLM"
+  },
+  "createChatCompletion": {
+    "path": "/v2/llms/chat/completions",
+    "method": "POST",
+    "description": "Creates a model response for the given chat conversation"
+  },
+  "LLM Chat Completions": [
+    "createChatCompletion"
+  ],
+  "listGenerationPresets": {
+    "path": "/v2/generation_presets",
+    "method": "GET",
+    "description": "List generation presets"
+  },
+  "Generation Presets": [
+    "listGenerationPresets"
+  ],
+  "evaluateFactualConsistency": {
+    "path": "/v2/evaluate_factual_consistency",
+    "method": "POST",
+    "description": "Evaluate factual consistency"
+  },
+  "Factual Consistency Evaluation": [
+    "evaluateFactualConsistency"
+  ],
+  "createEncoder": {
+    "path": "/v2/encoders",
+    "method": "POST",
+    "description": "Create an encoder"
+  },
+  "Encoders": [
+    "createEncoder",
+    "listEncoders"
+  ],
+  "listEncoders": {
+    "path": "/v2/encoders",
+    "method": "GET",
+    "description": "List encoders"
+  },
+  "listRerankers": {
+    "path": "/v2/rerankers",
+    "method": "GET",
+    "description": "List rerankers"
+  },
+  "Rerankers": [
+    "listRerankers"
+  ],
+  "listTableExtractors": {
+    "path": "/v2/table_extractors",
+    "method": "GET",
+    "description": "List supported table extractors"
+  },
+  "Table Extractors": [
+    "listTableExtractors"
+  ],
+  "listHallucinationCorrectors": {
+    "path": "/v2/hallucination_correctors",
+    "method": "GET",
+    "description": "List hallucination correctors"
+  },
+  "Hallucination Correctors": [
+    "listHallucinationCorrectors",
+    "correctHallucinations"
+  ],
+  "correctHallucinations": {
+    "path": "/v2/hallucination_correctors/correct_hallucinations",
+    "method": "POST",
+    "description": "Corrects hallucinations in generated text based on source documents"
+  },
+  "listJobs": {
+    "path": "/v2/jobs",
+    "method": "GET",
+    "description": "List jobs"
+  },
+  "Jobs": [
+    "listJobs",
+    "getJob"
+  ],
+  "getJob": {
+    "path": "/v2/jobs/{job_id}",
+    "method": "GET",
+    "description": "Get a job by ID"
+  },
+  "createUser": {
+    "path": "/v2/users",
+    "method": "POST",
+    "description": "Create a user in the current customer account"
+  },
+  "Users": [
+    "createUser",
+    "listUsers",
+    "getUser",
+    "updateUser",
+    "deleteUser",
+    "resetUserPassword"
+  ],
+  "listUsers": {
+    "path": "/v2/users",
+    "method": "GET",
+    "description": "List users in the account"
+  },
+  "getUser": {
+    "path": "/v2/users/{username}",
+    "method": "GET",
+    "description": "Get a user"
+  },
+  "updateUser": {
+    "path": "/v2/users/{username}",
+    "method": "PATCH",
+    "description": "Update a user"
+  },
+  "deleteUser": {
+    "path": "/v2/users/{username}",
+    "method": "DELETE",
+    "description": "Delete a user"
+  },
+  "resetUserPassword": {
+    "path": "/v2/users/{username}/reset_password",
+    "method": "POST",
+    "description": "Reset the password for a user"
+  },
+  "createApiKey": {
+    "path": "/v2/api_keys",
+    "method": "POST",
+    "description": "Create an API key"
+  },
+  "API Keys": [
+    "createApiKey",
+    "listApiKeys",
+    "getApiKey",
+    "updateApiKey",
+    "deleteApiKey"
+  ],
+  "listApiKeys": {
+    "path": "/v2/api_keys",
+    "method": "GET",
+    "description": "List API keys"
+  },
+  "getApiKey": {
+    "path": "/v2/api_keys/{api_key_id}",
+    "method": "GET",
+    "description": "Get an API key"
+  },
+  "updateApiKey": {
+    "path": "/v2/api_keys/{api_key_id}",
+    "method": "PATCH",
+    "description": "Update an API key"
+  },
+  "deleteApiKey": {
+    "path": "/v2/api_keys/{api_key_id}",
+    "method": "DELETE",
+    "description": "Delete an API key"
+  },
+  "createAppClient": {
+    "path": "/v2/app_clients",
+    "method": "POST",
+    "description": "Create an App Client"
+  },
+  "Application Clients": [
+    "createAppClient",
+    "listAppClient",
+    "getAppClient",
+    "updateAppClient",
+    "deleteAppClient"
+  ],
+  "listAppClient": {
+    "path": "/v2/app_clients",
+    "method": "GET",
+    "description": "List App Clients"
+  },
+  "getAppClient": {
+    "path": "/v2/app_clients/{app_client_id}",
+    "method": "GET",
+    "description": "Get an App Client"
+  },
+  "updateAppClient": {
+    "path": "/v2/app_clients/{app_client_id}",
+    "method": "PATCH",
+    "description": "Update an App Client"
+  },
+  "deleteAppClient": {
+    "path": "/v2/app_clients/{app_client_id}",
+    "method": "DELETE",
+    "description": "Delete an App Client"
+  },
+  "getOAuthToken": {
+    "path": "/oauth/token",
+    "method": "POST",
+    "description": "Request an access token"
+  },
+  "Authentication": [
+    "getOAuthToken"
+  ]
+}

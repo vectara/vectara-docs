@@ -1,0 +1,24 @@
+{
+  "document_id": "doc-123",
+  "metadata": {
+    "title": "Getting Started Guide",
+    "author": "Documentation Team",
+    "product": "Vectara",
+    "version": "2.0",
+    "category": "User Guide"
+  },
+  "sections": [
+    {
+      "text": "Vectara is a platform for building conversational search applications...",
+      "metadata": {
+        "section": "Introduction"
+      }
+    },
+    {
+      "text": "To get started with Vectara, you need to create an account...",
+      "metadata": {
+        "section": "Getting Started"
+      }
+    }
+  ]
+}

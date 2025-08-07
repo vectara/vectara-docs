@@ -1,0 +1,12 @@
+description: Update a user
+operationId: updateUser
+path: /v2/users/{username}
+method: PATCH
+tags:
+  - Users
+parameters:
+  - null
+  - null
+  - username
+hasRequestExample: false
+responseStatusCodes: []

@@ -282,12 +282,148 @@ export const useProductionChatV2 = (options: UseProductionChatOptions): UseChatR
           
           // v2 API response format (adjust based on actual v2 response structure)
           const responseText = response.answer || response.summary || 'No response received';
-          const references = response.search_results?.map((r: any, index: number) => ({
-            id: `ref_${index}`,
-            title: r.document?.metadata?.title || `Reference ${index + 1}`,
-            snippet: r.part?.text || r.text,
-            score: r.score
-          })) || [];
+          const references = response.search_results?.map((r: any, index: number) => {
+            // Try to extract meaningful title from metadata or content
+            let title = r.document?.metadata?.title || 
+                       r.document?.metadata?.filename ||
+                       r.document?.metadata?.name ||
+                       r.document?.metadata?.document_title;
+            
+            // STEP 1: Try to get direct URL from metadata
+            let url = r.document?.metadata?.url || 
+                     r.document?.metadata?.doc_url ||
+                     r.document?.metadata?.link;
+            
+            // If no title found, try to extract from text content
+            if (!title) {
+              const textContent = r.part?.text || r.text || '';
+              const textLines = textContent.split('\n');
+              
+              // Look for page title patterns
+              const potentialTitle = textLines.find(line => 
+                line.includes('|') && (line.includes('Vectara') || line.includes('Docs'))
+              );
+              
+              if (potentialTitle) {
+                title = potentialTitle.split('|')[0].trim();
+              } else {
+                // Use first meaningful line as title
+                const firstLine = textLines.find(line => 
+                  line.trim().length > 3 && !line.includes('%START_SNIPPET%')
+                )?.trim();
+                
+                if (firstLine) {
+                  title = firstLine.length > 50 ? firstLine.substring(0, 47) + '...' : firstLine;
+                } else {
+                  title = `Search Result ${index + 1}`;
+                }
+              }
+            }
+            
+            // STEP 2: Try to get file path from metadata and construct URL
+            if (!url) {
+              const pathMeta = r.document?.metadata?.source ||
+                              r.document?.metadata?.file_path ||
+                              r.document?.metadata?.path ||
+                              r.document?.metadata?.filename;
+              
+              if (pathMeta && typeof pathMeta === 'string' && !pathMeta.includes('<')) {
+                // Clean and construct proper URL from path
+                let cleanPath = pathMeta;
+                
+                // If it's already a full URL, use it
+                if (cleanPath.startsWith('http')) {
+                  url = cleanPath;
+                } else {
+                  // Clean up common path formats
+                  cleanPath = cleanPath
+                    .replace(/^\/+/, '') // Remove leading slashes
+                    .replace(/\.mdx?$/, '') // Remove .md/.mdx extensions
+                    .replace(/\/index$/, '') // Remove /index endings
+                    .replace(/^docs\//, '') // Remove docs/ prefix if present
+                    .replace(/^www\//, ''); // Remove www/ prefix if present
+                  
+                  // Only proceed if cleanPath looks like a valid path (no HTML tags)
+                  if (cleanPath && !cleanPath.includes('<') && !cleanPath.includes('%')) {
+                    url = `https://docs.vectara.com/docs/${cleanPath}`;
+                  }
+                }
+              }
+            }
+            
+            // STEP 3: Only if we have a clean title (no HTML), try title-based URL
+            if (!url && title && title !== `Search Result ${index + 1}` && title !== `Reference ${index + 1}` && !title.includes('<') && !title.includes('%')) {
+              // Check if title looks like a page title (contains " | ")
+              if (title.includes(' | ')) {
+                const pageName = title.split(' | ')[0].trim();
+                if (pageName && !pageName.includes('<')) {
+                  const urlPath = pageName.toLowerCase()
+                    .replace(/\s+/g, '-')
+                    .replace(/[^a-z0-9-]/g, '')
+                    .replace(/-+/g, '-')
+                    .replace(/^-|-$/g, '');
+                  
+                  if (urlPath && urlPath.length > 2) {
+                    url = `https://docs.vectara.com/docs/${urlPath}`;
+                  }
+                }
+              }
+            }
+            
+            // STEP 4: Look for clean page titles in text (avoid HTML-encoded content)
+            if (!url) {
+              const textContent = r.part?.text || r.text || '';
+              const textLines = textContent.split('\n');
+              
+              // Look for page titles in format "Title | Vectara Docs" that don't contain HTML
+              const titleLine = textLines.find(line => 
+                line.includes('|') && 
+                (line.includes('Vectara') || line.includes('Docs')) &&
+                !line.includes('<') &&
+                !line.includes('%') &&
+                !line.includes('&') &&
+                line.trim().length < 100 // Reasonable title length
+              );
+              
+              if (titleLine) {
+                const pageName = titleLine.split('|')[0].trim();
+                if (pageName && pageName.length > 3 && pageName.length < 80) {
+                  const urlPath = pageName.toLowerCase()
+                    .replace(/\s+/g, '-')
+                    .replace(/[^a-z0-9-]/g, '')
+                    .replace(/-+/g, '-')
+                    .replace(/^-|-$/g, '');
+                  
+                  if (urlPath && urlPath.length > 2) {
+                    url = `https://docs.vectara.com/docs/${urlPath}`;
+                    // Update title to be more meaningful
+                    title = pageName;
+                  }
+                }
+              }
+            }
+            
+            // STEP 5: Final fallback - just use docs homepage (no search URLs with HTML content)
+            if (!url) {
+              url = `https://docs.vectara.com/docs/`;
+              if (title === `Search Result ${index + 1}` || title === `Reference ${index + 1}`) {
+                title = `Vectara Documentation`;
+              }
+            }
+            
+            // Clean up URL format
+            if (url && !url.startsWith('http')) {
+              url = url.startsWith('/') ? `https://docs.vectara.com${url}` : `https://docs.vectara.com/${url}`;
+            }
+            
+            return {
+              id: `ref_${index}`,
+              title,
+              snippet: r.part?.text || r.text,
+              score: r.score,
+              url
+            };
+          }) || [];
 
           // Check if this could have code examples (but didn't auto-generate)
           const couldHaveCode = codeGeneration?.enabled && (

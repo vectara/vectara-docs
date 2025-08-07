@@ -1,0 +1,17 @@
+description: List the history of previous queries
+operationId: getQueryHistories
+path: /v2/queries
+method: GET
+tags:
+  - Query History
+parameters:
+  - null
+  - null
+  - corpus_key
+  - started_after
+  - started_before
+  - chat_id
+  - limit
+  - page_key
+hasRequestExample: false
+responseStatusCodes: []

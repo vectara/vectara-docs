@@ -1,0 +1,8 @@
+description: Index a document
+category: corpus
+tags:
+  - index
+hasRequestExample: true
+responseStatusCodes:
+  - '200'
+  - '400'

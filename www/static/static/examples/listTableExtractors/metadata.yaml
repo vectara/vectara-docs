@@ -1,0 +1,11 @@
+description: List supported table extractors
+operationId: listTableExtractors
+path: /v2/table_extractors
+method: GET
+tags:
+  - Table Extractors
+parameters:
+  - null
+  - null
+hasRequestExample: false
+responseStatusCodes: []

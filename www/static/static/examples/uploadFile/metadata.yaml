@@ -1,0 +1,12 @@
+description: Upload a file to the corpus
+operationId: uploadFile
+path: /v2/corpora/{corpus_key}/upload_file
+method: POST
+tags:
+  - Upload
+parameters:
+  - null
+  - null
+  - corpus_key
+hasRequestExample: false
+responseStatusCodes: []

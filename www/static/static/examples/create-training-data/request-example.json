@@ -1,0 +1,18 @@
+{
+  "corpus_id": 12345,
+  "query": "How to configure authentication?",
+  "documents": [
+    {
+      "document_id": "doc-123",
+      "score": 0.95
+    },
+    {
+      "document_id": "doc-456",
+      "score": 0.87
+    }
+  ],
+  "feedback": {
+    "relevant": true,
+    "comments": "This query returned the most relevant documents"
+  }
+}

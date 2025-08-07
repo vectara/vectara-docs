@@ -1,0 +1,10 @@
+description: "Basic Search Query Example"
+category: "search"
+tags: ["search", "query", "basic"]
+parameters:
+  - "query"
+  - "corpus_key"  
+  - "customer_id"
+version: "2.0"
+endpoint: "/v2/chats"
+method: "POST"

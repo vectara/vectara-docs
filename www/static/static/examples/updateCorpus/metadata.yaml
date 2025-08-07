@@ -1,0 +1,12 @@
+description: Update a corpus
+operationId: updateCorpus
+path: /v2/corpora/{corpus_key}
+method: PATCH
+tags:
+  - Corpora
+parameters:
+  - null
+  - null
+  - corpus_key
+hasRequestExample: false
+responseStatusCodes: []

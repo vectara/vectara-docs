@@ -1,0 +1,15 @@
+{
+  "answer": "Machine learning is a subset of artificial intelligence (AI) that enables computers to learn and make decisions from data without being explicitly programmed for every task.",
+  "search_results": [
+    {
+      "text": "Machine learning is a method of data analysis that automates analytical model building.",
+      "score": 0.8945,
+      "part_metadata": {
+        "title": "Introduction to Machine Learning",
+        "url": "https://example.com/ml-intro"
+      }
+    }
+  ],
+  "factual_consistency_score": 0.95,
+  "response_language": "en"
+}

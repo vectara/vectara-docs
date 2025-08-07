@@ -1,0 +1,13 @@
+description: Replace the document metadata.
+operationId: replaceCorpusDocumentMetadata
+path: /v2/corpora/{corpus_key}/documents/{document_id}/metadata
+method: PUT
+tags:
+  - Index
+parameters:
+  - null
+  - null
+  - corpus_key
+  - document_id
+hasRequestExample: false
+responseStatusCodes: []

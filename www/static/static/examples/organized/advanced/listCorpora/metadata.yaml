@@ -1,0 +1,15 @@
+description: List corpora
+operationId: listCorpora
+path: /v2/corpora
+method: GET
+tags:
+  - Corpora
+parameters:
+  - null
+  - null
+  - limit
+  - filter
+  - corpus_id
+  - page_key
+hasRequestExample: false
+responseStatusCodes: []

@@ -1,0 +1,14 @@
+description: List generation presets
+operationId: listGenerationPresets
+path: /v2/generation_presets
+method: GET
+tags:
+  - Generation Presets
+parameters:
+  - null
+  - null
+  - llm_name
+  - limit
+  - page_key
+hasRequestExample: false
+responseStatusCodes: []

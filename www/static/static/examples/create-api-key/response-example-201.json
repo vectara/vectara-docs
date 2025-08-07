@@ -1,0 +1,12 @@
+{
+  "api_key_id": "key-12345",
+  "api_key": "znt_abc123...",
+  "description": "API key for documentation chatbot",
+  "created_time": "2023-01-01T00:00:00Z",
+  "last_used_time": null,
+  "permissions": {
+    "query": true,
+    "index": true,
+    "admin": false
+  }
+}

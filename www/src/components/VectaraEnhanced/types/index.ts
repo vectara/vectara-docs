@@ -36,6 +36,9 @@ export interface ChatMessage {
   codeSnippets?: CodeSnippet[];
   references?: DocumentReference[];
   canShowCode?: boolean; // For on-demand code generation
+  threadId?: string; // For message threading
+  parentMessageId?: string; // For follow-up questions
+  isFollowUp?: boolean; // Indicates this is a follow-up message
 }
 
 export interface DocumentReference {
@@ -54,6 +57,17 @@ export interface ChatState {
   sessionId: string;
   isStreaming: boolean;
   retryCount: number;
+  isTyping: boolean; // For typing indicators
+  searchSuggestions: string[]; // For search suggestions
+  conversationHistory: ConversationHistory[]; // For persistence
+}
+
+export interface ConversationHistory {
+  id: string;
+  title: string; // First message or generated title
+  messages: ChatMessage[];
+  lastActivity: number;
+  sessionId: string;
 }
 
 export interface AnalyticsEvent {
@@ -127,6 +141,12 @@ export interface EnhancedChatbotProps {
   searchQuery?: string;
   onSearchToChat?: (query: string, results?: SearchResult[]) => void;
   
+  // Fullscreen controls
+  showFullscreenToggle?: boolean;
+  isFullscreen?: boolean;
+  onToggleFullscreen?: () => void;
+  onClose?: () => void;
+  
   // Styling
   className?: string;
   style?: React.CSSProperties;
@@ -146,7 +166,7 @@ export interface SearchChatIntegrationProps extends Omit<EnhancedChatbotProps, '
   searchChatHandoffText?: string;
   
   // Integration modes
-  mode?: 'overlay' | 'sidebar' | 'inline' | 'modal';
+  mode?: 'overlay' | 'sidebar' | 'inline' | 'modal' | 'fullscreen';
   position?: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left' | 'center';
   
   // Styling
@@ -222,12 +242,17 @@ export interface UseChatReturn {
   isLoading: boolean;
   error: string | null;
   isStreaming: boolean;
+  isTyping: boolean;
+  searchSuggestions: string[];
+  conversationHistory: ConversationHistory[];
   retryCount: number;
-  sendMessage: (content: string) => Promise<void>;
+  sendMessage: (content: string, parentMessageId?: string) => Promise<void>;
+  sendFollowUp: (content: string, parentMessageId: string) => Promise<void>;
   retry: () => void;
   clearChat: () => void;
   updateCodeParameter: (messageId: string, snippetId: string, parameterName: string, value: any) => void;
   showCodeExamples: (messageId: string, codeType?: string) => void;
+  getSearchSuggestions: (input: string) => string[];
 }
 
 // Code Templates

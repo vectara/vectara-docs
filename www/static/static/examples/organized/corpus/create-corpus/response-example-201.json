@@ -1,0 +1,8 @@
+{
+  "corpus_id": 12345,
+  "name": "Product Documentation",
+  "description": "Documentation for all products",
+  "language": "en",
+  "created_time": "2023-01-01T00:00:00Z",
+  "last_updated_time": "2023-01-01T00:00:00Z"
+}

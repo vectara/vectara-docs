@@ -1,0 +1,11 @@
+description: Evaluate factual consistency
+operationId: evaluateFactualConsistency
+path: /v2/evaluate_factual_consistency
+method: POST
+tags:
+  - Factual Consistency Evaluation
+parameters:
+  - null
+  - null
+hasRequestExample: false
+responseStatusCodes: []

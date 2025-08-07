@@ -1,0 +1,8 @@
+description: Get corpus details
+category: corpus
+tags:
+  - get
+hasRequestExample: false
+responseStatusCodes:
+  - '200'
+  - '404'

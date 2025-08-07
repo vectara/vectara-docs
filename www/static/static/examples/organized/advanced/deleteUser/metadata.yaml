@@ -1,0 +1,12 @@
+description: Delete a user
+operationId: deleteUser
+path: /v2/users/{username}
+method: DELETE
+tags:
+  - Users
+parameters:
+  - null
+  - null
+  - username
+hasRequestExample: false
+responseStatusCodes: []

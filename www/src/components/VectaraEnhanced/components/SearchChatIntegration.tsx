@@ -97,12 +97,47 @@ export const SearchChatIntegration: React.FC<SearchChatIntegrationProps> = ({
   onError
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(true); // Always start in fullscreen
   const [chatContext, setChatContext] = useState<{
     query?: string;
     results?: SearchResult[];
   }>({});
   
+  
   const chatRef = useRef<HTMLDivElement>(null);
+
+  // Listen for search-to-chat handoff events
+  useEffect(() => {
+    const handleChatHandoff = (event: CustomEvent) => {
+      const { query, results, source } = event.detail;
+      
+      console.log('✅ Chat handoff received:', { query, results, source });
+      
+      // Set up chat with search context
+      setChatContext({ query, results });
+      setIsOpen(true);
+      onChatOpen?.();
+      
+      onIntegrationEvent?.('search_to_chat_handoff', {
+        query,
+        resultsCount: results?.length || 0,
+        source,
+        timestamp: Date.now()
+      });
+    };
+
+    console.log('🎧 Setting up event listener for openVectaraChat');
+    document.addEventListener('openVectaraChat', handleChatHandoff as EventListener);
+    return () => {
+      console.log('🗑️ Removing event listener for openVectaraChat');
+      document.removeEventListener('openVectaraChat', handleChatHandoff as EventListener);
+    };
+  }, [onChatOpen, onIntegrationEvent]);
+
+  // Debug: Log component state
+  useEffect(() => {
+    console.log('SearchChatIntegration state:', { isOpen, isFullscreen, chatContext });
+  }, [isOpen, isFullscreen, chatContext]);
 
   // Handle search to chat handoff
   const handleSearchToChat = useCallback((query: string, results?: SearchResult[]) => {
@@ -154,47 +189,38 @@ export const SearchChatIntegration: React.FC<SearchChatIntegrationProps> = ({
     }
   }, [mode, isOpen, handleChatClose]);
 
-  // Position styles for overlay mode
-  const getPositionStyles = () => {
-    if (mode !== 'overlay') return {};
+  // Position styles - always fullscreen modal positioned like ReactSearch
+  const getPositionStyles = useCallback(() => {
+    if (mode === 'embedded') return {};
 
-    const baseStyles = {
+    // Always use fullscreen modal positioning
+    return {
       position: 'fixed' as const,
-      zIndex: 1000,
-      width: '400px',
-      height: '600px',
-      maxWidth: '90vw',
-      maxHeight: '80vh'
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'flex-start',
+      zIndex: 1050,
+      pointerEvents: 'none' as const
     };
-
-    switch (position) {
-      case 'bottom-right':
-        return { ...baseStyles, bottom: '20px', right: '20px' };
-      case 'bottom-left':
-        return { ...baseStyles, bottom: '20px', left: '20px' };
-      case 'top-right':
-        return { ...baseStyles, top: '20px', right: '20px' };
-      case 'top-left':
-        return { ...baseStyles, top: '20px', left: '20px' };
-      case 'center':
-        return {
-          ...baseStyles,
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)'
-        };
-      default:
-        return { ...baseStyles, bottom: '20px', right: '20px' };
-    }
-  };
+  }, [mode]);
 
   // Floating chat button for overlay mode
   const FloatingChatButton = () => {
-    if (mode !== 'overlay' || isOpen) return null;
+    if (mode !== 'overlay' || isOpen) {
+      return null;
+    }
 
     return (
       <button
-        onClick={() => handleSearchToChat(searchQuery || 'Ask me anything', searchResults)}
+        onClick={() => {
+          console.log('💬 Chat button clicked - opening in fullscreen');
+          setIsOpen(true);
+          onChatOpen?.();
+        }}
         style={{
           position: 'fixed',
           bottom: '20px',
@@ -209,7 +235,7 @@ export const SearchChatIntegration: React.FC<SearchChatIntegrationProps> = ({
           fontSize: '24px',
           boxShadow: '0 4px 12px rgba(0, 123, 255, 0.3)',
           transition: 'all 0.3s ease',
-          zIndex: 999
+          zIndex: 1000
         }}
         onMouseOver={(e) => {
           e.currentTarget.style.backgroundColor = '#0056b3';
@@ -226,7 +252,7 @@ export const SearchChatIntegration: React.FC<SearchChatIntegrationProps> = ({
     );
   };
 
-  // Chat component with enhanced context
+  // Chat component with enhanced context - always fullscreen
   const ChatComponent = () => {
     if (!isOpen && mode === 'overlay') return null;
 
@@ -235,86 +261,81 @@ export const SearchChatIntegration: React.FC<SearchChatIntegrationProps> = ({
       : chatTitle;
 
     const contextualDescription = chatContext.query
-      ? `Continuing from your search: "${chatContext.query}"`
+      ? `I can help you explore "${chatContext.query}" further. Ask me follow-up questions or request more details!`
       : chatDescription;
 
+    // Always render in fullscreen mode (search-like modal)
     return (
       <div
-        ref={chatRef}
-        className={`vectara-search-chat-integration ${className}`}
-        style={{
-          ...getPositionStyles(),
-          ...style,
-          ...(mode === 'overlay' && {
-            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)',
-            borderRadius: '12px',
-            overflow: 'hidden'
-          })
-        }}
+        style={getPositionStyles()}
       >
-        {/* Close button for overlay mode */}
-        {mode === 'overlay' && (
-          <button
-            onClick={handleChatClose}
-            style={{
-              position: 'absolute',
-              top: '8px',
-              right: '8px',
-              background: 'rgba(0, 0, 0, 0.1)',
-              border: 'none',
-              borderRadius: '50%',
-              width: '32px',
-              height: '32px',
-              cursor: 'pointer',
-              fontSize: '16px',
-              zIndex: 1001,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}
-            title="Close chat"
-          >
-            ✕
-          </button>
-        )}
-
-        {/* Search context display */}
-        {showSearchContext && chatContext.query && (
-          <div style={{
-            padding: '12px 16px',
-            backgroundColor: '#e3f2fd',
-            borderBottom: '1px solid #bbdefb',
-            fontSize: '14px'
-          }}>
-            <strong>Context:</strong> {chatContext.query}
-            {chatContext.results && (
-              <span style={{ color: '#666', marginLeft: '8px' }}>
-                ({chatContext.results.length} results)
-              </span>
-            )}
-          </div>
-        )}
-
-        <VectaraEnhancedChatbot
-          customerId={customerId}
-          corpusKeys={corpusKeys}
-          apiKey={apiKey}
-          title={contextualTitle}
-          description={contextualDescription}
-          codeGeneration={codeGeneration}
-          analytics={{
-            ...analytics,
-            onEvent: (event) => {
-              analytics?.onEvent?.(event);
-              onIntegrationEvent?.('chat_event', event);
-            }
+        <div
+          ref={chatRef}
+          className={`vectara-search-chat-integration fullscreen-modal ${className}`}
+          style={{
+            marginTop: '6vh',
+            backgroundColor: '#ffffff',
+            display: 'flex',
+            flexDirection: 'column',
+            width: '100%',
+            maxWidth: '720px',
+            maxHeight: '88vh',
+            pointerEvents: 'all',
+            boxShadow: 'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px',
+            borderRadius: '8px',
+            overflow: 'hidden',
+            ...style
           }}
-          enableStreaming={enableStreaming}
-          onQuerySubmit={handleQuerySubmit}
-          onCodeGenerated={onCodeGenerated}
-          onError={onError}
-          style={{ height: '100%' }}
-        />
+        >
+          {/* Search context display */}
+          {showSearchContext && chatContext.query && (
+            <div style={{
+              padding: '12px 16px',
+              backgroundColor: '#e8f5e8',
+              borderBottom: '1px solid #c8e6c9',
+              fontSize: '13px'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', marginBottom: '6px' }}>
+                <span style={{ fontSize: '16px', marginRight: '6px' }}>🔍</span>  
+                <strong style={{ color: '#2e7d32' }}>Search Context</strong>
+              </div>
+              <div style={{ color: '#1b5e20' }}>
+                "{chatContext.query}"
+              </div>
+              {chatContext.results && (
+                <div style={{ color: '#4caf50', fontSize: '12px', marginTop: '4px' }}>
+                  Found {chatContext.results.length} relevant result{chatContext.results.length === 1 ? '' : 's'}
+                </div>
+              )}
+            </div>
+          )}
+
+          <VectaraEnhancedChatbot
+            key={`vectara-chat-${customerId}-${corpusKeys.join('-')}`}
+            customerId={customerId}
+            corpusKeys={corpusKeys}
+            apiKey={apiKey}
+            title={contextualTitle}
+            description={contextualDescription}
+            codeGeneration={codeGeneration}
+            analytics={{
+              ...analytics,
+              onEvent: (event) => {
+                analytics?.onEvent?.(event);
+                onIntegrationEvent?.('chat_event', event);
+              }
+            }}
+            enableStreaming={enableStreaming}
+            onQuerySubmit={handleQuerySubmit}
+            onCodeGenerated={onCodeGenerated}
+            onError={onError}
+            style={{ height: '100%' }}
+            showFullscreenToggle={false} // No toggle needed - always fullscreen
+            isFullscreen={true}
+            onToggleFullscreen={undefined}
+            onClose={handleChatClose}
+          />
+        </div>
       </div>
     );
   };
@@ -322,6 +343,22 @@ export const SearchChatIntegration: React.FC<SearchChatIntegrationProps> = ({
   return (
     <>
       <FloatingChatButton />
+      {/* Modal backdrop for better UX */}
+      {isOpen && mode === 'overlay' && (
+        <div 
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.7)',
+            zIndex: 1040,
+            animation: 'fadeIn 0.3s ease'
+          }}
+          onClick={handleChatClose}
+        />
+      )}
       <ChatComponent />
     </>
   );

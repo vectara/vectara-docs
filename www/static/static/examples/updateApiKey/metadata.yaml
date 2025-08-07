@@ -1,0 +1,12 @@
+description: Update an API key
+operationId: updateApiKey
+path: /v2/api_keys/{api_key_id}
+method: PATCH
+tags:
+  - API Keys
+parameters:
+  - null
+  - null
+  - api_key_id
+hasRequestExample: false
+responseStatusCodes: []

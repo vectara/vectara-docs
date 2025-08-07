@@ -1,0 +1,8 @@
+{
+  "url": "https://example.com/webhook",
+  "events": [
+    "document.indexed",
+    "document.deleted"
+  ],
+  "secret": "webhook-secret-key"
+}

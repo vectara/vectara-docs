@@ -1,0 +1,11 @@
+description: Create a corpus
+operationId: createCorpus
+path: /v2/corpora
+method: POST
+tags:
+  - Corpora
+parameters:
+  - null
+  - null
+hasRequestExample: false
+responseStatusCodes: []

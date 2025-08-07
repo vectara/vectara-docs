@@ -1,0 +1,25 @@
+{
+  "authentication": [
+    "auth-token",
+    "auth-refresh"
+  ],
+  "corpus": [
+    "create-corpus",
+    "get-corpus",
+    "index-document"
+  ],
+  "query": [
+    "submit-query",
+    "query-with-udf-reranker",
+    "streaming-query"
+  ],
+  "admin": [
+    "create-api-key",
+    "get-usage-stats"
+  ],
+  "advanced": [
+    "create-training-data",
+    "submit-feedback",
+    "create-webhook"
+  ]
+}

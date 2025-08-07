@@ -1,0 +1,12 @@
+description: Delete an LLM
+operationId: deleteLLM
+path: /v2/llms/{llm_id}
+method: DELETE
+tags:
+  - Large Language Models
+parameters:
+  - null
+  - null
+  - llm_id
+hasRequestExample: false
+responseStatusCodes: []

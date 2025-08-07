@@ -1,0 +1,16 @@
+description: List jobs
+operationId: listJobs
+path: /v2/jobs
+method: GET
+tags:
+  - Jobs
+parameters:
+  - null
+  - null
+  - corpus_key
+  - after
+  - state
+  - limit
+  - page_key
+hasRequestExample: false
+responseStatusCodes: []

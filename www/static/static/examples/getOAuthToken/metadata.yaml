@@ -1,0 +1,9 @@
+description: Request an access token
+operationId: getOAuthToken
+path: /oauth/token
+method: POST
+tags:
+  - Authentication
+parameters: []
+hasRequestExample: false
+responseStatusCodes: []

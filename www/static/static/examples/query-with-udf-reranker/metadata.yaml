@@ -1,0 +1,7 @@
+description: Submit a query with UDF reranker
+category: query
+tags:
+  - query
+hasRequestExample: true
+responseStatusCodes:
+  - '200'

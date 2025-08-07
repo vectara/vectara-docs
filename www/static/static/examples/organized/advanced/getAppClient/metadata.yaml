@@ -1,0 +1,12 @@
+description: Get an App Client
+operationId: getAppClient
+path: /v2/app_clients/{app_client_id}
+method: GET
+tags:
+  - Application Clients
+parameters:
+  - null
+  - null
+  - app_client_id
+hasRequestExample: false
+responseStatusCodes: []

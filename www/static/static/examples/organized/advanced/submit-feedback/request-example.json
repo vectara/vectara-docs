@@ -1,0 +1,14 @@
+{
+  "query_id": "query-12345",
+  "feedback": {
+    "rating": 4,
+    "comments": "Good results, but missing some recent updates",
+    "relevant_documents": [
+      0,
+      2
+    ],
+    "irrelevant_documents": [
+      1
+    ]
+  }
+}

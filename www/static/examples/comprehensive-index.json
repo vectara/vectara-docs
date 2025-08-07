@@ -1,0 +1,22 @@
+{
+  "byCategory": {
+    "search": ["basic-search", "filtered-search"],
+    "upload": ["document-upload"],
+    "corpus": ["create-corpus"]
+  },
+  "byParameter": {
+    "query": ["basic-search", "filtered-search"],
+    "corpus_key": ["basic-search", "filtered-search", "document-upload"],
+    "customer_id": ["basic-search", "filtered-search", "document-upload", "create-corpus"],
+    "filter": ["filtered-search"],
+    "document": ["document-upload"],
+    "name": ["create-corpus"]
+  },
+  "byTag": {
+    "search": ["basic-search", "filtered-search"],
+    "upload": ["document-upload"],
+    "corpus": ["create-corpus"],
+    "example": ["basic-search", "filtered-search", "document-upload", "create-corpus"],
+    "api": ["basic-search", "filtered-search", "document-upload", "create-corpus"]
+  }
+}

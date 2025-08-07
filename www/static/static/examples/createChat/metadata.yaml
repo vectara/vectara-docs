@@ -1,0 +1,11 @@
+description: Start a chat
+operationId: createChat
+path: /v2/chats
+method: POST
+tags:
+  - Chats
+parameters:
+  - null
+  - null
+hasRequestExample: false
+responseStatusCodes: []

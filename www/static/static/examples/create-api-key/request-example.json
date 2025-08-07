@@ -1,0 +1,11 @@
+{
+  "description": "API key for documentation chatbot",
+  "corpus_id": [
+    12345
+  ],
+  "permissions": {
+    "query": true,
+    "index": true,
+    "admin": false
+  }
+}

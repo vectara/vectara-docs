@@ -1,0 +1,11 @@
+description: Create an LLM
+operationId: createLLM
+path: /v2/llms
+method: POST
+tags:
+  - Large Language Models
+parameters:
+  - null
+  - null
+hasRequestExample: false
+responseStatusCodes: []

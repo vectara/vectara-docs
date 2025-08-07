@@ -1,0 +1,12 @@
+description: Get an LLM
+operationId: getLLM
+path: /v2/llms/{llm_id}
+method: GET
+tags:
+  - Large Language Models
+parameters:
+  - null
+  - null
+  - llm_id
+hasRequestExample: false
+responseStatusCodes: []

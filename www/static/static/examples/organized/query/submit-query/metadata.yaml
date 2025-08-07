@@ -1,0 +1,8 @@
+description: Submit a search query
+category: query
+tags:
+  - submit
+hasRequestExample: true
+responseStatusCodes:
+  - '200'
+  - '400'

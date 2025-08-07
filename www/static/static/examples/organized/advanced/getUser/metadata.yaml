@@ -1,0 +1,12 @@
+description: Get a user
+operationId: getUser
+path: /v2/users/{username}
+method: GET
+tags:
+  - Users
+parameters:
+  - null
+  - null
+  - username
+hasRequestExample: false
+responseStatusCodes: []
