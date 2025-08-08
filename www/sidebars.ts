@@ -342,6 +342,7 @@ const sidebars: SidebarsConfig = {
           id: "console-ui/update-credit-card",
           label: "Manage Payments",
         },
+        "console-ui/delete-account",
       ],
     },
     {
