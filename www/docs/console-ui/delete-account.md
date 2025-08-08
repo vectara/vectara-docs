@@ -15,7 +15,7 @@ You can delete your account from the Manage account page or [this link](https://
    This opens the Overview of your account.  
    ![Manage account](/img/click-manage-account.png)
 3. Select the **Delete account** tab.  
-   ![Delete account tab](/img/delete-account-tab.png). 
+   ![Delete account tab](/img/delete-account-tab.png)
 
 4. Click **Delete account** after acknowledging the warning.  
    
