@@ -550,7 +550,7 @@ const sidebars: SidebarsConfig = {
   pythonSDK: [
     {
       type: "category",
-      label: "Python",
+      label: "Python SDK",
       link: {
         type: 'doc',
         id: 'sdk/vectara-python-sdk',

@@ -1,6 +1,6 @@
 ---
 id: python-quickstart
-title: Quick Start
+title: Vectara Python SDK Quick Start
 sidebar_label: Quick Start
 hide_table_of_contents: true
 ---
