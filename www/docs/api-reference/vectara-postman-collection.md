@@ -99,7 +99,7 @@ Each request includes the required headers and sample body content.
 
 ### Example 2: Ask Vectara (RAG Query)
 
-1. **Open Querying, Ask Vectara**.
+1. Open the **Querying > Ask Vectara** request.
 2. Update the request body:  
     <CodePanel snippets={[{language: "json", code: `{
       "query": "What are the main benefits of using Vectara?",
