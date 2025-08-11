@@ -547,6 +547,30 @@ const sidebars: SidebarsConfig = {
       items: apiSidebar,
     },
   ],
+  pythonSDK: [
+    {
+      type: "category",
+      label: "Python SDK",
+      link: {
+        type: 'doc',
+        id: 'sdk/vectara-python-sdk',
+      },
+      items: [
+        "sdk/python/python-quickstart",
+        "sdk/python/corpus",
+        "sdk/python/upload",
+        "sdk/python/documents",
+        "sdk/python/query",
+        "sdk/python/metadata",
+        "sdk/python/chats",
+        "sdk/python/generation_presets",
+        "sdk/python/rerankers",
+        "sdk/python/users",
+        "sdk/python/api_keys",
+        "sdk/python/python-error-handling",
+      ],
+    },
+  ],
   releaseNotes: [
     {
       type: "doc",

@@ -129,7 +129,7 @@ ${content}
 
   themeConfig: {
     prism: {
-      additionalLanguages: ["java", "php", "csharp"],
+      additionalLanguages: ["bash", "python", "javascript", "json", "yaml", "sql", "http", "java", "php", "csharp"],
       theme: themes.vsLight,
       darkTheme: themes.dracula,
     },
@@ -157,6 +157,14 @@ ${content}
           items: [
             { label: "Version 2.0 (Latest)", to: "docs/rest-api" },
             { label: "Version 1.0", to: "docs/1.0/rest-api" },
+          ],
+        },
+        {
+          type: "dropdown",
+          label: "SDKs",
+          position: "left",
+          items: [
+            { label: "Python", to: "docs/sdk/vectara-python-sdk" },
           ],
         },
         {
