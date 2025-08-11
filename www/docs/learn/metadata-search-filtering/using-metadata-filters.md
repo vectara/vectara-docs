@@ -5,6 +5,9 @@ sidebar_title: UsingMetadata
 ---
 
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 To effectively use metadata filters in Vectara, you need to configure the 
 metadata fields that your queries can filter on. This process involves 
 creating or updating metadata attributes during corpus setup or for an 

@@ -5,6 +5,9 @@ sidebar_label: Vectara and LangChain
 ---
 
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 LangChain serves as an orchestration framework for building LLM-powered 
 applications. Vectara's [integration into LangChain](https://python.langchain.com/docs/integrations/vectorstores/vectara/) as a vectorstore empowers 
 developers to utilize its robust semantic retrieval engine and end-to-end RAG 

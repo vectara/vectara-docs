@@ -8,6 +8,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import vars from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 API Keys enable controlled, anonymous access to several administrative tasks, 
 indexing your data, and running semantic searches on your corpora—handy for 
 platform admins setting up systems or app developers integrating public-facing 
@@ -40,8 +43,8 @@ This guide helps you:
 | API Key Type      | Key Prefix | Allowed Operations                  | Scope           | Recommended Usage                     |
 |-------------------|------------|-------------------------------------|------------------|----------------------------------------|
 | Personal Key      | `zut_`     | All user-level operations           | Account-wide     | Admin tasks, Developers for testing, internal scripts |
-| Query Key         | `zqt_`     | Read-only search                    | Corpus-specific  | Developers for public-facing search, front-end apps   |
-| Index Key         | `zwt_`     | Index and query                       | Corpus-specific  | Developers for ingestion and server-side testing       |
+| QueryService Key         | `zqt_`     | Read-only search                    | Corpus-specific  | Developers for public-facing search, front-end apps   |
+| IndexService Key         | `zwt_`     | Index and query                       | Corpus-specific  | Developers for ingestion and server-side testing       |
 
 ## Best practices
 
@@ -49,7 +52,7 @@ This guide helps you:
 - ✅ Apply the **principle of least privilege** by assigning the minimal set of 
   permissions needed to accomplish your goal
 - 🔄 Rotate API keys periodically and revoke unused ones
-- 🔒 Never embed Personal or Index keys in client-side code. Store them on your 
+- 🔒 Never embed Personal or IndexService keys in client-side code. Store them on your 
   server instead.
 
 ### Personal API key
@@ -76,18 +79,18 @@ billing admin-related permissions. Because of their broad access, treat
 Personal API Keys with the same caution as passwords.
 :::
 
-### Query API keys
+### QueryService API keys
 
-We recommend Query API keys for read-only querying operations and for 
+We recommend QueryService API keys for read-only querying operations and for 
 developers embedding in code that runs in potentially insecure environments 
 like web browsers or mobile apps. Query API Keys provide the least amount of 
 risk because they have a limited scope and do not modify account data.
 
-### Index API keys
+### IndexService API keys
 
-Index API Keys offer a practical solution for Developers and ML Engineers 
+IndexService API Keys offer a practical solution for Developers and ML Engineers 
 needing read and write access during development and testing phases. Because 
-they also provide write access, Index API Keys are more powerful than Query 
+they also provide write access, IndexService API Keys are more powerful than Query 
 API Keys and should be treated like passwords and used with caution in 
 production environments.
 
@@ -103,16 +106,91 @@ can lead to unauthorized access. Treat these keys with the same
 confidentiality as your personal credentials. 
 :::
 
+## Vectara API endpoints and required API key types
+
+This table lists all endpoints, HTTP methods, their summary, and which API key 
+types are allowed for each. 
+
+:::tip
+The Personal Key is always allowed anywhere a more restricted key is allowed 
+(except admin-only endpoints).
+:::
+
+| Method | Path | Summary | Allowed Key Types |
+|--------|------|---------|-------------------|
+| POST | `/v2/corpora` | Create a corpus | Personal Key |
+| GET | `/v2/corpora` | List corpora | QueryService Key, Personal Key |
+| GET | `/v2/corpora/{corpus_key}` | Retrieve metadata about a corpus | QueryService Key, Personal Key |
+| DELETE | `/v2/corpora/{corpus_key}` | Delete a corpus and all its data | Personal Key |
+| PATCH | `/v2/corpora/{corpus_key}` | Update a corpus | Personal Key |
+| POST | `/v2/corpora/{corpus_key}/reset` | Remove all documents and data in a corpus | Personal Key |
+| POST | `/v2/corpora/{corpus_key}/replace_filter_attributes` | Replace the filter attributes of a corpus | Personal Key |
+| POST | `/v2/corpora/{corpus_key}/compute_size` | Compute the current size of a corpus | Personal Key |
+| POST | `/v2/corpora/{corpus_key}/upload_file` | Upload a file to the corpus | Personal Key |
+| POST | `/v2/corpora/{corpus_key}/documents` | Add a document to a corpus | Personal Key |
+| GET | `/v2/corpora/{corpus_key}/documents` | List the documents in the corpus | QueryService Key, Personal Key |
+| DELETE | `/v2/corpora/{corpus_key}/documents/{document_id}` | Delete a document | Personal Key |
+| GET | `/v2/corpora/{corpus_key}/documents/{document_id}` | Retrieve a document | QueryService Key, Personal Key |
+| PATCH | `/v2/corpora/{corpus_key}/documents/{document_id}` | Update document, merging the metadata. | Personal Key |
+| PUT | `/v2/corpora/{corpus_key}/documents/{document_id}/metadata` | Replace the document metadata. | IndexService Key, Personal Key |
+| POST | `/v2/corpora/{corpus_key}/documents/{document_id}/summarize` | Summarize a document | Personal Key |
+| GET | `/v2/corpora/{corpus_key}/query` | Simple Single Corpus Query | QueryService Key, Personal Key |
+| POST | `/v2/corpora/{corpus_key}/query` | Advanced Single Corpus Query | QueryService Key, Personal Key |
+| POST | `/v2/query` | Multiple Corpora Query | QueryService Key, Personal Key |
+| GET | `/v2/queries/{query_id}` | Get a query history | QueryService Key, Personal Key |
+| GET | `/v2/queries` | List the history of previous queries | QueryService Key, Personal Key |
+| POST | `/v2/chats` | Start a chat | IndexService Key, Personal Key |
+| GET | `/v2/chats` | List chats | QueryService Key, Personal Key |
+| GET | `/v2/chats/{chat_id}` | Get a chat | QueryService Key, Personal Key |
+| DELETE | `/v2/chats/{chat_id}` | Delete a chat | Personal Key |
+| POST | `/v2/chats/{chat_id}/turns` | Create a new turn in the chat | IndexService Key, Personal Key |
+| GET | `/v2/chats/{chat_id}/turns` | List turns in a chat | QueryService Key, Personal Key |
+| GET | `/v2/chats/{chat_id}/turns/{turn_id}` | Get a turn | QueryService Key, Personal Key |
+| DELETE | `/v2/chats/{chat_id}/turns/{turn_id}` | Delete a turn | Personal Key |
+| PATCH | `/v2/chats/{chat_id}/turns/{turn_id}` | Update a turn | IndexService Key, Personal Key |
+| POST | `/v2/llms` | Create an LLM | IndexService Key, Personal Key |
+| GET | `/v2/llms` | List LLMs | QueryService Key, Personal Key |
+| GET | `/v2/llms/{llm_id}` | Get an LLM | QueryService Key, Personal Key |
+| DELETE | `/v2/llms/{llm_id}` | Delete an LLM | Personal Key |
+| POST | `/v2/llms/chat/completions` | Creates a model response for the given chat conversation | IndexService Key, Personal Key |
+| GET | `/v2/generation_presets` | List generation presets | QueryService Key, Personal Key |
+| POST | `/v2/evaluate_factual_consistency` | Evaluate factual consistency | Personal Key |
+| POST | `/v2/encoders` | Create an encoder | IndexService Key, Personal Key |
+| GET | `/v2/encoders` | List encoders | QueryService Key, Personal Key |
+| GET | `/v2/rerankers` | List rerankers | QueryService Key, Personal Key |
+| GET | `/v2/table_extractors` | List supported table extractors | QueryService Key, Personal Key |
+| GET | `/v2/hallucination_correctors` | List hallucination correctors | QueryService Key, Personal Key |
+| POST | `/v2/hallucination_correctors/correct_hallucinations` | Corrects hallucinations in generated text based on source documents | Personal Key |
+| GET | `/v2/jobs` | List jobs | QueryService Key, Personal Key |
+| GET | `/v2/jobs/{job_id}` | Get a job by ID | QueryService Key, Personal Key |
+| POST | `/v2/users` | Create a user in the current customer account | Personal Key |
+| GET | `/v2/users` | List users in the account | Personal Key |
+| GET | `/v2/users/{username}` | Get a user | Personal Key |
+| PATCH | `/v2/users/{username}` | Update a user | Personal Key |
+| DELETE | `/v2/users/{username}` | Delete a user | Personal Key |
+| POST | `/v2/users/{username}/reset_password` | Reset the password for a user | Personal Key |
+| POST | `/v2/api_keys` | Create an API key | Personal Key |
+| GET | `/v2/api_keys` | List API keys | Personal Key |
+| GET | `/v2/api_keys/{api_key_id}` | Get an API key | Personal Key |
+| PATCH | `/v2/api_keys/{api_key_id}` | Update an API key | Personal Key |
+| DELETE | `/v2/api_keys/{api_key_id}` | Delete an API key | Personal Key |
+| POST | `/v2/app_clients` | Create an App Client | IndexService Key, Personal Key |
+| GET | `/v2/app_clients` | List App Clients | QueryService Key, Personal Key |
+| GET | `/v2/app_clients/{app_client_id}` | Get an App Client | QueryService Key, Personal Key |
+| PATCH | `/v2/app_clients/{app_client_id}` | Update an App Client | IndexService Key, Personal Key |
+| DELETE | `/v2/app_clients/{app_client_id}` | Delete an App Client | Personal Key |
+| POST | `/oauth/token` | Request an access token | Personal Key |
+
 ## Create an API key
 
 You can easily create a [Personal API key](/docs/console-ui/personal-api-key) or 
-an [Index or Query API Key](/docs/console-ui/index-and-query-api-keys), 
+an [IndexService or QueryService API Key](/docs/console-ui/index-and-query-api-keys), 
 and then simply embed the API key and directly pass it to <Config v="names.product"/> when 
 issuing requests. 
 
 ## Use an API key
 
-To use a Personal, Index, or Query API key, pass it using the `x-api-key` 
+To use a Personal, IndexService, or QueryService API key, pass it using the `x-api-key` 
 header request.
 
 <Tabs
@@ -124,8 +202,7 @@ header request.
   ]
 }>
 <TabItem value="py">
-<pre>
-{`
+<CodePanel snippets={[{language: "text", code: `{\`
 api_key_header = {
     "x-api-key": API_KEY
 }
@@ -146,19 +223,17 @@ data_dict = {
 }
 payload = json.dumps(data_dict)
 response = requests.post(
-    "https://${vars['domains.rest.serving']}/v1/query",
+    "https://\${vars['domains.rest.serving']}/v1/query",
     data=payload,
     verify=True,
     headers=api_key_header)
-`}
-</pre>
+\`}`}]} title="Code Example" layout="stacked" />
 
 </TabItem>
 <TabItem value="js">
 
-<pre>
-{`
-fetch("https://${vars['domains.rest.serving']}:443/v2/query", {
+<CodePanel snippets={[{language: "text", code: `{\`
+fetch("https://\${vars['domains.rest.serving']}:443/v2/query", {
   headers: {
     "Content-Type": "application/json",
     "x-api-key": api_key,
@@ -179,16 +254,14 @@ fetch("https://${vars['domains.rest.serving']}:443/v2/query", {
   .then((res) => res.json())
   .then((data) => console.log(data))
   .catch((error) => console.log(error));
-`}
-</pre>
+\`}`}]} title="Code Example" layout="stacked" />
 </TabItem>
 <TabItem value="curl">
-<pre>
-{`
-curl -X POST \\
-  -H "x-api-key: \${API_KEY}" \\
-  -H "customer-id: \${CUSTOMER_ID}" \\
-  https://${vars['domains.rest.serving']}:443/v1/query \\
+<CodePanel snippets={[{language: "text", code: `{\`
+curl -X POST \\\\
+  -H "x-api-key: \\\${API_KEY}" \\\\
+  -H "customer-id: \\\${CUSTOMER_ID}" \\\\
+  https://\${vars['domains.rest.serving']}:443/v1/query \\\\
   -d @- <<END;
   {
     "query": [
@@ -201,24 +274,24 @@ curl -X POST \\
     ]
   }
 END
-`}
-</pre>
+\`}`}]} title="Code Example" layout="stacked" />
 
 </TabItem>
 </Tabs>
 
 ### Common issues and how to resolve them
+
 | Issue                            | Cause                                      | Fix                                               |
 |----------------------------------|--------------------------------------------|----------------------------------------------------|
 | 403: Permission Denied           | Key not scoped to corpus                   | Recreate key with correct `corpus_key`             |
 | 401: Unauthorized                | Invalid or missing key in header           | Ensure `x-api-key` is correctly included           |
-| Indexing fails with Query key   | Used wrong key type                        | Use Index (`zwt_`) or Personal (`zut_`) key        |
-| Personal key used in browser    | Security vulnerability                     | Use Query key for public search apps               |
+| Indexing fails with Query key   | Used wrong key type                        | Use IndexService (`zwt_`) or Personal (`zut_`) key        |
+| Personal key used in browser    | Security vulnerability                     | Use QueryService key for public search apps               |
 
 
 ## Disable, enable, and delete API keys
 
-To temporarily disable access to an API key, navigate to the **Authorization** tab. 
+To temporarily disable access to an API key, navigate to the **API keys** tab. 
 
 ### Disable a personal API key
 
@@ -227,12 +300,12 @@ the Personal API key from this menu.
 
 ![Disable Personal API Key](/img/disable_personal_api_key.png)
 
-### Disable an index or query API key
+### Disable an IndexService or QueryService key
 
 Click the **drop-down menu** and select **Disable**. This menu also lets you 
 copy, delete, and reenable the API key.
 
-![Disable Index or Query API Key](/img/disable_index_query_api_key.png)
+![Disable IndexService or QueryService API Key](/img/disable_index_query_api_key.png)
 
 It will take around a minute for query requests using this key to be blocked.
 

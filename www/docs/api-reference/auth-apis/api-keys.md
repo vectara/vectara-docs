@@ -4,6 +4,9 @@ title: API Keys
 sidebar_label: API Keys
 ---
 
+
+import CodePanel from '@site/src/theme/CodePanel';
+
 API Keys can be used for querying and indexing operations, but cannot at this
 time be used for administrative operations such as creating or deleting corpora.
 

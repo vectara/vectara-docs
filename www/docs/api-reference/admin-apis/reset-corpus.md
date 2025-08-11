@@ -6,6 +6,9 @@ sidebar_label: Reset Corpus API Definition
 
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The Reset Corpus API lets you reset a corpus, which deletes the
 contents of a corpus, but it does not delete the corpus itself.
 

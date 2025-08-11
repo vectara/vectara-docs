@@ -8,6 +8,9 @@ sidebar_label: Video Tutorials
 
 import YouTube from '../src/components/YouTube/YouTube.js';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 <!-- This title is slugified and will break nurture sequence links if changed. -->
 
 ### Creating a Corpus

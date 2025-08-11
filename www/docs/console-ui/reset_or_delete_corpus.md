@@ -3,6 +3,9 @@ id: reset-or-delete-corpus
 title: Delete Corpus, Disable Corpus, and Clear Corpus Data
 ---
 
+
+import CodePanel from '@site/src/theme/CodePanel';
+
 If you decide to stop using a corpus, you have three options on the corpus 
 **Settings** page.
 

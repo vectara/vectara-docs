@@ -9,6 +9,9 @@ import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Organizations often struggle with extracting relevant insights from extensive 
 documentation, such as vendor quotes, financial statements, and technical 
 reports. Manually reviewing these documents is both time-consuming and prone 
@@ -50,14 +53,12 @@ The documentation length is limited by the context window of your selected LLM.
 
 ### Example request
 
-```json
-{
-  "llm_name": "llm_custom_llama3_70B",
-  "prompt_template": "[{\"role\":\"user\",\"content\":\"Summarize the document: $vectaraDocument.json()\"}]",
-  "model_parameters": {},
-  "stream_response": true,
-}
-```
+<CodePanel snippets={[{language: "json", code: `{
+   "llm_name": "llm_custom_llama3_70B",
+   "prompt_template": "[{\\"role\\":\\"user\\",\\"content\\":\\"Summarize the document: \$vectaraDocument.json()\\"}]",
+   "stream_response": true,
+}`
+}]} title="Summarization Example" layout="stacked" />
 
 ## Response formats
 
@@ -73,12 +74,11 @@ complete summary of the document. The summary field contains the generated
 text, enabling users to extract essential information quickly.
 
 
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
     "summary": "The ABC1 0XYZ document provides details on its energy-efficient ARM microcontroller, Bluetooth 5.2 capabilities, and security features. It includes a breakdown of its low-power operation, hardware accelerators, and applications for IoT and embedded systems. The document further details supported development tools and firmware integration.",
-    "rendered_prompt": "[{\"role\":\"user\",\"content\":\"Summarize the document: ...\"}]"
-}
-```
+    "rendered_prompt": "[{\\"role\\":\\"user\\",\\"content\\":\\"Summarize the document: ...\\"}]"
+}`
+}]} title="Non-streaming Example" layout="stacked" />
 
 ### Streaming response
 
@@ -86,16 +86,14 @@ For streaming responses, the API returns Server-Sent Events (SSE). The first
 event begins streaming partial results as soon as they are available, while 
 the final event marks the end of the summarization process.
 
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
     "type": "generation_chunk",
     "content": "The ABC1 0XYZ document provides details on its energy-efficient ARM..."
 }
 {
     "type": "generation_end",
     "content": "The document further details supported development tools and firmware integration."
-}
-```
+}`}]} title="Streaming response Example" layout="stacked" />
 
 The streamed response consists of multiple events:
 
@@ -111,14 +109,12 @@ The streamed response consists of multiple events:
 When crafting a prompt, you can access your document with the `$vectaraDocument` 
 field. This example shows a simple prompt:
 
-```json
-[
-  {
+<CodePanel snippets={[{language: "json", code: `[
+   {
     "role": "user",
-    "content": "Summarize the document: $vectaraDocument.json()"
-  }
-]
-```
+    "content": "Summarize the document: \$vectaraDocument.json()"
+   }
+]`}]} title="Simple prompt template example" layout="stacked" />
 The document also has the following methods to support custom prompts. 
 
 * `$vectaraDocument.json()`: Provides a JSON representation of the whole document.

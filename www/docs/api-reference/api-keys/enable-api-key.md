@@ -8,6 +8,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The Update API Key API lets you enable or disable specific API keys. You
 can use this endpoint to temporarily disable access without deleting the key.
 

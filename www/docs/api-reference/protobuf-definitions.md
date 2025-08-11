@@ -5,6 +5,9 @@ sidebar_label: gRPC APIs
 ---
 
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 <Config v="names.product"/> implements a <a href="https://grpc.io/">gRPC (Remote Procedure 
 Call) API</a> to all its core services. gRPC is a high-performance, open-source 
 framework developed by Google that enables different services to communicate 
@@ -36,15 +39,13 @@ If you need these `proto` files, the following curl commands download these file
 the `ext` subdirectory.
 You can then reference them in the `protoc` path using `-I ext`.
 
-```bash
-proto $ ls
+<CodePanel snippets={[{language: "bash", code: `proto \$ ls
 admin.proto  common.proto indexing.proto  services.proto  serving.proto  status.proto
-proto $ mkdir ext
-proto $ curl -s -o ext/google/api/annotations.proto --create-dirs \
+proto \$ mkdir ext
+proto \$ curl -s -o ext/google/api/annotations.proto --create-dirs \\
              https://raw.githubusercontent.com/googleapis/googleapis/master/google/api/annotations.proto
-proto $ curl -s -o ext/google/api/http.proto --create-dirs \
-             https://raw.githubusercontent.com/googleapis/googleapis/master/google/api/http.proto
-```
+proto \$ curl -s -o ext/google/api/http.proto --create-dirs \\
+             https://raw.githubusercontent.com/googleapis/googleapis/master/google/api/http.proto`}]} title="Code Example" layout="stacked" />
 
 ## Example Protocol Buffers
 

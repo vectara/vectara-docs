@@ -8,6 +8,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The Delete Documents API lets you delete a document from a corpus. To verify
 that the document no longer exists in the corpus, use the List Documents endpoint.
 

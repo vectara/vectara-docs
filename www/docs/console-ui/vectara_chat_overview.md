@@ -8,6 +8,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Vectara Chat provides an interactive user experience that enables you to build 
 domain-specific chatbots using RAG. Vectara Chat remembers chat histories and 
 leads to more relevant responses in different scenarios like customer support. 

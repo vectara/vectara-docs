@@ -3,7 +3,7 @@ id: build-a-chatbot
 title: Build a Chatbot with the Chat API
 sidebar_label: Build a Chatbot
 toc_max_heading_level: 2
-hide_table_of_contents: true
+hide_table_of_contents: false
 ---
 This tutorial guides you through creating a web-based chatbot application 
 using Vectara’s `/v2/chats` API. In this example, a fictional manufacturing 
@@ -1092,3 +1092,102 @@ Consider these updates after completing the tutorial:
 * **UI styling**: Update the CSS classes to match your company's branding.
 * **Welcome message**: Customize the initial greeting in `ChatContainer.tsx`.
 * **Error handling**: Enhance the error messages and fallback strategies.
+
+
+## Move your chatbot to production
+
+Production environments introduce new requirements for reliability, security, 
+scalability, compliance, and maintainability. After building and validating 
+your chatbot with the Vectara Chat API, take additional steps to prepare your 
+application for production use. 
+
+This section highlights key changes from the tutorial environment and provides 
+tips in a real-world environment. Here is a summary of the key changes:
+
+* **API security:** Move secrets out of source code and implement secure storage 
+  and transmission for API keys.
+* **Error handling & monitoring:** Add advanced error handling, logging, and 
+  real-time monitoring.
+* **Scalability:** Optimize for concurrent usage, rate limits, and backend 
+  scaling.
+* **Authentication and authorization:** Implement user authentication and RBAC.
+* **Environment management:** Use environment variables and configuration files for deployment environments.
+* **Compliance:** Address privacy, audit, and compliance requirements relevant to 
+  your organization, such as SOC2.
+* **Testing and quality:** Add integration, unit, and load testing for critical 
+  workflows.
+* **Deployment:** Automate build, test, and deployment processes.
+* **Observability:** Instrument the app for metrics, tracing, and alerting.
+* **Internal documentation:** Update onboarding, support, and maintenance documentation 
+  for internal teams.
+
+
+### Secure API keys and configuration
+
+Instead of manually inputting API key or storing in `localStorage`:
+* Store API keys and secrets in a secure vault, such as AWS Secrets Manager, 
+  Azure Key Vault, or HashiCorp Vault. 
+* Never expose API keys to the client and browser.
+* Route all API traffic through a backend to enable API key protection, 
+  rate limiting, and custom business logic such as query postprocessing.
+* Use `.env` files and server-side environment variables for secrets and 
+  sensitive configuration.
+
+### Error handling and logging
+
+Instead of basic logs and inline error messages:
+* Implement centralized logging.
+* Send application errors and unhandled promise rejections to an observability 
+  service.
+* Mask sensitive information in logs.
+
+### User authentication and access control
+
+Instead of opening the chatbot to all visitors:
+* Integrate authentication, such as OAuth2, SAML, Auth0, Okta, Azure AD.
+* Implement authorization rules for different user groups.
+* Restrict access to chat or sensitive endpoints as appropriate.
+
+### Environment-specific configuration
+
+Instead of hardcoding the configuration in source files:
+* Move all environment-dependent values (API endpoints, corpus keys, feature 
+  flags) to environment variables or configuration management tools.
+* Support separate configurations for development, staging, and production 
+  environments.
+
+#### Test for quality
+
+Instead of manual browser tests:
+* Add automated testing through unit tests, integration tests, and load/stress 
+  tests.
+* Add a CI pipeline to enforce testing and code quality.
+
+
+### CI/CD and automated deployments
+
+Instead of manual `npm run dev` and local-only builds:
+* Use a CI/CD tool to automate build, test, and deployment steps.
+* Deploy to cloud infrastructure (Vercel, Netlify, AWS, Azure, GCP) or internal 
+  servers.
+* Maintain separate environments for staging and production.
+
+### Metrics and alerts
+
+Instead of having no monitoring or alerting:
+* Set up your backend and frontend for metrics (API response times, error 
+  rates, user activity).
+* Use an APM solution for tracing and health checks.
+* Set up alerts for failures and performance regressions.
+
+### Compliance
+
+* Document data retention policies and then enforce these policies.
+* Implement audit logging for user interactions with sensitive data.
+* Ensure you meet internal and external privacy and compliance standards.
+
+### Documentation and support
+
+* Create internal documentation for deployment, monitoring, and support 
+  processes.
+* Provide user-facing help and troubleshooting guides.

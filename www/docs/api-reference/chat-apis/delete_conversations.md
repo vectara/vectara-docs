@@ -8,6 +8,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The Delete Chat API lets you permanently delete a chat and all its associated
 turns. This is useful for data management to help ensure that you
 maintain data hygiene and support compliance with data retention policies.

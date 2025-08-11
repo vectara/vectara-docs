@@ -8,6 +8,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The Delete API Key API lets you delete one or more existing API keys.
 This capability is useful for managing the lifecycle and security of API keys
 such as when they are no longer needed or when a key is compromised.

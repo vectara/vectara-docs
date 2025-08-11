@@ -7,6 +7,7 @@ sidebar_label: Enterprise Access Patterns
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {vars} from '@site/static/variables.json';
+import CodePanel from '@site/src/theme/CodePanel';
 
 Understanding **who** interacts with Vectara, and **how** they interact with it, 
 is essential for implementing secure, efficient authentication and 
@@ -48,7 +49,8 @@ method and authorization scope.
    |  |                 |  |                | |
    |  +----------------+   +----------------+ |
    |         |                  |             |
-   |      Manage Account     Query/Index      |
+   |      Manage Account     QueryService/    |
+   |         |               IndexService     |
    |         |                  |             |
    |         v                  v             |
    |    +---------------------------+         |
@@ -101,7 +103,7 @@ and their authentication/authorization scope.
 | Organizational role     | Tasks                                      | Primary Access Layer | How They Authenticate                          | Best Practices                                      | Common Mistakes to Avoid                     |
 |--------------|-------------------------------------------|----------------------|------------------------------------------------|----------------------------------------------------|---------------------------------------------|
 | **Admin**    | Manages and monitors system config, user access, corpora access, uptime | Console and Admin API | SSO (Google, SAML/OIDC), OAuth 2.0 and MFA, Personal API Key (`zut_`) | Enforce MFA, rotate keys regularly <br/><br/>Limit corpus access with RBAC | Using admin key in client-side apps <br/><br/>Reusing keys in production |
-| **Developer** | Builds apps and integrations, ingests data, tests APIs, tunes queries | Console and API      | SSO (Google, soon SAML/OIDC), Personal API Key (`zut_`), Query/Index API Keys (`zqt_`, `zwt_`), OAuth 2.0 | Start with read-only Query API keys (`zqt_`) for safe querying <br/><br/>Use separate corpora per environment, scope keys tightly, secure secrets, use training corpora for tests | Sharing keys across corpora <br/><br/>Accessing production corpora with broad keys <br/><br/>Reusing dev keys in production |
+| **Developer** | Builds apps and integrations, ingests data, tests APIs, tunes queries | Console and API      | SSO (Google, soon SAML/OIDC), Personal API Key (`zut_`), QueryService/IndexService API Keys (`zqt_`, `zwt_`), OAuth 2.0 | Start with read-only QueryService API keys (`zqt_`) for safe querying <br/><br/>Use separate corpora per environment, scope keys tightly, secure secrets, use training corpora for tests | Sharing keys across corpora <br/><br/>Accessing production corpora with broad keys <br/><br/>Reusing dev keys in production |
 | **End User** | Uses apps (RAG, search, chatbots)         | Client App Only      | SSO to app to Metadata filters with app logic (ABAC) | Apply ABAC filters <br/><br/>Validate identity in app        | Allowing direct Vectara access or unfiltered queries |
 
 ## Access scope and trust boundaries
@@ -137,7 +139,7 @@ developers, admins, and other team members.
    - **Corpus Admin**: Manages specific corpora, including creating, querying, and 
   indexing.
    - **Billing Admin**: Handles billing and subscription tasks.
-2. **Scope API Keys**: Assign Query (`zqt_`) or Index (`zwt_`) API keys to developers 
+2. **Scope API Keys**: Assign QueryService (`zqt_`) or IndexService (`zwt_`) API keys to developers 
    for corpus-specific access, simulating group-like permissions without native group 
    creation.
 3. **Custom Group Integration**: For enterprise setups, integrate with LDAP or SSO 
@@ -147,7 +149,7 @@ developers, admins, and other team members.
   onboarding in custom setups, streamlining access for large teams.
 
 ### Best practices
-- Start developers with read-only Query API keys (`zqt_`) for safe corpus 
+- Start developers with read-only QueryService API keys (`zqt_`) for safe corpus 
   querying, aligning with the principle of least privilege.
 - Assign Account Admin or Corpus Admin roles only to trusted users managing the 
   workspace or specific corpora.
@@ -155,13 +157,13 @@ developers, admins, and other team members.
   directory service to map groups to Vectara roles or keys.
 - Regularly audit invited users and API keys in the Vectara Console to ensure 
   authorized access.
-- Secure API keys as secrets, especially for Index (`zwt_`) or Personal (`zut_`) 
+- Secure API keys as secrets, especially for IndexService (`zwt_`) or Personal (`zut_`) 
   keys used by developers or admins.
 
 **Example**:
 - Invite a developer as a Corpus Admin to manage an HR corpus, granting them 
-  an Index API key (`zwt_`) for querying and indexing.
-- For a team of developers, issue multiple Query API keys (`zqt_`) scoped to the 
+  an IndexService API key (`zwt_`) for querying and indexing.
+- For a team of developers, issue multiple QueryService API keys (`zqt_`) scoped to the 
   same corpus, effectively creating a “developer group”.
 - If integration with LDAP, map an external group `Developers_HR` to Corpus 
   Admin roles for the HR corpus, automating access via SSO.
@@ -197,14 +199,21 @@ enforced using metadata filters or dedicated corpora.
   pollution.
 
 **Example**:
-```json
-{
+
+<CodePanel
+  snippets={[
+    { language: "json", code:
+`{
   "document_id": "hr_doc_001",
   "metadata": {
     "access_level": "subgroup",
     "team": "HR_managers",
     "user_id": "user1"
-  },
+   },
   "content": "Employee contract..."
+}`
 }
-```
+  ]}
+  title="Code Example"
+  layout="stacked"
+/>

@@ -12,6 +12,9 @@ import { Grid } from "@site/src/components/ui/Grid";
 import { Spacer } from "@site/src/components/ui/Spacer";
 import { TopicButton } from "@site/src/components/ui/TopicButton";
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 
 Vectara’s authentication and authorization framework secures access to our 
 platform and its data. Whether you are an admin configuring corpora, a 
@@ -30,7 +33,7 @@ users access data through apps. This blueprint guides their needs:
 graph TD
     subgraph Vectara_Users[Vectara Users]
         A[Admin<br>Manage]
-        B[Developer<br>Query/Index]
+        B[Developer<br>QueryService/IndexService]
         A --> C
         B --> C
         C[Vectara Platform<br>Identities & Corpora]
@@ -48,6 +51,7 @@ graph TD
     class D green;
     class E gray;
 ```
+
 *Admins and developers interact with Vectara directly, end users connect to 
 client apps.*
 
@@ -77,7 +81,7 @@ that we recommend for enterprises, concepts, and practical steps.
   </TopicButton>
   <TopicButton title="Create and Use API Keys" href="/docs/learn/authentication/api-key-management">
     <Spacer size="l" />
-    Guides you through generating and using API keys (Personal, Query, Index).
+    Guides you through generating and using API keys (Personal, QueryService, IndexService).
     <Spacer size="l" />
     Enables fast, secure integration for common tasks.
     <Spacer size="l" />
@@ -90,7 +94,7 @@ that we recommend for enterprises, concepts, and practical steps.
   </TopicButton>
   <TopicButton title="Set Up Account and Corpus Permissions (RBAC)" href="/docs/learn/authentication/role-based-access-control">
     <Spacer size="l" />
-    Details assigning Role-Based Access Control roles (Query, Index). 
+    Details assigning Role-Based Access Control roles (QueryService, IndexService). 
     <Spacer size="l" />
     Ensures precise permissions for users and apps.
     <Spacer size="l" />
@@ -118,7 +122,6 @@ that we recommend for enterprises, concepts, and practical steps.
   </TopicButton>
   <Spacer size="l" />
 </Grid>
-
 
 ## Next steps
 

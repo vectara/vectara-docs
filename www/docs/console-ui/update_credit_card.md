@@ -4,6 +4,9 @@ title: Manage Payments
 sidebar_label: Manage Payments
 ---
 
+
+import CodePanel from '@site/src/theme/CodePanel';
+
 The Billing page provides information about your product usage and current 
 plan. For example, if you signed up for a trial, this page says that your 
 current plan is **Free Trial** and when the trial ends.

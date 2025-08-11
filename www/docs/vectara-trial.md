@@ -5,6 +5,9 @@ sidebar_label: Vectara Trial
 ---
 
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The Vectara trial offers access to most of our advanced features for 30 days, 
 allowing you to explore how our RAG-as-a-Service platform can transform your 
 AI and search capabilities. This guide will walk you through what to expect 

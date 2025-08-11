@@ -6,6 +6,9 @@ sidebar_label: Vectara and LangFlow
 
 import YouTube from '@site/src/components/YouTube/YouTube.js';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 LangFlow is a leading open-source no-code platform for building LLM-powered 
 applications. Similar to [Flowise](/docs/integrations/vectara-and-flowise), it provides a quick way to build RAG flows 
 with minimal or no coding required. The main difference is that Flowise is 

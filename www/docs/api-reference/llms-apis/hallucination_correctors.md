@@ -4,6 +4,9 @@ title: Correct Hallucinations API Definition
 sidebar_label: Correct Hallucinations API Definition
 ---
 
+
+import CodePanel from '@site/src/theme/CodePanel';
+
 The Hallucination Correctors API enables users to automatically 
 detect and correct factual inaccuracies, commonly referred to as 
 hallucinations, in generated summaries or responses. By comparing a 
@@ -34,32 +37,30 @@ To correct a potentially hallucinated summary, send a `POST` request to
 
 This example provides a summary about a historical event.
 
-```json
-{
-  "summary": "The Treaty of Versailles was signed in 1920, officially ending World War I. 
-  It was primarily negotiated by France, Britain, Italy, and Japan.",
-  "documents": [
+<CodePanel snippets={[{language: "json", code: `{
+   "summary": "The Treaty of Versailles was signed in 1920, officially ending World War I. 
+   It was primarily negotiated by France, Britain, Italy, and Japan.",
+   "documents": [
     {
       "text": "The Treaty of Versailles was signed on June 28, 1919. The United States 
       played a major role, represented by President Woodrow Wilson.",
     }
-  ],
-  "model": "vhc-small-1.0",
-}
-```
+   ],
+   "model": "vhc-small-1.0",
+}`
+}]} title="Summary Example" layout="stacked" />
 
 ### Example response
 
 The response corrects the original summary.
 
-```json
-{
-  "original_text": "The Treaty of Versailles was signed in 1920, officially ending World War I. 
-  It was primarily negotiated by France, Britain, Italy, and Japan.",
-  "corrected_text": "The Treaty of Versailles was signed in 1919, officially ending World War I. 
-  It was primarily negotiated by France, Britain, Italy, and the United States."
-}
-```
+<CodePanel snippets={[{language: "json", code: `{
+   "original_text": "The Treaty of Versailles was signed in 1920, officially ending World War I. 
+   It was primarily negotiated by France, Britain, Italy, and Japan.",
+   "corrected_text": "The Treaty of Versailles was signed in 1919, officially ending World War I. 
+   It was primarily negotiated by France, Britain, Italy, and the United States."
+}`
+}]} title="Response Example" layout="stacked" />
 
 If the input summary is accurate, the `corrected_summary` matches the `original_summary`.
 
@@ -74,13 +75,12 @@ This outcome is valid and typically occurs when none of the content in the
 response still includes an explanation of why VHC removed the text. For 
 example:
 
-```json
-{
-  "original_text": "According to Martian Guide to Humanity, The Earth has three moons..",
-  "corrected_text": "",
-  "explanation": "There is no source found for Martian Guide to Humanity (hallucinated source), and there is no source for the earth having three moons. The entire statement is factually incorrect"
-}
-```
+<CodePanel snippets={[{language: "json", code: `{
+   "original_text": "According to Martian Guide to Humanity, The Earth has three moons..",
+   "corrected_text": "",
+   "explanation": "There is no source found for Martian Guide to Humanity (hallucinated source), and there is no source for the earth having three moons. The entire statement is factually incorrect"
+}`
+}]} title="Empty Correction Example" layout="stacked" />
 
 ### Error responses
 

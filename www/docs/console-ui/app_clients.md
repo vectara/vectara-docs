@@ -9,6 +9,9 @@ import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 App clients provide the necessary pieces of information to [generate a JWT token](/docs/learn/authentication/oauth-2#generate-a-jwt-token) 
 that developers need for OAuth 2.0 authentication. These pieces include the 
 authorization URL, Client ID, and Client Secret.

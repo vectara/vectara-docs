@@ -15,6 +15,9 @@ import json
 import logging
 import requests
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 def _get_create_corpus_json():
     """ Returns a create corpus json. """
     corpus = {}

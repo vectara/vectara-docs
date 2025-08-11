@@ -8,6 +8,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Some applications may be designed to be powered by different queries in
 different parts of the UI.  In order to decrease the number of network round
 trips (and thereby the net latency), you may want to issue those multiple
@@ -16,8 +19,7 @@ queries to the system with a single API call.
 This pattern can be done in <Config v="names.product"/> by sending an array of
 queries in a single request, as in:
 
-```jsx
-{
+<CodePanel snippets={[{language: "jsx", code: `{
   "query": [
      {
        ... Query 1 ...
@@ -27,8 +29,7 @@ queries in a single request, as in:
      },
      ...
   ]
-}
-```
+}`}]} title="Code Example" layout="stacked" />
 
 :::important
 
@@ -43,8 +44,7 @@ When you a query <Config v="names.product"/>, you get back an array of results
 This is to assist in using a
 [Batched Query](/docs/api-reference/search-apis/batched-queries.md), 
 
-```jsx
-{
+<CodePanel snippets={[{language: "jsx", code: `{
 	"responseSet": [
         {
             ... Response 1 ...
@@ -54,8 +54,7 @@ This is to assist in using a
         },
         ...
     ]
-}
-```
+}`}]} title="Code Example" layout="stacked" />
 
 Each response object within the `responseSet` array is directly associated with
 the query in the same position as the response.  e.g. in this example case,

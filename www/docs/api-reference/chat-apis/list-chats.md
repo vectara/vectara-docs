@@ -8,6 +8,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The List Chats API allows you to retrieve a list of previous chats in your
 account. This endpoint returns a paginated list of `chat` objects, which
 contain basic information about each chat.

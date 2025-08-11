@@ -9,6 +9,9 @@ import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The Get LLM API allows users to retrieve details about a specific Large 
 Language Model (LLM) that has been configured within the Vectara platform. 
 This API provides metadata about the LLM, including its name, description, 
@@ -29,39 +32,6 @@ The response returns details about the requested LLM.
 
 The request requires authentication details, and you can provide them either 
 as a Bearer token or custom header-based authentication.
-
-**Bearer token authentication**
-
-```json
-{
-  "type": "bearer",
-  "token": "your-api-key"
-}
-```
-**Header-based authentication**
-
-```json
-{
-  "type": "header",
-  "header": "x-api-key",
-  "value": "your-api-key"
-}
-```
-
-### Example response
-```json
-{
-    "id": "llm_123456789",
-    "name": "CustomGPT-4",
-    "description": "GPT-4 instance hosted on Azure",
-    "model": "gpt-4",
-    "uri": "https://api.openai.com/v1/chat/completions",
-    "auth": {
-        "type": "bearer"
-    },
-    "enabled": true
-}
-```
 
 ### Error Responses
 

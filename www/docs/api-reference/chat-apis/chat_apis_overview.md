@@ -8,6 +8,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 **This topic is in-progress**
 
 Vectara's Chat APIs provide a streamlined solution for integrating chatbot 
@@ -48,15 +51,14 @@ conversations in a single chat history corpus in the customer account.
 
 Each `chat` contains the following properties:
 
-```json
-{
-  "id": "cht_.+$",
-  "first_query": "string",
-  "first_answer": "string",
-  "enabled": true,
-  "created_at": "string"
-}
-```
+<CodePanel snippets={[{language: "json", code: `{
+   "id": "cht_.+\$",
+   "first_query": "string",
+   "first_answer": "string",
+   "enabled": true,
+   "created_at": "string"
+}`
+}]} title="Chat Example" layout="stacked" />
 
 ## Turn Object
 
@@ -66,8 +68,7 @@ question/answer pair between the user and the chatbot and has a unique `id`
 that specifies its `chat_id`.
 
 
-```json
-"turn": [
+<CodePanel snippets={[{language: "json", code: `"turn": [
   {
     "id": "ID of the turn",
     "chat_id": "ID of the conversation",
@@ -85,5 +86,4 @@ that specifies its `chat_id`.
     "created_at": "string"
   },
   // Additional turn IDs are created for each query and answer pair in the conversation
-]
-```
+]`}]} title="Turn Example" layout="stacked" />

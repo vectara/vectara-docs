@@ -5,6 +5,9 @@ sidebar_label: Hallucination Evaluation
 ---
 
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 Vectara uses the `Hughes Hallucination Evaluation Model` (HHEM) to assess the
 likelihood of AI-generated summary being factually consistent based on search 
 results. This calibrated score can range from `0.0` to `1.0`. A higher score 
@@ -47,12 +50,8 @@ contains the value between `0.0` and `1.0`.
     "max_used_search_results": 5,
     "enable_factual_consistency_score": true
   }
-```
-
-In the following example, the summary shows a `factual_consistency_score` of
-`0.98`, which is 98%.
-
-```json showLineNumbers title="Example Factual Consistency Score"
+<CodePanel snippets={[{language: "bash", code: `In the following example, the summary shows a \`factual_consistency_score\` of
+\`0.98\`, which is 98%.`}]} title="Code Example" layout="stacked" />json showLineNumbers title="Example Factual Consistency Score"
 {
   "summary": "According to the novel 'The Hitchhiker's Guide to the Galaxy' by Douglas 
     Adams, the answer to the ultimate question of life, the universe, and everything is 42.",

@@ -8,6 +8,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 The List Chat Turns API allows you to retrieve a list of all turns in a chat,
 representing the complete dialog of message and response pairs
 

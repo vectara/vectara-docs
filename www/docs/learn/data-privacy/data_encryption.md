@@ -8,6 +8,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {vars} from '@site/static/variables.json';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 When you send documents to the
 [index API](/docs/api-reference/indexing-apis/indexing) or
 [file upload API](/docs/api-reference/indexing-apis/file-upload/file-upload), <Config v="names.product"/> 
@@ -70,8 +73,7 @@ update the ARN from `arn:aws:iam::941566284283:root`
 to `arn:aws:iam::941566284283:role/prod-eks2021021409582096910000000b`
 
 The key should look like the following:
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
     "Sid": "Allow use of the key",
     "Effect": "Allow",
     "Principal": {
@@ -85,8 +87,7 @@ The key should look like the following:
         "kms:DescribeKey"
     ],
     "Resource": "*"
-}
-```
+}`}]} title="Code Example" layout="stacked" />
 
 The final step to creating the AWS KMS key to finish the key creation.
 

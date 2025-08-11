@@ -3,9 +3,7 @@ import clsx from 'clsx';
 import Prism from 'prismjs'; 
 
 // Import CSS theme
-import 'prismjs/themes/prism.css';
-
-
+// import 'prismjs/themes/prism.css';
 
 import styles from './CodePanel.module.css';
 
@@ -467,4 +465,4 @@ export default function CodePanel({
       {toast && <div className={styles.toast}>{toast}</div>}
     </div>
   );
-}
+} 

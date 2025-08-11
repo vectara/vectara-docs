@@ -7,12 +7,13 @@ sidebar_label: Highlighting and Snippet Extraction
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+import CodePanel from '@site/src/theme/CodePanel';
+
 When you receive query results from <Config v="names.product"/>, alongside the
 result, you'll receive values for `part_metadata` and `document_metadata`. For 
 example:
 
-```json showLineNumbers
-{
+<CodePanel snippets={[{language: "json", code: `{
   "search_results": [
     {
       "text": "Foo bar baz.",
@@ -27,8 +28,8 @@ example:
       "request_corpora_index": 0
     }
   ]
-}
-```
+}`
+}]} title="Code Example" layout="stacked" />
 
 For highlighting and snippet extraction, we need to pay attention to three key
 elements in this response:
@@ -63,16 +64,16 @@ quality for summarization by enhancing relevance and reducing ambiguity around
 each snippet. You can specify `characters_before` and `characters_after` or 
 `sentences_before` and `sentences_after` to include before and after the 
 snippet, as well as `start_tag` and `end_tag` that wrap the snippet, such as 
-`<b>` and `</b>`. 
+`<b>` and `</b>`.
 
-```json
-"context_configuration": {
+<CodePanel snippets={[{language: "json", code: `"context_configuration": {
    "sentences_before": 2,
    "sentences_after": 2,
    "start_tag": "<b>",
    "end_tag": "</b>"
-}
-```
+}`
+}]} title="Context Configuration Example" layout="stacked" />
+
 This example uses `sentences_before` and `sentences_after`. If you enter values 
 for sentences before/after and characters before/after, then 
 characters_before/after is ignored and summary returns the sentences values. 
@@ -95,24 +96,21 @@ you uploaded documents using the File Upload API, then you might need
 to look up the additional sections.  This can be done by an additional query
 to <Config v="names.product"/> using
 [filters](/docs/learn/metadata-search-filtering/filter-overview). To do this, retrieve the
-`document_id` value of the document and perform a query for that ID. For example:
+`document_id` value of the document and perform a query for that ID. For example: 
 
-```json showLineNumbers title="https://api.vectara.io/v2/query"
-POST https://api.vectara.io/v2/query
+<CodePanel snippets={[{language: "json", code: `POST https://api.vectara.io/v2/query
 {
-  "query": "",
-  "search": {
-    "corpora": [
+   "query": "",
+   "search": {
+     "corpora": [
       {
         "corpus_key": "my-corpus",
         "metadata_filter": "doc.id = '5b943498-d18c-4095-92f9-7a03f026f680'"
       }
     ],
-    "offset": 0,
-    "limit": 10
-  }
-}         
-```
+   }
+}`
+}]} title="Context Configuration Example" layout="stacked" />
 
 In this example, the relevant document ID is
 `5b943498-d18c-4095-92f9-7a03f026f680`.  We can then iterate through the

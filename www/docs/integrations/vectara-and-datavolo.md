@@ -5,6 +5,9 @@ sidebar_label: Vectara and DataVolo
 ---
 
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 DataVolo, powered by Apache NiFi, is designed for continuous, event-driven 
 ingest that can scale up on demand to cope with bursts of high-volume data, 
 making the job of the data engineer far easier due to some core design 

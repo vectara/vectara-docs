@@ -5,6 +5,9 @@ sidebar_label: FAQ and Q&A Matching
 ---
 
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 FAQ and Question-and-Answer (Q&A) matching leverages our neural retrieval 
 capabilities to deliver precise answers and can help streamline support 
 and knowledge management use cases. Enabling precise Q&A matching reduces the 
@@ -55,15 +58,11 @@ that question in the `text` content. For example:
     }
   ]
 }
-```
-
-## Query for similar questions
+<CodePanel snippets={[{language: "bash", code: `## Query for similar questions
 
 Suppose you wanted to find the answer to a question related to this example.
 You can put <Config v="names.product"/> into a document-matching mode by
-setting `semantics` to `response`. For example:
-
-```json showLineNumbers title="https://api.vectara.io/v2/query"
+setting \`semantics\` to \`response\`. For example:`}]} title="Code Example" layout="stacked" />json showLineNumbers title="https://api.vectara.io/v2/query"
 {
   "query": "Who's the English monarch?",
   "search": {
@@ -77,22 +76,18 @@ setting `semantics` to `response`. For example:
     "limit": 10
   }
 }
-```
-
-This `response` setting disables <Config v="names.product"/>'s "question-answering" mode and
+<CodePanel snippets={[{language: "bash", code: `This \`response\` setting disables <Config v="names.product"/>'s "question-answering" mode and
 instead tells it to find similar questions. This setting is useful when the 
 objective is to discover content that is similar in context or subject matter 
 to a given query
 
 You can also add a [filter expression](/docs/learn/metadata-search-filtering/filter-overview)
-of `part.is_title = true` to *only* match the questions.
+of \`part.is_title = true\` to *only* match the questions.
 
 ## Combine question matching and answering
 
 Expanding on the previous example, we can help users find question or answer
-matches together by using querying multiple corpora. For example:
-
-```json showLineNumbers title="https://api.vectara.io/v2/query"
+matches together by using querying multiple corpora. For example:`}]} title="Code Example" layout="stacked" />json showLineNumbers title="https://api.vectara.io/v2/query"
 {
   "query": "Who's the English monarch?",
   "search": {

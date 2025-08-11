@@ -5,6 +5,9 @@ sidebar_label: Community Collaborations and Partnerships
 ---
 
 
+import CodePanel from '@site/src/theme/CodePanel';
+
+
 In collaboration with the larger generative AI community, Vectara integrates 
 with other systems that empower developers to enhance their AI applications. 
 Vectara's advanced capabilities in retrieval, generative summarization and 

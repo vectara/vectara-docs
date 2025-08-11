@@ -95,6 +95,8 @@ paths:
   /v2/corpora:
     post:
       summary: Create a corpus
+      x-required-api-key-type:
+       - Personal
       description: Create a corpus, which is a container to store documents and associated
         metadata. Here, you define the unique `corpus_key` that identifies the corpus.
         The `corpus_key` can be custom-defined following your preferred naming convention,
@@ -362,6 +364,9 @@ paths:
       x-fern-sdk-method-name: create
     get:
       summary: List corpora
+      x-required-api-key-type:
+       - QueryService
+       - Personal
       description: List corpora in the account. The returned corpus objects contain
         less detail compared to those retrieved the direct corpus retrieval operation.
       operationId: listCorpora
@@ -1206,6 +1211,9 @@ paths:
       tags:
       - Index
       summary: Replace the document metadata.
+      x-required-api-key-type:
+       - IndexService
+       - Personal
       description: Replaces metadata of a document identified by its unique `document_id`
         from a specific corpus.
       operationId: replaceCorpusDocumentMetadata
@@ -3994,7 +4002,7 @@ paths:
       x-fern-pagination:
         cursor: $request.page_key
         next_cursor: $response.metadata.page_key
-        results: $response.hallucinationCorrectionModels
+        results: $response.hallucination_correctors
       parameters:
       - $ref: '#/components/parameters/RequestTimeout'
       - $ref: '#/components/parameters/RequestTimeoutMillis'
@@ -5206,6 +5214,7 @@ components:
     NotFoundError:
       description: Error returned when a requested resource does not exist.
       type: object
+      description: Corpus properties that are modifiable after creation.
       properties:
         id:
           description: The ID cannot be found.
@@ -5430,6 +5439,8 @@ components:
     Cell:
       description: A cell in a table.
       type: object
+      description: Sets a chunking strategy that creates one chunk per sentence. This
+        is the default strategy used when no chunking strategy is specified.
       properties:
         text_value:
           description: A text value.
@@ -5512,6 +5523,8 @@ components:
       description: A part of a document. This section gets converted into an embedding
         and directly maps to a search result. Usually a sentence.
       type: object
+      description: Configuration for table extraction from the document. This is optional
+        and if not provided, the platform does not extract tables from PDF files.
       properties:
         text:
           description: The text of the document part.
@@ -5654,8 +5667,8 @@ components:
           type: string
           example: This invoice includes customer billing history for Q1.
         metadata:
-          description: The metadata for a document part. These may be used in metadata
-            filters at query time if filter attributes are configured on the corpus.
+          description: Arbitrary object that will be attached as document metadata
+            to the extracted document.
           type: object
           additionalProperties: true
           example:
@@ -5992,6 +6005,9 @@ components:
     GenerationInfo:
       description: Event containing information on how the generation was accomplished.
       type: object
+      description: Request to summarize a document
+      required:
+      - llm_name
       properties:
         type:
           description: When the streaming event contains the generation information
@@ -6014,6 +6030,7 @@ components:
       description: The end of generation. There may still be more information such
         as the factual consistency score, but generation has stopped.
       type: object
+      description: Response containing the summary of a document
       properties:
         type:
           description: Then end of generation will be denoted with an object with
@@ -6599,6 +6616,7 @@ components:
     GenerationParameters:
       description: The parameters to control generation.
       type: object
+      description: Search parameters to retrieve knowledge for the query.
       properties:
         generation_preset_name:
           description: 'The preset values to use to feed the query results and other
