@@ -19,7 +19,7 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 - Add comprehensive documentation for new Vectara Python SDK (#471)
 
 ### 📝 Documentation Changes
-- docs(update):Add topic about how to delete an account (#486)
+- Add topic about how to delete an account (#486)
 - Add comprehensive documentation for new Vectara Python SDK (#471)
 
 
