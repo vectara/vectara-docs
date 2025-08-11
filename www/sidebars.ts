@@ -531,6 +531,7 @@ const sidebars: SidebarsConfig = {
         },
       ],
     },
+    "api-reference/vectara-postman-collection",
   ],
   restOAS: [
     {
