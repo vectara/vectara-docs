@@ -9,7 +9,18 @@ import { Grid } from "@site/src/components/ui/Grid";
 import { Spacer } from "@site/src/components/ui/Spacer";
 import { TopicButton } from "@site/src/components/ui/TopicButton";
 
-import CodePanel from '@site/src/theme/CodePanel';
+
+---
+
+# August 2025
+
+### ✨ New Features
+- Add content about the Vectara Postman Collection (#487)
+- Add comprehensive documentation for new Vectara Python SDK (#471)
+
+### 📝 Documentation Changes
+- docs(update):Add topic about how to delete an account (#486)
+- Add comprehensive documentation for new Vectara Python SDK (#471)
 
 
 
@@ -18,14 +29,19 @@ import CodePanel from '@site/src/theme/CodePanel';
 # July 2025
 
 ### ✨ New Features
+- Add documentation for the Vectara Admin Center, a centralized interface for managing on-premise and VPC deployments (#485)
 - New Consistency-Adjusted Index Capability in Open RAG Eval (#479)
 
 ### 📝 Documentation Changes
+- Fix body request render in API Reference (#483)
+- Enhance API Reference usability with automated API key type badges (#481)
+- Add detailed mapping of endpoints to required API key types (#477)
 - Update Query History and Configure Queries sections, enhancing descriptions and screenshots (#476)
 - Enhance chatbot tutorial with production readiness guidance (#473)
 - Add guidance on using expected value formats with Intelligent Query Rewriting (#464)
 
 ### 🛠 Documentation Platform Updates
+- Migrate codeblocks to use the new CodePanel plugin formatting (#482)
 - Enable syntax highlighting in CodePanel component (#478)
 
 
