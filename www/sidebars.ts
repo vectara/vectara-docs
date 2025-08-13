@@ -140,6 +140,7 @@ const sidebars: SidebarsConfig = {
         id: 'agents/agent-platform-overview',
       },
       items: [
+        "agents/mcp",
         "agents/agents",
         "agents/tool-servers",
         "agents/tools",

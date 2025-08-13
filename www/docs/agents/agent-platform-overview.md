@@ -110,6 +110,140 @@ flowchart TD
     class Corpus corpus;
 ```
 
+```mermaid
+flowchart TD
+    %% Nodes
+    User["User / Application"]
+    Session["Agent Session"]
+    Agent["Agent"]
+    Inst["Instructions"]
+    Query["Agent Query"]
+    Tool["Tool"]
+    MCP["MCP (Protocol Bridge)"]
+    ToolServer["External MCP Server Host"]
+    OSS["Open-Source MCP Server"]
+    Corpus["Corpus (Knowledge Base)"]
+
+    %% Flow
+    User -->|Sends message| Session
+    Session -->|Provides context & history| Agent
+    Agent --> Inst
+    Inst -->|Shapes| Query
+    Agent -->|Creates| Query
+    Query -->|Direct answer| Session
+    Query -->|Needs tool| Tool
+
+    %% MCP client/server boundary
+    Tool -->|invoke| MCP
+    MCP -->|call tools on| ToolServer
+    ToolServer -->|returns data via| MCP
+    MCP --> Tool
+
+    %% Data access and results
+    Tool -->|Retrieves| Corpus
+    Tool -->|Returns result| Query
+    Query -->|Synthesizes response| Session
+    Session -->|Delivers answer| User
+
+    %% Open-source server (not in platform)
+    Tool -. compatible .-> OSS
+    OSS -. hosts tools .-> Tool
+
+    %% Classes
+    classDef userEntry fill:#0D2FFF,color:#fff,stroke:#0D2FFF,stroke-width:2px;
+    classDef session fill:#182033,color:#fff,stroke:#0D2FFF,stroke-width:2px;
+    classDef agentic fill:#07E3D7,color:#182033,stroke:#07E3D7,stroke-width:2px;
+    classDef toolLayer fill:#EEF2F8,color:#182033,stroke:#07E3D7,stroke-width:2px;
+    classDef protocol fill:#FFD700,color:#182033,stroke:#FFD700,stroke-width:2px;
+    classDef corpus fill:#E9368E,color:#fff,stroke:#E9368E,stroke-width:2px;
+    classDef oss fill:#FFF5F5,color:#000,stroke:#E53E3E,stroke-width:2px;
+
+    %% Assign classes
+    class User userEntry;
+    class Session session;
+    class Agent,Inst,Query agentic;
+    class Tool,ToolServer toolLayer;
+    class MCP protocol;
+    class Corpus corpus;
+    class OSS oss;
+```
+
+
+---
+
+<div className="mermaid-container">
+```mermaid
+flowchart TD
+    %% Nodes
+    User["User / Application"]
+    Session["**Agent Session**"]
+    Agent["**Agent**"]
+    Inst["**Instructions**"]
+    Query["**Agent Query**"]
+    Tool["**Tool**"]
+    MCP["**MCP Bridge**"]
+    MCPServer["External MCP Server (Hosts Tools)"]
+    ToolServer["**Tool Server**"]
+    OSS["Open‑Source Vectara MCP Server"]
+    Corpus["Corpora"]
+
+    %% Core flow
+    User -->|Query| Session
+    Session -->|Provides context| Agent
+    Agent --> Inst
+    Inst --> Query
+    Agent --> Query
+    Query -->|Direct answer| Session
+    Query e7@<==> Tool
+
+    %% MCP path for external tools
+    Tool e2@<--> |External| MCP
+    Tool e3@<--> |Internal| ToolServer
+    MCP e4@<--> MCPServer
+
+    %% Internal data retrieval (when using internal tools)
+    Tool e5@<--> Corpus
+
+    %% Return to user
+    Query e1@-->|Synthesizes response| Session
+    Session -->|Answer| User
+
+    %% Optional open-source server (separate from platform)
+    MCP e6@<--> OSS
+
+    %% Classes for color grouping
+    classDef userEntry fill:#0D2FFF,color:#fff,stroke:#0D2FFF,stroke-width:2px;
+    classDef session fill:#182033,color:#fff,stroke:#0D2FFF,stroke-width:2px;
+    classDef agentic fill:#07E3D7,color:#182033,stroke:#00ABA0,stroke-width:2px;
+    classDef toolLayer fill:#EEF2F8,color:#182033,stroke:#787878,stroke-width:2px;
+    classDef protocol fill:#FFD700,color:#182033,stroke:#FFD700,stroke-width:2px;
+    classDef corpus fill:#E9368E,color:#fff,stroke:#E9368E,stroke-width:2px;
+    classDef oss fill:#FFF5F5,color:#000,stroke:#E53E3E,stroke-width:2px;
+
+    %% Assign classes
+    class User userEntry;
+    class Session session;
+    class Agent,Inst,Query agentic;
+    class Tool,ToolServer toolLayer;
+    class MCP protocol;
+    class Corpus corpus;
+    class OSS oss;
+
+    e1@{ animation: slow }
+    e2@{ animation: slow }
+    e3@{ animation: slow }
+    e4@{ animation: slow }
+    e5@{ animation: slow }
+    e6@{ animation: slow }
+    e7@{ animation: slow }
+```
+</div>
+
+---
+
+
+
+
 
 The Vectara Agentic Platform is built around the following core concepts:
 
