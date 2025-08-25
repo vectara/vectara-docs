@@ -55,6 +55,7 @@ const sidebars: SidebarsConfig = {
       },
       items: [
         "learn/select-ideal-indexing-api",
+        "data-management/data-egress",
         {
           type: "category",
           label: "Metadata Filters",
