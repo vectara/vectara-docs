@@ -6,9 +6,26 @@ sidebar_label: Instructions
 
 import CodePanel from '@site/src/theme/CodePanel';
 
-Instructions serve as reusable blocks of system prompt logic that guide the 
-agent's reasoning in each step by setting expectations, tone, or rules of 
-engagement for the LLM. Instruction ssupport two deployment models:
+Instructions serve as reusable blocks of system prompt logic. They guide the 
+agent’s reasoning in each step by setting expectations, tone, or rules of 
+engagement for the LLM. Defined independently, they are referenced by name and 
+can be updated without touching agent configurations. An agent references a 
+particular version of the instruction. Each instruction includes the following:
+
+* A unique ID (ins_abcd)
+* A name and description. The name must be unique across all instructions per customer
+* A prompt template
+* Optional metadata for versioning or rollout control
+
+:::note
+An agent references a particular version of the instruction. The version 
+number is optional but can be specified in the request, or the latest version 
+is selected. You must update the agent refer to any newer versions of 
+instructions.
+:::
+
+Instructions are the system-level configuration for agent behavior. They use 
+the Velocity templating engine to allow for dynamic content.
 
 ## Shared Instructions
 

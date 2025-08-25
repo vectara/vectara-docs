@@ -15,41 +15,14 @@ services.
 
 In the tech preview of the Agentic Platform, Vectara only supports MCP as a 
 client. This means Vectara agents can call MCP-enabled tools and services 
-hosted on external MCP servers. We do not yet support MCP server capabilities 
-in the platform itself. We currently have an open source Vectara MCP project 
-that is not part of the platform.
+hosted on external MCP servers. 
 
+:::note 
+We do not yet support MCP server capabilities in the platform itself. We do 
+currently have an open source Vectara MCP project that is not part of the 
+platform.
+:::
 
-```mermaid
-flowchart TD
-    subgraph Vectara["Vectara Agentic Platform (v0)"]
-        Agent["Agent"]
-        ToolClient["MCP Client"]
-        Agent --> ToolClient
-    end
-
-    subgraph ExternalMCP["External MCP Servers"]
-        Tool1["Tool A"]
-        Tool2["Tool B"]
-        Tool3["Tool C"]
-    end
-
-    subgraph OpenSource["Open-Source MCP Server"]
-        OSS_Tools["Custom Tools"]
-    end
-
-    ToolClient --> ExternalMCP
-    Agent -.-> OSS_Tools
-
-    %% Styles
-    classDef platform fill:#DCE6FF,stroke:#2B6CB0,color:#000;
-    classDef external fill:#E6FFFA,stroke:#319795,color:#000;
-    classDef oss fill:#FFF5F5,stroke:#E53E3E,color:#000;
-
-    class Vectara platform;
-    class ExternalMCP external;
-    class OpenSource oss;
-```
 ## Why MCP is important
 
 MCP eliminates the need for custom integrations by providing a universal 
@@ -65,8 +38,4 @@ and enterprise systems. MCP provides the following benefits:
 | Enterprise integration | Tools can represent internal APIs, RAG systems, databases, or even other agents.
 | Auditability and security | Permissions and access control can be managed per tool, enabling secure orchestration.
 | Model-agnostic | MCP works across agent platforms (Vectara, Claude, OpenAI SDK, Google Gemini, and so on).
-
-
-
-
 

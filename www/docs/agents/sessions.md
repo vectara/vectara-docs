@@ -10,11 +10,9 @@ A session is a contextual container for a conversation between a user (or
 application) and an agent. It provides continuity across multiple 
 interactions. Key properties include:
 
-* A session ID and human-readable name
-* Associated agent ID
-* Optional description to clarify session context ("Order Issue Support")
+* A session ID and human-readable name (`ase_12345`)
+* Associated agent ID (`agt_abcd`)
 * Metadata such as end_user_id, application_id, priority, or channel
-* enabled flag to denote active/inactive status
 * Timestamps for creation and last update
 
 Sessions support lifecycle operations such as creation, update, retrieval, 

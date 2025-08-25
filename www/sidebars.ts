@@ -142,7 +142,6 @@ const sidebars: SidebarsConfig = {
       items: [
         "agents/mcp",
         "agents/agents",
-        "agents/tool-servers",
         "agents/tools",
         "agents/instructions",
         "agents/sessions",
@@ -299,10 +298,21 @@ const sidebars: SidebarsConfig = {
       label: "Vectara Console",
       link: {
         type: 'doc',
-        id: 'console-ui/vectara-console-overview', // This points to the Vectara Console Overview document
+        id: 'console-ui/vectara-console-overview',
       },
       collapsed: true,
       items: [
+        {
+          type: "category",
+          label: "Manage Agents",
+          link: {
+            type: 'doc',
+            id: "console-ui/manage-agents",
+          },
+          items: [
+            "console-ui/agents/create-an-agent",
+          ],
+        },
         {
           type: "category",
           label: "Manage Corpora",
@@ -366,6 +376,7 @@ const sidebars: SidebarsConfig = {
       collapsed: true,
       items: [
         "api-reference/api-overview",
+        "api-reference/api-concepts/resource-addressing",
         "api-reference/protobuf-definitions",
         "api-reference/rest",
         {
@@ -543,7 +554,7 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "category",
-          label: "Agent APIs",
+          label: "Agentic Platform APIs",
           link: {
             type: 'doc',
             id: 'api-reference/agent-apis/agent-apis-overview',

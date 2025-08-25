@@ -6,59 +6,41 @@ sidebar_label: Tools
 
 import CodePanel from '@site/src/theme/CodePanel';
 
-Tools are external or internal capabilities that agents can invoke 
+Tools represent external or internal capabilities that agents can invoke 
 dynamically. They are defined by:
 
-* A unique ID and name
+* A unique ID and name (`tol_abcd`)
 * A description of their function
 * An input schema describing accepted parameters (in JSON Schema format)
 * Metadata for categorization
 * Runtime availability (enabled/disabled)
 
-## Examples of tools:
+## Available tools
 
-* **tol_web_search:** Retrieves web search results
-* **tol_email_sender:** Sends templated emails
-* **tol_ticket_creator:** Opens support tickets
-* **tol_corpus_search:** Searches across selected corpora
-
-Tools are discovered and synchronized from registered MCP servers. When a tool 
-is updated on its source server, the changes are automatically reflected in 
-the Vectara platform during synchronization.
+The tech preview of the Vectara Agentic Platform provides the following tools:
+* **tol_corpus_search:** Retrieves results from a Vectara corpus or corpora using Retrieval 
+  Augmented Generation (RAG). This tool provides summary and relevant search results using 
+  the same default parameters as the Multiple Corpora Query.
+* **tol_web_search:** Retrieves results from the public web.
 
 
-### Example Tool Definition
+## Tool configurations
 
-<CodePanel
-  title="Tool Example"
-  snippets={[
-    {
-      language: 'json',
-      code: `{
-    "id": "tol_corpus_search",
-    "name": "corpus_search_tool",
-    "description": "A tool for searching a knowledge base.",
-    "server_id": "tsr_internal_tools",
-    "parameters": {
-      "type": "object",
-      "properties": {
-        "query": {
-          "type": "string",
-          "description": "The query to search for."
-        }
-      },
-       "required": ["query"]
-    }
-}`
-    }]}
-  annotations={{
-    json: [
-      { line: 2, text: 'The unique ID of the tool.' },
-      { line: 3, text: 'The name of the tool.' },
-      { line: 4, text: 'A description of the tool.' },
-      { line: 5, text: 'The ID of the Tool Server that exposes this tool.' },
-      { line: 6, text: 'The parameters that this tool accepts, in JSON Schema format.' }
-    ]
-  }}
-  layout="stacked"
-/>
+Tool configurations are reusable settings for tools. They enable you to define 
+argument bindings and other settings for a tool once, and then reuse that 
+configuration across multiple agents. This simplifies agent creation and 
+management.
+
+There are two types of tool configurations:
+* **ReferenceToolConfiguration:** A tool configuration specified by reference to an 
+  existing tool configuration.
+* **InlineToolConfiguration:** A tool configuration defined inline in the agent.
+
+## Tool permissions and security
+
+Tools follow the same permission model as the rest of Vectara:
+
+1. **API keys**: Tools can only access corpora if the API key has access to the 
+   corpora.
+2. **Metadata filtering**: Additional security through metadata filters
+3. **Result limiting**: Control how much data tools can retrieve

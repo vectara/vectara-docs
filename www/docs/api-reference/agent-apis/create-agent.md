@@ -4,17 +4,26 @@ title: Create Agent API Definition
 sidebar_label: Create Agent API Definition
 ---
 
-# Create Agent API Definition
+import CodePanel from '@site/src/theme/CodePanel';
 
-The Create Agent API enables you to define and deploy intelligent AI agents within the Vectara platform that can orchestrate complex workflows, execute tool-based actions, and maintain conversational context across multi-turn interactions. This API supports the creation of autonomous digital workers that combine retrieval-augmented generation with external system integration through the Model Context Protocol (MCP).
+The Create Agent API enables you to define and deploy intelligent AI agents within 
+the Vectara platform that can orchestrate complex workflows, execute tool-based 
+actions, and maintain conversational context across multi-turn interactions. 
+This API supports the creation of autonomous digital workers that combine 
+retrieval-augmented generation with external system integration through the Model Context Protocol (MCP).
 
-By configuring agents with specific tools, behavioral instructions, and model parameters, enterprises can deploy specialized agents for customer support, business intelligence, workflow automation, and technical assistance scenarios. These agents operate as configurable, decision-making entities that can reason through problems, coordinate multiple tools, and adapt their responses based on conversation context and available capabilities.
+By configuring agents with specific tools, behavioral instructions, and model 
+parameters, enterprises can deploy specialized agents for customer support, 
+business intelligence, workflow automation, and technical assistance scenarios. 
+These agents operate as configurable, decision-making entities that can reason 
+through problems, coordinate multiple tools, and adapt their responses based on 
+conversation context and available capabilities.
 
 ## Create Agent Request and Response
 
 To create an agent, send a POST request to `/v2/agents`. You specify the following parameters in the request body:
 
-- `name` (string, required): Human-readable agent name
+- `key` (string, required): The unique identifier for the agent.
 - `description` (string, optional): Detailed description of agent purpose and capabilities
 - `tools` (object, required): Tool configuration object
   - `available` (array, required): List of available tools
@@ -45,8 +54,14 @@ The response includes the complete agent configuration with system-generated fie
 
 ### Example Request
 
-```json
-{
+
+
+<CodePanel
+  title="Example agent request"
+  snippets={[
+    {
+      language: 'json',
+      code: `{
   "name": "Customer Support Agent", 
   "description": "AI agent specialized in handling customer support inquiries using company documentation",
   "tools": {
@@ -89,13 +104,22 @@ The response includes the complete agent configuration with system-generated fie
     "version": "1.0.0"
   },
   "enabled": true
-}
-```
+}`
+    }]}  
+  layout="stacked"
+/>
+
+
+
 
 ### Example Response
 
-```json
-{
+<CodePanel
+  title="Example response"
+  snippets={[
+    {
+      language: 'json',
+      code: `{
   "id": "agt_customer_support_001",
   "name": "Customer Support Agent",
   "description": "AI agent specialized in handling customer support inquiries using company documentation", 
@@ -141,8 +165,10 @@ The response includes the complete agent configuration with system-generated fie
   "enabled": true,
   "created_at": "2024-01-15T10:30:00Z",
   "updated_at": "2024-01-15T10:30:00Z"
-}
-```
+}`
+    }]}  
+  layout="stacked"
+/>
 
 ## Error Responses
 
