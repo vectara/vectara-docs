@@ -38,3 +38,23 @@ involves the following steps:
 1. [List corpora](/docs/rest-api/list-corpora).
 2. [List documents in each corpora](/docs/rest-api/list-corpus-documents).
 3. [Download documents from each corpora](/docs/rest-api/get-corpus-document).
+
+ ## Implementation Overview
+
+  The above three API calls can be used to systematically download all your 
+  indexed documents. Here's the general approach:
+
+
+```pseudocode
+// Step 1: Get all corpora
+  corpora := GET /v2/corpora
+
+// Step 2 & 3: Iterate through each corpus and download documents
+  for each corpus in corpora:
+      documents := GET /v2/corpora/{corpus.key}/documents
+
+      for each document in documents:
+          document_content := GET /v2/corpora/{corpus.key}/documents/{document.id}
+          // Save document_content locally
+```
+
