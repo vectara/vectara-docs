@@ -10,7 +10,64 @@ Agents represents the core orchestration unit in the Vectara platform. The
 agent decides how to respond to user input, when to invoke tools, and how to 
 manage conversation state. Each agent is configured with: 
 
-* A unique ID and name following the pattern `agt_[identifier]`
+```mermaid
+flowchart TD
+    %% User Input and Response Flow
+    User[User Query] --> Reasoning[Reasoning LLM Brain Understand user query and intent]
+    Reasoning --> Planning[Planning Build execution plan using available tools]
+    Planning --> Response[Response Collect information and respond]
+    Response --> Output[Response]
+
+    %% Orchestration Flow
+    Planning --> OP
+
+    %% Tools and Agents in Orchestration Pipeline
+    subgraph OP[🔧 Orchestration Pipeline 🔧]
+        Tool1[Tool 1]
+        Tool2[Tool 2]
+        Tool3[Tool 3]
+        Agent1[Agent 1]
+        Agent2[Agent 2]
+    end
+
+    %% Orchestration pipeline links outside agent
+    
+    Tool1 <--> RAG1[Vectara RAG 1]
+    Tool2 <--> RAG2[Vectara RAG 2]
+    Tool3 <--> API[API]
+    Agent1 <--> DB[Database]
+    Agent2 <--> Custom[Custom Service]
+
+    %% Grouping
+    subgraph Agent [🧠 Agent 🧠]
+        Reasoning
+        Planning
+        Response
+        OP
+    end
+
+    classDef llm fill:#DCE6FF,stroke:#2B6CB0,color:#000;
+    classDef pipeline fill:#EDF2F7,stroke:#718096,color:#000;
+    classDef tools fill:#E6FFFA,stroke:#319795,color:#000;
+    classDef sources fill:#FFF5F5,stroke:#E53E3E,color:#000;
+
+    class Reasoning,Planning,Response llm;
+    class OP pipeline;
+    class Tool1,Tool2,Tool3,Agent1,Agent2 tools;
+    class RAG1,RAG2,API,DB,Custom sources;
+```
+
+## Agent Prerequisites
+
+Before creating an agent, you must:
+1. **Define tools**: Configure tools first, as they are required for agent 
+   creation
+2. **Configure instructions**: Instructions are required to guide the behavior 
+3. of the agent
+
+Each agent is configured with:
+
+* A unique ID and name following the pattern agt_[identifier]
 * A human-readable description
 * One or more instructions
 * A list of available tools (referenced by name or ID)
