@@ -37,7 +37,7 @@ To perform a fuzzy metadata search, send a `POST` request to
 `/v2/corpora/:corpus_key/metadata_query`, where `corpus_key` specifies the 
 unique identifier for the corpus. Fuzzy search requires the following parameters:
 
-* `level:` Specify `document` to returnunique documents or `part` for multiple parts 
+* `level:` Specify `document` to return unique documents or `part` for multiple parts 
   from the same document.  
 **Default:** document
 * `queries`: One or more field-specific fuzzy queries.
