@@ -6,7 +6,7 @@ sidebar_label: Fuzzy Metadata Search
 
 import CodePanel from '@site/src/theme/CodePanel';
 
-Metadata is rarely uniform across different document sources. Titles,
+Metadata is rarely uniform across different document sources. Titles, 
 categories, and headings can vary and change over time. When users only know 
 part of a value, strict equality filters miss relevant items.
 

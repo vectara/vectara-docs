@@ -41,7 +41,7 @@ unique identifier for the corpus. Fuzzy search requires the following parameters
   from the same document.  
 **Default:** document
 * `queries`: One or more field-specific fuzzy queries.
-    * `field`: Metadata field **without** the `doc.` or`part.` prefix; must be a **TEXT filter attribute**.
+    * `field`: Metadata field **without** the `doc.` or `part.` prefix; must be a **TEXT filter attribute**.
     * `query`: Text to match approximately.
     * `weight`: Increases the influence of a field on ranking.  
   **Default:** 1.0
