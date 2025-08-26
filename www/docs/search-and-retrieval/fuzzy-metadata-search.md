@@ -26,6 +26,56 @@ Use `document` level metadata when you want unique documents. Use `part` level
 metadata when you need to surface matching sections within documents.
 :::
 
+## How fuzzy search works
+
+1. Applies fuzzy matching automatically to all field queries
+2. Handles common typos, character transpositions, and missing characters
+3. Field weights influence the final relevance score
+4. Applies exact `metadata_filter` to narrow results
+5. Performs fuzzy matching on remaining documents
+
+## Field weighting strategy
+
+Adjust field weights to control search relevance:
+- Higher weights (2.0-3.0): Critical fields like title or primary identifier
+- Medium weights (1.0-1.5): Important supporting fields
+- Lower weights (0.5-1.0): Additional context fields
+
+### Example Weighting Strategy
+
+<CodePanel
+  title="Strategic field weighting"
+  snippets={[
+    {
+      language: 'json',
+      code: `{
+  "queries": [
+    {
+      "field": "title",
+      "query": "software license",
+      "weight": 3.0  // Most important
+    },
+    {
+      "field": "vendor",
+      "query": "google",
+      "weight": 2.0  // Very important
+    },
+    {
+      "field": "category",
+      "query": "technology",
+      "weight": 1.0  // Standard importance
+    },
+    {
+      "field": "tags",
+      "query": "enterprise",
+      "weight": 0.5  // Supporting context
+    }
+  ]
+}`
+    }]}  
+  layout="stacked"
+/>
+
 ## Example request (document level)
 
 <CodePanel snippets={[{language: "json", code: `{
@@ -78,20 +128,18 @@ metadata when you need to surface matching sections within documents.
 
 * `doc.status = 'Active'`
 * `doc.pageCount > 10`
-* `doc.publish_date >= '2024-01-01'`
+* `doc.publish_date >= '2025-08-01'`
 * `doc.category IN ('contract', 'policy')`
 * `doc.status = 'Active' AND part.clause_type = 'Liability'`
 
 The filter language does **not** support SQL `LIKE`. Use fuzzy `queries` to handle approximate text.
 
-
-
 ### Weighted multi‑field search
 
 <CodePanel snippets={[{language: "json", code: `{
    "queries": [
-     { "field": "title",    "query": "nda",       "weight": 2.0 },
-     { "field": "category", "query": "agreement", "weight": 1.0 }
+     { "field": "title",    "query": "nda",       "weight": 3.0 },
+     { "field": "category", "query": "agreement", "weight": 2.0 }
    ],
    "limit": 20
 }`
@@ -105,8 +153,6 @@ The filter language does **not** support SQL `LIKE`. Use fuzzy `queries` to hand
    "limit": 10
 }`
 }]} title="Exact filtering plus fuzzy ranking" layout="stacked" />
-
-
 
 ### Part‑level search
 
