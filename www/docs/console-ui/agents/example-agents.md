@@ -6,7 +6,10 @@ sidebar_label: Example Agents
 
 import CodePanel from '@site/src/theme/CodePanel';
 
-This section provides example agents that you can create for your enterprise.
+This section provides example agents that you can create for your enterprise, 
+including a documentation support agent and an internal knowledge base expert. 
+
+Check this page frequently as we add more agent examples.
 
 ## Example: Create a documentation support agent
 
@@ -18,12 +21,14 @@ the public web.
 
 * A deployed corpus containing your reference content.
     * In this example, the corpus_key is `techdocs`.
-    * Ensure your corpus is populated with data.
-* Corpus Search tool enabled in your account.
-* Web Search tool enabled in your account.
+    * Ensure your corpus is populated with data, such as technical documentation 
+  for your organization.
+* Verify that the Corpus Search tool is enabled in your account.
+* Verify that the Web Search tool is enabled in your account.
 * Agent creation permissions in the Vectara Console.
 
-To create the agent:
+### Create the agent
+
 1. In the Vectara Console, go to **Agents**, and click **Add Agent**.
 2. On the General step:
    1. Enter **Support Docs** as the name.
@@ -36,14 +41,14 @@ To create the agent:
 4. On the Instructions step:
    1. Provide the system prompt that guides the agent’s behavior:  
 `“You are a customer support assistant. When answering a query, first check the internal support documentation corpus. If the corpus does not contain a relevant answer, perform a web search. Always provide concise, accurate, and helpful responses. Include sources when possible.”`
-   2. Click **Next**.
-5. On the Tools step, add the Corpus Search and Web Search tools individually:
+   1. Click **Next**.
+1. On the Tools step, add the Corpus Search and Web Search tools individually:
    1. Click **Add first tool**, and select **Corpus Search**.
    2. Paste the following input override:
    3. Click **Add tool**, and select **Web Search**.
    4. Paste the following input override:
    5. Click **Next**.
-6. The final panel is the **Advanced** step.  
+2. The final panel is the **Advanced** step.  
    Agent metadata attaches additional information or attributes to your agent, 
    which helps with organization, tracking, and integration. Think of it as a 
    set of custom labels or tags you can assign to the agent using a JSON format.  
@@ -53,7 +58,7 @@ To create the agent:
     3.  Integration: Add fields for external systems `{ "integration_id": "12345" }`.  
    For this tutorial, you can leave metadata blank (or add optional fields if needed).
     4. Click **Create Agent**.
-7. Go back to Agents, open your new Support Docs agent, and test by entering a query.  
+3. Go back to Agents, open your new Support Docs agent, and test by entering a query.  
    
 The agent should first search your techdocs corpus and fall back to web search if needed.
 

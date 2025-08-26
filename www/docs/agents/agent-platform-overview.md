@@ -112,18 +112,21 @@ flowchart TD
     Agent --> Query
     Query -->|Direct answer| Session
     Query e4@<==> Tool
+    Tool e5@<==> Query
 
-    %% Internal tool execution paths (v0 focus)
+    %% Internal tool execution paths
     Tool e3@<--> ToolServer
+    ToolServer e7@<--> Tool
     ToolServer --> Corpus
-    ToolServer -.->|Web Search| Web
+    ToolServer -.-> Web
 
     %% Optional MCP path (de-emphasized)
     Tool e2@<--> MCP
+    MCP e6@<--> Tool
     MCP -.-> ExtMCP
 
     %% Return to user
-    Query e1@-->|Synthesizes response| Session
+    Query e1@==>|Synthesizes response| Session
     Session -->|Answer| User
 
     %% Classes for color grouping
@@ -149,6 +152,9 @@ flowchart TD
     e2@{ animation: slow }
     e3@{ animation: slow }
     e4@{ animation: slow }
+    e5@{ animation: slow }
+    e6@{ animation: slow }
+    e7@{ animation: slow }
 ```
 </div>
 
@@ -156,7 +162,7 @@ flowchart TD
 
 To build your first agent:
 
-1. **Create an Agent**: Define the agent's name, description, and available tools.
+1. [**Create an agent**](/docs/console-ui/agents/create-an-agent): Define the agent's name, description, and available tools.
 2. **Configure Tools**: Set up corpus access permissions and any external integrations.
 3. **Write Instructions**: Create templates that guide the agent's behavior.
 4. **Test with Sessions**: Start conversations and iterate on your configuration.

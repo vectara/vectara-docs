@@ -14,9 +14,11 @@ last updated timestamp.
 
 - Log in to your Vectara account.
 - Navigate to the Agents section in the sidebar.
+
+![Agent page](/img/agents/list_agents.png)
   
 The Agents page lets you complete the following tasks:
-- **Create agent**: Click the **Create agent** button in the top-right corner 
+- **Create agent**: Click the **Add agent** button in the top-right corner 
   to start the agent creation wizard (see Create an Agent topic for details).
 - **Search**: Use the **Search agents...** text box to filter the list by name 
   or ID.
@@ -35,7 +37,7 @@ The Agents page lets you complete the following tasks:
 - **Creation date**: The date and time the agent was created "8/15/2025,
   4:52:48 PM".
 - **Last updated**: The date and time of the agent's last modification 
-  "8/15/2025, 7:15:06 PM".
+  "8/26/2025, 9:18:06 PM".
 
 ## View agent details
 
@@ -45,24 +47,24 @@ The Agents page lets you complete the following tasks:
 ## Enable or disable an agent
 
 - Locate the agent in the table.
-- Click the three-dot menu (⋮) next to the agent.
+- Click the drop-down at the end of the row.
 - Select **Enable** or **Disable** to toggle its status. Disabled agents 
   cannot process queries but remain available for editing or re-enabling.
 
-### Edit an agent
-
-- Click the three-dot menu (⋮) next to the agent.
-- Select **Edit** to reopen the creation wizard with the current configuration, 
-  allowing updates to name, model, instructions, tools, or metadata.
-- Save changes to update the **Last updated** timestamp.
-
 ### Delete an agent
 
-- Click the three-dot menu (⋮) next to the agent.
-- Select **Delete** and confirm to remove the agent permanently. This action cannot be undone.
+- Click the drop-down at the end of the row.
+- Select **Delete** and confirm to remove the agent permanently. This action 
+  cannot be undone.
+
 
 ## Best Practices
-- **Naming Convention**: Use clear, descriptive names (e.g., **Tech Docs Agent**) to avoid confusion.
-- **Status Monitoring**: Regularly check the **Enabled** column to ensure agents are active when needed.
-- **Metadata Use**: Leverage metadata (set during creation) to filter or group agents via search (e.g., by team or category).
-- **Regular Updates**: Edit agents to reflect changes in corpora, tools, or instructions, and verify updates via **Last updated.**
+- **Naming convention**: Use clear, descriptive names (**Tech Docs Agent**) to 
+  avoid confusion.
+- **Status monitoring**: Regularly check the **Enabled** column to ensure agents 
+  are active when needed.
+- **Metadata use**: Leverage metadata (set during creation) to filter or group 
+  agents through search by team or category).
+- **Regular updates**: Edit agents to reflect changes in corpora, tools, or 
+  instructions, and verify updates with **Last updated.**
+  
