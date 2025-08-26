@@ -55,35 +55,21 @@ orchestration.
 
 **New API Endpoints:**
 
-Agent Management:
-- `POST /v2/agents` - Create intelligent agents
-- `GET /v2/agents` - List available agents
-- `PATCH /v2/agents/{agent_key}` - Update agent configuration
-- `DELETE /v2/agents/{agent_key}` - Remove agents
+The Vectara Agentic Platform introduces several endpoints for the following:
+* Agent Management
+* Session Management
+* Event Processing
+* Tool Server Management
 
-Session Management:
-- `POST /v2/agents/{agent_key}/sessions` - Initialize conversation sessions
-- `GET /v2/agents/{agent_key}/sessions` - List active sessions
-- `PATCH /v2/agents/{agent_key}/sessions/{session_key}` - Update session metadata
-
-Event Processing:
-- `POST /v2/agents/{agent_key}/sessions/{session_key}/events` - Submit user input and receive agent responses
-
-Tool Server Management:
-- `POST /v2/tool_servers` - Register MCP servers
-- `POST /v2/tool_servers/{tool_server_id}/sync` - Synchronize available tools
-- `GET /v2/tools` - Discover available tools
-
-**Getting Started:**
-
-1. Register your MCP-compliant tool servers to expose enterprise capabilities
-2. Create agents with appropriate tool access and behavioral instructions
-3. Initialize sessions for stateful conversations
-4. Submit events to interact with your intelligent agents
+More information:
+* blog
+* [Vectara Agentic Platform](/docs/agents/agent-platform-overview)
+* [Agentic Platform APIs](/docs/api-reference/agent-apis/agent-apis-overview)
+* [Manage Agents](/docs/console-ui/manage-agents)
 
 :::caution
 
-- This is a v0 tech preview release - APIs and features may evolve based on customer feedback
+- This is a tech preview release - APIs and features may evolve based on customer feedback
 - Tool configurations currently support inline definitions only; reference configurations coming in v1
 - All agent and session identifiers follow the pattern `[0-9a-zA-Z_-]+` without prefixes
 - MCP is the only supported tool server protocol in this release
