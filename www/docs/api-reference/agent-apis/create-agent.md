@@ -23,13 +23,15 @@ conversation context and available capabilities.
 
 To create an agent, send a POST request to `/v2/agents`. You specify the following parameters in the request body:
 
-- `key` (string, required): The unique identifier for the agent.
+- `key` (string, optional): A user provided key that uniquely identifies this agent. If not provided, one will be auto-generated based on the agent name. Pattern: `[0-9a-zA-Z_-]+$`
+- `name` (string, required): The human-readable name of the agent
 - `description` (string, optional): Detailed description of agent purpose and capabilities
-- `tools` (object, required): Tool configuration object
-  - `available` (array, required): List of available tools
-    - `id` (string, required): Tool identifier following pattern `tol_.*`
-    - `argument_bindings` (object, optional): Fixed arguments for tool execution
-  - `mode` (string, optional): Tool interaction mode (`native` or `instruction`, defaults to `native`)
+- `tools` (object, required): A map of tools available to the agent where:
+  - Key: tool_id following pattern `tol_.*`
+  - Value: AgentToolConfiguration object with:
+    - `type` (string, required): Tool configuration type (`mcp`, `corpora_search`, or `web_search`)
+    - `argument_override` (object, optional): Optional hardcoded arguments for tool calls
+    - `query_configuration` (object, required for corpora_search): User-configurable settings for corpus search
 - `model` (object, required): Model configuration for agent reasoning
   - `name` (string, required): Model name (e.g., `gpt-4`)
   - `parameters` (object, optional): Model-specific parameters like temperature and max_tokens
@@ -38,23 +40,22 @@ To create an agent, send a POST request to `/v2/agents`. You specify the followi
   - `instructions` (array, required): List of instruction objects
     - Reference instructions:
       - `type` (string, required): Must be `reference`
-      - `id` (string, required): Instruction identifier following pattern `ins_.*`
+      - `id` (string, required): Instruction identifier following pattern `ins_[0-9a-zA-Z_-]+$`
       - `version` (integer, optional): Specific instruction version
     - Inline instructions:
       - `type` (string, required): Must be `inline`
-      - `template_type` (string, required): Must be `velocity`
+      - `name` (string, required): Human-readable instruction name
+      - `template_type` (string, optional): Must be `velocity` (default)
       - `template` (string, required): Instruction template content
-      - `name` (string, optional): Human-readable instruction name
       - `description` (string, optional): Instruction description
-  - `output_parser` (object, required): Output parser configuration (typically `{"type": "default"}`)
+  - `output_parser` (object, required): Output parser configuration
+    - `type` (string, required): Parser type (must be `default`)
 - `metadata` (object, optional): Arbitrary key-value pairs for organization and tracking
 - `enabled` (boolean, optional): Whether agent is active upon creation (defaults to `true`)
 
-The response includes the complete agent configuration with system-generated fields including the unique agent ID, creation timestamp, and update timestamp.
+The response includes the complete agent configuration with system-generated fields including the unique agent key, creation timestamp, and update timestamp.
 
 ### Example Request
-
-
 
 <CodePanel
   title="Example agent request"
@@ -62,22 +63,33 @@ The response includes the complete agent configuration with system-generated fie
     {
       language: 'json',
       code: `{
+  "key": "customer_support",
   "name": "Customer Support Agent", 
   "description": "AI agent specialized in handling customer support inquiries using company documentation",
   "tools": {
-    "available": [
-      {
-        "id": "tol_knowledge_search",
-        "argument_bindings": {
-          "max_results": 10,
-          "corpus_filter": "support_docs"
-        }
+    "tol_customer_search": {
+      "type": "corpora_search",
+      "argument_override": {
+        "query": "customer support documentation"
       },
-      {
-        "id": "tol_ticket_creator"
+      "query_configuration": {
+        "search": {
+          "corpora": [
+            {
+              "corpus_key": "support_docs",
+              "limit": 10
+            }
+          ]
+        },
+        "save_history": true
       }
-    ],
-    "mode": "native"
+    },
+    "tol_web_search": {
+      "type": "web_search",
+      "argument_override": {
+        "limit": 5
+      }
+    }
   },
   "model": {
     "name": "gpt-4",
@@ -93,6 +105,12 @@ The response includes the complete agent configuration with system-generated fie
         "type": "reference",
         "id": "ins_customer_support_init",
         "version": 2
+      },
+      {
+        "type": "inline",
+        "name": "Additional Guidelines",
+        "template": "Always be polite and professional. Today's date is currentDate.",
+        "template_type": "velocity"
       }
     ],
     "output_parser": {
@@ -109,9 +127,6 @@ The response includes the complete agent configuration with system-generated fie
   layout="stacked"
 />
 
-
-
-
 ### Example Response
 
 <CodePanel
@@ -120,23 +135,33 @@ The response includes the complete agent configuration with system-generated fie
     {
       language: 'json',
       code: `{
-  "id": "agt_customer_support_001",
+  "key": "customer_support",
   "name": "Customer Support Agent",
   "description": "AI agent specialized in handling customer support inquiries using company documentation", 
   "tools": {
-    "available": [
-      {
-        "id": "tol_knowledge_search",
-        "argument_bindings": {
-          "max_results": 10,
-          "corpus_filter": "support_docs"
-        }
+    "tol_customer_search": {
+      "type": "corpora_search",
+      "argument_override": {
+        "query": "customer support documentation"
       },
-      {
-        "id": "tol_ticket_creator"
+      "query_configuration": {
+        "search": {
+          "corpora": [
+            {
+              "corpus_key": "support_docs",
+              "limit": 10
+            }
+          ]
+        },
+        "save_history": true
       }
-    ],
-    "mode": "native"
+    },
+    "tol_web_search": {
+      "type": "web_search",
+      "argument_override": {
+        "limit": 5
+      }
+    }
   },
   "model": {
     "name": "gpt-4",
@@ -152,6 +177,12 @@ The response includes the complete agent configuration with system-generated fie
         "type": "reference",
         "id": "ins_customer_support_init", 
         "version": 2
+      },
+      {
+        "type": "inline",
+        "name": "Additional Guidelines",
+        "template": "Always be polite and professional. Today's date is currentDateß.",
+        "template_type": "velocity"
       }
     ],
     "output_parser": {
@@ -182,5 +213,4 @@ The API returns standard HTTP error codes with detailed error information:
 | 400 | `invalid_model_configuration` | Invalid model name or unsupported parameters |
 | 401 | `unauthorized` | Invalid or missing API key |
 | 403 | `forbidden` | Insufficient permissions for agent creation |
-| 409 | `agent_name_exists` | Agent name already exists in the account |
 | 429 | `rate_limit_exceeded` | Agent creation rate limit exceeded |

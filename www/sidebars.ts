@@ -597,6 +597,19 @@ const sidebars: SidebarsConfig = {
             },
             {
               type: 'category',
+              label: 'Tool Server Management APIs',
+              collapsed: false,
+              items: [
+                "api-reference/agent-apis/tool-server/create-tool-server",
+                "api-reference/agent-apis/tool-server/list-tool-servers",
+                "api-reference/agent-apis/tool-server/get-tool-server",
+                "api-reference/agent-apis/tool-server/update-tool-server",
+                "api-reference/agent-apis/tool-server/sync-tool-server",
+                "api-reference/agent-apis/tool-server/delete-tool-server",
+              ]
+            },
+            {
+              type: 'category',
               label: 'Tool Management APIs',
               collapsed: false,
               items: [

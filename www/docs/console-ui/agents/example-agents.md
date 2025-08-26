@@ -62,11 +62,15 @@ The agent should first search your techdocs corpus and fall back to web search i
 
 ## Example: Create an internal knowledge base expert
 
-**Business Problem:** Employees spend a significant amount of time searching for information in the company's internal knowledge base, which includes HR policies, technical documentation, and best practice guides.
+Employees spend a significant amount of time searching 
+for information in the company's internal knowledge base, which includes HR 
+policies, technical documentation, and best practice guides.
 
-**Solution:** An agent that acts as an Internal Knowledge Base Expert, using the `CorporaSearchTool` to provide quick and accurate answers to employee questions.
+In this example, you create an agent that acts as an Internal Knowledge Base 
+Expert, using the `CorporaSearchTool` to provide quick and accurate answers to 
+employee questions.
 
-### Agent Configuration
+### Agent configuration
 
 *   **Name:** `Internal Knowledge Base Expert`
 *   **Description:** `An agent that answers employee questions based on the company's internal knowledge base.`
@@ -77,9 +81,10 @@ The agent should first search your techdocs corpus and fall back to web search i
     *   `"If the answer is found in multiple documents, synthesize the information into a single response."`
     *   `"Include links to the source documents."`
 
-### Advanced Configuration: Parameter Overrides
+### Parameter overrides
 
-When creating the agent, you can provide override values for the `CorporaSearchTool`. Here are some examples of how to do this:
+When creating the agent, you can provide override values for the 
+`CorporaSearchTool`. Here are some examples of how to do this:
 
 **Example 1: Use a specific generation preset**
 
@@ -141,16 +146,23 @@ This example shows how to customize the search parameters to use a specific rera
   layout="stacked"
 />
 
-### Example Interaction
+## Example agent interaction
 
 **User Query:** `"What is the company's policy on PTO?"`
 
 **Agent Actions:**
 
-1.  The agent receives the query and understands that it needs to search the internal knowledge base.
-2.  It invokes the `CorporaSearchTool` with the user's query, searching across the `hr-policies` corpus.
-3.  The `CorporaSearchTool` returns the relevant sections from the vacation and sick time policy document.
-4.  The agent processes the search results and generates a clear and concise answer, summarizing the key points of the policy.
-5.  It also provides a direct link to the full vacation and sick time policy document for further reading.
+1.  The agent receives the query and understands that it needs to search the 
+   internal knowledge base.
+2.  It invokes the `CorporaSearchTool` with the user's query, searching across 
+   the `hr-policies` corpus.
+3.  The `CorporaSearchTool` returns the relevant sections from the vacation and 
+   sick time policy document.
+4.  The agent processes the search results and generates a clear and concise 
+   answer, summarizing the key points of the policy.
+5.  It also provides a direct link to the full vacation and sick time policy 
+   document for further reading.
 
-**Business Value:** This agent improves employee productivity by providing instant access to information. It also ensures that employees receive consistent and accurate information, reducing the burden on HR and other support teams.
+**Business Value:** This agent improves employee productivity by providing instant 
+access to information. It also ensures that employees receive consistent and 
+accurate information, reducing the burden on HR and other support teams.
