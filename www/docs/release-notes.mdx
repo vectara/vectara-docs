@@ -19,6 +19,75 @@ experimenting with Retrieval Augmented Generation (RAG), or exploring our
 newest API endpoints, this page is your go-to place to see how we’re evolving 
 and how these product and documentation changes can benefit your enterprise.
 
+---
+
+## Vectara Agentic Platform
+
+_August 27, 2025_
+
+We're excited to introduce the tech preview of the Vectara Agentic Platform. 
+This comprehensive framework enables building intelligent, autonomous AI 
+agents that go beyond simple question-answering, to become configurable 
+digital workers capable of complex reasoning, multi-step workflows, and 
+enterprise system integration.
+
+**Why it matters:** Traditional RAG applications are limited to reactive Q&A 
+interactions. The Agentic Platform transforms this paradigm by enabling AI 
+agents that can autonomously reason through problems, orchestrate multiple 
+tools, maintain conversation context, and integrate with enterprise systems 
+through standardized protocols. This opens entirely new use cases for AI 
+automation, from intelligent customer support to complex business process 
+orchestration.
+
+**What's new:**
+
+- **Agent Management APIs**: Create and configure intelligent agents with customizable reasoning models, behavioral instructions, and tool access controls
+- **Model Context Protocol (MCP) Integration**: Connect agents to enterprise systems through standardized MCP servers that expose tools for database access, API integrations, and custom business logic
+- **Stateful Conversations**: Maintain context across multi-turn interactions with session management, enabling complex dialogues and workflow continuity
+- **Tool Orchestration**: Agents can dynamically invoke multiple tools including:
+  - Corpora search for RAG capabilities
+  - Web search for real-time information
+  - Custom MCP tools for enterprise integrations
+- **Streaming Response Support**: Real-time conversational experiences with Server-Sent Events for progressive response building
+- **Flexible Instructions**: Combine reusable instruction templates with inline configurations using Velocity templating for dynamic agent behavior
+- **Chain-of-Thought Reasoning**: Transparent agent thinking process with dedicated event types for reasoning visibility
+- **Version Management**: Instructions and tool configurations support versioning for controlled rollouts and governance
+
+**New API Endpoints:**
+
+Agent Management:
+- `POST /v2/agents` - Create intelligent agents
+- `GET /v2/agents` - List available agents
+- `PATCH /v2/agents/{agent_key}` - Update agent configuration
+- `DELETE /v2/agents/{agent_key}` - Remove agents
+
+Session Management:
+- `POST /v2/agents/{agent_key}/sessions` - Initialize conversation sessions
+- `GET /v2/agents/{agent_key}/sessions` - List active sessions
+- `PATCH /v2/agents/{agent_key}/sessions/{session_key}` - Update session metadata
+
+Event Processing:
+- `POST /v2/agents/{agent_key}/sessions/{session_key}/events` - Submit user input and receive agent responses
+
+Tool Server Management:
+- `POST /v2/tool_servers` - Register MCP servers
+- `POST /v2/tool_servers/{tool_server_id}/sync` - Synchronize available tools
+- `GET /v2/tools` - Discover available tools
+
+**Getting Started:**
+
+1. Register your MCP-compliant tool servers to expose enterprise capabilities
+2. Create agents with appropriate tool access and behavioral instructions
+3. Initialize sessions for stateful conversations
+4. Submit events to interact with your intelligent agents
+
+:::caution
+
+- This is a v0 tech preview release - APIs and features may evolve based on customer feedback
+- Tool configurations currently support inline definitions only; reference configurations coming in v1
+- All agent and session identifiers follow the pattern `[0-9a-zA-Z_-]+` without prefixes
+- MCP is the only supported tool server protocol in this release
+:::
 
 ---
 
