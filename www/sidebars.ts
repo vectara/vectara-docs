@@ -8,7 +8,63 @@ const sidebars: SidebarsConfig = {
       id: "introduction",
       label: "The Vectara Platform",
     },
-    "migration-guide-api-v2",
+    {
+      type: "category",
+      label: "Security and Data Privacy",
+      collapsed: true,
+      items: [
+        "learn/data-privacy/privacy-overview",
+        "learn/data-privacy/encryption",
+        "learn/authentication/transport-layer-security",
+      ],
+    },
+    {
+      type: "category",
+      label: "Authentication and Authorization",
+      link: {
+        type: 'doc',
+        id: 'learn/authentication/authentication-authorization-vectara', 
+        },
+        collapsed: true,
+        items: [
+          "learn/authentication/personas-and-access-patterns",
+          "learn/authentication/auth-overview",
+          "learn/authentication/choose-auth-method",
+          "learn/authentication/api-key-management",
+          "learn/authentication/oauth-2",
+          "learn/authentication/role-based-access-control",
+          "learn/authentication/attribute-based-access-control",
+          "learn/authentication/multi-tenant-corpus-isolation",
+          "learn/authentication/combine-access-control-with-app-filters",
+        {
+          type: "category",
+          label: "API Authentication Examples",
+          items: [
+            {
+              type: "category",
+              label: "OAuth 2.0 Client Credentials Grant Examples",
+              items: [
+                "getting-started-samples/JWTFetcher.cs",
+                "getting-started-samples/JwtFetcher.java",
+                "getting-started-samples/getJwtToken.php",
+                "getting-started-samples/rest_util.py",
+              ],
+            },
+            { 
+              type: "category",
+              label: "API Key REST Examples",
+              items: [
+                "getting-started-samples/RestApiKeyQueries.cs",
+                "getting-started-samples/RestApiKeyQueries.java",
+                "getting-started-samples/queryDataApiKey.php",
+                "getting-started-samples/rest_api_key_queries.py",
+                "getting-started-samples/app.js",
+              ],
+            },
+          ],
+         },
+        ],
+    },
     {
       type: "category",
       label: "Getting Started",
@@ -55,6 +111,7 @@ const sidebars: SidebarsConfig = {
       },
       items: [
         "learn/select-ideal-indexing-api",
+        "data-management/data-egress",
         {
           type: "category",
           label: "Metadata Filters",
@@ -193,63 +250,6 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "Security and Data Privacy",
-      collapsed: true,
-      items: [
-        "learn/data-privacy/privacy-overview",
-        "learn/data-privacy/encryption",
-        "learn/authentication/transport-layer-security",
-      ],
-    },
-    {
-      type: "category",
-      label: "Authentication and Authorization",
-      link: {
-        type: 'doc',
-        id: 'learn/authentication/authentication-authorization-vectara', 
-        },
-        collapsed: true,
-        items: [
-          "learn/authentication/personas-and-access-patterns",
-          "learn/authentication/auth-overview",
-          "learn/authentication/choose-auth-method",
-          "learn/authentication/api-key-management",
-          "learn/authentication/oauth-2",
-          "learn/authentication/role-based-access-control",
-          "learn/authentication/attribute-based-access-control",
-          "learn/authentication/multi-tenant-corpus-isolation",
-          "learn/authentication/combine-access-control-with-app-filters",
-        {
-          type: "category",
-          label: "API Authentication Examples",
-          items: [
-            {
-              type: "category",
-              label: "OAuth 2.0 Client Credentials Grant Examples",
-              items: [
-                "getting-started-samples/JWTFetcher.cs",
-                "getting-started-samples/JwtFetcher.java",
-                "getting-started-samples/getJwtToken.php",
-                "getting-started-samples/rest_util.py",
-              ],
-            },
-            { 
-              type: "category",
-              label: "API Key REST Examples",
-              items: [
-                "getting-started-samples/RestApiKeyQueries.cs",
-                "getting-started-samples/RestApiKeyQueries.java",
-                "getting-started-samples/queryDataApiKey.php",
-                "getting-started-samples/rest_api_key_queries.py",
-                "getting-started-samples/app.js",
-              ],
-            },
-          ],
-         },
-        ],
-    },
-    {
-      type: "category",
       label: "Build Applications",
       items: [
         "build-apps/app-building",
@@ -369,7 +369,12 @@ const sidebars: SidebarsConfig = {
           id: "console-ui/update-credit-card",
           label: "Manage Payments",
         },
+        "console-ui/delete-account",
       ],
+    },
+    {
+      type: "doc",
+      id: "console-ui/admin-center",
     },
     {
       type: "category",
@@ -623,6 +628,7 @@ const sidebars: SidebarsConfig = {
         },
       ],
     },
+    "api-reference/vectara-postman-collection",
   ],
   restOAS: [
     {
@@ -635,6 +641,30 @@ const sidebars: SidebarsConfig = {
         slug: "/rest-api",
       },
       items: apiSidebar,
+    },
+  ],
+  pythonSDK: [
+    {
+      type: "category",
+      label: "Python SDK",
+      link: {
+        type: 'doc',
+        id: 'sdk/vectara-python-sdk',
+      },
+      items: [
+        "sdk/python/python-quickstart",
+        "sdk/python/corpus",
+        "sdk/python/upload",
+        "sdk/python/documents",
+        "sdk/python/query",
+        "sdk/python/metadata",
+        "sdk/python/chats",
+        "sdk/python/generation_presets",
+        "sdk/python/rerankers",
+        "sdk/python/users",
+        "sdk/python/api_keys",
+        "sdk/python/python-error-handling",
+      ],
     },
   ],
   releaseNotes: [

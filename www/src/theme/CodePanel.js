@@ -363,7 +363,6 @@ export default function CodePanel({
         'number': /(?:\b\d+(?:\.\d+)?|\B\.\d+)(?:[Ee][+-]?\d+)?/
       };
     }
-
     
     // Ensure proper language mapping and fallback
     const languageMap = {

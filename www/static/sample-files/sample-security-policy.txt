@@ -1,0 +1,123 @@
+INFORMATION SECURITY POLICY
+===========================
+
+Document ID: SEC-POL-001
+Version: 2.1
+Effective Date: January 1, 2025
+Review Date: January 1, 2026
+
+---
+
+1. PURPOSE AND SCOPE
+
+This Information Security Policy establishes the framework for protecting company information assets and ensuring compliance with regulatory requirements.
+
+This policy applies to all employees, contractors, and third parties who have access to company information systems.
+
+---
+
+2. INFORMATION CLASSIFICATION
+
+2.1 PUBLIC INFORMATION
+- Marketing materials
+- Published financial reports  
+- Press releases
+- General company information
+
+2.2 INTERNAL INFORMATION
+- Employee directories
+- Internal procedures
+- Project documentation
+- Training materials
+
+2.3 CONFIDENTIAL INFORMATION
+- Customer data
+- Financial records
+- Strategic plans
+- Personnel records
+
+2.4 RESTRICTED INFORMATION
+- Authentication credentials
+- Encryption keys
+- Legal documents
+- Security configurations
+
+---
+
+3. ACCESS CONTROL REQUIREMENTS
+
+3.1 USER ACCESS MANAGEMENT
+- User accounts must be provisioned through formal request process
+- Access rights must be reviewed quarterly
+- Unused accounts must be disabled within 30 days
+- Privileged access requires additional approval
+
+3.2 PASSWORD REQUIREMENTS
+- Minimum 12 characters in length
+- Must include uppercase, lowercase, numbers, and special characters
+- Must be changed every 90 days
+- Cannot reuse last 12 passwords
+- Multi-factor authentication required for sensitive systems
+
+---
+
+4. DATA PROTECTION
+
+4.1 DATA HANDLING
+- Confidential data must be encrypted in transit and at rest
+- Data backups must be performed daily and stored securely
+- Personal data must be processed in accordance with privacy regulations
+- Data retention periods must be followed as specified in data classification
+
+4.2 INCIDENT RESPONSE
+- Security incidents must be reported within 2 hours of discovery
+- Incident response team must be activated for all confirmed breaches
+- Affected systems must be isolated to prevent further damage
+- Post-incident review must be conducted within 5 business days
+
+---
+
+5. COMPLIANCE AND MONITORING
+
+5.1 SECURITY MONITORING
+- Network traffic is continuously monitored for anomalies
+- System logs are reviewed daily for security events
+- Vulnerability scans are performed monthly
+- Penetration testing is conducted annually
+
+5.2 POLICY COMPLIANCE
+- All employees must complete annual security awareness training
+- Policy violations may result in disciplinary action
+- Regular audits ensure compliance with this policy
+- Third parties must agree to equivalent security requirements
+
+---
+
+6. RESPONSIBILITIES
+
+6.1 ALL EMPLOYEES
+- Follow security policies and procedures
+- Report suspected security incidents immediately
+- Protect company information assets
+- Complete required security training
+
+6.2 MANAGERS
+- Ensure team members understand security requirements
+- Approve access requests for team members
+- Monitor compliance within their area of responsibility
+- Support security incident response activities
+
+6.3 IT SECURITY TEAM
+- Maintain security controls and monitoring systems
+- Investigate security incidents and implement remediation
+- Provide security guidance and training
+- Update policies based on emerging threats
+
+---
+
+For questions about this policy or to report security incidents, contact:
+- IT Security Team: security@company.com
+- Security Hotline: 1-800-SEC-HELP
+- Emergency After Hours: +1-555-123-4567
+
+This policy is reviewed annually and updated as needed to address new threats and regulatory changes.

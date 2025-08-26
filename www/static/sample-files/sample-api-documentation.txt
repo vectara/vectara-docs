@@ -1,0 +1,206 @@
+API DOCUMENTATION - PAYMENT PROCESSING
+======================================
+
+Version: 3.2
+Last Updated: January 15, 2025
+Base URL: https://api.payments.example.com/v3
+
+---
+
+AUTHENTICATION
+
+All API requests require authentication using API keys. Include your API key in the request header:
+
+Authorization: Bearer your_api_key_here
+
+API keys can be obtained from the developer dashboard and should be kept secure.
+
+---
+
+ENDPOINTS
+
+1. CREATE PAYMENT
+
+POST /payments
+
+Creates a new payment transaction.
+
+Request Body:
+{
+  "amount": 2500,
+  "currency": "USD", 
+  "payment_method": {
+    "type": "card",
+    "card_number": "4111111111111111",
+    "exp_month": 12,
+    "exp_year": 2026,
+    "cvc": "123"
+  },
+  "description": "Payment for order #12345",
+  "customer_id": "cust_abc123"
+}
+
+Response (Success - 201):
+{
+  "id": "pay_xyz789",
+  "status": "completed",
+  "amount": 2500,
+  "currency": "USD",
+  "created_at": "2025-01-15T10:30:00Z",
+  "description": "Payment for order #12345"
+}
+
+Response (Error - 400):
+{
+  "error": {
+    "code": "invalid_card",
+    "message": "The card number provided is invalid"
+  }
+}
+
+---
+
+2. RETRIEVE PAYMENT
+
+GET /payments/{payment_id}
+
+Retrieves details for a specific payment.
+
+Parameters:
+- payment_id (required): The unique identifier for the payment
+
+Response (Success - 200):
+{
+  "id": "pay_xyz789",
+  "status": "completed",
+  "amount": 2500,
+  "currency": "USD", 
+  "payment_method": {
+    "type": "card",
+    "last4": "1111",
+    "brand": "visa"
+  },
+  "created_at": "2025-01-15T10:30:00Z",
+  "description": "Payment for order #12345",
+  "customer_id": "cust_abc123"
+}
+
+---
+
+3. LIST PAYMENTS
+
+GET /payments
+
+Retrieves a list of payments with optional filtering.
+
+Query Parameters:
+- limit (optional): Number of payments to return (default: 10, max: 100)
+- starting_after (optional): Pagination cursor
+- customer_id (optional): Filter by customer ID
+- status (optional): Filter by payment status (pending, completed, failed)
+- created_after (optional): Filter by creation date (ISO 8601 format)
+
+Response (Success - 200):
+{
+  "data": [
+    {
+      "id": "pay_xyz789",
+      "status": "completed", 
+      "amount": 2500,
+      "currency": "USD",
+      "created_at": "2025-01-15T10:30:00Z"
+    }
+  ],
+  "has_more": false,
+  "next_cursor": null
+}
+
+---
+
+4. REFUND PAYMENT
+
+POST /payments/{payment_id}/refunds
+
+Creates a refund for a completed payment.
+
+Request Body:
+{
+  "amount": 1000,
+  "reason": "customer_request",
+  "description": "Refund for returned item"
+}
+
+Response (Success - 201):
+{
+  "id": "ref_abc456",
+  "payment_id": "pay_xyz789",
+  "amount": 1000,
+  "status": "completed",
+  "created_at": "2025-01-15T14:20:00Z",
+  "reason": "customer_request"
+}
+
+---
+
+ERROR HANDLING
+
+The API uses standard HTTP response codes:
+- 200: Success
+- 201: Created successfully  
+- 400: Bad request (invalid parameters)
+- 401: Unauthorized (invalid API key)
+- 404: Not found
+- 429: Rate limit exceeded
+- 500: Internal server error
+
+Error Response Format:
+{
+  "error": {
+    "code": "error_code",
+    "message": "Human readable error message",
+    "details": "Additional error details if available"
+  }
+}
+
+---
+
+RATE LIMITING
+
+API requests are limited to 1000 requests per hour per API key. Rate limit headers are included in responses:
+
+X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 999
+X-RateLimit-Reset: 1642262400
+
+---
+
+WEBHOOKS
+
+Configure webhooks to receive real-time notifications about payment events.
+
+Supported Events:
+- payment.completed
+- payment.failed  
+- refund.created
+- chargeback.created
+
+Webhook Payload Example:
+{
+  "id": "evt_abc123",
+  "type": "payment.completed",
+  "created_at": "2025-01-15T10:30:00Z",
+  "data": {
+    "payment_id": "pay_xyz789",
+    "amount": 2500,
+    "currency": "USD"
+  }
+}
+
+Configure webhook endpoints in the developer dashboard. All webhook requests include a signature header for verification.
+
+---
+
+For support and questions:
+- Developer Support: developers@payments.example.com
+- Documentation: https://docs.payments.example.com
+- Status Page: https://status.payments.example.com
