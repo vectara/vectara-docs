@@ -10,7 +10,7 @@ Metadata is rarely uniform across different document sources. Titles,
 categories, and headings can vary and change over time. When users only know 
 part of a value, strict equality filters miss relevant items.
 
-Fuzzy Metadata Search combines exact pre‑filtering with fuzzy, weighted 
+The tech preview of Fuzzy Metadata Search combines exact pre‑filtering with fuzzy, weighted 
 matching across specific metadata fields. First, narrow the candidate set 
 precisely, such as by status, region, or date. Then, rank what remains using 
 field‑aware *fuzzy matching* so users find what they *mean*, and not just what 
@@ -24,6 +24,11 @@ they *type*.
 :::tip
 Use `document` level metadata when you want unique documents. Use `part` level 
 metadata when you need to surface matching sections within documents.
+:::
+
+:::caution
+Because the fuzzy metadata search feature is a tech preview, it can potentially 
+have breaking changes.
 :::
 
 ## How fuzzy search works
