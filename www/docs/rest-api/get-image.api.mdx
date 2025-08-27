@@ -1,0 +1,71 @@
+---
+id: get-image
+title: "Retrieve an image from a document"
+description: "Returns a specific image that is embedded within a document. The `image_id` uniquely identifies the image within the document. Use this endpoint to fetch the raw image data and associated metadata."
+sidebar_label: "Retrieve an image from a document"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "get api-method"
+info_path: docs/rest-api/vectara-rest-api-v-2
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Retrieve an image from a document"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/v2/corpora/{corpus_key}/documents/{document_id}/images/{image_id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns a specific image that is embedded within a document. The `image_id` uniquely identifies the image within the document. Use this endpoint to fetch the raw image data and associated metadata.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"in":"header","name":"Request-Timeout","description":"The API will make a best effort to complete the request in the specified seconds or time out.","schema":{"type":"integer","minimum":1},"required":false},{"in":"header","name":"Request-Timeout-Millis","description":"The API will make a best effort to complete the request in the specified milliseconds or time out.","schema":{"type":"integer","minimum":1}},{"in":"path","name":"corpus_key","description":"A unique identifier for the corpus that contains the target document.","required":true,"schema":{"description":"A user-provided key for a corpus.","type":"string","example":"my-corpus","pattern":"[a-zA-Z0-9_\\=\\-]+$","maxLength":50,"title":"CorpusKey"}},{"in":"path","name":"document_id","description":"The identifier of the document containing the image. This `document_id` must be percent encoded.","required":true,"schema":{"type":"string"}},{"in":"path","name":"image_id","description":"The identifier of the image to retrieve from the specified document. Each image within a document has a unique `image_id`. This value must be percent-encoded when passed in the request URL.","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"An image including raw image data and associated metadata.","content":{"application/json":{"schema":{"description":"An image element within a document, containing its identifying information, optional metadata, and the actual image data.","type":"object","properties":{"id":{"description":"The unique identifier of the image within the document, used to reference it in related content.","type":"string","example":"chart_1"},"title":{"description":"A short, human-readable title for the image, often displayed above or alongside it.","type":"string","example":"Quarterly Sales Performance"},"caption":{"description":"A brief caption providing context or an explanation for the image, typically displayed below it.","type":"string","example":"Sales growth trends for Q1 to Q4 of 2024"},"image_data":{"description":"The actual image content and its format metadata.","type":"object","properties":{"data":{"description":"Base64-encoded representation of the image data.","type":"string","format":"byte","example":"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP4//8/AAX+Av4N70a4AAAAAElFTkSuQmCC"},"mime_type":{"description":"The MIME type of the image, indicating the format of the binary data (e.g., image/jpeg for JPEG images).","type":"string","example":"image/png"}},"required":["data","mime_type"],"title":"ImageData"},"description":{"description":"A longer, detailed description of the image for accessibility or additional context.","type":"string","example":"A bar chart showing quarterly sales growth, with Q4 outperforming all previous quarters by 15%"}},"required":["id","image_data"],"title":"Image"},"example":{"id":"image_1","title":"Quarterly Sales Performance","caption":"Sales growth trends for Q1 to Q4 of 2024","description":"A bar chart showing quarterly sales growth, with Q4 outperforming all previous quarters by 15%","image_data":{"data":"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP4//8/AAX+Av4N70a4AAAAAElFTkSuQmCC","mime_type":"image/png"}}}}},"403":{"description":"Permissions do not allow retrieving the image.","content":{"application/json":{"schema":{"description":"A general error response with an error code and message.","type":"object","properties":{"messages":{"description":"The messages describing why the error occurred.","type":"array","items":{"title":"message","type":"string","example":"Internal server error."}},"request_id":{"description":"The ID of the request that can be used to help Vectara support debug what went wrong.","type":"string"}},"title":"Error"}}}},"404":{"description":"Image not found.","content":{"application/json":{"schema":{"description":"Error returned when a requested resource does not exist.","type":"object","properties":{"id":{"description":"The ID cannot be found.","type":"string"},"messages":{"type":"array","items":{"title":"message","type":"string"}},"request_id":{"description":"The ID of the request that can be used to help Vectara support debug what went wrong.","type":"string"}},"title":"NotFoundError"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      
