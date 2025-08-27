@@ -63,7 +63,7 @@ Before creating an agent, you must:
 1. **Define tools**: Configure tools first, as they are required for agent 
    creation
 2. **Configure instructions**: Instructions are required to guide the behavior 
-3. of the agent
+   of the agent
 
 Each agent is configured with:
 

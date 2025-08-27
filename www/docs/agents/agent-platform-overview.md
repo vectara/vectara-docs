@@ -50,7 +50,7 @@ agent can use. This ensures:
 ## Vectara agentic components
 
 
-The Vectara Agentic Platform is built around the following core concepts:+
+The Vectara Agentic Platform is built around the following core concepts:
 
 ### Agents
 

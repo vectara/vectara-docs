@@ -181,7 +181,7 @@ The response includes the complete agent configuration with system-generated fie
       {
         "type": "inline",
         "name": "Additional Guidelines",
-        "template": "Always be polite and professional. Today's date is currentDateß.",
+        "template": "Always be polite and professional. Today's date is currentDate.",
         "template_type": "velocity"
       }
     ],
