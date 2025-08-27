@@ -142,6 +142,7 @@ const sidebars: SidebarsConfig = {
         "search-and-retrieval/bring-your-own-llm",
         "learn/hybrid-search",
         "learn/enable-keyword-text-matching",
+        "search-and-retrieval/fuzzy-metadata-search",
         "search-and-retrieval/intelligent-query-rewriting",
         "learn/querying-table-data",
         "learn/semantic-search/enable-pagination",
@@ -362,7 +363,6 @@ const sidebars: SidebarsConfig = {
           label: "Query APIs",
           items: [
             "api-reference/search-apis/search",
-            /* "api-reference/search-apis/stream-query", */
             {
               type: "category",
               label: "Interpreting Responses",
@@ -380,6 +380,13 @@ const sidebars: SidebarsConfig = {
           items: [
             "api-reference/query-history-apis/get-query-history",
             "api-reference/query-history-apis/get-query-histories",
+          ],
+        },
+        {
+          type: "category",
+          label: "Metadata Query APIs",
+          items: [
+            "api-reference/search-apis/fuzzy-metadata",
           ],
         },
         {

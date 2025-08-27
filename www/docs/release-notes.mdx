@@ -11,13 +11,42 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 
 import CodePanel from '@site/src/theme/CodePanel';
 
-
 Here’s where we keep you up to date with all the latest features and product 
 documentation updates to help you get even more out of the Vectara platform. 
 Whether you're building sophisticated generative AI applications, 
 experimenting with Retrieval Augmented Generation (RAG), or exploring our 
 newest API endpoints, this page is your go-to place to see how we’re evolving 
 and how these product and documentation changes can benefit your enterprise.
+
+---
+
+## Fuzzy Metadata Search
+
+_August 22, 2025_
+
+Vectara introduces the tech preview of Fuzzy Metadata Search across document metadata fields. This 
+capability automatically handles spelling errors and variations when searching 
+metadata like titles, authors, categories, or custom attributes—dramatically 
+improving document discovery rates in large repositories.
+
+**Why it matters:** Traditional exact-match filtering misses relevant documents 
+due to data entry inconsistencies or user typos. Fuzzy Metadata Search solves 
+this by applying intelligent matching algorithms that find "Employment Agreement" 
+even when users search for "Employement Agrrement", making document discovery 
+more forgiving and effective.
+
+**Key capabilities:**
+- Multi-field weighted search with customizable importance scores
+- Two-stage processing: exact pre-filtering followed by fuzzy matching
+- Automatic handling of typos, transpositions, and spelling variations
+- Support for both document-level and part-level metadata
+
+**New API endpoint:**
+* [Metadata Query API](/docs/rest-api/queries)
+
+**More information:**
+* [Fuzzy Metadata Search](/docs/search-and-retrieval/fuzzy-metadata-search)
+* [Metadata Query API Documentation](/docs/api-reference/search-apis/fuzzy-metadata)
 
 ---
 
