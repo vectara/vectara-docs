@@ -497,6 +497,7 @@ export default function CodePanel({
     const languageMap = {
       'sh': 'bash',
       'shell': 'bash',
+      'curl': 'bash', // Use bash highlighting for curl commands
       'js': 'javascript',
       'jsx': 'javascript',
       'ts': 'typescript',
