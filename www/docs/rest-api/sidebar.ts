@@ -184,6 +184,12 @@ const sidebar: SidebarsConfig = {
           label: "Summarize a document",
           className: "api-method post",
         },
+        {
+          type: "doc",
+          id: "rest-api/get-image",
+          label: "Retrieve an image from a document",
+          className: "api-method get",
+        },
       ],
     },
     {
@@ -574,6 +580,22 @@ const sidebar: SidebarsConfig = {
           type: "doc",
           id: "rest-api/evaluate-factual-consistency",
           label: "Evaluate factual consistency",
+          className: "api-method post",
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "Metadata Query",
+      link: {
+        type: "doc",
+        id: "rest-api/metadata-query",
+      },
+      items: [
+        {
+          type: "doc",
+          id: "rest-api/query-metadata",
+          label: "Query across metadata fields in a corpus",
           className: "api-method post",
         },
       ],
