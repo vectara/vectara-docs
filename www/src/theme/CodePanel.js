@@ -36,6 +36,10 @@ export default function CodePanel({
   const [editableCode, setEditableCode] = useState('');
   const [output, setOutput] = useState(defaultOutput);
   const [isRunning, setIsRunning] = useState(false);
+  
+  // Refs for scroll synchronization
+  const textareaRef = React.useRef();
+  const highlightRef = React.useRef();
 
   /* ---------------------------------------------------------- */
   /* Helpers                                                   */
@@ -110,6 +114,14 @@ export default function CodePanel({
     setEditableCode(snippet.code);
     setOutput(defaultOutput);
     showToast('Code reset');
+  };
+
+  // Synchronize scroll between textarea and background
+  const handleScroll = (e) => {
+    if (highlightRef.current && textareaRef.current) {
+      highlightRef.current.scrollTop = e.target.scrollTop;
+      highlightRef.current.scrollLeft = e.target.scrollLeft;
+    }
   };
 
   // Keyboard navigation handlers
@@ -513,6 +525,7 @@ export default function CodePanel({
       const codeToHighlight = editable ? editableCode : snippet.code;
       const result = Prism.highlight(codeToHighlight, grammar, normalizedLanguage);
       setHighlighted(result);
+      // console.log('Highlighted:', editable ? 'editable' : 'static', codeToHighlight.length, 'chars');
     } catch (error) {
       console.warn('Syntax highlighting failed:', error);
       // Fallback to plain text if highlighting fails
@@ -667,15 +680,18 @@ export default function CodePanel({
             <div className={styles.editorWrapper}>
               {/* Syntax highlighted background */}
               <pre 
+                ref={highlightRef}
                 className={styles.syntaxHighlight}
                 dangerouslySetInnerHTML={{ __html: highlighted }}
                 aria-hidden="true"
               />
               {/* Transparent textarea overlay */}
               <textarea
+                ref={textareaRef}
                 className={styles.codeEditor}
                 value={editableCode}
                 onChange={(e) => setEditableCode(e.target.value)}
+                onScroll={handleScroll}
                 spellCheck={false}
                 wrap="off"
                 aria-label={`Editable ${snippet.language} code. Current content: ${editableCode.substring(0, 100)}${editableCode.length > 100 ? '...' : ''}`}

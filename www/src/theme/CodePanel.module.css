@@ -498,6 +498,9 @@
 
 .editorWrapper {
   position: relative;
+  width: 100%;
+  min-height: 260px;
+  height: 400px;
 }
 
 .syntaxHighlight {
@@ -525,8 +528,57 @@
   z-index: 1;
 }
 
+/* Ensure syntax highlighting tokens are visible in editor mode */
+.syntaxHighlight :global(.token.keyword) {
+  color: #61afef !important;
+}
+
+.syntaxHighlight :global(.token.string),
+.syntaxHighlight :global(.token.string-interpolation) {
+  color: #98c379 !important;
+}
+
+.syntaxHighlight :global(.token.number),
+.syntaxHighlight :global(.token.boolean) {
+  color: #d19a66 !important;
+}
+
+.syntaxHighlight :global(.token.comment) {
+  color: #5c6370 !important;
+  font-style: italic !important;
+}
+
+.syntaxHighlight :global(.token.function),
+.syntaxHighlight :global(.token.builtin) {
+  color: #61afef !important;
+}
+
+.syntaxHighlight :global(.token.punctuation) {
+  color: #abb2bf !important;
+}
+
+.syntaxHighlight :global(.token.operator) {
+  color: #abb2bf !important;
+}
+
+.syntaxHighlight :global(.token.property),
+.syntaxHighlight :global(.token.tag) {
+  color: #e06c75 !important;
+}
+
+.syntaxHighlight :global(.token.class-name) {
+  color: #61afef !important;
+}
+
+.syntaxHighlight :global(.token.null),
+.syntaxHighlight :global(.token.undefined) {
+  color: #a855f7 !important;
+}
+
 .codeEditor {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   min-height: 260px;
   height: 400px;
@@ -546,6 +598,12 @@
   overflow-wrap: normal;
   overflow: auto;
   z-index: 2;
+}
+
+/* Force selection color to be visible in editor */
+.codeEditor::selection {
+  background: rgba(38, 76, 214, 0.3);
+  color: var(--text-color);
 }
 
 .editorControls {
