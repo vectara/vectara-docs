@@ -13,7 +13,7 @@ impacted. For the latest information on Vectara plans, such as comparisons and
 FAQs, see our [Pricing](https://www.vectara.com/pricing) page.
 
 1. Access the [Vectara Console](https://console.vectara.com/console).
-2. Select the [**Usage**](https://console.vectara.dev/console/usage/resource-usage) tab.
+2. Select the [**Usage**](https://console.vectara.com/console/usage/resource-usage) tab.
 
 At the top of the page you’ll see the reporting window, for example:
 

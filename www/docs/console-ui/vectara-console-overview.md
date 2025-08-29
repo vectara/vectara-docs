@@ -23,7 +23,7 @@ add team members, build API requests, and manage your Vectara account:
   specific permissions for each user.
 - :wrench: **Build API requests:** Create API requests within the console and copy-paste
   into your code.
-- :moneybag: **View usage details:** View account usage information to under how close you are to plan quotas.
+- :moneybag: **View usage details:** View account usage information to understand how close you are to plan quotas.
 - :globe_with_meridians: **Vectara platform overview:** Learn about the Vectara Platform and view interactive
   parts of our documentation like the [API Reference](/docs/rest-api/vectara-rest-api-v-2).
 
