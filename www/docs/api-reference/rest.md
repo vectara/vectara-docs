@@ -40,7 +40,7 @@ RESTful structure.
 All <Config v="names.product"/> APIs are authenticated. Indexing and Search
 APIs can be authenticated via [API Keys](/docs/learn/authentication/api-key-management).
 The Personal API Key enables most Admin actions for creating and deleting
-corpora, but for deleting accounts and accessing billing data, you need to use
+corpora, but for deleting accounts and accessing usage data, you need to use
 [OAuth 2.0](/docs/learn/authentication/oauth-2).
 
 ## API Reference and OpenAPI specifications
