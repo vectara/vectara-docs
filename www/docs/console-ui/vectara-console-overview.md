@@ -10,22 +10,21 @@ import CodePanel from '@site/src/theme/CodePanel';
 The Vectara Console enables you to create corpora, manage data and API access,
 add team members, build API requests, and manage your Vectara account:
 
-- :rocket: **Five-Minute Walkthrough:** Let Vectara show you [how to build a simple
+- :rocket: **Five-minute walkthrough:** Let Vectara show you [how to build a simple
   GenAI application](https://console.vectara.com/console/walkthrough) in just a few minutes!
-- :runner: **Get Started Quickly:** View our [Quick Start guide](/docs/quickstart) and search the Vectara
+- :runner: **Get started quickly:** View our [Quick Start guide](/docs/quickstart) and search the Vectara
   Employee Handbook PDF.
-- :floppy_disk: **Manage Corpora:** [Create and manage your corpora data](/docs/console-ui/creating-a-corpus), which serve as storage
+- :floppy_disk: **Manage corpora:** [Create and manage your corpora data](/docs/console-ui/creating-a-corpus), which serve as storage
   for data that you want to search.
-- :ledger: **Manage Data:** Manage the data in your account.
-- :closed_lock_with_key: **Manage API Access:** Users can define API access credentials, including
+- :ledger: **Manage data:** Manage the data in your account.
+- :closed_lock_with_key: **Manage API access:** Users can define API access credentials, including
   [API Keys](/docs/learn/authentication/api-key-management) and [OAuth app clients](/docs/learn/authentication/oauth-2).
-- :busts_in_silhouette: **Invite Team Members:** [Add users to your team](/docs/console-ui/manage-user) and assign
+- :busts_in_silhouette: **Invite team members:** [Add users to your team](/docs/console-ui/manage-user) and assign
   specific permissions for each user.
-- :wrench: **Build API Requests:** Create API requests within the console and copy-paste
+- :wrench: **Build API requests:** Create API requests within the console and copy-paste
   into your code.
-- :moneybag: **Manage Billing Details:** View account usage information and [payment
-  details](/docs/console-ui/update-credit-card) to ensure uninterrupted service.
-- :globe_with_meridians: **Vectara Platform Overview:** Learn about the Vectara Platform and view interactive
+- :moneybag: **View usage details:** View account usage information to under how close you are to plan quotas.
+- :globe_with_meridians: **Vectara platform overview:** Learn about the Vectara Platform and view interactive
   parts of our documentation like the [API Reference](/docs/rest-api/vectara-rest-api-v-2).
 
 ## Vectara Console home page

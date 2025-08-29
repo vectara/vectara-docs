@@ -27,7 +27,7 @@ security, predictable access patterns, and simplified troubleshooting.
 | Hard security boundary             | API keys are only valid for specific corpora                    |
 | No need for metadata filters       | Access enforcement is at the platform level                    |
 | Tenant self-service readiness      | Easier to automate onboarding and offboarding                  |
-| Per-tenant billing & monitoring    | Enables per-corpus usage tracking                              |
+| Per-tenant usage & monitoring    | Enables per-corpus usage tracking                              |
 
 ## Best practices
 
@@ -82,7 +82,7 @@ Any request using a key tied only to `acme_docs` cannot access other corpora.
 |----------------------------------|------------------------------------|
 | Self-contained customer app     | Per-corpus API keys                |
 | Dedicated user dashboards       | App backend maps user → corpus     |
-| Customer billing per data use   | One corpus = one billing unit      |
+| Customer data use   | One corpus = one usage unit      |
 
 ## When not to use corpus isolation
 
