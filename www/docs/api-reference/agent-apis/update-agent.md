@@ -12,9 +12,9 @@ Organizations use this API to evolve agent capabilities over time, adding new to
 
 ## Update Agent Request and Response
 
-To update an agent, send a PATCH request to `/v2/agents/{agent_id}`. You specify the agent identifier in the URL path and include only the fields you want to modify in the request body:
+To update an agent, send a PATCH request to `/v2/agents/{agent_key}`. You specify the agent identifier in the URL path and include only the fields you want to modify in the request body:
 
-- `agent_id` (string, required): Unique agent identifier in the URL path following pattern `agt_[0-9a-zA-Z_-]+$`
+- `agent_key` (string, required): Unique agent identifier in the URL path following pattern `agt_[0-9a-zA-Z_-]+$`
 - `name` (string, optional): Updated human-readable agent name
 - `description` (string, optional): Updated description of agent purpose and capabilities
 - `tools` (object, optional): Updated tool configuration object
@@ -143,6 +143,6 @@ The API returns standard HTTP error codes with detailed error information:
 | 400 | `invalid_model_configuration` | Invalid model name or unsupported parameters |
 | 401 | `unauthorized` | Invalid or missing API key |
 | 403 | `forbidden` | Insufficient permissions for updating this agent |
-| 404 | `agent_not_found` | Agent with the specified ID does not exist |
+| 404 | `agent_not_found` | Agent with the specified `agent_key` does not exist |
 | 409 | `agent_name_exists` | Updated name conflicts with existing agent |
 | 429 | `rate_limit_exceeded` | Request rate limit exceeded |

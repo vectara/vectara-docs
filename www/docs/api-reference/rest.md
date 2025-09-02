@@ -15,8 +15,8 @@ user-friendly API design that follows RESTful principles and simplifies the
 getting started experience.
 
 :::warning Deprecation Notice
-REST API v1 has been deprecated and will be fully retired on **August 16, 2025**. 
-Please migrate to API v2 as soon as possible.
+REST API v1 was deprecated and fully retired on **August 16, 2025**. 
+Migrate to API v2 as soon as possible.
 :::
 
 :::caution
@@ -126,6 +126,20 @@ The following endpoints help you index, upload files, and manage documents:
 - [Update Document Metadata API](/docs/api-reference/indexing-apis/update-document-metadata): Update the metadata of a document in a corpus.
 - [Replace Document Metadata API](/docs/api-reference/indexing-apis/replace-document-metadata): Completely replace the metadata of a document.
 
+### Document Processing
+
+The following endpoints provide specialized document processing capabilities:
+
+- [Summarize Document API](/docs/api-reference/documents-apis/summarize-document): Generate summaries of documents using 
+  AI-powered summarization.
+
+### Table Extractors
+
+The following endpoints help you extract and process tabular data from documents:
+
+- [List Table Extractors API](/docs/api-reference/table-extractors/list-table-extractors): Get a list of available 
+  table extraction models for processing structured data in documents.
+
 ### Chats
 
 The following endpoints provide a streamlined solution for integrating chatbot
@@ -140,22 +154,93 @@ Retrieval Augmented Generation (RAG):
 - [Create Chat Turn API](/docs/api-reference/chat-apis/create-chat-turn): Add a message-response pair, also known as a turn, to
   an existing chat.
 - [Get Chat Turn API](/docs/api-reference/chat-apis/get-chat-turn): Retrieve a specific turn from a chat.
-- [List Chat Turns API](/docs/api-reference/chat-apis/list-chat-turns): Get a list of all turns within a chat.
+- [List Chat Turns API](/docs/api-reference/chat-apis/list-turns): Get a list of all turns within a chat.
 - [Update Chat Turn API](/docs/api-reference/chat-apis/update-chat-turn): Modify a turn, such as enabling or disabling it.
 - [Delete Chat Turn API](/docs/api-reference/chat-apis/delete-turns): Remove a turn from a chat, along with all subsequent
   turns.
+
+### Agents
+
+The following endpoints help you build and manage AI agents with custom instructions and tool integrations:
+
+- [Agent APIs Overview](/docs/api-reference/agent-apis/agent-apis-overview): Learn about Vectara's AI agent framework and capabilities.
+- [Create Agent API](/docs/api-reference/agent-apis/create-agent): Create a new AI agent with custom instructions and tool configurations.
+- [Get Agent API](/docs/api-reference/agent-apis/get-agent): Retrieve details about a specific agent.
+- [List Agents API](/docs/api-reference/agent-apis/list-agents): Get a list of all agents in your account.
+- [Update Agent API](/docs/api-reference/agent-apis/update-agent): Modify an agent's configuration, instructions, or tool settings.
+- [Delete Agent API](/docs/api-reference/agent-apis/delete-agent): Remove an agent from your account.
+
+#### Agent Sessions
+
+- [Create Agent Session API](/docs/api-reference/agent-apis/session/create-agent-session): Start a new conversation session with an agent.
+- [Get Agent Session API](/docs/api-reference/agent-apis/session/get-agent-session): Retrieve details about a specific agent session.
+- [List Agent Sessions API](/docs/api-reference/agent-apis/session/list-agent-sessions): Get a list of all sessions for an agent.
+- [Update Agent Session API](/docs/api-reference/agent-apis/session/update-agent-session): Modify session settings or status.
+- [Delete Agent Session API](/docs/api-reference/agent-apis/session/delete-agent-session): Remove a session and its conversation history.
+
+#### Agent Events
+
+- [Create Agent Event API](/docs/api-reference/agent-apis/event/create-agent-event): Send a message or event to an agent session.
+- [Get Agent Event API](/docs/api-reference/agent-apis/event/get-agent-event): Retrieve details about a specific agent event.
+- [List Agent Events API](/docs/api-reference/agent-apis/event/list-agent-events): Get the event history for an agent session.
+
+#### Agent Instructions
+
+- [Create Instruction API](/docs/api-reference/agent-apis/instruction/create-instruction): Create custom instructions for agent behavior.
+- [Get Instruction API](/docs/api-reference/agent-apis/instruction/get-instruction): Retrieve details about specific agent instructions.
+- [List Instructions API](/docs/api-reference/agent-apis/instruction/list-instructions): Get a list of all available instructions.
+- [Update Instruction API](/docs/api-reference/agent-apis/instruction/update-instruction): Modify existing agent instructions.
+- [Delete Instruction API](/docs/api-reference/agent-apis/instruction/delete-instruction): Remove instructions from your account.
+- [Delete Instruction Version API](/docs/api-reference/agent-apis/instruction/delete-instruction-version): Remove a specific version of instructions.
+- [Test Instruction API](/docs/api-reference/agent-apis/instruction/test-instruction): Test instructions before deploying to agents.
+
+#### Agent Tools and Tool Servers
+
+- [Get Tool API](/docs/api-reference/agent-apis/tool/get-tool): Retrieve details about a specific agent tool.
+- [List Tools API](/docs/api-reference/agent-apis/tool/list-tools): Get a list of all available agent tools.
+- [Update Tool API](/docs/api-reference/agent-apis/tool/update-tool): Modify tool configurations and settings.
+- [Delete Tool API](/docs/api-reference/agent-apis/tool/delete-tool): Remove a tool from your account.
+- [Create Tool Server API](/docs/api-reference/agent-apis/tool-server/create-tool-server): Set up a new tool server for custom agent functionality.
+- [Get Tool Server API](/docs/api-reference/agent-apis/tool-server/get-tool-server): Retrieve details about a specific tool server.
+- [List Tool Servers API](/docs/api-reference/agent-apis/tool-server/list-tool-servers): Get a list of all tool servers.
+- [Update Tool Server API](/docs/api-reference/agent-apis/tool-server/update-tool-server): Modify tool server configurations.
+- [Sync Tool Server API](/docs/api-reference/agent-apis/tool-server/sync-tool-server): Synchronize tools from a tool server.
+- [Delete Tool Server API](/docs/api-reference/agent-apis/tool-server/delete-tool-server): Remove a tool server from your account.
 
 ### Encoders, rerankers, and large language models (LLMs)
 
 The following endpoints help you manage encoders, rerankers, and LLMs:
 
+- [Create Encoder API](/docs/api-reference/encoder-apis/create-encoder): Create a custom encoder for document
+  embedding and vectorization.
 - [List Encoders API](/docs/api-reference/encoder-apis/list-encoders): Get a list of available encoders for
   document embedding.
-- [List Rerankers API](/docs/api-reference/reranker-apis/reranker-apis): Get a list of available rerankers for
+- [List Rerankers API](/docs/api-reference/reranker-apis/rerankers): Get a list of available rerankers for
   improving search result ranking.
-- [List Language Models (LLMs) API](/docs/api-reference/llms-apis/llms-api): Get a list of available large
+- [Create LLM API](/docs/api-reference/llms-apis/create-llm): Add a custom large language model configuration
+  for query and chat endpoints.
+- [Get LLM API](/docs/api-reference/llms-apis/get-llm): Retrieve details about a specific large language model.
+- [List LLMs API](/docs/api-reference/llms-apis/llms): Get a list of available large
   language models for query and chat endpoints.
-- [List Generation Presets API](/docs/api-reference/generation-presets/list-generation-presets)
+- [Delete LLM API](/docs/api-reference/llms-apis/delete-llm): Remove a custom large language model configuration.
+- [List Generation Presets API](/docs/api-reference/generation-presets/list-generation-presets): Get a list of
+  available generation presets for configuring prompt templates and model parameters.
+
+### LLM Chat Completions
+
+The following endpoint provides OpenAI-compatible chat completions:
+
+- [Chat Completions API](/docs/api-reference/llm-chat-completions/chat-completions): OpenAI-compatible chat 
+  completions endpoint for direct LLM interactions.
+
+### Hallucination Detection and Correction
+
+The following endpoints help you detect and correct hallucinations in AI-generated content:
+
+- [Evaluate Factual Consistency API](/docs/api-reference/hhem-apis/evaluate-factual-consistency-api): Evaluate 
+  the factual consistency of AI-generated responses using Hughes Hallucination Evaluation Model (HHEM).
+- [Hallucination Correction Models API](/docs/api-reference/hcm-apis/hallucination-correction-models): Access 
+  hallucination correction models for improving response accuracy.
 
 ### Jobs
 

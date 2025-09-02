@@ -1,7 +1,7 @@
 ---
 id: tools
-title: Tools
-sidebar_label: Tools
+title: Tool
+sidebar_label: Tool
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';
@@ -9,7 +9,7 @@ import CodePanel from '@site/src/theme/CodePanel';
 Tools represent external or internal capabilities that agents can invoke 
 dynamically. They are defined by:
 
-* A unique ID and name (`tol_abcd`)
+* A unique ID (`tol_abcd`)and name.
 * A description of their function
 * An input schema describing accepted parameters (in JSON Schema format)
 * Metadata for categorization
@@ -17,11 +17,11 @@ dynamically. They are defined by:
 
 ## Available tools
 
-The tech preview of the Vectara Agentic Platform provides the following tools:
-* **tol_corpus_search:** Retrieves results from a Vectara corpus or corpora using Retrieval 
+The tech preview of Vectara Agents provides the following tools:
+* **corpora_search:** Retrieves results from a Vectara corpus or corpora using Retrieval 
   Augmented Generation (RAG). This tool provides summary and relevant search results using 
   the same default parameters as the Multiple Corpora Query.
-* **tol_web_search:** Retrieves results from the public web.
+* **web_search:** Retrieves results from the public web.
 
 
 ## Tool configurations

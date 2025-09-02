@@ -12,9 +12,9 @@ Development teams and administrators use this API to inspect agent configuration
 
 ## Get Agent Request and Response
 
-To retrieve an agent, send a GET request to `/v2/agents/{agent_id}`. You specify the following parameter in the URL path:
+To retrieve an agent, send a GET request to `/v2/agents/{agent_key}`. You specify the following parameter in the URL path:
 
-- `agent_id` (string, required): Unique agent identifier following the pattern `agt_[0-9a-zA-Z_-]+$`
+- `agent_key` (string, required): Unique agent identifier following the pattern `agt_[0-9a-zA-Z_-]+$`
 
 The response includes the complete agent configuration with all tools, instructions, model parameters, and metadata as originally configured during agent creation or subsequent updates.
 
@@ -97,7 +97,7 @@ The API returns standard HTTP error codes with detailed error information:
 
 | HTTP Code | Error Code | Description |
 |-----------|------------|-------------|
-| 400 | `invalid_request` | Invalid agent_id format or malformed request |
+| 400 | `invalid_request` | Invalid `agent_key` format or malformed request |
 | 401 | `unauthorized` | Invalid or missing API key |
 | 403 | `forbidden` | Insufficient permissions for accessing this agent |
 | 404 | `agent_not_found` | Agent with the specified ID does not exist |

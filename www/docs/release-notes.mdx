@@ -20,29 +20,29 @@ and how these product and documentation changes can benefit your enterprise.
 
 ---
 
-## Vectara Agentic Platform
+## Vectara Agents Framework
 
-_August 27, 2025_
+_September 3, 2025_
 
-We're excited to introduce the tech preview of the Vectara Agentic Platform. 
+We're excited to introduce the tech preview of the Vectara Agents APIs. 
 This comprehensive framework enables building intelligent, autonomous AI 
 agents that go beyond simple question-answering, to become configurable 
 digital workers capable of complex reasoning, multi-step workflows, and 
 enterprise system integration.
 
 **Why it matters:** Traditional RAG applications are limited to reactive Q&A 
-interactions. The Agentic Platform transforms this paradigm by enabling AI 
-agents that can autonomously reason through problems, orchestrate multiple 
-tools, maintain conversation context, and integrate with enterprise systems 
-through standardized protocols. This opens entirely new use cases for AI 
-automation, from intelligent customer support to complex business process 
-orchestration.
+interactions. The Agents APIs enable AI agents that can autonomously reason 
+through problems, orchestrate multiple tools, maintain conversation context, 
+and integrate with enterprise systems through standardized protocols. This 
+opens entirely new use cases for AI automation, from intelligent customer 
+support to complex business process orchestration.
 
 **What's new:**
 
-- **Agent Management APIs**: Create and configure intelligent agents with customizable reasoning models, behavioral instructions, and tool access controls
-- **Model Context Protocol (MCP) Integration**: Connect agents to enterprise systems through standardized MCP servers that expose tools for database access, API integrations, and custom business logic
-- **Stateful Conversations**: Maintain context across multi-turn interactions with session management, enabling complex dialogues and workflow continuity
+- **Agents APIs**: Create and configure intelligent agents with customizable reasoning models, 
+behavioral instructions, and tool access controls
+- **Stateful Conversations**: Maintain context across multi-turn interactions with session management, 
+enabling complex dialogues and workflow continuity
 - **Tool Orchestration**: Agents can dynamically invoke multiple tools including:
   - Corpora search for RAG capabilities
   - Web search for real-time information
@@ -54,24 +54,22 @@ orchestration.
 
 **New API Endpoints:**
 
-The Vectara Agentic Platform introduces several endpoints for the following:
-* Agent Management
-* Session Management
-* Event Processing
-* Tool Server Management
+The Vectara Agent APIs introduce several new endpoints:
+* [Agent Management](/docs/api-reference/agent-apis/agent-apis-overview)
+* [Session Management](/docs/api-reference/agent-apis/session/create-agent-session)
+* [Event Processing](/docs/api-reference/agent-apis/event/create-agent-event)
+* [Tool Server Management](/docs/api-reference/agent-apis/tool-server/create-tool-server)
 
-More information:
-* blog
-* [Vectara Agentic Platform](/docs/agents/agent-platform-overview)
-* [Agentic Platform APIs](/docs/api-reference/agent-apis/agent-apis-overview)
+**More information:**
+* [Agents](/docs/agents/agent-platform-overview)
+* [Agents APIs](/docs/api-reference/agent-apis/agent-apis-overview)
 * [Manage Agents](/docs/console-ui/manage-agents)
 
 :::caution
 
-- This is a tech preview release - APIs and features may evolve based on customer feedback
-- Tool configurations currently support inline definitions only; reference configurations coming in v1
-- All agent and session identifiers follow the pattern `[0-9a-zA-Z_-]+` without prefixes
-- MCP is the only supported tool server protocol in this release
+- This is a tech preview release. APIs and features may evolve based on customer feedback.
+- All agent and session identifiers follow the pattern `[0-9a-zA-Z_-]+` without prefixes.
+- MCP is the only supported tool server protocol in this release.
 :::
 
 ---

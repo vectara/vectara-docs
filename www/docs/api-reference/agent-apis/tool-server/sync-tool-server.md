@@ -45,11 +45,13 @@ The request body should be empty. The API returns a 204 No Content response on s
 ## Synchronization Process
 
 When you trigger a sync:
+
 1. The platform connects to the tool server using configured authentication
 2. Discovers all available tools through the MCP protocol
 3. Updates tool definitions, schemas, and metadata in the platform
 4. Marks newly discovered tools as available for agent configuration
 5. Preserves any tool-specific settings (like enabled/disabled status)
+6. Deletes tools that no longer exist on the server
 
 ## Error Responses
 

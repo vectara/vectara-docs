@@ -1,7 +1,7 @@
 ---
 id: instructions
-title: Instructions
-sidebar_label: Instructions
+title: Instruction
+sidebar_label: Instruction
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';
@@ -29,8 +29,8 @@ the Velocity templating engine to allow for dynamic content.
 
 ## Shared Instructions
 
-Shared instructions are defined independently and referenced by ID across 
-multiple agents. Each instruction includes:
+Shared instructions are referenced by ID across multiple agents. You can 
+define instructions independently on inline. Each instruction includes:
 
 * A unique ID following the pattern *ins_*[identifier]
 * A name that must be unique across all instructions per customer

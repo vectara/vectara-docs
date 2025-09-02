@@ -12,10 +12,10 @@ Development teams and quality assurance analysts use this API to inspect specifi
 
 ## Get Agent Event Request and Response
 
-To retrieve an agent event, send a GET request to `/v2/agents/{agent_id}/sessions/{session_id}/events/{event_id}`. You specify the following parameters in the URL path:
+To retrieve an agent event, send a GET request to `/v2/agents/{agent_key}/sessions/{session_id}/events/{event_id}`. You specify the following parameters in the URL path:
 
-- `agent_id` (string, required): Agent identifier following the pattern `agt_[0-9a-zA-Z_-]+$`
-- `session_id` (string, required): Session identifier following the pattern `ase_[0-9a-zA-Z_-]+$`
+- `agent_key` (string, required): Agent identifier following the pattern `agt_[0-9a-zA-Z_-]+$`
+- `session_key` (string, required): Session identifier following the pattern `ase_[0-9a-zA-Z_-]+$`
 - `event_id` (string, required): Event identifier following the pattern `aev_[0-9a-zA-Z_-]+$`
 
 The response includes the complete event details with all associated data, including event type, content, timestamps, and any tool-specific information depending on the event type.
@@ -34,7 +34,7 @@ GET /v2/agents/agt_customer_support/sessions/ase_customer_support_001/events/aev
   "session_id": "ase_customer_support_001",
   "type": "tool_output",
   "tool_call_id": "call_knowledge_search_001",
-  "tool_key": "knowledge_search",
+  "tool_configuration_name": "knowledge_search",
   "tool_name": "knowledge_base_search",
   "tool_output": {
     "results": [
@@ -65,10 +65,10 @@ The API returns standard HTTP error codes with detailed error information:
 
 | HTTP Code | Error Code | Description |
 |-----------|------------|-------------|
-| 400 | `invalid_request` | Invalid agent_id, session_id, or event_id format |
+| 400 | `invalid_request` | Invalid `agent_key`, `session_key`, or event_id format |
 | 401 | `unauthorized` | Invalid or missing API key |
 | 403 | `forbidden` | Insufficient permissions for accessing this event |
-| 404 | `agent_not_found` | Agent with the specified ID does not exist |
+| 404 | `agent_not_found` | Agent with the specified `agent_key` does not exist |
 | 404 | `session_not_found` | Session with the specified ID does not exist |
 | 404 | `event_not_found` | Event with the specified ID does not exist |
 | 429 | `rate_limit_exceeded` | Request rate limit exceeded |

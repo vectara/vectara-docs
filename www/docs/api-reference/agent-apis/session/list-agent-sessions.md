@@ -12,9 +12,9 @@ Organizations use this API to monitor customer engagement levels, track support 
 
 ## List Agent Sessions Request and Response
 
-To list agent sessions, send a GET request to `/v2/agents/{agent_id}/sessions`. You specify the following parameters:
+To list agent sessions, send a GET request to `/v2/agents/{agent_key}/sessions`. You specify the following parameters:
 
-- `agent_id` (string, required): Agent identifier in the URL path following pattern `agt_[0-9a-zA-Z_-]+$`
+- `agent_key` (string, required): Agent identifier in the URL path following pattern `agt_[0-9a-zA-Z_-]+$`
 - `limit` (integer, optional): Maximum number of sessions to return (default: 10, maximum: 100)
 - `page_key` (string, optional): Pagination token for retrieving subsequent pages of results
 - `enabled` (boolean, optional): Filter sessions by their enabled status
@@ -34,7 +34,7 @@ GET /v2/agents/agt_customer_support/sessions?limit=25&enabled=true
   "sessions": [
     {
       "id": "ase_customer_support_001",
-      "agent_id": "agt_customer_support",
+      "agent_key": "agt_customer_support",
       "description": "Customer support session for billing inquiry",
       "metadata": {
         "customer_id": "customer_12345",
@@ -47,7 +47,7 @@ GET /v2/agents/agt_customer_support/sessions?limit=25&enabled=true
     },
     {
       "id": "ase_customer_support_002",
-      "agent_id": "agt_customer_support",
+      "agent_key": "agt_customer_support",
       "description": "Technical support session for software configuration",
       "metadata": {
         "customer_id": "customer_67890",
@@ -60,7 +60,7 @@ GET /v2/agents/agt_customer_support/sessions?limit=25&enabled=true
     },
     {
       "id": "ase_customer_support_003",
-      "agent_id": "agt_customer_support",
+      "agent_key": "agt_customer_support",
       "description": "Product inquiry session for enterprise features",
       "metadata": {
         "customer_id": "customer_54321",
@@ -88,5 +88,5 @@ The API returns standard HTTP error codes with detailed error information:
 | 400 | `invalid_request` | Invalid query parameters or malformed request |
 | 401 | `unauthorized` | Invalid or missing API key |
 | 403 | `forbidden` | Insufficient permissions for accessing sessions for this agent |
-| 404 | `agent_not_found` | Agent with the specified ID does not exist |
+| 404 | `agent_not_found` | Agent with the specified `agent_key` does not exist |
 | 429 | `rate_limit_exceeded` | Request rate limit exceeded |

@@ -1,7 +1,7 @@
 ---
 id: agent-apis-overview
-title: Agentic Platform APIs
-sidebar_label: Agentic Platform APIs
+title: Agents APIs
+sidebar_label: Agents APIs
 ---
 
 import { Grid } from "@site/src/components/ui/Grid";
@@ -10,14 +10,13 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 
 import CodePanel from '@site/src/theme/CodePanel';
 
-The Vectara Agentic Platform APIs enable the development of intelligent agents 
+The Vectara Agents APIs enable the development of intelligent agents 
 that go beyond basic question answering. These agents are configurable, 
 decision-making entities designed to interpret input, reason through context, 
 leverage external tools, and maintain continuity across multi-turn 
 interactions.
 
-Agents do not access corpora directly. Instead, all corpus access occurs 
-through tools registered on the platform. Each tool is configured with explicit 
+Agents access corpora using **tools**. Each tool is configured with explicit 
 permissions and input schemas. When creating or configuring an agent, you 
 select which tools the agent can use. These tools determine the scope of 
 knowledge and retrieval operations available to the agent. This enforces a 
@@ -26,7 +25,7 @@ access (tools/corpora).
 
 ## What Agent APIs Enable
 
-By using the Vectara Agentic Platform APIs, you can build purpose-driven agents 
+By using the agents APIs, you can build purpose-driven agents 
 that do the following:
 - Respond adaptively to complex user input
 - Retrieve relevant data from corpora or APIs to enrich responses through tool 
@@ -45,57 +44,69 @@ internal tools, and customer service.
 
 ## Agents
 
-An agent is the core orchestration unit in Vectara's platform. It decides how to respond to user input, when to invoke tools, and how to manage conversation state. Each agent is configured with:
+An agent is the core orchestration unit in Vectara's platform. It decides how 
+to respond to user input, when to invoke tools, and how to manage conversation 
+state. Each agent is configured with:
 
 - A unique key following the pattern `[0-9a-zA-Z_-]+`
 - A human-readable name and description
 - Tool configuration specifying available MCP tools and argument bindings
 - Model configuration including parameters like temperature and max tokens
 - A "first_step" definition that configures the agent's conversational behavior
-- Instructions that guide agent reasoning and behavior (referenced by ID or defined inline)
+- Instructions that guide agent reasoning and behavior (referenced by ID or 
+  defined inline)
 - Metadata for tracking (owner, department, version)
 - Enabled status for availability control
 - Created and updated timestamps
 
-Agents operate through a conversational step architecture, processing user input through reasoning, tool execution, and response generation phases. The step-based design enables complex multi-turn workflows and intelligent tool orchestration.
+Agents operate through a conversational step architecture, processing user 
+input through reasoning, tool execution, and response generation phases. 
+The step-based design enables complex multi-turn workflows and intelligent 
+tool orchestration.
 
 ## Tools
 
-Tools are external or internal capabilities that agents can invoke dynamically through the Model Context Protocol (MCP). They are defined by:
+Tools are external or internal capabilities that agents can invoke dynamically 
+through the Model Context Protocol (MCP). They are defined by:
 
 - A unique ID following the pattern `^tol_.*`
 - A name identifying the tool within its MCP server
 - A title (human-readable) and description of their function and capabilities
 - An input schema describing accepted parameters (in JSON Schema format)
 - MCP server association through server_id
-- Optional annotations providing behavioral hints (read_only, destructive, idempotent, open_world)
+- Optional annotations providing behavioral hints (read_only, destructive, 
+- idempotent, open_world)
 - Runtime availability (enabled/disabled)
 - Created and updated timestamps
 
 ### Available tools
 
-The following tools are available in the tech preview of the Vectara Agentic 
-Platform:
+The following tools are available in the tech preview of the Agents APIs:
 - Corpora Search
 - Web Search
 
 ## Instructions
 
-Instructions serve as reusable blocks of behavioral guidance that shape how agents reason and respond. They use Velocity templating for dynamic content:
+Instructions serve as reusable blocks of behavioral guidance that shape how 
+agents reason and respond. They use Velocity templating for dynamic content:
 
 - A unique ID following the pattern `ins_[0-9a-zA-Z_-]+`
 - A human-readable name and description
-- Template content with variable substitution support (using Velocity template engine)
+- Template content with variable substitution support (using Velocity template 
+  engine)
 - Version management for controlled updates (auto-incremented on updates)
 - Metadata for categorization and governance
 - Enabled status for availability control
 - Created and updated timestamps
 
-Instructions can be referenced by agents using their ID and optional version, or defined inline within agent configuration. They support enterprise governance through versioning and controlled rollout capabilities.
+Instructions can be referenced by agents using their ID and optional version, 
+or defined inline within agent configuration. They support enterprise 
+governance through versioning and controlled rollout capabilities.
 
 ## Agent Sessions
 
-A session is a contextual container for a conversation between a user (or application) and an agent. It provides continuity across multiple interactions:
+A session is a contextual container for a conversation between a user (or 
+application) and an agent. It provides continuity across multiple interactions:
 
 - A session key following the pattern `[0-9a-zA-Z_-]+`
 - Associated agent_key
@@ -104,51 +115,57 @@ A session is a contextual container for a conversation between a user (or applic
 - Enabled flag for active/inactive status
 - Creation timestamps
 
-Sessions support full lifecycle operations including creation, update, retrieval, listing, and deletion. They maintain conversation context and tool execution history for comprehensive interaction tracking.
+Sessions support full lifecycle operations including creation, update, 
+retrieval, listing, and deletion. They maintain conversation context and tool 
+execution history for comprehensive interaction tracking.
 
 ## Agent Events
 
-Each session contains one or more events, representing individual interactions and system activities within the conversation. Events follow the pattern `aev_[0-9a-zA-Z_-]+` for their IDs:
+Each session contains one or more events, representing individual interactions 
+and system activities within the conversation. Events follow the pattern 
+`aev_[0-9a-zA-Z_-]+` for their IDs:
 
 - **Input Message Events**: User input with text content
 - **Thinking Events**: Agent reasoning and chain-of-thought processes  
-- **Tool Input Events**: Tool execution parameters with `tool_call_id`, `tool_key`, `tool_name`, and input data
+- **Tool Input Events**: Tool execution parameters with `tool_call_id`, 
+  `tool_configuration`, `tool_name`, and input data
 - **Tool Output Events**: Tool execution results with matching tool_call_id and output data
 - **Agent Output Events**: Final agent responses to user input
 - **Context Limit Exceeded Events**: Notifications when token limits are reached
 
-Events support both synchronous and streaming delivery, enabling real-time conversation experiences with progressive response building.
+Events support both synchronous and streaming delivery, enabling real-time 
+conversation experiences with progressive response building.
 
-## Agentic Platform API Structure
+## Agents API Structure
 
-The Agentic Platform APIs follow RESTful patterns with clear resource hierarchies:
+The Agents APIs follow RESTful patterns with clear resource hierarchies:
 
 ### Agent Management
-- `POST /v2/agents` - Create new agents
-- `GET /v2/agents` - List agents with filtering and pagination
-- `GET /v2/agents/{agent_key}` - Retrieve specific agent configuration
-- `PATCH /v2/agents/{agent_key}` - Update agent configuration
-- `DELETE /v2/agents/{agent_key}` - Remove agents
+- [`POST /v2/agents`](create-agent) - Create new agents
+- [`GET /v2/agents`](list-agents) - List agents with filtering and pagination
+- [`GET /v2/agents/{agent_key}`](get-agent) - Retrieve specific agent configuration
+- [`PATCH /v2/agents/{agent_key}`](update-agent) - Update agent configuration
+- [`DELETE /v2/agents/{agent_key}`](delete-agent) - Remove agents
 
 ### Session Management
-- `POST /v2/agents/{agent_key}/sessions` - Create agent sessions
-- `GET /v2/agents/{agent_key}/sessions` - List agent sessions
-- `GET /v2/agents/{agent_key}/sessions/{session_key}` - Retrieve session details
-- `PATCH /v2/agents/{agent_key}/sessions/{session_key}` - Update session metadata
-- `DELETE /v2/agents/{agent_key}/sessions/{session_key}` - Remove sessions
+- [`POST /v2/agents/{agent_key}/sessions`](session/create-agent-session) - Create agent sessions
+- [`GET /v2/agents/{agent_key}/sessions`](session/list-agent-sessions) - List agent sessions
+- [`GET /v2/agents/{agent_key}/sessions/{session_key}`](session/get-agent-session) - Retrieve session details
+- [`PATCH /v2/agents/{agent_key}/sessions/{session_key}`](session/update-agent-session) - Update session metadata
+- [`DELETE /v2/agents/{agent_key}/sessions/{session_key}`](session/delete-agent-session) - Remove sessions
 
 ### Event Management
-- `POST /v2/agents/{agent_key}/sessions/{session_key}/events` - Create conversation events (input only)
-- `GET /v2/agents/{agent_key}/sessions/{session_key}/events` - List session events
-- `GET /v2/agents/{agent_key}/sessions/{session_key}/events/{event_id}` - Retrieve specific events
+- [`POST /v2/agents/{agent_key}/sessions/{session_key}/events`](event/create-agent-event) - Create conversation events (input only)
+- [`GET /v2/agents/{agent_key}/sessions/{session_key}/events`](event/list-agent-events) - List session events
+- [`GET /v2/agents/{agent_key}/sessions/{session_key}/events/{event_id}`](event/get-agent-event) - Retrieve specific events
 
 ### Tool Server Management
-- `POST /v2/tool_servers` - Register MCP servers
-- `GET /v2/tool_servers` - List registered servers
-- `GET /v2/tool_servers/{tool_server_id}` - Retrieve server details
-- `PATCH /v2/tool_servers/{tool_server_id}` - Update server configuration
-- `DELETE /v2/tool_servers/{tool_server_id}` - Remove servers
-- `POST /v2/tool_servers/{tool_server_id}/sync` - Synchronize server tools
+- [`POST /v2/tool_servers`](tool-server/create-tool-server) - Register MCP servers
+- [`GET /v2/tool_servers`](tool-server/list-tool-servers) - List registered servers
+- [`GET /v2/tool_servers/{tool_server_id}`](tool-server/get-tool-server) - Retrieve server details
+- [`PATCH /v2/tool_servers/{tool_server_id}`](tool-server/update-tool-server) - Update server configuration
+- [`DELETE /v2/tool_servers/{tool_server_id}`](tool-server/delete-tool-server) - Remove servers
+- [`POST /v2/tool_servers/{tool_server_id}/sync`](tool-server/sync-tool-server) - Synchronize server tools
 
 ### Tool Management
 - `GET /v2/tools` - List available tools

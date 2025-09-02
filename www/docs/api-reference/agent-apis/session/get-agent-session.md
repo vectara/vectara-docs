@@ -12,10 +12,10 @@ Development teams and support administrators use this API to inspect session con
 
 ## Get Agent Session Request and Response
 
-To retrieve an agent session, send a GET request to `/v2/agents/{agent_id}/sessions/{session_id}`. You specify the following parameters in the URL path:
+To retrieve an agent session, send a GET request to `/v2/agents/{agent_key}/sessions/{session_key}`. You specify the following parameters in the URL path:
 
-- `agent_id` (string, required): Agent identifier following the pattern `agt_[0-9a-zA-Z_-]+$`
-- `session_id` (string, required): Session identifier following the pattern `ase_[0-9a-zA-Z_-]+$`
+- `agent_key` (string, required): Agent identifier following the pattern `agt_[0-9a-zA-Z_-]+$`
+- `session_key` (string, required): Session identifier following the pattern `ase_[0-9a-zA-Z_-]+$`
 
 The response includes the complete session configuration with all metadata, status information, and timestamps as configured during session creation or subsequent updates.
 
@@ -30,7 +30,7 @@ GET /v2/agents/agt_customer_support/sessions/ase_customer_support_001
 ```json
 {
   "id": "ase_customer_support_001",
-  "agent_id": "agt_customer_support",
+  "agent_key": "agt_customer_support",
   "description": "Customer support session for billing inquiry regarding account charges and payment processing issues",
   "metadata": {
     "customer_id": "customer_12345",
@@ -59,9 +59,9 @@ The API returns standard HTTP error codes with detailed error information:
 
 | HTTP Code | Error Code | Description |
 |-----------|------------|-------------|
-| 400 | `invalid_request` | Invalid agent_id or session_id format |
+| 400 | `invalid_request` | Invalid `agent_key` or `session_key` format |
 | 401 | `unauthorized` | Invalid or missing API key |
 | 403 | `forbidden` | Insufficient permissions for accessing this session |
-| 404 | `agent_not_found` | Agent with the specified ID does not exist |
-| 404 | `session_not_found` | Session with the specified ID does not exist |
+| 404 | `agent_not_found` | Agent with the specified `agent_key` does not exist |
+| 404 | `session_not_found` | Session with the specified `session_key` does not exist |
 | 429 | `rate_limit_exceeded` | Request rate limit exceeded |

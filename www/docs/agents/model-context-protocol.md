@@ -8,18 +8,18 @@ import CodePanel from '@site/src/theme/CodePanel';
 
 The Model Context Protocol (MCP) is an emerging and rapidly changing standard 
 for communication between agents and tools. Introduced by Anthropic and now 
-adopted across multiple agentic ecosystems. MCP defines a structured way for 
+adopted across multiple agentic ecosystems, MCP defines a structured way for 
 agents to invoke external tools, pass contextual input, and receive structured 
 responses. MCP acts as a universal connector between AI agents and enterprise 
 services.
 
-In the tech preview of the Agentic Platform, Vectara only supports MCP as a 
+In the tech preview of Agents, Vectara only supports MCP as a 
 client. This means Vectara agents can call MCP-enabled tools and services 
 hosted on external MCP servers. 
 
 :::note 
 We do not yet support MCP server capabilities in the platform itself. We do 
-currently have an open source Vectara MCP project that is not part of the 
+currently have an [open source Vectara MCP project](https://github.com/vectara/py-vectara-agentic) that is not part of the
 platform.
 :::
 

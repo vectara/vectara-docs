@@ -1,14 +1,14 @@
 ---
 id: agents
-title: Agents
-sidebar_label: Agents
+title: Agent
+sidebar_label: Agent
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';
 
-Agents represents the core orchestration unit in the Vectara platform. The 
+Agents are the core orchestration unit in the Vectara platform. The 
 agent decides how to respond to user input, when to invoke tools, and how to 
-manage conversation state. Each agent is configured with: 
+manage conversation state.
 
 ```mermaid
 flowchart TD
@@ -39,7 +39,7 @@ flowchart TD
     Agent2 <--> Custom[Custom Service]
 
     %% Grouping
-    subgraph Agent [🧠 Agent 🧠]
+    subgraph Agent [💭 Agent 💭]
         Reasoning
         Planning
         Response
@@ -57,30 +57,25 @@ flowchart TD
     class RAG1,RAG2,API,DB,Custom sources;
 ```
 
-## Agent Prerequisites
-
-Before creating an agent, you must:
-1. **Define tools**: Configure tools first, as they are required for agent 
-   creation
-2. **Configure instructions**: Instructions are required to guide the behavior 
-   of the agent
-
 Each agent is configured with:
 
-* A unique ID and name following the pattern agt_[identifier]
+* A unique key and name following the pattern agt_[identifier]. If you do not 
+  provide a key, Vectara generates one automatically based on the name.
 * A human-readable description
-* One or more instructions
+* Optional instructions
 * A list of available tools (referenced by name or ID)
-* Optional access to corpora with the Corpus Search tool
+* Optional tool configurations, for example Corpora Search tools configured 
+  to grant access to various corpora
 * Metadata and versioning controls
-* A _first_step_ definition for the entry point logic.
+* A _first_step_ definition that encompasses optional instructions for the 
+  agent's behavior.
 
 Agents operate through a conversational step architecture, processing user 
 input through reasoning, tool execution, and response generation phases. 
 The step-based design enables complex multi-turn workflows and intelligent 
 tool orchestration.
 
-## Example Agent Definition
+## Example agent definition
 
 <CodePanel
   title="Agent example"
@@ -90,21 +85,28 @@ tool orchestration.
       code: `{
    "name": "customer-support-agent",
    "description": "A customer support agent that can answer questions and create tickets.",
-   "instructions": [
-     {
-       "name": "support-agent-instructions"
+   "tool_configurations": {
+     "search_support_tickets": {
+       "type": "corpus_search",
+       "query_configuration": {
+         "search": {
+           "corpora": ["support_tickets_corpus"]
+         }
+       }
      }
-   ],
-   "tools": [
-     {
-       "id": "tol_corpus_search"
-     },
-     {
-       "id": "tol_ticket_creator"
-     }
-   ],
+   },
    "first_step": {
-     "instruction_name": "support-agent-instructions"
+     "type": "conversational",
+     "instructions": [
+       {
+         "type": "inline",
+         "name": "Be concise",
+         "template": "Keep your responses brief and to the point. Use as few words as possible."
+       }
+     ],
+     "output_parser": {
+       "type": "default"
+     }
    }
 }`
     }]}  
@@ -112,26 +114,25 @@ tool orchestration.
     json: [
       { line: 2, text: 'The name of the customer support agent' },
       { line: 3, text: 'A description about the customer support agent.' },
-      { line: 6, text: 'The first set of instructions for the agent.' },
-      { line: 11, text: 'The first tool ID of this agent.' },
-      { line: 14, text: 'The second tool ID of this agent.' },
-      { line: 18, text: 'The definition that configures the entry point of the agent.' }
+      { line: 4, text: 'Configuration for tools used by this agent.' },
+      { line: 5, text: 'Named tool configuration for searching support tickets.' },
+      { line: 6, text: 'Specifies this tool performs corpus search operations.' },
+      { line: 9, text: 'The corpus to search within for support tickets.' },
+      { line: 14, text: 'The definition that configures the entry point of the agent.' },
+      { line: 20, text: 'The template text that provides specific instructions for this step.' }
     ]
   }}
   layout="stacked"
 />
-
-
-
 
 ## Model configuration
 
 Agents use large language models for reasoning and response generation. You 
 can configure:
 
-- **Model Selection**: Choose from available models like GPT-4o.
+- **Model**: Choose from available models like GPT-4o.
 - **Parameters**: Adjust temperature, max tokens, and other model-specific settings
-- **Cost Optimization**: Balance performance with token usage
+- **Cost optimization**: Balance performance with token usage
 
 ## Create an agent
 

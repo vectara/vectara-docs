@@ -17,8 +17,7 @@ Key properties of a Tool Server include:
 
 - A unique ID following the pattern `tsr_[identifier]`
 - Connection details including URI and authentication headers
-- Synchronization status and tool discovery metadata
-- Health monitoring and availability tracking
+- Metadata that you want to associate with the tool server when registering it
 
 Tool servers enable agents to access enterprise systems like CRM platforms, 
 business intelligence tools, workflow systems, and databases through 

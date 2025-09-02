@@ -192,7 +192,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "Vectara Agentic Platform",
+      label: "Agents",
       link: {
         type: 'doc',
         id: 'agents/agent-platform-overview',
@@ -567,7 +567,7 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "category",
-          label: "Agentic Platform APIs",
+          label: "Agents APIs",
           link: {
             type: 'doc',
             id: 'api-reference/agent-apis/agent-apis-overview',
@@ -629,6 +629,20 @@ const sidebars: SidebarsConfig = {
                 "api-reference/agent-apis/tool/get-tool",
                 "api-reference/agent-apis/tool/update-tool",
                 "api-reference/agent-apis/tool/delete-tool",
+              ]
+            },
+            {
+              type: 'category',
+              label: 'Instruction Management APIs',
+              collapsed: false,
+              items: [
+                "api-reference/agent-apis/instruction/create-instruction",
+                "api-reference/agent-apis/instruction/list-instructions",
+                "api-reference/agent-apis/instruction/get-instruction",
+                "api-reference/agent-apis/instruction/update-instruction",
+                "api-reference/agent-apis/instruction/delete-instruction",
+                "api-reference/agent-apis/instruction/test-instruction",
+                "api-reference/agent-apis/instruction/delete-instruction-version",
               ]
             },
          ],

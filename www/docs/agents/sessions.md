@@ -1,7 +1,7 @@
 ---
 id: sessions
-title: Sessions
-sidebar_label: Sessions
+title: Session
+sidebar_label: Session
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';
@@ -10,8 +10,9 @@ A session is a contextual container for a conversation between a user (or
 application) and an agent. It provides continuity across multiple 
 interactions. Key properties include:
 
-* A session ID and human-readable name (`ase_12345`)
-* Associated agent ID (`agt_abcd`)
+* A session key and human-readable name (`ase_12345`). If not provided, Vectara 
+  generates one automatically based on the name.
+* Associated `agent_key` (`agt_abcd`)
 * Metadata such as end_user_id, application_id, priority, or channel
 * Timestamps for creation and last update
 
@@ -40,7 +41,7 @@ conversation experiences with progressive response building.
       language: 'json',
       code: `{
    "session": {
-     "id": "ase_12345",
+     "key": "ase_12345",
      "name": "Password reset support for user 123",
      "agent_id": "agt_customer_support",
      "metadata": {

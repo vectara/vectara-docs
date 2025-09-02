@@ -1,56 +1,52 @@
 ---
 id: agent-platform-overview
-title: Vectara Agentic Platform
-sidebar_label: Vectara Agentic Platform
+title: Agents
+sidebar_label: Agents
 ---
 
-The Vectara Agentic Platform enables enterprises to build sophisticated, 
+Vectara Agents enable enterprises to build sophisticated, 
 enterprise-grade intelligent, applications that go beyond basic question 
 answering. Agents interpret user input, reason through context, 
 leverage external tools, and maintain continuity across multi-turn 
-interactions. Unlike traditional RAG systems that simply retrieve documents 
-and pass them to a language model, Vectara agents provide orchestrated workflows 
-capable of taking action, retrieving information, invoking APIs, or maintaining 
-user sessions.
+interactions.
 
-## What is the Vectara Agentic Platform?
+Unlike traditional RAG systems that simply retrieve documents and pass them to 
+a language model, Vectara agents provide orchestrated workflows capable of 
+taking action, retrieving information, invoking APIs, or maintaining user 
+sessions.
 
-The Agentic Platform is a comprehensive framework for building AI-powered 
-applications that can:
+## What are agents?
 
-- **Understand Context**: Maintain conversation history across multiple interactions.
-- **Use Tools**: Access and manipulate data through a variety of tools including corpus search and web search.
-- **Follow Instructions**: Execute complex workflows based on customizable instructions and templates.
-- **Stream Responses**: Provide real-time updates as agents process requests.
+Agents provide a comprehensive framework for building AI-powered 
+applications with the following capabilities:
+
+- **Understand context**: Maintain conversation history across multiple interactions.
+- **Use tools**: Access and manipulate data through a variety of tools including corpus search and web search.
+- **Follow instructions**: Execute complex workflows based on customizable instructions and templates.
+- **Stream responses**: Provide real-time updates as agents process requests.
 
 ## **What agents can accomplish**
 
-| **Desired Outcome** | **Workflow** |
+| **Desired outcome** | **Workflow** |
 |---|---|
-| **Automate customer support workflows** | Agent handles L1 support, searches knowledge bases, escalates complex issues, creates tickets |
-| **Build intelligent research assistants** | Agent searches multiple data sources, synthesizes findings, maintains research context across sessions |
-| **Create workflow automation systems** | Agent triggers business processes, sends notifications, updates CRM systems based on natural language requests |
-| **Develop conversational enterprise tools** | Agent maintains context, handles multi-step processes, integrates with existing business systems |
-| **Deploy autonomous business processes** | Agent monitors conditions, makes decisions, executes actions without human intervention |
+| **Automate customer support workflows** | <ol><li>Agent handles L1 support</li><li>Searches knowledge bases</li><li>Escalates complex issues</li><li>Creates tickets</li></ol> |
+| **Build intelligent research assistants** | <ol><li>Agent searches multiple data sources</li><li>Synthesizes findings</li><li>Maintains research context across sessions</li></ol> |
+| **Create workflow automation systems** | <ol><li>Agent triggers business processes</li><li>Sends notifications</li><li>Updates CRM systems based on natural language requests</li></ol> |
+| **Develop conversational enterprise tools** | <ol><li>Agent maintains context</li><li>Handles multi-step processes</li><li>Integrates with existing business systems</li></ol> |
+| **Deploy autonomous business processes** | <ol><li>Agent monitors conditions</li><li>Makes decisions</li><li>Executes actions without human intervention</li></ol> |
 
+## How agents work
 
-## How Vectara agents work
-
-Agents do not access corpora directly. Instead, all corpus access occurs with 
-**tools**. Each tool is configured with explicit permissions to one or more 
-corpora. When creating or configuring an agent, you select which tools the 
-agent can use. This ensures:
+Agents access corpora using **tools**. Each tool is configured with explicit 
+permissions to one or more corpora. When creating or configuring an agent, 
+you select which tools the agent can use. This ensures:
 
 * Clear separation between orchestration logic (agents) and data access 
   (tools/corpora).
-* Audible permissions for every retrieval or external action
+* Auditable permissions for every retrieval or external action
 * Reusable tools that can serve multiple agents
 
-
-## Vectara agentic components
-
-
-The Vectara Agentic Platform is built around the following core concepts:
+## Agent concepts
 
 ### Agents
 
@@ -63,9 +59,9 @@ Agents act as the orchestration layer of the platform:
 ### Tools
 
 Tools provide agents with capabilities to interact with data and external systems:
-- **Corpus Search Tool**: Query your Vectara corpora with semantic search.
-- **Web Search Tool**: Access current information from the internet.
-- **MCP Tools**: Integrate with external services through the Model Context Protocol (MCP).
+- **Corpora Search**: Query your Vectara corpora with semantic search.
+- **Web Search**: Access current information from the internet.
+- **MCP Tools**: Integrate with external services through the [Model Context Protocol (MCP)](model-context-protocol).
 
 ### Sessions
 
@@ -80,7 +76,6 @@ Instructions guide agent behavior using Velocity templates:
 - Define the agent's persona and objectives.
 - Customize responses based on context.
 - Support dynamic variable substitution.
-
 
 <div className="mermaid-container">
 ```mermaid
@@ -163,9 +158,9 @@ flowchart TD
 To build your first agent:
 
 1. [**Create an agent**](/docs/console-ui/agents/create-an-agent): Define the agent's name, description, and available tools.
-2. **Configure Tools**: Set up corpus access permissions and any external integrations.
-3. **Write Instructions**: Create templates that guide the agent's behavior.
-4. **Test with Sessions**: Start conversations and iterate on your configuration.
+2. **Configure tools**: Set up corpus access permissions and any external integrations.
+3. **Write instructions**: Create templates that guide the agent's behavior.
+4. **Test with sessions**: Start conversations and iterate on your configuration.
 
 ## Platform Benefits
 

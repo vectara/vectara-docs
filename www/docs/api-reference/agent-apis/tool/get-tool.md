@@ -14,7 +14,7 @@ Development teams and administrators use this API to inspect tool definitions du
 
 To retrieve a tool, send a GET request to `/v2/tools/{tool_id}`. You specify the following parameter in the URL path:
 
-- `tool_id` (string, required): Unique tool identifier following the pattern `tool_[a-zA-Z0-9_-]+$`
+- `tol_id` (string, required): Unique tool identifier following the pattern `tool_[a-zA-Z0-9_-]+$`
 
 The response includes the complete tool definition with input schema specification, source tool server information, categorization metadata, and all associated properties as discovered during tool server synchronization.
 
@@ -28,7 +28,7 @@ GET /v2/tools/tool_customer_lookup_crm001
 
 ```json
 {
-  "id": "tool_customer_lookup_crm001",
+  "tol_id": "tool_customer_lookup_crm001",
   "name": "customer_lookup",
   "description": "Search and retrieve customer account information and history with advanced filtering capabilities, data export options, and comprehensive account analytics for customer service and sales teams",
   "tool_server": {

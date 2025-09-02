@@ -83,7 +83,7 @@ The response format depends on the `stream_response` parameter:
       "session_key": "support_session_12345",
       "type": "tool_input",
       "tool_call_id": "call_knowledge_search_001",
-      "tool_key": "customer_search",
+      "tool_configuration": "customer_search",
       "tool_name": "corpora_search",
       "tool_input": {
         "query": "widget installation configuration wizard step 3 failure error"
@@ -95,7 +95,7 @@ The response format depends on the `stream_response` parameter:
       "session_key": "support_session_12345",
       "type": "tool_output",
       "tool_call_id": "call_knowledge_search_001",
-      "tool_key": "customer_search",
+      "tool_configuration_name": "customer_search",
       "tool_name": "corpora_search",
       "tool_output": {
         "results": [
