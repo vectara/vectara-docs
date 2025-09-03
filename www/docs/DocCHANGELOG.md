@@ -12,13 +12,25 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 
 ---
 
+# September 2025
+
+### ✨ New Features
+- Introduce the tech preview of Vectara Agents Framework (#491)
+
+
+
+---
+
 # August 2025
 
 ### ✨ New Features
+- Add documentation for the tech preview of Fuzzy Metadata Search (#490)
 - Add content about the Vectara Postman Collection (#487)
 - Add comprehensive documentation for new Vectara Python SDK (#471)
 
 ### 📝 Documentation Changes
+- Add Metadata Query API to API Reference (#492)
+- Add data egress process content (#489)
 - Add topic about how to delete an account (#486)
 - Add comprehensive documentation for new Vectara Python SDK (#471)
 
