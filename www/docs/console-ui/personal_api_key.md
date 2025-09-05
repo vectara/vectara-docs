@@ -42,7 +42,7 @@ limitations and **do not** let you perform the following tasks:
 * Delete a Vectara account
 * Validate a Vectara account registration
 * Transfer account ownership
-* Read or set any sensitive billing data such as payment method and addresses
+* Read or set any sensitive data such as payment method and addresses
 * Create and delete users
 
 OAuth 2.0 remains the required method for these operations due to its advanced 

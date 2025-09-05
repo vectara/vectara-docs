@@ -70,7 +70,7 @@ for accessible corpora, reading usage data, updating corpora filters,
 executing queries, and indexing.
 
 **Unsupported actions:** Deleting an account, validating a registration, 
-transferring account ownership, deleting users, or accessing billing data.
+transferring account ownership, deleting users, or accessing account usage data.
 
 :::caution
 A Personal API Key inherits the permissions of its associated user account. 
@@ -95,7 +95,7 @@ API Keys and should be treated like passwords and used with caution in
 production environments.
 
 :::important
-In terms of billing, account owners are responsible for charges incurred 
+In terms of usage, account owners are responsible for charges incurred 
 through anonymous access to your account with any of these API keys.
 :::
 
