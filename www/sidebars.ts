@@ -104,6 +104,21 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: "category",
+      label: "Private Deployment",
+      link: {
+        type: 'doc',
+        id: "on-prem/vectara-on-prem-overview",
+      },
+      collapsed: true,
+      items: [
+        "on-prem/use-cases",
+        "on-prem/deployment-options",
+        "on-prem/onprem-evaluation-process",
+        "on-prem/faq",
+      ],
+    },
+    {
+      type: "category",
       label: "Data Management",
       link: {
         type: 'doc',
