@@ -66,13 +66,6 @@ The `generation_preset_name` is specified in the `generation` object of a [**que
 Excluding this `generation` field disables summarization.
 :::
 
-:::caution
-The Vectara trial includes access to all GPT4-based generation presets. After 
-the trial ends and you upgrade your plan, you can purchase separate GPT4 
-bundles or bring your own API key. Vectara bundles offer the advantage of 
-HIPAA compliance.
-:::
-
 ## Currently available generation presets
 
 Vectara provides several official generation presets to our users that you 

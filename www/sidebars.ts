@@ -144,6 +144,7 @@ const sidebars: SidebarsConfig = {
         "learn/enable-keyword-text-matching",
         "search-and-retrieval/fuzzy-metadata-search",
         "search-and-retrieval/intelligent-query-rewriting",
+        "search-and-retrieval/citations",
         "learn/querying-table-data",
         "learn/semantic-search/enable-pagination",
         "learn/recommendation-systems/recommender-overview",
