@@ -111,6 +111,7 @@ const sidebars: SidebarsConfig = {
       },
       items: [
         "learn/select-ideal-indexing-api",
+        "api-reference/indexing-apis/file-upload/file-upload-filetypes",
         "data-management/data-egress",
         {
           type: "category",
@@ -175,6 +176,7 @@ const sidebars: SidebarsConfig = {
       },
       items: [
         "learn/mockingbird-llm",
+        "learn/grounded-generation/model-selection",
         "learn/grounded-generation/select-a-summarizer",
         {
           type: "category",
@@ -423,7 +425,6 @@ const sidebars: SidebarsConfig = {
           label: "File Upload APIs",
           items: [
             "api-reference/indexing-apis/file-upload/file-upload",
-            "api-reference/indexing-apis/file-upload/file-upload-filetypes",
           ],
         },
         {

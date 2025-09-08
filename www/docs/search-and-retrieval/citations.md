@@ -77,6 +77,8 @@ Notice how each citation number in the summary corresponds to a specific result
 in the search_results array. The citations are ordered based on their 
 appearance in the summary text, not by relevance score.
 
+---
+
 ## Citation formatting options
 
 Vectara supports multiple citation formats to suit different application 
@@ -131,6 +133,14 @@ Perfect for web applications where you want clickable citations. You can style t
 Formats citations as Markdown links, useful for Markdown-based applications
 
 Ideal for documentation systems, chat applications, or any interface that renders Markdown. The links can be processed by your Markdown renderer.
+
+#### Code Output Support
+
+Markdown citation style enables formatting of code blocks and technical content 
+in responses, making it easier to display code snippets, YAML configurations, 
+or structured technical output.
+
+---
 
 ## Advanced citation options
 
@@ -208,23 +218,4 @@ custom citation formats that match your application's needs.
   layout="stacked"
 />
 
-This example explicitly sets the citation style to Markdown, making it perfect for documentation or chat interfaces that render Markdown content.
-
-## Best practices for citations
-
-* **Choose the right format**
-  - Use `numeric` for general-purpose applications
-  - Use `HTML` for web-based interfaces where clickable citations enhance UX
-  - Use `Markdown` for documentation systems or chat applications that render Markdown
-  - Use `none` only when source attribution is not required
-* **Optimize citation density**
-  - Balance between sufficient citations and readability
-  - Use `max_used_search_results` to control how many sources can be cited
-* **Present citations clearly**
-  - Ensure cited sources are easily accessible to users
-  - Consider displaying source details on hover or click
-  - Provide clear visual indicators for citations
-* **Verify citation accuracy**
-  - Citations are automatically generated based on content relevance
-  - The Mockingbird LLM provides improved citation accuracy
-  - Always validate critical information against source documents
+This example explicitly sets the citation style to Markdown.

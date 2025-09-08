@@ -89,6 +89,12 @@ When uploading files with non-ASCII (non-English) characters, such as Russian
 or Chinese, ensure that the filename is URL encoded. API v2 follows web 
 standards which require URL-encoded file names.
 
+### Image Support
+You can include images in structured documents using the Indexing API with 
+Base64 encoding. You cannot send images directly with individual query 
+requests. If you want to retrieve a specific image that is embedded within a 
+document, use the [Retrieve Image API](/docs/rest-api/get-image).
+
 ### Set the Document ID
 
 The `Content-Disposition` header lets you specify the Document ID of a file

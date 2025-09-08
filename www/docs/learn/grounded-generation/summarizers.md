@@ -98,6 +98,8 @@ Customers also have access to [advanced summarization customization options](/do
 including [custom prompt templates](/docs/prompts/vectara-prompt-engine), character limits, 
 temperature, and frequency and presence penalties.
 
+For detailed information about selecting and configuring models, including use case recommendations and integration options, see [Model Selection](/docs/learn/grounded-generation/model-selection).
+
 :::tip
 Check out our [**interactive API Reference**](/docs/rest-api/query) that lets you experiment
 with these additional summarization options.
