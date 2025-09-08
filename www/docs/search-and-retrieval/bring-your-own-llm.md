@@ -16,7 +16,13 @@ models, resposes API for reasoning models, and Google Cloud Vertex AI.
 By configuring LLMs with the Create LLM API, you can enhance flexibility in 
 how Vectara generates summaries, answers, and content, leveraging your 
 preferred LLM infrastructure while retaining full compatibility with Vectara's 
-powerful RAG workflows.
+powerful RAG workflows. 
+
+For example, models like GPT-5, Claude Sonnet, and Opus excel at generating 
+code and technical content as part of your text responses. In your 
+applications, you could use advanced models to generate code within Vectara 
+responses, while leveraging multimodal models' image generation capabilities 
+through separate API calls.
 
 ## Define a custom LLM configuration
 

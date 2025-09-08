@@ -64,9 +64,9 @@ through generation presets.
   layout="stacked"
 />
 
-## Supported Model Types
+## Supported model types
 
-### Vectara Native Models
+### Vectara native models
 
 **Mockingbird LLMs**
 - Specifically designed for Retrieval Augmented Generation
@@ -74,61 +74,61 @@ through generation presets.
 - Excellent multilingual performance
 - Optimized for structured data generation
 
-### OpenAI Models
+### OpenAI models
 
-**Available via OpenAI-Compatible API:**
+**Available via OpenAI-compatible API:**
 - GPT-4, GPT-4-turbo
 - GPT-3.5-turbo for cost-effective applications
 - Custom fine-tuned models via OpenAI interface
 
 ### Vertex AI Models
 
-**Google Cloud Integration:**
+**Google Cloud integration:**
 - Gemini 2.5-flash (cost-effective, fast)
 - Gemini 2.5-pro (high performance)
 - Gemini 2.0-experimental (latest features)
 
 ### Claude Models
 
-**Anthropic Integration:**
+**Anthropic integration:**
 - Available via OpenAI-compatible interface
 - Various Claude model variants supported
 
 ## Use Case Recommendations
 
-### RAG Applications
-**Recommended Model**: `mockingbird-2.0`
+### RAG applications
+**Recommended model**: `mockingbird-2.0`
 - **Why**: Designed specifically for RAG use cases
 - **Benefits**: Enhanced citation accuracy, better context understanding
 - **Best For**: Enterprise applications requiring high-quality summaries with reliable source attribution
 
-### General Summarization  
-**Recommended Models**: GPT-4 variants
+### General summarization  
+**Recommended models**: GPT-4 variants
 - **Why**: Versatile performance across different content types
 - **Benefits**: Strong reasoning capabilities, broad knowledge
 - **Best For**: Applications requiring creative or analytical summaries
 
-### Cost-Effective Solutions
-**Recommended Model**: GPT-3.5-turbo or Gemini Flash
+### Cost-effective solutions
+**Recommended model**: GPT-3.5-turbo or Gemini Flash
 - **Why**: Lower cost per token while maintaining good quality
 - **Benefits**: Faster response times, reduced operational costs  
 - **Best For**: High-volume applications with simpler summarization needs
 
-### Multilingual Applications
-**Recommended Model**: `mockingbird-2.0`
+### Multilingual applications
+**Recommended model**: `mockingbird-2.0`
 - **Why**: Excellent multilingual performance
 - **Benefits**: Consistent quality across languages
 - **Best For**: Global applications serving diverse language communities
 
-### Technical Documentation
-**Recommended Model**: GPT-4 with structured prompts
+### Technical documentation
+**Recommended model**: GPT-4 with structured prompts
 - **Why**: Strong performance on technical content
 - **Benefits**: Better handling of code, APIs, and technical concepts
 - **Best For**: Developer documentation and technical knowledge bases
 
-## Advanced Configuration Options
+## Advanced model configuration options
 
-### Fine-Grained Control
+### Nuanced control
 
 For applications requiring precise control over model behavior:
 
@@ -163,13 +163,14 @@ For applications requiring precise control over model behavior:
   layout="stacked"
 />
 
-**Parameter Guidelines:**
+### Parameter recommendations
+
 - **temperature**: 0.0-0.3 for factual content, 0.4-0.7 for creative content
 - **max_tokens**: Set based on desired response length (typically 200-2000)
 - **frequency_penalty**: 0.1-0.5 to reduce repetition
 - **presence_penalty**: 0.1-0.3 to encourage topic diversity
 
-### Custom Prompt Templates
+### Custom prompt templates
 
 Combine model selection with [custom prompt templates](/docs/prompts/vectara-prompt-engine) for specialized applications:
 
@@ -177,3 +178,21 @@ Combine model selection with [custom prompt templates](/docs/prompts/vectara-pro
 - Financial report summarization  
 - Scientific literature review
 - Customer support responses
+
+## Data-driven model selection
+
+Rather than guessing which model works best for your use case, use the 
+[Vectara Open Eval Framework](/docs/build-apps/open-eval-framework) to systematically evaluate and optimize your model selection:
+
+### Systematic evaluation process
+1. **Create evaluation datasets** representative of your use case
+2. **Test multiple model configurations** with different presets and parameters  
+3. **Measure performance** using standardized metrics (UMBRELA, BERT Score, etc.)
+4. **Compare results** to identify optimal configurations
+
+### Beyond "black box" selection
+The evaluation framework transforms model selection from trial-and-error into a data-driven process:
+- **Quantifiable results** instead of subjective assessment
+- **Statistical comparison** between different configurations  
+- **Use case-specific optimization** rather than generic recommendations
+- **Continuous improvement** through systematic re-evaluation

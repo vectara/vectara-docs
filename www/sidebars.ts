@@ -257,6 +257,7 @@ const sidebars: SidebarsConfig = {
       label: "Build Applications",
       items: [
         "build-apps/app-building",
+        "build-apps/open-eval-framework",
         "build-apps/vectara-ingest",
         "build-apps/react-search",
         "build-apps/create-ui",
