@@ -5252,6 +5252,1944 @@ paths:
       operationId: getOAuthToken
       tags:
       - Authentication
+  /v2/tool_servers:
+    get:
+      tags:
+      - Tool Servers
+      summary: List tool servers
+      description: Retrieve a list of available tool servers that expose various tools.
+      operationId: listToolServers
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: query
+        name: filter
+        description: A regular expression against tool server names and descriptions
+          to filter the results.
+        required: false
+        schema:
+          type: string
+          example: rag.*
+      - in: query
+        name: type
+        description: Filter tool servers by type.
+        required: false
+        schema:
+          type: string
+          enum:
+          - mcp
+          example: mcp
+      - in: query
+        name: enabled
+        description: Filter tool servers by enabled status.
+        required: false
+        schema:
+          type: boolean
+          example: true
+      - in: query
+        name: limit
+        description: The maximum number of tool servers to return in the list.
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 100
+          default: 10
+      - name: page_key
+        in: query
+        description: Used to retrieve the next page of tool servers after the limit
+          has been reached.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of available tool servers.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListToolServersResponse'
+        '403':
+          description: Permissions do not allow listing tool servers.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-fern-sdk-group-name: tool-servers
+      x-fern-sdk-method-name: list
+      x-fern-pagination:
+        cursor: $request.page_key
+        next_cursor: $response.metadata.page_key
+        results: $response.tool_servers
+    post:
+      tags:
+      - Tool Servers
+      summary: Create tool server
+      description: Create a new tool server to expose tools for use by agents.
+      operationId: createToolServer
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateToolServerRequest'
+      responses:
+        '201':
+          description: The created tool server details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ToolServer'
+        '400':
+          description: Invalid request body.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '403':
+          description: Permissions do not allow creating tool servers.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-fern-sdk-group-name: tool-servers
+      x-fern-sdk-method-name: create
+  /v2/tool_servers/{tool_server_id}:
+    get:
+      tags:
+      - Tool Servers
+      summary: Get tool Server
+      description: Retrieve details about a specific tool server by its Id.
+      operationId: getToolServer
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: path
+        name: tool_server_id
+        description: The unique identifier of the tool server to retrieve.
+        required: true
+        schema:
+          type: string
+          pattern: tsr_[0-9a-zA-Z_-]+$
+          example: tsr_rag_search
+      responses:
+        '200':
+          description: The requested tool server details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ToolServer'
+        '403':
+          description: Permissions do not allow accessing this tool.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Tool Server not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+      x-fern-sdk-group-name: tool-servers
+      x-fern-sdk-method-name: get
+    patch:
+      tags:
+      - Tool Servers
+      summary: Update tool server
+      description: Update the configuration of a specific tool server.
+      operationId: updateToolServer
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: path
+        name: tool_server_id
+        description: The unique identifier of the tool server to update.
+        required: true
+        schema:
+          type: string
+          pattern: tsr_[0-9a-zA-Z_-]+$
+          example: tsr_rag_search
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateToolServerRequest'
+      responses:
+        '200':
+          description: The updated tool server details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ToolServer'
+        '400':
+          description: Invalid request body.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '403':
+          description: Permissions do not allow updating this tool server.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Tool Server not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+      x-fern-sdk-group-name: tool-servers
+      x-fern-sdk-method-name: update
+    delete:
+      tags:
+      - Tool Servers
+      summary: Delete tool server
+      description: Permanently delete a tool server and all its associated configuration
+        and tools. This action cannot be undone.
+      operationId: deleteToolServer
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: path
+        name: tool_server_id
+        description: The unique identifier of the tool server to delete.
+        required: true
+        schema:
+          type: string
+          pattern: tsr_[0-9a-zA-Z_-]+$
+          example: tsr_rag_search
+      responses:
+        '204':
+          description: Tool server deleted successfully.
+        '403':
+          description: Permissions do not allow deleting this tool server.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Tool Server not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+      x-fern-sdk-group-name: tool-servers
+      x-fern-sdk-method-name: delete
+  /v2/tool_servers/{tool_server_id}/sync:
+    post:
+      tags:
+      - Tool Servers
+      summary: Synchronize tool server
+      description: Trigger a synchronization of the tool server to ensure it is up-to-date
+        with the latest tools.
+      operationId: syncToolServer
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: path
+        name: tool_server_id
+        description: The unique identifier of the tool server to synchronize.
+        required: true
+        schema:
+          type: string
+          pattern: tsr_[0-9a-zA-Z_-]+$
+          example: tsr_rag_search
+      responses:
+        '204':
+          description: Tool server synchronized successfully.
+        '403':
+          description: Permissions do not allow synchronizing this tool server.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Tool Server not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+      x-fern-sdk-group-name: tool-servers
+      x-fern-sdk-method-name: sync
+  /v2/tools:
+    get:
+      tags:
+      - Tools
+      summary: List tools
+      description: List all tools available to the authenticated user, with optional
+        filtering and pagination.
+      operationId: listTools
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: query
+        name: filter
+        description: A regular expression against tool names and descriptions to filter
+          the results.
+        required: false
+        schema:
+          type: string
+          example: rag.*
+      - in: query
+        name: type
+        description: Filter tools by type.
+        required: false
+        schema:
+          type: string
+          enum:
+          - mcp
+          example: mcp
+      - in: query
+        name: enabled
+        description: Filter tools by enabled status.
+        required: false
+        schema:
+          type: boolean
+          example: true
+      - in: query
+        name: limit
+        description: The maximum number of tools to return in the list.
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 100
+          default: 10
+      - name: page_key
+        in: query
+        description: Used to retrieve the next page of tools after the limit has been
+          reached.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of available tools.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListToolsResponse'
+        '403':
+          description: Permissions do not allow listing tools.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-fern-sdk-group-name: tools
+      x-fern-sdk-method-name: list
+      x-fern-pagination:
+        cursor: $request.page_key
+        next_cursor: $response.metadata.page_key
+        results: $response.tools
+  /v2/tools/{tool_id}:
+    get:
+      tags:
+      - Tools
+      summary: Get tool
+      description: Retrieve the details of a specific tool by its ID, including its
+        configuration and capabilities.
+      operationId: getTool
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: path
+        name: tool_id
+        description: The unique identifier of the tool to retrieve.
+        required: true
+        schema:
+          type: string
+          pattern: tol_[0-9a-zA-Z_-]+$
+          example: tol_rag_search
+      responses:
+        '200':
+          description: The requested tool details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tool'
+        '403':
+          description: Permissions do not allow accessing this tool.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Tool not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+      x-fern-sdk-group-name: tools
+      x-fern-sdk-method-name: get
+    patch:
+      tags:
+      - Tools
+      summary: Update tool
+      description: Update an existing tool's configuration.
+      operationId: updateTool
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: path
+        name: tool_id
+        description: The unique identifier of the tool to update.
+        required: true
+        schema:
+          type: string
+          pattern: tol_[0-9a-zA-Z_-]+$
+          example: tol_rag_search
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateToolRequest'
+      responses:
+        '200':
+          description: The tool has been updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tool'
+        '400':
+          description: Tool update request was malformed or contains invalid references.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '403':
+          description: Permissions do not allow updating this tool.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Tool not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+      x-fern-sdk-group-name: tools
+      x-fern-sdk-method-name: update
+    delete:
+      tags:
+      - Tools
+      summary: Delete tool
+      description: Permanently delete a tool and all its associated configuration.
+        This action cannot be undone.
+      operationId: deleteTool
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: path
+        name: tool_id
+        description: The unique identifier of the tool to delete.
+        required: true
+        schema:
+          type: string
+          pattern: tol_[0-9a-zA-Z_-]+$
+          example: tol_rag_search
+      responses:
+        '204':
+          description: The tool has been deleted successfully.
+        '403':
+          description: Permissions do not allow deleting this tool.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Tool not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+      x-fern-sdk-group-name: tools
+      x-fern-sdk-method-name: delete
+  /v2/tools/{tool_id}/configurations:
+    get:
+      tags:
+      - Tools
+      summary: List tool configurations
+      description: List all tool configurations for a specific tool, with optional
+        filtering and pagination.
+      operationId: listToolConfigurations
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: path
+        name: tool_id
+        description: The unique identifier of the tool.
+        required: true
+        schema:
+          type: string
+          pattern: tol_[0-9a-zA-Z_-]+$
+          example: tol_rag_search
+      - in: query
+        name: filter
+        description: A regular expression against tool configuration names and descriptions
+          to filter the results.
+        required: false
+        schema:
+          type: string
+          example: customer.*
+      - in: query
+        name: type
+        description: Filter tool configurations by type.
+        required: false
+        schema:
+          type: string
+          enum:
+          - mcp
+          - corpora_search
+          - web_search
+          example: mcp
+      - in: query
+        name: enabled
+        description: Filter tool configurations by enabled status.
+        required: false
+        schema:
+          type: boolean
+          example: true
+      - in: query
+        name: limit
+        description: The maximum number of tool configurations to return in the list.
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 100
+          default: 10
+      - name: page_key
+        in: query
+        description: Used to retrieve the next page of tool configurations after the
+          limit has been reached.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of available tool configurations.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListToolConfigurationsResponse'
+        '403':
+          description: Permissions do not allow listing tool configurations.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Tool not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+      x-fern-sdk-group-name: tools
+      x-fern-sdk-method-name: listConfigurations
+      x-fern-pagination:
+        cursor: $request.page_key
+        next_cursor: $response.metadata.page_key
+        results: $response.tool_configurations
+    post:
+      tags:
+      - Tools
+      summary: Create tool configuration
+      description: Create a new reusable tool configuration that stores user-defined
+        argument overrides and settings for a specific tool.
+      operationId: createToolConfiguration
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: path
+        name: tool_id
+        description: The unique identifier of the tool.
+        required: true
+        schema:
+          type: string
+          pattern: tol_[0-9a-zA-Z_-]+$
+          example: tol_rag_search
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateToolConfigurationRequest'
+      responses:
+        '201':
+          description: The tool configuration has been created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ToolConfiguration'
+        '400':
+          description: Tool configuration creation request was malformed or contains
+            invalid references.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '403':
+          description: Permissions do not allow creating tool configurations.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Tool not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+      x-fern-sdk-group-name: tools
+      x-fern-sdk-method-name: createConfiguration
+  /v2/tools/{tool_id}/configurations/{configuration_id}:
+    get:
+      tags:
+      - Tools
+      summary: Get tool configuration
+      description: Retrieve the details of a specific tool configuration by its ID,
+        including its settings and argument overrides.
+      operationId: getToolConfiguration
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: path
+        name: tool_id
+        description: The unique identifier of the tool.
+        required: true
+        schema:
+          type: string
+          pattern: tol_[0-9a-zA-Z_-]+$
+          example: tol_rag_search
+      - in: path
+        name: configuration_id
+        description: The unique identifier of the tool configuration to retrieve.
+        required: true
+        schema:
+          type: string
+          pattern: tcf_[0-9a-zA-Z_-]+$
+          example: tcf_customer_support
+      - in: query
+        name: version
+        description: The specific version of the tool configuration to retrieve. If
+          not specified, the latest version will be returned.
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          example: 1
+      responses:
+        '200':
+          description: The requested tool configuration details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ToolConfiguration'
+        '403':
+          description: Permissions do not allow accessing this tool configuration.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Tool or tool configuration not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+      x-fern-sdk-group-name: tools
+      x-fern-sdk-method-name: getConfiguration
+    patch:
+      tags:
+      - Tools
+      summary: Update tool configuration
+      description: Update an existing tool configuration's settings and argument overrides.
+      operationId: updateToolConfiguration
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: path
+        name: tool_id
+        description: The unique identifier of the tool.
+        required: true
+        schema:
+          type: string
+          pattern: tol_[0-9a-zA-Z_-]+$
+          example: tol_rag_search
+      - in: path
+        name: configuration_id
+        description: The unique identifier of the tool configuration to update.
+        required: true
+        schema:
+          type: string
+          pattern: tcf_[0-9a-zA-Z_-]+$
+          example: tcf_customer_support
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateToolConfigurationRequest'
+      responses:
+        '200':
+          description: The tool configuration has been updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ToolConfiguration'
+        '400':
+          description: Tool configuration update request was malformed or contains
+            invalid references.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '403':
+          description: Permissions do not allow updating this tool configuration.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Tool or tool configuration not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+      x-fern-sdk-group-name: tools
+      x-fern-sdk-method-name: updateConfiguration
+    delete:
+      tags:
+      - Tools
+      summary: Delete tool configuration
+      description: Permanently delete a tool configuration and all its associated
+        settings. This action cannot be undone.
+      operationId: deleteToolConfiguration
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: path
+        name: tool_id
+        description: The unique identifier of the tool.
+        required: true
+        schema:
+          type: string
+          pattern: tol_[0-9a-zA-Z_-]+$
+          example: tol_rag_search
+      - in: path
+        name: configuration_id
+        description: The unique identifier of the tool configuration to delete.
+        required: true
+        schema:
+          type: string
+          pattern: tcf_[0-9a-zA-Z_-]+$
+          example: tcf_customer_support
+      responses:
+        '204':
+          description: The tool configuration has been deleted successfully.
+        '403':
+          description: Permissions do not allow deleting this tool configuration.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Tool or tool configuration not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+      x-fern-sdk-group-name: tools
+      x-fern-sdk-method-name: deleteConfiguration
+  /v2/tools/{tool_id}/configurations/{configuration_id}/versions/{version}:
+    delete:
+      tags:
+      - Tools
+      summary: Delete tool configuration version
+      description: Permanently delete the specified version of the tool configuration.
+        This action cannot be undone.
+      operationId: deleteToolConfigurationVersion
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: path
+        name: tool_id
+        description: The unique identifier of the tool.
+        required: true
+        schema:
+          type: string
+          pattern: tol_[0-9a-zA-Z_-]+$
+          example: tol_rag_search
+      - in: path
+        name: configuration_id
+        description: The unique identifier of the tool configuration.
+        required: true
+        schema:
+          type: string
+          pattern: tcf_[0-9a-zA-Z_-]+$
+          example: tcf_customer_support
+      - in: path
+        name: version
+        description: The specific version of the tool configuration to delete.
+        required: true
+        schema:
+          type: integer
+          minimum: 1
+          example: 1
+      responses:
+        '204':
+          description: The tool configuration version has been deleted successfully.
+        '403':
+          description: Permissions do not allow deleting this tool configuration version.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Tool, tool configuration, or version not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        '409':
+          description: The specified version cannot be deleted as it's used in an
+            agent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-fern-sdk-group-name: tools
+      x-fern-sdk-method-name: deleteConfigurationVersion
+  /v2/instructions:
+    post:
+      tags:
+      - Instructions
+      summary: Create instruction
+      description: Create a new instruction that can guide agent behavior.
+      operationId: createInstruction
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateInstructionRequest'
+      responses:
+        '201':
+          description: The instruction has been created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Instruction'
+        '400':
+          description: Instruction creation request was malformed or contains invalid
+            content.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '403':
+          description: Permissions do not allow creating instructions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-fern-sdk-group-name: instructions
+      x-fern-sdk-method-name: create
+    get:
+      tags:
+      - Instructions
+      summary: List instructions
+      description: List all instructions available to the authenticated user, with
+        optional filtering and pagination.
+      operationId: listInstructions
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: query
+        name: filter
+        description: A regular expression against instruction names and descriptions
+          to filter the results.
+        required: false
+        schema:
+          type: string
+          example: support.*
+      - in: query
+        name: type
+        description: Filter instructions by type.
+        required: false
+        schema:
+          type: string
+          enum:
+          - initial
+          example: initial
+      - in: query
+        name: enabled
+        description: Filter instructions by enabled status.
+        required: false
+        schema:
+          type: boolean
+          example: true
+      - in: query
+        name: limit
+        description: The maximum number of instructions to return in the list.
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 100
+          default: 10
+      - name: page_key
+        in: query
+        description: Used to retrieve the next page of instructions after the limit
+          has been reached.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of available instructions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListInstructionsResponse'
+        '403':
+          description: Permissions do not allow listing instructions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-fern-sdk-group-name: instructions
+      x-fern-sdk-method-name: list
+      x-fern-pagination:
+        cursor: $request.page_key
+        next_cursor: $response.metadata.page_key
+        results: $response.instructions
+  /v2/instructions/{instruction_id}:
+    get:
+      tags:
+      - Instructions
+      summary: Get instruction
+      description: Retrieve the details of a specific instruction by its ID, including
+        its template and configuration.
+      operationId: getInstruction
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: path
+        name: instruction_id
+        description: The unique identifier of the instruction to retrieve.
+        required: true
+        schema:
+          $ref: '#/components/schemas/InstructionId'
+      - in: query
+        name: version
+        description: The specific version of the instruction to retrieve. If not specified,
+          the latest version will be returned.
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          example: 1
+      responses:
+        '200':
+          description: The requested instruction details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Instruction'
+        '403':
+          description: Permissions do not allow accessing this instruction.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Instruction not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+      x-fern-sdk-group-name: instructions
+      x-fern-sdk-method-name: get
+    patch:
+      tags:
+      - Instructions
+      summary: Update instruction
+      description: Update an existing instruction's template, metadata, and configuration.
+      operationId: updateInstruction
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: path
+        name: instruction_id
+        description: The unique identifier of the instruction to update.
+        required: true
+        schema:
+          $ref: '#/components/schemas/InstructionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateInstructionRequest'
+      responses:
+        '200':
+          description: The instruction has been updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Instruction'
+        '400':
+          description: Instruction update request was malformed or contains invalid
+            content.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '403':
+          description: Permissions do not allow updating this instruction.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Instruction not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+      x-fern-sdk-group-name: instructions
+      x-fern-sdk-method-name: update
+    delete:
+      tags:
+      - Instructions
+      summary: Delete instruction
+      description: Permanently delete an instruction and all its associated configuration.
+        This action cannot be undone.
+      operationId: deleteInstruction
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: path
+        name: instruction_id
+        description: The unique identifier of the instruction to delete.
+        required: true
+        schema:
+          $ref: '#/components/schemas/InstructionId'
+      responses:
+        '204':
+          description: The instruction has been deleted successfully.
+        '403':
+          description: Permissions do not allow deleting this instruction.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Instruction not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+      x-fern-sdk-group-name: instructions
+      x-fern-sdk-method-name: delete
+  /v2/instructions/{instruction_id}/test:
+    post:
+      tags:
+      - Instructions
+      summary: Test instruction
+      description: Test an instruction by rendering its template with provided context
+        data and tools.
+      operationId: testInstruction
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: path
+        name: instruction_id
+        description: The unique identifier of the instruction to test.
+        required: true
+        schema:
+          $ref: '#/components/schemas/InstructionId'
+      - in: query
+        name: version
+        description: The specific version of the instruction to test. If not specified,
+          the latest version will be used.
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestInstructionRequest'
+      responses:
+        '200':
+          description: The instruction has been tested successfully and the rendered
+            result is returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TestInstructionResponse'
+        '400':
+          description: Test request was malformed or template rendering failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '403':
+          description: Permissions do not allow testing this instruction.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Instruction not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+      x-fern-sdk-group-name: instructions
+      x-fern-sdk-method-name: test
+  /v2/instructions/{instruction_id}/versions/{version}:
+    delete:
+      tags:
+      - Instructions
+      summary: Delete instruction version
+      description: Permanently delete the specified version of the instruction. This
+        action cannot be undone.
+      operationId: deleteInstructionVersion
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: path
+        name: instruction_id
+        description: The unique identifier of the instruction to delete.
+        required: true
+        schema:
+          $ref: '#/components/schemas/InstructionId'
+      - in: path
+        name: version
+        description: The specific version of the instruction to delete.
+        required: true
+        schema:
+          type: integer
+          minimum: 1
+          example: 1
+      responses:
+        '204':
+          description: The instruction has been deleted successfully.
+        '403':
+          description: Permissions do not allow deleting this instruction.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Instruction not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        '409':
+          description: The specified version cannot be deleted as it's used in an
+            agent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-fern-sdk-group-name: instructions
+      x-fern-sdk-method-name: deleteVersion
+  /v2/agents:
+    post:
+      tags:
+      - Agents
+      summary: Create agent
+      description: Create a new agent that can perform operations using specified
+        corpora, tools, and generation presets.
+      operationId: createAgent
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAgentRequest'
+      responses:
+        '201':
+          description: The agent has been created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent'
+        '400':
+          description: Agent creation request was malformed or contains invalid references.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '403':
+          description: Permissions do not allow creating agents.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-fern-sdk-group-name: agents
+      x-fern-sdk-method-name: create
+    get:
+      tags:
+      - Agents
+      summary: List agents
+      description: List all agents available to the authenticated user, with optional
+        filtering and pagination.
+      operationId: listAgents
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: query
+        name: filter
+        description: A regular expression against agent names and descriptions to
+          filter the results.
+        required: false
+        schema:
+          type: string
+          example: support.*
+      - in: query
+        name: enabled
+        description: Filter agents by enabled status.
+        required: false
+        schema:
+          type: boolean
+          example: true
+      - in: query
+        name: limit
+        description: The maximum number of agents to return in the list.
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 100
+          default: 10
+      - name: page_key
+        in: query
+        description: Used to retrieve the next page of agents after the limit has
+          been reached.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of available agents.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAgentsResponse'
+        '403':
+          description: Permissions do not allow listing agents.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-fern-sdk-group-name: agents
+      x-fern-sdk-method-name: list
+      x-fern-pagination:
+        cursor: $request.page_key
+        next_cursor: $response.metadata.page_key
+        results: $response.agents
+  /v2/agents/{agent_key}:
+    get:
+      tags:
+      - Agents
+      summary: Get agent
+      description: Retrieve the details of a specific agent by its ID, including its
+        configuration, capabilities, and associated resources.
+      operationId: getAgent
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: path
+        name: agent_key
+        description: The unique key of the agent to retrieve.
+        required: true
+        schema:
+          $ref: '#/components/schemas/AgentKey'
+      responses:
+        '200':
+          description: The requested agent details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent'
+        '403':
+          description: Permissions do not allow accessing this agent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Agent not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+      x-fern-sdk-group-name: agents
+      x-fern-sdk-method-name: get
+    patch:
+      tags:
+      - Agents
+      summary: Update agent
+      description: Update an existing agent's configuration, including its corpora,
+        tools, and generation presets.
+      operationId: updateAgent
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: path
+        name: agent_key
+        description: The unique key of the agent to update.
+        required: true
+        schema:
+          $ref: '#/components/schemas/AgentKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAgentRequest'
+      responses:
+        '200':
+          description: The agent has been updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent'
+        '400':
+          description: Agent update request was malformed or contains invalid references.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '403':
+          description: Permissions do not allow updating this agent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Agent not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+      x-fern-sdk-group-name: agents
+      x-fern-sdk-method-name: update
+    put:
+      tags:
+      - Agents
+      summary: Replace agent
+      description: Completely replace an existing agent's configuration, including
+        its corpora, tools, and generation presets.
+      operationId: replaceAgent
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: path
+        name: agent_key
+        description: The unique key of the agent to replace.
+        required: true
+        schema:
+          $ref: '#/components/schemas/AgentKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReplaceAgentRequest'
+      responses:
+        '200':
+          description: The agent has been replaced successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent'
+        '400':
+          description: Agent replacement request was malformed or contains invalid
+            references.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '403':
+          description: Permissions do not allow replacing this agent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Agent not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+      x-fern-sdk-group-name: agents
+      x-fern-sdk-method-name: replace
+    delete:
+      tags:
+      - Agents
+      summary: Delete agent
+      description: Permanently delete an agent and all its associated configuration.
+        This action cannot be undone.
+      operationId: deleteAgent
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: path
+        name: agent_key
+        description: The unique key of the agent to delete.
+        required: true
+        schema:
+          $ref: '#/components/schemas/AgentKey'
+      responses:
+        '204':
+          description: The agent has been deleted successfully.
+        '403':
+          description: Permissions do not allow deleting this agent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Agent not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+      x-fern-sdk-group-name: agents
+      x-fern-sdk-method-name: delete
+  /v2/agents/{agent_key}/sessions:
+    post:
+      tags:
+      - Agents
+      summary: Create agent session
+      description: Create a new session for interacting with an agent. Sessions maintain
+        conversation context.
+      operationId: createAgentSession
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: path
+        name: agent_key
+        description: The unique key of the agent to create a session for.
+        required: true
+        schema:
+          $ref: '#/components/schemas/AgentKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAgentSessionRequest'
+      responses:
+        '201':
+          description: The agent session has been created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentSession'
+        '400':
+          description: Session creation request was malformed or references invalid
+            agent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '403':
+          description: Permissions do not allow creating sessions for this agent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Referenced agent not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+      x-fern-sdk-group-name: agent_sessions
+      x-fern-sdk-method-name: create
+    get:
+      tags:
+      - Agents
+      summary: List agent sessions
+      description: List all agent sessions for a specific agent, with optional filtering
+        and pagination.
+      operationId: listAgentSessions
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: path
+        name: agent_key
+        description: The unique identifier of the agent to list sessions for.
+        required: true
+        schema:
+          $ref: '#/components/schemas/AgentKey'
+      - in: query
+        name: filter
+        description: A regular expression against session names and descriptions to
+          filter the results.
+        required: false
+        schema:
+          type: string
+          example: support.*
+      - in: query
+        name: limit
+        description: The maximum number of sessions to return in the list.
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 100
+          default: 10
+      - name: page_key
+        in: query
+        description: Used to retrieve the next page of sessions after the limit has
+          been reached.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of available agent sessions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAgentSessionsResponse'
+        '403':
+          description: Permissions do not allow listing agent sessions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Agent not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+      x-fern-sdk-group-name: agent_sessions
+      x-fern-sdk-method-name: list
+      x-fern-pagination:
+        cursor: $request.page_key
+        next_cursor: $response.metadata.page_key
+        results: $response.sessions
+  /v2/agents/{agent_key}/sessions/{session_key}:
+    get:
+      tags:
+      - Agents
+      summary: Get agent session
+      description: Retrieve the details of a specific agent session by its ID, including
+        session configuration.
+      operationId: getAgentSession
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: path
+        name: agent_key
+        description: The unique identifier of the agent.
+        required: true
+        schema:
+          $ref: '#/components/schemas/AgentKey'
+      - in: path
+        name: session_key
+        description: The unique key of the session to retrieve.
+        required: true
+        schema:
+          $ref: '#/components/schemas/AgentSessionKey'
+      responses:
+        '200':
+          description: The requested agent session details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentSession'
+        '403':
+          description: Permissions do not allow accessing this agent session.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Agent or session not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+      x-fern-sdk-group-name: agent_sessions
+      x-fern-sdk-method-name: get
+    patch:
+      tags:
+      - Agents
+      summary: Update agent session
+      description: Update an existing agent session's configuration and metadata.
+      operationId: updateAgentSession
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: path
+        name: agent_key
+        description: The unique identifier of the agent.
+        required: true
+        schema:
+          $ref: '#/components/schemas/AgentKey'
+      - in: path
+        name: session_key
+        description: The unique key of the session to update.
+        required: true
+        schema:
+          $ref: '#/components/schemas/AgentSessionKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAgentSessionRequest'
+      responses:
+        '200':
+          description: The agent session has been updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentSession'
+        '400':
+          description: Session update request was malformed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '403':
+          description: Permissions do not allow updating this agent session.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Agent or session not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+      x-fern-sdk-group-name: agent_sessions
+      x-fern-sdk-method-name: update
+    delete:
+      tags:
+      - Agents
+      summary: Delete agent session
+      description: Permanently delete an agent session. This action cannot be undone.
+      operationId: deleteAgentSession
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: path
+        name: agent_key
+        description: The unique identifier of the agent.
+        required: true
+        schema:
+          $ref: '#/components/schemas/AgentKey'
+      - in: path
+        name: session_key
+        description: The unique key of the session to delete.
+        required: true
+        schema:
+          $ref: '#/components/schemas/AgentSessionKey'
+      responses:
+        '204':
+          description: The agent session has been deleted successfully.
+        '403':
+          description: Permissions do not allow deleting this agent session.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Agent or session not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+      x-fern-sdk-group-name: agent_sessions
+      x-fern-sdk-method-name: delete
+  /v2/agents/{agent_key}/sessions/{session_key}/events:
+    post:
+      tags:
+      - Agents
+      summary: Create input in agent session
+      description: Create a new input in an agent session.
+      operationId: createAgentInput
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: path
+        name: agent_key
+        description: The unique identifier of the agent.
+        required: true
+        schema:
+          $ref: '#/components/schemas/AgentKey'
+      - in: path
+        name: session_key
+        description: The unique key of the session to create an input in.
+        required: true
+        schema:
+          $ref: '#/components/schemas/AgentSessionKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateInputEvent'
+      x-stream-based-on-body: streamResponse()
+      responses:
+        '201':
+          description: The input event has been created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentResponse'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/AgentStreamedResponse'
+        '400':
+          description: Input event creation request was malformed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '403':
+          description: Permissions do not allow creating input events in this session.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Agent or session not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+      x-fern-sdk-group-name: agent_events
+      x-fern-sdk-method-name: create
+      x-fern-streaming:
+        format: sse
+        stream-condition: $request.stream_response
+        response:
+          description: An event in an agent session conversation.
+          type: object
+          discriminator:
+            propertyName: type
+            mapping:
+              input_message: '#/components/schemas/InputMessageEvent'
+              tool_input: '#/components/schemas/ToolInputEvent'
+              tool_output: '#/components/schemas/ToolOutputEvent'
+              thinking: '#/components/schemas/ThinkingEvent'
+              agent_output: '#/components/schemas/AgentOutputEvent'
+              context_limit_exceeded: '#/components/schemas/ContextLimitExceededEvent'
+          oneOf:
+          - $ref: '#/components/schemas/InputMessageEvent'
+          - $ref: '#/components/schemas/ToolInputEvent'
+          - $ref: '#/components/schemas/ToolOutputEvent'
+          - $ref: '#/components/schemas/ThinkingEvent'
+          - $ref: '#/components/schemas/AgentOutputEvent'
+          - $ref: '#/components/schemas/ContextLimitExceededEvent'
+          properties:
+            id:
+              description: The unique identifier for the event.
+              type: string
+              pattern: aev_[0-9a-zA-Z_-]+$
+              example: aev_user_001
+            session_key:
+              $ref: '#/components/schemas/AgentSessionKey'
+              description: The key of the session this event belongs to.
+            type:
+              description: The type of event.
+              type: string
+              enum:
+              - input_message
+              - tool_input
+              - tool_output
+              - thinking
+              - agent_output
+              - context_limit_exceeded
+              example: input_message
+            created_at:
+              description: Timestamp when the event was created.
+              type: string
+              format: date-time
+              example: '2024-01-15T10:35:00Z'
+          required:
+          - id
+          - session_key
+          - type
+          - created_at
+        response-stream:
+          description: An individual event sent with Server-sent Events (SSE) when
+            the agent response is streamed.
+          type: object
+          discriminator:
+            propertyName: type
+            mapping:
+              streaming_agent_output: '#/components/schemas/StreamingAgentOutput'
+              streaming_agent_output_end: '#/components/schemas/StreamingAgentOutputEnd'
+              streaming_thinking: '#/components/schemas/StreamingThinking'
+              streaming_thinking_end: '#/components/schemas/StreamingThinkingEnd'
+              tool_input: '#/components/schemas/ToolInputEvent'
+              tool_output: '#/components/schemas/ToolOutputEvent'
+              context_limit_exceeded: '#/components/schemas/ContextLimitExceededEvent'
+              error: '#/components/schemas/StreamError'
+              end: '#/components/schemas/StreamResponseEnd'
+          oneOf:
+          - $ref: '#/components/schemas/StreamingAgentOutput'
+          - $ref: '#/components/schemas/StreamingAgentOutputEnd'
+          - $ref: '#/components/schemas/StreamingThinking'
+          - $ref: '#/components/schemas/StreamingThinkingEnd'
+          - $ref: '#/components/schemas/ToolInputEvent'
+          - $ref: '#/components/schemas/ToolOutputEvent'
+          - $ref: '#/components/schemas/ContextLimitExceededEvent'
+          - $ref: '#/components/schemas/StreamError'
+          - $ref: '#/components/schemas/StreamResponseEnd'
+    get:
+      tags:
+      - Agents
+      summary: List events in agent session
+      description: List all events in a specific agent session, with optional pagination.
+      operationId: listAgentEvents
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: path
+        name: agent_key
+        description: The unique identifier of the agent.
+        required: true
+        schema:
+          $ref: '#/components/schemas/AgentKey'
+      - in: path
+        name: session_key
+        description: The unique key of the session to list events for.
+        required: true
+        schema:
+          $ref: '#/components/schemas/AgentSessionKey'
+      - in: query
+        name: limit
+        description: The maximum number of events to return in the list.
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 100
+          default: 10
+      - name: page_key
+        in: query
+        description: Used to retrieve the next page of events after the limit has
+          been reached.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of events in the session.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAgentEventsResponse'
+        '403':
+          description: Permissions do not allow listing events in this session.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Agent or session not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+      x-fern-sdk-group-name: agent_events
+      x-fern-sdk-method-name: list
+      x-fern-pagination:
+        cursor: $request.page_key
+        next_cursor: $response.metadata.page_key
+        results: $response.events
+  /v2/agents/{agent_key}/sessions/{session_key}/events/{event_id}:
+    get:
+      tags:
+      - Agents
+      summary: Get event in agent session
+      description: Retrieve the details of a specific event within an agent session.
+      operationId: getAgentEvent
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: path
+        name: agent_key
+        description: The unique identifier of the agent.
+        required: true
+        schema:
+          $ref: '#/components/schemas/AgentKey'
+      - in: path
+        name: session_key
+        description: The unique key of the session.
+        required: true
+        schema:
+          $ref: '#/components/schemas/AgentSessionKey'
+      - in: path
+        name: event_id
+        description: The unique identifier of the event to retrieve.
+        required: true
+        schema:
+          type: string
+          pattern: aev_[0-9a-zA-Z_-]+$
+          example: aev_user_001
+      responses:
+        '200':
+          description: The requested event details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentEvent'
+        '403':
+          description: Permissions do not allow accessing this event.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Agent, session, or event not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+      x-fern-sdk-group-name: agent_events
+      x-fern-sdk-method-name: get
 components:
   parameters:
     RequestTimeout:
@@ -8998,7 +10936,7 @@ components:
       description: Agent-specific role assignment.
       type: object
       properties:
-        agent_id:
+        agent_key:
           description: The ID of the agent this role applies to.
           type: string
         role:
@@ -9322,3 +11260,2327 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ApiRole'
+    ToolServerId:
+      description: Unique identifier for a tool server.
+      type: string
+      pattern: ^tsr_.*
+      example: tsr_rag_search
+    ToolServerType:
+      description: The type of tool server.
+      type: string
+      enum:
+      - mcp
+      example: mcp
+    ToolServerTransport:
+      description: The transport protocol to use for connecting to the server.
+      type: string
+      enum:
+      - sse
+      example: sse
+    ToolServer:
+      description: Represents a tool server that can provide various functionalities.
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/ToolServerId'
+        name:
+          description: The human-readable name of the tool server.
+          type: string
+          example: RAG Search Server
+        type:
+          $ref: '#/components/schemas/ToolServerType'
+        description:
+          description: A detailed description of what this tool server does.
+          type: string
+          example: Provides RAG search capabilities for documents.
+        uri:
+          description: The URI of the server.
+          type: string
+          format: uri
+          example: https://api.example.com/sse/
+        headers:
+          description: Optional HTTP headers to include when connecting to the server.
+          type: object
+          additionalProperties:
+            type: string
+          example:
+            Content-Type: application/json
+        transport:
+          $ref: '#/components/schemas/ToolServerTransport'
+          default: sse
+        enabled:
+          description: Whether the tool server is currently enabled and available
+            for use.
+          type: boolean
+          default: true
+        metadata:
+          description: Arbitrary metadata associated with the tool server.
+          type: object
+          additionalProperties: true
+          example:
+            version: '1.0'
+        created_at:
+          description: Timestamp when the tool server was created.
+          type: string
+          format: date-time
+        updated_at:
+          description: Timestamp when the tool server was last updated.
+          type: string
+          format: date-time
+      required:
+      - name
+      - type
+      - uri
+      - transport
+      - enabled
+    ListToolServersResponse:
+      description: Response containing a list of tool servers.
+      type: object
+      properties:
+        tool_servers:
+          description: List of tool servers.
+          type: array
+          items:
+            $ref: '#/components/schemas/ToolServer'
+        metadata:
+          $ref: '#/components/schemas/ListMetadata'
+      required:
+      - tool_servers
+    CreateToolServerRequest:
+      description: Request object for creating a new tool server.
+      type: object
+      properties:
+        name:
+          description: The human-readable name of the tool server.
+          type: string
+          example: RAG Search Server
+        type:
+          $ref: '#/components/schemas/ToolServerType'
+        description:
+          description: A detailed description of what this tool server does.
+          type: string
+          example: Provides RAG search capabilities for documents.
+        uri:
+          description: The URI of the tool server.
+          type: string
+          format: uri
+          example: https://api.example.com/rag_search
+        headers:
+          description: Optional HTTP headers to include when connecting to the server.
+          type: object
+          additionalProperties:
+            type: string
+        transport:
+          $ref: '#/components/schemas/ToolServerTransport'
+          default: sse
+        auth:
+          $ref: '#/components/schemas/RemoteAuth'
+          description: Authentication configuration for connecting to the tool server.
+        enabled:
+          description: Whether the tool server is currently enabled and available
+            for use.
+          type: boolean
+          default: true
+        metadata:
+          description: Arbitrary metadata associated with the tool server.
+          type: object
+          additionalProperties: true
+      required:
+      - name
+      - type
+      - uri
+      - transport
+    UpdateToolServerRequest:
+      description: Request object for updating an existing tool server.
+      type: object
+      properties:
+        name:
+          description: The human-readable name of the tool server.
+          type: string
+          example: Vectara MCP Server
+        description:
+          description: A detailed description of what this tool server does.
+          type: string
+          example: Provides Vectara specific functionalities.
+        uri:
+          description: The URI of the tool server.
+          type: string
+          format: uri
+          example: https://api.example.com/vectara_mcp/sse/
+        headers:
+          description: Optional HTTP headers to include when connecting to the server.
+          type: object
+          additionalProperties:
+            type: string
+        transport:
+          $ref: '#/components/schemas/ToolServerTransport'
+        auth:
+          $ref: '#/components/schemas/RemoteAuth'
+          description: Authentication configuration for connecting to the tool server.
+        enabled:
+          description: Whether the tool server is currently enabled and available
+            for use.
+          type: boolean
+        metadata:
+          description: Arbitrary metadata associated with the tool server.
+          type: object
+          additionalProperties: true
+    ToolId:
+      description: Unique identifier for a tool.
+      type: string
+      pattern: ^tol_.*
+      example: tol_123e4567-e89b-12d3-a456-426614174000
+    McpToolAnnotations:
+      description: Optional hints about tool behaviour/metadata.
+      type: object
+      properties:
+        read_only_hint:
+          description: If true, the tool does not modify its environment.
+          type: boolean
+        destructive_hint:
+          description: If true, the tool may perform destructive updates.
+          type: boolean
+        idempotent_hint:
+          description: If true, repeated calls with same args have no additional effect.
+          type: boolean
+        open_world_hint:
+          description: If true, tool interacts with external entities.
+          type: boolean
+      additionalProperties: true
+    McpTool:
+      description: An MCP (Model Context Protocol) tool that connects to external
+        MCP servers for extended functionality.
+      type: object
+      properties:
+        type:
+          description: This should always be `mcp`.
+          type: string
+          default: mcp
+          example: mcp
+        id:
+          $ref: '#/components/schemas/ToolId'
+        server_id:
+          description: The unique identifier of the MCP server this tool is associated
+            with.
+          $ref: '#/components/schemas/ToolServerId'
+        name:
+          description: Unique identifier for the tool in the MCP server.
+          type: string
+        title:
+          description: Human-readable title of the tool.
+          type: string
+        description:
+          description: A detailed description of what the tool does and how it can
+            be used.
+          type: string
+        enabled:
+          description: Whether the tool is currently enabled and available for use.
+          type: boolean
+          default: true
+        created_at:
+          description: Timestamp when the tool was created.
+          type: string
+          format: date-time
+        updated_at:
+          description: Timestamp when the tool was last updated.
+          type: string
+          format: date-time
+        input_schema:
+          description: The schema that defines the expected input structure for the
+            MCP tool.
+          type: object
+          additionalProperties: true
+          example:
+            type: object
+            properties:
+              query:
+                type: string
+                description: The search query to send to the MCP server.
+              max_results:
+                type: integer
+                description: The maximum number of results to return.
+        annotations:
+          $ref: '#/components/schemas/McpToolAnnotations'
+      required:
+      - type
+      - id
+      - name
+      - description
+      - enabled
+      - input_schema
+      x-vectaraParents:
+      - Tool
+    CorporaSearchTool:
+      description: A corpora search tool that searches through Vectara corpora to
+        find relevant information.
+      type: object
+      properties:
+        type:
+          description: This should always be `corpora_search`.
+          type: string
+          default: corpora_search
+          example: corpora_search
+        id:
+          $ref: '#/components/schemas/ToolId'
+        name:
+          description: Unique identifier for the tool.
+          type: string
+        title:
+          description: Human-readable title of the tool.
+          type: string
+        description:
+          description: A detailed description of what the tool does and how it can
+            be used.
+          type: string
+        enabled:
+          description: Whether the tool is currently enabled and available for use.
+          type: boolean
+          default: true
+        created_at:
+          description: Timestamp when the tool was created.
+          type: string
+          format: date-time
+        updated_at:
+          description: Timestamp when the tool was last updated.
+          type: string
+          format: date-time
+        input_schema:
+          description: The schema that defines the expected input structure for the
+            corpora search tool.
+          type: object
+          additionalProperties: true
+          example:
+            type: object
+            properties:
+              query:
+                type: string
+                description: The search query to execute against the corpora.
+      required:
+      - type
+      - id
+      - name
+      - description
+      - enabled
+      - input_schema
+      x-vectaraParents:
+      - Tool
+    WebSearchTool:
+      description: A web search tool that searches the internet for relevant information.
+      type: object
+      properties:
+        type:
+          description: This should always be `web_search`.
+          type: string
+          default: web_search
+          example: web_search
+        id:
+          $ref: '#/components/schemas/ToolId'
+        name:
+          description: Unique identifier for the tool.
+          type: string
+        title:
+          description: Human-readable title of the tool.
+          type: string
+        description:
+          description: A detailed description of what the tool does and how it can
+            be used.
+          type: string
+        enabled:
+          description: Whether the tool is currently enabled and available for use.
+          type: boolean
+          default: true
+        created_at:
+          description: Timestamp when the tool was created.
+          type: string
+          format: date-time
+        updated_at:
+          description: Timestamp when the tool was last updated.
+          type: string
+          format: date-time
+        input_schema:
+          description: The schema that defines the expected input structure for the
+            web search tool.
+          type: object
+          additionalProperties: true
+          example:
+            type: object
+            properties:
+              query:
+                type: string
+                description: The search query to execute on the web.
+              limit:
+                type: integer
+                description: The maximum number of results to return.
+      required:
+      - type
+      - id
+      - name
+      - description
+      - enabled
+      - input_schema
+      x-vectaraParents:
+      - Tool
+    Tool:
+      description: A tool that can be used by agents to perform specific actions or
+        operations.
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/ToolId'
+        name:
+          description: Unique identifier for the tool in the tool server.
+          type: string
+        description:
+          description: A detailed description of what the tool does and how it can
+            be used.
+          type: string
+        enabled:
+          description: Whether the tool is currently enabled and available for use.
+          type: boolean
+          default: true
+        created_at:
+          description: Timestamp when the tool was created.
+          type: string
+          format: date-time
+        updated_at:
+          description: Timestamp when the tool was last updated.
+          type: string
+          format: date-time
+      required:
+      - id
+      - name
+      - description
+      - enabled
+      discriminator:
+        propertyName: type
+        mapping:
+          mcp: '#/components/schemas/McpTool'
+          corpora_search: '#/components/schemas/CorporaSearchTool'
+          web_search: '#/components/schemas/WebSearchTool'
+      oneOf:
+      - $ref: '#/components/schemas/McpTool'
+      - $ref: '#/components/schemas/CorporaSearchTool'
+      - $ref: '#/components/schemas/WebSearchTool'
+    ListToolsResponse:
+      description: Response containing a list of tools.
+      type: object
+      properties:
+        tools:
+          description: List of tools.
+          type: array
+          items:
+            $ref: '#/components/schemas/Tool'
+        metadata:
+          $ref: '#/components/schemas/ListMetadata'
+      required:
+      - tools
+    UpdateMcpToolRequest:
+      description: Request object for updating an existing MCP tool.
+      type: object
+      properties:
+        type:
+          description: This should always be `mcp`.
+          type: string
+          default: mcp
+          example: mcp
+        enabled:
+          description: Whether the tool is enabled.
+          type: boolean
+      required:
+      - type
+      x-vectaraParents:
+      - UpdateToolRequest
+    UpdateToolRequest:
+      description: Request to update a tool. Supports MCP tools.
+      discriminator:
+        propertyName: type
+        mapping:
+          mcp: '#/components/schemas/UpdateMcpToolRequest'
+      oneOf:
+      - $ref: '#/components/schemas/UpdateMcpToolRequest'
+    ToolConfigurationId:
+      description: Unique identifier for a tool configuration.
+      type: string
+      pattern: ^tcf_.*
+      example: tcf_123e4567-e89b-12d3-a456-426614174000
+    McpToolConfiguration:
+      description: A reusable configuration for an MCP tool that stores predefined
+        argument overrides and settings.
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/ToolConfigurationId'
+        name:
+          description: Human-readable name for the tool configuration.
+          type: string
+          example: Customer Support Search Config
+        description:
+          description: A detailed description of what this tool configuration is for
+            and how it should be used.
+          type: string
+          example: Configuration for searching customer support documentation with
+            optimized parameters
+        version:
+          description: The version identifier for this tool configuration. This is
+            automatically incremented when the configuration is updated.
+          type: integer
+          minimum: 1
+          example: 1
+        type:
+          description: This should always be `mcp`.
+          type: string
+          default: mcp
+          example: mcp
+        enabled:
+          description: Whether the tool configuration is currently enabled and available
+            for use.
+          type: boolean
+          default: true
+        argument_override:
+          description: Optional hardcoded arguments for tool calls. When specified,
+            these values will be used instead of allowing the LLM to fill in those
+            parameters.
+          type: object
+          additionalProperties: true
+          example:
+            custom_param: value
+            max_results: 10
+        metadata:
+          description: Optional metadata associated with this tool configuration.
+          type: object
+          additionalProperties: true
+          example:
+            tags:
+            - production
+            - v2
+            owner: team-search
+        created_at:
+          description: Timestamp when the tool configuration was created.
+          type: string
+          format: date-time
+        updated_at:
+          description: Timestamp when the tool configuration was last updated.
+          type: string
+          format: date-time
+      required:
+      - id
+      - version
+      - type
+      x-vectaraParents:
+      - ToolConfiguration
+    CorporaSearchToolParameters:
+      description: LLM-exposed parameters for the corpora search tool that can be
+        filled in during execution.
+      type: object
+      properties:
+        query:
+          description: The search query string, which is the question the user is
+            asking. If not provided, will be filled in by the LLM.
+          type: string
+          maxLength: 5000
+          example: Am I allowed to bring pets to work?
+      additionalProperties: false
+    CorporaSearchQueryConfiguration:
+      description: User-configurable settings for corpora search that are not exposed
+        to the LLM.
+      type: object
+      properties:
+        search:
+          $ref: '#/components/schemas/SearchCorporaParameters'
+        generation:
+          $ref: '#/components/schemas/GenerationParameters'
+        save_history:
+          description: Indicates whether to save the query to query history.
+          type: boolean
+      required:
+      - search
+    CorporaSearchToolConfiguration:
+      description: A reusable configuration for a corpora search tool that stores
+        predefined search parameters and overrides.
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/ToolConfigurationId'
+        name:
+          description: Human-readable name for the tool configuration.
+          type: string
+          example: Customer Support Search Config
+        description:
+          description: A detailed description of what this tool configuration is for
+            and how it should be used.
+          type: string
+          example: Configuration for searching customer support documentation with
+            optimized parameters
+        version:
+          description: The version identifier for this tool configuration. This is
+            automatically incremented when the configuration is updated.
+          type: integer
+          minimum: 1
+          example: 1
+        type:
+          description: This should always be `corpora_search`.
+          type: string
+          default: corpora_search
+          example: corpora_search
+        enabled:
+          description: Whether the tool configuration is currently enabled and available
+            for use.
+          type: boolean
+          default: true
+        argument_override:
+          description: Optional hardcoded arguments for tool calls. When specified,
+            these values will be used instead of allowing the LLM to fill in those
+            parameters.
+          $ref: '#/components/schemas/CorporaSearchToolParameters'
+        query_configuration:
+          description: User-configurable settings for the search that are not exposed
+            to the LLM.
+          $ref: '#/components/schemas/CorporaSearchQueryConfiguration'
+        metadata:
+          description: Optional metadata associated with this tool configuration.
+          type: object
+          additionalProperties: true
+          example:
+            tags:
+            - production
+            - v2
+            owner: team-search
+        created_at:
+          description: Timestamp when the tool configuration was created.
+          type: string
+          format: date-time
+        updated_at:
+          description: Timestamp when the tool configuration was last updated.
+          type: string
+          format: date-time
+      required:
+      - id
+      - version
+      - type
+      - query_configuration
+      x-vectaraParents:
+      - ToolConfiguration
+    WebSearchToolParameters:
+      description: Configurable parameters for the web search tool. If not provided,
+        will be filled in by the LLM.
+      type: object
+      properties:
+        query:
+          description: The search query to execute.
+          type: string
+          example: latest AI developments 2024
+        limit:
+          description: Maximum number of results to return.
+          type: integer
+          minimum: 1
+          example: 10
+        provider:
+          description: Search provider to use.
+          type: string
+          enum:
+          - tavily
+          example: tavily
+      additionalProperties: false
+    WebSearchToolConfiguration:
+      description: A reusable configuration for a web search tool that stores predefined
+        search parameters and settings.
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/ToolConfigurationId'
+        name:
+          description: Human-readable name for the tool configuration.
+          type: string
+          example: Customer Support Search Config
+        description:
+          description: A detailed description of what this tool configuration is for
+            and how it should be used.
+          type: string
+          example: Configuration for searching customer support documentation with
+            optimized parameters
+        version:
+          description: The version identifier for this tool configuration. This is
+            automatically incremented when the configuration is updated.
+          type: integer
+          minimum: 1
+          example: 1
+        type:
+          description: This should always be `web_search`.
+          type: string
+          default: web_search
+          example: web_search
+        enabled:
+          description: Whether the tool configuration is currently enabled and available
+            for use.
+          type: boolean
+          default: true
+        argument_override:
+          description: Optional hardcoded arguments for tool calls. When specified,
+            these values will be used instead of allowing the LLM to fill in those
+            parameters.
+          $ref: '#/components/schemas/WebSearchToolParameters'
+        metadata:
+          description: Optional metadata associated with this tool configuration.
+          type: object
+          additionalProperties: true
+          example:
+            tags:
+            - production
+            - v2
+            owner: team-search
+        created_at:
+          description: Timestamp when the tool configuration was created.
+          type: string
+          format: date-time
+        updated_at:
+          description: Timestamp when the tool configuration was last updated.
+          type: string
+          format: date-time
+      required:
+      - id
+      - version
+      - type
+      x-vectaraParents:
+      - ToolConfiguration
+    ToolConfiguration:
+      description: A reusable tool configuration that stores user-defined argument
+        overrides and settings for a specific tool.
+      type: object
+      discriminator:
+        propertyName: type
+        mapping:
+          mcp: '#/components/schemas/McpToolConfiguration'
+          corpora_search: '#/components/schemas/CorporaSearchToolConfiguration'
+          web_search: '#/components/schemas/WebSearchToolConfiguration'
+      oneOf:
+      - $ref: '#/components/schemas/McpToolConfiguration'
+      - $ref: '#/components/schemas/CorporaSearchToolConfiguration'
+      - $ref: '#/components/schemas/WebSearchToolConfiguration'
+    ListToolConfigurationsResponse:
+      description: Response containing a list of tool configurations.
+      type: object
+      properties:
+        tool_configurations:
+          description: List of tool configurations.
+          type: array
+          items:
+            $ref: '#/components/schemas/ToolConfiguration'
+        metadata:
+          $ref: '#/components/schemas/ListMetadata'
+      required:
+      - tool_configurations
+    CreateMcpToolConfigurationRequest:
+      description: Request to create a reusable configuration for an MCP tool with
+        predefined argument overrides that can be applied to agents.
+      type: object
+      properties:
+        name:
+          description: Human-readable name for the tool configuration.
+          type: string
+          example: Customer Support Search Config
+        description:
+          description: A detailed description of what this tool configuration is for
+            and how it should be used.
+          type: string
+          example: Configuration for searching customer support documentation with
+            optimized parameters
+        type:
+          description: This should always be `mcp`.
+          type: string
+          default: mcp
+          example: mcp
+        enabled:
+          description: Whether the tool configuration should be enabled upon creation.
+          type: boolean
+          default: true
+        argument_override:
+          description: Optional hardcoded arguments for tool calls. When specified,
+            these values will be used instead of allowing the LLM to fill in those
+            parameters.
+          type: object
+          additionalProperties: true
+          example:
+            custom_param: value
+            max_results: 10
+        metadata:
+          description: Optional metadata associated with this tool configuration.
+          type: object
+          additionalProperties: true
+          example:
+            tags:
+            - production
+            - v2
+            owner: team-search
+      required:
+      - name
+      - type
+      x-vectaraParents:
+      - CreateToolConfigurationRequest
+    CreateCorporaSearchToolConfigurationRequest:
+      description: Request to create a reusable configuration for a corpora search
+        tool with predefined search parameters that can be applied to agents.
+      type: object
+      properties:
+        name:
+          description: Human-readable name for the tool configuration.
+          type: string
+          example: Customer Support Search Config
+        description:
+          description: A detailed description of what this tool configuration is for
+            and how it should be used.
+          type: string
+          example: Configuration for searching customer support documentation with
+            optimized parameters
+        type:
+          description: This should always be `corpora_search`.
+          type: string
+          default: corpora_search
+          example: corpora_search
+        enabled:
+          description: Whether the tool configuration should be enabled upon creation.
+          type: boolean
+          default: true
+        argument_override:
+          description: Optional hardcoded arguments for the corpus search call such
+            as the query. When specified, these values will be used instead of allowing
+            the LLM to fill in those parameters.
+          $ref: '#/components/schemas/CorporaSearchToolParameters'
+        query_configuration:
+          description: User-configurable settings for the search that are not exposed
+            to the LLM.
+          $ref: '#/components/schemas/CorporaSearchQueryConfiguration'
+        metadata:
+          description: Optional metadata associated with this tool configuration.
+          type: object
+          additionalProperties: true
+          example:
+            tags:
+            - production
+            - v2
+            owner: team-search
+      required:
+      - name
+      - type
+      - query_configuration
+      x-vectaraParents:
+      - CreateToolConfigurationRequest
+    CreateWebSearchToolConfigurationRequest:
+      description: Request to create a reusable configuration for a web search tool
+        with predefined search parameters that can be applied to agents.
+      type: object
+      properties:
+        name:
+          description: Human-readable name for the tool configuration.
+          type: string
+          example: Customer Support Search Config
+        description:
+          description: A detailed description of what this tool configuration is for
+            and how it should be used.
+          type: string
+          example: Configuration for searching customer support documentation with
+            optimized parameters
+        type:
+          description: This should always be `web_search`.
+          type: string
+          default: web_search
+          example: web_search
+        enabled:
+          description: Whether the tool configuration should be enabled upon creation.
+          type: boolean
+          default: true
+        argument_override:
+          description: Optional hardcoded arguments for the web search tool call such
+            as limit etc. When specified, these values will be used instead of allowing
+            the LLM to fill in those parameters.
+          $ref: '#/components/schemas/WebSearchToolParameters'
+        metadata:
+          description: Optional metadata associated with this tool configuration.
+          type: object
+          additionalProperties: true
+          example:
+            tags:
+            - production
+            - v2
+            owner: team-search
+      required:
+      - name
+      - type
+      x-vectaraParents:
+      - CreateToolConfigurationRequest
+    CreateToolConfigurationRequest:
+      description: Request to create a new reusable tool configuration that stores
+        user-defined argument overrides and settings for a specific tool. These configurations
+        can later be selected and reused when creating agents.
+      type: object
+      discriminator:
+        propertyName: type
+        mapping:
+          mcp: '#/components/schemas/CreateMcpToolConfigurationRequest'
+          corpora_search: '#/components/schemas/CreateCorporaSearchToolConfigurationRequest'
+          web_search: '#/components/schemas/CreateWebSearchToolConfigurationRequest'
+      oneOf:
+      - $ref: '#/components/schemas/CreateMcpToolConfigurationRequest'
+      - $ref: '#/components/schemas/CreateCorporaSearchToolConfigurationRequest'
+      - $ref: '#/components/schemas/CreateWebSearchToolConfigurationRequest'
+    UpdateMcpToolConfigurationRequest:
+      description: Request to update a reusable configuration for an MCP tool with
+        predefined argument overrides.
+      type: object
+      properties:
+        name:
+          description: Human-readable name for the tool configuration.
+          type: string
+          example: Customer Support Search Config
+        description:
+          description: A detailed description of what this tool configuration is for
+            and how it should be used.
+          type: string
+          example: Configuration for searching customer support documentation with
+            optimized parameters
+        type:
+          description: This should always be `mcp`.
+          type: string
+          default: mcp
+          example: mcp
+        enabled:
+          description: Whether the tool configuration should be enabled.
+          type: boolean
+        argument_override:
+          description: Optional hardcoded arguments for tool calls. When specified,
+            these values will be used instead of allowing the LLM to fill in those
+            parameters.
+          type: object
+          additionalProperties: true
+          example:
+            custom_param: value
+            max_results: 10
+        metadata:
+          description: Optional metadata associated with this tool configuration.
+          type: object
+          additionalProperties: true
+          example:
+            tags:
+            - production
+            - v2
+            owner: team-search
+      required:
+      - type
+      x-vectaraParents:
+      - UpdateToolConfigurationRequest
+    UpdateCorporaSearchToolConfigurationRequest:
+      description: Request to update a reusable configuration for a corpora search
+        tool with predefined search parameters.
+      type: object
+      properties:
+        name:
+          description: Human-readable name for the tool configuration.
+          type: string
+          example: Customer Support Search Config
+        description:
+          description: A detailed description of what this tool configuration is for
+            and how it should be used.
+          type: string
+          example: Configuration for searching customer support documentation with
+            optimized parameters
+        type:
+          description: This should always be `corpora_search`.
+          type: string
+          default: corpora_search
+          example: corpora_search
+        enabled:
+          description: Whether the tool configuration should be enabled.
+          type: boolean
+        argument_override:
+          description: Optional hardcoded arguments for the corpus search call such
+            as the query. When specified, these values will be used instead of allowing
+            the LLM to fill in those parameters.
+          $ref: '#/components/schemas/CorporaSearchToolParameters'
+        query_configuration:
+          description: User-configurable settings for the search that are not exposed
+            to the LLM.
+          $ref: '#/components/schemas/CorporaSearchQueryConfiguration'
+        metadata:
+          description: Optional metadata associated with this tool configuration.
+          type: object
+          additionalProperties: true
+          example:
+            tags:
+            - production
+            - v2
+            owner: team-search
+      required:
+      - type
+      x-vectaraParents:
+      - UpdateToolConfigurationRequest
+    UpdateWebSearchToolConfigurationRequest:
+      description: Request to update a reusable configuration for a web search tool
+        with predefined search parameters.
+      type: object
+      properties:
+        name:
+          description: Human-readable name for the tool configuration.
+          type: string
+          example: Customer Support Search Config
+        description:
+          description: A detailed description of what this tool configuration is for
+            and how it should be used.
+          type: string
+          example: Configuration for searching customer support documentation with
+            optimized parameters
+        type:
+          description: This should always be `web_search`.
+          type: string
+          default: web_search
+          example: web_search
+        enabled:
+          description: Whether the tool configuration should be enabled.
+          type: boolean
+        argument_override:
+          description: Optional hardcoded arguments for the web search tool call such
+            as limit etc. When specified, these values will be used instead of allowing
+            the LLM to fill in those parameters.
+          $ref: '#/components/schemas/WebSearchToolParameters'
+        metadata:
+          description: Optional metadata associated with this tool configuration.
+          type: object
+          additionalProperties: true
+          example:
+            tags:
+            - production
+            - v2
+            owner: team-search
+      required:
+      - type
+      x-vectaraParents:
+      - UpdateToolConfigurationRequest
+    UpdateToolConfigurationRequest:
+      description: Request to update an existing reusable tool configuration that
+        stores user-defined argument overrides and settings for a specific tool.
+      type: object
+      discriminator:
+        propertyName: type
+        mapping:
+          mcp: '#/components/schemas/UpdateMcpToolConfigurationRequest'
+          corpora_search: '#/components/schemas/UpdateCorporaSearchToolConfigurationRequest'
+          web_search: '#/components/schemas/UpdateWebSearchToolConfigurationRequest'
+      oneOf:
+      - $ref: '#/components/schemas/UpdateMcpToolConfigurationRequest'
+      - $ref: '#/components/schemas/UpdateCorporaSearchToolConfigurationRequest'
+      - $ref: '#/components/schemas/UpdateWebSearchToolConfigurationRequest'
+    Instruction:
+      description: An instruction that guides agent behavior.
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/InstructionId'
+        name:
+          description: The human-readable name of the instruction.
+          type: string
+        description:
+          description: A detailed description of what this instruction does.
+          type: string
+        version:
+          description: The version identifier for this instruction. This is automatically
+            incremented when the instruction is updated.
+          type: integer
+          minimum: 1
+          example: 1
+        metadata:
+          description: Arbitrary metadata associated with the instruction.
+          type: object
+          additionalProperties: true
+        enabled:
+          description: Whether the instruction is currently enabled and available
+            for use.
+          type: boolean
+          default: true
+        created_at:
+          description: Timestamp when the instruction was created.
+          type: string
+          format: date-time
+        updated_at:
+          description: Timestamp when the instruction was last updated.
+          type: string
+          format: date-time
+      required:
+      - id
+      - name
+      - version
+      - enabled
+      discriminator:
+        propertyName: type
+        mapping:
+          initial: '#/components/schemas/InitialInstruction'
+      oneOf:
+      - $ref: '#/components/schemas/InitialInstruction'
+    TemplateType:
+      description: The templating engine used for instructions.
+      type: string
+      enum:
+      - velocity
+      default: velocity
+      example: velocity
+    InitialInstruction:
+      description: An initial instruction that provides guidance to the agent before
+        user messages.
+      allOf:
+      - $ref: '#/components/schemas/Instruction'
+      - type: object
+        properties:
+          type:
+            description: The type of instruction.
+            type: string
+            default: initial
+            example: initial
+          template_type:
+            $ref: '#/components/schemas/TemplateType'
+          template:
+            description: The instruction template content using the specified template
+              engine.
+            type: string
+            example: 'You are a helpful customer support agent for Acme Corp. Today''s
+              date is ${currentDate}. You have access to the following tools: #foreach($tool
+              in $tools)${tool.name}#if($foreach.hasNext), #end#end'
+        required:
+        - type
+        - template_type
+        - template
+      x-vectaraParents:
+      - Instruction
+    InstructionId:
+      description: The unique identifier for an instruction.
+      type: string
+      pattern: ins_[0-9a-zA-Z_-]+$
+      example: ins_customer_support_init
+    ListInstructionsResponse:
+      description: Response containing a list of instructions.
+      type: object
+      properties:
+        instructions:
+          description: List of instructions.
+          type: array
+          items:
+            $ref: '#/components/schemas/Instruction'
+        metadata:
+          $ref: '#/components/schemas/ListMetadata'
+      required:
+      - instructions
+      - metadata
+    CreateInitialInstructionRequest:
+      description: Request object for creating a new initial instruction.
+      type: object
+      properties:
+        type:
+          description: The type of instruction to create.
+          type: string
+          default: initial
+          example: initial
+        name:
+          description: The human-readable name of the instruction.
+          type: string
+          example: Customer Support Initial Instruction
+        description:
+          description: A detailed description of what this instruction does.
+          type: string
+          example: Provides initial context and guidelines for customer support interactions
+        template_type:
+          $ref: '#/components/schemas/TemplateType'
+        template:
+          description: The instruction template content using the specified template
+            engine.
+          type: string
+          example: 'You are a helpful customer support agent for Acme Corp. Today''s
+            date is ${currentDate}. You have access to the following tools: #foreach($tool
+            in $tools)${tool.name}#if($foreach.hasNext), #end#end'
+        metadata:
+          description: Arbitrary metadata associated with the instruction.
+          type: object
+          additionalProperties: true
+          default: {}
+          example:
+            version: 1.0.0
+            author: support-team
+        enabled:
+          description: Whether the instruction should be enabled upon creation.
+          type: boolean
+          default: true
+          example: true
+      required:
+      - type
+      - name
+      - template
+      x-vectaraParents:
+      - CreateInstructionRequest
+    CreateInstructionRequest:
+      description: Request to create an instruction. Currently only initial instructions
+        are supported.
+      discriminator:
+        propertyName: type
+        mapping:
+          initial: '#/components/schemas/CreateInitialInstructionRequest'
+      oneOf:
+      - $ref: '#/components/schemas/CreateInitialInstructionRequest'
+    UpdateInitialInstructionRequest:
+      description: Request object for updating an existing initial instruction.
+      type: object
+      properties:
+        type:
+          description: The type of instruction to update.
+          type: string
+          default: initial
+          example: initial
+        name:
+          description: The human-readable name of the instruction.
+          type: string
+          example: Updated Customer Support Instruction
+        description:
+          description: A detailed description of what this instruction does.
+          type: string
+          example: Enhanced initial context and guidelines for customer support interactions
+        template:
+          description: The instruction template content using the specified template
+            engine.
+          type: string
+          example: 'You are an expert customer support agent for Acme Corp. Today''s
+            date is ${currentDate}. Available tools: #foreach($tool in $tools)${tool.name}#if($foreach.hasNext),
+            #end#end'
+        template_type:
+          $ref: '#/components/schemas/TemplateType'
+        metadata:
+          description: Arbitrary metadata associated with the instruction.
+          type: object
+          additionalProperties: true
+          example:
+            version: 1.1.0
+            author: support-team
+            last_reviewed: '2024-01-15'
+        enabled:
+          description: Whether the instruction is enabled.
+          type: boolean
+          example: true
+      required:
+      - type
+      x-vectaraParents:
+      - UpdateInstructionRequest
+    UpdateInstructionRequest:
+      description: Request to update an instruction. Currently only initial instructions
+        are supported.
+      discriminator:
+        propertyName: type
+        mapping:
+          initial: '#/components/schemas/UpdateInitialInstructionRequest'
+      oneOf:
+      - $ref: '#/components/schemas/UpdateInitialInstructionRequest'
+    TestInstructionRequest:
+      description: Request to test an instruction with provided context data.
+      type: object
+      properties:
+        context:
+          description: Context data to use when rendering the instruction template.
+          type: object
+          additionalProperties: true
+          example:
+            currentDate: '2024-01-15'
+            companyName: Acme Corp
+        tools:
+          description: List of tools to include in the instruction context for testing.
+          type: array
+          items:
+            $ref: '#/components/schemas/Tool'
+          default: []
+          example: []
+    TestInstructionResponse:
+      description: Response containing the rendered instruction.
+      type: object
+      properties:
+        rendered_instruction:
+          description: The instruction template rendered with the provided context.
+          type: string
+          example: 'You are a helpful customer support agent for Acme Corp. Today''s
+            date is 2024-01-15. You have access to the following tools: Web Search,
+            Email Sender'
+      required:
+      - rendered_instruction
+    AgentKey:
+      description: A unique key that identifies an agent.
+      type: string
+      pattern: '[0-9a-zA-Z_-]+$'
+      minLength: 1
+      maxLength: 50
+      example: customer_support
+    InlineMcpToolConfiguration:
+      title: InlineMcpToolConfiguration
+      description: An MCP tool configuration defined inline in the agent.
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of tool configuration, which is always 'mcp' for inline
+            MCP tool configurations.
+          default: mcp
+        tool_id:
+          $ref: '#/components/schemas/ToolId'
+        argument_override:
+          description: Optional hardcoded arguments for tool calls. When specified,
+            these values will be used instead of allowing the LLM to fill in those
+            parameters.
+          type: object
+          additionalProperties: true
+          example:
+            custom_param: value
+            limit: 10
+      required:
+      - tool_id
+      - type
+      x-vectaraParents:
+      - AgentToolConfiguration
+    InlineCorporaSearchToolConfiguration:
+      title: InlineCorporaSearchToolConfiguration
+      description: A corpora search tool configuration defined inline in the agent.
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of tool configuration, which is always 'corpora_search'
+            for inline corpora search tool configurations.
+          default: corpora_search
+        argument_override:
+          description: Optional hardcoded arguments for the corpus search call such
+            as the query. When specified, these values will be used instead of allowing
+            the LLM to fill in those parameters.
+          $ref: '#/components/schemas/CorporaSearchToolParameters'
+        query_configuration:
+          description: User-configurable settings for the corpus search that are not
+            exposed to the LLM.
+          $ref: '#/components/schemas/CorporaSearchQueryConfiguration'
+      required:
+      - type
+      - query_configuration
+      x-vectaraParents:
+      - AgentToolConfiguration
+    InlineWebSearchToolConfiguration:
+      title: InlineWebSearchToolConfiguration
+      description: A web search tool configuration defined inline in the agent.
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of tool configuration, which is always 'web_search'
+            for inline web search tool configurations.
+          default: web_search
+        argument_override:
+          description: Optional hardcoded arguments for the web search tool call such
+            as limit etc. When specified, these values will be used instead of allowing
+            the LLM to fill in those parameters.
+          $ref: '#/components/schemas/WebSearchToolParameters'
+      required:
+      - type
+      x-vectaraParents:
+      - AgentToolConfiguration
+    AgentToolConfiguration:
+      title: AgentToolConfiguration
+      description: A tool configuration that can be used by an agent, defined inline
+        with a specific configuration type.
+      discriminator:
+        propertyName: type
+        mapping:
+          mcp: '#/components/schemas/InlineMcpToolConfiguration'
+          corpora_search: '#/components/schemas/InlineCorporaSearchToolConfiguration'
+          web_search: '#/components/schemas/InlineWebSearchToolConfiguration'
+      oneOf:
+      - $ref: '#/components/schemas/InlineMcpToolConfiguration'
+      - $ref: '#/components/schemas/InlineCorporaSearchToolConfiguration'
+      - $ref: '#/components/schemas/InlineWebSearchToolConfiguration'
+      example:
+      - type: web_search
+        argument_override:
+          limit: 5
+    AgentModel:
+      title: AgentModel
+      description: Configuration for the model used in this step, including the model
+        name and arbitrary parameters.
+      type: object
+      properties:
+        name:
+          description: The name of the model to use for this step.
+          type: string
+          example: gpt-4
+        parameters:
+          description: Arbitrary model-specific parameters that can be passed to the
+            model.
+          type: object
+          additionalProperties: true
+          example:
+            temperature: 0.7
+            max_tokens: 1000
+            top_p: 0.9
+      required:
+      - name
+    InstructionReference:
+      description: A reference to an instruction that can be used by an agent. If
+        version is not specified, the latest version will be used. Note that when
+        the instruction is updated, agents using it will need to be updated to reference
+        the new version explicitly.
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/InstructionId'
+        version:
+          description: The specific version of the instruction to use. If not specified,
+            the latest version will be used.
+          type: integer
+          minimum: 1
+          example: 1
+      required:
+      - id
+    ReferenceInstruction:
+      title: ReferenceInstruction
+      description: An instruction specified by reference.
+      allOf:
+      - $ref: '#/components/schemas/InstructionReference'
+      - type: object
+        properties:
+          type:
+            type: string
+            description: The type of instruction, used for discrimination.
+            default: reference
+        required:
+        - type
+      x-vectaraParents:
+      - AgentStepInstruction
+    InlineInstruction:
+      title: InlineInstruction
+      description: An instruction defined inline in the request.
+      allOf:
+      - $ref: '#/components/schemas/CreateInitialInstructionRequest'
+      - type: object
+        properties:
+          type:
+            type: string
+            description: The type of instruction, used for discrimination.
+            default: inline
+        required:
+        - type
+      x-vectaraParents:
+      - AgentStepInstruction
+    AgentStepInstruction:
+      title: AgentStepInstruction
+      description: An instruction that can be used in an agent step, either by reference
+        or defined inline.
+      discriminator:
+        propertyName: type
+        mapping:
+          reference: '#/components/schemas/ReferenceInstruction'
+          inline: '#/components/schemas/InlineInstruction'
+      oneOf:
+      - $ref: '#/components/schemas/ReferenceInstruction'
+      - $ref: '#/components/schemas/InlineInstruction'
+      example:
+      - type: reference
+        name: Customer Support Initial Instruction
+        version: 1
+      - type: inline
+        name: Temporary On-the-fly Guideline
+        description: A special instruction for this specific step only.
+        template_type: velocity
+        template: Please prioritize issues tagged with 'urgent' for the next hour.
+    DefaultOutputParser:
+      title: DefaultOutputParser
+      description: Uses native tool calling capabilities and returns output directly
+        to the user. This parser leverages the underlying model's built-in tool calling
+        functionality and passes responses through without additional processing.
+      type: object
+      properties:
+        type:
+          description: The type of output parser, which is always 'default' for this
+            parser type.
+          type: string
+          default: default
+          example: default
+      required:
+      - type
+      x-vectaraParents:
+      - AgentOutputParser
+    AgentOutputParser:
+      title: AgentOutputParser
+      description: 'Configuration for how the agent''s output should be parsed and
+        formatted.
+
+
+        The output parser determines how the agent''s responses are processed before
+        being returned to the user.
+
+        '
+      discriminator:
+        propertyName: type
+        mapping:
+          default: '#/components/schemas/DefaultOutputParser'
+      oneOf:
+      - $ref: '#/components/schemas/DefaultOutputParser'
+    ConversationalAgentStep:
+      title: ConversationalAgentStep
+      description: A step that receives instructions and responds through dialogue.
+        This is a step that gets instructions and engages in conversation with users
+        based on those instructions.
+      type: object
+      properties:
+        type:
+          description: The type of step, which is always 'conversational' for this
+            step type.
+          type: string
+          default: conversational
+          example: conversational
+        instructions:
+          description: List of instructions that guide the agent's behavior in this
+            step. If no instructions are given, the agent is instructed to be helpful
+            and use tools.
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentStepInstruction'
+        output_parser:
+          $ref: '#/components/schemas/AgentOutputParser'
+      required:
+      - type
+      - instructions
+      - output_parser
+      x-vectaraParents:
+      - AgentStep
+    AgentStep:
+      title: AgentStep
+      description: A step in an agent's execution flow that defines how the agent
+        processes and responds to input.
+      discriminator:
+        propertyName: type
+        mapping:
+          conversational: '#/components/schemas/ConversationalAgentStep'
+      oneOf:
+      - $ref: '#/components/schemas/ConversationalAgentStep'
+    Agent:
+      description: An AI agent that can use tools to provide intelligent responses
+        and actions.
+      type: object
+      properties:
+        key:
+          $ref: '#/components/schemas/AgentKey'
+        name:
+          description: The human-readable name of the agent.
+          type: string
+          example: Customer Support Agent
+        description:
+          description: A detailed description of the agent's purpose and capabilities.
+          type: string
+          example: An AI agent specialized in handling customer support inquiries
+            using company documentation and support tools.
+        tool_configurations:
+          description: A map of tool configurations available to the agent. The key
+            is the name of the tool configuration and the value is an agent tool configuration.
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/AgentToolConfiguration'
+            nullable: true
+          example:
+            customer_search:
+              type: corpora_search
+              argument_override:
+                query: customer support documentation
+        model:
+          $ref: '#/components/schemas/AgentModel'
+        first_step:
+          $ref: '#/components/schemas/AgentStep'
+        metadata:
+          description: Arbitrary metadata associated with the agent for customization
+            and configuration.
+          type: object
+          additionalProperties: true
+          example:
+            department: customer_service
+            version: 1.2.0
+            owner: support-team
+        enabled:
+          description: Whether the agent is currently enabled and available for use.
+          type: boolean
+          default: true
+          example: true
+        created_at:
+          description: Timestamp when the agent was created.
+          type: string
+          format: date-time
+          example: '2024-01-15T10:30:00Z'
+        updated_at:
+          description: Timestamp when the agent was last updated.
+          type: string
+          format: date-time
+          example: '2024-01-16T14:45:00Z'
+      required:
+      - key
+      - name
+      - tool_configurations
+      - model
+      - first_step
+      - enabled
+    ListAgentsResponse:
+      description: Response containing a list of agents.
+      type: object
+      properties:
+        agents:
+          description: List of agents.
+          type: array
+          items:
+            $ref: '#/components/schemas/Agent'
+        metadata:
+          $ref: '#/components/schemas/ListMetadata'
+      required:
+      - agents
+      - metadata
+    CreateAgentRequest:
+      description: Request object for creating a new agent.
+      type: object
+      properties:
+        key:
+          $ref: '#/components/schemas/AgentKey'
+          description: A user provided key that uniquely identifies this agent. If
+            not provided, one will be auto-generated based on the agent name.
+        name:
+          description: The human-readable name of the agent.
+          type: string
+          minLength: 1
+          example: Customer Support Agent
+        description:
+          description: A detailed description of the agent's purpose and capabilities.
+          type: string
+          example: An AI agent specialized in handling customer support inquiries
+            using company documentation and support tools.
+        tool_configurations:
+          description: A map of tool configurations available to the agent. The key
+            is the name of the tool configuration and the value is the AgentToolConfiguration.
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/AgentToolConfiguration'
+            nullable: true
+          example:
+            customer_search:
+              type: corpora_search
+              argument_override:
+                query: customer support documentation
+        model:
+          $ref: '#/components/schemas/AgentModel'
+        first_step:
+          $ref: '#/components/schemas/AgentStep'
+        metadata:
+          description: Arbitrary metadata associated with the agent for customization
+            and configuration.
+          type: object
+          additionalProperties: true
+          default: {}
+          example:
+            department: customer_service
+            version: 1.0.0
+            owner: support-team
+        enabled:
+          description: Whether the agent should be enabled upon creation.
+          type: boolean
+          default: true
+          example: true
+      required:
+      - name
+      - tool_configurations
+      - model
+      - first_step
+    ReplaceAgentRequest:
+      description: Request object for replacing an existing agent completely.
+      type: object
+      properties:
+        name:
+          description: The human-readable name of the agent.
+          type: string
+          minLength: 1
+          example: Customer Support Agent
+        description:
+          description: A detailed description of the agent's purpose and capabilities.
+          type: string
+          example: An AI agent specialized in handling customer support inquiries
+            using company documentation and support tools.
+        tool_configurations:
+          description: A map of tool configurations available to the agent. The key
+            is the name of the tool configuration and the value is an agent tool configuration.
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/AgentToolConfiguration'
+            nullable: true
+          example:
+            customer_search:
+              type: corpora_search
+              argument_override:
+                query: customer support documentation
+        model:
+          $ref: '#/components/schemas/AgentModel'
+        first_step:
+          $ref: '#/components/schemas/AgentStep'
+        metadata:
+          description: Arbitrary metadata associated with the agent for customization
+            and configuration.
+          type: object
+          additionalProperties: true
+          default: {}
+          example:
+            department: customer_service
+            version: 1.2.0
+            owner: support-team
+        enabled:
+          description: Whether the agent is enabled.
+          type: boolean
+          default: true
+          example: true
+      required:
+      - name
+      - tool_configurations
+      - model
+      - first_step
+    UpdateAgentRequest:
+      description: Request object for updating an existing agent.
+      type: object
+      properties:
+        name:
+          description: The human-readable name of the agent.
+          type: string
+          example: Updated Customer Support Agent
+        description:
+          description: A detailed description of the agent's purpose and capabilities.
+          type: string
+          example: An enhanced AI agent specialized in handling customer support inquiries.
+        tool_configurations:
+          description: A map of tool configurations available to the agent. The key
+            is the name of the tool configuration and the value is an agent tool configuration.
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/AgentToolConfiguration'
+            nullable: true
+          example:
+            customer_search:
+              type: corpora_search
+              argument_override:
+                query: customer support documentation
+        model:
+          $ref: '#/components/schemas/AgentModel'
+        first_step:
+          $ref: '#/components/schemas/AgentStep'
+        metadata:
+          description: Arbitrary metadata associated with the agent for customization
+            and configuration.
+          type: object
+          additionalProperties: true
+          example:
+            department: customer_service
+            version: 1.1.0
+            owner: support-team
+            last_reviewed: '2024-01-15'
+        enabled:
+          description: Whether the agent is enabled.
+          type: boolean
+          example: true
+    AgentSessionKey:
+      description: A unique key that identifies an agent session.
+      type: string
+      pattern: '[0-9a-zA-Z_-]+$'
+      minLength: 1
+      maxLength: 50
+      example: customer_support_chat
+    AgentSession:
+      description: A session for interacting with an agent, allowing conversation
+        context.
+      type: object
+      properties:
+        key:
+          $ref: '#/components/schemas/AgentSessionKey'
+        agent_key:
+          $ref: '#/components/schemas/AgentKey'
+        name:
+          description: Human-readable name for the session.
+          type: string
+          example: Customer Support Session
+        description:
+          description: Optional description of the session purpose or context.
+          type: string
+          example: Helping customer troubleshoot widget installation issues
+        metadata:
+          description: Arbitrary metadata associated with the session.
+          type: object
+          additionalProperties: true
+          example:
+            customer_id: '12345'
+            priority: high
+            channel: web_chat
+        enabled:
+          description: Whether the session is currently active and can accept new
+            messages.
+          type: boolean
+          default: true
+          example: true
+        created_at:
+          description: Timestamp when the session was created.
+          type: string
+          format: date-time
+          example: '2024-01-15T10:30:00Z'
+      required:
+      - id
+      - name
+      - agent_key
+      - enabled
+      - created_at
+    ListAgentSessionsResponse:
+      description: Response containing a list of agent sessions.
+      type: object
+      properties:
+        sessions:
+          description: List of agent sessions.
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentSession'
+        metadata:
+          $ref: '#/components/schemas/ListMetadata'
+      required:
+      - sessions
+      - metadata
+    CreateAgentSessionRequest:
+      description: Request object for creating a new agent session.
+      type: object
+      properties:
+        key:
+          $ref: '#/components/schemas/AgentSessionKey'
+          description: A user provided key that uniquely identifies this session.
+            If not provided, one will be auto-generated based on the session name.
+        name:
+          description: Human-readable name for the session.
+          type: string
+          example: Customer Support Session
+        description:
+          description: Optional description of the session purpose or context.
+          type: string
+          example: Helping customer troubleshoot issues
+        metadata:
+          description: Arbitrary metadata associated with the session.
+          type: object
+          additionalProperties: true
+          default: {}
+          example:
+            customer_id: '12345'
+            priority: medium
+            channel: web_chat
+        enabled:
+          description: Whether the session should be enabled upon creation.
+          type: boolean
+          default: true
+          example: true
+    UpdateAgentSessionRequest:
+      description: Request object for updating an existing agent session.
+      type: object
+      properties:
+        name:
+          description: Human-readable name for the session.
+          type: string
+          example: Updated Session Name
+        description:
+          description: Optional description of the session purpose or context.
+          type: string
+          example: Updated session description
+        metadata:
+          description: Arbitrary metadata associated with the session.
+          type: object
+          additionalProperties: true
+          example:
+            customer_id: '12345'
+            priority: high
+            status: escalated
+        enabled:
+          description: Whether the session is enabled.
+          type: boolean
+          example: false
+    AgentTextInput:
+      description: A text input for an agent message.
+      type: object
+      properties:
+        type:
+          description: The type of input.
+          type: string
+          default: text
+          example: text
+        content:
+          description: The text content of the input.
+          type: string
+          example: I need help with my widget installation
+      required:
+      - type
+      - content
+      x-vectaraParents:
+      - AgentInput
+    AgentInput:
+      description: An input that can be provided to an agent message.
+      discriminator:
+        propertyName: type
+        mapping:
+          text: '#/components/schemas/AgentTextInput'
+      oneOf:
+      - $ref: '#/components/schemas/AgentTextInput'
+    InputMessageEvent:
+      title: InputMessageEvent
+      description: An input message event from a user.
+      type: object
+      properties:
+        id:
+          description: The unique identifier for the event.
+          type: string
+          pattern: aev_[0-9a-zA-Z_-]+$
+          example: aev_user_001
+        session_key:
+          $ref: '#/components/schemas/AgentSessionKey'
+          description: The key of the session this event belongs to.
+        type:
+          description: The type of event.
+          type: string
+          default: input_message
+          example: input_message
+        messages:
+          description: List of inputs that make up this message.
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentInput'
+          example:
+          - type: text
+            content: I need help with my widget installation
+        created_at:
+          description: Timestamp when the event was created.
+          type: string
+          format: date-time
+          example: '2024-01-15T10:35:00Z'
+      required:
+      - id
+      - session_key
+      - type
+      - messages
+      - created_at
+      x-vectaraParents:
+      - AgentEvent
+      - AgentStreamedResponse
+    ToolInputEvent:
+      title: ToolInputEvent
+      description: An event representing input to a tool call.
+      type: object
+      properties:
+        id:
+          description: The unique identifier for the event.
+          type: string
+          pattern: aev_[0-9a-zA-Z_-]+$
+          example: aev_tool_input_001
+        session_key:
+          $ref: '#/components/schemas/AgentSessionKey'
+          description: The key of the session this event belongs to.
+        type:
+          description: The type of event.
+          type: string
+          default: tool_input
+          example: tool_input
+        tool_call_id:
+          description: The identifier for the tool call.
+          type: string
+          example: call_tool_search_001
+        tool_configuration_name:
+          description: The name of the tool configuration being invoked, as defined
+            in the agent's tool_configurations map.
+          type: string
+          example: customer_search
+        tool_name:
+          description: Name of the tool being called.
+          type: string
+          example: web_search
+        tool_input:
+          description: Input data for the tool.
+          type: object
+          additionalProperties: true
+          example:
+            query: weather in San Francisco
+        created_at:
+          description: Timestamp when the event was created.
+          type: string
+          format: date-time
+          example: '2024-01-15T10:35:00Z'
+      required:
+      - id
+      - session_key
+      - type
+      - tool_call_id
+      - tool_configuration_name
+      - tool_name
+      - tool_input
+      - created_at
+      x-vectaraParents:
+      - AgentEvent
+      - AgentStreamedResponse
+    ToolOutputEvent:
+      title: ToolOutputEvent
+      description: An event representing output from a tool call.
+      type: object
+      properties:
+        id:
+          description: The unique identifier for the event.
+          type: string
+          pattern: aev_[0-9a-zA-Z_-]+$
+          example: aev_tool_output_001
+        session_key:
+          $ref: '#/components/schemas/AgentSessionKey'
+          description: The key of the session this event belongs to.
+        type:
+          description: The type of event.
+          type: string
+          default: tool_output
+          example: tool_output
+        tool_call_id:
+          description: The unique identifier for the tool call, matching the input
+            event.
+          type: string
+          example: call_tool_search_001
+        tool_configuration_name:
+          description: The name of the tool configuration that was invoked, as defined
+            in the agent's tool_configurations map.
+          type: string
+          example: customer_search
+        tool_name:
+          description: Name of the tool that was called.
+          type: string
+          example: web_search
+        tool_output:
+          description: Output data from the tool.
+          type: object
+          additionalProperties: true
+          example:
+            result: "Current weather is 70\xB0F and sunny"
+        created_at:
+          description: Timestamp when the event was created.
+          type: string
+          format: date-time
+          example: '2024-01-15T10:35:00Z'
+      required:
+      - id
+      - session_key
+      - type
+      - tool_call_id
+      - tool_configuration_name
+      - tool_name
+      - tool_output
+      - created_at
+      x-vectaraParents:
+      - AgentEvent
+      - AgentStreamedResponse
+    ThinkingEvent:
+      title: ThinkingEvent
+      description: An event representing chain-of-thought thinking by the agent.
+      type: object
+      properties:
+        id:
+          description: The unique identifier for the event.
+          type: string
+          pattern: aev_[0-9a-zA-Z_-]+$
+          example: aev_thinking_001
+        session_key:
+          $ref: '#/components/schemas/AgentSessionKey'
+          description: The key of the session this event belongs to.
+        type:
+          description: The type of event.
+          type: string
+          default: thinking
+          example: thinking
+        content:
+          description: Human-readable content of the reasoning process.
+          type: string
+          example: Analyzing user request and considering available options
+        created_at:
+          description: Timestamp when the event was created.
+          type: string
+          format: date-time
+          example: '2024-01-15T10:35:00Z'
+      required:
+      - id
+      - session_key
+      - type
+      - created_at
+      x-vectaraParents:
+      - AgentEvent
+      - AgentStreamedResponse
+    AgentOutputEvent:
+      title: AgentOutputEvent
+      description: An event representing a complete agent response.
+      type: object
+      properties:
+        id:
+          description: The unique identifier for the event.
+          type: string
+          pattern: aev_[0-9a-zA-Z_-]+$
+          example: aev_output_001
+        session_key:
+          $ref: '#/components/schemas/AgentSessionKey'
+          description: The key of the session this event belongs to.
+        type:
+          description: The type of event.
+          type: string
+          default: agent_output
+          example: agent_output
+        content:
+          description: The complete agent response content.
+          type: string
+          example: Hello! I can help you with your widget installation. Let me guide
+            you through the process.
+        created_at:
+          description: Timestamp when the event was created.
+          type: string
+          format: date-time
+          example: '2024-01-15T10:35:00Z'
+      required:
+      - id
+      - session_key
+      - type
+      - content
+      - created_at
+      x-vectaraParents:
+      - AgentEvent
+      - AgentStreamedResponse
+    ContextLimitExceededEvent:
+      title: ContextLimitExceededEvent
+      description: An event indicating the current request exceeded the LLM's context
+        limit.
+      type: object
+      properties:
+        id:
+          description: The unique identifier for the event
+          type: string
+          pattern: aev_[0-9a-zA-Z_-]+$
+        session_key:
+          $ref: '#/components/schemas/AgentSessionKey'
+          description: The key of the session this event belongs to
+        type:
+          description: The type of event
+          type: string
+          default: context_limit_exceeded
+        context_limit:
+          description: The maximum number of tokens allowed by the model
+          type: integer
+          format: int64
+          example: 128000
+        actual_tokens:
+          description: The actual number of tokens in the request
+          type: integer
+          format: int64
+          example: 140658
+        message:
+          description: Human-readable error message
+          type: string
+          example: 'Context limit exceeded: 140658 tokens used, 128000 limit'
+        created_at:
+          description: Timestamp when the event was created
+          type: string
+          format: date-time
+      required:
+      - id
+      - session_key
+      - type
+      - message
+      - created_at
+      x-vectaraParents:
+      - AgentEvent
+      - AgentStreamedResponse
+    AgentEvent:
+      description: An event in an agent session conversation.
+      type: object
+      discriminator:
+        propertyName: type
+        mapping:
+          input_message: '#/components/schemas/InputMessageEvent'
+          tool_input: '#/components/schemas/ToolInputEvent'
+          tool_output: '#/components/schemas/ToolOutputEvent'
+          thinking: '#/components/schemas/ThinkingEvent'
+          agent_output: '#/components/schemas/AgentOutputEvent'
+          context_limit_exceeded: '#/components/schemas/ContextLimitExceededEvent'
+      oneOf:
+      - $ref: '#/components/schemas/InputMessageEvent'
+      - $ref: '#/components/schemas/ToolInputEvent'
+      - $ref: '#/components/schemas/ToolOutputEvent'
+      - $ref: '#/components/schemas/ThinkingEvent'
+      - $ref: '#/components/schemas/AgentOutputEvent'
+      - $ref: '#/components/schemas/ContextLimitExceededEvent'
+      properties:
+        id:
+          description: The unique identifier for the event.
+          type: string
+          pattern: aev_[0-9a-zA-Z_-]+$
+          example: aev_user_001
+        session_key:
+          $ref: '#/components/schemas/AgentSessionKey'
+          description: The key of the session this event belongs to.
+        type:
+          description: The type of event.
+          type: string
+          enum:
+          - input_message
+          - tool_input
+          - tool_output
+          - thinking
+          - agent_output
+          - context_limit_exceeded
+          example: input_message
+        created_at:
+          description: Timestamp when the event was created.
+          type: string
+          format: date-time
+          example: '2024-01-15T10:35:00Z'
+      required:
+      - id
+      - session_key
+      - type
+      - created_at
+    ListAgentEventsResponse:
+      description: Response containing a list of agent events.
+      type: object
+      properties:
+        events:
+          description: List of agent events.
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentEvent'
+        metadata:
+          $ref: '#/components/schemas/ListMetadata'
+      required:
+      - events
+      - metadata
+    CreateInputEvent:
+      description: Request object for creating a new input event (user text input
+        only).
+      type: object
+      properties:
+        type:
+          description: The type of event.
+          type: string
+          enum:
+          - input_message
+          default: input_message
+          example: input_message
+        messages:
+          description: List of inputs that make up this event.
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentInput'
+          example:
+          - type: text
+            content: I need help with my widget installation
+        stream_response:
+          description: Indicates whether the response should be streamed or not.
+          type: boolean
+          default: false
+      required:
+      - type
+      - messages
+    AgentResponse:
+      description: Response containing the complete list of events generated by an
+        agent.
+      type: object
+      properties:
+        events:
+          description: List of all events generated during agent processing.
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentEvent'
+        session_key:
+          $ref: '#/components/schemas/AgentSessionKey'
+          description: The key of the session where these events occurred.
+      required:
+      - events
+      - session_key
+    StreamingAgentOutput:
+      title: StreamingAgentOutput
+      description: A streaming chunk of agent output (SSE only, not stored).
+      type: object
+      properties:
+        type:
+          description: The type of streaming event.
+          type: string
+          default: streaming_agent_output
+          example: streaming_agent_output
+        content:
+          description: The text chunk content.
+          type: string
+          example: Hello, I can help you with
+      required:
+      - type
+      - content
+      x-vectaraParents:
+      - AgentStreamedResponse
+    StreamingAgentOutputEnd:
+      title: StreamingAgentOutputEnd
+      description: Signals the end of streaming agent output (SSE only, not stored).
+      type: object
+      properties:
+        type:
+          description: The type of streaming event.
+          type: string
+          default: streaming_agent_output_end
+          example: streaming_agent_output_end
+      required:
+      - type
+      x-vectaraParents:
+      - AgentStreamedResponse
+    StreamingThinking:
+      title: StreamingThinking
+      description: A streaming chunk of agent thinking (SSE only, not stored).
+      type: object
+      properties:
+        type:
+          description: The type of streaming event.
+          type: string
+          default: streaming_thinking
+          example: streaming_thinking
+        content:
+          description: The thinking chunk content.
+          type: string
+          example: Let me think about this step
+      required:
+      - type
+      - content
+      x-vectaraParents:
+      - AgentStreamedResponse
+    StreamingThinkingEnd:
+      title: StreamingThinkingEnd
+      description: Signals the end of streaming thinking (SSE only, not stored).
+      type: object
+      properties:
+        type:
+          description: The type of streaming event.
+          type: string
+          default: streaming_thinking_end
+          example: streaming_thinking_end
+      required:
+      - type
+      x-vectaraParents:
+      - AgentStreamedResponse
+    AgentStreamedResponse:
+      description: An individual event sent with Server-sent Events (SSE) when the
+        agent response is streamed.
+      type: object
+      discriminator:
+        propertyName: type
+        mapping:
+          streaming_agent_output: '#/components/schemas/StreamingAgentOutput'
+          streaming_agent_output_end: '#/components/schemas/StreamingAgentOutputEnd'
+          streaming_thinking: '#/components/schemas/StreamingThinking'
+          streaming_thinking_end: '#/components/schemas/StreamingThinkingEnd'
+          tool_input: '#/components/schemas/ToolInputEvent'
+          tool_output: '#/components/schemas/ToolOutputEvent'
+          context_limit_exceeded: '#/components/schemas/ContextLimitExceededEvent'
+          error: '#/components/schemas/StreamError'
+          end: '#/components/schemas/StreamResponseEnd'
+      oneOf:
+      - $ref: '#/components/schemas/StreamingAgentOutput'
+      - $ref: '#/components/schemas/StreamingAgentOutputEnd'
+      - $ref: '#/components/schemas/StreamingThinking'
+      - $ref: '#/components/schemas/StreamingThinkingEnd'
+      - $ref: '#/components/schemas/ToolInputEvent'
+      - $ref: '#/components/schemas/ToolOutputEvent'
+      - $ref: '#/components/schemas/ContextLimitExceededEvent'
+      - $ref: '#/components/schemas/StreamError'
+      - $ref: '#/components/schemas/StreamResponseEnd'
