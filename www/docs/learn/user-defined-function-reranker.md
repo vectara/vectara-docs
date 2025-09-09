@@ -138,6 +138,24 @@ this point in the retrieval chain.
 <CodePanel snippets={[{language: "sql", code: `get('\$.score') * get('\$.part_metadata.boost')
 get('\$.document_metadata.reviews[0].score', 0)`}]} title="Code Example" layout="stacked" />
 
+#### Get the full list of scores
+
+The `$.all_scores` function retrieves the entire list of scores for all search 
+results in the current ranking. This is useful because it considers the 
+relevance of results in the overall list.
+
+```sql
+get('$.all_scores')
+```
+#### Get the index of the result
+
+The `$.index` function retrieves the index of a result within its original 
+ranking. This is useful for implementing position-aware adjustments, such as 
+favoring higher-ranked results.
+
+```sql
+get('$.index')
+```
 ## Time functions
 
 The following table lists the available time functions that allow you to 
