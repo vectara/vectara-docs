@@ -20,7 +20,7 @@ A: Yes, a private deployment of Vectara includes the complete feature set:
 - AI Agents framework for autonomous assistants
 - Real-time document processing and indexing
 - Advanced security and compliance features
-- Sub-100ms query response times
+- Enterprise-grade performance and response times
 
 **Q: Can I customize the platform for my specific needs?**  
 A: While the core Vectara platform maintains consistent functionality, private deployment can be customized for:
@@ -58,13 +58,7 @@ A: Yes, private deployment fully supports air-gapped deployments for organizatio
 ## Deployment and implementation
 
 **Q: How long does deployment typically take?**  
-A: Deployment timelines vary based on complexity and requirements:
-- **Simple deployments**: 2-4 weeks from contract to production
-- **Standard enterprise deployments**: 4-8 weeks
-- **Complex or air-gapped deployments**: 8-12 weeks
-- **Proof of concept**: 1-2 weeks
-
-We provide detailed project timelines during the planning phase.
+A: Deployment timelines vary based on complexity and requirements. We provide detailed project timelines during the planning phase tailored to your specific situation.
 
 **Q: Do you handle the installation, or does our team do it?**  
 A: We offer flexible implementation approaches:
@@ -166,7 +160,6 @@ A: Yes, we can arrange reference calls with existing customers who have agreed t
 **Q: What if my question isn't answered here?**  
 A: Contact our enterprise team:
 - **Email**: enterprise@vectara.com
-- **Phone**: 1-800-VECTARA
 - **Web**: [vectara.com/contact-sales](https://vectara.com/contact-sales)
 
 We're happy to answer any specific questions about your use case and requirements.

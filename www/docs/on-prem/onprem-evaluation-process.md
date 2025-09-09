@@ -6,11 +6,15 @@ sidebar_label: Evaluation Process
 
 import CodePanel from '@site/src/theme/CodePanel';
 
-Ready to explore how a private deployment of Vectara can transform your organization's AI capabilities while maintaining complete control over your data and infrastructure?
+Ready to explore how a private deployment of Vectara can transform your 
+organization's AI capabilities while maintaining complete control over your 
+data and infrastructure? [Contact us](https://www.vectara.com/contact-us) and book a demo.
 
 ## Deployment process overview
 
-Deploying a private deployment of Vectara begins with understanding your unique requirements. Our enterprise sales and solutions engineering teams will work closely with you through a structured process:
+Deploying a private deployment of Vectara begins with understanding your 
+unique requirements. Our enterprise sales and solutions engineering teams 
+will work closely with you through a structured process:
 
 ```mermaid
 flowchart LR
@@ -82,16 +86,10 @@ After deployment, we provide:
 - **Best practices guidance**: Optimization recommendations and usage patterns
 - **Training**: Ensure your team can effectively manage and use the platform
 
-## Contact our enterprise team
-
-**Get started:**
-- **Email**: enterprise@vectara.com
-- **Phone**: 1-800-VECTARA
-- **Web**: [vectara.com/contact-sales](https://vectara.com/contact-sales)
-
 ### Information to have ready
 
-When you contact our sales team, please have the following information ready to help us understand your needs:
+When you contact our sales team, please have the following information ready 
+to help us understand your needs:
 
 **Business requirements:**
 - Your industry and specific compliance requirements
@@ -116,19 +114,19 @@ When you contact our sales team, please have the following information ready to 
 
 When you contact our sales team, here's what you can expect:
 
-### Initial consultation (Week 1)
-- **Discovery call**: 30-60 minute call to understand your requirements
+### Initial consultation
+- **Discovery call**: Understanding your requirements
 - **Stakeholder identification**: Identify key technical and business stakeholders  
 - **Use case validation**: Confirm private deployment is the right fit
 - **Next steps planning**: Outline the evaluation and decision process
 
-### Technical deep dive (Week 2-3)
+### Technical deep dive
 - **Solution architecture session**: Detailed technical discussion with our solutions engineers
 - **Requirements documentation**: Formal documentation of your technical and business requirements
-- **Custom proposal**: Tailored proposal including architecture, pricing, and timeline
+- **Custom proposal**: Tailored proposal including architecture and pricing
 - **Reference customer connections**: Speak with similar organizations already using Vectara
 
-### Decision and implementation (Week 4+)
+### Decision and implementation
 - **Contract and procurement**: Work through your procurement and legal processes
 - **Implementation planning**: Detailed project planning and resource allocation
 - **Proof of concept setup** (if applicable): Limited scope deployment for validation
@@ -137,7 +135,7 @@ When you contact our sales team, here's what you can expect:
 ## Frequently asked questions
 
 **Q: How long does the entire process typically take?**  
-A: From initial contact to production deployment, the process typically takes 30-90 days, depending on your requirements, procurement processes, and technical complexity.
+A: The timeline depends on your requirements, procurement processes, and technical complexity. Our team will work with you to establish a realistic timeline during the planning phase.
 
 **Q: Do you provide training for our team?**  
 A: Yes, we provide comprehensive training for both technical administrators and end users to ensure successful adoption of the platform.
@@ -150,8 +148,7 @@ A: Absolutely. Many organizations start with a specific use case or department a
 
 ## Ready to get started?
 
-Don't let data sovereignty concerns prevent you from leveraging the power of AI. Contact our enterprise team today to learn how a private deployment of Vectara can provide cutting-edge AI capabilities while maintaining complete control over your data and infrastructure.
-
----
-
-*A private deployment of Vectara is designed for organizations with specific infrastructure, security, or compliance requirements. Contact our enterprise sales team to determine if a private deployment is the right choice for your organization.*
+Don't let data sovereignty concerns prevent you from leveraging the power of 
+AI. Contact our enterprise team today to learn how a private deployment of 
+Vectara can provide cutting-edge AI capabilities while maintaining complete 
+control over your data and infrastructure.
