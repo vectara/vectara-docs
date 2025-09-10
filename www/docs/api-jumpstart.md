@@ -18,12 +18,12 @@ process. For example, a builder uses this following workflow:
 - Fine-tune a query's lambda and filters until the answer quality is just
   right.
 - Copy the request directly from the Vectara Console and paste it into your IDE.
-- Copy the customer ID and API key from the Vectara Console to further configure
+- Copy the API key from the Vectara Console to further configure
   the request.
 - Test out the software and then verify that requests are hitting your
   corpus by checking the querying graph on the Overview tab.
 
-Let’s get you started with using the <Config v="names.product"/> APIs so that
+Let's get you started with using the <Config v="names.product"/> APIs so that
 you can perform queries on some data.
 
 ## What you will learn
@@ -31,17 +31,46 @@ you can perform queries on some data.
 We'll show you several example API recipes that include queries with some
 values in the parameters, and then display example responses:
 
-- [Search for answers in a corpus](/docs/api-recipes#search-for-answers-in-a-corpus)
-- [Upload a file to the corpus](/docs/api-recipes#upload-a-file-to-the-corpus)
-- [Issue a query and return a specific number of results](/docs/api-recipes#issue-a-query-and-return-a-specific-number-of-results)
-- [List all corpora and delete a specific corpus](/docs/api-recipes#list-all-corpora-and-delete-a-specific-corpus)
+- [Create a corpus](#create-a-corpus)
+- [Search for answers in a corpus](#search-for-answers-in-a-corpus)
+- [Add content to the corpus](#add-content-to-the-corpus)
+- [Issue a query and return a specific number of results](#issue-a-query-and-return-a-specific-number-of-results)
+- [List all corpora and delete a specific corpus](#list-all-corpora-and-delete-a-specific-corpus)
 
-To issue the types of API calls in these recipes, you typically need the
-following information that you can get from the Vectara Console UI:
+To issue the types of API calls in these recipes, you need:
 
-- Customer ID
-- Corpus ID
-- API Key
+- API key
+- Corpus key (you'll create this when setting up your corpus)
+
+### Create a corpus
+
+First, create a corpus to store your searchable documents.
+
+<CodePanel
+  snippets={[
+    {
+      language: 'bash',
+      code: `curl -X POST 'https://api.vectara.io/v2/corpora' \\
+-H 'Content-Type: application/json' \\
+-H 'x-api-key: YOUR_API_KEY' \\
+-d '{
+  "key": "employee-handbook",
+  "name": "Employee Handbook",
+  "description": "Company policies and procedures"
+}'`
+    }
+  ]}
+  title="Create a corpus"
+  annotations={{
+    bash: [
+      { line: 3, text: 'Replace with your API key' },
+      { line: 5, text: 'Unique identifier for your corpus' }
+    ]
+  }}
+  layout="stacked"
+/>
+
+✅ **Corpus created!** Now you can add content and search.
 
 ### Search for answers in a corpus
 
@@ -52,7 +81,7 @@ year?”_
 To issue the cURL command in the example, you input the following
 field values:
 
-- `x-api-key` = `abc_12345defg67890hij09876`
+- `x-api-key` = `YOUR_API_KEY`
 - `corpus_key` = `employee-handbook`
 - `query` = How much PTO is offered to employees each year?
 
@@ -67,7 +96,7 @@ This example queries the corpus with the question about annual PTO.
       code: `curl -L -X POST 'https://api.vectara.io/v2/corpora/employee-handbook/query' \\
 -H 'Content-Type: application/json' \\
 -H 'Accept: application/json' \\
--H 'x-api-key: abc_12345defg67890hij09876' \\
+-H 'x-api-key: YOUR_API_KEY' \\
 -d '{
     "query": "How much PTO is offered to employees each year?",
     "stream_response": false,
@@ -153,18 +182,19 @@ query, such as the language, section, and offset.
 
 Let's take a look at some other API calls that you can make.
 
-### Upload a file to the corpus
+### Add content to the corpus
 
 If you want to add a file to an existing corpus, you can upload a new file with
-a simple command.
+a simple command. Alternatively, if you don't have a file to upload, you can
+index a document directly with text content using the indexing API.
 
 You need to input the following information:
 
 - `x-api-key`
-- `corpus_id`
-- File Path
+- `corpus_key` 
+- File path (for file upload) or document content (for direct indexing)
 
-#### Example cURL command
+#### Option 1: Upload a file
 
 In this example, you have a local `doc.rtf` file that you want to
 upload the corpus with the `corpus_key` as `employee-handbook`:
@@ -177,7 +207,7 @@ upload the corpus with the `corpus_key` as `employee-handbook`:
       code: `curl -L -X POST 'https://api.vectara.io/v2/corpora/employee-handbook/upload_file' \\
 -H 'Content-Type: multipart/form-data' \\
 -H 'Accept: application/json' \\
--H 'x-api-key: abc_12345defg67890hij09876' \\
+-H 'x-api-key: YOUR_API_KEY' \\
 -F 'file=@"//Users/username/Documents/tmp/doc.rtf"'`
     }
   ]}
@@ -200,27 +230,52 @@ The file uploads successfully and you get the following response:
     {
       language: 'json',
       code: `{
-   "response": {
-     "status": {},
-     "quotaConsumed": {
-       "numChars": "60",
-       "numMetadataChars": "148"
-     }
-   },
-   "document": {
-     "documentId": "doc.rtf",
-     "metadataJson": "{\"X-TIKA:Parsed-By\":\"org.apache.tika.parser.microsoft.rtf.RTFParser\",\"Content-Type\":\"application/rtf\"}",
-     "section": [{
-       "id": 1,
-       "text": "Simple test doc\\n\\nLorem ipsum \\nLorem ipsum \\nLorem ipsum \\n "
-     }]
-   }
+  "document": {
+    "id": "doc.rtf",
+    "title": "Sample Document",
+    "sections": [{
+      "id": 1,
+      "text": "Simple test doc. Lorem ipsum dolor sit amet..."
+    }]
+  },
+  "status": "indexed"
 }`
     }]}  
   annotations={{
     json: [
-      { line: 3, text: 'Quota consumption details for the upload.' },
-      { line: 6, text: 'Metadata about the uploaded document.' }
+      { line: 4, text: 'Document identifier and title' },
+      { line: 8, text: 'Extracted and processed content' }
+    ]
+  }}
+  layout="stacked"
+/>
+
+#### Option 2: Index a document directly
+
+If you don't have a file to upload, you can create a document directly with text content:
+
+<CodePanel
+  title="Index Document with Content"
+  snippets={[
+    {
+      language: 'bash',
+      code: `curl -X POST 'https://api.vectara.io/v2/corpora/employee-handbook/documents' \\
+-H 'Content-Type: application/json' \\
+-H 'x-api-key: YOUR_API_KEY' \\
+-d '{
+  "id": "pto-policy",
+  "title": "PTO Policy",
+  "sections": [{
+    "text": "All new employees receive 20 days of PTO annually. Employees earn additional vacation days based on years of service, up to 5 extra days. After 5 years of service, employees have 25 vacation days total."
+  }]
+}'`
+    }
+  ]}
+  annotations={{
+    bash: [
+      { line: 3, text: 'Your API key' },
+      { line: 5, text: 'Document identifier' },
+      { line: 8, text: 'The content to make searchable' }
     ]
   }}
   layout="stacked"
@@ -240,7 +295,7 @@ only the first 50 results.
       code: `curl -L -X POST 'https://api.vectara.io/v2/corpora/technology-corpus/query' \\
 -H 'Content-Type: application/json' \\
 -H 'Accept: application/json' \\
--H 'x-api-key: abc_12345defg67890hij09876' \\
+-H 'x-api-key: YOUR_API_KEY' \\
 -d '{
       "query": "Technology",
       "stream_response": false,
@@ -403,7 +458,7 @@ the name.
   layout="stacked"
 />
 
-2. Execute the following curl command to delete a specific corpus with `corpus_id` = 13.
+2. Execute the following curl command to delete a specific corpus with `corpus_key` = `2025-handbook`.
 
 <CodePanel
   snippets={[
@@ -451,5 +506,16 @@ You get the following response:
 
 This API recipes section provided a variety of query examples that you can leverage
 as you start building with <Config v="names.product"/>.
+
+## What's next?
+
+Now that you've tried the basic API operations, explore more advanced features:
+
+- **[Authentication with OAuth 2.0](/docs/learn/authentication/oauth)** - Set up OAuth for production applications
+- **[File upload formats](/docs/api-reference/indexing-apis/file-upload/supported_file_formats)** - See all supported document types
+- **[Metadata filtering](/docs/learn/metadata-search-filtering/using-metadata-filters)** - Add powerful search filters
+- **[Python SDK](/docs/vectara-python-sdk)** - Use our official Python client library
+
+**Need help?** Visit our [API reference](/docs/api-reference/overview) or check out [GitHub examples](https://github.com/vectara).
 
 
