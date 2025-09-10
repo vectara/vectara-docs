@@ -62,11 +62,11 @@ SaaS offering, packaged for deployment within your controlled environment:
 
 Ready to learn more about a private deployment of Vectara? Explore our detailed documentation:
 
-- **[Use cases & industries](/docs/on-prem/use-cases)** - See who benefits most 
+- **[Use cases & industries](/docs/deployments/use-cases)** - See who benefits most
   from private deployment
-- **[Deployment options](/docs/on-prem/deployment-options)** - Learn about infrastructure 
+- **[Deployment options](/docs/deployments/deployment-options)** - Learn about infrastructure
   flexibility and deployment models
-- **[Evaluation process](/docs/on-prem/onprem-evaluation-process)** - Contact our enterprise 
+- **[Evaluation process](/docs/deployments/onprem-evaluation-process)** - Contact our enterprise
   team to begin your evaluation
-- **[FAQ](/docs/on-prem/faq)** - Get answers to common questions
+- **[FAQ](/docs/deployments/faq)** - Get answers to common questions
 

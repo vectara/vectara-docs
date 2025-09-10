@@ -106,28 +106,26 @@ const sidebars: SidebarsConfig = {
       type: "category",
       label: "Private Deployment",
       link: {
-        type: 'doc',
-        id: "on-prem",
+        type: "doc",
+        id: "deployments",
       },
-      collapsed: true,
       items: [
-        "on-prem/private-deployment-overview",
-        "on-prem/deployment-options",
-        "on-prem/use-cases",
-        "on-prem/onprem-evaluation-process",
-        "on-prem/faq",
+        "deployments/private-deployment-overview",
+        "deployments/deployment-options",
+        "deployments/use-cases",
+        "deployments/onprem-evaluation-process",
+        "deployments/faq",
         {
           type: "category",
           label: "Guides",
           link: {
-            type: 'doc',
-            id: "on-prem/guides",
+            type: "doc",
+            id: "deployments/guides",
           },
-          collapsed: true,
           items: [
-            "on-prem/guides/vectara-okta-oidc",
-          ],
-        },
+            "deployments/guides/vectara-okta-oidc",
+          ]
+        }
       ],
     },
     {
