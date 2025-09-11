@@ -6,36 +6,50 @@ sidebar_label: API Recipes
 
 import CodePanel from '@site/src/theme/CodePanel';
 
-Using our APIs enable application developers and data engineers to seamlessly
-integrate the <Config v="names.product"/> semantic search capabilities into
-your applications. After you review this section, you can
-check out our [API Reference](/docs/rest-api/vectara-rest-api-v-2) to experiment with Vectara's REST APIs directly
-from your browser!
+Build enterprise-grade AI applications with <Config v="names.product"/>'s RAG-as-a-Service platform. Our APIs eliminate the complexity of implementing retrieval-augmented generation from scratch, letting you focus on your application logic instead of ML infrastructure.
 
-The Vectara Console and our APIs work hand-in-hand as part of the app development
-process. For example, a builder uses this following workflow:
+**Why enterprise developers choose Vectara:**
+- **No ML expertise required** - Skip the complexity of embeddings, vector databases, and model training
+- **Production-ready from day one** - Enterprise security, access controls, and compliance built-in
+- **Accurate, grounded responses** - Prevent hallucinations with factual consistency scoring
+- **Cost-effective scaling** - No expensive retraining or fine-tuning needed
 
-- Fine-tune a query's lambda and filters until the answer quality is just
-  right.
-- Copy the request directly from the Vectara Console and paste it into your IDE.
-- Copy the API key from the Vectara Console to further configure
-  the request.
-- Test out the software and then verify that requests are hitting your
-  corpus by checking the querying graph on the Overview tab.
+**Developer workflow:**
+1. Prototype and tune queries in the [Vectara Console](https://console.vectara.com)
+2. Copy working requests directly into your codebase
+3. Deploy with confidence using enterprise-grade infrastructure
 
-Let's get you started with using the <Config v="names.product"/> APIs so that
-you can perform queries on some data.
+Ready to build? The examples below show you how to get started in minutes.
 
 ## What you will learn
 
 We'll show you several example API recipes that include queries with some
 values in the parameters, and then display example responses:
 
-- [Create a corpus](#create-a-corpus)
-- [Search for answers in a corpus](#search-for-answers-in-a-corpus)
-- [Add content to the corpus](#add-content-to-the-corpus)
-- [Issue a query and return a specific number of results](#issue-a-query-and-return-a-specific-number-of-results)
-- [List all corpora and delete a specific corpus](#list-all-corpora-and-delete-a-specific-corpus)
+```mermaid
+flowchart LR
+    A["🗂️ Create Corpus<br/><small>POST /v2/corpora</small>"] --> B["📄 Add Content"]
+    B --> C["📁 Upload Files"]
+    B --> D["📝 Index Documents"]
+    C --> E["🔍 Search Data"]
+    D --> E
+    E --> F["🤖 Get AI Answers"]
+    
+    style A fill:#6366f1,color:#ffffff,stroke:#4f46e5,stroke-width:2px
+    style B fill:#10b981,color:#ffffff,stroke:#059669,stroke-width:2px
+    style C fill:#0ea5e9,color:#ffffff,stroke:#0284c7,stroke-width:2px
+    style D fill:#0ea5e9,color:#ffffff,stroke:#0284c7,stroke-width:2px
+    style E fill:#f59e0b,color:#ffffff,stroke:#d97706,stroke-width:2px
+    style F fill:#8b5cf6,color:#ffffff,stroke:#7c3aed,stroke-width:2px
+```
+
+**What you'll learn to build:**
+
+1. **[Create a corpus](#create-a-corpus)** - Set up your searchable knowledge base with a simple POST request
+2. **[Add content to your corpus](#add-content-to-the-corpus)** - Upload files or index documents directly with text content
+3. **[Search for answers](#search-for-answers-in-a-corpus)** - Query your data and get AI-generated summaries with source citations
+4. **[Advanced search techniques](#issue-a-query-and-return-a-specific-number-of-results)** - Control result limits, add metadata filters, and customize responses
+5. **[Manage your corpora](#list-all-corpora-and-delete-a-specific-corpus)** - List, filter, and delete corpora as your application scales
 
 To issue the types of API calls in these recipes, you need:
 
@@ -71,6 +85,8 @@ First, create a corpus to store your searchable documents.
 />
 
 ✅ **Corpus created!** Now you can add content and search.
+
+---
 
 ### Search for answers in a corpus
 
@@ -182,6 +198,8 @@ query, such as the language, section, and offset.
 
 Let's take a look at some other API calls that you can make.
 
+---
+
 ### Add content to the corpus
 
 If you want to add a file to an existing corpus, you can upload a new file with
@@ -281,6 +299,8 @@ If you don't have a file to upload, you can create a document directly with text
   layout="stacked"
 />
 
+---
+
 ### Issue a query and return a specific number of results
 
 In this query, you want to search for the term "technology" and then return
@@ -378,6 +398,8 @@ only the first 50 results.
   }}
   layout="stacked"
 />
+
+---
 
 ### List all corpora and delete a specific corpus
 
