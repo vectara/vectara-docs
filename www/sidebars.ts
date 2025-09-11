@@ -104,6 +104,32 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: "category",
+      label: "Private Deployment",
+      link: {
+        type: "doc",
+        id: "deployments",
+      },
+      items: [
+        "deployments/private-deployment-overview",
+        "deployments/deployment-options",
+        "deployments/use-cases",
+        "deployments/onprem-evaluation-process",
+        "deployments/faq",
+        {
+          type: "category",
+          label: "Guides",
+          link: {
+            type: "doc",
+            id: "deployments/guides",
+          },
+          items: [
+            "deployments/guides/vectara-okta-oidc",
+          ]
+        }
+      ],
+    },
+    {
+      type: "category",
       label: "Data Management",
       link: {
         type: 'doc',

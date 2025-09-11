@@ -1,0 +1,25 @@
+---
+id: guides
+title: Private deployment guides
+sidebar_label: Guides
+---
+
+import { Grid } from "@site/src/components/ui/Grid";
+import { Spacer } from "@site/src/components/ui/Spacer";
+import { TopicButton } from "@site/src/components/ui/TopicButton";
+
+Step-by-step guides for configuring and integrating your private deployment 
+of Vectara with enterprise systems and identity providers.
+
+<Grid columns={3}>
+  <TopicButton
+    title="Enable SSO using Okta with OIDC"
+    href="/docs/on-prem/guides/vectara-okta-oidc">
+    <Spacer size="l" />
+    Learn how to configure Single Sign-On (SSO) to your Vectara private deployment 
+    using Okta via OpenID Connect.
+    <Spacer size="l" />
+    Includes setup steps, permissions mapping, and configuration examples for 
+    enterprise authentication integration.
+  </TopicButton>
+</Grid>
