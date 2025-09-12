@@ -143,33 +143,33 @@ You can create an agent in the [UI wizard](/docs/console-ui/agents/create-an-age
 Here's how to create a research assistant agent that can search the web for 
 current information. This agent completes the following tasks:
 - Search the web when users ask questions requiring current information
-- Limit search results to 5 for more focused responses  
+- Limit search results to 20 for comprehensive responses  
 - Use a lower temperature (0.3) for more consistent, factual responses
 - Follow instructions to cite sources and admit uncertainty when appropriate
+
+This example requires no corpus setup, making it perfect for immediate testing.
 
 <CodePanel
   title="Create a research assistant agent"
   snippets={[
     {
       language: 'bash',
-      code: `curl -X POST https://api.vectara.io/v2/agents \
-  -H "Authorization: Bearer YOUR_API_KEY" \
-  -H "Content-Type: application/json" \
+      code: `curl -X POST https://api.vectara.io/v2/agents \\
+  -H "Authorization: Bearer YOUR_API_KEY" \\
+  -H "Content-Type: application/json" \\
   -d '{
     "name": "research-assistant",
     "description": "A research assistant that can search the web for current information",
     "tool_configurations": {
       "web_search": {
-        "type": "web_search",
-        "argument_override": {
-          "limit": 20
-        }
+        "type": "web_search"
       }
     },
     "first_step": {
       "type": "conversational",
       "instructions": [{
-        "type": "initial",
+        "type": "inline",
+        "name": "Research Assistant",
         "template": "You are a helpful research assistant. When users ask questions, search the web for current and accurate information. Always cite your sources and be honest if you cannot find reliable information."
       }],
       "output_parser": {
@@ -177,7 +177,7 @@ current information. This agent completes the following tasks:
       }
     },
     "model": {
-      "name": "gpt-4",
+      "name": "gpt-5",
       "parameters": {
         "temperature": 0.3,
         "max_tokens": 1000
@@ -188,18 +188,20 @@ current information. This agent completes the following tasks:
   ]}
   annotations={{
     bash: [
-      { line: 5, text: 'Unique name for the agent' },
+      { line: 1, text: 'Use backslashes for line continuation in bash' },
+      { line: 2, text: 'Replace YOUR_API_KEY with your actual API key' },
+      { line: 5, text: 'Unique name for your agent' },
       { line: 6, text: 'Human-readable description' },
-      { line: 7, text: 'Configuration for available tools' },
-      { line: 8, text: 'Web search tool configuration' },
-      { line: 11, text: 'Limit search results to 5 for focused responses' },
-      { line: 15, text: 'First step defines agent behavior' },
-      { line: 17, text: 'Instructions run before user messages' },
-      { line: 18, text: 'Template with agent personality and guidelines' },
-      { line: 25, text: 'Model configuration' },
-      { line: 26, text: 'Model name (not generation preset)' },
-      { line: 28, text: 'Lower temperature for focused responses' },
-      { line: 29, text: 'Maximum response length' }
+      { line: 8, text: 'Configure available tools' },
+      { line: 9, text: 'Enable web search tool' },
+      { line: 14, text: 'Define conversational behavior' },
+      { line: 16, text: 'Instruction type must be "inline"' },
+      { line: 17, text: 'Name is required for inline instructions' },
+      { line: 18, text: 'Agent personality and guidelines' },
+      { line: 24, text: 'Model configuration' },
+      { line: 25, text: 'Using gpt-5 model' },
+      { line: 27, text: 'Lower temperature for factual responses' },
+      { line: 28, text: 'Maximum response length' }
     ]
   }}
   layout="stacked"

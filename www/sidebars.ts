@@ -317,6 +317,7 @@ const sidebars: SidebarsConfig = {
           },
           items: [
             "console-ui/agents/create-an-agent",
+            "console-ui/agents/use-agents",
             "console-ui/agents/example-agents",
           ],
         },
