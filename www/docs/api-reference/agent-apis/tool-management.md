@@ -19,7 +19,7 @@ The Tool Management APIs handle individual tools available to agents, including 
 - **Corpora search tools**: Query Vectara corpora for relevant content  
 - **MCP tools**: External tools discovered from tool servers
 
-## Tool poperties
+## Tool properties
 - **Name and description**: Human-readable identification
 - **Parameters**: Input schema defining what data the tool accepts
 - **Capabilities**: What actions the tool can perform

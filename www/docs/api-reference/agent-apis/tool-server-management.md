@@ -25,7 +25,7 @@ MCP is a protocol that enables agents to connect to external tools and services:
 - **Authentication support**: Controlled access to external systems
 - **Dynamic discovery**: Tools are discovered and synchronized from servers
 
-## Tool srver capabilities
+## Tool server capabilities
 
 MCP tool servers can provide various external functionalities:
 - **Database access**: Query databases and retrieve structured data

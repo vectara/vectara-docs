@@ -27,7 +27,7 @@ help you:
 
 Here are the key features of the Vectara Open RAG Eval framework:
 
-### Flexible dvaluation metrics
+### Flexible evaluation metrics
 
 - Standard metrics from TREC-RAG benchmark
 - No requirement for "golden chunks" or "golden answers"
