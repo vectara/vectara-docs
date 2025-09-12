@@ -180,6 +180,36 @@ The Personal Key is always allowed anywhere a more restricted key is allowed
 | PATCH | `/v2/app_clients/{app_client_id}` | Update an App Client | IndexService Key, Personal Key |
 | DELETE | `/v2/app_clients/{app_client_id}` | Delete an App Client | Personal Key |
 | POST | `/oauth/token` | Request an access token | Personal Key |
+| POST | `/v2/agents` | Create new agents | IndexService Key, Personal Key |
+| GET | `/v2/agents` | List agents with filtering and pagination | QueryService Key, Personal Key |
+| GET | `/v2/agents/{agent_key}` | Retrieve specific agent configuration | QueryService Key, Personal Key |
+| PATCH | `/v2/agents/{agent_key}` | Update agent configuration | IndexService Key, Personal Key |
+| DELETE | `/v2/agents/{agent_key}` | Remove agents | Personal Key |
+| POST | `/v2/agents/{agent_key}/sessions` | Create agent sessions | IndexService Key, Personal Key |
+| GET | `/v2/agents/{agent_key}/sessions` | List agent sessions | QueryService Key, Personal Key |
+| GET | `/v2/agents/{agent_key}/sessions/{session_key}` | Retrieve session details | QueryService Key, Personal Key |
+| PATCH | `/v2/agents/{agent_key}/sessions/{session_key}` | Update session metadata | IndexService Key, Personal Key |
+| DELETE | `/v2/agents/{agent_key}/sessions/{session_key}` | Remove sessions | Personal Key |
+| POST | `/v2/agents/{agent_key}/sessions/{session_key}/events` | Create conversation events (input only) | IndexService Key, Personal Key |
+| GET | `/v2/agents/{agent_key}/sessions/{session_key}/events` | List session events | QueryService Key, Personal Key |
+| GET | `/v2/agents/{agent_key}/sessions/{session_key}/events/{event_id}` | Retrieve specific events | QueryService Key, Personal Key |
+| POST | `/v2/tool_servers` | Register MCP servers | IndexService Key, Personal Key |
+| GET | `/v2/tool_servers` | List registered servers | QueryService Key, Personal Key |
+| GET | `/v2/tool_servers/{tool_server_id}` | Retrieve server details | QueryService Key, Personal Key |
+| PATCH | `/v2/tool_servers/{tool_server_id}` | Update server configuration | IndexService Key, Personal Key |
+| DELETE | `/v2/tool_servers/{tool_server_id}` | Remove servers | Personal Key |
+| POST | `/v2/tool_servers/{tool_server_id}/sync` | Synchronize server tools | IndexService Key, Personal Key |
+| GET | `/v2/tools` | List available tools | QueryService Key, Personal Key |
+| GET | `/v2/tools/{tool_id}` | Retrieve tool specifications | QueryService Key, Personal Key |
+| PATCH | `/v2/tools/{tool_id}` | Update tool configuration | IndexService Key, Personal Key |
+| DELETE | `/v2/tools/{tool_id}` | Remove tools | Personal Key |
+| POST | `/v2/instructions` | Create behavioral instructions | IndexService Key, Personal Key |
+| GET | `/v2/instructions` | List instructions with filtering | QueryService Key, Personal Key |
+| GET | `/v2/instructions/{instruction_id}` | Retrieve instruction details | QueryService Key, Personal Key |
+| PATCH | `/v2/instructions/{instruction_id}` | Update instruction templates | IndexService Key, Personal Key |
+| DELETE | `/v2/instructions/{instruction_id}` | Remove instructions | Personal Key |
+| POST | `/v2/instructions/{instruction_id}/test` | Test instruction compilation | IndexService Key, Personal Key |
+| DELETE | `/v2/instructions/{instruction_id}/versions/{version}` | Remove specific instruction versions | Personal Key |
 
 ## Create an API key
 
@@ -202,7 +232,7 @@ header request.
   ]
 }>
 <TabItem value="py">
-<CodePanel snippets={[{language: "text", code: `{\`
+<CodePanel snippets={[{language: "py", code: `{\`
 api_key_header = {
     "x-api-key": API_KEY
 }
@@ -232,7 +262,7 @@ response = requests.post(
 </TabItem>
 <TabItem value="js">
 
-<CodePanel snippets={[{language: "text", code: `{\`
+<CodePanel snippets={[{language: "js", code: `{\`
 fetch("https://\${vars['domains.rest.serving']}:443/v2/query", {
   headers: {
     "Content-Type": "application/json",
@@ -257,7 +287,7 @@ fetch("https://\${vars['domains.rest.serving']}:443/v2/query", {
 \`}`}]} title="Code Example" layout="stacked" />
 </TabItem>
 <TabItem value="curl">
-<CodePanel snippets={[{language: "text", code: `{\`
+<CodePanel snippets={[{language: "curl", code: `{\`
 curl -X POST \\\\
   -H "x-api-key: \\\${API_KEY}" \\\\
   -H "customer-id: \\\${CUSTOMER_ID}" \\\\

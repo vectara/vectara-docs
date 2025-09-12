@@ -66,13 +66,6 @@ The `generation_preset_name` is specified in the `generation` object of a [**que
 Excluding this `generation` field disables summarization.
 :::
 
-:::caution
-The Vectara trial includes access to all GPT4-based generation presets. After 
-the trial ends and you upgrade your plan, you can purchase separate GPT4 
-bundles or bring your own API key. Vectara bundles offer the advantage of 
-HIPAA compliance.
-:::
-
 ## Currently available generation presets
 
 Vectara provides several official generation presets to our users that you 
@@ -104,6 +97,8 @@ These prompts will soon be deprecated:
 Customers also have access to [advanced summarization customization options](/docs/api-reference/search-apis/search#advanced-summarization-customization-options) 
 including [custom prompt templates](/docs/prompts/vectara-prompt-engine), character limits, 
 temperature, and frequency and presence penalties.
+
+For detailed information about selecting and configuring models, including use case recommendations and integration options, see [Model Selection](/docs/learn/grounded-generation/model-selection).
 
 :::tip
 Check out our [**interactive API Reference**](/docs/rest-api/query) that lets you experiment

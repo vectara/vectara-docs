@@ -9,32 +9,52 @@ import CodePanel from '@site/src/theme/CodePanel';
 
 Organizations often need to integrate multiple Large Language Models (LLMs) 
 from different providers to optimize cost, performance, or compliance. 
-Vectara’s Bring Your Own LLM (BYO-LLM) capability allows seamless integration 
-of third-party LLMs—including OpenAI, Anthropic, Google, and other 
-OpenAI-compatible models—into Vectara's AI stack.
+Vectara's Bring Your Own LLM (BYO-LLM) capability enables seamless integration 
+of third-party LLMs into Vectara's AI stack, supporting OpenAI-compatible 
+models, resposes API for reasoning models, and Google Cloud Vertex AI.
 
 By configuring LLMs with the Create LLM API, you can enhance flexibility in 
 how Vectara generates summaries, answers, and content, leveraging your 
 preferred LLM infrastructure while retaining full compatibility with Vectara's 
-powerful RAG workflows.
+powerful RAG workflows. 
+
+For example, models like GPT-5, Claude Sonnet, and Opus excel at generating 
+code and technical content as part of your text responses. In your 
+applications, you could use advanced models to generate code within Vectara 
+responses, while leveraging multimodal models' image generation capabilities 
+through separate API calls.
 
 ## Define a custom LLM configuration
 
 The integration relies on defining a custom LLM configuration with the 
-[Create LLM](/docs/api-reference/llms-apis/create-llm) endpoint. The following table provides 
-the custom LLM configuration fields:
+[Create LLM](/docs/api-reference/llms-apis/create-llm) endpoint. Vectara supports three LLM types:
+
+### Supported LLM Types
+
+| Type | Description | Use For |
+| --- | --- | --- |
+| `openai-compatible` | OpenAI-style APIs | OpenAI, Anthropic Claude, Azure OpenAI |
+| `openai-responses` | OpenAI Responses API | Reasoning models (o1, o3) |
+| `vertex-ai` | Google Cloud Vertex AI | Gemini models |
+
+After you enter the `type`, continue with the remaining configuration fields:
+
+### Configuration Fields
 
 | Field | Description |
 | --- | --- |
-| `type`                  | Set to `openai-compatible` to indicate compatibility with OpenAI-style APIs. |
-| `name`                  | User-defined label for the LLM configuration. |  |
-| `description`           | (Optional) Metadata or notes about the model. |  |
-| `model`                 | Specific model version (`gpt-4`, `claude-3-7-sonnet-20250219`) |  |
-| `uri`                   | The API endpoint used to send LLM requests. For example, `https://api.anthropic.com/v1/chat/completions`|  |
-| `auth`                  | Authentication object (bearer token or custom header auth). |  |
-| `test_model_parameters` | (Optional) Test parameters to validate the configuration (`max_tokens`) |  |
+| `type` | One of the following: `openai-compatible`, `openai-responses`, or `vertex-ai` |
+| `name` | User-defined label for the LLM (referenced in queries) |
+| `description` | (Optional) Metadata or notes about the model |
+| `model` | Specific model version (`gpt-4`, `claude-3.5-sonnet`, `gemini-2.5-flash`) |
+| `uri` | The API endpoint URL |
+| `auth` | Authentication configuration (varies by type) |
+| `headers` | (Optional) Additional HTTP headers for the API |
+| `test_model_parameters` | (Optional) Test parameters to validate the configuration |
 
-## Custom LLM examples
+## Add custom LLM examples
+
+Here are some examples for Anthropic, OpenAI, and Google LLMs.
 
 ### Add Anthropic Claude 3.7 Sonnet
 
@@ -52,7 +72,7 @@ the custom LLM configuration fields:
      "value": "sk-ant-......"
     },
    "test_model_parameters": {
-     "max_tokens": 256
+     "max_tokens": 512
    }
 }`
 }]} title="Request Example" layout="stacked" />
@@ -75,7 +95,7 @@ the custom LLM configuration fields:
     "value": "sk-ant-..."
    },
    "test_model_parameters": {
-     "max_tokens": 256
+     "max_tokens": 512
    }
 }`
 }]} title="Claude Example" layout="stacked" />
@@ -108,32 +128,72 @@ the custom LLM configuration fields:
     "value": "Bearer sk-..."
    },
   "test_model_parameters": {
-    "max_tokens": 256
+    "max_tokens": 512
    }
 }'`
 }]} title="GPT-4o Mini Example" layout="stacked" />
 
-## Add Google Gemini 2.0 Flash
+## Add Google Gemini (Vertex AI)
+
+### Using API Key Authentication
 
 <CodePanel snippets={[{language: "json", code: `curl -L -X POST 'https://api.vectara.io/v2/llms' \\
 -H 'Content-Type: application/json' \\
 -H 'Accept: application/json' \\
--H 'x-api-key: zut_...' \\
+-H 'x-api-key: YOUR-VECTARA-API-KEY' \\
 --data-raw '{
-  "type": "openai-compatible",
-  "name": "Google Gemini 2.0 Flash",
-  "description": "Google 2.0 Flash",
-  "model": "gemini-2.0-flash",
-  "uri": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+  "type": "vertex-ai",
+  "name": "Gemini 2.5 Flash",
+  "description": "Google Gemini 2.5 Flash model",
+  "model": "gemini-2.5-flash",
+  "uri": "https://aiplatform.googleapis.com/v1/projects/YOUR-PROJECT-ID/locations/us-central1",
   "auth": {
-    "type": "header",
-    "header": "Authorization",
-    "value": "Bearer AI..."
+    "type": "api_key",
+    "api_key": "YOUR-GOOGLE-CLOUD-API-KEY"
    },
    "test_model_parameters": {
-     "max_tokens": 256
+     "max_tokens": 512
    }
 }'`}]} title="Google Gemini Example" layout="stacked" />
+
+### Using Service Account Authentication
+
+<CodePanel snippets={[{language: "json", code: `curl -L -X POST 'https://api.vectara.io/v2/llms' \\
+-H 'Content-Type: application/json' \\
+-H 'Accept: application/json' \\
+-H 'x-api-key: YOUR-VECTARA-API-KEY' \\
+--data-raw '{
+  "type": "vertex-ai",
+  "name": "Gemini 2.5 Pro",
+  "description": "Google Gemini 2.5 Pro model",
+  "model": "gemini-2.5-pro",
+  "uri": "https://aiplatform.googleapis.com/v1/projects/YOUR-PROJECT-ID/locations/us-central1",
+  "auth": {
+    "type": "service_account",
+    "key_json": "{\\"type\\":\\"service_account\\",\\"project_id\\":\\"YOUR-PROJECT\\",\\"private_key\\":\\"-----BEGIN PRIVATE KEY-----\\\\n...\\\\n-----END PRIVATE KEY-----\\\\n\\"}"
+   }
+}'`}]} title="Service Account Example" layout="stacked" />
+
+## Add OpenAI Reasoning Models (o1, o3)
+
+<CodePanel snippets={[{language: "json", code: `curl -L -X POST 'https://api.vectara.io/v2/llms' \\
+-H 'Content-Type: application/json' \\
+-H 'Accept: application/json' \\
+-H 'x-api-key: YOUR-VECTARA-API-KEY' \\
+--data-raw '{
+  "type": "openai-responses",
+  "name": "o1-preview",
+  "description": "OpenAI o1 Preview reasoning model",
+  "model": "o1-preview",
+  "uri": "https://api.openai.com/v1/chat/completions",
+  "auth": {
+    "type": "bearer",
+    "token": "sk-..."
+   },
+   "test_model_parameters": {
+     "max_tokens": 512
+   }
+}'`}]} title="OpenAI o1 Example" layout="stacked" />
 ## Verify your configuration
 
 To confirm your model was added successfully:

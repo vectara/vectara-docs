@@ -257,7 +257,7 @@ Users also have access to [advanced summarization customization options](/docs/a
 ## Generation Presets
 
 The `generation-preset-name` field in `generation` object specifies the prompt 
-template to use. Generation presets bundle several properties that configure 
+template to use. Generation presets combine several properties that configure 
 generation for the request, providing more flexibility in how parameters are 
 set. The preset includes the `prompt_template`, the `llm_name`, and other settings 
 like `max_tokens` and `temperature`.

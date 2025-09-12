@@ -79,6 +79,8 @@ through the Model Context Protocol (MCP). They are defined by:
 - Runtime availability (enabled/disabled)
 - Created and updated timestamps
 
+The [Tool Management APIs](./tool-management) handle individual tools available to agents, including both built-in tools and those discovered from MCP tool servers.
+
 ### Available tools
 
 The following tools are available in the tech preview of the Agents APIs:
@@ -98,6 +100,8 @@ agents reason and respond. They use Velocity templating for dynamic content:
 - Metadata for categorization and governance
 - Enabled status for availability control
 - Created and updated timestamps
+
+The [Instruction Management APIs](./instruction-management) handle individual instructions available to agents.
 
 Instructions can be referenced by agents using their ID and optional version, 
 or defined inline within agent configuration. They support enterprise 
@@ -168,16 +172,16 @@ The Agents APIs follow RESTful patterns with clear resource hierarchies:
 - [`POST /v2/tool_servers/{tool_server_id}/sync`](tool-server/sync-tool-server) - Synchronize server tools
 
 ### Tool Management
-- `GET /v2/tools` - List available tools
-- `GET /v2/tools/{tool_id}` - Retrieve tool specifications
-- `PATCH /v2/tools/{tool_id}` - Update tool configuration
-- `DELETE /v2/tools/{tool_id}` - Remove tools
+- [`GET /v2/tools`](tool/list-tools) - List available tools
+- [`GET /v2/tools/{tool_id}`](tool/get-tool) - Retrieve tool specifications
+- [`PATCH /v2/tools/{tool_id}`](tool/update-tool) - Update tool configuration
+- [`DELETE /v2/tools/{tool_id}`](tool/delete-tool) - Remove tools
 
 ### Instruction Management
-- `POST /v2/instructions` - Create behavioral instructions
-- `GET /v2/instructions` - List instructions with filtering
-- `GET /v2/instructions/{instruction_id}` - Retrieve instruction details
-- `PATCH /v2/instructions/{instruction_id}` - Update instruction templates
-- `DELETE /v2/instructions/{instruction_id}` - Remove instructions
-- `POST /v2/instructions/{instruction_id}/test` - Test instruction compilation
-- `DELETE /v2/instructions/{instruction_id}/versions/{version}` - Remove specific instruction versions
+- [`POST /v2/instructions`](instruction/create-instruction) - Create behavioral instructions
+- [`GET /v2/instructions`](instruction/list-instructions) - List instructions with filtering
+- [`GET /v2/instructions/{instruction_id}`](instruction/get-instruction) - Retrieve instruction details
+- [`PATCH /v2/instructions/{instruction_id}`](instruction/update-instruction) - Update instruction templates
+- [`DELETE /v2/instructions/{instruction_id}`](instruction/delete-instruction) - Remove instructions
+- [`POST /v2/instructions/{instruction_id}/test`](instruction/test-instruction) - Test instruction compilation
+- [`DELETE /v2/instructions/{instruction_id}/versions/{version}`](instruction/delete-instruction-version) - Remove specific instruction versions

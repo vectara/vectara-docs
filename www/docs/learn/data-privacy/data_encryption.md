@@ -24,8 +24,7 @@ own encryption key to encrypt your data (text and/or metadata).
 
 :::
 
-[Pro and Enterprise accounts](https://vectara.com/pricing/) <Config v="names.product"/>
-can use their own AWS KMS encryption key so that you have full
+Use your own AWS KMS encryption key so that you have full
 control over how your data is encrypted. If you would like to do so, follow
 the instructions below.
 
@@ -45,8 +44,9 @@ depending on that key will be inaccessible forever.
 :::
 
 ## Create your AWS KMS key
-KMS keys are only available to Pro and Enterprise plan accounts. If you need 
-help with setting up your customer-managed key, [reach out to support](https://vectara.com/contact-us/).
+
+If you need help with setting up your customer-managed key, 
+[reach out to support](https://vectara.com/contact-us/).
 
 To create an AWS KMS key:
 1. Go to KMS on the AWS Console

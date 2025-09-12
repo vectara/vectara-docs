@@ -117,7 +117,7 @@ may optionally speciify a `title`, `description`, and `metadata`. The core of
 the document is also structured in `sections` that can include unique
 identifiers, titles, strings, metadata, and so on.
 
-The `custom_dimensions` (Pro and Enterprise only) field provides default values 
+The `custom_dimensions` field provides default values 
 for the corresponding section fields, should they fail to define them 
 explicitly. Most importantly, `section` defines the actual textual matter. 
 Documents can also have multiple sections.
@@ -172,7 +172,7 @@ The part metadata, held in `metadata_json`, is returned in search query
 results. It can contain, for example, information that links the item to records
 in other systems.
 
-For Pro and Enterprise users, the `custom_dimensions` allows you to specify 
+The `custom_dimensions` allows you to specify 
 additional factors that can be used at query time to control the ranking of 
 results. The custom dimensions must be defined ahead of time for the corpus, 
 or else they'll be ignored.

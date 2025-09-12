@@ -22,12 +22,27 @@ data and leverage our advanced search capabilities. This flexible approach
 allows for the precise integration of Vectara’s search functionalities into 
 different applications.
 
-## Vectara Ingest: sample data ingestion framework
+## Vectara Ingest: open-source data ingestion framework
 
-Getting data into Vectara is simple using either our REST or gRPC APIs. We 
-built a full sample ingestion framework ready to go with [Vectara Ingest](https://github.com/vectara/vectara-ingest), which 
-includes preconfigured templates that enable you to pull data from many 
-popular data sources such as websites and RSS feeds.
+Getting data into Vectara is simple using either our UI or APIs. For 
+customers who need to ingest data from various sources or require support for 
+additional file types beyond those officially supported, we provide 
+[Vectara Ingest](https://github.com/vectara/vectara-ingest), an open-source 
+Python framework with preconfigured templates for many popular data sources.
+
+Vectara Ingest enables ingestion from:
+- Websites and RSS feeds
+- Enterprise platforms (SharePoint, Confluence, ServiceNow, HubSpot)
+- Collaboration tools (Slack, Notion, Jira)
+- Social media (Twitter/X, YouTube)
+- Databases and structured data (CSV)
+- And many more sources
+
+:::caution Important
+Vectara Ingest is an open-source project provided without official support. 
+For production use cases requiring support, we recommend using the officially 
+supported APIs as described below.
+:::
 
 ## Data ingestion with the indexing APIs
 
@@ -54,6 +69,14 @@ any other kind of JSON to the indexing endpoint will cause it to error out.
   
 We recommend this option if you have not written your own extraction logic 
 already.
+
+The File Upload API supports a comprehensive set of document formats including 
+PDF, Microsoft Office files, HTML, Markdown, and more. For a complete list of 
+supported file types, see [Supported File Types](/docs/api-reference/indexing-apis/file-upload/supported-file-types).
+
+For file types not officially supported or for ingestion from various data 
+sources, consider using the open-source [Vectara Ingest](https://github.com/vectara/vectara-ingest) 
+framework, which provides extended capabilities at your own discretion.
 
 ## Index document API
   
@@ -124,3 +147,38 @@ over how the platform splits the document. We recommend trying 3–7 sentences
 per chunk, which is about 512–1024 characters. This may be ideal for balancing 
 retrieval latency and context preservation
 
+## Choosing the right ingestion method
+
+When deciding how to ingest your data into Vectara, consider these options:
+
+### For officially supported file types
+
+Use the **File Upload API** if you have:
+- Standard document formats (PDF, Word, PowerPoint, HTML, etc.)
+- Documents that don't require custom preprocessing
+- Need for reliable, supported ingestion
+
+### For structured data
+
+Use the **Index Document API** with `structured` type if you have:
+- Data with clear hierarchical structure
+- Content from databases or APIs
+- Documents that need custom sectioning
+
+### For advanced control
+
+Use the **Index Document API** with `core` type if you need:
+- Precise control over chunking
+- Custom embeddings or dimensions
+- Fine-tuned retrieval optimization
+
+### For extended capabilities
+
+Consider **Vectara Ingest** (open-source) if you need:
+- Support for data sources not covered by official APIs
+- Advanced document processing (OCR, table extraction)
+- Integration with enterprise platforms
+- Batch processing from multiple sources
+
+Evaluate your support requirements when choosing between official 
+APIs and the open-source framework.

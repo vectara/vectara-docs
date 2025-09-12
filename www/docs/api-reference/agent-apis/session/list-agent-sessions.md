@@ -4,6 +4,8 @@ title: List Agent Sessions API Definition
 sidebar_label: List Agent Sessions API Definition
 ---
 
+import CodePanel from '@site/src/theme/CodePanel';
+
 # List Agent Sessions API Definition
 
 The List Agent Sessions API enables you to retrieve a paginated collection of conversational sessions associated with a specific AI agent, providing essential visibility into agent usage patterns, active conversations, and session management across your enterprise deployment. This API supports operational monitoring, user analytics, and administrative oversight of agent interactions.
@@ -29,8 +31,12 @@ GET /v2/agents/agt_customer_support/sessions?limit=25&enabled=true
 
 ### Example Response
 
-```json
-{
+<CodePanel
+  title="List Agent Sessions Response"
+  snippets={[
+    {
+      language: 'json',
+      code: `{
   "sessions": [
     {
       "id": "ase_customer_support_001",
@@ -76,8 +82,10 @@ GET /v2/agents/agt_customer_support/sessions?limit=25&enabled=true
     "page_key": "eyJzZXNzaW9uX2lkIjoiYXNlX2N1c3RvbWVyX3N1cHBvcnRfMDAzIn0=",
     "total_count": 127
   }
-}
-```
+}`
+    }]}
+  layout="stacked"
+/>
 
 ## Error Responses
 

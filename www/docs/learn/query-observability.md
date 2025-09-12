@@ -38,7 +38,20 @@ a selected corpus.
 Use this table to inspect query details, mark queries for special 
 consideration, and annotate them with comments. The table lists each query ID, 
 the time of the query, the mode (such as Summary), the query text, query 
-response, latency, and any errors. 
+response, **latency in milliseconds**, and any errors.
+
+### Performance monitoring capabilities
+
+Query observability provides the following performance tracking:
+
+* **Total query latency**: Measured in milliseconds for each query
+* **Component-level latency**: Detailed breakdown by pipeline stage:
+  - Search span latency
+  - Rerank span latency  
+  - Generation span latency
+  - Factual consistency score span latency
+* **Query timestamps**: Precise `started_at` and `completed_at` times
+* **Historical trends**: Performance analysis over time with the query history API 
 
 ![Query histories](/img/query-histories.png)
 
