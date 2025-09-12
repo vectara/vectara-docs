@@ -4,6 +4,8 @@ title: Get Agent API Definition
 sidebar_label: Get Agent API Definition
 ---
 
+import CodePanel from '@site/src/theme/CodePanel';
+
 # Get Agent API Definition
 
 The Get Agent API enables you to retrieve the complete configuration and operational details of a specific AI agent, providing comprehensive visibility into agent capabilities, tool integrations, behavioral instructions, and metadata. This API is essential for agent debugging, configuration auditing, and understanding agent behavior during development and production operations.
@@ -26,8 +28,12 @@ GET /v2/agents/agt_customer_support_001
 
 ### Example Response
 
-```json
-{
+<CodePanel
+  title="Get Agent Response"
+  snippets={[
+    {
+      language: 'json',
+      code: `{
   "id": "agt_customer_support_001",
   "name": "Customer Support Agent",
   "description": "AI agent specialized in handling customer support inquiries using company documentation and support tools",
@@ -72,7 +78,7 @@ GET /v2/agents/agt_customer_support_001
         "type": "inline",
         "name": "Session Context",
         "template_type": "velocity",
-        "template": "Current session priority: ${session.priority}. Handle accordingly."
+        "template": "Current session priority: \${session.priority}. Handle accordingly."
       }
     ],
     "output_parser": {
@@ -88,8 +94,10 @@ GET /v2/agents/agt_customer_support_001
   "enabled": true,
   "created_at": "2024-01-15T10:30:00Z",
   "updated_at": "2024-01-16T14:45:00Z"
-}
-```
+}`
+    }]}
+  layout="stacked"
+/>
 
 ## Error Responses
 

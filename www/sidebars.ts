@@ -206,6 +206,7 @@ const sidebars: SidebarsConfig = {
         "agents/tools",
         "agents/instructions",
         "agents/sessions",
+        "agents/agents-quickstart",
       ],
     },
     {
@@ -579,6 +580,10 @@ const sidebars: SidebarsConfig = {
             {
               type: 'category',
               label: 'Agent Management APIs',
+              link: {
+                type: 'doc',
+                id: 'api-reference/agent-apis/agent-management',
+              },
               collapsed: false,
               items: [
                 "api-reference/agent-apis/create-agent",
@@ -591,6 +596,10 @@ const sidebars: SidebarsConfig = {
             {
               type: 'category',
               label: 'Session Management APIs',
+              link: {
+                type: 'doc',
+                id: 'api-reference/agent-apis/session-management',
+              },
               collapsed: false,
               items: [
                 "api-reference/agent-apis/session/create-agent-session",
@@ -603,6 +612,10 @@ const sidebars: SidebarsConfig = {
             {
               type: 'category',
               label: 'Event Management APIs',
+              link: {
+                type: 'doc',
+                id: 'api-reference/agent-apis/event-management',
+              },
               collapsed: false,
               items: [
                 "api-reference/agent-apis/event/create-agent-event",
@@ -613,6 +626,10 @@ const sidebars: SidebarsConfig = {
             {
               type: 'category',
               label: 'Tool Server Management APIs',
+              link: {
+                type: 'doc',
+                id: 'api-reference/agent-apis/tool-server-management',
+              },
               collapsed: false,
               items: [
                 "api-reference/agent-apis/tool-server/create-tool-server",
@@ -626,6 +643,10 @@ const sidebars: SidebarsConfig = {
             {
               type: 'category',
               label: 'Tool Management APIs',
+              link: {
+                type: 'doc',
+                id: 'api-reference/agent-apis/tool-management',
+              },
               collapsed: false,
               items: [
                 "api-reference/agent-apis/tool/list-tools",
@@ -637,6 +658,10 @@ const sidebars: SidebarsConfig = {
             {
               type: 'category',
               label: 'Instruction Management APIs',
+              link: {
+                type: 'doc',
+                id: 'api-reference/agent-apis/instruction-management',
+              },
               collapsed: false,
               items: [
                 "api-reference/agent-apis/instruction/create-instruction",
