@@ -1,7 +1,7 @@
 ---
 id: delete-agent-session
 title: Delete Agent Session API Definition
-sidebar_label: Delete Agent Session API Definition
+sidebar_label: Delete Agent Session
 ---
 
 # Delete Agent Session API Definition

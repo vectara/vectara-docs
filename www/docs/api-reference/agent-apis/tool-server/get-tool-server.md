@@ -1,7 +1,7 @@
 ---
 id: get-tool-server
 title: Get Tool Server API Definition
-sidebar_label: Get Tool Server API Definition
+sidebar_label: Get Tool Server
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';

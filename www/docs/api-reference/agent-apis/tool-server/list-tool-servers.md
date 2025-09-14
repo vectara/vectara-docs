@@ -1,7 +1,7 @@
 ---
 id: list-tool-servers
 title: List Tool Servers API Definition
-sidebar_label: List Tool Servers API Definition
+sidebar_label: List Tool Servers
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';

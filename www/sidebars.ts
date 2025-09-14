@@ -591,6 +591,7 @@ const sidebars: SidebarsConfig = {
                 "api-reference/agent-apis/list-agents",
                 "api-reference/agent-apis/get-agent",
                 "api-reference/agent-apis/update-agent",
+                "api-reference/agent-apis/replace-agent",
                 "api-reference/agent-apis/delete-agent"
               ]
             },
@@ -654,6 +655,23 @@ const sidebars: SidebarsConfig = {
                 "api-reference/agent-apis/tool/get-tool",
                 "api-reference/agent-apis/tool/update-tool",
                 "api-reference/agent-apis/tool/delete-tool",
+              ]
+            },
+            {
+              type: 'category',
+              label: 'Tool Configuration Management APIs',
+              link: {
+                type: 'doc',
+                id: 'api-reference/agent-apis/tool-configuration-management',
+              },
+              collapsed: false,
+              items: [
+                "api-reference/agent-apis/tool-configuration/create-tool-configuration",
+                "api-reference/agent-apis/tool-configuration/list-tool-configurations",
+                "api-reference/agent-apis/tool-configuration/get-tool-configuration",
+                "api-reference/agent-apis/tool-configuration/update-tool-configuration",
+                "api-reference/agent-apis/tool-configuration/delete-tool-configuration",
+                "api-reference/agent-apis/tool-configuration/delete-tool-configuration-version",
               ]
             },
             {

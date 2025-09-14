@@ -1,7 +1,7 @@
 ---
 id: update-agent-session
 title: Update Agent Session API Definition
-sidebar_label: Update Agent Session API Definition
+sidebar_label: Update Agent Session
 ---
 
 # Update Agent Session API Definition

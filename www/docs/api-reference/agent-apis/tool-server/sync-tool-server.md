@@ -1,7 +1,7 @@
 ---
 id: sync-tool-server
 title: Sync Tool Server API Definition
-sidebar_label: Sync Tool Server API Definition
+sidebar_label: Sync Tool Server
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';

@@ -1,7 +1,7 @@
 ---
 id: list-agent-events
 title: List Agent Events API Definition
-sidebar_label: List Agent Events API Definition
+sidebar_label: List Agent Events
 ---
 
 # List Agent Events API Definition

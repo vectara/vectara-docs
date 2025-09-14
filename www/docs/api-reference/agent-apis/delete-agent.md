@@ -1,7 +1,7 @@
 ---
 id: delete-agent
 title: Delete Agent API Definition
-sidebar_label: Delete Agent API Definition
+sidebar_label: Delete Agent
 ---
 
 # Delete Agent API Definition

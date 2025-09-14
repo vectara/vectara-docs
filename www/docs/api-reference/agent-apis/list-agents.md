@@ -1,7 +1,7 @@
 ---
 id: list-agents
 title: List Agents API Definition
-sidebar_label: List Agents API Definition
+sidebar_label: List Agents
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';

@@ -1,7 +1,7 @@
 ---
 id: update-agent
 title: Update Agent API Definition
-sidebar_label: Update Agent API Definition
+sidebar_label: Update Agent
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';

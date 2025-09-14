@@ -1,7 +1,7 @@
 ---
 id: get-agent
 title: Get Agent API Definition
-sidebar_label: Get Agent API Definition
+sidebar_label: Get Agent
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';

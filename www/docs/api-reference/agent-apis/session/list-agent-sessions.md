@@ -1,7 +1,7 @@
 ---
 id: list-agent-sessions
 title: List Agent Sessions API Definition
-sidebar_label: List Agent Sessions API Definition
+sidebar_label: List Agent Sessions
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';

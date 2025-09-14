@@ -1,7 +1,7 @@
 ---
 id: update-tool
 title: Update Tool API Definition
-sidebar_label: Update Tool API Definition
+sidebar_label: Update Tool
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';
