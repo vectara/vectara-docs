@@ -23,7 +23,7 @@ creation to having a conversation. Here is some information about using agents:
 The agent workflow follows these steps:
 
 1. **Create an agent** - Configure your AI assistant with tools and instructions.
-2. **Create a session** - Start a conversation context for message history  .
+2. **Create a session** - Start a conversation context for message history.
 3. **Send messages** - Chat with the agent through the session.
 
 Let's walk through each step with working examples.
@@ -62,7 +62,7 @@ For your first agent, we recommend using the Console UI. If you need more
 detailed UI instructions, see [Create an Agent](/docs/console-ui/agents/create-an-agent).
 
 1. Navigate to **Agents** in the sidebar.
-2. Click **Add Agent** .
+2. Click **Add Agent**.
 3. Configure each step:
    - **General**: Name: `research-assistant` and description: `A research assistant that can search the web for current information`
    - **Model**: Select `gpt-5`, and set `{"temperature":0.3}` for factual responses
@@ -343,7 +343,7 @@ curl -X POST https://api.vectara.io/v2/agents/$AGENT_KEY/sessions/$SESSION_KEY/e
 ## Test your agent with the console UI
 
 1. In the agent details page, click the **Chat** tab.
-2. Try asking: `"What are the main benefits of solar energy?"`
+2. Try asking: `"What are the main benefits of solar energy for average Texas homes?"`
 3. You should see the agent search the web and provide a cited response.
 
 ### Expected response

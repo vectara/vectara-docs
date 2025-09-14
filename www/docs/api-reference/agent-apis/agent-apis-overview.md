@@ -75,7 +75,7 @@ through the Model Context Protocol (MCP). They are defined by:
 - An input schema describing accepted parameters (in JSON Schema format)
 - MCP server association through server_id
 - Optional annotations providing behavioral hints (read_only, destructive, 
-- idempotent, open_world)
+  idempotent, open_world)
 - Runtime availability (enabled/disabled)
 - Created and updated timestamps
 
