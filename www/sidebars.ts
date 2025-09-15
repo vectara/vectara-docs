@@ -82,12 +82,17 @@ const sidebars: SidebarsConfig = {
         {
           type: "doc",
           id: "quickstart",
-          label: "Quick Start",
+          label: "Console Quick Start",
         },
         {
           type: "doc",
           id: "api-recipes",
-          label: "API Recipes",
+          label: "API Quick Start",
+        },
+        {
+          type: "doc",
+          id: "agents/agents-quickstart",
+          label: "Agents Quick Start",
         },
         {
           type: "doc",
@@ -137,6 +142,7 @@ const sidebars: SidebarsConfig = {
       },
       items: [
         "learn/select-ideal-indexing-api",
+        "api-reference/indexing-apis/file-upload/file-upload-filetypes",
         "data-management/data-egress",
         {
           type: "category",
@@ -170,6 +176,7 @@ const sidebars: SidebarsConfig = {
         "learn/enable-keyword-text-matching",
         "search-and-retrieval/fuzzy-metadata-search",
         "search-and-retrieval/intelligent-query-rewriting",
+        "search-and-retrieval/citations",
         "learn/querying-table-data",
         "learn/semantic-search/enable-pagination",
         "learn/recommendation-systems/recommender-overview",
@@ -200,6 +207,7 @@ const sidebars: SidebarsConfig = {
       },
       items: [
         "learn/mockingbird-llm",
+        "learn/grounded-generation/model-selection",
         "learn/grounded-generation/select-a-summarizer",
         {
           type: "category",
@@ -280,6 +288,7 @@ const sidebars: SidebarsConfig = {
       label: "Build Applications",
       items: [
         "build-apps/app-building",
+        "build-apps/open-eval-framework",
         "build-apps/vectara-ingest",
         "build-apps/react-search",
         "build-apps/create-ui",
@@ -338,6 +347,7 @@ const sidebars: SidebarsConfig = {
           },
           items: [
             "console-ui/agents/create-an-agent",
+            "console-ui/agents/use-agents",
             "console-ui/agents/example-agents",
           ],
         },
@@ -448,7 +458,6 @@ const sidebars: SidebarsConfig = {
           label: "File Upload APIs",
           items: [
             "api-reference/indexing-apis/file-upload/file-upload",
-            "api-reference/indexing-apis/file-upload/file-upload-filetypes",
           ],
         },
         {
@@ -602,18 +611,27 @@ const sidebars: SidebarsConfig = {
             {
               type: 'category',
               label: 'Agent Management APIs',
+              link: {
+                type: 'doc',
+                id: 'api-reference/agent-apis/agent-management',
+              },
               collapsed: false,
               items: [
                 "api-reference/agent-apis/create-agent",
                 "api-reference/agent-apis/list-agents",
                 "api-reference/agent-apis/get-agent",
                 "api-reference/agent-apis/update-agent",
+                "api-reference/agent-apis/replace-agent",
                 "api-reference/agent-apis/delete-agent"
               ]
             },
             {
               type: 'category',
               label: 'Session Management APIs',
+              link: {
+                type: 'doc',
+                id: 'api-reference/agent-apis/session-management',
+              },
               collapsed: false,
               items: [
                 "api-reference/agent-apis/session/create-agent-session",
@@ -626,6 +644,10 @@ const sidebars: SidebarsConfig = {
             {
               type: 'category',
               label: 'Event Management APIs',
+              link: {
+                type: 'doc',
+                id: 'api-reference/agent-apis/event-management',
+              },
               collapsed: false,
               items: [
                 "api-reference/agent-apis/event/create-agent-event",
@@ -636,6 +658,10 @@ const sidebars: SidebarsConfig = {
             {
               type: 'category',
               label: 'Tool Server Management APIs',
+              link: {
+                type: 'doc',
+                id: 'api-reference/agent-apis/tool-server-management',
+              },
               collapsed: false,
               items: [
                 "api-reference/agent-apis/tool-server/create-tool-server",
@@ -649,6 +675,10 @@ const sidebars: SidebarsConfig = {
             {
               type: 'category',
               label: 'Tool Management APIs',
+              link: {
+                type: 'doc',
+                id: 'api-reference/agent-apis/tool-management',
+              },
               collapsed: false,
               items: [
                 "api-reference/agent-apis/tool/list-tools",
@@ -659,7 +689,28 @@ const sidebars: SidebarsConfig = {
             },
             {
               type: 'category',
+              label: 'Tool Configuration Management APIs',
+              link: {
+                type: 'doc',
+                id: 'api-reference/agent-apis/tool-configuration-management',
+              },
+              collapsed: false,
+              items: [
+                "api-reference/agent-apis/tool-configuration/create-tool-configuration",
+                "api-reference/agent-apis/tool-configuration/list-tool-configurations",
+                "api-reference/agent-apis/tool-configuration/get-tool-configuration",
+                "api-reference/agent-apis/tool-configuration/update-tool-configuration",
+                "api-reference/agent-apis/tool-configuration/delete-tool-configuration",
+                "api-reference/agent-apis/tool-configuration/delete-tool-configuration-version",
+              ]
+            },
+            {
+              type: 'category',
               label: 'Instruction Management APIs',
+              link: {
+                type: 'doc',
+                id: 'api-reference/agent-apis/instruction-management',
+              },
               collapsed: false,
               items: [
                 "api-reference/agent-apis/instruction/create-instruction",

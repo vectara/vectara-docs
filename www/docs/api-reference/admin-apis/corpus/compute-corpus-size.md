@@ -1,7 +1,7 @@
 ---
 id: compute-corpus-size
 title: Compute Corpus Size API Definition
-sidebar_label: Compute Corpus Size API Definition
+sidebar_label: Compute Corpus Size
 ---
 
 import {vars} from '@site/static/variables.json';

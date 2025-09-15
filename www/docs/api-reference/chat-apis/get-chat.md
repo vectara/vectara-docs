@@ -1,7 +1,7 @@
 ---
 id: get-chat
 title: Get Chat API Definition
-sidebar_label: Get Chat API Definition
+sidebar_label: Get Chat
 ---
 
 import Tabs from '@theme/Tabs';

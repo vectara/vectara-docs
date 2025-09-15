@@ -1,7 +1,7 @@
 ---
 id: replace-filter-attributes
 title: Replace Filter Attributes API Definition
-sidebar_label: Replace Filter Attributes API Definition
+sidebar_label: Replace Filter Attributes
 ---
 
 import {vars} from '@site/static/variables.json';

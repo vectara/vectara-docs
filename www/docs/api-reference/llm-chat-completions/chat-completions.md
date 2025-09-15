@@ -1,7 +1,7 @@
 ---
 id: chat-completions
 title: Chat Completions API Definition
-sidebar_label: Chat Completions API Definition
+sidebar_label: Chat Completions
 ---
 
 import Tabs from '@theme/Tabs';

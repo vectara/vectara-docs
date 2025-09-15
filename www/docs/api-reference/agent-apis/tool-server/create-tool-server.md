@@ -1,7 +1,7 @@
 ---
 id: create-tool-server
 title: Create Tool Server API Definition
-sidebar_label: Create Tool Server API Definition
+sidebar_label: Create Tool Server
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';

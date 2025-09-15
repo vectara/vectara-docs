@@ -1,7 +1,7 @@
 ---
 id: create-corpus
 title: Create Corpus API Definition
-sidebar_label: Create Corpus API Definition
+sidebar_label: Create Corpus
 ---
 
 import {vars} from '@site/static/variables.json';

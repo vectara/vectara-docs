@@ -7,9 +7,28 @@ sidebar_label: Example Agents
 import CodePanel from '@site/src/theme/CodePanel';
 
 This section provides example agents that you can create for your enterprise, 
-including a documentation support agent and an internal knowledge base expert. 
+including a web research assistant, documentation support agent, and internal 
+knowledge base expert. 
 
-Check this page frequently as we add more agent examples.
+## Example: Research assistant (no corpus required)
+
+For a quick start, try creating a research assistant that can search the web. 
+This agent requires no corpus setup and demonstrates core agent capabilities.
+
+Follow the [Agent Quick Start](/docs/agents/agents-quickstart) guide to create an 
+agent in minutes using either the Console UI or API. This agent:
+
+- Searches the web for current information
+- Provides cited responses
+- Handles general knowledge and recent events
+- Perfect for testing agent functionality
+
+**Example queries**:
+- "What are the latest developments in agentic AI?"
+- "What is the population of the United States of America?"
+- "How many people will attend games at the next FIFA World Cup?"
+
+---
 
 ## Example: Create a documentation support agent
 
@@ -62,8 +81,7 @@ the public web.
    
 The agent should first search your techdocs corpus and fall back to web search if needed.
 
-
-
+---
 
 ## Example: Create an internal knowledge base expert
 

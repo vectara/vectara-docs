@@ -1,7 +1,7 @@
 ---
 id: list-documents
 title: List Documents API Definition
-sidebar_label: List Documents API Definition
+sidebar_label: List Documents
 ---
 
 import {vars} from '@site/static/variables.json';

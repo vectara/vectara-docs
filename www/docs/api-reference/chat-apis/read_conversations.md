@@ -1,7 +1,7 @@
 ---
 id: read-conversations
 title: Read Conversations API Definition
-sidebar_label: Read Conversations API Definition
+sidebar_label: Read Conversations
 ---
 
 import Tabs from '@theme/Tabs';

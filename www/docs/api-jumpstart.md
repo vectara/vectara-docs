@@ -1,23 +1,27 @@
 ---
 id: api-recipes
-title: API Recipes
-sidebar_label: API Recipes
+title: API Quick Start
+sidebar_label: API Quick Start
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';
 
-Build enterprise-grade AI applications with <Config v="names.product"/>'s RAG-as-a-Service platform. Our APIs eliminate the complexity of implementing retrieval-augmented generation from scratch, letting you focus on your application logic instead of ML infrastructure.
+Using our APIs enable application developers and data engineers to seamlessly
+integrate the <Config v="names.product"/> semantic search capabilities into
+your applications. After you review this section, you can
+check out our [API Reference](/docs/rest-api/vectara-rest-api-v-2) to experiment with Vectara's REST APIs directly
+from your browser!
 
-**Why enterprise developers choose Vectara:**
-- **No ML expertise required** - Skip the complexity of embeddings, vector databases, and model training
-- **Production-ready from day one** - Enterprise security, access controls, and compliance built-in
-- **Accurate, grounded responses** - Prevent hallucinations with factual consistency scoring
-- **Cost-effective scaling** - No expensive retraining or fine-tuning needed
+The Vectara Console and our APIs work hand-in-hand as part of the app development
+process. For example, a builder uses this following workflow:
 
-**Developer workflow:**
-1. Prototype and tune queries in the [Vectara Console](https://console.vectara.com)
-2. Copy working requests directly into your codebase
-3. Deploy with confidence using enterprise-grade infrastructure
+- Fine-tune a query's lexical interpolation and filters until the answer quality is just
+  right.
+- Copy the request directly from the Vectara Console and paste it into your IDE.
+- Copy the customer ID and API key from the Vectara Console to further configure
+  the request.
+- Test out the software and then verify that requests are hitting your
+  corpus by checking the querying graph on the Overview tab.
 
 Ready to build? The examples below show you how to get started in minutes.
 
@@ -42,49 +46,6 @@ flowchart LR
     style E fill:#f59e0b,color:#ffffff,stroke:#d97706,stroke-width:2px
     style F fill:#8b5cf6,color:#ffffff,stroke:#7c3aed,stroke-width:2px
 ```
-
-**What you'll learn to build:**
-
-1. **[Create a corpus](#create-a-corpus)** - Set up your searchable knowledge base with a simple POST request
-2. **[Add content to your corpus](#add-content-to-the-corpus)** - Upload files or index documents directly with text content
-3. **[Search for answers](#search-for-answers-in-a-corpus)** - Query your data and get AI-generated summaries with source citations
-4. **[Advanced search techniques](#issue-a-query-and-return-a-specific-number-of-results)** - Control result limits, add metadata filters, and customize responses
-5. **[Manage your corpora](#list-all-corpora-and-delete-a-specific-corpus)** - List, filter, and delete corpora as your application scales
-
-To issue the types of API calls in these recipes, you need:
-
-- API key
-- Corpus key (you'll create this when setting up your corpus)
-
-### Create a corpus
-
-First, create a corpus to store your searchable documents.
-
-<CodePanel
-  snippets={[
-    {
-      language: 'bash',
-      code: `curl -X POST 'https://api.vectara.io/v2/corpora' \\
--H 'Content-Type: application/json' \\
--H 'x-api-key: YOUR_API_KEY' \\
--d '{
-  "key": "employee-handbook",
-  "name": "Employee Handbook",
-  "description": "Company policies and procedures"
-}'`
-    }
-  ]}
-  title="Create a corpus"
-  annotations={{
-    bash: [
-      { line: 3, text: 'Replace with your API key' },
-      { line: 5, text: 'Unique identifier for your corpus' }
-    ]
-  }}
-  layout="stacked"
-/>
-
-✅ **Corpus created!** Now you can add content and search.
 
 ---
 
@@ -533,11 +494,10 @@ as you start building with <Config v="names.product"/>.
 
 Now that you've tried the basic API operations, explore more advanced features:
 
-- **[Authentication with OAuth 2.0](/docs/learn/authentication/oauth)** - Set up OAuth for production applications
-- **[File upload formats](/docs/api-reference/indexing-apis/file-upload/supported_file_formats)** - See all supported document types
+- **[Authentication with OAuth 2.0](/docs/learn/authentication/oauth-2)** - Set up OAuth for production applications
+- **[File upload formats](/docs/api-reference/indexing-apis/file-upload/file-upload-filetypes)** - See all supported document types
 - **[Metadata filtering](/docs/learn/metadata-search-filtering/using-metadata-filters)** - Add powerful search filters
 - **[Python SDK](/docs/vectara-python-sdk)** - Use our official Python client library
 
 **Need help?** Visit our [API reference](/docs/api-reference/overview) or check out [GitHub examples](https://github.com/vectara).
-
 

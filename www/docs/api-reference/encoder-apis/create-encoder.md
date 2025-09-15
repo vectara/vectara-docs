@@ -1,7 +1,7 @@
 ---
 id: create-encoder
 title: Create Encoder API Definition
-sidebar_title: Create Encoder API Definition
+sidebar_label: Create Encoder
 ---
 
 import Tabs from '@theme/Tabs';

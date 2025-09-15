@@ -1,7 +1,7 @@
 ---
 id: list-chats
 title: List Chats API Definition
-sidebar_label: List Chats API Definition
+sidebar_label: List Chats
 ---
 
 import Tabs from '@theme/Tabs';

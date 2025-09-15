@@ -1,7 +1,7 @@
 ---
 id: delete-turns
 title: Delete Turns API Definition
-sidebar_label: Delete Turns API Definition
+sidebar_label: Delete Turns
 ---
 
 import Tabs from '@theme/Tabs';

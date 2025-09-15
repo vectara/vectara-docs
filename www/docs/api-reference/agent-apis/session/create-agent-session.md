@@ -1,7 +1,7 @@
 ---
 id: create-agent-session
 title: Create Agent Session API Definition
-sidebar_label: Create Agent Session API Definition
+sidebar_label: Create Agent Session
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';

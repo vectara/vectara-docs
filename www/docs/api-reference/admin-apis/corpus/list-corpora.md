@@ -1,7 +1,7 @@
 ---
 id: list-corpora
 title: List Corpora API Definition
-sidebar_label: List Corpora API Definition
+sidebar_label: List Corpora
 ---
 
 import {vars} from '@site/static/variables.json';

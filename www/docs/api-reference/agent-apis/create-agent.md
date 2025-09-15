@@ -1,7 +1,7 @@
 ---
 id: create-agent
 title: Create Agent API Definition
-sidebar_label: Create Agent API Definition
+sidebar_label: Create Agent
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';

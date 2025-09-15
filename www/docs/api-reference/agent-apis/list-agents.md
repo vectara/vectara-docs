@@ -1,14 +1,14 @@
 ---
 id: list-agents
 title: List Agents API Definition
-sidebar_label: List Agents API Definition
+sidebar_label: List Agents
 ---
 
-# List Agents API Definition
+import CodePanel from '@site/src/theme/CodePanel';
 
-The List Agents API enables you to retrieve a paginated collection of AI agents within your Vectara account, providing essential capabilities for agent discovery, management, and operational oversight. This API supports filtering by agent characteristics and status, making it ideal for administrative dashboards, deployment monitoring, and agent lifecycle management across enterprise environments.
-
-Organizations use this API to maintain visibility into their agent ecosystem, enabling teams to track agent deployments, monitor active configurations, and coordinate agent management activities across different departments and use cases. The filtering and pagination capabilities ensure efficient operation even with large numbers of deployed agents.
+The List Agents API enables you to retrieve a paginated list of all agents 
+available to the authenticated user. This is useful for managing and 
+monitoring agent deployments across use cases and environments.
 
 ## List Agents Request and Response
 
@@ -23,14 +23,16 @@ The response includes an array of agent objects and pagination metadata for acce
 
 ### Example Request
 
-```
-GET /v2/agents?filter=support.*&enabled=true&limit=25
-```
+`GET /v2/agents?filter=support.*&enabled=true&limit=25`
 
 ### Example Response
 
-```json
-{
+<CodePanel
+  title="List Agents Response"
+  snippets={[
+    {
+      language: 'json',
+      code: `{
   "agents": [
     {
       "id": "agt_customer_support_001",
@@ -124,8 +126,11 @@ GET /v2/agents?filter=support.*&enabled=true&limit=25
     "page_key": "eyJhZ2VudF9pZCI6ImFndF90ZWNobmljYWxfc3VwcG9ydF8wMDEifQ==",
     "total_count": 15
   }
-}
-```
+}`
+   }]}
+  layout="stacked"
+/>
+
 
 ## Error Responses
 

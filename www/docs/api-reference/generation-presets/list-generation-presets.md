@@ -1,7 +1,7 @@
 ---
 id: list-generation-presets
 title: List Generation Presets API Definition
-sidebar_label: List Generation Presets API Definition
+sidebar_label: List Generation Presets
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,7 +19,7 @@ complete Velocity template for the prompt along with other generation
 parameters. Presets are typically associated with a single LLM.
 
 The List Generation Presets API lets you view the generation presets used for 
-[query](/docs/api-reference/search-apis/search) or [chat](/docs/api-reference/chat-apis/create-chat) requests. Generation presets bundle 
+[query](/docs/api-reference/search-apis/search) or [chat](/docs/api-reference/chat-apis/create-chat) requests. Generation presets group 
 several properties that configure generation for a request. These presets 
 provide more flexibility in how generation parameters are configured, enabling 
 more fine-tuned control over query responses. This includes the `prompt_template`, 

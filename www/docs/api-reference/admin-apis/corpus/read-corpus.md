@@ -1,7 +1,7 @@
 ---
 id: read-corpus
 title: Get Corpus API Definition
-sidebar_label: Get Corpus API Definition
+sidebar_label: Get Corpus
 ---
 
 import {vars} from '@site/static/variables.json';

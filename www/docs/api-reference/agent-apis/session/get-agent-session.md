@@ -1,7 +1,7 @@
 ---
 id: get-agent-session
 title: Get Agent Session API Definition
-sidebar_label: Get Agent Session API Definition
+sidebar_label: Get Agent Session
 ---
 
 # Get Agent Session API Definition

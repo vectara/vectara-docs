@@ -1,7 +1,7 @@
 ---
 id: create-agent-event
 title: Create Agent Event API Definition
-sidebar_label: Create Agent Event API Definition
+sidebar_label: Create Agent Event
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';

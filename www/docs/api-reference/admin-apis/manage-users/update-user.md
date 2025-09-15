@@ -1,7 +1,7 @@
 ---
 id: update-user
 title: Update User API Definition
-sidebar_label: Update User API Definition
+sidebar_label: Update User
 ---
 
 import Tabs from '@theme/Tabs';

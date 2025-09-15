@@ -1,7 +1,7 @@
 ---
 id: deleting-documents
 title: Delete Documents API Definition
-sidebar_label: Delete Documents API Definition
+sidebar_label: Delete Documents
 ---
 
 import Tabs from '@theme/Tabs';

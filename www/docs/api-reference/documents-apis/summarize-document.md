@@ -1,7 +1,7 @@
 ---
 id: summarize-document
 title: Summarize Document API Definition
-sidebar_label: Summarize Document API Definition
+sidebar_label: Summarize Document
 ---
 
 import Tabs from '@theme/Tabs';

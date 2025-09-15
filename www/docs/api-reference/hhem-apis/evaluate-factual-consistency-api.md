@@ -1,7 +1,7 @@
 ---
 id: evaluate-factual-consistency
 title: Evaluate Factual Consistency API Definition
-sidebar_label: Evaluate Factual Consistency API Definition
+sidebar_label: Evaluate Factual Consistency
 ---
 
 import Tabs from '@theme/Tabs';
