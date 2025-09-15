@@ -1,7 +1,7 @@
 ---
 id: api-recipes
-title: API Recipes
-sidebar_label: API Recipes
+title: API Quick Start
+sidebar_label: API Quick Start
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';

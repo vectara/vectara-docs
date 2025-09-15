@@ -82,12 +82,17 @@ const sidebars: SidebarsConfig = {
         {
           type: "doc",
           id: "quickstart",
-          label: "Quick Start",
+          label: "Console Quick Start",
         },
         {
           type: "doc",
           id: "api-recipes",
-          label: "API Recipes",
+          label: "API Quick Start",
+        },
+        {
+          type: "doc",
+          id: "agents/agents-quickstart",
+          label: "Agents Quick Start",
         },
         {
           type: "doc",
@@ -206,7 +211,6 @@ const sidebars: SidebarsConfig = {
         "agents/tools",
         "agents/instructions",
         "agents/sessions",
-        "agents/agents-quickstart",
       ],
     },
     {
