@@ -1,7 +1,7 @@
 ---
 id: retrieve-document
 title: Retrieve Document API Definition
-sidebar_label: Retrieve Document API Definition
+sidebar_label: Retrieve Document
 ---
 
 import {vars} from '@site/static/variables.json';

@@ -1,7 +1,7 @@
 ---
 id: update-corpus-enablement
 title: Update Corpus API Definition
-sidebar_label: Update Corpus API Definition
+sidebar_label: Update Corpus
 ---
 
 import {vars} from '@site/static/variables.json';

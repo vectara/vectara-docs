@@ -1,7 +1,7 @@
 ---
 id: search
 title: Query API Definition
-sidebar_label: Query API Definition
+sidebar_label: Query
 ---
 
 import Tabs from '@theme/Tabs';

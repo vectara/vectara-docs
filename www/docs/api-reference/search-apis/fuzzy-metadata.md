@@ -1,7 +1,7 @@
 ---
 id: fuzzy-metadata
 title: Metadata Query API Definition
-sidebar_label: Metadata Query API Definition
+sidebar_label: Metadata Query
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';

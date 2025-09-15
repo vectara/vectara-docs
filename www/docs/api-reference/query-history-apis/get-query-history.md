@@ -1,7 +1,7 @@
 ---
 id: get-query-history
 title: Get Query History API Definition
-sidebar_title: Get Query History API Definition
+sidebar_label: Get Query History
 ---
 
 import Tabs from '@theme/Tabs';

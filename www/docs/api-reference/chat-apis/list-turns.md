@@ -1,7 +1,7 @@
 ---
 id: list-chat-turns
 title: List Chat Turns API Definition
-sidebar_label: List Chat Turns API Definition
+sidebar_label: List Chat Turns
 ---
 
 import Tabs from '@theme/Tabs';

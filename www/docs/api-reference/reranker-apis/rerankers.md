@@ -1,7 +1,7 @@
 ---
 id: reranker-apis
 title: List Rerankers API Definition
-sidebar_title: List Rerankers API Definition
+sidebar_label: List Rerankers
 ---
 
 import Tabs from '@theme/Tabs';

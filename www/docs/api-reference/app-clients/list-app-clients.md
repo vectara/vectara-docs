@@ -1,7 +1,7 @@
 ---
 id: list-app-clients
 title: List App Clients API Definition
-sidebar_label: List App Clients API Definition
+sidebar_label: List App Clients
 ---
 
 import Tabs from '@theme/Tabs';

@@ -1,7 +1,7 @@
 ---
 id: list-jobs
 title: List Jobs API Definition
-sidebar_title: List Jobs API Definition
+sidebar_label: List Jobs
 ---
 
 import Tabs from '@theme/Tabs';

@@ -1,7 +1,7 @@
 ---
 id: list-encoders
 title: List Encoders API Definition
-sidebar_title: List Encoders API Definition
+sidebar_label: List Encoders
 ---
 
 import Tabs from '@theme/Tabs';

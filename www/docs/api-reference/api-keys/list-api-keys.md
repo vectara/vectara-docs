@@ -1,7 +1,7 @@
 ---
 id: list-api-keys
 title: List API Keys API Definition
-sidebar_label: List API Keys API Definition
+sidebar_label: List API Keys
 ---
 
 import Tabs from '@theme/Tabs';

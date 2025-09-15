@@ -1,7 +1,7 @@
 ---
 id: list-hallucination-correctors
 title: List Hallucination Correctors API Definition
-sidebar_label: List Hallucination Correctors API Definition
+sidebar_label: List Hallucination Correctors
 ---
 
 

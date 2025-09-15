@@ -1,7 +1,7 @@
 ---
 id: get-job
 title: Get Job API Definition
-sidebar_title: Get Job API Definition
+sidebar_label: Get Job
 ---
 
 import Tabs from '@theme/Tabs';

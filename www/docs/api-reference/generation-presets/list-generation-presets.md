@@ -1,7 +1,7 @@
 ---
 id: list-generation-presets
 title: List Generation Presets API Definition
-sidebar_label: List Generation Presets API Definition
+sidebar_label: List Generation Presets
 ---
 
 import Tabs from '@theme/Tabs';

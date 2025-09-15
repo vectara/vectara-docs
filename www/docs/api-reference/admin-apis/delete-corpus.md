@@ -1,7 +1,7 @@
 ---
 id: delete-corpus
 title: Delete Corpus API Definition
-sidebar_label: Delete Corpus API Definition
+sidebar_label: Delete Corpus
 ---
 
 import {vars} from '@site/static/variables.json';

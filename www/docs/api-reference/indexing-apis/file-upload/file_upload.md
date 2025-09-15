@@ -1,6 +1,7 @@
 ---
 id: file-upload
 title: File Upload API Definition
+sidebar_label: File Upload
 ---
 
 import Tabs from '@theme/Tabs';

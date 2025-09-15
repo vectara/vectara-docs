@@ -1,7 +1,7 @@
 ---
 id: list-conversations
 title: List Conversations API Definition
-sidebar_label: List Conversations API Definition
+sidebar_label: List Conversations
 ---
 
 import Tabs from '@theme/Tabs';

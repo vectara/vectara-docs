@@ -1,7 +1,7 @@
 ---
 id: create-llm
 title: Create LLM API Definition
-sidebar_label: Create LLM API Definition
+sidebar_label: Create LLM
 ---
 
 import Tabs from '@theme/Tabs';

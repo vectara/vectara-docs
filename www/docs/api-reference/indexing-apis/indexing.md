@@ -1,7 +1,7 @@
 ---
 id: indexing
 title: Indexing API Definition
-sidebar_label: Indexing API Definition
+sidebar_label: Indexing
 ---
 
 import Tabs from '@theme/Tabs';
