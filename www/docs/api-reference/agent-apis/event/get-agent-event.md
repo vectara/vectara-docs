@@ -1,7 +1,7 @@
 ---
 id: get-agent-event
 title: Get Agent Event API Definition
-sidebar_label: Get Agent Event API Definition
+sidebar_label: Get Agent Event
 ---
 
 # Get Agent Event API Definition

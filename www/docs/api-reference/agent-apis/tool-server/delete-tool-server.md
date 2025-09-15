@@ -1,7 +1,7 @@
 ---
 id: delete-tool-server
 title: Delete Tool Server API Definition
-sidebar_label: Delete Tool Server API Definition
+sidebar_label: Delete Tool Server
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';

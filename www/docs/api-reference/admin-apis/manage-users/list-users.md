@@ -1,7 +1,7 @@
 ---
 id: list-users
 title: List Users API Definition
-sidebar_label: List Users API Definition
+sidebar_label: List Users
 ---
 
 import Tabs from '@theme/Tabs';

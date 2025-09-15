@@ -1,7 +1,7 @@
 ---
 id: list-tools
 title: List Tools API Definition
-sidebar_label: List Tools API Definition
+sidebar_label: List Tools
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';

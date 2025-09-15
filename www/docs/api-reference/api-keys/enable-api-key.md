@@ -1,7 +1,7 @@
 ---
 id: enable-api-key
 title: Update API Key API Definition
-sidebar_label: Update API Key API Definition
+sidebar_label: Update API Key
 ---
 
 import Tabs from '@theme/Tabs';

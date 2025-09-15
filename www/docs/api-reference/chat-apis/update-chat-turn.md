@@ -1,7 +1,7 @@
 ---
 id: update-chat-turn
 title: Update Chat Turn API Definition
-sidebar_label: Update Chat Turn Definition
+sidebar_label: Update Chat Turn
 ---
 
 import Tabs from '@theme/Tabs';

@@ -1,7 +1,7 @@
 ---
 id: quickstart
-title: Quick Start
-sidebar_label: Quick Start
+title: Console Quick Start
+sidebar_label: Console Quick Start
 ---
 
 

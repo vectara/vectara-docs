@@ -1,7 +1,7 @@
 ---
 id: create-user
 title: Create User API Definition
-sidebar_label: Create User API Definition
+sidebar_label: Create User
 ---
 
 import Tabs from '@theme/Tabs';

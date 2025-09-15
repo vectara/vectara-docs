@@ -1,7 +1,7 @@
 ---
 id: create-app-client
 title: Create App Client API Definition
-sidebar_label: Create App Client API Definition
+sidebar_label: Create App Client
 ---
 
 import Tabs from '@theme/Tabs';

@@ -1,7 +1,7 @@
 ---
 id: get-tool
 title: Get Tool API Definition
-sidebar_label: Get Tool API Definition
+sidebar_label: Get Tool
 ---
 
 # Get Tool API Definition

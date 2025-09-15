@@ -1,8 +1,10 @@
 ---
 id: update-agent
 title: Update Agent API Definition
-sidebar_label: Update Agent API Definition
+sidebar_label: Update Agent
 ---
+
+import CodePanel from '@site/src/theme/CodePanel';
 
 # Update Agent API Definition
 
@@ -36,8 +38,12 @@ The response includes the complete updated agent configuration with the new `upd
 
 ### Example Request
 
-```json
-{
+<CodePanel
+  title="Update Agent Request"
+  snippets={[
+    {
+      language: 'json',
+      code: `{
   "name": "Enhanced Customer Support Agent",
   "description": "Updated AI agent with expanded capabilities for customer support",
   "tools": {
@@ -67,13 +73,19 @@ The response includes the complete updated agent configuration with the new `upd
     "owner": "support-team",
     "last_reviewed": "2024-01-18"
   }
-}
-```
+}`
+    }]}
+  layout="stacked"
+/>
 
 ### Example Response
 
-```json
-{
+<CodePanel
+  title="Update Agent Response"
+  snippets={[
+    {
+      language: 'json',
+      code: `{
   "id": "agt_customer_support_001",
   "name": "Enhanced Customer Support Agent", 
   "description": "Updated AI agent with expanded capabilities for customer support",
@@ -128,21 +140,7 @@ The response includes the complete updated agent configuration with the new `upd
   "enabled": true,
   "created_at": "2024-01-15T10:30:00Z",
   "updated_at": "2024-01-18T14:30:00Z"
-}
-```
-
-## Error Responses
-
-The API returns standard HTTP error codes with detailed error information:
-
-| HTTP Code | Error Code | Description |
-|-----------|------------|-------------|
-| 400 | `invalid_request` | Missing required fields or malformed request structure |
-| 400 | `invalid_tool_reference` | Referenced tool does not exist or is inaccessible |
-| 400 | `invalid_instruction_reference` | Referenced instruction does not exist or is inaccessible |
-| 400 | `invalid_model_configuration` | Invalid model name or unsupported parameters |
-| 401 | `unauthorized` | Invalid or missing API key |
-| 403 | `forbidden` | Insufficient permissions for updating this agent |
-| 404 | `agent_not_found` | Agent with the specified `agent_key` does not exist |
-| 409 | `agent_name_exists` | Updated name conflicts with existing agent |
-| 429 | `rate_limit_exceeded` | Request rate limit exceeded |
+}`
+    }]}
+  layout="stacked"
+/>

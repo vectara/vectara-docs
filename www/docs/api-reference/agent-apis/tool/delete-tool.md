@@ -1,7 +1,7 @@
 ---
 id: delete-tool
 title: Delete Tool API Definition
-sidebar_label: Delete Tool API Definition
+sidebar_label: Delete Tool
 ---
 
 # Delete Tool API Definition

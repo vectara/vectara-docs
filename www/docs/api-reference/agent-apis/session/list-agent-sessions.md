@@ -1,8 +1,10 @@
 ---
 id: list-agent-sessions
 title: List Agent Sessions API Definition
-sidebar_label: List Agent Sessions API Definition
+sidebar_label: List Agent Sessions
 ---
+
+import CodePanel from '@site/src/theme/CodePanel';
 
 # List Agent Sessions API Definition
 
@@ -29,8 +31,12 @@ GET /v2/agents/agt_customer_support/sessions?limit=25&enabled=true
 
 ### Example Response
 
-```json
-{
+<CodePanel
+  title="List Agent Sessions Response"
+  snippets={[
+    {
+      language: 'json',
+      code: `{
   "sessions": [
     {
       "id": "ase_customer_support_001",
@@ -76,8 +82,10 @@ GET /v2/agents/agt_customer_support/sessions?limit=25&enabled=true
     "page_key": "eyJzZXNzaW9uX2lkIjoiYXNlX2N1c3RvbWVyX3N1cHBvcnRfMDAzIn0=",
     "total_count": 127
   }
-}
-```
+}`
+    }]}
+  layout="stacked"
+/>
 
 ## Error Responses
 

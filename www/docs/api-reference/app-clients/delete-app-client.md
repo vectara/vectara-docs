@@ -1,7 +1,7 @@
 ---
 id: delete-app-client
 title: Delete App Client API Definition
-sidebar_label: Delete App Client API Definition
+sidebar_label: Delete App Client
 ---
 
 import Tabs from '@theme/Tabs';

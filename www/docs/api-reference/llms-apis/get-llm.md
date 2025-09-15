@@ -1,7 +1,7 @@
 ---
 id: get-llm
 title: Get LLM API Definition
-sidebar_label: Get LLM API Definition
+sidebar_label: Get LLM
 ---
 
 import Tabs from '@theme/Tabs';

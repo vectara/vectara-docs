@@ -65,3 +65,57 @@ conversation experiences with progressive response building.
   }}
   layout="stacked"
 />
+
+### Session workflow example
+
+Here's how to create a session and start chatting with an agent:
+
+<CodePanel
+  title="Create session and chat"
+  snippets={[
+    {
+      language: 'bash',
+      code: `# Step 1: Create a new session
+curl -X POST https://api.vectara.io/v2/agents/agt_customer_support/sessions \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Customer inquiry - Order #12345",
+    "metadata": {
+      "channel": "web",
+      "priority": "high"
+    }
+  }'
+
+# Response includes session key: ase_abc123
+
+# Step 2: Send a message in the session
+curl -X POST https://api.vectara.io/v2/agents/agt_customer_support/sessions/ase_abc123/events \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "type": "input_message",
+    "messages": [{
+      "type": "text",
+      "content": "My order #12345 hasn\'t arrived yet"
+    }]
+  }'`
+    }
+  ]}
+  annotations={{
+    bash: [
+      { line: 2, text: 'Create a session with the agent' },
+      { line: 6, text: 'Descriptive name for the session' },
+      { line: 8, text: 'Channel where conversation originates' },
+      { line: 9, text: 'Priority level for support routing' },
+      { line: 16, text: 'Send message using the session key' },
+      { line: 20, text: 'Event type must be input_message' },
+      { line: 23, text: 'User message about their issue' }
+    ]
+  }}
+  layout="stacked"
+/>
+
+:::tip
+Sessions persist conversation history, so subsequent messages in the same session will have context of previous interactions. This enables natural, multi-turn conversations with the agent.
+:::
