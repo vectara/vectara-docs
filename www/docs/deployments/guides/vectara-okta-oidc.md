@@ -82,8 +82,10 @@ flowchart TB
   **Permissions mapping worksheet** with Vectara
 - A chosen tenant domain name such as `vectara.company.com`. We use this domain in 
   the examples below.
-- Your Okta OIDC app details (Client ID, Client Secret, Issuer/Discovery URL, scopes/claims)
-- Your intended permissions mapping (how Okta claims or groups map to Vectara tenant and corpus permissions)
+- Your Okta OIDC app details (Client ID, Client Secret, Issuer/Discovery URL, 
+  scopes/claims)
+- Your intended permissions mapping (how Okta claims or groups map to Vectara 
+  tenant and corpus permissions)
 
 ## What you provide to Vctara
 
@@ -104,7 +106,8 @@ If you intend to use group-based access, confirm the claim name (usually `groups
 
 ## What Vctara provides to you
 
-- Redirect/callback URI(s) for your tenant. These follow the Kratos OIDC callback pattern under `/ory/` on your domain, typically:  
+- Redirect/callback URI(s) for your tenant. These follow the Kratos OIDC callback 
+  pattern under `/ory/` on your domain, typically:  
   `https://<your-domain>/ory/self-service/methods/oidc/callback/<provider-id>`
 - Exact string(s) for your environment (and any post-logout URL, if applicable)
 - Internal mapping implementation from your Okta claims to Vectara identity traits and permissions
@@ -114,15 +117,19 @@ If you intend to use group-based access, confirm the claim name (usually `groups
 
 ## Vectara permission model (overview)
 
-- **Tenancy**: Each user belongs to a Vectara tenant (customer), identified by an unsigned integer customer ID (e.g., `12345`).  
+- **Platform admin role**: Has admin access across the whole private deployment
+- **Tenancy**: Each user belongs to a Vectara tenant (customer), identified by an unsigned 
+  integer customer ID (e.g., `12345`).  
 - **Tenant-level roles**:  
-  - `admin` — full tenant administrative access  
-  - `developer` — build and operate apps, manage corpora and integrations as permitted by tenant policy  
+  - `admin` — full tenant administrative access 
+  - `developer` — build and operate apps, manage corpora and integrations as permitted 
+  by tenant policy 
 - **Corpus-level roles**:  
-  - `query` — perform search/retrieval  
-  - `index` — ingest/update content and manage indexing  
+  - `query` — perform search/retrieval 
+  - `index` — ingest/update content and manage indexing 
 
-Users can have either or both corpus roles on any number of corpora. If you already use different labels, list them in the worksheet and define their meaning.
+Users can have either or both corpus roles on any number of corpora. If you 
+already use different labels, list them in the worksheet and define their meaning.
 
 ---
 
@@ -213,7 +220,8 @@ If using custom claims:
    ```
 3. (Optional) Add a Sign-out redirect URI if Vectara provides one  
 4. Assign the app to the users/groups who should have access  
-5. Copy the Client ID, Client Secret, and Issuer URL and send them to Vectara (with the completed worksheet)
+5. Copy the Client ID, Client Secret, and Issuer URL and send them to Vectara 
+   (with the completed worksheet)
 
 ## Example values
 

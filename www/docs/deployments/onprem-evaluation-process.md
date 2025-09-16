@@ -6,15 +6,11 @@ sidebar_label: Evaluation Process
 
 import CodePanel from '@site/src/theme/CodePanel';
 
-Ready to explore how a private deployment of Vectara can transform your 
-organization's AI capabilities while maintaining complete control over your 
-data and infrastructure? [Contact us](https://www.vectara.com/contact-us) and book a demo.
+Ready to deploy Vectara in your infrastructure? [Contact us](https://www.vectara.com/contact-us) to get started.
 
 ## Deployment process overview
 
-Deploying a private deployment of Vectara begins with understanding your 
-unique requirements. Our enterprise sales and solutions engineering teams 
-will work closely with you through a structured process:
+Here's how we get Vectara running in your environment:
 
 ```mermaid
 flowchart LR
@@ -39,23 +35,22 @@ flowchart LR
 
 ### 1. Initial assessment
 
-Our team will work with you to understand:
+Quick call to understand what you need:
 
-- **Use cases**: Your specific AI and search requirements
-- **Performance needs**: Expected data volume, query load, and response time requirements
-- **Infrastructure environment**: Current hardware, cloud, or hybrid setup
-- **Security requirements**: Compliance needs, air-gap requirements, data sensitivity
-- **Integration points**: Existing systems, authentication, monitoring tools
+- What are you building?
+- How much data?
+- What's your stack?
+- Compliance requirements?
+- When do you need it?
 
 ### 2. Solution design
 
-Based on your assessment, we'll provide:
+We size it right:
 
-- **Architecture recommendations**: Optimal deployment design for your environment
-- **Technical specifications**: Detailed hardware and software requirements
-- **Implementation timeline**: Realistic project timeline and milestones
-- **Resource planning**: Required personnel and skill sets for deployment
-- **Integration strategy**: How Vectara will work with your existing systems
+- **Architecture**: Nodes, GPUs, storage requirements
+- **Integration map**: How we plug into your auth, models, monitoring
+- **Deployment package**: Terraform or Helm, your choice
+- **Clear timeline**: From kickoff to production
 
 ### 3. Proof of concept (optional)
 

@@ -12,94 +12,84 @@ organization's specific requirements.
 
 ### Traditional on-premises
 
-Install Vectara on your physical servers within your own data center:
+Run Vectara in your data center. Air-gapped supported.
 
-- **Complete control**: Full ownership of hardware and infrastructure
-- **Air-gapped support**: Deploy in environments with no external internet access
-- **Custom hardware**: Leverage your existing server investments
-- **Maximum security**: Keep all data and processing within your physical premises
+- Physical servers or VMs
+- No internet required after initial setup
+- Your hardware, your rules
 
 ### Private cloud (VPC)
 
-Deploy within your cloud VPC on major cloud providers:
+Deploy in your existing cloud account:
 
-- **AWS**: Deploy in your AWS VPC with full network isolation
-- **Google Cloud**: Utilize GCP's secure VPC networking
-- **Microsoft Azure**: Leverage Azure's private cloud capabilities
-- **Hybrid ready**: Seamlessly integrate with existing cloud infrastructure
+- **AWS**: EKS or self-managed Kubernetes in your VPC
+- **GCP**: Private GKE clusters with your security policies
+- **Azure**: AKS with your network controls
+- **Other**: Various Kubernetes distributions supported
 
-### Hybrid configurations
+## What you need
 
-Mix private and cloud deployments based on your needs:
+### Kubernetes
 
-- **Multi-region**: Deploy across multiple geographic locations
-- **Workload distribution**: Different deployment types for different use cases
-- **Gradual migration**: Start with private deployment and migrate to cloud over time
-- **Disaster recovery**: Cross-platform backup and recovery options
+Container-based deployment on your cluster:
 
-## Infrastructure flexibility
+- Enterprise distributions supported
+- Managed services: EKS, GKE, AKS
+- Standard Kubernetes environments
 
-### Kubernetes environments
+### Storage
 
-Private deployment supports various Kubernetes distributions:
+- **Block storage**: Your existing CSI driver
+- **Object storage**: Any S3-compatible API (MinIO, Ceph, actual S3)
 
-- **OpenShift**: Enterprise-grade Red Hat Kubernetes platform
-- **Tanzu**: VMware's modern application platform
-- **Managed services**: EKS (AWS), GKE (Google Cloud), AKS (Azure)
-- **Custom Kubernetes**: Standard kubeadm or K3s deployments
+### Observability
 
-### Storage solutions
+Standard metrics and logging:
 
-Flexible storage options for both persistent and object storage:
+- Prometheus-compatible metrics
+- Log export via Fluentbit
+- OpenTelemetry trace support
 
-- **Persistent storage**: Work with your existing block storage solutions
-- **Object storage**: Support for S3-compatible storage systems
-- **High performance**: Optimized for high IOPS workloads
-- **Scalable**: Grows with your data and performance needs
+### GPU acceleration (optional)
 
-### Monitoring and logging integration
+NVIDIA GPU support available:
 
-Integrate with your existing operational tools:
+- Accelerated embedding generation
+- Improved reranking performance
+- MIG partitioning compatible
 
-- **Monitoring systems**: Compatible with Prometheus, Grafana, and enterprise monitoring
-- **Logging platforms**: Export logs to your existing log management systems
-- **Alerting**: Integrate with your current alerting infrastructure
-- **Dashboards**: Custom dashboards for operational visibility
+## How we deploy
 
-### GPU acceleration
+### Infrastructure as Code
 
-Support for GPU acceleration to optimize performance:
+Everything deploys via Terraform or Helm:
 
-- **NVIDIA GPU support**: Optimized for NVIDIA GPU infrastructure
-- **Performance benefits**: Accelerated AI workloads and faster query responses
-- **Flexible configuration**: Scale GPU resources based on workload demands
-- **Cost optimization**: Right-size GPU allocation for your use cases
+- Version-controlled configurations
+- Your Git, your process
+- Test in staging, promote to prod
+- Rollback is just `git revert`
 
-## Operational considerations
+### Updates on your schedule
 
-### Updates and maintenance
+- Regular version releases provided
+- Customer-controlled upgrade timing
+- Canary deployment support
+- No forced updates
 
-Your IT team maintains control while Vectara provides support:
+### Model flexibility
 
-- **Controlled updates**: Apply updates on your schedule during maintenance windows
-- **Security patches**: Regular security updates with flexible deployment timing
-- **Version control**: Choose when to upgrade to new platform versions
-- **Rollback capability**: Safe rollback procedures if issues arise
+Choose your LLMs based on your requirements:
 
-### Performance optimization
+- **Use ours**: Vectara-optimized models included
+- **Bring yours**: Connect GPT-4, Claude, Gemini, or Llama
+- **Mix and match**: Different models for different use cases
+- **Air-gapped**: Local models only, no external calls
 
-Optimize deployment for your specific requirements:
+### Integration ready
 
-- **Resource allocation**: CPU, memory, and storage sizing guidance
-- **Network configuration**: Optimize for your network topology
-- **Load balancing**: Distribute traffic across multiple nodes
-- **Caching strategies**: Implement caching for improved response times
+Compatible with existing infrastructure:
 
-### Integration points
-
-Seamless integration with your existing systems:
-
-- **Authentication systems**: SAML, OIDC, and enterprise directory integration
-- **API gateways**: Work with your existing API management infrastructure
-- **CI/CD pipelines**: Integrate with your deployment automation
-- **Backup systems**: Compatible with enterprise backup solutions
+- **Auth**: OIDC/SAML via your IdP
+- **APIs**: Standard REST API
+- **CI/CD**: ArgoCD, Flux, Jenkins compatible
+- **Backups**: Velero-compatible

@@ -4,57 +4,51 @@ title: Private Deployment Use Cases and Industries
 sidebar_label: Use Cases
 ---
 
-A private deployment of Vectara is designed for organizations with specific infrastructure, security, or compliance requirements. Here are the primary use cases and industries that benefit most from private deployment.
+Who deploys Vectara privately and why.
 
 ## Primary industries
 
 ### Financial services
 
-Banks, insurance companies, and investment firms handling sensitive financial data with strict regulatory requirements.
+Banks and hedge funds with data that can't leave their walls.
 
-**Key Benefits:**
-- Complete data control for sensitive financial information
-- Meet regulatory requirements like SOX, Basel III, and PCI DSS
-- Enable AI-powered insights while maintaining data sovereignty
-- Support for real-time fraud detection and risk analysis
+**Why they need it:**
+- Trading algorithms stay secret
+- Customer data bound by SOX/PCI regulations
+- Real-time fraud detection can't have API latency
 
-**Common Use Cases:**
-- Customer service chatbots for account inquiries
-- Investment research and analysis automation
-- Compliance document search and analysis
-- Risk assessment and reporting
+**What they build:**
+- Research assistants that read every SEC filing instantly
+- Compliance bots that know every reg change
+- Customer service that actually knows your products
 
 ### Healthcare and life sciences
 
-Hospitals, research institutions, and pharmaceutical companies processing protected health information (PHI).
+Hospitals and pharma companies where PHI leaks end careers.
 
-**Key Benefits:**
-- HIPAA compliance support for patient data
-- Secure processing of clinical research data
-- Enable AI insights while protecting patient privacy
-- Support for medical research and drug discovery
+**Why they need it:**
+- Patient data never leaves the hospital network
+- Clinical trials data worth billions stays internal
+- HIPAA fines start at $50k per violation
 
-**Common Use Cases:**
-- Medical literature search and analysis
-- Clinical decision support systems
-- Patient record analysis and insights
-- Drug discovery research acceleration
+**What they build:**
+- Diagnosis assistants trained on internal case history
+- Research tools that search every published paper plus proprietary data
+- Clinical trial matching that respects patient privacy
 
 ### Government and defense
 
-Federal agencies, defense contractors, and organizations handling classified information.
+Agencies where "classified" means something.
 
-**Key Benefits:**
-- Air-gapped deployment capability for classified environments
-- FedRAMP compliance pathway
-- Support for government security requirements
-- Enable AI capabilities in secure environments
+**Why they need it:**
+- Air-gapped networks (no internet, period)
+- SIPR/NIPR separation is non-negotiable
+- FedRAMP/IL5 requirements
 
-**Common Use Cases:**
-- Intelligence analysis and report generation
-- Policy document search and analysis
-- Secure internal knowledge management
-- Mission-critical decision support
+**What they build:**
+- Intel analysis across petabytes of reports
+- Policy search that understands context and clearance levels
+- Brief generators that cite sources properly
 
 ### Regulated industries
 
