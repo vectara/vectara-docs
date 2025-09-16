@@ -119,7 +119,6 @@ const sidebars: SidebarsConfig = {
         "deployments/deployment-options",
         "deployments/use-cases",
         "deployments/onprem-evaluation-process",
-        "deployments/faq",
         {
           type: "category",
           label: "Guides",

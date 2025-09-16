@@ -18,9 +18,9 @@ deployment is the right choice for your organization. Why choose a private deplo
   deployment supports air-gapped deployments and integrates with your existing 
   security controls and compliance frameworks.
 
-## Full platform capabilities
+## Platform capabilities
 
-Access the complete Vectara feature set within your environment:
+Access the Vectara feature set within your environment:
 - Semantic and hybrid search across 100+ languages
 - Industry-leading RAG with exceptional accuracy
 - AI Agents framework for autonomous assistants
@@ -33,7 +33,7 @@ Deploy in various private environments to match your strategy:
 - Traditional on-premises data centers
 - Private cloud (VPC) on AWS, Google Cloud, or Azure
 - Air-gapped or highly restricted environments
-- Kubernetes environments including OpenShift, Tanzu, and managed services
+- Kubernetes environments
 
 ## How it works
 
@@ -68,5 +68,3 @@ Ready to learn more about a private deployment of Vectara? Explore our detailed 
   flexibility and deployment models
 - **[Evaluation process](/docs/deployments/onprem-evaluation-process)** - Contact our enterprise
   team to begin your evaluation
-- **[FAQ](/docs/deployments/faq)** - Get answers to common questions
-

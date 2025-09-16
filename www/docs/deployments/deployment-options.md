@@ -4,7 +4,9 @@ title: Private Deployment Options
 sidebar_label: Deployment Options
 ---
 
-A private deployment of Vectara is designed to work with your existing infrastructure choices, offering flexible deployment models to match your organization's specific requirements.
+A private deployment of Vectara is designed to work with your existing 
+infrastructure choices, offering flexible deployment models to match your 
+organization's specific requirements.
 
 ## Deployment models
 
@@ -101,14 +103,3 @@ Seamless integration with your existing systems:
 - **API gateways**: Work with your existing API management infrastructure
 - **CI/CD pipelines**: Integrate with your deployment automation
 - **Backup systems**: Compatible with enterprise backup solutions
-
-## Getting started
-
-Ready to explore deployment options for your organization? Our solutions engineering team can help you:
-
-- Assess your current infrastructure
-- Recommend the optimal deployment model
-- Plan your implementation approach
-- Provide detailed technical requirements
-
-Contact our enterprise team at enterprise@vectara.com to discuss your specific deployment needs.
