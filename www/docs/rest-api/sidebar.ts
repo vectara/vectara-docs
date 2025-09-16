@@ -50,6 +50,16 @@ const sidebar: SidebarsConfig = {
           label: "Delete agent",
           className: "api-method delete",
         },
+      ],
+    },
+    {
+      type: "category",
+      label: "Agent Sessions",
+      link: {
+        type: "doc",
+        id: "rest-api/agent-sessions",
+      },
+      items: [
         {
           type: "doc",
           id: "rest-api/create-agent-session",
@@ -83,7 +93,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "rest-api/create-agent-input",
-          label: "Create input in agent session",
+          label: "Interact with an agent",
           className: "api-method post",
         },
         {

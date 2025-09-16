@@ -42,6 +42,9 @@ tags:
 - name: Agents
   description: Create and interact with AI agents that can use tools and corpora to
     perform complex queries
+- name: Agent Sessions
+  description: Manage agent sessions and interact with agents through conversational
+    events
 - name: Agent Connectors
   description: Create and manage connectors that allow agents to receive events from
     external platforms like Slack
@@ -1224,7 +1227,7 @@ paths:
           type: integer
           format: int32
           minimum: 1
-          maximum: 100
+          maximum: 1000
           default: 10
       - name: metadata_filter
         in: query
@@ -5554,6 +5557,14 @@ paths:
           type: boolean
           example: true
       - in: query
+        name: tool_server_id
+        description: Filter tools by the tool server they belong to.
+        required: false
+        schema:
+          type: string
+          pattern: tsr_[0-9a-zA-Z_-]+$
+          example: tsr_rag_search
+      - in: query
         name: limit
         description: The maximum number of tools to return in the list.
         required: false
@@ -6422,8 +6433,17 @@ paths:
       tags:
       - Agents
       summary: Create agent
-      description: Create a new agent that can perform operations using specified
-        corpora, tools, and generation presets.
+      description: "Create a new agent. An agent is compromised as 3 main things of\
+        \ functionality:\n  1. The instructions an agent follows. Known as a system\
+        \ in prompt in other platforms.\n  2. The steps an agent follows when receiving\
+        \ an input.\n  3. The tools an agent can use to resolve those steps and instructions.\n\
+        Instructions are tied to each step, and should be well crafted so that the\
+        \ agent can perform the desired actions when given an input.\n\nTo use an\
+        \ agent, create a new session (called thread or chat in other platforms),\
+        \ and send new inputs to the agent to get responses.\n\nNote: Only a single\
+        \ step is supported with no follow up steps. So the `first_step` will be only\
+        \ the only step. We will add multiple steps and step types to execute complex\
+        \ workflows, but many agents can work well with a single step.\n"
       operationId: createAgent
       parameters:
       - $ref: '#/components/parameters/RequestTimeout'
@@ -6689,7 +6709,7 @@ paths:
   /v2/agents/{agent_key}/sessions:
     post:
       tags:
-      - Agents
+      - Agent Sessions
       summary: Create agent session
       description: Create a new session for interacting with an agent. Sessions maintain
         conversation context.
@@ -6739,7 +6759,7 @@ paths:
       x-fern-sdk-method-name: create
     get:
       tags:
-      - Agents
+      - Agent Sessions
       summary: List agent sessions
       description: List all agent sessions for a specific agent, with optional filtering
         and pagination.
@@ -6806,7 +6826,7 @@ paths:
   /v2/agents/{agent_key}/sessions/{session_key}:
     get:
       tags:
-      - Agents
+      - Agent Sessions
       summary: Get agent session
       description: Retrieve the details of a specific agent session by its ID, including
         session configuration.
@@ -6849,7 +6869,7 @@ paths:
       x-fern-sdk-method-name: get
     patch:
       tags:
-      - Agents
+      - Agent Sessions
       summary: Update agent session
       description: Update an existing agent session's configuration and metadata.
       operationId: updateAgentSession
@@ -6903,7 +6923,7 @@ paths:
       x-fern-sdk-method-name: update
     delete:
       tags:
-      - Agents
+      - Agent Sessions
       summary: Delete agent session
       description: Permanently delete an agent session. This action cannot be undone.
       operationId: deleteAgentSession
@@ -6942,9 +6962,9 @@ paths:
   /v2/agents/{agent_key}/sessions/{session_key}/events:
     post:
       tags:
-      - Agents
-      summary: Create input in agent session
-      description: Create a new input in an agent session.
+      - Agent Sessions
+      summary: Interact with an agent
+      description: Create a new input to an agent to interact with it.
       operationId: createAgentInput
       parameters:
       - $ref: '#/components/parameters/RequestTimeout'
@@ -7078,7 +7098,7 @@ paths:
           - $ref: '#/components/schemas/StreamResponseEnd'
     get:
       tags:
-      - Agents
+      - Agent Sessions
       summary: List events in agent session
       description: List all events in a specific agent session, with optional pagination.
       operationId: listAgentEvents
@@ -7142,7 +7162,7 @@ paths:
   /v2/agents/{agent_key}/sessions/{session_key}/events/{event_id}:
     get:
       tags:
-      - Agents
+      - Agent Sessions
       summary: Get event in agent session
       description: Retrieve the details of a specific event within an agent session.
       operationId: getAgentEvent
@@ -10943,7 +10963,7 @@ components:
           description: The role assigned for this specific agent.
           type: string
           enum:
-          - agent_admin
+          - agent_administrator
           - agent_viewer
           - agent_developer
       required:
@@ -11265,6 +11285,12 @@ components:
       type: string
       pattern: ^tsr_.*
       example: tsr_rag_search
+    ToolServerName:
+      description: The human-readable name of a tool server.
+      type: string
+      minLength: 1
+      maxLength: 50
+      example: RAG Search Server
     ToolServerType:
       description: The type of tool server.
       type: string
@@ -11284,9 +11310,7 @@ components:
         id:
           $ref: '#/components/schemas/ToolServerId'
         name:
-          description: The human-readable name of the tool server.
-          type: string
-          example: RAG Search Server
+          $ref: '#/components/schemas/ToolServerName'
         type:
           $ref: '#/components/schemas/ToolServerType'
         description:
@@ -11351,9 +11375,7 @@ components:
       type: object
       properties:
         name:
-          description: The human-readable name of the tool server.
-          type: string
-          example: RAG Search Server
+          $ref: '#/components/schemas/ToolServerName'
         type:
           $ref: '#/components/schemas/ToolServerType'
         description:
@@ -11395,9 +11417,7 @@ components:
       type: object
       properties:
         name:
-          description: The human-readable name of the tool server.
-          type: string
-          example: Vectara MCP Server
+          $ref: '#/components/schemas/ToolServerName'
         description:
           description: A detailed description of what this tool server does.
           type: string
@@ -11703,6 +11723,12 @@ components:
       type: string
       pattern: ^tcf_.*
       example: tcf_123e4567-e89b-12d3-a456-426614174000
+    ToolConfigurationName:
+      description: The human-readable name of a tool configuration.
+      type: string
+      minLength: 1
+      maxLength: 50
+      example: Customer Support Search Config
     McpToolConfiguration:
       description: A reusable configuration for an MCP tool that stores predefined
         argument overrides and settings.
@@ -11711,9 +11737,7 @@ components:
         id:
           $ref: '#/components/schemas/ToolConfigurationId'
         name:
-          description: Human-readable name for the tool configuration.
-          type: string
-          example: Customer Support Search Config
+          $ref: '#/components/schemas/ToolConfigurationName'
         description:
           description: A detailed description of what this tool configuration is for
             and how it should be used.
@@ -11737,9 +11761,18 @@ components:
           type: boolean
           default: true
         argument_override:
-          description: Optional hardcoded arguments for tool calls. When specified,
-            these values will be used instead of allowing the LLM to fill in those
-            parameters.
+          description: "Optional hardcoded arguments for tool calls. The key specifies\
+            \ the location in the tool arguments to overide, and the value specifies\
+            \ what to override with. The LLM will not be able to change the parameters,\
+            \ nor know those values exist within the tool.\n\nThe values can also\
+            \ be dynamic references to context values using $ref with dot notation\
+            \ path syntax:\n- Static value: \"fixed_value\" or 123\n- Dynamic reference:\
+            \ `{\"$ref\": \"session.metadata.field_name\"}`\n\nReferences are resolved\
+            \ at runtime from context:\n- session.metadata.* - Access session metadata\
+            \ fields\n- agent.metadata.* - Access agent metadata fields\n\nExample:\n\
+            \  `{\"query\": {\"$ref\": \".session.metadata.query\"}}`\n\nIf you want\
+            \ to have a real value `\"$ref\"` use `\"$$ref\"`, that is you can escape\
+            \ the first $ by using $$."
           type: object
           additionalProperties: true
           example:
@@ -11802,9 +11835,7 @@ components:
         id:
           $ref: '#/components/schemas/ToolConfigurationId'
         name:
-          description: Human-readable name for the tool configuration.
-          type: string
-          example: Customer Support Search Config
+          $ref: '#/components/schemas/ToolConfigurationName'
         description:
           description: A detailed description of what this tool configuration is for
             and how it should be used.
@@ -11889,9 +11920,7 @@ components:
         id:
           $ref: '#/components/schemas/ToolConfigurationId'
         name:
-          description: Human-readable name for the tool configuration.
-          type: string
-          example: Customer Support Search Config
+          $ref: '#/components/schemas/ToolConfigurationName'
         description:
           description: A detailed description of what this tool configuration is for
             and how it should be used.
@@ -11975,9 +12004,7 @@ components:
       type: object
       properties:
         name:
-          description: Human-readable name for the tool configuration.
-          type: string
-          example: Customer Support Search Config
+          $ref: '#/components/schemas/ToolConfigurationName'
         description:
           description: A detailed description of what this tool configuration is for
             and how it should be used.
@@ -11994,9 +12021,18 @@ components:
           type: boolean
           default: true
         argument_override:
-          description: Optional hardcoded arguments for tool calls. When specified,
-            these values will be used instead of allowing the LLM to fill in those
-            parameters.
+          description: "Optional hardcoded arguments for tool calls. The key specifies\
+            \ the location in the tool arguments to overide, and the value specifies\
+            \ what to override with. The LLM will not be able to change the parameters,\
+            \ nor know those values exist within the tool.\n\nThe values can also\
+            \ be dynamic references to context values using $ref with dot notation\
+            \ path syntax:\n- Static value: \"fixed_value\" or 123\n- Dynamic reference:\
+            \ `{\"$ref\": \"session.metadata.field_name\"}`\n\nReferences are resolved\
+            \ at runtime from context:\n- session.metadata.* - Access session metadata\
+            \ fields\n- agent.metadata.* - Access agent metadata fields\n\nExample:\n\
+            \  `{\"query\": {\"$ref\": \".session.metadata.query\"}}`\n\nIf you want\
+            \ to have a real value `\"$ref\"` use `\"$$ref\"`, that is you can escape\
+            \ the first $ by using $$."
           type: object
           additionalProperties: true
           example:
@@ -12022,9 +12058,7 @@ components:
       type: object
       properties:
         name:
-          description: Human-readable name for the tool configuration.
-          type: string
-          example: Customer Support Search Config
+          $ref: '#/components/schemas/ToolConfigurationName'
         description:
           description: A detailed description of what this tool configuration is for
             and how it should be used.
@@ -12070,9 +12104,7 @@ components:
       type: object
       properties:
         name:
-          description: Human-readable name for the tool configuration.
-          type: string
-          example: Customer Support Search Config
+          $ref: '#/components/schemas/ToolConfigurationName'
         description:
           description: A detailed description of what this tool configuration is for
             and how it should be used.
@@ -12128,9 +12160,7 @@ components:
       type: object
       properties:
         name:
-          description: Human-readable name for the tool configuration.
-          type: string
-          example: Customer Support Search Config
+          $ref: '#/components/schemas/ToolConfigurationName'
         description:
           description: A detailed description of what this tool configuration is for
             and how it should be used.
@@ -12146,9 +12176,18 @@ components:
           description: Whether the tool configuration should be enabled.
           type: boolean
         argument_override:
-          description: Optional hardcoded arguments for tool calls. When specified,
-            these values will be used instead of allowing the LLM to fill in those
-            parameters.
+          description: "Optional hardcoded arguments for tool calls. The key specifies\
+            \ the location in the tool arguments to overide, and the value specifies\
+            \ what to override with. The LLM will not be able to change the parameters,\
+            \ nor know those values exist within the tool.\n\nThe values can also\
+            \ be dynamic references to context values using $ref with dot notation\
+            \ path syntax:\n- Static value: \"fixed_value\" or 123\n- Dynamic reference:\
+            \ `{\"$ref\": \"session.metadata.field_name\"}`\n\nReferences are resolved\
+            \ at runtime from context:\n- session.metadata.* - Access session metadata\
+            \ fields\n- agent.metadata.* - Access agent metadata fields\n\nExample:\n\
+            \  `{\"query\": {\"$ref\": \".session.metadata.query\"}}`\n\nIf you want\
+            \ to have a real value `\"$ref\"` use `\"$$ref\"`, that is you can escape\
+            \ the first $ by using $$."
           type: object
           additionalProperties: true
           example:
@@ -12173,9 +12212,7 @@ components:
       type: object
       properties:
         name:
-          description: Human-readable name for the tool configuration.
-          type: string
-          example: Customer Support Search Config
+          $ref: '#/components/schemas/ToolConfigurationName'
         description:
           description: A detailed description of what this tool configuration is for
             and how it should be used.
@@ -12218,9 +12255,7 @@ components:
       type: object
       properties:
         name:
-          description: Human-readable name for the tool configuration.
-          type: string
-          example: Customer Support Search Config
+          $ref: '#/components/schemas/ToolConfigurationName'
         description:
           description: A detailed description of what this tool configuration is for
             and how it should be used.
@@ -12274,8 +12309,7 @@ components:
         id:
           $ref: '#/components/schemas/InstructionId'
         name:
-          description: The human-readable name of the instruction.
-          type: string
+          $ref: '#/components/schemas/InstructionName'
         description:
           description: A detailed description of what this instruction does.
           type: string
@@ -12352,6 +12386,12 @@ components:
       type: string
       pattern: ins_[0-9a-zA-Z_-]+$
       example: ins_customer_support_init
+    InstructionName:
+      description: The human-readable name of an instruction.
+      type: string
+      minLength: 1
+      maxLength: 50
+      example: Customer Support Initial Instruction
     ListInstructionsResponse:
       description: Response containing a list of instructions.
       type: object
@@ -12376,9 +12416,7 @@ components:
           default: initial
           example: initial
         name:
-          description: The human-readable name of the instruction.
-          type: string
-          example: Customer Support Initial Instruction
+          $ref: '#/components/schemas/InstructionName'
         description:
           description: A detailed description of what this instruction does.
           type: string
@@ -12430,9 +12468,7 @@ components:
           default: initial
           example: initial
         name:
-          description: The human-readable name of the instruction.
-          type: string
-          example: Updated Customer Support Instruction
+          $ref: '#/components/schemas/InstructionName'
         description:
           description: A detailed description of what this instruction does.
           type: string
@@ -12508,6 +12544,12 @@ components:
       minLength: 1
       maxLength: 50
       example: customer_support
+    AgentName:
+      description: The human-readable name of an agent.
+      type: string
+      minLength: 1
+      maxLength: 50
+      example: Customer Support Agent
     InlineMcpToolConfiguration:
       title: InlineMcpToolConfiguration
       description: An MCP tool configuration defined inline in the agent.
@@ -12521,9 +12563,18 @@ components:
         tool_id:
           $ref: '#/components/schemas/ToolId'
         argument_override:
-          description: Optional hardcoded arguments for tool calls. When specified,
-            these values will be used instead of allowing the LLM to fill in those
-            parameters.
+          description: "Optional hardcoded arguments for tool calls. The key specifies\
+            \ the location in the tool arguments to overide, and the value specifies\
+            \ what to override with. The LLM will not be able to change the parameters,\
+            \ nor know those values exist within the tool.\n\nThe values can also\
+            \ be dynamic references to context values using $ref with dot notation\
+            \ path syntax:\n- Static value: \"fixed_value\" or 123\n- Dynamic reference:\
+            \ `{\"$ref\": \"session.metadata.field_name\"}`\n\nReferences are resolved\
+            \ at runtime from context:\n- session.metadata.* - Access session metadata\
+            \ fields\n- agent.metadata.* - Access agent metadata fields\n\nExample:\n\
+            \  `{\"query\": {\"$ref\": \".session.metadata.query\"}}`\n\nIf you want\
+            \ to have a real value `\"$ref\"` use `\"$$ref\"`, that is you can escape\
+            \ the first $ by using $$."
           type: object
           additionalProperties: true
           example:
@@ -12721,7 +12772,10 @@ components:
       title: ConversationalAgentStep
       description: A step that receives instructions and responds through dialogue.
         This is a step that gets instructions and engages in conversation with users
-        based on those instructions.
+        based on those instructions. This only type step supported, with no way to
+        go next steps. A conversational step responds to an input following its instructions
+        and uses the agent tools. The first response from the model will terminate
+        processing the input.
       type: object
       properties:
         type:
@@ -12763,9 +12817,7 @@ components:
         key:
           $ref: '#/components/schemas/AgentKey'
         name:
-          description: The human-readable name of the agent.
-          type: string
-          example: Customer Support Agent
+          $ref: '#/components/schemas/AgentName'
         description:
           description: A detailed description of the agent's purpose and capabilities.
           type: string
@@ -12841,10 +12893,7 @@ components:
           description: A user provided key that uniquely identifies this agent. If
             not provided, one will be auto-generated based on the agent name.
         name:
-          description: The human-readable name of the agent.
-          type: string
-          minLength: 1
-          example: Customer Support Agent
+          $ref: '#/components/schemas/AgentName'
         description:
           description: A detailed description of the agent's purpose and capabilities.
           type: string
@@ -12891,10 +12940,7 @@ components:
       type: object
       properties:
         name:
-          description: The human-readable name of the agent.
-          type: string
-          minLength: 1
-          example: Customer Support Agent
+          $ref: '#/components/schemas/AgentName'
         description:
           description: A detailed description of the agent's purpose and capabilities.
           type: string
@@ -12941,9 +12987,7 @@ components:
       type: object
       properties:
         name:
-          description: The human-readable name of the agent.
-          type: string
-          example: Updated Customer Support Agent
+          $ref: '#/components/schemas/AgentName'
         description:
           description: A detailed description of the agent's purpose and capabilities.
           type: string
