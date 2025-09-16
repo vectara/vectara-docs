@@ -17,6 +17,15 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 ### ✨ New Features
 - Introduce the tech preview of Vectara Agents Framework (#491)
 
+### 📚 API Changes
+- Reorganize Agent Sessions in API Reference (#499)
+- Add Agents APIs to API Reference (#497)
+- Enhance API Reference with additional improved examples (#495)
+
+### 📝 Documentation Changes
+- Introduce new section about Private Deployment options such as on premise (#498)
+- Enhance documentation around data I/O, Agents, model selection, and BYO-LLM with additional API Concepts cleanup for accuracy and discoverability (#496)
+
 
 
 ---
@@ -28,8 +37,10 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 - Add content about the Vectara Postman Collection (#487)
 - Add comprehensive documentation for new Vectara Python SDK (#471)
 
-### 📝 Documentation Changes
+### 📚 API Changes
 - Add Metadata Query API to API Reference (#492)
+
+### 📝 Documentation Changes
 - Add data egress process content (#489)
 - Add topic about how to delete an account (#486)
 - Add comprehensive documentation for new Vectara Python SDK (#471)
