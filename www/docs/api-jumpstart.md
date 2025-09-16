@@ -47,49 +47,6 @@ flowchart LR
     style F fill:#8b5cf6,color:#ffffff,stroke:#7c3aed,stroke-width:2px
 ```
 
-**What you'll learn to build:**
-
-1. **[Create a corpus](#create-a-corpus)** - Set up your searchable knowledge base with a simple POST request
-2. **[Add content to your corpus](#add-content-to-the-corpus)** - Upload files or index documents directly with text content
-3. **[Search for answers](#search-for-answers-in-a-corpus)** - Query your data and get AI-generated summaries with source citations
-4. **[Advanced search techniques](#issue-a-query-and-return-a-specific-number-of-results)** - Control result limits, add metadata filters, and customize responses
-5. **[Manage your corpora](#list-all-corpora-and-delete-a-specific-corpus)** - List, filter, and delete corpora as your application scales
-
-To issue the types of API calls in these recipes, you need:
-
-- API key
-- Corpus key (you'll create this when setting up your corpus)
-
-### Create a corpus
-
-First, create a corpus to store your searchable documents.
-
-<CodePanel
-  snippets={[
-    {
-      language: 'bash',
-      code: `curl -X POST 'https://api.vectara.io/v2/corpora' \\
--H 'Content-Type: application/json' \\
--H 'x-api-key: YOUR_API_KEY' \\
--d '{
-  "key": "employee-handbook",
-  "name": "Employee Handbook",
-  "description": "Company policies and procedures"
-}'`
-    }
-  ]}
-  title="Create a corpus"
-  annotations={{
-    bash: [
-      { line: 3, text: 'Replace with your API key' },
-      { line: 5, text: 'Unique identifier for your corpus' }
-    ]
-  }}
-  layout="stacked"
-/>
-
-✅ **Corpus created!** Now you can add content and search.
-
 ---
 
 ### Search for answers in a corpus
@@ -543,5 +500,4 @@ Now that you've tried the basic API operations, explore more advanced features:
 - **[Python SDK](/docs/vectara-python-sdk)** - Use our official Python client library
 
 **Need help?** Visit our [API reference](/docs/api-reference/overview) or check out [GitHub examples](https://github.com/vectara).
-
 
