@@ -6,32 +6,46 @@ sidebar_label: Create Agent
 
 import CodePanel from '@site/src/theme/CodePanel';
 
-The Create Agent API enables you to define and deploy intelligent AI agents within 
-the Vectara platform that can orchestrate complex workflows, execute tool-based 
-actions, and maintain conversational context across multi-turn interactions. 
-This API supports the creation of autonomous digital workers that combine 
-retrieval-augmented generation with external system integration through the Model Context Protocol (MCP).
+The Create Agent API lets you design and deploy smart AI agents capable of 
+managing sophisticated workflows, running tool-based actions, and 
+also keep conversational context across multi-turn dialogues. Using the Model 
+Context Protocol (MCP), this API enables the development of autonomous digital 
+workers that combine retrieval-augmented generation with external system 
+integration.
 
 By configuring agents with specific tools, behavioral instructions, and model 
 parameters, enterprises can deploy specialized agents for customer support, 
 business intelligence, workflow automation, and technical assistance scenarios. 
-These agents operate as configurable, decision-making entities that can reason 
+These agents operate as configurable, decision-making entities that can reason
 through problems, coordinate multiple tools, and adapt their responses based on 
 conversation context and available capabilities.
 
+## What is an agent?
+
+An agent is comprised of three main components of functionality:
+
+1. **Instructions:** Known as a system prompt in other platforms.
+2. **Steps:** The workflow the agent executes.
+3. **Tools:** Resources available to resolve steps and instructions.
+
+To use an agent, create a new session (called a _thread_ or _chat_ in other 
+platforms), and send new inputs to the agent to get responses.
+
 ## Create Agent Request and Response
 
-To create an agent, send a POST request to `/v2/agents`. You specify the following parameters in the request body:
+To create an agent, send a POST request to `/v2/agents`. You specify the 
+following parameters in the request body:
 
-- `key` (string, optional): A user provided key that uniquely identifies this agent. If not provided, one will be auto-generated based on the agent name. Pattern: `[0-9a-zA-Z_-]+$`
+- `key` (string, optional): A user provided key that uniquely identifies this agent. 
+  If not provided, one will be auto-generated based on the agent name. Pattern: `[0-9a-zA-Z_-]+$`
 - `name` (string, required): The human-readable name of the agent
 - `description` (string, optional): Detailed description of agent purpose and capabilities
-- `tools` (object, required): A map of tools available to the agent where:
-  - Key: tool_id following pattern `tol_.*`
-  - Value: AgentToolConfiguration object with:
+- `tool_configurations` (object, required): A map of tool configurations available to the agent where:
+  - **Key:** A user-defined name for the tool configuration (e.g., `customer_search`)
+  - **Value:** An `AgentToolConfiguration` object with:
     - `type` (string, required): Tool configuration type (`mcp`, `corpora_search`, or `web_search`)
     - `argument_override` (object, optional): Optional hardcoded arguments for tool calls
-    - `query_configuration` (object, required for corpora_search): User-configurable settings for corpus search
+    - `query_configuration` (object, required for `corpora_search`): User-configurable settings for corpus search
 - `model` (object, required): Model configuration for agent reasoning
   - `name` (string, required): Model name (e.g., `gpt-4`)
   - `parameters` (object, optional): Model-specific parameters like temperature and max_tokens
@@ -66,12 +80,9 @@ The response includes the complete agent configuration with system-generated fie
   "key": "customer_support",
   "name": "Customer Support Agent", 
   "description": "AI agent specialized in handling customer support inquiries using company documentation",
-  "tools": {
-    "tol_customer_search": {
+  "tool_configurations": {
+    "customer_search": {
       "type": "corpora_search",
-      "argument_override": {
-        "query": "customer support documentation"
-      },
       "query_configuration": {
         "search": {
           "corpora": [
@@ -84,7 +95,7 @@ The response includes the complete agent configuration with system-generated fie
         "save_history": true
       }
     },
-    "tol_web_search": {
+    "web_search": {
       "type": "web_search",
       "argument_override": {
         "limit": 5
