@@ -11288,34 +11288,6 @@ components:
     Tool:
       description: A tool that can be used by agents to perform specific actions or
         operations.
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/ToolId'
-        name:
-          description: Unique identifier for the tool in the tool server.
-          type: string
-        description:
-          description: A detailed description of what the tool does and how it can
-            be used.
-          type: string
-        enabled:
-          description: Whether the tool is currently enabled and available for use.
-          type: boolean
-          default: true
-        created_at:
-          description: Timestamp when the tool was created.
-          type: string
-          format: date-time
-        updated_at:
-          description: Timestamp when the tool was last updated.
-          type: string
-          format: date-time
-      required:
-      - id
-      - name
-      - description
-      - enabled
       discriminator:
         propertyName: type
         mapping:
@@ -11363,17 +11335,50 @@ components:
           mcp: '#/components/schemas/UpdateMcpToolRequest'
       oneOf:
       - $ref: '#/components/schemas/UpdateMcpToolRequest'
-    Instruction:
-      description: An instruction that guides agent behavior.
+    InstructionId:
+      description: The unique identifier for an instruction.
+      type: string
+      pattern: ins_[0-9a-zA-Z_-]+$
+      example: ins_customer_support_init
+    InstructionName:
+      description: The human-readable name of an instruction.
+      type: string
+      minLength: 1
+      maxLength: 50
+      example: Customer Support Initial Instruction
+    TemplateType:
+      description: The templating engine used for instructions.
+      type: string
+      enum:
+      - velocity
+      default: velocity
+      example: velocity
+    InitialInstruction:
+      description: An initial instruction that provides guidance to the agent before
+        user messages.
       type: object
       properties:
         id:
           $ref: '#/components/schemas/InstructionId'
+        type:
+          description: The type of instruction.
+          type: string
+          default: initial
+          example: initial
         name:
           $ref: '#/components/schemas/InstructionName'
         description:
           description: A detailed description of what this instruction does.
           type: string
+        template_type:
+          $ref: '#/components/schemas/TemplateType'
+        template:
+          description: The instruction template content using the specified template
+            engine.
+          type: string
+          example: 'You are a helpful customer support agent for Acme Corp. Today''s
+            date is ${currentDate}. You have access to the following tools: #foreach($tool
+            in $tools)${tool.name}#if($foreach.hasNext), #end#end'
         version:
           description: The version identifier for this instruction. This is automatically
             incremented when the instruction is updated.
@@ -11399,60 +11404,22 @@ components:
           format: date-time
       required:
       - id
+      - type
       - name
+      - template_type
+      - template
       - version
       - enabled
+      x-vectaraParents:
+      - Instruction
+    Instruction:
+      description: An instruction that guides agent behavior.
       discriminator:
         propertyName: type
         mapping:
           initial: '#/components/schemas/InitialInstruction'
       oneOf:
       - $ref: '#/components/schemas/InitialInstruction'
-    TemplateType:
-      description: The templating engine used for instructions.
-      type: string
-      enum:
-      - velocity
-      default: velocity
-      example: velocity
-    InitialInstruction:
-      description: An initial instruction that provides guidance to the agent before
-        user messages.
-      allOf:
-      - $ref: '#/components/schemas/Instruction'
-      - type: object
-        properties:
-          type:
-            description: The type of instruction.
-            type: string
-            default: initial
-            example: initial
-          template_type:
-            $ref: '#/components/schemas/TemplateType'
-          template:
-            description: The instruction template content using the specified template
-              engine.
-            type: string
-            example: 'You are a helpful customer support agent for Acme Corp. Today''s
-              date is ${currentDate}. You have access to the following tools: #foreach($tool
-              in $tools)${tool.name}#if($foreach.hasNext), #end#end'
-        required:
-        - type
-        - template_type
-        - template
-      x-vectaraParents:
-      - Instruction
-    InstructionId:
-      description: The unique identifier for an instruction.
-      type: string
-      pattern: ins_[0-9a-zA-Z_-]+$
-      example: ins_customer_support_init
-    InstructionName:
-      description: The human-readable name of an instruction.
-      type: string
-      minLength: 1
-      maxLength: 50
-      example: Customer Support Initial Instruction
     ListInstructionsResponse:
       description: Response containing a list of instructions.
       type: object
