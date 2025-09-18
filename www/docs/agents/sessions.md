@@ -1,7 +1,7 @@
 ---
 id: sessions
-title: Session
-sidebar_label: Session
+title: Sessions
+sidebar_label: Sessions
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';

@@ -5,7 +5,7 @@ sidebar_label: Agents
 ---
 
 Vectara Agents enable enterprises to build sophisticated, 
-enterprise-grade intelligent, applications that go beyond basic question 
+enterprise-grade intelligent applications that go beyond basic question 
 answering. Agents interpret user input, reason through context, 
 leverage external tools, and maintain continuity across multi-turn 
 interactions.
@@ -20,9 +20,12 @@ sessions.
 Agents provide a comprehensive framework for building AI-powered 
 applications with the following capabilities:
 
-- **Understand context**: Maintain conversation history across multiple interactions.
-- **Use tools**: Access and manipulate data through a variety of tools including corpus search and web search.
-- **Follow instructions**: Execute complex workflows based on customizable instructions and templates.
+- **Understand context**: Maintain conversation history across multiple 
+  interactions.
+- **Use tools**: Access and manipulate data through a variety of tools, including 
+  corpus search and web search.
+- **Follow instructions**: Execute complex workflows based on customizable 
+  instructions and templates.
 - **Stream responses**: Provide real-time updates as agents process requests.
 
 ## **What agents can accomplish**
@@ -37,14 +40,15 @@ applications with the following capabilities:
 
 ## How agents work
 
-Agents access corpora using **tools**. Each tool is configured with explicit 
-permissions to one or more corpora. When creating or configuring an agent, 
-you select which tools the agent can use. This ensures:
+Agents use **tools** to access information and take action. Each tool provides 
+a specific capability, such as searching a specific corpus, accessing a web 
+page, or interacting with an external service. When creating or configuring an 
+agent, you select which tools it can use which helps ensure the following:
 
-* Clear separation between orchestration logic (agents) and data access 
-  (tools/corpora).
-* Auditable permissions for every retrieval or external action
-* Reusable tools that can serve multiple agents
+* A clear separation between orchestration logic (the agent) and the 
+  capabilities provided by tools.
+* Auditable permissions for every data retrieval or external action.
+* Reusable tools that can serve multiple agents.
 
 ## Agent concepts
 
@@ -158,14 +162,14 @@ flowchart TD
 To build your first agent:
 
 1. [**Create an agent**](/docs/console-ui/agents/create-an-agent): Define the agent's name, description, and available tools.
-2. **Configure tools**: Set up corpus access permissions and any external integrations.
-3. **Write instructions**: Create templates that guide the agent's behavior.
-4. **Test with sessions**: Start conversations and iterate on your configuration.
+2. [**Configure tools**](/docs/console-ui/agents/create-an-agent#tools): Set up corpus access permissions and any external integrations.
+3. [**Write instructions**](/docs/console-ui/agents/create-an-agent#instructions): Create templates that guide the agent's behavior.
+4. [**Test with sessions**](/docs/console-ui/agents/use-agents): Start conversations and iterate on your configuration.
 
 ## Platform Benefits
 
-- **Rapid Development**: Build sophisticated AI applications without managing infrastructure
-- **Enterprise Security**: Role-based access control and audit trails
-- **Scalability**: Handle thousands of concurrent conversations
-- **Flexibility**: Customize every aspect of agent behavior
-- **Integration Ready**: Connect with existing systems through APIs and connectors
+- **Rapid Development**: Build sophisticated AI applications without managing infrastructure.
+- **Enterprise Security**: Role-based access control and audit trails.
+- **Scalability**: Handle thousands of concurrent conversations.
+- **Flexibility**: Customize every aspect of agent behavior.
+- **Integration Ready**: Connect with existing systems through APIs and connectors.
