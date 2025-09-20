@@ -1,87 +1,118 @@
 ---
 id: instructions
-title: Instruction
-sidebar_label: Instruction
+title: Instructions
+sidebar_label: Instructions
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';
 
 Instructions serve as reusable blocks of system prompt logic. They guide the 
-agent’s reasoning in each step by setting expectations, tone, or rules of 
-engagement for the LLM. Defined independently, they are referenced by name and 
-can be updated without touching agent configurations. An agent references a 
-particular version of the instruction. Each instruction includes the following:
+reasoning and behavior of an agent by setting expectations, prompts, 
+and providing the rules for the underlying Large Language Model (LLM).
 
-* A unique ID (ins_abcd)
-* A name and description. The name must be unique across all instructions per customer
-* A prompt template
-* Optional metadata for versioning or rollout control
-
-:::note
-An agent references a particular version of the instruction. The version 
-number is optional but can be specified in the request, or the latest version 
-is selected. You must update the agent refer to any newer versions of 
-instructions.
-:::
-
-Instructions are the system-level configuration for agent behavior. They use 
-the Velocity templating engine to allow for dynamic content.
-
-## Shared Instructions
-
-Shared instructions are referenced by ID across multiple agents. You can 
-define instructions independently on inline. Each instruction includes:
-
-* A unique ID following the pattern *ins_*[identifier]
-* A name that must be unique across all instructions per customer
-* A description of the instruction's purpose
-* A prompt template with support for variables populated from tool context
-* Version management for controlled updates
-* Optional metadata for categorization
-
-When an instruction is updated, the changes create a new version. Agents 
-reference a specific version of the instruction, so updates are not 
-automatically reflected until the agent is explicitly updated to reference the 
-newer version. The version number is optional in requests but can be specified 
-for precise control. If omitted, the latest version is used.
+Instructions use the [Apache Velocity](https://velocity.apache.org/) templating 
+engine, which enables you to dynamically insert variables into your prompts. 
+You can configure instructions for an agent in two ways: **inline** or 
+**shared**.
 
 ## Inline Instructions
 
-Inline instructions have a one-to-one relationship with the agent and cannot 
-be used with other agents. They are automatically deleted when the agent is 
-deleted. This model provides simplified management for agent-specific 
-behavioral logic that doesn't need to be shared.
+You define inline instructions when you configure an agent. These instructions 
+are specific to that agent and best for situations that do not require reuse.
 
-### Template Context
-
-Instructions use the Velocity templating engine with access to tool 
-context during execution. The template receives information about available 
-tools and their execution results. Agent and session context are not included 
-in the template scope for this version.
-
-Instructions are the system-level configuration for agent behavior and provide 
-the flexibility to define consistent reasoning patterns across different 
-agents or create specialized behavior for specific use cases.
+- **Type**: To specify an inline instruction, set the `type` field to `"inline"`.
+- **Lifecycle**: An inline instruction is automatically deleted if the agent it 
+  belongs to is deleted.
 
 <CodePanel
-  title="Instruction Example"
+  title="Example: Inline Instruction for a Financial Analyst Agent"
   snippets={[
     {
       language: 'json',
       code: `{
-   "id": "ins_support_agent_instructions",
-   "name": "support-agent-instructions",
-   "description": "Instructions for a customer support agent.",
-   "prompt": "You are a customer support agent who helps users resolve their issues."
+  "name": "Financial Analyst Assistant",
+  // ... other agent configuration ...
+  "first_step": {
+    "type": "conversational",
+    "instructions": [
+      {
+        "type": "inline",
+        "name": "Financial Summary Rule",
+        "template": "You are a financial analyst assistant. When summarizing a report, focus on revenue, profit margins, and year-over-year growth. Present the summary in three bullet points. The current fiscal quarter is $fiscalQuarter.",
+        "template_type": "velocity",
+        "description": "An inline instruction to guide financial report summarization."
+      }
+    ],
+    // ...
+  }
 }`
     }]}
   annotations={{
     json: [
-      { line: 2, text: 'The unique ID of the instruction.' },
-      { line: 3, text: 'The name of the instruction.' },
-      { line: 4, text: 'A description of the instruction.' },
-      { line: 5, text: 'The prompt template that uses Velocity templating' }
+      { line: 7, text: 'Set the type to "inline" for an inline instruction.' },
+      { line: 9, text: 'The prompt template defines a specific role and output format, and uses a dynamic variable.' }
     ]
   }}
   layout="stacked"
 />
+
+## Shared (Reference) Instructions
+
+You can create shared instructions as independent, versioned entities for reuse 
+across multiple agents. This is ideal for standardizing behavior, such as 
+enforcing brand voice or defining common workflows.
+
+A shared instruction consists of the following:
+* A unique ID (`ins_12345`).
+* A `name` and `description`.
+* A `prompt` template.
+* Optional `metadata` for organization.
+* A `version` for tracking updates.
+
+To use a shared instruction, set the `type` field to `"reference"` 
+and provide the instruction's unique `id`.
+
+:::note
+When you update a shared instruction, this creates a new version of that 
+instruction. To use the new version, you must update any agents that 
+reference the instruction. If you do not specify a version, the agent uses 
+the latest one.
+:::
+
+<CodePanel
+  title="Example: Shared Instruction"
+  snippets={[
+    {
+      language: 'json',
+      code: `{
+  "name": "My Agent with a Shared Instruction",
+  // ... other agent configuration ...
+  "first_step": {
+    "type": "conversational",
+    "instructions": [
+      {
+        "type": "reference",
+        "id": "ins_customer_support_init",
+        "version": 2
+      }
+    ],
+    // ...
+  }
+}`
+    }]}
+  annotations={{
+    json: [
+      { line: 7, text: 'Set the type to "reference" to use a shared instruction.' },
+      { line: 8, text: 'The unique ID of the shared instruction to reference.' },
+      { line: 9, text: 'Optionally, specify a version of the instruction.' }
+    ]
+  }}
+  layout="stacked"
+/>
+
+## Template Context
+
+The Velocity templating engine has access to contextual information during 
+execution, such as the results from tool calls. This allows you to create 
+dynamic and responsive instructions. For this version, agent and session 
+context are not included in the template scope.

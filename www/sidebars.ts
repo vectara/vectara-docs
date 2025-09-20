@@ -626,36 +626,6 @@ const sidebars: SidebarsConfig = {
             },
             {
               type: 'category',
-              label: 'Session Management APIs',
-              link: {
-                type: 'doc',
-                id: 'api-reference/agent-apis/session-management',
-              },
-              collapsed: false,
-              items: [
-                "api-reference/agent-apis/session/create-agent-session",
-                "api-reference/agent-apis/session/list-agent-sessions",
-                "api-reference/agent-apis/session/get-agent-session",
-                "api-reference/agent-apis/session/update-agent-session",
-                "api-reference/agent-apis/session/delete-agent-session"
-              ]
-            },
-            {
-              type: 'category',
-              label: 'Event Management APIs',
-              link: {
-                type: 'doc',
-                id: 'api-reference/agent-apis/event-management',
-              },
-              collapsed: false,
-              items: [
-                "api-reference/agent-apis/event/create-agent-event",
-                "api-reference/agent-apis/event/list-agent-events",
-                "api-reference/agent-apis/event/get-agent-event",
-              ]
-            },
-            {
-              type: 'category',
               label: 'Tool Server Management APIs',
               link: {
                 type: 'doc',
@@ -722,6 +692,42 @@ const sidebars: SidebarsConfig = {
               ]
             },
          ],
+        },
+        {
+          type: "category",
+          label: "Agent Sessions APIs",
+          items: [
+            {
+              type: 'category',
+              label: 'Session Management APIs',
+              link: {
+                type: 'doc',
+                id: 'api-reference/agent-apis/session-management',
+              },
+              collapsed: false,
+              items: [
+                "api-reference/agent-apis/session/create-agent-session",
+                "api-reference/agent-apis/session/list-agent-sessions",
+                "api-reference/agent-apis/session/get-agent-session",
+                "api-reference/agent-apis/session/update-agent-session",
+                "api-reference/agent-apis/session/delete-agent-session"
+              ]
+            },
+            {
+              type: 'category',
+              label: 'Event Management APIs',
+              link: {
+                type: 'doc',
+                id: 'api-reference/agent-apis/event-management',
+              },
+              collapsed: false,
+              items: [
+                "api-reference/agent-apis/event/create-agent-event",
+                "api-reference/agent-apis/event/list-agent-events",
+                "api-reference/agent-apis/event/get-agent-event",
+              ]
+            },
+          ],
         },
       ],
     },

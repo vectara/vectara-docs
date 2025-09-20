@@ -18,9 +18,11 @@ client. This means Vectara agents can call MCP-enabled tools and services
 hosted on external MCP servers. 
 
 :::note 
-We do not yet support MCP server capabilities in the platform itself. We do 
-currently have an [open source Vectara MCP project](https://github.com/vectara/py-vectara-agentic) that is not part of the
-platform.
+You can run your own MCP server to expose your tools and data within the Vectara 
+platform. To help you get started, we provide an unsupported 
+[open-source MCP server implementation](https://github.com/vectara/py-vectara-agentic). 
+Please note that while you can connect your self-hosted MCP server to Vectara, 
+you are responsible for its management and maintenance.
 :::
 
 ## Why MCP is important

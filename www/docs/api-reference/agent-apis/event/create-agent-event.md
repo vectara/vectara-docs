@@ -1,18 +1,18 @@
 ---
 id: create-agent-event
-title: Create Agent Event API Definition
-sidebar_label: Create Agent Event
+title: Interact with an Agent API Definition
+sidebar_label: Interact with an Agent
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';
 
-The Create Agent Event API enables you to initiate new interactions within agent sessions by submitting user input messages that trigger agent processing, reasoning, tool execution, and response generation. This API serves as the primary interface for conversational interactions and represents the core mechanism through which users communicate with AI agents.
+The Interact with an Agent API enables you to create new inputs to an agent to interact with it. This API serves as the primary interface for conversational interactions and represents the core mechanism through which users communicate with AI agents.
 
-Organizations use this API to power customer support chat interfaces, internal business process interactions, technical assistance conversations, and any application where users need to engage in meaningful dialogue with intelligent agents that can reason, access tools, and provide contextual responses.
+When you send an input to an agent, it triggers agent processing, reasoning, tool execution, and response generation within the context of an agent session.
 
-## Create Agent Event Request and Response
+## Interact with an Agent Request and Response
 
-To create an agent event, send a POST request to `/v2/agents/{agent_key}/sessions/{session_key}/events`. You specify the following parameters:
+To interact with an agent, send a POST request to `/v2/agents/{agent_key}/sessions/{session_key}/events`. You specify the following parameters:
 
 - `agent_key` (string, required): Agent identifier in the URL path following pattern `[0-9a-zA-Z_-]+$`
 - `session_key` (string, required): Session identifier in the URL path following pattern `[0-9a-zA-Z_-]+$`
