@@ -31,7 +31,8 @@ ownership, group, role, or other attributes.
 | Control access based on user privileges       | `access_level`, `role`                   |
 | Filter by context or category                 | `category`, `project`, `tag`             |
 
-**Another Example
+**Another Example**
+
 One powerful way to guard privacy in a search system is by using metadata tags to mark content that contains Personally Identifiable Information (PII). For instance, during ingestion you could add a boolean metadata field called contains_pii(true/false). When indexing support transcripts, legal documents, or user feedback, any document or snippet that has PII would have contains_pii = true. Then at query‐time, you can apply a filtering rule to exclude all items where contains_pii = true, for users or roles that should not see sensitive data. For those with appropriate permissions, you could allow those results but optionally display only non-PII snippets or a redacted version. This adds a layer of access control based on metadata: you’re not needing to parse PII at search time, you’ve already categorized it at index time, and you can easily switch on or off visibility depending on user context.
 
 ## Prerequisites
