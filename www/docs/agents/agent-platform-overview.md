@@ -4,15 +4,14 @@ title: Agents
 sidebar_label: Agents
 ---
 
-Vectara Agents enable enterprises to build sophisticated, 
-enterprise-grade intelligent applications that go beyond basic question 
-answering. Agents interpret user input, reason through context, 
-leverage external tools, and maintain continuity across multi-turn 
-interactions.
+Vectara Agents enable you to build sophisticated, enterprise-grade intelligent
+applications that go beyond basic question answering. Agents interpret user
+input, reason through context, leverage external tools, and maintain continuity
+across multi-turn interactions.
 
-Unlike traditional RAG systems that simply retrieve documents and pass them to 
-a language model, Vectara agents provide orchestrated workflows capable of 
-taking action, retrieving information, invoking APIs, or maintaining user 
+Unlike traditional RAG systems that simply retrieve documents and pass them to
+a language model, Vectara agents provide orchestrated workflows capable of
+taking action, retrieving information, invoking APIs, or maintaining user
 sessions.
 
 ## What are agents?
@@ -28,7 +27,7 @@ applications with the following capabilities:
   instructions and templates.
 - **Stream responses**: Provide real-time updates as agents process requests.
 
-## **What agents can accomplish**
+## What agents can accomplish
 
 | **Desired outcome** | **Workflow** |
 |---|---|
@@ -37,6 +36,11 @@ applications with the following capabilities:
 | **Create workflow automation systems** | <ol><li>Agent triggers business processes</li><li>Sends notifications</li><li>Updates CRM systems based on natural language requests</li></ol> |
 | **Develop conversational enterprise tools** | <ol><li>Agent maintains context</li><li>Handles multi-step processes</li><li>Integrates with existing business systems</li></ol> |
 | **Deploy autonomous business processes** | <ol><li>Agent monitors conditions</li><li>Makes decisions</li><li>Executes actions without human intervention</li></ol> |
+
+:::tip Conversational AI Platform
+Agents are perfect for building conversational AI experiences like virtual 
+assistants and chatbots. [**Learn more about Vectara's Conversational AI →**](/docs/agents/conversational-ai)
+:::
 
 ## How agents work
 
@@ -50,9 +54,7 @@ agent, you select which tools it can use which helps ensure the following:
 * Auditable permissions for every data retrieval or external action.
 * Reusable tools that can serve multiple agents.
 
-## Agent concepts
-
-### Agents
+## Agents
 
 Agents act as the orchestration layer of the platform:
 - Coordinate between different tools and data sources.
@@ -60,21 +62,21 @@ Agents act as the orchestration layer of the platform:
 - Follow customizable instructions to guide behavior.
 - Support streaming responses for real-time interaction.
 
-### Tools
+## Tools
 
 Tools provide agents with capabilities to interact with data and external systems:
 - **Corpora Search**: Query your Vectara corpora with semantic search.
 - **Web Search**: Access current information from the internet.
 - **MCP Tools**: Integrate with external services through the [Model Context Protocol (MCP)](mcp).
 
-### Sessions
+## Sessions
 
 Sessions maintain the state of conversations:
 - Track all interactions (also known as events) within a conversation.
 - Preserve context across multiple turns.
 - Enable multi-turn reasoning and follow-up questions.
 
-### Instructions
+## Instructions
 
 Instructions guide agent behavior using Velocity templates:
 - Define the agent's persona and objectives.
@@ -166,10 +168,13 @@ To build your first agent:
 3. [**Write instructions**](/docs/console-ui/agents/create-an-agent#instructions): Create templates that guide the agent's behavior.
 4. [**Test with sessions**](/docs/console-ui/agents/use-agents): Start conversations and iterate on your configuration.
 
-## Platform Benefits
+## Security and Governance
 
-- **Rapid Development**: Build sophisticated AI applications without managing infrastructure.
-- **Enterprise Security**: Role-based access control and audit trails.
-- **Scalability**: Handle thousands of concurrent conversations.
-- **Flexibility**: Customize every aspect of agent behavior.
-- **Integration Ready**: Connect with existing systems through APIs and connectors.
+Every Vectara agent includes enterprise-grade security and governance features:
+
+- **Complete audit trails**: Track every agent interaction and decision.
+- **Role-based permissions**: Control access to tools, data sources, and capabilities.
+- **Data privacy**: Your content is never used to train models.
+- **Compliance certification**: SOC 2 and HIPAA certified for enterprise security requirements.
+- **Decision transparency**: See exactly how agents arrive at their responses and which sources they use.
+
