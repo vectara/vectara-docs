@@ -30,6 +30,6 @@ response includes an array of previous query histories.
 
 <Config v="names.product"/> exposes an HTTP endpoint at the following URL
 to list the history of previous queries:
-<code>https://<Config v="domains.rest.indexing"/>/v2/queries/:query_id</code>
+<code>https://<Config v="domains.rest.indexing"/>/v2/queries</code>
 
 The API Reference shows the full [List Query Histories](/docs/rest-api/get-query-histories) REST definition.
