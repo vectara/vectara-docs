@@ -10,7 +10,6 @@ import {vars} from '@site/static/variables.json';
 
 import CodePanel from '@site/src/theme/CodePanel';
 
-
 Initial search results often fail to capture nuanced relevance or diversity, 
 potentially leading to suboptimal user experiences. Utilizing Vectara's 
 reranking can significantly enhance the quality and usefulness of 
@@ -23,17 +22,24 @@ more accurate results.
 
 ## Available rerankers
 
-Vectara currently provides the following rerankers: 
+Vectara offers multiple reranking models that enable you to choose the best one
+that for your data and use case. You can evaluate different models
+against your own dataset to determine which provides optimal results for your
+domain and accuracy and latency requirements.
 
-* [**Multilingual Reranker v1**](/docs/learn/vectara-multi-lingual-reranker) (`type=customer_reranker` and `reranker_name=Rerank_Multilingual_v1`) 
-  also known as Slingshot, provides more accurate neural ranking than the 
-  initial Boomerang retrieval. While computationally more expensive, it offers 
-  improved text scoring across a wide range of languages, making it suitable 
-  for diverse content.
-* [**Maximal Marginal Relevance (MMR) Reranker**](/docs/learn/mmr-reranker) (`type=mmr`) 
-  for diversifying results while maintaining relevance.
-* [**User Defined Function Reranker**](/docs/learn/user-defined-function-reranker) (`type=userfn`) for 
-  custom scoring based on metadata.
+| Reranker Name | API Name | Description |
+|--------------|----------|-------------|
+| **Qwen3 Reranker** (default) | `qwen3-reranker` | High-performance multilingual neural reranker optimized for accuracy. In many benchmarks, Qwen3 demonstrates strong performance, though results vary by dataset. |
+| **Mixbread Reranker** | `mxbai-rerank-base-v2` | Efficient production-friendly model offering a good balance between speed and accuracy. |
+| [**Multilingual Reranker v1**](/docs/learn/vectara-multi-lingual-reranker) (Slingshot) | `Rerank_Multilingual_v1` | Neural reranker providing more accurate ranking than initial Boomerang retrieval. While computationally more expensive, it offers improved text scoring across a wide range of languages. |
+| [**Maximal Marginal Relevance (MMR) Reranker**](/docs/learn/mmr-reranker) | `type=mmr` | Diversifies results while maintaining relevance. |
+| [**User Defined Function Reranker**](/docs/learn/user-defined-function-reranker) | `type=userfn` | Applies custom scoring based on metadata or business rules. |
+
+:::tip
+To enable reranking in the Vectara console, navigate to the
+Query tab of a corpus and select **Retrieval**. Use this for exploration
+and experimenting with the API.
+:::
 
 ### Chain reranking
 
@@ -51,32 +57,66 @@ precision while maintaining recall.
 
 ## Enable reranking
 
-To enable reranking, specify the appropriate value for the `type` in the 
-`reranker` object. For the MMR reranker, use `mmr`. In most scenarios, 
-it makes sense to use the default query `start` value of `0` so that you're 
-reranking all of the best initial results. You can also set the  `limit` of the 
-`query` to the total number of documents you wish to rerank. The default value 
+To enable reranking, specify the appropriate value for the `type` in the
+`reranker` object. For the MMR reranker, use `mmr`. In most scenarios,
+it makes sense to use the default query `start` value of `0` so that you're
+reranking all of the best initial results. You can also set the  `limit` of the
+`query` to the total number of documents you wish to rerank. The default value
 is `25`.
 
-The following example shows the `limit` and `type` values in a query. Note that 
+The following example shows the `limit` and `type` values in a query. Note that
 this simplified example intentionally omits several parameter values.
 
 <CodePanel snippets={[{language: "json", code: `{
-  "query": "What is my question?",
-  "stream_response": false,
-  "search": {
-    "start": 0,
-    "limit": 25,
-    "context_configuration": {},
-    },
-    "reranker": {
-          "type": "mmr",
-          "diversity_bias": "0.4"
-    },
-  "generation": [],
-  "enable_factual_consistency_score": true
+   "query": "What is my question?",
+   "stream_response": false,
+   "search": {
+     "start": 0,
+     "limit": 25,
+     "context_configuration": {},
+     },
+     "reranker": {
+           "type": "mmr",
+           "diversity_bias": "0.4"
+     },
+   "generation": [],
+   "enable_factual_consistency_score": true
 }`}]} title="Code Example" layout="stacked" />
 
+### Using neural rerankers
+
+For neural rerankers like Qwen3, Mixbread, or Multilingual v1, use
+`type=customer_reranker` and specify the `reranker_name`.
+
+<CodePanel snippets={[{language: "json", code: `{
+   "query": "What is quantum computing?",
+   "reranker": {
+     "type": "customer_reranker",
+     "reranker_name": "qwen3-reranker"
+   }
+}`}]} title="Query with Qwen3 Reranker" layout="stacked" />
+
+<CodePanel snippets={[{language: "json", code: `{
+   "query": "What is quantum computing?",
+   "reranker": {
+     "type": "customer_reranker",
+     "reranker_name": "mxbai-rerank-base-v2"
+   }
+}`}]} title="Query with Mixbread Reranker" layout="stacked" />
+
+## Best practices
+
+When working with multiple rerankers, consider the following best practices:
+
+* **Experimentation**: Each reranker behaves differently depending on your
+  content and queries. Evaluate each reranker on your own dataset to determine
+  which provides the best results for your specific use case.
+* **Latency vs. accuracy**: Larger models like Qwen3 tend to provide more
+  accurate results but can add more latency compared to smaller models like
+  Mixbread. Test both models to find the right balance for your application.
+* **Fallback handling**: Ensure your application handles reranker errors
+  gracefully and can fall back to retrieval-only results if a reranker fails
+  or times out.
 
 ## Search cutoffs 
 
@@ -92,9 +132,9 @@ level of relevance. For example, when you set the `cutoff` to `0.5`, only result
 with a score of `0.5` or higher are considered. For example:
 
 <CodePanel snippets={[{language: "json", code: `"reranker": {
-  "type": "customer_reranker",
-  "reranker_name": "Rerank_Multilingual_v1",
-  "cutoff": 0.5
+   "type": "customer_reranker",
+   "reranker_name": "Rerank_Multilingual_v1",
+   "cutoff": 0.5
 }`}]} title="Code Example" layout="stacked" />
 When a reranker is applied with a cutoff, it performs the following steps:
 
@@ -111,10 +151,11 @@ cutoff is applied first, followed by the limit.
 :::
 
 :::caution
-Search cutoffs are most effective when used with neural rerankers like 
-the Vectara Multilingual reranker (Slingshot). This provides normalized 
-scores between 0 and 1. If you use hybrid search methods that involve BM25, 
-scores may be unbounded, making cutoff values less predictable.
+Search cutoffs are most effective when used with neural rerankers like
+Qwen3, Mixbread, or the Vectara Multilingual reranker (Slingshot), which
+provide normalized scores between 0 and 1. If you use hybrid search methods
+that involve BM25, scores may be unbounded, making cutoff values less
+predictable.
 :::
 
 ## Search limits
@@ -204,8 +245,4 @@ only highly relevant and recent documents for summarization.
 2. The next stage prioritizes documents based on their `publish_ts` value, 
    which represents the publication timestamp.
 
-:::tip
-You can also enable reranking in the Vectara console after navigating to the 
-Query tab of a corpus and selecting **Retrieval**. Use this for exploration 
-and experimenting with the API.
-:::
+
