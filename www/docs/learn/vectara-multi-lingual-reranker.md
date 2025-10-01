@@ -11,28 +11,30 @@ import {vars} from '@site/static/variables.json';
 import CodePanel from '@site/src/theme/CodePanel';
 
 
-Generative AI applications often struggle with ranking the most relevant 
-information, leading to hallucinations and irrelevant responses. The new 
-Vectara Multilingual Reranker V1, also known as Slingshot, is a 
-state-of-the-art reranking model that significantly enhances the precision of 
-retrieved results. Providing advanced neural ranking, it refines the output of 
-initial models like [Boomerang](https://vectara.com/blog/introducing-boomerang-vectaras-new-and-improved-retrieval-model/), 
-offering even more accurate document scoring and response quality in Retrieval 
-Augmented Generation (RAG) pipelines.
+Generative AI applications often struggle with ranking the most relevant
+information, leading to hallucinations and irrelevant responses. The Vectara
+Multilingual Reranker V1, also known as Slingshot, is a neural reranking model
+that enhances the precision of retrieved results. Providing advanced neural
+ranking, it refines the output of initial models like [Boomerang](https://vectara.com/blog/introducing-boomerang-vectaras-new-and-improved-retrieval-model/),
+offering improved document scoring and response quality in Retrieval Augmented
+Generation (RAG) pipelines.
 
-The Vectara Multilingual Reranker operates as a second-pass refinement tool, 
-building on Boomerang’s high-recall capabilities. While Boomerang quickly 
-retrieves a broad set of relevant documents, the Multilingual Reranker 
-delivers more precise results, ensuring that the top-ranked documents are the 
-most relevant. This reranker also excels across both English and multilingual 
-datasets, making it a powerful tool for global use cases.
+The Vectara Multilingual Reranker operates as a second-pass refinement tool,
+building on Boomerang's high-recall capabilities. While Boomerang quickly
+retrieves a broad set of relevant documents, the Multilingual Reranker
+delivers more precise results, ensuring that the top-ranked documents are the
+most relevant. This reranker excels across both English and multilingual
+datasets, making it a strong choice for global use cases.
 
-While more computationally expensive and introducing some additional latency, 
-the multilingual reranker improves neural ranking beyond Boomerang’s initial 
-selection by providing more precise text scoring. Think of the Slingshot 
-reranker as a "better Boomerang" for refining results, with the multilingual 
-capability serving primarily as a differentiator from other rerankers in the 
-market, which are often English-only.
+While more computationally expensive and introducing some additional latency,
+the multilingual reranker improves neural ranking beyond Boomerang's initial
+selection by providing more precise text scoring. The multilingual capability
+serves as a key differentiator, as many market rerankers are English-only.
+
+Vectara now offers multiple reranking models including Qwen3 (the default for
+SaaS) and Mixbread. You should evaluate different rerankers on your own
+dataset to determine which provides the best results for your specific use
+case and latency requirements.
 
 Using this reranker requires both the `type` and `reranker_name` in the 
 `reranker` object. Set the `type` as `customer_reranker` and the `reranker_name` 

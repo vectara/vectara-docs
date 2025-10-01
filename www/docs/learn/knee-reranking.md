@@ -15,17 +15,17 @@ distributions across queries. Knee reranking addresses this challenge by
 detecting natural boundaries between relevant and irrelevant results 
 automatically.
 
-Knee reranking combines statistical analysis with configurable parameters 
-to provide intelligent, adaptive filtering. Designed specifically to work 
-after the Slingshot reranker, it analyzes score patterns to identify 
-significant drops in relevance while maintaining safeguards against 
-over-aggressive filtering. For more details about how this reranker works, see 
+Knee reranking combines statistical analysis with configurable parameters
+to provide intelligent, adaptive filtering. Designed specifically to work
+after the Slingshot reranker, it analyzes score patterns to identify
+significant drops in relevance while maintaining safeguards against
+over-aggressive filtering. For more details about how this reranker works, see
 this [**blog post**](https://www.vectara.com/blog/introducing-the-knee-reranking-smart-result-filtering-for-better-results).
 
 ## Enable knee reranking
 
-Enable knee reranking by adding it your reranking chain after the Slingshot 
-reranker. The default settings balance precision and recall, making them 
+Enable knee reranking by adding it your reranking chain after the Slingshot
+reranker. The default settings balance precision and recall, making them
 suitable for most use cases.
 
 <CodePanel snippets={[{language: "json", code: `{
@@ -37,6 +37,18 @@ suitable for most use cases.
     ]
   }
 }`}]} title="Default Configuration Example" layout="stacked" />
+
+Knee reranking also works with the new neural rerankers like Qwen3 and Mixbread:
+
+<CodePanel snippets={[{language: "json", code: `{
+  "reranker": {
+    "type": "chain",
+    "rerankers": [
+      { "type": "customer_reranker", "reranker_name": "qwen3-reranker" },
+      { "type": "userfn", "user_function": "knee()", "cutoff": 0.5 }
+    ]
+  }
+}`}]} title="Knee Reranking with Qwen3" layout="stacked" />
 
 Customize the behavior of knee reranking through two key parameters:
 
