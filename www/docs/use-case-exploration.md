@@ -1,36 +1,32 @@
 ---
 id: use-case-exploration
-title: Use Cases and Applications
+title: Use Case Exploration
 sidebar_label: Use Case Exploration
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';
 
-The Vectara platform enables you to build trusted AI experiences across
-multiple use cases, from conversational AI agents to document generation and
-research applications. Our solution combines
-[Retrieval Augmented Generation (RAG)](/docs/learn/grounded-generation/grounded-generation-overview)
-and [semantic search](/docs/learn/semantic-search/semantic-search-overview)
-with enterprise governance to deliver accurate, grounded responses.
+The <Config v="names.product"/> **Retrieval Augmented Generation as-a-Service 
+(RAGaaS)** platform enables enterprises to rapidly create GenAI experiences, 
+from conversational AI agents to document generation and research applications. 
+These agents reduce hallucinations and provide relevant results.
 
 Build applications that understand natural language queries without requiring
 deep AI expertise. Vectara reduces hallucinations, supports 100+ languages,
 maintains enterprise-grade security, and never trains on customer content.
 
-### Conversational AI and virtual assistants
+## Conversational AI and virtual assistants
 
-Build intelligent conversational experiences that understand context and provide accurate responses:
+Build intelligent [conversational experiences](/docs/agents/conversational-ai) that understand context and provide accurate responses:
 
 - **Customer service virtual assistants**: Deploy 24/7 self-service assistants, 
-  support bots, or help desk agents.
+  chat bots, or help desk agents.
 - **Engineering and operations support**: Provide technical specifications, machine 
   configurations, and troubleshooting guides through natural conversation.
 - **Department-specific agents**: Create specialized conversational AI from  
   company data and knowledge for sales, HR, legal, or IT teams.
 
-Learn more in our [Conversational AI documentation](/docs/agents/conversational-ai).
-
-### Document generation and analysis
+## Document generation and analysis
 
 Transform how your organization creates and analyzes documents:
 
@@ -41,7 +37,7 @@ Transform how your organization creates and analyzes documents:
 - **Contract analysis**: Build AI agents that ensure compliance with pricing policies, 
   vendor lists, and regulatory standards.
 
-### Research and knowledge discovery
+## Research and knowledge discovery
 
 Accelerate research and uncover insights from large document collections:
 
@@ -68,7 +64,7 @@ Enable precise answers from your organization's knowledge base:
 
 Create a dynamic [question and answer system](/docs/learn/question-answer/question-answer-overview) that continuously improves user experience.
 
-### Semantic search for applications
+## Semantic search for applications
 
 Embed powerful search capabilities into your applications without becoming an 
 LLM expert:
@@ -83,7 +79,9 @@ LLM expert:
 Vectara bridges the gap between user queries and your data, delivering 
 relevant results regardless of how questions are phrased.
 
-Our [Quick Start Tutorial](/docs/quickstart) shows you how to index and search 
+## Console quick start
+
+The Vectara [Console quick start tutorial](/docs/quickstart) shows you how to index and search 
 your data quickly. Common data types that work well with Vectara include:
 
 - Employee handbooks and training materials
@@ -93,10 +91,11 @@ your data quickly. Common data types that work well with Vectara include:
 - Financial reports and regulatory filings
 - Knowledge base articles and support content
 
-These document types contain nuanced information where semantic search excels—helping users find specific details without knowing exact keywords or section titles.
+These document types contain nuanced information where semantic search excels, 
+helping users find specific details without knowing exact keywords or section 
+titles.
 
 :::tip
-
-Check out [example Vectara applications, demos, and tutorials](http://vectara.com/demos/) to explore platform capabilities across various use cases and datasets.
-
+Check out [example Vectara applications, demos, and tutorials](http://vectara.com/demos/) to explore 
+platform capabilities across various use cases and datasets.
 :::

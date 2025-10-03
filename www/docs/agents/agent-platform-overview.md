@@ -4,7 +4,7 @@ title: Agents
 sidebar_label: Agents
 ---
 
-Vectara Agents enable you to build sophisticated, enterprise-grade intelligent
+Vectara Agents enable enterprises to build sophisticated, enterprise-grade intelligent
 applications that go beyond basic question answering. Agents interpret user
 input, reason through context, leverage external tools, and maintain continuity
 across multi-turn interactions.
@@ -166,15 +166,6 @@ To build your first agent:
 1. [**Create an agent**](/docs/console-ui/agents/create-an-agent): Define the agent's name, description, and available tools.
 2. [**Configure tools**](/docs/console-ui/agents/create-an-agent#tools): Set up corpus access permissions and any external integrations.
 3. [**Write instructions**](/docs/console-ui/agents/create-an-agent#instructions): Create templates that guide the agent's behavior.
-4. [**Test with sessions**](/docs/console-ui/agents/use-agents): Start conversations and iterate on your configuration.
+4. [**Test agents with sessions**](/docs/console-ui/agents/use-agents): Start conversations and iterate on your configuration.
 
-## Security and Governance
-
-Every Vectara agent includes enterprise-grade security and governance features:
-
-- **Complete audit trails**: Track every agent interaction and decision.
-- **Role-based permissions**: Control access to tools, data sources, and capabilities.
-- **Data privacy**: Your content is never used to train models.
-- **Compliance certification**: SOC 2 and HIPAA certified for enterprise security requirements.
-- **Decision transparency**: See exactly how agents arrive at their responses and which sources they use.
 
