@@ -15,7 +15,7 @@ export default function CodePanel({
   layout = 'floating',
   customWidth, // New prop for manual width override
   collapsible = true, // Enable collapse feature
-  initialCollapsedLines = 10, // Auto-collapse if more than N lines
+  initialCollapsedLines = 30, // Auto-collapse if more than N lines
   highlightLines = '', // Line ranges to highlight e.g. "2-4,7,10-12"
   tabs = false, // Enable tabs mode for multiple snippets
   editable = false, // Enable live code editor mode
