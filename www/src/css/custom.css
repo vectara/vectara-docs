@@ -880,3 +880,15 @@ table td {
   color: #e06c75 !important; /* Red for properties */
 }
 
+.mermaid-container {
+  background-color: white; /* solid background for both light & dark modes */
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto; /* in case diagram is wider than screen */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* optional: subtle shadow */
+}
+
+/* Force same background in dark mode */
+[data-theme='dark'] .mermaid-container {
+  background-color: white;
+}

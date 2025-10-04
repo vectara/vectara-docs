@@ -1,7 +1,7 @@
 ---
 id: get-app-client
 title: Get App Client API Definition
-sidebar_label: Get App Client API Definition
+sidebar_label: Get App Client
 ---
 
 import Tabs from '@theme/Tabs';

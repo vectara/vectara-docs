@@ -1,7 +1,7 @@
 ---
 id: delete-llm
 title: Delete LLM API Definition
-sidebar_label: Delete LLM API Definition
+sidebar_label: Delete LLM
 ---
 
 import Tabs from '@theme/Tabs';

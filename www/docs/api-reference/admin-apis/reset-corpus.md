@@ -1,7 +1,7 @@
 ---
 id: reset-corpus
 title: Reset Corpus API Definition
-sidebar_label: Reset Corpus API Definition
+sidebar_label: Reset Corpus
 ---
 
 import {vars} from '@site/static/variables.json';

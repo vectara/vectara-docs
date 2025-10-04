@@ -1,7 +1,7 @@
 ---
 id: get-user
 title: Get User API Definition
-sidebar_label: Get User API Definition
+sidebar_label: Get User
 ---
 
 import Tabs from '@theme/Tabs';

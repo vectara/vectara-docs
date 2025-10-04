@@ -1,7 +1,7 @@
 ---
 id: create-chat
 title: Create Chat API Definition
-sidebar_label: Create Chat API Definition
+sidebar_label: Create Chat
 ---
 
 import Tabs from '@theme/Tabs';

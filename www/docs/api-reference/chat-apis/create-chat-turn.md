@@ -1,7 +1,7 @@
 ---
 id: create-chat-turn
 title: Create Chat Turn API Definition
-sidebar_label: Create Chat Turn API Definition
+sidebar_label: Create Chat Turn
 ---
 
 import Tabs from '@theme/Tabs';

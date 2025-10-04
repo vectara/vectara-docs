@@ -1,7 +1,7 @@
 ---
 id: hallucination_correctors
 title: Correct Hallucinations API Definition
-sidebar_label: Correct Hallucinations API Definition
+sidebar_label: Correct Hallucinations
 ---
 
 

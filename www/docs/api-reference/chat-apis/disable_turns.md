@@ -1,7 +1,7 @@
 ---
 id: disable-turns
 title: Disable Turns API Definition
-sidebar_label: Disable Turns API Definition
+sidebar_label: Disable Turns
 ---
 
 import Tabs from '@theme/Tabs';

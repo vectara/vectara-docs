@@ -1,7 +1,7 @@
 ---
 id: create-api-key
 title: Create API Key API Definition
-sidebar_label: Create API Key API Definition
+sidebar_label: Create API Key
 ---
 
 import Tabs from '@theme/Tabs';

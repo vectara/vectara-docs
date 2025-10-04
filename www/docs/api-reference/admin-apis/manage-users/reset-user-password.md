@@ -1,7 +1,7 @@
 ---
 id: reset-user-password
 title: Reset User Password API Definition
-sidebar_label: Reset User Password API Definition
+sidebar_label: Reset User Password
 ---
 
 import Tabs from '@theme/Tabs';

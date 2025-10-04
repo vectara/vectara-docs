@@ -142,22 +142,14 @@ ${content}
       },
       items: [
         {
-          type: "dropdown",
           label: "Docs",
+          to: "docs/",
           position: "left",
-          items: [
-            { label: "Version 2.0 (Latest)", to: "docs/" },
-            { label: "Version 1.0", to: "docs/1.0/" },
-          ],
         },
         {
-          type: "dropdown",
           label: "API Reference",
+          to: "docs/rest-api",
           position: "left",
-          items: [
-            { label: "Version 2.0 (Latest)", to: "docs/rest-api" },
-            { label: "Version 1.0", to: "docs/1.0/rest-api" },
-          ],
         },
         {
           type: "dropdown",
@@ -168,12 +160,13 @@ ${content}
           ],
         },
         {
-          label: "Release Notes",
-          to: "docs/release-notes",
-        },
-        {
-          label: "Changelog",
-          to: "docs/changelog",
+          type: "dropdown",
+          label: "Release Information",
+          position: "left",
+          items: [
+            { label: "Release Notes", to: "docs/release-notes" },
+            { label: "Changelog", to: "docs/changelog" },
+          ],
         },
         {
           type: "search",

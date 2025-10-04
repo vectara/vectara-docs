@@ -1,7 +1,7 @@
 ---
 id: replace-document-metadata
 title: Replace Document Metadata API Definition
-sidebar_label: Replace Document Metadata API Definition
+sidebar_label: Replace Document Metadata
 ---
 
 import {vars} from '@site/static/variables.json';

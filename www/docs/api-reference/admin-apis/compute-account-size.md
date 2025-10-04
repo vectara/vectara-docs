@@ -1,7 +1,7 @@
 ---
 id: compute-account-size
 title: Compute Account Size API Definition
-sidebar_label: Compute Account Size API Definition
+sidebar_label: Compute Account Size
 ---
 
 import {vars} from '@site/static/variables.json';

@@ -20,6 +20,60 @@ and how these product and documentation changes can benefit your enterprise.
 
 ---
 
+## Vectara Agents Framework
+
+_September 3, 2025_
+
+We're excited to introduce the tech preview of the Vectara Agents APIs. 
+This comprehensive framework enables building intelligent, autonomous AI 
+agents that go beyond simple question-answering, to become configurable 
+digital workers capable of complex reasoning, multi-step workflows, and 
+enterprise system integration.
+
+**Why it matters:** Traditional RAG applications are limited to reactive Q&A 
+interactions. The Agents APIs enable AI agents that can autonomously reason 
+through problems, orchestrate multiple tools, maintain conversation context, 
+and integrate with enterprise systems through standardized protocols. This 
+opens entirely new use cases for AI automation, from intelligent customer 
+support to complex business process orchestration.
+
+**What's new:**
+
+- **Agents APIs**: Create and configure intelligent agents with customizable reasoning models, 
+behavioral instructions, and tool access controls
+- **Stateful Conversations**: Maintain context across multi-turn interactions with session management, 
+enabling complex dialogues and workflow continuity
+- **Tool Orchestration**: Agents can dynamically invoke multiple tools including:
+  - Corpora search for RAG capabilities
+  - Web search for real-time information
+  - Custom MCP tools for enterprise integrations
+- **Streaming Response Support**: Real-time conversational experiences with Server-Sent Events for progressive response building
+- **Flexible Instructions**: Combine reusable instruction templates with inline configurations using Velocity templating for dynamic agent behavior
+- **Chain-of-Thought Reasoning**: Transparent agent thinking process with dedicated event types for reasoning visibility
+- **Version Management**: Instructions and tool configurations support versioning for controlled rollouts and governance
+
+**New API Endpoints:**
+
+The Vectara Agent APIs introduce several new endpoints:
+* [Agent Management](/docs/api-reference/agent-apis/agent-apis-overview)
+* [Session Management](/docs/api-reference/agent-apis/session/create-agent-session)
+* [Event Processing](/docs/api-reference/agent-apis/event/create-agent-event)
+* [Tool Server Management](/docs/api-reference/agent-apis/tool-server/create-tool-server)
+
+**More information:**
+* [Agents](/docs/agents/agent-platform-overview)
+* [Agents APIs](/docs/api-reference/agent-apis/agent-apis-overview)
+* [Manage Agents](/docs/console-ui/manage-agents)
+
+:::caution
+
+- This is a tech preview release. APIs and features may evolve based on customer feedback.
+- All agent and session identifiers follow the pattern `[0-9a-zA-Z_-]+` without prefixes.
+- MCP is the only supported tool server protocol in this release.
+:::
+
+---
+
 ## Fuzzy Metadata Search
 
 _August 22, 2025_

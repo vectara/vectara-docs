@@ -1,7 +1,7 @@
 ---
 id: update-app-client
 title: Update App Client API Definition
-sidebar_label: Update App Client API Definition
+sidebar_label: Update App Client
 ---
 
 import Tabs from '@theme/Tabs';

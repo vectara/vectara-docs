@@ -203,7 +203,7 @@ for document in documents:
 Explore powerful methods to retrieve and manage document listings within a 
 corpus, enabling efficient data access and organization.
 
-The `documents.list` method corresponds to the HTTP GET `/v2/corpora/{corpus_key}/documents` endpoint. For more details on request and response parameters, see the [List Documents REST API](https://docs.vectara.com/docs/rest-api/list-documents).
+The `documents.list` method corresponds to the HTTP GET `/v2/corpora/{corpus_key}/documents` endpoint. For more details on request and response parameters, see the [List Documents REST API](https://docs.vectara.com/docs/rest-api/list-corpus-documents).
 
 **Parameters:**
 - `corpus_key` (string, required): Unique identifier for the corpus
@@ -492,7 +492,9 @@ a new knowledge base in Vectara.
 <Spacer size="l" />
 <Spacer size="l" />
 <Spacer size="l" />
-
+<Spacer size="l" />
+<Spacer size="l" />
+<Spacer size="l" />
 
 ---
 
@@ -500,8 +502,8 @@ a new knowledge base in Vectara.
 
 After understanding document management and indexing, you can:
 
-- **Query documents**: Use `client.query()` to search across document content with the [Query guide](/docs/sdk/python/query)
-- **Upload files**: Use `client.upload.file()` to index PDFs, DOCX, and other file formats with the [Upload Files guide](/docs/sdk/python/upload_file)
-- **Manage corpora**: Create and configure corpora with `client.corpora.create()` using the [Corpora guide](/docs/sdk/python/corpus)
-- **Batch operations**: Process multiple documents efficiently for large-scale content management
-- **Advanced filtering**: Leverage metadata for sophisticated document organization
+- **Query documents**: Use `client.query()` to search across document content with the [Query guide](/docs/sdk/python/query).
+- **Upload files**: Use `client.upload.file()` to index PDFs, DOCX, and other file formats with the [Upload Files guide](/docs/sdk/python/upload).
+- **Manage corpora**: Create and configure corpora with `client.corpora.create()` using the [Corpora guide](/docs/sdk/python/corpus).
+- **Batch operations**: Process multiple documents efficiently for large-scale content management.
+- **Advanced filtering**: Leverage metadata for sophisticated document organization.

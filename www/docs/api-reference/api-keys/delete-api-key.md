@@ -1,7 +1,7 @@
 ---
 id: delete-api-key
 title: Delete API Key API Definition
-sidebar_label: Delete API Key API Definition
+sidebar_label: Delete API Key
 ---
 
 import Tabs from '@theme/Tabs';

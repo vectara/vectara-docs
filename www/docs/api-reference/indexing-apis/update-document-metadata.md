@@ -1,7 +1,7 @@
 ---
 id: update-document-metadata
 title: Update Document Metadata API Definition
-sidebar_label: Update Document Metadata API Definition
+sidebar_label: Update Document Metadata
 ---
 
 import {vars} from '@site/static/variables.json';

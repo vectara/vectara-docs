@@ -1,7 +1,7 @@
 ---
 id: delete-user
 title: Delete User API Definition
-sidebar_label: Delete User API Definition
+sidebar_label: Delete User
 ---
 
 import Tabs from '@theme/Tabs';

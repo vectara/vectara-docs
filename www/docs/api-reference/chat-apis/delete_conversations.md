@@ -1,7 +1,7 @@
 ---
 id: delete-conversations
 title: Delete Chat API Definition
-sidebar_label: Delete Chat API Definition
+sidebar_label: Delete Chat
 ---
 
 import Tabs from '@theme/Tabs';

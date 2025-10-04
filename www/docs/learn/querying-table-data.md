@@ -35,6 +35,9 @@ can derive actionable insights more effectively.
 * Query specific cell values within tables
 * Semantic comparison between cell contents
 * Duplicate table references are removed before reaching the user
+* Support for structured table input with the Indexing API
+* Multiple cell data types (text, integer, float, boolean values)
+* Configurable table extractors (AWS Textract integration)
 
 ## Supported table formats
 
@@ -42,6 +45,9 @@ can derive actionable insights more effectively.
 * Consistent data types within columns
 * Column merged cells
 * Simple row-column structure without merged cells
+* **Structured table input**: Tables with defined headers, rows, and cell types
+* **Markdown tables**: Supported through file upload (markdown file format)
+* **JSON table format**: Direct table definition with the Indexing API
 
 ## Limitations
 

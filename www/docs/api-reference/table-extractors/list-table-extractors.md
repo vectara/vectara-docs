@@ -1,7 +1,7 @@
 ---
 id: list-table-extractors
 title: List Table Extractors API Definition
-sidebar_label: List Table Extractors API Definition
+sidebar_label: List Table Extractors
 ---
 
 import Tabs from '@theme/Tabs';
