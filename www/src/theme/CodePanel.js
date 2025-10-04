@@ -688,7 +688,7 @@ export default function CodePanel({
                 className={styles.editorLineNumbers}
                 aria-hidden="true"
               >
-                {editableCode.split('\n').map((_, idx) => (
+                {(editableCode || snippet.code).split('\n').map((_, idx) => (
                   <div key={idx} className={styles.editorLineNumber}>
                     {idx + 1}
                   </div>
