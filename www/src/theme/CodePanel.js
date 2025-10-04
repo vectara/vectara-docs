@@ -40,6 +40,7 @@ export default function CodePanel({
   // Refs for scroll synchronization
   const textareaRef = React.useRef();
   const highlightRef = React.useRef();
+  const lineNumbersRef = React.useRef();
 
   /* ---------------------------------------------------------- */
   /* Helpers                                                   */
@@ -116,11 +117,14 @@ export default function CodePanel({
     showToast('Code reset');
   };
 
-  // Synchronize scroll between textarea and background
+  // Synchronize scroll between textarea, background, and line numbers
   const handleScroll = (e) => {
     if (highlightRef.current && textareaRef.current) {
       highlightRef.current.scrollTop = e.target.scrollTop;
       highlightRef.current.scrollLeft = e.target.scrollLeft;
+    }
+    if (lineNumbersRef.current) {
+      lineNumbersRef.current.scrollTop = e.target.scrollTop;
     }
   };
 
@@ -678,8 +682,21 @@ export default function CodePanel({
         >
           <div className={styles.editorSection}>
             <div className={styles.editorWrapper}>
+              {/* Line numbers */}
+              <div
+                ref={lineNumbersRef}
+                className={styles.editorLineNumbers}
+                aria-hidden="true"
+              >
+                {editableCode.split('\n').map((_, idx) => (
+                  <div key={idx} className={styles.editorLineNumber}>
+                    {idx + 1}
+                  </div>
+                ))}
+              </div>
+
               {/* Syntax highlighted background */}
-              <pre 
+              <pre
                 ref={highlightRef}
                 className={styles.syntaxHighlight}
                 dangerouslySetInnerHTML={{ __html: highlighted }}
@@ -699,7 +716,7 @@ export default function CodePanel({
                 aria-multiline="true"
                 aria-describedby="editor-instructions"
               />
-              
+
               {/* Hidden instructions for screen readers */}
               <span id="editor-instructions" className={styles.srOnly}>
                 Use Tab to navigate to buttons. The code is editable. Use the Reset button to restore original code.
