@@ -299,7 +299,8 @@ export class VectaraAgentManager {
                 type: "text",
                 content: message
               }
-            ]
+            ],
+            stream_response: true
           })
         }
       );
@@ -331,17 +332,20 @@ export class VectaraAgentManager {
             try {
               const data = JSON.parse(line.slice(6));
 
-              if (data.type === 'agent_output') {
-                const contentChunk = data.agent_output?.content || '';
+              if (data.type === 'streaming_agent_output') {
+                const contentChunk = data.content || '';
                 fullContent += contentChunk;
                 onChunk(contentChunk);
               } else if (data.type === 'tool_output') {
                 toolResults.push(data.tool_output);
               } else if (data.type === 'thinking') {
                 agentThoughts.push(data.thinking);
-              } else if (data.type === 'input_message') {
-                // Ignore input messages in streaming
+              } else if (data.type === 'streaming_agent_output_end') {
+                // Streaming ended, will complete after loop
                 continue;
+              } else if (data.type === 'end') {
+                // Session ended
+                break;
               }
             } catch (e) {
               // Skip malformed JSON
