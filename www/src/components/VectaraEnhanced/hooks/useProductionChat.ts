@@ -17,6 +17,7 @@ import { generateEnhancedContext } from '../utils/openApiContext';
 import { saveConversation, generateConversationTitle } from '../utils/conversationPersistence';
 import { generateSearchSuggestions, saveRecentQuery } from '../utils/searchSuggestions';
 import { findRelevantExamples, getExample, formatExampleForChat } from '../../../utils/exampleLookup';
+import { debugCodeGeneration, debugAPI } from '../utils/debug';
 
 // Detect if user is asking for code examples
 const detectExampleRequest = (query: string): boolean => {
@@ -202,24 +203,24 @@ const shouldShowCodeButtons = async (userQuery: string, responseContent: string)
     // 1. Check if examples directory has relevant examples
     const exampleIds = await findRelevantExamples(userQuery);
     if (exampleIds.length > 0) {
-      console.log('Should show code buttons: found relevant examples');
+      debugCodeGeneration('Should show code buttons: found relevant examples');
       return true;
     }
-    
+
     // 2. Check if response contains code blocks from corpus
     const responseHasCode = /```[\s\S]*?```/.test(responseContent);
     if (responseHasCode) {
-      console.log('Should show code buttons: response has code blocks');
+      debugCodeGeneration('Should show code buttons: response has code blocks');
       return true;
     }
-    
+
     // 3. Check if we can confidently generate template code
     if (isConfidentCodeGeneration(userQuery, responseContent)) {
-      console.log('Should show code buttons: confident code generation possible');
+      debugCodeGeneration('Should show code buttons: confident code generation possible');
       return true;
     }
-    
-    console.log('Should NOT show code buttons: no relevant code available');
+
+    debugCodeGeneration('Should NOT show code buttons: no relevant code available');
     return false;
   } catch (error) {
     console.error('Error determining if should show code buttons:', error);
@@ -329,7 +330,7 @@ export const useProductionChat = (options: UseProductionChatOptions): UseChatRet
   }, [analytics, state.sessionId]);
 
   const generateCodeSnippets = useCallback((content: string, forceCodeType?: string, userQuery?: string): CodeSnippet[] => {
-    console.log('generateCodeSnippets called:', {
+    debugCodeGeneration('generateCodeSnippets called:', {
       content: content.substring(0, 50) + '...',
       forceCodeType,
       userQuery: userQuery?.substring(0, 50),
@@ -338,15 +339,15 @@ export const useProductionChat = (options: UseProductionChatOptions): UseChatRet
     });
 
     if (!codeGeneration?.enabled) {
-      console.log('Code generation not enabled');
+      debugCodeGeneration('Code generation not enabled');
       return [];
     }
 
     const codeType = forceCodeType || detectCodeType(userQuery || content);
-    console.log('Detected code type:', codeType);
-    
+    debugCodeGeneration('Detected code type:', codeType);
+
     if (!codeType) {
-      console.log('No code type detected');
+      debugCodeGeneration('No code type detected');
       return [];
     }
 
@@ -354,20 +355,20 @@ export const useProductionChat = (options: UseProductionChatOptions): UseChatRet
     // Extract context-specific parameters from the user query
     const contextParams = extractContextParameters(userQuery || content);
     const defaultParams = { ...codeGeneration.defaultParameters, ...contextParams };
-    console.log('Context-aware parameters:', defaultParams);
+    debugCodeGeneration('Context-aware parameters:', defaultParams);
 
     // Process languages synchronously to avoid async/await issues
     for (const lang of codeGeneration.supportedLanguages) {
       const template = CODE_TEMPLATES[codeType]?.[lang];
-      console.log(`Template lookup for ${codeType}/${lang}:`, {
+      debugCodeGeneration(`Template lookup for ${codeType}/${lang}:`, {
         found: !!template,
         availableCodeTypes: Object.keys(CODE_TEMPLATES),
         availableForCodeType: Object.keys(CODE_TEMPLATES[codeType] || {})
       });
-      
+
       if (template) {
         const parameters: Record<string, any> = {};
-        
+
         template.parameters.forEach(param => {
           parameters[param] = {
             type: 'string',
