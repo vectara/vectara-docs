@@ -122,7 +122,7 @@ Remember: Your goal is to be the most helpful Vectara assistant possible by inte
       toolName: "corpora_search",
       description: "Search Vectara documentation corpus for information about APIs, concepts, and usage",
       parameters: {
-        corpusKey: "DOCUMENTATION_CORPUS_ID",
+        corpusKey: "ofer-bm-moma-docs_232", // Your current documentation corpus
         maxResults: 5,
         contextLength: 2000,
         responseLanguage: "eng"
@@ -132,7 +132,7 @@ Remember: Your goal is to be the most helpful Vectara assistant possible by inte
       toolName: "code_examples_search",
       description: "Search code examples corpus for implementation samples, templates, and working code",
       parameters: {
-        corpusKey: "CODE_EXAMPLES_CORPUS_ID",
+        corpusKey: "CODE_EXAMPLES_CORPUS_KEY", // Replace with actual code examples corpus key
         maxResults: 10,
         contextLength: 3000,
         responseLanguage: "eng"
@@ -149,8 +149,8 @@ Remember: Your goal is to be the most helpful Vectara assistant possible by inte
   ],
 
   corpusKeys: [
-    "DOCUMENTATION_CORPUS_ID", // Replace with actual documentation corpus ID
-    "CODE_EXAMPLES_CORPUS_ID"  // Replace with actual code examples corpus ID
+    "ofer-bm-moma-docs_232",     // Your current documentation corpus
+    "CODE_EXAMPLES_CORPUS_KEY"   // Replace with actual code examples corpus key
   ],
 
   modelConfiguration: {
@@ -177,6 +177,46 @@ export const createAgentPayload = (config: VectaraAgentConfig) => ({
   modelConfiguration: config.modelConfiguration,
   responseConfiguration: config.responseConfiguration
 });
+
+// Configuration with your actual credentials
+export const PRODUCTION_AGENT_CONFIG: VectaraAgentConfig = {
+  ...VECTARA_AGENT_CONFIG,
+  // Override with your actual credentials
+  tools: [
+    {
+      toolName: "corpora_search",
+      description: "Search Vectara documentation corpus for information about APIs, concepts, and usage",
+      parameters: {
+        corpusKey: "ofer-bm-moma-docs_232", // Your documentation corpus key
+        maxResults: 5,
+        contextLength: 2000,
+        responseLanguage: "eng"
+      }
+    },
+    {
+      toolName: "web_search",
+      description: "Search the web for additional information when documentation is insufficient",
+      parameters: {
+        enabled: true,
+        maxResults: 3
+      }
+    }
+  ],
+  corpusKeys: ["ofer-bm-moma-docs_232"] // Your documentation corpus key
+};
+
+// Default credentials for the agent manager
+export const DEFAULT_AGENT_CREDENTIALS = {
+  customerId: "1526022105",
+  apiKey: "zqt_WvU_2ewh7ZGRwq8LdL2SV8B9RJmVGyUm1VAuOw"
+};
+
+// Testing credentials for agent creation and corpus testing
+export const TESTING_AGENT_CREDENTIALS = {
+  customerId: "YOUR_TESTING_CUSTOMER_ID", // You'll need to provide this
+  apiKey: "zut_ohiV8_mBEcJy_NsmzR4_THP70DX9B8lJ06hn2A",
+  corpusKey: "technical_writing_assistant"
+};
 
 // Session configuration for agent interactions
 export const AGENT_SESSION_CONFIG = {

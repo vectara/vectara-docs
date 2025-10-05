@@ -12,17 +12,21 @@ import {
 } from '../config/agentConfig';
 import { debugAPI } from './debug';
 
-// Agent API endpoints
+// Vectara API v2 base endpoint
+const VECTARA_API_V2_BASE = 'https://api.vectara.io/v2';
+
+// Agent API endpoints (API v2)
 const AGENT_ENDPOINTS = {
-  createAgent: 'https://api.vectara.io/v2/agents',
-  listAgents: 'https://api.vectara.io/v2/agents',
-  createSession: (agentKey: string) => `https://api.vectara.io/v2/agents/${agentKey}/sessions`,
+  createAgent: `${VECTARA_API_V2_BASE}/agents`,
+  listAgents: `${VECTARA_API_V2_BASE}/agents`,
+  createSession: (agentKey: string) => `${VECTARA_API_V2_BASE}/agents/${agentKey}/sessions`,
   sendMessage: (agentKey: string, sessionKey: string) =>
-    `https://api.vectara.io/v2/agents/${agentKey}/sessions/${sessionKey}/events`,
+    `${VECTARA_API_V2_BASE}/agents/${agentKey}/sessions/${sessionKey}/events`,
   getSession: (agentKey: string, sessionKey: string) =>
-    `https://api.vectara.io/v2/agents/${agentKey}/sessions/${sessionKey}`,
+    `${VECTARA_API_V2_BASE}/agents/${agentKey}/sessions/${sessionKey}`,
   deleteSession: (agentKey: string, sessionKey: string) =>
-    `https://api.vectara.io/v2/agents/${agentKey}/sessions/${sessionKey}`
+    `${VECTARA_API_V2_BASE}/agents/${agentKey}/sessions/${sessionKey}`,
+  getOpenAPISpec: 'https://raw.githubusercontent.com/vectara/vectara-docs/refs/heads/main/www/static/vectara-oas-v2.yaml'
 };
 
 export class VectaraAgentManager {
@@ -454,6 +458,163 @@ export class VectaraAgentManager {
    */
   getAgentKey(): string | undefined {
     return this.agentKey;
+  }
+
+  /**
+   * Fetch the latest OpenAPI specification for Vectara API v2
+   */
+  async getOpenAPISpecification(): Promise<any> {
+    debugAPI('Fetching Vectara API v2 OpenAPI specification');
+
+    try {
+      const response = await fetch(AGENT_ENDPOINTS.getOpenAPISpec);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch OpenAPI spec: ${response.status}`);
+      }
+
+      const yamlText = await response.text();
+
+      // Parse YAML (simple parsing for basic structure)
+      // In a real implementation, you'd use a proper YAML parser
+      const spec = this.parseYamlToObject(yamlText);
+
+      debugAPI('OpenAPI specification fetched successfully', {
+        version: spec.openapi,
+        title: spec.info?.title,
+        pathsCount: Object.keys(spec.paths || {}).length
+      });
+
+      return spec;
+    } catch (error) {
+      debugAPI('Error fetching OpenAPI specification:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Simple YAML parser (basic implementation)
+   * In production, use a proper YAML library like js-yaml
+   */
+  private parseYamlToObject(yamlText: string): any {
+    // This is a very basic YAML parser - for production use js-yaml or similar
+    const lines = yamlText.split('\n');
+    const result: any = {};
+    let currentPath: string[] = [];
+    let currentIndentLevel = 0;
+
+    for (const line of lines) {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith('#')) continue;
+
+      const indent = line.length - line.trimLeft().length;
+      const cleanLine = trimmed.replace(/['"]/g, '');
+
+      if (cleanLine.includes(':')) {
+        const [key, value] = cleanLine.split(':').map(s => s.trim());
+
+        // Adjust current path based on indentation
+        if (indent === 0) {
+          currentPath = [key];
+        } else {
+          currentPath = currentPath.slice(0, indent / 2).concat([key]);
+        }
+
+        // Set value
+        this.setNestedValue(result, currentPath, value || '');
+      }
+    }
+
+    return result;
+  }
+
+  /**
+   * Set nested value in object using path array
+   */
+  private setNestedValue(obj: any, path: string[], value: any): void {
+    let current = obj;
+    for (let i = 0; i < path.length - 1; i++) {
+      if (!current[path[i]]) {
+        current[path[i]] = {};
+      }
+      current = current[path[i]];
+    }
+    current[path[path.length - 1]] = value;
+  }
+
+  /**
+   * Get agent-related paths from OpenAPI spec
+   */
+  async getAgentPathsFromSpec(): Promise<string[]> {
+    try {
+      const spec = await this.getOpenAPISpecification();
+      const agentPaths: string[] = [];
+
+      if (spec.paths) {
+        for (const [path, pathSpec] of Object.entries(spec.paths)) {
+          if (path.includes('/agents') || path.includes('/agent')) {
+            agentPaths.push(path);
+          }
+        }
+      }
+
+      debugAPI('Found agent paths:', agentPaths);
+      return agentPaths;
+    } catch (error) {
+      debugAPI('Error getting agent paths from spec:', error);
+      return [];
+    }
+  }
+
+  /**
+   * Validate agent configuration against OpenAPI spec
+   */
+  async validateAgentConfigWithSpec(agentConfig: any): Promise<{
+    isValid: boolean;
+    errors: string[];
+    warnings: string[];
+  }> {
+    try {
+      const spec = await this.getOpenAPISpecification();
+      const errors: string[] = [];
+      const warnings: string[] = [];
+
+      // Basic validation
+      if (!agentConfig.name) {
+        errors.push('Agent name is required');
+      }
+
+      if (!agentConfig.instructions) {
+        errors.push('Agent instructions are required');
+      }
+
+      if (!agentConfig.tools || !Array.isArray(agentConfig.tools)) {
+        errors.push('Agent tools must be an array');
+      } else {
+        // Validate tools against spec
+        for (const tool of agentConfig.tools) {
+          if (!tool.toolName) {
+            errors.push('Tool must have a toolName');
+          } else if (!spec.paths?.[ `/agents/{agent_key}/tools/${tool.toolName}` ]) {
+            warnings.push(`Tool '${tool.toolName}' may not be supported by the API`);
+          }
+        }
+      }
+
+      debugAPI('Agent config validation result:', { errors, warnings });
+
+      return {
+        isValid: errors.length === 0,
+        errors,
+        warnings
+      };
+    } catch (error) {
+      debugAPI('Error validating agent config:', error);
+      return {
+        isValid: false,
+        errors: ['Failed to validate against OpenAPI specification'],
+        warnings: []
+      };
+    }
   }
 }
 

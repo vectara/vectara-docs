@@ -10,6 +10,7 @@ export interface FeatureFlags {
   enableAgentThoughts: boolean;
   enableAgentToolTracking: boolean;
   enableSessionPersistence: boolean;
+  useTestingConfiguration: boolean;
 
   // Enhanced UI features
   showAgentStatus: boolean;
@@ -33,6 +34,7 @@ export const DEFAULT_FEATURE_FLAGS: FeatureFlags = {
   enableAgentThoughts: true,
   enableAgentToolTracking: true,
   enableSessionPersistence: true,
+  useTestingConfiguration: false, // Enable for testing with technical_writing_assistant
 
   // UI features
   showAgentStatus: true,

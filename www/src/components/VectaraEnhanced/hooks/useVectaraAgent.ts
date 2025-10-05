@@ -12,6 +12,8 @@ import {
 } from '../types';
 import {
   VECTARA_AGENT_CONFIG,
+  PRODUCTION_AGENT_CONFIG,
+  DEFAULT_AGENT_CREDENTIALS,
   AgentSession,
   AgentResponse,
   SourceReference,
@@ -75,7 +77,11 @@ export const useVectaraAgent = (options: UseVectaraAgentOptions): UseChatReturn 
 
   // Initialize agent manager
   useEffect(() => {
-    agentManagerRef.current = new VectaraAgentManager(apiKey, customerId);
+    // Use production credentials if not provided
+    const effectiveApiKey = apiKey || DEFAULT_AGENT_CREDENTIALS.apiKey;
+    const effectiveCustomerId = customerId || DEFAULT_AGENT_CREDENTIALS.customerId;
+
+    agentManagerRef.current = new VectaraAgentManager(effectiveApiKey, effectiveCustomerId);
 
     // Clean up expired sessions on mount
     state.sessionManager.cleanupExpiredSessions();
@@ -116,7 +122,8 @@ export const useVectaraAgent = (options: UseVectaraAgentOptions): UseChatReturn 
 
       // Create new agent if auto-create is enabled
       if (autoCreateAgent) {
-        const agentKey = await agentManagerRef.current.createAgent(VECTARA_AGENT_CONFIG);
+        // Use production config which has your actual credentials
+        const agentKey = await agentManagerRef.current.createAgent(PRODUCTION_AGENT_CONFIG);
         return agentKey;
       }
     }
