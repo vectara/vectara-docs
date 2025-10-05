@@ -213,16 +213,16 @@ export class VectaraAgentManager {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${this.apiKey}`,
-            'customer-id': this.customerId
+            'Authorization': `Bearer ${this.apiKey}`
           },
           body: JSON.stringify({
             type: "input_message",
-            input_message: {
-              content: message,
-              role: "user"
-            },
-            stream_response: streaming
+            messages: [
+              {
+                type: "text",
+                content: message
+              }
+            ]
           })
         }
       );
@@ -238,12 +238,18 @@ export class VectaraAgentManager {
       session.lastActivity = Date.now();
       session.messageCount++;
 
+      // Extract agent content from events array
+      const events = result.events || [];
+      const agentOutputEvent = events.find((event: any) => event.type === 'agent_output');
+      const toolEvents = events.filter((event: any) => event.type === 'tool_output');
+      const thinkingEvents = events.filter((event: any) => event.type === 'thinking');
+
       const agentResponse: AgentResponse = {
-        content: result.content || result.answer || '',
-        toolResults: result.toolResults || [],
-        agentThoughts: result.agentThoughts || [],
-        usedSources: this.processSourceReferences(result.sourceReferences || []),
-        suggestedFollowups: result.suggestedFollowups || []
+        content: agentOutputEvent?.content || '',
+        toolResults: toolEvents.map((event: any) => event.tool_output),
+        agentThoughts: thinkingEvents.map((event: any) => event.thinking),
+        usedSources: this.processSourceReferences([]), // TODO: Extract from tool results
+        suggestedFollowups: [] // TODO: Extract from agent response if available
       };
 
       debugAPI('Agent response received:', {
@@ -284,16 +290,16 @@ export class VectaraAgentManager {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${this.apiKey}`,
-            'customer-id': this.customerId
+            'Authorization': `Bearer ${this.apiKey}`
           },
           body: JSON.stringify({
             type: "input_message",
-            input_message: {
-              content: message,
-              role: "user"
-            },
-            stream_response: true
+            messages: [
+              {
+                type: "text",
+                content: message
+              }
+            ]
           })
         }
       );
