@@ -51,7 +51,7 @@ export const DEFAULT_FEATURE_FLAGS: FeatureFlags = {
 // Feature flag overrides for different environments
 export const ENVIRONMENT_FEATURE_FLAGS: Record<string, Partial<FeatureFlags>> = {
   development: {
-    useAgentPlatform: false, // Start with Chat API in development
+    useAgentPlatform: true, // Enable Agent Platform in development for testing
     enableDebugMode: true,
     enablePerformanceMonitoring: true
   },
