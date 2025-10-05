@@ -6,9 +6,12 @@ import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react'
 import { EnhancedChatbotProps, ChatMessage, CodeSnippet, SupportedLanguage } from '../types';
 import { useProductionChat } from '../hooks/useProductionChat';
 import { useProductionChatV2 } from '../hooks/useProductionChatV2';
+import { useVectaraAgent } from '../hooks/useVectaraAgent';
 import { USE_V2_API } from '../config/vectaraConfig';
+import { useFeatureFlags } from '../config/featureFlags';
 import {
   ChatHeader,
+  EnhancedChatHeader,
   MessageList,
   ChatInput,
   TypingIndicator
@@ -39,8 +42,36 @@ export const VectaraEnhancedChatbot: React.FC<EnhancedChatbotProps> = React.memo
   const [showSuggestions, setShowSuggestions] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Use the appropriate hook based on API version
-  const chatHook = USE_V2_API ? useProductionChatV2 : useProductionChat;
+  // Get feature flags
+  const featureFlags = useFeatureFlags();
+  const useAgentPlatform = featureFlags.useAgentPlatform;
+  const isDevelopment = process.env.NODE_ENV === 'development';
+
+  // Use the appropriate hook based on feature flag
+  let chatHook;
+  let hookOptions: any = {
+    customerId,
+    corpusKeys,
+    apiKey,
+    enableStreaming: enableStreaming || featureFlags.enableAgentStreaming,
+    codeGeneration,
+    analytics,
+    maxRetries: retryAttempts
+  };
+
+  if (useAgentPlatform) {
+    // Use Agent Platform
+    chatHook = useVectaraAgent;
+    hookOptions = {
+      ...hookOptions,
+      enableAgentStreaming: featureFlags.enableAgentStreaming,
+      autoCreateAgent: true,
+      agentName: "Vectara Documentation Assistant"
+    };
+  } else {
+    // Use traditional Chat API
+    chatHook = USE_V2_API ? useProductionChatV2 : useProductionChat;
+  }
 
   const {
     messages,
@@ -57,15 +88,7 @@ export const VectaraEnhancedChatbot: React.FC<EnhancedChatbotProps> = React.memo
     updateCodeParameter,
     showCodeExamples,
     getSearchSuggestions
-  } = chatHook({
-    customerId,
-    corpusKeys,
-    apiKey,
-    enableStreaming,
-    codeGeneration,
-    analytics,
-    maxRetries: retryAttempts
-  });
+  } = chatHook(hookOptions);
 
   // Memoized event handlers to prevent unnecessary re-renders
   const handleSubmit = useCallback(async (e: React.FormEvent) => {
@@ -179,15 +202,29 @@ export const VectaraEnhancedChatbot: React.FC<EnhancedChatbotProps> = React.memo
       style={chatbotStyle}
     >
       {/* Header */}
-      <ChatHeader
-        title={title}
-        description={description}
-        onClearChat={clearChat}
-        onClose={onClose}
-        showFullscreenToggle={showFullscreenToggle}
-        isFullscreen={isFullscreen}
-        onToggleFullscreen={onToggleFullscreen}
-      />
+      {isDevelopment ? (
+        <EnhancedChatHeader
+          title={title}
+          description={description}
+          onClearChat={clearChat}
+          onClose={onClose}
+          showFullscreenToggle={showFullscreenToggle}
+          isFullscreen={isFullscreen}
+          onToggleFullscreen={onToggleFullscreen}
+          featureFlagManager={featureFlags.manager}
+          isDevelopment={isDevelopment}
+        />
+      ) : (
+        <ChatHeader
+          title={title}
+          description={description}
+          onClearChat={clearChat}
+          onClose={onClose}
+          showFullscreenToggle={showFullscreenToggle}
+          isFullscreen={isFullscreen}
+          onToggleFullscreen={onToggleFullscreen}
+        />
+      )}
 
       {/* Messages */}
       <MessageList

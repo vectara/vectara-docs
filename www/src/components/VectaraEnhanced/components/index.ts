@@ -6,4 +6,5 @@ export { CodeBlock } from './CodeBlock';
 export { ChatInput } from './ChatInput';
 export { MessageList } from './MessageList';
 export { ChatHeader } from './ChatHeader';
+export { EnhancedChatHeader } from './EnhancedChatHeader';
 export { TypingIndicator } from './TypingIndicator';
