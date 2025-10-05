@@ -131,15 +131,17 @@ export class VectaraAgentManager {
 
     try {
       // Use Vectara API v2 session creation format
+      const timestamp = Date.now();
+      const randomSuffix = Math.random().toString(36).substr(2, 9);
       const agentSessionConfig = {
-        key: `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-        name: sessionConfig?.name || "Chat Session",
+        key: `session_${timestamp}_${randomSuffix}`,
+        name: sessionConfig?.name || `Chat Session ${timestamp}`,
         description: sessionConfig?.description || "Interactive chat session with Vectara agent",
         metadata: {
           userId: sessionConfig?.userId || 'anonymous',
           source: 'vectara-docs-chatbot',
           userAgent: navigator.userAgent,
-          timestamp: Date.now(),
+          timestamp: timestamp,
           ...sessionConfig?.metadata
         },
         enabled: true
@@ -215,14 +217,12 @@ export class VectaraAgentManager {
             'customer-id': this.customerId
           },
           body: JSON.stringify({
-            event: event,
-            streaming: streaming,
-            responseFormat: {
-              includeAgentThoughts: true,
-              includeToolResults: true,
-              includeSourceReferences: true,
-              includeSuggestedFollowups: true
-            }
+            type: "input_message",
+            input_message: {
+              content: message,
+              role: "user"
+            },
+            stream_response: streaming
           })
         }
       );
@@ -288,14 +288,12 @@ export class VectaraAgentManager {
             'customer-id': this.customerId
           },
           body: JSON.stringify({
-            event: event,
-            streaming: true,
-            responseFormat: {
-              includeAgentThoughts: true,
-              includeToolResults: true,
-              includeSourceReferences: true,
-              includeSuggestedFollowups: true
-            }
+            type: "input_message",
+            input_message: {
+              content: message,
+              role: "user"
+            },
+            stream_response: true
           })
         }
       );
@@ -327,16 +325,17 @@ export class VectaraAgentManager {
             try {
               const data = JSON.parse(line.slice(6));
 
-              if (data.type === 'content') {
-                const contentChunk = data.content || '';
+              if (data.type === 'agent_output') {
+                const contentChunk = data.agent_output?.content || '';
                 fullContent += contentChunk;
                 onChunk(contentChunk);
-              } else if (data.type === 'tool_result') {
-                toolResults.push(data.result);
-              } else if (data.type === 'thought') {
-                agentThoughts.push(data.thought);
-              } else if (data.type === 'source') {
-                sourceReferences.push(data.source);
+              } else if (data.type === 'tool_output') {
+                toolResults.push(data.tool_output);
+              } else if (data.type === 'thinking') {
+                agentThoughts.push(data.thinking);
+              } else if (data.type === 'input_message') {
+                // Ignore input messages in streaming
+                continue;
               }
             } catch (e) {
               // Skip malformed JSON
