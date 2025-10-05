@@ -28,6 +28,9 @@ interface UseVectaraAgentOptions extends Omit<UseProductionChatOptions, 'enableS
   enableAgentStreaming?: boolean;
   autoCreateAgent?: boolean;
   agentName?: string;
+  // Override credentials for agent sessions if different from chat API
+  agentCustomerId?: string;
+  agentApiKey?: string;
 }
 
 interface AgentChatState extends ChatState {
@@ -50,8 +53,10 @@ export const useVectaraAgent = (options: UseVectaraAgentOptions): UseChatReturn 
     analytics,
     maxRetries = 3,
     agentKey: providedAgentKey,
-    autoCreateAgent = true,
-    agentName = VECTARA_AGENT_CONFIG.agentName
+    autoCreateAgent = false,
+    agentName = VECTARA_AGENT_CONFIG.agentName,
+    agentCustomerId,
+    agentApiKey
   } = options;
 
   const [state, setState] = useState<AgentChatState>({
@@ -77,9 +82,9 @@ export const useVectaraAgent = (options: UseVectaraAgentOptions): UseChatReturn 
 
   // Initialize agent manager
   useEffect(() => {
-    // Use production credentials if not provided
-    const effectiveApiKey = apiKey || DEFAULT_AGENT_CREDENTIALS.apiKey;
-    const effectiveCustomerId = customerId || DEFAULT_AGENT_CREDENTIALS.customerId;
+    // Use testing credentials for agent if provided, otherwise fallback to production
+    const effectiveApiKey = agentApiKey || apiKey || DEFAULT_AGENT_CREDENTIALS.apiKey;
+    const effectiveCustomerId = agentCustomerId || customerId || DEFAULT_AGENT_CREDENTIALS.customerId;
 
     agentManagerRef.current = new VectaraAgentManager(effectiveApiKey, effectiveCustomerId);
 
@@ -91,7 +96,7 @@ export const useVectaraAgent = (options: UseVectaraAgentOptions): UseChatReturn 
     if (previousSession) {
       setState(prev => ({ ...prev, agentSession: previousSession, agentKey: previousSession.agentKey }));
     }
-  }, [apiKey, customerId]);
+  }, [apiKey, customerId, agentApiKey, agentCustomerId]);
 
   // Track analytics events
   const trackEvent = useCallback((event: Omit<AnalyticsEvent, 'timestamp' | 'sessionId'>) => {
@@ -104,32 +109,17 @@ export const useVectaraAgent = (options: UseVectaraAgentOptions): UseChatReturn 
     }
   }, [analytics, state.sessionId]);
 
-  // Create or get agent
+  // Use existing agent
   const ensureAgent = useCallback(async (): Promise<string> => {
     if (agentManagerRef.current) {
-      // If we have a provided agent key, use it
-      if (providedAgentKey) {
-        agentManagerRef.current.setAgentKey(providedAgentKey);
-        return providedAgentKey;
-      }
-
-      // Try to find existing agent by name
-      const existingAgentKey = await agentManagerRef.current.findAgentByName(agentName);
-      if (existingAgentKey) {
-        agentManagerRef.current.setAgentKey(existingAgentKey);
-        return existingAgentKey;
-      }
-
-      // Create new agent if auto-create is enabled
-      if (autoCreateAgent) {
-        // Use production config which has your actual credentials
-        const agentKey = await agentManagerRef.current.createAgent(PRODUCTION_AGENT_CONFIG);
-        return agentKey;
-      }
+      // Use the existing agent key you created
+      const existingAgentKey = "agt_documentation_assistant_ed3f";
+      agentManagerRef.current.setAgentKey(existingAgentKey);
+      return existingAgentKey;
     }
 
-    throw new Error('No agent available and auto-create is disabled');
-  }, [providedAgentKey, agentName, autoCreateAgent]);
+    throw new Error('Agent manager not initialized');
+  }, []);
 
   // Ensure we have an active session
   const ensureSession = useCallback(async (): Promise<AgentSession> => {

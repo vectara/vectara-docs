@@ -121,27 +121,28 @@ export class VectaraAgentManager {
   /**
    * Create a new session with the agent
    */
-  async createSession(agentKey?: string, userId?: string): Promise<AgentSession> {
+  async createSession(agentKey?: string, sessionConfig?: any): Promise<AgentSession> {
     const sessionAgentKey = agentKey || this.agentKey;
     if (!sessionAgentKey) {
       throw new Error('No agent key available. Create or select an agent first.');
     }
 
-    debugAPI('Creating agent session:', { agentKey: sessionAgentKey, userId });
+    debugAPI('Creating agent session:', { agentKey: sessionAgentKey });
 
     try {
-      const sessionConfig = {
-        userId: userId || 'anonymous',
-        preferences: {
-          preferredLanguage: 'eng',
-          codeExamplesPreference: true,
-          detailLevel: 'detailed' as const
-        },
-        context: {
+      // Use Vectara API v2 session creation format
+      const agentSessionConfig = {
+        key: `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+        name: sessionConfig?.name || "Chat Session",
+        description: sessionConfig?.description || "Interactive chat session with Vectara agent",
+        metadata: {
+          userId: sessionConfig?.userId || 'anonymous',
           source: 'vectara-docs-chatbot',
           userAgent: navigator.userAgent,
-          timestamp: Date.now()
-        }
+          timestamp: Date.now(),
+          ...sessionConfig?.metadata
+        },
+        enabled: true
       };
 
       const response = await fetch(AGENT_ENDPOINTS.createSession(sessionAgentKey), {
@@ -151,7 +152,7 @@ export class VectaraAgentManager {
           'Authorization': `Bearer ${this.apiKey}`,
           'customer-id': this.customerId
         },
-        body: JSON.stringify(sessionConfig)
+        body: JSON.stringify(agentSessionConfig)
       });
 
       if (!response.ok) {
@@ -167,12 +168,13 @@ export class VectaraAgentManager {
         createdAt: Date.now(),
         lastActivity: Date.now(),
         messageCount: 0,
-        configuration: sessionConfig
+        configuration: agentSessionConfig
       };
 
       debugAPI('Session created successfully:', {
         sessionKey: session.sessionKey,
-        agentKey: session.agentKey
+        agentKey: session.agentKey,
+        name: agentSessionConfig.name
       });
 
       return session;

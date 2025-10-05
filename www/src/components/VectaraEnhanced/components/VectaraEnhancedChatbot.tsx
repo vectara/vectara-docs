@@ -65,7 +65,7 @@ export const VectaraEnhancedChatbot: React.FC<EnhancedChatbotProps> = React.memo
     hookOptions = {
       ...hookOptions,
       enableAgentStreaming: featureFlags.enableAgentStreaming,
-      autoCreateAgent: true,
+      autoCreateAgent: false, // Agent already exists
       agentName: "Vectara Documentation Assistant"
     };
   } else {
