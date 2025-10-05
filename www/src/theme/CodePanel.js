@@ -77,32 +77,20 @@ export default function CodePanel({
   const runCode = async () => {
     setIsRunning(true);
     setOutput('Running...');
-    
+
     try {
       if (onRun) {
         // Use custom runner if provided
         const result = await onRun(editableCode, snippet.language);
         setOutput(result);
       } else {
-        // Default browser-based execution for JavaScript
-        if (snippet.language === 'javascript' || snippet.language === 'js') {
-          const logs = [];
-          const originalLog = console.log;
-          console.log = (...args) => logs.push(args.map(String).join(' '));
-          
-          try {
-            // Create a safe execution context
-            const func = new Function(editableCode);
-            func();
-            setOutput(logs.join('\n') || 'Code executed successfully (no output)');
-          } catch (error) {
-            setOutput(`Error: ${error.message}`);
-          } finally {
-            console.log = originalLog;
-          }
-        } else {
-          setOutput(`Code execution not supported for ${snippet.language} in browser. Provide a custom onRun handler.`);
-        }
+        // No default execution for security reasons
+        // Users must provide a custom onRun handler to execute code
+        setOutput(
+          `⚠️ Code execution requires a custom onRun handler.\n\n` +
+          `For security reasons, arbitrary code execution is disabled by default.\n` +
+          `Please provide an onRun function to enable code execution with proper sandboxing.`
+        );
       }
     } catch (error) {
       setOutput(`Error: ${error.message}`);
@@ -529,7 +517,6 @@ export default function CodePanel({
       const codeToHighlight = editable ? editableCode : snippet.code;
       const result = Prism.highlight(codeToHighlight, grammar, normalizedLanguage);
       setHighlighted(result);
-      // console.log('Highlighted:', editable ? 'editable' : 'static', codeToHighlight.length, 'chars');
     } catch (error) {
       console.warn('Syntax highlighting failed:', error);
       // Fallback to plain text if highlighting fails
