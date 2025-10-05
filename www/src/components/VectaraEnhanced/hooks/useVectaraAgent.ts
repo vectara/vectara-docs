@@ -82,9 +82,9 @@ export const useVectaraAgent = (options: UseVectaraAgentOptions): UseChatReturn 
 
   // Initialize agent manager
   useEffect(() => {
-    // Use testing credentials for agent if provided, otherwise fallback to production
-    const effectiveApiKey = agentApiKey || apiKey || DEFAULT_AGENT_CREDENTIALS.apiKey;
-    const effectiveCustomerId = agentCustomerId || customerId || DEFAULT_AGENT_CREDENTIALS.customerId;
+    // Use personal API key for agent operations with technical_writing_assistant corpus
+    const effectiveApiKey = agentApiKey || "zut_ohiV8_mBEcJy_NsmzR4_THP70DX9B8lJ06hn2A";
+    const effectiveCustomerId = agentCustomerId || customerId || "YOUR_TESTING_CUSTOMER_ID";
 
     agentManagerRef.current = new VectaraAgentManager(effectiveApiKey, effectiveCustomerId);
 

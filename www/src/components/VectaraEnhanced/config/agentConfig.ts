@@ -187,7 +187,7 @@ export const PRODUCTION_AGENT_CONFIG: VectaraAgentConfig = {
       toolName: "corpora_search",
       description: "Search Vectara documentation corpus for information about APIs, concepts, and usage",
       parameters: {
-        corpusKey: "ofer-bm-moma-docs_232", // Your documentation corpus key
+        corpusKey: "technical_writing_assistant", // Use technical_writing_assistant corpus
         maxResults: 5,
         contextLength: 2000,
         responseLanguage: "eng"
@@ -202,13 +202,13 @@ export const PRODUCTION_AGENT_CONFIG: VectaraAgentConfig = {
       }
     }
   ],
-  corpusKeys: ["ofer-bm-moma-docs_232"] // Your documentation corpus key
+  corpusKeys: ["technical_writing_assistant"] // Use technical_writing_assistant corpus
 };
 
 // Default credentials for the agent manager
 export const DEFAULT_AGENT_CREDENTIALS = {
-  customerId: "1526022105",
-  apiKey: "zqt_WvU_2ewh7ZGRwq8LdL2SV8B9RJmVGyUm1VAuOw"
+  customerId: "YOUR_TESTING_CUSTOMER_ID", // You'll need to provide this
+  apiKey: "zut_ohiV8_mBEcJy_NsmzR4_THP70DX9B8lJ06hn2A"
 };
 
 // Testing credentials for agent creation and corpus testing
