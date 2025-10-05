@@ -165,7 +165,7 @@ export class VectaraAgentManager {
       const sessionData = await response.json();
 
       const session: AgentSession = {
-        sessionKey: sessionData.sessionKey,
+        sessionKey: sessionData.key, // Use 'key' instead of 'sessionKey' from API response
         agentKey: sessionAgentKey,
         createdAt: Date.now(),
         lastActivity: Date.now(),
