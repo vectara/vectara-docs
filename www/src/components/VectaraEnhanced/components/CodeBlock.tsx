@@ -146,9 +146,9 @@ export const CodeBlock: React.FC<CodeBlockProps> = React.memo(({
           <div
             className="vectara-floating-code-panel"
             style={{
-              width: '50%',
-              maxWidth: '600px',
-              minWidth: '400px',
+              width: '80%', // Even wider for better code visibility
+              maxWidth: '1000px', // Much larger max width
+              minWidth: '600px', // Wider minimum for readability
               backgroundColor: 'white',
               boxShadow: '-4px 0 20px rgba(0, 0, 0, 0.15)',
               display: 'flex',
