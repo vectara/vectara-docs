@@ -238,11 +238,18 @@ export class VectaraAgentManager {
       session.lastActivity = Date.now();
       session.messageCount++;
 
+      debugAPI('Raw agent response:', result);
+
       // Extract agent content from events array
       const events = result.events || [];
+      debugAPI('Agent events found:', events.length);
+
       const agentOutputEvent = events.find((event: any) => event.type === 'agent_output');
       const toolEvents = events.filter((event: any) => event.type === 'tool_output');
       const thinkingEvents = events.filter((event: any) => event.type === 'thinking');
+
+      debugAPI('Agent output event:', agentOutputEvent);
+      debugAPI('Tool events:', toolEvents.length);
 
       const agentResponse: AgentResponse = {
         content: agentOutputEvent?.content || '',
@@ -255,7 +262,8 @@ export class VectaraAgentManager {
       debugAPI('Agent response received:', {
         contentLength: agentResponse.content.length,
         toolCount: agentResponse.toolResults.length,
-        sourceCount: agentResponse.usedSources.length
+        sourceCount: agentResponse.usedSources.length,
+        actualContent: agentResponse.content
       });
 
       return agentResponse;
