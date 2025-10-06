@@ -378,7 +378,141 @@ curl -X POST "https://api.vectara.io/v2/chats" \\
       description: 'Chat with your Vectara corpus using cURL v2 Chat API'
     }
   },
-  
+
+  corpus: {
+    javascript: {
+      template: `// Create a new Vectara corpus
+// Using v2 API for corpus management
+const createCorpus = async (corpusName, customerId, apiKey) => {
+  const response = await fetch('https://api.vectara.io/v2/corpora', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer \${apiKey}',
+      'customer-id': '\${customerId}'
+    },
+    body: JSON.stringify({
+      name: '\${corpusName}',
+      description: 'Corpus created via API',
+      metadata: {
+        source: 'api-creation',
+        timestamp: new Date().toISOString()
+      }
+    })
+  });
+
+  const result = await response.json();
+  console.log('Corpus created:', result);
+  return result;
+};
+
+// Example usage:
+createCorpus('My New Corpus', 'YOUR_CUSTOMER_ID', 'YOUR_API_KEY');`,
+      parameters: ['corpusName', 'customerId', 'apiKey'],
+      description: 'Create a new Vectara corpus using JavaScript v2 API'
+    },
+    typescript: {
+      template: `// Create a new Vectara corpus
+// Using v2 API with proper TypeScript types
+interface CorpusRequest {
+  name: string;
+  description: string;
+  metadata?: Record<string, any>;
+}
+
+interface CorpusResponse {
+  corpusId: string;
+  name: string;
+  description: string;
+  created: string;
+}
+
+const createCorpus = async (
+  corpusName: string,
+  customerId: string,
+  apiKey: string
+): Promise<CorpusResponse> => {
+  const response = await fetch('https://api.vectara.io/v2/corpora', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer \${apiKey}',
+      'customer-id': '\${customerId}'
+    },
+    body: JSON.stringify({
+      name: '\${corpusName}',
+      description: 'Corpus created via API',
+      metadata: {
+        source: 'api-creation',
+        timestamp: new Date().toISOString()
+      }
+    })
+  });
+
+  const result = await response.json();
+  console.log('Corpus created:', result);
+  return result;
+};
+
+// Example usage:
+createCorpus('My New Corpus', 'YOUR_CUSTOMER_ID', 'YOUR_API_KEY');`,
+      parameters: ['corpusName', 'customerId', 'apiKey'],
+      description: 'Create a new Vectara corpus using TypeScript v2 API'
+    },
+    python: {
+      template: `"""Create a new Vectara corpus
+Using v2 API for corpus management
+"""
+import requests
+import json
+from datetime import datetime
+
+def create_corpus(corpus_name, customer_id, api_key):
+    url = "https://api.vectara.io/v2/corpora"
+
+    headers = {
+        'Content-Type': 'application/json',
+        'Authorization': f'Bearer {api_key}',
+        'customer-id': customer_id
+    }
+
+    data = {
+        "name": corpus_name,
+        "description": "Corpus created via API",
+        "metadata": {
+            "source": "api-creation",
+            "timestamp": datetime.now().isoformat()
+        }
+    }
+
+    response = requests.post(url, headers=headers, json=data)
+    result = response.json()
+    print(f"Corpus created: {result}")
+    return result
+
+# Example usage:
+create_corpus("My New Corpus", "YOUR_CUSTOMER_ID", "YOUR_API_KEY")`,
+      parameters: ['corpusName', 'customerId', 'apiKey'],
+      description: 'Create a new Vectara corpus using Python v2 API'
+    },
+    curl: {
+      template: `curl -X POST "https://api.vectara.io/v2/corpora" \\
+  -H "Content-Type: application/json" \\
+  -H "Authorization: Bearer \${apiKey}" \\
+  -H "customer-id: \${customerId}" \\
+  -d '{
+    "name": "\${corpusName}",
+    "description": "Corpus created via API",
+    "metadata": {
+      "source": "api-creation",
+      "timestamp": "'$(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)'"
+    }
+  }'`,
+      parameters: ['corpusName', 'customerId', 'apiKey'],
+      description: 'Create a new Vectara corpus using cURL v2 API'
+    }
+  },
+
   upload: {
     javascript: {
       template: `// Vectara Document Upload Example

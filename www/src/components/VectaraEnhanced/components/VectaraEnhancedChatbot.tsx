@@ -47,6 +47,25 @@ export const VectaraEnhancedChatbot: React.FC<EnhancedChatbotProps> = React.memo
   const useAgentPlatform = featureFlags.useAgentPlatform;
   const isDevelopment = process.env.NODE_ENV === 'development';
 
+  
+  // Clear localStorage cache only once on load to pick up new configuration
+  useEffect(() => {
+    if (isDevelopment) {
+      console.log('🗑️ Clearing localStorage cache to pick up latest configuration');
+      localStorage.removeItem('vectara-feature-flags');
+    }
+  }, [isDevelopment]);
+
+  // Development toggle for easy API switching
+  const useChatAPI = isDevelopment && window.location.search.includes('useChatAPI=true');
+  const effectiveUseAgent = useAgentPlatform && !useChatAPI;
+
+  if (isDevelopment && useChatAPI) {
+    console.log('🔄 Using Chat API (forced via URL param)');
+  } else if (isDevelopment) {
+    console.log('🤖 Using Agent Platform (add ?useChatAPI=true to switch)');
+  }
+
   // Use the appropriate hook based on feature flag
   let chatHook;
   let hookOptions: any = {
@@ -59,18 +78,20 @@ export const VectaraEnhancedChatbot: React.FC<EnhancedChatbotProps> = React.memo
     maxRetries: retryAttempts
   };
 
-  if (useAgentPlatform) {
+  if (effectiveUseAgent) {
     // Use Agent Platform
     chatHook = useVectaraAgent;
     hookOptions = {
       ...hookOptions,
       enableAgentStreaming: featureFlags.enableAgentStreaming,
       autoCreateAgent: false, // Agent already exists
+      agentKey: "agt_documentation_assistant_ed3f", // Use existing agent key
       agentName: "Vectara Documentation Assistant"
     };
   } else {
     // Use traditional Chat API
     chatHook = USE_V2_API ? useProductionChatV2 : useProductionChat;
+    console.log('📝 Using Chat API v2:', USE_V2_API);
   }
 
   const {
@@ -87,7 +108,12 @@ export const VectaraEnhancedChatbot: React.FC<EnhancedChatbotProps> = React.memo
     clearChat,
     updateCodeParameter,
     showCodeExamples,
-    getSearchSuggestions
+    getSearchSuggestions,
+    // Agent-specific properties (only available when using agent platform)
+    isAgentThinking,
+    usedSources,
+    agentThoughts,
+    suggestedFollowups
   } = chatHook(hookOptions);
 
   // Memoized event handlers to prevent unnecessary re-renders
@@ -230,14 +256,15 @@ export const VectaraEnhancedChatbot: React.FC<EnhancedChatbotProps> = React.memo
       <MessageList
         messages={messages}
         isLoading={isLoading}
-        isTyping={isTyping}
+        isTyping={isTyping || isAgentThinking}
         error={error}
         retryCount={retryCount}
         onRetry={retry}
         onCodeCopy={handleCodeCopy}
         onParameterUpdate={updateCodeParameter}
-        onShowCodeExamples={showCodeExamples}
         onSendFollowUp={handleFollowUp}
+        isAgentThinking={isAgentThinking}
+        agentThoughts={agentThoughts}
       />
 
       {/* Input */}

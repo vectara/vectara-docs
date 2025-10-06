@@ -9,7 +9,6 @@ interface MessageProps {
   message: ChatMessageType;
   onCodeCopy?: (code: string, language: string) => void;
   onParameterUpdate?: (messageId: string, snippetId: string, parameterName: string, value: any) => void;
-  onShowCodeExamples?: (messageId: string, language?: string) => void;
   onSendFollowUp?: (content: string, parentMessageId: string) => void;
 }
 
@@ -78,7 +77,6 @@ export const ChatMessage: React.FC<MessageProps> = React.memo(({
   message,
   onCodeCopy,
   onParameterUpdate,
-  onShowCodeExamples,
   onSendFollowUp
 }) => {
   const isUser = message.type === 'user';
@@ -117,74 +115,7 @@ export const ChatMessage: React.FC<MessageProps> = React.memo(({
           {message.isStreaming && <span className="vectara-typing-indicator">▋</span>}
         </div>
 
-        {/* Show code examples button */}
-        {message.canShowCode && (
-          <div className="vectara-code-actions">
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '8px' }}>
-              <button
-                className="vectara-show-code-btn"
-                onClick={() => onShowCodeExamples?.(message.id, 'javascript')}
-                style={{
-                  padding: '4px 8px',
-                  backgroundColor: '#f39c12',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '4px',
-                  cursor: 'pointer',
-                  fontSize: '11px'
-                }}
-              >
-                📝 JavaScript
-              </button>
-              <button
-                className="vectara-show-code-btn"
-                onClick={() => onShowCodeExamples?.(message.id, 'typescript')}
-                style={{
-                  padding: '4px 8px',
-                  backgroundColor: '#3178c6',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '4px',
-                  cursor: 'pointer',
-                  fontSize: '11px'
-                }}
-              >
-                📝 TypeScript
-              </button>
-              <button
-                className="vectara-show-code-btn"
-                onClick={() => onShowCodeExamples?.(message.id, 'python')}
-                style={{
-                  padding: '4px 8px',
-                  backgroundColor: '#3776ab',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '4px',
-                  cursor: 'pointer',
-                  fontSize: '11px'
-                }}
-              >
-                🐍 Python
-              </button>
-              <button
-                className="vectara-show-code-btn"
-                onClick={() => onShowCodeExamples?.(message.id, 'curl')}
-                style={{
-                  padding: '4px 8px',
-                  backgroundColor: '#2c3e50',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '4px',
-                  cursor: 'pointer',
-                  fontSize: '11px'
-                }}
-              >
-                💻 cURL
-              </button>
-            </div>
-          </div>
-        )}
-
+  
         {/* Code snippets */}
         {message.hasCodeSnippets && message.codeSnippets && Array.isArray(message.codeSnippets) && message.codeSnippets.length > 0 && (
           <div className="vectara-code-snippets">

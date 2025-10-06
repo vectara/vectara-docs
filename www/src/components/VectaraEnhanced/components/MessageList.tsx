@@ -14,8 +14,10 @@ interface MessageListProps {
   onRetry: () => void;
   onCodeCopy?: (code: string, language: string) => void;
   onParameterUpdate?: (messageId: string, snippetId: string, parameterName: string, value: any) => void;
-  onShowCodeExamples?: (messageId: string, language?: string) => void;
   onSendFollowUp?: (content: string, parentMessageId: string) => void;
+  // Agent-specific props
+  isAgentThinking?: boolean;
+  agentThoughts?: string[];
 }
 
 export const MessageList: React.FC<MessageListProps> = React.memo(({
@@ -27,8 +29,9 @@ export const MessageList: React.FC<MessageListProps> = React.memo(({
   onRetry,
   onCodeCopy,
   onParameterUpdate,
-  onShowCodeExamples,
-  onSendFollowUp
+  onSendFollowUp,
+  isAgentThinking = false,
+  agentThoughts = []
 }) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -71,7 +74,6 @@ export const MessageList: React.FC<MessageListProps> = React.memo(({
           message={message}
           onCodeCopy={onCodeCopy}
           onParameterUpdate={onParameterUpdate}
-          onShowCodeExamples={onShowCodeExamples}
           onSendFollowUp={onSendFollowUp}
         />
       ))}
@@ -84,7 +86,9 @@ export const MessageList: React.FC<MessageListProps> = React.memo(({
             <span></span>
             <span></span>
           </div>
-          <span style={{ fontSize: '12px', color: '#666', marginLeft: '8px' }}>AI is thinking...</span>
+          <span style={{ fontSize: '12px', color: '#666', marginLeft: '8px' }}>
+            {isAgentThinking ? 'Vectara Assistant is thinking...' : 'AI is thinking...'}
+          </span>
         </div>
       )}
 
