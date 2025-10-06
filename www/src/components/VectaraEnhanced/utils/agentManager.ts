@@ -340,22 +340,33 @@ export class VectaraAgentManager {
             try {
               const data = JSON.parse(line.slice(6));
 
+              debugAPI('Streaming event received:', data.type, data);
+
               if (data.type === 'streaming_agent_output') {
                 const contentChunk = data.content || '';
                 fullContent += contentChunk;
                 onChunk(contentChunk);
+                debugAPI('Streaming content chunk:', contentChunk);
+              } else if (data.type === 'agent_output') {
+                // Handle non-streaming agent output
+                fullContent = data.content || '';
+                debugAPI('Non-streaming agent output:', data.content);
               } else if (data.type === 'tool_output') {
                 toolResults.push(data.tool_output);
+                debugAPI('Tool output received');
               } else if (data.type === 'thinking') {
                 agentThoughts.push(data.thinking);
               } else if (data.type === 'streaming_agent_output_end') {
                 // Streaming ended, will complete after loop
+                debugAPI('Streaming ended');
                 continue;
               } else if (data.type === 'end') {
                 // Session ended
+                debugAPI('Session ended');
                 break;
               }
             } catch (e) {
+              debugAPI('Error parsing streaming data:', e);
               // Skip malformed JSON
               continue;
             }
