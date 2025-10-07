@@ -18,9 +18,7 @@ export default function CodePanel({
   initialCollapsedLines = 30, // Auto-collapse if more than N lines
   highlightLines = '', // Line ranges to highlight e.g. "2-4,7,10-12"
   tabs = false, // Enable tabs mode for multiple snippets
-  editable = false, // Enable live code editor mode
-  onRun = null, // Custom code execution handler
-  defaultOutput = '' // Initial output for editor mode
+  editable = false // Enable live code editor mode
 }) {
   /* ---------------------------------------------------------- */
   /* State                                                     */
@@ -34,8 +32,6 @@ export default function CodePanel({
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selectedTab, setSelectedTab] = useState(0);
   const [editableCode, setEditableCode] = useState('');
-  const [output, setOutput] = useState(defaultOutput);
-  const [isRunning, setIsRunning] = useState(false);
   
   // Refs for scroll synchronization
   const textareaRef = React.useRef();
@@ -74,34 +70,8 @@ export default function CodePanel({
     showToast('Line copied');
   };
 
-  const runCode = async () => {
-    setIsRunning(true);
-    setOutput('Running...');
-
-    try {
-      if (onRun) {
-        // Use custom runner if provided
-        const result = await onRun(editableCode, snippet.language);
-        setOutput(result);
-      } else {
-        // No default execution for security reasons
-        // Users must provide a custom onRun handler to execute code
-        setOutput(
-          `⚠️ Code execution requires a custom onRun handler.\n\n` +
-          `For security reasons, arbitrary code execution is disabled by default.\n` +
-          `Please provide an onRun function to enable code execution with proper sandboxing.`
-        );
-      }
-    } catch (error) {
-      setOutput(`Error: ${error.message}`);
-    } finally {
-      setIsRunning(false);
-    }
-  };
-
   const resetCode = () => {
     setEditableCode(snippet.code);
-    setOutput(defaultOutput);
     showToast('Code reset');
   };
 
@@ -710,19 +680,6 @@ export default function CodePanel({
               </span>
             </div>
           </div>
-          {output && (
-            <div className={styles.outputSection}>
-              <div className={styles.outputHeader} id="output-label">OUTPUT</div>
-              <pre 
-                className={styles.outputContent}
-                role="log"
-                aria-labelledby="output-label"
-                aria-live="polite"
-              >
-                {output}
-              </pre>
-            </div>
-          )}
         </div>
       ) : (
         <pre 
