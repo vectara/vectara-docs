@@ -442,7 +442,7 @@ if response:
   annotations={{
     python: [
       { line: 5, text: 'openai_completion method uses OpenAI SDK internally' },
-      { line: 8, text: 'SDK' }
+      { line: 8, text: 'Response is an OpenAI SDK object (e.g., ChatCompletion), providing typed access to model, choices, and usage metadata.' }
     ]
   }}
   layout="stacked"
