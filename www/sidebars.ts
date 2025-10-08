@@ -279,7 +279,18 @@ const sidebars: SidebarsConfig = {
           label: "Document Data Structuring",
         },
         "learn/question-answer/question-answer-overview",
-        "tutorials/build-a-chatbot",
+        {
+          type: "category",
+          label: "Chatbot Tutorials",
+          link: {
+            type: 'doc',
+            id: 'chatbot-tutorials',
+          },
+          items: [
+            "tutorials/build-a-chatbot",
+            "tutorials/use-openai-libraries-with-vectara",
+          ],
+        },
       ],
     },
     {

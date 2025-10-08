@@ -1,7 +1,7 @@
 ---
 id: build-a-chatbot
-title: Build a Chatbot with the Chat API
-sidebar_label: Build a Chatbot
+title: Build a Chatbot with the Chat APIs
+sidebar_label: Build a Chatbot with the Chat APIs
 toc_max_heading_level: 2
 hide_table_of_contents: false
 ---
