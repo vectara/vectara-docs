@@ -19,7 +19,8 @@ This tutorial contains the following steps:
 2. [Step 1. Install the required packages](#step-1-install-the-required-packages)
 3. [Step 2. Implement the VectaraChat client](#step-2-implement-the-vectarachat-client)
 4. [Step 3. Enter your API key](#step-3-enter-your-api-key)
-5. [Step 4. Perform tests](#step-4-perform-tests)
+5. [Step 4. Initialize the Vectara chat client](#step-4-initialize-the-vectara-chat-client)
+6. [Step 5. Perform tests](#step-5-perform-tests)
 
 ## Prerequisites and setup
 
@@ -349,7 +350,7 @@ if not API_KEY or API_KEY == "":
 />
 
 
-## Step 3: Initialize the Vectara chat client
+## Step 4: Initialize the Vectara chat client
 
 Create the `VectaraChat` instance and choose between Bearer token authentication
 (recommended) or x-api-key header authentication.
@@ -373,7 +374,9 @@ messages = [
   layout="stacked"
 />
 
-## Step 4. Perform tests
+## Step 5. Perform tests
+
+Now that you've set up the VectaraChat client and initialized it with your API key, let's test both implementation approaches. The following tests demonstrate four different scenarios: direct HTTP requests (streaming and non-streaming) and OpenAI SDK integration (streaming and non-streaming). Each test shows you how to make requests and handle responses in different ways.
 
 ## Test 1: Direct API (non-streaming)
 
@@ -551,9 +554,17 @@ important in today's data-driven landscape.
 For the most current information about Vectara, including their latest products and
 developments, it's best to visit their official website or check recent news articles.`}]} title="Streaming Output" layout="stacked" />
 
-## Multi-turn conversations
+## Advanced usage examples
 
-The Chat Completions API supports multi-turn conversations:
+Beyond the basic tests, explore these advanced usage patterns to build production-ready applications:
+
+- [Multi-turn conversations](#multi-turn-conversations) - Maintain context across multiple exchanges.
+- [Use different models](#use-different-models) - Switch between available LLM models.
+- [Customize generation parameters](#customize-generation-parameters) - Control output with temperature and token limits.
+
+### Multi-turn conversations
+
+The previous tests showed single-question interactions. Real conversational applications need to maintain context across multiple exchanges. The Chat Completions API supports multi-turn conversations by including the conversation history in each request. Here's how to build a contextual conversation:
 
 <CodePanel
   title="Multi-Turn Conversation Example"
@@ -681,7 +692,7 @@ to external knowledge, improving the relevance and accuracy of generated content
 the likelihood of generating incorrect information. This combination leads to more effective and
 user-friendly AI applications.`}]} title="Multi-Turn Conversation Output" layout="stacked" />
 
-## Use different models
+### Use different models
 
 Vectara supports various LLM models. Let's try a different model:
 
@@ -716,7 +727,7 @@ DEBUG: Payload: {"model": "gpt-4o", "messages": [{"role": "user", "content": "Su
 
 - **Reduced Hallucination**: The use of external data sources helps RAG systems minimize the risk of generating incorrect or fabricated information, as they rely on verified data to support their responses, leading to more reliable and trustworthy outputs.`}]} title="Different Model Output" layout="stacked" />
 
-## Customize generation parameters
+### Customize generation parameters
 
 You can customize generation parameters to control the output:
 
