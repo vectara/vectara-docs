@@ -49,6 +49,12 @@ following parameters in the request body:
 - `model` (object, required): Model configuration for agent reasoning
   - `name` (string, required): Model name (e.g., `gpt-4`)
   - `parameters` (object, optional): Model-specific parameters like temperature and max_tokens
+  - `retry_configuration` (object, optional): Retry behavior for LLM interactions
+    - `enabled` (boolean, optional): Enable or disable retry logic (default: `true`)
+    - `max_retries` (integer, optional): Maximum retry attempts after initial failure, range 0-10 (default: `3`)
+    - `initial_backoff_ms` (integer, optional): Initial delay before first retry in milliseconds, range 100-60000 (default: `1000`)
+    - `max_backoff_ms` (integer, optional): Maximum delay between retries in milliseconds, range 1000-300000 (default: `30000`)
+    - `backoff_factor` (float, optional): Exponential multiplier for backoff delays, range 1.0-10.0 (default: `2.0`)
 - `first_step` (object, required): Initial execution step configuration
   - `type` (string, required): Step type (must be `conversational`)
   - `instructions` (array, required): List of instruction objects
@@ -107,6 +113,13 @@ The response includes the complete agent configuration with system-generated fie
     "parameters": {
       "temperature": 0.1,
       "max_tokens": 1500
+    },
+    "retry_configuration": {
+      "enabled": true,
+      "max_retries": 3,
+      "initial_backoff_ms": 1000,
+      "max_backoff_ms": 30000,
+      "backoff_factor": 2.0
     }
   },
   "first_step": {
@@ -179,6 +192,13 @@ The response includes the complete agent configuration with system-generated fie
     "parameters": {
       "temperature": 0.1,
       "max_tokens": 1500
+    },
+    "retry_configuration": {
+      "enabled": true,
+      "max_retries": 3,
+      "initial_backoff_ms": 1000,
+      "max_backoff_ms": 30000,
+      "backoff_factor": 2.0
     }
   },
   "first_step": {
@@ -186,7 +206,7 @@ The response includes the complete agent configuration with system-generated fie
     "instructions": [
       {
         "type": "reference",
-        "id": "ins_customer_support_init", 
+        "id": "ins_customer_support_init",
         "version": 2
       },
       {

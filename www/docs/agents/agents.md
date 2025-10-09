@@ -70,12 +70,19 @@ Each agent is configured with:
 * A _first_step_ definition that encompasses optional instructions for the 
   agent's behavior.
 
-Agents operate through a conversational step architecture, processing user 
-input through reasoning, tool execution, and response generation phases. 
-The step-based design enables complex multi-turn workflows and intelligent 
+Agents operate through a conversational step architecture, processing user
+input through reasoning, tool execution, and response generation phases.
+The step-based design enables complex multi-turn workflows and intelligent
 tool orchestration.
 
+:::tip Create an agent
+You can create an agent in the [**Vectara Console**](/docs/console-ui/agents/create-an-agent), or you can use the
+API. For more information, check out our [**Agents Quick Start**](/docs/agents/agents-quickstart).
+:::
+
 ## Example agent definition
+
+This example shows a basic customer support agent configured with corpus search capabilities and inline instructions. The agent demonstrates the core components: tool configurations for searching support tickets, and a conversational first step with behavior guidelines.
 
 <CodePanel
   title="Agent example"
@@ -127,25 +134,73 @@ tool orchestration.
 
 ## Model configuration
 
-Agents use large language models for reasoning and response generation. You 
+Agents use large language models for reasoning and response generation. You
 can configure:
 
 - **Model**: Choose from available models like GPT-4o.
 - **Parameters**: Adjust temperature, max tokens, and other model-specific settings
 - **Cost optimization**: Balance performance with token usage
+- **Retry configuration**: Configure automatic retry behavior for transient failures
 
-## Create an agent
+### Retry configuration
 
-You can create an agent in the [UI wizard](/docs/console-ui/agents/create-an-agent), or you can use the API.
+When agents interact with LLMs, transient failures may occur that interrupt
+the conversation flow, including network timeouts, temporary server issues,
+or reaching API rate limits. Without a retry mechanism, these temporary
+issues cause your agent to fail immediately, resulting in a poor user
+experience.
+
+Vectara provides a retry configuration option for agents which detects these
+recoverable failures and retries the request with exponential backoff
+automatically.
+
+The `RetryConfiguration` object controls the retry behavior for your agent's
+interactions with the LLM. You define these settings when creating or
+updating your agent model, and they apply to all LLM requests made by that
+agent.
+
+### Retry configuration parameters
+
+- **enabled**: The boolean flag to enable or disable retry logic
+  - Default: `true`
+- **max_retries**: The maximum number of retry attempts after the initial failure
+  - Range: 0-10
+  - Default: `3`
+- **initial_backoff_ms**: The initial delay in milliseconds before the first retry
+  - Range: 100-60000ms
+  - Default: `1000ms`
+- **max_backoff_ms**: The maximum delay in milliseconds between retries
+  - Range: 1000-300000ms
+  - Default: `30000ms`
+- **backoff_factor**: The exponential multiplier for calculating backoff delays
+  - Range: 1.0-10.0
+  - Default: `2.0`
+
+
+### Exponential backoff
+
+Exponential backoff progressively increases the delay between retry attempts
+to avoid overwhelming a recovering service. For example, with default
+settings (initial: 1000ms, factor: 2.0, max: 30000ms):
+
+- Attempt 1: 1000ms delay
+- Attempt 2: 2000ms delay
+- Attempt 3: 4000ms delay
+- Attempt 4: 8000ms delay
+
+The delay continues to grow exponentially until it reaches the
+`max_backoff_ms` value, at which point it remains constant for any remaining
+retry attempts.
 
 ### Example: Research assistant with web search
 
-Here's how to create a research assistant agent that can search the web for 
+Here's how to create a research assistant agent that can search the web for
 current information. This agent completes the following tasks:
 - Search the web when users ask questions requiring current information
-- Limit search results to 20 for comprehensive responses  
+- Limit search results to 20 for comprehensive responses
 - Use a lower temperature (0.3) for more consistent, factual responses
 - Follow instructions to cite sources and admit uncertainty when appropriate
+- Configure retry logic to handle transient API failures gracefully
 
 This example requires no corpus setup, making it perfect for immediate testing.
 
@@ -181,6 +236,13 @@ This example requires no corpus setup, making it perfect for immediate testing.
       "parameters": {
         "temperature": 0.3,
         "max_tokens": 1000
+      },
+      "retry_configuration": {
+        "enabled": true,
+        "max_retries": 3,
+        "initial_backoff_ms": 1000,
+        "max_backoff_ms": 30000,
+        "backoff_factor": 2.0
       }
     }
   }'`
@@ -201,7 +263,13 @@ This example requires no corpus setup, making it perfect for immediate testing.
       { line: 24, text: 'Model configuration' },
       { line: 25, text: 'Using gpt-5 model' },
       { line: 27, text: 'Lower temperature for factual responses' },
-      { line: 28, text: 'Maximum response length' }
+      { line: 28, text: 'Maximum response length' },
+      { line: 30, text: 'Retry configuration for handling transient failures' },
+      { line: 31, text: 'Enable automatic retry logic' },
+      { line: 32, text: 'Retry up to 3 times on failure' },
+      { line: 33, text: 'Start with 1 second delay before first retry' },
+      { line: 34, text: 'Cap maximum delay at 30 seconds' },
+      { line: 35, text: 'Double the delay between each retry attempt' }
     ]
   }}
   layout="stacked"
