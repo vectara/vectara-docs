@@ -10,13 +10,14 @@ import { Spacer } from "@site/src/components/ui/Spacer";
 import { TopicButton } from "@site/src/components/ui/TopicButton";
 import CodePanel from '@site/src/theme/CodePanel';
 
-Vectara is the trusted AI Agent and Assistant platform that enables enterprises 
-to quickly build GenAI applications grounded in their own data. Our end-to-end 
-Retrieval Augmented Generation (RAG) platform minimizes hallucinations, 
-supports 100+ languages, and delivers enterprise-grade security for 
-production-ready AI solutions. Deploy in your preferred environment—SaaS or 
-private deployment—while maintaining complete data control. User data remains secure because{" "}
-<Config v="names.product" /> never trains on customer data.
+Vectara is the trusted AI Agent platform that enables
+enterprises to quickly deploy AI agents across the business grounded in their own data.
+Retrieval Augmented Generation (RAG) at the core minimizes
+hallucinations, supports 100+ languages, and delivers enterprise-grade
+security for production-ready AI solutions.
+
+Deploy in your preferred environment, while maintaining complete data control. 
+User data remains secure because Vectara never trains on customer data.
 
 <Grid columns={2}>
   <TopicButton
@@ -35,81 +36,131 @@ private deployment—while maintaining complete data control. User data remains 
 <div style={{ display: 'flex', gap: '20px' }}>
   <div style={{ flex: 1 }}>
     <h3>Business Overview</h3>
-    <p>For decision-makers evaluating Vectara, transform your documents and data into intelligent AI assistants that provide accurate, instant answers.</p>
+    <p>For decision-makers evaluating Vectara, transform your documents and
+    data into intelligent AI agents that provide accurate, instant answers.</p>
     <p><ul>
-    <li>Reduce information search time significantly</li>
-    <li>Deploy production-ready AI in a few days</li>
-    <li>Reduce AI hallucinations with grounded responses</li>
-    <li>Enterprise-grade security (SOC 2, HIPAA compliant)</li>
-    <li>Flexible deployment options (SaaS or private deployment for complete data control)</li>
-    <li>Check out the [**Release notes**](/docs/release-notes) for the latest features and enhancements.</li>
+    <li>Reduce information search time significantly.</li>
+    <li>Deploy production-ready AI in a few days on-premises, in the cloud, or in your VPC.</li>
+    <li>Reduce AI hallucinations with grounded responses.</li>
+    <li>Monitor AI agents with always-on AI governance.</li>
+    <li>Enterprise-grade security (SOC 2, HIPAA compliant).</li>
+    <li>Flexible deployment options (SaaS or private deployment for complete
+    data control).</li>
+    <li>Check out the [**Release notes**](/docs/release-notes) for the latest
+    features and enhancements.</li>
 
     </ul></p>
   </div>
   <div style={{ flex: 1 }}>
     <h3>Developer Quick Start</h3>
-    <p>For technical teams building with Vectara, integrate powerful RAG capabilities into your applications with simple REST APIs and pre-built components.</p>
+    <p>For technical teams building with Vectara, integrate powerful RAG
+    capabilities into your applications with simple REST APIs and pre-built
+    components.</p>
     <p><ul>
-    <li>Complete the [**quick start tutorial**](quickstart) and use Vectara to ground answers in your data in a few minutes.</li>
-    <li>Try the [**Vectara REST APIs**](/docs/rest-api) directly in your browser.</li>
-    <li>View [**API recipes**](/docs/api-recipes) to upload a file and query the data.</li>
-    <li>Explore our developer resources to accelerate integration and see examples for [**common use cases**](/docs/use-case-exploration).</li>
+    <li>Complete the [**console tutorial**](quickstart) and use Vectara to
+    ground answers in your data in a few minutes.</li>
+    <li>Try the [**Vectara REST APIs**](/docs/rest-api) directly in your
+    browser.</li>
+    <li>View [**API quick start**](/docs/api-recipes) to upload a file and query
+    the data.</li>
+    <li>Explore our developer resources to accelerate integration and see
+    examples for [**common use cases**](/docs/use-case-exploration).</li>
     </ul></p>
   </div>
 </div>
 
 <div style={{ backgroundColor: '#f8f9fa', padding: '20px', borderRadius: '8px', marginBottom: '20px', border: '1px solid #e9ecef' }}>
   <h4>🏢 Need complete data control?</h4>
-  <p>For organizations with specific compliance, security, or infrastructure requirements, Vectara offers private deployment options including traditional on-premises, VPC, and air-gapped environments. <strong><a href="/docs/deployments">Learn more about private deployment →</a></strong></p>
+  <p>For organizations with specific compliance, security, or infrastructure
+  requirements, Vectara offers private deployment options including traditional
+  on-premises, VPC, and air-gapped environments. <strong><a href="/docs/deployments">Learn more about private deployment →</a></strong></p>
 </div>
 
-## **AI assistants and agents**
+## Conversational AI platform
 
-Build intelligent systems that go beyond simple Q&A:
+Build trusted conversational experiences without deep AI expertise:
 
-- **AI assistants**: Answer complex questions by forming research plans and 
-executing multi-step queries across your data.
-- **AI agents**: Take autonomous actions on behalf of users - schedule 
-meetings, send notifications, update systems
-- **Agentic RAG**: Leverage our Python package for building trusted, 
-hallucination-resistant autonomous agents
+<Grid columns={2}>
+  <div>
+    <h4>🤖 Virtual Assistants</h4>
+    <p>Create AI assistants that answer complex questions by forming research plans and 
+executing multi-step queries across your data.</p>
+  </div>
+  <div>
+    <h4>💬 Enterprise Agents</h4>
+    <p>Build AI agents that can search knowledge bases, take actions, and escalate to humans when needed.</p>
+  </div>
+  <div>
+    <h4>🏢 Agentic RAG</h4>
+    <p>Leverage our [Python SDK](/docs/sdk/vectara-python-sdk) for building trusted, autonomous agents with reduced hallucinations.</p>
+  </div>
+  <div>
+    <h4>🎓 Intelligent Query Rewriting</h4>
+    <p>Break down complex questions into smaller steps. Generate metadata filter expressions from natural language queries automatically.</p>
+  </div>
+</Grid>
 
-### **Solve the hallucination problem**
-Unlike generic AI models, Vectara's responses are grounded in your actual data:
+<div style={{ backgroundColor: '#e8f4fd', padding: '20px', borderRadius: '8px', marginBottom: '20px', border: '1px solid #b8e0f7' }}>
+  <h4>🤖 Ready to build AI agents?</h4>
+  <p>Explore our Agents platform for building sophisticated, enterprise-grade
+  intelligent applications with tools, instructions, and sessions. <strong><a href="/docs/agents/agent-platform-overview">Learn more about the Agents platform →</a></strong></p>
+</div>
 
-- **Factual Consistency Scoring**: Confidence ratings for every AI-generated response
-- **Source citations**: Every answer links back to specific documents and passages
-- **Retrieval-first architecture**: AI can only use information that exists in your indexed content
+## AI agents and assistants
 
-### **Best-in-class search technology**
-Our hybrid search combines the best of semantic and keyword search:
+Build intelligent conversational systems that go beyond simple
+question-and-answer:
 
-- **Semantic understanding**: Find information by meaning, not just keywords
-- **100+ language support**: Search across documents in different languages simultaneously  
-- **Advanced filtering**: Narrow results by metadata, document type, recency, and custom attributes
+- **Conversational assistants**: Natural dialogue interfaces that understand
+  context and maintain conversation state.
+- **AI agents**: Autonomous systems that search, reason, and take actions
+  through conversations.
+- **Multi-turn interactions**: Experiences that remember previous exchanges and
+  provide coherent responses.
 
-### **Enterprise-ready security**
+### Solve the hallucination problem
+Unlike generic AI models, Vectara grounds responses in your actual data:
+
+- **Factual Consistency Scoring**: Provides confidence ratings for every
+  AI-generated response.
+- **Source citations**: Links every answer back to specific documents and
+  passages.
+- **Retrieval-first architecture**: Ensures AI only uses information from your
+  indexed content.
+- **Purpose-built models**: Designed specifically for accurate enterprise AI.
+
+### Best-in-class retrieval
+Hybrid search combines semantic and keyword capabilities:
+
+- **Semantic understanding**: Finds information by meaning, not just keywords.
+- **100+ language support**: Searches across documents in different languages
+  simultaneously.
+- **Advanced filtering**: Narrows results by metadata, document type, recency,
+  and custom attributes.
+
+### Enterprise-ready security
 Built for mission-critical applications with complete data control:
 
-- **Zero training on customer data**: Your content remains private and secure
-- **SOC 2 Type II and HIPAA certified**: Enterprise-grade security and compliance
-- **Flexible deployment**: Choose SaaS for simplicity or [private deployment](/docs/deployments) for complete data control and compliance
-- **Fine-grained access control**: Role-based permissions and audit logging
+- **Zero training on customer data**: Your content remains private and secure.
+- **SOC 2 Type II and HIPAA certified**: Meets enterprise-grade security and
+  compliance standards.
+- **Fine-grained access control**: Role-based permissions and audit logging.
+- **Flexible deployment**: Choose SaaS for simplicity or
+  [private deployment](/docs/deployments) for complete data control, including
+  VPC and on-premises options.
+- **Centralized governance**: Unified platform to manage AI agents with
+  comprehensive observability.
 
 ## Not sure where to start?
 
-If you're new to <Config v="names.product"/>, sign up for an account [here](https://console.vectara.com/signup) and 
-start your [30-day free trial](/docs/vectara-trial). Here are some other ideas:
+If you're new to <Config v="names.product"/>, sign up for an account
+[here](https://console.vectara.com/signup) and start your
+[30-day free trial](/docs/vectara-trial). Here are some other ideas:
 
-- Check out our [Quick Start Tutorial](/docs/quickstart) and [API Recipes](/docs/api-recipes) to
-  index and search your first document in just a couple of minutes!
-- Check out the [Vectara Python SDK](/docs/sdk/vectara-python-sdk) with essential workflows and 
-practical code examples.
-- For enterprise deployments, explore our [Private Deployment options](/docs/deployments) or start your [Evaluation Process](/docs/deployments/onprem-evaluation-process) for complete data sovereignty and compliance.
+- For enterprise deployments, explore our
+  [Private Deployment options](/docs/deployments) or start your
+  [Evaluation Process](/docs/deployments/onprem-evaluation-process) for
+  complete data sovereignty and compliance.
 - View some [Vectara applications, demos, and video tutorials](https://vectara.com/demos/).
-- View our [Release Notes](/docs/release-notes) and learn about the latest features and product documentation updates.
-- Visit our [forums](https://discuss.vectara.com/) to ask any questions or provide any suggestions.
-
-*Vectara enables you to build trusted AI assistants and agents that deliver accurate, hallucination-resistant responses grounded in your own data. Get production-ready in days, not months.*
-
-
+- Visit our [forums](https://discuss.vectara.com/) to ask any questions or
+  provide any suggestions.
