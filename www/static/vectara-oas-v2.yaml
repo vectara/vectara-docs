@@ -8382,10 +8382,12 @@ components:
         \  `exceeded_max_input_length_fcs`: The input to the Factual Consistency Score\
         \ model exceeded the maximum allowed length, so no score is being returned\n\
         \ *  `intelligent_query_rewriting_failed`: Intelligent query rewriting failed\
-        \ due to an internal error"
+        \ due to an internal error\n *  `fcs_language_not_supported`: The summary\
+        \ language is not supported by the Factual Consistency Score model"
       enum:
       - exceeded_max_input_length_fcs
       - intelligent_query_rewriting_failed
+      - fcs_language_not_supported
     FilterExtraction:
       type: object
       description: The result of query filter extraction.
@@ -8827,6 +8829,11 @@ components:
       description: The parameters to control generation.
       type: object
       properties:
+        enabled:
+          description: Whether generation is enabled for this query. This field is
+            ignored if using chat.
+          type: boolean
+          default: true
         generation_preset_name:
           description: "The preset values to use to feed the query results and other\
             \ context to the model.  \n\nA `generation_preset` is an object with a\
@@ -11721,6 +11728,47 @@ components:
       - type: web_search
         argument_override:
           limit: 5
+    RetryConfiguration:
+      title: RetryConfiguration
+      description: Configuration for automatic retry of failed LLM requests with exponential
+        backoff.
+      type: object
+      properties:
+        enabled:
+          description: Whether retry is enabled. Enabled by default to provide resilience
+            against transient failures.
+          type: boolean
+          default: true
+          example: true
+        max_retries:
+          description: Maximum number of retry attempts after initial failure.
+          type: integer
+          minimum: 0
+          maximum: 10
+          default: 3
+          example: 3
+        initial_backoff_ms:
+          description: Initial backoff time in milliseconds before first retry.
+          type: integer
+          minimum: 100
+          maximum: 60000
+          default: 1000
+          example: 1000
+        max_backoff_ms:
+          description: Maximum backoff time in milliseconds between retries.
+          type: integer
+          minimum: 1000
+          maximum: 300000
+          default: 30000
+          example: 30000
+        backoff_factor:
+          description: Multiplication factor for exponential backoff between retries.
+          type: number
+          format: double
+          minimum: 1
+          maximum: 10
+          default: 2
+          example: 2
     AgentModel:
       title: AgentModel
       description: Configuration for the model used in this step, including the model
@@ -11740,6 +11788,10 @@ components:
             temperature: 0.7
             max_tokens: 1000
             top_p: 0.9
+        retry_configuration:
+          $ref: '#/components/schemas/RetryConfiguration'
+          description: Optional retry configuration for handling transient failures.
+            When not provided, no retry is performed.
       required:
       - name
     InstructionReference:
@@ -12135,6 +12187,15 @@ components:
           type: boolean
           default: true
           example: true
+        tti_minutes:
+          description: Time-to-idle in minutes for the session. If no events occur
+            in the session for this duration, the session will be automatically deleted.
+            If not specified, the session will not expire.
+          type: integer
+          format: int64
+          minimum: 0
+          default: 0
+          example: 60
         created_at:
           description: Timestamp when the session was created.
           type: string
@@ -12190,6 +12251,15 @@ components:
           type: boolean
           default: true
           example: true
+        tti_minutes:
+          description: Time-to-idle in minutes for the session. If no events occur
+            in the session for this duration, the session will be automatically deleted.
+            If set to 0, the session will not expire.
+          type: integer
+          format: int64
+          minimum: 0
+          default: 0
+          example: 60
     UpdateAgentSessionRequest:
       description: Request object for updating an existing agent session.
       type: object
@@ -12214,6 +12284,14 @@ components:
           description: Whether the session is enabled.
           type: boolean
           example: false
+        tti_minutes:
+          description: Time-to-idle in minutes for the session. If no events occur
+            in the session for this duration, the session will be automatically deleted.
+            If set to 0, the session will not expire.
+          type: integer
+          format: int64
+          minimum: 0
+          example: 60
     AgentTextInput:
       description: A text input for an agent message.
       type: object
