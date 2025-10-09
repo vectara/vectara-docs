@@ -22,6 +22,10 @@ This tutorial contains the following steps:
 5. [Step 4. Initialize the Vectara chat client](#step-4-initialize-the-vectara-chat-client)
 6. [Step 5. Perform tests](#step-5-perform-tests)
 
+:::tip Note
+We recommend that you complete this tutorial in [**Google Colab**](https://colab.google).
+:::
+
 ## Prerequisites and setup
 
 - Python 3.8 or higher
@@ -412,14 +416,12 @@ print(f"Total tokens: {response['usage']['total_tokens']}")`
   layout="stacked"
 />
 
-**Expected Output:**
-
 <CodePanel snippets={[{language: "json", code: `Response:
 Vectara is a powerful AI-powered search and discovery platform that combines semantic search, retrieval-augmented generation (RAG), and generative AI capabilities to help organizations unlock insights from their data.
 
 Model: gpt-4o-mini
 ID: chatcmpl-abc123xyz
-Total tokens: 156`}]} title="Non-Streaming Response" layout="stacked" />
+Total tokens: 156`}]} title="Non-Streaming Response Example" layout="stacked" />
 
 ### OpenAI SDK Request
 
@@ -477,7 +479,7 @@ context and intent behind queries, rather than relying solely on keyword matchin
 for more accurate and relevant search results, improving user satisfaction and productivity.
 
 If you are looking for specific features or applications of Vectara's technology, please let me
-know!`}]} title="Streaming Output" layout="stacked" />
+know!`}]} title="Streaming Output Example" layout="stacked" />
 
 ## Test 3: OpenAI SDK (non-streaming)
 
@@ -523,7 +525,7 @@ it's best to check their official website or recent news articles.
 Model: gpt-4o-mini
 ID: chatcmpl-COAL8Y6FlkcsLPZinYPGP3G9nhRCa
 Created: 1759875654
-Tokens: 177 (prompt: 13, completion: 164)`}]} title="OpenAI SDK Output" layout="stacked" />
+Tokens: 177 (prompt: 13, completion: 164)`}]} title="OpenAI SDK Output Example  " layout="stacked" />
 
 ## Test 4: OpenAI SDK (streaming)
 
@@ -552,7 +554,7 @@ search, contextual understanding, and personalized recommendations, which are in
 important in today's data-driven landscape.
 
 For the most current information about Vectara, including their latest products and
-developments, it's best to visit their official website or check recent news articles.`}]} title="Streaming Output" layout="stacked" />
+developments, it's best to visit their official website or check recent news articles.`}]} title="Streaming Output Example" layout="stacked" />
 
 ## Advanced usage examples
 
@@ -560,7 +562,7 @@ Beyond the basic tests, explore these advanced usage patterns to build productio
 
 - [Multi-turn conversations](#multi-turn-conversations) - Maintain context across multiple exchanges.
 - [Use different models](#use-different-models) - Switch between available LLM models.
-- [Customize generation parameters](#customize-generation-parameters) - Control output with temperature and token limits.
+- [Customize generation parameters](#customize-generation-parameters) - Control output with temperature and token limits.   
 
 ### Multi-turn conversations
 
@@ -765,68 +767,10 @@ Yet in this dance of man and machine,
 We ponder what it all could mean,
 For in our hands, we wield the key,`}]} title="Customized Output" layout="stacked" />
 
-## Use with external applications
-
-To integrate with external applications, you can use either the direct HTTP
-requests approach or the OpenAI SDK.
-
-### OpenAI SDK Integration Example
-
-<CodePanel
-  title="OpenAI SDK Integration"
-  snippets={[{
-    language: 'python',
-    code: `from openai import OpenAI
-
-# Initialize the client
-client = OpenAI(
-    api_key="your-vectara-api-key",
-    base_url="https://api.vectara.io/v2/llms"
-)
-
-# Make a chat completion request
-completion = client.chat.completions.create(
-    model="gpt-4o-mini",
-    messages=[
-        {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": "What is Vectara?"}
-    ]
-)
-
-print(completion.choices[0].message.content)`
-  }]}
-  layout="stacked"
-/>
-
-### Direct HTTP Requests Example
-
-<CodePanel
-  title="Direct HTTP Requests"
-  snippets={[{
-    language: 'python',
-    code: `import requests
-
-url = "https://api.vectara.io/v2/llms/chat/completions"
-headers = {
-    "Content-Type": "application/json",
-    "Authorization": "Bearer your-vectara-api-key"  # Or use "x-api-key" header
-}
-payload = {
-    "model": "gpt-4o-mini",
-    "messages": [
-        {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": "What is Vectara?"}
-    ]
-}
-
-response = requests.post(url, json=payload, headers=headers)
-print(response.json()["choices"][0]["message"]["content"])`
-  }]}
-  layout="stacked"
-/>
-
-This tutorial demonstrated how to use the Vectara Chat Completions API, both 
-directly and with the OpenAI SDK. You can use this API to add powerful 
-generative AI capabilities to your applications with OpenAI-compatible 
+This tutorial demonstrated how to use the Vectara Chat Completions API, both
+directly and with the OpenAI SDK. You can use this API to add powerful
+generative AI capabilities to your applications with OpenAI-compatible
 interfaces.
+
+For integration examples with external applications, see [Use with External Applications](use-external-applications-sdk.md).
 

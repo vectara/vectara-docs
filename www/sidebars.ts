@@ -253,7 +253,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "Use Cases and Tutorials",
+      label: "Use Cases",
       items: [
         "use-case-exploration",
         {
@@ -279,18 +279,15 @@ const sidebars: SidebarsConfig = {
           label: "Document Data Structuring",
         },
         "learn/question-answer/question-answer-overview",
-        {
-          type: "category",
-          label: "Chatbot Tutorials",
-          link: {
-            type: 'doc',
-            id: 'chatbot-tutorials',
-          },
-          items: [
-            "tutorials/build-a-chatbot",
-            "tutorials/use-openai-libraries-with-vectara",
-          ],
-        },
+      ],
+    },
+    {
+      type: "category",
+      label: "Tutorials",
+      items: [
+        "tutorials/build-a-chatbot",
+        "tutorials/use-openai-libraries-with-vectara",
+        "tutorials/use-external-applications-sdk",
       ],
     },
     {
