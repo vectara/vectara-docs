@@ -379,9 +379,12 @@ const sidebars: SidebarsConfig = {
         {
           type: "category",
           label: "Manage Queries",
+          link: {
+            type: 'doc',
+            id: "console-ui/configure-queries",
+          },
           collapsed: true,
           items: [
-            "console-ui/configure-queries",
             "console-ui/evaluate-queries",
           ],
         },
@@ -393,18 +396,24 @@ const sidebars: SidebarsConfig = {
         {
           type: "category",
           label: "Manage Conversations",
+          link: {
+            type: 'doc',
+            id: "console-ui/vectara-chat-overview",
+          },
           collapsed: true,
           items: [
-            "console-ui/vectara-chat-overview",
             "console-ui/chat-with-your-data",
           ],
         },
         {
           type: "category",
           label: "Manage API Authorization",
+          link: {
+            type: 'doc',
+            id: "console-ui/api-access-overview",
+          },
           collapsed: true,
           items: [
-            "console-ui/api-access-overview",
             "console-ui/personal-api-key",
             "console-ui/index-and-query-api-keys",
             "console-ui/app-clients",
@@ -413,12 +422,12 @@ const sidebars: SidebarsConfig = {
         {
           type: "doc",
           id: "console-ui/manage-user",
-          label: "Manage Users",
+          label: "Manage Team Members",
         },
         {
           type: "doc",
-          id: "console-ui/update-credit-card",
-          label: "Manage Payments",
+          id: "console-ui/manage-usage",
+          label: "Manage Usage",
         },
         "console-ui/delete-account",
       ],
