@@ -11,9 +11,12 @@ const sidebars: SidebarsConfig = {
     {
       type: "category",
       label: "Security and Data Privacy",
+      link: {
+        type: 'doc',
+        id: 'learn/data-privacy/privacy-overview', 
+        },
       collapsed: true,
       items: [
-        "learn/data-privacy/privacy-overview",
         "learn/data-privacy/encryption",
         "learn/authentication/transport-layer-security",
       ],
@@ -236,6 +239,7 @@ const sidebars: SidebarsConfig = {
         "agents/tools",
         "agents/instructions",
         "agents/sessions",
+        "agents/conversational-ai",
       ],
     },
     {
@@ -254,8 +258,11 @@ const sidebars: SidebarsConfig = {
     {
       type: "category",
       label: "Use Cases",
+      link: {
+        type: 'doc',
+        id: 'use-case-exploration',
+      },
       items: [
-        "use-case-exploration",
         {
           type: "category",
           label: "Semantic Search",
