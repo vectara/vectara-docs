@@ -257,10 +257,10 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "Use Cases and Tutorials",
+      label: "Use Cases",
       link: {
         type: 'doc',
-        id: 'use-case-exploration', // This points to observability.mdx
+        id: 'use-case-exploration',
       },
       items: [
         {
@@ -286,7 +286,15 @@ const sidebars: SidebarsConfig = {
           label: "Document Data Structuring",
         },
         "learn/question-answer/question-answer-overview",
+      ],
+    },
+    {
+      type: "category",
+      label: "Tutorials",
+      items: [
         "tutorials/build-a-chatbot",
+        "tutorials/use-openai-libraries-with-vectara",
+        "tutorials/use-external-applications-sdk",
       ],
     },
     {
