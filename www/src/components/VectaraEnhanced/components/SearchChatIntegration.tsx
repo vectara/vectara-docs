@@ -152,14 +152,16 @@ export const SearchChatIntegration: React.FC<SearchChatIntegrationProps> = ({
     });
   }, [onChatOpen, onIntegrationEvent]);
 
-  // Handle chat close
+  // Handle chat close - preserves context for potential resume
   const handleChatClose = useCallback(() => {
     setIsOpen(false);
-    setChatContext({});
+    // Note: We keep chatContext intact so conversation can resume if modal reopens
+    // To fully reset: setChatContext({});
     onChatClose?.();
-    
+
     onIntegrationEvent?.('chat_closed', {
-      timestamp: Date.now()
+      timestamp: Date.now(),
+      contextPreserved: true
     });
   }, [onChatClose, onIntegrationEvent]);
 
@@ -175,19 +177,8 @@ export const SearchChatIntegration: React.FC<SearchChatIntegrationProps> = ({
     });
   }, [onQuerySubmit, onIntegrationEvent, chatContext]);
 
-  // Handle clicks outside chat (for overlay mode)
-  useEffect(() => {
-    if (mode === 'overlay' && isOpen) {
-      const handleClickOutside = (event: MouseEvent) => {
-        if (chatRef.current && !chatRef.current.contains(event.target as Node)) {
-          handleChatClose();
-        }
-      };
-
-      document.addEventListener('mousedown', handleClickOutside);
-      return () => document.removeEventListener('mousedown', handleClickOutside);
-    }
-  }, [mode, isOpen, handleChatClose]);
+  // Note: Removed click-outside-to-close behavior to prevent accidental conversation loss
+  // Users must explicitly click the X button to close the modal
 
   // Position styles - always fullscreen modal positioned like ReactSearch
   const getPositionStyles = useCallback(() => {
@@ -273,13 +264,13 @@ export const SearchChatIntegration: React.FC<SearchChatIntegrationProps> = ({
           ref={chatRef}
           className={`vectara-search-chat-integration fullscreen-modal ${className}`}
           style={{
-            marginTop: '6vh',
+            marginTop: '3vh',
             backgroundColor: '#ffffff',
             display: 'flex',
             flexDirection: 'column',
             width: '100%',
-            maxWidth: '720px',
-            maxHeight: '88vh',
+            maxWidth: '1100px',
+            maxHeight: '92vh',
             pointerEvents: 'all',
             boxShadow: 'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px',
             borderRadius: '8px',
@@ -343,9 +334,9 @@ export const SearchChatIntegration: React.FC<SearchChatIntegrationProps> = ({
   return (
     <>
       <FloatingChatButton />
-      {/* Modal backdrop for better UX */}
+      {/* Modal backdrop - non-dismissive to prevent accidental conversation loss */}
       {isOpen && mode === 'overlay' && (
-        <div 
+        <div
           style={{
             position: 'fixed',
             top: 0,
@@ -356,7 +347,7 @@ export const SearchChatIntegration: React.FC<SearchChatIntegrationProps> = ({
             zIndex: 1040,
             animation: 'fadeIn 0.3s ease'
           }}
-          onClick={handleChatClose}
+          // Note: Removed onClick={handleChatClose} - users must click X button to close
         />
       )}
       <ChatComponent />
