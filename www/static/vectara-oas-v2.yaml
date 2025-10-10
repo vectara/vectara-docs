@@ -4372,7 +4372,7 @@ paths:
       x-fern-pagination:
         cursor: $request.page_key
         next_cursor: $response.metadata.page_key
-        results: $response.hallucinationCorrectionModels
+        results: $response.hallucination_correctors
       parameters:
       - $ref: '#/components/parameters/RequestTimeout'
       - $ref: '#/components/parameters/RequestTimeoutMillis'
@@ -6685,31 +6685,31 @@ paths:
           - $ref: '#/components/schemas/ThinkingEvent'
           - $ref: '#/components/schemas/AgentOutputEvent'
           - $ref: '#/components/schemas/ContextLimitExceededEvent'
-          properties:
-            id:
-              description: The unique identifier for the event.
-              type: string
-              pattern: aev_[0-9a-zA-Z_-]+$
-              example: aev_user_001
-            session_key:
-              $ref: '#/components/schemas/AgentSessionKey'
-              description: The key of the session this event belongs to.
-            type:
-              description: The type of event.
-              type: string
-              enum:
-              - input_message
-              - tool_input
-              - tool_output
-              - thinking
-              - agent_output
-              - context_limit_exceeded
-              example: input_message
-            created_at:
-              description: Timestamp when the event was created.
-              type: string
-              format: date-time
-              example: '2024-01-15T10:35:00Z'
+          # properties:
+          #   id:
+          #     description: The unique identifier for the event.
+          #     type: string
+          #     pattern: aev_[0-9a-zA-Z_-]+$
+          #     example: aev_user_001
+          #   session_key:
+          #     $ref: '#/components/schemas/AgentSessionKey'
+          #     description: The key of the session this event belongs to.
+          #   type:
+          #     description: The type of event.
+          #     type: string
+          #     enum:
+          #     - input_message
+          #     - tool_input
+          #     - tool_output
+          #     - thinking
+          #     - agent_output
+          #     - context_limit_exceeded
+          #     example: input_message
+          #   created_at:
+          #     description: Timestamp when the event was created.
+          #     type: string
+          #     format: date-time
+          #     example: '2024-01-15T10:35:00Z'
           required:
           - id
           - session_key
@@ -12602,31 +12602,31 @@ components:
       - $ref: '#/components/schemas/ThinkingEvent'
       - $ref: '#/components/schemas/AgentOutputEvent'
       - $ref: '#/components/schemas/ContextLimitExceededEvent'
-      properties:
-        id:
-          description: The unique identifier for the event.
-          type: string
-          pattern: aev_[0-9a-zA-Z_-]+$
-          example: aev_user_001
-        session_key:
-          $ref: '#/components/schemas/AgentSessionKey'
-          description: The key of the session this event belongs to.
-        type:
-          description: The type of event.
-          type: string
-          enum:
-          - input_message
-          - tool_input
-          - tool_output
-          - thinking
-          - agent_output
-          - context_limit_exceeded
-          example: input_message
-        created_at:
-          description: Timestamp when the event was created.
-          type: string
-          format: date-time
-          example: '2024-01-15T10:35:00Z'
+      # properties:
+      #   id:
+      #     description: The unique identifier for the event.
+      #     type: string
+      #     pattern: aev_[0-9a-zA-Z_-]+$
+      #     example: aev_user_001
+      #   session_key:
+      #     $ref: '#/components/schemas/AgentSessionKey'
+      #     description: The key of the session this event belongs to.
+      #   type:
+      #     description: The type of event.
+      #     type: string
+      #     enum:
+      #     - input_message
+      #     - tool_input
+      #     - tool_output
+      #     - thinking
+      #     - agent_output
+      #     - context_limit_exceeded
+      #     example: input_message
+      #   created_at:
+      #     description: Timestamp when the event was created.
+      #     type: string
+      #     format: date-time
+      #     example: '2024-01-15T10:35:00Z'
       required:
       - id
       - session_key
