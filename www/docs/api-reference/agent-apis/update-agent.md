@@ -27,6 +27,12 @@ To update an agent, send a PATCH request to `/v2/agents/{agent_key}`. You specif
 - `model` (object, optional): Updated model configuration
   - `name` (string, required if model object provided): Model name
   - `parameters` (object, optional): Model-specific parameters
+  - `retry_configuration` (object, optional): Retry behavior for LLM interactions
+    - `enabled` (boolean, optional): Enable or disable retry logic (default: `true`)
+    - `max_retries` (integer, optional): Maximum retry attempts after initial failure, range 0-10 (default: `3`)
+    - `initial_backoff_ms` (integer, optional): Initial delay before first retry in milliseconds, range 100-60000 (default: `1000`)
+    - `max_backoff_ms` (integer, optional): Maximum delay between retries in milliseconds, range 1000-300000 (default: `30000`)
+    - `backoff_factor` (float, optional): Exponential multiplier for backoff delays, range 1.0-10.0 (default: `2.0`)
 - `first_step` (object, optional): Updated execution step configuration
   - `type` (string, required if first_step provided): Step type (must be `conversational`)
   - `instructions` (array, required if first_step provided): Updated list of instruction objects
@@ -116,6 +122,13 @@ The response includes the complete updated agent configuration with the new `upd
       "temperature": 0.1,
       "max_tokens": 1500,
       "top_p": 0.9
+    },
+    "retry_configuration": {
+      "enabled": true,
+      "max_retries": 3,
+      "initial_backoff_ms": 1000,
+      "max_backoff_ms": 30000,
+      "backoff_factor": 2.0
     }
   },
   "first_step": {
