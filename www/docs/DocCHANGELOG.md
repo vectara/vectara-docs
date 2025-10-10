@@ -12,17 +12,37 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 
 ---
 
+# October 2025
+
+### ✨ New Features
+- Enhance Agents with Retry LLM Configuration (#510)
+
+### 📚 API Changes
+- Add Agent LLM Retry Configuration to API Reference (#511)
+
+### 📝 Documentation Changes
+- Add new tutorial on how to use OpenAI SDK with Vectara Chat Completions API (#509)
+- Add Conversational AI content to Platform and Agents overviews (#507)
+- Update links and formatting in Python SDK Documents (#505)
+
+
+
+---
+
 # September 2025
 
 ### ✨ New Features
 - Introduce the tech preview of Vectara Agents Framework (#491)
 
 ### 📚 API Changes
+- Fix API Reference for Tool and Instruction sections (#502)
 - Reorganize Agent Sessions in API Reference (#499)
 - Add Agents APIs to API Reference (#497)
 - Enhance API Reference with additional improved examples (#495)
 
 ### 📝 Documentation Changes
+- Fix MCP broken link in the agents page (#504)
+- Enhance Agents documentation for Tools and Instructions (#503)
 - Introduce new section about Private Deployment options such as on premise (#498)
 - Enhance documentation around data I/O, Agents, model selection, and BYO-LLM with additional API Concepts cleanup for accuracy and discoverability (#496)
 
