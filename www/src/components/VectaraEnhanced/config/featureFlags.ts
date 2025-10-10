@@ -30,7 +30,7 @@ export const DEFAULT_FEATURE_FLAGS: FeatureFlags = {
   useAgentPlatform: false,
 
   // Agent features (only effective when useAgentPlatform is true)
-  enableAgentStreaming: true,
+  enableAgentStreaming: false,
   enableAgentThoughts: true,
   enableAgentToolTracking: true,
   enableSessionPersistence: true,

@@ -328,18 +328,42 @@ export class VectaraAgentManager {
         throw new Error('Response body is not readable');
       }
 
+      let buffer = '';
+
       while (true) {
         const { done, value } = await reader.read();
         if (done) break;
 
         const chunk = decoder.decode(value, { stream: true });
-        const lines = chunk.split('\n');
+        buffer += chunk;
 
-        for (const line of lines) {
-          if (line.startsWith('data: ')) {
+        console.log('📦 RAW CHUNK:', chunk.substring(0, 200));
+
+        // Process complete events in the buffer
+        const events = buffer.split('\n\n');
+        // Keep the last incomplete event in the buffer
+        buffer = events.pop() || '';
+
+        for (const event of events) {
+          if (!event.trim()) continue;
+
+          const lines = event.split('\n');
+          let eventType = '';
+          let eventData = '';
+
+          for (const line of lines) {
+            if (line.startsWith('event:')) {
+              eventType = line.slice(6).trim();
+            } else if (line.startsWith('data:')) {
+              eventData = line.slice(5).trim();
+            }
+          }
+
+          if (eventData) {
             try {
-              const data = JSON.parse(line.slice(6));
+              const data = JSON.parse(eventData);
 
+              console.log('📨 STREAMING EVENT:', data.type, data);
               debugAPI('Streaming event received:', data.type, data);
 
               if (data.type === 'streaming_agent_output') {
@@ -367,6 +391,7 @@ export class VectaraAgentManager {
               }
             } catch (e) {
               debugAPI('Error parsing streaming data:', e);
+              console.error('Failed to parse event data:', eventData);
               // Skip malformed JSON
               continue;
             }
@@ -385,6 +410,14 @@ export class VectaraAgentManager {
         usedSources: this.processSourceReferences(sourceReferences),
         suggestedFollowups: []
       };
+
+      console.log('🎯 FINAL STREAMING RESPONSE:', {
+        contentLength: fullContent.length,
+        firstCharacters: fullContent.substring(0, 100),
+        hasContent: fullContent.length > 0,
+        toolResultsCount: toolResults.length,
+        agentThoughtsCount: agentThoughts.length
+      });
 
       onComplete(finalResponse);
     } catch (error) {
