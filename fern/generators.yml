@@ -47,6 +47,7 @@ groups:
             PyYAML: '6.0.2'
           extra_dev_dependencies:
             types-PyYAML: '6.0.2'
+            pytest-dotenv: '^0.5.2'
           client:
             class_name: BaseVectara
             filename: base_client.py
