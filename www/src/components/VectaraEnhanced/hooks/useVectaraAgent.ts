@@ -207,7 +207,14 @@ export const useVectaraAgent = (options: UseVectaraAgentOptions): UseChatReturn 
     const session = await agentManagerRef.current!.createSession(agentKey);
 
     // Save session
-    state.sessionManager.saveSession(session);
+    if (state.sessionManager) {
+      state.sessionManager.saveSession(session);
+    } else {
+      // Fallback: create a new session manager if not available
+      const sessionManager = new AgentSessionManager();
+      sessionManager.saveSession(session);
+      setState(prev => ({ ...prev, sessionManager }));
+    }
 
     setState(prev => ({ ...prev, agentSession: session, agentKey }));
 
