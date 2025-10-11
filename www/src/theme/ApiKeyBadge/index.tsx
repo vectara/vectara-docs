@@ -19,7 +19,7 @@ const API_KEY_LABELS = {
   IndexService: 'Index Service'
 };
 
-export function ApiKeyBadge({ types }: ApiKeyBadgeProps) {
+export default function ApiKeyBadge({ types }: ApiKeyBadgeProps) {
   const typeArray = Array.isArray(types) ? types : [types];
   
   return (
@@ -42,3 +42,6 @@ export function ApiKeyBadge({ types }: ApiKeyBadgeProps) {
     </div>
   );
 }
+
+// Also export as named export for backward compatibility
+export { ApiKeyBadge };

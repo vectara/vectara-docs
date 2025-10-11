@@ -112,7 +112,7 @@ ${content}
 
   scripts: [
     { src: "/analytics.js", async: true },
-    { src: "/scripts/reodev.js", async: true },
+    // Removed reodev.js - replaced with VectaraEnhanced chatbot
     { src: "/js/cleanCardDescriptions.js", async: true },
   ],
 
