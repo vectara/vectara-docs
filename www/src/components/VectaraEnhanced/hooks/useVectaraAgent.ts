@@ -187,14 +187,39 @@ export const useVectaraAgent = (options: UseVectaraAgentOptions): UseChatReturn 
 
   // Ensure we have an active session
   const ensureSession = useCallback(async (): Promise<AgentSession> => {
-    // Check if current session is valid
+    // Check if current session is valid and not expired
     if (state.agentSession) {
-      const isValid = await agentManagerRef.current?.isSessionValid(state.agentSession);
-      if (isValid) {
+      const now = Date.now();
+      const sessionAge = now - state.agentSession.lastActivity;
+      const maxAge = 24 * 60 * 60 * 1000; // 24 hours
+      const maxMessages = 50; // Maximum messages per session
+
+      // Check if session is too old or has too many messages
+      if (sessionAge > maxAge) {
         if (isDevelopment) {
-          console.log('♻️ Reusing existing agent session:', state.agentSession.sessionKey);
+          console.log('🕒 Session expired (age:', Math.round(sessionAge / 1000 / 60), 'minutes)');
         }
-        return state.agentSession;
+      } else if (state.agentSession.messageCount >= maxMessages) {
+        if (isDevelopment) {
+          console.log('📊 Session has too many messages:', state.agentSession.messageCount);
+        }
+      } else {
+        // Session age and message count are OK, check if it's still valid with the server
+        const isValid = await agentManagerRef.current?.isSessionValid(state.agentSession);
+        if (isValid) {
+          if (isDevelopment) {
+            console.log('♻️ Reusing existing agent session:', state.agentSession.sessionKey);
+          }
+          return state.agentSession;
+        }
+      }
+
+      // Session is expired or invalid, delete it
+      try {
+        await agentManagerRef.current?.deleteSession(state.agentSession);
+        state.sessionManager?.removeSession(state.agentSession.sessionKey);
+      } catch (error) {
+        debugAPI('Error deleting expired session:', error);
       }
     }
 
@@ -223,7 +248,7 @@ export const useVectaraAgent = (options: UseVectaraAgentOptions): UseChatReturn 
     }
 
     return session;
-  }, [state.agentSession, ensureAgent, isDevelopment]);
+  }, [state.agentSession, state.sessionManager, ensureAgent, isDevelopment]);
 
   // Process agent response and convert to chat message
   const processAgentResponse = useCallback(async (
@@ -342,6 +367,29 @@ export const useVectaraAgent = (options: UseVectaraAgentOptions): UseChatReturn 
       }
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+
+      // Check if context limit was exceeded - auto-rotate session and retry
+      if (errorMessage.includes('Context limit exceeded') || errorMessage.includes('context_limit_exceeded')) {
+        debugAPI('Context limit exceeded, creating new session and retrying...');
+
+        // Delete the old session
+        if (state.agentSession) {
+          try {
+            await agentManagerRef.current?.deleteSession(state.agentSession);
+            state.sessionManager.removeSession(state.agentSession.sessionKey);
+          } catch (err) {
+            debugAPI('Error deleting old session:', err);
+          }
+        }
+
+        // Clear the current session to force creation of new one
+        setState(prev => ({ ...prev, agentSession: undefined }));
+
+        // Retry the message with a new session
+        debugAPI('Retrying with new session...');
+        return sendMessage(content, parentMessageId);
+      }
+
       debugAPI('Error sending message to agent:', error);
 
       setState(prev => ({
@@ -356,7 +404,7 @@ export const useVectaraAgent = (options: UseVectaraAgentOptions): UseChatReturn 
         data: { error: errorMessage, phase: 'agent_message' }
       });
     }
-  }, [ensureSession, enableAgentStreaming, originalStreaming, trackEvent]);
+  }, [ensureSession, enableAgentStreaming, originalStreaming, trackEvent, state.agentSession, state.sessionManager]);
 
   // Handle streaming message
   const handleStreamingMessage = useCallback(async (

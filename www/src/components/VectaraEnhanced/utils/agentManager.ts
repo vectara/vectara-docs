@@ -244,6 +244,17 @@ export class VectaraAgentManager {
       const events = result.events || [];
       debugAPI('Agent events found:', events.length);
 
+      // Log all event types to debug
+      events.forEach((event: any, index: number) => {
+        debugAPI(`Event ${index}:`, { type: event.type, hasContent: !!event.content });
+      });
+
+      // Check for context limit exceeded error
+      const contextLimitEvent = events.find((event: any) => event.type === 'context_limit_exceeded');
+      if (contextLimitEvent) {
+        throw new Error(`Context limit exceeded: ${contextLimitEvent.message || 'The conversation is too long. Please start a new session.'}`);
+      }
+
       const agentOutputEvent = events.find((event: any) => event.type === 'agent_output');
       const toolEvents = events.filter((event: any) => event.type === 'tool_output');
       const thinkingEvents = events.filter((event: any) => event.type === 'thinking');

@@ -684,4 +684,60 @@ export const VectaraChatbotStyles = `
   from { transform: translateX(100%); }
   to { transform: translateX(0); }
 }
+
+/* Prism syntax highlighting - matches CodePanel colors */
+.chatbot-code-highlighted .token.keyword {
+  color: #0070f3 !important; /* Bright blue for keywords */
+}
+
+.chatbot-code-highlighted .token.constant {
+  color: #ff495b !important;
+}
+
+.chatbot-code-highlighted .token.string-property.property {
+  color: #78B6FC !important;
+}
+
+.chatbot-code-highlighted .token.string,
+.chatbot-code-highlighted .token.string-interpolation {
+  color: #00d924 !important; /* Bright green for strings */
+}
+
+.chatbot-code-highlighted .token.number,
+.chatbot-code-highlighted .token.boolean {
+  color: #ff6b35 !important; /* Orange for numbers/booleans */
+}
+
+.chatbot-code-highlighted .token.comment {
+  color: #d3e0fb !important; /* Gray for comments */
+  font-style: italic !important;
+}
+
+.chatbot-code-highlighted .token.function,
+.chatbot-code-highlighted .token.builtin {
+  color: #0070f3 !important; /* Bright blue for functions */
+}
+
+.chatbot-code-highlighted .token.punctuation {
+  color: #abb2bf !important; /* Light gray for punctuation */
+}
+
+.chatbot-code-highlighted .token.operator {
+  color: #abb2bf !important; /* Light gray for operators */
+  background: transparent !important;
+}
+
+.chatbot-code-highlighted .token.property,
+.chatbot-code-highlighted .token.tag {
+  color: #78B6FC !important;
+}
+
+.chatbot-code-highlighted .token.class-name {
+  color: #0070f3 !important; /* Blue for class names */
+}
+
+.chatbot-code-highlighted .token.null,
+.chatbot-code-highlighted .token.undefined {
+  color: #a855f7 !important; /* Purple for null/undefined */
+}
 `;

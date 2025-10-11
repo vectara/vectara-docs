@@ -69,34 +69,6 @@ export const EnhancedChatHeader: React.FC<EnhancedChatHeaderProps> = React.memo(
             >
               {apiMode}
             </div>
-
-            {/* Development Controls */}
-            {isDevelopment && (
-              <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
-                <button
-                  onClick={handleToggleApiMode}
-                  style={{
-                    padding: '4px 8px',
-                    fontSize: '10px',
-                    backgroundColor: '#fff3cd',
-                    color: '#856404',
-                    border: '1px solid #ffeaa7',
-                    borderRadius: '4px',
-                    cursor: 'pointer',
-                    transition: 'all 0.2s ease'
-                  }}
-                  title={`Switch to ${useAgentPlatform ? 'Chat API' : 'Agent Platform'}`}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = '#ffeaa7';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = '#fff3cd';
-                  }}
-                >
-                  🔄 Toggle API
-                </button>
-              </div>
-            )}
           </div>
 
           <p style={{ margin: 0, fontSize: '14px', color: '#6c757d' }}>
@@ -170,22 +142,6 @@ export const EnhancedChatHeader: React.FC<EnhancedChatHeaderProps> = React.memo(
           )}
         </div>
       </div>
-
-      {/* Development Info Panel */}
-      {isDevelopment && useAgentPlatform && (
-        <div style={{
-          marginTop: '8px',
-          padding: '8px 12px',
-          backgroundColor: '#e8f5e8',
-          border: '1px solid #c8e6c9',
-          borderRadius: '4px',
-          fontSize: '11px',
-          color: '#2e7d32'
-        }}>
-          <strong>🤖 Agent Platform Active</strong> - The AI agent will intelligently determine when to provide
-          code examples and use advanced reasoning to answer your questions.
-        </div>
-      )}
     </div>
   );
 });

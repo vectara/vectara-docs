@@ -283,13 +283,13 @@ export const PRODUCTION_AGENT_CONFIG: VectaraAgentConfig = {
 // Default credentials for the agent manager
 export const DEFAULT_AGENT_CREDENTIALS = {
   customerId: "YOUR_TESTING_CUSTOMER_ID", // You'll need to provide this
-  apiKey: "zut_ohiV8_mBEcJy_NsmzR4_THP70DX9B8lJ06hn2A"
+  apiKey: "zqt_ohiV88vx7KYkk9Kjzf1xHgcZhcQqG88WBfqcyQ"
 };
 
 // Testing credentials for agent creation and corpus testing
 export const TESTING_AGENT_CREDENTIALS = {
   customerId: "YOUR_TESTING_CUSTOMER_ID", // You'll need to provide this
-  apiKey: "zut_ohiV8_mBEcJy_NsmzR4_THP70DX9B8lJ06hn2A",
+  apiKey: "zqt_ohiV88vx7KYkk9Kjzf1xHgcZhcQqG88WBfqcyQ",
   corpusKey: "technical_writing_assistant"
 };
 
