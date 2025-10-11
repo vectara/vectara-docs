@@ -1,7 +1,0 @@
-description: Create a webhook for event notifications
-category: advanced
-tags:
-  - create
-hasRequestExample: true
-responseStatusCodes:
-  - '201'

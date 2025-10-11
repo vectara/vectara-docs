@@ -1,8 +1,0 @@
-description: Create a new API key
-category: admin
-tags:
-  - create
-hasRequestExample: true
-responseStatusCodes:
-  - '201'
-  - '400'

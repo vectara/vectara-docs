@@ -1,8 +1,0 @@
-description: Generate OAuth2 token
-category: authentication
-tags:
-  - auth
-hasRequestExample: true
-responseStatusCodes:
-  - '200'
-  - '401'

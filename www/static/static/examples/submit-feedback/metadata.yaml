@@ -1,7 +1,0 @@
-description: Submit feedback on query results
-category: advanced
-tags:
-  - submit
-hasRequestExample: true
-responseStatusCodes:
-  - '200'

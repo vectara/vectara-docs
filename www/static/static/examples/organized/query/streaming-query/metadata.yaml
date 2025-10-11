@@ -1,7 +1,0 @@
-description: Submit a streaming query
-category: query
-tags:
-  - streaming
-hasRequestExample: true
-responseStatusCodes:
-  - '200'

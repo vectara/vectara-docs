@@ -1,8 +1,0 @@
-{
-  "query": "Explain the API authentication process",
-  "corpus_id": [
-    12345
-  ],
-  "num_results": 10,
-  "stream": true
-}

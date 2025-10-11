@@ -1,7 +1,0 @@
-description: Get usage statistics
-category: admin
-tags:
-  - get
-hasRequestExample: true
-responseStatusCodes:
-  - '200'

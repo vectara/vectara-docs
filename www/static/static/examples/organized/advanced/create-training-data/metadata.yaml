@@ -1,7 +1,0 @@
-description: Create training data for model improvement
-category: advanced
-tags:
-  - create
-hasRequestExample: true
-responseStatusCodes:
-  - '201'
