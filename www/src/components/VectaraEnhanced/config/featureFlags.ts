@@ -26,8 +26,8 @@ export interface FeatureFlags {
 
 // Default feature flag configuration
 export const DEFAULT_FEATURE_FLAGS: FeatureFlags = {
-  // Start with Chat API, enable agent platform when ready
-  useAgentPlatform: false,
+  // Use Agent Platform by default
+  useAgentPlatform: true,
 
   // Agent features (only effective when useAgentPlatform is true)
   enableAgentStreaming: false,
@@ -63,7 +63,7 @@ export const ENVIRONMENT_FEATURE_FLAGS: Record<string, Partial<FeatureFlags>> = 
   },
 
   production: {
-    useAgentPlatform: false, // Keep Chat API in production until agent is fully tested
+    useAgentPlatform: true, // Use Agent Platform in production
     enableDebugMode: false,
     enablePerformanceMonitoring: false
   }
