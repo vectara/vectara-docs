@@ -78,7 +78,7 @@ export const SearchChatIntegration: React.FC<SearchChatIntegrationProps> = ({
   searchResults,
   searchQuery,
   onSearchToChat,
-  chatTitle = "AI Assistant",
+  chatTitle = "Vectara Docs Assistant",
   chatDescription = "Ask me anything about your search",
   showSearchContext = true,
   searchChatHandoffText = "💬 Ask AI about this",
@@ -236,7 +236,7 @@ export const SearchChatIntegration: React.FC<SearchChatIntegrationProps> = ({
           e.currentTarget.style.backgroundColor = '#007bff';
           e.currentTarget.style.transform = 'scale(1)';
         }}
-        title="Open AI Assistant"
+        title="Open Vectara Docs Assistant"
       >
         💬
       </button>

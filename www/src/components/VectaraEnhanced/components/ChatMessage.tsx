@@ -5,6 +5,8 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { ChatMessage as ChatMessageType, CodeSnippet } from '../types';
 import { CodeBlock } from './CodeBlock';
 import Prism from 'prismjs';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 interface MessageProps {
   message: ChatMessageType;
@@ -72,6 +74,19 @@ const CodeBlockWithHighlighting: React.FC<{ code: string; language?: string }> =
       };
     }
 
+    if (!Prism.languages.json) {
+      Prism.languages.json = {
+        'property': { pattern: /"(?:\\.|[^\\"\r\n])*"(?=\s*:)/, greedy: true },
+        'string': { pattern: /"(?:\\.|[^\\"\r\n])*"(?!\s*:)/, greedy: true },
+        'comment': { pattern: /\/\/.*|\/\*[\s\S]*?(?:\*\/|$)/, greedy: true },
+        'number': /-?\b\d+(?:\.\d+)?(?:e[+-]?\d+)?\b/i,
+        'punctuation': /[{}[\],]/,
+        'operator': /:/,
+        'boolean': /\b(?:false|true)\b/,
+        'null': { pattern: /\bnull\b/, alias: 'keyword' }
+      };
+    }
+
     // Language mapping (same as CodePanel)
     const languageMap: Record<string, string> = {
       'sh': 'bash',
@@ -98,7 +113,7 @@ const CodeBlockWithHighlighting: React.FC<{ code: string; language?: string }> =
 
   return (
     <pre style={{
-      backgroundColor: '#282c34', // CodePanel dark background
+      backgroundColor: '#000000', // Black background
       padding: '12px 16px',
       borderRadius: '6px',
       margin: '8px 0',
@@ -110,66 +125,131 @@ const CodeBlockWithHighlighting: React.FC<{ code: string; language?: string }> =
     }}>
       <code
         className="chatbot-code-highlighted"
-        style={{ color: '#abb2bf' }}
+        style={{ color: '#abb2bf', backgroundColor: '#000000' }}
         dangerouslySetInnerHTML={{ __html: highlighted }}
       />
     </pre>
   );
 };
 
-// Simple markdown renderer for basic formatting
-const renderMarkdown = (text: string): JSX.Element => {
-  // Split by code blocks first
-  const parts = text.split(/(```[\s\S]*?```|`[^`]+`)/);
+// Custom ReactMarkdown components to preserve Prism highlighting
+const markdownComponents = {
+  code: ({ node, inline, className, children, ...props }: any) => {
+    const match = /language-(\w+)/.exec(className || '');
+    const language = match ? match[1] : 'text';
+    const codeString = String(children).replace(/\n$/, '');
 
-  return (
-    <>
-      {parts.map((part, index) => {
-        // Handle code blocks with language detection
-        if (part.startsWith('```') && part.endsWith('```')) {
-          const content = part.slice(3, -3);
-          const firstLineEnd = content.indexOf('\n');
-          const language = firstLineEnd > 0 ? content.slice(0, firstLineEnd).trim() : 'text';
-          const code = firstLineEnd > 0 ? content.slice(firstLineEnd + 1) : content;
+    if (!inline) {
+      // Multi-line code block - use Prism highlighting
+      return <CodeBlockWithHighlighting code={codeString} language={language} />;
+    }
 
-          return <CodeBlockWithHighlighting key={index} code={code} language={language} />;
-        }
-
-        // Handle inline code
-        if (part.startsWith('`') && part.endsWith('`')) {
-          const code = part.slice(1, -1);
-          return (
-            <code key={index} style={{
-              backgroundColor: '#282c34',
-              color: '#98c379',
-              padding: '2px 6px',
-              borderRadius: '3px',
-              fontSize: '13px',
-              fontFamily: "'SF Mono', Monaco, monospace",
-              border: '1px solid #434a65'
-            }}>
-              {code}
-            </code>
-          );
-        }
-
-        // Handle regular text with basic markdown
-        let processed = part
-          // Bold text
-          .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-          // Italic text
-          .replace(/\*(.*?)\*/g, '<em>$1</em>')
-          // Links
-          .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" style="color: #007bff; text-decoration: underline;">$1</a>')
-          // Line breaks
-          .replace(/\n/g, '<br />');
-
-        return (
-          <span key={index} dangerouslySetInnerHTML={{ __html: processed }} />
-        );
-      })}
-    </>
-  );
+    // Inline code - use existing styling
+    return (
+      <code
+        style={{
+          backgroundColor: '#000000',
+          color: '#98c379',
+          padding: '2px 6px',
+          borderRadius: '3px',
+          fontSize: '13px',
+          fontFamily: "'SF Mono', Monaco, monospace",
+          border: '1px solid #434a65'
+        }}
+        {...props}
+      >
+        {children}
+      </code>
+    );
+  },
+  a: ({ node, children, ...props }: any) => (
+    <a
+      {...props}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        color: '#007bff',
+        textDecoration: 'underline'
+      }}
+    >
+      {children}
+    </a>
+  ),
+  h1: ({ node, children, ...props }: any) => (
+    <h1 style={{ fontSize: '24px', fontWeight: '700', margin: '16px 0 12px 0', lineHeight: '1.3' }} {...props}>
+      {children}
+    </h1>
+  ),
+  h2: ({ node, children, ...props }: any) => (
+    <h2 style={{ fontSize: '20px', fontWeight: '600', margin: '14px 0 10px 0', lineHeight: '1.3' }} {...props}>
+      {children}
+    </h2>
+  ),
+  h3: ({ node, children, ...props }: any) => (
+    <h3 style={{ fontSize: '18px', fontWeight: '600', margin: '12px 0 8px 0', lineHeight: '1.3' }} {...props}>
+      {children}
+    </h3>
+  ),
+  h4: ({ node, children, ...props }: any) => (
+    <h4 style={{ fontSize: '16px', fontWeight: '600', margin: '10px 0 6px 0', lineHeight: '1.3' }} {...props}>
+      {children}
+    </h4>
+  ),
+  ul: ({ node, children, ...props }: any) => (
+    <ul style={{ margin: '8px 0', paddingLeft: '24px', listStyleType: 'disc' }} {...props}>
+      {children}
+    </ul>
+  ),
+  ol: ({ node, children, ...props }: any) => (
+    <ol style={{ margin: '8px 0', paddingLeft: '24px', listStyleType: 'decimal' }} {...props}>
+      {children}
+    </ol>
+  ),
+  li: ({ node, children, ...props }: any) => (
+    <li style={{ margin: '4px 0', lineHeight: '1.6' }} {...props}>
+      {children}
+    </li>
+  ),
+  blockquote: ({ node, children, ...props }: any) => (
+    <blockquote
+      style={{
+        margin: '12px 0',
+        padding: '8px 16px',
+        borderLeft: '4px solid #007bff',
+        backgroundColor: '#f8f9fa',
+        fontStyle: 'italic'
+      }}
+      {...props}
+    >
+      {children}
+    </blockquote>
+  ),
+  table: ({ node, children, ...props }: any) => (
+    <div style={{ overflowX: 'auto', margin: '12px 0' }}>
+      <table style={{ borderCollapse: 'collapse', width: '100%', border: '1px solid #dee2e6' }} {...props}>
+        {children}
+      </table>
+    </div>
+  ),
+  th: ({ node, children, ...props }: any) => (
+    <th
+      style={{
+        padding: '8px 12px',
+        border: '1px solid #dee2e6',
+        backgroundColor: '#f8f9fa',
+        fontWeight: '600',
+        textAlign: 'left'
+      }}
+      {...props}
+    >
+      {children}
+    </th>
+  ),
+  td: ({ node, children, ...props }: any) => (
+    <td style={{ padding: '8px 12px', border: '1px solid #dee2e6' }} {...props}>
+      {children}
+    </td>
+  )
 };
 
 export const ChatMessage: React.FC<MessageProps> = React.memo(({
@@ -182,6 +262,7 @@ export const ChatMessage: React.FC<MessageProps> = React.memo(({
   const [isSourcesExpanded, setIsSourcesExpanded] = useState(false);
   const [showFollowUpInput, setShowFollowUpInput] = useState(false);
   const [followUpText, setFollowUpText] = useState('');
+  const [isCopied, setIsCopied] = useState(false);
 
   const formatTimestamp = useCallback((timestamp: number) => {
     const date = new Date(timestamp);
@@ -202,15 +283,38 @@ export const ChatMessage: React.FC<MessageProps> = React.memo(({
     }
   }, [followUpText, onSendFollowUp, message.id]);
 
+  const handleCopyMessage = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText(message.content);
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy message:', err);
+    }
+  }, [message.content]);
+
   return (
     <div className={`vectara-message ${isUser ? 'vectara-message-user' : 'vectara-message-assistant'} ${message.isFollowUp ? 'vectara-message-followup' : ''}`}>
+      {/* Avatar for assistant */}
+      {!isUser && (
+        <div className="vectara-message-avatar">
+          <img
+            src="https://www.vectara.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fa0552d1ab3c77c6eee33e58f99e564c8.svg&w=256&q=75"
+            alt="Vectara Docs Assistant"
+            style={{ width: '18px', height: '18px' }}
+          />
+        </div>
+      )}
+
       <div className="vectara-message-content">
         <div className="vectara-message-header">
           <span className="vectara-message-timestamp">{formatTimestamp(message.timestamp)}</span>
           {message.isFollowUp && <span className="vectara-followup-indicator">↳ Follow-up</span>}
         </div>
         <div className="vectara-message-text">
-          {renderMarkdown(message.content)}
+          <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+            {message.content}
+          </ReactMarkdown>
           {message.isStreaming && <span className="vectara-typing-indicator">▋</span>}
         </div>
 
@@ -286,7 +390,9 @@ export const ChatMessage: React.FC<MessageProps> = React.memo(({
                       )}
                     </div>
                     <div style={{ fontSize: '11px', color: '#666', lineHeight: 1.3 }}>
-                      {renderMarkdown(ref.snippet)}
+                      <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+                        {ref.snippet}
+                      </ReactMarkdown>
                     </div>
                   </li>
                 ))}
@@ -297,7 +403,22 @@ export const ChatMessage: React.FC<MessageProps> = React.memo(({
 
         {/* Follow-up actions for assistant messages */}
         {!isUser && !message.isStreaming && (
-          <div className="vectara-message-actions">
+          <div className="vectara-message-actions" style={{ display: 'flex', gap: '8px', marginTop: '8px' }}>
+            <button
+              className="vectara-copy-btn"
+              onClick={handleCopyMessage}
+              style={{
+                padding: '4px 8px',
+                fontSize: '11px',
+                backgroundColor: 'transparent',
+                border: '1px solid #ddd',
+                borderRadius: '4px',
+                cursor: 'pointer',
+                color: '#666'
+              }}
+            >
+              {isCopied ? '✓ Copied' : '📋 Copy'}
+            </button>
             <button
               className="vectara-followup-btn"
               onClick={() => setShowFollowUpInput(!showFollowUpInput)}
@@ -308,8 +429,7 @@ export const ChatMessage: React.FC<MessageProps> = React.memo(({
                 border: '1px solid #ddd',
                 borderRadius: '4px',
                 cursor: 'pointer',
-                color: '#666',
-                marginTop: '8px'
+                color: '#666'
               }}
             >
               💬 Ask follow-up
@@ -373,6 +493,13 @@ export const ChatMessage: React.FC<MessageProps> = React.memo(({
           </div>
         )}
       </div>
+
+      {/* Avatar for user */}
+      {isUser && (
+        <div className="vectara-message-avatar">
+          <span style={{ fontSize: '16px' }}>👤</span>
+        </div>
+      )}
     </div>
   );
 });

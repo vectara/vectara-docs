@@ -21,7 +21,7 @@ export const VectaraEnhancedChatbot: React.FC<EnhancedChatbotProps> = React.memo
   customerId,
   corpusKeys,
   apiKey,
-  title = "AI Assistant",
+  title = "Vectara Docs Assistant",
   description = "Ask me anything",
   placeholder = "Type your question...",
   codeGeneration,
@@ -304,30 +304,107 @@ export const VectaraChatbotStyles = `
   --message-font-size: 14px;
   --header-font-size: 16px;
   --code-font-size: 13px;
+
+  /* Shadow system for depth */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.15);
+  --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.06);
 }
 
 .vectara-message {
   margin-bottom: 20px; /* Increased spacing */
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+/* Avatar styling */
+.vectara-message-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.vectara-message-assistant .vectara-message-avatar {
+  background: white;
+  border: 1px solid #e1e5e9;
+  order: -1; /* Avatar on the left */
+}
+
+.vectara-message-user .vectara-message-avatar {
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+  color: white;
+  order: 1; /* Avatar on the right */
 }
 
 .vectara-message-user .vectara-message-content {
-  background-color: var(--vectara-primary);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  margin-left: 15%; /* Reduced to give more space */
+  margin-left: 10%; /* Reduced margin since avatar takes space */
   border-radius: 16px 16px 4px 16px;
   padding: 14px 18px; /* Increased padding */
   font-size: var(--message-font-size);
   line-height: 1.5;
+  box-shadow: var(--shadow-md);
+  transition: box-shadow 0.2s ease, transform 0.2s ease, filter 0.2s ease;
+  animation: messageSlideInRight 0.4s ease-out both;
+  flex: 1;
+}
+
+.vectara-message-user .vectara-message-content:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-1px);
+  filter: brightness(1.05);
 }
 
 .vectara-message-assistant .vectara-message-content {
   background-color: var(--vectara-light);
   color: var(--vectara-dark);
-  margin-right: 15%; /* Reduced to give more space */
+  margin-right: 10%; /* Reduced margin since avatar takes space */
   border-radius: 16px 16px 16px 4px;
   padding: 14px 18px; /* Increased padding */
   font-size: var(--message-font-size);
   line-height: 1.6;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  animation: messageSlideInUp 0.4s ease-out both;
+  flex: 1;
+}
+
+.vectara-message-assistant .vectara-message-content:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+/* Stagger animation for consecutive messages */
+.vectara-message:nth-child(1) .vectara-message-content {
+  animation-delay: 0s;
+}
+
+.vectara-message:nth-child(2) .vectara-message-content {
+  animation-delay: 0.05s;
+}
+
+.vectara-message:nth-child(3) .vectara-message-content {
+  animation-delay: 0.1s;
+}
+
+.vectara-message:nth-child(4) .vectara-message-content {
+  animation-delay: 0.15s;
+}
+
+.vectara-message:nth-child(5) .vectara-message-content {
+  animation-delay: 0.2s;
 }
 
 .vectara-code-block {
@@ -335,6 +412,12 @@ export const VectaraChatbotStyles = `
   border: 1px solid var(--vectara-border);
   border-radius: 6px;
   overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s ease;
+}
+
+.vectara-code-block:hover {
+  box-shadow: var(--shadow-md);
 }
 
 .vectara-code-header {
@@ -364,10 +447,18 @@ export const VectaraChatbotStyles = `
   padding: 4px 8px;
   border-radius: 4px;
   font-size: 14px;
+  transition: all 0.2s ease;
 }
 
 .vectara-code-copy-btn:hover {
   background-color: var(--vectara-border);
+  box-shadow: var(--shadow-xs);
+  transform: translateY(-1px);
+}
+
+.vectara-code-copy-btn:active {
+  transform: translateY(0);
+  box-shadow: none;
 }
 
 .vectara-code-content {
@@ -423,10 +514,19 @@ export const VectaraChatbotStyles = `
   border-radius: 4px;
   cursor: pointer;
   font-size: 12px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
 }
 
 .vectara-show-code-btn:hover {
   background-color: var(--vectara-primary-hover);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.vectara-show-code-btn:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-xs);
 }
 
 .vectara-references {
@@ -437,6 +537,7 @@ export const VectaraChatbotStyles = `
   border: 1px solid var(--vectara-border);
   max-height: 300px; /* Limit height */
   overflow-y: auto;
+  box-shadow: var(--shadow-inner);
 }
 
 .vectara-references h4 {
@@ -685,6 +786,34 @@ export const VectaraChatbotStyles = `
   to { transform: translateX(0); }
 }
 
+/* Message slide-in animations */
+@keyframes messageSlideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes messageSlideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Override global pre background for chatbot code blocks only */
+.vectara-message-content pre:has(.chatbot-code-highlighted) {
+  background: #000000 !important;
+}
+
 /* Prism syntax highlighting - matches CodePanel colors */
 .chatbot-code-highlighted .token.keyword {
   color: #0070f3 !important; /* Bright blue for keywords */
@@ -739,5 +868,21 @@ export const VectaraChatbotStyles = `
 .chatbot-code-highlighted .token.null,
 .chatbot-code-highlighted .token.undefined {
   color: #a855f7 !important; /* Purple for null/undefined */
+}
+
+/* Input field and button shadows */
+.vectara-chat-input-field:focus {
+  border-color: var(--vectara-primary);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.06), 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.vectara-chat-submit-btn:not(:disabled):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.vectara-chat-submit-btn:not(:disabled):active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 `;

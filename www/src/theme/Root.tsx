@@ -74,7 +74,7 @@ export default function Root({children}: {children: React.ReactNode}): JSX.Eleme
           mode="overlay"
           position="bottom-right"
           
-          chatTitle="Vectara AI Assistant"
+          chatTitle="Vectara Docs Assistant"
           chatDescription="Ask me anything about Vectara documentation"
           
           codeGeneration={{
