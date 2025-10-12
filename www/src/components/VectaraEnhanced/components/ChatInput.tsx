@@ -118,18 +118,22 @@ export const ChatInput: React.FC<ChatInputProps> = React.memo(({
           onBlur={handleInputBlur}
           placeholder={placeholder}
           disabled={isLoading || isStreaming}
+          className="vectara-chat-input-field"
           style={{
             flex: 1,
             padding: '8px 12px',
             border: '1px solid #ced4da',
             borderRadius: '4px',
             fontSize: '14px',
-            outline: 'none'
+            outline: 'none',
+            boxShadow: '0 1px 2px rgba(0, 0, 0, 0.04)',
+            transition: 'box-shadow 0.2s ease, border-color 0.2s ease'
           }}
         />
         <button
           type="submit"
           disabled={!inputValue.trim() || isLoading || isStreaming}
+          className="vectara-chat-submit-btn"
           style={{
             padding: '8px 16px',
             backgroundColor: isLoading || isStreaming ? '#6c757d' : '#007bff',
@@ -137,7 +141,9 @@ export const ChatInput: React.FC<ChatInputProps> = React.memo(({
             border: 'none',
             borderRadius: '4px',
             cursor: isLoading || isStreaming ? 'not-allowed' : 'pointer',
-            fontSize: '14px'
+            fontSize: '14px',
+            boxShadow: '0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06)',
+            transition: 'all 0.2s ease'
           }}
         >
           {isLoading || isStreaming ? '⏳' : '📤'}
