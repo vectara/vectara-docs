@@ -65,7 +65,8 @@ Agents act as the orchestration layer of the platform:
 ## Tools
 
 Tools provide agents with capabilities to interact with data and external systems:
-- **Corpora Search**: Query your Vectara corpora with semantic search.
+- **Corpora Search**: Query your corpora with Vectara's query capabilities. For more 
+  information, see [**Configure Agent Search Behavior**](/docs/agents/#configure-agent-search-behavior).
 - **Web Search**: Access current information from the internet.
 - **MCP Tools**: Integrate with external services through the [Model Context Protocol (MCP)](mcp).
 

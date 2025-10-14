@@ -57,15 +57,16 @@ flowchart TD
     class RAG1,RAG2,API,DB,Custom sources;
 ```
 
-Each agent is configured with:
+Each agent is configured as follows:
 
-* A unique key and name following the pattern agt_[identifier]. If you do not 
-  provide a key, Vectara generates one automatically based on the name.
+* A unique `key` and `name` following the pattern agt_[*identifier*]. If you do not 
+  provide a key, Vectara generates one based on the name automatically.
 * A human-readable description
-* Optional instructions
+* Optional instructions (prompts)
 * A list of available tools (referenced by name or ID)
-* Optional tool configurations, for example Corpora Search tools configured 
-  to grant access to various corpora
+   :::tip Note
+   When using the corpora search tool
+   :::
 * Metadata and versioning controls
 * A _first_step_ definition that encompasses optional instructions for the 
   agent's behavior.
@@ -80,9 +81,208 @@ You can create an agent in the [**Vectara Console**](/docs/console-ui/agents/cre
 API. For more information, check out our [**Agents Quick Start**](/docs/agents/agents-quickstart).
 :::
 
+## Configure agent search behavior
+
+You configure search behavior for Vectara agents using the 
+`query_configuration` parameter within the `corpora_search` tool. This 
+parameter uses the same `search` object formatting as the [Query API](/docs/api-reference/search-apis/search). Before 
+using this tool, ensure that you have at least one indexed corpus with 
+data. The LLM cannot modify these predefined search parameters during
+conversation.
+
+This example demonstrates a basic configuration.
+
+<CodePanel
+  title="Basic query configuration example"
+  snippets={[
+    {
+      language: 'json',
+      code: `{
+   "tool_configurations": {
+     "knowledge_base_search": {
+       "type": "corpora_search",
+       "query_configuration": {
+         "search": {
+           "corpora": [
+             {
+               "corpus_key": "customer-guides"
+             }
+           ]
+         },
+         "generation": {
+           "enabled": true,
+           "generation_preset_name": "mockingbird-2.0",
+           "max_used_search_results": 10
+         }
+       }
+     }
+   }
+}`
+    }
+  ]}
+  annotations={{
+    json: [
+      { line: 2, text: 'Tool configurations object containing all agent tools' },
+      { line: 3, text: 'Custom name for this knowledge base search tool' },
+      { line: 4, text: 'Tool type for searching Vectara corpora' },
+      { line: 5, text: 'Query configuration with search and generation settings' },
+      { line: 6, text: 'Search configuration defining which corpora to query' },
+      { line: 9, text: 'Unique corpus identifier to search' },
+      { line: 13, text: 'Generation settings for creating responses' },
+      { line: 14, text: 'Enable AI-generated responses from search results' },
+      { line: 15, text: 'Use the mockingbird-2.0 preset for response generation' },
+      { line: 16, text: 'Number of search results to use for generating responses' }
+    ]
+  }}
+  layout="stacked"
+/>
+
+This example demonstrates a complete `tool_configurations` object for a
+customer support agent with optimized search behavior:
+
+<CodePanel
+  title="Complete Agent Configuration Example"
+  snippets={[
+    {
+      language: 'json',
+      code: `{
+  "tool_configurations": {
+    "knowledge_base_search": {
+      "type": "corpora_search",
+      "query_configuration": {
+        "search": {
+          "corpora": [
+            {
+              "corpus_key": "customer-guides",
+              "metadata_filter": "doc.year = '2024'",
+              "lexical_interpolation": 0.025
+            }
+          ],
+          "limit": 15
+        },
+        "context_configuration": {
+          "sentences_before": 2,
+          "sentences_after": 2
+        },
+        "reranker": {
+          "type": "customer_reranker",
+          "reranker_name": "Rerank_Multilingual_v1",
+        },
+        "generation": {
+          "enabled": true,
+          "generation_preset_name": "mockingbird-2.0",
+          "max_used_search_results": 10,
+          "response_language": "eng",
+          "citations": {
+            "style": "markdown",
+            "url_pattern": "https://support.example.com/docs/{doc.id}",
+            "text_pattern": "Source: {doc.title}"
+          }
+        },
+        "enable_factual_consistency_score": true
+      }
+    }
+  }
+}`
+    }
+  ]}
+  annotations={{
+    json: [
+      { line: 2, text: 'Tool configurations object containing all agent tools' },
+      { line: 3, text: 'Custom name for this knowledge base search tool' },
+      { line: 4, text: 'Tool type for searching Vectara corpora' },
+      { line: 5, text: 'Query configuration with advanced search settings' },
+      { line: 6, text: 'Search configuration defining corpora and filters' },
+      { line: 9, text: 'Corpus identifier for customer guides' },
+      { line: 10, text: 'Filter to only search 2024 documents' },
+      { line: 11, text: 'Balance between semantic and keyword search' },
+      { line: 14, text: 'Maximum number of results to retrieve' },
+      { line: 16, text: 'Context configuration for surrounding text' },
+      { line: 17, text: 'Include 2 sentences before each result' },
+      { line: 18, text: 'Include 2 sentences after each result' },
+      { line: 20, text: 'Reranker configuration for result quality' },
+      { line: 21, text: 'Use customer reranker for multilingual support' },
+      { line: 22, text: 'Specify Rerank_Multilingual_v1 model' },
+      { line: 24, text: 'Generation settings for creating AI responses' },
+      { line: 27, text: 'Use top 10 results for response generation' },
+      { line: 28, text: 'Generate responses in English' },
+      { line: 29, text: 'Citation configuration for source attribution' },
+      { line: 30, text: 'Use markdown format for citations' },
+      { line: 35, text: 'Enable factual consistency scoring' }
+    ]
+  }}
+  layout="stacked"
+/>
+
+### Search configuration
+
+The `search` object controls which corpora to search and how to filter and
+retrieve results:
+
+- **corpus_key** (required): Unique identifier for the corpus to search.
+- **metadata_filter**: SQL-like filter to narrow results (`doc.year = '2024'`).
+- **lexical_interpolation**: Balance between semantic (`0.0`) and keyword
+  (`1.0`) search. **Default:** `0.025`.
+- **limit**: Maximum results to retrieve before reranking. **Default:** `10`.
+- **offset**: Number of results to skip for pagination.
+- **semantics**: Query interpretation mode ("`query`", "`response`", or
+  "`default`").
+
+### Context configuration
+
+The `context_configuration` object controls how much surrounding text is
+included with each search result:
+
+- **sentences_before/sentences_after**: Number of sentences to include
+  before/after matching text.
+- **characters_before/characters_after**: Alternative character-based
+  boundaries for precise control.
+- **start_tag/end_tag**: HTML tags for highlighting matching text in
+  results.
+
+### Reranker configuration
+
+Rerankers improve result quality by reordering search results to place the
+most relevant content first:
+
+- **type**: Reranker type
+  - `customer_reranker`: Default multilingual reranker (recommended).
+  - `mmr`: Maximal Marginal Relevance to reduce redundancy.
+  - `none`: Disables reranking (not recommended).
+- **reranker_name**: Specific reranker model (`Rerank_Multilingual_v1`).
+- **limit**: Maximum results after reranking.
+- **cutoff**: Minimum relevance score (`0.0-1.0`) for result inclusion.
+  Typically `0.3-0.7`.
+- **include_context**: Use surrounding context text for more accurate
+  scoring.
+
+### Generation configuration
+
+The `generation` object controls how the agent creates natural language
+responses:
+
+- **enabled**: Enable or disable generative summarization.
+- **generation_preset_name**: Pre-configured prompt and model bundle (`mockingbird-2.0`).
+- **max_used_search_results**: Number of top results to send to the LLM..
+  **Default:** `5`
+- **max_response_characters**: Soft limit for response length.
+- **response_language**: Response language code (`auto`, `eng`, `spa`, etc.).
+- **citations**: Citation formatting.
+  - **style**: Citation format (`numeric`, `html`, `markdown`, or `none`).
+  - **url_pattern**: URL template using metadata variables 
+  (`https://docs.example.com/{doc.id}`).
+  - **text_pattern**: Display text template (`[{doc.title}]`).
+- **prompt_template**: Override default prompt using Apache Velocity syntax.
+- **model_parameters**: LLM settings (temperature, max_tokens, etc.).
+- **enable_factual_consistency_score**: Validate factual consistency of
+  responses.
+
 ## Example agent definition
 
-This example shows a basic customer support agent configured with corpus search capabilities and inline instructions. The agent demonstrates the core components: tool configurations for searching support tickets, and a conversational first step with behavior guidelines.
+This example shows a basic customer support agent configured with corpus 
+search capabilities and inline instructions. The agent demonstrates the core 
+components: tool configurations for searching support tickets, and a 
+conversational first step with behavior guidelines.
 
 <CodePanel
   title="Agent example"
@@ -94,7 +294,7 @@ This example shows a basic customer support agent configured with corpus search 
    "description": "A customer support agent that can answer questions and create tickets.",
    "tool_configurations": {
      "search_support_tickets": {
-       "type": "corpus_search",
+       "type": "corpora_search",
        "query_configuration": {
          "search": {
            "corpora": ["support_tickets_corpus"]
@@ -119,14 +319,19 @@ This example shows a basic customer support agent configured with corpus search 
     }]}  
   annotations={{
     json: [
-      { line: 2, text: 'The name of the customer support agent' },
-      { line: 3, text: 'A description about the customer support agent.' },
-      { line: 4, text: 'Configuration for tools used by this agent.' },
-      { line: 5, text: 'Named tool configuration for searching support tickets.' },
-      { line: 6, text: 'Specifies this tool performs corpus search operations.' },
-      { line: 9, text: 'The corpus to search within for support tickets.' },
-      { line: 14, text: 'The definition that configures the entry point of the agent.' },
-      { line: 20, text: 'The template text that provides specific instructions for this step.' }
+      { line: 2, text: 'Agent name identifier' },
+      { line: 3, text: 'Human-readable description of agent capabilities' },
+      { line: 4, text: 'Tool configurations available to this agent' },
+      { line: 5, text: 'Custom name for the support ticket search tool' },
+      { line: 6, text: 'Tool type for searching a single corpus' },
+      { line: 7, text: 'Query configuration for the search tool' },
+      { line: 9, text: 'Corpus key for support tickets data' },
+      { line: 14, text: 'First step defines the agent entry point behavior' },
+      { line: 15, text: 'Conversational type for interactive responses' },
+      { line: 16, text: 'Instructions array for agent behavior guidelines' },
+      { line: 18, text: 'Inline instruction type for embedded prompts' },
+      { line: 19, text: 'Name identifier for this instruction' },
+      { line: 20, text: 'Template containing the agent behavior prompt' }
     ]
   }}
   layout="stacked"
@@ -138,9 +343,9 @@ Agents use large language models for reasoning and response generation. You
 can configure:
 
 - **Model**: Choose from available models like GPT-4o.
-- **Parameters**: Adjust temperature, max tokens, and other model-specific settings
-- **Cost optimization**: Balance performance with token usage
-- **Retry configuration**: Configure automatic retry behavior for transient failures
+- **Parameters**: Adjust temperature, max tokens, and other model-specific settings.
+- **Cost optimization**: Balance performance with token usage.
+- **Retry configuration**: Configure automatic retry behavior for transient failures.
 
 ### Retry configuration
 
@@ -161,18 +366,18 @@ agent.
 
 ### Retry configuration parameters
 
-- **enabled**: The boolean flag to enable or disable retry logic
+- **enabled**: The boolean flag to enable or disable retry logic.
   - Default: `true`
-- **max_retries**: The maximum number of retry attempts after the initial failure
+- **max_retries**: The maximum number of retry attempts after the initial failure.
   - Range: 0-10
   - Default: `3`
-- **initial_backoff_ms**: The initial delay in milliseconds before the first retry
+- **initial_backoff_ms**: The initial delay in milliseconds before the first retry.
   - Range: 100-60000ms
   - Default: `1000ms`
-- **max_backoff_ms**: The maximum delay in milliseconds between retries
+- **max_backoff_ms**: The maximum delay in milliseconds between retries.
   - Range: 1000-300000ms
   - Default: `30000ms`
-- **backoff_factor**: The exponential multiplier for calculating backoff delays
+- **backoff_factor**: The exponential multiplier for calculating backoff delays.
   - Range: 1.0-10.0
   - Default: `2.0`
 
@@ -250,26 +455,30 @@ This example requires no corpus setup, making it perfect for immediate testing.
   ]}
   annotations={{
     bash: [
-      { line: 1, text: 'Use backslashes for line continuation in bash' },
-      { line: 2, text: 'Replace YOUR_API_KEY with your actual API key' },
-      { line: 5, text: 'Unique name for your agent' },
-      { line: 6, text: 'Human-readable description' },
-      { line: 8, text: 'Configure available tools' },
-      { line: 9, text: 'Enable web search tool' },
-      { line: 14, text: 'Define conversational behavior' },
-      { line: 16, text: 'Instruction type must be "inline"' },
-      { line: 17, text: 'Name is required for inline instructions' },
-      { line: 18, text: 'Agent personality and guidelines' },
-      { line: 24, text: 'Model configuration' },
-      { line: 25, text: 'Using gpt-5 model' },
-      { line: 27, text: 'Lower temperature for factual responses' },
-      { line: 28, text: 'Maximum response length' },
-      { line: 30, text: 'Retry configuration for handling transient failures' },
-      { line: 31, text: 'Enable automatic retry logic' },
-      { line: 32, text: 'Retry up to 3 times on failure' },
-      { line: 33, text: 'Start with 1 second delay before first retry' },
-      { line: 34, text: 'Cap maximum delay at 30 seconds' },
-      { line: 35, text: 'Double the delay between each retry attempt' }
+      { line: 1, text: 'POST request to create a new agent' },
+      { line: 2, text: 'Authorization header with your API key' },
+      { line: 3, text: 'Content type for JSON payload' },
+      { line: 5, text: 'Unique identifier name for the agent' },
+      { line: 6, text: 'Human-readable description of agent purpose' },
+      { line: 7, text: 'Tool configurations defining available capabilities' },
+      { line: 8, text: 'Web search tool for real-time information' },
+      { line: 9, text: 'Tool type identifier for web search' },
+      { line: 12, text: 'First step configuration for agent entry point' },
+      { line: 13, text: 'Conversational type for interactive chat behavior' },
+      { line: 14, text: 'Instructions array defining agent behavior' },
+      { line: 15, text: 'Inline instruction type for embedded prompts' },
+      { line: 16, text: 'Name identifier for this instruction set' },
+      { line: 17, text: 'Template defining agent personality and guidelines' },
+      { line: 23, text: 'Model configuration for LLM settings' },
+      { line: 24, text: 'Specify gpt-5 as the reasoning model' },
+      { line: 26, text: 'Temperature 0.3 for consistent, factual responses' },
+      { line: 27, text: 'Maximum token limit for responses' },
+      { line: 29, text: 'Retry configuration for handling transient failures' },
+      { line: 30, text: 'Enable automatic retry logic' },
+      { line: 31, text: 'Maximum of 3 retry attempts on failure' },
+      { line: 32, text: 'Initial 1 second delay before first retry' },
+      { line: 33, text: 'Maximum 30 second delay between retries' },
+      { line: 34, text: 'Exponential backoff factor of 2.0 between retries' }
     ]
   }}
   layout="stacked"
@@ -300,8 +509,8 @@ Sessions provide conversation context and are required for all agent interaction
   ]}
   annotations={{
     json: [
-      { line: 2, text: 'Human-readable name for the session' },
-      { line: 3, text: 'Optional description of the session purpose' }
+      { line: 2, text: 'Session name for identification and tracking' },
+      { line: 3, text: 'Optional description of session purpose and context' }
     ]
   }}
   layout="stacked"
@@ -331,9 +540,10 @@ Once you have a session, send messages using the events endpoint:
   ]}
   annotations={{
     json: [
-      { line: 2, text: 'Must be "input_message" for user input' },
-      { line: 3, text: 'Array of message objects' },
-      { line: 5, text: 'The user message content' }
+      { line: 2, text: 'Event type must be "input_message" for user input' },
+      { line: 3, text: 'Array containing one or more message objects' },
+      { line: 4, text: 'Message type "text" for plain text content' },
+      { line: 5, text: 'User message content to send to the agent' }
     ]
   }}
   layout="stacked"

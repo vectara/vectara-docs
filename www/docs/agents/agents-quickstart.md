@@ -56,6 +56,11 @@ flowchart LR
 First, let's create a simple research assistant agent that can search the web. 
 This example requires no corpus setup, so you can follow along immediately.
 
+:::tip Tip
+This example only uses the web_search tool. For more details about configuring 
+the `corpora_search` tool, see [**Configure Agent Search Behavior**](/docs/agents/#configure-agent-search-behavior).
+:::
+
 ### Create an agent with the console UI (Recommended)
 
 For your first agent, we recommend using the Console UI. If you need more 

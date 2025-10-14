@@ -20,7 +20,9 @@ dynamically. They are defined by:
 The tech preview of Vectara Agents provides the following tools:
 * **corpora_search:** Retrieves results from a Vectara corpus or corpora using Retrieval 
   Augmented Generation (RAG). This tool provides summary and relevant search results using 
-  the same default parameters as the Multiple Corpora Query.
+  the same default parameters as the [Query API](/docs/api-reference/search-apis/search).  
+  For more details about configuring 
+the `corpora_search` tool, see [**Configure Agent Search Behavior**](/docs/agents/#configure-agent-search-behavior).
 * **web_search:** Retrieves results from the public web.
 
 
