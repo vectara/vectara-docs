@@ -65,7 +65,8 @@ Each agent is configured as follows:
 * Optional instructions (prompts)
 * A list of available tools (referenced by name or ID)
    :::tip Note
-   When using the corpora search tool
+   When using the `corpora_search` tool, make sure that you already have access  
+   to a corpus with data.
    :::
 * Metadata and versioning controls
 * A _first_step_ definition that encompasses optional instructions for the 
@@ -81,14 +82,34 @@ You can create an agent in the [**Vectara Console**](/docs/console-ui/agents/cre
 API. For more information, check out our [**Agents Quick Start**](/docs/agents/agents-quickstart).
 :::
 
-## Configure agent search behavior
+## Configure agent corpus search behavior
 
-You configure search behavior for Vectara agents using the 
+You configure corpus search behavior for Vectara agents using the 
 `query_configuration` parameter within the `corpora_search` tool. This 
-parameter uses the same `search` object formatting as the [Query API](/docs/api-reference/search-apis/search). Before 
-using this tool, ensure that you have at least one indexed corpus with 
-data. The LLM cannot modify these predefined search parameters during
+parameter uses the same `search` and `generation` object formatting as shown 
+in [Query API](/docs/api-reference/search-apis/search) and [Advanced Single Corpus Query](/docs/rest-api/query-corpus). Before using this tool, 
+ensure that you have at least one indexed corpus with data. The LLM cannot 
+modify these predefined search parameters during
 conversation.
+
+For more details about the different corpus objects, see 
+[Configure Query Parameters](/docs/api-reference/search-apis/query-configuration).
+
+### Argument override option
+
+Each agent also has an optional `argument_override` option that lets you
+specify hardcoded arguments for specific search calls. Use this option to
+override schema-defined fields like `query` or `limit` for enforcing fixed
+behavior.
+
+<CodePanel snippets={[{language: "json", code: `{
+   "argument_override": {
+     "query": "latest AI developments 2025",
+     "limit": 10
+   }
+}`}]} title="Argument Override Example" layout="stacked" />
+
+## Agent configuration examples
 
 This example demonstrates a basic configuration.
 
@@ -214,68 +235,7 @@ customer support agent with optimized search behavior:
   layout="stacked"
 />
 
-### Search configuration
 
-The `search` object controls which corpora to search and how to filter and
-retrieve results:
-
-- **corpus_key** (required): Unique identifier for the corpus to search.
-- **metadata_filter**: SQL-like filter to narrow results (`doc.year = '2024'`).
-- **lexical_interpolation**: Balance between semantic (`0.0`) and keyword
-  (`1.0`) search. **Default:** `0.025`.
-- **limit**: Maximum results to retrieve before reranking. **Default:** `10`.
-- **offset**: Number of results to skip for pagination.
-- **semantics**: Query interpretation mode ("`query`", "`response`", or
-  "`default`").
-
-### Context configuration
-
-The `context_configuration` object controls how much surrounding text is
-included with each search result:
-
-- **sentences_before/sentences_after**: Number of sentences to include
-  before/after matching text.
-- **characters_before/characters_after**: Alternative character-based
-  boundaries for precise control.
-- **start_tag/end_tag**: HTML tags for highlighting matching text in
-  results.
-
-### Reranker configuration
-
-Rerankers improve result quality by reordering search results to place the
-most relevant content first:
-
-- **type**: Reranker type
-  - `customer_reranker`: Default multilingual reranker (recommended).
-  - `mmr`: Maximal Marginal Relevance to reduce redundancy.
-  - `none`: Disables reranking (not recommended).
-- **reranker_name**: Specific reranker model (`Rerank_Multilingual_v1`).
-- **limit**: Maximum results after reranking.
-- **cutoff**: Minimum relevance score (`0.0-1.0`) for result inclusion.
-  Typically `0.3-0.7`.
-- **include_context**: Use surrounding context text for more accurate
-  scoring.
-
-### Generation configuration
-
-The `generation` object controls how the agent creates natural language
-responses:
-
-- **enabled**: Enable or disable generative summarization.
-- **generation_preset_name**: Pre-configured prompt and model bundle (`mockingbird-2.0`).
-- **max_used_search_results**: Number of top results to send to the LLM..
-  **Default:** `5`
-- **max_response_characters**: Soft limit for response length.
-- **response_language**: Response language code (`auto`, `eng`, `spa`, etc.).
-- **citations**: Citation formatting.
-  - **style**: Citation format (`numeric`, `html`, `markdown`, or `none`).
-  - **url_pattern**: URL template using metadata variables 
-  (`https://docs.example.com/{doc.id}`).
-  - **text_pattern**: Display text template (`[{doc.title}]`).
-- **prompt_template**: Override default prompt using Apache Velocity syntax.
-- **model_parameters**: LLM settings (temperature, max_tokens, etc.).
-- **enable_factual_consistency_score**: Validate factual consistency of
-  responses.
 
 ## Example agent definition
 

@@ -441,6 +441,7 @@ const sidebars: SidebarsConfig = {
           label: "Query APIs",
           items: [
             "api-reference/search-apis/search",
+            "api-reference/search-apis/query-configuration",
             {
               type: "category",
               label: "Interpreting Responses",
