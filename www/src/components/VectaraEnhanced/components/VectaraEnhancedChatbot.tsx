@@ -263,6 +263,7 @@ export const VectaraEnhancedChatbot: React.FC<EnhancedChatbotProps> = React.memo
         onCodeCopy={handleCodeCopy}
         onParameterUpdate={updateCodeParameter}
         onSendFollowUp={handleFollowUp}
+        onSuggestionClick={handleSuggestionClick}
         isAgentThinking={isAgentThinking}
         agentThoughts={agentThoughts}
       />

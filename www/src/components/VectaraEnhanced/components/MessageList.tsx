@@ -15,6 +15,7 @@ interface MessageListProps {
   onCodeCopy?: (code: string, language: string) => void;
   onParameterUpdate?: (messageId: string, snippetId: string, parameterName: string, value: any) => void;
   onSendFollowUp?: (content: string, parentMessageId: string) => void;
+  onSuggestionClick?: (suggestion: string) => void;
   // Agent-specific props
   isAgentThinking?: boolean;
   agentThoughts?: string[];
@@ -30,6 +31,7 @@ export const MessageList: React.FC<MessageListProps> = React.memo(({
   onCodeCopy,
   onParameterUpdate,
   onSendFollowUp,
+  onSuggestionClick,
   isAgentThinking = false,
   agentThoughts = []
 }) => {
@@ -58,13 +60,54 @@ export const MessageList: React.FC<MessageListProps> = React.memo(({
       {messages.length === 0 && (
         <div
           style={{
-            textAlign: 'center',
-            color: '#6c757d',
-            fontSize: '14px',
-            marginTop: '32px'
+            marginTop: '20px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '8px',
+            width: '100%',
+            maxWidth: '400px'
           }}
         >
-          Start a conversation by asking a question!
+          {[
+            'What is Vectara?',
+            'How do I get started with agents?',
+            'Show me an example of a query'
+          ].map((question, index) => (
+            <button
+              key={index}
+              onClick={() => onSuggestionClick?.(question)}
+              style={{
+                padding: '10px 12px',
+                backgroundColor: 'white',
+                border: '1px solid #e1e5e9',
+                borderRadius: '6px',
+                fontSize: '12px',
+                color: '#333',
+                cursor: 'pointer',
+                textAlign: 'left',
+                transition: 'all 0.2s ease',
+                boxShadow: '0 1px 3px rgba(0, 0, 0, 0.08)',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#f8f9fa';
+                e.currentTarget.style.borderColor = '#007bff';
+                e.currentTarget.style.boxShadow = '0 4px 6px rgba(0, 123, 255, 0.15)';
+                e.currentTarget.style.transform = 'translateY(-2px)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'white';
+                e.currentTarget.style.borderColor = '#e1e5e9';
+                e.currentTarget.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.08)';
+                e.currentTarget.style.transform = 'translateY(0)';
+              }}
+            >
+              <span style={{ fontSize: '10px' }}>💬</span>
+              <span>{question}</span>
+            </button>
+          ))}
         </div>
       )}
 
