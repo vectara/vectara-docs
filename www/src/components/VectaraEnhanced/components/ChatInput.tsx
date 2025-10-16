@@ -135,18 +135,35 @@ export const ChatInput: React.FC<ChatInputProps> = React.memo(({
           disabled={!inputValue.trim() || isLoading || isStreaming}
           className="vectara-chat-submit-btn"
           style={{
-            padding: '8px 16px',
-            backgroundColor: isLoading || isStreaming ? '#6c757d' : '#007bff',
+            padding: '8px 12px',
+            backgroundColor: isLoading || isStreaming ? '#6c757d' : '#1A79FF',
             color: 'white',
             border: 'none',
-            borderRadius: '4px',
+            borderRadius: '20px',
             cursor: isLoading || isStreaming ? 'not-allowed' : 'pointer',
-            fontSize: '14px',
-            boxShadow: '0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06)',
-            transition: 'all 0.2s ease'
+            fontSize: '16px',
+            fontWeight: '600',
+            boxShadow: '0 2px 4px rgba(26, 121, 255, 0.2)',
+            transition: 'all 0.2s ease',
+            minWidth: '42px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
+          onMouseEnter={(e) => {
+            if (!isLoading && !isStreaming && inputValue.trim()) {
+              e.currentTarget.style.backgroundColor = '#0066FF';
+              e.currentTarget.style.transform = 'translateY(-1px)';
+              e.currentTarget.style.boxShadow = '0 4px 8px rgba(26, 121, 255, 0.3)';
+            }
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = isLoading || isStreaming ? '#6c757d' : '#1A79FF';
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.boxShadow = '0 2px 4px rgba(26, 121, 255, 0.2)';
           }}
         >
-          {isLoading || isStreaming ? '⏳' : '📤'}
+          {isLoading || isStreaming ? '⏳' : '⬆'}
         </button>
       </form>
     </div>

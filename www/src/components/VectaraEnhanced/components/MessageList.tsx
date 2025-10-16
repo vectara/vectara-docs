@@ -77,10 +77,10 @@ export const MessageList: React.FC<MessageListProps> = React.memo(({
               key={index}
               onClick={() => onSuggestionClick?.(question)}
               style={{
-                padding: '10px 12px',
+                padding: '10px 14px',
                 backgroundColor: 'white',
                 border: '1px solid #e1e5e9',
-                borderRadius: '6px',
+                borderRadius: '10px',
                 fontSize: '12px',
                 color: '#333',
                 cursor: 'pointer',
@@ -89,19 +89,22 @@ export const MessageList: React.FC<MessageListProps> = React.memo(({
                 boxShadow: '0 1px 3px rgba(0, 0, 0, 0.08)',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '8px'
+                gap: '8px',
+                fontWeight: '500'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#f8f9fa';
-                e.currentTarget.style.borderColor = '#007bff';
-                e.currentTarget.style.boxShadow = '0 4px 6px rgba(0, 123, 255, 0.15)';
-                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.backgroundColor = '#1A79FF';
+                e.currentTarget.style.borderColor = '#1A79FF';
+                e.currentTarget.style.color = 'white';
+                e.currentTarget.style.boxShadow = '0 4px 8px rgba(26, 121, 255, 0.25)';
+                e.currentTarget.style.transform = 'translateY(-2px) scale(1.02)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.backgroundColor = 'white';
                 e.currentTarget.style.borderColor = '#e1e5e9';
+                e.currentTarget.style.color = '#333';
                 e.currentTarget.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.08)';
-                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.transform = 'translateY(0) scale(1)';
               }}
             >
               <span style={{ fontSize: '10px' }}>💬</span>

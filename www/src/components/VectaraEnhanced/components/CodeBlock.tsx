@@ -52,7 +52,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = React.memo(({
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.backgroundColor = '#e9ecef';
-            e.currentTarget.style.borderColor = '#007bff';
+            e.currentTarget.style.borderColor = '#1A79FF';
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.backgroundColor = '#f8f9fa';
@@ -81,7 +81,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = React.memo(({
             </div>
             <div style={{
               fontSize: '12px',
-              color: '#007bff',
+              color: '#1A79FF',
               fontWeight: '500'
             }}>
               Click to expand →

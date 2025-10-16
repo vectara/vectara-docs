@@ -74,6 +74,31 @@ const CodeBlockWithHighlighting: React.FC<{ code: string; language?: string }> =
       };
     }
 
+    if (!Prism.languages.typescript) {
+      // TypeScript extends JavaScript with additional keywords and type syntax
+      Prism.languages.typescript = {
+        'comment': [
+          { pattern: /(^|[^\\])\/\*[\s\S]*?(?:\*\/|$)/, lookbehind: true, greedy: true },
+          { pattern: /(^|[^\\:])\/\/.*/, lookbehind: true, greedy: true }
+        ],
+        'string': [
+          { pattern: /(["'])(?:(?!\1)[^\\\r\n]|\\(?:\r\n|[\s\S]))*\1/, greedy: true },
+          { pattern: /`(?:[^`\\$]|\\[\s\S]|\$(?:\{[^}]*\}|[^{]))*`/, greedy: true }
+        ],
+        'class-name': {
+          pattern: /(\b(?:class|extends|implements|instanceof|interface|new|type)\s+)(?!keyof|typeof|readonly)[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?:\s*<(?:[^<>]|<(?:[^<>]|<[^<>]*>)*>)*>)?/,
+          lookbehind: true,
+          greedy: true
+        },
+        'keyword': /\b(?:abstract|any|as|asserts|async|await|boolean|break|case|catch|class|const|constructor|continue|debugger|declare|default|delete|do|else|enum|export|extends|false|finally|for|from|function|get|if|implements|import|in|infer|instanceof|interface|is|keyof|let|module|namespace|never|new|null|number|object|of|package|private|protected|public|readonly|return|require|set|static|string|super|switch|symbol|this|throw|true|try|type|typeof|undefined|unique|unknown|var|void|while|with|yield)\b/,
+        'boolean': /\b(?:false|true)\b/,
+        'number': /\b(?:(?:0[xX](?:[\dA-Fa-f])+|0[bB](?:[01])+|0[oO](?:[0-7])+)n?|(?:\d+\.?\d*|\.\d+)(?:[Ee][+-]?\d+)?|NaN|Infinity)\b/,
+        'function': { pattern: /((?:^|\s|[({[=,:;!+-])|\b)(?:(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*[<(]))/, lookbehind: true },
+        'operator': /--|\+\+|\*\*=?|=>|&&|\|\||[!=]==|<<=?|>>>?=?|[-+*/%&|^!=<>]=?|\.{3}|\?\?=?|\?\.?|[~:]/,
+        'punctuation': /[{}[\];(),.:]/
+      };
+    }
+
     if (!Prism.languages.json) {
       Prism.languages.json = {
         'property': { pattern: /"(?:\\.|[^\\"\r\n])*"(?=\s*:)/, greedy: true },
@@ -168,7 +193,7 @@ const markdownComponents = {
       target="_blank"
       rel="noopener noreferrer"
       style={{
-        color: '#007bff',
+        color: '#1A79FF',
         textDecoration: 'underline'
       }}
     >
@@ -215,7 +240,7 @@ const markdownComponents = {
       style={{
         margin: '12px 0',
         padding: '8px 16px',
-        borderLeft: '4px solid #007bff',
+        borderLeft: '4px solid #1A79FF',
         backgroundColor: '#f8f9fa',
         fontStyle: 'italic'
       }}
@@ -374,7 +399,7 @@ export const ChatMessage: React.FC<MessageProps> = React.memo(({
                           target="_blank"
                           rel="noopener noreferrer"
                           style={{
-                            color: '#007bff',
+                            color: '#1A79FF',
                             textDecoration: 'underline',
                             fontWeight: '600',
                             fontSize: '12px',
@@ -403,21 +428,54 @@ export const ChatMessage: React.FC<MessageProps> = React.memo(({
 
         {/* Copy button for assistant messages */}
         {!isUser && !message.isStreaming && (
-          <div className="vectara-message-actions" style={{ display: 'flex', gap: '8px', marginTop: '8px' }}>
+          <div className="vectara-message-actions" style={{ display: 'flex', gap: '8px', marginTop: '10px' }}>
             <button
               className="vectara-copy-btn"
               onClick={handleCopyMessage}
               style={{
-                padding: '4px 8px',
-                fontSize: '11px',
-                backgroundColor: 'transparent',
-                border: '1px solid #ddd',
-                borderRadius: '4px',
+                padding: '6px 12px',
+                fontSize: '12px',
+                fontWeight: '500',
+                backgroundColor: isCopied ? '#28a745' : '#f8f9fa',
+                border: `1px solid ${isCopied ? '#28a745' : '#e1e5e9'}`,
+                borderRadius: '6px',
                 cursor: 'pointer',
-                color: '#666'
+                color: isCopied ? 'white' : '#333',
+                transition: 'all 0.2s ease',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px'
+              }}
+              onMouseEnter={(e) => {
+                if (!isCopied) {
+                  e.currentTarget.style.backgroundColor = '#1A79FF';
+                  e.currentTarget.style.borderColor = '#1A79FF';
+                  e.currentTarget.style.color = 'white';
+                  e.currentTarget.style.transform = 'translateY(-1px)';
+                  e.currentTarget.style.boxShadow = '0 2px 6px rgba(26, 121, 255, 0.25)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!isCopied) {
+                  e.currentTarget.style.backgroundColor = '#f8f9fa';
+                  e.currentTarget.style.borderColor = '#e1e5e9';
+                  e.currentTarget.style.color = '#333';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = 'none';
+                }
               }}
             >
-              {isCopied ? '✓ Copied' : '📋 Copy'}
+              {isCopied ? (
+                <>
+                  <span>✓</span>
+                  <span>Copied!</span>
+                </>
+              ) : (
+                <>
+                  <span>📄</span>
+                  <span>Copy response</span>
+                </>
+              )}
             </button>
           </div>
         )}

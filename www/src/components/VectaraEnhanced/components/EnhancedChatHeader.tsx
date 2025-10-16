@@ -80,7 +80,7 @@ export const EnhancedChatHeader: React.FC<EnhancedChatHeaderProps> = React.memo(
                 color: '#28a745',
                 fontStyle: 'italic'
               }}>
-                • Enhanced with AI Agent Platform
+                • Enhanced with Vectara Agents
               </span>
             )}
           </p>
@@ -93,10 +93,10 @@ export const EnhancedChatHeader: React.FC<EnhancedChatHeaderProps> = React.memo(
               onClick={onToggleFullscreen}
               style={{
                 padding: '4px 8px',
-                border: '1px solid #007bff',
+                border: '1px solid #1A79FF',
                 borderRadius: '4px',
-                backgroundColor: isFullscreen ? '#007bff' : 'white',
-                color: isFullscreen ? 'white' : '#007bff',
+                backgroundColor: isFullscreen ? '#1A79FF' : 'white',
+                color: isFullscreen ? 'white' : '#1A79FF',
                 cursor: 'pointer',
                 fontSize: '12px'
               }}

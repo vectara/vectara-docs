@@ -293,8 +293,9 @@ VectaraEnhancedChatbot.displayName = 'VectaraEnhancedChatbot';
 // CSS styles to be included (moved to separate file for better maintainability)
 export const VectaraChatbotStyles = `
 .vectara-enhanced-chatbot {
-  --vectara-primary: #007bff;
-  --vectara-primary-hover: #0056b3;
+  --vectara-primary: #1A79FF;
+  --vectara-primary-hover: #0066FF;
+  --vectara-primary-active: #0052CC;
   --vectara-secondary: #6c757d;
   --vectara-success: #28a745;
   --vectara-danger: #dc3545;
@@ -343,13 +344,13 @@ export const VectaraChatbotStyles = `
 }
 
 .vectara-message-user .vectara-message-avatar {
-  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+  background: var(--vectara-primary);
   color: white;
   order: 1; /* Avatar on the right */
 }
 
 .vectara-message-user .vectara-message-content {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--vectara-primary);
   color: white;
   margin-left: 10%; /* Reduced margin since avatar takes space */
   border-radius: 16px 16px 4px 16px;
@@ -357,15 +358,15 @@ export const VectaraChatbotStyles = `
   font-size: var(--message-font-size);
   line-height: 1.5;
   box-shadow: var(--shadow-md);
-  transition: box-shadow 0.2s ease, transform 0.2s ease, filter 0.2s ease;
+  transition: box-shadow 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
   animation: messageSlideInRight 0.4s ease-out both;
   flex: 1;
 }
 
 .vectara-message-user .vectara-message-content:hover {
+  background: var(--vectara-primary-hover);
   box-shadow: var(--shadow-lg);
   transform: translateY(-1px);
-  filter: brightness(1.05);
 }
 
 .vectara-message-assistant .vectara-message-content {
@@ -702,7 +703,7 @@ export const VectaraChatbotStyles = `
 
 .vectara-followup-indicator {
   font-size: 10px;
-  color: #007bff;
+  color: var(--vectara-primary);
   font-weight: 500;
 }
 
@@ -729,7 +730,7 @@ export const VectaraChatbotStyles = `
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background-color: #007bff;
+  background-color: var(--vectara-primary);
   animation: typing-dot 1.4s infinite ease-in-out;
 }
 
