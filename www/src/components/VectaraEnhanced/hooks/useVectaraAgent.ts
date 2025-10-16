@@ -917,8 +917,13 @@ export const useVectaraAgent = (options: UseVectaraAgentOptions): UseChatReturn 
 
   // Get search suggestions
   const getSearchSuggestions = useCallback((input: string): string[] => {
-    return generateSearchSuggestions(input, state.messages);
-  }, [state.messages]);
+    const suggestions = generateSearchSuggestions(input, 5);
+    setState(prev => ({
+      ...prev,
+      searchSuggestions: suggestions
+    }));
+    return suggestions;
+  }, []);
 
   // Cleanup on unmount
   useEffect(() => {

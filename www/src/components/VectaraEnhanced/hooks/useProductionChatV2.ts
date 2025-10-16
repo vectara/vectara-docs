@@ -14,6 +14,7 @@ import {
 } from '../types';
 import { detectCodeType, generateCode, CODE_TEMPLATES } from '../utils/codeTemplates';
 import { getApiEndpoint } from '../config/vectaraConfig';
+import { generateSearchSuggestions } from '../utils/searchSuggestions';
 
 export const useProductionChatV2 = (options: UseProductionChatOptions): UseChatReturn => {
   const {
@@ -33,7 +34,10 @@ export const useProductionChatV2 = (options: UseProductionChatOptions): UseChatR
     error: null,
     sessionId: `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
     isStreaming: false,
-    retryCount: 0
+    retryCount: 0,
+    isTyping: false,
+    searchSuggestions: [],
+    conversationHistory: []
   });
 
   const abortController = useRef<AbortController | null>(null);
@@ -537,7 +541,10 @@ export const useProductionChatV2 = (options: UseProductionChatOptions): UseChatR
       error: null,
       sessionId: `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
       isStreaming: false,
-      retryCount: 0
+      retryCount: 0,
+      isTyping: false,
+      searchSuggestions: [],
+      conversationHistory: []
     });
 
     trackEvent({
@@ -636,6 +643,13 @@ export const useProductionChatV2 = (options: UseProductionChatOptions): UseChatR
     };
   }, []);
 
+  // Get search suggestions
+  const getSearchSuggestions = useCallback((input: string): string[] => {
+    const suggestions = generateSearchSuggestions(input, 5);
+    setState(prev => ({ ...prev, searchSuggestions: suggestions }));
+    return suggestions;
+  }, []);
+
   // Track session start
   useEffect(() => {
     trackEvent({
@@ -650,6 +664,7 @@ export const useProductionChatV2 = (options: UseProductionChatOptions): UseChatR
     retry,
     clearChat,
     updateCodeParameter,
-    showCodeExamples
+    showCodeExamples,
+    getSearchSuggestions
   };
 };
