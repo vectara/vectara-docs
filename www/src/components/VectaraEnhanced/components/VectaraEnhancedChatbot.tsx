@@ -109,6 +109,7 @@ export const VectaraEnhancedChatbot: React.FC<EnhancedChatbotProps> = React.memo
     updateCodeParameter,
     showCodeExamples,
     getSearchSuggestions,
+    provideFeedback,
     // Agent-specific properties (only available when using agent platform)
     isAgentThinking,
     usedSources,
@@ -194,6 +195,23 @@ export const VectaraEnhancedChatbot: React.FC<EnhancedChatbotProps> = React.memo
     }
   }, [sendFollowUp, onError]);
 
+  const handleFeedback = useCallback(async (messageId: string, feedbackType: 'positive' | 'negative') => {
+    try {
+      await provideFeedback?.(messageId, feedbackType);
+
+      if (analytics?.enabled && analytics.onEvent) {
+        analytics.onEvent({
+          type: 'feedback',
+          data: { messageId, feedbackType },
+          timestamp: Date.now(),
+          sessionId: `session_${Date.now()}`
+        });
+      }
+    } catch (err) {
+      console.error('Failed to submit feedback:', err);
+    }
+  }, [provideFeedback, analytics]);
+
   // Memoized style object to prevent unnecessary re-renders
   const chatbotStyle = useMemo(() => ({
     display: 'flex',
@@ -264,6 +282,7 @@ export const VectaraEnhancedChatbot: React.FC<EnhancedChatbotProps> = React.memo
         onParameterUpdate={updateCodeParameter}
         onSendFollowUp={handleFollowUp}
         onSuggestionClick={handleSuggestionClick}
+        onFeedback={handleFeedback}
         isAgentThinking={isAgentThinking}
         agentThoughts={agentThoughts}
       />

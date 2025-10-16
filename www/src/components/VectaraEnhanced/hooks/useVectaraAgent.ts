@@ -23,6 +23,8 @@ import { VectaraAgentManager, AgentSessionManager } from '../utils/agentManager'
 import { debugAPI, debugCodeGeneration } from '../utils/debug';
 import { generateSearchSuggestions } from '../utils/searchSuggestions';
 import { detectCodeType, generateCodeSync, CODE_TEMPLATES } from '../utils/codeTemplates';
+import { saveFeedbackToLocalStorage, sendFeedbackToAPI } from '../utils/feedbackUtils';
+import type { MessageFeedback } from '../types';
 
 interface UseVectaraAgentOptions extends Omit<UseProductionChatOptions, 'enableStreaming'> {
   agentKey?: string;
@@ -925,6 +927,91 @@ export const useVectaraAgent = (options: UseVectaraAgentOptions): UseChatReturn 
     return suggestions;
   }, []);
 
+  // Provide feedback on a message
+  const provideFeedback = useCallback(async (
+    messageId: string,
+    feedbackType: 'positive' | 'negative',
+    comment?: string
+  ): Promise<void> => {
+    const feedback: MessageFeedback = {
+      type: feedbackType,
+      timestamp: Date.now(),
+      comment
+    };
+
+    // Find the message
+    const message = state.messages.find(msg => msg.id === messageId);
+    if (!message) {
+      console.error('Message not found for feedback:', messageId);
+      return;
+    }
+
+    // Find the user query that preceded this assistant message
+    const messageIndex = state.messages.findIndex(msg => msg.id === messageId);
+    const userMessage = messageIndex > 0 ? state.messages[messageIndex - 1] : null;
+    const userQuery = userMessage?.type === 'user' ? userMessage.content : '';
+
+    // Update message state with feedback
+    setState(prev => ({
+      ...prev,
+      messages: prev.messages.map(msg =>
+        msg.id === messageId ? { ...msg, feedback } : msg
+      )
+    }));
+
+    // Save to localStorage
+    saveFeedbackToLocalStorage(
+      messageId,
+      feedback,
+      state.sessionId,
+      message.content,
+      {
+        query: userQuery,
+        responseTime: message.timestamp - (userMessage?.timestamp || message.timestamp)
+      }
+    );
+
+    // Track analytics event
+    trackEvent({
+      type: 'feedback',
+      data: {
+        messageId,
+        feedbackType,
+        hasComment: !!comment,
+        messageLength: message.content.length,
+        query: userQuery.substring(0, 100)
+      }
+    });
+
+    // Send to API if configured (future Vectara integration)
+    if (options.feedbackConfig?.enabled && options.feedbackConfig?.apiEndpoint) {
+      try {
+        await sendFeedbackToAPI(
+          messageId,
+          feedback,
+          state.sessionId,
+          message.content,
+          options.feedbackConfig.apiEndpoint,
+          apiKey,
+          {
+            query: userQuery,
+            agentId: state.agentKey,
+            corpusKey: corpusKeys[0],
+            responseTime: message.timestamp - (userMessage?.timestamp || message.timestamp)
+          }
+        );
+
+        // Call custom callback if provided
+        options.feedbackConfig?.onFeedbackSubmit?.(messageId, feedback);
+      } catch (error) {
+        console.error('Failed to send feedback to API:', error);
+        // Continue silently - feedback is already saved locally
+      }
+    }
+
+    console.log(`${feedbackType === 'positive' ? '👍' : '👎'} Feedback recorded for message:`, messageId);
+  }, [state.messages, state.sessionId, state.agentKey, corpusKeys, apiKey, options.feedbackConfig, trackEvent]);
+
   // Cleanup on unmount
   useEffect(() => {
     return () => {
@@ -950,6 +1037,7 @@ export const useVectaraAgent = (options: UseVectaraAgentOptions): UseChatReturn 
     updateCodeParameter,
     showCodeExamples,
     getSearchSuggestions,
+    provideFeedback,
 
     // Agent-specific state (for enhanced UI)
     agentSession: state.agentSession,

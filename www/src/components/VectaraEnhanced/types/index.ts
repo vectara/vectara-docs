@@ -26,6 +26,12 @@ export interface CodeParameter {
   description: string;
 }
 
+export interface MessageFeedback {
+  type: 'positive' | 'negative';
+  timestamp: number;
+  comment?: string;
+}
+
 export interface ChatMessage {
   id: string;
   type: 'user' | 'assistant';
@@ -39,6 +45,7 @@ export interface ChatMessage {
   threadId?: string; // For message threading
   parentMessageId?: string; // For follow-up questions
   isFollowUp?: boolean; // Indicates this is a follow-up message
+  feedback?: MessageFeedback; // User feedback on the message
 }
 
 export interface DocumentReference {
@@ -71,7 +78,7 @@ export interface ConversationHistory {
 }
 
 export interface AnalyticsEvent {
-  type: 'query' | 'code_generation' | 'button_click' | 'error' | 'session_start' | 'session_end';
+  type: 'query' | 'code_generation' | 'button_click' | 'error' | 'session_start' | 'session_end' | 'feedback';
   data: Record<string, any>;
   timestamp: number;
   sessionId: string;
@@ -87,6 +94,13 @@ export interface CodeGenerationConfig {
 export interface AnalyticsConfig {
   enabled: boolean;
   onEvent?: (event: AnalyticsEvent) => void;
+}
+
+export interface FeedbackConfig {
+  enabled: boolean;
+  apiEndpoint?: string;
+  allowComments?: boolean;
+  onFeedbackSubmit?: (messageId: string, feedback: MessageFeedback) => void;
 }
 
 export interface UseProductionChatOptions {
@@ -126,7 +140,10 @@ export interface EnhancedChatbotProps {
   
   // Analytics
   analytics?: AnalyticsConfig;
-  
+
+  // Feedback
+  feedbackConfig?: FeedbackConfig;
+
   // UI Configuration
   enableStreaming?: boolean;
   retryAttempts?: number;
@@ -253,6 +270,7 @@ export interface UseChatReturn {
   updateCodeParameter: (messageId: string, snippetId: string, parameterName: string, value: any) => void;
   showCodeExamples: (messageId: string, codeType?: string) => void;
   getSearchSuggestions: (input: string) => string[];
+  provideFeedback?: (messageId: string, feedbackType: 'positive' | 'negative', comment?: string) => Promise<void>;
 }
 
 // Code Templates

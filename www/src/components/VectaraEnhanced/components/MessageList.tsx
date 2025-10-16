@@ -16,6 +16,7 @@ interface MessageListProps {
   onParameterUpdate?: (messageId: string, snippetId: string, parameterName: string, value: any) => void;
   onSendFollowUp?: (content: string, parentMessageId: string) => void;
   onSuggestionClick?: (suggestion: string) => void;
+  onFeedback?: (messageId: string, feedbackType: 'positive' | 'negative') => void;
   // Agent-specific props
   isAgentThinking?: boolean;
   agentThoughts?: string[];
@@ -32,6 +33,7 @@ export const MessageList: React.FC<MessageListProps> = React.memo(({
   onParameterUpdate,
   onSendFollowUp,
   onSuggestionClick,
+  onFeedback,
   isAgentThinking = false,
   agentThoughts = []
 }) => {
@@ -121,6 +123,7 @@ export const MessageList: React.FC<MessageListProps> = React.memo(({
           onCodeCopy={onCodeCopy}
           onParameterUpdate={onParameterUpdate}
           onSendFollowUp={onSendFollowUp}
+          onFeedback={onFeedback}
         />
       ))}
 

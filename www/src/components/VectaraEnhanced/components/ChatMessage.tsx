@@ -4,6 +4,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { ChatMessage as ChatMessageType, CodeSnippet } from '../types';
 import { CodeBlock } from './CodeBlock';
+import { ThumbUpIcon, ThumbDownIcon } from './FeedbackIcons';
 import Prism from 'prismjs';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -13,6 +14,7 @@ interface MessageProps {
   onCodeCopy?: (code: string, language: string) => void;
   onParameterUpdate?: (messageId: string, snippetId: string, parameterName: string, value: any) => void;
   onSendFollowUp?: (content: string, parentMessageId: string) => void;
+  onFeedback?: (messageId: string, feedbackType: 'positive' | 'negative') => void;
 }
 
 // Enhanced markdown renderer with Prism syntax highlighting (matches CodePanel)
@@ -281,13 +283,17 @@ export const ChatMessage: React.FC<MessageProps> = React.memo(({
   message,
   onCodeCopy,
   onParameterUpdate,
-  onSendFollowUp
+  onSendFollowUp,
+  onFeedback
 }) => {
   const isUser = message.type === 'user';
   const [isSourcesExpanded, setIsSourcesExpanded] = useState(false);
   const [showFollowUpInput, setShowFollowUpInput] = useState(false);
   const [followUpText, setFollowUpText] = useState('');
   const [isCopied, setIsCopied] = useState(false);
+  const [localFeedback, setLocalFeedback] = useState<'positive' | 'negative' | null>(
+    message.feedback?.type || null
+  );
 
   const formatTimestamp = useCallback((timestamp: number) => {
     const date = new Date(timestamp);
@@ -317,6 +323,11 @@ export const ChatMessage: React.FC<MessageProps> = React.memo(({
       console.error('Failed to copy message:', err);
     }
   }, [message.content]);
+
+  const handleFeedback = useCallback((feedbackType: 'positive' | 'negative') => {
+    setLocalFeedback(feedbackType);
+    onFeedback?.(message.id, feedbackType);
+  }, [message.id, onFeedback]);
 
   return (
     <div className={`vectara-message ${isUser ? 'vectara-message-user' : 'vectara-message-assistant'} ${message.isFollowUp ? 'vectara-message-followup' : ''}`}>
@@ -426,9 +437,10 @@ export const ChatMessage: React.FC<MessageProps> = React.memo(({
           </div>
         )}
 
-        {/* Copy button for assistant messages */}
+        {/* Action buttons for assistant messages */}
         {!isUser && !message.isStreaming && (
           <div className="vectara-message-actions" style={{ display: 'flex', gap: '8px', marginTop: '10px' }}>
+            {/* Copy button */}
             <button
               className="vectara-copy-btn"
               onClick={handleCopyMessage}
@@ -476,6 +488,94 @@ export const ChatMessage: React.FC<MessageProps> = React.memo(({
                   <span>Copy response</span>
                 </>
               )}
+            </button>
+
+            {/* Thumbs up button */}
+            <button
+              className="vectara-feedback-btn"
+              onClick={() => handleFeedback('positive')}
+              title="This response was helpful"
+              style={{
+                padding: '6px 10px',
+                fontSize: '14px',
+                backgroundColor: localFeedback === 'positive' ? '#28a745' : '#f8f9fa',
+                border: `1px solid ${localFeedback === 'positive' ? '#28a745' : '#e1e5e9'}`,
+                borderRadius: '6px',
+                cursor: 'pointer',
+                color: localFeedback === 'positive' ? 'white' : '#5f6368',
+                transition: 'all 0.2s ease',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                minWidth: '36px'
+              }}
+              onMouseEnter={(e) => {
+                if (localFeedback !== 'positive') {
+                  e.currentTarget.style.backgroundColor = '#28a745';
+                  e.currentTarget.style.borderColor = '#28a745';
+                  e.currentTarget.style.color = 'white';
+                  e.currentTarget.style.transform = 'translateY(-1px)';
+                  e.currentTarget.style.boxShadow = '0 2px 6px rgba(40, 167, 69, 0.25)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (localFeedback !== 'positive') {
+                  e.currentTarget.style.backgroundColor = '#f8f9fa';
+                  e.currentTarget.style.borderColor = '#e1e5e9';
+                  e.currentTarget.style.color = '#5f6368';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = 'none';
+                }
+              }}
+            >
+              <ThumbUpIcon
+                size={18}
+                color={localFeedback === 'positive' ? 'white' : '#5f6368'}
+              />
+            </button>
+
+            {/* Thumbs down button */}
+            <button
+              className="vectara-feedback-btn"
+              onClick={() => handleFeedback('negative')}
+              title="This response needs improvement"
+              style={{
+                padding: '6px 10px',
+                fontSize: '14px',
+                backgroundColor: localFeedback === 'negative' ? '#dc3545' : '#f8f9fa',
+                border: `1px solid ${localFeedback === 'negative' ? '#dc3545' : '#e1e5e9'}`,
+                borderRadius: '6px',
+                cursor: 'pointer',
+                color: localFeedback === 'negative' ? 'white' : '#5f6368',
+                transition: 'all 0.2s ease',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                minWidth: '36px'
+              }}
+              onMouseEnter={(e) => {
+                if (localFeedback !== 'negative') {
+                  e.currentTarget.style.backgroundColor = '#dc3545';
+                  e.currentTarget.style.borderColor = '#dc3545';
+                  e.currentTarget.style.color = 'white';
+                  e.currentTarget.style.transform = 'translateY(-1px)';
+                  e.currentTarget.style.boxShadow = '0 2px 6px rgba(220, 53, 69, 0.25)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (localFeedback !== 'negative') {
+                  e.currentTarget.style.backgroundColor = '#f8f9fa';
+                  e.currentTarget.style.borderColor = '#e1e5e9';
+                  e.currentTarget.style.color = '#5f6368';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = 'none';
+                }
+              }}
+            >
+              <ThumbDownIcon
+                size={18}
+                color={localFeedback === 'negative' ? 'white' : '#5f6368'}
+              />
             </button>
           </div>
         )}
