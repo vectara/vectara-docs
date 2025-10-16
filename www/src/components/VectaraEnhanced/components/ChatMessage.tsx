@@ -401,7 +401,7 @@ export const ChatMessage: React.FC<MessageProps> = React.memo(({
           </div>
         )}
 
-        {/* Follow-up actions for assistant messages */}
+        {/* Copy button for assistant messages */}
         {!isUser && !message.isStreaming && (
           <div className="vectara-message-actions" style={{ display: 'flex', gap: '8px', marginTop: '8px' }}>
             <button
@@ -419,77 +419,6 @@ export const ChatMessage: React.FC<MessageProps> = React.memo(({
             >
               {isCopied ? '✓ Copied' : '📋 Copy'}
             </button>
-            <button
-              className="vectara-followup-btn"
-              onClick={() => setShowFollowUpInput(!showFollowUpInput)}
-              style={{
-                padding: '4px 8px',
-                fontSize: '11px',
-                backgroundColor: 'transparent',
-                border: '1px solid #ddd',
-                borderRadius: '4px',
-                cursor: 'pointer',
-                color: '#666'
-              }}
-            >
-              💬 Ask follow-up
-            </button>
-          </div>
-        )}
-
-        {/* Follow-up input */}
-        {showFollowUpInput && (
-          <div className="vectara-followup-input" style={{ marginTop: '8px' }}>
-            <input
-              type="text"
-              value={followUpText}
-              onChange={(e) => setFollowUpText(e.target.value)}
-              placeholder="Ask a follow-up question..."
-              onKeyPress={(e) => e.key === 'Enter' && handleFollowUpSubmit()}
-              style={{
-                width: '100%',
-                padding: '8px',
-                border: '1px solid #ddd',
-                borderRadius: '4px',
-                fontSize: '14px',
-                marginBottom: '4px'
-              }}
-            />
-            <div style={{ display: 'flex', gap: '4px' }}>
-              <button
-                onClick={handleFollowUpSubmit}
-                disabled={!followUpText.trim()}
-                style={{
-                  padding: '4px 8px',
-                  fontSize: '11px',
-                  backgroundColor: '#007bff',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '4px',
-                  cursor: followUpText.trim() ? 'pointer' : 'not-allowed',
-                  opacity: followUpText.trim() ? 1 : 0.6
-                }}
-              >
-                Send
-              </button>
-              <button
-                onClick={() => {
-                  setShowFollowUpInput(false);
-                  setFollowUpText('');
-                }}
-                style={{
-                  padding: '4px 8px',
-                  fontSize: '11px',
-                  backgroundColor: 'transparent',
-                  border: '1px solid #ddd',
-                  borderRadius: '4px',
-                  cursor: 'pointer',
-                  color: '#666'
-                }}
-              >
-                Cancel
-              </button>
-            </div>
           </div>
         )}
       </div>
