@@ -2,6 +2,7 @@
 // Handles message input, suggestions, and submission
 
 import React, { useState, useCallback, useRef, useEffect } from 'react';
+import { ArrowUpwardIcon } from './FeedbackIcons';
 
 interface ChatInputProps {
   inputValue: string;
@@ -163,7 +164,7 @@ export const ChatInput: React.FC<ChatInputProps> = React.memo(({
             e.currentTarget.style.boxShadow = '0 2px 4px rgba(26, 121, 255, 0.2)';
           }}
         >
-          {isLoading || isStreaming ? '⏳' : '⬆'}
+          {isLoading || isStreaming ? '⏳' : <ArrowUpwardIcon size={18} color="white" />}
         </button>
       </form>
     </div>

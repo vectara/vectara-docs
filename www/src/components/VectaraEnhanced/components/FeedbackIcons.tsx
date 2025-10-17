@@ -177,3 +177,103 @@ export const CancelIcon: React.FC<IconProps> = ({
     <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/>
   </svg>
 );
+
+/**
+ * Send Icon (Paper Airplane) - Most Google-like for messaging
+ */
+export const SendIcon: React.FC<IconProps> = ({
+  size = 20,
+  color = 'currentColor',
+  className = ''
+}) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill={color}
+    className={className}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+  </svg>
+);
+
+/**
+ * Arrow Upward Icon (Simple up arrow)
+ */
+export const ArrowUpwardIcon: React.FC<IconProps> = ({
+  size = 20,
+  color = 'currentColor',
+  className = ''
+}) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill={color}
+    className={className}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"/>
+  </svg>
+);
+
+/**
+ * North Icon (Directional up arrow with base)
+ */
+export const NorthIcon: React.FC<IconProps> = ({
+  size = 20,
+  color = 'currentColor',
+  className = ''
+}) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill={color}
+    className={className}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M5 9l1.41 1.41L11 5.83V22h2V5.83l4.59 4.59L19 9l-7-7-7 7z"/>
+  </svg>
+);
+
+/**
+ * Arrow Circle Up Icon (Up arrow in circle - bold)
+ */
+export const ArrowCircleUpIcon: React.FC<IconProps> = ({
+  size = 20,
+  color = 'currentColor',
+  className = ''
+}) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill={color}
+    className={className}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M12 20c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8m0-18C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V9h3l-4-4-4 4h3v3z"/>
+  </svg>
+);
+
+/**
+ * Upload Icon (Up arrow to line)
+ */
+export const UploadIcon: React.FC<IconProps> = ({
+  size = 20,
+  color = 'currentColor',
+  className = ''
+}) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill={color}
+    className={className}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/>
+  </svg>
+);
