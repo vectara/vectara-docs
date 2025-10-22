@@ -12,7 +12,7 @@ import {
   UseChatReturn,
   VectaraV2QueryRequest
 } from '../types';
-import { detectCodeType, generateCode, CODE_TEMPLATES } from '../utils/codeTemplates';
+import { detectCodeType, generateCodeSync, CODE_TEMPLATES } from '../utils/codeTemplates';
 import { getApiEndpoint } from '../config/vectaraConfig';
 import { generateSearchSuggestions } from '../utils/searchSuggestions';
 
@@ -76,7 +76,7 @@ export const useProductionChatV2 = (options: UseProductionChatOptions): UseChatR
           };
         });
 
-        const code = generateCode(codeType, lang as SupportedLanguage, defaultParams);
+        const code = generateCodeSync(lang as SupportedLanguage, codeType, defaultParams);
 
         snippets.push({
           id: `${codeType}_${lang}_${Date.now()}`,

@@ -13,11 +13,20 @@ import {
   ConversationHistory
 } from '../types';
 import { detectCodeType, generateCodeSync, CODE_TEMPLATES } from '../utils/codeTemplates';
-import { generateEnhancedContext } from '../utils/openApiContext';
-import { saveConversation, generateConversationTitle } from '../utils/conversationPersistence';
 import { generateSearchSuggestions, saveRecentQuery } from '../utils/searchSuggestions';
 import { findRelevantExamples, getExample, formatExampleForChat } from '../../../utils/exampleLookup';
 import { debugCodeGeneration, debugAPI } from '../utils/debug';
+
+// Stub functions for removed conversationPersistence
+const generateConversationTitle = (messages: ChatMessage[]): string => {
+  const firstUserMessage = messages.find(m => m.role === 'user');
+  return firstUserMessage?.content.substring(0, 50) || 'New Conversation';
+};
+
+const saveConversation = (conversation: ConversationHistory): void => {
+  // Conversation persistence removed - stub for compatibility
+  // Could be re-implemented with different storage strategy if needed
+};
 
 // Detect if user is asking for code examples
 const detectExampleRequest = (query: string): boolean => {

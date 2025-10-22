@@ -19,7 +19,7 @@ import {
   SourceReference,
   shouldProvideCodeExamples
 } from '../config/agentConfig';
-import { VectaraAgentManager, AgentSessionManager } from '../utils/agentManager';
+import { VectaraAgentManager } from '../utils/agentManager';
 import { debugAPI, debugCodeGeneration } from '../utils/debug';
 import { generateSearchSuggestions } from '../utils/searchSuggestions';
 import { detectCodeType, generateCodeSync, CODE_TEMPLATES } from '../utils/codeTemplates';
@@ -43,7 +43,6 @@ interface AgentChatState extends ChatState {
   usedSources: SourceReference[];
   agentThoughts: string[];
   suggestedFollowups: string[];
-  sessionManager: AgentSessionManager;
 }
 
 export const useVectaraAgent = (options: UseVectaraAgentOptions): UseChatReturn => {
@@ -130,8 +129,7 @@ export const useVectaraAgent = (options: UseVectaraAgentOptions): UseChatReturn 
     isAgentThinking: false,
     usedSources: [],
     agentThoughts: [],
-    suggestedFollowups: [],
-    sessionManager: null as any // Will be initialized in useEffect
+    suggestedFollowups: []
   });
 
   const agentManagerRef = useRef<VectaraAgentManager>();
@@ -145,23 +143,6 @@ export const useVectaraAgent = (options: UseVectaraAgentOptions): UseChatReturn 
     const effectiveCustomerId = agentCustomerId || customerId || "1526022105";
 
     agentManagerRef.current = new VectaraAgentManager(effectiveApiKey, effectiveCustomerId);
-
-    // Clean up expired sessions on mount
-    const sessionManager = new AgentSessionManager();
-    sessionManager.cleanupExpiredSessions();
-
-    // Try to restore previous session
-    const previousSession = sessionManager.getMostRecentSession();
-    if (previousSession) {
-      setState(prev => ({
-        ...prev,
-        agentSession: previousSession,
-        agentKey: previousSession.agentKey,
-        sessionManager
-      }));
-    } else {
-      setState(prev => ({ ...prev, sessionManager }));
-    }
   }, [apiKey, customerId, agentApiKey, agentCustomerId]);
 
   // Track analytics events
@@ -219,7 +200,7 @@ export const useVectaraAgent = (options: UseVectaraAgentOptions): UseChatReturn 
       // Session is expired or invalid, delete it
       try {
         await agentManagerRef.current?.deleteSession(state.agentSession);
-        state.sessionManager?.removeSession(state.agentSession.sessionKey);
+        // Session persistence removed - sessions are now ephemeral
       } catch (error) {
         debugAPI('Error deleting expired session:', error);
       }
@@ -233,16 +214,7 @@ export const useVectaraAgent = (options: UseVectaraAgentOptions): UseChatReturn 
     const agentKey = await ensureAgent();
     const session = await agentManagerRef.current!.createSession(agentKey);
 
-    // Save session
-    if (state.sessionManager) {
-      state.sessionManager.saveSession(session);
-    } else {
-      // Fallback: create a new session manager if not available
-      const sessionManager = new AgentSessionManager();
-      sessionManager.saveSession(session);
-      setState(prev => ({ ...prev, sessionManager }));
-    }
-
+    // Session is stored in state only (ephemeral, no localStorage)
     setState(prev => ({ ...prev, agentSession: session, agentKey }));
 
     if (isDevelopment) {
@@ -250,7 +222,7 @@ export const useVectaraAgent = (options: UseVectaraAgentOptions): UseChatReturn 
     }
 
     return session;
-  }, [state.agentSession, state.sessionManager, ensureAgent, isDevelopment]);
+  }, [state.agentSession, ensureAgent, isDevelopment]);
 
   // Process agent response and convert to chat message
   const processAgentResponse = useCallback(async (
@@ -378,7 +350,7 @@ export const useVectaraAgent = (options: UseVectaraAgentOptions): UseChatReturn 
         if (state.agentSession) {
           try {
             await agentManagerRef.current?.deleteSession(state.agentSession);
-            state.sessionManager.removeSession(state.agentSession.sessionKey);
+            // Session persistence removed - sessions are now ephemeral
           } catch (err) {
             debugAPI('Error deleting old session:', err);
           }
@@ -406,7 +378,7 @@ export const useVectaraAgent = (options: UseVectaraAgentOptions): UseChatReturn 
         data: { error: errorMessage, phase: 'agent_message' }
       });
     }
-  }, [ensureSession, enableAgentStreaming, originalStreaming, trackEvent, state.agentSession, state.sessionManager]);
+  }, [ensureSession, enableAgentStreaming, originalStreaming, trackEvent, state.agentSession]);
 
   // Handle streaming message
   const handleStreamingMessage = useCallback(async (
@@ -569,7 +541,7 @@ export const useVectaraAgent = (options: UseVectaraAgentOptions): UseChatReturn 
     if (state.agentSession) {
       try {
         await agentManagerRef.current?.deleteSession(state.agentSession);
-        state.sessionManager.removeSession(state.agentSession.sessionKey);
+        // Session persistence removed - sessions are now ephemeral
       } catch (error) {
         debugAPI('Error deleting session:', error);
       }
