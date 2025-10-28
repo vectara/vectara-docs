@@ -1,88 +1,19 @@
 ---
 id: agent-platform-overview
-title: Agents
+title: How Vectara agents work
 sidebar_label: Agents
 ---
 
-Vectara Agents enable enterprises to build sophisticated, enterprise-grade intelligent
-applications that go beyond basic question answering. Agents interpret user
-input, reason through context, leverage external tools, and maintain continuity
-across multi-turn interactions.
+[AI agents](/docs/learn/ai-agents) are autonomous systems or programs that understand natural language 
+and use tools to accomplish tasks. Vectara Agents enable enterprises to build 
+production-ready intelligent applications. Agents interpret user input, reason 
+through context, leverage tools, and maintain continuity across multi-turn 
+interactions.
 
-Unlike traditional RAG systems that simply retrieve documents and pass them to
-a language model, Vectara agents provide orchestrated workflows capable of
-taking action, retrieving information, invoking APIs, or maintaining user
-sessions.
-
-## What are agents?
-
-Agents provide a comprehensive framework for building AI-powered 
-applications with the following capabilities:
-
-- **Understand context**: Maintain conversation history across multiple 
-  interactions.
-- **Use tools**: Access and manipulate data through a variety of tools, including 
-  corpus search and web search.
-- **Follow instructions**: Execute complex workflows based on customizable 
-  instructions and templates.
-- **Stream responses**: Provide real-time updates as agents process requests.
-
-## What agents can accomplish
-
-| **Desired outcome** | **Workflow** |
-|---|---|
-| **Automate customer support workflows** | <ol><li>Agent handles L1 support</li><li>Searches knowledge bases</li><li>Escalates complex issues</li><li>Creates tickets</li></ol> |
-| **Build intelligent research assistants** | <ol><li>Agent searches multiple data sources</li><li>Synthesizes findings</li><li>Maintains research context across sessions</li></ol> |
-| **Create workflow automation systems** | <ol><li>Agent triggers business processes</li><li>Sends notifications</li><li>Updates CRM systems based on natural language requests</li></ol> |
-| **Develop conversational enterprise tools** | <ol><li>Agent maintains context</li><li>Handles multi-step processes</li><li>Integrates with existing business systems</li></ol> |
-| **Deploy autonomous business processes** | <ol><li>Agent monitors conditions</li><li>Makes decisions</li><li>Executes actions without human intervention</li></ol> |
-
-:::tip Conversational AI Platform
-Agents are perfect for building conversational AI experiences like virtual 
-assistants and chatbots. [**Learn more about Vectara's Conversational AI →**](/docs/agents/conversational-ai)
-:::
-
-## How agents work
-
-Agents use **tools** to access information and take action. Each tool provides 
-a specific capability, such as searching a specific corpus, accessing a web 
-page, or interacting with an external service. When creating or configuring an 
-agent, you select which tools it can use which helps ensure the following:
-
-* A clear separation between orchestration logic (the agent) and the 
-  capabilities provided by tools.
-* Auditable permissions for every data retrieval or external action.
-* Reusable tools that can serve multiple agents.
-
-## Agents
-
-Agents act as the orchestration layer of the platform:
-- Coordinate between different tools and data sources.
-- Maintain conversation context through sessions.
-- Follow customizable instructions to guide behavior.
-- Support streaming responses for real-time interaction.
-
-## Tools
-
-Tools provide agents with capabilities to interact with data and external systems:
-- **Corpora Search**: Query your corpora with Vectara's query capabilities. For more 
-  information, see [**Configure Agent Search Behavior**](/docs/agents/#configure-agent-search-behavior).
-- **Web Search**: Access current information from the internet.
-- **MCP Tools**: Integrate with external services through the [Model Context Protocol (MCP)](mcp).
-
-## Sessions
-
-Sessions maintain the state of conversations:
-- Track all interactions (also known as events) within a conversation.
-- Preserve context across multiple turns.
-- Enable multi-turn reasoning and follow-up questions.
-
-## Instructions
-
-Instructions guide agent behavior using Velocity templates:
-- Define the agent's persona and objectives.
-- Customize responses based on context.
-- Support dynamic variable substitution.
+Vectara agents follow a structured flow where **instructions** define the
+behavior for agents to follow. Instructions are the most important component 
+to configure. The agent combines these instructions with conversation state 
+from sessions to determine how to respond and which tools to use. 
 
 <div className="mermaid-container">
 ```mermaid
@@ -94,13 +25,8 @@ flowchart TD
     Inst["**Instructions**"]
     Query["**Agent Query**"]
 
-    %% Tools + execution layer
-    Tool["**Tool**"]
-    ToolServer["**Tool Server**"]
-
-    %% Data/targets
-    Corpus["Corpus Search"]
-    Web["Web Search"]
+    %% Tools layer
+    AvailableTools["**Tools** (Corpora Search, Web Search, Lamba Tools)"]
 
     %% MCP
     MCP["**MCP Client**"]
@@ -108,23 +34,18 @@ flowchart TD
 
     %% Core flow
     User -->|Query| Session
-    Session -->|Provides context| Agent
-    Agent --> Inst
-    Inst --> Query
-    Agent --> Query
+    Session -->|Conversation state| Agent
+    Agent --> |Configured with| Inst
+    Inst --> |Guide agent behavior| Query
     Query -->|Direct answer| Session
-    Query e4@<==> Tool
-    Tool e5@<==> Query
 
-    %% Internal tool execution paths
-    Tool e3@<--> ToolServer
-    ToolServer e7@<--> Tool
-    ToolServer --> Corpus
-    ToolServer -.-> Web
+    %% Tool execution paths
+    Query e4@<==> AvailableTools
+    AvailableTools e5@<==> Query
 
     %% Optional MCP path (de-emphasized)
-    Tool e2@<--> MCP
-    MCP e6@<--> Tool
+    Query e2@<==> MCP
+    MCP e6@<==> Query
     MCP -.-> ExtMCP
 
     %% Return to user
@@ -144,21 +65,103 @@ flowchart TD
     class User userEntry;
     class Session session;
     class Agent,Inst,Query agentic;
-    class Tool,ToolServer toolLayer;
-    class Corpus corpus;
-    class Web,ExtMCP external;
+    class AvailableTools toolLayer;
+    class ExtMCP external;
     class MCP mcpTP;
 
     %% Animations
     e1@{ animation: slow }
     e2@{ animation: slow }
-    e3@{ animation: slow }
     e4@{ animation: slow }
     e5@{ animation: slow }
     e6@{ animation: slow }
-    e7@{ animation: slow }
 ```
 </div>
+
+---
+
+- **Instructions guide agent behavior**: Instructions define the agent's persona,
+  objectives, and how it should respond. In other systems, instructions are often 
+  called a system prompt.
+- **Sessions provide context**: When you create a session, you can attach
+  metadata (like user preferences, permissions, or identifiers). This
+  metadata is available throughout the conversation.
+- **Templates enable dynamic behavior**: Instructions use Velocity templates
+  to access session metadata.  
+  For example, `${session.metadata.user_role}`
+  lets you customize instructions based on who is talking to the agent.
+- **Tools use dynamic references**: Tools can use `argument_override` to
+  dynamically reference session metadata. This allows tools to filter data or
+  customize behavior based on the current user or context.
+
+Each tool provides a specific capability, such as searching a specific
+corpus, accessing a web page, or running custom logic. When configuring an
+agent, you select which tools it can use. This ensures a clear separation 
+between orchestration logic (the agent) and the capabilities provided by 
+tools, auditable permissions for every data retrieval or external action, 
+and reusable tools that can serve multiple agents.
+
+## Agents
+
+Agents act as the orchestration layer of the platform. They coordinate
+between different tools and data sources, maintain conversation context
+through sessions, follow customizable instructions to guide behavior, and
+support streaming responses for real-time interaction.
+
+Both agents and sessions use unique keys for identification:
+
+  - **Agent keys** (pattern: `agt_*`): You can specify a custom key like
+    `agt_customer_support` or let Vectara generate one automatically. Custom
+    keys make it easier to reference agents consistently across environments
+    and in your code.
+  - **Session keys** (pattern: custom or auto-generated): Custom session keys
+    are useful when you need to resume conversations, reference specific
+    sessions, or integrate with existing session management.
+
+[**Learn more about Agents →**](/docs/agents/agents)
+
+## Instructions
+
+Instructions guide agent behavior using Velocity templates. They define the
+agent's persona and objectives, customize responses based on context, and
+support dynamic variable substitution from session metadata.
+
+Instructions are the most important component to configure. Start here when
+building your agent.
+
+[**Learn more about Instructions →**](/docs/agents/instructions)
+
+## Tools
+
+Tools provide agents with capabilities to interact with data and external
+systems. Vectara provides the following built-in tools:
+
+- **Corpus Search**: Search and retrieve information from your Vectara
+  corpora using semantic search. This is the primary tool for RAG-powered
+  agents that need to answer questions based on your private data.
+- **Web Search**: Access current information from the public internet. Use
+  this tool when agents need real-time data or information beyond your
+  corpora.
+- **Lambda Tools**: Create custom Python functions that run in a secure
+  sandbox. Use these for calculations, data transformations, or business
+  logic.
+- **MCP Tools**: Integrate with external services through the Model Context
+  Protocol (MCP). Connect to APIs, databases, and third-party systems to
+  extend agent capabilities.
+
+[**Learn more about Tools →**](/docs/agents/tools)
+
+## Sessions
+
+Sessions maintain the state of conversations. They track all interactions
+(also known as events) within a conversation, preserve context across
+multiple turns, and enable multi-turn reasoning and follow-up questions.
+
+Sessions also support metadata for personalization, access control, and
+dynamic behavior throughout the conversation.
+
+[**Learn more about Sessions →**](/docs/agents/sessions)
+
 
 ## Getting Started
 
@@ -168,5 +171,3 @@ To build your first agent:
 2. [**Configure tools**](/docs/console-ui/agents/create-an-agent#tools): Set up corpus access permissions and any external integrations.
 3. [**Write instructions**](/docs/console-ui/agents/create-an-agent#instructions): Create templates that guide the agent's behavior.
 4. [**Test agents with sessions**](/docs/console-ui/agents/use-agents): Start conversations and iterate on your configuration.
-
-

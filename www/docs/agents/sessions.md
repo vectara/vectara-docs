@@ -19,6 +19,139 @@ interactions. Key properties include:
 Sessions support lifecycle operations such as creation, update, retrieval, 
 listing, and deletion.
 
+## Session keys
+
+Every session has a unique `key` that identifies it in API calls. You have
+two options for session keys, **auto-generated** or **custom**:
+
+### Auto-generated keys
+
+If you don't provide a `key` when creating a session, Vectara automatically
+generates one based on the session name:
+
+<CodePanel
+  title="Create session with auto-generated key"
+  snippets={[
+    {
+      language: 'bash',
+      code: `curl -X POST https://api.vectara.io/v2/agents/support-agent/sessions \\
+  -H "Authorization: Bearer YOUR_API_KEY" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "name": "Customer Support Chat"
+  }'
+
+# Response:
+# {
+#   "key": "customer_support_chat_abc123",
+#   "name": "Customer Support Chat",
+#   ...
+# }`
+    }
+  ]}
+  annotations={{
+    bash: [
+      { line: 5, text: 'No key provided - Vectara auto-generates one' },
+      { line: 10, text: 'Auto-generated key based on name + unique suffix' }
+    ]
+  }}
+  layout="stacked"
+/>
+
+### Custom session keys
+
+You can provide your own key to map sessions to your application with these 
+requirements:
+
+- **Pattern**: `[0-9a-zA-Z_-]+` (alphanumeric, underscores, hyphens only)
+- **Length**: 1-50 characters
+- **Uniqueness**: Must be unique per agent
+
+<CodePanel
+  title="Create session with custom key"
+  snippets={[
+    {
+      language: 'bash',
+      code: `curl -X POST https://api.vectara.io/v2/agents/support-agent/sessions \\
+  -H "Authorization: Bearer YOUR_API_KEY" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "key": "user_12345_session_2025_01_15",
+    "name": "User 12345 Support Session"
+  }'`
+    }
+  ]}
+  annotations={{
+    bash: [
+      { line: 5, text: 'Custom key for easy cross-referencing with your system' }
+    ]
+  }}
+  layout="stacked"
+/>
+
+**Common patterns:**
+- User-based: `user_{user_id}_session_{timestamp}`
+- Channel-based: `web_chat_{uuid}`
+- Transaction-based: `order_{order_id}_support`
+- Support ticket: `ticket_{ticket_number}_session`
+
+
+## Session Metadata
+
+Session metadata provides context-specific data to agents, enabling
+personalization, security controls, and dynamic behavior. This key-value 
+data attaches to a session and becomes accessible as follows:
+
+- **Agent instructions** (Velocity templates) using `${session.metadata.field}` syntax
+- **Tool configurations** (argument overrides) using `{"$ref": "session.metadata.field"}` syntax
+
+Use session metadata such as when you want to limit data access per user (RBAC) 
+with `customer_id` or `tenant_id` or personalization like `user_name`, 
+`language`, or `region`. It can also help with auditing use cases to log the 
+`user_id`, `ip_address`, and `time_stamp`.
+
+### Example session with metadata
+
+<CodePanel
+  title="Session with comprehensive metadata"
+  snippets={[
+    {
+      language: 'bash',
+      code: `curl -X POST https://api.vectara.io/v2/agents/support-agent/sessions \\
+  -H "Authorization: Bearer YOUR_API_KEY" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "key": "user_12345_session",
+    "name": "Customer Support Session",
+    "metadata": {
+      "customer_id": "12345",
+      "customer_name": "Acme Corporation",
+      "user_role": "premium",
+      "region": "EMEA",
+      "language": "en",
+      "department": "billing",
+      "channel": "web_chat",
+      "priority": "high"
+    }
+  }'`
+    }
+  ]}
+  annotations={{
+    bash: [
+      { line: 7, text: 'Metadata object with arbitrary key-value pairs' },
+      { line: 8, text: 'Customer identifier for RBAC filtering' },
+      { line: 10, text: 'User tier for conditional agent behavior' },
+      { line: 11, text: 'Geographic region for localized responses' },
+      { line: 12, text: 'Language preference' },
+      { line: 13, text: 'Department for targeted knowledge access' },
+      { line: 14, text: 'Communication channel tracking' },
+      { line: 15, text: 'Support priority level' }
+    ]
+  }}
+  layout="stacked"
+/>
+
+
 ## Agent events
 
 Each session contains one or more events, representing individual interactions 

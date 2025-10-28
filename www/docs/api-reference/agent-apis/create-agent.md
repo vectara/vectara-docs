@@ -22,14 +22,14 @@ conversation context and available capabilities.
 
 ## What is an agent?
 
-An agent is comprised of three main components of functionality:
+An agent is an AI-powered orchestrator comprised of three main components:
 
-1. **Instructions:** Known as a system prompt in other platforms.
-2. **Steps:** The workflow the agent executes.
-3. **Tools:** Resources available to resolve steps and instructions.
+1. **Instructions:** Guide the agent's behavior and personality. Instructions are similar to a system prompt in other platforms and use Velocity templates for dynamic content.
+2. **Steps:** Define the workflow the agent executes when receiving input. Currently, only conversational steps are supported, which enable the agent to respond through dialogue with users.
+3. **Tool Configurations:** Define which tools (capabilities) the agent can use and how they're configured. Tools enable agents to search corpora, access the web, or integrate with external systems.
 
-To use an agent, create a new session (called a _thread_ or _chat_ in other 
-platforms), and send new inputs to the agent to get responses.
+To use an agent, create a new session (called a _thread_ or _chat_ in other
+platforms), and send inputs to the agent to receive responses. Each session maintains conversation context across multiple interactions.
 
 ## Create Agent Request and Response
 
@@ -40,12 +40,17 @@ following parameters in the request body:
   If not provided, one will be auto-generated based on the agent name. Pattern: `[0-9a-zA-Z_-]+$`
 - `name` (string, required): The human-readable name of the agent
 - `description` (string, optional): Detailed description of agent purpose and capabilities
-- `tool_configurations` (object, required): A map of tool configurations available to the agent where:
-  - **Key:** A user-defined name for the tool configuration (e.g., `customer_search`)
-  - **Value:** An `AgentToolConfiguration` object with:
-    - `type` (string, required): Tool configuration type (`mcp`, `corpora_search`, or `web_search`)
-    - `argument_override` (object, optional): Optional hardcoded arguments for tool calls
-    - `query_configuration` (object, required for `corpora_search`): User-configurable settings for corpus search
+- `tool_configurations` (object, required): A map of tool configurations available to the agent. Each entry in this map defines a named tool configuration that the agent can use:
+  - **Key:** A user-defined name for the tool configuration (e.g., `customer_search`, `web_search`). This name is how the agent refers to this specific tool configuration in events and logs.
+  - **Value:** An `AgentToolConfiguration` object that specifies:
+    - `type` (string, required): The tool type - one of:
+      - `corpora_search`: Query Vectara corpora using RAG
+      - `web_search`: Search the web for current information
+      - `mcp`: Connect to external Model Context Protocol servers
+      - `lambda`: Execute custom Python functions (user-defined tools)
+      - `structured_indexing`: Index structured documents into Vectara corpora
+    - `argument_override` (object, optional): Hardcoded arguments that override LLM-provided values. When specified, the LLM cannot change these parameters. Supports dynamic references using `{"$ref": "path.to.value"}` syntax (e.g., `{"$ref": "session.metadata.customer_id"}`)
+    - `query_configuration` (object, required for `corpora_search`): Query settings including search parameters, generation settings, and reranking configuration - not exposed to the LLM
 - `model` (object, required): Model configuration for agent reasoning
   - `name` (string, required): Model name (e.g., `gpt-4`)
   - `parameters` (object, optional): Model-specific parameters like temperature and max_tokens
@@ -55,21 +60,21 @@ following parameters in the request body:
     - `initial_backoff_ms` (integer, optional): Initial delay before first retry in milliseconds, range 100-60000 (default: `1000`)
     - `max_backoff_ms` (integer, optional): Maximum delay between retries in milliseconds, range 1000-300000 (default: `30000`)
     - `backoff_factor` (float, optional): Exponential multiplier for backoff delays, range 1.0-10.0 (default: `2.0`)
-- `first_step` (object, required): Initial execution step configuration
-  - `type` (string, required): Step type (must be `conversational`)
-  - `instructions` (array, required): List of instruction objects
-    - Reference instructions:
+- `first_step` (object, required): Defines the agent's entry point and execution behavior
+  - `type` (string, required): Step type (must be `conversational` - the only currently supported type)
+  - `instructions` (array, required): An ordered list of instructions that guide the agent's behavior. Instructions use the Apache Velocity template language and can reference context variables. You can mix reference and inline instructions:
+    - **Reference instructions** - Reusable instructions stored separately that can be shared across multiple agents:
       - `type` (string, required): Must be `reference`
-      - `id` (string, required): Instruction identifier following pattern `ins_[0-9a-zA-Z_-]+$`
-      - `version` (integer, optional): Specific instruction version
-    - Inline instructions:
+      - `id` (string, required): The instruction's unique identifier (pattern: `ins_[0-9a-zA-Z_-]+$`)
+      - `version` (integer, optional): Specific version number to use. If omitted, the latest version is used. Note: When a referenced instruction is updated, agents must be explicitly updated to use the new version.
+    - **Inline instructions** - Instructions defined directly within the agent configuration:
       - `type` (string, required): Must be `inline`
-      - `name` (string, required): Human-readable instruction name
-      - `template_type` (string, optional): Must be `velocity` (default)
-      - `template` (string, required): Instruction template content
-      - `description` (string, optional): Instruction description
-  - `output_parser` (object, required): Output parser configuration
-    - `type` (string, required): Parser type (must be `default`)
+      - `name` (string, required): Human-readable name for this instruction
+      - `template_type` (string, optional): Template language to use (must be `velocity`, which is the default)
+      - `template` (string, required): The instruction content using Velocity template syntax. Use `${variableName}` to reference dynamic values.
+      - `description` (string, optional): Optional description explaining the instruction's purpose
+  - `output_parser` (object, required): Configures how the agent's output is parsed and returned
+    - `type` (string, required): Parser type (currently only `default` is supported, which uses native LLM tool calling)
 - `metadata` (object, optional): Arbitrary key-value pairs for organization and tracking
 - `enabled` (boolean, optional): Whether agent is active upon creation (defaults to `true`)
 
@@ -133,7 +138,7 @@ The response includes the complete agent configuration with system-generated fie
       {
         "type": "inline",
         "name": "Additional Guidelines",
-        "template": "Always be polite and professional. Today's date is currentDate.",
+        "template": "Always be polite and professional. Today's date is ${currentDate}.",
         "template_type": "velocity"
       }
     ],
@@ -161,9 +166,9 @@ The response includes the complete agent configuration with system-generated fie
       code: `{
   "key": "customer_support",
   "name": "Customer Support Agent",
-  "description": "AI agent specialized in handling customer support inquiries using company documentation", 
-  "tools": {
-    "tol_customer_search": {
+  "description": "AI agent specialized in handling customer support inquiries using company documentation",
+  "tool_configurations": {
+    "customer_search": {
       "type": "corpora_search",
       "argument_override": {
         "query": "customer support documentation"
@@ -180,7 +185,7 @@ The response includes the complete agent configuration with system-generated fie
         "save_history": true
       }
     },
-    "tol_web_search": {
+    "web_search": {
       "type": "web_search",
       "argument_override": {
         "limit": 5
@@ -212,7 +217,7 @@ The response includes the complete agent configuration with system-generated fie
       {
         "type": "inline",
         "name": "Additional Guidelines",
-        "template": "Always be polite and professional. Today's date is currentDate.",
+        "template": "Always be polite and professional. Today's date is ${currentDate}.",
         "template_type": "velocity"
       }
     ],

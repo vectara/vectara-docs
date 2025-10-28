@@ -234,11 +234,11 @@ const sidebars: SidebarsConfig = {
         id: 'agents/agent-platform-overview',
       },
       items: [
-        "agents/mcp",
-        "agents/agents",
-        "agents/tools",
         "agents/instructions",
+        "agents/tools",
+        "agents/agents",
         "agents/sessions",
+        "agents/mcp",
         "agents/conversational-ai",
       ],
     },
@@ -263,6 +263,11 @@ const sidebars: SidebarsConfig = {
         id: 'use-case-exploration',
       },
       items: [
+        {
+          type: "doc",
+          id: "learn/ai-agents",
+          label: "AI Agents",
+        },
         {
           type: "category",
           label: "Semantic Search",

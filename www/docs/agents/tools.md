@@ -13,19 +13,38 @@ dynamically. They are defined by:
 * A description of their function.
 * An input schema describing accepted parameters (in JSON Schema format).
 * Metadata for categorization.
-* Runtime availability (enabled/disabled).
+* Runtime availability (enabled or disabled).
 
 ## Available tools
 
-The tech preview of Vectara Agents provides the following tools:
-* **corpora_search:** Retrieves results from a Vectara corpus or corpora using Retrieval 
-  Augmented Generation (RAG). This tool provides summary and relevant search results using 
-  the same default parameters as the [Query API](/docs/api-reference/search-apis/search).  
-  For more details about configuring 
-the `corpora_search` tool, see [**Configure Agent Search Behavior**](/docs/agents/#configure-agent-search-behavior).
-* **web_search:** Retrieves results from the public web.
+Vectara Agents support the following tool types:
 
+### Built-in tools
 
+* `corpora_search`: Retrieves results from Vectara corpora using Retrieval
+  Augmented Generation (RAG). This tool provides summary and relevant search results using
+  the same default parameters as the [Query API](/docs/api-reference/search-apis/search).
+  For more details about configuring the `corpora_search` tool, see
+  [**Configure Agent Search Behavior**](/docs/agents/#configure-agent-search-behavior).
+
+* `web_search`: Searches the public web for current information. Powered by Tavily,
+  this tool enables agents to access real-time data and recent developments that may not
+  be in your indexed corpora.
+
+### External and custom tools
+
+* `mcp`: Connect to external services through the Model Context Protocol (MCP).
+  MCP tools enable agents to integrate with external systems and services. See
+  [**Model Context Protocol**](/docs/agents/model-context-protocol) for details.
+
+* `lambda`: Execute custom Python functions in a secure, sandboxed environment.
+  Lambda tools allow you to define user-defined functions that agents can call to
+  perform custom logic, calculations, or data transformations. Currently supports
+  Python 3.12 with a curated set of libraries including numpy and pandas.
+
+* `structured_indexing`: Index structured documents into Vectara corpora with full
+  control over document structure, sections, metadata, tables, and images. This tool
+  enables agents to dynamically add content to your knowledge base during conversations.
 
 ## Tool permissions and security
 

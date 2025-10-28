@@ -13,13 +13,13 @@ manage conversation state.
 ```mermaid
 flowchart TD
     %% User Input and Response Flow
-    User[User Query] --> Reasoning[Reasoning LLM Brain Understand user query and intent]
-    Reasoning --> Planning[Planning Build execution plan using available tools]
-    Planning --> Response[Response Collect information and respond]
+    User[User Query] --> LLM[LLM Reasoning and planning]
+
+    LLM --> Response[Collect information]
     Response --> Output[Response]
 
     %% Orchestration Flow
-    Planning --> OP
+    LLM --> OP
 
     %% Tools and Agents in Orchestration Pipeline
     subgraph OP[🔧 **Orchestration Pipeline** 🔧]
@@ -31,7 +31,7 @@ flowchart TD
     end
 
     %% Orchestration pipeline links outside agent
-    
+
     Tool1 <--> RAG1[Vectara RAG 1]
     Tool2 <--> RAG2[Vectara RAG 2]
     Tool3 <--> API[API]
@@ -40,8 +40,7 @@ flowchart TD
 
     %% Grouping
     subgraph Agent [💭 **Agent** 💭]
-        Reasoning
-        Planning
+        LLM
         Response
         OP
     end
@@ -51,18 +50,24 @@ flowchart TD
     classDef tools fill:#E6FFFA,stroke:#319795,color:#000;
     classDef sources fill:#FFF5F5,stroke:#E53E3E,color:#000;
 
-    class Reasoning,Planning,Response llm;
+    class LLM,Response llm;
     class OP pipeline;
     class Tool1,Tool2,Tool3,Agent1,Agent2 tools;
     class RAG1,RAG2,API,DB,Custom sources;
 ```
 
+:::tip Quick Start
+For a complete step-by-step guide with code examples, see [**Agent Quick Start**](/docs/agents/agents-quickstart).
+:::
+
+## Configure agents
+
 Each agent is configured as follows:
 
 * A unique `key` and `name` following the pattern agt_[*identifier*]. If you do not 
-  provide a key, Vectara generates one based on the name automatically.
+  provide an agent key, Vectara generates one based on the name automatically.
 * A human-readable description
-* Optional instructions (prompts)
+* Optional instructions (system prompts)
 * A list of available tools (referenced by name or ID)
    :::tip Note
    When using the `corpora_search` tool, make sure that you already have access  
@@ -71,6 +76,12 @@ Each agent is configured as follows:
 * Metadata and versioning controls
 * A _first_step_ definition that encompasses optional instructions for the 
   agent's behavior.
+
+:::note 
+  Currently, agents execute a single conversational step. The `first_step` name
+  reflects the platform's future support for multi-step agent workflows. For now,
+  treat `first_step` as "the step." It's the only step your agent executes.
+:::
 
 Agents operate through a conversational step architecture, processing user
 input through reasoning, tool execution, and response generation phases.
@@ -511,6 +522,3 @@ Once you have a session, send messages using the events endpoint:
 
 The agent will respond with events including its reasoning, tool usage, and final response.
 
-:::tip Quick Start
-For a complete step-by-step guide with code examples, see [Agent Quick Start](/docs/agents/agents-quickstart).
-:::
