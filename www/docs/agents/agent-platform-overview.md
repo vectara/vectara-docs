@@ -92,7 +92,8 @@ flowchart TD
   lets you customize instructions based on who is talking to the agent.
 - **Tools use dynamic references**: Tools can use `argument_override` to
   dynamically reference session metadata. This allows tools to filter data or
-  customize behavior based on the current user or context.
+  customize behavior based on the current user or context, giving the agent a 
+  restricted tool fit for purpose.
 
 Each tool provides a specific capability, such as searching a specific
 corpus, accessing a web page, or running custom logic. When configuring an
@@ -110,8 +111,8 @@ support streaming responses for real-time interaction.
 
 Both agents and sessions use unique keys for identification:
 
-  - **Agent keys** (pattern: `agt_*`): You can specify a custom key like
-    `agt_customer_support` or let Vectara generate one automatically. Custom
+  - **Agent keys**: You can specify a custom key like
+    `customer_support` or let Vectara generate one automatically (`agt_*`). Custom
     keys make it easier to reference agents consistently across environments
     and in your code.
   - **Session keys** (pattern: custom or auto-generated): Custom session keys
