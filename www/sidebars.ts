@@ -4,76 +4,11 @@ import apiSidebar from "./docs/rest-api/sidebar"; // TS import, .ts extension op
 const sidebars: SidebarsConfig = {
   someSidebar: [
     {
-      type: "doc",
-      id: "introduction",
-      label: "The Vectara Platform",
-    },
-    {
-      type: "category",
-      label: "Security and Data Privacy",
-      link: {
-        type: 'doc',
-        id: 'learn/data-privacy/privacy-overview', 
-        },
-      collapsed: true,
-      items: [
-        "learn/data-privacy/encryption",
-        "learn/authentication/transport-layer-security",
-      ],
-    },
-    {
-      type: "category",
-      label: "Authentication and Authorization",
-      link: {
-        type: 'doc',
-        id: 'learn/authentication/authentication-authorization-vectara', 
-        },
-        collapsed: true,
-        items: [
-          "learn/authentication/personas-and-access-patterns",
-          "learn/authentication/auth-overview",
-          "learn/authentication/choose-auth-method",
-          "learn/authentication/api-key-management",
-          "learn/authentication/oauth-2",
-          "learn/authentication/role-based-access-control",
-          "learn/authentication/attribute-based-access-control",
-          "learn/authentication/multi-tenant-corpus-isolation",
-          "learn/authentication/combine-access-control-with-app-filters",
-        {
-          type: "category",
-          label: "API Authentication Examples",
-          items: [
-            {
-              type: "category",
-              label: "OAuth 2.0 Client Credentials Grant Examples",
-              items: [
-                "getting-started-samples/JWTFetcher.cs",
-                "getting-started-samples/JwtFetcher.java",
-                "getting-started-samples/getJwtToken.php",
-                "getting-started-samples/rest_util.py",
-              ],
-            },
-            { 
-              type: "category",
-              label: "API Key REST Examples",
-              items: [
-                "getting-started-samples/RestApiKeyQueries.cs",
-                "getting-started-samples/RestApiKeyQueries.java",
-                "getting-started-samples/queryDataApiKey.php",
-                "getting-started-samples/rest_api_key_queries.py",
-                "getting-started-samples/app.js",
-              ],
-            },
-          ],
-         },
-        ],
-    },
-    {
       type: "category",
       label: "Getting Started",
       link: {
         type: 'doc',
-        id: 'getting-started', // This points to getting-started.mdx
+        id: 'getting-started',
       },
       collapsed: true,
       items: [
@@ -103,13 +38,104 @@ const sidebars: SidebarsConfig = {
           label: "Sample Demos and Applications",
         },
         {
-          // Nurture sequence emails link to this page. These links will break if the URL is changed.
           type: "doc",
           id: "video-tutorials",
           label: "Video Tutorials",
         },
       ],
     },
+
+    {
+      type: "category",
+      label: "The Vectara Platform",
+      link: {
+        type: 'doc',
+        id: 'introduction', // The Vectara Platform overview
+      },
+      collapsed: true,
+      items: [
+        {
+          type: "category",
+          label: "Security and Data Privacy",
+          collapsed: true,
+          items: [
+            "learn/data-privacy/privacy-overview",
+            "learn/data-privacy/encryption",
+            "learn/authentication/transport-layer-security",
+          ],
+        },
+        {
+          type: "category",
+          label: "Authentication and Authorization",
+          link: {
+            type: 'doc',
+            id: 'learn/authentication/authentication-authorization-vectara',
+          },
+          collapsed: true,
+          items: [
+            {
+              type: "category",
+              label: "Understanding Authentication",
+              collapsed: true,
+              items: [
+                "learn/authentication/personas-and-access-patterns",
+                "learn/authentication/auth-overview",
+                "learn/authentication/choose-auth-method",
+              ],
+            },
+            {
+              type: "category",
+              label: "Authentication Methods",
+              collapsed: true,
+              items: [
+                "learn/authentication/api-key-management",
+                "learn/authentication/oauth-2",
+              ],
+            },
+            {
+              type: "category",
+              label: "Authorization and Access Control",
+              collapsed: true,
+              items: [
+                "learn/authentication/role-based-access-control",
+                "learn/authentication/attribute-based-access-control",
+                "learn/authentication/multi-tenant-corpus-isolation",
+                "learn/authentication/combine-access-control-with-app-filters",
+              ],
+            },
+            {
+              type: "category",
+              label: "API Authentication Examples",
+              collapsed: true,
+              items: [
+                {
+                  type: "category",
+                  label: "OAuth 2.0 Client Credentials Grant Examples",
+                  items: [
+                    "getting-started-samples/JWTFetcher.cs",
+                    "getting-started-samples/JwtFetcher.java",
+                    "getting-started-samples/getJwtToken.php",
+                    "getting-started-samples/rest_util.py",
+                  ],
+                },
+                {
+                  type: "category",
+                  label: "API Key REST Examples",
+                  items: [
+                    "getting-started-samples/RestApiKeyQueries.cs",
+                    "getting-started-samples/RestApiKeyQueries.java",
+                    "getting-started-samples/queryDataApiKey.php",
+                    "getting-started-samples/rest_api_key_queries.py",
+                    "getting-started-samples/app.js",
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+
     {
       type: "category",
       label: "Private Deployment",
@@ -117,6 +143,7 @@ const sidebars: SidebarsConfig = {
         type: "doc",
         id: "deployments",
       },
+      collapsed: true,
       items: [
         "deployments/private-deployment-overview",
         "deployments/deployment-options",
@@ -135,14 +162,17 @@ const sidebars: SidebarsConfig = {
         }
       ],
     },
+
     {
       type: "category",
       label: "Data Management",
       link: {
         type: 'doc',
-        id: 'data-management', // This points to data-management.mdx
+        id: 'data-management',
       },
+      collapsed: true,
       items: [
+        "learn/document-data-structuring",
         "learn/select-ideal-indexing-api",
         "api-reference/indexing-apis/file-upload/file-upload-filetypes",
         "data-management/data-egress",
@@ -151,7 +181,7 @@ const sidebars: SidebarsConfig = {
           label: "Metadata Filters",
           link: {
             type: 'doc',
-            id: 'learn/metadata-search-filtering/filter-overview', 
+            id: 'learn/metadata-search-filtering/filter-overview',
           },
           items: [
             "learn/metadata-search-filtering/using-metadata-filters",
@@ -164,154 +194,180 @@ const sidebars: SidebarsConfig = {
         "learn/semantic-search/add-custom-dimensions",
       ],
     },
+
     {
       type: "category",
       label: "Search and Retrieval",
       link: {
         type: 'doc',
-        id: 'search-and-retrieval', // This points to search-and-retrieval.mdx
+        id: 'search-and-retrieval',
       },
+      collapsed: true,
       items: [
-        "learn/boomerang",
-        "search-and-retrieval/bring-your-own-llm",
-        "learn/hybrid-search",
-        "learn/enable-keyword-text-matching",
-        "search-and-retrieval/fuzzy-metadata-search",
-        "search-and-retrieval/intelligent-query-rewriting",
-        "search-and-retrieval/citations",
-        "learn/querying-table-data",
-        "learn/semantic-search/enable-pagination",
-        "learn/recommendation-systems/recommender-overview",
         {
           type: "category",
-          label: "Reranking",
-          link: {
-            type: 'doc',
-            id: 'api-reference/search-apis/reranking', 
-          },
+          label: "Search Methods",
+          collapsed: true,
           items: [
-            
-            "learn/vectara-multi-lingual-reranker",
-            "learn/mmr-reranker",
-            "learn/user-defined-function-reranker",
-            "learn/chain-reranker",
-            "learn/knee-reranking",
+            "learn/boomerang",
+            "learn/semantic-search/semantic-search-overview",
+            "learn/semantic-search/relevance-tuning-techniques",
+            "learn/hybrid-search",
+            "learn/enable-keyword-text-matching",
+            "search-and-retrieval/fuzzy-metadata-search",
+          ],
+        },
+        {
+          type: "category",
+          label: "Improving Search Quality",
+          collapsed: true,
+          items: [
+            "search-and-retrieval/intelligent-query-rewriting",
+            {
+              type: "category",
+              label: "Reranking",
+              link: {
+                type: 'doc',
+                id: 'api-reference/search-apis/reranking',
+              },
+              items: [
+                "learn/vectara-multi-lingual-reranker",
+                "learn/mmr-reranker",
+                "learn/user-defined-function-reranker",
+                "learn/chain-reranker",
+                "learn/knee-reranking",
+              ],
+            },
+            "search-and-retrieval/bring-your-own-llm",
+          ],
+        },
+        {
+          type: "category",
+          label: "Working with Results",
+          collapsed: true,
+          items: [
+            "search-and-retrieval/citations",
+            "learn/semantic-search/enable-pagination",
+            "learn/querying-table-data",
+            "learn/recommendation-systems/recommender-overview",
           ],
         },
       ],
     },
+
+    {
+      type: "category",
+      label: "AI Agents",
+      link: {
+        type: 'doc',
+        id: 'agents/agent-platform-overview',
+      },
+      collapsed: true,
+      items: [
+        "agents/instructions",
+        "agents/tools",
+        "agents/agents",
+        // "agents/lambda-tools",
+        "agents/sessions",
+        "agents/conversational-ai",
+        "agents/mcp",
+      ],
+    },
+
     {
       type: "category",
       label: "Generation",
       link: {
         type: 'doc',
-        id: 'generation', // This points to generation.mdx
+        id: 'generation',
       },
+      collapsed: true,
       items: [
-        "learn/mockingbird-llm",
-        "learn/grounded-generation/model-selection",
-        "learn/grounded-generation/select-a-summarizer",
+        {
+          type: "category",
+          label: "Understanding Generation",
+          collapsed: true,
+          items: [
+            "learn/grounded-generation/grounded-generation-overview",
+            "learn/question-answer/question-answer-overview",
+            {
+              type: "doc",
+              id: "learn/grounded-generation/configure-query-summarization",
+              label: "Configure Query Summarization",
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "Model Configuration",
+          collapsed: true,
+          items: [
+            "learn/grounded-generation/model-selection",
+            "learn/mockingbird-llm",
+            "learn/grounded-generation/select-a-summarizer",
+            "learn/grounded-generation/grounded-generation-response-languages",
+          ],
+        },
         {
           type: "category",
           label: "Generative Prompts",
+          collapsed: true,
           link: {
-            type: 'doc',
-            id: 'generative-prompts', 
-          },
+                type: 'doc',
+                id: 'generative-prompts',
+              },
           items: [
-            "prompts/vectara-prompt-engine",
-            "prompts/custom-prompts-with-metadata",
-          ],
+                "prompts/vectara-prompt-engine",
+                "prompts/custom-prompts-with-metadata",
+                "generation/custom-prompt-templates-customization",
+              ],
         },
-       "generation/custom-prompt-templates-customization", 
       ],
     },
-    {
-      type: "category",
-      label: "Agents",
-      link: {
-        type: 'doc',
-        id: 'agents/agent-platform-overview',
-      },
-      items: [
-        "agents/mcp",
-        "agents/agents",
-        "agents/tools",
-        "agents/instructions",
-        "agents/sessions",
-        "agents/conversational-ai",
-      ],
-    },
+
     {
       type: "category",
       label: "Observability and Evaluation",
       link: {
         type: 'doc',
-        id: 'observability', // This points to observability.mdx
+        id: 'observability',
       },
+      collapsed: true,
       items: [
         "learn/query-observability",
         "learn/hallucination-evaluation",
         "learn/vectara-hallucination-corrector",
       ],
     },
-    {
-      type: "category",
-      label: "Use Cases",
-      link: {
-        type: 'doc',
-        id: 'use-case-exploration',
-      },
-      items: [
-        {
-          type: "category",
-          label: "Semantic Search",
-          items: [
-            "learn/semantic-search/semantic-search-overview",
-            "learn/semantic-search/relevance-tuning-techniques",
-          ],
-        },
-        {
-          type: "category",
-          label: "Retrieval Augmented Generation (RAG)",
-          items: [
-            "learn/grounded-generation/grounded-generation-overview",
-            "learn/grounded-generation/configure-query-summarization",
-            "learn/grounded-generation/grounded-generation-response-languages",
-          ],
-        },
-        {
-          type: "doc",
-          id: "learn/document-data-structuring",
-          label: "Document Data Structuring",
-        },
-        "learn/question-answer/question-answer-overview",
-      ],
-    },
-    {
-      type: "category",
-      label: "Tutorials",
-      items: [
-        "tutorials/build-a-chatbot",
-        "tutorials/use-openai-libraries-with-vectara",
-        "tutorials/use-external-applications-sdk",
-      ],
-    },
+
     {
       type: "category",
       label: "Build Applications",
+      collapsed: true,
       items: [
+        {
+          type: "category",
+          label: "Tutorials",
+          items: [
+            "tutorials/build-a-chatbot",
+            "tutorials/use-openai-libraries-with-vectara",
+            "tutorials/use-external-applications-sdk",
+          ],
+        },
         "build-apps/app-building",
         "build-apps/open-eval-framework",
         "build-apps/vectara-ingest",
+        "build-apps/react-chatbot",
         "build-apps/react-search",
         "build-apps/create-ui",
         "build-apps/vectara-answer",
       ],
     },
+
     {
       type: "category",
       label: "Integrations",
+      collapsed: true,
       items: [
         "integrations/community-collaborations-and-partnerships",
         {
@@ -335,14 +391,14 @@ const sidebars: SidebarsConfig = {
         {
           type: "category",
           label: "Low-code / No-code App Builders",
-          items: 
-          [
+          items: [
             "integrations/vectara-and-flowise",
             "integrations/vectara-and-langflow",
           ],
         },
       ],
     },
+
     {
       type: "category",
       label: "Vectara Console",
@@ -352,6 +408,11 @@ const sidebars: SidebarsConfig = {
       },
       collapsed: true,
       items: [
+        {
+          type: "doc",
+          id: "console-ui/admin-center",
+          label: "Vectara Admin Center",
+        },
         {
           type: "category",
           label: "Manage Agents",
@@ -423,10 +484,7 @@ const sidebars: SidebarsConfig = {
         "console-ui/delete-account",
       ],
     },
-    {
-      type: "doc",
-      id: "console-ui/admin-center",
-    },
+
     {
       type: "category",
       label: "API Concepts",
@@ -438,54 +496,239 @@ const sidebars: SidebarsConfig = {
         "api-reference/rest",
         {
           type: "category",
-          label: "Query APIs",
+          label: "Data Ingestion",
           items: [
-            "api-reference/search-apis/search",
             {
               type: "category",
-              label: "Interpreting Responses",
+              label: "File Upload APIs",
               items: [
-                "api-reference/search-apis/interpreting-responses/metadata",
-                "api-reference/search-apis/interpreting-responses/interpreting-scores",
-                "api-reference/search-apis/interpreting-responses/highlighting",
+                "api-reference/indexing-apis/file-upload/file-upload",
+                "api-reference/indexing-apis/file-upload/file-upload-filetypes",
+              ],
+            },
+            {
+              type: "category",
+              label: "Indexing APIs",
+              items: [
+                "api-reference/indexing-apis/indexing",
+                "api-reference/indexing-apis/update-document-metadata",
+                "api-reference/indexing-apis/replace-document-metadata",
+                "api-reference/indexing-apis/deleting-documents",
+              ],
+            },
+            {
+              type: "category",
+              label: "Table Extractors APIs",
+              items: ["api-reference/table-extractors/list-table-extractors"],
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "Querying and Retrieval",
+          items: [
+            {
+              type: "category",
+              label: "Query APIs",
+              items: [
+                "api-reference/search-apis/search",
+                {
+                  type: "category",
+                  label: "Interpreting Responses",
+                  items: [
+                    "api-reference/search-apis/interpreting-responses/metadata",
+                    "api-reference/search-apis/interpreting-responses/interpreting-scores",
+                    "api-reference/search-apis/interpreting-responses/highlighting",
+                  ],
+                },
+              ],
+            },
+            {
+              type: "category",
+              label: "Metadata Query APIs",
+              items: [
+                "api-reference/search-apis/fuzzy-metadata",
+              ],
+            },
+            {
+              type: "category",
+              label: "Chat APIs",
+              items: [
+                "api-reference/chat-apis/chat-apis-overview",
+                "api-reference/chat-apis/create-chat",
+                "api-reference/chat-apis/list-chats",
+                "api-reference/chat-apis/get-chat",
+                "api-reference/chat-apis/delete-conversations",
+                "api-reference/chat-apis/create-chat-turn",
+                "api-reference/chat-apis/get-chat-turn",
+                "api-reference/chat-apis/list-chat-turns",
+                "api-reference/chat-apis/delete-turns",
+                "api-reference/chat-apis/update-chat-turn",
+              ],
+            },
+            {
+              type: "category",
+              label: "LLM Chat Completions APIs",
+              items: ["api-reference/llm-chat-completions/chat-completions"],
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "Agent Operation System",
+          items: [
+            {
+              type: "category",
+              label: "Agents APIs",
+              link: {
+                type: 'doc',
+                id: 'api-reference/agent-apis/agent-apis-overview',
+              },
+              items: [
+                {
+                  type: 'category',
+                  label: 'Agent Management',
+                  link: {
+                    type: 'doc',
+                    id: 'api-reference/agent-apis/agent-management',
+                  },
+                  collapsed: false,
+                  items: [
+                    "api-reference/agent-apis/create-agent",
+                    "api-reference/agent-apis/list-agents",
+                    "api-reference/agent-apis/get-agent",
+                    "api-reference/agent-apis/update-agent",
+                    "api-reference/agent-apis/replace-agent",
+                    "api-reference/agent-apis/delete-agent"
+                  ]
+                },
+                {
+                  type: 'category',
+                  label: 'Tool Server Management',
+                  link: {
+                    type: 'doc',
+                    id: 'api-reference/agent-apis/tool-server-management',
+                  },
+                  collapsed: false,
+                  items: [
+                    "api-reference/agent-apis/tool-server/create-tool-server",
+                    "api-reference/agent-apis/tool-server/list-tool-servers",
+                    "api-reference/agent-apis/tool-server/get-tool-server",
+                    "api-reference/agent-apis/tool-server/update-tool-server",
+                    "api-reference/agent-apis/tool-server/sync-tool-server",
+                    "api-reference/agent-apis/tool-server/delete-tool-server",
+                  ]
+                },
+                {
+                  type: 'category',
+                  label: 'Tool Management',
+                  link: {
+                    type: 'doc',
+                    id: 'api-reference/agent-apis/tool-management',
+                  },
+                  collapsed: false,
+                  items: [
+                    "api-reference/agent-apis/tool/list-tools",
+                    "api-reference/agent-apis/tool/get-tool",
+                    "api-reference/agent-apis/tool/update-tool",
+                    "api-reference/agent-apis/tool/delete-tool",
+                    // "api-reference/agent-apis/tool/create-a-lambda-tool",
+                  ]
+                },
+                {
+                  type: 'category',
+                  label: 'Tool Configuration Management',
+                  link: {
+                    type: 'doc',
+                    id: 'api-reference/agent-apis/tool-configuration-management',
+                  },
+                  collapsed: false,
+                  items: [
+                    "api-reference/agent-apis/tool-configuration/create-tool-configuration",
+                    "api-reference/agent-apis/tool-configuration/list-tool-configurations",
+                    "api-reference/agent-apis/tool-configuration/get-tool-configuration",
+                    "api-reference/agent-apis/tool-configuration/update-tool-configuration",
+                    "api-reference/agent-apis/tool-configuration/delete-tool-configuration",
+                    "api-reference/agent-apis/tool-configuration/delete-tool-configuration-version",
+                  ]
+                },
+                {
+                  type: 'category',
+                  label: 'Instruction Management',
+                  link: {
+                    type: 'doc',
+                    id: 'api-reference/agent-apis/instruction-management',
+                  },
+                  collapsed: false,
+                  items: [
+                    "api-reference/agent-apis/instruction/create-instruction",
+                    "api-reference/agent-apis/instruction/list-instructions",
+                    "api-reference/agent-apis/instruction/get-instruction",
+                    "api-reference/agent-apis/instruction/update-instruction",
+                    "api-reference/agent-apis/instruction/delete-instruction",
+                    "api-reference/agent-apis/instruction/test-instruction",
+                    "api-reference/agent-apis/instruction/delete-instruction-version",
+                  ]
+                },
+              ],
+            },
+            {
+              type: "category",
+              label: "Agent Sessions APIs",
+              items: [
+                {
+                  type: 'category',
+                  label: 'Session Management',
+                  link: {
+                    type: 'doc',
+                    id: 'api-reference/agent-apis/session-management',
+                  },
+                  collapsed: false,
+                  items: [
+                    "api-reference/agent-apis/session/create-agent-session",
+                    "api-reference/agent-apis/session/list-agent-sessions",
+                    "api-reference/agent-apis/session/get-agent-session",
+                    "api-reference/agent-apis/session/update-agent-session",
+                    "api-reference/agent-apis/session/delete-agent-session"
+                  ]
+                },
+                {
+                  type: 'category',
+                  label: 'Event Management',
+                  link: {
+                    type: 'doc',
+                    id: 'api-reference/agent-apis/event-management',
+                  },
+                  collapsed: false,
+                  items: [
+                    "api-reference/agent-apis/event/create-agent-event",
+                    "api-reference/agent-apis/event/list-agent-events",
+                    "api-reference/agent-apis/event/get-agent-event",
+                  ]
+                },
               ],
             },
           ],
         },
         {
           type: "category",
-          label: "Query History APIs",
+          label: "Generation and Summarization",
           items: [
-            "api-reference/query-history-apis/get-query-history",
-            "api-reference/query-history-apis/get-query-histories",
+            {
+              type: "category",
+              label: "Generation Presets APIs",
+              items: ["api-reference/generation-presets/list-generation-presets"],
+            },
+            {
+              type: "category",
+              label: "Reranker APIs",
+              items: ["api-reference/reranker-apis/reranker-apis"],
+            },
           ],
         },
         {
           type: "category",
-          label: "Metadata Query APIs",
-          items: [
-            "api-reference/search-apis/fuzzy-metadata",
-          ],
-        },
-        {
-          type: "category",
-          label: "File Upload APIs",
-          items: [
-            "api-reference/indexing-apis/file-upload/file-upload",
-          ],
-        },
-        {
-          type: "category",
-          label: "Indexing APIs",
-          items: [
-            "api-reference/indexing-apis/indexing",
-            "api-reference/indexing-apis/update-document-metadata",
-            "api-reference/indexing-apis/replace-document-metadata",
-          ],
-        },
-        {
-          type: "category",
-          label: "Corpus Admin APIs",
+          label: "Corpus Management",
           items: [
             "api-reference/admin-apis/admin",
             "api-reference/admin-apis/create-corpus",
@@ -500,253 +743,112 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "category",
-          label: "Document Admin APIs",
+          label: "Document Management",
           items: [
             "api-reference/admin-apis/corpus/list-documents",
             "api-reference/admin-apis/corpus/retrieve-document",
-            "api-reference/indexing-apis/deleting-documents",
             "api-reference/documents-apis/summarize-document",
           ],
         },
         {
           type: "category",
-          label: "Chat APIs",
-          items: [
-            "api-reference/chat-apis/chat-apis-overview",
-            "api-reference/chat-apis/create-chat",
-            "api-reference/chat-apis/list-chats",
-            "api-reference/chat-apis/get-chat",
-            "api-reference/chat-apis/delete-conversations",
-            "api-reference/chat-apis/create-chat-turn",
-            "api-reference/chat-apis/get-chat-turn",
-            "api-reference/chat-apis/list-chat-turns",
-            "api-reference/chat-apis/delete-turns",
-            "api-reference/chat-apis/update-chat-turn",
-          ],
-        },
-        {
-          type: "category",
-          label: "Generation Presets APIs",
-          items: ["api-reference/generation-presets/list-generation-presets"],
-        },
-        {
-          type: "category",
-          label: "Large Language Models APIs",
-          items: [
-            "api-reference/llms-apis/llms-api",
-            "api-reference/llms-apis/create-llm",
-            "api-reference/llms-apis/delete-llm",
-            "api-reference/llms-apis/get-llm",
-          ],
-        },
-        {
-          type: "category",
-          label: "Hallucination Correctors APIs",
-          items: [
-            "api-reference/llms-apis/hallucination_correctors",
-            "api-reference/hcm-apis/list-hallucination-correctors"
-          ],
-        },
-        {
-          type: "category",
-          label: "Encoder APIs",
-          items: ["api-reference/encoder-apis/list-encoders"],
-        },
-        {
-          type: "category",
-          label: "Reranker APIs",
-          items: ["api-reference/reranker-apis/reranker-apis"],
-        },
-        {
-          type: "category",
-          label: "Jobs APIs",
-          items: [
-            "api-reference/jobs-apis/list-jobs",
-            "api-reference/jobs-apis/get-job",
-          ],
-        },
-        {
-          type: "category",
-          label: "Users APIs",
-          items: [
-            "api-reference/admin-apis/manage-users/create-user",
-            "api-reference/admin-apis/manage-users/list-users",
-            "api-reference/admin-apis/manage-users/get-user",
-            "api-reference/admin-apis/manage-users/update-user",
-            "api-reference/admin-apis/manage-users/delete-user",
-            "api-reference/admin-apis/manage-users/reset-user-password",
-          ],
-        },
-        {
-          type: "category",
-          label: "Application Clients APIs",
-          items: [
-            "api-reference/app-clients/create-app-client",
-            "api-reference/app-clients/list-app-clients",
-            "api-reference/app-clients/get-app-client",
-            "api-reference/app-clients/update-app-client",
-            "api-reference/app-clients/delete-app-client",
-          ],
-        },
-        {
-          type: "category",
-          label: "API Key Admin APIs",
-          items: [
-            "api-reference/api-keys/create-api-key",
-            "api-reference/api-keys/list-api-keys",
-            "api-reference/api-keys/get-api-key",
-            "api-reference/api-keys/enable-api-key",
-            "api-reference/api-keys/delete-api-key",
-          ],
-        },
-        {
-          type: "category",
-          label: "Table Extractors APIs",
-          items: ["api-reference/table-extractors/list-table-extractors"],
-        },
-        {
-          type: "category",
-          label: "LLM Chat Completions APIs",
-          items: ["api-reference/llm-chat-completions/chat-completions"],
-        },
-        {
-          type: "category",
-          label: "Factual Consistency Evaluation APIs",
-          items: ["api-reference/hhem-apis/evaluate-factual-consistency"],
-        },
-        {
-          type: "category",
-          label: "Agents APIs",
-          link: {
-            type: 'doc',
-            id: 'api-reference/agent-apis/agent-apis-overview',
-          },
+          label: "Evaluation and Observability",
           items: [
             {
-              type: 'category',
-              label: 'Agent Management APIs',
-              link: {
-                type: 'doc',
-                id: 'api-reference/agent-apis/agent-management',
-              },
-              collapsed: false,
+              type: "category",
+              label: "Query History APIs",
               items: [
-                "api-reference/agent-apis/create-agent",
-                "api-reference/agent-apis/list-agents",
-                "api-reference/agent-apis/get-agent",
-                "api-reference/agent-apis/update-agent",
-                "api-reference/agent-apis/replace-agent",
-                "api-reference/agent-apis/delete-agent"
-              ]
+                "api-reference/query-history-apis/get-query-history",
+                "api-reference/query-history-apis/get-query-histories",
+              ],
             },
             {
-              type: 'category',
-              label: 'Tool Server Management APIs',
-              link: {
-                type: 'doc',
-                id: 'api-reference/agent-apis/tool-server-management',
-              },
-              collapsed: false,
-              items: [
-                "api-reference/agent-apis/tool-server/create-tool-server",
-                "api-reference/agent-apis/tool-server/list-tool-servers",
-                "api-reference/agent-apis/tool-server/get-tool-server",
-                "api-reference/agent-apis/tool-server/update-tool-server",
-                "api-reference/agent-apis/tool-server/sync-tool-server",
-                "api-reference/agent-apis/tool-server/delete-tool-server",
-              ]
+              type: "category",
+              label: "Factual Consistency Evaluation APIs",
+              items: ["api-reference/hhem-apis/evaluate-factual-consistency"],
             },
             {
-              type: 'category',
-              label: 'Tool Management APIs',
-              link: {
-                type: 'doc',
-                id: 'api-reference/agent-apis/tool-management',
-              },
-              collapsed: false,
+              type: "category",
+              label: "Hallucination Correctors APIs",
               items: [
-                "api-reference/agent-apis/tool/list-tools",
-                "api-reference/agent-apis/tool/get-tool",
-                "api-reference/agent-apis/tool/update-tool",
-                "api-reference/agent-apis/tool/delete-tool",
-              ]
-            },
-            {
-              type: 'category',
-              label: 'Tool Configuration Management APIs',
-              link: {
-                type: 'doc',
-                id: 'api-reference/agent-apis/tool-configuration-management',
-              },
-              collapsed: false,
-              items: [
-                "api-reference/agent-apis/tool-configuration/create-tool-configuration",
-                "api-reference/agent-apis/tool-configuration/list-tool-configurations",
-                "api-reference/agent-apis/tool-configuration/get-tool-configuration",
-                "api-reference/agent-apis/tool-configuration/update-tool-configuration",
-                "api-reference/agent-apis/tool-configuration/delete-tool-configuration",
-                "api-reference/agent-apis/tool-configuration/delete-tool-configuration-version",
-              ]
-            },
-            {
-              type: 'category',
-              label: 'Instruction Management APIs',
-              link: {
-                type: 'doc',
-                id: 'api-reference/agent-apis/instruction-management',
-              },
-              collapsed: false,
-              items: [
-                "api-reference/agent-apis/instruction/create-instruction",
-                "api-reference/agent-apis/instruction/list-instructions",
-                "api-reference/agent-apis/instruction/get-instruction",
-                "api-reference/agent-apis/instruction/update-instruction",
-                "api-reference/agent-apis/instruction/delete-instruction",
-                "api-reference/agent-apis/instruction/test-instruction",
-                "api-reference/agent-apis/instruction/delete-instruction-version",
-              ]
-            },
-         ],
-        },
-        {
-          type: "category",
-          label: "Agent Sessions APIs",
-          items: [
-            {
-              type: 'category',
-              label: 'Session Management APIs',
-              link: {
-                type: 'doc',
-                id: 'api-reference/agent-apis/session-management',
-              },
-              collapsed: false,
-              items: [
-                "api-reference/agent-apis/session/create-agent-session",
-                "api-reference/agent-apis/session/list-agent-sessions",
-                "api-reference/agent-apis/session/get-agent-session",
-                "api-reference/agent-apis/session/update-agent-session",
-                "api-reference/agent-apis/session/delete-agent-session"
-              ]
-            },
-            {
-              type: 'category',
-              label: 'Event Management APIs',
-              link: {
-                type: 'doc',
-                id: 'api-reference/agent-apis/event-management',
-              },
-              collapsed: false,
-              items: [
-                "api-reference/agent-apis/event/create-agent-event",
-                "api-reference/agent-apis/event/list-agent-events",
-                "api-reference/agent-apis/event/get-agent-event",
-              ]
+                "api-reference/llms-apis/hallucination_correctors",
+                "api-reference/hcm-apis/list-hallucination-correctors"
+              ],
             },
           ],
         },
+        {
+          type: "category",
+          label: "User and Access Management",
+          items: [
+            {
+              type: "category",
+              label: "Users APIs",
+              items: [
+                "api-reference/admin-apis/manage-users/create-user",
+                "api-reference/admin-apis/manage-users/list-users",
+                "api-reference/admin-apis/manage-users/get-user",
+                "api-reference/admin-apis/manage-users/update-user",
+                "api-reference/admin-apis/manage-users/delete-user",
+                "api-reference/admin-apis/manage-users/reset-user-password",
+              ],
+            },
+            {
+              type: "category",
+              label: "Application Clients APIs",
+              items: [
+                "api-reference/app-clients/create-app-client",
+                "api-reference/app-clients/list-app-clients",
+                "api-reference/app-clients/get-app-client",
+                "api-reference/app-clients/update-app-client",
+                "api-reference/app-clients/delete-app-client",
+              ],
+            },
+            {
+              type: "category",
+              label: "API Key Admin APIs",
+              items: [
+                "api-reference/api-keys/create-api-key",
+                "api-reference/api-keys/list-api-keys",
+                "api-reference/api-keys/get-api-key",
+                "api-reference/api-keys/enable-api-key",
+                "api-reference/api-keys/delete-api-key",
+              ],
+            },
+            {
+              type: "category",
+              label: "Jobs APIs",
+              items: [
+                "api-reference/jobs-apis/list-jobs",
+                "api-reference/jobs-apis/get-job",
+              ],
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "LLM Management",
+          items: [
+            {
+              type: "category",
+              label: "Large Language Models APIs",
+              items: [
+                "api-reference/llms-apis/llms-api",
+                "api-reference/llms-apis/create-llm",
+                "api-reference/llms-apis/delete-llm",
+                "api-reference/llms-apis/get-llm",
+              ],
+            },
+            {
+              type: "category",
+              label: "Encoder APIs",
+              items: ["api-reference/encoder-apis/list-encoders"],
+            },
+          ],
+        },
+        "api-reference/vectara-postman-collection",
       ],
     },
-    "api-reference/vectara-postman-collection",
   ],
   restOAS: [
     {
@@ -792,6 +894,7 @@ const sidebars: SidebarsConfig = {
       label: "Release Notes",
     },
   ],
+
   changeLog: [
     {
       type: "doc",
