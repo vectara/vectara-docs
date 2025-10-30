@@ -6,6 +6,16 @@ sidebar_label: Tools
 
 import CodePanel from '@site/src/theme/CodePanel';
 
+Tools provide agents with capabilities to interact with data and external 
+systems. An agent uses the conversational context and its instructions to 
+decide which tools to call, and how use the tools' responses to respond to 
+the user's query.
+
+Vectara offers a number of useful tools out-of-the-box, but you can also 
+build your own. For a complete list of available tools, refer to the 
+[Tools API docs](/docs/rest-api/tools).
+
+
 Tools represent external or internal capabilities that agents can invoke 
 dynamically. They are defined by:
 
@@ -15,42 +25,55 @@ dynamically. They are defined by:
 * Metadata for categorization.
 * Runtime availability (enabled or disabled).
 
-## Available tools
+## Searching corpora with tools
 
-Vectara Agents support the following tool types:
+You configure corpus search behavior for Vectara agents using the 
+`query_configuration` parameter within the `corpora_search` tool. This 
+parameter uses the same `search` and `generation` object formatting as shown 
+in [Query API](/docs/api-reference/search-apis/search) and [Advanced Single Corpus Query](/docs/rest-api/query-corpus). Before using this tool, 
+ensure that you have at least one indexed corpus with data. The LLM cannot 
+modify these predefined search parameters during
+conversation.
 
-### Built-in tools
+For more details about the different corpus objects, see 
+[Configure Query Parameters](/docs/api-reference/search-apis/query-configuration).
 
-* `corpora_search`: Retrieves results from Vectara corpora using Retrieval
-  Augmented Generation (RAG). This tool provides summary and relevant search results using
-  the same default parameters as the [Query API](/docs/api-reference/search-apis/search).
-  For more details about configuring the `corpora_search` tool, see
-  [**Configure Agent Search Behavior**](/docs/agents/#configure-agent-search-behavior).
+## Agent configuration examples
 
-* `web_search`: Searches the public web for current information. Powered by Tavily,
-  this tool enables agents to access real-time data and recent developments that may not
-  be in your indexed corpora.
+This example demonstrates a basic configuration.
 
-### External and custom tools
-
-* `mcp`: Connect to external services through the Model Context Protocol (MCP).
-  MCP tools enable agents to integrate with external systems and services. See
-  [**Model Context Protocol**](/docs/agents/model-context-protocol) for details.
-
-* `lambda`: Execute custom Python functions in a secure, sandboxed environment.
-  Lambda tools allow you to define user-defined functions that agents can call to
-  perform custom logic, calculations, or data transformations. Currently supports
-  Python 3.12 with a curated set of libraries including numpy and pandas.
-
-* `structured_indexing`: Index structured documents into Vectara corpora with full
-  control over document structure, sections, metadata, tables, and images. This tool
-  enables agents to dynamically add content to your knowledge base during conversations.
-
-## Tool permissions and security
-
-Tools follow the same permission model as the rest of Vectara:
-
-1. **API keys**: Tools can only access corpora if the API key has access to the 
-   corpora.
-2. **Metadata filtering**: Additional security through metadata filters.
-3. **Result limiting**: Control how much data tools can retrieve.
+<CodePanel
+  title="Basic query configuration example"
+  snippets={[
+    {
+      language: 'json',
+      code: `{
+   "tool_configurations": {
+     "knowledge_base_search": {
+       "type": "corpora_search",
+       "query_configuration": {
+         "search": {
+           "corpora": [
+             {
+               "corpus_key": "customer-guides"
+             }
+           ]
+         }
+       }
+     }
+   }
+}`
+    }
+  ]}
+  annotations={{
+    json: [
+      { line: 2, text: 'Tool configurations object containing all agent tools' },
+      { line: 3, text: 'Custom name for this knowledge base search tool' },
+      { line: 4, text: 'Tool type for searching Vectara corpora' },
+      { line: 5, text: 'Query configuration with search settings' },
+      { line: 6, text: 'Search configuration defining which corpora to query' },
+      { line: 9, text: 'Unique corpus identifier to search' }
+    ]
+  }}
+  layout="stacked"
+/>

@@ -460,6 +460,136 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "category",
+          label: "Agents APIs",
+          link: {
+            type: 'doc',
+            id: 'api-reference/agent-apis/agent-apis-overview',
+          },
+          items: [
+            {
+              type: 'category',
+              label: 'Agent Management APIs',
+              link: {
+                type: 'doc',
+                id: 'api-reference/agent-apis/agent-management',
+              },
+              collapsed: false,
+              items: [
+                "api-reference/agent-apis/create-agent",
+                "api-reference/agent-apis/list-agents",
+                "api-reference/agent-apis/get-agent",
+                "api-reference/agent-apis/update-agent",
+                "api-reference/agent-apis/replace-agent",
+                "api-reference/agent-apis/delete-agent"
+              ]
+            },
+            {
+              type: 'category',
+              label: 'Tool Server Management APIs',
+              link: {
+                type: 'doc',
+                id: 'api-reference/agent-apis/tool-server-management',
+              },
+              collapsed: false,
+              items: [
+                "api-reference/agent-apis/tool-server/create-tool-server",
+                "api-reference/agent-apis/tool-server/list-tool-servers",
+                "api-reference/agent-apis/tool-server/get-tool-server",
+                "api-reference/agent-apis/tool-server/update-tool-server",
+                "api-reference/agent-apis/tool-server/sync-tool-server",
+                "api-reference/agent-apis/tool-server/delete-tool-server",
+              ]
+            },
+            {
+              type: 'category',
+              label: 'Tool Management APIs',
+              link: {
+                type: 'doc',
+                id: 'api-reference/agent-apis/tool-management',
+              },
+              collapsed: false,
+              items: [
+                "api-reference/agent-apis/tool/list-tools",
+                "api-reference/agent-apis/tool/get-tool",
+                "api-reference/agent-apis/tool/update-tool",
+                "api-reference/agent-apis/tool/delete-tool",
+              ]
+            },
+            // {
+              // type: 'category',
+              // label: 'Tool Configuration Management APIs',
+              // link: {
+                // type: 'doc',
+                // id: 'api-reference/agent-apis/tool-configuration-management',
+              // },
+              // collapsed: false,
+              // items: [
+                // "api-reference/agent-apis/tool-configuration/create-tool-configuration",
+                // "api-reference/agent-apis/tool-configuration/list-tool-configurations",
+                // "api-reference/agent-apis/tool-configuration/get-tool-configuration",
+                // "api-reference/agent-apis/tool-configuration/update-tool-configuration",
+                // "api-reference/agent-apis/tool-configuration/delete-tool-configuration",
+                // "api-reference/agent-apis/tool-configuration/delete-tool-configuration-version",
+              // ]
+            // },
+            {
+              type: 'category',
+              label: 'Instruction Management APIs',
+              link: {
+                type: 'doc',
+                id: 'api-reference/agent-apis/instruction-management',
+              },
+              collapsed: false,
+              items: [
+                "api-reference/agent-apis/instruction/create-instruction",
+                "api-reference/agent-apis/instruction/list-instructions",
+                "api-reference/agent-apis/instruction/get-instruction",
+                "api-reference/agent-apis/instruction/update-instruction",
+                "api-reference/agent-apis/instruction/delete-instruction",
+                "api-reference/agent-apis/instruction/test-instruction",
+                "api-reference/agent-apis/instruction/delete-instruction-version",
+              ]
+            },
+         ],
+        },
+        {
+          type: "category",
+          label: "Agent Sessions APIs",
+          items: [
+            {
+              type: 'category',
+              label: 'Session Management APIs',
+              link: {
+                type: 'doc',
+                id: 'api-reference/agent-apis/session-management',
+              },
+              collapsed: false,
+              items: [
+                "api-reference/agent-apis/session/create-agent-session",
+                "api-reference/agent-apis/session/list-agent-sessions",
+                "api-reference/agent-apis/session/get-agent-session",
+                "api-reference/agent-apis/session/update-agent-session",
+                "api-reference/agent-apis/session/delete-agent-session"
+              ]
+            },
+            {
+              type: 'category',
+              label: 'Event Management APIs',
+              link: {
+                type: 'doc',
+                id: 'api-reference/agent-apis/event-management',
+              },
+              collapsed: false,
+              items: [
+                "api-reference/agent-apis/event/create-agent-event",
+                "api-reference/agent-apis/event/list-agent-events",
+                "api-reference/agent-apis/event/get-agent-event",
+              ]
+            },
+          ],
+        },
+        {
+          type: "category",
           label: "Query History APIs",
           items: [
             "api-reference/query-history-apis/get-query-history",
@@ -619,136 +749,6 @@ const sidebars: SidebarsConfig = {
           type: "category",
           label: "Factual Consistency Evaluation APIs",
           items: ["api-reference/hhem-apis/evaluate-factual-consistency"],
-        },
-        {
-          type: "category",
-          label: "Agents APIs",
-          link: {
-            type: 'doc',
-            id: 'api-reference/agent-apis/agent-apis-overview',
-          },
-          items: [
-            {
-              type: 'category',
-              label: 'Agent Management APIs',
-              link: {
-                type: 'doc',
-                id: 'api-reference/agent-apis/agent-management',
-              },
-              collapsed: false,
-              items: [
-                "api-reference/agent-apis/create-agent",
-                "api-reference/agent-apis/list-agents",
-                "api-reference/agent-apis/get-agent",
-                "api-reference/agent-apis/update-agent",
-                "api-reference/agent-apis/replace-agent",
-                "api-reference/agent-apis/delete-agent"
-              ]
-            },
-            {
-              type: 'category',
-              label: 'Tool Server Management APIs',
-              link: {
-                type: 'doc',
-                id: 'api-reference/agent-apis/tool-server-management',
-              },
-              collapsed: false,
-              items: [
-                "api-reference/agent-apis/tool-server/create-tool-server",
-                "api-reference/agent-apis/tool-server/list-tool-servers",
-                "api-reference/agent-apis/tool-server/get-tool-server",
-                "api-reference/agent-apis/tool-server/update-tool-server",
-                "api-reference/agent-apis/tool-server/sync-tool-server",
-                "api-reference/agent-apis/tool-server/delete-tool-server",
-              ]
-            },
-            {
-              type: 'category',
-              label: 'Tool Management APIs',
-              link: {
-                type: 'doc',
-                id: 'api-reference/agent-apis/tool-management',
-              },
-              collapsed: false,
-              items: [
-                "api-reference/agent-apis/tool/list-tools",
-                "api-reference/agent-apis/tool/get-tool",
-                "api-reference/agent-apis/tool/update-tool",
-                "api-reference/agent-apis/tool/delete-tool",
-              ]
-            },
-            {
-              type: 'category',
-              label: 'Tool Configuration Management APIs',
-              link: {
-                type: 'doc',
-                id: 'api-reference/agent-apis/tool-configuration-management',
-              },
-              collapsed: false,
-              items: [
-                "api-reference/agent-apis/tool-configuration/create-tool-configuration",
-                "api-reference/agent-apis/tool-configuration/list-tool-configurations",
-                "api-reference/agent-apis/tool-configuration/get-tool-configuration",
-                "api-reference/agent-apis/tool-configuration/update-tool-configuration",
-                "api-reference/agent-apis/tool-configuration/delete-tool-configuration",
-                "api-reference/agent-apis/tool-configuration/delete-tool-configuration-version",
-              ]
-            },
-            {
-              type: 'category',
-              label: 'Instruction Management APIs',
-              link: {
-                type: 'doc',
-                id: 'api-reference/agent-apis/instruction-management',
-              },
-              collapsed: false,
-              items: [
-                "api-reference/agent-apis/instruction/create-instruction",
-                "api-reference/agent-apis/instruction/list-instructions",
-                "api-reference/agent-apis/instruction/get-instruction",
-                "api-reference/agent-apis/instruction/update-instruction",
-                "api-reference/agent-apis/instruction/delete-instruction",
-                "api-reference/agent-apis/instruction/test-instruction",
-                "api-reference/agent-apis/instruction/delete-instruction-version",
-              ]
-            },
-         ],
-        },
-        {
-          type: "category",
-          label: "Agent Sessions APIs",
-          items: [
-            {
-              type: 'category',
-              label: 'Session Management APIs',
-              link: {
-                type: 'doc',
-                id: 'api-reference/agent-apis/session-management',
-              },
-              collapsed: false,
-              items: [
-                "api-reference/agent-apis/session/create-agent-session",
-                "api-reference/agent-apis/session/list-agent-sessions",
-                "api-reference/agent-apis/session/get-agent-session",
-                "api-reference/agent-apis/session/update-agent-session",
-                "api-reference/agent-apis/session/delete-agent-session"
-              ]
-            },
-            {
-              type: 'category',
-              label: 'Event Management APIs',
-              link: {
-                type: 'doc',
-                id: 'api-reference/agent-apis/event-management',
-              },
-              collapsed: false,
-              items: [
-                "api-reference/agent-apis/event/create-agent-event",
-                "api-reference/agent-apis/event/list-agent-events",
-                "api-reference/agent-apis/event/get-agent-event",
-              ]
-            },
-          ],
         },
       ],
     },

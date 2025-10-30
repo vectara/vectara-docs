@@ -6,18 +6,26 @@ sidebar_label: Get Agent Session
 
 # Get Agent Session API Definition
 
-The Get Agent Session API enables you to retrieve detailed information about a specific conversational session, including its configuration, metadata, and current status within an agent's interaction history. This API is essential for session monitoring, conversation analysis, and troubleshooting agent behavior during multi-turn interactions.
+The Get Agent Session API enables you to retrieve detailed information about a 
+specific conversational session, including its configuration, metadata, and 
+current status within an agent's interaction history. 
 
-Development teams and support administrators use this API to inspect session contexts during debugging, analyze conversation metadata for optimization insights, verify session configurations before event creation, and maintain detailed records of customer interactions for quality assurance and compliance purposes.
+Use this API to inspect session contexts during debugging, analyze conversation 
+metadata for optimization insights, verify session configurations before event 
+creation, and maintain detailed records of customer interactions for quality 
+assurance and compliance purposes.
 
 ## Get Agent Session Request and Response
 
-To retrieve an agent session, send a GET request to `/v2/agents/{agent_key}/sessions/{session_key}`. You specify the following parameters in the URL path:
+To retrieve an agent session, send a GET request to 
+`/v2/agents/{agent_key}/sessions/{session_key}`. You specify the following parameters in the URL path:
 
 - `agent_key` (string, required): Agent identifier following the pattern `agt_[0-9a-zA-Z_-]+$`
 - `session_key` (string, required): Session identifier following the pattern `ase_[0-9a-zA-Z_-]+$`
 
-The response includes the complete session configuration with all metadata, status information, and timestamps as configured during session creation or subsequent updates.
+The response includes the complete session configuration with all metadata, 
+status information, and timestamps as configured during session creation or 
+subsequent updates.
 
 ### Example Request
 

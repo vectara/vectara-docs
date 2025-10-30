@@ -6,21 +6,28 @@ sidebar_label: List Tools
 
 import CodePanel from '@site/src/theme/CodePanel';
 
-The List Tools API enables you to retrieve and browse all available tools discovered from registered Model Context Protocol (MCP) compliant tool servers, providing comprehensive visibility into the complete catalog of enterprise capabilities accessible to AI agents. This API facilitates tool discovery, capability planning, and agent configuration by presenting the unified tool ecosystem.
-
-Development teams and administrators use this API to explore available enterprise integrations for agent configuration, audit tool availability across different business systems, support tool selection during agent development workflows, and maintain operational awareness of the complete capability landscape that powers their AI agent infrastructure.
+The List Tools API enables you to browse all available tools in your account. 
+Use this API to explore and audit tool availability.
 
 ## List Tools Request and Response
 
-To list tools, send a GET request to `/v2/tools`. You can optionally specify the following query parameters:
+To list tools, send a GET request to `/v2/tools`. You can optionally
+specify the following query parameters:
 
-- `filter` (string, optional): A regular expression against tool names and descriptions to filter the results
-- `type` (string, optional): Filter tools by type (allowed value: `mcp`)
+- `filter` (string, optional): A regular expression against tool names
+  and descriptions to filter the results
+- `type` (string, optional): Filter tools by type (allowed value:
+  `mcp`)
 - `enabled` (boolean, optional): Filter tools by enabled status
-- `limit` (integer, optional): Maximum number of tools to return per page (1-100, defaults to 10)
-- `page_key` (string, optional): Pagination token from previous response to retrieve next page of results
+- `limit` (integer, optional): Maximum number of tools to return per
+  page (1-100, defaults to 10)
+- `page_key` (string, optional): Pagination token from previous
+  response to retrieve next page of results
 
-The response includes an array of tool definitions with complete metadata including source tool server information, capability descriptions, parameter schemas, and operational details along with pagination information for retrieving additional results.
+The response includes an array of tool definitions with complete
+metadata including source tool server information, capability
+descriptions, parameter schemas, and operational details along with
+pagination information for retrieving additional results.
 
 ### Example Request
 
@@ -143,9 +150,42 @@ The response includes an array of tool definitions with complete metadata includ
   layout="stacked"
 />
 
+## Available tools
+
+Vectara Agents support the following tool types:
+
+### Built-in tools
+
+* `corpora_search`: Retrieves results from Vectara corpora using Retrieval
+  Augmented Generation (RAG). This tool provides summary and relevant search results using
+  the same default parameters as the [Query API](/docs/api-reference/search-apis/search).
+  For more details about configuring the `corpora_search` tool, see
+  [**Configure Agent Search Behavior**](/docs/agents/#configure-agent-search-behavior).
+
+* `web_search`: Searches the public web for current information. Powered by Tavily,
+  this tool enables agents to access real-time data and recent developments that may not
+  be in your indexed corpora.
+
+### External and custom tools
+
+* `mcp`: Connect to external services through the Model Context Protocol (MCP).
+  MCP tools enable agents to integrate with external systems and services. See
+  [**Model Context Protocol**](/docs/agents/model-context-protocol) for details.
+
+* `lambda`: Execute custom Python functions in a secure, sandboxed environment.
+  Lambda tools allow you to define user-defined functions that agents can call to
+  perform custom logic, calculations, or data transformations. Currently supports
+  Python 3.12 with a curated set of libraries including numpy and pandas.
+
+* `structured_indexing`: Index structured documents into Vectara corpora with full
+  control over document structure, sections, metadata, tables, and images. This tool
+  enables agents to dynamically add content to your knowledge base during conversations.
+
+
 ## Error Responses
 
-The API returns standard HTTP error codes with detailed error information:
+The API returns standard HTTP error codes with detailed error
+information:
 
 | HTTP Code | Error Code | Description |
 |-----------|------------|-------------|

@@ -16,6 +16,12 @@ To build your first agent:
 3. [**Configure tools**](/docs/console-ui/agents/create-an-agent#tools): Set up corpus access permissions and any external integrations.
 4. [**Test agents with sessions**](/docs/console-ui/agents/use-agents): Start conversations and iterate on your configuration.
 
+
+:::tip Quick Start
+For a complete step-by-step guide with code examples, see 
+[**Agent Quick Start**](/docs/agents/agents-quickstart).
+:::
+
 ## Concepts
 
 The core concept to understand about agents is that their behavior is defined 

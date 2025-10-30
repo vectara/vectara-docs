@@ -55,6 +55,13 @@ There is no request body for this endpoint. If the instruction template is valid
   layout="stacked"
 />
 
+### Custom variables
+
+You can define custom variables and pass them when testing instructions using
+the Test Instruction API. This enables you to validate how your templates
+render with different context values before deploying them in production agents.
+
+
 ## Error Responses
 
 The API returns standard HTTP error codes with detailed error information:

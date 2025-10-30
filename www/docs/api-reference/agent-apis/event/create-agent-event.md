@@ -6,13 +6,16 @@ sidebar_label: Interact with an Agent
 
 import CodePanel from '@site/src/theme/CodePanel';
 
-The Interact with an Agent API enables you to create new inputs to an agent to interact with it. This API serves as the primary interface for conversational interactions and represents the core mechanism through which users communicate with AI agents.
+The Interact with an Agent API enables you to chat with an agent.
 
-When you send an input to an agent, it triggers agent processing, reasoning, tool execution, and response generation within the context of an agent session.
+When you send an input to an agent, it triggers agent processing, 
+reasoning, tool execution, and response generation within the context 
+of an agent session.
 
 ## Interact with an Agent Request and Response
 
-To interact with an agent, send a POST request to `/v2/agents/{agent_key}/sessions/{session_key}/events`. You specify the following parameters:
+To interact with an agent, send a POST request to 
+`/v2/agents/{agent_key}/sessions/{session_key}/events`. You specify the following parameters:
 
 - `agent_key` (string, required): Agent identifier in the URL path following pattern `[0-9a-zA-Z_-]+$`
 - `session_key` (string, required): Session identifier in the URL path following pattern `[0-9a-zA-Z_-]+$`

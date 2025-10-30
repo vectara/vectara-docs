@@ -6,79 +6,149 @@ sidebar_label: Create Agent
 
 import CodePanel from '@site/src/theme/CodePanel';
 
-The Create Agent API lets you design and deploy smart AI agents capable of 
-managing sophisticated workflows, running tool-based actions, and 
-also keep conversational context across multi-turn dialogues. Using the Model 
-Context Protocol (MCP), this API enables the development of autonomous digital 
-workers that combine retrieval-augmented generation with external system 
-integration.
+The Create Agent API lets you design and deploy smart AI agents
+capable of managing sophisticated workflows, running tool-based
+actions, and maintaining conversations.
 
-By configuring agents with specific tools, behavioral instructions, and model 
-parameters, enterprises can deploy specialized agents for customer support, 
-business intelligence, workflow automation, and technical assistance scenarios. 
-These agents operate as configurable, decision-making entities that can reason
-through problems, coordinate multiple tools, and adapt their responses based on 
-conversation context and available capabilities.
+By configuring agents with specific instructions, tools, and model parameters,
+enterprises can deploy specialized agents for 
+customer support, business intelligence, workflow automation, and
+technical assistance scenarios.
 
-## What is an agent?
+:::tip Create an agent
+You can create an agent in the [**Vectara Console**](/docs/console-ui/agents/create-an-agent), or you can use the
+API. For more information, check out our [**Agents Quick Start**](/docs/agents/agents-quickstart).
+:::
 
-An agent is an AI-powered orchestrator comprised of three main components:
+## Configure agents
 
-1. **Instructions:** Guide the agent's behavior and personality. Instructions are similar to a system prompt in other platforms and use Velocity templates for dynamic content.
-2. **Steps:** Define the workflow the agent executes when receiving input. Currently, only conversational steps are supported, which enable the agent to respond through dialogue with users.
-3. **Tool Configurations:** Define which tools (capabilities) the agent can use and how they're configured. Tools enable agents to search corpora, access the web, or integrate with external systems.
+Each agent is configured as follows:
 
-To use an agent, create a new session (called a _thread_ or _chat_ in other
-platforms), and send inputs to the agent to receive responses. Each session maintains conversation context across multiple interactions.
+* A unique `key` and `name` following the pattern agt_[*identifier*]. If you do not 
+  provide an agent key, Vectara generates one based on the name automatically.
+* A human-readable description.
+* Optional instructions (system prompts).
+* A list of available tools (referenced by name or ID).  
+  When using the `corpora_search` tool, make sure that you already have access 
+  to a corpus with data.
+* Metadata and versioning controls.
+* A _first_step_ definition that encompasses optional instructions for the 
+  agent's behavior.  
+
+:::note 
+Currently, agents execute a single conversational step. The `first_step` name
+reflects the platform's future support for multi-step agent workflows. For now,
+treat `first_step` as "the step." It's the only step your agent executes.
+:::
 
 ## Create Agent Request and Response
 
-To create an agent, send a POST request to `/v2/agents`. You specify the 
-following parameters in the request body:
+To create an agent, send a POST request to `/v2/agents` with the
+following configuration sections. For a list of all agent configuration 
+parameters, see [Create Agent API Definition](/docs/api-reference/agent-apis/create-agent).
 
-- `key` (string, optional): A user provided key that uniquely identifies this agent. 
-  If not provided, one will be auto-generated based on the agent name. Pattern: `[0-9a-zA-Z_-]+$`
-- `name` (string, required): The human-readable name of the agent
-- `description` (string, optional): Detailed description of agent purpose and capabilities
-- `tool_configurations` (object, required): A map of tool configurations available to the agent. Each entry in this map defines a named tool configuration that the agent can use:
-  - **Key:** A user-defined name for the tool configuration (e.g., `customer_search`, `web_search`). This name is how the agent refers to this specific tool configuration in events and logs.
-  - **Value:** An `AgentToolConfiguration` object that specifies:
-    - `type` (string, required): The tool type - one of:
-      - `corpora_search`: Query Vectara corpora using RAG
-      - `web_search`: Search the web for current information
-      - `mcp`: Connect to external Model Context Protocol servers
-      - `lambda`: Execute custom Python functions (user-defined tools)
-      - `structured_indexing`: Index structured documents into Vectara corpora
-    - `argument_override` (object, optional): Hardcoded arguments that override LLM-provided values. When specified, the LLM cannot change these parameters. Supports dynamic references using `{"$ref": "path.to.value"}` syntax (e.g., `{"$ref": "session.metadata.customer_id"}`)
-    - `query_configuration` (object, required for `corpora_search`): Query settings including search parameters, generation settings, and reranking configuration - not exposed to the LLM
-- `model` (object, required): Model configuration for agent reasoning
-  - `name` (string, required): Model name (e.g., `gpt-4`)
-  - `parameters` (object, optional): Model-specific parameters like temperature and max_tokens
-  - `retry_configuration` (object, optional): Retry behavior for LLM interactions
-    - `enabled` (boolean, optional): Enable or disable retry logic (default: `true`)
-    - `max_retries` (integer, optional): Maximum retry attempts after initial failure, range 0-10 (default: `3`)
-    - `initial_backoff_ms` (integer, optional): Initial delay before first retry in milliseconds, range 100-60000 (default: `1000`)
-    - `max_backoff_ms` (integer, optional): Maximum delay between retries in milliseconds, range 1000-300000 (default: `30000`)
-    - `backoff_factor` (float, optional): Exponential multiplier for backoff delays, range 1.0-10.0 (default: `2.0`)
-- `first_step` (object, required): Defines the agent's entry point and execution behavior
-  - `type` (string, required): Step type (must be `conversational` - the only currently supported type)
-  - `instructions` (array, required): An ordered list of instructions that guide the agent's behavior. Instructions use the Apache Velocity template language and can reference context variables. You can mix reference and inline instructions:
-    - **Reference instructions** - Reusable instructions stored separately that can be shared across multiple agents:
-      - `type` (string, required): Must be `reference`
-      - `id` (string, required): The instruction's unique identifier (pattern: `ins_[0-9a-zA-Z_-]+$`)
-      - `version` (integer, optional): Specific version number to use. If omitted, the latest version is used. Note: When a referenced instruction is updated, agents must be explicitly updated to use the new version.
-    - **Inline instructions** - Instructions defined directly within the agent configuration:
-      - `type` (string, required): Must be `inline`
-      - `name` (string, required): Human-readable name for this instruction
-      - `template_type` (string, optional): Template language to use (must be `velocity`, which is the default)
-      - `template` (string, required): The instruction content using Velocity template syntax. Use `${variableName}` to reference dynamic values.
-      - `description` (string, optional): Optional description explaining the instruction's purpose
-  - `output_parser` (object, required): Configures how the agent's output is parsed and returned
-    - `type` (string, required): Parser type (currently only `default` is supported, which uses native LLM tool calling)
-- `metadata` (object, optional): Arbitrary key-value pairs for organization and tracking
-- `enabled` (boolean, optional): Whether agent is active upon creation (defaults to `true`)
+### Basic Configuration
 
-The response includes the complete agent configuration with system-generated fields including the unique agent key, creation timestamp, and update timestamp.
+Core agent identification and metadata:
+
+* `key` (string, optional): A user provided key that uniquely
+  identifies this agent. If not provided, one will be auto-generated
+  based on the agent name. Pattern: `[0-9a-zA-Z_-]+$`
+* `name` (string, required): The human-readable name of the agent
+* `description` (string, optional): Detailed description of agent
+  purpose and capabilities
+* `metadata` (object, optional): Arbitrary key-value pairs for
+  organization and tracking
+* `enabled` (boolean, optional): Whether agent is active upon creation
+  (defaults to `true`)
+
+### Tool Configurations
+
+The `tool_configurations` parameter defines which capabilities the
+agent can use. It's a map where each entry pairs a configuration name
+with tool settings:
+
+* **Key:** A user-defined name for the tool configuration (e.g.,
+  `customer_search`, `web_search`). This name is how the agent refers
+  to this specific tool configuration in events and logs.
+* **Value:** An `AgentToolConfiguration` object that specifies:
+  * `type` (string, required): The tool type - one of:
+    * `corpora_search`: Query Vectara corpora using RAG
+    * `web_search`: Search the web for current information
+    * `mcp`: Connect to external Model Context Protocol servers
+    * `lambda`: Execute custom Python functions (user-defined tools)
+    * `structured_indexing`: Index structured documents into Vectara
+      corpora
+  * `argument_override` (object, optional): Hardcoded arguments that
+    override LLM-provided values. When specified, the LLM cannot
+    change these parameters. Supports dynamic references using
+    `{"$ref": "path.to.value"}` syntax (e.g.,
+    `{"$ref": "session.metadata.customer_id"}`)
+  * `query_configuration` (object, required for `corpora_search`):
+    Query settings including search parameters, generation settings,
+    and reranking configuration - not exposed to the LLM
+
+### Model Configuration
+
+The `model` parameter controls the LLM used for agent reasoning:
+
+* `name` (string, required): Model name (e.g., `gpt-4`)
+* `parameters` (object, optional): Model-specific parameters like
+  temperature and max_tokens
+* `retry_configuration` (object, optional): Retry behavior for LLM
+  interactions
+  * `enabled` (boolean, optional): Enable or disable retry logic
+    (default: `true`)
+  * `max_retries` (integer, optional): Maximum retry attempts after
+    initial failure, range 0-10 (default: `3`)
+  * `initial_backoff_ms` (integer, optional): Initial delay before
+    first retry in milliseconds, range 100-60000 (default: `1000`)
+  * `max_backoff_ms` (integer, optional): Maximum delay between
+    retries in milliseconds, range 1000-300000 (default: `30000`)
+  * `backoff_factor` (float, optional): Exponential multiplier for
+    backoff delays, range 1.0-10.0 (default: `2.0`)
+
+### Step Configuration
+
+The `first_step` parameter defines the agent's workflow and behavior:
+
+* `type` (string, required): Step type (must be `conversational` -
+  the only currently supported type)
+* `instructions` (array, required): An ordered list of instructions
+  that guide the agent's behavior. Instructions use the Apache
+  Velocity template language and can reference context variables. You
+  can mix reference and inline instructions:
+  * **Reference instructions** - Reusable instructions stored
+    separately that can be shared across multiple agents:
+    * `type` (string, required): Must be `reference`
+    * `id` (string, required): The instruction's unique identifier
+      (pattern: `ins_[0-9a-zA-Z_-]+$`)
+    * `version` (integer, optional): Specific version number to use.
+      If omitted, the latest version is used. Note: When a referenced
+      instruction is updated, agents must be explicitly updated to
+      use the new version.
+  * **Inline instructions** - Instructions defined directly within
+    the agent configuration:
+    * `type` (string, required): Must be `inline`
+    * `name` (string, required): Human-readable name for this
+      instruction
+    * `template_type` (string, optional): Template language to use
+      (must be `velocity`, which is the default)
+    * `template` (string, required): The instruction content using
+      Velocity template syntax. Use `${variableName}` to reference
+      dynamic values.
+    * `description` (string, optional): Optional description
+      explaining the instruction's purpose
+* `output_parser` (object, required): Configures how the agent's
+  output is parsed and returned
+  * `type` (string, required): Parser type (currently only `default`
+    is supported, which uses native LLM tool calling)
+
+### Response
+
+The response includes the complete agent configuration with
+system-generated fields including the unique agent key, creation
+timestamp, and update timestamp.
 
 ### Example Request
 
@@ -138,7 +208,7 @@ The response includes the complete agent configuration with system-generated fie
       {
         "type": "inline",
         "name": "Additional Guidelines",
-        "template": "Always be polite and professional. Today's date is ${currentDate}.",
+        "template": "Always be polite and professional. Today's date is $&#123;currentDate&#125;.",
         "template_type": "velocity"
       }
     ],
@@ -217,7 +287,7 @@ The response includes the complete agent configuration with system-generated fie
       {
         "type": "inline",
         "name": "Additional Guidelines",
-        "template": "Always be polite and professional. Today's date is ${currentDate}.",
+        "template": "Always be polite and professional. Today's date is $&#123;currentDate&#125;.",
         "template_type": "velocity"
       }
     ],
@@ -237,9 +307,137 @@ The response includes the complete agent configuration with system-generated fie
   layout="stacked"
 />
 
+
+### Argument override option
+
+Each agent also has an optional `argument_override` option that lets you
+specify hardcoded arguments for specific search calls. Use this option to
+override schema-defined fields like `query` or `limit` for enforcing fixed
+behavior.
+
+<CodePanel snippets={[{language: "json", code: `{
+   "argument_override": {
+     "query": "latest AI developments 2025",
+     "limit": 10
+   }
+}`}]} title="Argument Override Example" layout="stacked" />
+
+
+### Retry configuration
+
+When agents interact with LLMs, transient failures may occur that interrupt
+the conversation flow, including network timeouts, temporary server issues,
+or reaching API rate limits. Without a retry mechanism, these temporary
+issues cause your agent to fail immediately, resulting in a poor user
+experience.
+
+Vectara provides a retry configuration option for agents which detects these
+recoverable failures and retries the request with exponential backoff
+automatically.
+
+The `RetryConfiguration` object controls the retry behavior for your agent's
+interactions with the LLM. You define these settings when creating or
+updating your agent model, and they apply to all LLM requests made by that
+agent.
+
+### Retry configuration parameters
+
+- **enabled**: The boolean flag to enable or disable retry logic.
+  - Default: `true`
+- **max_retries**: The maximum number of retry attempts after the initial failure.
+  - Range: 0-10
+  - Default: `3`
+- **initial_backoff_ms**: The initial delay in milliseconds before the first retry.
+  - Range: 100-60000ms
+  - Default: `1000ms`
+- **max_backoff_ms**: The maximum delay in milliseconds between retries.
+  - Range: 1000-300000ms
+  - Default: `30000ms`
+- **backoff_factor**: The exponential multiplier for calculating backoff delays.
+  - Range: 1.0-10.0
+  - Default: `2.0`
+
+
+### Exponential backoff
+
+Exponential backoff progressively increases the delay between retry attempts
+to avoid overwhelming a recovering service. For example, with default
+settings (initial: 1000ms, factor: 2.0, max: 30000ms):
+
+- Attempt 1: 1000ms delay
+- Attempt 2: 2000ms delay
+- Attempt 3: 4000ms delay
+- Attempt 4: 8000ms delay
+
+The delay continues to grow exponentially until it reaches the
+`max_backoff_ms` value, at which point it remains constant for any remaining
+retry attempts.
+
+## Example agent definition
+
+This example shows a basic customer support agent configured with corpus 
+search capabilities and inline instructions. The agent demonstrates the core 
+components: tool configurations for searching support tickets, and a 
+conversational first step with behavior guidelines.
+
+<CodePanel
+  title="Agent example"
+  snippets={[
+    {
+      language: 'json',
+      code: `{
+   "name": "customer-support-agent",
+   "description": "A customer support agent that can answer questions and create tickets.",
+   "tool_configurations": {
+     "search_support_tickets": {
+       "type": "corpora_search",
+       "query_configuration": {
+         "search": {
+           "corpora": ["support_tickets_corpus"]
+         }
+       }
+     }
+   },
+   "first_step": {
+     "type": "conversational",
+     "instructions": [
+       {
+         "type": "inline",
+         "name": "Be concise",
+         "template": "Keep your responses brief and to the point. Use as few words as possible."
+       }
+     ],
+     "output_parser": {
+       "type": "default"
+     }
+   }
+}`
+    }]}  
+  annotations={{
+    json: [
+      { line: 2, text: 'Agent name identifier' },
+      { line: 3, text: 'Human-readable description of agent capabilities' },
+      { line: 4, text: 'Tool configurations available to this agent' },
+      { line: 5, text: 'Custom name for the support ticket search tool' },
+      { line: 6, text: 'Tool type for searching a single corpus' },
+      { line: 7, text: 'Query configuration for the search tool' },
+      { line: 9, text: 'Corpus key for support tickets data' },
+      { line: 14, text: 'First step defines the agent entry point behavior' },
+      { line: 15, text: 'Conversational type for interactive responses' },
+      { line: 16, text: 'Instructions array for agent behavior guidelines' },
+      { line: 18, text: 'Inline instruction type for embedded prompts' },
+      { line: 19, text: 'Name identifier for this instruction' },
+      { line: 20, text: 'Template containing the agent behavior prompt' }
+    ]
+  }}
+  layout="stacked"
+/>
+
+
 ## Error Responses
 
-The API returns standard HTTP error codes with detailed error information:
+The API returns standard HTTP error codes with detailed error
+information:
 
 | HTTP Code | Error Code | Description |
 |-----------|------------|-------------|

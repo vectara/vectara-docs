@@ -6,20 +6,30 @@ sidebar_label: List Agent Events
 
 # List Agent Events API Definition
 
-The List Agent Events API enables you to retrieve a chronological sequence of all interactions and processing activities within a specific agent session, providing complete visibility into conversation flow, agent reasoning, tool executions, and response generation. This API is essential for conversation analysis, debugging agent behavior, and maintaining detailed audit trails of agent interactions.
+The List Agent Events API enables you to retrieve all interactions 
+within a specific agent session, providing visibility into 
+conversation flow, agent reasoning, tool executions, and response generation. 
 
-Organizations use this API to analyze conversation patterns for quality assurance, troubleshoot agent behavior during development, generate conversation transcripts for compliance purposes, and extract interaction data for training and optimization of agent performance across their enterprise AI deployments.
+
+Use this API to analyze conversation patterns for quality assurance, troubleshoot 
+agent behavior during development, generate conversation transcripts for compliance 
+purposes, and extract interaction data for training and optimization of agent 
+performance across their enterprise AI deployments.
 
 ## List Agent Events Request and Response
 
-To list agent events, send a GET request to `/v2/agents/{agent_key}/sessions/{session_key}/events`. You specify the following parameters:
+To list agent events, send a GET request to 
+`/v2/agents/{agent_key}/sessions/{session_key}/events`. You specify the following 
+parameters:
 
 - `agent_key` (string, required): Agent identifier in the URL path following pattern `agt_[0-9a-zA-Z_-]+$`
 - `session_key` (string, required): Session identifier in the URL path following pattern `ase_[0-9a-zA-Z_-]+$`
 - `limit` (integer, optional): Maximum number of events to return (default: 20, maximum: 100)
 - `page_key` (string, optional): Pagination token for retrieving subsequent pages of results
 
-The response includes an array of event objects in chronological order, representing the complete interaction history within the specified session, along with pagination metadata for accessing additional events when available.
+The response includes an array of event objects in chronological order, representing 
+the complete interaction history within the specified session, along with pagination 
+metadata for accessing additional events when available.
 
 ### Example Request
 

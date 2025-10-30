@@ -6,9 +6,15 @@ sidebar_label: Agent
 
 import CodePanel from '@site/src/theme/CodePanel';
 
-Agents are the core orchestration unit in the Vectara platform. The 
-agent decides how to respond to user input, when to invoke tools, and how to 
-manage conversation state.
+Agents are autonomous systems that understand natural language and use tools 
+and reasoning to accomplish tasks. To do this, they must make decisions:
+
+* Interpreting user input
+* Calling tools, and with what arguments
+* Managing conversation state
+
+Internally, they use an LLM-driven orchestration pipeline to make these 
+decisions.
 
 ```mermaid
 flowchart TD
@@ -55,318 +61,34 @@ flowchart TD
     class Tool1,Tool2,Tool3,Agent1,Agent2 tools;
     class RAG1,RAG2,API,DB,Custom sources;
 ```
+## LLM configuration
 
-:::tip Quick Start
-For a complete step-by-step guide with code examples, see [**Agent Quick Start**](/docs/agents/agents-quickstart).
-:::
-
-## Configure agents
-
-Each agent is configured as follows:
-
-* A unique `key` and `name` following the pattern agt_[*identifier*]. If you do not 
-  provide an agent key, Vectara generates one based on the name automatically.
-* A human-readable description
-* Optional instructions (system prompts)
-* A list of available tools (referenced by name or ID)
-   :::tip Note
-   When using the `corpora_search` tool, make sure that you already have access  
-   to a corpus with data.
-   :::
-* Metadata and versioning controls
-* A _first_step_ definition that encompasses optional instructions for the 
-  agent's behavior.
-
-:::note 
-  Currently, agents execute a single conversational step. The `first_step` name
-  reflects the platform's future support for multi-step agent workflows. For now,
-  treat `first_step` as "the step." It's the only step your agent executes.
-:::
-
-Agents operate through a conversational step architecture, processing user
-input through reasoning, tool execution, and response generation phases.
-The step-based design enables complex multi-turn workflows and intelligent
-tool orchestration.
-
-:::tip Create an agent
-You can create an agent in the [**Vectara Console**](/docs/console-ui/agents/create-an-agent), or you can use the
-API. For more information, check out our [**Agents Quick Start**](/docs/agents/agents-quickstart).
-:::
-
-## Configure agent corpus search behavior
-
-You configure corpus search behavior for Vectara agents using the 
-`query_configuration` parameter within the `corpora_search` tool. This 
-parameter uses the same `search` and `generation` object formatting as shown 
-in [Query API](/docs/api-reference/search-apis/search) and [Advanced Single Corpus Query](/docs/rest-api/query-corpus). Before using this tool, 
-ensure that you have at least one indexed corpus with data. The LLM cannot 
-modify these predefined search parameters during
-conversation.
-
-For more details about the different corpus objects, see 
-[Configure Query Parameters](/docs/api-reference/search-apis/query-configuration).
-
-### Argument override option
-
-Each agent also has an optional `argument_override` option that lets you
-specify hardcoded arguments for specific search calls. Use this option to
-override schema-defined fields like `query` or `limit` for enforcing fixed
-behavior.
-
-<CodePanel snippets={[{language: "json", code: `{
-   "argument_override": {
-     "query": "latest AI developments 2025",
-     "limit": 10
-   }
-}`}]} title="Argument Override Example" layout="stacked" />
-
-## Agent configuration examples
-
-This example demonstrates a basic configuration.
-
-<CodePanel
-  title="Basic query configuration example"
-  snippets={[
-    {
-      language: 'json',
-      code: `{
-   "tool_configurations": {
-     "knowledge_base_search": {
-       "type": "corpora_search",
-       "query_configuration": {
-         "search": {
-           "corpora": [
-             {
-               "corpus_key": "customer-guides"
-             }
-           ]
-         },
-         "generation": {
-           "enabled": true,
-           "generation_preset_name": "mockingbird-2.0",
-           "max_used_search_results": 10
-         }
-       }
-     }
-   }
-}`
-    }
-  ]}
-  annotations={{
-    json: [
-      { line: 2, text: 'Tool configurations object containing all agent tools' },
-      { line: 3, text: 'Custom name for this knowledge base search tool' },
-      { line: 4, text: 'Tool type for searching Vectara corpora' },
-      { line: 5, text: 'Query configuration with search and generation settings' },
-      { line: 6, text: 'Search configuration defining which corpora to query' },
-      { line: 9, text: 'Unique corpus identifier to search' },
-      { line: 13, text: 'Generation settings for creating responses' },
-      { line: 14, text: 'Enable AI-generated responses from search results' },
-      { line: 15, text: 'Use the mockingbird-2.0 preset for response generation' },
-      { line: 16, text: 'Number of search results to use for generating responses' }
-    ]
-  }}
-  layout="stacked"
-/>
-
-This example demonstrates a complete `tool_configurations` object for a
-customer support agent with optimized search behavior:
-
-<CodePanel
-  title="Complete Agent Configuration Example"
-  snippets={[
-    {
-      language: 'json',
-      code: `{
-  "tool_configurations": {
-    "knowledge_base_search": {
-      "type": "corpora_search",
-      "query_configuration": {
-        "search": {
-          "corpora": [
-            {
-              "corpus_key": "customer-guides",
-              "metadata_filter": "doc.year = '2024'",
-              "lexical_interpolation": 0.025
-            }
-          ],
-          "limit": 15
-        },
-        "context_configuration": {
-          "sentences_before": 2,
-          "sentences_after": 2
-        },
-        "reranker": {
-          "type": "customer_reranker",
-          "reranker_name": "Rerank_Multilingual_v1",
-        },
-        "generation": {
-          "enabled": true,
-          "generation_preset_name": "mockingbird-2.0",
-          "max_used_search_results": 10,
-          "response_language": "eng",
-          "citations": {
-            "style": "markdown",
-            "url_pattern": "https://support.example.com/docs/{doc.id}",
-            "text_pattern": "Source: {doc.title}"
-          }
-        },
-        "enable_factual_consistency_score": true
-      }
-    }
-  }
-}`
-    }
-  ]}
-  annotations={{
-    json: [
-      { line: 2, text: 'Tool configurations object containing all agent tools' },
-      { line: 3, text: 'Custom name for this knowledge base search tool' },
-      { line: 4, text: 'Tool type for searching Vectara corpora' },
-      { line: 5, text: 'Query configuration with advanced search settings' },
-      { line: 6, text: 'Search configuration defining corpora and filters' },
-      { line: 9, text: 'Corpus identifier for customer guides' },
-      { line: 10, text: 'Filter to only search 2024 documents' },
-      { line: 11, text: 'Balance between semantic and keyword search' },
-      { line: 14, text: 'Maximum number of results to retrieve' },
-      { line: 16, text: 'Context configuration for surrounding text' },
-      { line: 17, text: 'Include 2 sentences before each result' },
-      { line: 18, text: 'Include 2 sentences after each result' },
-      { line: 20, text: 'Reranker configuration for result quality' },
-      { line: 21, text: 'Use customer reranker for multilingual support' },
-      { line: 22, text: 'Specify Rerank_Multilingual_v1 model' },
-      { line: 24, text: 'Generation settings for creating AI responses' },
-      { line: 27, text: 'Use top 10 results for response generation' },
-      { line: 28, text: 'Generate responses in English' },
-      { line: 29, text: 'Citation configuration for source attribution' },
-      { line: 30, text: 'Use markdown format for citations' },
-      { line: 35, text: 'Enable factual consistency scoring' }
-    ]
-  }}
-  layout="stacked"
-/>
-
-
-
-## Example agent definition
-
-This example shows a basic customer support agent configured with corpus 
-search capabilities and inline instructions. The agent demonstrates the core 
-components: tool configurations for searching support tickets, and a 
-conversational first step with behavior guidelines.
-
-<CodePanel
-  title="Agent example"
-  snippets={[
-    {
-      language: 'json',
-      code: `{
-   "name": "customer-support-agent",
-   "description": "A customer support agent that can answer questions and create tickets.",
-   "tool_configurations": {
-     "search_support_tickets": {
-       "type": "corpora_search",
-       "query_configuration": {
-         "search": {
-           "corpora": ["support_tickets_corpus"]
-         }
-       }
-     }
-   },
-   "first_step": {
-     "type": "conversational",
-     "instructions": [
-       {
-         "type": "inline",
-         "name": "Be concise",
-         "template": "Keep your responses brief and to the point. Use as few words as possible."
-       }
-     ],
-     "output_parser": {
-       "type": "default"
-     }
-   }
-}`
-    }]}  
-  annotations={{
-    json: [
-      { line: 2, text: 'Agent name identifier' },
-      { line: 3, text: 'Human-readable description of agent capabilities' },
-      { line: 4, text: 'Tool configurations available to this agent' },
-      { line: 5, text: 'Custom name for the support ticket search tool' },
-      { line: 6, text: 'Tool type for searching a single corpus' },
-      { line: 7, text: 'Query configuration for the search tool' },
-      { line: 9, text: 'Corpus key for support tickets data' },
-      { line: 14, text: 'First step defines the agent entry point behavior' },
-      { line: 15, text: 'Conversational type for interactive responses' },
-      { line: 16, text: 'Instructions array for agent behavior guidelines' },
-      { line: 18, text: 'Inline instruction type for embedded prompts' },
-      { line: 19, text: 'Name identifier for this instruction' },
-      { line: 20, text: 'Template containing the agent behavior prompt' }
-    ]
-  }}
-  layout="stacked"
-/>
-
-## Model configuration
-
-Agents use large language models for reasoning and response generation. You
-can configure:
-
+Agents use LLMs for reasoning and response generation. You can configure the 
+following:
 - **Model**: Choose from available models like GPT-4o.
 - **Parameters**: Adjust temperature, max tokens, and other model-specific settings.
 - **Cost optimization**: Balance performance with token usage.
 - **Retry configuration**: Configure automatic retry behavior for transient failures.
 
-### Retry configuration
+## Using retries to improve user experience
 
-When agents interact with LLMs, transient failures may occur that interrupt
-the conversation flow, including network timeouts, temporary server issues,
-or reaching API rate limits. Without a retry mechanism, these temporary
-issues cause your agent to fail immediately, resulting in a poor user
+When agents interact with LLMs, transient failures like network interruptions 
+can disrupt communication between the agent and the LLM. You can configure 
+your agent to resume disrupted communication to ensure a smooth user 
 experience.
 
-Vectara provides a retry configuration option for agents which detects these
-recoverable failures and retries the request with exponential backoff
-automatically.
+Here's a brief explanation of how retries work:
 
-The `RetryConfiguration` object controls the retry behavior for your agent's
-interactions with the LLM. You define these settings when creating or
-updating your agent model, and they apply to all LLM requests made by that
-agent.
+- **max_retries:** After an error, the agent will retry its request to the LLM this many 
+  times.
+- **initial_backoff_ms:** This is how many milliseconds the agent will wait before 
+  retrying, to give the cause of the error time to resolve.
+- **backoff_factor:** Every time the agent retries, it can multiply the last retry 
+  delay by this number, increasing the wait between retries. This is like giving a 
+  toddler a longer and longer timeout if it continues to misbehave.
+- **max_backoff_ms:** The maximum time you want the agent to wait between retries, 
+  so the backoff_factor doesn't create an unreasonably long delay for your users.
 
-### Retry configuration parameters
-
-- **enabled**: The boolean flag to enable or disable retry logic.
-  - Default: `true`
-- **max_retries**: The maximum number of retry attempts after the initial failure.
-  - Range: 0-10
-  - Default: `3`
-- **initial_backoff_ms**: The initial delay in milliseconds before the first retry.
-  - Range: 100-60000ms
-  - Default: `1000ms`
-- **max_backoff_ms**: The maximum delay in milliseconds between retries.
-  - Range: 1000-300000ms
-  - Default: `30000ms`
-- **backoff_factor**: The exponential multiplier for calculating backoff delays.
-  - Range: 1.0-10.0
-  - Default: `2.0`
-
-
-### Exponential backoff
-
-Exponential backoff progressively increases the delay between retry attempts
-to avoid overwhelming a recovering service. For example, with default
-settings (initial: 1000ms, factor: 2.0, max: 30000ms):
-
-- Attempt 1: 1000ms delay
-- Attempt 2: 2000ms delay
-- Attempt 3: 4000ms delay
-- Attempt 4: 8000ms delay
-
-The delay continues to grow exponentially until it reaches the
-`max_backoff_ms` value, at which point it remains constant for any remaining
-retry attempts.
 
 ### Example: Research assistant with web search
 
@@ -455,70 +177,4 @@ This example requires no corpus setup, making it perfect for immediate testing.
   layout="stacked"
 />
 
-## Chat with your agent
-
-After creating an agent, you can interact with it by creating a session and sending messages:
-
-### 1. Create a session
-
-Sessions provide conversation context and are required for all agent interactions:
-
-<CodePanel
-  title="Create a session"
-  snippets={[
-    {
-      language: 'bash',
-      code: `POST /v2/agents/{agent_key}/sessions`
-    },
-    {
-      language: 'json',
-      code: `{
-  "name": "Customer support session",
-  "description": "Help with password reset"
-}`
-    }
-  ]}
-  annotations={{
-    json: [
-      { line: 2, text: 'Session name for identification and tracking' },
-      { line: 3, text: 'Optional description of session purpose and context' }
-    ]
-  }}
-  layout="stacked"
-/>
-
-### 2. Send messages to the agent
-
-Once you have a session, send messages using the events endpoint:
-
-<CodePanel
-  title="Send a message"
-  snippets={[
-    {
-      language: 'bash',
-      code: `POST /v2/agents/{agent_key}/sessions/{session_key}/events`
-    },
-    {
-      language: 'json',
-      code: `{
-  "type": "input_message",
-  "messages": [{
-    "type": "text",
-    "content": "I forgot my password. Can you help?"
-  }]
-}`
-    }
-  ]}
-  annotations={{
-    json: [
-      { line: 2, text: 'Event type must be "input_message" for user input' },
-      { line: 3, text: 'Array containing one or more message objects' },
-      { line: 4, text: 'Message type "text" for plain text content' },
-      { line: 5, text: 'User message content to send to the agent' }
-    ]
-  }}
-  layout="stacked"
-/>
-
-The agent will respond with events including its reasoning, tool usage, and final response.
-
+To chat with your agent, read on about [Sessions](/docs/agents/sessions).

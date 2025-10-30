@@ -6,19 +6,29 @@ sidebar_label: Get Agent Event
 
 # Get Agent Event API Definition
 
-The Get Agent Event API enables you to retrieve detailed information about a specific interaction event within an agent session, providing comprehensive visibility into individual steps of agent processing, tool executions, or user inputs. This API is crucial for debugging specific agent behaviors, analyzing tool performance, and understanding the granular details of agent reasoning processes.
+The Get Agent Event API enables you to retrieve detailed information about a 
+specific interaction event within an agent session, providing comprehensive 
+visibility into individual steps of agent processing, tool executions, or 
+user inputs. 
 
-Development teams and quality assurance analysts use this API to inspect specific events during troubleshooting, analyze tool execution results for optimization, verify agent reasoning patterns, and extract detailed information about individual interactions for performance analysis and conversation quality assessment.
+Use this API to inspect specific events during troubleshooting, analyze tool 
+execution results for optimization, verify agent reasoning patterns, and extract 
+detailed information about individual interactions for performance analysis and 
+conversation quality assessment.
 
 ## Get Agent Event Request and Response
 
-To retrieve an agent event, send a GET request to `/v2/agents/{agent_key}/sessions/{session_id}/events/{event_id}`. You specify the following parameters in the URL path:
+To retrieve an agent event, send a GET request to 
+`/v2/agents/{agent_key}/sessions/{session_id}/events/{event_id}`. You specify 
+the following parameters in the URL path:
 
 - `agent_key` (string, required): Agent identifier following the pattern `agt_[0-9a-zA-Z_-]+$`
 - `session_key` (string, required): Session identifier following the pattern `ase_[0-9a-zA-Z_-]+$`
 - `event_id` (string, required): Event identifier following the pattern `aev_[0-9a-zA-Z_-]+$`
 
-The response includes the complete event details with all associated data, including event type, content, timestamps, and any tool-specific information depending on the event type.
+The response includes the complete event details with all associated data, 
+including event type, content, timestamps, and any tool-specific information 
+depending on the event type.
 
 ### Example Request
 
