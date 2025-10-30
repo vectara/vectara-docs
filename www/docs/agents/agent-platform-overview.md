@@ -52,7 +52,6 @@ flowchart TD
     Session -->|Conversation state| Agent
     Agent --> |Configured with| Inst
     Inst --> |Guide agent behavior| Query
-    Query --> Session
 
     %% Tool execution paths
     Query <--> AvailableTools
@@ -66,12 +65,12 @@ flowchart TD
     Session -->|Response| User
 
     %% Classes for color grouping
-    classDef userEntry fill:#182033,color:#fff,stroke:#0D2FFF,stroke-width:2px;
+    classDef userEntry fill:#182033,color:#fff,stroke:#fff,stroke-width:2px;
     classDef session fill:#EEF2F8,color:#182033,stroke:#787878,stroke-width:2px;
     classDef agentic fill:#EEF2F8,color:#182033,stroke:#787878,stroke-width:2px;
     classDef toolLayer fill:#EEF2F8,color:#182033,stroke:#787878,stroke-width:2px;
     classDef corpus fill:#E9368E,color:#fff,stroke:#E9368E,stroke-width:2px;
-    classDef external fill:#182033,color:#fff,stroke:#0D2FFF,stroke-width:2px;
+    classDef external fill:#182033,color:#fff,stroke:#fff,stroke-width:2px;
     classDef mcpTP fill:#EEF2F8,color:#182033,stroke:#787878,stroke-width:2px;
 
     %% Assign classes
