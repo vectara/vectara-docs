@@ -760,6 +760,12 @@ const sidebar: SidebarsConfig = {
       items: [
         {
           type: "doc",
+          id: "rest-api/create-tool",
+          label: "Create tool",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
           id: "rest-api/list-tools",
           label: "List tools",
           className: "api-method get",
@@ -781,6 +787,12 @@ const sidebar: SidebarsConfig = {
           id: "rest-api/delete-tool",
           label: "Delete tool",
           className: "api-method delete",
+        },
+        {
+          type: "doc",
+          id: "rest-api/test-tool",
+          label: "Test Lambda tool",
+          className: "api-method post",
         },
       ],
     },
