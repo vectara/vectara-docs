@@ -18,19 +18,30 @@ const sidebars: SidebarsConfig = {
           label: "Vectara Trial",
         },
         {
-          type: "doc",
-          id: "quickstart",
-          label: "Console Quick Start",
-        },
-        {
-          type: "doc",
-          id: "api-recipes",
-          label: "API Quick Start",
-        },
-        {
-          type: "doc",
-          id: "agents/agents-quickstart",
-          label: "Agents Quick Start",
+          type: "category",
+          label: "Quick Starts",
+          link: {
+            type: 'doc',
+            id: 'quick-starts',
+          },
+          collapsed: true,
+          items: [
+            {
+              type: "doc",
+              id: "quickstart",
+              label: "Console",
+            },
+            {
+              type: "doc",
+              id: "api-recipes",
+              label: "REST APIs",
+            },
+            {
+              type: "doc",
+              id: "agents/agents-quickstart",
+              label: "Agents",
+            },
+          ],
         },
         {
           type: "doc",
@@ -50,16 +61,19 @@ const sidebars: SidebarsConfig = {
       label: "The Vectara Platform",
       link: {
         type: 'doc',
-        id: 'introduction', // The Vectara Platform overview
+        id: 'introduction', 
       },
       collapsed: true,
       items: [
         {
           type: "category",
           label: "Security and Data Privacy",
+          link: {
+            type: 'doc',
+            id: 'learn/data-privacy/privacy-overview',
+          },
           collapsed: true,
           items: [
-            "learn/data-privacy/privacy-overview",
             "learn/data-privacy/encryption",
             "learn/authentication/transport-layer-security",
           ],
@@ -133,36 +147,35 @@ const sidebars: SidebarsConfig = {
             },
           ],
         },
-      ],
-    },
-
-    {
-      type: "category",
-      label: "Private Deployment",
-      link: {
-        type: "doc",
-        id: "deployments",
-      },
-      collapsed: true,
-      items: [
-        "deployments/private-deployment-overview",
-        "deployments/deployment-options",
-        "deployments/use-cases",
-        "deployments/onprem-evaluation-process",
         {
           type: "category",
-          label: "Guides",
+          label: "Private Deployment",
           link: {
             type: "doc",
-            id: "deployments/guides",
+            id: "deployments",
           },
+          collapsed: true,
           items: [
-            "deployments/guides/vectara-okta-oidc",
-          ]
-        }
+            "deployments/private-deployment-overview",
+            "deployments/deployment-options",
+            "deployments/use-cases",
+            "deployments/onprem-evaluation-process",
+            {
+              type: "category",
+              label: "Guides",
+              link: {
+                type: "doc",
+                id: "deployments/guides",
+              },
+              items: [
+                "deployments/guides/vectara-okta-oidc",
+              ]
+            }
+          ],
+        },
       ],
+      
     },
-
     {
       type: "category",
       label: "Data Management",
@@ -207,6 +220,10 @@ const sidebars: SidebarsConfig = {
         {
           type: "category",
           label: "Search Methods",
+          link: {
+            type: 'doc',
+            id: 'search-and-retrieval/search-methods',
+          },
           collapsed: true,
           items: [
             "learn/boomerang",
@@ -220,6 +237,10 @@ const sidebars: SidebarsConfig = {
         {
           type: "category",
           label: "Improving Search Quality",
+          link: {
+            type: 'doc',
+            id: 'search-and-retrieval/improving-search-quality',
+          },
           collapsed: true,
           items: [
             "search-and-retrieval/intelligent-query-rewriting",
@@ -244,6 +265,10 @@ const sidebars: SidebarsConfig = {
         {
           type: "category",
           label: "Working with Results",
+          link: {
+            type: 'doc',
+            id: 'search-and-retrieval/working-with-results',
+          },
           collapsed: true,
           items: [
             "search-and-retrieval/citations",

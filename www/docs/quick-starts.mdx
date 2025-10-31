@@ -1,0 +1,32 @@
+---
+id: quick-starts
+title: Quick Starts
+sidebar_label: Quick Starts
+---
+
+import { Config } from "./definitions.md";
+import { Grid } from "@site/src/components/ui/Grid";
+import { Spacer } from "@site/src/components/ui/Spacer";
+import { TopicButton } from "@site/src/components/ui/TopicButton";
+
+Get started with Vectara in minutes. Choose the path that best fits your needs.
+
+<Grid columns={3}>
+  <TopicButton title="Console" href="/docs/quickstart">
+    <Spacer size="l" />
+    Use the Vectara Console web interface to create your first corpus, upload documents, and run queries through an intuitive UI.
+    <Spacer size="l" />
+  </TopicButton>
+
+  <TopicButton title="REST APIs" href="/docs/api-recipes">
+    <Spacer size="l" />
+    Start building with REST APIs. Learn how to authenticate, index documents, and query your data programmatically.
+    <Spacer size="l" />
+  </TopicButton>
+
+  <TopicButton title="Agents" href="/docs/agents/agents-quickstart">
+    <Spacer size="l" />
+    Build AI agents that can search your data, use tools, and have intelligent conversations with your users.
+    <Spacer size="l" />
+  </TopicButton>
+</Grid>

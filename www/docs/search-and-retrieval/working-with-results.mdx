@@ -1,0 +1,40 @@
+---
+id: working-with-results
+title: Working with Results
+sidebar_label: Working with Results
+---
+
+import { Config } from "../definitions.md";
+import { Grid } from "@site/src/components/ui/Grid";
+import { Spacer } from "@site/src/components/ui/Spacer";
+import { TopicButton } from "@site/src/components/ui/TopicButton";
+
+Once you've retrieved search results, Vectara provides powerful tools to present, navigate, and utilize them effectively.
+
+<Grid columns={2}>
+  <TopicButton title="Citations" href="/docs/search-and-retrieval/citations">
+    <Spacer size="l" />
+    Provide source attribution for generated responses. Build trust with transparent references to original documents.
+    <Spacer size="l" />
+  </TopicButton>
+
+  <TopicButton title="Pagination" href="/docs/learn/semantic-search/enable-pagination">
+    <Spacer size="l" />
+    Navigate through large result sets efficiently. Implement page-by-page browsing for better user experience.
+    <Spacer size="l" />
+  </TopicButton>
+
+  <TopicButton title="Querying Table Data" href="/docs/learn/querying-table-data">
+    <Spacer size="l" />
+    Extract and query structured data from tables. Work with tabular content alongside unstructured text.
+    <Spacer size="l" />
+  </TopicButton>
+
+  <TopicButton title="Recommendation Systems" href="/docs/learn/recommendation-systems/recommender-overview">
+    <Spacer size="l" />
+    Build "more like this" features. Recommend similar content based on document embeddings.
+    <Spacer size="l" />
+  </TopicButton>
+</Grid>
+
+

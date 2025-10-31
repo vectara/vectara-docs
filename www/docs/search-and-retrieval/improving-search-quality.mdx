@@ -1,0 +1,69 @@
+---
+id: improving-search-quality
+title: Improving Search Quality
+sidebar_label: Improving Search Quality
+---
+
+import { Config } from "../definitions.md";
+import { Grid } from "@site/src/components/ui/Grid";
+import { Spacer } from "@site/src/components/ui/Spacer";
+import { TopicButton } from "@site/src/components/ui/TopicButton";
+
+Enhance your search results with advanced techniques. These tools help you optimize relevance, ranking, and user experience.
+
+<Grid columns={3}>
+  <TopicButton title="Intelligent Query Rewriting" href="/docs/search-and-retrieval/intelligent-query-rewriting">
+    <Spacer size="l" />
+    Automatically reformulate user queries to improve retrieval quality. Handle ambiguity and expand intent.
+    <Spacer size="l" />
+  </TopicButton>
+
+  <TopicButton title="Reranking" href="/docs/api-reference/search-apis/reranking">
+    <Spacer size="l" />
+    Reorder search results using advanced models. Boost precision and put the most relevant results first.
+    <Spacer size="l" />
+  </TopicButton>
+
+  <TopicButton title="Bring Your Own LLM" href="/docs/search-and-retrieval/bring-your-own-llm">
+    <Spacer size="l" />
+    Integrate your own language model for generation. Maintain control over the LLM while using Vectara's retrieval.
+    <Spacer size="l" />
+  </TopicButton>
+</Grid>
+
+## Reranking Options
+
+Vectara offers multiple reranking strategies to optimize your results:
+
+<Grid columns={3}>
+  <TopicButton title="Multilingual Reranker" href="/docs/learn/vectara-multi-lingual-reranker">
+    <Spacer size="l" />
+    Cross-language reranking for global applications. Works across 100+ languages.
+    <Spacer size="l" />
+  </TopicButton>
+
+  <TopicButton title="MMR Reranker" href="/docs/learn/mmr-reranker">
+    <Spacer size="l" />
+    Maximal Marginal Relevance reduces redundancy. Get diverse, non-repetitive results.
+    <Spacer size="l" />
+  </TopicButton>
+
+  <TopicButton title="UDF Reranker" href="/docs/learn/user-defined-function-reranker">
+    <Spacer size="l" />
+    Custom reranking with user-defined functions. Apply your own business logic.
+    <Spacer size="l" />
+  </TopicButton>
+
+  <TopicButton title="Chain Reranker" href="/docs/learn/chain-reranker">
+    <Spacer size="l" />
+    Combine multiple rerankers in sequence. Layer different ranking strategies.
+    <Spacer size="l" />
+  </TopicButton>
+
+  <TopicButton title="Knee Reranking" href="/docs/learn/knee-reranking">
+    <Spacer size="l" />
+    Dynamically determine result cutoff points. Optimize the number of results returned.
+    <Spacer size="l" />
+  </TopicButton>
+</Grid>
+
