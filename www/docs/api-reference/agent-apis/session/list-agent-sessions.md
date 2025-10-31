@@ -6,8 +6,6 @@ sidebar_label: List Agent Sessions
 
 import CodePanel from '@site/src/theme/CodePanel';
 
-# List Agent Sessions API Definition
-
 The List Agent Sessions API enables you to retrieve a list of conversational 
 sessions associated with a specific AI agent.
 

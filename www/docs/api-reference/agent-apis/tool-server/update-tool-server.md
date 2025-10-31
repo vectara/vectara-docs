@@ -6,24 +6,33 @@ sidebar_label: Update Tool Server
 
 import CodePanel from '@site/src/theme/CodePanel';
 
-The Update Tool Server API enables you to modify the configuration of registered Model Context Protocol (MCP) servers. This API supports updating connection parameters, authentication settings, metadata, and operational status, allowing you to maintain and evolve your tool server integrations without re-registration.
+The Update Tool Server API enables you to modify the configuration of 
+registered Model Context Protocol (MCP) servers. This API supports 
+updating connection parameters, authentication settings, metadata, and 
+operational status, allowing you to maintain and evolve your tool server 
+integrations without re-registration.
 
-Organizations use this API to update server endpoints after infrastructure changes, rotate authentication credentials, enable or disable servers for maintenance, update metadata for tracking and governance, and modify connection headers or parameters.
+Use this API to update server endpoints after infrastructure changes, rotate 
+authentication credentials, enable or disable servers for maintenance, 
+update metadata for tracking and governance, and modify connection headers 
+or parameters.
 
 ## Update Tool Server Request and Response
 
-To update a tool server, send a PATCH request to `/v2/tool_servers/{tool_server_id}`. You specify the following parameters:
+To update a tool server, send a PATCH request to `/v2/tool_servers/{tool_server_id}`. 
+You specify the following parameters:
 
-- `tool_server_id` (string, required): Tool server identifier in the URL path following pattern `tsr_[0-9a-zA-Z_-]+$`
+- `tool_server_id` (string, required): Tool server identifier in the URL path 
+  following pattern `tsr_[0-9a-zA-Z_-]+$`.
 - Request body parameters (all optional):
-  - `name` (string): The human-readable name of the tool server
-  - `description` (string): Updated description of server capabilities
-  - `uri` (string): The URI of the tool server
-  - `headers` (object): HTTP headers to include when connecting
-  - `transport` (string): Transport protocol (must be `sse` if provided)
-  - `auth` (object): Updated authentication configuration
-  - `enabled` (boolean): Whether the server should be enabled
-  - `metadata` (object): Updated arbitrary metadata
+  - `name` (string): The human-readable name of the tool server.
+  - `description` (string): Updated description of server capabilities.
+  - `uri` (string): The URI of the tool server.
+  - `headers` (object): HTTP headers to include when connecting.
+  - `transport` (string): Transport protocol (must be `sse` if provided).
+  - `auth` (object): Updated authentication configuration.
+  - `enabled` (boolean): Whether the server should be enabled.
+  - `metadata` (object): Updated arbitrary metadata.
 
 The response includes the complete updated tool server configuration.
 
@@ -106,9 +115,3 @@ The API returns standard HTTP error codes with detailed error information:
 | 409 | `uri_conflict` | Another server already uses the specified URI |
 | 429 | `rate_limit_exceeded` | Update rate limit exceeded |
 
-## Important Notes
-
-- Changes to URI or authentication may require re-synchronization
-- Disabling a server makes all its tools unavailable to agents
-- Consider testing connection changes before updating production servers
-- Authentication credentials in responses are always redacted for security

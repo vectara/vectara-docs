@@ -205,7 +205,27 @@ session will have context of previous interactions. This enables natural,
 multi-turn conversations with the agent.
 :::
 
+### Working with Artifacts in Sessions
 
+Artifacts represent files uploaded or generated within an agent session. They 
+provide a persistent workspace where agents and users can share files 
+throughout a conversation.
+
+When a user uploads a file with a multipart request, the file is stored as an 
+**artifact** and referenced in an `ArtifactUploadEvent`. Each artifact has a 
+unique `artifact_id` and includes metadata such as its filename, MIME type, 
+and size.
+
+Artifacts remain available for the duration of the session and can be accessed 
+by agent tools for processing, conversion, or indexing. Agents and tools can 
+also create new artifacts. For example, the document conversion tool might 
+generate a Markdown artifact from an uploaded PDF.
+
+- Artifacts are **session-scoped** and cannot be accessed from other sessions.
+- Use the `artifact_id` to reference 
+  artifacts in subsequent tool calls.  
+- Artifacts have a configurable **time-to-live (TTL)** and are removed 
+  automatically when they expire or when the session ends.
 
 ## Error Responses
 

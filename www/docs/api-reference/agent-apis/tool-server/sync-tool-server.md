@@ -6,17 +6,23 @@ sidebar_label: Sync Tool Server
 
 import CodePanel from '@site/src/theme/CodePanel';
 
-The Sync Tool Server API enables you to trigger synchronization of a registered MCP server to discover and update its available tools. This API ensures that the Vectara platform maintains an accurate, up-to-date catalog of tools exposed by each server, automatically reflecting any changes in tool availability, schemas, or metadata.
+The Sync Tool Server API enables you to synchronize a registered MCP server to 
+discover and update its available tools. T
 
-Synchronization is essential after server deployment changes, tool additions or modifications, server configuration updates, or as part of regular maintenance to ensure tool discovery remains current.
+Synchronization is essential after server deployment changes, tool additions or 
+modifications, server configuration updates, or as part of regular maintenance 
+to ensure tool discovery remains current.
 
 ## Sync Tool Server Request and Response
 
-To synchronize a tool server, send a POST request to `/v2/tool_servers/{tool_server_id}/sync`. You specify the following parameter:
+To synchronize a tool server, send a POST request to 
+`/v2/tool_servers/{tool_server_id}/sync`. You specify the following parameter:
 
-- `tool_server_id` (string, required): Tool server identifier in the URL path following pattern `tsr_[0-9a-zA-Z_-]+$`
+- `tool_server_id` (string, required): Tool server identifier in the URL path 
+  following pattern `tsr_[0-9a-zA-Z_-]+$`
 
-The request body should be empty. The API returns a 204 No Content response on successful synchronization.
+The request body should be empty. The API returns a 204 No Content response 
+on successful synchronization.
 
 ### Example Request
 
@@ -42,17 +48,6 @@ The request body should be empty. The API returns a 204 No Content response on s
   layout="stacked"
 />
 
-## Synchronization Process
-
-When you trigger a sync:
-
-1. The platform connects to the tool server using configured authentication
-2. Discovers all available tools through the MCP protocol
-3. Updates tool definitions, schemas, and metadata in the platform
-4. Marks newly discovered tools as available for agent configuration
-5. Preserves any tool-specific settings (like enabled/disabled status)
-6. Deletes tools that no longer exist on the server
-
 ## Error Responses
 
 The API returns standard HTTP error codes with detailed error information:
@@ -66,10 +61,3 @@ The API returns standard HTTP error codes with detailed error information:
 | 409 | `sync_in_progress` | Another sync operation is already in progress |
 | 429 | `rate_limit_exceeded` | Sync rate limit exceeded |
 | 503 | `server_unavailable` | Tool server is not responding or is unavailable |
-
-## Notes
-
-- Synchronization is typically fast but may take longer for servers exposing many tools
-- Tools are never deleted during sync; removed tools are marked as unavailable
-- Sync operations are atomic - either all tools are updated or none are
-- Consider scheduling regular syncs to maintain tool catalog accuracy

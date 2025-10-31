@@ -4,8 +4,6 @@ title: Get Agent Event API Definition
 sidebar_label: Get Agent Event
 ---
 
-# Get Agent Event API Definition
-
 The Get Agent Event API enables you to retrieve detailed information about a 
 specific interaction event within an agent session, providing comprehensive 
 visibility into individual steps of agent processing, tool executions, or 

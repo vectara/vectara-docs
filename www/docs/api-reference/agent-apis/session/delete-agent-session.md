@@ -4,16 +4,12 @@ title: Delete Agent Session API Definition
 sidebar_label: Delete Agent Session
 ---
 
-# Delete Agent Session API Definition
-
-The Delete Agent Session API enables you to permanently remove a conversational 
+The Delete Agent Session API enables you to permanently remove a 
 session and all its associated events and interaction history.
 
 
 Use this API to comply with data retention policies, clean up test and 
-development sessions, remove sensitive conversations upon customer request, 
-and maintain organized session inventories by removing completed interactions 
-that are no longer needed for operational or analytical purposes.
+development sessions, remove sensitive conversations upon customer request.
 
 ## Delete Agent Session Request and Response
 

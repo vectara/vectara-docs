@@ -6,21 +6,32 @@ sidebar_label: List Tool Servers
 
 import CodePanel from '@site/src/theme/CodePanel';
 
-The List Tool Servers API enables you to retrieve and browse all registered Model Context Protocol (MCP) servers in your Vectara account. This API provides visibility into the complete ecosystem of tool servers that expose enterprise capabilities to AI agents, facilitating server management, monitoring, and troubleshooting.
+The List Tool Servers API enables you to retrieve and browse all 
+registered Model Context Protocol (MCP) servers in your Vectara account. 
+This API provides visibility into the complete ecosystem of tool servers 
+that expose enterprise capabilities to AI agents, facilitating server 
+management, monitoring, and troubleshooting.
 
-Administrators and developers use this API to audit registered integrations, monitor server health and status, plan tool availability for agent configurations, and maintain an inventory of connected enterprise systems.
+Use this API to audit registered integrations, monitor server health and 
+status, plan tool availability for agent configurations, and maintain an 
+inventory of connected enterprise systems.
 
 ## List Tool Servers Request and Response
 
-To list tool servers, send a GET request to `/v2/tool_servers`. You can optionally specify the following query parameters:
+To list tool servers, send a GET request to `/v2/tool_servers`. 
+You can optionally specify the following query parameters:
 
-- `filter` (string, optional): A regular expression against tool server names and descriptions to filter results
-- `type` (string, optional): Filter by server type (allowed value: `mcp`)
-- `enabled` (boolean, optional): Filter servers by enabled status
-- `limit` (integer, optional): Maximum number of servers to return per page (1-100, defaults to 10)
-- `page_key` (string, optional): Pagination token from previous response to retrieve next page
+- `filter` (string, optional): A regular expression against tool server 
+  names and descriptions to filter results.
+- `type` (string, optional): Filter by server type (allowed value: `mcp`).
+- `enabled` (boolean, optional): Filter servers by enabled status.
+- `limit` (integer, optional): Maximum number of servers to return per page 
+  (1-100, defaults to 10).
+- `page_key` (string, optional): Pagination token from previous response to 
+  retrieve next page.
 
-The response includes an array of tool server configurations with complete metadata and pagination information.
+The response includes an array of tool server configurations with complete 
+metadata and pagination information.
 
 ### Example Request
 

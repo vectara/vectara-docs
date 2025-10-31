@@ -4,17 +4,13 @@ title: List Agent Events API Definition
 sidebar_label: List Agent Events
 ---
 
-# List Agent Events API Definition
-
 The List Agent Events API enables you to retrieve all interactions 
 within a specific agent session, providing visibility into 
 conversation flow, agent reasoning, tool executions, and response generation. 
 
-
 Use this API to analyze conversation patterns for quality assurance, troubleshoot 
 agent behavior during development, generate conversation transcripts for compliance 
-purposes, and extract interaction data for training and optimization of agent 
-performance across their enterprise AI deployments.
+purposes, and extract interaction data for training and agent optimization.
 
 ## List Agent Events Request and Response
 

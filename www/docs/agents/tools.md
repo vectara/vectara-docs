@@ -77,3 +77,31 @@ This example demonstrates a basic configuration.
   }}
   layout="stacked"
 />
+
+## Working with artifact-based tools
+
+Some agent tools work with files uploaded to a session's workspace. Rather 
+than embedding file contents in every request, these tools use artifact references.
+
+### Document conversion tool
+
+The document conversion tool extracts content from uploaded files and converts 
+them to markdown format. It accepts an artifact reference as input and creates 
+a new artifact containing the markdown output. 
+
+Supported file types include:
+- PDF documents (`.pdf`)
+- Microsoft Word (`.doc`, `.docx`)
+- Microsoft PowerPoint (`.ppt`, `.pptx`)
+- Images with OCR capability (`.jpg`, `.png`)
+
+For example ahe tool reads a PDF artifact, converts it to markdown, stores 
+the result as a new artifact, and returns the new artifact reference to the 
+agent.
+
+### Structured document indexing tool
+
+The structured document indexing tool adds content from artifacts to corpora. 
+It references pre-converted markdown artifacts instead of requiring inline 
+document content, enabling efficient indexing workflows. When the agent calls 
+this tool, it references the artifact to index.

@@ -164,6 +164,19 @@ For streaming responses, additional event types include:
 - `error`: Stream error
 - `end`: Stream completion
 
+### Artifacts in Agent Workspaces
+
+Each agent session includes its own workspace that stores uploaded and 
+generated files, known as **artifacts**.
+
+Artifacts persist for the session’s duration and enable the agent to reuse 
+files across multiple steps in a workflow.
+
+For example, a user might upload a PDF for analysis, and the agent can 
+convert, summarize, and index that same file without requiring reupload. 
+Artifacts remain session-bound for privacy and are deleted automatically 
+when the session expires.
+
 ## Error Responses
 
 The API returns standard HTTP error codes with detailed error information:

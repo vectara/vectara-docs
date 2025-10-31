@@ -4,8 +4,6 @@ title: Get Agent Session API Definition
 sidebar_label: Get Agent Session
 ---
 
-# Get Agent Session API Definition
-
 The Get Agent Session API enables you to retrieve detailed information about a 
 specific conversational session, including its configuration, metadata, and 
 current status within an agent's interaction history. 
