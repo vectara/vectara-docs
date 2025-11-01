@@ -140,25 +140,6 @@ The following endpoints help you extract and process tabular data from documents
 - [List Table Extractors API](/docs/api-reference/table-extractors/list-table-extractors): Get a list of available 
   table extraction models for processing structured data in documents.
 
-### Chats
-
-The following endpoints provide a streamlined solution for integrating chatbot
-functionalities into domain-specific applications and websites using
-Retrieval Augmented Generation (RAG):
-
-- [Chat API Overview](/docs/api-reference/chat-apis/chat-apis-overview) describes chats at a higher level.
-- [Create Chat API](/docs/api-reference/chat-apis/create-chat): Start a new chat session with default retrieval parameters.
-- [List Chats API](/docs/api-reference/chat-apis/list-chats): Get a list of all chat sessions.
-- [Get Chat API](/docs/api-reference/chat-apis/get-chat): Retrieve a chat summary, including the initial message.
-- [Delete Chat API](/docs/api-reference/chat-apis/delete-conversations): Remove a chat session and all its associated turns.
-- [Create Chat Turn API](/docs/api-reference/chat-apis/create-chat-turn): Add a message-response pair, also known as a turn, to
-  an existing chat.
-- [Get Chat Turn API](/docs/api-reference/chat-apis/get-chat-turn): Retrieve a specific turn from a chat.
-- [List Chat Turns API](/docs/api-reference/chat-apis/list-turns): Get a list of all turns within a chat.
-- [Update Chat Turn API](/docs/api-reference/chat-apis/update-chat-turn): Modify a turn, such as enabling or disabling it.
-- [Delete Chat Turn API](/docs/api-reference/chat-apis/delete-turns): Remove a turn from a chat, along with all subsequent
-  turns.
-
 ### Agents
 
 The following endpoints help you build and manage AI agents with custom instructions and tool integrations:

@@ -58,375 +58,277 @@ const sidebars: SidebarsConfig = {
 
     {
       type: "category",
-      label: "The Vectara Platform",
+      label: "Build",
       link: {
-        type: 'doc',
-        id: 'introduction', 
+        type: 'generated-index',
+        title: "Build with Vectara",
+        description: "Learn how to build AI applications with Vectara's data management, search, and agent capabilities",
+        slug: "/build",
       },
       collapsed: true,
       items: [
         {
           type: "category",
-          label: "Security and Data Privacy",
+          label: "Ingest Your Data",
           link: {
             type: 'doc',
-            id: 'learn/data-privacy/privacy-overview',
+            id: 'data-management',
           },
           collapsed: true,
           items: [
-            "learn/data-privacy/encryption",
-            "learn/authentication/transport-layer-security",
+            "learn/document-data-structuring",
+            "learn/select-ideal-indexing-api",
+            "api-reference/indexing-apis/file-upload/file-upload-filetypes",
+            "data-management/data-egress",
+            {
+              type: "category",
+              label: "Metadata Filters",
+              link: {
+                type: 'doc',
+                id: 'learn/metadata-search-filtering/filter-overview',
+              },
+              items: [
+                "learn/metadata-search-filtering/using-metadata-filters",
+                "learn/metadata-search-filtering/ootb-metadata-filters",
+                "learn/metadata-search-filtering/metadata-examples-and-use-cases",
+                "api-reference/search-apis/sql/func-opr",
+                "api-reference/search-apis/sql/data-types",
+                "search-and-retrieval/fuzzy-metadata-search",
+              ],
+            },
+            "learn/semantic-search/add-custom-dimensions",
           ],
         },
+
         {
           type: "category",
-          label: "Authentication and Authorization",
+          label: "Search and Generate",
           link: {
             type: 'doc',
-            id: 'learn/authentication/authentication-authorization-vectara',
+            id: 'search-and-retrieval',
           },
           collapsed: true,
           items: [
             {
               type: "category",
-              label: "Understanding Authentication",
+              label: "Search Methods",
+              link: {
+                type: 'doc',
+                id: 'search-and-retrieval/search-methods',
+              },
               collapsed: true,
               items: [
-                "learn/authentication/personas-and-access-patterns",
-                "learn/authentication/auth-overview",
-                "learn/authentication/choose-auth-method",
+                "learn/hybrid-search",
+                "learn/enable-keyword-text-matching",
+                "learn/boomerang",
+                "learn/semantic-search/semantic-search-overview",
+                "learn/semantic-search/relevance-tuning-techniques",
               ],
             },
             {
               type: "category",
-              label: "Authentication Methods",
+              label: "Improve Search Quality",
+              link: {
+                type: 'doc',
+                id: 'search-and-retrieval/improving-search-quality',
+              },
               collapsed: true,
               items: [
-                "learn/authentication/api-key-management",
-                "learn/authentication/oauth-2",
+                "search-and-retrieval/intelligent-query-rewriting",
+                {
+                  type: "category",
+                  label: "Reranking",
+                  link: {
+                    type: 'doc',
+                    id: 'api-reference/search-apis/reranking',
+                  },
+                  items: [
+                    "learn/vectara-multi-lingual-reranker",
+                    "learn/mmr-reranker",
+                    "learn/user-defined-function-reranker",
+                    "learn/chain-reranker",
+                    "learn/knee-reranking",
+                  ],
+                },
+                "search-and-retrieval/bring-your-own-llm",
               ],
             },
             {
               type: "category",
-              label: "Authorization and Access Control",
+              label: "Working with Results",
+              link: {
+                type: 'doc',
+                id: 'search-and-retrieval/working-with-results',
+              },
               collapsed: true,
               items: [
-                "learn/authentication/role-based-access-control",
-                "learn/authentication/attribute-based-access-control",
-                "learn/authentication/multi-tenant-corpus-isolation",
-                "learn/authentication/combine-access-control-with-app-filters",
+                "search-and-retrieval/citations",
+                "learn/semantic-search/enable-pagination",
+                "learn/querying-table-data",
+                "learn/recommendation-systems/recommender-overview",
               ],
             },
             {
               type: "category",
-              label: "API Authentication Examples",
+              label: "Generation",
+              link: {
+                type: 'doc',
+                id: 'generation',
+              },
               collapsed: true,
               items: [
                 {
                   type: "category",
-                  label: "OAuth 2.0 Client Credentials Grant Examples",
+                  label: "Understanding Generation",
+                  collapsed: true,
                   items: [
-                    "getting-started-samples/JWTFetcher.cs",
-                    "getting-started-samples/JwtFetcher.java",
-                    "getting-started-samples/getJwtToken.php",
-                    "getting-started-samples/rest_util.py",
+                    "learn/grounded-generation/grounded-generation-overview",
+                    "learn/question-answer/question-answer-overview",
+                    {
+                      type: "doc",
+                      id: "learn/grounded-generation/configure-query-summarization",
+                      label: "Configure Query Summarization",
+                    },
                   ],
                 },
                 {
                   type: "category",
-                  label: "API Key REST Examples",
+                  label: "Model Configuration",
+                  collapsed: true,
                   items: [
-                    "getting-started-samples/RestApiKeyQueries.cs",
-                    "getting-started-samples/RestApiKeyQueries.java",
-                    "getting-started-samples/queryDataApiKey.php",
-                    "getting-started-samples/rest_api_key_queries.py",
-                    "getting-started-samples/app.js",
+                    "learn/grounded-generation/model-selection",
+                    "learn/mockingbird-llm",
+                    "learn/grounded-generation/select-a-summarizer",
+                    "learn/grounded-generation/grounded-generation-response-languages",
+                  ],
+                },
+                {
+                  type: "category",
+                  label: "Generative Prompts",
+                  collapsed: true,
+                  link: {
+                    type: 'doc',
+                    id: 'generative-prompts',
+                  },
+                  items: [
+                    "prompts/vectara-prompt-engine",
+                    "prompts/custom-prompts-with-metadata",
+                    "generation/custom-prompt-templates-customization",
                   ],
                 },
               ],
             },
           ],
         },
+
         {
           type: "category",
-          label: "Private Deployment",
+          label: "Build with Agents",
           link: {
-            type: "doc",
-            id: "deployments",
+            type: 'doc',
+            id: 'agents/agent-platform-overview',
           },
           collapsed: true,
           items: [
-            "deployments/private-deployment-overview",
-            "deployments/deployment-options",
-            "deployments/use-cases",
-            "deployments/onprem-evaluation-process",
+            "agents/agents",
+            "agents/tools",
+            "agents/instructions",
+            "agents/sessions",
+            "agents/conversational-ai",
+            "agents/mcp",
+          ],
+        },
+
+        {
+          type: "category",
+          label: "Tutorials and Examples",
+          link: {
+            type: 'generated-index',
+            title: "Tutorials and Examples",
+            description: "Code examples, tutorials, and SDKs to help you build with Vectara",
+            slug: "/tutorials-and-examples",
+          },
+          collapsed: true,
+          items: [
             {
               type: "category",
-              label: "Guides",
-              link: {
-                type: "doc",
-                id: "deployments/guides",
-              },
+              label: "Tutorials",
               items: [
-                "deployments/guides/vectara-okta-oidc",
-              ]
-            }
-          ],
-        },
-      ],
-      
-    },
-    {
-      type: "category",
-      label: "Data Management",
-      link: {
-        type: 'doc',
-        id: 'data-management',
-      },
-      collapsed: true,
-      items: [
-        "learn/document-data-structuring",
-        "learn/select-ideal-indexing-api",
-        "api-reference/indexing-apis/file-upload/file-upload-filetypes",
-        "data-management/data-egress",
-        {
-          type: "category",
-          label: "Metadata Filters",
-          link: {
-            type: 'doc',
-            id: 'learn/metadata-search-filtering/filter-overview',
-          },
-          items: [
-            "learn/metadata-search-filtering/using-metadata-filters",
-            "learn/metadata-search-filtering/ootb-metadata-filters",
-            "learn/metadata-search-filtering/metadata-examples-and-use-cases",
-            "api-reference/search-apis/sql/func-opr",
-            "api-reference/search-apis/sql/data-types",
-          ],
-        },
-        "learn/semantic-search/add-custom-dimensions",
-      ],
-    },
-
-    {
-      type: "category",
-      label: "Search and Retrieval",
-      link: {
-        type: 'doc',
-        id: 'search-and-retrieval',
-      },
-      collapsed: true,
-      items: [
-        {
-          type: "category",
-          label: "Search Methods",
-          link: {
-            type: 'doc',
-            id: 'search-and-retrieval/search-methods',
-          },
-          collapsed: true,
-          items: [
-            "learn/boomerang",
-            "learn/semantic-search/semantic-search-overview",
-            "learn/semantic-search/relevance-tuning-techniques",
-            "learn/hybrid-search",
-            "learn/enable-keyword-text-matching",
-            "search-and-retrieval/fuzzy-metadata-search",
-          ],
-        },
-        {
-          type: "category",
-          label: "Improving Search Quality",
-          link: {
-            type: 'doc',
-            id: 'search-and-retrieval/improving-search-quality',
-          },
-          collapsed: true,
-          items: [
-            "search-and-retrieval/intelligent-query-rewriting",
+                "tutorials/build-a-chatbot",
+                "tutorials/use-openai-libraries-with-vectara",
+                "tutorials/use-external-applications-sdk",
+              ],
+            },
             {
               type: "category",
-              label: "Reranking",
-              link: {
-                type: 'doc',
-                id: 'api-reference/search-apis/reranking',
-              },
+              label: "Code Examples & SDKs",
               items: [
-                "learn/vectara-multi-lingual-reranker",
-                "learn/mmr-reranker",
-                "learn/user-defined-function-reranker",
-                "learn/chain-reranker",
-                "learn/knee-reranking",
+                "build-apps/app-building",
+                "build-apps/open-eval-framework",
+                "build-apps/vectara-ingest",
+                "build-apps/react-chatbot",
+                "build-apps/react-search",
+                "build-apps/create-ui",
+                "build-apps/vectara-answer",
               ],
             },
-            "search-and-retrieval/bring-your-own-llm",
           ],
         },
+
         {
           type: "category",
-          label: "Working with Results",
+          label: "Integrations",
           link: {
             type: 'doc',
-            id: 'search-and-retrieval/working-with-results',
+            id: 'integrations/community-collaborations-and-partnerships',
           },
           collapsed: true,
           items: [
-            "search-and-retrieval/citations",
-            "learn/semantic-search/enable-pagination",
-            "learn/querying-table-data",
-            "learn/recommendation-systems/recommender-overview",
-          ],
-        },
-      ],
-    },
-
-    {
-      type: "category",
-      label: "AI Agents",
-      link: {
-        type: 'doc',
-        id: 'agents/agent-platform-overview',
-      },
-      collapsed: true,
-      items: [
-        "agents/instructions",
-        "agents/tools",
-        "agents/agents",
-        // "agents/lambda-tools",
-        "agents/sessions",
-        "agents/conversational-ai",
-        "agents/mcp",
-      ],
-    },
-
-    {
-      type: "category",
-      label: "Generation",
-      link: {
-        type: 'doc',
-        id: 'generation',
-      },
-      collapsed: true,
-      items: [
-        {
-          type: "category",
-          label: "Understanding Generation",
-          collapsed: true,
-          items: [
-            "learn/grounded-generation/grounded-generation-overview",
-            "learn/question-answer/question-answer-overview",
             {
-              type: "doc",
-              id: "learn/grounded-generation/configure-query-summarization",
-              label: "Configure Query Summarization",
+              type: "category",
+              label: "LLM Orchestration",
+              items: [
+                "integrations/vectara-and-langchain",
+                "integrations/vectara-and-llamaindex",
+              ],
+            },
+            {
+              type: "category",
+              label: "Low-code / No-code App Builders",
+              items: [
+                "integrations/vectara-and-flowise",
+                "integrations/vectara-and-langflow",
+              ],
+            },
+            {
+              type: "category",
+              label: "Data Ingest",
+              items: [
+                "integrations/vectara-and-airbyte",
+                "integrations/vectara-and-unstructured",
+                "integrations/vectara-and-datavolo",
+                "integrations/vectara-and-confluent",
+              ],
             },
           ],
         },
-        {
-          type: "category",
-          label: "Model Configuration",
-          collapsed: true,
-          items: [
-            "learn/grounded-generation/model-selection",
-            "learn/mockingbird-llm",
-            "learn/grounded-generation/select-a-summarizer",
-            "learn/grounded-generation/grounded-generation-response-languages",
-          ],
-        },
-        {
-          type: "category",
-          label: "Generative Prompts",
-          collapsed: true,
-          link: {
-                type: 'doc',
-                id: 'generative-prompts',
-              },
-          items: [
-                "prompts/vectara-prompt-engine",
-                "prompts/custom-prompts-with-metadata",
-                "generation/custom-prompt-templates-customization",
-              ],
-        },
       ],
     },
 
     {
       type: "category",
-      label: "Observability and Evaluation",
+      label: "Manage",
       link: {
-        type: 'doc',
-        id: 'observability',
+        type: 'generated-index',
+        title: "Manage Vectara",
+        description: "Manage your Vectara resources through the Console and monitor application performance",
+        slug: "/manage",
       },
       collapsed: true,
       items: [
-        "learn/query-observability",
-        "learn/hallucination-evaluation",
-        "learn/vectara-hallucination-corrector",
-      ],
-    },
-
-    {
-      type: "category",
-      label: "Build Applications",
-      collapsed: true,
-      items: [
         {
           type: "category",
-          label: "Tutorials",
-          items: [
-            "tutorials/build-a-chatbot",
-            "tutorials/use-openai-libraries-with-vectara",
-            "tutorials/use-external-applications-sdk",
-          ],
-        },
-        "build-apps/app-building",
-        "build-apps/open-eval-framework",
-        "build-apps/vectara-ingest",
-        "build-apps/react-chatbot",
-        "build-apps/react-search",
-        "build-apps/create-ui",
-        "build-apps/vectara-answer",
-      ],
-    },
-
-    {
-      type: "category",
-      label: "Integrations",
-      collapsed: true,
-      items: [
-        "integrations/community-collaborations-and-partnerships",
-        {
-          type: "category",
-          label: "Data Ingest",
-          items: [
-            "integrations/vectara-and-airbyte",
-            "integrations/vectara-and-unstructured",
-            "integrations/vectara-and-datavolo",
-            "integrations/vectara-and-confluent",
-          ],
-        },
-        {
-          type: "category",
-          label: "LLM Orchestration",
-          items: [
-            "integrations/vectara-and-langchain",
-            "integrations/vectara-and-llamaindex",
-          ],
-        },
-        {
-          type: "category",
-          label: "Low-code / No-code App Builders",
-          items: [
-            "integrations/vectara-and-flowise",
-            "integrations/vectara-and-langflow",
-          ],
-        },
-      ],
-    },
-
-    {
-      type: "category",
-      label: "Vectara Console",
+          label: "Vectara Console",
       link: {
         type: 'doc',
         id: 'console-ui/vectara-console-overview',
@@ -510,6 +412,137 @@ const sidebars: SidebarsConfig = {
       ],
     },
 
+        {
+          type: "category",
+          label: "Observability and Evaluation",
+          link: {
+            type: 'doc',
+            id: 'observability',
+          },
+          collapsed: true,
+          items: [
+            "learn/query-observability",
+            "learn/hallucination-evaluation",
+            "learn/vectara-hallucination-corrector",
+          ],
+        },
+      ],
+    },
+
+    {
+      type: "category",
+      label: "Deploy and Scale",
+      link: {
+        type: 'generated-index',
+        title: "Deploy and Scale",
+        description: "Deploy Vectara securely and scale your applications with enterprise features",
+        slug: "/deploy-and-scale",
+      },
+      collapsed: true,
+      items: [
+        {
+          type: "category",
+          label: "Platform Overview",
+          link: {
+            type: 'doc',
+            id: 'introduction',
+          },
+          collapsed: true,
+          items: [],
+        },
+
+        {
+          type: "category",
+          label: "Security and Data Privacy",
+          link: {
+            type: 'doc',
+            id: 'learn/data-privacy/privacy-overview',
+          },
+          collapsed: true,
+          items: [
+            "learn/data-privacy/encryption",
+            "learn/authentication/transport-layer-security",
+          ],
+        },
+
+        {
+          type: "category",
+          label: "Authentication and Authorization",
+          link: {
+            type: 'doc',
+            id: 'learn/authentication/authentication-authorization-vectara',
+          },
+          collapsed: true,
+          items: [
+            "learn/authentication/personas-and-access-patterns",
+            "learn/authentication/auth-overview",
+            "learn/authentication/choose-auth-method",
+            "learn/authentication/api-key-management",
+            "learn/authentication/oauth-2",
+            "learn/authentication/role-based-access-control",
+            "learn/authentication/attribute-based-access-control",
+            "learn/authentication/multi-tenant-corpus-isolation",
+            "learn/authentication/combine-access-control-with-app-filters",
+            {
+              type: "category",
+              label: "API Authentication Examples",
+              collapsed: true,
+              items: [
+                {
+                  type: "category",
+                  label: "OAuth 2.0 Client Credentials Grant Examples",
+                  items: [
+                    "getting-started-samples/JWTFetcher.cs",
+                    "getting-started-samples/JwtFetcher.java",
+                    "getting-started-samples/getJwtToken.php",
+                    "getting-started-samples/rest_util.py",
+                  ],
+                },
+                {
+                  type: "category",
+                  label: "API Key REST Examples",
+                  items: [
+                    "getting-started-samples/RestApiKeyQueries.cs",
+                    "getting-started-samples/RestApiKeyQueries.java",
+                    "getting-started-samples/queryDataApiKey.php",
+                    "getting-started-samples/rest_api_key_queries.py",
+                    "getting-started-samples/app.js",
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+
+        {
+          type: "category",
+          label: "Private Deployment",
+          link: {
+            type: "doc",
+            id: "deployments",
+          },
+          collapsed: true,
+          items: [
+            "deployments/private-deployment-overview",
+            "deployments/deployment-options",
+            "deployments/use-cases",
+            "deployments/onprem-evaluation-process",
+            {
+              type: "category",
+              label: "Guides",
+              link: {
+                type: "doc",
+                id: "deployments/guides",
+              },
+              items: [
+                "deployments/guides/vectara-okta-oidc",
+              ]
+            }
+          ],
+        },
+      ],
+    },
+
     {
       type: "category",
       label: "API Concepts",
@@ -573,22 +606,6 @@ const sidebars: SidebarsConfig = {
               label: "Metadata Query APIs",
               items: [
                 "api-reference/search-apis/fuzzy-metadata",
-              ],
-            },
-            {
-              type: "category",
-              label: "Chat APIs",
-              items: [
-                "api-reference/chat-apis/chat-apis-overview",
-                "api-reference/chat-apis/create-chat",
-                "api-reference/chat-apis/list-chats",
-                "api-reference/chat-apis/get-chat",
-                "api-reference/chat-apis/delete-conversations",
-                "api-reference/chat-apis/create-chat-turn",
-                "api-reference/chat-apis/get-chat-turn",
-                "api-reference/chat-apis/list-chat-turns",
-                "api-reference/chat-apis/delete-turns",
-                "api-reference/chat-apis/update-chat-turn",
               ],
             },
             {

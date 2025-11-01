@@ -163,14 +163,6 @@ the behavior and output style of the summarizer to align with your unique
 application requirements.
 
 
-### Chat Conversation Located within the Summary
-
-If you enabled chat on the corpus, the `summary` object contains a 
-conversation from [Vectara Chat](/docs/1.0/api-reference/chat-apis/chat-apis-overview) which 
-includes a `conversationId`. You enable Vectara Chat by setting the `store` value to `true`.
-
-The [Vectara Chat APIs](/docs/1.0/api-reference/chat-apis/chat-apis-overview) have more details about conversations.
-
 ## REST Example
 
 ### Query API Endpoint Address
