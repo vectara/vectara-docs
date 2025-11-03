@@ -19,6 +19,7 @@
     "@docusaurus/core": "^3.7.0",
     "@docusaurus/preset-classic": "3.7.0",
     "@docusaurus/theme-mermaid": "^3.7.0",
+    "@types/pako": "^2.0.3",
     "@vectara/react-search": "^1.2.0",
     "classnames": "^2.5.1",
     "clsx": "^2.0.0",
@@ -26,13 +27,15 @@
     "docusaurus-plugin-remote-content": "^4.0.0",
     "docusaurus-plugin-sass": "^0.2.6",
     "docusaurus-theme-openapi-docs": "^4.3.6",
+    "js-yaml": "^4.1.0",
+    "pako": "^2.1.0",
     "prism-react-renderer": "^2.4.1",
     "prismjs": "^1.30.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "uuid-by-string": "^4.0.0",
-    "@types/pako": "^2.0.3",
-    "pako": "^2.1.0"
+    "react-markdown": "^8.0.7",
+    "remark-gfm": "^3.0.1",
+    "uuid-by-string": "^4.0.0"
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "3.7.0",

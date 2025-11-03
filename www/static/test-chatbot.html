@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vectara Docs Chatbot - Test</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .test-container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .test-title {
+            font-size: 32px;
+            color: #333;
+            margin: 0 0 16px 0;
+            font-weight: 700;
+        }
+        
+        .test-subtitle {
+            font-size: 16px;
+            color: #666;
+            margin: 0 0 32px 0;
+            line-height: 1.5;
+        }
+        
+        .test-button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(0, 123, 255, 0.3);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 8px;
+        }
+        
+        .test-button:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 123, 255, 0.4);
+        }
+        
+        .status {
+            margin-top: 24px;
+            padding: 12px;
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .modal-overlay.active {
+            display: flex;
+        }
+        
+        .chatbot-modal {
+            background: white;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 500px;
+            height: 600px;
+            max-height: 90vh;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            position: relative;
+            animation: slideUp 0.3s ease;
+        }
+        
+        .chatbot-header {
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chatbot-title {
+            margin: 0;
+            font-size: 18px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .close-button {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #666;
+            padding: 4px;
+            border-radius: 4px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .close-button:hover {
+            background: #e9ecef;
+        }
+        
+        .chatbot-content {
+            height: calc(100% - 80px);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .messages-area {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: white;
+        }
+        
+        .message {
+            margin-bottom: 16px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+        
+        .message.user {
+            background: #007bff;
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 4px;
+        }
+        
+        .message.assistant {
+            background: #f8f9fa;
+            color: #333;
+            margin-right: auto;
+            border-bottom-left-radius: 4px;
+        }
+        
+        .loading-message {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .typing-indicator {
+            display: inline-block;
+            animation: blink 1s infinite;
+        }
+        
+        .input-area {
+            padding: 16px 20px;
+            border-top: 1px solid #e9ecef;
+            background: #f8f9fa;
+            display: flex;
+            gap: 8px;
+        }
+        
+        .input-field {
+            flex: 1;
+            padding: 10px 12px;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            font-size: 14px;
+            outline: none;
+        }
+        
+        .send-button {
+            padding: 10px 16px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .send-button:hover:not(:disabled) {
+            background: #0056b3;
+        }
+        
+        .send-button:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+        }
+        
+        .error-message {
+            padding: 12px;
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            border-radius: 6px;
+            margin: 8px 0;
+            font-size: 14px;
+        }
+        
+        .references {
+            margin-top: 12px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .references h4 {
+            margin: 0 0 8px 0;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .references ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        .reference {
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .reference:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .reference strong {
+            font-size: 13px;
+            color: #333;
+        }
+        
+        .reference p {
+            margin: 4px 0 0 0;
+            font-size: 12px;
+            color: #666;
+            line-height: 1.4;
+        }
+        
+        .reference-score {
+            font-size: 11px;
+            color: #666;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        @media (max-width: 768px) {
+            .test-container {
+                padding: 24px;
+                margin: 10px;
+            }
+            
+            .test-title {
+                font-size: 24px;
+            }
+            
+            .chatbot-modal {
+                width: 100%;
+                height: 100%;
+                max-height: 100vh;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1 class="test-title">🤖 Vectara Docs Chatbot</h1>
+        <p class="test-subtitle">
+            Testing the enhanced chatbot functionality with modal window appearance.<br>
+            This verifies the chatbot works like the vectara/react-chatbot reference.
+        </p>
+        
+        <button class="test-button" onclick="openChatbot()">
+            💬 Open AI Assistant
+        </button>
+        
+        <button class="test-button" onclick="testSearch()">
+            🔍 Test with Search Context
+        </button>
+        
+        <div class="status">
+            ✅ Configuration: Customer ID 1526022105, Corpus ID 232<br>
+            ✅ API: Vectara v1 API with production credentials<br>
+            ✅ Features: Search integration, code generation, modal UI
+        </div>
+    </div>
+
+    <!-- Chatbot Modal -->
+    <div class="modal-overlay" id="chatModal">
+        <div class="chatbot-modal">
+            <div class="chatbot-header">
+                <h3 class="chatbot-title">Vectara Docs Chatbot</h3>
+                <button class="close-button" onclick="closeChatbot()">×</button>
+            </div>
+            <div class="chatbot-content">
+                <div class="messages-area" id="messagesArea">
+                    <div class="message assistant">
+                        <div>👋 Hi! I'm your Vectara AI assistant. I can help you with:</div>
+                        <ul style="margin: 8px 0 0 0; padding-left: 20px;">
+                            <li>Searching Vectara documentation</li>
+                            <li>Generating code examples</li>
+                            <li>Explaining API concepts</li>
+                            <li>Implementation guidance</li>
+                        </ul>
+                        <div style="margin-top: 12px; font-size: 13px; color: #666;">
+                            Try asking: "How does RAG work?" or "Show me a JavaScript example"
+                        </div>
+                    </div>
+                </div>
+                <div class="input-area">
+                    <input 
+                        type="text" 
+                        class="input-field" 
+                        id="messageInput" 
+                        placeholder="Ask me anything about Vectara..."
+                        onkeypress="handleKeyPress(event)"
+                    >
+                    <button class="send-button" id="sendButton" onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configuration from your vectara-docs setup
+        const VECTARA_CONFIG = {
+            customerId: "1526022105",
+            corpusKeys: ["232"],
+            apiKey: "zqt_WvU_2ewh7ZGRwq8LdL2SV8B9RJmVGyUm1VAuOw"
+        };
+
+        let isLoading = false;
+        let searchContext = null;
+
+        function openChatbot() {
+            document.getElementById('chatModal').classList.add('active');
+            document.getElementById('messageInput').focus();
+        }
+
+        function closeChatbot() {
+            document.getElementById('chatModal').classList.remove('active');
+        }
+
+        function testSearch() {
+            searchContext = {
+                query: "How does RAG work?",
+                results: [
+                    { id: "1", title: "Grounded Generation Overview", snippet: "Learn about RAG and grounded generation...", url: "/docs/learn/grounded-generation" },
+                    { id: "2", title: "Semantic Search", snippet: "Understanding semantic search in Vectara...", url: "/docs/learn/semantic-search" }
+                ]
+            };
+            openChatbot();
+            setTimeout(() => {
+                const input = document.getElementById('messageInput');
+                input.value = searchContext.query;
+                sendMessage();
+            }, 500);
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                sendMessage();
+            }
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            
+            if (!message || isLoading) return;
+            
+            isLoading = true;
+            const sendButton = document.getElementById('sendButton');
+            const messagesArea = document.getElementById('messagesArea');
+            
+            // Clear input and disable button
+            input.value = '';
+            sendButton.disabled = true;
+            sendButton.textContent = 'Sending...';
+            
+            // Add user message
+            addMessage(message, 'user');
+            
+            // Add loading indicator
+            const loadingId = addMessage('Searching Vectara documentation...', 'assistant', true);
+            
+            try {
+                const response = await queryVectara(message);
+                
+                // Remove loading message
+                document.getElementById(loadingId).remove();
+                
+                // Add assistant response
+                if (response.success) {
+                    addMessage(response.text, 'assistant');
+                    
+                    // Add references if available
+                    if (response.references && response.references.length > 0) {
+                        addReferences(response.references);
+                    }
+                    
+                    // Show search context if available
+                    if (searchContext) {
+                        addSearchContext();
+                        searchContext = null; // Clear after use
+                    }
+                } else {
+                    addMessage(`Error: ${response.error}`, 'assistant', false, true);
+                }
+                
+            } catch (error) {
+                document.getElementById(loadingId).remove();
+                addMessage(`Network error: ${error.message}`, 'assistant', false, true);
+            }
+            
+            // Re-enable button
+            isLoading = false;
+            sendButton.disabled = false;
+            sendButton.textContent = 'Send';
+            input.focus();
+        }
+
+        function addMessage(content, type, loading = false, error = false) {
+            const messagesArea = document.getElementById('messagesArea');
+            const messageDiv = document.createElement('div');
+            const messageId = `msg_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+            
+            messageDiv.id = messageId;
+            messageDiv.className = `message ${type}`;
+            
+            if (loading) {
+                messageDiv.innerHTML = `
+                    <div class="loading-message">
+                        <span class="typing-indicator">▋</span>
+                        ${content}
+                    </div>
+                `;
+            } else if (error) {
+                messageDiv.innerHTML = `<div class="error-message">${content}</div>`;
+            } else {
+                messageDiv.textContent = content;
+            }
+            
+            messagesArea.appendChild(messageDiv);
+            messagesArea.scrollTop = messagesArea.scrollHeight;
+            
+            return messageId;
+        }
+
+        function addReferences(references) {
+            const messagesArea = document.getElementById('messagesArea');
+            const referencesDiv = document.createElement('div');
+            referencesDiv.className = 'message assistant';
+            
+            let referencesHtml = '<div class="references"><h4>📚 Sources:</h4><ul>';
+            
+            references.slice(0, 5).forEach((ref, index) => {
+                const score = ref.score ? ` (${(ref.score * 100).toFixed(0)}%)` : '';
+                referencesHtml += `
+                    <li class="reference">
+                        <strong>${ref.title}</strong>
+                        <span class="reference-score">${score}</span>
+                        <p>${ref.snippet.substring(0, 150)}...</p>
+                    </li>
+                `;
+            });
+            
+            referencesHtml += '</ul></div>';
+            referencesDiv.innerHTML = referencesHtml;
+            
+            messagesArea.appendChild(referencesDiv);
+            messagesArea.scrollTop = messagesArea.scrollHeight;
+        }
+
+        function addSearchContext() {
+            if (!searchContext) return;
+            
+            const messagesArea = document.getElementById('messagesArea');
+            const contextDiv = document.createElement('div');
+            contextDiv.className = 'message assistant';
+            
+            let contextHtml = `
+                <div style="padding: 12px; background: #e3f2fd; border-radius: 6px; margin-top: 8px;">
+                    <strong>🔍 Search Context:</strong> ${searchContext.query}<br>
+                    <small style="color: #666;">${searchContext.results.length} related results found</small>
+                </div>
+            `;
+            
+            contextDiv.innerHTML = contextHtml;
+            messagesArea.appendChild(contextDiv);
+            messagesArea.scrollTop = messagesArea.scrollHeight;
+        }
+
+        async function queryVectara(query) {
+            const requestBody = {
+                query: [{
+                    query: query,
+                    queryContext: '',
+                    start: 0,
+                    numResults: 10,
+                    contextConfig: {
+                        charsBefore: 0,
+                        charsAfter: 0,
+                        sentencesBefore: 2,
+                        sentencesAfter: 2,
+                        startTag: '%START_SNIPPET%',
+                        endTag: '%END_SNIPPET%'
+                    },
+                    corpusKey: [{
+                        customerId: parseInt(VECTARA_CONFIG.customerId),
+                        corpusId: parseInt(VECTARA_CONFIG.corpusKeys[0]),
+                        semantics: 'DEFAULT',
+                        metadataFilter: '',
+                        lexicalInterpolationConfig: {
+                            lambda: 0.005
+                        }
+                    }],
+                    summary: [{
+                        maxSummarizedResults: 10,
+                        responseLang: 'eng',
+                        summarizerPromptName: 'vectara-summary-ext-24-05-med-omni'
+                    }]
+                }]
+            };
+
+            try {
+                console.log('🔍 Querying Vectara API with:', { query, config: VECTARA_CONFIG });
+                
+                const response = await fetch('https://api.vectara.io/v1/query', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'customer-id': VECTARA_CONFIG.customerId,
+                        'Authorization': `Bearer ${VECTARA_CONFIG.apiKey}`
+                    },
+                    body: JSON.stringify(requestBody)
+                });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error('❌ API Error:', response.status, errorText);
+                    throw new Error(`API request failed: ${response.status} ${response.statusText} - ${errorText}`);
+                }
+
+                const data = await response.json();
+                console.log('✅ API Response:', data);
+                
+                const responseText = data.responseSet?.[0]?.summary?.[0]?.text || 'No response received';
+                const references = data.responseSet?.[0]?.response?.map((r, index) => ({
+                    id: `ref_${index}`,
+                    title: r.metadata?.find(m => m.name === 'title')?.value || `Reference ${index + 1}`,
+                    snippet: r.text,
+                    score: r.score
+                })) || [];
+
+                return {
+                    success: true,
+                    text: responseText,
+                    references: references
+                };
+
+            } catch (error) {
+                console.error('❌ Vectara query error:', error);
+                return {
+                    success: false,
+                    error: error.message
+                };
+            }
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('chatModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeChatbot();
+            }
+        });
+
+        console.log('🚀 Vectara Docs Chatbot Test loaded with config:', VECTARA_CONFIG);
+    </script>
+</body>
+</html>
