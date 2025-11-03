@@ -8,7 +8,6 @@ const sidebars: SidebarsConfig = {
       id: "introduction",
       label: "The Vectara Platform",
     },
-    "codepanel-examples",
     {
       type: "category",
       label: "Security and Data Privacy",
