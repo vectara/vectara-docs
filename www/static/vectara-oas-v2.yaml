@@ -5524,6 +5524,54 @@ paths:
       x-fern-sdk-group-name: tool-servers
       x-fern-sdk-method-name: sync
   /v2/tools:
+    post:
+      tags:
+      - Tools
+      summary: Create tool
+      description: 'Create a new tool that agents can use. Currently supports Lambda
+        tools for user-defined functions.
+
+        Lambda tools allow you to write custom code that agents can execute in a secure
+        sandbox.
+
+        '
+      operationId: createTool
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateToolRequest'
+      responses:
+        '201':
+          description: The tool has been created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tool'
+        '400':
+          description: Tool creation request was malformed or contains invalid configuration.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '403':
+          description: Permissions do not allow creating tools.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: A tool with this name already exists.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-fern-sdk-group-name: tools
+      x-fern-sdk-method-name: create
     get:
       tags:
       - Tools
@@ -5550,6 +5598,7 @@ paths:
           type: string
           enum:
           - mcp
+          - lambda
           example: mcp
       - in: query
         name: enabled
@@ -5575,7 +5624,7 @@ paths:
           format: int32
           minimum: 1
           maximum: 100
-          default: 10
+          default: 50
       - name: page_key
         in: query
         description: Used to retrieve the next page of tools after the limit has been
@@ -5727,6 +5776,71 @@ paths:
                 $ref: '#/components/schemas/NotFoundError'
       x-fern-sdk-group-name: tools
       x-fern-sdk-method-name: delete
+  /v2/tools/{tool_id}/test:
+    post:
+      tags:
+      - Tools
+      summary: Test Lambda tool
+      description: 'Execute a Lambda tool with test inputs to verify it works correctly.
+
+        This endpoint allows users to test their functions before using them with
+        agents.
+
+        The function is executed in a secure sandbox environment with the same constraints
+        as production.
+
+        '
+      operationId: testTool
+      parameters:
+      - $ref: '#/components/parameters/RequestTimeout'
+      - $ref: '#/components/parameters/RequestTimeoutMillis'
+      - in: path
+        name: tool_id
+        description: The unique identifier of the Lambda tool to test.
+        required: true
+        schema:
+          type: string
+          pattern: tol_[0-9a-zA-Z_-]+$
+          example: tol_python_function_123
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestToolRequest'
+      responses:
+        '200':
+          description: Test execution completed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TestToolResponse'
+        '400':
+          description: Invalid test input or tool configuration.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '403':
+          description: Permissions do not allow testing this tool.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Tool not found or not a Lambda tool.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        '500':
+          description: Execution failed due to execution errors or resource limits.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-fern-sdk-group-name: tools
+      x-fern-sdk-method-name: test
   /v2/instructions:
     post:
       tags:
@@ -6632,6 +6746,21 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateInputEvent'
+          multipart/form-data:
+            encoding:
+              message:
+                contentType: text/plain
+                style: form
+              files:
+                contentType: application/octet-stream, application/pdf, application/msword,
+                  application/vnd.openxmlformats-officedocument.wordprocessingml.document,
+                  application/vnd.oasis.opendocument.text, application/epub+zip, application/rtf,
+                  text/html, text/plain, application/vnd.ms-powerpoint, application/vnd.openxmlformats-officedocument.presentationml.presentation,
+                  text/markdown
+                style: form
+              stream_response:
+                contentType: text/plain
+                style: form
       x-stream-based-on-body: streamResponse()
       responses:
         '201':
@@ -6673,6 +6802,7 @@ paths:
             propertyName: type
             mapping:
               input_message: '#/components/schemas/InputMessageEvent'
+              artifact_upload: '#/components/schemas/ArtifactUploadEvent'
               tool_input: '#/components/schemas/ToolInputEvent'
               tool_output: '#/components/schemas/ToolOutputEvent'
               thinking: '#/components/schemas/ThinkingEvent'
@@ -6680,6 +6810,7 @@ paths:
               context_limit_exceeded: '#/components/schemas/ContextLimitExceededEvent'
           oneOf:
           - $ref: '#/components/schemas/InputMessageEvent'
+          - $ref: '#/components/schemas/ArtifactUploadEvent'
           - $ref: '#/components/schemas/ToolInputEvent'
           - $ref: '#/components/schemas/ToolOutputEvent'
           - $ref: '#/components/schemas/ThinkingEvent'
@@ -6699,6 +6830,7 @@ paths:
               type: string
               enum:
               - input_message
+              - artifact_upload
               - tool_input
               - tool_output
               - thinking
@@ -10612,14 +10744,30 @@ components:
           description: The ID of the agent this role applies to.
           type: string
         role:
-          description: The role assigned for this specific agent.
+          description: 'The role assigned for this specific agent.
+
+            * `agent_administrator` - Full administrative access to the agent including
+            deletion and configuration.
+
+            * `agent_viewer` - Read-only access to view agent configuration, sessions,
+            events, instructions, and tools.
+
+            * `agent_developer` - Can modify agent configuration, create/manage sessions,
+            update tools and instructions.
+
+            * `agent_user` - Limited access to interact with the agent by creating
+            sessions and sending inputs. Cannot view agent configuration or modify
+            settings.
+
+            '
           type: string
           enum:
           - agent_administrator
           - agent_viewer
           - agent_developer
+          - agent_user
       required:
-      - agent_id
+      - agent_key
       - role
     ApiOperationPolicy:
       description: Policy to allow operations if only using the specified resource.
@@ -10950,10 +11098,18 @@ components:
       - mcp
       example: mcp
     ToolServerTransport:
-      description: The transport protocol to use for connecting to the server.
+      description: 'Transport protocol for MCP server connections. Both use Server-Sent
+        Events (SSE).
+
+        - `sse`: Legacy format (https://modelcontextprotocol.io/specification/2024-11-05/basic/transports)
+
+        - `streamable-http`: New format (https://modelcontextprotocol.io/specification/2025-03-26/basic/transports)
+
+        '
       type: string
       enum:
       - sse
+      - streamable-http
       example: sse
     ToolServer:
       description: Represents a tool server that can provide various functionalities.
@@ -11292,6 +11448,238 @@ components:
       - input_schema
       x-vectaraParents:
       - Tool
+    ExecutionConfiguration:
+      description: Execution configuration for the function.
+      type: object
+      properties:
+        max_execution_time_seconds:
+          description: Maximum execution time in seconds.
+          type: integer
+          minimum: 1
+          maximum: 300
+          default: 30
+          example: 30
+        max_memory_mb:
+          description: Maximum memory usage in megabytes.
+          type: integer
+          minimum: 10
+          maximum: 1024
+          default: 100
+          example: 100
+    FunctionDefinition:
+      description: 'Definition of a function to be executed as a tool in a sandboxed
+        environment.
+
+
+        **Python Environment:**
+
+        - Python version: 3.12
+
+        - Execution: Sandboxed using gVisor for security isolation
+
+        - **Allowed modules**: `json`, `math`, `datetime`, `collections`, `itertools`,
+        `functools`, `re`, `time`, `typing`
+
+        - Memory limit: 100MB (configurable up to 1GB)
+
+        - Execution timeout: 30 seconds (configurable up to 300 seconds)
+
+        - Network access: Disabled for security
+
+        - File system access: Read-only temporary workspace
+
+        - No custom package installation supported (security constraint)
+
+
+        **Type Annotations:**
+
+        - Use type annotations for automatic input/output schema discovery
+
+        - Supported typing constructs: `List`, `Dict`, `Optional`, `Union`
+
+        - Import from `typing` module when using complex types
+
+        '
+      type: object
+      properties:
+        language:
+          description: The programming language of the function. Currently only Python
+            3.12 is supported.
+          type: string
+          enum:
+          - python
+          example: python
+        code:
+          description: 'The function code.
+
+
+            **Required**: Must define a `process()` entry point function. Use type
+            annotations on parameters for automatic schema discovery.
+
+
+            Parameters are passed as keyword arguments matched to the function signature.
+
+            '
+          type: string
+          example: "def process(data: list, threshold: float = 0):\n    filtered =\
+            \ [x for x in data if x > threshold]\n    return {\n        'count': len(filtered),\n\
+            \        'average': sum(filtered) / len(filtered) if filtered else 0,\n\
+            \        'filtered_data': filtered\n    }\n"
+        validation_status:
+          description: The validation status of the code.
+          type: string
+          enum:
+          - pending
+          - valid
+          - invalid
+          example: valid
+        validation_errors:
+          description: List of validation errors if the code is invalid.
+          type: array
+          items:
+            type: string
+        execution_configuration:
+          $ref: '#/components/schemas/ExecutionConfiguration'
+      required:
+      - language
+      - code
+    LambdaTool:
+      description: 'A user-defined function that can be executed as a tool by agents.
+
+        Lambda tools run in a secure, sandboxed environment with resource limits.
+
+        Currently supports Python 3.12 with a curated set of libraries.
+
+        '
+      type: object
+      properties:
+        type:
+          description: This should always be `lambda`.
+          type: string
+          default: lambda
+          example: lambda
+        id:
+          $ref: '#/components/schemas/ToolId'
+        name:
+          description: Unique identifier for the tool.
+          type: string
+        title:
+          description: Human-readable title of the tool.
+          type: string
+        description:
+          description: A detailed description of what the function does and how it
+            can be used.
+          type: string
+        language:
+          description: The programming language of the lambda function. Currently
+            only Python 3.12 is supported.
+          type: string
+          enum:
+          - python
+          default: python
+          example: python
+        enabled:
+          description: Whether the tool is currently enabled and available for use.
+          type: boolean
+          default: true
+        created_at:
+          description: Timestamp when the tool was created.
+          type: string
+          format: date-time
+        updated_at:
+          description: Timestamp when the tool was last updated.
+          type: string
+          format: date-time
+        input_schema:
+          description: The schema that defines the expected input structure for the
+            function.
+          type: object
+          additionalProperties: true
+          example:
+            type: object
+            properties:
+              data:
+                type: array
+                description: Input data to process.
+              threshold:
+                type: number
+                description: Threshold value for filtering.
+        output_schema:
+          description: The schema that defines the expected output structure from
+            the function.
+          type: object
+          additionalProperties: true
+        function_definition:
+          $ref: '#/components/schemas/FunctionDefinition'
+      required:
+      - type
+      - id
+      - name
+      - description
+      - language
+      - enabled
+      - function_definition
+      x-vectaraParents:
+      - Tool
+    StructuredIndexingTool:
+      description: A tool that indexes structured documents into the Vectara platform
+        with full control over document structure, sections, metadata, tables, and
+        images.
+      type: object
+      properties:
+        type:
+          description: This should always be `structured_indexing`.
+          type: string
+          default: structured_indexing
+          example: structured_indexing
+        id:
+          $ref: '#/components/schemas/ToolId'
+        name:
+          description: Unique identifier for the tool.
+          type: string
+        title:
+          description: Human-readable title of the tool.
+          type: string
+        description:
+          description: A detailed description of what the tool does and how it can
+            be used.
+          type: string
+        enabled:
+          description: Whether the tool is currently enabled and available for use.
+          type: boolean
+          default: true
+        created_at:
+          description: Timestamp when the tool was created.
+          type: string
+          format: date-time
+        updated_at:
+          description: Timestamp when the tool was last updated.
+          type: string
+          format: date-time
+        input_schema:
+          description: The schema that defines the expected input structure for the
+            structured indexing tool.
+          type: object
+          additionalProperties: true
+          example:
+            type: object
+            properties:
+              corpus_key:
+                type: string
+                description: The key identifying the target corpus for document indexing.
+              document:
+                type: object
+                description: The structured document to index with full hierarchical
+                  content.
+      required:
+      - type
+      - id
+      - name
+      - description
+      - enabled
+      - input_schema
+      x-vectaraParents:
+      - Tool
     Tool:
       description: A tool that can be used by agents to perform specific actions or
         operations.
@@ -11301,10 +11689,14 @@ components:
           mcp: '#/components/schemas/McpTool'
           corpora_search: '#/components/schemas/CorporaSearchTool'
           web_search: '#/components/schemas/WebSearchTool'
+          lambda: '#/components/schemas/LambdaTool'
+          structured_indexing: '#/components/schemas/StructuredIndexingTool'
       oneOf:
       - $ref: '#/components/schemas/McpTool'
       - $ref: '#/components/schemas/CorporaSearchTool'
       - $ref: '#/components/schemas/WebSearchTool'
+      - $ref: '#/components/schemas/LambdaTool'
+      - $ref: '#/components/schemas/StructuredIndexingTool'
     ListToolsResponse:
       description: Response containing a list of tools.
       type: object
@@ -11318,6 +11710,100 @@ components:
           $ref: '#/components/schemas/ListMetadata'
       required:
       - tools
+    CreateLambdaToolRequest:
+      description: 'Request to create a new lambda tool. Lambda tools are user-defined
+        functions that run
+
+        in a secure, sandboxed environment with Python 3.12.
+
+
+        Input and output schemas are automatically discovered from function parameter
+        type annotations in your code.
+
+        '
+      type: object
+      properties:
+        type:
+          description: This should always be `lambda`.
+          type: string
+          default: lambda
+          example: lambda
+        name:
+          description: The unique name of the tool (used as the function identifier).
+          type: string
+          minLength: 1
+          maxLength: 50
+          pattern: ^[a-zA-Z0-9_-]+$
+          example: calculate_customer_score
+        title:
+          description: Human-readable title of the tool displayed in the UI.
+          type: string
+          minLength: 1
+          maxLength: 128
+          example: Customer Score Calculator
+        description:
+          description: A detailed description of what the function does, when to use
+            it, and what it returns.
+          type: string
+          minLength: 1
+          maxLength: 5000
+          example: Calculate a customer score based on order history and revenue.
+            Returns a score between 0-100.
+        language:
+          description: The programming language. Currently only 'python' (Python 3.12)
+            is supported.
+          type: string
+          enum:
+          - python
+          default: python
+          example: python
+        code:
+          description: "The Python 3.12 code for the function.\n\n**Required**: Must\
+            \ define a `process()` entry point function. Use type annotations on parameters\
+            \ for automatic schema discovery.\n\n**Parameters**: Passed as keyword\
+            \ arguments matched to the function signature.\n\n**Return types**: Can\
+            \ return any JSON-serializable type (strings, numbers, booleans, lists,\
+            \ or objects).\n\n**Example: Returning a number**\n```python\ndef process(x:\
+            \ int, y: int) -> int:\n    return x + y\n```\n\n**Example: Returning\
+            \ a string**\n```python\ndef process(name: str) -> str:\n    return f\"\
+            Hello, {name}!\"\n```\n\n**Example: Returning a boolean**\n```python\n\
+            def process(value: int, threshold: int) -> bool:\n    return value > threshold\n\
+            ```\n\n**Example: Returning a list**\n```python\nfrom typing import List\n\
+            \ndef process(items: List[str]) -> List[str]:\n    return sorted(items)\n\
+            ```\n\n**Example: Returning an object (dict)**\n```python\ndef process(order_count:\
+            \ int, total_revenue: float, days_active: int = 1) -> dict:\n    score\
+            \ = (order_count * 10 + total_revenue * 0.1) / days_active\n    return\
+            \ {'score': round(score, 2), 'rating': 'high' if score > 100 else 'low'}\n\
+            ```\n\nFor complex types, use the `typing` module:\n\n```python\nfrom\
+            \ typing import List, Dict\n\ndef process(items: List[str], config: Dict[str,\
+            \ float]) -> dict:\n    count = len(items)\n    multiplier = config.get('multiplier',\
+            \ 1.0)\n    return {'count': count, 'adjusted': count * multiplier}\n\
+            ```\n"
+          type: string
+          minLength: 1
+          maxLength: 100000
+          example: "def process(order_count: int, total_revenue: float, days_active:\
+            \ int = 1) -> dict:\n    score = (order_count * 10 + total_revenue * 0.1)\
+            \ / days_active\n    return {'score': round(score, 2)}\n"
+        execution_configuration:
+          $ref: '#/components/schemas/ExecutionConfiguration'
+      required:
+      - type
+      - name
+      - title
+      - description
+      - code
+      x-vectaraParents:
+      - CreateToolRequest
+    CreateToolRequest:
+      description: Request to create a tool. Currently supports lambda tools for user-defined
+        functions.
+      discriminator:
+        propertyName: type
+        mapping:
+          lambda: '#/components/schemas/CreateLambdaToolRequest'
+      oneOf:
+      - $ref: '#/components/schemas/CreateLambdaToolRequest'
     UpdateMcpToolRequest:
       description: Request object for updating an existing MCP tool.
       type: object
@@ -11334,14 +11820,182 @@ components:
       - type
       x-vectaraParents:
       - UpdateToolRequest
+    UpdateLambdaToolRequest:
+      description: 'Request to update a lambda tool, allowing modifications to code,
+        configuration, and metadata.
+
+
+        When code is updated, input and output schemas are automatically re-discovered
+        from function parameter type annotations.
+
+        '
+      type: object
+      properties:
+        type:
+          description: This should always be `lambda`.
+          type: string
+          default: lambda
+          example: lambda
+        enabled:
+          description: Whether the tool should be enabled or disabled.
+          type: boolean
+          example: true
+        title:
+          description: Updated user-friendly display name for the tool.
+          type: string
+          minLength: 1
+          maxLength: 255
+          example: Updated Calculator Tool
+        description:
+          description: Updated description of what the tool does.
+          type: string
+          example: An updated tool that performs advanced calculations
+        code:
+          description: 'Updated code for the lambda function. Use function parameter
+            type annotations for automatic schema discovery.
+
+            '
+          type: string
+          minLength: 1
+          example: "def process(value: float) -> dict:\n    return {\"result\": value\
+            \ * 2}\n"
+        execution_configuration:
+          description: Updated execution configuration.
+          $ref: '#/components/schemas/ExecutionConfiguration'
+      required:
+      - type
+      x-vectaraParents:
+      - UpdateToolRequest
     UpdateToolRequest:
-      description: Request to update a tool. Supports MCP tools.
+      description: Request to update a tool. Supports updating MCP and Python lambda
+        tools.
       discriminator:
         propertyName: type
         mapping:
           mcp: '#/components/schemas/UpdateMcpToolRequest'
+          lambda: '#/components/schemas/UpdateLambdaToolRequest'
       oneOf:
       - $ref: '#/components/schemas/UpdateMcpToolRequest'
+      - $ref: '#/components/schemas/UpdateLambdaToolRequest'
+    TestToolRequest:
+      description: Request to test a Lambda tool with sample input.
+      type: object
+      properties:
+        input:
+          description: The input parameters to pass to the function. Must match the
+            tool's input schema.
+          type: object
+          additionalProperties: true
+          example:
+            number: 42
+            text: Hello, world!
+        timeout_seconds:
+          description: Maximum execution time in seconds. If not specified, uses the
+            tool's configured timeout.
+          type: integer
+          minimum: 1
+          maximum: 300
+          example: 10
+      required:
+      - input
+    TestToolSuccessResponse:
+      description: Successful execution response from testing a Lambda tool.
+      type: object
+      properties:
+        type:
+          description: Response type indicator. Always "success" for successful executions.
+          type: string
+          default: success
+          example: success
+        output:
+          description: The output returned by the function.
+          type: object
+          additionalProperties: true
+          example:
+            result: 1764
+            message: Computed successfully
+        latency_millis:
+          description: Time taken to execute the function in milliseconds.
+          type: integer
+          example: 125
+        memory_used_mb:
+          description: Memory used during execution in megabytes.
+          type: integer
+          example: 32
+        validation_results:
+          description: Results of input/output schema validation.
+          type: object
+          properties:
+            input_valid:
+              description: Whether the input matched the expected schema.
+              type: boolean
+              example: true
+            output_valid:
+              description: Whether the output matched the expected schema.
+              type: boolean
+              example: true
+            validation_errors:
+              description: Details of any validation errors.
+              type: array
+              items:
+                type: string
+              example:
+              - Output missing required field 'result'
+      required:
+      - type
+      - output
+      - latency_millis
+      x-vectaraParents:
+      - TestToolResponse
+    TestToolErrorResponse:
+      description: Error response from testing a Lambda tool.
+      type: object
+      properties:
+        type:
+          description: Response type indicator. Always "error" for failed executions.
+          type: string
+          default: error
+          example: error
+        error:
+          description: Error information from the failed execution.
+          type: object
+          properties:
+            message:
+              description: The error message.
+              type: string
+              example: 'ValueError: Input must be positive'
+            traceback:
+              description: Stack trace for debugging.
+              type: string
+              example: "Traceback (most recent call last):\n  File \"<string>\", line\
+                \ 3, in process\nValueError: Input must be positive"
+          required:
+          - message
+        latency_millis:
+          description: Time taken before the error occurred in milliseconds.
+          type: integer
+          example: 125
+        memory_used_mb:
+          description: Memory used before the error occurred in megabytes.
+          type: integer
+          example: 32
+      required:
+      - type
+      - error
+      - latency_millis
+      x-vectaraParents:
+      - TestToolResponse
+    TestToolResponse:
+      description: Response from testing a Lambda tool. Uses type field to discriminate
+        between success and error responses.
+      discriminator:
+        propertyName: type
+        mapping:
+          success: '#/components/schemas/TestToolSuccessResponse'
+          error: '#/components/schemas/TestToolErrorResponse'
+      oneOf:
+      - $ref: '#/components/schemas/TestToolSuccessResponse'
+      - $ref: '#/components/schemas/TestToolErrorResponse'
     InstructionId:
       description: The unique identifier for an instruction.
       type: string
@@ -11710,6 +12364,93 @@ components:
       - type
       x-vectaraParents:
       - AgentToolConfiguration
+    InlineLambdaToolConfiguration:
+      title: InlineLambdaToolConfiguration
+      description: A lambda tool configuration defined inline in the agent for executing
+        user-defined functions.
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of tool configuration, which is always 'lambda' for
+            inline lambda tool configurations.
+          default: lambda
+        tool_id:
+          $ref: '#/components/schemas/ToolId'
+        argument_override:
+          description: Optional hardcoded arguments that will be passed to the lambda
+            function. When specified, these values will be used instead of allowing
+            the LLM to fill in those parameters.
+          type: object
+          additionalProperties: true
+          example:
+            custom_param: value
+      required:
+      - tool_id
+      - type
+      x-vectaraParents:
+      - AgentToolConfiguration
+    StructuredIndexingToolParameters:
+      description: LLM-exposed parameters for the structured indexing tool that indexes
+        documents into the Vectara platform and can be filled in during execution.
+      type: object
+      properties:
+        corpus_key:
+          description: The key identifying the target corpus for document indexing.
+            If not provided, will be filled in by the LLM.
+          type: string
+          example: my-knowledge-base
+        document_id:
+          description: The unique identifier for the document within the corpus, preferably
+            human readable IDs.
+          type: string
+          example: annual_report_2024
+        title:
+          description: The title of the document being indexed.
+          type: string
+          example: 2024 Annual ESG Report
+        description:
+          description: A brief description or summary of the document content.
+          type: string
+          example: Comprehensive environmental, social, and governance report
+        metadata:
+          description: The metadata key-value pairs to associate with the document.
+            If present, this gets merged with existing artifact metadata.
+          type: object
+          additionalProperties: true
+          example:
+            doc_type: annual_report
+            year: 2024
+            department: sustainability
+        document:
+          description: The structured document to index with full hierarchical content.
+          type: object
+          additionalProperties: true
+          example:
+            id: annual_report_2024
+            type: structured
+            title: 2024 Annual ESG Report
+      additionalProperties: false
+    InlineStructuredIndexingToolConfiguration:
+      title: InlineStructuredIndexingToolConfiguration
+      description: A structured indexing tool configuration defined inline in the
+        agent for indexing into the Vectara platform.
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of tool configuration, which is always 'structured_indexing'
+            for inline structured indexing tool configurations.
+          default: structured_indexing
+        argument_override:
+          description: Optional hardcoded arguments for the structured indexing tool
+            call such as corpus_key etc. When specified, these values will be used
+            instead of allowing the LLM to fill in those parameters.
+          $ref: '#/components/schemas/StructuredIndexingToolParameters'
+      required:
+      - type
+      x-vectaraParents:
+      - AgentToolConfiguration
     AgentToolConfiguration:
       title: AgentToolConfiguration
       description: A tool configuration that can be used by an agent, defined inline
@@ -11720,10 +12461,14 @@ components:
           mcp: '#/components/schemas/InlineMcpToolConfiguration'
           corpora_search: '#/components/schemas/InlineCorporaSearchToolConfiguration'
           web_search: '#/components/schemas/InlineWebSearchToolConfiguration'
+          lambda: '#/components/schemas/InlineLambdaToolConfiguration'
+          structured_indexing: '#/components/schemas/InlineStructuredIndexingToolConfiguration'
       oneOf:
       - $ref: '#/components/schemas/InlineMcpToolConfiguration'
       - $ref: '#/components/schemas/InlineCorporaSearchToolConfiguration'
       - $ref: '#/components/schemas/InlineWebSearchToolConfiguration'
+      - $ref: '#/components/schemas/InlineLambdaToolConfiguration'
+      - $ref: '#/components/schemas/InlineStructuredIndexingToolConfiguration'
       example:
       - type: web_search
         argument_override:
@@ -12358,6 +13103,129 @@ components:
       x-vectaraParents:
       - AgentEvent
       - AgentStreamedResponse
+    ArtifactReference:
+      title: ArtifactReference
+      description: 'Reference to an artifact stored in the agent session workspace.
+
+
+        Artifacts are files or documents that belong to a specific agent session,
+        providing a persistent workspace where agents and users can share files throughout
+        a conversation. When users upload files (such as PDFs, Word documents, PowerPoint
+        presentations, or images) to an agent session, these files are stored as artifacts
+        that remain available for the duration of the session.
+
+
+        **Session Binding**: Each artifact is scoped to a specific agent session and
+        cannot be accessed from other sessions, ensuring data privacy and security.
+
+
+        **Lifecycle**: Artifacts are created when users upload files via multipart
+        requests or when agent tools generate new files (such as converting a PDF
+        to markdown). Artifacts have a configurable time-to-live and are automatically
+        removed when they expire or when the session is deleted. Size limits apply
+        to individual artifacts and total session storage.
+
+
+        **How Agents Use Artifacts**: Agent tools can read artifacts, process them,
+        and create new derived artifacts. For example, the document conversion tool
+        can take a PDF artifact, convert it to markdown, and store the result as a
+        new artifact. This enables multi-step document processing workflows within
+        a single session.
+
+
+        **Common Use Cases**: Upload a document for the agent to analyze, provide
+        multiple reference files for context, enable the agent to convert between
+        formats, or allow the agent to generate and store processed files for later
+        retrieval.
+
+        '
+      type: object
+      properties:
+        artifact_id:
+          description: Unique identifier for the artifact
+          type: string
+          pattern: ^art_[a-z0-9_-]+$
+          example: art_report_pdf_a3f2
+        filename:
+          description: Original filename of the artifact
+          type: string
+          example: report.pdf
+        mime_type:
+          description: MIME type of the file
+          type: string
+          example: application/pdf
+        size_bytes:
+          description: File size in bytes
+          type: integer
+          format: int64
+          example: 2048576
+      required:
+      - artifact_id
+      - filename
+      - mime_type
+      - size_bytes
+    ArtifactUploadEvent:
+      title: ArtifactUploadEvent
+      description: 'Event representing files uploaded to the agent workspace as artifacts.
+
+
+        This event is created when users upload one or more files to an agent session
+        using multipart requests. The event becomes part of the session''s conversation
+        history and contains references to all artifacts that were uploaded in the
+        request. Each uploaded file is assigned a unique artifact identifier and stored
+        in the session''s workspace.
+
+
+        When an agent processes this event, it becomes aware that new files are available
+        in the session and can use various tools to read, analyze, or transform these
+        artifacts. For example, after receiving an artifact upload event with a PDF,
+        the agent might use the document conversion tool to extract and analyze the
+        document''s contents.
+
+
+        See the `ArtifactReference` schema for comprehensive details about what artifacts
+        are, how they are stored, their lifecycle, and how agents interact with them.
+
+        '
+      type: object
+      properties:
+        id:
+          description: The unique identifier for the event.
+          type: string
+          pattern: ^aev_[0-9a-zA-Z_-]+$
+          example: aev_artifact_upload_001
+        session_key:
+          $ref: '#/components/schemas/AgentSessionKey'
+          description: The key of the session this event belongs to.
+        type:
+          description: The type of event.
+          type: string
+          default: artifact_upload
+          example: artifact_upload
+        artifacts:
+          description: References to uploaded artifacts
+          type: array
+          items:
+            $ref: '#/components/schemas/ArtifactReference'
+          example:
+          - artifact_id: art_report_pdf_a3f2
+            filename: report.pdf
+            mime_type: application/pdf
+            size_bytes: 2048576
+        created_at:
+          description: Timestamp when the event was created.
+          type: string
+          format: date-time
+          example: '2024-01-15T10:35:00Z'
+      required:
+      - id
+      - session_key
+      - type
+      - artifacts
+      - created_at
+      x-vectaraParents:
+      - AgentEvent
+      - AgentStreamedResponse
     ToolInputEvent:
       title: ToolInputEvent
       description: An event representing input to a tool call.
@@ -12590,6 +13458,7 @@ components:
         propertyName: type
         mapping:
           input_message: '#/components/schemas/InputMessageEvent'
+          artifact_upload: '#/components/schemas/ArtifactUploadEvent'
           tool_input: '#/components/schemas/ToolInputEvent'
           tool_output: '#/components/schemas/ToolOutputEvent'
           thinking: '#/components/schemas/ThinkingEvent'
@@ -12597,6 +13466,7 @@ components:
           context_limit_exceeded: '#/components/schemas/ContextLimitExceededEvent'
       oneOf:
       - $ref: '#/components/schemas/InputMessageEvent'
+      - $ref: '#/components/schemas/ArtifactUploadEvent'
       - $ref: '#/components/schemas/ToolInputEvent'
       - $ref: '#/components/schemas/ToolOutputEvent'
       - $ref: '#/components/schemas/ThinkingEvent'
@@ -12616,6 +13486,7 @@ components:
           type: string
           enum:
           - input_message
+          - artifact_upload
           - tool_input
           - tool_output
           - thinking
@@ -12703,9 +13574,15 @@ components:
           description: The text chunk content.
           type: string
           example: Hello, I can help you with
+        created_at:
+          description: Timestamp when the event was created.
+          type: string
+          format: date-time
+          example: '2024-01-15T10:35:00Z'
       required:
       - type
       - content
+      - created_at
       x-vectaraParents:
       - AgentStreamedResponse
     StreamingAgentOutputEnd:
@@ -12718,8 +13595,14 @@ components:
           type: string
           default: streaming_agent_output_end
           example: streaming_agent_output_end
+        created_at:
+          description: Timestamp when the event was created.
+          type: string
+          format: date-time
+          example: '2024-01-15T10:35:00Z'
       required:
       - type
+      - created_at
       x-vectaraParents:
       - AgentStreamedResponse
     StreamingThinking:
@@ -12736,9 +13619,15 @@ components:
           description: The thinking chunk content.
           type: string
           example: Let me think about this step
+        created_at:
+          description: Timestamp when the event was created.
+          type: string
+          format: date-time
+          example: '2024-01-15T10:35:00Z'
       required:
       - type
       - content
+      - created_at
       x-vectaraParents:
       - AgentStreamedResponse
     StreamingThinkingEnd:
@@ -12751,8 +13640,14 @@ components:
           type: string
           default: streaming_thinking_end
           example: streaming_thinking_end
+        created_at:
+          description: Timestamp when the event was created.
+          type: string
+          format: date-time
+          example: '2024-01-15T10:35:00Z'
       required:
       - type
+      - created_at
       x-vectaraParents:
       - AgentStreamedResponse
     AgentStreamedResponse:
