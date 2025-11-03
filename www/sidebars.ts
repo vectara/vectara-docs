@@ -161,6 +161,9 @@ const sidebars: SidebarsConfig = {
               items: [
                 "search-and-retrieval/citations",
                 "learn/semantic-search/enable-pagination",
+                "search-and-retrieval/working-with-results/metadata",
+                "search-and-retrieval/working-with-results/interpreting-scores",
+                "search-and-retrieval/working-with-results/highlighting",
                 "learn/querying-table-data",
                 "learn/recommendation-systems/recommender-overview",
                 "build-apps/vectara-answer",
@@ -560,15 +563,6 @@ const sidebars: SidebarsConfig = {
               label: "Query APIs",
               items: [
                 "api-reference/search-apis/search",
-                {
-                  type: "category",
-                  label: "Interpreting Responses",
-                  items: [
-                    "api-reference/search-apis/interpreting-responses/metadata",
-                    "api-reference/search-apis/interpreting-responses/interpreting-scores",
-                    "api-reference/search-apis/interpreting-responses/highlighting",
-                  ],
-                },
               ],
             },
             {

@@ -95,7 +95,7 @@ postive values increase the overall score (sometimes called "boosting").  A dot
 product of 0 does not affect the underlying text retrieval score.
 
 For more information on how scores can be interpreted in general, see the
-documentation on [interpreting scores](/docs/api-reference/search-apis/interpreting-responses/interpreting-scores).
+documentation on [interpreting scores](/docs/search-and-retrieval/working-with-results/interpreting-scores).
 
 ## Choosing values for custom dimensions
 

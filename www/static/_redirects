@@ -20,9 +20,12 @@
 /docs/search-apis/batched-queries                             /docs/api-reference/search-apis/batched-queries
 /docs/search-apis/lexical-matching                            /docs/learn/hybrid-search
 /docs/api-reference/search-apis/lexical-matching              /docs/learn/hybrid-search
-/docs/search-apis/interpreting-responses/highlighting         /docs/api-reference/search-apis/interpreting-responses/highlighting
-/docs/search-apis/interpreting-responses/metadata             /docs/api-reference/search-apis/interpreting-responses/metadata
-/docs/search-apis/interpreting-responses/interpreting-scores  /docs/api-reference/search-apis/interpreting-responses/interpreting-scores
+/docs/search-apis/interpreting-responses/highlighting         /docs/search-and-retrieval/working-with-results/highlighting
+/docs/api-reference/search-apis/interpreting-responses/highlighting /docs/search-and-retrieval/working-with-results/highlighting
+/docs/search-apis/interpreting-responses/metadata             /docs/search-and-retrieval/working-with-results/metadata
+/docs/api-reference/search-apis/interpreting-responses/metadata /docs/search-and-retrieval/working-with-results/metadata
+/docs/search-apis/interpreting-responses/interpreting-scores  /docs/search-and-retrieval/working-with-results/interpreting-scores
+/docs/api-reference/search-apis/interpreting-responses/interpreting-scores /docs/search-and-retrieval/working-with-results/interpreting-scores
 /docs/search-apis/search                                      /docs/api-reference/search-apis/search
 /docs/search-apis/sql/data-types                              /docs/api-reference/search-apis/sql/data-types
 /docs/search-apis/sql/func-opr                                /docs/api-reference/search-apis/sql/func-opr
@@ -46,8 +49,8 @@
 /docs/custom-dimensions                                       /docs/learn/semantic-search/add-custom-dimensions
 /docs/common-use-cases/semantic-search/custom-dimensions      /docs/learn/semantic-search/add-custom-dimensions
 /docs/search-apis/reranking                                   /docs/api-reference/search-apis/reranking
-/docs/search-apis/interpreting-responses/intepreting-scores   /docs/api-reference/search-apis/interpreting-responses/interpreting-scores
-/docs/api-reference/search-apis/interpreting-responses/intepreting-scores                    /docs/api-reference/search-apis/interpreting-responses/interpreting-scores
+/docs/search-apis/interpreting-responses/intepreting-scores   /docs/search-and-retrieval/working-with-results/interpreting-scores
+/docs/api-reference/search-apis/interpreting-responses/intepreting-scores /docs/search-and-retrieval/working-with-results/interpreting-scores
 /docs/learn/semantic-search/hybrid-search                     /docs/learn/hybrid-search
 /docs/hybrid-search                                           /docs/learn/hybrid-search
 /docs/console-ui/manage-api-access                            /docs/console-ui/api-access-overview

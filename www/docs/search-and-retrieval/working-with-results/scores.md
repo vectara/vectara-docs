@@ -1,7 +1,7 @@
 ---
 id: interpreting-scores
-title: Interpreting Scores
-sidebar_label: Interpreting Scores
+title: Interpreting scores
+sidebar_label: Interpreting scores
 ---
 
 import Tabs from '@theme/Tabs';

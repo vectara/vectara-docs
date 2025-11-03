@@ -1,7 +1,7 @@
 ---
 id: highlighting
-title: Highlighting and Snippet Extraction
-sidebar_label: Highlighting and Snippet Extraction
+title: Highlighting and snippet extraction
+sidebar_label: Highlighting and snippet extraction
 ---
 
 import Tabs from '@theme/Tabs';
