@@ -179,37 +179,5 @@ This example requires no corpus setup, making it perfect for immediate testing.
 
 To chat with your agent, read on about [Sessions](/docs/agents/sessions).
 
-## Artifacts
 
-Artifacts are files stored in an agent session's workspace that provide a 
-persistent, session-scoped storage mechanism. They enable agents and users to 
-share files throughout a conversation without bloating the agent’s context 
-with content from large files.
-
-Before artifacts, file uploads were handled inline within session events. 
-Artifacts solve these problems by separating file storage from file 
-references. When you upload a file, Vectara stores it in the session workspace 
-and returns a lightweight ArtifactReference containing only metadata. Agents 
-use these references to access files without including the full content in 
-every request.
-
-## How artifacts work
-
-Artifacts are created either in user uploads or tool generation, where agent 
-tools can create new artifacts as outputs. For example, converting a document 
-to markdown.
-
-Each artifact receives a unique identifier following the pattern art_[a-z0-9_-]+.
-
-### How agents use artifacts
-
-After files are uploaded as artifacts, the agent can:
-- Use document conversion tools to extract content from PDFs, Word documents,
-  or PowerPoint files.
-- Reference artifacts in analysis or question-answering workflows.
-- Pass artifacts to indexing tools to add content to corpora.
-- Create new artifacts as outputs of tool operations.
-
-Artifacts remain available throughout the session lifecycle, enabling multi-step
-workflows without re-uploading files.
 

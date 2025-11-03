@@ -237,7 +237,6 @@ const sidebars: SidebarsConfig = {
         "agents/instructions",
         "agents/tools",
         "agents/agents",
-        "agents/artifacts",
         "agents/sessions",
         "agents/mcp",
         "agents/conversational-ai",
