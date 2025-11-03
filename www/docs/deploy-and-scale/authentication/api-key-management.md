@@ -1,7 +1,7 @@
 ---
 id: api-key-management
-title: Create and Use API Keys
-sidebar_label: Create and Use API Keys
+title: API key management
+sidebar_label: API key management
 ---
 
 import Tabs from '@theme/Tabs';
@@ -349,6 +349,6 @@ It will take around a minute for query requests using this key to be blocked.
 
 ## Next Steps
 
-- [Set Up Account and Corpus Permissions (RBAC)](/docs/learn/authentication/role-based-access-control)
-- [Apply Metadata Filters for Attribute-Based Access Control (ABAC)](/docs/learn/authentication/attribute-based-access-control)
+- [Set Up Account and Corpus Permissions (RBAC)](/docs/deploy-and-scale/authentication/role-based-access-control)
+- [Apply Metadata Filters for Attribute-Based Access Control (ABAC)](/docs/deploy-and-scale/authentication/attribute-based-access-control)
 

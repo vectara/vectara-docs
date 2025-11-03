@@ -1,7 +1,7 @@
 ---
 id: combine-access-control-with-app-filters
-title: Combine Access Control with Application Filters
-sidebar_label: Combine Access Control with Application Filters
+title: Combine access control with application filters
+sidebar_label: Combine access control with application filters
 ---
 
 import {Config} from '@site/docs/definitions.md';
@@ -14,7 +14,7 @@ and how that data is filtered based on user input like categories, tags, or
 projects.
 
 Vectara supports a flexible metadata filtering system that lets you combine 
-[attribute-based access control (ABAC)](/docs/learn/authentication/attribute-based-access-control) with user-input filters in a single 
+[attribute-based access control (ABAC)](/docs/deploy-and-scale/authentication/attribute-based-access-control) with user-input filters in a single 
 query. This ensures users see only what they are authorized to access and what 
 is relevant to their current task.
 

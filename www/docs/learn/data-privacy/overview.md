@@ -1,7 +1,7 @@
 ---
 id: privacy-overview
-title: Privacy Overview
-sidebar_label: Privacy Overview
+title: Security and data privacy
+sidebar_label: Security and data privacy
 ---
 
 import Tabs from '@theme/Tabs';
@@ -16,7 +16,7 @@ At <Config v="names.company"/>, we treat your data with the utmost privacy:
 * We build <Config v="names.product"/> to protect and encrypt each corpus with 
   distinct symmetric keys. If any individual corpus is compromised, the rest 
   remain safe.
-* We encrypt your data in-flight using [Transport Layer Security (TLS)](/docs/learn/authentication/auth-overview#transport-layer-security-tls).
+* We encrypt your data in-flight using [Transport Layer Security (TLS)](/docs/deploy-and-scale/authentication/auth-overview#transport-layer-security-tls).
 * We encrypt your data on disk. [Users](https://vectara.com/pricing/) can even 
   [create and manage their own encryption keys](encryption).
 

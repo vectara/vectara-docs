@@ -1,7 +1,7 @@
 ---
 id: personas-and-access-patterns
-title: Enterprise Access Patterns
-sidebar_label: Enterprise Access Patterns
+title: Enterprise access patterns
+sidebar_label: Enterprise access patterns
 ---
 
 import Tabs from '@theme/Tabs';

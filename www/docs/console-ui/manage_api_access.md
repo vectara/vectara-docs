@@ -20,8 +20,8 @@ authentication methods include the Personal API Key, Index API Keys,
 Query API Keys, and OAuth 2.0 Tokens.
 
 The Authorization page lets you manage Personal, Index, and Query API Keys, and
-OAuth App clients. The [Authentication Overview section](/docs/learn/authentication/auth-overview) 
-provides more details about how to [manage OAuth 2.0 tokens](/docs/learn/authentication/oauth-2) and [use API Keys](/docs/learn/authentication/api-key-management). 
+OAuth App clients. The [Authentication Overview section](/docs/deploy-and-scale/authentication/auth-overview) 
+provides more details about how to [manage OAuth 2.0 tokens](/docs/deploy-and-scale/authentication/oauth-2) and [use API Keys](/docs/deploy-and-scale/authentication/api-key-management). 
 
 ## Personal API Key
 

@@ -1,7 +1,7 @@
 ---
 id: encryption
-title: Data Encryption
-sidebar_label: Data Encryption
+title: Data encryption
+sidebar_label: Data encryption
 ---
 
 import Tabs from '@theme/Tabs';

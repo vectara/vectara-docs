@@ -1,7 +1,7 @@
 ---
 id: role-based-access-control
-title: Set Up Account and Corpus Permissions (RBAC)
-sidebar_label: Set Up Account and Corpus Permissions (RBAC)
+title: Role-based access control
+sidebar_label: Role-based access control
 ---
 
 
@@ -61,7 +61,7 @@ account-level roles, ideal for oversight without direct data access.
 3. Add a user by email, entering a description, and selecting **Account Admin**,
    **Corpus Admin**, or **Billing Admin**.  
 4. Click **Send invitation**.
-5. Go to **Authorization** to [manage API keys](/docs/learn/authentication/api-key-management) or [OAuth 2.0 app clients](/docs/learn/authentication/oauth-2).
+5. Go to **Authorization** to [manage API keys](/docs/deploy-and-scale/authentication/api-key-management) or [OAuth 2.0 app clients](/docs/deploy-and-scale/authentication/oauth-2).
 
 **Use Case:** An owner assigns an Account Admin role to a team member to oversee 
 corpora without billing access.

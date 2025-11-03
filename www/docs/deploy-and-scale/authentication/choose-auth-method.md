@@ -1,7 +1,7 @@
 ---
 id: choose-auth-method
-title: Choose the Right Authentication Method
-sidebar_label: Choose the Right Authentication Method
+title: Choose authentication method
+sidebar_label: Choose authentication method
 ---
 
 import Tabs from '@theme/Tabs';
@@ -12,8 +12,8 @@ import vars from '@site/static/variables.json';
 import CodePanel from '@site/src/theme/CodePanel';
 
 
-Vectara supports two main methods for authenticating API requests: [**API keys**](/docs/learn/authentication/api-key-management) 
-and [**OAuth 2.0 tokens**](/docs/learn/authentication/oauth-2). Choosing the right one depends on where and how your 
+Vectara supports two main methods for authenticating API requests: [**API keys**](/docs/deploy-and-scale/authentication/api-key-management) 
+and [**OAuth 2.0 tokens**](/docs/deploy-and-scale/authentication/oauth-2). Choosing the right one depends on where and how your 
 application or team interacts with Vectara’s APIs, whether you are a Developer 
 prototyping or a Platform Admin securing operations.
 
@@ -53,7 +53,7 @@ with APIs or an Admin configuring secure access:
 
 ### Prototyping or admin tasks
 
-* **Use:** [Personal API Key](/docs/learn/authentication/api-key-management#personal-api-key) 
+* **Use:** [Personal API Key](/docs/deploy-and-scale/authentication/api-key-management#personal-api-key) 
 * **Why:** Inherits your user account’s permissions and works across all 
 accessible corpora.
 * **Example:** A Platform Admin creating corpora or a Developer testing ingestion 
@@ -66,7 +66,7 @@ should be treated like passwords. Admins must avoid this risk in live systems.
 
 ### Public-facing query interface
 
-* **Use:** [QueryService API Key](/docs/learn/authentication/api-key-management#query-api-keys)
+* **Use:** [QueryService API Key](/docs/deploy-and-scale/authentication/api-key-management#query-api-keys)
 * **Why:** Read-only and scoped to specific corpora — safe for front-end embedding.
 * **Example:** An App Developer adding search to a marketing website or help center.
 
@@ -75,7 +75,7 @@ is required.
 
 ### Secure indexing and backend workloads
 
-* **Use:** [IndexService API Key](/docs/learn/authentication/api-key-management#index-api-keys)
+* **Use:** [IndexService API Key](/docs/deploy-and-scale/authentication/api-key-management#index-api-keys)
 * **Why:** Enables document ingestion and querying. Use in secure backend services.
 * **Example:** An ML Engineer optimizing RAG by indexing data from an internal CMS.
 
@@ -83,7 +83,7 @@ Do not expose index keys to browser-based clients. Treat them as secrets.
 
 ### Production-grade security and role control
 
-* **Use:** [OAuth 2.0 (JWT Token)](/docs/learn/authentication/oauth-2)
+* **Use:** [OAuth 2.0 (JWT Token)](/docs/deploy-and-scale/authentication/oauth-2)
 * **Why:** Scoped, expiring tokens managed by app clients. Best for services 
 and third-party apps.
 * **Example:** A Dev Team Lead deploying a microservice that queries corpora based 
@@ -98,6 +98,6 @@ Use OAuth to:
 
 ## What’s Next?
 
-* [Create and Use API Keys](/docs/learn/authentication/api-key-management)
-* [Authenticate with OAuth 2.0](/docs/learn/authentication/oauth-2)
-* [Set Up Account and Corpus Permissions (RBAC)](/docs/learn/authentication/role-based-access-control)
+* [Create and Use API Keys](/docs/deploy-and-scale/authentication/api-key-management)
+* [Authenticate with OAuth 2.0](/docs/deploy-and-scale/authentication/oauth-2)
+* [Set Up Account and Corpus Permissions (RBAC)](/docs/deploy-and-scale/authentication/role-based-access-control)

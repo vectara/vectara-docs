@@ -1,7 +1,7 @@
 ---
 id: multi-tenant-corpus-isolation
-title: Isolate Tenants with Corpora
-sidebar_label: Isolate Tenants with Corpora
+title: Multi-tenant corpus isolation
+sidebar_label: Multi-tenant corpus isolation
 ---
 
 

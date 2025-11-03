@@ -1,7 +1,7 @@
 ---
 id: attribute-based-access-control
-title: Apply Metadata Filters for Attribute-Based Access Control (ABAC)
-sidebar_label: Apply Metadata Filters for Attribute-Based Access Control (ABAC)
+title: Attribute-based access control
+sidebar_label: Attribute-based access control
 ---
 
 import {Config} from '@site/docs/definitions.md';

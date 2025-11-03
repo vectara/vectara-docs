@@ -163,6 +163,7 @@ const sidebars: SidebarsConfig = {
                 "learn/semantic-search/enable-pagination",
                 "learn/querying-table-data",
                 "learn/recommendation-systems/recommender-overview",
+                "build-apps/vectara-answer",
               ],
             },
             {
@@ -237,39 +238,19 @@ const sidebars: SidebarsConfig = {
 
         {
           type: "category",
-          label: "Tutorials and Examples",
+          label: "Tutorials",
           link: {
             type: 'generated-index',
-            title: "Tutorials and Examples",
-            description: "Code examples, tutorials, and SDKs to help you build with Vectara",
-            slug: "/tutorials-and-examples",
+            title: "Tutorials",
+            description: "Tutorials to help you build with Vectara",
+            slug: "/tutorials",
           },
           collapsed: true,
           items: [
-            {
-              type: "category",
-              label: "Tutorials",
-              items: [
                 "tutorials/use-openai-libraries-with-vectara",
                 "tutorials/use-external-applications-sdk",
-              ],
-            },
-            {
-              type: "category",
-              label: "Code Examples & SDKs",
-              items: [
-                "build-apps/app-building",
-                "build-apps/open-eval-framework",
-                "build-apps/vectara-ingest",
-                "build-apps/react-chatbot",
-                "build-apps/react-search",
-                "build-apps/create-ui",
-                "build-apps/vectara-answer",
-              ],
-            },
           ],
         },
-
         {
           type: "category",
           label: "Integrations",
@@ -414,6 +395,7 @@ const sidebars: SidebarsConfig = {
             "learn/query-observability",
             "learn/hallucination-evaluation",
             "learn/vectara-hallucination-corrector",
+            "build-apps/open-eval-framework",
           ],
         },
       ],
@@ -432,7 +414,7 @@ const sidebars: SidebarsConfig = {
       items: [
         {
           type: "category",
-          label: "Platform Overview",
+          label: "Platform overview",
           link: {
             type: 'doc',
             id: 'introduction',
@@ -443,7 +425,7 @@ const sidebars: SidebarsConfig = {
 
         {
           type: "category",
-          label: "Security and Data Privacy",
+          label: "Security and data privacy",
           link: {
             type: 'doc',
             id: 'learn/data-privacy/privacy-overview',
@@ -451,28 +433,27 @@ const sidebars: SidebarsConfig = {
           collapsed: true,
           items: [
             "learn/data-privacy/encryption",
-            "learn/authentication/transport-layer-security",
+            "deploy-and-scale/authentication/transport-layer-security",
           ],
         },
-
         {
           type: "category",
-          label: "Authentication and Authorization",
+          label: "Authentication and authorization",
           link: {
             type: 'doc',
-            id: 'learn/authentication/authentication-authorization-vectara',
+            id: 'deploy-and-scale/authentication/authentication-authorization-vectara',
           },
           collapsed: true,
           items: [
-            "learn/authentication/personas-and-access-patterns",
-            "learn/authentication/auth-overview",
-            "learn/authentication/choose-auth-method",
-            "learn/authentication/api-key-management",
-            "learn/authentication/oauth-2",
-            "learn/authentication/role-based-access-control",
-            "learn/authentication/attribute-based-access-control",
-            "learn/authentication/multi-tenant-corpus-isolation",
-            "learn/authentication/combine-access-control-with-app-filters",
+            "deploy-and-scale/authentication/personas-and-access-patterns",
+            "deploy-and-scale/authentication/auth-overview",
+            "deploy-and-scale/authentication/choose-auth-method",
+            "deploy-and-scale/authentication/api-key-management",
+            "deploy-and-scale/authentication/oauth-2",
+            "deploy-and-scale/authentication/role-based-access-control",
+            "deploy-and-scale/authentication/attribute-based-access-control",
+            "deploy-and-scale/authentication/multi-tenant-corpus-isolation",
+            "deploy-and-scale/authentication/combine-access-control-with-app-filters",
             {
               type: "category",
               label: "API Authentication Examples",

@@ -48,5 +48,5 @@ the sidebar.
 
 3. Click **Create**.
 
-You can now start [using the API key](/docs/learn/authentication/api-key-management#use-an-api-key) 
+You can now start [using the API key](/docs/deploy-and-scale/authentication/api-key-management#use-an-api-key) 
 for your Index or Query operations.
