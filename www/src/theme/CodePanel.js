@@ -13,7 +13,12 @@ export default function CodePanel({
   defaultLanguage = 'bash',
   annotations = {},
   layout = 'floating',
-  customWidth // New prop for manual width override
+  customWidth, // New prop for manual width override
+  collapsible = true, // Enable collapse feature
+  initialCollapsedLines = 30, // Auto-collapse if more than N lines
+  highlightLines = '', // Line ranges to highlight e.g. "2-4,7,10-12"
+  tabs = false, // Enable tabs mode for multiple snippets
+  editable = false // Enable live code editor mode
 }) {
   /* ---------------------------------------------------------- */
   /* State                                                     */
@@ -24,6 +29,14 @@ export default function CodePanel({
 
   const [toast, setToast] = useState(null);
   const [highlighted, setHighlighted] = useState('');
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [selectedTab, setSelectedTab] = useState(0);
+  const [editableCode, setEditableCode] = useState('');
+  
+  // Refs for scroll synchronization
+  const textareaRef = React.useRef();
+  const highlightRef = React.useRef();
+  const lineNumbersRef = React.useRef();
 
   /* ---------------------------------------------------------- */
   /* Helpers                                                   */
@@ -33,11 +46,13 @@ export default function CodePanel({
       ? snippets
       : [{language: defaultLanguage, code: '// No code provided'}];
 
-  const snippet =
-    validSnippets.find((s) => s.language === selectedLanguage) ??
-    validSnippets[0];
+  const snippet = tabs 
+    ? validSnippets[selectedTab] ?? validSnippets[0]
+    : validSnippets.find((s) => s.language === selectedLanguage) ?? validSnippets[0];
 
-  const annoFor = annotations[selectedLanguage] ?? [];
+  const annoFor = tabs 
+    ? annotations[snippet.language] ?? []
+    : annotations[selectedLanguage] ?? [];
 
   const showToast = (msg) => {
     setToast(msg);
@@ -45,7 +60,8 @@ export default function CodePanel({
   };
 
   const copyAll = () => {
-    navigator.clipboard.writeText(snippet.code.trim());
+    const codeToCopy = editable ? editableCode : snippet.code;
+    navigator.clipboard.writeText(codeToCopy.trim());
     showToast('Copied!');
   };
 
@@ -53,6 +69,93 @@ export default function CodePanel({
     navigator.clipboard.writeText(line.trim());
     showToast('Line copied');
   };
+
+  const resetCode = () => {
+    setEditableCode(snippet.code);
+    showToast('Code reset');
+  };
+
+  // Synchronize scroll between textarea, background, and line numbers
+  const handleScroll = (e) => {
+    if (highlightRef.current && textareaRef.current) {
+      highlightRef.current.scrollTop = e.target.scrollTop;
+      highlightRef.current.scrollLeft = e.target.scrollLeft;
+    }
+    if (lineNumbersRef.current) {
+      lineNumbersRef.current.scrollTop = e.target.scrollTop;
+    }
+  };
+
+  // Keyboard navigation handlers
+  const handleKeyDown = (e) => {
+    // Ctrl/Cmd + Enter to copy code
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+      e.preventDefault();
+      copyAll();
+      return;
+    }
+    
+    // Ctrl/Cmd + R to reset (only in editable mode)
+    if (editable && (e.ctrlKey || e.metaKey) && e.key === 'r') {
+      e.preventDefault();
+      resetCode();
+      return;
+    }
+  };
+
+  const handleTabKeyDown = (e, tabIndex) => {
+    if (e.key === 'ArrowLeft' && tabIndex > 0) {
+      e.preventDefault();
+      setSelectedTab(tabIndex - 1);
+    } else if (e.key === 'ArrowRight' && tabIndex < validSnippets.length - 1) {
+      e.preventDefault();
+      setSelectedTab(tabIndex + 1);
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      setSelectedTab(0);
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      setSelectedTab(validSnippets.length - 1);
+    }
+  };
+
+  // Parse line highlight ranges (e.g., "2-4,7,10-12" -> Set of line numbers)
+  const parseHighlightLines = (hlString) => {
+    const lines = new Set();
+    if (!hlString) return lines;
+    
+    hlString.split(',').forEach(part => {
+      const range = part.trim().split('-');
+      if (range.length === 1) {
+        lines.add(parseInt(range[0]));
+      } else if (range.length === 2) {
+        const start = parseInt(range[0]);
+        const end = parseInt(range[1]);
+        for (let i = start; i <= end; i++) {
+          lines.add(i);
+        }
+      }
+    });
+    return lines;
+  };
+
+  const highlightedLines = parseHighlightLines(highlightLines);
+  const currentCode = editable ? editableCode : snippet.code;
+  const codeLines = currentCode.split('\n');
+  const totalLines = codeLines.length;
+  const shouldAutoCollapse = collapsible && totalLines > initialCollapsedLines;
+
+  // Initialize editable code when snippet changes
+  useEffect(() => {
+    if (editable && snippet.code) {
+      setEditableCode(snippet.code);
+    }
+  }, [editable, snippet.code]);
+
+  // Initialize collapse state
+  useEffect(() => {
+    setIsCollapsed(shouldAutoCollapse);
+  }, [shouldAutoCollapse]);
 
   /* ---------------------------------------------------------- */
   /* Re-highlight whenever language or code changes            */
@@ -368,6 +471,7 @@ export default function CodePanel({
     const languageMap = {
       'sh': 'bash',
       'shell': 'bash',
+      'curl': 'bash', // Use bash highlighting for curl commands
       'js': 'javascript',
       'jsx': 'javascript',
       'ts': 'typescript',
@@ -380,29 +484,34 @@ export default function CodePanel({
     const grammar = Prism.languages[normalizedLanguage] || Prism.languages.markup;
     
     try {
-      const result = Prism.highlight(snippet.code, grammar, normalizedLanguage);
+      const codeToHighlight = editable ? editableCode : snippet.code;
+      const result = Prism.highlight(codeToHighlight, grammar, normalizedLanguage);
       setHighlighted(result);
     } catch (error) {
       console.warn('Syntax highlighting failed:', error);
       // Fallback to plain text if highlighting fails
-      setHighlighted(snippet.code);
+      setHighlighted(editable ? editableCode : snippet.code);
     }
-  }, [snippet]);
+  }, [snippet, editableCode, editable]);
 
   /* Strip tags when copying an individual line */
   const stripHtml = (h) => h.replace(/<[^>]*>?/gm, '');
 
   /* Build line-by-line DOM so we can attach markers & numbers */
 
-  const renderLines = () =>
-    highlighted.split('\n').map((html, idx) => {
+  const renderLines = () => {
+    const lines = highlighted.split('\n');
+    const linesToRender = isCollapsed ? lines.slice(0, initialCollapsedLines) : lines;
+    
+    return linesToRender.map((html, idx) => {
       const num = idx + 1;
       const anno = annoFor.find((a) => a.line === num);
+      const isHighlighted = highlightedLines.has(num);
 
       return (
         <div
           key={num}
-          className={styles.codeLine}
+          className={`${styles.codeLine} ${isHighlighted ? styles.highlightedLine : ''}`}
           onClick={() => copyLine(stripHtml(html))}
         >
           <span className={styles.lineNumber}>{num}</span>
@@ -421,6 +530,7 @@ export default function CodePanel({
         </div>
       );
     });
+  };
 
   /* ---------------------------------------------------------- */
   /* Render                                                    */
@@ -431,38 +541,194 @@ export default function CodePanel({
     <div 
       className={`${styles.codePanel} ${layout === 'stacked' ? styles.stackedLayout : styles.floatingLayout}`}
       style={panelStyle} // Apply inline style for customWidth
+      role="group"
+      aria-labelledby="code-panel-title"
+      aria-describedby="code-panel-description"
+      onKeyDown={handleKeyDown}
     >
       {/* Header ------------------------------------------------ */}
       <div className={styles.panelHeader}>
-        <span className={styles.headerTitle}>{title.toUpperCase()}</span>
-
-        <select
-          className={styles.languageSelect}
-          value={selectedLanguage}
-          onChange={(e) => setSelectedLanguage(e.target.value)}
+        <h3 
+          id="code-panel-title" 
+          className={styles.headerTitle}
         >
-          {validSnippets.map(({language}) => (
-            <option key={language} value={language}>
-              {language}
-            </option>
-          ))}
-        </select>
-
-        <button
-          type="button"
-          onClick={copyAll}
-          className={styles.iconButton}
-          aria-label="Copy entire snippet"
+          {title.toUpperCase()}
+        </h3>
+        
+        {/* Hidden description for screen readers */}
+        <span 
+          id="code-panel-description" 
+          className={styles.srOnly}
         >
-          📋
-        </button>
+          {editable ? 'Interactive code editor' : 'Code example'} with {validSnippets.length > 1 ? 'multiple language options' : snippet.language + ' syntax'}. 
+          {editable && 'You can edit the code and reset to original.'}
+        </span>
+
+        {tabs ? (
+          <div 
+            className={styles.tabsContainer}
+            role="tablist"
+            aria-label="Code language options"
+          >
+            {validSnippets.map((snippet, idx) => (
+              <button
+                key={idx}
+                role="tab"
+                className={`${styles.tab} ${selectedTab === idx ? styles.activeTab : ''}`}
+                onClick={() => setSelectedTab(idx)}
+                onKeyDown={(e) => handleTabKeyDown(e, idx)}
+                aria-selected={selectedTab === idx}
+                aria-controls="code-content"
+                id={`tab-${idx}`}
+                tabIndex={selectedTab === idx ? 0 : -1}
+              >
+                {snippet.language || snippet.title}
+              </button>
+            ))}
+          </div>
+        ) : (
+          <select
+            className={styles.languageSelect}
+            value={selectedLanguage}
+            onChange={(e) => setSelectedLanguage(e.target.value)}
+            aria-label="Select programming language"
+          >
+            {validSnippets.map(({language}) => (
+              <option key={language} value={language}>
+                {language}
+              </option>
+            ))}
+          </select>
+        )}
+
+        <div className={styles.buttonGroup} role="group" aria-label="Code actions">
+          <button
+            type="button"
+            onClick={copyAll}
+            className={styles.iconButton}
+            aria-label={`Copy ${snippet.language} code to clipboard`}
+            title="Copy code"
+          >
+            <span aria-hidden="true">📋</span>
+            <span className={styles.srOnly}>Copy</span>
+          </button>
+          
+          {/* Reset button for editable panels */}
+          {editable && (
+            <button
+              type="button"
+              onClick={resetCode}
+              className={styles.iconButton}
+              aria-label="Reset code to original version"
+              title="Reset to original code"
+            >
+              <span aria-hidden="true">↺</span>
+              <span className={styles.srOnly}>Reset</span>
+            </button>
+          )}
+        </div>
       </div>
 
       {/* Code body -------------------------------------------- */}
-      <pre className={styles.pre}>{renderLines()}</pre>
+      {editable ? (
+        <div 
+          className={styles.editorContainer}
+          role="tabpanel"
+          id="code-content"
+          aria-labelledby={tabs ? `tab-${selectedTab}` : undefined}
+        >
+          <div className={styles.editorSection}>
+            <div className={styles.editorWrapper}>
+              {/* Line numbers */}
+              <div
+                ref={lineNumbersRef}
+                className={styles.editorLineNumbers}
+                aria-hidden="true"
+              >
+                {(editableCode || snippet.code).split('\n').map((_, idx) => (
+                  <div key={idx} className={styles.editorLineNumber}>
+                    {idx + 1}
+                  </div>
+                ))}
+              </div>
 
-      {/* Toast ------------------------------------------------ */}
-      {toast && <div className={styles.toast}>{toast}</div>}
+              {/* Syntax highlighted background */}
+              <pre
+                ref={highlightRef}
+                className={styles.syntaxHighlight}
+                dangerouslySetInnerHTML={{ __html: highlighted }}
+                aria-hidden="true"
+              />
+              {/* Transparent textarea overlay */}
+              <textarea
+                ref={textareaRef}
+                className={styles.codeEditor}
+                value={editableCode}
+                onChange={(e) => setEditableCode(e.target.value)}
+                onScroll={handleScroll}
+                spellCheck={false}
+                wrap="off"
+                aria-label={`Editable ${snippet.language} code. Current content: ${editableCode.substring(0, 100)}${editableCode.length > 100 ? '...' : ''}`}
+                role="textbox"
+                aria-multiline="true"
+                aria-describedby="editor-instructions"
+              />
+
+              {/* Hidden instructions for screen readers */}
+              <span id="editor-instructions" className={styles.srOnly}>
+                Use Tab to navigate to buttons. The code is editable. Use the Reset button to restore original code.
+              </span>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <pre 
+          className={styles.pre}
+          role="tabpanel"
+          id="code-content"
+          aria-labelledby={tabs ? `tab-${selectedTab}` : undefined}
+          aria-label={`${snippet.language} code example`}
+          tabIndex="0"
+        >
+          {renderLines()}
+          
+          {/* Collapse/Expand button */}
+          {collapsible && totalLines > initialCollapsedLines && (
+            <div className={styles.collapseContainer}>
+              <button
+                type="button"
+                className={styles.collapseButton}
+                onClick={() => setIsCollapsed(!isCollapsed)}
+                aria-expanded={!isCollapsed}
+                aria-controls="code-content"
+                aria-label={isCollapsed ? 
+                  `Show ${totalLines - initialCollapsedLines} more lines of code` : 
+                  'Collapse code to show fewer lines'
+                }
+              >
+                {isCollapsed ? (
+                  <>Show {totalLines - initialCollapsedLines} more lines ↓</>
+                ) : (
+                  <>Collapse ↑</>
+                )}
+              </button>
+            </div>
+          )}
+        </pre>
+      )}
+
+      {/* Live region for announcements ----------------------- */}
+      <div 
+        aria-live="polite" 
+        aria-atomic="true"
+        className={styles.srOnly}
+        role="status"
+      >
+        {toast}
+      </div>
+
+      {/* Visual toast ---------------------------------------- */}
+      {toast && <div className={styles.toast} aria-hidden="true">{toast}</div>}
     </div>
   );
 } 
