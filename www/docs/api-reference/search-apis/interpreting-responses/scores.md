@@ -18,9 +18,9 @@ provided.
 Out of the box scores in <Config v="names.product"/>:
 1. Can be either positive or negative
 2. Are larger/more positive as relevance is increased
-3. Are between -1 and 1 when not [reranked](/docs/api-reference/search-apis/reranking)
+3. Are between -1 and 1 when not [reranked](/docs/search-and-retrieval/reranking)
 4. Can be any real number -- positive or negative -- when
-[reranked](/docs/api-reference/search-apis/reranking).  However, scores when reranked are
+[reranked](/docs/search-and-retrieval/reranking).  However, scores when reranked are
 *typically* between about -10 and 10
 
 See the sections below on "standard" and "reranked" results for details on
@@ -95,7 +95,7 @@ than 0.1 tend to be of low quality and can typically be safely removed/ignored.
 
 ## Reranked results response
 
-Scores from <Config v="names.product"/> after [reranking](/docs/api-reference/search-apis/reranking) are scored on a
+Scores from <Config v="names.product"/> after [reranking](/docs/search-and-retrieval/reranking) are scored on a
 scale from -infinity to +infinity.  Internally, the numbers returned from the
 reranker are derived from a logarithmic scoring system, which means that in
 practice, scores much higher than 10 or much lower than -10 should be rare.

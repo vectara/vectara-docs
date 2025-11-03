@@ -1,7 +1,7 @@
 ---
 id: enable-keyword-text-matching
-title: Keyword Search
-sidebar_label: Keyword Search
+title: Keyword search
+sidebar_label: Keyword search
 ---
 
 
@@ -9,7 +9,7 @@ import CodePanel from '@site/src/theme/CodePanel';
 
 
 In some specialized fields such as legal, compliance, and technical 
-domains, relying solely on [semantic search](/docs/learn/semantic-search/semantic-search-overview) can miss information tied to 
+domains, relying solely on semantic search can miss information tied to 
 specific phrases or terms. By default, Vectara optimizes for semantic 
 understanding and disables exact and Boolean text matching, which is similar 
 to a traditional, keyword-based search. However, users can enable precise 
@@ -53,7 +53,7 @@ Boolean text matching.
 
 ## Enable exact keyword Search
 
-The following example shows the full [query](/docs/api-reference/search-apis/search) with 
+The following example shows the full query with 
 the `lexical_interpolation` value set to `1`:
 
 <CodePanel snippets={[{language: "json", code: `curl -X POST \\

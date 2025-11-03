@@ -1,6 +1,7 @@
 ---
-id: file-upload-filetypes
-title: Supported File Types
+id: supported-file-formats
+title: Supported file formats
+sidebar_label: Supported file formats
 ---
 
 import {vars} from '@site/static/variables.json';

@@ -1,7 +1,7 @@
 ---
 id: add-custom-dimensions
-title: Custom Dimensions
-sidebar_label: Custom Dimensions
+title: Custom dimensions
+sidebar_label: Custom dimensions
 ---
 
 import Tabs from '@theme/Tabs';

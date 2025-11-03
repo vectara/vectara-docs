@@ -92,6 +92,6 @@ END`}]} title="Code Example" layout="stacked" />
 
 ### Limitations
 
-Currently, the [reranking](/docs/api-reference/search-apis/reranking) capability relies on
+Currently, the [reranking](/docs/search-and-retrieval/reranking) capability relies on
 the text being stored. As a result, attempting to rerank search results on any
 corpora where text storage has been turned off will not work at this time.

@@ -38,7 +38,7 @@ const sidebars: SidebarsConfig = {
             },
             {
               type: "doc",
-              id: "agents/agents-quickstart",
+              id: "build/agent-os/agents-quickstart",
               label: "Agents",
             },
           ],
@@ -69,20 +69,20 @@ const sidebars: SidebarsConfig = {
       items: [
         {
           type: "category",
-          label: "Ingest Your Data",
+          label: "Data preparation",
           link: {
             type: 'doc',
             id: 'data-management',
           },
           collapsed: true,
           items: [
-            "learn/document-data-structuring",
+            "learn/structure-your-data",
             "learn/select-ideal-indexing-api",
-            "api-reference/indexing-apis/file-upload/file-upload-filetypes",
+            "data-management/supported-file-formats",
             "data-management/data-egress",
             {
               type: "category",
-              label: "Metadata Filters",
+              label: "Metadata filters",
               link: {
                 type: 'doc',
                 id: 'learn/metadata-search-filtering/filter-overview',
@@ -102,7 +102,7 @@ const sidebars: SidebarsConfig = {
 
         {
           type: "category",
-          label: "Search and Generate",
+          label: "Search and retrieval",
           link: {
             type: 'doc',
             id: 'search-and-retrieval',
@@ -111,7 +111,7 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               type: "category",
-              label: "Search Methods",
+              label: "Search methods",
               link: {
                 type: 'doc',
                 id: 'search-and-retrieval/search-methods',
@@ -120,14 +120,11 @@ const sidebars: SidebarsConfig = {
               items: [
                 "learn/hybrid-search",
                 "learn/enable-keyword-text-matching",
-                "learn/boomerang",
-                "learn/semantic-search/semantic-search-overview",
-                "learn/semantic-search/relevance-tuning-techniques",
               ],
             },
             {
               type: "category",
-              label: "Improve Search Quality",
+              label: "Improve search quality",
               link: {
                 type: 'doc',
                 id: 'search-and-retrieval/improving-search-quality',
@@ -140,14 +137,14 @@ const sidebars: SidebarsConfig = {
                   label: "Reranking",
                   link: {
                     type: 'doc',
-                    id: 'api-reference/search-apis/reranking',
+                    id: 'search-and-retrieval/reranking',
                   },
                   items: [
-                    "learn/vectara-multi-lingual-reranker",
-                    "learn/mmr-reranker",
-                    "learn/user-defined-function-reranker",
-                    "learn/chain-reranker",
-                    "learn/knee-reranking",
+                    "search-and-retrieval/rerankers/vectara-multi-lingual-reranker",
+                    "search-and-retrieval/rerankers/mmr-reranker",
+                    "search-and-retrieval/rerankers/user-defined-function-reranker",
+                    "search-and-retrieval/rerankers/chain-reranker",
+                    "search-and-retrieval/rerankers/knee-reranking",
                   ],
                 },
                 "search-and-retrieval/bring-your-own-llm",
@@ -155,7 +152,7 @@ const sidebars: SidebarsConfig = {
             },
             {
               type: "category",
-              label: "Working with Results",
+              label: "Working with results",
               link: {
                 type: 'doc',
                 id: 'search-and-retrieval/working-with-results',
@@ -223,19 +220,18 @@ const sidebars: SidebarsConfig = {
 
         {
           type: "category",
-          label: "Build with Agents",
+          label: "Agent Operating System",
           link: {
             type: 'doc',
-            id: 'agents/agent-platform-overview',
+            id: 'build/agent-os/agent-platform-overview',
           },
           collapsed: true,
           items: [
-            "agents/agents",
-            "agents/tools",
-            "agents/instructions",
-            "agents/sessions",
-            "agents/conversational-ai",
-            "agents/mcp",
+            "build/agent-os/instructions",
+            "build/agent-os/tools",
+            "build/agent-os/agents",
+            "build/agent-os/sessions",
+            "build/agent-os/mcp",
           ],
         },
 
@@ -254,7 +250,6 @@ const sidebars: SidebarsConfig = {
               type: "category",
               label: "Tutorials",
               items: [
-                "tutorials/build-a-chatbot",
                 "tutorials/use-openai-libraries-with-vectara",
                 "tutorials/use-external-applications-sdk",
               ],
@@ -327,18 +322,9 @@ const sidebars: SidebarsConfig = {
       collapsed: true,
       items: [
         {
-          type: "category",
-          label: "Vectara Console",
-      link: {
-        type: 'doc',
-        id: 'console-ui/vectara-console-overview',
-      },
-      collapsed: true,
-      items: [
-        {
           type: "doc",
-          id: "console-ui/admin-center",
-          label: "Vectara Admin Center",
+          id: 'console-ui/vectara-console-overview',
+          label: "Vectara Console",
         },
         {
           type: "category",
@@ -409,8 +395,12 @@ const sidebars: SidebarsConfig = {
           label: "Manage Payments",
         },
         "console-ui/delete-account",
-      ],
-    },
+
+        {
+          type: "doc",
+          id: "console-ui/admin-center",
+          label: "Vectara Admin Center",
+        },
 
         {
           type: "category",
@@ -561,7 +551,6 @@ const sidebars: SidebarsConfig = {
               label: "File Upload APIs",
               items: [
                 "api-reference/indexing-apis/file-upload/file-upload",
-                "api-reference/indexing-apis/file-upload/file-upload-filetypes",
               ],
             },
             {

@@ -76,7 +76,7 @@ available rerankers:
 * **Maximum Marginal Relevance (MMR) Reranker** – Reduces bias by applying a 
   diversity factor.
 
-See [Reranking](/docs/api-reference/search-apis/reranking) more advanced details about our reranking capabilities.
+See [Reranking](/docs/search-and-retrieval/reranking) more advanced details about our reranking capabilities.
 
 ![Configure reranking](/img/configure_reranking.png)
 

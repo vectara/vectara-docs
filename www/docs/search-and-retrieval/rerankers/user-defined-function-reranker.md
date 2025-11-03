@@ -1,14 +1,13 @@
 ---
 id: user-defined-function-reranker
-title: User Defined Function Reranker
-sidebar_label: User Defined Function Reranker
+title: User Defined Function reranker
+sidebar_label: User Defined Function reranker
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 import CodePanel from '@site/src/theme/CodePanel';
-
 
 Our out-of-the-box rerankers are effective for general use cases, but some 
 specific use cases require fine-grained control over how search results are 
@@ -26,7 +25,7 @@ generated from the request-level metadata. To use this reranker, set the
 `type` to `userfn` in a query and specify a string within the 
 `reranker` section of the query. This string syntax is custom and similar to our 
 SQL-like [filter expressions](/docs/learn/metadata-search-filtering/filter-overview). 
-You can also use our [chain reranker](/docs/learn/chain-reranker) which 
+You can also use our [chain reranker](/docs/search-and-retrieval/rerankers/chain-reranker) which 
 applies multiple rerankers in complex search scenarios that require multiple 
 dimensions of relevance.
 

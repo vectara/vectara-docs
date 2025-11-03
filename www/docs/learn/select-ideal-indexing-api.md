@@ -1,7 +1,7 @@
 ---
 id: select-ideal-indexing-api
-title: Data Ingestion
-sidebar_label: Data Ingestion
+title: Ingest your data
+sidebar_label: Ingest your data
 ---
 
 import Tabs from '@theme/Tabs';

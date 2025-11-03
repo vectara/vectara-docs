@@ -1,7 +1,7 @@
 ---
 id: hybrid-search
-title: Hybrid Search
-sidebar_label: Hybrid Search
+title: Hybrid search
+sidebar_label: Hybrid search
 ---
 
 
@@ -10,7 +10,7 @@ import CodePanel from '@site/src/theme/CodePanel';
 
 Traditional keyword-based search often fails to capture the context and intent 
 behind user queries, leading to irrelevant or incomplete results. Vectara's 
-Hybrid Search combines [semantic search](/docs/learn/semantic-search/semantic-search-overview) with traditional keyword-based 
+Hybrid Search combines semantic search with traditional keyword-based 
 approaches to offer a powerful and flexible solution for text retrieval.
 
 We combine partial, exact, and Boolean text matching with neural models which 
@@ -56,8 +56,7 @@ achieve the perfect balance in answer quality.
 
 :::tip
 For more information about queries such as additional search and summarization 
-parameters, see the [**Query API Definition**](/docs/api-reference/search-apis/search) 
-section and our [**interactive API Reference**](/docs/rest-api/query). 
+parameters, see the [**Query API**](/docs/rest-api/query). 
 :::
 
 ### Experiment with different lexical interpolation values

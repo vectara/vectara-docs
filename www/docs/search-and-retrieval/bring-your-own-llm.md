@@ -1,7 +1,7 @@
 ---
 id: bring-your-own-llm
-title: Bring Your Own LLM
-sidebar_label: Bring Your Own LLM
+title: Bring your own LLM
+sidebar_label: Bring your own LLM
 ---
 
 

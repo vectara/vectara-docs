@@ -1,7 +1,7 @@
 ---
 id: chain-reranker
-title: Chain Reranker
-sidebar_label: Chain Reranker
+title: Chain reranker
+sidebar_label: Chain reranker
 ---
 
 import {vars} from '@site/static/variables.json';
@@ -23,10 +23,10 @@ generative AI applications align with your business requirements precisely.
 
 Chaining multiple rerankers is particularly useful in complex search scenarios
 that require several dimensions of ranking. For example, enhancing 
-diversity with the [Maximal Marginal Relevance (MMR) reranker](/docs/learn/mmr-reranker), refining 
+diversity with the [Maximal Marginal Relevance (MMR) reranker](/docs/search-and-retrieval/rerankers/mmr-reranker), refining 
 the results across multiple languages, and then boosting documents with 
 specific metadata or other custom business logic with the 
-[User Defined Function reranker](/docs/learn/user-defined-function-reranker) to finalize the results.
+[User Defined Function reranker](/docs/search-and-retrieval/rerankers/user-defined-function-reranker) to finalize the results.
 
 1. **Multidimensional relevance**: Combine multiple ranking strategies in sequence 
    to optimize query results across various dimensions and meeting complex 
@@ -48,7 +48,7 @@ You can specify up to 50 rerankers in a chain.
 ## Chain reranker examples
 
 In this example, the Vectara Multilingual Reranker first refines the results 
-with improved text scoring, while the [User Defined Function reranker](/docs/learn/user-defined-function-reranker) 
+with improved text scoring, while the [User Defined Function reranker](/docs/search-and-retrieval/rerankers/user-defined-function-reranker) 
 then boosts relevance based on metadata for popularity. This simple chain 
 example can be useful for multilingual content platforms such as blogs, news 
 aggregators, and knowledge bases.
@@ -70,9 +70,9 @@ aggregators, and knowledge bases.
   }
 }`}]} title="Code Example" layout="stacked" />
 
-In this example, the [Vectara Multilingual reranker](/docs/learn/vectara-multi-lingual-reranker) improves the precision of 
+In this example, the [Vectara Multilingual reranker](/docs/search-and-retrieval/rerankers/vectara-multi-lingual-reranker) improves the precision of 
 results by refining the output of initial models like Boomerang, while the 
-[User Defined Function reranker](/docs/learn/user-defined-function-reranker) boosts relevance based on metadata for popularity.
+[User Defined Function reranker](/docs/search-and-retrieval/rerankers/user-defined-function-reranker) boosts relevance based on metadata for popularity.
 Now let's take a look at a more complex chain reranker example. In this 
 e-commerce example, the Vectara Multilingual Reranker first refines the 
 initial results, providing a better ranking order than Boomerang. This 

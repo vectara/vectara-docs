@@ -17,7 +17,7 @@ maintains enterprise-grade security, and never trains on customer content.
 
 ## Conversational AI and virtual assistants
 
-Build intelligent [conversational experiences](/docs/agents/conversational-ai) that understand context and provide accurate responses:
+Build intelligent [conversational experiences](/docs/build/agent-os/conversational-ai) that understand context and provide accurate responses:
 
 - **Customer service virtual assistants**: Deploy 24/7 self-service assistants, 
   chat bots, or help desk agents.

@@ -1,7 +1,7 @@
 ---
 id: question-answer-overview
-title: FAQ and Q&A Matching
-sidebar_label: FAQ and Q&A Matching
+title: FAQ and Q&A matching
+sidebar_label: FAQ and Q&A matching
 ---
 
 

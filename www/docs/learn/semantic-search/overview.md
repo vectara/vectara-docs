@@ -66,7 +66,7 @@ results in these use cases.
 
 ## Advanced query configurations
 
-Application builders can define specific [query](/docs/api-reference/search-apis/search) parameters 
+Application builders can define specific [query](/docs/rest-api/queries) parameters 
 for their searches, including context, pagination, metadata filters, and 
 semantics. This flexibility empowers users to tailog queries to specific use 
 cases, ensuring that the search results are as relevant and precise as possible.
@@ -85,7 +85,7 @@ common SQL syntax.
 
 ### Reranking
   
-Vectara enhances the relevance of search results through its [reranking configurations](/docs/api-reference/search-apis/reranking). 
+Vectara enhances the relevance of search results through its [reranking configurations](/docs/search-and-retrieval/reranking). 
 The `reranker` object has different types that can be used to adjust the 
 relevance of search results based on specific needs, such as diversity or 
 precision.

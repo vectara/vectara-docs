@@ -1,7 +1,7 @@
 ---
 id: vectara-multi-lingual-reranker
-title: Vectara Multilingual Reranker
-sidebar_label: Vectara Multilingual Reranker
+title: Vectara multilingual reranker
+sidebar_label: Vectara multilingual reranker
 ---
 
 import Tabs from '@theme/Tabs';
@@ -9,7 +9,6 @@ import TabItem from '@theme/TabItem';
 import {vars} from '@site/static/variables.json';
 
 import CodePanel from '@site/src/theme/CodePanel';
-
 
 Generative AI applications often struggle with ranking the most relevant 
 information, leading to hallucinations and irrelevant responses. The new 

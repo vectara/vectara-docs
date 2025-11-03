@@ -1,12 +1,10 @@
 ---
 id: intelligent-query-rewriting
-title: Intelligent Query Rewriting
-sidebar_label: Intelligent Query Rewriting
+title: Intelligent query rewriting
+sidebar_label: Intelligent query rewriting
 ---
 
-
 import CodePanel from '@site/src/theme/CodePanel';
-
 
 Many datasets contain filterable metadata that can improve search relevance, 
 but users often lack knowledge of these metadata structures, or how to 
@@ -22,7 +20,6 @@ metadata filters manually.
 For example, a user searches for `“What was Apple’s revenue last year?”`, and Intelligent 
 Query Rewriting automatically generates a filter like 
 `doc.ticker = 'aapl' AND doc.year = 2023` to refine the search results. 
-
 
 ## Enable intelligent query rewriting
 

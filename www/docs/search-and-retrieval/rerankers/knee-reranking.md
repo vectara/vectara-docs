@@ -1,12 +1,10 @@
 ---
 id: knee-reranking
-title: Knee Reranking
-sidebar_label: Knee Reranking
+title: Knee reranking
+sidebar_label: Knee reranking
 ---
 
-
 import CodePanel from '@site/src/theme/CodePanel';
-
 
 Retrieval Augmented Generation (RAG) systems often struggle with determining 
 optimal cutoff points for query results. Fixed score thresholds provide a 

@@ -79,11 +79,11 @@ to terminate the request as soon as possible after.
 
 The following endpoints help you with queries:
 
-- [Query API](/docs/api-reference/search-apis/search): Perform searches across one or more corpora
+- [Query API](/docs/rest-api/query): Perform searches across one or more corpora
   using advanced filtering, pagination, and summarization options.
-- [Simple Corpus Query API](/docs/api-reference/search-apis/search#simple-single-corpus-query): Execute lightweight
+- [Simple Corpus Query API](/docs/rest-api/search-corpus): Execute lightweight
   searches on a single corpus.
-- [Advanced Corpus Query API](/docs/api-reference/search-apis/search#advanced-single-corpus-query): Perform advanced queries on a specific corpus
+- [Advanced Corpus Query API](/docs/rest-api/query-corpus): Perform advanced queries on a specific corpus
   with additional filtering and customization options.
 
 ### Query histories

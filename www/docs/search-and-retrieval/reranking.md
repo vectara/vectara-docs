@@ -25,14 +25,14 @@ more accurate results.
 
 Vectara currently provides the following rerankers: 
 
-* [**Multilingual Reranker v1**](/docs/learn/vectara-multi-lingual-reranker) (`type=customer_reranker` and `reranker_name=Rerank_Multilingual_v1`) 
+* [**Multilingual Reranker v1**](/docs/search-and-retrieval/rerankers/vectara-multi-lingual-reranker) (`type=customer_reranker` and `reranker_name=Rerank_Multilingual_v1`) 
   also known as Slingshot, provides more accurate neural ranking than the 
   initial Boomerang retrieval. While computationally more expensive, it offers 
   improved text scoring across a wide range of languages, making it suitable 
   for diverse content.
-* [**Maximal Marginal Relevance (MMR) Reranker**](/docs/learn/mmr-reranker) (`type=mmr`) 
+* [**Maximal Marginal Relevance (MMR) Reranker**](/docs/search-and-retrieval/rerankers/mmr-reranker) (`type=mmr`) 
   for diversifying results while maintaining relevance.
-* [**User Defined Function Reranker**](/docs/learn/user-defined-function-reranker) (`type=userfn`) for 
+* [**User Defined Function Reranker**](/docs/search-and-retrieval/rerankers/user-defined-function-reranker) (`type=userfn`) for 
   custom scoring based on metadata.
 
 ### Chain reranking
@@ -40,12 +40,12 @@ Vectara currently provides the following rerankers:
 The Vectara Chain Reranker (`type=chain`) lets you combine multiple reranking 
 strategies in sequence to meet more complex search requirements. This lets you 
 completely customize the functionality of Vectara to your needs by giving you 
-absolute control over the ranking functions. For details, see [Chain Reranker](/docs/learn/chain-reranker).
+absolute control over the ranking functions. For details, see [Chain Reranker](/docs/search-and-retrieval/rerankers/chain-reranker).
 
 ### Knee reranking
 
 Designed to work after the Slingshot reranker in a chain 
-(`type=userfn` and `user_function=knee()`), [knee reranking](/docs/learn/knee-reranking) 
+(`type=userfn` and `user_function=knee()`), [knee reranking](/docs/search-and-retrieval/rerankers/knee-reranking) 
 dynamically filters results by detecting natural cutoff points, improving 
 precision while maintaining recall.
 

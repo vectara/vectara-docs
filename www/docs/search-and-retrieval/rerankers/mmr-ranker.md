@@ -1,7 +1,7 @@
 ---
 id: mmr-reranker
-title: Maximal Marginal Relevance (MMR) Reranker
-sidebar_label: Maximal Marginal Relevance (MMR) Reranker
+title: Maximal Marginal Relevance (MMR) reranker
+sidebar_label: Maximal Marginal Relevance (MMR) reranker
 ---
 
 import Tabs from '@theme/Tabs';
@@ -9,7 +9,6 @@ import TabItem from '@theme/TabItem';
 import {vars} from '@site/static/variables.json';
 
 import CodePanel from '@site/src/theme/CodePanel';
-
 
 The Maximal Marginal Relevance (MMR) reranker enables you to diversify search 
 results to reduce redundancy while maintaining relevance to the query. 

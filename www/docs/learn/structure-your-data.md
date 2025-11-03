@@ -1,7 +1,7 @@
 ---
-id: document-data-structuring
-title: Document Data Structuring
-sidebar_label: Document Data Structuring
+id: structure-your-data
+title: Structure your data
+sidebar_label: Structure your data
 ---
 
 
@@ -12,14 +12,9 @@ Munging files into a structured data format helps preserve relationships
 between bits of data, retains special meaning of specific data types, and 
 enables users to query the data with filters.
 
-In Vectara API v2, the `type: "structured"` format ensures that document-level 
+The `type: "structured"` format ensures that document-level 
 metadata, sections, and optional nested sections are each preserved and 
 indexable.
-
-:::warning note
-In API v1, you could upload JSON files using a file-upload endpoint with a 
-metadataJson property. That approach is deprecated in v2.
-:::
 
 Let's use this National Institute of Health PDF as an example:
 

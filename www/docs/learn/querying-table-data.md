@@ -1,7 +1,7 @@
 ---
 id: querying-table-data
-title: Querying Table Data
-sidebar_label: Querying Table Data
+title: Querying table data
+sidebar_label: Querying table data
 ---
 
 

@@ -495,7 +495,7 @@ as you start building with <Config v="names.product"/>.
 Now that you've tried the basic API operations, explore more advanced features:
 
 - **[Authentication with OAuth 2.0](/docs/learn/authentication/oauth-2)** - Set up OAuth for production applications
-- **[File upload formats](/docs/api-reference/indexing-apis/file-upload/file-upload-filetypes)** - See all supported document types
+- **[File upload formats](/docs/data-management/supported-file-formats)** - See all supported document types
 - **[Metadata filtering](/docs/learn/metadata-search-filtering/using-metadata-filters)** - Add powerful search filters
 - **[Python SDK](/docs/vectara-python-sdk)** - Use our official Python client library
 

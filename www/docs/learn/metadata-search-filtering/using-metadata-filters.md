@@ -30,7 +30,7 @@ attributes, either at the document level or the part level.
 Metadata can also be added while uploading documents to the corpus. Specify 
 this in the `metadata` field of the multipart request. For more information 
 about the request details, see [File Upload API Definition](/docs/api-reference/indexing-apis/file-upload/file-upload).
-For more information about how to structure your documents, see [Document Data Structuring](/docs/learn/document-data-structuring).
+For more information about how to structure your documents, see [Structure your data](/docs/learn/structure-your-data).
 
 **API Endpoint:** POST [`https://api.vectara.io/v2/corpora/:corpus_key/upload_file`](/docs/rest-api/upload-file)
 

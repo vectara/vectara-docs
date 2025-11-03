@@ -1,7 +1,7 @@
 ---
 id: recommender-overview
-title: Recommendation System
-sidebar_label: Recommendation System
+title: Recommendation system
+sidebar_label: Recommendation system
 ---
 
 

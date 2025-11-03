@@ -180,7 +180,7 @@ number of characters or sentences before or after the matching document part.
 Finally, the **reranking configuration** enables reranking of results, to
 further increase relevance in certain scenarios. For details about our 
 Multilingual, Maximal Marginal Relevance (MMR), and User Defined Function 
-rerankers, see [Rerank Search Results](/docs/api-reference/search-apis/reranking).
+rerankers, see [Rerank Search Results](/docs/search-and-retrieval/reranking).
 
 ## Query Request and Response
 
@@ -217,16 +217,16 @@ increase relevance in certain scenarios. The `cutoff` property lets you
 specify a minimum score threshold for search results to be included after 
 reranking. The `limit` property of this `reranker` object allows you to have 
 more granular control over the number of results returned after reranking. For 
-more details about these properties, see [Rerank Search Results](/docs/api-reference/search-apis/reranking):
+more details about these properties, see [Rerank Search Results](/docs/search-and-retrieval/reranking):
 
 * Specify the `type` as `customer_reranker` and `reranker_name` as 
   `Rerank_Multilingual_v1` to use the [Multilingual Reranker v1](/docs/learn/vectara-multilingual-reranker), 
   also known as Slingshot.
-* Specify the `type` as `mmr` to use the [Maximal Marginal Relevance (MMR) Reranker](/docs/learn/mmr-reranker).
+* Specify the `type` as `mmr` to use the [Maximal Marginal Relevance (MMR) Reranker](/docs/search-and-retrieval/rerankers/mmr-reranker).
   This reranker lets you specify a `diversity_bias` value between `0.0` and `1.0`. 
-* Specify the `type` as `userfn` to use the [User Defined Function Reranker](/docs/learn/user-defined-function-reranker).
-* Specify the `type` as `chain` to use the [Chain Reranker](/docs/learn/chain-reranker).
-* To use [Knee Reranking](/docs/learn/knee-reranking), configure the chain reranker to first 
+* Specify the `type` as `userfn` to use the [User Defined Function Reranker](/docs/search-and-retrieval/rerankers/user-defined-function-reranker).
+* Specify the `type` as `chain` to use the [Chain Reranker](/docs/search-and-retrieval/rerankers/chain-reranker).
+* To use [Knee Reranking](/docs/search-and-retrieval/rerankers/knee-reranking), configure the chain reranker to first 
   use the Vectara Multilingual Reranker (Slingshot). Then specify the `type` as `userfn` and 
   `user_function` as `knee()` to enable Knee Reranking in the chain.
 * If you do not want to use a reranker, set the type to `none`.

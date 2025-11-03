@@ -24,7 +24,7 @@ your own extraction logic.
 - Check out our [**interactive API Reference**](/docs/rest-api/upload-file) that enables you
   to experiment with this REST endpoint. You can upload a file to a corpus
   directly from your browser or copy the curl for your command line.
-- Review the [**Supported File Types**](/docs/api-reference/indexing-apis/file-upload/file-upload-filetypes)
+- Review the [**Supported File Types**](/docs/data-management/supported-file-formats)
   for the most up-to-date list.
 
 :::

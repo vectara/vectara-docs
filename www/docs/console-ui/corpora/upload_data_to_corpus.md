@@ -19,7 +19,7 @@ You can upload data to the corpus from the **Data** tab.
    If the corpus already contains data, a list of documents appears in a table.
 3. Select or drag and drop files to upload. The files cannot exceed 10 MB.  
    You can upload Word, PDF, Markdown, Powerpoint, and other file types from 
-   our [supported list](/docs/api-reference/indexing-apis/file-upload/file-upload-filetypes).  
+   our [supported list](/docs/data-management/supported-file-formats).  
    ![Upload data to the corpus](/img/upload_data_to_corpus_console.png)
 4. (Optional) Enable the **Extract data data from PDFs** option. For more 
    information, see [Querying Table Data](/docs/learn/querying-table-data).
