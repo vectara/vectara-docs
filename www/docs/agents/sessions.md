@@ -212,7 +212,7 @@ with content from large files.
 Before artifacts, file uploads were handled inline within session events. 
 Artifacts solve these problems by separating file storage from file 
 references. When you upload a file, Vectara stores it in the session workspace 
-and returns a lightweight ArtifactReference containing only metadata. Agents 
+and returns a lightweight `ArtifactReference` containing only metadata. Agents 
 use these references to access files without including the full content in 
 every request.
 
@@ -316,6 +316,3 @@ of the available files:
   }}
   layout="stacked"
 />
-
-
-
