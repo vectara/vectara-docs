@@ -10,13 +10,10 @@ const sidebars: SidebarsConfig = {
         type: 'doc',
         id: 'getting-started',
       },
-      collapsed: true,
+      collapsed: false,
       items: [
-        {
-          type: "doc",
-          id: "vectara-trial",
-          label: "Vectara Trial",
-        },
+        "introduction",
+        "vectara-trial",
         {
           type: "category",
           label: "Quick Starts",
@@ -55,51 +52,49 @@ const sidebars: SidebarsConfig = {
         },
       ],
     },
-
     {
       type: "category",
       label: "Build",
       link: {
-        type: 'generated-index',
-        title: "Build with Vectara",
-        description: "Learn how to build AI applications with Vectara's data management, search, and agent capabilities",
-        slug: "/build",
-      },
-      collapsed: true,
+            type: 'doc',
+            id: "build",
+          },
+      collapsed: false,
       items: [
         {
           type: "category",
-          label: "Data preparation",
+          label: "Data ingestion",
           link: {
             type: 'doc',
-            id: 'data-management',
+            id: 'build/data-ingestion',
           },
           collapsed: true,
           items: [
-            "learn/structure-your-data",
-            "learn/select-ideal-indexing-api",
-            "data-management/supported-file-formats",
-            "data-management/data-egress",
+            {
+              type: "category",
+              label: "Working with tables",
+              collapsed: true,
+              items: [
+                "learn/querying-table-data",
+                "generation/custom-prompt-templates-customization",
+              ],
+            },
             {
               type: "category",
               label: "Metadata filters",
               link: {
                 type: 'doc',
-                id: 'learn/metadata-search-filtering/filter-overview',
+                id: 'build/prepare-data/metadata-filters',
               },
+              collapsed: true,
               items: [
-                "learn/metadata-search-filtering/using-metadata-filters",
-                "learn/metadata-search-filtering/ootb-metadata-filters",
-                "learn/metadata-search-filtering/metadata-examples-and-use-cases",
-                "api-reference/search-apis/sql/func-opr",
-                "api-reference/search-apis/sql/data-types",
-                "search-and-retrieval/fuzzy-metadata-search",
+                "build/prepare-data/metadata-filters/func-opr",
+                "build/prepare-data/metadata-filters/data-types",
+                "build/prepare-data/metadata-filters/metadata-examples-and-use-cases",
               ],
             },
-            "learn/semantic-search/add-custom-dimensions",
           ],
         },
-
         {
           type: "category",
           label: "Search and retrieval",
@@ -111,120 +106,27 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               type: "category",
-              label: "Search methods",
+              label: "Reranking",
               link: {
                 type: 'doc',
-                id: 'search-and-retrieval/search-methods',
+                id: 'search-and-retrieval/reranking',
               },
               collapsed: true,
               items: [
-                "learn/hybrid-search",
-                "learn/enable-keyword-text-matching",
+                "search-and-retrieval/rerankers/vectara-multi-lingual-reranker",
+                "search-and-retrieval/rerankers/mmr-reranker",
+                "search-and-retrieval/rerankers/user-defined-function-reranker",
+                "search-and-retrieval/rerankers/chain-reranker",
+                "search-and-retrieval/rerankers/knee-reranking",
               ],
             },
-            {
-              type: "category",
-              label: "Improve search quality",
-              link: {
-                type: 'doc',
-                id: 'search-and-retrieval/improving-search-quality',
-              },
-              collapsed: true,
-              items: [
-                "search-and-retrieval/intelligent-query-rewriting",
-                {
-                  type: "category",
-                  label: "Reranking",
-                  link: {
-                    type: 'doc',
-                    id: 'search-and-retrieval/reranking',
-                  },
-                  items: [
-                    "search-and-retrieval/rerankers/vectara-multi-lingual-reranker",
-                    "search-and-retrieval/rerankers/mmr-reranker",
-                    "search-and-retrieval/rerankers/user-defined-function-reranker",
-                    "search-and-retrieval/rerankers/chain-reranker",
-                    "search-and-retrieval/rerankers/knee-reranking",
-                  ],
-                },
-                "search-and-retrieval/bring-your-own-llm",
-              ],
-            },
-            {
-              type: "category",
-              label: "Working with results",
-              link: {
-                type: 'doc',
-                id: 'search-and-retrieval/working-with-results',
-              },
-              collapsed: true,
-              items: [
-                "search-and-retrieval/citations",
-                "learn/semantic-search/enable-pagination",
-                "search-and-retrieval/working-with-results/metadata",
-                "search-and-retrieval/working-with-results/interpreting-scores",
-                "search-and-retrieval/working-with-results/highlighting",
-                "learn/querying-table-data",
-                "learn/recommendation-systems/recommender-overview",
-                "build-apps/vectara-answer",
-              ],
-            },
-            {
-              type: "category",
-              label: "Generation",
-              link: {
-                type: 'doc',
-                id: 'generation',
-              },
-              collapsed: true,
-              items: [
-                {
-                  type: "category",
-                  label: "Understanding Generation",
-                  collapsed: true,
-                  items: [
-                    "learn/grounded-generation/grounded-generation-overview",
-                    "learn/question-answer/question-answer-overview",
-                    {
-                      type: "doc",
-                      id: "learn/grounded-generation/configure-query-summarization",
-                      label: "Configure Query Summarization",
-                    },
-                  ],
-                },
-                {
-                  type: "category",
-                  label: "Model Configuration",
-                  collapsed: true,
-                  items: [
-                    "learn/grounded-generation/model-selection",
-                    "learn/mockingbird-llm",
-                    "learn/grounded-generation/select-a-summarizer",
-                    "learn/grounded-generation/grounded-generation-response-languages",
-                  ],
-                },
-                {
-                  type: "category",
-                  label: "Generative Prompts",
-                  collapsed: true,
-                  link: {
-                    type: 'doc',
-                    id: 'generative-prompts',
-                  },
-                  items: [
-                    "prompts/vectara-prompt-engine",
-                    "prompts/custom-prompts-with-metadata",
-                    "generation/custom-prompt-templates-customization",
-                  ],
-                },
-              ],
-            },
+            "prompts/vectara-prompt-engine",
+            "build-apps/vectara-answer",
           ],
         },
-
         {
           type: "category",
-          label: "Agent Operating System",
+          label: "Agent operating system",
           link: {
             type: 'doc',
             id: 'build/agent-os/agent-platform-overview',
@@ -238,7 +140,6 @@ const sidebars: SidebarsConfig = {
             "build/agent-os/mcp",
           ],
         },
-
         {
           type: "category",
           label: "Tutorials",
@@ -252,6 +153,8 @@ const sidebars: SidebarsConfig = {
           items: [
                 "tutorials/use-openai-libraries-with-vectara",
                 "tutorials/use-external-applications-sdk",
+                "tutorials/faq-and-qna-matching",
+                "tutorials/intelligent-query-rewriting",
           ],
         },
         {
@@ -263,147 +166,16 @@ const sidebars: SidebarsConfig = {
           },
           collapsed: true,
           items: [
-            {
-              type: "category",
-              label: "LLM Orchestration",
-              items: [
-                "integrations/vectara-and-langchain",
-                "integrations/vectara-and-llamaindex",
-              ],
-            },
-            {
-              type: "category",
-              label: "Low-code / No-code App Builders",
-              items: [
-                "integrations/vectara-and-flowise",
-                "integrations/vectara-and-langflow",
-              ],
-            },
-            {
-              type: "category",
-              label: "Data Ingest",
-              items: [
-                "integrations/vectara-and-airbyte",
-                "integrations/vectara-and-unstructured",
-                "integrations/vectara-and-datavolo",
-                "integrations/vectara-and-confluent",
-              ],
-            },
+            "integrations/vectara-and-langchain",
+            "integrations/vectara-and-llamaindex",
+            "integrations/vectara-and-flowise",
+            "integrations/vectara-and-langflow",
+            "integrations/vectara-and-airbyte",
+            "integrations/vectara-and-confluent",
           ],
         },
       ],
     },
-
-    {
-      type: "category",
-      label: "Manage",
-      link: {
-        type: 'generated-index',
-        title: "Manage Vectara",
-        description: "Manage your Vectara resources through the Console and monitor application performance",
-        slug: "/manage",
-      },
-      collapsed: true,
-      items: [
-        {
-          type: "doc",
-          id: 'console-ui/vectara-console-overview',
-          label: "Vectara Console",
-        },
-        {
-          type: "category",
-          label: "Manage Agents",
-          link: {
-            type: 'doc',
-            id: "console-ui/manage-agents",
-          },
-          items: [
-            "console-ui/agents/create-an-agent",
-            "console-ui/agents/use-agents",
-            "console-ui/agents/example-agents",
-          ],
-        },
-        {
-          type: "category",
-          label: "Manage Corpora",
-          collapsed: true,
-          items: [
-            "console-ui/creating-a-corpus",
-            "console-ui/reset-or-delete-corpus",
-            "console-ui/configure-server-access-to-corpus",
-            "console-ui/corpus-default-read-access",
-          ],
-        },
-        {
-          type: "category",
-          label: "Manage Queries",
-          collapsed: true,
-          items: [
-            "console-ui/configure-queries",
-            "console-ui/evaluate-queries",
-          ],
-        },
-        {
-          type: "doc",
-          id: "console-ui/manage-documents",
-          label: "Manage Documents",
-        },
-        {
-          type: "category",
-          label: "Manage Conversations",
-          collapsed: true,
-          items: [
-            "console-ui/vectara-chat-overview",
-            "console-ui/chat-with-your-data",
-          ],
-        },
-        {
-          type: "category",
-          label: "Manage API Authorization",
-          collapsed: true,
-          items: [
-            "console-ui/api-access-overview",
-            "console-ui/personal-api-key",
-            "console-ui/index-and-query-api-keys",
-            "console-ui/app-clients",
-          ],
-        },
-        {
-          type: "doc",
-          id: "console-ui/manage-user",
-          label: "Manage Users",
-        },
-        {
-          type: "doc",
-          id: "console-ui/update-credit-card",
-          label: "Manage Payments",
-        },
-        "console-ui/delete-account",
-
-        {
-          type: "doc",
-          id: "console-ui/admin-center",
-          label: "Vectara Admin Center",
-        },
-
-        {
-          type: "category",
-          label: "Observability and Evaluation",
-          link: {
-            type: 'doc',
-            id: 'observability',
-          },
-          collapsed: true,
-          items: [
-            "learn/query-observability",
-            "learn/hallucination-evaluation",
-            "learn/vectara-hallucination-corrector",
-            "build-apps/open-eval-framework",
-          ],
-        },
-      ],
-    },
-
     {
       type: "category",
       label: "Deploy and Scale",
@@ -417,17 +189,6 @@ const sidebars: SidebarsConfig = {
       items: [
         {
           type: "category",
-          label: "Platform overview",
-          link: {
-            type: 'doc',
-            id: 'introduction',
-          },
-          collapsed: true,
-          items: [],
-        },
-
-        {
-          type: "category",
           label: "Security and data privacy",
           link: {
             type: 'doc',
@@ -437,6 +198,7 @@ const sidebars: SidebarsConfig = {
           items: [
             "learn/data-privacy/encryption",
             "deploy-and-scale/authentication/transport-layer-security",
+            "data-management/data-egress",
           ],
         },
         {
@@ -499,6 +261,7 @@ const sidebars: SidebarsConfig = {
           items: [
             "deployments/private-deployment-overview",
             "deployments/deployment-options",
+            "console-ui/admin-center",
             "deployments/use-cases",
             "deployments/onprem-evaluation-process",
             {
@@ -514,6 +277,19 @@ const sidebars: SidebarsConfig = {
             }
           ],
         },
+
+        {
+          type: "category",
+          label: "Observability and Evaluation",
+          collapsed: true,
+          items: [
+            "learn/query-observability",
+            "learn/hallucination-evaluation",
+            "learn/vectara-hallucination-corrector",
+            "build-apps/open-eval-framework",
+          ],
+        },
+        "search-and-retrieval/bring-your-own-llm",
       ],
     },
 

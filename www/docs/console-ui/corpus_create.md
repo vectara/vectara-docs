@@ -23,10 +23,10 @@ together in a single location for querying.
 7. (Optional) Enter a **Description** about the corpus.
 8. Select an Embedding model, such as Boomerang.
 9. Click the Filter attributes drop-down, click **Add filter attribute**, and 
-   configure attributes at the [document or part levels](/docs/learn/metadata-search-filtering/filter-overview#document-level-and-part-level-metadata).
+   configure attributes at the [document or part levels](/docs/build/prepare-data/metadata-filters#document-level-and-part-level-metadata).
 
    ![Add Filter Attributes](/img/add_filter_attributes.png)
-10. Select the appropriate [Data Type](/docs/api-reference/search-apis/sql/data-types) and indicate 
+10. Select the appropriate [Data Type](/docs/build/prepare-data/metadata-filters/data-types) and indicate 
     whether you want this attribute indexed.
 11. Click **Add** to return to the previous page. You can continue adding more attributes.
 12. (Optional) Click **Show API Request** and the request inspector appears. You can now 

@@ -35,8 +35,70 @@ import Heading from "@theme/Heading";
 </MethodEndpoint>
 
 
+The Create Corpus API lets you create a corpus to store and manage your
+      documents. A corpus is a container for documents and their associated
+      metadata. When creating a corpus, you can specify various settings such as the
+      corpus key, name, description, encoder, and filter attributes.
 
-Create a corpus, which is a container to store documents and associated metadata. Here, you define the unique `corpus_key` that identifies the corpus. The `corpus_key` can be custom-defined following your preferred naming convention, allowing you to easily manage the corpus's data and reference it in queries. For more information, see [Corpus Key Definition](https://docs.vectara.com/docs/api-reference/search-apis/search#corpus-key-definition).
+      ## Corpus object
+
+      When you create a `corpus` object, the `key` property is required to uniquely
+      identify the corpus. The `name` parameter is optional and defaults to the
+      value of `key`. The optional `description` properties lets you provide
+      additional information about the corpus.
+
+      You can specify whether to treat queries or documents in the corpus as
+      questions or answers using the `queries_are_answers` and `documents_are_questions`
+      boolean properties. These settings affect the semantics of the encoder used at
+      query time and indexing time.
+
+      The `encoder_name` property allows you to choose the encoder for the corpus. 
+      If not specified, it defaults to the latest Vectara encoder.
+
+      ## Add metadata as filter attributes
+
+      When creating a corpus with the Create Corpus API or the [Vectara Console](/docs/console-ui/creating-a-corpus), 
+      you define metadata fields using the `filter_attributes` 
+      object. This ensures the corpus supports filtering on specific metadata 
+      attributes, either at the document level or the part level.
+
+      Filter attributes allow you to attach metadata to your data at the document (`doc`) 
+      or `part` level, which you can use later in filter expressions to narrow the scope 
+      of your queries.
+
+      A filter attribute must specify a unique `name` (up to 64 characters long), and 
+      a `level` which indicates whether it exists in the `doc` or `part` level 
+      metadata. At indexing time, metadata with this name is extracted and made 
+      available for filter expressions to operate on.
+
+      ### Doc and Part Filter Levels
+
+      The `doc` attribute applies to the entire document. Use this for metadata that 
+      is consistent across the whole document, such as author, publication date, and 
+      document ID.
+
+      The `part` attribute applies to specific sections or chunks within a document. 
+      Use for metadata that may vary within different parts of the document, such as 
+      sections, page numbers, and sentiment scores.
+
+      If `indexed` is true, the system will build an index on the extracted values
+      to further improve the performance of filter expressions involving the
+      attribute.
+
+      Filter attributes must specify a `type`, which is validated when
+      documents are indexed. The four supported types are `integer`, which stores
+      signed whole-number values up to eight bytes in length; `real`, for storing
+      floating point values in [IEEE 754 8-byte format][1]; `text` for storing
+      textual strings in [UTF-8 encoding][2], and `boolean` for storing true/false
+      values.
+
+      [1]: https://en.wikipedia.org/wiki/Double-precision_floating-point_format
+      [2]: https://en.wikipedia.org/wiki/UTF-8
+
+      After you define filter attributes, you can use them within your queries. For example:
+
+      * Document-level attribute: `doc.publication_year > 2020`
+      * Part-level attribute: `part.sentiment_score > 0.7`
 
 <Heading
   id={"request"}

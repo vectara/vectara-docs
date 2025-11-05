@@ -62,7 +62,7 @@ Enable precise answers from your organization's knowledge base:
 - **Product information**: Help users find specifications, manuals, and 
   troubleshooting guides.
 
-Create a dynamic [question and answer system](/docs/learn/question-answer/question-answer-overview) that continuously improves user experience.
+Create a dynamic [question and answer system](/docs/tutorials/faq-and-qna-matching) that continuously improves user experience.
 
 ## Semantic search for applications
 

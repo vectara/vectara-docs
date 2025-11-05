@@ -79,7 +79,7 @@ flow of search results effectively.
 
 ### Metadata filtering
 
-Vectara supports enhanced [metadata filtering](/docs/learn/metadata-search-filtering/filter-overview), which allows users to restrict  
+Vectara supports enhanced [metadata filtering](/docs/build/prepare-data/metadata-filters), which allows users to restrict  
 searches to specific parts of the corpus based on defined criteria, using 
 common SQL syntax.
 

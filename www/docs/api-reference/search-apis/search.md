@@ -192,7 +192,7 @@ creation.
 
 :::note
 
-See the [**Filter Expressions Overview**](/docs/learn/metadata-search-filtering/filter-overview) for a
+See the [**Filter Expressions Overview**](/docs/build/prepare-data/metadata-filters) for a
 description of their syntax, and [**Corpus Administration**](/docs/api-reference/admin-apis/admin) to learn how
 referenceable metadata is specified during corpus creation.
 

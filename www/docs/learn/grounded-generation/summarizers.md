@@ -1,13 +1,12 @@
 ---
 id: select-a-summarizer
-title: Generation Presets
-sidebar_label: Generation Presets
+title: Generation presets
+sidebar_label: Generation presets
 ---
 
 import {vars} from '@site/static/variables.json';
 
 import CodePanel from '@site/src/theme/CodePanel';
-
 
 Extracting concise, relevant information from large sets of search results 
 presents a significant challenge for many applications. Vectara offers 

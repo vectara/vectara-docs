@@ -242,3 +242,91 @@ preset and explicitly specify the registered model by name.
   }
 }'`
 }]} title="Query Custom LLM Example" layout="stacked" />
+
+
+## Add Openrouter models
+
+### Claude Sonnet 4.5
+
+<CodePanel snippets={[{language: "bash", code: `curl -L 'https://api.vectara.io/v2/llms' \\
+-H 'Content-Type: application/json' \\
+-H 'Accept: application/json' \\
+-H 'x-api-key: zut_abcd....' \\
+-d '{
+  "name": "Claude 4.5 Sonnet Openrouter",
+  "description": "Openrouter Claude Sonnet 4.5",
+  "model": "anthropic/claude-sonnet-4.5",
+  "uri": "https://openrouter.ai/api/v1/chat/completions",
+  "auth": {
+    "type": "header",
+    "header": "Authorization",
+    "value": "Bearer sk-12345"
+  },
+  "headers": {},
+  "type": "openai-compatible"
+}'`
+}]} title="Claude Sonnet 4.5 Example" layout="stacked" />
+
+### GLM 4.6
+
+<CodePanel snippets={[{language: "bash", code: `curl -L 'https://api.vectara.io/v2/llms' \\
+-H 'Content-Type: application/json' \\
+-H 'Accept: application/json' \\
+-H 'x-api-key: zut_abcd' \\
+-d '{
+  "name": "GLM 4.6 Openrouter",
+  "description": "Openrouter GLM 4.6 ",
+  "model": "z-ai/glm-4.6",
+  "uri": "https://openrouter.ai/api/v1/chat/completions",
+  "auth": {
+    "type": "header",
+    "header": "Authorization",
+    "value": "Bearer sk-12345"
+  },
+  "headers": {},
+  "type": "openai-compatible"
+}'`
+}]} title="GLM 4.6 Example" layout="stacked" />
+
+
+### Minimax 2
+
+<CodePanel snippets={[{language: "bash", code: `curl -L 'https://api.vectara.io/v2/llms' \\
+-H 'Content-Type: application/json' \\
+-H 'Accept: application/json' \\
+-H 'x-api-key: zut_abcd' \\
+-d '{
+  "name": "Minimax 2 Openrouter",
+  "description": "Openrouter Minimax M2",
+  "model": "minimax/minimax-m2:free",
+  "uri": "https://openrouter.ai/api/v1/chat/completions",
+  "auth": {
+    "type": "header",
+    "header": "Authorization",
+    "value": "Bearer sk-12345"
+  },
+  "headers": {},
+  "type": "openai-compatible"
+}'`
+}]} title="Minimax 2 Example" layout="stacked" />
+
+### xAI Grok Code Fast 1
+
+<CodePanel snippets={[{language: "bash", code: `curl -L 'https://api.vectara.io/v2/llms' \\
+-H 'Content-Type: application/json' \\
+-H 'Accept: application/json' \\
+-H 'x-api-key: zut_12345' \\
+-d '{
+  "name": "Grok Code Fast 1 Openrouter",
+  "description": "Openrouter Grok Code Fast 1",
+  "model": "x-ai/grok-code-fast-1",
+  "uri": "https://openrouter.ai/api/v1/chat/completions",
+  "auth": {
+    "type": "header",
+    "header": "Authorization",
+    "value": "Bearer sk-abcd"
+  },
+  "headers": {},
+  "type": "openai-compatible"
+}'`
+}]} title="Grok Code Fast 1 Example" layout="stacked" />

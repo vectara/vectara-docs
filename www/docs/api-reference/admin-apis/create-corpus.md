@@ -34,7 +34,7 @@ The `encoder_id` property has been deprecated. Use the `encoder_name`
 property instead.
 :::
 
-In order to reference metadata in [filter expressions](/docs/learn/metadata-search-filtering/filter-overview), the attributes
+In order to reference metadata in [filter expressions](/docs/build/prepare-data/metadata-filters), the attributes
 are declared at creation time in the `filter_attributes` array. You can add, 
 edit, and remove filter attributes from the [Console UI](/docs/console-ui/creating-a-corpus) in the Corpora Settings, 
 or with the [Replace Filters Attributes API definition](/docs/api-reference/admin-apis/corpus/replace-filter-attributes).
@@ -50,7 +50,7 @@ corpus. The `name` does not need to be unique within an account.
 
 ## Filter Attribute
 
-In order to reference metadata in [filter expressions](/docs/learn/metadata-search-filtering/filter-overview), you
+In order to reference metadata in [filter expressions](/docs/build/prepare-data/metadata-filters), you
 must define the **filter attributes** at the time of corpus creation. If you 
 already created a corpus, use the [Replace Filter Attributes API](/docs/api-reference/admin-apis/corpus/replace-filter-attributes). 
 

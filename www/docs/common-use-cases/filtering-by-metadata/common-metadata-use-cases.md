@@ -15,7 +15,7 @@ handled via metadata:
 Often, documents will have dates associated with them: the creation date, last
 modified, date, or ingest date that can prove useful to filter by.  To use
 these in <Config v="names.product"/>, first convert the dates to epoch
-seconds and then use an [integer](/docs/api-reference/search-apis/sql/data-types)
+seconds and then use an [integer](/docs/build/prepare-data/metadata-filters/data-types)
 
 # Indexing checkpoints
 A frequent use case is

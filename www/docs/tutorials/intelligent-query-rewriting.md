@@ -34,8 +34,6 @@ allows you to have flexible control over applying this capability.
   include it in the request body.
 * [Advanced Single Corpus Query](/docs/rest-api/query-corpus)
 * [Multiple Corpora Query](/docs/rest-api/query)
-* [Start a Chat](/docs/rest-api/create-chat)
-* [Create Chat Turn](/docs/rest-api/create-chat-turn)
 
 ## Example intelligent query rewriting
 
@@ -137,9 +135,8 @@ filter using a logical `AND`.
     }
   ]
 }`}]} title="Response Example" layout="stacked" />
-## Best practices for intelligent query rewriting
 
-### Define filter attributes clearly
+## Define filter attributes clearly
 
 Providing detailed descriptions of filter attributes improves filter 
 extraction and search accuracy. To ensure intelligent query rewriting works 
@@ -162,7 +159,7 @@ Consider including the following information:
 * **Value format**  
   Indicate whether values use abbreviations (`USA`, `UK`) or full names (`United States of America`).
 
-### Handling date attributes
+## Handling date attributes
 
 While date attributes are not fully supported, they can function as 
 text attributes if stored in the format `YYYY-MM-DD`. This allows comparison 

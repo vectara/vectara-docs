@@ -18,6 +18,7 @@ import StatusCodes from "@theme/StatusCodes";
 import OperationTabs from "@theme/OperationTabs";
 import TabItem from "@theme/TabItem";
 import Heading from "@theme/Heading";
+import CodePanel from '@site/src/theme/CodePanel';
 
 <Heading
   as={"h1"}
@@ -36,7 +37,12 @@ import Heading from "@theme/Heading";
 
 
 
-Upload a file, such as a PDF or Word document, to the specified corpus for automatic text extraction and metadata parsing.  
+The File Upload API enables you to extract text from unstructured documents in 
+common file types like PDFs, Microsoft Word, Text, HTML, and Markdown. It also 
+supports extracting table data from PDFs, allowing for improved analysis and 
+querying of structured tabular data. Each file you upload can be up to 10 MB 
+in size. We recommend the File Upload API when you have not already written 
+your own extraction logic.
 
 This endpoint expects a `multipart/form-data` request with the following fields:  
 
@@ -50,6 +56,74 @@ This endpoint expects a `multipart/form-data` request with the following fields:
   Example: `table_extraction_config={"extract_tables": true}`
 - **file**: The file to upload. Attach your file as the value for this field.
 - **filename**: The desired name for the uploaded file. Specify as part of the file field in your request.
+
+Apart from these parameters, the servers expect a valid JWT Token in the HTTP
+headers.
+
+```bash
+curl -L -X POST 'https://api.vectara.io/v2/corpora/:corpus_key/upload_file' \\
+-H 'Content-Type: multipart/form-data' \\
+-H 'Accept: application/json' \\
+-H 'x-api-key: zwt_123456' \\
+-F 'metadata={"key": "value"};type=application/json' \\
+-F 'file=@/path/to/file/file.pdf;filename=desired_filename.pdf'
+```
+
+### Filenames with Non-ASCII Characters
+
+When uploading files with non-ASCII (non-English) characters, such as Russian 
+or Chinese, ensure that the filename is URL encoded. API v2 follows web 
+standards which require URL-encoded file names.
+
+### Image Support
+You can include images in structured documents using the Indexing API with 
+Base64 encoding. You cannot send images directly with individual query 
+requests. If you want to retrieve a specific image that is embedded within a 
+document, use the [Retrieve Image API](/docs/rest-api/get-image).
+
+### Set the Document ID
+
+The `Content-Disposition` header lets you specify the Document ID of a file
+when you use the following format:
+
+```json
+Content-Disposition: form-data; name="*file*"; filename="*your_document_id*"
+```
+
+where `file` is the name of the file, and `filename` is the Document ID that  
+you want. The primary purpose of this header is to specify the
+`form-data`, so using `filename` as the Document ID is specific to our
+platform. For more information about Content-Disposition, see
+the [Mozilla documentation on headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition).
+
+### Uploading PDFs with Tables
+
+Set the `table_extraction_config` field to `true` to extract table data from a 
+PDF. This feature is particularly useful for financial reports like 10-Q, 
+10-K, and S1 filings. With table extraction enabled, you can query specific 
+table cells using the Query API.
+
+:::caution
+This feature does not support extracting data from scanned-in images of tables.
+:::
+
+### Custom Table Summarization with Prompt Templates
+
+Vectara supports [table summarization using custom prompt templates](/docs/generation/custom-prompt-templates-customization) during 
+document upload. This lets you define [custom prompt templates](/docs/prompts/vectara-prompt-engine) that control how the 
+LLM interprets and summarizes table data during extraction. By customizing the 
+`prompt_template`, you can tailor summaries for domain-specific language, 
+analytical perspectives, or formatting preferences.
+
+### Attach Additional Metadata
+
+You can attach additional metadata to the file by specifying a `metadata`
+form field, which can contain a JSON string:
+
+```json
+{ "filesize": 1234 }
+```
+
 
 
 <Heading

@@ -36,12 +36,58 @@ import Heading from "@theme/Heading";
 
 
 
-Add a document to a corpus. This endpoint supports two document formats: structured and core.
+Add a document to a corpus for indexing, making its content available for search, retrieval, and generation. This endpoint supports two ingestion modes—**structured** and **core**—offering different levels of control over document structure and chunking.
 
-* **Structured** documents have a conventional structure that provides document sections and parts in a format created by our proprietary strategy automatically. You provide a logical document structure, and Vectara handles the partitioning.
-* **Core** documents differ in that they follow an advanced, granular structure that explicitly defines each document part in an array. Each part becomes a distinct, searchable item in query results. You have precise control over the document structure and content.
+      Each document becomes part of a corpus: a logical collection of related data that powers semantic search and Retrieval Augmented Generation (RAG).  
+      You can create documents directly using this API, or use higher-level ingestion frameworks such as [Vectara Ingest](https://github.com/vectara/vectara-ingest) or the [File Upload API](/docs/rest-api/upload-file) for simplified workflows.
 
-For more details, see [Indexing](https://docs.vectara.com/docs/learn/select-ideal-indexing-api).
+      ---
+
+      ### Structured Documents
+      Structured documents provide a natural, human-readable hierarchy where the Vectara platform automatically handles chunking and metadata association.  
+      They are ideal when you want to index documents that have logical organization (titles, sections, paragraphs, and optionally tables or images) but prefer Vectara to manage how the content is split into search-optimized units.
+
+      Each structured document contains:
+      - A unique `id` and optional `title`, `description`, and `metadata`.  
+      - An array of `sections`, each with its own title, text, and optional nested sections, tables, or images.  
+      - Optional `custom_dimensions` that can influence ranking during search.
+
+      When indexed, Vectara’s internal algorithms automatically partition the text into document parts using an intelligent sentence- or character-based chunking strategy. This lets you ingest data with minimal pre-processing while maintaining semantic integrity across context boundaries.
+
+      Structured documents are recommended for:
+      - Most general ingestion scenarios.  
+      - Content with well-defined sections such as reports, articles, FAQs, or documentation.  
+      - Workflows that don’t require full manual control of chunk creation.
+
+      ---
+
+      ### Core Documents
+      Core documents offer fine-grained, explicit control of every part of a document that becomes searchable.  
+      Instead of providing a hierarchical structure, you specify each **document part** directly as an atomic unit that maps 1:1 to a search result or embedding.
+
+      A core document includes:
+      - A unique `id` and optional `metadata`.  
+      - A list of `document_parts`, where each part includes `text`, optional `context`, `metadata`, and `custom_dimensions`.  
+      - Optional `tables` and `images`, allowing you to represent complex structured data like spreadsheets or charts.  
+
+      Core documents are designed for advanced use cases such as:
+      - Precise chunk-level optimization or experimental corpus structures.  
+      - Applications where metadata-driven retrieval or ranking must be explicitly controlled.  
+      - Integrations that predefine their own content segmentation or chunking pipelines.
+
+      ---
+
+      ### Chunking Strategies
+      By default, Vectara uses **sentence-based chunking**, which provides optimal retrieval accuracy for most datasets.  
+      For larger documents or performance-tuned ingestion, you can explicitly set a `chunking_strategy`:
+      - `sentence_chunking_strategy` — creates one chunk per sentence (default).  
+      - `max_chars_chunking_strategy` — creates larger chunks up to a specified character limit (`max_chars_per_chunk`), balancing retrieval speed with contextual coherence.
+
+      ---
+
+      ### Response and Usage
+      Upon successful ingestion, the response includes a status message, any applicable storage quota metrics, and extraction usage statistics.  
+      Once indexed, the document’s content becomes available for querying using the [Query APIs](/docs/rest-api/query).
 
 
 <Heading

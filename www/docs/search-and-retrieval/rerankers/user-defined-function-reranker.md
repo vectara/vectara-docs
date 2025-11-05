@@ -20,11 +20,11 @@ effectively guide the LLM to consider that information more prominently,
 biasing the generated response.
 
 The User Defined Functions Reranker enables users to define custom reranking 
-functions using [document-level metadata, part-level metadata](/docs/learn/metadata-search-filtering/filter-overview), or scores 
+functions using [document-level metadata, part-level metadata](/docs/build/prepare-data/metadata-filters), or scores 
 generated from the request-level metadata. To use this reranker, set the 
 `type` to `userfn` in a query and specify a string within the 
 `reranker` section of the query. This string syntax is custom and similar to our 
-SQL-like [filter expressions](/docs/learn/metadata-search-filtering/filter-overview). 
+SQL-like [filter expressions](/docs/build/prepare-data/metadata-filters). 
 You can also use our [chain reranker](/docs/search-and-retrieval/rerankers/chain-reranker) which 
 applies multiple rerankers in complex search scenarios that require multiple 
 dimensions of relevance.

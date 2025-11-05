@@ -1,43 +1,10 @@
 ---
-id: queries
-title: "Queries"
-description: "Queries"
-custom_edit_url: null
+id: configure-query-parameters
+title: Configure queries
+sidebar_label: Configure queries
 ---
 
-
-
-The **Query APIs** are the primary interface for searching your data and generating 
-AI-powered summaries. After indexing documents into corpora, you use these endpoints 
-to retrieve relevant information and optionally generate grounded summaries using 
-Retrieval Augmented Generation (RAG).
-
-Vectara provides three query types to match your search needs:
-
-## Single Corpus Query
-
-Quick search with minimal parameters:
-- Simple search-only use cases
-- Minimal configuration needed
-- Performance-critical lightweight queries
-
-**Parameters**: `q` (query), `limit`, `offset`
-
-## Advanced Single Corpus Query
-
-Full-featured search and RAG for single corpus:
-- Need RAG for single corpus
-- Table summarization required
-- Advanced search customization
-- Metadata filtering and reranking
-
-## Multiple Corpora Query
-
-Search across one or more corpora with full RAG capabilities:
-- Query multiple data sources simultaneously
-- Need AI-generated summaries with citations
-- Require advanced customization (streaming, custom prompts, factual scoring)
-- Building conversational AI applications
+import CodePanel from '@site/src/theme/CodePanel';
 
 Configuring your query parameters enables you to get the most relevant and 
 accurate results. This section covers the key configuration parameters that 
@@ -58,8 +25,7 @@ retrieve results:
 - **semantics**: Query interpretation mode ("`query`", "`response`", or
   "`default`").
 
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
    "search": {
      "corpora": [{
        "corpus_key": "my-corpus",
@@ -70,8 +36,7 @@ retrieve results:
      "offset": 0,
      "semantics": "default"
    }
-}
-```
+}`}]} title="Search Configuration Example" layout="stacked" />
 
 ## Context configuration
 
@@ -89,8 +54,7 @@ included with each search result:
 You can only use **sentences before/after** or **characters before/after**, but not both.
 :::
 
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
    "search": {
      "context_configuration": {
        "sentences_before": 2,
@@ -99,8 +63,8 @@ You can only use **sentences before/after** or **characters before/after**, but 
        "end_tag": "</mark>"
      }
    }
-}
-```
+}`}]} title="Context Configuration Example" layout="stacked" />
+
 ## Reranker configuration
 
 [Rerankers](/docs/api-reference/search-apis/reranking) improve result quality by reordering search results to place the
@@ -117,8 +81,7 @@ most relevant content first:
 - **include_context**: Use surrounding context text for more accurate
   scoring.
 
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
    "search": {
      "reranker": {
        "type": "customer_reranker",
@@ -128,8 +91,7 @@ most relevant content first:
        "include_context": true
      }
    }
-}
-```
+}`}]} title="Reranker Configuration Example" layout="stacked" />
 
 ## Generation configuration
 
@@ -152,8 +114,7 @@ responses:
 - **enable_factual_consistency_score**: Validate factual consistency of
   responses.
 
-```json
-{
+<CodePanel snippets={[{language: "json", code: `{
    "generation": {
      "generation_preset_name": "mockingbird-2.0",
      "max_used_search_results": 10,
@@ -168,14 +129,4 @@ responses:
        "max_tokens": 300
      }
    }
-}
-```
-
-
-```mdx-code-block
-import DocCardList from '@theme/DocCardList';
-import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
-
-<DocCardList items={useCurrentSidebarCategory().items}/>
-```
-      
+}`}]} title="Generation Configuration Example" layout="stacked" />
