@@ -59,3 +59,5 @@
 /docs/console-ui/manage-api-access                            /docs/console-ui/api-access-overview
 /docs/learn/question-answer/question-answer-overview          /docs/tutorials/faq-and-qna-matching
 /docs/search-and-retrieval/intelligent-query-rewriting        /docs/tutorials/intelligent-query-rewriting
+/docs/learn/querying-table-data                               /docs/build/working-with-tables
+/docs/generation/custom-prompt-templates-customization        /docs/build/working-with-tables

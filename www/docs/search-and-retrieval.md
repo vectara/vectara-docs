@@ -11,16 +11,59 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 import CodePanel from '@site/src/theme/CodePanel';
 
 
-Search and retrieval in Vectara delivers precise, relevant, and 
-high-performing search results tailored to the needs of your application. 
-By combining advanced AI models with innovative search techniques, Vectara 
-ensures that you can query and organize your data effectively, regardless 
-of scale or complexity. This section introduces the core tools and strategies 
-available for optimizing your search and retrieval 
-workflows.
+Search and retrieval in Vectara delivers precise, relevant query results 
+tailored to the needs of your application. By combining advanced AI models 
+with innovative search techniques, Vectara ensures that you can query and 
+organize your data effectively. For details about different query types, 
+see [Queries](/docs/rest-api/queries) in the API Reference.
 
-Choose the right search method for your use case. Vectara offers multiple 
-search approaches to fit different scenarios and requirements.
+This section introduces the core tools and strategies available for 
+optimizing your search and retrieval workflows.
+
+- **[Hybrid search](#hybrid-search)**: Combine semantic and keyword search (recommended 
+  starting point).
+- **[Keyword search](#keyword-search)**: Pure keyword matching for specialized 
+  use cases.
+- **[Corpora search configuration](#corpora-search-configuration)**: Query parameters and 
+  filtering.
+- **[Context configuration](#context-configuration)**: Control surrounding text in 
+  results.
+- **[Reranker configuration](#reranker-configuration)**: Improve result relevance.
+- **[Generation configuration](#generation-configuration)**: Configure AI-generated 
+  summaries.
+- **[Currently available prompts](#currently-available-prompts)**: Prompts for RAG, citations, 
+  and tabular data.
+- **[Advanced summarization customization options](#advanced-summarization-customization-options)**: Advanced 
+  `model_parameter` usage.
+
+More advanced capabilities include the following:
+
+- **[Reranking ](./search-and-retrieval/reranking)**: Multilingual, MMR, UDF, Chain, and 
+  Knee rerankers
+- **[Custom prompts](./prompts/vectara-prompt-engine)**: Customize AI response generation
+- **[Bring your own LLM](/docs/search-and-retrieval/bring-your-own-llm)**: Define a custom 
+  LLM configuration.
+
+## Basic query
+
+This basic query example has a minimal configuration:
+
+<CodePanel snippets={[{language: "json", code: `{
+    "query": "What are black holes?",  // The search query text
+    "search": {
+      "corpora": [{
+        "corpus_key": "my-corpus"  // Identifier for the corpus to search
+      }],
+    },
+    "generation": {
+      "generation_preset_name": "mockingbird-2.0",  // Name of the generation preset to use
+      "max_used_search_results": 20  // Maximum number of search results to use for generation
+    }
+  }`}]} title="Basic Query Example" layout="stacked" />
+
+
+Vectara offers different search methods to fit different scenarios and 
+requirements.
 
 ## Hybrid search
 
@@ -117,21 +160,6 @@ To enable exact keyword matching and disable neural retrieval, specify the
 Setting `lexical_interpolation` to `1.0` is equivalent to the original BM25.
 :::
 
-### Enable exact keyword matching in the console UI
-
-You can also set this value in the Console UI and experiment with searches and 
-disable the hybrid search option.
-
-![Set lexical_interpolation to 1.0](/img/lambda_console.png)
-
-The default value of `lexical_interpolation` is `0`, which disables exact and 
-Boolean text matching. 
-
-### Enable exact keyword search
-
-The following example shows the full query with 
-the `lexical_interpolation` value set to `1`:
-
 Experimenting with the `lexical_interpolation` value is useful if you're trying
 to evaluate how a keyword system like one based on Elasticsearch or Solr may 
 compare to Vectara.
@@ -141,7 +169,11 @@ accurate results. This section covers the key configuration parameters that
 control search behavior, result retrieval, reranking, context handling, and 
 AI-generated responses.
 
-## Corpora search configuration
+## Configure queries
+
+Queries have several configurable components.
+
+### Corpora search configuration
 
 The `search` object controls which corpora to search and how to filter and
 retrieve results:
@@ -168,7 +200,7 @@ retrieve results:
    }
 }`}]} title="Search Configuration Example" layout="stacked" />
 
-## Context configuration
+### Context configuration
 
 The `context_configuration` object controls how much surrounding text is
 included with each search result:
@@ -195,7 +227,7 @@ You can only use **sentences before/after** or **characters before/after**, but 
    }
 }`}]} title="Context Configuration Example" layout="stacked" />
 
-## Reranker configuration
+### Reranker configuration
 
 [Rerankers](/docs/api-reference/search-apis/reranking) improve result quality by reordering search results to place the
 most relevant content first:
@@ -223,7 +255,7 @@ most relevant content first:
    }
 }`}]} title="Reranker Configuration Example" layout="stacked" />
 
-## Generation configuration
+### Generation configuration
 
 The `generation` object controls how the agent creates natural language 
 responses. Excluding this `generation` field disables summarization.
@@ -264,7 +296,7 @@ responses. Excluding this `generation` field disables summarization.
 The `generation_preset_name` is specified in the `generation` object of a [**query**](/docs/rest-api/queries). 
 Excluding this `generation` field disables summarization.
 
-### Currently available prompts
+## Currently available prompts
 
 Vectara provides several official prompts (generation presets) to our users 
 that you specify in the `generation_preset_name` within the `generation` object. 
@@ -303,7 +335,7 @@ This generation preset example attempts to balance creating a good quality
 summary with a reasonably fast response by setting `max_used_search_results` to 
 `50`.
 
-## Advanced Summarization Customization Options
+## Advanced summarization customization options
 
 Our users also have access to more powerful summarization capabilities, which 
 present a powerful toolkit for tailoring summarizations to specific 

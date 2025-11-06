@@ -1,59 +1,35 @@
 ---
 id: api-recipes
-title: API Quick Start
-sidebar_label: API Quick Start
+title: API Recipes
+sidebar_label: API Recipes
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';
 
-Using our APIs enable application developers and data engineers to seamlessly
-integrate the <Config v="names.product"/> semantic search capabilities into
-your applications. After you review this section, you can
-check out our [API Reference](/docs/rest-api/vectara-rest-api-v-2) to experiment with Vectara's REST APIs directly
-from your browser!
+Explore common API patterns and use cases for building with Vectara. Each recipe shows complete request and response examples you can adapt for your application.
 
-The Vectara Console and our APIs work hand-in-hand as part of the app development
-process. For example, a builder uses this following workflow:
+:::tip New to Vectara?
+Start with the [**Developer Quickstart**](/docs/developer-quickstart) for a fast 5-minute introduction to the basics.
+:::
 
-- Fine-tune a query's lexical interpolation and filters until the answer quality is just
-  right.
-- Copy the request directly from the Vectara Console and paste it into your IDE.
-- Copy the customer ID and API key from the Vectara Console to further configure
-  the request.
-- Test out the software and then verify that requests are hitting your
-  corpus by checking the querying graph on the Overview tab.
+## How to use these recipes
 
-Ready to build? The examples below show you how to get started in minutes.
+These examples demonstrate real-world patterns for working with the Vectara API:
 
-## What you will learn
+- [**Search for answers in a corpus**](/docs/api-recipes#search-for-answers-in-a-corpus)
+- [**Add content to a corpus**](/docs/api-recipes#add-content-to-a-corpus)
+- [**Query with result limits**](/docs/api-recipes#query-with-result-limits)
+- [**List and delete corpora**](/docs/api-recipes#list-and-delete-corpora)
 
-We'll show you several example API recipes that include queries with some
-values in the parameters, and then display example responses:
+**Ready to explore?** Each recipe includes complete code examples with explanations.
 
-```mermaid
-flowchart LR
-    A["🗂️ Create Corpus<br/><small>POST /v2/corpora</small>"] --> B["📄 Add Content"]
-    B --> C["📁 Upload Files"]
-    B --> D["📝 Index Documents"]
-    C --> E["🔍 Search Data"]
-    D --> E
-    E --> F["🤖 Get AI Answers"]
-    
-    style A fill:#6366f1,color:#ffffff,stroke:#4f46e5,stroke-width:2px
-    style B fill:#10b981,color:#ffffff,stroke:#059669,stroke-width:2px
-    style C fill:#0ea5e9,color:#ffffff,stroke:#0284c7,stroke-width:2px
-    style D fill:#0ea5e9,color:#ffffff,stroke:#0284c7,stroke-width:2px
-    style E fill:#f59e0b,color:#ffffff,stroke:#d97706,stroke-width:2px
-    style F fill:#8b5cf6,color:#ffffff,stroke:#7c3aed,stroke-width:2px
-```
+## Search for answers in a corpus
 
----
-
-### Search for answers in a corpus
+**Use case:** Query an existing corpus and get AI-generated answers with context.
 
 In this example, you have a corpus with uploaded data from an Employee
-Handbook. Now you want to ask, _“How much PTO is offered to employees each
-year?”_
+Handbook. You want to ask, _"How much PTO is offered to employees each
+year?"_
 
 To issue the cURL command in the example, you input the following
 field values:
@@ -161,11 +137,11 @@ Let's take a look at some other API calls that you can make.
 
 ---
 
-### Add content to the corpus
+## Add content to a corpus
 
-If you want to add a file to an existing corpus, you can upload a new file with
-a simple command. Alternatively, if you don't have a file to upload, you can
-index a document directly with text content using the indexing API.
+**Use case:** Upload files or index structured documents into an existing corpus.
+
+You can add content to a corpus in two ways: upload files (PDF, Word, etc.) or index structured documents with JSON. Choose the method that fits your data format.
 
 You need to input the following information:
 
@@ -262,10 +238,11 @@ If you don't have a file to upload, you can create a document directly with text
 
 ---
 
-### Issue a query and return a specific number of results
+## Query with result limits
 
-In this query, you want to search for the term "technology" and then return
-only the first 50 results.
+**Use case:** Control how many search results are returned and processed.
+
+In this example, you want to search for "technology" and limit the results to 50, then use those results for generating a summary.
 
 #### Example cURL command
 
@@ -362,10 +339,11 @@ only the first 50 results.
 
 ---
 
-### List all corpora and delete a specific corpus
+## List and delete corpora
 
-In this example, you want to list all corpora that contain the word "handbook" in
-the name.
+**Use case:** Manage your corpora by listing, filtering, and deleting them.
+
+In this example, you'll list all corpora that contain "handbook" in the name, then delete a specific corpus.
 
 1. Execute the following curl command to list the corpora:  
 
@@ -486,18 +464,3 @@ You get the following response:
 
 3. Execute the curl command from Step 1 again and the corpus you deleted
    no longer exists.
-
-This API recipes section provided a variety of query examples that you can leverage
-as you start building with <Config v="names.product"/>.
-
-## What's next?
-
-Now that you've tried the basic API operations, explore more advanced features:
-
-- **[Authentication with OAuth 2.0](/docs/deploy-and-scale/authentication/oauth-2)** - Set up OAuth for production applications
-- **[File upload formats](/docs/data-management/supported-file-formats)** - See all supported document types
-- **[Metadata filtering](/docs/learn/metadata-search-filtering/using-metadata-filters)** - Add powerful search filters
-- **[Python SDK](/docs/vectara-python-sdk)** - Use our official Python client library
-
-**Need help?** Visit our [API reference](/docs/api-reference/overview) or check out [GitHub examples](https://github.com/vectara).
-

@@ -77,8 +77,6 @@ can disrupt communication between the agent and the LLM. You can configure
 your agent to resume disrupted communication to ensure a smooth user 
 experience.
 
-Here's a brief explanation of how retries work:
-
 - **max_retries:** After an error, the agent will retry its request to the LLM this many 
   times.
 - **initial_backoff_ms:** This is how many milliseconds the agent will wait before 

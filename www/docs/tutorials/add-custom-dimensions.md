@@ -1,14 +1,13 @@
 ---
 id: add-custom-dimensions
-title: Custom dimensions
-sidebar_label: Custom dimensions
+title: Add custom dimensions to boost content
+sidebar_label: Add custom dimensions to boost content
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import {vars} from '@site/static/variables.json';
-
 import CodePanel from '@site/src/theme/CodePanel';
 
 

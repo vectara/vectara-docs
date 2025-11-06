@@ -1,7 +1,7 @@
 ---
 id: sample-vectara-apps
-title: Sample Vectara Demos and Applications
-sidebar_label: Sample Demos and Applications
+title: Vectara demos and applications
+sidebar_label: Demos and applications
 ---
 
 

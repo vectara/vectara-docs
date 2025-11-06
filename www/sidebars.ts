@@ -8,48 +8,14 @@ const sidebars: SidebarsConfig = {
       label: "Getting Started",
       link: {
         type: 'doc',
-        id: 'getting-started',
+        id: 'introduction',
       },
       collapsed: false,
       items: [
-        "introduction",
         "vectara-trial",
-        {
-          type: "category",
-          label: "Quick Starts",
-          link: {
-            type: 'doc',
-            id: 'quick-starts',
-          },
-          collapsed: true,
-          items: [
-            {
-              type: "doc",
-              id: "quickstart",
-              label: "Console",
-            },
-            {
-              type: "doc",
-              id: "api-recipes",
-              label: "REST APIs",
-            },
-            {
-              type: "doc",
-              id: "build/agent-os/agents-quickstart",
-              label: "Agents",
-            },
-          ],
-        },
-        {
-          type: "doc",
-          id: "sample-vectara-apps",
-          label: "Sample Demos and Applications",
-        },
-        {
-          type: "doc",
-          id: "video-tutorials",
-          label: "Video Tutorials",
-        },
+        "developer-quickstart",
+        "build/agent-os/agents-quickstart",
+        "api-recipes",
       ],
     },
     {
@@ -70,29 +36,8 @@ const sidebars: SidebarsConfig = {
           },
           collapsed: true,
           items: [
-            {
-              type: "category",
-              label: "Working with tables",
-              collapsed: true,
-              items: [
-                "learn/querying-table-data",
-                "generation/custom-prompt-templates-customization",
-              ],
-            },
-            {
-              type: "category",
-              label: "Metadata filters",
-              link: {
-                type: 'doc',
-                id: 'build/prepare-data/metadata-filters',
-              },
-              collapsed: true,
-              items: [
-                "build/prepare-data/metadata-filters/func-opr",
-                "build/prepare-data/metadata-filters/data-types",
-                "build/prepare-data/metadata-filters/metadata-examples-and-use-cases",
-              ],
-            },
+            "build/working-with-tables",
+            "build/prepare-data/metadata-filters",
           ],
         },
         {
@@ -121,6 +66,7 @@ const sidebars: SidebarsConfig = {
               ],
             },
             "prompts/vectara-prompt-engine",
+            "search-and-retrieval/bring-your-own-llm",
             "build-apps/vectara-answer",
           ],
         },
@@ -132,13 +78,7 @@ const sidebars: SidebarsConfig = {
             id: 'build/agent-os/agent-platform-overview',
           },
           collapsed: true,
-          items: [
-            "build/agent-os/instructions",
-            "build/agent-os/tools",
-            "build/agent-os/agents",
-            "build/agent-os/sessions",
-            "build/agent-os/mcp",
-          ],
+          items: [],
         },
         {
           type: "category",
@@ -151,11 +91,14 @@ const sidebars: SidebarsConfig = {
           },
           collapsed: true,
           items: [
-                "tutorials/use-openai-libraries-with-vectara",
-                "tutorials/use-external-applications-sdk",
-                "tutorials/faq-and-qna-matching",
-                "tutorials/intelligent-query-rewriting",
+            "video-tutorials",
+            "tutorials/use-openai-libraries-with-vectara",
+            "tutorials/use-external-applications-sdk",
+            "tutorials/faq-and-qna-matching",
+            "tutorials/add-custom-dimensions",
+            "tutorials/intelligent-query-rewriting",
           ],
+          
         },
         {
           type: "category",
@@ -177,152 +120,129 @@ const sidebars: SidebarsConfig = {
       ],
     },
     {
-      type: "category",
-      label: "Deploy and Scale",
-      link: {
-        type: 'generated-index',
-        title: "Deploy and Scale",
-        description: "Deploy Vectara securely and scale your applications with enterprise features",
-        slug: "/deploy-and-scale",
-      },
-      collapsed: true,
-      items: [
-        {
-          type: "category",
-          label: "Security and data privacy",
-          link: {
-            type: 'doc',
-            id: 'learn/data-privacy/privacy-overview',
-          },
-          collapsed: true,
-          items: [
-            "learn/data-privacy/encryption",
-            "deploy-and-scale/authentication/transport-layer-security",
-            "data-management/data-egress",
-          ],
-        },
-        {
-          type: "category",
-          label: "Authentication and authorization",
-          link: {
-            type: 'doc',
-            id: 'deploy-and-scale/authentication/authentication-authorization-vectara',
-          },
-          collapsed: true,
-          items: [
-            "deploy-and-scale/authentication/personas-and-access-patterns",
-            "deploy-and-scale/authentication/auth-overview",
-            "deploy-and-scale/authentication/choose-auth-method",
-            "deploy-and-scale/authentication/api-key-management",
-            "deploy-and-scale/authentication/oauth-2",
-            "deploy-and-scale/authentication/role-based-access-control",
-            "deploy-and-scale/authentication/attribute-based-access-control",
-            "deploy-and-scale/authentication/multi-tenant-corpus-isolation",
-            "deploy-and-scale/authentication/combine-access-control-with-app-filters",
-            {
-              type: "category",
-              label: "API Authentication Examples",
-              collapsed: true,
-              items: [
-                {
-                  type: "category",
-                  label: "OAuth 2.0 Client Credentials Grant Examples",
-                  items: [
-                    "getting-started-samples/JWTFetcher.cs",
-                    "getting-started-samples/JwtFetcher.java",
-                    "getting-started-samples/getJwtToken.php",
-                    "getting-started-samples/rest_util.py",
-                  ],
-                },
-                {
-                  type: "category",
-                  label: "API Key REST Examples",
-                  items: [
-                    "getting-started-samples/RestApiKeyQueries.cs",
-                    "getting-started-samples/RestApiKeyQueries.java",
-                    "getting-started-samples/queryDataApiKey.php",
-                    "getting-started-samples/rest_api_key_queries.py",
-                    "getting-started-samples/app.js",
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-
-        {
-          type: "category",
-          label: "Private Deployment",
-          link: {
-            type: "doc",
-            id: "deployments",
-          },
-          collapsed: true,
-          items: [
-            "deployments/private-deployment-overview",
-            "deployments/deployment-options",
-            "console-ui/admin-center",
-            "deployments/use-cases",
-            "deployments/onprem-evaluation-process",
-            {
-              type: "category",
-              label: "Guides",
-              link: {
-                type: "doc",
-                id: "deployments/guides",
-              },
-              items: [
-                "deployments/guides/vectara-okta-oidc",
-              ]
-            }
-          ],
-        },
-
-        {
-          type: "category",
-          label: "Observability and Evaluation",
-          collapsed: true,
-          items: [
-            "learn/query-observability",
-            "learn/hallucination-evaluation",
-            "learn/vectara-hallucination-corrector",
-            "build-apps/open-eval-framework",
-          ],
-        },
-        "search-and-retrieval/bring-your-own-llm",
-      ],
+    type: "category",
+    label: "Deploy and scale",
+    link: {
+      type: 'generated-index',
+      title: "Deploy and scale",
+      description: "Deploy Vectara securely and scale your applications with enterprise features",
+      slug: "/deploy-and-scale",
     },
+    collapsed: true,
+    items: [
+      "learn/data-privacy/privacy-overview",
+      {
+        type: "category",
+        label: "Authentication",
+        link: {
+          type: 'doc',
+          id: 'deploy-and-scale/authentication/authentication-authorization-vectara',
+        },
+        collapsed: true,
+        items: [
+          "deploy-and-scale/authentication/auth-overview",
+          "deploy-and-scale/authentication/choose-auth-method",
+          "deploy-and-scale/authentication/api-key-management",
+          "deploy-and-scale/authentication/oauth-2",
+          {
+            type: "category",
+            label: "API Authentication Examples",
+            collapsed: true,
+            items: [
+              {
+                type: "category",
+                label: "OAuth 2.0 Examples",
+                items: [
+                  "getting-started-samples/JWTFetcher.cs",
+                  "getting-started-samples/JwtFetcher.java",
+                  "getting-started-samples/getJwtToken.php",
+                  "getting-started-samples/rest_util.py",
+                ],
+              },
+              {
+                type: "category",
+                label: "API Key Examples",
+                items: [
+                  "getting-started-samples/RestApiKeyQueries.cs",
+                  "getting-started-samples/RestApiKeyQueries.java",
+                  "getting-started-samples/queryDataApiKey.php",
+                  "getting-started-samples/rest_api_key_queries.py",
+                  "getting-started-samples/app.js",
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        type: "category",
+        label: "Authorization",
+        link: {
+          type: 'generated-index',
+          title: "Authorization",
+          description: "Control access to your Vectara resources with role-based, attribute-based, and multi-tenant access control",
+          slug: "/deploy-and-scale/authorization",
+        },
+        collapsed: true,
+        items: [
+          "deploy-and-scale/authentication/personas-and-access-patterns",
+          "deploy-and-scale/authentication/role-based-access-control",
+          "deploy-and-scale/authentication/attribute-based-access-control",
+          "deploy-and-scale/authentication/multi-tenant-corpus-isolation",
+          "deploy-and-scale/authentication/combine-access-control-with-app-filters",
+        ],
+      },
+      "api-reference/api-concepts/resource-addressing",
+      {
+        type: "category",
+        label: "Private Deployment",
+        link: {
+          type: "doc",
+          id: "deployments",
+        },
+        collapsed: true,
+        items: [
+          "deployments/private-deployment-overview",
+          "deployments/deployment-options",
+          "console-ui/admin-center",
+          "deployments/use-cases",
+          "deployments/onprem-evaluation-process",
+          {
+            type: "category",
+            label: "Guides",
+            link: {
+              type: "doc",
+              id: "deployments/guides",
+            },
+            items: [
+              "deployments/guides/vectara-okta-oidc",
+            ]
+          }
+        ],
+      },
+      {
+        type: "category",
+        label: "Observability and Evaluation",
+        collapsed: true,
+        items: [
+          "learn/query-observability",
+          "learn/hallucination-evaluation",
+          "learn/vectara-hallucination-corrector",
+          "build-apps/open-eval-framework",
+        ],
+      },
+    ],
+  },
 
     {
       type: "category",
       label: "API Concepts",
       collapsed: true,
       items: [
-        "api-reference/api-overview",
-        "api-reference/api-concepts/resource-addressing",
-        "api-reference/protobuf-definitions",
-        "api-reference/rest",
         {
           type: "category",
           label: "Data Ingestion",
           items: [
-            {
-              type: "category",
-              label: "File Upload APIs",
-              items: [
-                "api-reference/indexing-apis/file-upload/file-upload",
-              ],
-            },
-            {
-              type: "category",
-              label: "Indexing APIs",
-              items: [
-                "api-reference/indexing-apis/indexing",
-                "api-reference/indexing-apis/update-document-metadata",
-                "api-reference/indexing-apis/replace-document-metadata",
-                "api-reference/indexing-apis/deleting-documents",
-              ],
-            },
             {
               type: "category",
               label: "Table Extractors APIs",
