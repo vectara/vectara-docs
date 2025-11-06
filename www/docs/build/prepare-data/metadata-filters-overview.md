@@ -1,15 +1,10 @@
 ---
 id: metadata-filters
-title: Working with metadata
-sidebar_title: Working with metadata
+title: Metadata filters
+sidebar_title: Metadata filters
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';
-
-In many search scenarios, retrieving all available documents is not enough to 
-meet your application needs. It may be necessary to narrow the query results 
-to documents with specific, granular attributes. This is where metadata 
-filters can help you by applying precise conditions to your queries.
 
 This section helps you learn about metadata filter expressions and how to 
 use them with your data.
@@ -24,7 +19,7 @@ use them with your data.
 
 ## What are metadata filters?
 
-Metadata filter expressions are attached to queries, or more formally, to their 
+Metadata filter expressions are attached to queries and to their 
 corpus keys. These filter expressions serve to restrict the search to only the 
 part of the corpus that matches the expression. In both form and function, 
 they are a simpler version of a `WHERE` clause's *search condition* 

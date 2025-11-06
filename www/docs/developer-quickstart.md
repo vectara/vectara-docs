@@ -29,17 +29,13 @@ flowchart LR
     style D fill:#8b5cf6,color:#ffffff,stroke:#7c3aed,stroke-width:2px
 ```
 
----
-
 ## Step 1: Get your API key
 
-1. Log in to the [Vectara Console](https://console.vectara.com)
-2. Navigate to **Authorization** → **API Keys**
-3. Click **Create API Key**
-4. Give it a name like "Quickstart Key"
-5. Copy your API key
+1. Log in to the [Vectara Console](https://console.vectara.com).
+2. Navigate to **Authorization**, **API Keys**.
+3. Copy your Personal API key.
 
-**Set it as an environment variable:**
+**Set the API key as an environment variable:**
 
 ```bash
 export VECTARA_API_KEY="your_api_key_here"
@@ -48,8 +44,6 @@ export VECTARA_API_KEY="your_api_key_here"
 :::caution
 Keep your API key secure. Don't commit it to version control or share it publicly.
 :::
-
----
 
 ## Step 2: Create a corpus
 
@@ -98,9 +92,7 @@ A corpus is a container for your documents. Create one with a single API call:
   layout="stacked"
 />
 
-✅ **Success!** You now have a corpus ready to store documents.
-
----
+You now have a corpus ready to store documents.
 
 ## Step 3: Upload a document
 
@@ -155,7 +147,7 @@ Upload your first document. We'll create a simple structured document:
   layout="stacked"
 />
 
-✅ **Success!** Your document is now indexed and searchable.
+Your document is now indexed and searchable.
 
 :::tip Upload files instead
 You can also upload files directly (PDF, Word, PowerPoint, etc.) without structuring them:
@@ -168,8 +160,6 @@ curl -X POST https://api.vectara.io/v2/corpora/quickstart-corpus/upload \
 
 [Learn more about file uploads →](/docs/rest-api/upload-file)
 :::
-
----
 
 ## Step 4: Query your data
 
@@ -253,9 +243,7 @@ Notice:
 - **Search results** show the matched text snippets
 - **Factual consistency score** (0.95) indicates high accuracy
 
-✅ **Done!** You just built a working RAG application in 4 API calls.
-
----
+**Done!** You just built a working RAG application in 4 API calls.
 
 ## What you just built
 
@@ -265,9 +253,8 @@ In less than 5 minutes, you:
 3. Queried your data with natural language
 4. Got an AI-generated answer with citations
 
-This is the foundation of every Vectara application - from simple Q&A to complex AI agents.
-
----
+This is the foundation of every Vectara application, from simple Q&A to 
+complex AI agents.
 
 ## Next steps
 
@@ -275,28 +262,22 @@ This is the foundation of every Vectara application - from simple Q&A to complex
 
 **Upload a PDF, Word doc, or text file:**
 
-```bash
-curl -X POST https://api.vectara.io/v2/corpora/quickstart-corpus/upload \
-  -H "x-api-key: $VECTARA_API_KEY" \
-  -F "file=@my-document.pdf"
-```
+<CodePanel snippets={[{language: "bash", code: `curl -X POST https://api.vectara.io/v2/corpora/quickstart-corpus/upload \\
+  -H "x-api-key: $VECTARA_API_KEY" \\
+  -F "file=@my-document.pdf"`}]} title="Upload a file" layout="stacked" />
 
 **Learn more:**
 - [Supported file formats](/docs/build/data-ingestion#supported-file-formats)
 - [Working with tables in PDFs](/docs/build/working-with-tables)
 - [Add metadata for filtering](/docs/build/prepare-data/metadata-filters)
 
----
-
 ### Build with agents
 
 Transform your RAG application into an intelligent agent:
 
-```bash
-# Create an agent that can search your corpus
-curl -X POST https://api.vectara.io/v2/agents \
-  -H "x-api-key: $VECTARA_API_KEY" \
-  -H "Content-Type: application/json" \
+<CodePanel snippets={[{language: "bash", code: `curl -X POST https://api.vectara.io/v2/agents \\
+  -H "x-api-key: $VECTARA_API_KEY" \\
+  -H "Content-Type: application/json" \\
   -d '{
     "name": "My First Agent",
     "description": "An agent that answers questions about my data",
@@ -307,13 +288,12 @@ curl -X POST https://api.vectara.io/v2/agents \
         "corpus_key": "quickstart-corpus"
       }
     ]
-  }'
-```
+  }'`}]} title="Create an agent" layout="stacked" />
 
 **Learn more:**
 - [Agent quickstart](/docs/build/agent-os/agents-quickstart)
-- [Agent instructions](/docs/build/agent-os/instructions)
-- [Agent tools](/docs/build/agent-os/tools)
+- [Agent instructions](/docs/rest-api/instructions)
+- [Agent tools](/docs/rest-api/tools)
 
 ---
 
@@ -321,10 +301,9 @@ curl -X POST https://api.vectara.io/v2/agents \
 
 **Add a reranker to improve relevance:**
 
-```bash
-curl -X POST https://api.vectara.io/v2/query \
-  -H "x-api-key: $VECTARA_API_KEY" \
-  -H "Content-Type: application/json" \
+<CodePanel snippets={[{language: "bash", code: `curl -X POST https://api.vectara.io/v2/query \\
+  -H "x-api-key: $VECTARA_API_KEY" \\
+  -H "Content-Type: application/json" \\
   -d '{
     "query": "What is Vectara?",
     "search": {
@@ -339,126 +318,58 @@ curl -X POST https://api.vectara.io/v2/query \
     "generation": {
       "generation_preset_name": "mockingbird-2.0"
     }
-  }'
-```
+  }'`}]} title="Query with reranker" layout="stacked" />
 
 **Learn more:**
 - [Reranking strategies](/docs/search-and-retrieval/reranking)
 - [Hybrid search](/docs/search-and-retrieval#hybrid-search)
 - [Custom prompts](/docs/prompts/vectara-prompt-engine)
 
----
-
-### Deploy to production
-
-**Switch to OAuth 2.0 for production:**
-
-OAuth 2.0 is more secure than API keys for production applications.
-
-```bash
-# Get an access token
-curl -X POST https://auth.vectara.io/oauth2/token \
-  -u "CLIENT_ID:CLIENT_SECRET" \
-  -d "grant_type=client_credentials"
-
-# Use it in queries
-curl -X POST https://api.vectara.io/v2/query \
-  -H "Authorization: Bearer $ACCESS_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '...'
-```
-
-**Learn more:**
-- [OAuth 2.0 setup](/docs/deploy-and-scale/authentication/oauth-2)
-- [Query observability](/docs/learn/query-observability)
-- [Hallucination detection](/docs/learn/hallucination-evaluation)
-
----
-
-## More API examples
-
-Ready for more advanced use cases? Check out our [**API Recipes**](/docs/api-recipes) for additional patterns:
-
-- Querying with metadata filters
-- Using context configuration for highlighting
-- Working with lexical interpolation
-- Listing and managing corpora
-- Advanced search patterns
-
----
-
-## Explore more
-
-### Integrations
-- [LangChain](/docs/integrations/vectara-and-langchain)
-- [LlamaIndex](/docs/integrations/vectara-and-llamaindex)
-- [Flowise](/docs/integrations/vectara-and-flowise) (no-code)
-
-### Sample applications
-- [Browse demos and apps](/docs/sample-vectara-apps)
-- [Video tutorials](/docs/video-tutorials)
-
-### API reference
-- [Complete REST API docs](/docs/rest-api)
-- [Python SDK](/docs/sdk/vectara-python-sdk)
-
----
-
-## Need help?
-
-- **Discord**: [Join our community](https://discord.gg/vectara)
-- **Forums**: [discuss.vectara.com](https://discuss.vectara.com/)
-- **Support**: [Contact us](mailto:support@vectara.com)
-- **Status**: [status.vectara.com](https://status.vectara.com)
-
----
-
 ## Full example script
 
 Copy this complete script to test everything at once:
 
-```bash
-#!/bin/bash
+<CodePanel snippets={[{language: "bash", code: `#!/bin/bash
 
 # Set your API key
 export VECTARA_API_KEY="your_api_key_here"
 
 # Step 1: Create corpus
 echo "Creating corpus..."
-curl -X POST https://api.vectara.io/v2/corpora \
-  -H "x-api-key: $VECTARA_API_KEY" \
-  -H "Content-Type: application/json" \
+curl -X POST https://api.vectara.io/v2/corpora \\
+  -H "x-api-key: $VECTARA_API_KEY" \\
+  -H "Content-Type: application/json" \\
   -d '{
     "key": "quickstart-corpus",
     "name": "Quickstart Corpus",
     "description": "My first corpus"
   }'
 
-echo -e "\n"
+echo -e "\\n"
 
 # Step 2: Upload document
 echo "Uploading document..."
-curl -X POST https://api.vectara.io/v2/corpora/quickstart-corpus/documents \
-  -H "x-api-key: $VECTARA_API_KEY" \
-  -H "Content-Type: application/json" \
+curl -X POST https://api.vectara.io/v2/corpora/quickstart-corpus/documents \\
+  -H "x-api-key: $VECTARA_API_KEY" \\
+  -H "Content-Type: application/json" \\
   -d '{
     "type": "structured",
     "id": "doc-1",
     "title": "Vectara Overview",
     "sections": [
       {
-        "text": "Vectara is an Agent Operating System for trusted enterprise AI. It provides RAG capabilities with built-in governance, grounded responses, and factual consistency enforcement."
+        "text": "Vectara is an Agent Operating System for trusted enterprise AI. It provides \nRAG capabilities with built-in governance, grounded responses, and factual consistency enforcement."
       }
     ]
   }'
 
-echo -e "\n"
+echo -e "\\n"
 
 # Step 3: Query
 echo "Querying data..."
-curl -X POST https://api.vectara.io/v2/query \
-  -H "x-api-key: $VECTARA_API_KEY" \
-  -H "Content-Type: application/json" \
+curl -X POST https://api.vectara.io/v2/query \\
+  -H "x-api-key: $VECTARA_API_KEY" \\
+  -H "Content-Type: application/json" \\
   -d '{
     "query": "What is Vectara?",
     "search": {
@@ -469,9 +380,8 @@ curl -X POST https://api.vectara.io/v2/query \
       "generation_preset_name": "mockingbird-2.0",
       "max_used_search_results": 5
     }
-  }'
-```
+  }'`}]} title="Complete quickstart script" layout="stacked" />
 
 Save as `vectara-quickstart.sh`, make it executable with `chmod +x vectara-quickstart.sh`, and run it!
 
-**Want more examples?** See [API Recipes](/docs/api-recipes) for additional use cases and patterns.
+**Want more examples?** See [API Recipes](/docs/api-recipes).

@@ -8,14 +8,14 @@ const sidebars: SidebarsConfig = {
       label: "Getting Started",
       link: {
         type: 'doc',
-        id: 'introduction',
+        id: 'getting-started',
       },
       collapsed: false,
       items: [
+        "introduction",
         "vectara-trial",
         "developer-quickstart",
         "build/agent-os/agents-quickstart",
-        "api-recipes",
       ],
     },
     {
@@ -26,6 +26,7 @@ const sidebars: SidebarsConfig = {
             id: "build",
           },
       collapsed: false,
+      className: "sidebar-divider",
       items: [
         {
           type: "category",
@@ -123,11 +124,10 @@ const sidebars: SidebarsConfig = {
     type: "category",
     label: "Deploy and scale",
     link: {
-      type: 'generated-index',
-      title: "Deploy and scale",
-      description: "Deploy Vectara securely and scale your applications with enterprise features",
-      slug: "/deploy-and-scale",
+      type: 'doc',
+      id: "deploy-and-scale",
     },
+    className: "sidebar-divider",
     collapsed: true,
     items: [
       "learn/data-privacy/privacy-overview",
@@ -237,6 +237,7 @@ const sidebars: SidebarsConfig = {
     {
       type: "category",
       label: "API Concepts",
+      className: "sidebar-divider",
       collapsed: true,
       items: [
         {
@@ -548,7 +549,6 @@ const sidebars: SidebarsConfig = {
             },
           ],
         },
-        "api-reference/vectara-postman-collection",
       ],
     },
   ],
@@ -562,7 +562,11 @@ const sidebars: SidebarsConfig = {
         description: "Play around with Vectara's REST 2.0 APIs",
         slug: "/rest-api",
       },
-      items: apiSidebar,
+      items: [
+        "api-recipes",
+        apiSidebar,
+        "vectara-postman-collection",
+      ],
     },
   ],
   pythonSDK: [

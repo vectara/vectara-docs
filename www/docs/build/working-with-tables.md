@@ -1,7 +1,7 @@
 ---
 id: working-with-tables
-title: Working with tables
-sidebar_label: Working with tables
+title: Table data
+sidebar_label: Table data
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';

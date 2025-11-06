@@ -1,12 +1,11 @@
 ---
 id: agent-platform-overview
-title: How Vectara agents work
-sidebar_label: Agents
+title: Agents operating system
+sidebar_label: Agents operating system
 ---
 
 Agents are autonomous systems that understand natural language and use tools 
 and reasoning to accomplish tasks.
-
 
 1. **Create an agent**: Define the agent's name, description, and available 
    tools.
@@ -18,7 +17,8 @@ and reasoning to accomplish tasks.
 
 
 :::tip Quick Start
-To build your first agent, see the [**Agent quick start**](/docs/agents/agents-quickstart).
+To build your first agent, see the [**Agent quick start**](/docs/agents/agents-quickstart). 
+Or, check out our [**Agents APIs**](/docs/rest-api/agents).
 :::
 
 ## Concepts
