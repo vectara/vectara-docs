@@ -8,6 +8,9 @@ on:
         required: true
         type: string
 
+permissions:
+  contents: write
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -27,3 +30,25 @@ jobs:
           PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
         run: |
           fern generate --group python-sdk --version ${{ inputs.version }} --log-level debug
+
+      - name: Checkout python-sdk repo using PAT
+        uses: actions/checkout@v4
+        with:
+          repository: vectara/python-sdk
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          ref: main
+
+      - name: Create/force tag 0.4.0 and push
+        env:
+          GIT_AUTHOR_NAME: "github-actions[bot]"
+          GIT_AUTHOR_EMAIL: "github-actions[bot]@users.noreply.github.com"
+        run: |
+          git config user.name "$GIT_AUTHOR_NAME"
+          git config user.email "$GIT_AUTHOR_EMAIL"
+          # Ensure we have the latest remote refs
+          git fetch origin
+          # Use the remote main head (the commit that was just pushed by fern)
+          TARGET_SHA=$(git rev-parse origin/main)
+          echo "Tagging commit $TARGET_SHA"
+          git tag -fa 0.4.0 "$TARGET_SHA" -m "Release 0.4.0"
+          git push --force origin refs/tags/0.4.0
