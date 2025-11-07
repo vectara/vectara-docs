@@ -1,0 +1,11 @@
+paths:
+  /v2/agents/{agent_key}/sessions/{session_key}/events:
+    post:
+      x-fern-streaming:
+        response:
+          properties: null
+
+components:
+  schemas:
+    AgentEvent:
+      properties: null
