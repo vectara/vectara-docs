@@ -38,7 +38,7 @@ jobs:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           ref: main
 
-      - name: Create/force tag 0.4.0 and push
+      - name: Create/force tag and push
         env:
           GIT_AUTHOR_NAME: "github-actions[bot]"
           GIT_AUTHOR_EMAIL: "github-actions[bot]@users.noreply.github.com"
@@ -50,5 +50,5 @@ jobs:
           # Use the remote main head (the commit that was just pushed by fern)
           TARGET_SHA=$(git rev-parse origin/main)
           echo "Tagging commit $TARGET_SHA"
-          git tag -fa 0.4.0 "$TARGET_SHA" -m "Release 0.4.0"
-          git push --force origin refs/tags/0.4.0
+          git tag -fa ${{ inputs.version }} "$TARGET_SHA" -m "Release ${{ inputs.version }}"
+          git push --force origin refs/tags/${{ inputs.version }}
