@@ -73,7 +73,22 @@ const sidebars: SidebarsConfig = {
       },
       className: "sidebar-divider",
       collapsed: true,
-      items: [],
+      items: [
+        "build/agent-os/instructions",
+        {
+          type: "category",
+          label: "Agent Tools",
+          link: {
+            type: 'doc',
+            id: 'build/agent-os/agent-tools',
+          },
+          collapsed: true,
+          items: [
+            "build/agent-os/lambda-tools",
+            "build/agent-os/subagent-tool",
+          ],
+        },
+      ],
     },
     {
       type: "category",
@@ -88,8 +103,7 @@ const sidebars: SidebarsConfig = {
       collapsed: true,
       items: [
         "video-tutorials",
-        "tutorials/use-openai-libraries-with-vectara",
-        "tutorials/use-external-applications-sdk",
+        "tutorials/build-a-financial-research-agent",
         "tutorials/faq-and-qna-matching",
         "tutorials/add-custom-dimensions",
         "tutorials/intelligent-query-rewriting",
@@ -105,6 +119,8 @@ const sidebars: SidebarsConfig = {
       className: "sidebar-divider",
       collapsed: true,
       items: [
+        "tutorials/use-openai-libraries-with-vectara",
+        "tutorials/use-external-applications-sdk",
         "integrations/vectara-and-langchain",
         "integrations/vectara-and-llamaindex",
         "integrations/vectara-and-flowise",

@@ -1,7 +1,7 @@
 ---
 id: build-a-financial-research-agent
 title: Build a Financial Research Agent
-sidebar_label: Build a Financial Research Agent
+sidebar_label: Build a financial research agent
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';
@@ -9,7 +9,7 @@ import CodePanel from '@site/src/theme/CodePanel';
 This tutorial demonstrates how to create custom Lambda Tools with different
 return types and use them with AI agents. You'll build a Financial Research
 Assistant that performs calculations, looks up stock tickers, assesses
-portfolio risk, and analyzes holdings.
+portfolio risk, and analyzes holdings. 
 
 ## What you will learn
 
@@ -1560,7 +1560,7 @@ Now that you've mastered Lambda Tools, explore:
 
 ## Additional Resources
 
-- [Lambda Tools Documentation](/docs/build/agent-os/lambda-tools)
+- [Lambda Tools Documentation](/docs/agents/lambda-tools)
 - [API Reference](https://docs.vectara.com/docs/rest-api/)
 - [Vectara Console](https://console.vectara.com)
 - [GitHub Examples](https://github.com/vectara/examples)
