@@ -150,25 +150,25 @@ tier, often configured by Admins:
 
 ## Example role assignments
 
-| **Scenario**                      | **Assigned Role** | **Scope**        |
+| **Scenario**                      | **Assigned role** | **Scope**        |
 |-----------------------------------|-------------------|------------------|
 | Frontend search app (read-only)   | QRY               | Specific corpus  |
 | Backend service indexing data     | IDX               | Specific corpus  |
 | Admin user managing all corpora   | Owner             | Account-wide     |
 | OAuth client with query rights    | QRY               | One or more corpora |
 
-## ✅ Quick Checklist: Configure RBAC in Vectara
+## ✅ Quick checklist: Configure RBAC in Vectara
 
 Follow this checklist to set up secure, least-privilege access across accounts 
 and corpora.
 
-### 🔐 Account Permissions
+### 🔐 Account permissions
 - [ ] Invite team members via the **Team** page
 - [ ] Assign **Owner**, **Account admin**, or **Billing admin** roles
 - [ ] Avoid giving full account access unless required
 - [ ] Use **OAuth 2.0 and MFA** for the most secure access
 
-### 📂 Corpus Access
+### 📂 Corpus access
 - [ ] Navigate to the **Corpus** page → **Access control**
 - [ ] Assign roles:
   - [ ] **Query** – Read-only
@@ -176,7 +176,7 @@ and corpora.
   - [ ] **Admin** – Full access
 - [ ] Scope access per corpus—**no cross-corpus by default**
 
-### 🛡️ Best Practices
+### 🛡️ Best practices
 - [ ] Use the **least privilege principle**
 - [ ] Use separate API keys per environment (dev/prod)
 - [ ] Rotate keys regularly and monitor usage

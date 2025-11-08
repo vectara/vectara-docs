@@ -1,7 +1,7 @@
 ---
 id: resource-addressing
-title: "Resource Addressing: Using Keys vs IDs"
-sidebar_label: Resource Addressing
+title: Resource addressing
+sidebar_label: Resource addressing
 ---
 
 

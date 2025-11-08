@@ -22,7 +22,7 @@ security, predictable access patterns, and simplified troubleshooting.
 
 ## Corpus isolation benefits
 
-| **Benefit**                        | **Why It Matters**                                              |
+| **Benefit**                        | **Why it matters**                                              |
 |------------------------------------|------------------------------------------------------------------|
 | Hard security boundary             | API keys are only valid for specific corpora                    |
 | No need for metadata filters       | Access enforcement is at the platform level                    |

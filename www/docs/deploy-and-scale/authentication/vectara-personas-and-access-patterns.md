@@ -133,19 +133,19 @@ key permissions. This enables account owners to efficiently control access for
 developers, admins, and other team members.
 
 ### Set up groups
-1. **Invite Team Members**: Use the Vectara Console to invite users, assigning one 
-  of three roles:
-   - **Account Admin**: Manages account settings, users, and all corpora.
-   - **Corpus Admin**: Manages specific corpora, including creating, querying, and 
+1. **Invite team members**: Use the Vectara Console to invite users, assigning one 
+   of three roles:
+   - **Account admin**: Manages account settings, users, and all corpora.
+   - **Corpus admin**: Manages specific corpora, including creating, querying, and 
   indexing.
-   - **Billing Admin**: Handles billing and subscription tasks.
-2. **Scope API Keys**: Assign QueryService (`zqt_`) or IndexService (`zwt_`) API keys to developers 
+   - **Billing admin**: Handles billing and subscription tasks.
+2. **Scope API keys**: Assign QueryService (`zqt_`) or IndexService (`zwt_`) API keys to developers
    for corpus-specific access, simulating group-like permissions without native group 
    creation.
-3. **Custom Group Integration**: For enterprise setups, integrate with LDAP or SSO 
-   providers to map external groups (“Developers,” “HR Admins”) to Vectara 
+3. **Custom group integration**: For enterprise setups, integrate with LDAP or SSO 
+   providers to map external groups ("Developers," "HR Admins") to Vectara 
    roles or API keys.
-4. **Whitelisting (Enterprise)**: Pre-approve account IDs for automated user 
+4. **Whitelisting (enterprise)**: Pre-approve account IDs for automated user
   onboarding in custom setups, streamlining access for large teams.
 
 ### Best practices

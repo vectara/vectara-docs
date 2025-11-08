@@ -24,7 +24,7 @@ ownership, group, role, or other attributes.
 
 ## Attribute-based access control scenarios
 
-| **Scenario**                                  | **Example Metadata Fields**              |
+| **Scenario**                                  | **Example metadata fields**              |
 |-----------------------------------------------|------------------------------------------|
 | Restrict access to user-specific data         | `user_id`, `account_id`                  |
 | Limit visibility to specific teams or departments | `team`, `department`                  |
@@ -100,7 +100,7 @@ This ensures access control remains enforced while supporting contextual filteri
 }`
 }]} title="ABAC request Example" layout="stacked" />
 
-## ABAC Limitations
+## ABAC limitations
 
 | **Limitation**                | **Recommendation**                          |
 |-------------------------------|----------------------------------------------|

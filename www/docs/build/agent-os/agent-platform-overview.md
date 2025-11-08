@@ -1,7 +1,7 @@
 ---
 id: agent-platform-overview
-title: Agents operating system
-sidebar_label: Agents operating system
+title: Agents
+sidebar_label: Agents
 ---
 
 Agents are autonomous systems that understand natural language and use tools 
