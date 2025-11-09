@@ -10,7 +10,7 @@ const sidebars: SidebarsConfig = {
         type: 'doc',
         id: 'getting-started',
       },
-      collapsed: false,
+      collapsible: false,
       items: [
         "introduction",
         "vectara-trial",
@@ -25,8 +25,7 @@ const sidebars: SidebarsConfig = {
         type: 'doc',
         id: 'build/data-ingestion',
       },
-      className: "sidebar-divider",
-      collapsed: true,
+      collapsible: false,
       items: [
         "build/working-with-tables",
         "build/prepare-data/metadata-filters",
@@ -40,8 +39,7 @@ const sidebars: SidebarsConfig = {
         type: 'doc',
         id: 'search-and-retrieval',
       },
-      className: "sidebar-divider",
-      collapsed: true,
+      collapsible: false,
       items: [
         {
           type: "category",
@@ -71,8 +69,7 @@ const sidebars: SidebarsConfig = {
         type: 'doc',
         id: 'build/agent-os/agent-platform-overview',
       },
-      className: "sidebar-divider",
-      collapsed: true,
+      collapsible: false,
       items: [
         "build/agent-os/agents-quickstart",
         "build/agent-os/instructions",
@@ -83,7 +80,6 @@ const sidebars: SidebarsConfig = {
             type: 'doc',
             id: 'build/agent-os/agent-tools',
           },
-          collapsed: true,
           items: [
             "build/agent-os/lambda-tools",
             // "build/agent-os/subagent-tool",
@@ -94,8 +90,7 @@ const sidebars: SidebarsConfig = {
     {
       type: "category",
       label: "Hallucination and Evaluation",
-      className: "sidebar-divider",
-      collapsed: true,
+      collapsible: false,
       items: [
         "learn/query-observability",
         "learn/hallucination-evaluation",
@@ -112,8 +107,7 @@ const sidebars: SidebarsConfig = {
         description: "Tutorials to help you build with Vectara",
         slug: "/tutorials",
       },
-      className: "sidebar-divider",
-      collapsed: true,
+      collapsible: false,
       items: [
         "video-tutorials",
         "tutorials/build-a-financial-research-agent",
@@ -129,8 +123,7 @@ const sidebars: SidebarsConfig = {
         type: 'doc',
         id: 'integrations/community-collaborations-and-partnerships',
       },
-      className: "sidebar-divider",
-      collapsed: true,
+      collapsible: false,
       items: [
         "tutorials/use-openai-libraries-with-vectara",
         "tutorials/use-external-applications-sdk",
@@ -149,8 +142,7 @@ const sidebars: SidebarsConfig = {
         type: 'doc',
         id: 'security',
       },
-      className: "sidebar-divider",
-      collapsed: true,
+      collapsible: false,
       items: [
         "learn/data-privacy/privacy-overview",
         {
@@ -160,7 +152,6 @@ const sidebars: SidebarsConfig = {
             type: 'doc',
             id: 'deploy-and-scale/authentication/authentication-authorization-vectara',
           },
-          collapsed: true,
           items: [
             "deploy-and-scale/authentication/auth-overview",
             "deploy-and-scale/authentication/choose-auth-method",
@@ -169,7 +160,6 @@ const sidebars: SidebarsConfig = {
             {
               type: "category",
               label: "API Authentication Examples",
-              collapsed: true,
               items: [
                 {
                   type: "category",
@@ -205,7 +195,6 @@ const sidebars: SidebarsConfig = {
             description: "Control access to your Vectara resources with role-based, attribute-based, and multi-tenant access control",
             slug: "/deploy-and-scale/authorization",
           },
-          collapsed: true,
           items: [
             "deploy-and-scale/authentication/personas-and-access-patterns",
             "deploy-and-scale/authentication/role-based-access-control",
@@ -223,8 +212,7 @@ const sidebars: SidebarsConfig = {
         type: "doc",
         id: "deployments",
       },
-      className: "sidebar-divider",
-      collapsed: true,
+      collapsible: false,
       items: [
         "deployments/private-deployment-overview",
         "console-ui/admin-center",
