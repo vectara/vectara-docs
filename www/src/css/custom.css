@@ -287,10 +287,18 @@ h1
   margin-bottom: 14px;
 }
 
+.theme-doc-sidebar-item-category-level-1 > .menu__list {
+  padding-left: 0;
+}
+
 .theme-doc-sidebar-item-category-level-1
   > .menu__list-item-collapsible
   > .menu__link {
   font-weight: 600;
+}
+
+.menu__list .menu__list {
+  margin-top: 0;
 }
 
 .menu__list-item:not(:first-child) {
