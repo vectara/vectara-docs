@@ -138,7 +138,7 @@ developers, admins, and other team members.
    - **Account Admin**: Manages account settings, users, and all corpora.
    - **Corpus Admin**: Manages specific corpora, including creating, querying, and 
   indexing.
-   - **Billing Admin**: Handles billing and subscription tasks.
+   - **Billing Admin**: Handles platform usage and subscription tasks.
 2. **Scope API Keys**: Assign QueryService (`zqt_`) or IndexService (`zwt_`) API keys to developers 
    for corpus-specific access, simulating group-like permissions without native group 
    creation.
