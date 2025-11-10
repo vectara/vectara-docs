@@ -1,0 +1,72 @@
+---
+id: authorization-overview
+title: Authorization Overview
+sidebar_label: Overview
+---
+
+import { Grid } from "@site/src/components/ui/Grid";
+import { Spacer } from "@site/src/components/ui/Spacer";
+import { TopicButton } from "@site/src/components/ui/TopicButton";
+
+Control access to your Vectara resources with role-based, attribute-based, and multi-tenant access control.
+
+Vectara provides multiple authorization mechanisms to control who can access what data and perform which operations. From role-based permissions that define broad access patterns to attribute-based filters that enable fine-grained control, Vectara's authorization framework helps you build secure, scalable applications.
+
+## Authorization approaches
+
+Vectara supports several complementary authorization strategies:
+
+<Grid columns={2}>
+  <TopicButton title="Enterprise Access Patterns" href="/docs/deploy-and-scale/authentication/personas-and-access-patterns">
+    <Spacer size="l" />
+    Understand the different user personas and their typical access patterns.
+    <Spacer size="l" />
+    Maps roles to appropriate authentication and authorization strategies.
+    <Spacer size="l" />
+  </TopicButton>
+  <TopicButton title="Role-Based Access Control (RBAC)" href="/docs/deploy-and-scale/authentication/role-based-access-control">
+    <Spacer size="l" />
+    Assign permissions based on predefined roles like QueryService or IndexService.
+    <Spacer size="l" />
+    Provides coarse-grained access control at the account and corpus level.
+    <Spacer size="l" />
+  </TopicButton>
+  <TopicButton title="Attribute-Based Access Control (ABAC)" href="/docs/deploy-and-scale/authentication/attribute-based-access-control">
+    <Spacer size="l" />
+    Use metadata filters to control access at the document level.
+    <Spacer size="l" />
+    Enables fine-grained authorization based on user attributes and document properties.
+    <Spacer size="l" />
+  </TopicButton>
+  <TopicButton title="Multi-Tenant Corpus Isolation" href="/docs/deploy-and-scale/authentication/multi-tenant-corpus-isolation">
+    <Spacer size="l" />
+    Dedicate separate corpora to different tenants for complete data isolation.
+    <Spacer size="l" />
+    Simplifies access control and provides clear security boundaries.
+    <Spacer size="l" />
+  </TopicButton>
+  <TopicButton title="Combine Access Control with Application Filters" href="/docs/deploy-and-scale/authentication/combine-access-control-with-app-filters">
+    <Spacer size="l" />
+    Layer multiple authorization mechanisms for comprehensive security.
+    <Spacer size="l" />
+    Demonstrates real-world patterns combining RBAC, ABAC, and application logic.
+    <Spacer size="l" />
+  </TopicButton>
+</Grid>
+
+## Choosing the right approach
+
+Different scenarios call for different authorization strategies:
+
+- **Role-Based Access Control (RBAC)**: Best for defining broad access patterns like "developers can query" or "admins can manage corpora"
+- **Attribute-Based Access Control (ABAC)**: Ideal for fine-grained control based on user attributes or document properties
+- **Multi-Tenant Isolation**: Essential for SaaS applications where complete data separation is required
+- **Hybrid Approaches**: Combine multiple mechanisms for layered security and flexibility
+
+## Next steps
+
+1. Start with **[Enterprise Access Patterns](/docs/deploy-and-scale/authentication/personas-and-access-patterns)** to understand typical user roles and needs
+2. Review **[Role-Based Access Control](/docs/deploy-and-scale/authentication/role-based-access-control)** for account-level permissions
+3. Explore **[Attribute-Based Access Control](/docs/deploy-and-scale/authentication/attribute-based-access-control)** for document-level filtering
+4. Consider **[Multi-Tenant Corpus Isolation](/docs/deploy-and-scale/authentication/multi-tenant-corpus-isolation)** for complete data separation
+5. See **[Combine Access Control](/docs/deploy-and-scale/authentication/combine-access-control-with-app-filters)** for real-world implementation patterns

@@ -44,12 +44,9 @@ const sidebars: SidebarsConfig = {
         {
           type: "category",
           label: "Reranking",
-          link: {
-            type: 'doc',
-            id: 'search-and-retrieval/reranking',
-          },
           collapsed: true,
           items: [
+            "search-and-retrieval/rerankers/reranking-overview",
             "search-and-retrieval/rerankers/vectara-multi-lingual-reranker",
             "search-and-retrieval/rerankers/mmr-reranker",
             "search-and-retrieval/rerankers/user-defined-function-reranker",
@@ -76,11 +73,8 @@ const sidebars: SidebarsConfig = {
         {
           type: "category",
           label: "Agent Tools",
-          link: {
-            type: 'doc',
-            id: 'build/agent-os/agent-tools',
-          },
           items: [
+            "build/agent-os/agent-tools-overview",
             "build/agent-os/lambda-tools",
             // "build/agent-os/subagent-tool",
           ],
@@ -147,12 +141,9 @@ const sidebars: SidebarsConfig = {
         "learn/data-privacy/privacy-overview",
         {
           type: "category",
-          label: "Authentication",
-          link: {
-            type: 'doc',
-            id: 'deploy-and-scale/authentication/authentication-authorization-vectara',
-          },
+          label: "Authentication methods",
           items: [
+            "deploy-and-scale/authentication/authentication-overview",
             "deploy-and-scale/authentication/auth-overview",
             "deploy-and-scale/authentication/choose-auth-method",
             "deploy-and-scale/authentication/api-key-management",
@@ -188,14 +179,9 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "category",
-          label: "Authorization",
-          link: {
-            type: 'generated-index',
-            title: "Authorization",
-            description: "Control access to your Vectara resources with role-based, attribute-based, and multi-tenant access control",
-            slug: "/deploy-and-scale/authorization",
-          },
+          label: "Authorization levels",
           items: [
+            "deploy-and-scale/authentication/authorization-overview",
             "deploy-and-scale/authentication/personas-and-access-patterns",
             "deploy-and-scale/authentication/role-based-access-control",
             "deploy-and-scale/authentication/attribute-based-access-control",
