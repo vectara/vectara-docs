@@ -17,7 +17,7 @@ both query and index.  It's recommended that you choose the most limited scope
 you can for your application: it's "cheap" to create multiple API keys, but
 having an accidental publication of an over-privileged API key is often
 organizationally "expensive."  In general, it's recommended that you use
-[OAuth 2.0](/docs/deploy-and-scale/authentication/oauth-2) if/where possible for production applications.
+[OAuth 2.0](/docs/security/authentication/oauth) if/where possible for production applications.
 
 :::warning
 

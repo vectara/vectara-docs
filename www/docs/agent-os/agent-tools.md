@@ -20,11 +20,10 @@ Vectara has several types of agent tools available.
   - Enables user-defined Python functions that run in a secure, sandboxed environment.
   - Automatic input/output schema generation from type annotations.
 - **Structured indexing** 
-  - Indexes structured documents into the Vectara platform with full control over document structure.
-  - Enablers target corpus selection, document structure, and metadata management.
+  - Indexes structured documents into a Vectara corpus while preserving document hierarchy and metadata.  
+    Supports ingestion of documents divided into logical sections, each with text, metadata, tables, and images.
+  - Enables fine-grained control over corpus selection, document metadata, and artifact-based image or table references.
 - **MCP (Model Context Protocol)**
   - Connects to external MCP servers to extend agent functionality with third-party integrations.
   - Supports hints about tool behavior (read-only, destructive, idempotent, open-world).
-- **Subagent**
-  - Initiates specialized sub-agents to handle complex, multi-step tasks autonomously.
-  - Provides separate context management, configurable session timeouts, specialized workflows.
+

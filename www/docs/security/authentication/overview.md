@@ -46,16 +46,16 @@ managing corpora.
 
 
 :::tip Need help choosing?
-See [**Choosing the Right Authentication Method**](/docs/deploy-and-scale/authentication/choose-auth-method) to decide whether 
+See [**Choosing the Right Authentication Method**](/docs/security/authentication/choose-auth-method) to decide whether 
 to use API keys or OAuth based on your use case.
 :::
 
 ## Authorization levels in Vectara
 
 Vectara primarily enforces authorization at the **account** and **corpus** level 
-through [Role-Based Access Control (RBAC)](/docs/deploy-and-scale/authentication/role-based-access-control), critical for 
+through [Role-Based Access Control (RBAC)](/docs/security/authorization/role-based-access-control), critical for 
 Admins managing users on the Vectara Platform, or Developers scoping corpus access. You can 
-layer [Attribute-Based Access Control (ABAC)](/docs/deploy-and-scale/authentication/attribute-based-access-control) by applying metadata-based filters
+layer [Attribute-Based Access Control (ABAC)](/docs/security/authorization/attribute-based-access-control) by applying metadata-based filters
 at query time. Let's explore the various authorization levels to help you 
 implement secure access control.
 
@@ -178,10 +178,10 @@ unauthorized access.
 
 Use the following task guides to implement secure access and authorization:
 
-- 🔑 [Create and Use API Keys](/docs/deploy-and-scale/authentication/api-key-management)
-- 🔐 [Use OAuth 2.0](/docs/deploy-and-scale/authentication/oauth-2)
-- 👥 [Set Up Account and Corpus Permissions (RBAC)](/docs/deploy-and-scale/authentication/role-based-access-control)
-- 🎯 [Apply Metadata Filters for Attribute-Based Access Control (ABAC)](/docs/deploy-and-scale/authentication/attribute-based-access-control)
-- 🏢 [Isolate Tenants with Corpora](/docs/deploy-and-scale/authentication/multi-tenant-corpus-isolation)
-- 🧠 [Combine ABAC with Application-Specific Filters](/docs/deploy-and-scale/authentication/combine-access-control-with-app-filters)
+- 🔑 [Create and Use API Keys](/docs/security/authentication/api-key-management)
+- 🔐 [Use OAuth 2.0](/docs/security/authentication/oauth)
+- 👥 [Set Up Account and Corpus Permissions (RBAC)](/docs/security/authorization/role-based-access-control)
+- 🎯 [Apply Metadata Filters for Attribute-Based Access Control (ABAC)](/docs/security/authorization/attribute-based-access-control)
+- 🏢 [Isolate Tenants with Corpora](/docs/security/authorization/multi-tenant-corpus-isolation)
+- 🧠 [Combine ABAC with Application-Specific Filters](/docs/security/authorization/combine-access-control-with-app-filters)
 

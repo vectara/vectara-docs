@@ -85,7 +85,7 @@ lets you disable the corpus, clear corpus data, or delete the corpus.
 ## Access Control
 
 The Access control tab defines the users and roles that have access to the 
-corpus. You can also [create new user roles](/docs/deploy-and-scale/authentication/role-based-access-control), 
+corpus. You can also [create new user roles](/docs/security/authorization/role-based-access-control), 
 a default role, and [API keys](/docs/console-ui/api-access-overview) associated with this corpus.
 
 ## Query histories

@@ -51,6 +51,6 @@ quick access to department-specific knowledge with proper access controls.
 
 ## More information
 
-- [Agents Overview](/docs/build/agent-os/agent-platform-overview) - Understand how agents work.
-- [Agents Quickstart](/docs/build/agent-os/agents-quickstart) - Build your first agent.
-- [Working with Sessions](/docs/build/agent-os/sessions) - Manage conversations.
+- [Agents Overview](/docs/agent-os/agent-platform-overview) - Understand how agents work.
+- [Agents Quickstart](/docs/agent-os/agents-quickstart) - Build your first agent.
+- [Working with Sessions](/docs/agent-os/sessions) - Manage conversations.

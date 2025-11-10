@@ -7,12 +7,12 @@ sidebar_label: Agents
 Agents are autonomous systems that understand natural language and use tools 
 and reasoning to accomplish tasks.
 
-1. **Create an agent**: Define the agent's name, description, and available 
+1. [**Create an agent**](/docs/rest-api/create-agent): Define the agent's name, description, and available 
    tools.
-2. **Write instructions**: Create templates that guide the agent's behavior.
-3. **Configure tools**: Set up corpus access permissions and any external 
+2. [**Write instructions**](/docs/rest-api/create-instruction): Create templates that guide the agent's behavior.
+3. [**Configure tools**](/docs/rest-api/list-tools): Set up corpus access permissions and any external 
    integrations.
-4. **Test agents with sessions**: Start conversations and iterate on your 
+4. [**Test agents with sessions**](/docs/rest-api/create-agent-session): Start conversations and iterate on your 
    configuration.
 
 

@@ -349,6 +349,6 @@ It will take around a minute for query requests using this key to be blocked.
 
 ## Next Steps
 
-- [Set Up Account and Corpus Permissions (RBAC)](/docs/deploy-and-scale/authentication/role-based-access-control)
-- [Apply Metadata Filters for Attribute-Based Access Control (ABAC)](/docs/deploy-and-scale/authentication/attribute-based-access-control)
+- [Set Up Account and Corpus Permissions (RBAC)](/docs/security/authorization/role-based-access-control)
+- [Apply Metadata Filters for Attribute-Based Access Control (ABAC)](/docs/security/authorization/attribute-based-access-control)
 

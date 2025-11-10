@@ -61,7 +61,7 @@ account-level roles, ideal for oversight without direct data access.
 3. Add a user by email, entering a description, and selecting **Account Admin**,
    **Corpus Admin**, or **Billing Admin**.  
 4. Click **Send invitation**.
-5. Go to **Authorization** to [manage API keys](/docs/deploy-and-scale/authentication/api-key-management) or [OAuth 2.0 app clients](/docs/deploy-and-scale/authentication/oauth-2).
+5. Go to **Authorization** to [manage API keys](/docs/security/authentication/api-key-management) or [OAuth 2.0 app clients](/docs/security/authentication/oauth).
 
 **Use Case:** An owner assigns an Account Admin role to a team member to oversee 
 corpora without billing access.
