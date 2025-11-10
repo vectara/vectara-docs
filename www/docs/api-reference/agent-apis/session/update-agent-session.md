@@ -4,20 +4,26 @@ title: Update Agent Session API Definition
 sidebar_label: Update Agent Session
 ---
 
-# Update Agent Session API Definition
+The Update Agent Session API enables you to modify session configuration and 
+metadata.
 
-The Update Agent Session API enables you to modify session metadata, descriptions, and operational status during active conversations, supporting dynamic session management and real-time updates to conversation context. This API is crucial for maintaining accurate session tracking as conversations evolve and business context changes.
-
-Organizations use this API to update customer information as it becomes available, adjust session priority levels based on issue escalation, modify session metadata for better categorization and reporting, and manage session lifecycles by enabling or disabling sessions based on operational requirements.
+Use this API to update information as it becomes available, and modify session 
+metadata for better categorization and reporting.
 
 ## Update Agent Session Request and Response
 
-To update an agent session, send a PATCH request to `/v2/agents/{agent_key}/sessions/{session_key}`. You specify the agent and session identifiers in the URL path and include only the fields you want to modify in the request body:
+To update an agent session, send a PATCH request to 
+`/v2/agents/{agent_key}/sessions/{session_key}`. You specify the agent and 
+session identifiers in the URL path and include only the fields you want to 
+modify in the request body:
 
-- `agent_key` (string, required): Agent identifier in the URL path following pattern `agt_[0-9a-zA-Z_-]+$`
-- `session_key` (string, required): Session identifier in the URL path following pattern `ase_[0-9a-zA-Z_-]+$`
+- `agent_key` (string, required): Agent identifier in the URL path following 
+  pattern `agt_[0-9a-zA-Z_-]+$`
+- `session_key` (string, required): Session identifier in the URL path following 
+  pattern `ase_[0-9a-zA-Z_-]+$`
 - `description` (string, optional): Updated session description or context
-- `metadata` (object, optional): Updated session metadata (replaces existing metadata completely)
+- `metadata` (object, optional): Updated session metadata (replaces existing 
+  metadata completely)
 - `enabled` (boolean, optional): Updated session enabled status
 
 The response includes the complete updated session configuration reflecting all changes applied during the update operation.

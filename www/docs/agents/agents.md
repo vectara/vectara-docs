@@ -6,20 +6,26 @@ sidebar_label: Agent
 
 import CodePanel from '@site/src/theme/CodePanel';
 
-Agents are the core orchestration unit in the Vectara platform. The 
-agent decides how to respond to user input, when to invoke tools, and how to 
-manage conversation state.
+Agents are autonomous systems that understand natural language and use tools 
+and reasoning to accomplish tasks. To do this, they must make decisions:
+
+* Interpreting user input
+* Calling tools, and with what arguments
+* Managing conversation state
+
+Internally, they use an LLM-driven orchestration pipeline to make these 
+decisions.
 
 ```mermaid
 flowchart TD
     %% User Input and Response Flow
-    User[User Query] --> Reasoning[Reasoning LLM Brain Understand user query and intent]
-    Reasoning --> Planning[Planning Build execution plan using available tools]
-    Planning --> Response[Response Collect information and respond]
+    User[User Query] --> LLM[LLM Reasoning and planning]
+
+    LLM --> Response[Collect information]
     Response --> Output[Response]
 
     %% Orchestration Flow
-    Planning --> OP
+    LLM --> OP
 
     %% Tools and Agents in Orchestration Pipeline
     subgraph OP[🔧 **Orchestration Pipeline** 🔧]
@@ -31,7 +37,7 @@ flowchart TD
     end
 
     %% Orchestration pipeline links outside agent
-    
+
     Tool1 <--> RAG1[Vectara RAG 1]
     Tool2 <--> RAG2[Vectara RAG 2]
     Tool3 <--> API[API]
@@ -40,8 +46,7 @@ flowchart TD
 
     %% Grouping
     subgraph Agent [💭 **Agent** 💭]
-        Reasoning
-        Planning
+        LLM
         Response
         OP
     end
@@ -51,146 +56,39 @@ flowchart TD
     classDef tools fill:#E6FFFA,stroke:#319795,color:#000;
     classDef sources fill:#FFF5F5,stroke:#E53E3E,color:#000;
 
-    class Reasoning,Planning,Response llm;
+    class LLM,Response llm;
     class OP pipeline;
     class Tool1,Tool2,Tool3,Agent1,Agent2 tools;
     class RAG1,RAG2,API,DB,Custom sources;
 ```
+## LLM configuration
 
-Each agent is configured with:
-
-* A unique key and name following the pattern agt_[identifier]. If you do not 
-  provide a key, Vectara generates one automatically based on the name.
-* A human-readable description
-* Optional instructions
-* A list of available tools (referenced by name or ID)
-* Optional tool configurations, for example Corpora Search tools configured 
-  to grant access to various corpora
-* Metadata and versioning controls
-* A _first_step_ definition that encompasses optional instructions for the 
-  agent's behavior.
-
-Agents operate through a conversational step architecture, processing user
-input through reasoning, tool execution, and response generation phases.
-The step-based design enables complex multi-turn workflows and intelligent
-tool orchestration.
-
-:::tip Create an agent
-You can create an agent in the [**Vectara Console**](/docs/console-ui/agents/create-an-agent), or you can use the
-API. For more information, check out our [**Agents Quick Start**](/docs/agents/agents-quickstart).
-:::
-
-## Example agent definition
-
-This example shows a basic customer support agent configured with corpus search capabilities and inline instructions. The agent demonstrates the core components: tool configurations for searching support tickets, and a conversational first step with behavior guidelines.
-
-<CodePanel
-  title="Agent example"
-  snippets={[
-    {
-      language: 'json',
-      code: `{
-   "name": "customer-support-agent",
-   "description": "A customer support agent that can answer questions and create tickets.",
-   "tool_configurations": {
-     "search_support_tickets": {
-       "type": "corpus_search",
-       "query_configuration": {
-         "search": {
-           "corpora": ["support_tickets_corpus"]
-         }
-       }
-     }
-   },
-   "first_step": {
-     "type": "conversational",
-     "instructions": [
-       {
-         "type": "inline",
-         "name": "Be concise",
-         "template": "Keep your responses brief and to the point. Use as few words as possible."
-       }
-     ],
-     "output_parser": {
-       "type": "default"
-     }
-   }
-}`
-    }]}  
-  annotations={{
-    json: [
-      { line: 2, text: 'The name of the customer support agent' },
-      { line: 3, text: 'A description about the customer support agent.' },
-      { line: 4, text: 'Configuration for tools used by this agent.' },
-      { line: 5, text: 'Named tool configuration for searching support tickets.' },
-      { line: 6, text: 'Specifies this tool performs corpus search operations.' },
-      { line: 9, text: 'The corpus to search within for support tickets.' },
-      { line: 14, text: 'The definition that configures the entry point of the agent.' },
-      { line: 20, text: 'The template text that provides specific instructions for this step.' }
-    ]
-  }}
-  layout="stacked"
-/>
-
-## Model configuration
-
-Agents use large language models for reasoning and response generation. You
-can configure:
-
+Agents use LLMs for reasoning and response generation. You can configure the 
+following:
 - **Model**: Choose from available models like GPT-4o.
-- **Parameters**: Adjust temperature, max tokens, and other model-specific settings
-- **Cost optimization**: Balance performance with token usage
-- **Retry configuration**: Configure automatic retry behavior for transient failures
+- **Parameters**: Adjust temperature, max tokens, and other model-specific settings.
+- **Cost optimization**: Balance performance with token usage.
+- **Retry configuration**: Configure automatic retry behavior for transient failures.
 
-### Retry configuration
+## Using retries to improve user experience
 
-When agents interact with LLMs, transient failures may occur that interrupt
-the conversation flow, including network timeouts, temporary server issues,
-or reaching API rate limits. Without a retry mechanism, these temporary
-issues cause your agent to fail immediately, resulting in a poor user
+When agents interact with LLMs, transient failures like network interruptions 
+can disrupt communication between the agent and the LLM. You can configure 
+your agent to resume disrupted communication to ensure a smooth user 
 experience.
 
-Vectara provides a retry configuration option for agents which detects these
-recoverable failures and retries the request with exponential backoff
-automatically.
+Here's a brief explanation of how retries work:
 
-The `RetryConfiguration` object controls the retry behavior for your agent's
-interactions with the LLM. You define these settings when creating or
-updating your agent model, and they apply to all LLM requests made by that
-agent.
+- **max_retries:** After an error, the agent will retry its request to the LLM this many 
+  times.
+- **initial_backoff_ms:** This is how many milliseconds the agent will wait before 
+  retrying, to give the cause of the error time to resolve.
+- **backoff_factor:** Every time the agent retries, it can multiply the last retry 
+  delay by this number, increasing the wait between retries. This is like giving a 
+  toddler a longer and longer timeout if it continues to misbehave.
+- **max_backoff_ms:** The maximum time you want the agent to wait between retries, 
+  so the backoff_factor doesn't create an unreasonably long delay for your users.
 
-### Retry configuration parameters
-
-- **enabled**: The boolean flag to enable or disable retry logic
-  - Default: `true`
-- **max_retries**: The maximum number of retry attempts after the initial failure
-  - Range: 0-10
-  - Default: `3`
-- **initial_backoff_ms**: The initial delay in milliseconds before the first retry
-  - Range: 100-60000ms
-  - Default: `1000ms`
-- **max_backoff_ms**: The maximum delay in milliseconds between retries
-  - Range: 1000-300000ms
-  - Default: `30000ms`
-- **backoff_factor**: The exponential multiplier for calculating backoff delays
-  - Range: 1.0-10.0
-  - Default: `2.0`
-
-
-### Exponential backoff
-
-Exponential backoff progressively increases the delay between retry attempts
-to avoid overwhelming a recovering service. For example, with default
-settings (initial: 1000ms, factor: 2.0, max: 30000ms):
-
-- Attempt 1: 1000ms delay
-- Attempt 2: 2000ms delay
-- Attempt 3: 4000ms delay
-- Attempt 4: 8000ms delay
-
-The delay continues to grow exponentially until it reaches the
-`max_backoff_ms` value, at which point it remains constant for any remaining
-retry attempts.
 
 ### Example: Research assistant with web search
 
@@ -250,97 +148,36 @@ This example requires no corpus setup, making it perfect for immediate testing.
   ]}
   annotations={{
     bash: [
-      { line: 1, text: 'Use backslashes for line continuation in bash' },
-      { line: 2, text: 'Replace YOUR_API_KEY with your actual API key' },
-      { line: 5, text: 'Unique name for your agent' },
-      { line: 6, text: 'Human-readable description' },
-      { line: 8, text: 'Configure available tools' },
-      { line: 9, text: 'Enable web search tool' },
-      { line: 14, text: 'Define conversational behavior' },
-      { line: 16, text: 'Instruction type must be "inline"' },
-      { line: 17, text: 'Name is required for inline instructions' },
-      { line: 18, text: 'Agent personality and guidelines' },
-      { line: 24, text: 'Model configuration' },
-      { line: 25, text: 'Using gpt-5 model' },
-      { line: 27, text: 'Lower temperature for factual responses' },
-      { line: 28, text: 'Maximum response length' },
-      { line: 30, text: 'Retry configuration for handling transient failures' },
-      { line: 31, text: 'Enable automatic retry logic' },
-      { line: 32, text: 'Retry up to 3 times on failure' },
-      { line: 33, text: 'Start with 1 second delay before first retry' },
-      { line: 34, text: 'Cap maximum delay at 30 seconds' },
-      { line: 35, text: 'Double the delay between each retry attempt' }
+      { line: 1, text: 'POST request to create a new agent' },
+      { line: 2, text: 'Authorization header with your API key' },
+      { line: 3, text: 'Content type for JSON payload' },
+      { line: 5, text: 'Unique identifier name for the agent' },
+      { line: 6, text: 'Human-readable description of agent purpose' },
+      { line: 7, text: 'Tool configurations defining available capabilities' },
+      { line: 8, text: 'Web search tool for real-time information' },
+      { line: 9, text: 'Tool type identifier for web search' },
+      { line: 12, text: 'First step configuration for agent entry point' },
+      { line: 13, text: 'Conversational type for interactive chat behavior' },
+      { line: 14, text: 'Instructions array defining agent behavior' },
+      { line: 15, text: 'Inline instruction type for embedded prompts' },
+      { line: 16, text: 'Name identifier for this instruction set' },
+      { line: 17, text: 'Template defining agent personality and guidelines' },
+      { line: 23, text: 'Model configuration for LLM settings' },
+      { line: 24, text: 'Specify gpt-5 as the reasoning model' },
+      { line: 26, text: 'Temperature 0.3 for consistent, factual responses' },
+      { line: 27, text: 'Maximum token limit for responses' },
+      { line: 29, text: 'Retry configuration for handling transient failures' },
+      { line: 30, text: 'Enable automatic retry logic' },
+      { line: 31, text: 'Maximum of 3 retry attempts on failure' },
+      { line: 32, text: 'Initial 1 second delay before first retry' },
+      { line: 33, text: 'Maximum 30 second delay between retries' },
+      { line: 34, text: 'Exponential backoff factor of 2.0 between retries' }
     ]
   }}
   layout="stacked"
 />
 
-## Chat with your agent
+To chat with your agent, read on about [Sessions](/docs/agents/sessions).
 
-After creating an agent, you can interact with it by creating a session and sending messages:
 
-### 1. Create a session
 
-Sessions provide conversation context and are required for all agent interactions:
-
-<CodePanel
-  title="Create a session"
-  snippets={[
-    {
-      language: 'bash',
-      code: `POST /v2/agents/{agent_key}/sessions`
-    },
-    {
-      language: 'json',
-      code: `{
-  "name": "Customer support session",
-  "description": "Help with password reset"
-}`
-    }
-  ]}
-  annotations={{
-    json: [
-      { line: 2, text: 'Human-readable name for the session' },
-      { line: 3, text: 'Optional description of the session purpose' }
-    ]
-  }}
-  layout="stacked"
-/>
-
-### 2. Send messages to the agent
-
-Once you have a session, send messages using the events endpoint:
-
-<CodePanel
-  title="Send a message"
-  snippets={[
-    {
-      language: 'bash',
-      code: `POST /v2/agents/{agent_key}/sessions/{session_key}/events`
-    },
-    {
-      language: 'json',
-      code: `{
-  "type": "input_message",
-  "messages": [{
-    "type": "text",
-    "content": "I forgot my password. Can you help?"
-  }]
-}`
-    }
-  ]}
-  annotations={{
-    json: [
-      { line: 2, text: 'Must be "input_message" for user input' },
-      { line: 3, text: 'Array of message objects' },
-      { line: 5, text: 'The user message content' }
-    ]
-  }}
-  layout="stacked"
-/>
-
-The agent will respond with events including its reasoning, tool usage, and final response.
-
-:::tip Quick Start
-For a complete step-by-step guide with code examples, see [Agent Quick Start](/docs/agents/agents-quickstart).
-:::

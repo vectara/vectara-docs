@@ -6,20 +6,25 @@ sidebar_label: Update Tool
 
 import CodePanel from '@site/src/theme/CodePanel';
 
-The Update Tool API enables you to modify the configuration of existing tools discovered from MCP servers. Currently, this API supports enabling or disabling tools, allowing administrators to control tool availability for agent configurations without requiring changes to the underlying MCP server.
+The Update Tool API enables you to modify the configuration of existing tools.
 
-This API is essential for managing tool lifecycle, implementing phased rollouts of new capabilities, temporarily disabling problematic tools, and controlling which tools are available in different environments or for different user segments.
+This API is essential for managing tool lifecycle, implementing phased rollouts 
+of new capabilities, temporarily disabling problematic tools, and controlling 
+which tools are available in different environments or for different user segments.
 
 ## Update Tool Request and Response
 
-To update a tool, send a PATCH request to `/v2/tools/{tool_id}`. You specify the following parameters:
+To update a tool, send a PATCH request to `/v2/tools/{tool_id}`. 
+You specify the following parameters:
 
-- `tool_id` (string, required): Tool identifier in the URL path following pattern `tol_[0-9a-zA-Z_-]+$`
+- `tool_id` (string, required): Tool identifier in the URL path following pattern 
+  `tol_[0-9a-zA-Z_-]+$`
 - Request body parameters:
   - `type` (string, required): Must be `mcp` (only MCP tools can be updated)
   - `enabled` (boolean, required): Whether the tool should be enabled or disabled
 
-The response includes the complete updated tool configuration with all metadata.
+The response includes the complete updated tool configuration with all 
+metadata.
 
 ### Example Request
 

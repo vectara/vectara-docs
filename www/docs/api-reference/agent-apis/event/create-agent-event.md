@@ -6,13 +6,16 @@ sidebar_label: Interact with an Agent
 
 import CodePanel from '@site/src/theme/CodePanel';
 
-The Interact with an Agent API enables you to create new inputs to an agent to interact with it. This API serves as the primary interface for conversational interactions and represents the core mechanism through which users communicate with AI agents.
+The Interact with an Agent API enables you to chat with an agent.
 
-When you send an input to an agent, it triggers agent processing, reasoning, tool execution, and response generation within the context of an agent session.
+When you send an input to an agent, it triggers agent processing, 
+reasoning, tool execution, and response generation within the context 
+of an agent session.
 
 ## Interact with an Agent Request and Response
 
-To interact with an agent, send a POST request to `/v2/agents/{agent_key}/sessions/{session_key}/events`. You specify the following parameters:
+To interact with an agent, send a POST request to 
+`/v2/agents/{agent_key}/sessions/{session_key}/events`. You specify the following parameters:
 
 - `agent_key` (string, required): Agent identifier in the URL path following pattern `[0-9a-zA-Z_-]+$`
 - `session_key` (string, required): Session identifier in the URL path following pattern `[0-9a-zA-Z_-]+$`
@@ -160,6 +163,19 @@ For streaming responses, additional event types include:
 - `streaming_agent_output_end`: End of output stream
 - `error`: Stream error
 - `end`: Stream completion
+
+### Artifacts in Agent Workspaces
+
+Each agent session includes its own workspace that stores uploaded and 
+generated files, known as **artifacts**.
+
+Artifacts persist for the session’s duration and enable the agent to reuse 
+files across multiple steps in a workflow.
+
+For example, a user might upload a PDF for analysis, and the agent can 
+convert, summarize, and index that same file without requiring reupload. 
+Artifacts remain session-bound for privacy and are deleted automatically 
+when the session expires.
 
 ## Error Responses
 

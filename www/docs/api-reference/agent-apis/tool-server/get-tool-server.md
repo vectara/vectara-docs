@@ -6,17 +6,26 @@ sidebar_label: Get Tool Server
 
 import CodePanel from '@site/src/theme/CodePanel';
 
-The Get Tool Server API enables you to retrieve detailed information about a specific Model Context Protocol (MCP) server registered in your Vectara account. This API provides complete visibility into server configuration, connection details, and metadata, supporting troubleshooting, monitoring, and configuration management workflows.
+The Get Tool Server API enables you to retrieve detailed information 
+about a specific Model Context Protocol (MCP) server registered in your 
+Vectara account. This API provides complete visibility into server 
+configuration, connection details, and metadata, supporting troubleshooting, 
+monitoring, and configuration management workflows.
 
-Development teams use this API to verify server configurations, debug connectivity issues, audit security settings, and retrieve server details for documentation or integration planning.
+Development teams use this API to verify server configurations, debug 
+connectivity issues, audit security settings, and retrieve server details 
+for documentation or integration planning.
 
 ## Get Tool Server Request and Response
 
-To get tool server details, send a GET request to `/v2/tool_servers/{tool_server_id}`. You specify the following parameter:
+To get tool server details, send a GET request to `/v2/tool_servers/{tool_server_id}`. 
+You specify the following parameter:
 
-- `tool_server_id` (string, required): Tool server identifier in the URL path following pattern `tsr_[0-9a-zA-Z_-]+$`
+- `tool_server_id` (string, required): Tool server identifier in the URL path 
+  following pattern `tsr_[0-9a-zA-Z_-]+$`
 
-The response includes the complete tool server configuration including connection details, metadata, and timestamps.
+The response includes the complete tool server configuration including 
+connection details, metadata, and timestamps.
 
 ### Example Request
 
@@ -73,10 +82,3 @@ The API returns standard HTTP error codes with detailed error information:
 | 403 | `forbidden` | Insufficient permissions for accessing this tool server |
 | 404 | `server_not_found` | Tool server with the specified ID does not exist |
 | 429 | `rate_limit_exceeded` | Request rate limit exceeded |
-
-## Usage Notes
-
-- Authentication details are not returned in the response for security reasons
-- Use the metadata field to track custom information about the server
-- The response can be used to verify server configuration before synchronization
-- Consider caching server details locally to reduce API calls

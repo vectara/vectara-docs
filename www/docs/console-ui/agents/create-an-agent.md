@@ -8,7 +8,8 @@ This section provides a step-by-step procedure for creating a custom AI agent
 in the Vectara platform. Agents are configurable AI entities that can leverage 
 models, instructions, and tools to handle queries intelligently. You can 
 create agents with the Vectara Console or programmatically through the API. 
-The Console is ideal for quick setups, while the API suits automation or advanced integrations.
+The Console is ideal for quick setups, while the API suits automation or advanced 
+integrations.
 
 ```mermaid
 flowchart LR
@@ -33,6 +34,11 @@ flowchart LR
 * For RAG tool usage: At least one populated corpus (uploaded documents or data sources).
 * Familiarity with JSON for overrides and parameters.
 * Supported models ("gpt-4o", "claude-sonnet-4").
+
+:::tip Tip
+This example only uses the web_search tool. For details about configuring 
+the `corpora_search` tool, see [**Configure Agent Search Behavior**](/docs/agents/#configure-agent-search-behavior).
+:::
 
 The agent creation process follows a linear flow in the UI:
 

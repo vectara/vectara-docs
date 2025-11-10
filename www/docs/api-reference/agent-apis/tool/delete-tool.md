@@ -4,19 +4,22 @@ title: Delete Tool API Definition
 sidebar_label: Delete Tool
 ---
 
-# Delete Tool API Definition
+The Delete Tool API enables you to remove a specific tool and its associated 
+configuration. This cannot be undone. 
 
-The Delete Tool API enables you to remove a specific tool from the Vectara platform's tool catalog, supporting tool lifecycle management and cleanup while enforcing safety constraints to prevent deletion of tools currently referenced by active agents. This API ensures that tool removal does not disrupt ongoing agent operations that depend on specific enterprise integrations.
-
-Organizations use this API for removing deprecated or obsolete tools from the catalog, cleaning up development and testing tools that are no longer needed, maintaining organized tool libraries as business requirements evolve, and ensuring proper governance of tool resources while protecting active agent deployments from accidental capability loss.
+Use this API for removing deprecated or obsolete tools from the catalog
 
 ## Delete Tool Request and Response
 
-To delete a tool, send a DELETE request to `/v2/tools/{tool_id}`. You specify the following parameter in the URL path:
+To delete a tool, send a DELETE request to `/v2/tools/{tool_id}`. You specify 
+the following parameter in the URL path:
 
-- `tool_id` (string, required): Unique tool identifier following the pattern `tool_[a-zA-Z0-9_-]+$`
+- `tool_id` (string, required): Unique tool identifier following the pattern 
+  `tool_[a-zA-Z0-9_-]+$`
 
-The response returns HTTP status 204 (No Content) on successful deletion with no response body, indicating that the tool has been permanently removed from the platform catalog and is no longer available for agent configuration or usage.
+The response returns HTTP status 204 (No Content) on successful deletion with 
+no response body, indicating that the tool has been permanently removed from 
+the platform catalog and is no longer available for agent configuration or usage.
 
 ### Example Request
 

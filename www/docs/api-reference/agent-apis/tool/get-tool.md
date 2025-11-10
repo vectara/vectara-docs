@@ -3,20 +3,22 @@ id: get-tool
 title: Get Tool API Definition
 sidebar_label: Get Tool
 ---
+The Get Tool API enables you to retrieve the complete definition and 
+configuration details of a specific tool.
 
-# Get Tool API Definition
-
-The Get Tool API enables you to retrieve the complete definition and configuration details of a specific tool discovered from Model Context Protocol (MCP) compliant tool servers, providing detailed visibility into tool capabilities, input schemas, and operational metadata for development and debugging purposes. This API supports detailed inspection of individual enterprise integration capabilities.
-
-Development teams and administrators use this API to inspect tool definitions during agent development, analyze tool input schemas and parameter requirements, review tool capabilities for agent configuration decisions, and maintain detailed understanding of specific enterprise system integrations that provide AI agent functionality.
+Use this API to inspect tool definitions during agent development and review 
+tool capabilities for agent configuration decisions.
 
 ## Get Tool Request and Response
 
-To retrieve a tool, send a GET request to `/v2/tools/{tool_id}`. You specify the following parameter in the URL path:
+To retrieve a tool, send a GET request to `/v2/tools/{tool_id}`. You specify 
+the following parameter in the URL path:
 
-- `tol_id` (string, required): Unique tool identifier following the pattern `tool_[a-zA-Z0-9_-]+$`
+- `tool_id` (string, required): Unique tool identifier following the 
+- pattern `tool_[a-zA-Z0-9_-]+$`
 
-The response includes the complete tool definition with input schema specification, source tool server information, categorization metadata, and all associated properties as discovered during tool server synchronization.
+The response includes the complete tool definition and all associated 
+properties as discovered during tool server synchronization.
 
 ### Example Request
 
