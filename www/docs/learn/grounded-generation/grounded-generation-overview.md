@@ -1,7 +1,7 @@
 ---
 id: grounded-generation-overview
-title: Retrieval Augmented Generation (RAG) Fundamentals
-sidebar_label: Retrieval Augmented Generation (RAG) Fundamentals
+title: Retrieval Augmented Generation (RAG)
+sidebar_label: Retrieval Augmented Generation (RAG)
 ---
 
 

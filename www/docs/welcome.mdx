@@ -1,8 +1,8 @@
 ---
 id: introduction
 slug: /
-title: The Vectara Platform
-sidebar_label: The Vectara Platform
+title: About Vectara
+sidebar_label: About Vectara
 ---
 
 import { Grid } from "@site/src/components/ui/Grid";
@@ -10,11 +10,13 @@ import { Spacer } from "@site/src/components/ui/Spacer";
 import { TopicButton } from "@site/src/components/ui/TopicButton";
 import CodePanel from '@site/src/theme/CodePanel';
 
-Vectara is the trusted AI Agent platform that enables
-enterprises to quickly deploy AI agents across the business grounded in their own data.
-Retrieval Augmented Generation (RAG) at the core minimizes
-hallucinations, supports 100+ languages, and delivers enterprise-grade
-security for production-ready AI solutions.
+Vectara is the Agent Operating System for trusted enterprise AI: a unified 
+Agentic RAG platform with built-in multi-modal retrieval, orchestration, and 
+always-on governance. Deploy it on-prem (air-gapped), in your VPC, or as SaaS. 
+Vectara agents deliver grounded answers and safe actions with source 
+citations, step-level audit trails, fine-grained access controls, and 
+real-time policy and factual-consistency enforcement, so teams ship faster 
+with lower risk, and with trusted, production-grade AI agents at scale.
 
 Deploy in your preferred environment, while maintaining complete data control. 
 User data remains secure because Vectara never trains on customer data.
@@ -57,8 +59,9 @@ User data remains secure because Vectara never trains on customer data.
     capabilities into your applications with simple REST APIs and pre-built
     components.</p>
     <p><ul>
-    <li>Complete the [**console tutorial**](quickstart) and use Vectara to
+    <li>Complete the [**developer quickstart**](developer-quickstart) and use Vectara to
     ground answers in your data in a few minutes.</li>
+    <li>Build your [first agent](/docs/agent-os/agents-quickstart).</li>
     <li>Try the [**Vectara REST APIs**](/docs/rest-api) directly in your
     browser.</li>
     <li>View [**API quick start**](/docs/api-recipes) to upload a file and query
@@ -76,36 +79,6 @@ User data remains secure because Vectara never trains on customer data.
   on-premises, VPC, and air-gapped environments. <strong><a href="/docs/deployments">Learn more about private deployment →</a></strong></p>
 </div>
 
-## Conversational AI platform
-
-Build trusted conversational experiences without deep AI expertise:
-
-<Grid columns={2}>
-  <div>
-    <h4>🤖 Virtual Assistants</h4>
-    <p>Create AI assistants that answer complex questions by forming research plans and 
-executing multi-step queries across your data.</p>
-  </div>
-  <div>
-    <h4>💬 Enterprise Agents</h4>
-    <p>Build AI agents that can search knowledge bases, take actions, and escalate to humans when needed.</p>
-  </div>
-  <div>
-    <h4>🏢 Agentic RAG</h4>
-    <p>Leverage our [Python SDK](/docs/sdk/vectara-python-sdk) for building trusted, autonomous agents with reduced hallucinations.</p>
-  </div>
-  <div>
-    <h4>🎓 Intelligent Query Rewriting</h4>
-    <p>Break down complex questions into smaller steps. Generate metadata filter expressions from natural language queries automatically.</p>
-  </div>
-</Grid>
-
-<div style={{ backgroundColor: '#e8f4fd', padding: '20px', borderRadius: '8px', marginBottom: '20px', border: '1px solid #b8e0f7' }}>
-  <h4>🤖 Ready to build AI agents?</h4>
-  <p>Explore our Agents platform for building sophisticated, enterprise-grade
-  intelligent applications with tools, instructions, and sessions. <strong><a href="/docs/agents/agent-platform-overview">Learn more about the Agents platform →</a></strong></p>
-</div>
-
 ## AI agents and assistants
 
 Build intelligent conversational systems that go beyond simple
@@ -117,26 +90,6 @@ question-and-answer:
   through conversations.
 - **Multi-turn interactions**: Experiences that remember previous exchanges and
   provide coherent responses.
-
-### Solve the hallucination problem
-Unlike generic AI models, Vectara grounds responses in your actual data:
-
-- **Factual Consistency Scoring**: Provides confidence ratings for every
-  AI-generated response.
-- **Source citations**: Links every answer back to specific documents and
-  passages.
-- **Retrieval-first architecture**: Ensures AI only uses information from your
-  indexed content.
-- **Purpose-built models**: Designed specifically for accurate enterprise AI.
-
-### Best-in-class retrieval
-Hybrid search combines semantic and keyword capabilities:
-
-- **Semantic understanding**: Finds information by meaning, not just keywords.
-- **100+ language support**: Searches across documents in different languages
-  simultaneously.
-- **Advanced filtering**: Narrows results by metadata, document type, recency,
-  and custom attributes.
 
 ### Enterprise-ready security
 Built for mission-critical applications with complete data control:

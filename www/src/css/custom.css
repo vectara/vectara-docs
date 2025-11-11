@@ -892,3 +892,16 @@ table td {
 [data-theme='dark'] .mermaid-container {
   background-color: white;
 }
+
+/* Sidebar divider lines */
+.sidebar-divider {
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #cbcdde;
+  padding-top: 8px;
+  margin-top: 8px;
+}
+
+[data-theme='dark'] .sidebar-divider {
+  border-top-color: #69707d;
+}

@@ -18,7 +18,7 @@ add team members, build API requests, and manage your Vectara account:
   for data that you want to search.
 - :ledger: **Manage Data:** Manage the data in your account.
 - :closed_lock_with_key: **Manage API Access:** Users can define API access credentials, including
-  [API Keys](/docs/learn/authentication/api-key-management) and [OAuth app clients](/docs/learn/authentication/oauth-2).
+  [API Keys](/docs/security/authentication/api-key-management) and [OAuth app clients](/docs/security/authentication/oauth).
 - :busts_in_silhouette: **Invite Team Members:** [Add users to your team](/docs/console-ui/manage-user) and assign
   specific permissions for each user.
 - :wrench: **Build API Requests:** Create API requests within the console and copy-paste

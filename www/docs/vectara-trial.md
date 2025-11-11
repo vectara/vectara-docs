@@ -1,7 +1,7 @@
 ---
 id: vectara-trial
-title: Vectara Trial
-sidebar_label: Vectara Trial
+title: Vectara trial
+sidebar_label: Vectara trial
 ---
 
 

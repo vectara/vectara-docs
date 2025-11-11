@@ -25,7 +25,7 @@ bases.
 API keys can have multiple types and roles from Personal (most 
 administrative functions) to QueryService (read-only) to read and write 
 (IndexService). For more information, see 
-[Authentication Methods and Authorization Levels](https://docs.vectara.com/docs/learn/authentication/auth-overview).
+[Authentication Methods and Authorization Levels](https://docs.vectara.com/docs/security/authentication/overview).
 
 
 ---

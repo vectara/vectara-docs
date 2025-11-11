@@ -1,7 +1,7 @@
 ---
 id: use-cases
-title: Private Deployment Use Cases and Industries
-sidebar_label: Use Cases
+title: Private deployment use cases
+sidebar_label: Use cases
 ---
 
 Who deploys Vectara privately and why.

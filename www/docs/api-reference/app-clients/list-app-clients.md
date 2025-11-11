@@ -17,7 +17,7 @@ authentication with Vectara's APIs.
 :::note
 
 For more information about using OAuth 2.0 with Vectara, see
-[**OAuth 2.0 Tokens**](/docs/learn/authentication/oauth-2).
+[**OAuth 2.0 Tokens**](/docs/security/authentication/oauth).
 
 :::
 

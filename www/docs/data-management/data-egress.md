@@ -1,7 +1,7 @@
 ---
 id: data-egress
-title: Vectara Data Egress Overview
-sidebar_label: Data Egress
+title: Data egress
+sidebar_label: Data egress
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';

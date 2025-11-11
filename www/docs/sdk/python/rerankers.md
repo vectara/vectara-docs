@@ -14,7 +14,7 @@ improving precision with neural models to adding diversity or custom business lo
 
 This section shows how to integrate different reranker types into your queries and 
 configure them for optimal performance in various scenarios. For more 
-information about the available rerankers, see [**Reranking**](/docs/api-reference/search-apis/reranking).
+information about the available rerankers, see [**Reranking**](/docs/search-and-retrieval/reranking).
 
 
 :::info Prerequisites

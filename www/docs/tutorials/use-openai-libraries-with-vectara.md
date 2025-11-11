@@ -30,7 +30,7 @@ We recommend that you complete this tutorial in [**Google Colab**](https://colab
 
 - Python 3.8 or higher
 - Basic understanding of REST APIs and HTTP requests
-- A valid [Vectara API key](https://docs.vectara.com/docs/learn/authentication/api-key-management) with access to the [Chat Completions](/docs/rest-api/create-chat-completion) endpoint.
+- A valid [Vectara API key](https://docs.vectara.com/docs/security/authentication/api-key-management) with access to the [Chat Completions](/docs/rest-api/create-chat-completion) endpoint.
 
 ## Step 1. Install the required packages
 

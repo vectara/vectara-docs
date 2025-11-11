@@ -13,7 +13,7 @@ info:
     name: Vectara Support
     email: support@vectara.com
     url: http://support.vectara.com/
-  description: "Vectara provides an end-to-end platform for creating GenAI products using \na simple to use API.\n\nYou can [sign up for an account](https://console.vectara.com/signup) and \nthen view several [API Recipes](https://docs.vectara.com/docs/api-recipes) with example queries \nand parameter values.\n\nThe Vectara API Playground lets you experiment with REST endpoints from \nyour browser. Select an endpoint to view its definition, including the \nrequired or optional headers, body, responses, and sample commands. On the \nright side of each endpoint page, you manually \nenter your API Key or OAuth Bearer Token, `customer_id`, and then any \nrequired body parameters like the `corpusID` before sending the API \nrequest.\n\n:::note\n\nVectara has three kinds of API keys: the Personal API Key, Index API Keys, \nand Query API Keys. The Personal API Key enables administrative tasks \nincluding creating, deleting, and listing corpora, and managing Index and \nQuery API keys for accessible corpora, reading usage data, updating \ncorpora filters, executing queries, and indexing. Query API Keys are used\nfor read-only querying operations, while Index API Keys provide read and \nwrite access. The OAuth operations authenticate with a Bearer Token via the\nOAuth 2.0 client credentials grant. Review the [**OAuth 2.0 section**](https://docs.vectara.com/docs/learn/authentication/oauth-2) about \nhow to generate the token."
+  description: "Vectara provides an end-to-end platform for creating GenAI products using \na simple to use API.\n\nYou can [sign up for an account](https://console.vectara.com/signup) and \nthen view several [API Recipes](https://docs.vectara.com/docs/api-recipes) with example queries \nand parameter values.\n\nThe Vectara API Playground lets you experiment with REST endpoints from \nyour browser. Select an endpoint to view its definition, including the \nrequired or optional headers, body, responses, and sample commands. On the \nright side of each endpoint page, you manually \nenter your API Key or OAuth Bearer Token, `customer_id`, and then any \nrequired body parameters like the `corpusID` before sending the API \nrequest.\n\n:::note\n\nVectara has three kinds of API keys: the Personal API Key, Index API Keys, \nand Query API Keys. The Personal API Key enables administrative tasks \nincluding creating, deleting, and listing corpora, and managing Index and \nQuery API keys for accessible corpora, reading usage data, updating \ncorpora filters, executing queries, and indexing. Query API Keys are used\nfor read-only querying operations, while Index API Keys provide read and \nwrite access. The OAuth operations authenticate with a Bearer Token via the\nOAuth 2.0 client credentials grant. Review the [**OAuth 2.0 section**](https://docs.vectara.com/docs/deploy-and-scale/authentication/oauth-2) about \nhow to generate the token."
 tags:
   - name: AdminService
     description: Administrative operations, such as creating or deleting corpora
@@ -62,7 +62,7 @@ paths:
         Computes the amount of quota consumed across the entire Vectara account.
 
         Some tips for this API:
-        * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/deploy-and-scale/authentication/oauth-2).
       security:
         - ApiKeyAuth: []
         - oAuth: []
@@ -93,7 +93,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
         - $ref: '#/components/parameters/timeout'
-      description: "Computes the amount of quota consumed by a corpus. This capability is useful for administrators to track and monitor the amount \nof usage for specific corpora.\n\nSome tips for this API:\n* This operation works with the Personal API Key and OAuth 2.0 (in a JWT \"Bearer Token\") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).\n* The `filter` feature applies to either the name *or* the description of a corpus.\n"
+      description: "Computes the amount of quota consumed by a corpus. This capability is useful for administrators to track and monitor the amount \nof usage for specific corpora.\n\nSome tips for this API:\n* This operation works with the Personal API Key and OAuth 2.0 (in a JWT \"Bearer Token\") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/deploy-and-scale/authentication/oauth-2).\n* The `filter` feature applies to either the name *or* the description of a corpus.\n"
       security:
         - ApiKeyAuth: []
         - oAuth: []
@@ -131,7 +131,7 @@ paths:
         Creates an API key that you bind with a specific corpus or multiple corpora. You can create an API key that only gives access to query data (read-only) or an API key that gives access to both querying and serving (read-write).
 
         Some tips for this API:
-        * This operation only works with OAuth 2.0 (in a JWT "Bearer Token") authentication. It does not work with API Keys. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * This operation only works with OAuth 2.0 (in a JWT "Bearer Token") authentication. It does not work with API Keys. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/deploy-and-scale/authentication/oauth-2).
       security:
         - oAuth: []
   /v1/create-corpus:
@@ -165,7 +165,7 @@ paths:
         Creates a corpus, which is a container to store data in.
 
         Some tips for this API:
-        * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/deploy-and-scale/authentication/oauth-2).
         * The `name` of the corpus is the only required field.
         * Filter attributes tell Vectara which metadata fields you'd like to run SQL-style filters against.  If you need to change them after you've created the corpus, see the [Replace Filter Attributes API](https://docs.vectara.com/docs/rest-api/replace-corpus-filter-attrs)
         * `textless` and `customDimensions` are features that are only available to [Scale](https://vectara.com/pricing/) accounts.
@@ -215,7 +215,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
         - $ref: '#/components/parameters/timeout'
-      description: "Deletes API keys to help you manage the security and lifecycle of API keys in your application.  \nSome tips for this API:\n* This operation only works with OAuth 2.0 (in a JWT \"Bearer Token\") authentication. It does not work with API Keys. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).\n"
+      description: "Deletes API keys to help you manage the security and lifecycle of API keys in your application.  \nSome tips for this API:\n* This operation only works with OAuth 2.0 (in a JWT \"Bearer Token\") authentication. It does not work with API Keys. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/deploy-and-scale/authentication/oauth-2).\n"
       security:
         - oAuth: []
   /v1/delete-conversations:
@@ -280,7 +280,7 @@ paths:
         Deletes a corpus and all of the data contained inside of the corpus.
 
         Some tips for this API:
-        * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/deploy-and-scale/authentication/oauth-2).
         * It can take a few seconds to completely delete the corpus if there's heavy system load.  Be patient if the corpus is still present after a deletion request is initiated.
       security:
         - ApiKeyAuth: []
@@ -422,7 +422,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
         - $ref: '#/components/parameters/timeout'
-      description: "Enables or disables a specific API key.\n \nSome tips for this API:\n* This operation works with the Personal API Key and OAuth 2.0 (in a JWT \"Bearer Token\") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).\n"
+      description: "Enables or disables a specific API key.\n \nSome tips for this API:\n* This operation works with the Personal API Key and OAuth 2.0 (in a JWT \"Bearer Token\") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/deploy-and-scale/authentication/oauth-2).\n"
       security:
         - ApiKeyAuth: []
         - oAuth: []
@@ -458,7 +458,7 @@ paths:
 
         Some tips for this API:
         * Use these metrics to determine usage patterns that enable you to optimize resource allocations.
-        * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/deploy-and-scale/authentication/oauth-2).
         * The `filter` feature applies to either the name *or* the description of a corpus.
       security:
         - ApiKeyAuth: []
@@ -661,7 +661,7 @@ paths:
         Lists the API keys and the associated corpora names and IDs.
 
         Some tips for this API:
-        * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/deploy-and-scale/authentication/oauth-2).
         * The `filter` feature applies to either the name *or* the description of a corpus.
       security:
         - ApiKeyAuth: []
@@ -733,7 +733,7 @@ paths:
         Lists all corpora accessible to the OAuth client.
 
         Some tips for this API:
-        * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/deploy-and-scale/authentication/oauth-2).
         * The `filter` feature applies to either the name *or* the description of a corpus.
       security:
         - ApiKeyAuth: []
@@ -770,7 +770,7 @@ paths:
         Lists information about each document ingested into the corpus including the Document ID and metadata. This is useful for managing the lifecycle of documents and a quick way to check which documents are already in the index.
 
         Some tips for this API:
-        * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/deploy-and-scale/authentication/oauth-2).
       security:
         - ApiKeyAuth: []
         - oAuth: []
@@ -805,7 +805,7 @@ paths:
         List the jobs associated with this account.  Jobs are background processes like [replacing the filterable metadata attributes](https://docs.vectara.com/docs/rest-api/replace-corpus-filter-attrs).
 
         Some tips for this API:
-        * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/deploy-and-scale/authentication/oauth-2).
         * It's best practice to filter as much as possible (by date, by status, and/or by job ID) to make job lists as easy to interpret as possible, as there can be many for a given time window.
       security:
         - ApiKeyAuth: []
@@ -837,7 +837,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/customerIdentifier'
         - $ref: '#/components/parameters/timeout'
-      description: "Lists the users in your account along with their corpus access and customer-level authorizations. \nSome tips for this API:\n* This operation only works with OAuth 2.0 (in a JWT \"Bearer Token\") authentication. It does not work with API Keys. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).\n* Use this API to view the members on your team. If you need to manage their access, use the Manage User endpoint.\n"
+      description: "Lists the users in your account along with their corpus access and customer-level authorizations. \nSome tips for this API:\n* This operation only works with OAuth 2.0 (in a JWT \"Bearer Token\") authentication. It does not work with API Keys. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/deploy-and-scale/authentication/oauth-2).\n* Use this API to view the members on your team. If you need to manage their access, use the Manage User endpoint.\n"
       security:
         - oAuth: []
   /v1/manage-user:
@@ -870,7 +870,7 @@ paths:
       description: |
         Lets you manage users in your account by adding, deleting, enabling, or disabling users. You can also reset their passwords and edit user roles. This endpoint can help you streamline your onboarding process by programmatically adding new users, assigning appropriate roles, and setting up permissions.
         Some tips for this API:
-        * This operation only works with OAuth 2.0 (in a JWT "Bearer Token") authentication. It does not work with API Keys. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * This operation only works with OAuth 2.0 (in a JWT "Bearer Token") authentication. It does not work with API Keys. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/deploy-and-scale/authentication/oauth-2).
         * Add multiple users by including additional “user” objects into the userAction array.
       security:
         - oAuth: []
@@ -1064,7 +1064,7 @@ paths:
         This endpoint can help administrators monitor the amount of quota consumed by tenants.
 
         Some tips for this API:
-        * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/deploy-and-scale/authentication/oauth-2).
         * The `filter` feature applies to either the name *or* the description of a corpus.
       security:
         - ApiKeyAuth: []
@@ -1102,7 +1102,7 @@ paths:
         See our documentation on [filterable metadata fields](https://docs.vectara.com/docs/learn/metadata-search-filtering/filter-overview) for more details on how these are used.
 
         Some tips for this API:
-        * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/deploy-and-scale/authentication/oauth-2).
         * Each request to replace the corpus filter attributes kicks off a background [job](https://docs.vectara.com/docs/rest-api/list-jobs).  The job ID is returned when you kick off a metadata filter update job so you can track it later.
         * Existing filters will continue to apply until the update job completes.
         * The time that update filter jobs take is roughly proportional to the size of the corpus.  Updates on small corpora generally take a few minutes at most, but updates on large corpora can take many minutes to hours to complete.
@@ -1140,7 +1140,7 @@ paths:
         Resets a corpus by removing all of the documents inside of it.
 
         Some tips for this API:
-        * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/deploy-and-scale/authentication/oauth-2).
         * The `filter` feature applies to either the name *or* the description of a corpus.
         * If you want to delete individual documents instead of all documents in the corpus, you can use the [Delete API](https://docs.vectara.com/docs/rest-api/delete).
       security:
@@ -1223,7 +1223,7 @@ paths:
         Lets you enable or disable a corpus. This is useful when you need to take the corpus offline without having to delete the corpus.
 
         Some tips for this API:
-        * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/learn/authentication/oauth-2).
+        * This operation works with the Personal API Key and OAuth 2.0 (in a JWT "Bearer Token") authentication. You can find details of how to set up and use OAuth 2.0 [here](https://docs.vectara.com/docs/deploy-and-scale/authentication/oauth-2).
         * The `filter` feature applies to either the name *or* the description of a corpus.
       security:
         - ApiKeyAuth: []

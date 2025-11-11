@@ -20,6 +20,33 @@ and how these product and documentation changes can benefit your enterprise.
 
 ---
 
+## Lambda Tools: Customize Python Functions in Agents
+
+_October 14, 2025_
+
+Vectara introduces the tech preview of Lambda Tools, extending agent 
+capabilities with your own Python functions. Lambda Tools let agents execute 
+custom business logic, calculations, or data transformations in secure, 
+sandboxed environments.
+
+Why it matters: Lambda Tools let you safely plug in your own logic so 
+agents can perform domain-specific actions like scoring leads, analyzing data, 
+or applying compliance checks, all without leaving the Vectara environment. 
+Each function runs in an isolated Python sandbox with automatic schema 
+discovery, resource limits, and full audit logging for transparency and 
+governance.
+
+**New API endpoints**:
+* [Create a Lambda Tool](/docs/rest-api/create-tool)
+* [Test a Lambda Tool](/docs/rest-api/test-tool)
+* [Update a Tool](/docs/rest-api/update-tool)
+* [List Tools](/docs/rest-api/get-tool)
+
+More information:
+* [Lambda Tools](/docs/agent-os/lambda-tools)
+
+---
+
 ## Vectara Agents Framework
 
 _September 3, 2025_
@@ -61,7 +88,7 @@ The Vectara Agent APIs introduce several new endpoints:
 * [Tool Server Management](/docs/api-reference/agent-apis/tool-server/create-tool-server)
 
 **More information:**
-* [Agents](/docs/agents/agent-platform-overview)
+* [Agents](/docs/agent-os/agent-platform-overview)
 * [Agents APIs](/docs/api-reference/agent-apis/agent-apis-overview)
 * [Manage Agents](/docs/console-ui/manage-agents)
 
@@ -519,7 +546,7 @@ filters and rephrased queries in the API response and query history.
 
 **More information:**
 * [Intelligent Query Rewriting](/docs/search-and-retrieval/intelligent-query-rewriting)
-* [Query API Definition](/docs/api-reference/search-apis/search)
+* [Query API Definition](/docs/rest-api/queries)
 * [Advanced Single Corpus Query](/docs/rest-api/query-corpus)
 
 ---
@@ -532,7 +559,7 @@ Vectara now offers Knee Reranking, an advanced dynamic filtering tool designed
 to improve the precision of query results by automatically identifying natural 
 cutoff points between relevant and irrelevant results. This feature integrates 
 seamlessly into Vectara's reranking chain, following the Slingshot reranker 
-[(Vectara Multilingual Reranker V1)](/docs/learn/vectara-multi-lingual-reranker), to refine search outputs with advanced 
+[(Vectara Multilingual Reranker V1)](/docs/search-and-retrieval/rerankers/vectara-multi-lingual-reranker), to refine search outputs with advanced 
 score pattern analysis.
 
 **Why it matters:** Knee Reranking elevates the quality of retrieval in Retrieval 
@@ -544,8 +571,8 @@ sent to downstream systems.
 
 **More information:**
 * [Introducing Knee Reranking: smart result filtering for better results](https://www.vectara.com/blog/introducing-the-knee-reranking-smart-result-filtering-for-better-results)
-* [Knee Reranking](/docs/learn/knee-reranking)
-* [Reranking](/docs/api-reference/search-apis/reranking)
+* [Knee Reranking](/docs/search-and-retrieval/rerankers/knee-reranking)
+* [Reranking](/docs/search-and-retrieval/reranking)
 
 ---
 
@@ -595,7 +622,7 @@ efficiency and ensures smooth document lifecycle management.
 
 **More information:**
 
-* [Metadata Filters](/docs/learn/metadata-search-filtering/filter-overview)
+* [Metadata Filters](/docs/build/prepare-data/metadata-filters)
 * [Update Metadata API Definition](/docs/api-reference/indexing-apis/update-document-metadata)
 * [Replace Metadata API Definition](/docs/api-reference/indexing-apis/replace-document-metadata)
 
@@ -649,7 +676,7 @@ of financial, market, and operational data.
 * [File Upload API Definition](/docs/api-reference/indexing-apis/file-upload/file-upload)
 * [Indexing API Definition](/docs/api-reference/indexing-apis/indexing)
 * [List Documents API Definition](/docs/api-reference/admin-apis/corpus/list-documents)
-* [Query API Definition](/docs/api-reference/search-apis/search)
+* [Query API Definition](/docs/rest-api/queries)
 * [Retrieve Document API Definition](/docs/api-reference/admin-apis/corpus/retrieve-document)
 
 **More information:**
@@ -733,8 +760,8 @@ specific use cases, from content categorization to focused data retrieval.
 
 **More information:**
 
-* [Search cutoffs](https://docs.vectara.com/docs/api-reference/search-apis/reranking#search-cutoffs)
-* [Search limits](https://docs.vectara.com/docs/api-reference/search-apis/reranking#search-limits) 
+* [Search cutoffs](https://docs.vectara.com/docs/search-and-retrieval/reranking#search-cutoffs)
+* [Search limits](https://docs.vectara.com/docs/search-and-retrieval/reranking#search-limits) 
 
 ---
 
@@ -762,8 +789,8 @@ Generation (RAG) outcomes.
 
 **More information:**
 
-* [Introducing Vectara’s Chain Rerankers](https://vectara.com/blog/introducing-vectaras-chain-rerankers/)
-* [Chain Reranker](https://docs.vectara.com/docs/learn/chain-reranker)
+* [Introducing Vectara's Chain Rerankers](https://vectara.com/blog/introducing-vectaras-chain-rerankers/)
+* [Chain Reranker](https://docs.vectara.com/docs/search-and-retrieval/rerankers/chain-reranker)
 
 ---
 
@@ -830,8 +857,8 @@ queries, and e-commerce bias for promotional content.
 
 **More information:**
 
-* [Rerank Search Results](/docs/api-reference/search-apis/reranking)
-* [User Defined Function Reranker](https://docs.vectara.com/docs/learn/user-defined-function-reranker)
+* [Rerank Search Results](/docs/search-and-retrieval/reranking)
+* [User Defined Function Reranker](https://docs.vectara.com/docs/search-and-retrieval/rerankers/user-defined-function-reranker)
 
 ___
 
@@ -908,7 +935,7 @@ Use `reranker_name` and `Rerank_Multilingual_v1` instead.
 
 **More information:**
 
-* [Vectara Multilingual Reranker](https://docs.vectara.com/docs/learn/vectara-multi-lingual-reranker)
+* [Vectara Multilingual Reranker](https://docs.vectara.com/docs/search-and-retrieval/rerankers/vectara-multi-lingual-reranker)
 * [Unlocking the State-of-the-Art Reranker: Introducing the Vectara Multilingual Reranker_v1](https://vectara.com/blog/unlocking-the-state-of-the-art-reranker-introducing-the-vectara-multilingual-reranker_v1/)
 
 
@@ -954,5 +981,5 @@ internal systems that support HTML or Markdown.
 **More information:**
 
 * [Vectara Launches 2 Powerful New Generative Capabilities](https://vectara.com/blog/vectara-launches-2-powerful-new-generative-capabilities/)
-* [Citation Format in Summary](https://docs.vectara.com/docs/api-reference/search-apis/search#citation-format-in-summary)
+* [Citation Format in Summary](/docs/search-and-retrieval/citations)
 

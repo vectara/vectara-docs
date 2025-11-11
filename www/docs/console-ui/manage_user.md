@@ -11,8 +11,8 @@ This section lets you add team members and manage the access levels of these
 users. For example, you can adjust account and corpus level authorizations. 
 You can also transfer your Vectara account ownership to another user.
 
-Review the [Authentication and Authorization guide](/docs/learn/authentication/authentication-authorization-vectara) to learn 
-how to set up user permissions, review [enterprise access patterns](/docs/learn/authentication/personas-and-access-patterns), authentication methods and so on. 
+Review the [Authentication and Authorization guide](/docs/deploy-and-scale/authentication/authentication-authorization-vectara) to learn 
+how to set up user permissions, review [enterprise access patterns](/docs/security/authorization/vectara-personas-and-access-patterns), authentication methods and so on. 
 
 ## Invite team member
 

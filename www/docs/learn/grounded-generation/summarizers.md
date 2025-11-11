@@ -1,13 +1,12 @@
 ---
 id: select-a-summarizer
-title: Generation Presets
-sidebar_label: Generation Presets
+title: Generation presets
+sidebar_label: Generation presets
 ---
 
 import {vars} from '@site/static/variables.json';
 
 import CodePanel from '@site/src/theme/CodePanel';
-
 
 Extracting concise, relevant information from large sets of search results 
 presents a significant challenge for many applications. Vectara offers 
@@ -62,7 +61,7 @@ The following example query selects Mockingbird 2.0 generation preset:
 }`}]} title="Mockingbird 2.0 Example" layout="stacked" />
 
 :::tip
-The `generation_preset_name` is specified in the `generation` object of a [**query**](/docs/api-reference/search-apis/search). 
+The `generation_preset_name` is specified in the `generation` object of a [**query**](/docs/rest-api/queries). 
 Excluding this `generation` field disables summarization.
 :::
 
@@ -94,7 +93,7 @@ These prompts will soon be deprecated:
 
 ### Advanced summarization customization options
 
-Customers also have access to [advanced summarization customization options](/docs/api-reference/search-apis/search#advanced-summarization-customization-options) 
+Customers also have access to advanced summarization customization options 
 including [custom prompt templates](/docs/prompts/vectara-prompt-engine), character limits, 
 temperature, and frequency and presence penalties.
 

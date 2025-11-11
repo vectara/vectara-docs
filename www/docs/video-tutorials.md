@@ -1,7 +1,7 @@
 ---
 id: video-tutorials
-title: Video Tutorials
-sidebar_label: Video Tutorials
+title: Video tutorials
+sidebar_label: Video tutorials
 ---
 
 <!-- Nurture sequence emails link to this page. These links will break if the URL is changed. -->

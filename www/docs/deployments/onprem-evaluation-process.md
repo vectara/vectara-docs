@@ -1,7 +1,7 @@
 ---
 id: onprem-evaluation-process
-title: Private Deployment Evaluation Process
-sidebar_label: Evaluation Process
+title: Private deployment evaluation process
+sidebar_label: Evaluation process
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';

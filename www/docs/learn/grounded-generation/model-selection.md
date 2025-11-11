@@ -1,7 +1,7 @@
 ---
 id: model-selection
-title: Model Selection
-sidebar_label: Model Selection
+title: LLM selection
+sidebar_label: LLM selection
 ---
 
 import {vars} from '@site/static/variables.json';

@@ -113,7 +113,7 @@ To use Mockingbird 2 in the Vectara Console:
 
 ## Use Mockingbird 2 in an API call
 
-To use Mockingbird 2 in a [query](/docs/api-reference/search-apis/search) request, set the `generation_preset_name` in the 
+To use Mockingbird 2 in a [query](/docs/rest-api/queries) request, set the `generation_preset_name` in the 
 generation object to `mockingbird-2.0`:
 
 <CodePanel snippets={[{language: "json", code: `{

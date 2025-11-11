@@ -15,7 +15,7 @@ knowledge base expert.
 For a quick start, try creating a research assistant that can search the web. 
 This agent requires no corpus setup and demonstrates core agent capabilities.
 
-Follow the [Agent Quick Start](/docs/agents/agents-quickstart) guide to create an 
+Follow the [Agent Quick Start](/docs/agent-os/agents-quickstart) guide to create an 
 agent in minutes using either the Console UI or API. This agent:
 
 - Searches the web for current information

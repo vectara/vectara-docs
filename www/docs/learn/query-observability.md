@@ -1,7 +1,7 @@
 ---
 id: query-observability
-title: Query Observability
-sidebar_label: Query Observability
+title: Query observability
+sidebar_label: Query observability
 ---
 
 import Tabs from '@theme/Tabs';

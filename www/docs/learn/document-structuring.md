@@ -1,9 +1,8 @@
 ---
 id: document-data-structuring
-title: Document Data Structuring
-sidebar_label: Document Data Structuring
+title: Structure your data
+sidebar_label: Structure your data
 ---
-
 
 import CodePanel from '@site/src/theme/CodePanel';
 

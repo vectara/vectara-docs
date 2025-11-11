@@ -1,7 +1,7 @@
 ---
 id: configure-query-summarization
-title: Configure Summarization
-sidebar_label: Configure Summarization
+title: Configure query summarization
+sidebar_label: Configure query summarization
 ---
 
 import Tabs from '@theme/Tabs';
@@ -40,7 +40,7 @@ advanced LLM was designed specifically for RAG:
 :::important
 
 Excluding the generation field disables summarization. For more information 
-about the `generation` object, see [**Query API Definition**](/docs/api-reference/search-apis/search).
+about the `generation` object, see [**Query API Definition**](/docs/rest-api/queries).
 
 :::
 
@@ -172,7 +172,7 @@ and increases by 1 in each result in the `search_results` array.
 
 Vectara also enables users to format citations in summaries so that they 
 appear as numeric (default), HTML, Markdown, or none. For details, 
-see the documentation on [formatting citations in summaries](/docs/api-reference/search-apis/search#citation-format-in-summary).
+see the documentation on [formatting citations in summaries](/docs/search-and-retrieval/citations).
 
 ## Advanced summarization parameters
 
