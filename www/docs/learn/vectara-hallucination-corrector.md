@@ -1,7 +1,7 @@
 ---
 id: vectara-hallucination-corrector
-title: Hallucination Corrector
-sidebar_label: Hallucination Corrector
+title: Hallucination corrector
+sidebar_label: Hallucination corrector
 ---
 
 

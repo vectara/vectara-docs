@@ -85,7 +85,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "Hallucination and Evaluation",
+      label: "Hallucination and evaluation",
       collapsible: false,
       items: [
         "learn/query-observability",

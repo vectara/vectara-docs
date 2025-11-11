@@ -1,6 +1,6 @@
 ---
 id: private-deployment-overview
-title: Private Deployment Overview
+title: Private deployment overview
 sidebar_label: Overview
 ---
 

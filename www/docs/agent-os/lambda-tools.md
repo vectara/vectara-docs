@@ -1,7 +1,7 @@
 ---
 id: lambda-tools
-title: Lambda Tools
-sidebar_label: Lambda Tools
+title: Lambda tools
+sidebar_label: Lambda tools
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';

@@ -1,7 +1,7 @@
 ---
 id: hallucination-evaluation
-title: Hallucination Evaluation
-sidebar_label: Hallucination Evaluation
+title: Hallucination evaluation
+sidebar_label: Hallucination evaluation
 ---
 
 

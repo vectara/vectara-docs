@@ -1,7 +1,7 @@
 ---
 id: deployment-options
-title: Private Deployment Options
-sidebar_label: Deployment Options
+title: Private deployment options
+sidebar_label: Deployment options
 ---
 
 A private deployment of Vectara is designed to work with your existing 
