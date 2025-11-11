@@ -1,7 +1,7 @@
 ---
-id: agent-tools
-title: Agent tools
-sidebar_label: Agent tools
+id: agent-tools-overview
+title: Agent Tools Overview
+sidebar_label: Overview
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';
@@ -9,17 +9,17 @@ import CodePanel from '@site/src/theme/CodePanel';
 Vectara has several types of agent tools available.
 
 - **Corpora search**
-  - Searches through Vectara corpora to find relevant information. Agents can 
-  use this tool to query your indexed document collections and retrieve 
+  - Searches through Vectara corpora to find relevant information. Agents can
+  use this tool to query your indexed document collections and retrieve
   contextually relevant results.
   - Supports custom search parameters, generation settings, and query configuration.
-- **Web search** 
+- **Web search**
   - Searches the internet for current information beyond your indexed corpora.
   - Configurable result limits and query parameters.
-- **Lambda tools** 
+- **Lambda tools**
   - Enables user-defined Python functions that run in a secure, sandboxed environment.
   - Automatic input/output schema generation from type annotations.
-- **Structured indexing** 
+- **Structured indexing**
   - Indexes structured documents into the Vectara platform with full control over document structure.
   - Enablers target corpus selection, document structure, and metadata management.
 - **MCP (Model Context Protocol)**

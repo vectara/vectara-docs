@@ -61,7 +61,7 @@ account-level roles, ideal for oversight without direct data access.
 3. Add a user by email, entering a description, and selecting **Account Admin**,
    **Corpus Admin**, or **Billing Admin**.  
 4. Click **Send invitation**.
-5. Go to **Authorization** to [manage API keys](/docs/deploy-and-scale/authentication/api-key-management) or [OAuth 2.0 app clients](/docs/deploy-and-scale/authentication/oauth-2).
+5. Go to **Authorization** to [manage API keys](/docs/security/authentication/api-key-management) or [OAuth 2.0 app clients](/docs/security/authentication/oauth).
 
 **Use Case:** An owner assigns an Account Admin role to a team member to oversee 
 corpora without billing access.
@@ -157,27 +157,3 @@ tier, often configured by Admins:
 | Admin user managing all corpora   | Owner             | Account-wide     |
 | OAuth client with query rights    | QRY               | One or more corpora |
 
-## ✅ Quick checklist: Configure RBAC in Vectara
-
-Follow this checklist to set up secure, least-privilege access across accounts 
-and corpora.
-
-### 🔐 Account permissions
-- [ ] Invite team members via the **Team** page
-- [ ] Assign **Owner**, **Account admin**, or **Billing admin** roles
-- [ ] Avoid giving full account access unless required
-- [ ] Use **OAuth 2.0 and MFA** for the most secure access
-
-### 📂 Corpus access
-- [ ] Navigate to the **Corpus** page → **Access control**
-- [ ] Assign roles:
-  - [ ] **Query** – Read-only
-  - [ ] **Index** – Write and query
-  - [ ] **Admin** – Full access
-- [ ] Scope access per corpus—**no cross-corpus by default**
-
-### 🛡️ Best practices
-- [ ] Use the **least privilege principle**
-- [ ] Use separate API keys per environment (dev/prod)
-- [ ] Rotate keys regularly and monitor usage
-- [ ] Re-audit access when staff or project roles change

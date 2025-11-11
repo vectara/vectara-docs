@@ -10,27 +10,27 @@ Deploy Vectara securely and scale your AI applications with enterprise-grade fea
 
 ### Security and Data Privacy
 
-- **[Security and Data Privacy](/docs/learn/data-privacy/privacy-overview)** - Encryption, data isolation, and compliance certifications
+- **[Security and Data Privacy](/docs/security/data-privacy/overview)** - Encryption, data isolation, and compliance certifications
 
 ### Authentication
 
 Secure your API access with API keys or OAuth 2.0:
 
-- **[Authentication Methods and Authorization Levels](/docs/deploy-and-scale/authentication/auth-overview)** - Overview of authentication options
-- **[Choose Authentication Method](/docs/deploy-and-scale/authentication/choose-auth-method)** - API keys vs OAuth 2.0
-- **[API Key Management](/docs/deploy-and-scale/authentication/api-key-management)** - Create and manage API keys
-- **[OAuth 2.0](/docs/deploy-and-scale/authentication/oauth-2)** - Set up OAuth for production apps
+- **[Authentication Methods and Authorization Levels](/docs/security/authentication/overview)** - Overview of authentication options
+- **[Choose Authentication Method](/docs/security/authentication/choose-auth-method)** - API keys vs OAuth 2.0
+- **[API Key Management](/docs/security/authentication/api-key-management)** - Create and manage API keys
+- **[OAuth 2.0](/docs/security/authentication/oauth)** - Set up OAuth for production apps
 - **[API Authentication Examples](/docs/deploy-and-scale/authentication/api-authentication-examples)** - Code samples
 
 ### Authorization
 
 Control access to your Vectara resources:
 
-- **[Enterprise Access Patterns](/docs/deploy-and-scale/authentication/personas-and-access-patterns)** - Common access control scenarios
-- **[Role-Based Access Control](/docs/deploy-and-scale/authentication/role-based-access-control)** - Assign permissions by role (RBAC)
-- **[Attribute-Based Access Control](/docs/deploy-and-scale/authentication/attribute-based-access-control)** - Fine-grained permissions (ABAC)
-- **[Multi-Tenant Corpus Isolation](/docs/deploy-and-scale/authentication/multi-tenant-corpus-isolation)** - Separate data by tenant
-- **[Combine Access Control with Application Filters](/docs/deploy-and-scale/authentication/combine-access-control-with-app-filters)** - Layer filters for security
+- **[Enterprise Access Patterns](/docs/security/authorization/vectara-personas-and-access-patterns)** - Common access control scenarios
+- **[Role-Based Access Control](/docs/security/authorization/role-based-access-control)** - Assign permissions by role (RBAC)
+- **[Attribute-Based Access Control](/docs/security/authorization/attribute-based-access-control)** - Fine-grained permissions (ABAC)
+- **[Multi-Tenant Corpus Isolation](/docs/security/authorization/multi-tenant-corpus-isolation)** - Separate data by tenant
+- **[Combine Access Control with Application Filters](/docs/security/authorization/combine-access-control-with-app-filters)** - Layer filters for security
 
 ### Resource Addressing
 
@@ -52,15 +52,15 @@ Control access to your Vectara resources:
 ### For Development and Testing
 
 1. **[Sign up for a trial](/docs/vectara-trial)** - 30-day SaaS trial with full features
-2. **[Create API keys](/docs/deploy-and-scale/authentication/api-key-management)** - Quick authentication for development
+2. **[Create API keys](/docs/security/authentication/api-key-management)** - Quick authentication for development
 3. **[Build your first app](/docs/developer-quickstart)** - Get started in 5 minutes
 
 ### For Production (SaaS)
 
-1. **[Switch to OAuth 2.0](/docs/deploy-and-scale/authentication/oauth-2)** - More secure than API keys
-2. **[Configure RBAC](/docs/deploy-and-scale/authentication/role-based-access-control)** - Control team access
+1. **[Switch to OAuth 2.0](/docs/security/authentication/oauth)** - More secure than API keys
+2. **[Configure RBAC](/docs/security/authorization/role-based-access-control)** - Control team access
 3. **[Enable monitoring](/docs/learn/query-observability)** - Track performance and usage
-4. **[Review security settings](/docs/learn/data-privacy/privacy-overview)** - Ensure compliance
+4. **[Review security settings](/docs/security/data-privacy/overview)** - Ensure compliance
 
 ### For Production (Private Deployment)
 

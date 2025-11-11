@@ -12,7 +12,7 @@ import {vars} from '@site/static/variables.json';
 import CodePanel from '@site/src/theme/CodePanel';
 
 
-App clients provide the necessary pieces of information to [generate a JWT token](/docs/deploy-and-scale/authentication/oauth-2#generate-a-jwt-token) 
+App clients provide the necessary pieces of information to [generate a JWT token](/docs/security/authentication/oauth#generate-a-jwt-token) 
 that developers need for OAuth 2.0 authentication. These pieces include the 
 authorization URL, Client ID, and Client Secret.
 
@@ -51,4 +51,4 @@ client and selecting **Copy secret.**
 ![Copy the Client Secret](/img/copy_client_secret.png)
 
 Now that you have values for the authentication URL, `client_id`, and `client_secret`, 
-you can [generate a JWT token](/docs/deploy-and-scale/authentication/oauth-2#generate-a-jwt-token) with a `client-credentials` grant.
+you can [generate a JWT token](/docs/security/authentication/oauth#generate-a-jwt-token) with a `client-credentials` grant.

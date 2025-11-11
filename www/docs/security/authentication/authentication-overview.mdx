@@ -1,7 +1,7 @@
 ---
-id: authentication-authorization-vectara
-title: Authentication and Authorization in Vectara
-sidebar_label: Authentication and Authorization in Vectara
+id: authentication-overview
+title: Authentication Overview
+sidebar_label: Overview
 ---
 
 import Tabs from '@theme/Tabs';
@@ -16,17 +16,17 @@ import CodePanel from '@site/src/theme/CodePanel';
 
 
 
-Vectara’s authentication and authorization framework secures access to our 
-platform and its data. Whether you are an admin configuring corpora, a 
-developer integrating APIs, or an end user querying data through an 
-application, this section provides the tools and strategies to control access 
-and manage data effectively. From API keys for quick setups to OAuth 2.0 for 
-enterprise-grade security, and corpus-level permissions for precise data 
+Vectara's authentication and authorization framework secures access to our
+platform and its data. Whether you are an admin configuring corpora, a
+developer integrating APIs, or an end user querying data through an
+application, this section provides the tools and strategies to control access
+and manage data effectively. From API keys for quick setups to OAuth 2.0 for
+enterprise-grade security, and corpus-level permissions for precise data
 control, Vectara balances usability with robust protection.
 
 ## Who uses Vectara?
 
-Admins manage the platform, developers build and test integrations, and end 
+Admins manage the platform, developers build and test integrations, and end
 users access data through apps. This blueprint guides their needs:
 
 ```mermaid
@@ -52,25 +52,25 @@ graph TD
     class E gray;
 ```
 
-*Admins and developers interact with Vectara directly, end users connect to 
+*Admins and developers interact with Vectara directly, end users connect to
 client apps.*
 
-Review the following key topics, guiding you through Vectara access patterns 
+Review the following key topics, guiding you through Vectara access patterns
 that we recommend for enterprises, concepts, and practical steps.
 
 <Grid columns={3}>
   <TopicButton title="Enterprise Access Patterns" href="/docs/security/authorization/vectara-personas-and-access-patterns">
     <Spacer size="l" />
-    Introduces Admins, Developer, and End User access patterns. 
+    Introduces Admins, Developer, and End User access patterns.
     <Spacer size="l" />
     Clarifies who needs what access, grounding your authentication and authorization strategy.
     <Spacer size="l" />
   </TopicButton>
   <TopicButton title="Authentication and Authorization Overview" href="/docs/security/authentication/overview">
     <Spacer size="l" />
-    Outlines Vectara’s authentication mechanisms (API keys, OAuth 2.0) and authorization models (RBAC, ABAC).
+    Outlines Vectara's authentication mechanisms (API keys, OAuth 2.0) and authorization models (RBAC, ABAC).
     <Spacer size="l" />
-    Builds a technical foundation for understanding Vectara’s security model.
+    Builds a technical foundation for understanding Vectara's security model.
   </TopicButton>
   <TopicButton title="Choose the Right Authentication Method" href="/docs/security/authentication/choose-auth-method">
     <Spacer size="l" />
@@ -85,7 +85,7 @@ that we recommend for enterprises, concepts, and practical steps.
     <Spacer size="l" />
     Enables fast, secure integration for common tasks.
     <Spacer size="l" />
-  </TopicButton>  
+  </TopicButton>
   <TopicButton title="Use OAuth 2.0" href="/docs/security/authentication/oauth">
     <Spacer size="l" />
     Explains setting up OAuth 2.0 for production-ready access.
@@ -94,21 +94,21 @@ that we recommend for enterprises, concepts, and practical steps.
   </TopicButton>
   <TopicButton title="Set Up Account and Corpus Permissions (RBAC)" href="/docs/security/authorization/role-based-access-control">
     <Spacer size="l" />
-    Details assigning Role-Based Access Control roles (QueryService, IndexService). 
+    Details assigning Role-Based Access Control roles (QueryService, IndexService).
     <Spacer size="l" />
     Ensures precise permissions for users and apps.
     <Spacer size="l" />
   </TopicButton>
   <TopicButton title="Apply Metadata Filters for Attribute-Based Access Control" href="/docs/security/authorization/attribute-based-access-control">
     <Spacer size="l" />
-    Shows how to use metadata filters for more granular access. 
+    Shows how to use metadata filters for more granular access.
     <Spacer size="l" />
     Adds flexibility to control visibility within corpora.
     <Spacer size="l" />
   </TopicButton>
   <TopicButton title="Isolate Tenants with Corpora" href="/docs/security/authorization/multi-tenant-corpus-isolation">
     <Spacer size="l" />
-    Explains dedicating corpora to tenants for secure, scalable multi-tenant applications. 
+    Explains dedicating corpora to tenants for secure, scalable multi-tenant applications.
     <Spacer size="l" />
     Simplifies access control and monitoring by isolating customer or team data.
     <Spacer size="l" />
@@ -125,10 +125,9 @@ that we recommend for enterprises, concepts, and practical steps.
 
 ## Next steps
 
-1. New to Vectara? Start with **[Enterprise Access Patterns](/docs/security/authorization/vectara-personas-and-access-patterns)** to 
+1. New to Vectara? Start with **[Enterprise Access Patterns](/docs/security/authorization/vectara-personas-and-access-patterns)** to
    identify your role.
 2. Read **[Authentication and Authorization Overview](/docs/security/authentication/overview)** for the basics.
 3. Read about how to **[Choose the Right Authentication Method](/docs/security/authentication/choose-auth-method)**.
-4. Dive into practical guides like **[Create and Use API Keys](/docs/security/authentication/api-key-management)** or 
+4. Dive into practical guides like **[Create and Use API Keys](/docs/security/authentication/api-key-management)** or
    **[Use OAuth 2.0](/docs/security/authentication/oauth)** based on your implementation needs.
-

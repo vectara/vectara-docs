@@ -27,10 +27,10 @@ RESTful structure.
 ## API authentication
 
 All <Config v="names.product"/> APIs are authenticated. Indexing and Search
-APIs can be authenticated via [API Keys](/docs/deploy-and-scale/authentication/api-key-management).
+APIs can be authenticated via [API Keys](/docs/security/authentication/api-key-management).
 The Personal API Key enables most Admin actions for creating and deleting
 corpora, but for deleting accounts and accessing billing data, you need to use
-[OAuth 2.0](/docs/deploy-and-scale/authentication/oauth-2).
+[OAuth 2.0](/docs/security/authentication/oauth).
 
 ## API Reference and OpenAPI specifications
 

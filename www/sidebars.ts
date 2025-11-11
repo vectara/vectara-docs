@@ -44,12 +44,9 @@ const sidebars: SidebarsConfig = {
         {
           type: "category",
           label: "Reranking",
-          link: {
-            type: 'doc',
-            id: 'search-and-retrieval/reranking',
-          },
           collapsed: true,
           items: [
+            "search-and-retrieval/rerankers/reranking-overview",
             "search-and-retrieval/rerankers/vectara-multi-lingual-reranker",
             "search-and-retrieval/rerankers/mmr-reranker",
             "search-and-retrieval/rerankers/user-defined-function-reranker",
@@ -67,22 +64,21 @@ const sidebars: SidebarsConfig = {
       label: "Agents",
       link: {
         type: 'doc',
-        id: 'build/agent-os/agent-platform-overview',
+        id: 'agent-os/agent-platform-overview',
       },
       collapsible: false,
       items: [
-        "build/agent-os/agents-quickstart",
-        "build/agent-os/instructions",
+        "agent-os/agents-quickstart",
+        "agent-os/instructions",
+        "agent-os/sessions",
         {
           type: "category",
-          label: "Agent Tools",
-          link: {
-            type: 'doc',
-            id: 'build/agent-os/agent-tools',
-          },
+          label: "Agent tools",
           items: [
-            "build/agent-os/lambda-tools",
-            // "build/agent-os/subagent-tool",
+            "agent-os/agent-tools-overview",
+            "agent-os/lambda-tools",
+            // "agent-os/structured-indexing-tool",
+            // "agent-os/subagent-tool",
           ],
         },
       ],
@@ -144,19 +140,16 @@ const sidebars: SidebarsConfig = {
       },
       collapsible: false,
       items: [
-        "learn/data-privacy/privacy-overview",
+        "security/data-privacy/privacy-overview",
         {
           type: "category",
-          label: "Authentication",
-          link: {
-            type: 'doc',
-            id: 'deploy-and-scale/authentication/authentication-authorization-vectara',
-          },
+          label: "Authentication methods",
           items: [
-            "deploy-and-scale/authentication/auth-overview",
-            "deploy-and-scale/authentication/choose-auth-method",
-            "deploy-and-scale/authentication/api-key-management",
-            "deploy-and-scale/authentication/oauth-2",
+            "security/authentication/authentication-overview",
+            "security/authentication/auth-overview",
+            "security/authentication/choose-auth-method",
+            "security/authentication/api-key-management",
+            "security/authentication/oauth-2",
             {
               type: "category",
               label: "API Authentication Examples",
@@ -188,19 +181,14 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "category",
-          label: "Authorization",
-          link: {
-            type: 'generated-index',
-            title: "Authorization",
-            description: "Control access to your Vectara resources with role-based, attribute-based, and multi-tenant access control",
-            slug: "/deploy-and-scale/authorization",
-          },
+          label: "Authorization levels",
           items: [
-            "deploy-and-scale/authentication/personas-and-access-patterns",
-            "deploy-and-scale/authentication/role-based-access-control",
-            "deploy-and-scale/authentication/attribute-based-access-control",
-            "deploy-and-scale/authentication/multi-tenant-corpus-isolation",
-            "deploy-and-scale/authentication/combine-access-control-with-app-filters",
+            "security/authorization/authorization-overview",
+            "security/authorization/personas-and-access-patterns",
+            "security/authorization/role-based-access-control",
+            "security/authorization/attribute-based-access-control",
+            "security/authorization/multi-tenant-corpus-isolation",
+            "security/authorization/combine-access-control-with-app-filters",
           ],
         },
       ],

@@ -14,7 +14,7 @@ and how that data is filtered based on user input like categories, tags, or
 projects.
 
 Vectara supports a flexible metadata filtering system that lets you combine 
-[attribute-based access control (ABAC)](/docs/deploy-and-scale/authentication/attribute-based-access-control) with user-input filters in a single 
+[attribute-based access control (ABAC)](/docs/security/authorization/attribute-based-access-control) with user-input filters in a single 
 query. This ensures users see only what they are authorized to access and what 
 is relevant to their current task.
 

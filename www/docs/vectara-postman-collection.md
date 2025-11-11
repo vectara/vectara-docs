@@ -70,7 +70,7 @@ secure or automated workflows. Choose the method that fits your use case.
 
 :::note
 For details about how to obtain credentials, see 
-[**Choose the Right Authorization Method**](/docs/deploy-and-scale/authentication/choose-auth-method).
+[**Choose the Right Authorization Method**](/docs/security/authentication/choose-auth-method).
 :::
 
 ## 3. Explore and run requests

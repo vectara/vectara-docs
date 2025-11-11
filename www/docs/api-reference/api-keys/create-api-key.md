@@ -23,7 +23,7 @@ create a read-only API key for an application that only needs to query data.
 :::note
 
 For more information about the different types of API keys, see
-[**API Key Management**](/docs/deploy-and-scale/authentication/api-key-management).
+[**API Key Management**](/docs/security/authentication/api-key-management).
 
 :::
 
