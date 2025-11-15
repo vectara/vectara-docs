@@ -28,8 +28,7 @@ object-oriented to the objects that exist in Vectara.
 
 To migrate from 1.0 to 2.0, you will need to consider several important 
 changes, including updates to the base URL, authentication, specific 
-endpoints, and requests. Review the [API Reference Documentation](/docs/api-reference/rest) 
-for more details about each endpoint.
+endpoints, and requests.
 
 :::note
 
@@ -97,15 +96,6 @@ Going forward, when you create a new corpus, you can specify a custom
 for each corpus. The `corpus_id` still remains for all corpora and new corpora 
 also get a unique `corpus_id`.
 
-:::note
-
-The gRPC API continues to use `corpus_id` as the primary identifier for 
-corpora. Even for corpora created using REST API 2.0, a `corpus_id` is still 
-generated and can be used with gRPC calls. If using REST 2.0, you work with 
-the `corpus_key`.
-
-:::
-
 
 The `corpus_id` from v1 is only retained for internal purposes 
 for users migrating to v2. In v2, the new user-defined `corpus_key` is the 
@@ -113,8 +103,7 @@ main identifier for each corpus.
 
 **Action items:**
 
-* [Retrieve a list](/docs/rest-api/list-corpora) of corpora in the account 
-  with the [List Corpora API definition](/docs/api-reference/admin-apis/corpus/list-corpora). 
+* [Retrieve a list](/docs/rest-api/list-corpora) of corpora in the account. 
 * Update any code that references the v1 `corpus_id` to use the v2 `corpus_key` format.
 
 ### Corpus object changes

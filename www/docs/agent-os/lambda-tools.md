@@ -10,7 +10,7 @@ As your AI agents take on more complex workflows, they might need to perform
 actions that go beyond what built-in tools can handle. For example, applying
 custom business logic or transforming data.
 
-Lambda Tools enable you to create custom Python functions that your agents can
+Lambda Tools enable you to create your own tools that your agents can
 run during conversations. Think of them as custom skills that teach your agent
 how to handle specialized tasks. These user-defined functions run in secure,
 sandboxed environments, allowing you to extend agent capabilities with custom
@@ -28,7 +28,7 @@ Lambda Tools are user-defined functions that:
 - Provide **complete audit trails** of execution history.
 
 :::tip Note
-Lambda Tools run **without** network access. You have read-only file system access, and
+Lambda Tools run **without** network access. You have secure sandboxed environment, and
 you **cannot** install custom packages. This ensures secure execution in multi-tenant
 environments.
 :::
@@ -66,7 +66,7 @@ The `argument_override` field allows you to:
 - **Hardcode specific values** that the LLM cannot change (e.g., `"customer_tier": "enterprise"`)
 - **Use dynamic context references** with `$ref` to pull values from session or agent metadata (e.g., `{"$ref": "session.metadata.search_query"}`)
 
-### Reusable Lambda Tool Configuration
+### Reusable Lambda tool configuration
 
 You can also create a reusable `LambdaToolConfiguration` that can be referenced across multiple agents.
 This approach is useful for consistent, governed usage of Lambda Tools.
@@ -221,9 +221,13 @@ type annotations.
 ## Test Lambda Tools
 
 Before deploying your Lambda Tool to agents, test it with sample inputs to
-verify correct behavior.
+verify correct behavior. There are two endpoints for testing lambda tools:
+* [Test an existing Lambda Tool](/docs/rest-api/tools/test) - This lets you test the tools you already created.
+* [Test Lambda Tool](/docs/rest-api/test-tool) - This lets you test tools that you want to create. Test functions before creating and using them with agents.
 
-### Test your Lambda Tool
+
+### Example: Test an existing Lambda Tool
+
 
 <CodePanel
   title="Test Lambda Tool Request"

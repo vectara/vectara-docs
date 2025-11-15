@@ -107,7 +107,7 @@ and settings work best for my use case?"`
 - **[GitHub repository](https://github.com/vectara/open-rag-eval)**: Complete source code and documentation
 - **[OpenEvaluation.ai](https://openevaluation.ai)**: Interactive evaluation results viewer  
 - **[Model selection guide](/docs/learn/grounded-generation/model-selection)**: Use evaluation results to inform model choices
-- **[Query observability](/docs/learn/query-observability)**: Monitor production performance of optimized configurations
+- **[Query observability](/docs/hallucination-and-evaluation/query-observability)**: Monitor production performance of optimized configurations
 
 The Open Eval framework transforms RAG optimization from guesswork into a 
 systematic, data-driven process. By providing quantifiable metrics and 

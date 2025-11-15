@@ -500,13 +500,12 @@ for documents with a publication date in 2021.
 Here, `pub_epoch` stores the date in [epoch time][3].
 
 You can find a full list of supported operations on the [Functions and Operators][2]
-page, and a full list of how to specify literals on [Data Types][5]. 
+page, and a full list of how to specify literals on [Data Types][4]. 
 
 [1]: http://www.contrib.andrew.cmu.edu/~shadow/sql/sql1992.txt
 [2]: /docs/build/prepare-data/metadata-filters/func-opr
 [3]: https://en.wikipedia.org/wiki/Unix_time
-[4]: /docs/api-reference/admin-apis/create-corpus#filter-attribute
-[5]: /docs/build/prepare-data/metadata-filters/data-types
+[4]: /docs/build/prepare-data/metadata-filters/data-types
 
 ### Filter by document status
 

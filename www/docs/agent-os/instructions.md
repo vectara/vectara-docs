@@ -337,6 +337,3 @@ Guide agent behavior based on conversation context:
     ]}
   />
 
-## API reference
-
-For complete API details, see the [Instructions API Reference](/api-reference/instructions).

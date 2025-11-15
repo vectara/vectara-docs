@@ -1,12 +1,11 @@
 ---
 id: community-collaborations-and-partnerships
-title: Community Collaborations and Partnerships
-sidebar_label: Community Collaborations and Partnerships
+title: Community collaborations and partnerships
+sidebar_label: Community collaborations and partnerships
 ---
 
 
 import CodePanel from '@site/src/theme/CodePanel';
-
 
 In collaboration with the larger generative AI community, Vectara integrates 
 with other systems that empower developers to enhance their AI applications. 
@@ -15,7 +14,7 @@ hallucination reduction help unlock a new level of accuracy and trust for AI
 assistants and agents.
 
 The integrations fall into a few categories:
-1. **Data Ingest tools:** Our integrations with Airbyte, Unstructured, and DataVolo 
+1. **Data Ingest tools:** Our integrations with Airbyte and Confluent 
    empower developers to build their data ingest pipeline that continuously updates 
    their data assets (from hundreds of possible enterprise data sources) into Vectara
    using these offerings, which offer off-the-shelf integration with hundreds 

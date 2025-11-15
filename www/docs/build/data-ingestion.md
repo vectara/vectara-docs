@@ -319,7 +319,7 @@ Vectara offers the following indexing APIs for these different scenarios:
 ### File upload API
 
 If you want to extract text from existing, unstructured documents in common 
-file types with minimal manual intervention, use the [File Upload API](/docs/api-reference/indexing-apis/file-upload/file-upload). This 
+file types with minimal manual intervention, use the [File Upload API](/docs/rest-api/upload-file). This 
 option enables you to attach additional, user-defined metadata at the 
 document level. 
   
@@ -334,7 +334,7 @@ already.
 
 The File Upload API supports a comprehensive set of document formats including 
 PDF, Microsoft Office files, HTML, Markdown, and more. For a complete list of 
-supported file types, see [Supported File Types](/docs/api-reference/indexing-apis/file-upload/supported-file-types).
+supported file types, see [Supported File Types](/docs/rest-api/upload).
 
 For file types not officially supported or for ingestion from various data 
 sources, consider using the open-source [Vectara Ingest](https://github.com/vectara/vectara-ingest) 
@@ -389,7 +389,7 @@ Chunking refers to the process of breaking a document into smaller parts
 (chunks) for efficient indexing and retrieval. Chunking is critical for 
 optimizing search performance, particularly for large documents and corpora.
 
-Both the [File Upload API](/docs/api-reference/indexing-apis/file-upload/file-upload) and [Indexing API](/docs/api-reference/indexing-apis/indexing) provide an optional 
+Both the File Upload API and Indexing API provide an optional 
 `chunking_strategy` parameter that enables you to define how to chunk 
 documents during ingestion. When deciding on a chunking strategy, consider 
 the trade-offs between granularity and latency.

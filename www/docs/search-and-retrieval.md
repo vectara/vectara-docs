@@ -229,7 +229,7 @@ You can only use **sentences before/after** or **characters before/after**, but 
 
 ### Reranker configuration
 
-[Rerankers](/docs/api-reference/search-apis/reranking) improve result quality by reordering search results to place the
+[Rerankers](/docs/search-and-retrieval/rerankers/reranking-overview) improve result quality by reordering search results to place the
 most relevant content first:
 
 - **type**: Reranker type
@@ -394,8 +394,8 @@ Both [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) and
 [ISO 639-3](https://en.wikipedia.org/wiki/ISO_639-3) language codes are supported
 in this API.
 
-Some features, such as `factual_consistency_score`, may not work on all 
-languages. The [Factual Consistency Score](/docs/learn/hallucination-evaluation) is supported in English, German, and French (`eng`,`deu`,`fra`).
+Some features, such as `factual_consistency_score`, may not work on all
+languages. The [Factual Consistency Score](/docs/hallucination-and-evaluation/hallucination-evaluation) is supported in English, German, and French (`eng`,`deu`,`fra`).
 
 ## Citations
 

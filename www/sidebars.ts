@@ -56,7 +56,7 @@ const sidebars: SidebarsConfig = {
         },
         "prompts/vectara-prompt-engine",
         "search-and-retrieval/bring-your-own-llm",
-        "build-apps/vectara-answer",
+        "search-and-retrieval/vectara-answer",
       ],
     },
     {
@@ -88,10 +88,10 @@ const sidebars: SidebarsConfig = {
       label: "Hallucination and evaluation",
       collapsible: false,
       items: [
-        "learn/query-observability",
-        "learn/hallucination-evaluation",
-        "learn/vectara-hallucination-corrector",
-        "build-apps/open-eval-framework",
+        "hallucination-and-evaluation/query-observability",
+        "hallucination-and-evaluation/hallucination-evaluation",
+        "hallucination-and-evaluation/vectara-hallucination-corrector",
+        "hallucination-and-evaluation/open-eval-framework",
       ],
     },
     {
