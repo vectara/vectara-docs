@@ -18,6 +18,8 @@ the effective use of our platform.
 
 This section covers information about getting data into Vectara:
 
+- **[Add content to a corpus](#add-content-to-a-corpus):** How to upload documents 
+  to a corpus.
 - **[Supported file formats](#supported-file-formats):** What file types Vectara
   can process.
 - **[Structure your data](#structure-your-data):** Document and part-level formats, 
@@ -29,6 +31,233 @@ After understanding these basics, explore these advanced capabilities:
 
   - **[Working with tables](/docs/build/working-with-tables)** - Ingest and query tabular data
   - **[Metadata filters](/docs/build/prepare-data/metadata-filters)** - Filter results using SQL-like expressions
+
+## Add content to a corpus
+
+A corpus is like a container that stores documents and their associated 
+metadata in Vectara. It serves as a repository to organize and manage the 
+collection of content you plan to index, search, and analyze. When you create 
+a corpus, you set up a dedicated space where you can upload and organize your 
+documents.
+
+You can upload files or index structured documents into an existing corpus in 
+two ways: upload document files or index structured documents with 
+JSON. Choose the method that fits your data format. You provide the `x-api-key`, 
+`corpus_key`, and file path (for file upload), or document content (for direct 
+indexing).
+
+### Option 1: Upload a document file
+
+In this example, you have a local `doc.rtf` file that you want to
+upload the corpus with the `corpus_key` as `employee-handbook`:
+
+<CodePanel
+  title="Upload File to Corpus"
+  snippets={[
+    {
+      language: 'bash',
+      code: `curl -L -X POST 'https://api.vectara.io/v2/corpora/employee-handbook/upload_file' \\
+-H 'Content-Type: multipart/form-data' \\
+-H 'Accept: application/json' \\
+-H 'x-api-key: YOUR_API_KEY' \\
+-F 'file=@"//Users/username/Documents/tmp/doc.rtf"'`
+    }
+  ]}
+  annotations={{
+    bash: [
+      { line: 1, text: 'Enter the corpus key.' },
+      { line: 4, text: 'Replace with your actual API key.' },
+      { line: 5, text: 'Path to the file to upload; adjust as needed.' }
+    ]
+  }}
+  layout="stacked"
+/>
+
+#### Example upload file response
+
+<CodePanel
+  title="Upload File Response"
+  snippets={[
+    {
+      language: 'json',
+      code: `{
+  "document": {
+    "id": "doc.rtf",
+    "title": "Sample Document",
+    "sections": [{
+      "id": 1,
+      "text": "Simple test doc. Lorem ipsum dolor sit amet..."
+    }]
+  },
+  "status": "indexed"
+}`
+    }]}  
+  annotations={{
+    json: [
+      { line: 4, text: 'Document identifier and title' },
+      { line: 8, text: 'Extracted and processed content' }
+    ]
+  }}
+  layout="stacked"
+/>
+
+### Option 2: Index a document directly
+
+If you don't have a file to upload, you can create a document directly with text content:
+
+<CodePanel
+  title="Index Document with Content"
+  snippets={[
+    {
+      language: 'bash',
+      code: `curl -X POST 'https://api.vectara.io/v2/corpora/employee-handbook/documents' \\
+-H 'Content-Type: application/json' \\
+-H 'x-api-key: YOUR_API_KEY' \\
+-d '{
+  "id": "pto-policy",
+  "title": "PTO Policy",
+  "sections": [{
+    "text": "All new employees receive 20 days of PTO annually. Employees earn additional vacation days based on years of service, up to 5 extra days. After 5 years of service, employees have 25 vacation days total."
+  }]
+}'`
+    }
+  ]}
+  annotations={{
+    bash: [
+      { line: 3, text: 'Your API key' },
+      { line: 5, text: 'Document identifier' },
+      { line: 8, text: 'The content to make searchable' }
+    ]
+  }}
+  layout="stacked"
+/>
+
+
+## List and delete corpora
+
+Manage your corpora by listing, filtering, and deleting them. In this example, 
+you list all corpora that contain "handbook" in the name, then delete a 
+specific corpus.
+
+1. Execute the following curl command to list the corpora:  
+
+    <CodePanel
+      snippets={[
+        {
+          language: 'bash',
+          code: `curl -L -X GET 'https://api.vectara.io/v2/corpora?limit=8&filter=handbook' \\
+      -H 'Content-Type: application/json' \\
+      -H 'Accept: application/json' \\
+      -H 'x-api-key: abc_12345defg67890hij09876'`
+        }
+      ]}
+      title="List Corpora with Filter"
+      annotations={{
+        bash: [
+          { line: 4, text: 'Replace with your actual API key.' },
+          { line: 1, text: 'Filters corpora containing "handbook" and limits to 8.' }
+        ]
+      }}
+      layout="stacked"/>
+
+   You get the following response:
+
+      <CodePanel
+      snippets={[
+        {
+          language: 'json',
+          code: `{
+      "corpus": [
+       {
+       "id": 6,
+       "key": "Employee handbook",
+       "description": "Employee guidelines from HR",
+       "enabled": true,
+       "queries_are_answers": false,
+       "documents_are_questions": false,
+       "encoder_id": "enc_0",
+       },
+       {
+       "id": 11,
+       "name": "Employee Handbook",
+       "description": "Pet Policy",
+       "enabled": true,
+       "queries_are_answers": false,
+       "documents_are_questions": false,
+       "encoder_id": "enc_0",
+       },
+       {
+       "id": 13,
+       "name": "2025 handbook",
+       "description": "",
+       "enabled": true,
+       "queries_are_answers": false,
+       "documents_are_questions": false,
+       "encoder_id": "enc_0",
+       }
+      ],
+     "metadata": {
+     "page_key": ""
+      }
+    }`
+        }
+      ]}
+      title="List Corpora Response"
+      annotations={{
+        json: [
+          { line: 3, text: 'First corpus in the list.' },
+          { line: 12, text: 'Second corpus with a different description.' }
+        ]
+      }}
+      layout="stacked"
+    />
+
+2. Execute the following curl command to delete a specific corpus with `corpus_key` = `2025-handbook`.  
+
+    <CodePanel
+      snippets={[
+        {
+          language: 'bash',
+          code: `curl -L -X DELETE 'https://api.vectara.io/v2/corpora/2025-handbook' \\
+      -H 'Content-Type: application/json' \\
+      -H 'Accept: application/json' \\
+      -H 'x-api-key: abc_12345defg67890hij09876'`
+        }
+      ]}
+      title="Delete Corpus"
+      annotations={{
+        bash: [
+          { line: 1, text: 'Specifies the corpus to delete ("2025-handbook").' },
+          { line: 4, text: 'Replace with your actual API key.' }
+        ]
+      }}
+      layout="stacked"
+    />
+
+  You get the following response:
+
+    <CodePanel
+      snippets={[
+        {
+          language: 'json',
+          code: `{
+    "status": 204,
+    "message": "Corpus deleted successfully"
+  }`
+        }
+      ]}
+      title="Delete Corpus Response"
+      annotations={{
+        json: [
+          { line: 2, text: 'HTTP status code 204 indicates success.' }
+        ]
+      }}
+      layout="stacked"
+    />
+
+3. Execute the curl command from Step 1 again and the corpus you deleted
+   no longer exists.
+
 
 ## Supported file formats
 
@@ -444,4 +673,3 @@ Consider **Vectara Ingest** (open-source) if you need:
 
 Evaluate your support requirements when choosing between official 
 APIs and the open-source framework.
-

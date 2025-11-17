@@ -13,9 +13,9 @@ application in minutes.
    capabilities.
 2. **[Sign up for a trial](/docs/vectara-trial)** - Get immediate access to all 
    features for 30 days.
-3. **[Complete the Developer Quickstart](/docs/developer-quickstart)** - Build your 
+3. **[Complete the developer quick start](/docs/developer-quickstart)** - Build your 
    first app in 5 minutes
-4. **Explore advanced features**: Move on to [Build](/docs/build) and the [API Reference](/docs/rest-api)
+4. **[Check out the API reference](/docs/rest-api)**: Explore advanced features 
    to learn about data ingestion, search customization, and agent creation.
 
 ## Building agents?
@@ -34,16 +34,16 @@ application in minutes.
 Need complete data control? Vectara offers private deployment options for organizations 
 with specific compliance, security, or infrastructure requirements:
 
-- **[Private Deployment Options](/docs/deployments)** - Deploy on-premises (air-gapped), 
+- **[Private deployment options](/docs/deployments)** - Deploy on-premises (air-gapped), 
   in your VPC, or in a dedicated cloud environment.
-- **[Evaluation Process](/docs/deployments/onprem-evaluation-process)** - Start your evaluation 
+- **[Evaluation process](/docs/deployments/onprem-evaluation-process)** - Start your evaluation 
   for complete data sovereignty and compliance.
 
 ### Learn More
 
-- **[Vectara Demos and Tutorials](https://vectara.com/demos/)** - Watch video tutorials and explore 
+- **[Vectara demos and tutorials](https://vectara.com/demos/)** - Watch video tutorials and explore 
   demos applications.
-- **[Community Forums](https://discuss.vectara.com/)** - Ask questions, share ideas, and connect 
+- **[Community forums](https://discuss.vectara.com/)** - Ask questions, share ideas, and connect 
   with other developers.
-- **[Release Notes](/docs/release-notes)** - Stay updated on new features and platform 
+- **[Release notes](/docs/release-notes)** - Stay updated on new features and platform 
   enhancements.

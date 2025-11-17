@@ -384,4 +384,3 @@ curl -X POST https://api.vectara.io/v2/query \\
 
 Save as `vectara-quickstart.sh`, make it executable with `chmod +x vectara-quickstart.sh`, and run it!
 
-**Want more examples?** See [API Recipes](/docs/api-recipes).

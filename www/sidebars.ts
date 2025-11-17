@@ -231,7 +231,6 @@ const sidebars: SidebarsConfig = {
         slug: "/rest-api",
       },
       items: [
-        "api-recipes",
         apiSidebar,
         "vectara-postman-collection",
       ],

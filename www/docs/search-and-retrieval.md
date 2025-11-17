@@ -20,6 +20,8 @@ see [Queries](/docs/rest-api/queries) in the API Reference.
 This section introduces the core tools and strategies available for 
 optimizing your search and retrieval workflows.
 
+- **[Search for answers in a corpus](#search-for-answers-in-a-corpus)**: View an example 
+  search.
 - **[Hybrid search](#hybrid-search)**: Combine semantic and keyword search (recommended 
   starting point).
 - **[Keyword search](#keyword-search)**: Pure keyword matching for specialized 
@@ -61,9 +63,100 @@ This basic query example has a minimal configuration:
     }
   }`}]} title="Basic Query Example" layout="stacked" />
 
-
 Vectara offers different search methods to fit different scenarios and 
 requirements.
+
+## Search for answers in a corpus
+
+Query an existing corpus and get AI-generated answers with context. In this 
+example, you have a corpus with uploaded data from an Employee Handbook.
+
+#### Example cURL command
+
+<CodePanel
+  snippets={[
+    {
+      language: 'bash',
+      code: `curl -L -X POST 'https://api.vectara.io/v2/corpora/employee-handbook/query' \\
+-H 'Content-Type: application/json' \\
+-H 'Accept: application/json' \\
+-H 'x-api-key: YOUR_API_KEY' \\
+-d '{
+    "query": "How much PTO is offered to employees each year?",
+    "stream_response": false,
+    "search": {
+      "limit": 20,
+      "context_configuration": {
+        "sentences_before": 3,
+        "sentences_after": 3,
+        "start_tag": "<b>",
+        "end_tag": "</b>"
+      },
+      "metadata_filter": "part.lang = \'eng\'",
+      "lexical_interpolation": 0.005,
+    },
+    "generation": [
+      {
+        "generation_preset_name": "mockingbird-2.0",
+        "max_used_search_results": 20
+      }
+    ]
+  }'`
+    }
+  ]}
+  title="Vectara API Query"
+  annotations={{
+    bash: [
+      { line: 4, text: 'Replace with your actual API key.' },
+      { line: 9, text: 'Limits summarization to 20 results.' },
+      { line: 21, text: 'Specifies Mockingbird 2.0 as the generation preset.' }
+    ]
+  }}
+  layout="stacked"
+/>
+
+
+#### Example JSON response
+
+Let’s take a closer look at the first response:
+
+<CodePanel
+  snippets={[
+    {
+      language: 'json',
+      code: `{
+    "summary": "Employee Handbook PTO is 20 days a year for all new employees. \n<b>Employees earn more vacation days per year of service up to 5 extra days.\n</b> Example: Once you begin your 5th year, you now have 25 vacation days.",
+    "summary_language": "eng",
+    "search_results": [
+      {
+       "text": "Employee Handbook PTO is 20 days a year for all new employees. \n<b>Employees earn more vacation days per year of service up to 5 extra days.\n</b> Example: Once you begin your 5th year, you now have 25 vacation days.",
+       "score": 4.30505,
+       "part_metadata": {
+         "lang": "eng",
+         "section": "1",
+         "offset": "63",
+         "len": "73"
+       },
+       "document_metadata": {},
+       "document_id": "doc_123456789",
+       "request_corpora_index": 0
+     }
+   ]
+   // More results....
+}`
+    }]}
+  title="Example JSON Response"
+  annotations={{
+    json: [
+      { line: 2, text: 'Summary of the query result with highlighted text.' },
+      { line: 5, text: 'Detailed search result with metadata.' }
+    ]
+  }}
+  layout="stacked"
+/>
+
+The result answers the question and returns additional details about the
+query, such as the language, section, and offset.
 
 ## Hybrid search
 

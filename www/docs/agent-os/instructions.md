@@ -22,8 +22,13 @@ role, behavior, and guidelines of an agent before any user interaction begins.
 
 ## Creating instructions
 
-To create an instruction, you provide information like `name` and `description`, `template` 
-details, and arbitrary `metadata` for tracking, versioning, or categorization.
+To create an instruction, you provide information like `name` and `description`, 
+`template`  details, and arbitrary `metadata` for tracking, versioning, or 
+categorization.
+
+Be specific to exactly what you want the agent to do. For emphasis, use CAPS 
+if you want the agent to follow a specific format. You can also use negative 
+prompts such as saying **DO NOT DO ...**.
 
 See [Create Instruction API](/docs/rest-api/create-instruction) for detailed specifications.
 
