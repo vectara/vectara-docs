@@ -18,6 +18,76 @@ experimenting with Retrieval Augmented Generation (RAG), or exploring our
 newest API endpoints, this page is your go-to place to see how we’re evolving 
 and how these product and documentation changes can benefit your enterprise.
 
+## Subagents: Autonomous, Specialized Agents Inside Your Agents
+
+_November 18, 2025_
+
+Vectara introduces Sub-agents, a powerful new capability that lets your agents 
+initialize dedicated, autonomous agent instances to handle additional, multi-step 
+tasks. They accomplish all of this while keeping their context isolated from the 
+parent agent conversation. Invoke autonomous agents for focused tasks such as 
+code review, research, or content transformation.
+
+**Why it matters:** Advanced sessions often overwhelm an agent and cause context 
+bloat. Subagents solve this issue by providing a separation from the primary agent. 
+Your parent agent stays focused while delegating work to highly specialized 
+subagents that maintain an independent state, reasoning, and workflow.
+
+**More information:**
+
+* [Agent tools overview](/docs/agent-os/agent-tools-overview)
+* [Subagents](/docs/agent-os/subagents)
+
+---
+
+## Document Conversion Tool for Agents 
+
+_November 16, 2025_
+
+Vectara introduces the Document Conversion Tool, a new standalone agent tool 
+that extracts content from uploaded files and converts them into clean, 
+structured Markdown format. These files include PDFs, Word documents, 
+PowerPoint presentations, and images. Converted outputs persist across a 
+session.
+
+**Why it matters:** Previously, converting uploaded files into readable text 
+required external preprocessing. This tool brings document parsing directly into 
+agent sessions, enabling agents to interpret file types and transform them 
+into context-ready text for reasoning, summarization, or indexing.
+
+**More information:**
+[Agent tools overview](/docs/agent-os/agent-tools-overview)
+[Document upload and conversion](docs/agent-os/sessions#document-upload-and-conversion)
+
+---
+
+## Artifact Storage for Agents
+
+_November 15, 2025_
+
+The Agents API now supports artifact storage, a persistent, session-scoped 
+workspace for files that enables efficient multi-step document processing 
+workflows. Artifacts provide a persistent workspace where agents and users 
+can share files throughout a conversation without bloating the agent's context. 
+When the session expires, the artifacts are cleaned up.
+
+
+**Why it matters:** Before artifact storage, file uploads caused context window 
+bloat and inefficient multi-step workflows. Artifacts solve these problems by 
+separating file storage from file references. Upload a PDF once, and reference 
+it across multiple operations like conversion, analysis, and indexing.
+
+**What's new:**
+* Session-scoped storage: Files uploaded to agent sessions are stored as artifacts 
+with unique identifiers, remaining available throughout the conversation lifecycle.
+* Lightweight references: `ArtifactReference` objects contain only metadata (artifact_id, 
+filename, mime_type, size_bytes) instead of full file contents, reducing payload sizes 
+from potentially megabytes to ~100 bytes.                                                                                  
+
+**More information:**
+[Agent tools overview](/docs/agent-os/agent-tools-overview)
+[Working with artifacts](/docs/agent-os/sessions#working-with-artifacts-in-sessions)
+
 ---
 
 ## Lambda Tools: Customize Python Functions in Agents
