@@ -41,6 +41,8 @@ const sidebars: SidebarsConfig = {
       },
       collapsible: false,
       items: [
+        "search-and-retrieval/get-started",
+         "search-and-retrieval/hybrid-search",
         {
           type: "category",
           label: "Reranking",
@@ -55,7 +57,6 @@ const sidebars: SidebarsConfig = {
           ],
         },
         "prompts/vectara-prompt-engine",
-        "search-and-retrieval/bring-your-own-llm",
         "search-and-retrieval/vectara-answer",
       ],
     },
@@ -81,6 +82,7 @@ const sidebars: SidebarsConfig = {
             // "agent-os/subagent-tool",
           ],
         },
+        "search-and-retrieval/bring-your-own-llm",
       ],
     },
     {

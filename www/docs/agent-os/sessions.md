@@ -287,14 +287,48 @@ of the available files:
   layout="stacked"
 />
 
+## List artifacts in a session.
+
+View what is currently stored in a session's workspace:
+
+<CodePanel
+  title="List artifacts in a session"
+  snippets={[
+    {
+      language: 'curl',
+      code: `curl -X GET "https://api.vectara.io/v2/agents/{agent_key}/sessions/{session_key}/artifacts"
+       -H "Authorization: Bearer YOUR_API_KEY"`
+    }
+  ]}
+  layout="stacked"
+/>
+
+## Retrieve Content of an Artifact
+
+Download an artifact (including agent-generated ones).
+
+<CodePanel
+  title="List artifacts in a session"
+  snippets={[
+    {
+      language: 'curl',
+      code: `curl -X GET "https://api.vectara.io/v2/agents/{agent_key}/sessions/{session_key}/artifacts/{artifact_id}" 
+       -H "Authorization: Bearer YOUR_API_KEY"`
+    }
+  ]}
+  layout="stacked"
+/>
+
+
+
 ### How agents use artifacts
 
 After files are uploaded as artifacts, the agent can:
 - Use document conversion tools to extract content from PDFs, Word documents,
-  or PowerPoint files
-- Reference artifacts in analysis or question-answering workflows
-- Pass artifacts to indexing tools to add content to corpora
-- Create new artifacts as outputs of tool operations
+  or PowerPoint files.
+- Reference artifacts in analysis or question-answering workflows.
+- Pass artifacts to indexing tools to add content to corpora.
+- Create new artifacts as outputs of tool operations.
 
 Artifacts remain available throughout the session lifecycle, enabling multi-step
 workflows without re-uploading files.
