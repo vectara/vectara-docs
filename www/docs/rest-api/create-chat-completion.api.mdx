@@ -1,11 +1,11 @@
 ---
 id: create-chat-completion
 title: "Creates a model response for the given chat conversation"
-description: "OpenAI-compatible endpoint for chat completions. Creates a response for the given chat conversation. The chat completion API allows you to chat with Vectara's language models in a way that's compatible with OpenAI's specification. This makes it easy to integrate with applications already designed for OpenAI's API."
+description: "The Chat Completions API provides an OpenAI-compatible interface for generating model responses in multi-turn chat conversations. This API enables you to integrate our language models directly into applications designed to work with the OpenAI Chat Completions format, making it easy to leverage Vectara capabilities with minimal changes to existing tools or code."
 sidebar_label: "Creates a model response for the given chat conversation"
 hide_title: true
 hide_table_of_contents: true
-api: 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
+api: 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
 sidebar_class_name: "post api-method"
 info_path: docs/rest-api/vectara-rest-api-v-2
 custom_edit_url: null
@@ -36,7 +36,56 @@ import Heading from "@theme/Heading";
 
 
 
-OpenAI-compatible endpoint for chat completions. Creates a response for the given chat conversation. The chat completion API allows you to chat with Vectara's language models in a way that's compatible with OpenAI's specification. This makes it easy to integrate with applications already designed for OpenAI's API.
+The Chat Completions API provides an OpenAI-compatible interface for generating model responses in multi-turn chat conversations. This API enables you to integrate our language models directly into applications designed to work with the OpenAI Chat Completions format, making it easy to leverage Vectara capabilities with minimal changes to existing tools or code.
+
+Use this API to enable interactive chat experiences that support context-aware responses, streaming output, and token usage tracking.
+
+The request includes a series of chat messages and optional parameters that control the behavior and structure of the model response. The request body must include the `messages` parameter, an array of message objects (role, content) representing the full conversation so far.
+
+### Streaming responses
+
+If the `stream` parameter is set to `true`, the response appears as a series of text/event-stream parts (also known as chunks). Each chunk includes a `delta` field showing the incremental message update.
+
+### Example request
+
+This example sends a simple chat conversation to the API, asking the assistant for the capital of France. The request includes a system prompt, a user message, and a temperature setting for response variability.
+```json
+{
+  "model": "chat-model-001","messages": [{ "role": "system", "content": "You are a helpful assistant." },
+  { "role": "user", "content": "What is the capital of France?" }
+],
+"temperature": 0.7,
+"stream": false
+}
+```
+
+### Example response
+The response includes a generated reply from the assistant, along with token usage statistics. In this example, the model returns a direct answer to a user question.
+```json
+{
+"id": "chatcmpl-abc123",}
+"object": "chat.completion",
+"created": 1712454830,
+"model": "chat-model-001",
+"choices": [
+  {
+    "index": 0,
+    "message": {
+      "role": "assistant",
+      "content": "The capital of France is Paris."
+  },
+    "finish_reason": "stop"
+  }
+],
+"usage": {
+  "prompt_tokens": 21,
+  "completion_tokens": 9,
+  "total_tokens": 30
+  } 
+} 
+```
+If the input summary is accurate, the `corrected_summary` matches the `original_summary`.
+
 
 <Heading
   id={"request"}
