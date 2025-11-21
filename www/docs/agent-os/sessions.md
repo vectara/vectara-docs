@@ -20,6 +20,7 @@ appended to the session.
 Sessions support lifecycle operations such as creation, update, retrieval, 
 listing, and deletion.
 
+
 ## Chat with your agent
 
 After creating an agent, you can interact with it by creating a session and sending messages:
@@ -218,6 +219,13 @@ conversations. Artifacts remain available throughout the session lifecycle,
 enabling multi-step workflows without re-uploading files.
 
 
+### Document upload and conversion
+
+You can upload PDFs, DOCX files, PowerPoints, or images to an agent session. 
+The Document Conversion Tool converts the uploaded artifact into Markdown,
+which can then be summarized, analyzed, or indexed in subsequent tool calls.
+
+
 ### Uploading files to a session
 
 To make files available to an agent, upload them to the session workspace using
@@ -298,4 +306,3 @@ After files are uploaded as artifacts, the agent can:
 
 Artifacts remain available throughout the session lifecycle, enabling multi-step
 workflows without re-uploading files.
-
