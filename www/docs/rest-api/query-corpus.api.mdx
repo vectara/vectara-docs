@@ -39,18 +39,18 @@ import Heading from "@theme/Heading";
 Perform an advanced query on a specific corpus to find relevant results, generate summaries, highlight relevant snippets, and use Retrieval Augmented Generation.
 
 This endpoint expands on the simple GET version by allowing full customization of:
-- **Search parameters**: Control pagination (`offset`, `limit`), apply metadata filters, and specify lexical interpolation to balance neural and keyword-based retrieval.
-- **Hybrid search**: Adjust the `lexical_interpolation` value between `0.0` (purely neural) and `1.0` (purely lexical). Typical best results are between `0.01` and `0.1`.
-- **Reranking**: Apply advanced rerankers such as Multilingual, MMR, Chain, or User Defined Function rerankers to improve result relevance.
-- **Generation (RAG)**: Include a `generation` object to enable grounded summarization with your own data, citations, and factual consistency scoring.
-- **Streaming**: Optionally stream results or generated summaries in real time with `stream_response`.
+- **Search parameters:** Control pagination (`offset`, `limit`) and apply metadata filters to refine the retrieval scope.
+- **Hybrid search:** Adjust the `lexical_interpolation` value between `0.0` (purely neural) and `1.0` (purely lexical). We recommend starting at `0.025`.
+- **Reranking:** Apply advanced rerankers such as Multilingual, MMR, or User Defined Function rerankers to improve result relevance.
+- **Generation:** Include a `generation` object to enable grounded summarization with your own data, citations, and factual consistency scoring.
+- **Streaming:** Optionally stream results or generated summaries in real time with `stream_response`.
 
 Each query must include the `corpus_key` path parameter that identifies the target corpus. The response contains one or more subdocuments representing the most relevant passages, along with any generated summaries or citations.
 
 **Typical use cases**
-- Perform a semantically rich search over a large, domain-specific corpus.
-- Retrieve relevant text passages and apply reranking for better result diversity.
-- Generate contextually grounded answers or summaries using Retrieval Augmented Generation.
+- Perform a semantic search over a domain-specific corpus.
+- Retrieve relevant text passages and apply reranking for better result ordering.
+- Generate contextual answers or summaries using Retrieval Augmented Generation.
 
 ## Basic query
 
@@ -62,7 +62,7 @@ This basic query example has a minimal configuration:
   "search": {
     "corpora": [{
       "corpus_key": "my-corpus" 
-    }],
+          }],
   },
   "generation": {
     "generation_preset_name": "mockingbird-2.0",
@@ -70,37 +70,25 @@ This basic query example has a minimal configuration:
   }
 }
 ```
+## Request structure
 
-## Request body parameters
+The request body consists of three primary components:
 
-The request body is a JSON object containing the `query`, `search`, and optional `generation` objects.
+1.  **`query`**: The actual search text or question.
+2.  **`search`**: Controls the retrieval process, including metadata filters, lexical interpolation, content configuration, and how to rank results.
+3.  **`generation`**: Specifies the Large Language Model (LLM), how many search results to use, citation styles, and prompt customization.
 
-`query` (string, required) - (Required) The search query text.
-`search` (string, required) - (Required) An object that controls the retrieval and reranking process.
+### Search configuration
 
-`search.corpora` - An array specifying which corpus to search. For this endpoint, the array will contain a single object.
+The `search` object defines the scope and precision of your retrieval.
 
-* `corpus_key` (string, required): The unique ID of the corpus to search.
-* `metadata_filter` (string, optional): A SQL-like filter to narrow results. For syntax and examples, see the Filters guide.
-* `lexical_interpolation` (float, optional): A value between 0.0 (pure neural search) and 1.0 (pure keyword search) to enable hybrid search. A recommended starting point is 0.025.
-* `custom_dimensions` (object, optional): An object to boost or bury results based on custom dimensions. See the Custom Dimensions guide for details.
+**Filtering**
 
-`search.limit` (integer, optional) - The maximum number of results to retrieve before reranking. **Default**: 10
+Use `search.metadata_filter` to apply SQL-like metadata filters refine results before the search runs.
 
-`search.offset` (integer, optional) - The number of results to skip for pagination. **Default**: 0
+**Context configuration**
 
-`search.context_configuration` (object, optional) - Configuration for surrounding context to include with each search result.
-* `sentences_before` (integer): Number of sentences to include before the matching text.
-* `sentences_after` (integer): Number of sentences to include after the matching text.
-* `characters_before` (integer): Number of characters to include before the matching text.
-* `characters_after` (integer): Number of characters to include after the matching text.
-* `start_tag` (string): HTML-style tag to wrap the beginning of the retrieved context (e.g., `<b>`).
-* `end_tag` (string): HTML-style tag to wrap the end of the retrieved context (e.g., `</b>`).
-:::note
-You can only use sentences before/after OR characters before/after, but not both.
-:::
-
-Example:
+The `search.context_configuration` object determines how much surrounding text is returned with your search results. This lets you to control the "window" of text passed to the LLM or displayed to the user.
 
 ```json
 {
@@ -113,88 +101,68 @@ Example:
 }
 ```
 
-`search.reranker` (object, optional) - Configures a reranker to improve result quality by reordering search results to place the most relevant content first. For more details, see [Reranking overview](/docs/search-and-retrieval/rerankers/reranking-overview).
-* `type` (string): The reranker type. Options include customer_reranker (default multilingual reranker), mmr (for result diversity), or none.
-* `reranker_name` (string): The specific reranker model to use (e.g., Rerank_Multilingual_v1).
-* `limit` (integer): Maximum number of results to return after reranking.
-* `cutoff` (float): Minimum relevance score (between 0.0 and 1.0) for a result to be included. A typical range is 0.3-0.7.
-* `include_context` (boolean): If true, uses surrounding context text for more accurate reranking.
+**Reranking**
 
-**Example:**
-
-`json
-\{
-  "reranker": \{
+Use the reranking to reordes the retrieved results using a secondary method to ensure the most relevant documents are at the top.
+```json 
+{
+  "reranker": {
     "type": "customer_reranker",
     "reranker_name": "Rerank_Multilingual_v1",
-    "limit": 50,
-  \}
-\}
+    "limit": 50
+  }
+}
 ```
+### Generation configuration 
 
-`generation` (object, optional) - An object that controls how the agent creates natural language responses. If this object is excluded, summarization is disabled.
+The generation object manages the final, summarization step of the query.
 
-`generation.generation_preset_name` (string, optional) - The name of the pre-configured prompt and LLM bundle.
+**LLM and presets**
 
-**Recommended Presets:**
+Use `generation.generation_preset_name` to select your preferred LLM (e.g., gpt-5, mockingbird-2.0).
 
-* `mockingbird-2.0`: Vectara's cutting-edge LLM for RAG.
-* `vectara-summary-ext-24-05-med-omni`: (gpt-4o, optimized for citations)
-* `vectara-summary-ext-24-05-large`: (gpt-4.0-turbo, optimized for citations)
-* `vectara-summary-ext-24-05-sml`: (gpt-3.5-turbo, optimized for citations)
+`generation.max_used_search_results` - The maximum number of top search results to send for summarization. The number of top search results to send to the LLM for summarization.
 
-
-**For Tabular data:**
-
-`vectara-summary-table-query-ext-dec-2024-gpt-4o`
-
-`generation.prompt_template` (string, optional) - A custom prompt template in JSON format that defines the system and user messages for the LLM. Use this to customize the behavior of the model beyond the preset. The template can include Velocity templates with variables such as `$vectaraQueryResults` to reference retrieved search results. For more information, see [Custom prompts](/docs/prompts/vectara-prompt-engine).
-
-`generation.max_used_search_results` (integer, optional) - The maximum number of top search results to send for summarization. The number of top search results to send to the LLM for summarization. Increasing this can create a more comprehensive summary but may increase response time. **Default limit**: 25.
+Increasing this value can create a more comprehensive summary but may increase response time. **Default limit**: 25.
 
 :::caution
 Setting this value too high may prevent the model from generating a response.
 :::
 
-`generation.response_language` (string, optional) - The language code for the response (e.g. `eng`, `spa`, `deu`). Set this to `auto` to have Vectara guess the language, but we recommend specifying your preferred language for best results.
+**Citations**
 
-`generation.citations` (object, optional) - Configuration for including citations in the generated summary.
-* `style` (string): Citation style. Options are `markdown`, `html`, or `none`.
-* `url_pattern` (string): A URL template for citation links, where `{doc.id}` will be replaced with the document ID.
-* `text_pattern` (string): A text template for citation display, where `{doc.title}` will be replaced with the document title.
+The `generations.citations` object formats how the summary cites its answers to your documents, supporting Markdown, HTML, or plain text styles.
 
-**Example:**
+**Example generation object**
 
-```json
-{
-  "citations": {
-    "style": "markdown",
-    "url_pattern": "https://docs.example.com/documents/{doc.id}",
-    "text_pattern": "{doc.title}"
-  }
-}
-```
-
-`generation.model_parameters` (object, optional) - Custom parameters for the underlying LLM that overwrites the defaults of `generation_preset_name`.
-* `temperature` (float): Controls randomness in the output. Higher values (e.g., 0.8) produce more creative results, while lower values (e.g., 0.2) yield more focused and deterministic outputs.
-* `max_tokens` (integer): The maximum number of tokens to generate in the response.
-* `frequency_penalty` (float): Decreases the use of repeating words, reducing repetition. **Default**: `0.0` to `1.0`.
-* `presence_penalty` (float): Increases the chance for the model to introduce new topics. **Default**: `0.0` to `1.0`.
-
-**Example:**
+The following example configures the request to use the Mockingbird 2.0 model, limits the input to the top 20 search results, specifies an English response, and styles citations as Markdown links.
 
 ```json
 {
-  "model_parameters": {
-    "temperature": 0.7,
-    "max_tokens": 500,
-    "frequency_penalty": 0.5,
-    "presence_penalty": 0.3
+  "generation": {
+    "generation_preset_name": "mockingbird-2.0",
+    "max_used_search_results": 10,
+    "response_language": "eng",
+    "enable_factual_consistency_score": true,
+    "citations": {
+"style": "markdown",
+"url_pattern": "[https://docs.example.com/documents/](https://docs.example.com/documents/){doc.id}",
+"text_pattern": "{doc.title}"
+    }
   }
 }
 ```
+**Recommended generation presets:**
 
-`generation.enable_factual_consistency_score` (boolean): If true, includes a factual consistency score in the response to indicate how well the generated summary aligns with the retrieved documents.
+* `mockingbird-2.0`: Vectara's cutting-edge LLM for RAG.
+* `vectara-summary-ext-24-05-med-omni`: (gpt-4o, optimized for citations)
+* `vectara-summary-ext-24-05-large`: (gpt-4.0-turbo, optimized for citations)
+* `vectara-summary-ext-24-05-sml`: (gpt-3.5-turbo, optimized for citations)
+* `vectara-summary-table-query-ext-dec-2024-gpt-4o`
+
+**For Tabular data:**
+
+`generation.prompt_template` (string, optional) - A custom prompt template in JSON format that defines the system and user messages for the LLM. Use this to customize the behavior of the model beyond the preset. The template can include Velocity templates with variables such as `$vectaraQueryResults` to reference retrieved search results. For more information, see [Custom prompts](/docs/prompts/vectara-prompt-engine).    
 
 
 <Heading
