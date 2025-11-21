@@ -40,19 +40,20 @@ Create a new instruction that defines how an agent should behave, reason, and re
 
 Instructions support dynamic content using the Apache Velocity templating engine. Velocity variables allow instructions to reference runtime context:
 
-- `\$\tools`: The list of tools available to the agent.
-- `\$\{session.metadata.field}`: Session-level metadata (user context, permissions, preferences).
-- `\$\{agent.metadata.field}`: Agent-level metadata (configuration or environment).
+- `\\$tools`: The list of tools available to the agent.
+- `\\${session.metadata.field}`: Session-level metadata (user context, permissions, preferences).
+- `\\${agent.metadata.field}`: Agent-level metadata (configuration or environment).
 
 Example tool iteration:
 ```velocity
 You have access to the following tools:
-\#foreach(\$\tool in $tools)
-  - \$\{tool.name}: \$\{tool.description}
+\\#foreach(\\$tool in \\$tools)
+  - \\${tool.name}: \\${tool.description}
 #end
 ```
 :::tip Tips for effective instruction design
-Provide clear, directive language in the template to shape the agent’s behavior. You can emphasize specific requirements using capital letters or negative instructions such as **DO NOT**.
+Provide directive language in the template to shape the agent’s behavior. You can emphasize specific requirements using capital letters or negative instructions such as **DO NOT**.
+:::
 
 Metadata can personalize behavior. For example:
 
