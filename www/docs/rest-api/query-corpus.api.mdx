@@ -57,19 +57,20 @@ Each query must include the `corpus_key` path parameter that identifies the targ
 This basic query example has a minimal configuration:
 
 ```json
-{
-  "query": "What are black holes?",
-  "search": {
-    "corpora": [{
-      "corpus_key": "my-corpus" 
-          }],
-  },
-  "generation": {
-    "generation_preset_name": "mockingbird-2.0",
-    "max_used_search_results": 20 
-  }
-}
-```
+      {
+        "query": "What are black holes?",
+        "search": {
+          "corpora": [{
+            "corpus_key": "my-corpus" 
+                }],
+        },
+        "generation": {
+          "generation_preset_name": "mockingbird-2.0",
+          "max_used_search_results": 20 
+        }
+      }
+       ```
+
 ## Request structure
 
 The request body consists of three primary components:
@@ -91,28 +92,30 @@ Use `search.metadata_filter` to apply SQL-like metadata filters refine results b
 The `search.context_configuration` object determines how much surrounding text is returned with your search results. This lets you to control the "window" of text passed to the LLM or displayed to the user.
 
 ```json
-{
-  "context_configuration": {
-    "sentences_before": 2,
-    "sentences_after": 2,
-    "start_tag": "<mark>",
-    "end_tag": "</mark>"
-  }
-}
-```
+      {
+        "context_configuration": {
+          "sentences_before": 2,
+          "sentences_after": 2,
+          "start_tag": "<mark>",
+          "end_tag": "</mark>"
+        }
+      }
+      ```
 
 **Reranking**
 
 Use the reranking to reordes the retrieved results using a secondary method to ensure the most relevant documents are at the top.
+
 ```json 
-{
-  "reranker": {
-    "type": "customer_reranker",
-    "reranker_name": "Rerank_Multilingual_v1",
-    "limit": 50
-  }
-}
-```
+      {
+        "reranker": {
+          "type": "customer_reranker",
+          "reranker_name": "Rerank_Multilingual_v1",
+          "limit": 50
+        }
+      }
+      ```
+
 ### Generation configuration 
 
 The generation object manages the final, summarization step of the query.
@@ -138,20 +141,21 @@ The `generations.citations` object formats how the summary cites its answers to 
 The following example configures the request to use the Mockingbird 2.0 model, limits the input to the top 20 search results, specifies an English response, and styles citations as Markdown links.
 
 ```json
-{
-  "generation": {
-    "generation_preset_name": "mockingbird-2.0",
-    "max_used_search_results": 10,
-    "response_language": "eng",
-    "enable_factual_consistency_score": true,
-    "citations": {
-"style": "markdown",
-"url_pattern": "[https://docs.example.com/documents/](https://docs.example.com/documents/){doc.id}",
-"text_pattern": "{doc.title}"
-    }
-  }
-}
-```
+      {
+        "generation": {
+          "generation_preset_name": "mockingbird-2.0",
+          "max_used_search_results": 10,
+          "response_language": "eng",
+          "enable_factual_consistency_score": true,
+          "citations": {
+      "style": "markdown",
+      "url_pattern": "[https://docs.example.com/documents/](https://docs.example.com/documents/){doc.id}",
+      "text_pattern": "{doc.title}"
+          }
+        }
+      }
+      ```
+
 **Recommended generation presets:**
 
 * `mockingbird-2.0`: Vectara's cutting-edge LLM for RAG.
