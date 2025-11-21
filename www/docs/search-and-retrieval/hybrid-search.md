@@ -6,22 +6,20 @@ sidebar_label: Hybrid search
 
 import CodePanel from '@site/src/theme/CodePanel';
 
-Hybrid search blends traditional keyword matching and semantic matching to 
-give you more control over how Vectara retrieves results. It helps you handle 
-cases where meaning is important, but specific terms still matter. By adjusting 
-the `lexical_interpolation` value, you modify the balance between semantic 
-relevance and exact keyword matching.
+Hybrid search blends semantic matching (meaning) and traditional keyword 
+matching (exact terms) give you more control over retrieval. It helps you 
+handle cases where meaning is important, but specific terms still matter. 
+
+You control this balance using the `lexical_interpolation` value.
 
 ## How semantic matching works
 
 Semantic matching retrieves content based on *meaning* instead of exact words. 
 Vectara represents both your uploaded documents and your queries as _embeddings_. 
-These embeddings capture the semantic intent that can identify 
+These embeddings (vectors) capture the semantic intent that can identify 
 results even with different wording.
 
-Semantic search works as follows:
-
-1. **Indexing**: You upload a document, and Vectara breaks it into small chunks.  
+1. **Indexing**: You upload documents, Vectara breaks them into smaller chunks.  
    This generates an embedding for each chunk, where chunks with similar meaning 
    are grouped nearby in the embedding space. For example, the phrases "fix a flat 
    tire" and "change a wheel" use different words but get grouped closely.
@@ -31,8 +29,7 @@ Semantic search works as follows:
    retrieves the ones closest in meaning. Because this comparison is _semantic_, 
    the search results can match intent even when wording differs.
 
-Vectara uses semantic search by default, but you can enable hybrid search when 
-you need a combination of both approaches.
+Vectara uses semantic search by default. 
 
 ## How hybrid search works
 
@@ -53,9 +50,9 @@ If you're not sure where to start, begin with semantic search and modify the
 You enable hybrid search by specifying the `lexical_interpolation` value in 
 the `search` object of a [query](/docs/rest-api/query-corpus):
 
-* `lexical_interpolation = 0.0`: Pure semantic search.
-* `lexical_interpolation = 1.0`: Pure keyword search.
-*  A value between `0.0` and `1.0`: A hybrid search that balances both methods.  
+* `0.0`: Pure semantic search.
+* `1.0`: Pure keyword search.
+* `0.0` to `1.0`: A hybrid search that balances both methods.  
 
 A common starting point is `0.025`.
 

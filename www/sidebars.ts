@@ -57,6 +57,7 @@ const sidebars: SidebarsConfig = {
           ],
         },
         "prompts/vectara-prompt-engine",
+        "tutorials/add-custom-dimensions",
         "search-and-retrieval/vectara-answer",
       ],
     },

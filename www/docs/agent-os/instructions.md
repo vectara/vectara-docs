@@ -131,9 +131,9 @@ this example, you have three instructions:
 
 ## Velocity templates
 
-Instructions use the Apache Velocity templating engine, which enables you to
-dynamically insert variables into your prompts using the tools context and
-the metadata context.
+Instructions use the [Apache Velocity](Apache Velocity) templating engine, which enables you to
+dynamically insert variables into your prompts using the **tools context** and
+the **metadata context**.
 
 See the [available prompt variables](/docs/prompts/vectara-prompt-engine#available-prompt-variables) for more information.
 
@@ -168,8 +168,6 @@ personalized and context-aware behavior:
 - `${session.metadata.field}` - Access session-specific metadata (user context, permissions, preferences)
 - `${agent.metadata.field}` - Access agent-level metadata (version, configuration, environment)
 - `${currentDate}` - Current date/time in ISO 8601 format
-
-#### Session metadata examples
 
 <CodePanel
   title="Session Metadata in Template"
@@ -216,129 +214,4 @@ When a session is created with this metadata:
 The instruction renders as:
 
 > "Hello! I see you're Jane Smith from EMEA. I'm here to help you with billing inquiries. As an enterprise customer, you have access to priority support and advanced features. Your support tier: priority. Preferred language: en"
-
-
-## Common metadata patterns
-
-This section provides some example metadata patterns that you can use in your 
-instructions.
-
-### Access control security
-
-Use metadata to enforce permissions and data access policies:
-
-- `user_role` (admin, manager, employee) - Filter search results by permission level.
-- `tenant_id` (company123) - Isolate data in multi-tenant systems.
-- `department` (legal, sales, engineering) - Show only relevant documents.
-- `clearance_level` (public, confidential, secret) - Enforce document access policies.
-- `data_classification` (internal, external) - Control what information can be shared.
-  <CodePanel
-    title="Access Control Example"
-    layout="stacked"
-    snippets={[
-      {
-        language: "velocity",
-        code: `#if(\${session.metadata.user_role} == "admin")
-  You have full access to all documents and can perform administrative tasks.
-  #elseif(\${session.metadata.user_role} == "manager")
-  You can access department documents and team information.
-  #else
-  You can access public documents and your personal files only.
-  #end
-
-  When searching, only show documents with clearance level at \nor below: \${session.metadata.clearance_level}`
-      }
-    ]}
-  />
-
-### Personalization
-
-Customize agent behavior based on user preferences:
-
-- `language` (en, es, fr) - Respond in the preferred language of the user.
-- `timezone` (America/New_York) - Schedule meetings and show local times.
-- `subscription_tier` (free, pro, enterprise) - Enable or disable premium features.
-- `user_preference` (brief, detailed) - Adjust responses for length or brevity.
-- `region` (EMEA, APAC, Americas) - Show region-specific content, pricing, compliance.
-  <CodePanel
-    title="Personalization Example"
-    layout="stacked"
-    snippets={[
-      {
-        language: "velocity",
-        code: `Respond in \${session.metadata.language}.
-
-  #if(\${session.metadata.user_preference} == "brief")
-  Keep responses concise and to the point. Use bullet points when possible.
-  #else
-  Provide detailed, comprehensive responses with examples and context.
-  #end
-
-  Always display times in \${session.metadata.timezone}.
-  Show pricing in \${session.metadata.region}-specific currency and format.`
-      }
-    ]}
-  />
-
-### Business context
-
-Provide relevant information based on customer or business attributes:
-
-- `customer_id` (cust_789) - Reference customer-specific orders, support history.
-- `account_type` (trial, paid, enterprise) - Customize the onboarding experience.
-- `industry` (healthcare, finance, retail) - Use industry-specific terminology.
-- `product_owned` (basic, premium, professional) - Provide relevant help resources.
-- `contract_type` (annual, monthly, perpetual) - Tailor renewal reminders.
-  <CodePanel
-    title="Business Context Example"
-    layout="stacked"
-    snippets={[
-      {
-        language: "velocity",
-        code: `You are assisting a customer in the \${session.metadata.industry} industry.
-  Use \${session.metadata.industry}-specific terminology and examples.
-
-  Account type: \${session.metadata.account_type}
-  Products owned: \${session.metadata.products_owned}
-
-  #if(\${session.metadata.account_type} == "trial")
-  Note: This customer is on a trial. Focus on demonstrating value and addressing \nconcerns about converting to a paid plan.
-  #end
-
-  When providing documentation links, prioritize \${session.metadata.product_owned}-specific guides.`
-      }
-    ]}
-  />
-
-### Workflow routing
-
-Guide agent behavior based on conversation context:
-
-- `support_tier` (L1, L2, escalated) - Route questions to the appropriate knowledge base.
-- `conversation_type` (sales, support, onboarding) - Apply different tones and approaches.
-- `agent_purpose` (billing, technical, general) - Focus search on relevant corpora.
-- `escalation_needed` (true, false) - Track when the agent needs human intervention.
-- `channel` (web, mobile, API, voice) - Adjust the response format and length.
-  <CodePanel
-    title="Workflow Example"
-    layout="stacked"
-    snippets={[
-      {
-        language: "velocity",
-        code: `Conversation type: \${session.metadata.conversation_type}
-
-  #if(\${session.metadata.conversation_type} == "sales")
-  Your goal is to understand customer needs and demonstrate how our products solve their problems. Be consultative and ask questions.
-  #elseif(\${session.metadata.conversation_type} == "support")
-  Focus on resolving the customer's issue quickly and effectively. Be empathetic and solution-oriented.
-  #elseif(\${session.metadata.conversation_type} == "onboarding")
-  Guide the customer through setup. Be patient, thorough, and encouraging.
-  #end
-
-  #if(\${session.metadata.channel} == "mobile")
-  Keep responses short and scannable for small screens.
-  #end`
-      }
-    ]}
-  />
 

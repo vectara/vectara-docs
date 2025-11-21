@@ -1,7 +1,7 @@
 ---
 id: vectara-prompt-engine
-title: Custom prompts
-sidebar_label: Custom prompts
+title: Prompts and templates
+sidebar_label: Prompts and templates
 ---
 
 import Tabs from '@theme/Tabs';
