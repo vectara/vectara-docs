@@ -58,8 +58,11 @@ Only a single step is supported with no follow up steps. So the `first_step` wil
 Agents use LLMs for reasoning and response generation. You can configure the following:
 - **Model**: Choose from available models like GPT-4o.
 - **Parameters**: Adjust temperature, max tokens, and other model-specific settings.
-- **Cost optimization**: Balance performance with token usage.
 - **Retry configuration**: Configure automatic retry behavior for transient failures.
+
+## Tool configuration and argument overrides 
+
+Overrides enable you to hardcode tool parameters or dynamically inject session metadata. 
 
 ## Using retries to improve user experience
 
