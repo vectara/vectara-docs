@@ -56,6 +56,8 @@ const sidebars: SidebarsConfig = {
             "search-and-retrieval/rerankers/knee-reranking",
           ],
         },
+        "search-and-retrieval/filters",
+        "search-and-retrieval/fuzzy-metadata-search",
         "prompts/vectara-prompt-engine",
         "tutorials/add-custom-dimensions",
         "search-and-retrieval/vectara-answer",
