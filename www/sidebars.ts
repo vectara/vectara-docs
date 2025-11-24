@@ -60,7 +60,7 @@ const sidebars: SidebarsConfig = {
         "search-and-retrieval/fuzzy-metadata-search",
         "prompts/vectara-prompt-engine",
         "tutorials/add-custom-dimensions",
-        "search-and-retrieval/vectara-answer",
+        "search-and-retrieval/build-search-ui",
       ],
     },
     {

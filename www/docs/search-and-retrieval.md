@@ -21,7 +21,8 @@ This section provides the following core search and retrieval information:
 - **[Hybrid search](/docs/search-and-retrieval/hybrid-search)**: Combine the precision of traditional keyword search with the contextual understanding of modern semantic search.
 - **[Reranking](/docs/search-and-retrieval/reranking)**: Go beyond simple retrieval to reorder your results for maximum relevance and accuracy. Learn about cutoffs, result diversity, and custom rerankers.
 - **[Filters](/docs/search-and-retrieval/filters)**: Narrow your search results using metadata, custom dimensions, and more to give users exactly what they're looking for.
-- **[Advanced query features](/docs/search-and-retrieval/advanced-features)**: Explore powerful features like fuzzy matching and intelligent query rewriting to handle complex user needs.
+- **[Fuzzy matching](/docs/search-and-retrieval/fuzzy-metadata-search)**: Combine exact filtering with approximate matching.
+- **[Prompts and templates](/docs/prompts/vectara-prompt-engine)**: Customize prompt templates with variables and metadata.
 - **[Tutorial: build a search app](/docs/search-and-retrieval/build-search-app)**: Put it all together by building a functional search UI with Vectara Answer.
 
 
