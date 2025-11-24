@@ -41,7 +41,7 @@ const sidebars: SidebarsConfig = {
       },
       collapsible: false,
       items: [
-        "search-and-retrieval/get-started",
+        "search-and-retrieval/search-quick-start",
          "search-and-retrieval/hybrid-search",
         {
           type: "category",
@@ -59,6 +59,7 @@ const sidebars: SidebarsConfig = {
         "search-and-retrieval/filters",
         "search-and-retrieval/fuzzy-metadata-search",
         "prompts/vectara-prompt-engine",
+        "tutorials/intelligent-query-rewriting",
         "tutorials/add-custom-dimensions",
         "search-and-retrieval/build-search-ui",
       ],
@@ -113,8 +114,6 @@ const sidebars: SidebarsConfig = {
         "video-tutorials",
         "tutorials/build-a-financial-research-agent",
         "tutorials/faq-and-qna-matching",
-        "tutorials/add-custom-dimensions",
-        "tutorials/intelligent-query-rewriting",
       ],
     },
     {

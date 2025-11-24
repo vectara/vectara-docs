@@ -27,7 +27,7 @@ Start by cloning the Vectara Answer repository from GitHub. This provides the
 complete scaffolding for your application.
 
 ```bash
-git clone [https://github.com/vectara/vectara-answer.git](https://github.com/vectara/vectara-answer.git)
+git clone https://github.com/vectara/vectara-answer.git
 cd vectara-answer
 ```
 

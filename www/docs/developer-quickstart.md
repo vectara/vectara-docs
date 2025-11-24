@@ -1,7 +1,7 @@
 ---
 id: developer-quickstart
-title: Developer quickstart
-sidebar_label: Developer quickstart
+title: Quickstart
+sidebar_label: Quickstart
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';
