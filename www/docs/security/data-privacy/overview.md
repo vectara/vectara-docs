@@ -71,9 +71,7 @@ grpc.secure_channel("\${vars['domains.grpc.serving']}:443", channel_creds)
 
 ## Data encryption
 
-When you send documents to the
-[index API](/docs/api-reference/indexing-apis/indexing) or
-[file upload API](/docs/api-reference/indexing-apis/file-upload/file-upload), <Config v="names.product"/> 
+When you send documents to the index API or file upload API, <Config v="names.product"/> 
 indexes both the document text and metadata.
 
 :::note

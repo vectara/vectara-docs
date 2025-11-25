@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 import CodePanel from '@site/src/theme/CodePanel';
 
 
-In <Config v="names.product"/>, when you [index a document](/docs/api-reference/indexing-apis/indexing), the 
+In <Config v="names.product"/>, when you [index a document](/docs/rest-api/index), the 
 document has a `type` parameter that determines the format of the document 
 as `core` or `structured`. The `core` type has `document_parts` and the `structured` 
 type has `sections`. Both can be nested and both can contain separate `metadata`, 

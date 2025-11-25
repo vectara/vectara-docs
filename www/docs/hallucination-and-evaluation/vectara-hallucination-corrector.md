@@ -33,7 +33,7 @@ The Vectara Hallucination Corrector helps reduce these risks by acting as a
 factual safeguard before content is delivered or acted upon.
 
 :::tip Note
-For more information, see the [**Correct Hallucination API**](/docs/api-reference/llms-apis/hallucination_correctors) documentation.
+For more information, see the [**Correct Hallucination API**](/docs/hallucination-and-evaluation/vectara-hallucination-corrector) documentation.
 :::
 
 ### What the Vectara Hallucination Corrector does

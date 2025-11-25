@@ -108,6 +108,6 @@ The API returns standard HTTP error codes with detailed error information:
 ## Next Steps
 
 After creating a tool server, you should:
-1. Synchronize the server to discover available tools using the [Sync Tool Server API](/docs/api-reference/agent-apis/tool-server/sync-tool-server)
-2. Verify tools were discovered using the [List Tools API](/docs/api-reference/agent-apis/tool/list-tools)
-3. Configure agents to use the discovered tools
+1. Synchronize the server to discover available tools.
+2. Verify tools were discovered.
+3. Configure agents to use the discovered tools.

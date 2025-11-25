@@ -1,72 +1,103 @@
 ---
-id: metadata-examples-and-use-cases
-title: Metadata Examples and Use Cases
-sidebar_title: Examples and Use Cases
+id: filters
+title: Filters
+sidebar_title: Filters
 ---
-
 
 import CodePanel from '@site/src/theme/CodePanel';
 
+Metadata filters restrict search results to only the document chunks that 
+match a specified logical expression. They act as a WHERE clause for your 
+semantic search, ensuring only relevant, pre-qualified content is retrieved 
+before summarization.
+
+Using filters helps with:
+
+* **Precision:** Limit results based on attributes like status, author, or category.
+* **Scope:** Target specific document parts, such as only part.is_title = true.
+
+## Filter syntax
+
+Filters are defined using a simple, SQL-like syntax in the `metadata_filter` 
+field within the `corpora` object of your query.
+
+* Specify whether the metadata is at the document or part level.  
+  **Example:** `doc.`, `part.`
+* Use logical and comparison operators.  
+  **Example:** `AND`, `OR`, `doc.year > 2025`, `part.type IN ('A', 'B')`
+* Ensure that the data type values match.  
+  **Example:** `doc.status = 'Published'`, `doc.price <= 50.0`, `part.is_title = true`
+
+
+
+## Metadata use case examples
 
 Metadata filters enable highly versatile and granular control over query 
 results. This section provides real-world examples and use cases to illustrate 
 how metadata filters can be applied to solve common business and technical 
 challenges.
 
-## Language-specific filtering
+* **Language-specific filtering** - In multilingual documents, different
+  sections may be in different languages. Use part-level metadata to target
+  specific language segments.
 
-In multilingual documents, different sections may be in different languages. 
-Use part-level metadata to target specific language segments.
+  `doc.rating > 3 AND part.lang = 'de'`
 
-**Example: **Filter for German-language customer reviews with a rating higher 
-than 3 stars.
+  The `lang` metadata tag used in this example is detected and set
+  automatically by the platform at indexing time. It's set at the part level
+  for accuracy, because a single document may contain content in multiple
+  languages.
 
-<CodePanel snippets={[{language: "sql", code: `doc.rating > 3 AND part.lang = 'de'`}]} title="Language filter" layout="stacked" />
+* **Date-specific document retrieval** - More complicated expressions are
+  possible, such as the one below, which checks for documents with a
+  publication date in 2021.
 
-The `lang` metadata tag used in this example is detected and set automatically 
-by the platform at indexing time. It's set at the part level for accuracy, 
-because a single document may contain content in multiple languages.
+  `1609459200 < doc.pub_epoch AND doc.pub_epoch < 1640995200`
 
+  Here, `pub_epoch` stores the date in [epoch time][3].
 
-## Date-specific document retrieval
+  You can find a full list of supported operations on the
+  [Functions and Operators][2] page, and a full list of how to specify
+  literals on [Data Types][4].
 
-More complicated expressions are possible, such as the one below, which checks 
-for documents with a publication date in 2021.
+  [2]: /docs/build/prepare-data/metadata-filters/func-opr
+  [3]: https://en.wikipedia.org/wiki/Unix_time
+  [4]: /docs/build/prepare-data/metadata-filters/data-types
 
-**Example:** Retrieve documents published in 2021 using epoch time.
+* **Filter by document status** - For auditing purposes, you may want to limit
+  results to documents marked as `Published` instead of `Draft`:
 
-<CodePanel snippets={[{language: "sql", code: `1609459200 < doc.pub_epoch AND doc.pub_epoch < 1640995200`}]} title="Data-specific filter" layout="stacked" />
-Here, `pub_epoch` stores the date in [epoch time][3].
+  `doc.status = 'Published'`
 
-You can find a full list of supported operations on the [Functions and Operators][2]
-page, and a full list of how to specify literals on [Data Types][4]. 
+* **Filter by custom tag** - Custom metadata fields enable filtering based on
+  business-specific criteria, such as priority, category, or internal tags.
 
-[1]: http://www.contrib.andrew.cmu.edu/~shadow/sql/sql1992.txt
-[2]: /docs/build/prepare-data/metadata-filters/func-opr
-[3]: https://en.wikipedia.org/wiki/Unix_time
-[4]: /docs/build/prepare-data/metadata-filters/data-types
+  `doc.priority = 'High' AND doc.category = 'Technology'`
 
+* **Filter by date range** - Find documents published during a specific year
+  (assuming `pub_year` is an Integer).
 
-## Filter by document status
+  `doc.pub_year = 2023`
 
-For auditing purposes, you may want to limit results to documents marked as 
-`Published` instead of `Draft`:
+* **Exclude drafts and authors** - Find content that is not a Draft and was
+  not written by a specific author.
 
-`doc.status = 'Published'`
+  `doc.status != 'Draft' AND NOT (doc.author = 'John Doe')`
 
-## Filter by custom tag
+* **Part-level filtering (title)** - Only retrieve chunks that are titles, or
+  never retrieve titles.
 
-Custom metadata fields enable filtering based on business-specific criteria, 
-such as priority, category, or internal tags.
+  `part.is_title = true`
 
-**Example:** Filter documents tagged as **High Priority** in the **Technology** 
-category.
+* **Multiple tags/values** - Find documents that are tagged as either Science
+  or History.
 
-<CodePanel snippets={[{language: "sql", code: `doc.priority = 'High' AND doc.category = 'Technology'`}]} title="Business-specific criteria" layout="stacked" />
+  `doc.category IN ('Science', 'History')`
+
 ## Example query with a document-level filter
 
-This example asks the question `"What are the key benefits of cloud computing?"` 
-from the Cloud Computing References corpus. Within the `corpora` object, we 
+This example asks the question `"What are the key benefits of cloud computing?"`
+from the Cloud Computing References corpus. Within the `corpora` object, we
 specified a `metadata_filter` to filter though published documents with 
 `"metadata_filter": "doc.status = 'Published'",`
 
@@ -111,7 +142,7 @@ https://api.vectara.io:443/v2/query \\
 }
 END`}]} title="Metadata Example" layout="stacked" />
 
-## Example response with a document-level filter
+### Example response with a document-level filter
 
 The example response returns documents with a `"status": "Published",` in the document 
 metadata. This response also shows other metadata associated with each `document_id`.
@@ -179,7 +210,7 @@ metadata. This response also shows other metadata associated with each `document
    }      
 ]`}]} title="Response Example" layout="stacked" />
 
-## Example query with part-level metadata
+### Example query with part-level metadata
 
 Now let's send a query with part-level meta for `part.concept = 'Overview'`.
 
@@ -194,7 +225,7 @@ that it filters for this part-level metadata:
         "custom_dimensions": {}
       }`}]} title="Metadata Example" layout="stacked" />
 
-## Example response with part-level metadata
+### Example response with part-level metadata
 
 <CodePanel snippets={[{language: "json", code: `[
     {

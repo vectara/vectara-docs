@@ -35,18 +35,16 @@ const sidebars: SidebarsConfig = {
     {
       type: "category",
       label: "Search and retrieval",
-      link: {
-        type: 'doc',
-        id: 'search-and-retrieval',
-      },
       collapsible: false,
       items: [
+        "search-and-retrieval/search-quick-start",
+         "search-and-retrieval/hybrid-search",
         {
           type: "category",
           label: "Reranking",
           collapsed: true,
           items: [
-            "search-and-retrieval/rerankers/reranking-overview",
+            "search-and-retrieval/rerankers/limits-and-cutoffs",
             "search-and-retrieval/rerankers/vectara-multi-lingual-reranker",
             "search-and-retrieval/rerankers/mmr-reranker",
             "search-and-retrieval/rerankers/user-defined-function-reranker",
@@ -54,9 +52,12 @@ const sidebars: SidebarsConfig = {
             "search-and-retrieval/rerankers/knee-reranking",
           ],
         },
+        "search-and-retrieval/filters",
+        "search-and-retrieval/fuzzy-metadata-search",
         "prompts/vectara-prompt-engine",
-        "search-and-retrieval/bring-your-own-llm",
-        "build-apps/vectara-answer",
+        "tutorials/intelligent-query-rewriting",
+        "tutorials/add-custom-dimensions",
+        "search-and-retrieval/build-search-ui",
       ],
     },
     {
@@ -81,6 +82,7 @@ const sidebars: SidebarsConfig = {
             // "agent-os/subagent-tool",
           ],
         },
+        "search-and-retrieval/bring-your-own-llm",
       ],
     },
     {
@@ -88,10 +90,10 @@ const sidebars: SidebarsConfig = {
       label: "Hallucination and evaluation",
       collapsible: false,
       items: [
-        "learn/query-observability",
-        "learn/hallucination-evaluation",
-        "learn/vectara-hallucination-corrector",
-        "build-apps/open-eval-framework",
+        "hallucination-and-evaluation/query-observability",
+        "hallucination-and-evaluation/hallucination-evaluation",
+        "hallucination-and-evaluation/vectara-hallucination-corrector",
+        "hallucination-and-evaluation/open-eval-framework",
       ],
     },
     {
@@ -108,8 +110,6 @@ const sidebars: SidebarsConfig = {
         "video-tutorials",
         "tutorials/build-a-financial-research-agent",
         "tutorials/faq-and-qna-matching",
-        "tutorials/add-custom-dimensions",
-        "tutorials/intelligent-query-rewriting",
       ],
     },
     {
@@ -231,7 +231,6 @@ const sidebars: SidebarsConfig = {
         slug: "/rest-api",
       },
       items: [
-        "api-recipes",
         apiSidebar,
         "vectara-postman-collection",
       ],

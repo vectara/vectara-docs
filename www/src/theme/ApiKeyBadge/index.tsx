@@ -24,7 +24,7 @@ export function ApiKeyBadge({ types }: ApiKeyBadgeProps) {
   
   return (
     <div className={styles.badgeContainer}>
-      <span className={styles.badgeLabel}>Required API Key:</span>
+      <span className={styles.badgeLabel}>Supported API Key Type:</span>
       <div className={styles.badgeGroup}>
         {typeArray.map((type, index) => (
           <span
