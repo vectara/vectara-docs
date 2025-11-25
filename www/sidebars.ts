@@ -35,10 +35,6 @@ const sidebars: SidebarsConfig = {
     {
       type: "category",
       label: "Search and retrieval",
-      link: {
-        type: 'doc',
-        id: 'search-and-retrieval',
-      },
       collapsible: false,
       items: [
         "search-and-retrieval/search-quick-start",
@@ -48,7 +44,7 @@ const sidebars: SidebarsConfig = {
           label: "Reranking",
           collapsed: true,
           items: [
-            "search-and-retrieval/rerankers/reranking-overview",
+            "search-and-retrieval/rerankers/limits-and-cutoffs",
             "search-and-retrieval/rerankers/vectara-multi-lingual-reranker",
             "search-and-retrieval/rerankers/mmr-reranker",
             "search-and-retrieval/rerankers/user-defined-function-reranker",

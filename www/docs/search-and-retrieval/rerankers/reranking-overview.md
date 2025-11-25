@@ -1,7 +1,7 @@
 ---
-id: reranking-overview
-title: Reranking Overview
-sidebar_label: Overview
+id: limits-and-cutoffs
+title: Limits and cutoffs
+sidebar_label: Limits and cutoffs
 ---
 
 import Tabs from '@theme/Tabs';
@@ -9,8 +9,6 @@ import TabItem from '@theme/TabItem';
 import {vars} from '@site/static/variables.json';
 
 import CodePanel from '@site/src/theme/CodePanel';
-
-## Cutoffs and limits
 
 After reranking is applied, you can use the `cutoff` and `limit` parameters to 
 control the final result set.

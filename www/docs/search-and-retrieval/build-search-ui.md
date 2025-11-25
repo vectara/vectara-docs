@@ -5,7 +5,7 @@ sidebar_label: Build a search UI
 ---
 
 Building a custom search interface from scratch can be time-consuming. To help
-you get started quickly, Vectara provides Vectara Answer, an open-source,
+you get started quickly, Vectara provides [Vectara Answer](https://github.com/vectara/vectara-answer), an open-source,
 React-based sample application. It comes pre-configured with best practices
 for conversational search, retrieval augmented generation (RAG), and citations.
 
@@ -84,6 +84,5 @@ as enabling example questions on the home screen.
 
 ### Styling
 
-The application typically uses modern CSS or Tailwind. You can modify the
-color scheme (primary colors, background colors) to match your corporate identity
-by editing the main CSS file or tailwind config.
+You can modify the color scheme (primary colors, background colors) by editing 
+your main CSS file.
