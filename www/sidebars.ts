@@ -558,6 +558,12 @@ const sidebars: SidebarsConfig = {
                   label: "Replace the filter attributes of a corpus",
                   className: "api-method post",
                 },
+                {
+                  type: "doc",
+                  id: "rest-api/get-corpus",
+                  label: "Retrieve info about a corpus",
+                  className: "api-method get",
+                },
               ],
             },
             {
@@ -566,8 +572,8 @@ const sidebars: SidebarsConfig = {
               items: [
                 {
                   type: "doc",
-                  id: "rest-api/get-corpus",
-                  label: "Retrieve metadata about a corpus",
+                  id: "rest-api/get-filter-attribute-stats",
+                  label: "Get filter attribute statistics for corpus metadata",
                   className: "api-method get",
                 },
               ],
@@ -711,14 +717,150 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "category",
-          label: "Metadata statistics",
+          label: "Access control",
           collapsed: false,
           items: [
             {
-              type: "doc",
-              id: "rest-api/get-filter-attribute-stats",
-              label: "Get filter attribute statistics for corpus metadata",
-              className: "api-method get",
+              type: "category",
+              label: "Users",
+              link: {
+                type: "doc",
+                id: "rest-api/users",
+              },
+              items: [
+                {
+                  type: "doc",
+                  id: "rest-api/create-user",
+                  label: "Create a user in the current customer account",
+                  className: "api-method post",
+                },
+                {
+                  type: "doc",
+                  id: "rest-api/list-users",
+                  label: "List users in the account",
+                  className: "api-method get",
+                },
+                {
+                  type: "doc",
+                  id: "rest-api/get-user",
+                  label: "Get a user",
+                  className: "api-method get",
+                },
+                {
+                  type: "doc",
+                  id: "rest-api/update-user",
+                  label: "Update a user",
+                  className: "api-method patch",
+                },
+                {
+                  type: "doc",
+                  id: "rest-api/delete-user",
+                  label: "Delete a user",
+                  className: "api-method delete",
+                },
+                {
+                  type: "doc",
+                  id: "rest-api/reset-user-password",
+                  label: "Reset the password for a user",
+                  className: "api-method post",
+                },
+              ],
+            },
+            {
+              type: "category",
+              label: "Authentication",
+              link: {
+                type: "doc",
+                id: "rest-api/authentication",
+              },
+              items: [
+                {
+                  type: "doc",
+                  id: "rest-api/get-o-auth-token",
+                  label: "Request an access token",
+                  className: "api-method post",
+                },
+              ],
+            },
+            {
+              type: "category",
+              label: "API keys",
+              link: {
+                type: "doc",
+                id: "rest-api/api-keys",
+              },
+              items: [
+                {
+                  type: "doc",
+                  id: "rest-api/create-api-key",
+                  label: "Create an API key",
+                  className: "api-method post",
+                },
+                {
+                  type: "doc",
+                  id: "rest-api/list-api-keys",
+                  label: "List API keys",
+                  className: "api-method get",
+                },
+                {
+                  type: "doc",
+                  id: "rest-api/get-api-key",
+                  label: "Get an API key",
+                  className: "api-method get",
+                },
+                {
+                  type: "doc",
+                  id: "rest-api/update-api-key",
+                  label: "Update an API key",
+                  className: "api-method patch",
+                },
+                {
+                  type: "doc",
+                  id: "rest-api/delete-api-key",
+                  label: "Delete an API key",
+                  className: "api-method delete",
+                },
+              ],
+            },
+            {
+              type: "category",
+              label: "Application clients",
+              link: {
+                type: "doc",
+                id: "rest-api/application-clients",
+              },
+              items: [
+                {
+                  type: "doc",
+                  id: "rest-api/create-app-client",
+                  label: "Create an App Client",
+                  className: "api-method post",
+                },
+                {
+                  type: "doc",
+                  id: "rest-api/list-app-client",
+                  label: "List App Clients",
+                  className: "api-method get",
+                },
+                {
+                  type: "doc",
+                  id: "rest-api/get-app-client",
+                  label: "Get an App Client",
+                  className: "api-method get",
+                },
+                {
+                  type: "doc",
+                  id: "rest-api/update-app-client",
+                  label: "Update an App Client",
+                  className: "api-method patch",
+                },
+                {
+                  type: "doc",
+                  id: "rest-api/delete-app-client",
+                  label: "Delete an App Client",
+                  className: "api-method delete",
+                },
+              ],
             },
           ],
         },
@@ -936,155 +1078,6 @@ const sidebars: SidebarsConfig = {
                   id: "rest-api/correct-hallucinations",
                   label: "Corrects hallucinations in generated text based on source documents",
                   className: "api-method post",
-                },
-              ],
-            },
-          ],
-        },
-        {
-          type: "category",
-          label: "Access control",
-          collapsed: false,
-          items: [
-            {
-              type: "category",
-              label: "Users",
-              link: {
-                type: "doc",
-                id: "rest-api/users",
-              },
-              items: [
-                {
-                  type: "doc",
-                  id: "rest-api/create-user",
-                  label: "Create a user in the current customer account",
-                  className: "api-method post",
-                },
-                {
-                  type: "doc",
-                  id: "rest-api/list-users",
-                  label: "List users in the account",
-                  className: "api-method get",
-                },
-                {
-                  type: "doc",
-                  id: "rest-api/get-user",
-                  label: "Get a user",
-                  className: "api-method get",
-                },
-                {
-                  type: "doc",
-                  id: "rest-api/update-user",
-                  label: "Update a user",
-                  className: "api-method patch",
-                },
-                {
-                  type: "doc",
-                  id: "rest-api/delete-user",
-                  label: "Delete a user",
-                  className: "api-method delete",
-                },
-                {
-                  type: "doc",
-                  id: "rest-api/reset-user-password",
-                  label: "Reset the password for a user",
-                  className: "api-method post",
-                },
-              ],
-            },
-            {
-              type: "category",
-              label: "Authentication",
-              link: {
-                type: "doc",
-                id: "rest-api/authentication",
-              },
-              items: [
-                {
-                  type: "doc",
-                  id: "rest-api/get-o-auth-token",
-                  label: "Request an access token",
-                  className: "api-method post",
-                },
-              ],
-            },
-            {
-              type: "category",
-              label: "API keys",
-              link: {
-                type: "doc",
-                id: "rest-api/api-keys",
-              },
-              items: [
-                {
-                  type: "doc",
-                  id: "rest-api/create-api-key",
-                  label: "Create an API key",
-                  className: "api-method post",
-                },
-                {
-                  type: "doc",
-                  id: "rest-api/list-api-keys",
-                  label: "List API keys",
-                  className: "api-method get",
-                },
-                {
-                  type: "doc",
-                  id: "rest-api/get-api-key",
-                  label: "Get an API key",
-                  className: "api-method get",
-                },
-                {
-                  type: "doc",
-                  id: "rest-api/update-api-key",
-                  label: "Update an API key",
-                  className: "api-method patch",
-                },
-                {
-                  type: "doc",
-                  id: "rest-api/delete-api-key",
-                  label: "Delete an API key",
-                  className: "api-method delete",
-                },
-              ],
-            },
-            {
-              type: "category",
-              label: "Application clients",
-              link: {
-                type: "doc",
-                id: "rest-api/application-clients",
-              },
-              items: [
-                {
-                  type: "doc",
-                  id: "rest-api/create-app-client",
-                  label: "Create an App Client",
-                  className: "api-method post",
-                },
-                {
-                  type: "doc",
-                  id: "rest-api/list-app-client",
-                  label: "List App Clients",
-                  className: "api-method get",
-                },
-                {
-                  type: "doc",
-                  id: "rest-api/get-app-client",
-                  label: "Get an App Client",
-                  className: "api-method get",
-                },
-                {
-                  type: "doc",
-                  id: "rest-api/update-app-client",
-                  label: "Update an App Client",
-                  className: "api-method patch",
-                },
-                {
-                  type: "doc",
-                  id: "rest-api/delete-app-client",
-                  label: "Delete an App Client",
-                  className: "api-method delete",
                 },
               ],
             },
