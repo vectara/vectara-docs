@@ -238,12 +238,12 @@ const sidebars: SidebarsConfig = {
         "vectara-postman-collection",
         {
           type: "category",
-          label: "Agent OS",
+          label: "Agents",
           collapsed: false,
           items: [
             {
               type: "category",
-              label: "Agents",
+              label: "CRUD",
               link: {
                 type: "doc",
                 id: "rest-api/agents",
@@ -289,7 +289,7 @@ const sidebars: SidebarsConfig = {
             },
             {
               type: "category",
-              label: "Agent Sessions",
+              label: "Agent sessions",
               link: {
                 type: "doc",
                 id: "rest-api/agent-sessions",
@@ -463,7 +463,7 @@ const sidebars: SidebarsConfig = {
             },
             {
               type: "category",
-              label: "Tool Servers",
+              label: "Tool servers",
               link: {
                 type: "doc",
                 id: "rest-api/tool-servers",
@@ -511,7 +511,7 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "category",
-          label: "Data Management",
+          label: "Data",
           collapsed: false,
           items: [
             {
@@ -532,12 +532,6 @@ const sidebars: SidebarsConfig = {
                   type: "doc",
                   id: "rest-api/list-corpora",
                   label: "List corpora",
-                  className: "api-method get",
-                },
-                {
-                  type: "doc",
-                  id: "rest-api/get-corpus",
-                  label: "Retrieve metadata about a corpus",
                   className: "api-method get",
                 },
                 {
@@ -563,6 +557,18 @@ const sidebars: SidebarsConfig = {
                   id: "rest-api/replace-filter-attributes",
                   label: "Replace the filter attributes of a corpus",
                   className: "api-method post",
+                },
+              ],
+            },
+            {
+              type: "category",
+              label: "Metadata",
+              items: [
+                {
+                  type: "doc",
+                  id: "rest-api/get-corpus",
+                  label: "Retrieve metadata about a corpus",
+                  className: "api-method get",
                 },
               ],
             },
@@ -650,27 +656,11 @@ const sidebars: SidebarsConfig = {
                 },
               ],
             },
-            {
-              type: "category",
-              label: "Table Extractors",
-              link: {
-                type: "doc",
-                id: "rest-api/table-extractors",
-              },
-              items: [
-                {
-                  type: "doc",
-                  id: "rest-api/list-table-extractors",
-                  label: "List supported table extractors",
-                  className: "api-method get",
-                },
-              ],
-            },
           ],
         },
         {
           type: "category",
-          label: "Search and Retrieval",
+          label: "Search and retrieval",
           collapsed: false,
           items: [
             {
@@ -703,7 +693,7 @@ const sidebars: SidebarsConfig = {
             },
             {
               type: "category",
-              label: "Metadata Query",
+              label: "Metadata query",
               link: {
                 type: "doc",
                 id: "rest-api/metadata-query",
@@ -717,43 +707,11 @@ const sidebars: SidebarsConfig = {
                 },
               ],
             },
-            {
-              type: "category",
-              label: "Generation Presets",
-              link: {
-                type: "doc",
-                id: "rest-api/generation-presets",
-              },
-              items: [
-                {
-                  type: "doc",
-                  id: "rest-api/list-generation-presets",
-                  label: "List generation presets",
-                  className: "api-method get",
-                },
-              ],
-            },
-            {
-              type: "category",
-              label: "Rerankers",
-              link: {
-                type: "doc",
-                id: "rest-api/rerankers",
-              },
-              items: [
-                {
-                  type: "doc",
-                  id: "rest-api/list-rerankers",
-                  label: "List rerankers",
-                  className: "api-method get",
-                },
-              ],
-            },
           ],
         },
         {
           type: "category",
-          label: "Metadata Statistics",
+          label: "Metadata statistics",
           collapsed: false,
           items: [
             {
@@ -771,7 +729,7 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               type: "category",
-              label: "Corpus Statistics",
+              label: "Corpus statistics",
               items: [
                 {
                   type: "doc",
@@ -783,7 +741,7 @@ const sidebars: SidebarsConfig = {
             },
             {
               type: "category",
-              label: "Query History",
+              label: "Query history",
               link: {
                 type: "doc",
                 id: "rest-api/query-history",
@@ -829,12 +787,12 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "category",
-          label: "Models",
+          label: "Platform",
           collapsed: false,
           items: [
             {
               type: "category",
-              label: "Large Language Models",
+              label: "Large language models",
               link: {
                 type: "doc",
                 id: "rest-api/large-language-models",
@@ -888,16 +846,64 @@ const sidebars: SidebarsConfig = {
                 },
               ],
             },
+            {
+              type: "category",
+              label: "Generation presets",
+              link: {
+                type: "doc",
+                id: "rest-api/generation-presets",
+              },
+              items: [
+                {
+                  type: "doc",
+                  id: "rest-api/list-generation-presets",
+                  label: "List generation presets",
+                  className: "api-method get",
+                },
+              ],
+            },
+            {
+              type: "category",
+              label: "Rerankers",
+              link: {
+                type: "doc",
+                id: "rest-api/rerankers",
+              },
+              items: [
+                {
+                  type: "doc",
+                  id: "rest-api/list-rerankers",
+                  label: "List rerankers",
+                  className: "api-method get",
+                },
+              ],
+            },
+            {
+              type: "category",
+              label: "Table extractors",
+              link: {
+                type: "doc",
+                id: "rest-api/table-extractors",
+              },
+              items: [
+                {
+                  type: "doc",
+                  id: "rest-api/list-table-extractors",
+                  label: "List supported table extractors",
+                  className: "api-method get",
+                },
+              ],
+            },
           ],
         },
         {
           type: "category",
-          label: "Quality and Evaluation",
+          label: "Quality and evaluation",
           collapsed: false,
           items: [
             {
               type: "category",
-              label: "Factual Consistency Evaluation",
+              label: "Factual consistency evaluation",
               link: {
                 type: "doc",
                 id: "rest-api/factual-consistency-evaluation",
@@ -913,7 +919,7 @@ const sidebars: SidebarsConfig = {
             },
             {
               type: "category",
-              label: "Hallucination Correctors",
+              label: "Hallucination correctors",
               link: {
                 type: "doc",
                 id: "rest-api/hallucination-correctors",
@@ -937,7 +943,7 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "category",
-          label: "Administration and Authentication",
+          label: "Access control",
           collapsed: false,
           items: [
             {
@@ -1004,7 +1010,7 @@ const sidebars: SidebarsConfig = {
             },
             {
               type: "category",
-              label: "API Keys",
+              label: "API keys",
               link: {
                 type: "doc",
                 id: "rest-api/api-keys",
@@ -1044,7 +1050,7 @@ const sidebars: SidebarsConfig = {
             },
             {
               type: "category",
-              label: "Application Clients",
+              label: "Application clients",
               link: {
                 type: "doc",
                 id: "rest-api/application-clients",
@@ -1086,7 +1092,7 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "category",
-          label: "LLM Chat Completions",
+          label: "LLM chat completions",
           link: {
             type: "doc",
             id: "rest-api/llm-chat-completions",
