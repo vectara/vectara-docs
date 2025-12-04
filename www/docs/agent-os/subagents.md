@@ -6,9 +6,9 @@ sidebar_label: Subagents
 
 import CodePanel from '@site/src/theme/CodePanel';
 
-Subagents enable your agent to delegate specialized tasks to other agents 
-that work independently and reduce the load and context bloat for the main 
-agent. Think of them as isolated domain experts that your parent 
+The sub-agent tool enables your agent to delegate specialized tasks to other 
+agents that work independently and reduce the load and context bloat for the 
+main agent. Think of them as isolated domain experts that your parent 
 agent can use for specific tasks. Each subagent maintains its own tools, 
 instructions, and conversation history that enables subagents to complete 
 tasks independently before returning results to the parent agent.
@@ -20,26 +20,26 @@ exactly what to do with precise instructions.
 ## How subagents work
 
 When a parent agent invokes a `sub_agent` tool:
-1. The tool creates a new subagent session, or resumes a previous one using a 
+1. The sub-agent tool creates a new session, or resumes a previous one using a 
    `session_key`.
-2. The subagent follows the instructions of the referenced agent (`agent_key`):
-   * It processes this request using its own instructions, tools, and 
-   memory. It can only access its own tools.
-   * The parent cannot access the subagent's tools.
-3. The tool returns the `session_key` value and `sub_agent_response`, which is the 
-   final output of the subagent.
+2. The sub agent tool calls the referenced agent (identified by `agent_key`) with the input message:
+     * The sub-agent processes this request using its own instructions, tools, and memory.
+     * The sub-agent can only access its own tools.
+     * The parent agent cannot access the sub-agent's tools.
+4. The sub agent tool returns the `session_key` and `sub_agent_response` (the sub-agent's 
+   final output) to the parent agent.
 
 :::tip Tips
-* Subagents always return **only the final response** of the subagent. Activity 
-inside the subagent are not returned to the parent. Ensure that you write 
-subagent instructions so that the final message is self-contained.
-* Subagents operate in isolated workspaces. They do not share memory, history, 
+* The sub-agent tool always returns **only the final response** of the sub-agent. Activity 
+inside the sub-agent is not returned to the parent agent. Ensure that you write 
+sub-agent instructions so that the final message is self-contained.
+* Sub-agents operate in isolated workspaces. They do not share memory, history, 
 or tool state with the parent unless configured with artifact sharing.
 :::
 
-## Configure a subagent
+## Configure a sub-agent tool
 
-You can configure subagents inline when creating or updating an agent. The 
+You can configure the sub-agent tool inline when creating or updating an agent. The 
 configuration defines the subagent's `agent_key`, optional session behavior, and 
 optional `argument_override`.
 
@@ -53,38 +53,39 @@ resolved at runtime using `$ref` syntax and can read from:
 - `session.metadata.*`
 - `agent.metadata.*`
 
-### Subagent session modes
+### Session modes
 
-Subagents support three session mode options that control whether the
-subagent resumes previous state or starts new work each time.
+The sub-agent tool supports three session modes that control whether sessions 
+are resumed or created fresh each time:
 
 * `llm_controlled`: (Default) The model decides when to resume a previous session 
   or start a new one.  
   If the LLM provides a `session_key`, the session resumes. If not, a new session 
   starts.
-* `persistent`: The subagent always reuses the same session created on first 
+* `persistent`: The sub-agent tool always reuses the same session created on first 
   invocation.  
   Use this for agents that build knowledge across multiple invocations, such as 
   research or iterative drafting workflows.
-* `ephemeral`: The subagent always starts fresh. Each call creates a new session.  
+* `ephemeral`: The sub-agent tool always starts fresh. Each call creates a new session.  
   Use this when you want strict isolation and do not want state to carry across 
   invocations.
 
-## Invoke a subagent
+## Invoke a sub-agent
 
-After configuring a subagent tool, the parent agent can invoke it by passing a 
-task message. The `message` field is LLM-exposed and defines the specific task
-the subagent must perform.
+After configuring a sub-agent tool, the parent agent can invoke it by passing a 
+task message. The sub agent tool then calls the referenced sub-agent with this 
+message. The `message` field is exposed to the LLM and defines the specific 
+task the subagent must perform.
 
 ## Session management
 
-Subagents maintain their own sessions across conversations using a 
-`session_key`.
+The sub agent tool maintains sessions for sub-agents across invocations using 
+a `session_key`.
 
-* If the parent agent does not provide a `session_key`, the subagent creates 
-  a new session.
-* If the parent agent retains the `session_key` of the subagent, it can use 
-  that key in subsequent calls and "remember" the previous context.
+* If the parent agent does not provide a `session_key`, the sub-agent tool 
+  creates a new session.
+* If the parent agent retains the `session_key` of the subagent, the sub-agent 
+  tool resumes that session.
 
 Subagent sessions are owned by the parent agent. No other agent can access
 them. If a parent attempts to resume a session it did not create, the request
@@ -92,8 +93,9 @@ is rejected.
 
 ## Artifact sharing
 
-Parent agents can share artifacts with subagents. The subagent receives the
-artifact in its own workspace with the `artifact_id`.
+Parent agents can share artifacts with sub-agents through the sub-agent tool. 
+The sub-agent tool passes the artifact to the sub-agent's workspace using the 
+`artifact_id`.
 
 :::note
 The parent must own the artifact before sharing it. If the artifact does not
