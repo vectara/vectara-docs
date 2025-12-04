@@ -37,6 +37,6 @@ Agents can be configured with various tools:
 | [List Agents](/docs/rest-api/list-agents) | GET | Retrieve all agents in your account |
 | [Get Agent](/docs/rest-api/get-agent) | GET | Get detailed configuration of a specific agent |
 | [Update Agent](/docs/rest-api/update-agent) | PATCH | Modify existing agent properties |
-| [Replace Agent](/docs/api-reference/agent-apis/replace-agent) | PUT | Completely replace an agent's configuration |
+| [Replace Agent](/docs/rest-api/replace-agent) | PUT | Completely replace an agent's configuration |
 | [Delete Agent](/docs/rest-api/delete-agent) | DELETE | Remove an agent permanently |
 

@@ -12,6 +12,26 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 
 ---
 
+# November 2025
+
+### 📚 API Changes
+- Enhance API Reference with Supported API Key Types for Each Endpoint (#530)
+- Enhance API Reference endpoint descriptions (#527)
+- Update the API Reference with Lambda Tool and Artifact enhancements (#517)
+
+### 📝 Documentation Changes
+- Enhance search and retrieval section (#529)
+
+### 🛠 Documentation Platform Updates
+- Enhance navbar design and convert markup to markdown. (#528)
+- Navigation improvements (#521)
+- Enhance documentation structure with new layout (#519)
+- Enhance CodePanel v2 with a live code editor and syntax highlighting improvements (#508)
+
+
+
+---
+
 # October 2025
 
 ### ✨ New Features
@@ -43,6 +63,7 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 ### 📝 Documentation Changes
 - Fix MCP broken link in the agents page (#504)
 - Enhance Agents documentation for Tools and Instructions (#503)
+- Refresh API Reference (#501)
 - Introduce new section about Private Deployment options such as on premise (#498)
 - Enhance documentation around data I/O, Agents, model selection, and BYO-LLM with additional API Concepts cleanup for accuracy and discoverability (#496)
 

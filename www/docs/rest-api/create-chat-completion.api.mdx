@@ -1,11 +1,11 @@
 ---
 id: create-chat-completion
 title: "Creates a model response for the given chat conversation"
-description: "OpenAI-compatible endpoint for chat completions. Creates a response for the given chat conversation. The chat completion API allows you to chat with Vectara's language models in a way that's compatible with OpenAI's specification. This makes it easy to integrate with applications already designed for OpenAI's API."
+description: "The Chat Completions API provides an OpenAI-compatible interface for generating model responses in multi-turn chat conversations. This API enables you to integrate our language models directly into applications designed to work with the OpenAI Chat Completions format, making it easy to leverage Vectara capabilities with minimal changes to existing tools or code."
 sidebar_label: "Creates a model response for the given chat conversation"
 hide_title: true
 hide_table_of_contents: true
-api: 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
+api: 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
 sidebar_class_name: "post api-method"
 info_path: docs/rest-api/vectara-rest-api-v-2
 custom_edit_url: null
@@ -36,7 +36,56 @@ import Heading from "@theme/Heading";
 
 
 
-OpenAI-compatible endpoint for chat completions. Creates a response for the given chat conversation. The chat completion API allows you to chat with Vectara's language models in a way that's compatible with OpenAI's specification. This makes it easy to integrate with applications already designed for OpenAI's API.
+The Chat Completions API provides an OpenAI-compatible interface for generating model responses in multi-turn chat conversations. This API enables you to integrate our language models directly into applications designed to work with the OpenAI Chat Completions format, making it easy to leverage Vectara capabilities with minimal changes to existing tools or code.
+
+Use this API to enable interactive chat experiences that support context-aware responses, streaming output, and token usage tracking.
+
+The request includes a series of chat messages and optional parameters that control the behavior and structure of the model response. The request body must include the `messages` parameter, an array of message objects (role, content) representing the full conversation so far.
+
+### Streaming responses
+
+If the `stream` parameter is set to `true`, the response appears as a series of text/event-stream parts (also known as chunks). Each chunk includes a `delta` field showing the incremental message update.
+
+### Example request
+
+This example sends a simple chat conversation to the API, asking the assistant for the capital of France. The request includes a system prompt, a user message, and a temperature setting for response variability.
+```json
+{
+  "model": "chat-model-001","messages": [{ "role": "system", "content": "You are a helpful assistant." },
+  { "role": "user", "content": "What is the capital of France?" }
+],
+"temperature": 0.7,
+"stream": false
+}
+```
+
+### Example response
+The response includes a generated reply from the assistant, along with token usage statistics. In this example, the model returns a direct answer to a user question.
+```json
+{
+"id": "chatcmpl-abc123",}
+"object": "chat.completion",
+"created": 1712454830,
+"model": "chat-model-001",
+"choices": [
+  {
+    "index": 0,
+    "message": {
+      "role": "assistant",
+      "content": "The capital of France is Paris."
+  },
+    "finish_reason": "stop"
+  }
+],
+"usage": {
+  "prompt_tokens": 21,
+  "completion_tokens": 9,
+  "total_tokens": 30
+  } 
+} 
+```
+If the input summary is accurate, the `corrected_summary` matches the `original_summary`.
+
 
 <Heading
   id={"request"}
@@ -54,7 +103,7 @@ OpenAI-compatible endpoint for chat completions. Creates a response for the give
 
 <RequestSchema
   title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"description":"The request object for creating a chat completion with an OpenAI-compatible interface. This object is compatible with OpenAI's chat completion schema and supports customizable parameters for response generation.","type":"object","required":["messages","model"],"properties":{"model":{"type":"string","description":"The ID of the model to use. This field is required."},"messages":{"type":"array","description":"An ordered array of messages that represent the full context of the conversation to date. Each message includes a `role` and `content`.","minItems":1,"items":{"description":"A message in the chat completion request, representing part of the conversation.","type":"object","required":["role","content"],"properties":{"role":{"type":"string","description":"The role of the author of this message. Common values include 'system', 'user', 'assistant', 'function', and 'tool'."},"content":{"type":"string","description":"The contents of the message."},"name":{"type":"string","description":"The name of the author of this message, used to connect messages in a conversation."}},"title":"ChatCompletionRequestMessage"}},"stream":{"type":"boolean","description":"Optional. When set to `true`, the API streams partial message deltas as they become available, similar to ChatGPT's streaming mode.","default":false}},"additionalProperties":true,"title":"CreateChatCompletionRequest"}}}}}
+  body={{"required":true,"content":{"application/json":{"schema":{"description":"The request object for creating a chat completion with an OpenAI-compatible interface. This object is compatible with OpenAI's chat completion schema and supports customizable parameters for response generation.","type":"object","required":["messages","model"],"properties":{"model":{"type":"string","description":"The ID of the model to use. This field is required."},"messages":{"type":"array","description":"An ordered array of messages that represent the full context of the conversation to date. Each message includes a `role` and `content`.","minItems":1,"items":{"description":"A message in the chat completion request, representing part of the conversation.","type":"object","required":["role","content"],"properties":{"role":{"type":"string","description":"The role of the author of this message. Common values include 'system', 'user', 'assistant', 'function', and 'tool'."},"content":{"description":"The contents of the message. Follows the exact format of the content field in the OpenAI Chat Completions API (https://platform.openai.com/docs/api-reference/chat/create). Can be a string for text-only messages, or an array of content parts for multimodal messages with text and images."},"name":{"type":"string","description":"The name of the author of this message, used to connect messages in a conversation."}},"title":"ChatCompletionRequestMessage"}},"stream":{"type":"boolean","description":"Optional. When set to `true`, the API streams partial message deltas as they become available, similar to ChatGPT's streaming mode.","default":false}},"additionalProperties":true,"title":"CreateChatCompletionRequest"}}}}}
 >
   
 </RequestSchema>

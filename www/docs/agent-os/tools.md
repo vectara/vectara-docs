@@ -36,7 +36,7 @@ modify these predefined search parameters during
 conversation.
 
 For more details about the different corpus objects, see 
-[Configure Query Parameters](/docs/api-reference/search-apis/query-configuration).
+[Configure Query Parameters](/docs/rest-api/queries).
 
 ## Agent configuration examples
 
