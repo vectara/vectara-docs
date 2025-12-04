@@ -15,7 +15,7 @@ Vectara handles the system and user prompts automatically, but if you want to
 do it yourself, Vectara now empowers developers with a flexible way of
 customizing prompts with metadata. Our Custom Retrieval Augmented Generation
 (RAG) Prompt Engine provides several available prompt variables and functions
-for our users to customize prompt templates in their [Queries](/docs/api-reference/search-apis/search).
+for our users to customize prompt templates in their [Queries](/docs/rest-api/queries).
 
 ## Available prompt variables
 
@@ -50,7 +50,7 @@ The following table shows the available custom prompt functions:
 ## Setting a Custom Prompt
 
 To set a custom prompt, users can add custom `prompt_template` within the 
-`generation` [object](/docs/learn/grounded-generation/select-a-summarizer) of a [query](/docs/api-reference/search-apis/search) 
+`generation` [object](/docs/learn/grounded-generation/select-a-summarizer) of a [query](/docs/rest-api-queries) 
 to override the default prompt text.
 
 ## Include metadata in prompt

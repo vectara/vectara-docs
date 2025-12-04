@@ -62,3 +62,8 @@
 /docs/learn/querying-table-data                               /docs/build/working-with-tables
 /docs/generation/custom-prompt-templates-customization        /docs/build/working-with-tables
 /docs/api-reference/api-concepts/resource-addressing          /docs/build/resource-addressing
+/docs/build-apps/open-eval-framework                           /docs/hallucination-and-evaluation/open-eval-framework
+/docs/learn/query-observability                                /docs/hallucination-and-evaluation/query-observability
+/docs/learn/hallucination-evaluation                           /docs/hallucination-and-evaluation/hallucination-evaluation
+/docs/learn/vectara-hallucination-corrector                    /docs/hallucination-and-evaluation/vectara-hallucination-corrector
+/docs/build-apps/vectara-answer                                /docs/search-and-retrieval/vectara-answer

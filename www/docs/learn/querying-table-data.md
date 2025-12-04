@@ -59,8 +59,8 @@ can derive actionable insights more effectively.
 
 ## Enable table data extraction
 
-You can ingest PDF table data with the [Vectara Console](/docs/console-ui/manage-documents), [File Upload API](/docs/api-reference/indexing-apis/file-upload/file-upload), 
-or [Indexing API](/docs/api-reference/indexing-apis/indexing). 
+You can ingest PDF table data with the [Vectara Console](/docs/console-ui/manage-documents), [File Upload API](/docs/rest-api/upload-file), 
+or [Indexing API](/docs/rest-api/index). 
 
 ### Vectara Console
 

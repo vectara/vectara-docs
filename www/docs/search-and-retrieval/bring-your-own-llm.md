@@ -27,7 +27,7 @@ through separate API calls.
 ## Define a custom LLM configuration
 
 The integration relies on defining a custom LLM configuration with the 
-[Create LLM](/docs/api-reference/llms-apis/create-llm) endpoint. Vectara supports three LLM types:
+[Create LLM](/docs/rest-api/create-llm) endpoint. Vectara supports three LLM types:
 
 ### Supported LLM Types
 

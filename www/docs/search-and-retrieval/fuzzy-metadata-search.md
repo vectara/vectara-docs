@@ -1,25 +1,25 @@
 ---
 id: fuzzy-metadata-search
-title: Fuzzy Metadata Search
-sidebar_label: Fuzzy Metadata Search
+title: Fuzzy matching
+sidebar_label: Fuzzy matching
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';
 
-Metadata is rarely uniform across different document sources. Titles, 
-categories, and headings can vary and change over time. When users only know 
-part of a value, strict equality filters miss relevant items.
+The tech preview of Fuzzy Metadata Search combines exact filtering with 
+approximate matching. This approach is useful because metadata can have 
+inconsistencies in typos in titles, categories, or keywords.
 
-The tech preview of Fuzzy Metadata Search combines exact pre‑filtering with fuzzy, weighted 
-matching across specific metadata fields. First, narrow the candidate set 
-precisely, such as by status, region, or date. Then, rank what remains using 
-field‑aware *fuzzy matching* so users find what they *mean*, and not just what 
-they *type*.
+Fuzzy search operates in two main steps:
+1. **Exact filtering:** A `metadata_filter` is first applied to narrow results 
+   based on attributes like `doc.status = 'Active'`.
+2. **Fuzzy matching:** On the remaining documents, fuzzy matching 
+   handles common typos and missing characters automatically. These results 
+   are then ranked based on relevance score that you can tune using field 
+   weighting. This means you can give `title` a higher weight than `category`.
 
-* Supports **document-level** and **part-level** metadata searches.
-* Returns relevance‑scored results with pagination (`limit`, `offset`, `total_count`).
-* Lets you weight fields (`title^2.0`, `category^1.0`) to tune ranking.
-* Works alongside existing metadata filters for access control and faceted narrowing.
+The final result is a ranked list that helps users find what they _mean_, even 
+if they did not type the metadata value exactly.
 
 :::tip
 Use `document` level metadata when you want unique documents. Use `part` level 
@@ -31,22 +31,23 @@ Because the fuzzy metadata search feature is a tech preview, it can potentially
 have breaking changes.
 :::
 
-## How fuzzy search works
-
-1. Applies fuzzy matching automatically to all field queries
-2. Handles common typos, character transpositions, and missing characters
-3. Field weights influence the final relevance score
-4. Applies exact `metadata_filter` to narrow results
-5. Performs fuzzy matching on remaining documents
+## Common uses
+* Finding the correct "Service Level Agreement" even if you type "Servce 
+  Levl Agrement."
+* Searching for "software license" returns both "software license" and 
+  "software licensing" documents.
+* Searching for product IDs or SKUs that are prone to errors lets users 
+  still retrieve a part by ID despite a missing digit.
 
 ## Field weighting strategy
 
 Adjust field weights to control search relevance:
-- Higher weights (2.0-3.0): Critical fields like title or primary identifier
-- Medium weights (1.0-1.5): Important supporting fields
-- Lower weights (0.5-1.0): Additional context fields
+- Higher weights (`2.0`-`3.0`): Critical fields like title or primary
+  identifier
+- Medium weights (`1.0`-`1.5`): Important supporting fields
+- Lower weights (`0.5`-`1.0`): Additional context fields
 
-### Example Weighting Strategy
+### Example weighting strategy
 
 <CodePanel
   title="Strategic field weighting"

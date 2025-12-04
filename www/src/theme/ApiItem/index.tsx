@@ -32,8 +32,8 @@ export default function ApiItemWrapper(props: WrapperProps<ApiItemProps>) {
         new TextDecoder().decode(ungzip(base64ToUint8Array(frontMatter.api)))
       );
       
-      // Access the custom x-required-api-key-type extension
-      apiKeyTypes = api['x-required-api-key-type'] || null;
+      // Access the custom x-supported-api-key-type extension
+      apiKeyTypes = api['x-supported-api-key-type'] || null;
       
     } catch (error) {
       console.error('Failed to parse API data:', error);

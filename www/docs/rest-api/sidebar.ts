@@ -108,20 +108,166 @@ const sidebar: SidebarsConfig = {
           label: "Get event in agent session",
           className: "api-method get",
         },
+        {
+          type: "doc",
+          id: "rest-api/list-session-artifacts",
+          label: "List session artifacts",
+          className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "rest-api/get-session-artifact",
+          label: "Get session artifact",
+          className: "api-method get",
+        },
       ],
     },
     {
       type: "category",
-      label: "Authentication",
+      label: "Instructions",
       link: {
         type: "doc",
-        id: "rest-api/authentication",
+        id: "rest-api/instructions",
       },
       items: [
         {
           type: "doc",
-          id: "rest-api/get-o-auth-token",
-          label: "Request an access token",
+          id: "rest-api/create-instruction",
+          label: "Create instruction",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "rest-api/list-instructions",
+          label: "List instructions",
+          className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "rest-api/get-instruction",
+          label: "Get instruction",
+          className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "rest-api/update-instruction",
+          label: "Update instruction",
+          className: "api-method patch",
+        },
+        {
+          type: "doc",
+          id: "rest-api/delete-instruction",
+          label: "Delete instruction",
+          className: "api-method delete",
+        },
+        {
+          type: "doc",
+          id: "rest-api/test-instruction",
+          label: "Test instruction",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "rest-api/delete-instruction-version",
+          label: "Delete instruction version",
+          className: "api-method delete",
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "Tools",
+      link: {
+        type: "doc",
+        id: "rest-api/tools",
+      },
+      items: [
+        {
+          type: "doc",
+          id: "rest-api/create-tool",
+          label: "Create tool",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "rest-api/list-tools",
+          label: "List tools",
+          className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "rest-api/test-lambda-tool-without-creation",
+          label: "Test Lambda tool without creation",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "rest-api/get-tool",
+          label: "Get tool",
+          className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "rest-api/update-tool",
+          label: "Update tool",
+          className: "api-method patch",
+        },
+        {
+          type: "doc",
+          id: "rest-api/delete-tool",
+          label: "Delete tool",
+          className: "api-method delete",
+        },
+        {
+          type: "doc",
+          id: "rest-api/test-tool",
+          label: "Test Lambda tool",
+          className: "api-method post",
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "Tool Servers",
+      link: {
+        type: "doc",
+        id: "rest-api/tool-servers",
+      },
+      items: [
+        {
+          type: "doc",
+          id: "rest-api/list-tool-servers",
+          label: "List tool servers",
+          className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "rest-api/create-tool-server",
+          label: "Create tool server",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "rest-api/get-tool-server",
+          label: "Get tool Server",
+          className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "rest-api/update-tool-server",
+          label: "Update tool server",
+          className: "api-method patch",
+        },
+        {
+          type: "doc",
+          id: "rest-api/delete-tool-server",
+          label: "Delete tool server",
+          className: "api-method delete",
+        },
+        {
+          type: "doc",
+          id: "rest-api/sync-tool-server",
+          label: "Synchronize tool server",
           className: "api-method post",
         },
       ],
@@ -150,6 +296,22 @@ const sidebar: SidebarsConfig = {
           type: "doc",
           id: "rest-api/query",
           label: "Multiple Corpora Query",
+          className: "api-method post",
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "Metadata Query",
+      link: {
+        type: "doc",
+        id: "rest-api/metadata-query",
+      },
+      items: [
+        {
+          type: "doc",
+          id: "rest-api/query-metadata",
+          label: "Query across metadata fields in a corpus",
           className: "api-method post",
         },
       ],
@@ -254,6 +416,12 @@ const sidebar: SidebarsConfig = {
           label: "Compute the current size of a corpus",
           className: "api-method post",
         },
+        {
+          type: "doc",
+          id: "rest-api/get-filter-attribute-stats",
+          label: "Get filter attribute statistics for corpus metadata",
+          className: "api-method get",
+        },
       ],
     },
     {
@@ -298,70 +466,6 @@ const sidebar: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "Chats",
-      link: {
-        type: "doc",
-        id: "rest-api/chats",
-      },
-      items: [
-        {
-          type: "doc",
-          id: "rest-api/create-chat",
-          label: "Start a chat",
-          className: "api-method post",
-        },
-        {
-          type: "doc",
-          id: "rest-api/list-chats",
-          label: "List chats",
-          className: "api-method get",
-        },
-        {
-          type: "doc",
-          id: "rest-api/get-chat",
-          label: "Get a chat",
-          className: "api-method get",
-        },
-        {
-          type: "doc",
-          id: "rest-api/delete-chat",
-          label: "Delete a chat",
-          className: "api-method delete",
-        },
-        {
-          type: "doc",
-          id: "rest-api/create-chat-turn",
-          label: "Create a new turn in the chat",
-          className: "api-method post",
-        },
-        {
-          type: "doc",
-          id: "rest-api/list-chat-turns",
-          label: "List turns in a chat",
-          className: "api-method get",
-        },
-        {
-          type: "doc",
-          id: "rest-api/get-chat-turn",
-          label: "Get a turn",
-          className: "api-method get",
-        },
-        {
-          type: "doc",
-          id: "rest-api/delete-chat-turn",
-          label: "Delete a turn",
-          className: "api-method delete",
-        },
-        {
-          type: "doc",
-          id: "rest-api/update-chat-turn",
-          label: "Update a turn",
-          className: "api-method patch",
-        },
-      ],
-    },
-    {
-      type: "category",
       label: "Generation Presets",
       link: {
         type: "doc",
@@ -395,6 +499,22 @@ const sidebar: SidebarsConfig = {
           id: "rest-api/get-query-histories",
           label: "List the history of previous queries",
           className: "api-method get",
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "Authentication",
+      link: {
+        type: "doc",
+        id: "rest-api/authentication",
+      },
+      items: [
+        {
+          type: "doc",
+          id: "rest-api/get-o-auth-token",
+          label: "Request an access token",
+          className: "api-method post",
         },
       ],
     },
@@ -685,166 +805,6 @@ const sidebar: SidebarsConfig = {
           id: "rest-api/evaluate-factual-consistency",
           label: "Evaluate factual consistency",
           className: "api-method post",
-        },
-      ],
-    },
-    {
-      type: "category",
-      label: "Metadata Query",
-      link: {
-        type: "doc",
-        id: "rest-api/metadata-query",
-      },
-      items: [
-        {
-          type: "doc",
-          id: "rest-api/query-metadata",
-          label: "Query across metadata fields in a corpus",
-          className: "api-method post",
-        },
-      ],
-    },
-    {
-      type: "category",
-      label: "Tool Servers",
-      link: {
-        type: "doc",
-        id: "rest-api/tool-servers",
-      },
-      items: [
-        {
-          type: "doc",
-          id: "rest-api/list-tool-servers",
-          label: "List tool servers",
-          className: "api-method get",
-        },
-        {
-          type: "doc",
-          id: "rest-api/create-tool-server",
-          label: "Create tool server",
-          className: "api-method post",
-        },
-        {
-          type: "doc",
-          id: "rest-api/get-tool-server",
-          label: "Get tool Server",
-          className: "api-method get",
-        },
-        {
-          type: "doc",
-          id: "rest-api/update-tool-server",
-          label: "Update tool server",
-          className: "api-method patch",
-        },
-        {
-          type: "doc",
-          id: "rest-api/delete-tool-server",
-          label: "Delete tool server",
-          className: "api-method delete",
-        },
-        {
-          type: "doc",
-          id: "rest-api/sync-tool-server",
-          label: "Synchronize tool server",
-          className: "api-method post",
-        },
-      ],
-    },
-    {
-      type: "category",
-      label: "Tools",
-      link: {
-        type: "doc",
-        id: "rest-api/tools",
-      },
-      items: [
-        {
-          type: "doc",
-          id: "rest-api/create-tool",
-          label: "Create tool",
-          className: "api-method post",
-        },
-        {
-          type: "doc",
-          id: "rest-api/list-tools",
-          label: "List tools",
-          className: "api-method get",
-        },
-        {
-          type: "doc",
-          id: "rest-api/get-tool",
-          label: "Get tool",
-          className: "api-method get",
-        },
-        {
-          type: "doc",
-          id: "rest-api/update-tool",
-          label: "Update tool",
-          className: "api-method patch",
-        },
-        {
-          type: "doc",
-          id: "rest-api/delete-tool",
-          label: "Delete tool",
-          className: "api-method delete",
-        },
-        {
-          type: "doc",
-          id: "rest-api/test-tool",
-          label: "Test Lambda tool",
-          className: "api-method post",
-        },
-      ],
-    },
-    {
-      type: "category",
-      label: "Instructions",
-      link: {
-        type: "doc",
-        id: "rest-api/instructions",
-      },
-      items: [
-        {
-          type: "doc",
-          id: "rest-api/create-instruction",
-          label: "Create instruction",
-          className: "api-method post",
-        },
-        {
-          type: "doc",
-          id: "rest-api/list-instructions",
-          label: "List instructions",
-          className: "api-method get",
-        },
-        {
-          type: "doc",
-          id: "rest-api/get-instruction",
-          label: "Get instruction",
-          className: "api-method get",
-        },
-        {
-          type: "doc",
-          id: "rest-api/update-instruction",
-          label: "Update instruction",
-          className: "api-method patch",
-        },
-        {
-          type: "doc",
-          id: "rest-api/delete-instruction",
-          label: "Delete instruction",
-          className: "api-method delete",
-        },
-        {
-          type: "doc",
-          id: "rest-api/test-instruction",
-          label: "Test instruction",
-          className: "api-method post",
-        },
-        {
-          type: "doc",
-          id: "rest-api/delete-instruction-version",
-          label: "Delete instruction version",
-          className: "api-method delete",
         },
       ],
     },
