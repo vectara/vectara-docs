@@ -79,7 +79,7 @@ const sidebars: SidebarsConfig = {
             "agent-os/agent-tools-overview",
             "agent-os/lambda-tools",
             // "agent-os/structured-indexing-tool",
-            // "agent-os/subagent-tool",
+            "agent-os/subagents",
           ],
         },
         "search-and-retrieval/bring-your-own-llm",
