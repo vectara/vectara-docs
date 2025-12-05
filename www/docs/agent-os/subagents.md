@@ -9,24 +9,24 @@ import CodePanel from '@site/src/theme/CodePanel';
 The sub-agent tool enables your agent to delegate specialized tasks to other 
 agents that work independently and reduce the load and context bloat for the 
 main agent. Think of them as isolated domain experts that your parent 
-agent can use for specific tasks. Each subagent maintains its own tools, 
-instructions, and conversation history that enables subagents to complete 
+agent can use for specific tasks. Each sub-agent maintains its own tools, 
+instructions, and conversation history that enables sub-agents to complete 
 tasks independently before returning results to the parent agent.
 
-A subagent should have a clear purpose, such as code reviewer, researcher, 
-content writer, or data analyst. The parent agent must tell the subagent 
+A sub-agent should have a clear purpose, such as code reviewer, researcher, 
+content writer, or data analyst. The parent agent must tell the sub-agent 
 exactly what to do with precise instructions.
 
-## How subagents work
+## How sub-agents work
 
 When a parent agent invokes a `sub_agent` tool:
 1. The sub-agent tool creates a new session, or resumes a previous one using a 
    `session_key`.
-2. The sub agent tool calls the referenced agent (identified by `agent_key`) with the input message:
+2. The sub-agent tool calls the referenced agent (identified by `agent_key`) with the input message:
      * The sub-agent processes this request using its own instructions, tools, and memory.
      * The sub-agent can only access its own tools.
      * The parent agent cannot access the sub-agent's tools.
-4. The sub agent tool returns the `session_key` and `sub_agent_response` (the sub-agent's 
+4. The sub-agent tool returns the `session_key` and `sub_agent_response` (the sub-agent's 
    final output) to the parent agent.
 
 :::tip Tips
@@ -39,12 +39,12 @@ or tool state with the parent unless configured with artifact sharing.
 
 ## Configure a sub-agent tool
 
-You can configure the sub-agent tool inline when creating or updating an agent. The 
-configuration defines the subagent's `agent_key`, optional session behavior, and 
-optional `argument_override`.
+You can configure the sub-agent tool inline when creating or updating an agent. 
+The configuration defines which agent to invoke (`agent_key`), optional session 
+behavior, and optional `argument_override`.
 
-`argument_override` lets you hardcode values for the LLM-exposed fields of the 
-subagent tool (`message` and `session_tti_minutes`). The LLM cannot modify 
+`argument_override` lets you hardcode values for fields exposed to the LLM of the 
+sub-agent tool (`message` and `session_tti_minutes`). The LLM cannot modify 
 overridden fields or see the values that were supplied.
 
 You can also use dynamic references inside `argument_override`. These values are 
@@ -73,21 +73,21 @@ are resumed or created fresh each time:
 ## Invoke a sub-agent
 
 After configuring a sub-agent tool, the parent agent can invoke it by passing a 
-task message. The sub agent tool then calls the referenced sub-agent with this 
+task message. The sub-agent tool then calls the referenced sub-agent with this 
 message. The `message` field is exposed to the LLM and defines the specific 
-task the subagent must perform.
+task the sub-agent must perform.
 
 ## Session management
 
-The sub agent tool maintains sessions for sub-agents across invocations using 
+The sub-agent tool maintains sessions for sub-agents across invocations using 
 a `session_key`.
 
 * If the parent agent does not provide a `session_key`, the sub-agent tool 
   creates a new session.
-* If the parent agent retains the `session_key` of the subagent, the sub-agent 
+* If the parent agent retains the `session_key` of the sub-agent, the sub-agent 
   tool resumes that session.
 
-Subagent sessions are owned by the parent agent. No other agent can access
+Sub-agent sessions are owned by the parent agent. No other agent can access
 them. If a parent attempts to resume a session it did not create, the request
 is rejected.
 
@@ -102,7 +102,7 @@ The parent must own the artifact before sharing it. If the artifact does not
 exist in the parent’s workspace, the system returns an error.
 :::
 
-## Subagent patterns
+## Sub-agent patterns
 
 **Single task:** Use when tasks do not require any context to carry over.
 
@@ -120,11 +120,11 @@ exist in the parent’s workspace, the system returns an error.
   ]}
 />
 
-**Persistent subagent sessions:** When when tasks have multiple steps, such as
+**Persistent sub-agent sessions:** When when tasks have multiple steps, such as
   iterative reviews or content generation.
 
 <CodePanel
-  title="Persistent subagent sessions"
+  title="Persistent sub-agent sessions"
   layout="stacked"
   snippets={[
     {
@@ -138,10 +138,10 @@ exist in the parent’s workspace, the system returns an error.
   ]}
 />
 
-**Multiple specialized subagents:** Assign different subagents for a variety of tasks.
+**Multiple specialized sub-agents:** Assign different sub-agents for a variety of tasks.
 
 <CodePanel
-  title="Multiple specialized subagents"
+  title="Multiple specialized sub-agents"
   layout="stacked"
   snippets={[
     {
@@ -164,10 +164,10 @@ exist in the parent’s workspace, the system returns an error.
   ]}
 />
 
-### Example: Inline code review subagent
+### Example: Inline code review sub-agent
 
 <CodePanel
-  title="Inline code review subagent"
+  title="Inline code review sub-agent"
   layout="stacked"
   snippets={[
     {
@@ -177,12 +177,12 @@ exist in the parent’s workspace, the system returns an error.
   -H "Content-Type: application/json" \\
   -d '{
     "name": "main_agent",
-    "description": "Agent that delegates code review to a specialized subagent.",
+    "description": "Agent that delegates code review to a specialized sub-agent.",
     "tools": [
       {
         "type": "sub_agent",
         "name": "code_review_tool",
-        "description": "Invoke a specialized code review subagent.",
+        "description": "Invoke a specialized code review sub-agent.",
         "argument_override": {
           "session_tti_minutes": 60
         },
