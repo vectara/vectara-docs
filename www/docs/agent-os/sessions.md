@@ -308,7 +308,7 @@ View what is currently stored in a session's workspace:
   layout="stacked"
 />
 
-## Retrieve Content of an Artifact
+## Retrieve content of an artifact
 
 Download an artifact (including agent-generated ones).
 
