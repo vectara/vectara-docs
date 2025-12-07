@@ -217,6 +217,11 @@ Word documents, or PowerPoint files and reference artifacts during
 conversations. Artifacts remain available throughout the session lifecycle, 
 enabling multi-step workflows without re-uploading files.
 
+:::tip Tip
+Artifacts only stay attached to their specific session. If you want these 
+artifacts in a corpus, use the index tool to add them.
+:::
+
 
 ### Uploading files to a session
 
