@@ -385,7 +385,6 @@ following pattern:
   * `'India' IN doc.country AND 'Denmark' IN doc.country` (for Text List)
   * `2023 IN doc.years AND 2024 IN doc.years` (for Integer List)
   * `3.14 IN doc.scores AND 2.71 IN doc.scores` (for Float List)
-* **Empty values** - To check if an empty value exists in a Text List: `' ' IN doc.list_attribute`
 
 ### Negation operator (`NOT`)
 
