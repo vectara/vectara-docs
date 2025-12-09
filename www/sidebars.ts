@@ -97,42 +97,6 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "Tutorials",
-      link: {
-        type: 'generated-index',
-        title: "Tutorials",
-        description: "Tutorials to help you build with Vectara",
-        slug: "/tutorials",
-      },
-      collapsible: false,
-      items: [
-        "video-tutorials",
-        "tutorials/build-a-financial-research-agent",
-        "tutorials/faq-and-qna-matching",
-      ],
-    },
-    {
-      type: "category",
-      label: "Integrations",
-      link: {
-        type: 'doc',
-        id: 'integrations/community-collaborations-and-partnerships',
-      },
-      collapsible: false,
-      items: [
-        "tutorials/use-openai-libraries-with-vectara",
-        "tutorials/use-external-applications-sdk",
-        "integrations/vectara-and-langchain",
-        "integrations/vectara-and-llamaindex",
-        "integrations/vectara-and-flowise",
-        "integrations/vectara-and-langflow",
-        "integrations/vectara-and-airbyte",
-        "integrations/vectara-and-confluent",
-        "integrations/vectara-and-speechmatics",
-      ],
-    },
-    {
-      type: "category",
       label: "Security",
       link: {
         type: 'doc',
@@ -217,6 +181,42 @@ const sidebars: SidebarsConfig = {
             "deployments/guides/vectara-okta-oidc",
           ]
         }
+      ],
+    },
+    {
+      type: "category",
+      label: "Tutorials",
+      link: {
+        type: 'generated-index',
+        title: "Tutorials",
+        description: "Tutorials to help you build with Vectara",
+        slug: "/tutorials",
+      },
+      collapsible: false,
+      items: [
+        "video-tutorials",
+        "tutorials/build-a-financial-research-agent",
+        "tutorials/faq-and-qna-matching",
+      ],
+    },
+    {
+      type: "category",
+      label: "Integrations",
+      link: {
+        type: 'doc',
+        id: 'integrations/community-collaborations-and-partnerships',
+      },
+      collapsible: false,
+      items: [
+        "tutorials/use-openai-libraries-with-vectara",
+        "tutorials/use-external-applications-sdk",
+        "integrations/vectara-and-langchain",
+        "integrations/vectara-and-llamaindex",
+        "integrations/vectara-and-flowise",
+        "integrations/vectara-and-langflow",
+        "integrations/vectara-and-airbyte",
+        "integrations/vectara-and-confluent",
+        "integrations/vectara-and-speechmatics",
       ],
     },
       ],
