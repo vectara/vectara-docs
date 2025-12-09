@@ -129,6 +129,7 @@ const sidebars: SidebarsConfig = {
         "integrations/vectara-and-langflow",
         "integrations/vectara-and-airbyte",
         "integrations/vectara-and-confluent",
+        "integrations/vectara-and-speechmatics",
       ],
     },
     {
