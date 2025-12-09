@@ -466,58 +466,6 @@ const sidebar: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "Chats",
-      link: {
-        type: "doc",
-        id: "rest-api/chats",
-      },
-      items: [
-        {
-          type: "doc",
-          id: "rest-api/get-chat",
-          label: "Get a chat",
-          className: "api-method get",
-        },
-        {
-          type: "doc",
-          id: "rest-api/delete-chat",
-          label: "Delete a chat",
-          className: "api-method delete",
-        },
-        {
-          type: "doc",
-          id: "rest-api/create-chat-turn",
-          label: "Create a new turn in the chat",
-          className: "api-method post",
-        },
-        {
-          type: "doc",
-          id: "rest-api/list-chat-turns",
-          label: "List turns in a chat",
-          className: "api-method get",
-        },
-        {
-          type: "doc",
-          id: "rest-api/get-chat-turn",
-          label: "Get a turn",
-          className: "api-method get",
-        },
-        {
-          type: "doc",
-          id: "rest-api/delete-chat-turn",
-          label: "Delete a turn",
-          className: "api-method delete",
-        },
-        {
-          type: "doc",
-          id: "rest-api/update-chat-turn",
-          label: "Update a turn",
-          className: "api-method patch",
-        },
-      ],
-    },
-    {
-      type: "category",
       label: "Generation Presets",
       link: {
         type: "doc",
@@ -755,7 +703,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "rest-api/create-user",
-          label: "Create a user in the current customer account.",
+          label: "Create a user in the current customer account",
           className: "api-method post",
         },
         {

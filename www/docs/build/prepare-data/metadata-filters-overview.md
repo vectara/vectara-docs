@@ -29,7 +29,12 @@ A filter expression operates on the metadata attached to documents that are
 indexed in <Config v="names.product"/>. Because you can associate this 
 metadata to either the entire document, or to specific parts within it, the 
 *scope* must be explicitly specified for every metadata reference in the 
-expression. 
+expression.
+
+:::tip
+When defining filter attributes in the UI, do not include the `'doc.'` prefix. 
+Only use the prefix when writing filter expressions.
+:::
 
 After you define filter attributes, you can use them within your queries. 
 For example:
@@ -349,14 +354,37 @@ such as categories, tags, or statuses.
 For example, filter on two specific categories or statuses.
 
 * **Value is in a category** - Filters documents where the category is either 
-  "Science" or "History":
+  "Science" or "History":  
   
   `doc.category IN ('Science', 'History')`
 * **Value is a particular status** - Filters documents where the status is either 
-  "active" or "pending":
+  "active" or "pending":  
   
   `doc.status IN ('active', 'pending')`
 
+
+### Using IN with list metadata types
+
+When working with list metadata types (Integer List, Float List, Text List), 
+the syntax is different from regular fields. For list attributes, use the 
+following pattern:
+
+* **Value is in a list** - To check if a specific value exists in a list attribute:  
+  * `'value' IN doc.list_attribute` (for Text List)
+  * `number IN doc.list_attribute` (for Integer List or Float List).  
+  
+  **Examples:** 
+  * `'India' IN doc.country` (for Text List), 
+  * `2023 IN doc.years` (for Integer List)
+  * `3.14 IN doc.scores` (for Float List)
+* **Multiple values are in a list** - To check if multiple values exist in a list attribute: 
+  * `'value1' IN doc.list_attribute AND 'value2' IN doc.list_attribute` (for Text List)
+  * `number1 IN doc.list_attribute AND number2 IN doc.list_attribute` (for Integer List or Float List). 
+  
+  **Examples:** 
+  * `'India' IN doc.country AND 'Denmark' IN doc.country` (for Text List)
+  * `2023 IN doc.years AND 2024 IN doc.years` (for Integer List)
+  * `3.14 IN doc.scores AND 2.71 IN doc.scores` (for Float List)
 
 ### Negation operator (`NOT`)
 
@@ -463,6 +491,9 @@ helping you make informed decisions when working with different data types.
 | Text         | The value is UTF-8 text.                                           | A string is enclosed in single quotes (`'`). You can escape a `'` inside text by having two quotes (`''`). |
 | Boolean      | The value is Boolean                                               | `true` or `false`                                                              |
 | Null         | If metadata is not present, its absence is indicated by NULL.      |  `null`                                                                        |
+| Integer List | A list of signed integers.                                         | A list of integers without periods.                                            |
+| Float List   | A list of floating point numbers.                                  | A list of numbers with periods.                                                |
+| Text List    | A list of UTF-8 text strings.                                      | A list of strings enclosed in single quotes (`'`).                             |
 
 [1]: https://en.wikipedia.org/wiki/Double-precision_floating-point_format
 

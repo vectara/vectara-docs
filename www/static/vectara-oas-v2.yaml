@@ -56,9 +56,6 @@ tags:
 - name: Documents
   description: Retrieve and manage documents stored in a corpus for administrative
     tasks.
-- name: Chats
-  description: Create, manage, and interact with chat sessions for conversational
-    AI.
 - name: Generation Presets
   description: Manage generation presets for controlling the behavior of generative
     AI responses.
@@ -98,6 +95,8 @@ paths:
   /v2/corpora:
     post:
       summary: Create a corpus
+      x-supported-api-key-type:
+      - Personal
       description: "The Create Corpus API lets you create a corpus to store and manage\
         \ your documents. A corpus is a container for documents and their associated\
         \ metadata. When creating a corpus, you can specify various settings such\
@@ -408,6 +407,9 @@ paths:
       x-fern-sdk-method-name: create
     get:
       summary: List corpora
+      x-supported-api-key-type:
+      - QueryService
+      - Personal
       description: 'The List Corpora API lets you retrieve a list of corpora in your
         account. This endpoint returns a paginated list of corpora objects, which
         contain basic information about each corpus. The returned corpus objects contain
@@ -606,6 +608,9 @@ paths:
       tags:
       - Corpora
       summary: Retrieve metadata about a corpus
+      x-supported-api-key-type:
+      - QueryService
+      - Personal
       description: 'The Get Corpus API lets you view metadata about a specific corpus.
         This is useful for getting information about a corpus without performing a
         search. This operation does not search the corpus contents. Specify the `corpus_key`
@@ -817,6 +822,8 @@ paths:
       tags:
       - Corpora
       summary: Delete a corpus and all its data
+      x-supported-api-key-type:
+      - Personal
       description: "Permanently delete a corpus and all its associated data. The `corpus_key`\
         \ uniquely identifies the corpus. \n\nUpon successful completion, space quota\
         \ consumed by the corpus will be freed, and the corpus will no longer be useable\
@@ -853,6 +860,8 @@ paths:
       tags:
       - Corpora
       summary: Update a corpus
+      x-supported-api-key-type:
+      - Personal
       description: 'The Update Corpus API lets you enable, disable, or update the
         name and description of a corpus. This is useful to manage the availability
         of data within the system, such as when you need to take the corpus offline
@@ -905,6 +914,8 @@ paths:
       tags:
       - Corpora
       summary: Remove all documents and data in a corpus
+      x-supported-api-key-type:
+      - Personal
       description: Resets a corpus, which removes all documents and data from the
         specified corpus, while keeping the corpus itself. The `corpus_key` uniquely
         identifies the corpus. For more information, see [Create a corpus](https://docs.vectara.com/docs/rest-api/create-corpus).
@@ -941,13 +952,18 @@ paths:
       tags:
       - Corpora
       summary: Replace the filter attributes of a corpus
+      x-supported-api-key-type:
+      - Personal
       operationId: replaceFilterAttributes
       description: 'Replace the filter attributes of a corpus. This does not happen
         immediately, as this operation creates a job that completes asynchronously.
         These new filter attributes will not work until the job completes.
 
+
         You can monitor the status of the filter change using the returned job ID.
-        The `corpus_key` uniquely identifies the corpus.'
+        The `corpus_key` uniquely identifies the corpus.
+
+        '
       parameters:
       - $ref: '#/components/parameters/RequestTimeout'
       - $ref: '#/components/parameters/RequestTimeoutMillis'
@@ -1063,6 +1079,8 @@ paths:
       tags:
       - Corpora
       summary: Compute the current size of a corpus
+      x-supported-api-key-type:
+      - Personal
       description: Compute the current size of a corpus, including number of documents,
         parts, and characters. The `corpus_key` uniquely identifies the corpus.
       operationId: computeCorpusSize
@@ -1101,6 +1119,9 @@ paths:
       tags:
       - Corpora
       summary: Get filter attribute statistics for corpus metadata
+      x-supported-api-key-type:
+      - QueryService
+      - Personal
       description: 'Retrieve statistics and value distributions for filter attributes
         in a corpus. This endpoint provides insights into the metadata structure and
         content distribution, enabling users to understand available filter values
@@ -1347,6 +1368,9 @@ paths:
       tags:
       - Upload
       summary: Upload a file to the corpus
+      x-supported-api-key-type:
+      - IndexService
+      - Personal
       description: "Upload a file to a corpus for automatic text extraction, chunking,\
         \ and indexing. This endpoint is designed for unstructured documents where\
         \ you want Vectara to handle parsing for you. Each uploaded file can be up\
@@ -1485,6 +1509,9 @@ paths:
       tags:
       - Index
       summary: Add a document to a corpus
+      x-supported-api-key-type:
+      - IndexService
+      - Personal
       description: "Add a document to a corpus for indexing, making its content available\
         \ for search, retrieval, and generation. This endpoint supports two ingestion\
         \ modes: **structured** documents and **core** documents. These modes offer\
@@ -1596,6 +1623,9 @@ paths:
       tags:
       - Documents
       summary: List the documents in the corpus
+      x-supported-api-key-type:
+      - QueryService
+      - Personal
       description: "The List Documents API enables you to retrieve a list of documents\
         \ stored in a specific corpus. This endpoint provides an overview of document\
         \ metadata, including document IDs, tables (if table extraction is enabled),\
@@ -1674,6 +1704,9 @@ paths:
       tags:
       - Documents
       summary: Delete a document
+      x-supported-api-key-type:
+      - IndexService
+      - Personal
       description: Permanently delete a document identified by its unique `document_id`
         from a specific corpus. This operation cannot be undone, so use it with caution.
       operationId: deleteCorpusDocument
@@ -1714,6 +1747,9 @@ paths:
       tags:
       - Documents
       summary: Retrieve a document
+      x-supported-api-key-type:
+      - QueryService
+      - Personal
       description: 'The Retrieve Document API enables you to fetch the content and
         metadata of a specific document from a corpus, identified by its unique `document_id`
         from a specific corpus. Use this endpoint to view the full details of a document,
@@ -1769,6 +1805,9 @@ paths:
       tags:
       - Index
       summary: Update document, merging the metadata.
+      x-supported-api-key-type:
+      - IndexService
+      - Personal
       description: Updates document identified by its unique `document_id` from a
         specific corpus. The request body metadata is merged with the existing metadata,
         adding or modifying only the specified fields.
@@ -1826,6 +1865,9 @@ paths:
       tags:
       - Index
       summary: Replace the document metadata.
+      x-supported-api-key-type:
+      - IndexService
+      - Personal
       description: Replaces metadata of a document identified by its unique `document_id`
         from a specific corpus.
       operationId: replaceCorpusDocumentMetadata
@@ -1882,6 +1924,9 @@ paths:
       tags:
       - Documents
       summary: Summarize a document
+      x-supported-api-key-type:
+      - QueryService
+      - Personal
       description: "Organizations often struggle with extracting relevant insights\
         \ from extensive documentation, such as vendor quotes, financial statements,\
         \ and technical reports. Manually reviewing these documents is both time-consuming\
@@ -2051,6 +2096,9 @@ paths:
       tags:
       - Documents
       summary: Retrieve an image from a document
+      x-supported-api-key-type:
+      - QueryService
+      - Personal
       description: Returns a specific image that is embedded within a document. The
         `image_id` uniquely identifies the image within the document. Use this endpoint
         to fetch the raw image data and associated metadata.
@@ -2114,6 +2162,9 @@ paths:
       tags:
       - Metadata Query
       summary: Query across metadata fields in a corpus
+      x-supported-api-key-type:
+      - QueryService
+      - Personal
       description: Query for documents in a specific corpus using fuzzy matching across
         specified metadata fields. The search first applies any exact metadata filters
         to narrow the results, then performs fuzzy matching on the remaining documents
@@ -2166,8 +2217,28 @@ paths:
       tags:
       - Queries
       summary: Simple Single Corpus Query
-      description: 'Search a single corpus with a straightforward query request, specifying
-        the corpus key and query parameters.
+      x-supported-api-key-type:
+      - QueryService
+      - Personal
+      description: 'The [**Query APIs**](/docs/rest-api/queries) enable Retrieval
+        Augmented Generation (RAG), allowing you to search your data and generate
+        AI-powered summaries. Vectara provides three query types to match different
+        search needs:
+
+
+        * [**Single corpus query**](/docs/rest-api/search-corpus): For a simple search
+        within a single data source.
+
+        * [**Advanced single corpus query**](/docs/rest-api/query-corpus): For full-featured
+        search and RAG within one corpus, supporting advanced features like table
+        summarization, metadata filtering, and reranking.
+
+        * [**Multiple corpora query**](/docs/rest-api/query): For searching across
+        one or more corpora with full RAG capabilities.
+
+
+        Search a single corpus with a straightforward query request, specifying the
+        corpus key and query parameters.
 
 
         * Specify the unique `corpus_key` identifying the corpus to query. The `corpus_key`
@@ -2348,6 +2419,9 @@ paths:
       tags:
       - Queries
       summary: Advanced Single Corpus Query
+      x-supported-api-key-type:
+      - QueryService
+      - Personal
       description: "Perform an advanced query on a specific corpus to find relevant\
         \ results, generate summaries, highlight relevant snippets, and use Retrieval\
         \ Augmented Generation.\n\nThis endpoint expands on the simple GET version\
@@ -2813,6 +2887,9 @@ paths:
       tags:
       - Queries
       summary: Multiple Corpora Query
+      x-supported-api-key-type:
+      - QueryService
+      - Personal
       description: 'Perform a multipurpose query to retrieve relevant information
         from one or more corpora and generate a response using Retrieval Augmented
         Generation (RAG). Similar to the [advanced corpora search](https://docs.vectara.com/docs/rest-api/query-corpus).
@@ -3245,6 +3322,9 @@ paths:
       tags:
       - Query History
       summary: Get a query history
+      x-supported-api-key-type:
+      - QueryService
+      - Personal
       description: 'The Get Query History API allows you to retrieve detailed history
         about a specific query that was made against a corpus. The response includes
         detailed information about the query, such as latency, the time it was executed,
@@ -3297,6 +3377,9 @@ paths:
       tags:
       - Query History
       summary: List the history of previous queries
+      x-supported-api-key-type:
+      - QueryService
+      - Personal
       description: 'The List Query Histories API allows you to retrieve, update, and
         manage query history for a specific corpus. This API is particularly useful
         for tracking query performance, debugging individual queries, and retrieving
@@ -3387,459 +3470,14 @@ paths:
         cursor: $request.page_key
         next_cursor: $response.metadata.page_key
         results: $response.queries
-  /v2/chats/{chat_id}:
-    get:
-      tags:
-      - Chats
-      summary: Get a chat
-      description: Get a chat summary to view what started the chat, but not subsequent
-        turns.
-      operationId: getChat
-      parameters:
-      - $ref: '#/components/parameters/RequestTimeout'
-      - $ref: '#/components/parameters/RequestTimeoutMillis'
-      - in: path
-        name: chat_id
-        description: The ID of the chat.
-        required: true
-        schema:
-          type: string
-          pattern: cht_.+$
-      responses:
-        '200':
-          description: A chat.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Chat'
-        '403':
-          description: Permissions do not allow retrieving the chat.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '404':
-          description: Corpus or chat not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotFoundError'
-      x-fern-sdk-group-name: chats
-      x-fern-sdk-method-name: get
-    delete:
-      tags:
-      - Chats
-      summary: Delete a chat
-      description: Delete a chat and any turns it contains permanently.
-      operationId: deleteChat
-      parameters:
-      - $ref: '#/components/parameters/RequestTimeout'
-      - $ref: '#/components/parameters/RequestTimeoutMillis'
-      - in: path
-        name: chat_id
-        description: The ID of the chat.
-        required: true
-        schema:
-          type: string
-          pattern: cht_.+$
-      responses:
-        '204':
-          description: Successfully deleted the chat.
-        '403':
-          description: Permissions do not allow deleting the chat.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '404':
-          description: Corpus or chat not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotFoundError'
-      x-fern-sdk-group-name: chats
-      x-fern-sdk-method-name: delete
-  /v2/chats/{chat_id}/turns:
-    post:
-      tags:
-      - Chats
-      summary: Create a new turn in the chat
-      description: Create a new turn in the chat. Each conversation has a series of
-        `turn` objects, which are the sequence of message and response pairs that
-        make up the dialog.
-      operationId: createChatTurn
-      parameters:
-      - $ref: '#/components/parameters/RequestTimeout'
-      - $ref: '#/components/parameters/RequestTimeoutMillis'
-      - in: path
-        name: chat_id
-        description: The ID of the chat.
-        required: true
-        schema:
-          type: string
-          pattern: cht_.+$
-      requestBody:
-        content:
-          application/json:
-            examples:
-              Legal:
-                summary: Clarify difference from standard non-compete language
-                value:
-                  query: How does this clause compare to our standard non-compete
-                    template?
-                  generation:
-                    response_language: eng
-                  search:
-                    corpora:
-                    - corpus_key: legal_docs
-                    metadataFilter: doc.clause_type = 'non_compete'
-              Finance:
-                summary: Follow-up on ISO early exercise benefits
-                value:
-                  query: If I early exercise ISOs, how does that affect AMT?
-                  generation:
-                    response_language: eng
-                  search:
-                    corpora:
-                    - corpus_key: fin_docs
-                    metadataFilter: doc.type = 'tax_policy'
-              Support:
-                summary: "Ask why token refresh didn\u2019t resolve issue"
-                value:
-                  query: Why did refreshing the token not fix the login problem for
-                    some users?
-                  search:
-                    corpora:
-                    - corpus_key: support_kb
-                    metadataFilter: doc.platform = 'web_portal' AND doc.error_code
-                      = '403'
-            schema:
-              $ref: '#/components/schemas/ChatRequest'
-      x-stream-based-on-body: streamResponse()
-      responses:
-        '200':
-          description: A response to a chat request.
-          content:
-            application/json:
-              examples:
-                Legal:
-                  summary: Comparison to standard non-compete clause
-                  value:
-                    summary: This clause lacks a clear duration and omits geographical
-                      scope, which are present in your standard template. Legal enforceability
-                      may vary by state.
-                    summary_factual_consistency_score: 0.93
-                Finance:
-                  summary: ISO early exercise and AMT implications
-                  value:
-                    summary: Exercising early can reduce the AMT impact if shares
-                      are held for >1 year and not sold during that time. Form 6251
-                      applies for AMT calculations.
-                    summary_factual_consistency_score: 0.9
-                Support:
-                  summary: Token refresh failure root cause
-                  value:
-                    summary: Users affected had expired refresh tokens due to silent
-                      authentication failures. Recommend forcing a full logout and
-                      re-authentication cycle.
-                    summary_factual_consistency_score: 0.89
-              schema:
-                $ref: '#/components/schemas/ChatFullResponse'
-            text/event-stream:
-              schema:
-                $ref: '#/components/schemas/ChatStreamedResponse'
-        '400':
-          description: Turn creation request was malformed.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BadRequestError'
-        '403':
-          description: Permissions do not allow creating a turn in the chat.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '404':
-          description: Corpus or chat not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotFoundError'
-      x-fern-streaming:
-        format: sse
-        stream-condition: $request.stream_response
-        response:
-          description: Full response to a chat question when the result is not streamed.
-          type: object
-          properties:
-            chat_id:
-              description: If the chat response was stored, the ID of the chat.
-              type: string
-              example: cht_123456789
-            turn_id:
-              description: If the chat response was stored, the ID of the turn.
-              type: string
-              example: trn_987654321
-            answer:
-              description: The message from the chat model for the chat message.
-              type: string
-              example: EU banks in 2023 have increased carbon reduction initiatives
-                by 20%, driven by new EU regulations mandating annual emissions reporting.
-            response_language:
-              description: The language that the answer is expected to be.
-              $ref: '#/components/schemas/Language'
-              example: eng
-            search_results:
-              description: The ranked search results that the chat model used.
-              type: array
-              items:
-                $ref: '#/components/schemas/IndividualSearchResult'
-            factual_consistency_score:
-              description: Indicates the probability that the summary is factually
-                consistent with the results. The system excludes this property if
-                it encounters excessively large outputs or search results.
-              type: number
-              format: float
-            rendered_prompt:
-              description: The rendered prompt sent to the LLM. Useful when creating
-                customer `prompt_template` templates.
-              type: string
-              example: '[{"role": "system", "content": "You are an ESG analyst."},
-                {"role": "user", "content": "What are the carbon reduction initiatives
-                by EU banks in 2023?"}, {"role": "assistant", "content": "${vectaraQueryResults[0].getText()}"}]'
-            warnings:
-              description: Non-fatal warnings that occurred during request processing
-              type: array
-              items:
-                $ref: '#/components/schemas/QueryWarning'
-            rephrased_query:
-              description: View the actual query made to backend that was rephrased
-                by the LLM from the input query.
-              type: string
-              example: Carbon reduction efforts by EU banks in 2023?
-            rewritten_queries:
-              description: The rewritten queries for the corpora that were searched.
-                Only populated when intelligent_query_rewriting is enabled.
-              type: array
-              items:
-                $ref: '#/components/schemas/RewrittenQuery'
-              example:
-              - corpus_key: fin_docs
-                filter_extraction:
-                  query: ESG compliance trends in EU
-                  metadata_filter: doc.industry = 'banking' AND doc.year = 2023
-              - corpus_key: legal_docs
-                filter_extraction:
-                  query: ESG regulations for EU banks 2023
-                  metadata_filter: doc.jurisdiction = 'EU' AND doc.year = 2023
-        response-stream:
-          description: An individual event when the response is streamed.
-          type: object
-          discriminator:
-            propertyName: type
-            mapping:
-              search_results: '#/components/schemas/StreamSearchResponse'
-              chat_info: '#/components/schemas/ChatInfoResponse'
-              generation_chunk: '#/components/schemas/StreamGenerationChunk'
-              generation_end: '#/components/schemas/StreamGenerationEnd'
-              generation_info: '#/components/schemas/GenerationInfo'
-              factual_consistency_score: '#/components/schemas/FactualConsistencyScore'
-              end: '#/components/schemas/StreamResponseEnd'
-              error: '#/components/schemas/StreamError'
-          oneOf:
-          - $ref: '#/components/schemas/StreamSearchResponse'
-          - $ref: '#/components/schemas/ChatInfoResponse'
-          - $ref: '#/components/schemas/StreamGenerationChunk'
-          - $ref: '#/components/schemas/StreamGenerationEnd'
-          - $ref: '#/components/schemas/GenerationInfo'
-          - $ref: '#/components/schemas/FactualConsistencyScore'
-          - $ref: '#/components/schemas/StreamResponseEnd'
-          - $ref: '#/components/schemas/StreamError'
-      x-fern-sdk-group-name: chats
-      x-fern-sdk-method-name: createTurns
-    get:
-      tags:
-      - Chats
-      summary: List turns in a chat
-      description: List all turns in a chat to see all message and response pairs
-        that make up the dialog.
-      operationId: listChatTurns
-      parameters:
-      - $ref: '#/components/parameters/RequestTimeout'
-      - $ref: '#/components/parameters/RequestTimeoutMillis'
-      - in: path
-        name: chat_id
-        description: The ID of the chat.
-        required: true
-        example: cht_1234567890
-        schema:
-          type: string
-          pattern: cht_.+$
-      responses:
-        '200':
-          description: List of turns.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ListChatTurnsResponse'
-        '403':
-          description: Permissions do not allow listing turns in the chat.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '404':
-          description: Corpus or chat not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotFoundError'
-      x-fern-sdk-group-name: chats
-      x-fern-sdk-method-name: listTurns
-  /v2/chats/{chat_id}/turns/{turn_id}:
-    get:
-      tags:
-      - Chats
-      summary: Get a turn
-      description: Get a specific turn from a chat, which is a message and response
-        pair from the conversation.
-      operationId: getChatTurn
-      parameters:
-      - $ref: '#/components/parameters/RequestTimeout'
-      - $ref: '#/components/parameters/RequestTimeoutMillis'
-      - in: path
-        name: chat_id
-        description: The ID of the chat.
-        required: true
-        schema:
-          type: string
-          pattern: cht_.+$
-      - in: path
-        name: turn_id
-        description: The ID of the turn.
-        required: true
-        schema:
-          type: string
-          pattern: trn_.+$
-      responses:
-        '200':
-          description: The turn.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Turn'
-        '403':
-          description: Permissions do not allow getting the turn.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '404':
-          description: Corpus, chat, or turn not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotFoundError'
-      x-fern-sdk-group-name: chats
-      x-fern-sdk-method-name: getTurn
-    delete:
-      tags:
-      - Chats
-      summary: Delete a turn
-      description: Delete a turn from a chat. This will delete all subsequent turns
-        in the chat.
-      operationId: deleteChatTurn
-      parameters:
-      - $ref: '#/components/parameters/RequestTimeout'
-      - $ref: '#/components/parameters/RequestTimeoutMillis'
-      - in: path
-        name: chat_id
-        description: The ID of the chat.
-        required: true
-        schema:
-          type: string
-          pattern: cht_.+$
-      - in: path
-        name: turn_id
-        description: The ID of the turn.
-        required: true
-        schema:
-          type: string
-          pattern: trn_.+$
-      responses:
-        '204':
-          description: Successfully deleted a turn.
-        '403':
-          description: Permissions do not allow deleting the turn.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '404':
-          description: Corpus, chat, or turn not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotFoundError'
-      x-fern-sdk-group-name: chats
-      x-fern-sdk-method-name: deleteTurn
-    patch:
-      tags:
-      - Chats
-      summary: Update a turn
-      description: Update a turn; used to disable or enable a chat.
-      operationId: updateChatTurn
-      parameters:
-      - $ref: '#/components/parameters/RequestTimeout'
-      - $ref: '#/components/parameters/RequestTimeoutMillis'
-      - in: path
-        name: chat_id
-        description: The ID of the chat.
-        required: true
-        example: cht_1234567890
-        schema:
-          type: string
-          pattern: cht_.+$
-      - in: path
-        name: turn_id
-        description: The ID of the turn.
-        required: true
-        example: trn_987654321
-        schema:
-          type: string
-          pattern: trn_.+$
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UpdateTurnRequest'
-      responses:
-        '200':
-          description: Successfully modified the turn.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Turn'
-        '403':
-          description: Permissions do not allow updating the turn.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '404':
-          description: Corpus, chat, or turn not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotFoundError'
-      x-fern-sdk-group-name: chats
-      x-fern-sdk-method-name: updateTurn
   /v2/llms:
     post:
       tags:
       - Large Language Models
       summary: Create an LLM
+      x-supported-api-key-type:
+      - IndexService
+      - Personal
       description: "Integrate external Large Language Models (LLMs) into Vectara for\
         \ Retrieval Augmented Generation (RAG) and chat. Connect OpenAI API-compatible\
         \ models from providers like Anthropic, Azure, Google, or custom-hosted endpoints.\
@@ -3915,6 +3553,9 @@ paths:
       tags:
       - Large Language Models
       summary: List LLMs
+      x-supported-api-key-type:
+      - QueryService
+      - Personal
       description: List LLMs that can be used with query and chat endpoints. The LLM
         is not directly specified in a query, but instead a `generation_preset_name`
         is used. The `generation_preset_name` property in generation parameters can
@@ -3971,6 +3612,9 @@ paths:
       tags:
       - Large Language Models
       summary: Get an LLM
+      x-supported-api-key-type:
+      - QueryService
+      - Personal
       description: 'The Get LLM API allows users to retrieve details about a specific
         Large Language Model (LLM) that has been configured within the Vectara platform.
         This API provides metadata about the LLM, including its name, description,
@@ -4022,6 +3666,8 @@ paths:
       tags:
       - Large Language Models
       summary: Delete an LLM
+      x-supported-api-key-type:
+      - Personal
       description: 'The Delete LLM API enables users to remove a previously configured
         custom Large Language Model (LLM) from their Vectara account. This functionality
         is essential for managing active LLM configurations and ensuring that only
@@ -4069,6 +3715,9 @@ paths:
       tags:
       - LLM Chat Completions
       summary: Creates a model response for the given chat conversation
+      x-supported-api-key-type:
+      - QueryService
+      - Personal
       description: "The Chat Completions API provides an OpenAI-compatible interface\
         \ for generating model responses in multi-turn chat conversations. This API\
         \ enables you to integrate our language models directly into applications\
@@ -4139,6 +3788,9 @@ paths:
       tags:
       - Generation Presets
       summary: List generation presets
+      x-supported-api-key-type:
+      - QueryService
+      - Personal
       description: 'Organizations often struggle to fine-tune query responses and
         maintain consistency across different use cases. Vectara creates and maintains
         predefined generation presets for our users which provides a flexible and
@@ -4232,6 +3884,9 @@ paths:
       tags:
       - Factual Consistency Evaluation
       summary: Evaluate factual consistency
+      x-supported-api-key-type:
+      - QueryService
+      - Personal
       description: "Evaluate the factual consistency of a generated text (like a summary)\
         \ against source documents. This determines how accurately the generated text\
         \ reflects the information in the source documents, helping identify potential\
@@ -4301,6 +3956,8 @@ paths:
       tags:
       - Encoders
       summary: Create an encoder
+      x-supported-api-key-type:
+      - Personal
       description: Create a new encoder.
       operationId: createEncoder
       parameters:
@@ -4336,6 +3993,9 @@ paths:
       tags:
       - Encoders
       summary: List encoders
+      x-supported-api-key-type:
+      - QueryService
+      - Personal
       description: 'The List Encoders API retrieves a list of available encoders used
         for embedding documents and queries.
 
@@ -4392,6 +4052,9 @@ paths:
       tags:
       - Rerankers
       summary: List rerankers
+      x-supported-api-key-type:
+      - QueryService
+      - Personal
       description: 'The List Rerankers API retrieves a list of available rerankers
         used to improve the ranking and ordering of search results.
 
@@ -4451,6 +4114,8 @@ paths:
       tags:
       - Table Extractors
       summary: List supported table extractors
+      x-supported-api-key-type:
+      - Personal
       description: Table extractors are used to extract tabular data from documents
         during indexing.
       operationId: listTableExtractors
@@ -4477,6 +4142,9 @@ paths:
       tags:
       - Hallucination Correctors
       summary: List hallucination correctors
+      x-supported-api-key-type:
+      - QueryService
+      - Personal
       description: 'The List Hallucination Correctors API enables users to list available
         hallucination correctors used for detecting and correcting hallucinations
         in AI-generated content. Vectara provides these models as part of its broader
@@ -4545,6 +4213,9 @@ paths:
       tags:
       - Hallucination Correctors
       summary: Corrects hallucinations in generated text based on source documents
+      x-supported-api-key-type:
+      - QueryService
+      - Personal
       description: 'The Hallucination Correctors API enables users to automatically
         detect and correct factual inaccuracies, commonly referred to as hallucinations,
         in generated summaries or responses. By comparing a user-provided summary
@@ -4611,6 +4282,8 @@ paths:
       tags:
       - Jobs
       summary: List jobs
+      x-supported-api-key-type:
+      - Personal
       description: List jobs for the account. Jobs are background processes like replacing
         the filterable metadata attributes.
       operationId: listJobs
@@ -4681,6 +4354,8 @@ paths:
       tags:
       - Jobs
       summary: Get a job by ID
+      x-supported-api-key-type:
+      - Personal
       description: Get a job by a specific `job_id`. Jobs are background processes
         like replacing the filterable metadata attributes.
       operationId: getJob
@@ -4719,7 +4394,9 @@ paths:
     post:
       tags:
       - Users
-      summary: Create a user in the current customer account.
+      summary: Create a user in the current customer account
+      x-supported-api-key-type:
+      - Personal
       description: 'Create a user for the current customer account. For example, a
         company wants to onboard new team members efficiently and this endpoint lets
         you streamline the process by adding new users programmatically, assigning
@@ -4775,6 +4452,8 @@ paths:
       tags:
       - Users
       summary: List users in the account
+      x-supported-api-key-type:
+      - Personal
       description: 'The List Users API lets you list all users on your team and also
         their corpus access and customer-level authorizations.
 
@@ -4835,6 +4514,8 @@ paths:
       tags:
       - Users
       summary: Get a user
+      x-supported-api-key-type:
+      - Personal
       description: Get a user and view details like the email, username, and associated
         roles.
       operationId: getUser
@@ -4873,6 +4554,8 @@ paths:
       tags:
       - Users
       summary: Update a user
+      x-supported-api-key-type:
+      - Personal
       description: Update details about a user such as role names.
       operationId: updateUser
       parameters:
@@ -4915,6 +4598,8 @@ paths:
       tags:
       - Users
       summary: Delete a user
+      x-supported-api-key-type:
+      - Personal
       description: Delete a user from the account.
       operationId: deleteUser
       parameters:
@@ -4949,6 +4634,8 @@ paths:
       tags:
       - Users
       summary: Reset the password for a user
+      x-supported-api-key-type:
+      - Personal
       description: Reset the password for a user.
       operationId: resetUserPassword
       parameters:
@@ -4996,6 +4683,8 @@ paths:
       tags:
       - API Keys
       summary: Create an API key
+      x-supported-api-key-type:
+      - Personal
       description: 'The Create API Key API lets you create new API keys, which you
         can bind to one or multiple corpora. You can also decide whether to designate
         each key for specific access like personal API keys, only querying (read-only)
@@ -5047,6 +4736,8 @@ paths:
       tags:
       - API Keys
       summary: List API keys
+      x-supported-api-key-type:
+      - Personal
       description: 'The List API Keys API lists all existing API keys for a customer
         ID. It also shows what corpora are accessed by these keys and with what permissions.
         This capability can provide insights into key usage and status and help you
@@ -5119,6 +4810,8 @@ paths:
       tags:
       - API Keys
       summary: Get an API key
+      x-supported-api-key-type:
+      - Personal
       description: 'The Get API Key API lists all existing API keys for a customer
         ID. It also shows what corpora are accessed by these keys and with what permissions.
 
@@ -5157,6 +4850,8 @@ paths:
       tags:
       - API Keys
       summary: Update an API key
+      x-supported-api-key-type:
+      - Personal
       description: 'The Update API Key API lets you enable or disable specific API
         keys. You can use this endpoint to temporarily disable access without deleting
         the key.
@@ -5200,6 +4895,8 @@ paths:
       tags:
       - API Keys
       summary: Delete an API key
+      x-supported-api-key-type:
+      - Personal
       description: "The Delete API Key API lets you delete one or more existing API\
         \ keys. \nThis capability is useful for managing the lifecycle and security\
         \ of \nAPI keys such as when they are no longer needed or when a key is compromised.\n"
@@ -5229,6 +4926,8 @@ paths:
       tags:
       - Application Clients
       summary: Create an App Client
+      x-supported-api-key-type:
+      - Personal
       description: An App Client is used for OAuth 2.0 authentication when calling
         Vectara APIs.
       operationId: createAppClient
@@ -5266,6 +4965,8 @@ paths:
       tags:
       - Application Clients
       summary: List App Clients
+      x-supported-api-key-type:
+      - Personal
       description: Retrieve a list of application clients configured for the customer
         account.
       operationId: listAppClient
@@ -5325,6 +5026,8 @@ paths:
       tags:
       - Application Clients
       summary: Get an App Client
+      x-supported-api-key-type:
+      - Personal
       description: Retrieve details of a specific application client by its ID.
       operationId: getAppClient
       parameters:
@@ -5355,6 +5058,8 @@ paths:
       tags:
       - Application Clients
       summary: Update an App Client
+      x-supported-api-key-type:
+      - Personal
       description: Update the configuration or settings of an existing application
         client.
       operationId: updateAppClient
@@ -5391,6 +5096,8 @@ paths:
       tags:
       - Application Clients
       summary: Delete an App Client
+      x-supported-api-key-type:
+      - Personal
       description: Remove an application client configuration from the customer account.
       operationId: deleteAppClient
       parameters:
@@ -5468,6 +5175,8 @@ paths:
       tags:
       - Tool Servers
       summary: List tool servers
+      x-supported-api-key-type:
+      - Personal
       description: Retrieve a list of available tool servers that expose various tools.
       operationId: listToolServers
       parameters:
@@ -5537,6 +5246,8 @@ paths:
       tags:
       - Tool Servers
       summary: Create tool server
+      x-supported-api-key-type:
+      - Personal
       description: Create a new tool server to expose tools for use by agents.
       operationId: createToolServer
       parameters:
@@ -5574,6 +5285,8 @@ paths:
       tags:
       - Tool Servers
       summary: Get tool Server
+      x-supported-api-key-type:
+      - Personal
       description: Retrieve details about a specific tool server by its Id.
       operationId: getToolServer
       parameters:
@@ -5612,6 +5325,8 @@ paths:
       tags:
       - Tool Servers
       summary: Update tool server
+      x-supported-api-key-type:
+      - Personal
       description: Update the configuration of a specific tool server.
       operationId: updateToolServer
       parameters:
@@ -5662,6 +5377,8 @@ paths:
       tags:
       - Tool Servers
       summary: Delete tool server
+      x-supported-api-key-type:
+      - Personal
       description: Permanently delete a tool server and all its associated configuration
         and tools. This action cannot be undone.
       operationId: deleteToolServer
@@ -5698,6 +5415,8 @@ paths:
       tags:
       - Tool Servers
       summary: Synchronize tool server
+      x-supported-api-key-type:
+      - Personal
       description: Trigger a synchronization of the tool server to ensure it is up-to-date
         with the latest tools.
       operationId: syncToolServer
@@ -5734,6 +5453,8 @@ paths:
       tags:
       - Tools
       summary: Create tool
+      x-supported-api-key-type:
+      - Personal
       description: "Create a new tool that agents can use during conversation. Tools\
         \ give agents capabilities to interact with external systems, process data,\
         \ query corpora, or run custom logic. Agents select and invoke tools dynamically\
@@ -5790,6 +5511,8 @@ paths:
       tags:
       - Tools
       summary: List tools
+      x-supported-api-key-type:
+      - Personal
       description: List all tools available to the authenticated user, with optional
         filtering and pagination. Tools represent capabilities that agents can invoke
         during conversation, including built-in system tools and user-defined Lambda
@@ -5872,6 +5595,8 @@ paths:
       tags:
       - Tools
       summary: Test Lambda tool without creation
+      x-supported-api-key-type:
+      - Personal
       description: 'Test a Lambda tool without creating it first. This endpoint allows
         you to validate code, discover schemas, and test execution before committing
         to tool creation.
@@ -5928,6 +5653,8 @@ paths:
       tags:
       - Tools
       summary: Get tool
+      x-supported-api-key-type:
+      - Personal
       description: Retrieve the full details of a specific tool, including its description,
         input schema, metadata, and capabilities. Tools may represent structured search
         functions, document-processing workflows, or user-defined Lambda functions.
@@ -5970,6 +5697,8 @@ paths:
       tags:
       - Tools
       summary: Update tool
+      x-supported-api-key-type:
+      - Personal
       description: "Update an existing tool\u2019s configuration, including its metadata,\
         \ enabled status, or other properties. Updating a tool modifies how agents\
         \ can invoke it during conversation."
@@ -6022,6 +5751,8 @@ paths:
       tags:
       - Tools
       summary: Delete tool
+      x-supported-api-key-type:
+      - Personal
       description: Permanently delete a tool and its configuration. This action cannot
         be undone. Agents attempting to use a deleted tool will fail, so ensure that
         agent configurations are updated before removing a tool.
@@ -6059,6 +5790,8 @@ paths:
       tags:
       - Tools
       summary: Test Lambda tool
+      x-supported-api-key-type:
+      - Personal
       description: 'Execute a Lambda tool with test inputs to verify it works correctly.
 
         This endpoint allows users to test their functions before using them with
@@ -6124,6 +5857,8 @@ paths:
       tags:
       - Instructions
       summary: Create instruction
+      x-supported-api-key-type:
+      - Personal
       description: "Create a new instruction that defines how an agent should behave,\
         \ reason, and respond. Instructions act as system-level guidelines that shape\
         \ the agent's tone, style, constraints, and tool usage.\n\nInstructions support\
@@ -6186,6 +5921,8 @@ paths:
       tags:
       - Instructions
       summary: List instructions
+      x-supported-api-key-type:
+      - Personal
       description: 'List all instructions available to the authenticated user, with
         optional filtering and pagination. This endpoint returns high-level information
         about each instruction, including name, status, and version details.
@@ -6260,11 +5997,12 @@ paths:
       tags:
       - Instructions
       summary: Get instruction
+      x-supported-api-key-type:
+      - Personal
       description: 'Retrieve the full definition of a specific instruction, including
         its template, metadata, enabled status, and version. Instruction templates
-        may contain Velocity expressions that reference tools and metadata, such as
-        `\$tools` or `$\{session.metadata.field}`. If no version is specified, the
-        latest version is returned.
+        may contain Velocity expressions that reference tools and metadata. If no
+        version is specified, the latest version is returned.
 
         '
       operationId: getInstruction
@@ -6311,6 +6049,8 @@ paths:
       tags:
       - Instructions
       summary: Update instruction
+      x-supported-api-key-type:
+      - Personal
       description: 'Update an existing instruction''s template, metadata, and configuration.
         Updated templates may include Velocity variables such as `\$tools` or metadata
         references. Each update creates a new version, allowing agents to continue
@@ -6388,6 +6128,8 @@ paths:
       tags:
       - Instructions
       summary: Delete instruction
+      x-supported-api-key-type:
+      - Personal
       description: 'Permanently delete an instruction and all its associated configuration.
 
 
@@ -6432,6 +6174,8 @@ paths:
       tags:
       - Instructions
       summary: Test instruction
+      x-supported-api-key-type:
+      - Personal
       description: Test an instruction template using supplied context and available
         tools. This endpoint evaluates Velocity expressions such as `\$tools`, `\${session.metadata.field}`,
         or `\${agent.metadata.field}`, and returns the fully rendered template output.
@@ -6501,6 +6245,8 @@ paths:
       tags:
       - Instructions
       summary: Delete instruction version
+      x-supported-api-key-type:
+      - Personal
       description: Permanently delete the specified version of the instruction. This
         action cannot be undone.
       operationId: deleteInstructionVersion
@@ -6550,6 +6296,8 @@ paths:
       tags:
       - Agents
       summary: Create agent
+      x-supported-api-key-type:
+      - Personal
       description: "Create a new agent. An agent is compromised as 3 main things of\
         \ functionality:\n  1. The **instructions** an agent follows. Known as a system\
         \ in prompt in other platforms.\n  2. The **steps** an agent follows when\
@@ -6620,6 +6368,8 @@ paths:
       tags:
       - Agents
       summary: List agents
+      x-supported-api-key-type:
+      - Personal
       description: The List Agents API enables you to retrieve a paginated list of
         all agents available to the authenticated user. This is useful for managing
         and monitoring agent deployments across use cases and environments.
@@ -6683,6 +6433,8 @@ paths:
       tags:
       - Agents
       summary: Get agent
+      x-supported-api-key-type:
+      - Personal
       description: 'The Get Agent API enables you to retrieve the complete configuration
         and operational details of a specific AI agent, providing comprehensive visibility
         into agent capabilities, tool integrations, behavioral instructions, and metadata.
@@ -6730,6 +6482,8 @@ paths:
       tags:
       - Agents
       summary: Update agent
+      x-supported-api-key-type:
+      - Personal
       description: 'The Update Agent API enables you to modify an existing agent configuration,
         including tool assignments, behavioral instructions, model parameters, and
         operational metadata.
@@ -6790,6 +6544,8 @@ paths:
       tags:
       - Agents
       summary: Replace agent
+      x-supported-api-key-type:
+      - Personal
       description: The Replace Agent API enables you to completely replace an existing
         agent configuration, including its corpora, tools, and generation presets.
         This endpoint performs a full replacement of the agent definition, unlike
@@ -6842,6 +6598,8 @@ paths:
       tags:
       - Agents
       summary: Delete agent
+      x-supported-api-key-type:
+      - Personal
       description: 'The Delete Agent API enables you to permanently remove an AI agent
         and its configuration from the Vectara platform, supporting agent lifecycle
         management and resource cleanup in enterprise environments.
@@ -6886,6 +6644,8 @@ paths:
       tags:
       - Agent Sessions
       summary: Create agent session
+      x-supported-api-key-type:
+      - Personal
       description: "Create a new session for interacting with an agent. A session\
         \ is the conversation container that maintains state across all messages,\
         \ events, tool use, and agent responses.\n\nThis endpoint initializes the\
@@ -6950,6 +6710,8 @@ paths:
       tags:
       - Agent Sessions
       summary: List agent sessions
+      x-supported-api-key-type:
+      - Personal
       description: List all agent sessions for the specified agent. This endpoint
         returns high-level information about each session, with optional filtering
         and pagination. Use this operation to browse existing sessions or to locate
@@ -7019,6 +6781,8 @@ paths:
       tags:
       - Agent Sessions
       summary: Get agent session
+      x-supported-api-key-type:
+      - Personal
       description: Retrieve the full details of a specific agent session using its
         unique session key. The response includes the session's configuration, metadata,
         timestamps, and other stored properties. Use this endpoint to inspect the
@@ -7064,6 +6828,8 @@ paths:
       tags:
       - Agent Sessions
       summary: Update agent session
+      x-supported-api-key-type:
+      - Personal
       description: 'Update the configuration of an existing agent session. This endpoint
         enables you to modify fields such as the name, description, or metadata.
 
@@ -7126,6 +6892,8 @@ paths:
       tags:
       - Agent Sessions
       summary: Delete agent session
+      x-supported-api-key-type:
+      - Personal
       description: Permanently delete an agent session. This action cannot be undone.
       operationId: deleteAgentSession
       parameters:
@@ -7165,6 +6933,8 @@ paths:
       tags:
       - Agent Sessions
       summary: Interact with an agent
+      x-supported-api-key-type:
+      - Personal
       description: Create a new input to an agent to interact with it.
       operationId: createAgentInput
       parameters:
@@ -7331,6 +7101,8 @@ paths:
       tags:
       - Agent Sessions
       summary: List events in agent session
+      x-supported-api-key-type:
+      - Personal
       description: List all events in a specific agent session, with optional pagination.
       operationId: listAgentEvents
       parameters:
@@ -7395,6 +7167,8 @@ paths:
       tags:
       - Agent Sessions
       summary: Get event in agent session
+      x-supported-api-key-type:
+      - Personal
       description: Retrieve the details of a specific event within an agent session.
       operationId: getAgentEvent
       parameters:
@@ -7446,6 +7220,8 @@ paths:
       tags:
       - Agent Sessions
       summary: List session artifacts
+      x-supported-api-key-type:
+      - Personal
       description: List all artifacts stored in a specific agent session, with cursor-based
         pagination. Artifacts are files either uploaded by the user, or generated
         within a session. This endpoint shows you what files exist in a session, but
@@ -7513,6 +7289,8 @@ paths:
       tags:
       - Agent Sessions
       summary: Get session artifact
+      x-supported-api-key-type:
+      - Personal
       description: Retrieve a specific artifact by its unique `artifact_id`, including
         metadata and base64-encoded file content.
       operationId: getSessionArtifact
@@ -10245,237 +10023,6 @@ components:
               description: A query parameter required when requesting the next page
                 of results.
               type: string
-    Chat:
-      description: A chat conversation with associated metadata and settings.
-      type: object
-      properties:
-        id:
-          description: ID of the chat.
-          type: string
-          pattern: cht_.+$
-          example: cht_123456789
-        first_query:
-          description: The first query of the chat.
-          type: string
-          example: What are the arbitration terms in the Delaware employment contract?
-        first_answer:
-          description: The first answer of the chat.
-          type: string
-          example: Clause 9.2 mandates binding arbitration through AAA with venue
-            in Delaware and a 30-day opt-out. California law governs the agreement.
-        enabled:
-          description: Indicates whether this chat is enabled and can have further
-            turns.
-          type: boolean
-          example: true
-        created_at:
-          description: Specifies when this chat was created.
-          type: string
-          format: date-time
-    Turn:
-      description: A single message exchange in a chat conversation, representing
-        one user input and the corresponding response.
-      type: object
-      properties:
-        id:
-          description: The ID of the turn.
-          type: string
-          pattern: trn_.+$
-          example: trn_987654321
-        chat_id:
-          description: The ID of the chat the turn resides in.
-          type: string
-          pattern: cht_.+$
-          example: cht_123456789
-        query:
-          description: The query made to produce this turn.
-          type: string
-          maxLength: 5000
-          example: How do you turn this widget?
-        answer:
-          description: The response to the query.
-          type: string
-          example: The widget turns counter clockwise.
-        enabled:
-          description: Indicates whether the turn is enabled and shown in future turns
-            of the chat.
-          type: boolean
-          example: true
-        created_at:
-          description: Specifies when the turn was created.
-          type: string
-          format: date-time
-    ListChatTurnsResponse:
-      description: Response containing a list of turns (message exchanges) within
-        a chat conversation.
-      type: object
-      properties:
-        turns:
-          description: List of turns.
-          type: array
-          items:
-            $ref: '#/components/schemas/Turn'
-    ChatParameters:
-      type: object
-      description: Parameters to control chat behavior.
-      properties:
-        store:
-          description: Indicates whether to store chat messages and response messages.
-          type: boolean
-          default: true
-    ChatRequest:
-      description: Request to start or continue a chat conversation with a large language
-        model.
-      type: object
-      properties:
-        query:
-          description: The chat message or question.
-          type: string
-          maxLength: 5000
-          example: What are the carbon reduction efforts by EU banks in 2023?
-        search:
-          $ref: '#/components/schemas/SearchCorporaParameters'
-        generation:
-          $ref: '#/components/schemas/GenerationParameters'
-        chat:
-          $ref: '#/components/schemas/ChatParameters'
-        save_history:
-          description: Indicates whether to save the chat in both the chat and query
-            history. This overrides `chat.store`.
-          type: boolean
-          default: true
-        intelligent_query_rewriting:
-          description: '[Tech Preview] Indicates whether to enable intelligent query
-            rewriting. When enabled, the platform will attempt to extract metadata
-            filter and rewrite the query to improve search results. Read [here](https://docs.vectara.com/docs/search-and-retrieval/intelligent-query-rewriting)
-            for more details.'
-          type: boolean
-          default: false
-        stream_response:
-          description: Indicates whether the response should be streamed or not.
-          type: boolean
-          default: false
-      required:
-      - query
-      - search
-    ChatFullResponse:
-      description: Full response to a chat question when the result is not streamed.
-      type: object
-      properties:
-        chat_id:
-          description: If the chat response was stored, the ID of the chat.
-          type: string
-          example: cht_123456789
-        turn_id:
-          description: If the chat response was stored, the ID of the turn.
-          type: string
-          example: trn_987654321
-        answer:
-          description: The message from the chat model for the chat message.
-          type: string
-          example: EU banks in 2023 have increased carbon reduction initiatives by
-            20%, driven by new EU regulations mandating annual emissions reporting.
-        response_language:
-          description: The language that the answer is expected to be.
-          $ref: '#/components/schemas/Language'
-          example: eng
-        search_results:
-          description: The ranked search results that the chat model used.
-          type: array
-          items:
-            $ref: '#/components/schemas/IndividualSearchResult'
-        factual_consistency_score:
-          description: Indicates the probability that the summary is factually consistent
-            with the results. The system excludes this property if it encounters excessively
-            large outputs or search results.
-          type: number
-          format: float
-        rendered_prompt:
-          description: The rendered prompt sent to the LLM. Useful when creating customer
-            `prompt_template` templates.
-          type: string
-          example: '[{"role": "system", "content": "You are an ESG analyst."}, {"role":
-            "user", "content": "What are the carbon reduction initiatives by EU banks
-            in 2023?"}, {"role": "assistant", "content": "${vectaraQueryResults[0].getText()}"}]'
-        warnings:
-          description: Non-fatal warnings that occurred during request processing
-          type: array
-          items:
-            $ref: '#/components/schemas/QueryWarning'
-        rephrased_query:
-          description: View the actual query made to backend that was rephrased by
-            the LLM from the input query.
-          type: string
-          example: Carbon reduction efforts by EU banks in 2023?
-        rewritten_queries:
-          description: The rewritten queries for the corpora that were searched. Only
-            populated when intelligent_query_rewriting is enabled.
-          type: array
-          items:
-            $ref: '#/components/schemas/RewrittenQuery'
-          example:
-          - corpus_key: fin_docs
-            filter_extraction:
-              query: ESG compliance trends in EU
-              metadata_filter: doc.industry = 'banking' AND doc.year = 2023
-          - corpus_key: legal_docs
-            filter_extraction:
-              query: ESG regulations for EU banks 2023
-              metadata_filter: doc.jurisdiction = 'EU' AND doc.year = 2023
-    ChatInfoResponse:
-      description: Information about the chat.
-      type: object
-      properties:
-        type:
-          description: This will be `chat_info` when the stream event contains information
-            about how the chat is stored.
-          type: string
-          default: chat_info
-        chat_id:
-          description: ID of the chat.
-          type: string
-          pattern: cht_.+$
-          example: cht_123456789
-        turn_id:
-          description: ID of the turn.
-          type: string
-          pattern: trn_.+$
-          example: trn_987654321
-      x-vectaraParents:
-      - ChatStreamedResponse
-    ChatStreamedResponse:
-      description: An individual event when the response is streamed.
-      type: object
-      discriminator:
-        propertyName: type
-        mapping:
-          search_results: '#/components/schemas/StreamSearchResponse'
-          chat_info: '#/components/schemas/ChatInfoResponse'
-          generation_chunk: '#/components/schemas/StreamGenerationChunk'
-          generation_end: '#/components/schemas/StreamGenerationEnd'
-          generation_info: '#/components/schemas/GenerationInfo'
-          factual_consistency_score: '#/components/schemas/FactualConsistencyScore'
-          end: '#/components/schemas/StreamResponseEnd'
-          error: '#/components/schemas/StreamError'
-      oneOf:
-      - $ref: '#/components/schemas/StreamSearchResponse'
-      - $ref: '#/components/schemas/ChatInfoResponse'
-      - $ref: '#/components/schemas/StreamGenerationChunk'
-      - $ref: '#/components/schemas/StreamGenerationEnd'
-      - $ref: '#/components/schemas/GenerationInfo'
-      - $ref: '#/components/schemas/FactualConsistencyScore'
-      - $ref: '#/components/schemas/StreamResponseEnd'
-      - $ref: '#/components/schemas/StreamError'
-    UpdateTurnRequest:
-      description: Request to update a specific turn (message exchange) within a chat
-        conversation.
-      type: object
-      properties:
-        enabled:
-          description: Indicates whether to disable a turn. It will disable this turn
-            and all subsequent turns. Enabling a turn is not implemented.
-          type: boolean
-          example: false
     Prompt:
       description: A prompt that can be used with a LLM. A prompt is the template
         that is used to render the text sent to the LLM. It also contains various
@@ -10996,8 +10543,10 @@ components:
           description: The role of the author of this message. Common values include
             'system', 'user', 'assistant', 'function', and 'tool'.
         content:
-          type: string
-          description: The contents of the message.
+          description: The contents of the message. Follows the exact format of the
+            content field in the OpenAI Chat Completions API (https://platform.openai.com/docs/api-reference/chat/create).
+            Can be a string for text-only messages, or an array of content parts for
+            multimodal messages with text and images.
         name:
           type: string
           description: The name of the author of this message, used to connect messages
@@ -12149,6 +11698,47 @@ components:
 
         '
       type: string
+    ToolBase:
+      description: Base properties shared by all tool types.
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/ToolId'
+        name:
+          description: Unique identifier for the tool.
+          type: string
+        title:
+          description: Human-readable title of the tool.
+          type: string
+        description:
+          description: A detailed description of what the tool does and how it can
+            be used.
+          type: string
+        description_template:
+          $ref: '#/components/schemas/ToolDescriptionTemplate'
+        enabled:
+          description: Whether the tool is currently enabled and available for use.
+          type: boolean
+          default: true
+        created_at:
+          description: Timestamp when the tool was created.
+          type: string
+          format: date-time
+        updated_at:
+          description: Timestamp when the tool was last updated.
+          type: string
+          format: date-time
+        input_schema:
+          description: The schema that defines the expected input structure for the
+            tool.
+          type: object
+          additionalProperties: true
+      required:
+      - id
+      - name
+      - description
+      - enabled
+      - input_schema
     McpToolAnnotations:
       description: Optional hints about tool behaviour/metadata.
       type: object
@@ -12169,180 +11759,54 @@ components:
     McpTool:
       description: An MCP (Model Context Protocol) tool that connects to external
         MCP servers for extended functionality.
-      type: object
-      properties:
-        type:
-          description: This should always be `mcp`.
-          type: string
-          default: mcp
-          example: mcp
-        id:
-          $ref: '#/components/schemas/ToolId'
-        server_id:
-          description: The unique identifier of the MCP server this tool is associated
-            with.
-          $ref: '#/components/schemas/ToolServerId'
-        name:
-          description: Unique identifier for the tool in the MCP server.
-          type: string
-        title:
-          description: Human-readable title of the tool.
-          type: string
-        description:
-          description: A detailed description of what the tool does and how it can
-            be used.
-          type: string
-        description_template:
-          $ref: '#/components/schemas/ToolDescriptionTemplate'
-        enabled:
-          description: Whether the tool is currently enabled and available for use.
-          type: boolean
-          default: true
-        created_at:
-          description: Timestamp when the tool was created.
-          type: string
-          format: date-time
-        updated_at:
-          description: Timestamp when the tool was last updated.
-          type: string
-          format: date-time
-        input_schema:
-          description: The schema that defines the expected input structure for the
-            MCP tool.
-          type: object
-          additionalProperties: true
-          example:
-            type: object
-            properties:
-              query:
-                type: string
-                description: The search query to send to the MCP server.
-              max_results:
-                type: integer
-                description: The maximum number of results to return.
-        annotations:
-          $ref: '#/components/schemas/McpToolAnnotations'
-      required:
-      - type
-      - id
-      - name
-      - description
-      - enabled
-      - input_schema
+      allOf:
+      - $ref: '#/components/schemas/ToolBase'
+      - type: object
+        properties:
+          type:
+            description: This should always be `mcp`.
+            type: string
+            default: mcp
+            example: mcp
+          server_id:
+            description: The unique identifier of the MCP server this tool is associated
+              with.
+            $ref: '#/components/schemas/ToolServerId'
+          annotations:
+            $ref: '#/components/schemas/McpToolAnnotations'
+        required:
+        - type
       x-vectaraParents:
       - Tool
     CorporaSearchTool:
       description: A corpora search tool that searches through Vectara corpora to
         find relevant information.
-      type: object
-      properties:
-        type:
-          description: This should always be `corpora_search`.
-          type: string
-          default: corpora_search
-          example: corpora_search
-        id:
-          $ref: '#/components/schemas/ToolId'
-        name:
-          description: Unique identifier for the tool.
-          type: string
-        title:
-          description: Human-readable title of the tool.
-          type: string
-        description:
-          description: A detailed description of what the tool does and how it can
-            be used.
-          type: string
-        description_template:
-          $ref: '#/components/schemas/ToolDescriptionTemplate'
-        enabled:
-          description: Whether the tool is currently enabled and available for use.
-          type: boolean
-          default: true
-        created_at:
-          description: Timestamp when the tool was created.
-          type: string
-          format: date-time
-        updated_at:
-          description: Timestamp when the tool was last updated.
-          type: string
-          format: date-time
-        input_schema:
-          description: The schema that defines the expected input structure for the
-            corpora search tool.
-          type: object
-          additionalProperties: true
-          example:
-            type: object
-            properties:
-              query:
-                type: string
-                description: The search query to execute against the corpora.
-      required:
-      - type
-      - id
-      - name
-      - description
-      - enabled
-      - input_schema
+      allOf:
+      - $ref: '#/components/schemas/ToolBase'
+      - type: object
+        properties:
+          type:
+            description: This should always be `corpora_search`.
+            type: string
+            default: corpora_search
+            example: corpora_search
+        required:
+        - type
       x-vectaraParents:
       - Tool
     WebSearchTool:
       description: A web search tool that searches the internet for relevant information.
-      type: object
-      properties:
-        type:
-          description: This should always be `web_search`.
-          type: string
-          default: web_search
-          example: web_search
-        id:
-          $ref: '#/components/schemas/ToolId'
-        name:
-          description: Unique identifier for the tool.
-          type: string
-        title:
-          description: Human-readable title of the tool.
-          type: string
-        description:
-          description: A detailed description of what the tool does and how it can
-            be used.
-          type: string
-        description_template:
-          $ref: '#/components/schemas/ToolDescriptionTemplate'
-        enabled:
-          description: Whether the tool is currently enabled and available for use.
-          type: boolean
-          default: true
-        created_at:
-          description: Timestamp when the tool was created.
-          type: string
-          format: date-time
-        updated_at:
-          description: Timestamp when the tool was last updated.
-          type: string
-          format: date-time
-        input_schema:
-          description: The schema that defines the expected input structure for the
-            web search tool.
-          type: object
-          additionalProperties: true
-          example:
-            type: object
-            properties:
-              query:
-                type: string
-                description: The search query to execute on the web.
-              limit:
-                type: integer
-                description: The maximum number of results to return.
-      required:
-      - type
-      - id
-      - name
-      - description
-      - enabled
-      - input_schema
+      allOf:
+      - $ref: '#/components/schemas/ToolBase'
+      - type: object
+        properties:
+          type:
+            description: This should always be `web_search`.
+            type: string
+            default: web_search
+            example: web_search
+        required:
+        - type
       x-vectaraParents:
       - Tool
     ExecutionConfiguration:
@@ -12522,61 +11986,17 @@ components:
       description: A tool that indexes structured documents into the Vectara platform
         with full control over document structure, sections, metadata, tables, and
         images.
-      type: object
-      properties:
-        type:
-          description: This should always be `structured_indexing`.
-          type: string
-          default: structured_indexing
-          example: structured_indexing
-        id:
-          $ref: '#/components/schemas/ToolId'
-        name:
-          description: Unique identifier for the tool.
-          type: string
-        title:
-          description: Human-readable title of the tool.
-          type: string
-        description:
-          description: A detailed description of what the tool does and how it can
-            be used.
-          type: string
-        description_template:
-          $ref: '#/components/schemas/ToolDescriptionTemplate'
-        enabled:
-          description: Whether the tool is currently enabled and available for use.
-          type: boolean
-          default: true
-        created_at:
-          description: Timestamp when the tool was created.
-          type: string
-          format: date-time
-        updated_at:
-          description: Timestamp when the tool was last updated.
-          type: string
-          format: date-time
-        input_schema:
-          description: The schema that defines the expected input structure for the
-            structured indexing tool.
-          type: object
-          additionalProperties: true
-          example:
-            type: object
-            properties:
-              corpus_key:
-                type: string
-                description: The key identifying the target corpus for document indexing.
-              document:
-                type: object
-                description: The structured document to index with full hierarchical
-                  content.
-      required:
-      - type
-      - id
-      - name
-      - description
-      - enabled
-      - input_schema
+      allOf:
+      - $ref: '#/components/schemas/ToolBase'
+      - type: object
+        properties:
+          type:
+            description: This should always be `structured_indexing`.
+            type: string
+            default: structured_indexing
+            example: structured_indexing
+        required:
+        - type
       x-vectaraParents:
       - Tool
     SubAgentTool:
@@ -12588,49 +12008,97 @@ components:
         styling.
 
         '
-      type: object
-      properties:
-        type:
-          description: This should always be `sub_agent`.
-          type: string
-          default: sub_agent
-          example: sub_agent
-        id:
-          $ref: '#/components/schemas/ToolId'
-        name:
-          description: Unique identifier for the tool.
-          type: string
-        title:
-          description: Human-readable title of the tool.
-          type: string
-        description:
-          description: A detailed description of what the sub-agent does and when
-            it should be used.
-          type: string
-        enabled:
-          description: Whether the tool is currently enabled and available for use.
-          type: boolean
-          default: true
-        created_at:
-          description: Timestamp when the tool was created.
-          type: string
-          format: date-time
-        updated_at:
-          description: Timestamp when the tool was last updated.
-          type: string
-          format: date-time
-        input_schema:
-          description: The schema that defines the expected input structure for the
-            sub-agent invocation.
-          type: object
-          additionalProperties: true
-      required:
-      - type
-      - id
-      - name
-      - description
-      - enabled
-      - input_schema
+      allOf:
+      - $ref: '#/components/schemas/ToolBase'
+      - type: object
+        properties:
+          type:
+            description: This should always be `sub_agent`.
+            type: string
+            default: sub_agent
+            example: sub_agent
+        required:
+        - type
+      x-vectaraParents:
+      - Tool
+    ArtifactCreateTool:
+      description: A tool that creates artifacts from text or structured data content
+        that can be stored and referenced later.
+      allOf:
+      - $ref: '#/components/schemas/ToolBase'
+      - type: object
+        properties:
+          type:
+            description: This should always be `artifact_create`.
+            type: string
+            default: artifact_create
+            example: artifact_create
+        required:
+        - type
+      x-vectaraParents:
+      - Tool
+    ArtifactReadTool:
+      description: A tool that reads artifact content from the agent session workspace
+        with flexible size and range options.
+      allOf:
+      - $ref: '#/components/schemas/ToolBase'
+      - type: object
+        properties:
+          type:
+            description: This should always be `artifact_read`.
+            type: string
+            default: artifact_read
+            example: artifact_read
+        required:
+        - type
+      x-vectaraParents:
+      - Tool
+    ArtifactGrepTool:
+      description: A tool that searches through an artifact's content using grep with
+        support for all standard grep options.
+      allOf:
+      - $ref: '#/components/schemas/ToolBase'
+      - type: object
+        properties:
+          type:
+            description: This should always be `artifact_grep`.
+            type: string
+            default: artifact_grep
+            example: artifact_grep
+        required:
+        - type
+      x-vectaraParents:
+      - Tool
+    ImageReadTool:
+      description: A tool that loads image artifacts into the conversation context
+        for viewing and analysis.
+      allOf:
+      - $ref: '#/components/schemas/ToolBase'
+      - type: object
+        properties:
+          type:
+            description: This should always be `image_read`.
+            type: string
+            default: image_read
+            example: image_read
+        required:
+        - type
+      x-vectaraParents:
+      - Tool
+    DocumentConversionTool:
+      description: A tool that converts document artifacts (PDF, Word, PowerPoint,
+        etc.) to various formats.
+      allOf:
+      - $ref: '#/components/schemas/ToolBase'
+      - type: object
+        properties:
+          type:
+            description: This should always be `document_conversion`.
+            type: string
+            default: document_conversion
+            example: document_conversion
+        required:
+        - type
       x-vectaraParents:
       - Tool
     Tool:
@@ -12645,6 +12113,11 @@ components:
           lambda: '#/components/schemas/LambdaTool'
           structured_indexing: '#/components/schemas/StructuredIndexingTool'
           sub_agent: '#/components/schemas/SubAgentTool'
+          artifact_create: '#/components/schemas/ArtifactCreateTool'
+          artifact_read: '#/components/schemas/ArtifactReadTool'
+          artifact_grep: '#/components/schemas/ArtifactGrepTool'
+          image_read: '#/components/schemas/ImageReadTool'
+          document_conversion: '#/components/schemas/DocumentConversionTool'
       oneOf:
       - $ref: '#/components/schemas/McpTool'
       - $ref: '#/components/schemas/CorporaSearchTool'
@@ -12652,6 +12125,11 @@ components:
       - $ref: '#/components/schemas/LambdaTool'
       - $ref: '#/components/schemas/StructuredIndexingTool'
       - $ref: '#/components/schemas/SubAgentTool'
+      - $ref: '#/components/schemas/ArtifactCreateTool'
+      - $ref: '#/components/schemas/ArtifactReadTool'
+      - $ref: '#/components/schemas/ArtifactGrepTool'
+      - $ref: '#/components/schemas/ImageReadTool'
+      - $ref: '#/components/schemas/DocumentConversionTool'
     ListToolsResponse:
       description: Response containing a list of tools.
       type: object
@@ -13674,6 +13152,172 @@ components:
       - sub_agent_configuration
       x-vectaraParents:
       - AgentToolConfiguration
+    ArtifactReadToolParameters:
+      description: Configurable parameters for the artifact read tool. If not overridden,
+        they will be required by the LLM to fill in.
+      type: object
+      properties:
+        artifact_id:
+          description: The ID of the artifact to read.
+          type: string
+          example: art_abc123
+        encoding:
+          description: The encoding format for the content.
+          type: string
+          enum:
+          - raw
+          - base64
+          example: raw
+        start_line:
+          description: Optional starting line number (1-indexed).
+          type: integer
+          format: int32
+          example: 100
+        end_line:
+          description: Optional ending line number (1-indexed, inclusive).
+          type: integer
+          format: int32
+          example: 200
+      additionalProperties: false
+    InlineArtifactReadToolConfiguration:
+      title: InlineArtifactReadToolConfiguration
+      description: An artifact read tool configuration defined inline in the agent
+        for reading artifacts from the session workspace.
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of tool configuration, which is always 'artifact_read'
+            for inline artifact read tool configurations.
+          default: artifact_read
+        description_template:
+          $ref: '#/components/schemas/ToolDescriptionTemplate'
+        argument_override:
+          $ref: '#/components/schemas/ArtifactReadToolParameters'
+      required:
+      - type
+      x-vectaraParents:
+      - AgentToolConfiguration
+    ArtifactGrepToolParameters:
+      description: Configurable parameters for the artifact grep tool. If not overridden,
+        they will be required by the LLM to fill in.
+      type: object
+      properties:
+        artifact_id:
+          description: The ID of the artifact to search.
+          type: string
+          example: art_abc123
+        pattern:
+          description: The pattern to search for (supports grep regex).
+          type: string
+          example: error|exception
+        grep_options:
+          description: Optional grep command options.
+          type: array
+          items:
+            type: string
+          example:
+          - -i
+          - -n
+      additionalProperties: false
+    InlineArtifactGrepToolConfiguration:
+      title: InlineArtifactGrepToolConfiguration
+      description: An artifact grep tool configuration defined inline in the agent
+        for searching through artifact content.
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of tool configuration, which is always 'artifact_grep'
+            for inline artifact grep tool configurations.
+          default: artifact_grep
+        description_template:
+          $ref: '#/components/schemas/ToolDescriptionTemplate'
+        argument_override:
+          $ref: '#/components/schemas/ArtifactGrepToolParameters'
+      required:
+      - type
+      x-vectaraParents:
+      - AgentToolConfiguration
+    ImageReadToolParameters:
+      description: Configurable parameters for the image read tool. If not overridden,
+        they will be required by the LLM to fill in.
+      type: object
+      properties:
+        artifact_id:
+          description: The ID of the image artifact to view.
+          type: string
+          pattern: ^art_[a-z0-9_-]+$
+          example: art_photo_a3f2
+        detail:
+          description: Detail level for image processing.
+          type: string
+          enum:
+          - auto
+          - low
+          - high
+          default: auto
+          example: auto
+      additionalProperties: false
+    InlineImageReadToolConfiguration:
+      title: InlineImageReadToolConfiguration
+      description: An image read tool configuration defined inline in the agent for
+        loading images into the conversation context.
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of tool configuration, which is always 'image_read'
+            for inline image read tool configurations.
+          default: image_read
+        description_template:
+          $ref: '#/components/schemas/ToolDescriptionTemplate'
+        argument_override:
+          $ref: '#/components/schemas/ImageReadToolParameters'
+      required:
+      - type
+      x-vectaraParents:
+      - AgentToolConfiguration
+    DocumentConversionToolParameters:
+      description: Configurable parameters for the document conversion tool. If not
+        overridden, they will be required by the LLM to fill in.
+      type: object
+      properties:
+        artifact_id:
+          description: The ID of the artifact to convert.
+          type: string
+          example: art_abc123
+        output_format:
+          description: Output format for the converted document.
+          type: string
+          enum:
+          - markdown
+          - structured_document
+          example: markdown
+        description:
+          description: Optional description for the converted artifact.
+          type: string
+          example: PDF converted to markdown
+      additionalProperties: false
+    InlineDocumentConversionToolConfiguration:
+      title: InlineDocumentConversionToolConfiguration
+      description: A document conversion tool configuration defined inline in the
+        agent for converting document artifacts to various formats.
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of tool configuration, which is always 'document_conversion'
+            for inline document conversion tool configurations.
+          default: document_conversion
+        description_template:
+          $ref: '#/components/schemas/ToolDescriptionTemplate'
+        argument_override:
+          $ref: '#/components/schemas/DocumentConversionToolParameters'
+      required:
+      - type
+      x-vectaraParents:
+      - AgentToolConfiguration
     AgentToolConfiguration:
       title: AgentToolConfiguration
       description: A tool configuration that can be used by an agent, defined inline
@@ -13687,6 +13331,10 @@ components:
           lambda: '#/components/schemas/InlineLambdaToolConfiguration'
           structured_indexing: '#/components/schemas/InlineStructuredIndexingToolConfiguration'
           sub_agent: '#/components/schemas/InlineSubAgentToolConfiguration'
+          artifact_read: '#/components/schemas/InlineArtifactReadToolConfiguration'
+          artifact_grep: '#/components/schemas/InlineArtifactGrepToolConfiguration'
+          image_read: '#/components/schemas/InlineImageReadToolConfiguration'
+          document_conversion: '#/components/schemas/InlineDocumentConversionToolConfiguration'
       oneOf:
       - $ref: '#/components/schemas/InlineMcpToolConfiguration'
       - $ref: '#/components/schemas/InlineCorporaSearchToolConfiguration'
@@ -13694,6 +13342,10 @@ components:
       - $ref: '#/components/schemas/InlineLambdaToolConfiguration'
       - $ref: '#/components/schemas/InlineStructuredIndexingToolConfiguration'
       - $ref: '#/components/schemas/InlineSubAgentToolConfiguration'
+      - $ref: '#/components/schemas/InlineArtifactReadToolConfiguration'
+      - $ref: '#/components/schemas/InlineArtifactGrepToolConfiguration'
+      - $ref: '#/components/schemas/InlineImageReadToolConfiguration'
+      - $ref: '#/components/schemas/InlineDocumentConversionToolConfiguration'
       example:
       - type: web_search
         argument_override:
