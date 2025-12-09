@@ -291,7 +291,7 @@ Transform your RAG application into an intelligent agent:
   }'`}]} title="Create an agent" layout="stacked" />
 
 **Learn more:**
-- [Agent quickstart](/docs/agent-os/agents-quickstart)
+- [Agent quickstart](/docs/agents/agents-quickstart)
 - [Agent instructions](/docs/rest-api/instructions)
 - [Agent tools](/docs/rest-api/tools)
 

@@ -1,18 +1,17 @@
 ---
 id: create-a-lambda-tool
-title: Create a Lambda Tool
-sidebar_label: Create a Lambda Tool
+title: Create and test lambda tools
+sidebar_label: Create and test lambda tools
 ---
 
 import CodePanel from '@site/src/theme/CodePanel'; 
 
-To create a Lambda Tool, review the prerequisites, define a function, and
-use the API. 
+To create a Lambda Tool with the API: 
 
 1. Meet the following prerequisites:
-- Access to the Vectara API with tool creation permissions.
-- Basic Python familiarity.
-- API key.
+   - Access to the Vectara API with tool creation permissions.
+   - Basic Python familiarity.
+   - API key.
 2. Define a simple function. The entry point must be `process`.  
    This example calculates customer scores based on their activity metrics:
     <CodePanel
@@ -33,13 +32,11 @@ use the API.
     ]}
     />
     :::note Notes
-    - Use type annotations for automatic schema discovery
-    - Parameters with default values become optional in the schema
-    - Return a JSON-serializable dictionary
+    - Use type annotations for automatic schema discovery.
+    - Parameters with default values become optional in the schema.
+    - Return a JSON-serializable dictionary.
     :::
-
 3. Create the Lambda Tool with the API.
-
     <CodePanel
     title="Create Lambda Tool Request"
     layout="stacked"
@@ -64,9 +61,7 @@ use the API.
         }
     ]}
     />
-
     **Example response:**
-
     <CodePanel
     title="Create Lambda Tool Response"
     layout="stacked"
@@ -266,3 +261,85 @@ Lambda Tools cannot:
 - Execute system commands
 - Import modules outside the allowed list
 :::
+
+
+## Use a lambda tool with an agent
+
+After creating a Lambda Tool, you can configure agents to use it through inline tool configurations.
+You reference the tool by its ID and optionally provide argument overrides.
+
+### Inline configuration
+
+Use an inline configuration to point an agent to an existing Lambda Tool by ID:
+
+<CodePanel
+  title="Inline Lambda Tool Configuration (inside Agent)"
+  layout="stacked"
+  snippets={[
+    {
+      language: "json",
+      code: `{
+  "type": "lambda",
+  "tool_id": "tol_abc123",
+  "argument_override": {
+    "customer_tier": "enterprise",
+    "query": {
+      "$ref": "session.metadata.search_query"
+    }
+  }
+}`
+    }
+  ]}
+/>
+
+The `argument_override` field allows you to:
+- **Hardcode specific values** that the LLM cannot change (e.g., `"customer_tier": "enterprise"`)
+- **Use dynamic context references** with `$ref` to pull values from session or agent metadata (e.g., `{"$ref": "session.metadata.search_query"}`)
+
+### Reusable Lambda tool configuration
+
+You can also create a reusable `LambdaToolConfiguration` that can be referenced across multiple agents.
+This approach is useful for consistent, governed usage of Lambda Tools.
+
+<CodePanel
+  title="Create Reusable Lambda Tool Configuration"
+  layout="stacked"
+  snippets={[
+    {
+      language: "curl",
+      code: `curl -X POST https://api.vectara.io/v2/tools/tol_abc123/configurations \\
+  -H "Authorization: Bearer YOUR_API_KEY" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "type": "lambda",
+    "name": "enterprise_customer_scoring",
+    "description": "Pre-configured scoring for enterprise customers",
+    "argument_override": {
+      "customer_tier": "enterprise",
+      "days_active": 90
+    },
+    "metadata": {
+      "owner": "customer-success-team",
+      "version": "1.0"
+    }
+  }'`
+    }
+  ]}
+/>
+
+Then reference this configuration in your agent:
+
+<CodePanel
+  title="Reference Lambda Tool Configuration in Agent"
+  layout="stacked"
+  snippets={[
+    {
+      language: "json",
+      code: `{
+  "type": "lambda",
+  "configuration_id": "tcf_enterprise_scoring"
+}`
+    }
+  ]}
+/>
+

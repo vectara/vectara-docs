@@ -20,6 +20,49 @@ and how these product and documentation changes can benefit your enterprise.
 
 ---
 
+## Sub-agents: Autonomous, Specialized Agents Inside Your Agents
+
+_November 18, 2025_
+
+Vectara introduces sub-agents, a powerful new capability that lets your agents 
+initialize dedicated, autonomous agent instances to handle additional, multi-step 
+tasks. They accomplish all of this while keeping their context isolated from the 
+parent agent conversation. Invoke autonomous agents for focused tasks such as 
+code review, research, or content transformation.
+
+**Why it matters:** Advanced sessions often overwhelm an agent and cause context 
+bloat. Sub-agents solve this issue by providing a separation from the primary agent. 
+Your parent agent stays focused while delegating work to highly specialized 
+sub-agents that maintain an independent state, reasoning, and workflow.
+
+**More information:**
+
+* [Agent tools overview](/docs/agent-os/agent-tools-overview)
+* [Sub-agents](/docs/agent-os/subagents)
+
+---
+
+## Document Conversion Tool for Agents 
+
+_November 16, 2025_
+
+Vectara introduces the Document Conversion Tool, a new standalone agent tool 
+that extracts content from uploaded files and converts them into clean, 
+structured Markdown format. These files include PDFs, Word documents, 
+PowerPoint presentations, and images. Converted outputs persist across a 
+session.
+
+**Why it matters:** Previously, converting uploaded files into readable text 
+required external preprocessing. This tool brings document parsing directly into 
+agent sessions, enabling agents to interpret file types and transform them 
+into context-ready text for reasoning, summarization, or indexing.
+
+**More information:**
+[Agent tools overview](/docs/agent-os/agent-tools-overview)
+[Document upload and conversion](docs/agent-os/sessions#document-upload-and-conversion)
+
+---
+
 ## Web Search Tool Enhanced with Domain filtering
 
 _November 14, 2025_
@@ -33,7 +76,7 @@ and relevance. You can now constrain web search behavior to trusted domains or r
 undesirable, or low-value sources.
 
 **More information:**
-[Agent tools overview](/docs/agent-os/agent-tools-overview)
+[Agent tools overview](/docs/agents/agent-tools-overview)
 
 ---
 
@@ -61,7 +104,7 @@ governance.
 * [List Tools](/docs/rest-api/get-tool)
 
 More information:
-* [Lambda Tools](/docs/agent-os/lambda-tools)
+* [Lambda Tools](/docs/agents/lambda-tools)
 
 ---
 
@@ -104,7 +147,7 @@ The Vectara Agent APIs introduce several new endpoints:
 * [Session Management](/docs/rest-api/agent-sessions)
 
 **More information:**
-* [Agents](/docs/agent-os/agent-platform-overview)
+* [Agents](/docs/agents/agent-platform-overview)
 
 :::caution
 

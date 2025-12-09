@@ -6894,7 +6894,7 @@ paths:
         \ or apply access controls. Instructions and tools can also reference metadata\
         \ using `${\\session.metadata.field}` or `$\\ref` syntax.\n\nA session also\
         \ serves as the workspace for artifacts, enabling file uploads and multi-step\
-        \ workflows. For more information, see [Working with artifacts in sessions](https://docs.vectara.com/docs/agent-os/sessions#working-with-artifacts-in-sessions).\n\
+        \ workflows. For more information, see [Working with artifacts in sessions](https://docs.vectara.com/docs/agents/sessions#working-with-artifacts-in-sessions).\n\
         \n## Example request\n\n```json\n\\$ curl -X POST https://api.vectara.io/v2/agents/support-agent/sessions\
         \ \\\n-H \"Authorization: Bearer YOUR_API_KEY\" \\\n-H \"Content-Type: application/json\"\
         \ \\\n-d '{\n  \"key\": \"user_12345_session\",\n  \"name\": \"Customer Support\
