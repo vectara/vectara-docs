@@ -22,10 +22,10 @@ enterprise-grade accuracy.
 
 The integration combines three key components:
 
-1. **Speechmatics** - Real-time speech-to-text transcription.
+1. **Speechmatics** - Real-time speech-to-text transcription and 
+   text-to-speech (TTS) for agent response.
 2. **Vectara** - Knowledge retrieval and RAG-powered responses.
 3. **LiveKit** - Voice agent orchestration and audio streaming.
-4. **ElevenLabs** (or similar) - Text-to-speech for agent responses.
 
 ## Getting started
 
@@ -34,5 +34,6 @@ To build your own voice agent with Vectara and Speechmatics:
 1. **Set up LiveKit** - Follow the [LiveKit Agents quickstart](https://docs.livekit.io/agents/quickstart/).
 2. **Configure Speechmatics** - Add your Speechmatics API key for real-time STT.
 3. **Connect Vectara** - Integrate Vectara's query API for knowledge retrieval.
-4. **Add text-to-speech (TTS)** - Choose a text-to-speech provider such as ElevenLabs.
+4. **Add text-to-speech (TTS)** - Choose a text-to-speech provider such as Speechmatics or 
+   ElevenLabs.
 
