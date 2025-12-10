@@ -79,7 +79,7 @@ session management, and enterprise-grade security.
 - **Enterprise security**: Row-level access control, tenant isolation, and
   auditable tool permissions.
 
-[**Build your first Vectara Agent →**](/docs/agents/agent-platform-overview)
+[**Build your first Vectara Agent →**](/docs/agents/agent-concepts)
 
 :::tip Conversational AI Platform
 Agents are perfect for building conversational AI experiences like virtual

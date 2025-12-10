@@ -66,9 +66,8 @@ const sidebars: SidebarsConfig = {
       collapsible: false,
       items: [
         "agents/agents-quickstart",
-        "agents/agent-platform-overview",
+        "agents/agent-concepts",
         "agents/instructions",
-        "agents/sessions",
         {
           type: "category",
           label: "Tools",
@@ -81,6 +80,9 @@ const sidebars: SidebarsConfig = {
             // "agents/structured-indexing-tool",
           ],
         },
+        "agents/artifacts",
+        "agents/sessions",
+      
         "search-and-retrieval/bring-your-own-llm",
       ],
     },

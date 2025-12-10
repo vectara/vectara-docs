@@ -48,18 +48,9 @@ approach queries. Custom instructions give you full control over the agent's
 responses. You can use our recommended instructions, or you can choose your 
 own.
 
-1. Click the option to **Choose your own**.  
-   ![Create agent instructions 1](/img/create-agent-instructions-1.png)  
-2. Click **Add custom instruction**. 
-   ![Create agent instructions 2](/img/create-agent-instructions-2.png)  
-   The **Instruction 1** box appears.
-3. Enter "_You are a helpful research assistant. When users ask questions, 
-   search the web for current and accurate information. Always cite your 
-   sources and be honest if you cannot find reliable information._"
-   ![Create agent instructions 3](/img/create-agent-instructions-3.png)  
-
-If you want, you can add additional instructions. Then, click **Next** to move 
-to the Tools configuration.
+1. Click **Use our recommended instructions**.  
+   ![Create agent instructions 1](/img/use-recommended-instructions.png)  
+2. Click **Next** to move to the Tools configuration.
 
 ## Step 4: Add and configure the Web Search tool
 
@@ -92,18 +83,20 @@ Metadata helps you organize and categorize agents, making them easier to find an
 This final step of the wizard lets you add metadata to help organize your 
 agent.
 
-10. Add a **Research** category and **version**.
-
-![Create agent tools 5](/img/create-agent-tools-5.png)
+1. Add a **Research** category and **version**.  
+  ![Create agent tools 5](/img/create-agent-tools-5.png)  
+  With all configurations complete, you can now create your agent and 
+  test it in the Console chat interface.
+2. Click **Create agent**.
 
 ## Step 6: Create and test the agent
 
-With all configurations complete, you can now create your agent and immediately test it in the Console chat interface.
+After you finish the wizard, you get a message that the agent was created 
+successfully and you can now chat with your agent.
 
-11. Click **Create agent** to finish the wizard and then begin a chat 
-    with your new Research Assistant agent.
+TBD screenshots
 
-![Create agent success](/img/create-agent-success.png)
+## Create an agent with the API
 
 Alternatively, you can create the same agent with the [Create Agent API](/docs/agents/create-agent-examples).
 

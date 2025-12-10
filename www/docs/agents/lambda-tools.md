@@ -41,29 +41,20 @@ In this example, we'll create a simple Python function that does the following:
 * The value associated with that key is a greeting string `"Hello, " + name + "!"`
 
 1. Navigate to **Agents** in the [Vectara Console](https://console.vectara.com/console/agents/).
-2. Click **Add Agent**.  
-   The General pane appears.
-3. Add a **Name** `Lambda Tool` and **Description** `A simple Python function.`  
-4. Click **Next** and select a model like `gpt-4o`.  
-   The Large Language Model (LLM) controls your agent's reasoning.
-5. Click **Next** to open the Instructions pane.  
-   Instructions define your agent's behavior, personality, and how it should 
-   approach queries.
-6. Click **Use our recommended instructions** and click **Next**.  
-   ![Use recommended instructions](/img/use-recommended-instructions.png). 
-   The Tools configuration appears.
-7. Click **Add first tool**.  
-   ![Add first tool](/img/add-first-tool.png)
-8. Click **Lambda tool** and add this function to the **Code** field:  
+2. Select the **Lambda tools** tab.
+3. Click **Create lambda tool**.  
+   ![Lanbda tools](/img/lambda-tools.png)
+4. Add a **Name** `Lambda Tool`, **Title** `My function` and **Description** `A simple Python function.`
+5. Add this function to the **Code** field:  
    ```python
    def process(name: str):
     return {"result": "Hello, " + name + "!"}
    ```
    ![Lambda tool](/img/create-lambda-tool.png)
-9. Before you create this tool, you can click **Test function** to verify that 
+6.  Before you create this tool, you can click **Test function** to verify that 
   it works.  
   ![Lambda tool 2](/img/test-lambda-function.png)
-10. If the tool works successfully, click **Create lambda tool**.
+7.  If the tool works successfully, click **Create lambda tool**.
 
 To learn about creating this tool and using it with the API, see 
 [Create a lambda tool](/docs/agents/create-a-lambda-tool).

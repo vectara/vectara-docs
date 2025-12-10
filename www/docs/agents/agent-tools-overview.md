@@ -1,5 +1,5 @@
 ---
-id: agent-tools
+id: agent-tools-overview
 title: Built-in tools
 sidebar_label: Built-in tools
 ---
@@ -18,6 +18,7 @@ summarizes each tool type and its capabilities.
 ## Web search
 * Searches the internet for current information beyond your indexed corpora.
 * Configurable result limits and query parameters. You can also specify 
+  domains to include or exclude from the search.
 
 # Subagents
 * Initiates specialized sub-agents to handle complex, multi-step tasks autonomously.

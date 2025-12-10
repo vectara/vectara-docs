@@ -17,7 +17,7 @@ data flows into Vectara.
   helps power both direct queries and agent responses.  
 
   Start here if you understand data ingestion and need to configure how queries work.  
-- **[Agent operating system](/docs/agents/agent-platform-overview)**: Create agents with instructions, 
+- **[Agent operating system](/docs/agents/agent-concepts)**: Create agents with instructions, 
   tools, and sessions. Orchestrate data ingestion and search into governed, 
   conversational AI and document workflow automation.
 

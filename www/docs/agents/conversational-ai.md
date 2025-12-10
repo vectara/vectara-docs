@@ -51,6 +51,6 @@ quick access to department-specific knowledge with proper access controls.
 
 ## More information
 
-- [Agents Overview](/docs/agents/agent-platform-overview) - Understand how agents work.
+- [Agents Overview](/docs/agents/agent-concepts) - Understand how agents work.
 - [Agents Quickstart](/docs/agents/agents-quickstart) - Build your first agent.
 - [Working with Sessions](/docs/agents/sessions) - Manage conversations.
