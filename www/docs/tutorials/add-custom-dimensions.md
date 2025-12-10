@@ -1,7 +1,7 @@
 ---
 id: add-custom-dimensions
-title: Add custom dimensions to boost content
-sidebar_label: Add custom dimensions to boost content
+title: Custom dimensions
+sidebar_label: Custom dimensions
 ---
 
 import Tabs from '@theme/Tabs';
@@ -92,9 +92,6 @@ number is added to their score.
 Negative values decrease the overall score (sometimes called "burying") and
 postive values increase the overall score (sometimes called "boosting").  A dot
 product of 0 does not affect the underlying text retrieval score.
-
-For more information on how scores can be interpreted in general, see the
-documentation on [interpreting scores](/docs/search-and-retrieval/working-with-results/interpreting-scores).
 
 ## Choosing values for custom dimensions
 

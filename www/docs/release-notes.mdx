@@ -13,12 +13,54 @@ import CodePanel from '@site/src/theme/CodePanel';
 
 Here’s where we keep you up to date with all the latest features and product 
 documentation updates to help you get even more out of the Vectara platform. 
-Whether you're building sophisticated generative AI applications, 
+Whether you're building sophisticated AI agents, 
 experimenting with Retrieval Augmented Generation (RAG), or exploring our 
 newest API endpoints, this page is your go-to place to see how we’re evolving 
 and how these product and documentation changes can benefit your enterprise.
 
-## Document Conversion Tool for Agents
+
+## Voice AI with Speechmatics Integration
+
+_December 4, 2025_
+
+Vectara now integrates with Speechmatics for building real-time voice agents. 
+Combine Speechmatics' real-time speech-to-text (less than 1 second latency, 
+and 55+ languages) and text-to-speech (TTS) with Vectara's RAG capabilities 
+to create AI assistants that see, hear, and speak.
+
+**Why it matters:** Voice interfaces are becoming essential for accessible
+AI experiences. This integration delivers accuracy with
+ultra-low latency, making it practical to build production voice agents
+that can answer questions from your knowledge base in real-time.
+
+**More information:**
+* [Vectara and Speechmatics integration](/docs/integrations/vectara-and-speechmatics)
+
+---
+
+## Sub-agents: Autonomous Specialized Agents Inside Your Agents
+
+_November 18, 2025_
+
+Vectara introduces sub-agents, a powerful new capability that lets your agents 
+initialize dedicated, autonomous agent instances to handle additional, multi-step 
+tasks. They accomplish all of this while keeping their context isolated from the 
+parent agent conversation. Invoke autonomous agents for focused tasks such as 
+code review, research, or content transformation.
+
+**Why it matters:** Advanced sessions often overwhelm an agent and cause context 
+bloat. Sub-agents solve this issue by providing a separation from the primary agent. 
+Your parent agent stays focused while delegating work to highly specialized 
+sub-agents that maintain an independent state, reasoning, and workflow.
+
+**More information:**
+
+* [Agent tools overview](/docs/agent-os/agent-tools-overview)
+* [Sub-agents](/docs/agent-os/subagents)
+
+---
+
+## Document Conversion Tool for Agents 
 
 _November 16, 2025_
 
@@ -54,7 +96,7 @@ When the session expires, the artifacts are cleaned up.
 bloat and inefficient multi-step workflows. Artifacts solve these problems by 
 separating file storage from file references. Upload a PDF once, and reference 
 it across multiple operations like conversion, analysis, and indexing.
-
+                                                                                                                                                                                                                      
 **What's new:**
 * Session-scoped storage: Files uploaded to agent sessions are stored as artifacts 
 with unique identifiers, remaining available throughout the conversation lifecycle.
@@ -63,8 +105,25 @@ filename, mime_type, size_bytes) instead of full file contents, reducing payload
 from potentially megabytes to ~100 bytes.                                                                                  
 
 **More information:**
-[Agent tools overview](/docs/agent-os/agent-tools-overview)
-[Working with artifacts](/docs/agent-os/sessions#working-with-artifacts-in-sessions)
+* [Agent tools overview](/docs/agent-os/agent-tools-overview)
+* [Working with artifacts](/docs/agent-os/sessions#working-with-artifacts-in-sessions)
+
+---
+
+## Web Search Tool Enhanced with Domain filtering
+
+_November 14, 2025_
+
+The Web Search tool now supports domain-level filtering, enabling more precise and 
+configurable search behavior. You can restrict results to specific domains or exclude 
+domains entirely, including support for subdomains and wildcard patterns.
+
+**Why it matters:** This enhancement gives agents more control over source quality 
+and relevance. You can now constrain web search behavior to trusted domains or remove 
+undesirable, or low-value sources.
+
+**More information:**
+* [Agent tools overview](/docs/agent-os/agent-tools-overview)
 
 ---
 
@@ -86,7 +145,8 @@ governance.
 
 **New API endpoints**:
 * [Create a Lambda Tool](/docs/rest-api/create-tool)
-* [Test a Lambda Tool](/docs/rest-api/test-tool)
+* [Test a Lambda Tool](/docs/rest-api/tools/test) - This lets you test the tools you already created.
+* [Test Lambda Tool](/docs/rest-api/test-tool) - This lets you test functions before creating and using them with agents.
 * [Update a Tool](/docs/rest-api/update-tool)
 * [List Tools](/docs/rest-api/get-tool)
 
@@ -130,15 +190,11 @@ enabling complex dialogues and workflow continuity
 **New API Endpoints:**
 
 The Vectara Agent APIs introduce several new endpoints:
-* [Agent Management](/docs/api-reference/agent-apis/agent-apis-overview)
-* [Session Management](/docs/api-reference/agent-apis/session/create-agent-session)
-* [Event Processing](/docs/api-reference/agent-apis/event/create-agent-event)
-* [Tool Server Management](/docs/api-reference/agent-apis/tool-server/create-tool-server)
+* [Agent Management](/docs/rest-api/agents)
+* [Session Management](/docs/rest-api/agent-sessions)
 
 **More information:**
 * [Agents](/docs/agent-os/agent-platform-overview)
-* [Agents APIs](/docs/api-reference/agent-apis/agent-apis-overview)
-* [Manage Agents](/docs/console-ui/manage-agents)
 
 :::caution
 
@@ -175,7 +231,7 @@ more forgiving and effective.
 
 **More information:**
 * [Fuzzy Metadata Search](/docs/search-and-retrieval/fuzzy-metadata-search)
-* [Metadata Query API Documentation](/docs/api-reference/search-apis/fuzzy-metadata)
+* [Metadata Query API Documentation](/docs/rest-api/metadata-query)
 
 ---
 
@@ -211,7 +267,7 @@ inspect responses, and iterate on your requests in real time.
 
 **More information:**  
 - [Vectara Postman Collection](https://www.postman.com/vectara)  
-- [Using the Vectara Postman Collection](/docs/api-reference/vectara-postman-collection)  
+- [Using the Vectara Postman Collection](/docs/vectara-postman-collection)
 
 ---
 
@@ -329,8 +385,7 @@ _“Answer True or False,”_ _“List the top 3,”_ or _“Summarize concisely
 
 **More information:**
 
-* [Hallucination Corrector](/docs/learn/vectara-hallucination-corrector)
-* [Correct Hallucinations API Definition](/docs/api-reference/llms-apis/hallucination_correctors)
+* [Hallucination Corrector](/docs/hallucination-and-evaluation/vectara-hallucination-corrector)
 * [Correct hallucinations in generated text based on source documents](/docs/rest-api/correct-hallucinations)
 
 ---
@@ -358,7 +413,7 @@ adoption of trustworthy AI solutions.
 
 **More information:**
 
-* [Hallucination Evaluation](/docs/learn/hallucination-evaluation)
+* [Hallucination Evaluation](/docs/hallucination-and-evaluation/hallucination-evaluation)
 
 ---
 
@@ -384,8 +439,7 @@ enterprise applications.
 * [Correct hallucinations in generated text based on source documents](/docs/rest-api/correct-hallucinations)
 
 **More information:**
-* [Hallucination Correction Model](/docs/learn/vectara-hallucination-corrector)
-* [Hallucination Correction Model API Definition](/docs/api-reference/llms-apis/hallucination_correctors)
+* [Hallucination Correction Model](/docs/hallucination-and-evaluation/vectara-hallucination-corrector)
 
 ---
 
@@ -408,9 +462,6 @@ tracking usage and applying fine-grained generation controls.
 **New API endpoint:**
 * [Chat Completions](/docs/rest-api/create-chat-completion)
 
-**More information:**
-* [Chat Completions API Definition](/docs/api-reference/llm-chat-completions/chat-completions)
-
 ---
 
 ## Evaluate Factual Consistency API
@@ -431,9 +482,6 @@ the reliability and auditability of AI-generated content.
 
 **New API endpoint:**
 * [Evaluate Factual Consistency](/docs/rest-api/evaluate-factual-consistency)
-
-**More information:**
-* [Evaluate Factual Consistency API Definition](/docs/api-reference/hhem-apis/evaluate-factual-consistency)
 
 ---
 
@@ -505,9 +553,7 @@ and other AI-driven use cases.
 
 * [Create an Encoder](/docs/rest-api/create-encoder)
 
-**More information:**
-
-* [Create Encoder API Definition](/docs/api-reference/encoder-apis/create-encoder)
+---
 
 ## Vectara Kafka Connect Plugin Integration
 
@@ -547,9 +593,6 @@ model parameters and API endpoints—all within a single API.
 **New API endpoint:**
 * [Create LLM](/docs/rest-api/create-llm)
 
-**More information:**
-* [Create LLM API Definition](/docs/api-reference/llms-apis/create-llm)
-
 ---
 
 ## Document Summarization API
@@ -570,9 +613,6 @@ on document analysis.
 
 **New API endpoint**
 * [Document Summarization](/docs/rest-api/summarize-corpus-document)
-
-**More information:**
-* [Document Summarization API Definition](/docs/api-reference/documents-apis/summarize-document)
 
 ---
 
@@ -642,7 +682,7 @@ address diverse linguistic challenges more effectively.
 
 **More information:**
 
-* [Hallucination Evaluation](/docs/learn/hallucination-evaluation)
+* [Hallucination Evaluation](/docs/hallucination-and-evaluation/hallucination-evaluation)
 * [HHEM: Expanded Language Support](https://www.vectara.com/blog/hhem-expanded-language-support)
 
 ---
@@ -671,8 +711,6 @@ efficiency and ensures smooth document lifecycle management.
 **More information:**
 
 * [Metadata Filters](/docs/build/prepare-data/metadata-filters)
-* [Update Metadata API Definition](/docs/api-reference/indexing-apis/update-document-metadata)
-* [Replace Metadata API Definition](/docs/api-reference/indexing-apis/replace-document-metadata)
 
 ---
 
@@ -697,7 +735,7 @@ compatibility.
 
 * [Migration Guide from REST API 1.0 to 2.0](/docs/migration-guide-api-v2)
 * [API v2 Reference](/docs/rest-api)
-* [Vectara APIs Overview](/docs/api-reference/api-overview)
+* [Vectara APIs Overview](/docs/rest-api/vectara-rest-api-v-2)
 
 ---
 
@@ -721,11 +759,9 @@ of financial, market, and operational data.
 
 **Updated API endpoints:**
 
-* [File Upload API Definition](/docs/api-reference/indexing-apis/file-upload/file-upload)
-* [Indexing API Definition](/docs/api-reference/indexing-apis/indexing)
-* [List Documents API Definition](/docs/api-reference/admin-apis/corpus/list-documents)
-* [Query API Definition](/docs/rest-api/queries)
-* [Retrieve Document API Definition](/docs/api-reference/admin-apis/corpus/retrieve-document)
+* [File Upload API Definition](/docs/rest-api/upload-file)
+* [Indexing API Definition](/docs/rest-api/index)
+* [Query APIs](/docs/rest-api/queries)
 
 **More information:**
 
@@ -759,7 +795,7 @@ Vectara’s system performs relative to their business goals.
 **More information:**
 
 * [Enhanced query observability for greater insight and control](https://www.vectara.com/blog/enhanced-query-observability-for-greater-insight-and-control)
-* [Query observability](/docs/learn/query-observability)
+* [Query observability](/docs/hallucination-and-evaluation/query-observability)
 * [Configure queries](/docs/console-ui/configure-queries)
 
 ---
@@ -858,10 +894,6 @@ patterns.
 
 [Retrieve metadata about a corpus](https://docs.vectara.com/docs/rest-api/get-corpus)
 
-**More information:**
-
-[Get Corpus API Definition](https://docs.vectara.com/docs/api-reference/admin-apis/corpus/read-corpus#get-the-number-of-documents-or-document-parts-in-a-corpus)
-
 ___
 
 ## UI Enhancement: Custom Prompts in Console
@@ -946,17 +978,11 @@ platform.
 **Why it matters:** This update significantly improves the developer 
 experience, making it easier to integrate Vectara into applications. The 
 standardized error codes and improved defaults reduce development overhead 
-and potential silent errors. While REST API v2 is a major improvement, Vectara 
-continues to support gRPC for low-latency applications
+and potential silent errors.
 
 **New API endpoint(s):** 
 
 * [Vectara v2 REST APIs](https://docs.vectara.com/docs/rest-api)
-
-**More information:**
-
-* [Vectara API Reference v2](https://docs.vectara.com/docs/api-reference/rest)
-* [REST API 1.0 to 2.0 Migration](https://docs.vectara.com/docs/migration-guide-api-v2)
 
 ___
 

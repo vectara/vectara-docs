@@ -67,7 +67,7 @@ You can only use **sentences before/after** or **characters before/after**, but 
 
 ## Reranker configuration
 
-[Rerankers](/docs/api-reference/search-apis/reranking) improve result quality by reordering search results to place the
+Rerankers improve result quality by reordering search results to place the
 most relevant content first:
 
 - **type**: Reranker type

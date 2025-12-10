@@ -1,11 +1,11 @@
 ---
 id: upload-file
 title: "Upload a file to the corpus"
-description: "Upload a file, such as a PDF or Word document, to the specified corpus for automatic text extraction and metadata parsing."
+description: "Upload a file to a corpus for automatic text extraction, chunking, and indexing. This endpoint is designed for unstructured documents where you want Vectara to handle parsing for you. Each uploaded file can be up to **10 MB**."
 sidebar_label: "Upload a file to the corpus"
 hide_title: true
 hide_table_of_contents: true
-api: eJztPGtzGzeSfwU1t1dlOyRFyXJ2zStXHS0rjjaxLVty9rKSigZnmiSiGWACYCQxKv73q24A8+AMKSne1OW29MUWZzCNfqHRL+A2snxuotFZ9DlPFU+ii16UgIm1yK1QMhr554yzmUihx0wRLxg3jLPjN98xpdk/lE5YouIiA2l7zCpmF8BMDrGYCUhYrHReGDZTmvHCqoxbETMLN5bBjdU8xmkYlwnLwPKEW85yro2Q8wFj5/Jcni6EYSCTXAmJ3+QQW5z+S1akVuRc252Z0lkfP/3CNPxagLHsWtgFITJTaaquhZyzmYA0MSMHtc+ePQsTPns2YmPJFFHMU/b3kw/vmZr+ArFlsZKWC4nf8yQRfkSJqlWMG6NiwS1UcwZuEAWMHd7wLE9hxL6E717dnkeXsDyPRuw8uuJpAefR6ovDKl4U8lLI+cRYzS3Ml9vQswtumQFraN7wKeK3UAnxfI3THqU+e71kCcx4kaLMFsDylFvkIysMGGZAWpAx9KfcoAwD4CdK+mlYDroc9nTggHpKaWK4yVMRC1sOKqGM2JcWkcgRu8zhPBqdR+GLSWuYY9P6VBm/YfGCa3P/KTJ+M6FPuubo1d/noN2Y82j0YncviMnyaQqTirGTWMmZmG8VliJ10ipl9HV9Acy0ypgp8lxpCwmtNYbIGvYEBvNBD1fb05Y+bUACKfUPJzTEoKZZXUDAHuEjqqe4QmguxQpa6AM2tpbHC7ZUhXbvuNMu0lOnU7gkaTkNKnCSZyXIBIzQkDB85r8AD98TN2AnZCGWCB0XMVMzt15xRoLNhHRI+DU9OJdRL1I5aI60HiXRKHIwvxMpRL0o55pnYEGjPbuNBFqvBfAEdNSLEJVoFH1ysPqnIgNV2Gjd2iH24+Mjdi3SlGX8EhhnUzQoMJsp7WWI3LdA6AZ7I+Sa2TMQK5kYtJBWZMBUYQdRLzLxAjIejW5JFaNRJKSFOWGYCSmyIotGu6tehHCRhdFoxlMDq9796Om/E2kqzB9HVkbwv4a2kpSc20VFiNsmJpew7ES+kOLXAtglLJlIQFoxW6I9IqvnNhg1Y9cLES8qVS71CZGrGIrroI5sc7IxGkDdz7W6EqisOCPtXX4ehOXJM1YLOY96EbgFGY2ibNl3w0gdrQWNMM94/7dx/5/D/svJ+fmr8/P+xTd/Qabwmx9Bzu0iGr0Y9iIrLME4IAA/wDJarS4c4mDsa5Us29g2Nudypf0EseWaVzYdtylrIctJ0ri/Am25ttCSCYmvy02LtjEvd0+yNxPa2MZSLTfgUl1iLsOOybhcVjAbG6azL95RIGSS2pb5QaZLhttM9TFfsmnNfnDLOCkeygKnA2mRNR0OAT7eJGm/dGr6giwRMoGbwFDPGq9hnjGcxYWxKgPNeByrQtqaTjhTj9LXaKmsAEOoefo79E1PhdVcLxtbOq3TKXheIc2mm5nIQm/q61zsQKhyX45rqLnFUCowYocczIilEci5kABezRMVT9wGGo0iruOFsBDbQsMkEXyueRatVr2otZ8i1NoEYfFs3OOjVRv5Js8OFkoZYAt1jSwweSpsSbpxQiOohiUF4u6ESi4leZPCVBt0n4kZbjMsUUwqcqZQwsHhCUh1OUnk6jkfqhznbVCsgVswrHKXniQqRs4+bThOKKhEIG2ZkNwqjRzyqrN87ywj8QKtRZ6jHFCbNjsvNQ5vYN4JkPvcotApXioy4b1JWWRT0LjYM36D1pt8LFQ0bYgIAuGMQ2C342GslUEf0rk2U1XIhGsBZDub68Khur4m/rEAiYKwwcTjMBT1FsJ7JMRggMjHwo1L/AZIgccvCME87TLjXpZoxrcweNXrcg7bRJz4PdMxM7CwYupmZpZaxpOkcsUNc7aItKmQVjgKrbI87QYLNzFA4uYnuQ7Y0YxxhsFVCpVf3hrXY+i247JyD8uR3EnWcXPA3isLo3JJ4UiFxjvmBtj1AjRUUQkZcdKNsD1UDkd9MbQ8B2QEt+7R872GKzEcrhqe0lmnYC560U3/yu2Ix1yjicChB16wJ0GuF9UO/I7fHCCU1phVb5vd+sql17YZDUvR4HPL7BS4iV7jupGqYwJhKh/uq1fhZhasWUnaxRxZm6jaugy37RGrh4v1xINrixWhKQkfZhQ4PNrPR/v5aD//GPv5aCL/n5rI2qCubXFDJmrN928mpVz0cbe3T5AKl/VxMW5n9qyZeW05+hTczWgNheB+TRaJAkPvPWQ3j3HQMduNMWGHEV6nqtTxqVIpcNmi6GhGYQaGbxh+dWhELVrvQmadVAhvQ9xIAY8LGw0GdKheZfxIFnyAUvOwXdjRaX7jius+u1LnPcpC4cIiy0jhU1hCdwVMJYS7g2eXIVpHEKmm/KLPRmxAbGu6xvrh0bohpClrKn+KwA8DbOQNsm8O0icj78+/6huPYYhRHf6myDKuxW/cJesfytXwOegBG6cpq1KijGtoLgZ1BVqLZA0CZXnN3UJJ02xyP8H8+OO7ewljntv+vkK+5lpluZ3gEki5bWQNKgu4PqX7iIWPAnfJ4AemBytdY/VyUKbLMi75HAybKrtgZmksZMQoTAgyrXB94U83kSmzbQH4lSNVFWWCbKpu2LSsswzY9+oarkD3CKIhZysIgcZ/WSP8C7sS3GXbr7gWiLVb7e2BaOykL3jpDBHgko1zTB6xnyBVsbDLkjcD9h1WTZRGsVsuUtxRQzol9uZ2A0o9ZsC9OkuVnPe95XSmhbT24snC2tyMdnYSFZuB34AGscrowY7n345/0Xe/+y7X9JTsUqYSSCf1fP5dfsOHoNk1jQ8CqmWvEW7NEdiqF1EjL4YMwLGFhmg0dD6sVZcgjSsLbUuwoXVpWJK3pRFwpmTN+qxtKBvskFDSbY3IsVCBaS/HkjNVujZEFlY19S8A2b5O3cqYYI1nLidXu4M8mQUU2tO/FhKTm5RO9bnaMqGcNg0FPQg7GAnJV57KnevoTRdqpYs7pbla7CTELhrSbOZjQ8aTEpsPznluSHneL8+5zW3q9JUqQXcLIshho5iCKn0uS2c+EU4OgYxVErKMNR55yZ06mniOpV3S351fjJIbeXD3Z1sYcPfHQeM2j1SxBds3VgPPeqz+Jk9mzQeZuVY6aT67kslA5SBvstQpmemr2UzEUDpf+E2uVQwGo8IsHVSdEC1A3AhD4Mqv0f9oDoS8mH7zm8ibT7Wd9aiSv7OwWer/zFMuZHuazPRzdQ2a+iUeSk6uwQQ7nqWNn37WjOvLRF3LdaPTlEGFICZX3II0uZLGOQ97w91uv6FdymALbtgUQIZKEW7BPME6kC9/VHW5Wi2opS5bCkHjajJjFdatfXyNcHv1FpCy8lJWiqjBhWa922USSTfRd5i3yvIeySslYujvD5/TLrmxqNSAGoZ9RVEo10JpYZfRKPpezBdkYatopz23j0YoZif3pUTGMxO3ADcG3VJ0cfkVFyntv7Qzt0I84UMziS+SGi1ca441Y2Eh60Bn7EGRSLfVx+4nK1+HPnrTDDtqNdOOOTpEOcU6upw76z7Z3d2tmeZOjuKrxpzb4R9wPVWSfYKkcPx7B1aL2OA0W3QGdXvDJBsY5RoSNuiBf7kJ5B2iqyCQP/vQz8cshjR1gr8nMWi2JhQBdSoStlLR2+28f83lJRsjp4XcAg73ZUjYt/v9qcBOC8rYteB3Z/K+3Sf7myq+ZQJ6LeS871rnXP8ONaklqkCtzTXEwmCgWc3nMqH16dxgnA/zGZun89mOFgUhC4JOgkpNzjui5dNGvjxWaZFJ39OGMsSPjM/p+N6gKrPzXyGtU4uSQzQrDNsdsHeFsehTzinPhkEBl2x4v3RpKVbqylHX98Efh/3ZkK95fgeQpnVP8HvXU7TyBHZTRzQFE9fcTe5ch1pddy/DxxX8uIIfV/DXr+BP6toVMcODN7jFr9aSJJ07fvXkAd7FiUuRkKSdo6FLR8N1FBpMfB1+ZlOOdUMh2d5w7/kgamVC6InIMO/WjaB7t9WVvL89kQ4cgxTqrW681r9e8/axfFdvNhTSiSc0rJfZ1G0e9oPcSj+bcEpoA/ld7mXPZUisYhpmoKm8SEaIacBEXVdc0iFJrPbZyTbvc8zMQmnbY4si47KvgSfk8jqPNOTYCM8eUzMLkiXC5ClfYrA2VVeAfaIck4UGE03iDow+Flxb0OmSnXAMEI5BE9tlTBYs5hu0ecymWgAqpNNmV+RBuREjbiyhIakvnctaManC3i5zEfM0XdYomEKKu9cdSDtU51pd4xEADdgdi8A/7qKEPu6jOPeGe/t3rskxQ0ZhjthlZjESbi9RpxXUlhpT6mEqUkzw4oPqlIKnezvmYzblmqreFgVNJyV+LUVganT13M6DxBQ2d1KhcxFYZ9BwJVRhwqe0/Hdf/CeFqSKDSXf9FFX/3dG7Q1c3rRPXw/CaAnifm3VLr8ysu6wixSu+QZ4+2/klhzkx5u/Hh2+98ehsVqg4UH3YyhyKJPLWaUJBU52YWlb2CEe8C9E4AqESW5veY3wcaCgNGdk2asou8rXSXlkxIICbgmWNsR1ckTBYKgyxqWqIpNoTSFdmdoPW6qSh45D2NWxB2DZBifd02cxY3OnNhebh1vwhIT3H6n+s5BXQKQjXfisZZFNIaCmj2U2EhtimS5bx3Dd1GMDULNNgqM7y2RS0inlXEX2L47gh9CbbsSYzJGW7WrkCtMvYMCHjtMBSW9k67BMAbCEw57T01mJwd16nzEG5rvQmRphYN1B2TBuXy6o+EamrBVr2awF66dr3xcy/wLKzFtPC+rxMWQpKsD7UzLX93kwSYqk5Nvy8HLoGFG+muqkNtpv+Ceb6AVJ40zSeqZC4A0FWxTJ1WNQd75oDOg0pYksCnCQiA4mO9wa3xQ1j1TA6M1eBvAYxX9gHcPL2Tve+F8kipUVbHhqpHEZC502F9LqlIwnUTNobzxa0WDQYtRTtYGH4HNbaOqZLC2aC2oZdRXv7lQpP6q/2Xnx7Z7PH9+qaZXjE0M/XlBHCCa0dNWdM4LrS2OCSuiYpDXiyIVT5atar6UGRE4fmrjk+dIuvJQyb9qJO2LoCvC/jCBrl1uF0WXddsQEN8VHXXCem6hB0Jw2w7c6hFwbgaYpgMtB/MfcJMGvNXsPVBqFsxr20Gk0iOrOo90Nh1davEyfmz6RVVUcKVoK6NK1VLvKadX+9qqWUfy0UHqL4kyrYBlK3x605BUutHiHfPaekKTJI6odGSj58jTCrgrSX46ph8zHoiTIuixnH0immvf2+2N97/nw3WtvxfMWVZqVR6FLIpDBWL9cBRbVCxJmfaS21Hq1bQdDstV9JR3KmWqryTkm7SKvlRruOylljYhanghrqqnR6mQk/O2vmoap56UQHNUHWX7/mqY9u1l6M3fEidkCJgyRaXVyEFF1rjnGcAcOjYwSmkVfaHe49Hw72XrTgY0zeH+72d19gf986xNdgOTtyjEedbMH9219fDLtg7vV3d/tYomrD/CfCfLcmwXV0n++/fDl4+XIDut/2nw+RE3Q4LmQOguydr16X+bZwshZN3j+CW1eXPziAasRPPlbJycmpxSW4bOj/SPz0+sOn6+EPb+dqPB6P3598Xhx+nuOfh/jP64Px0Xg8PviY7B4DPnhzmB5+/OnTvnx7vL+z87ed8fh/vhlf7b//65Dvj+mz9LvTy5PiY3Zw4M4j+tDmLLjMv9fRba76ll940eFyPMjP6NpJNtjU5107U+Tq1vvD4cZjl9SwUt44wHEbp8K6q0/+zmr0odZKr20YvDph6ZNeyHCeiqTe76Q0uxIqpQ5pB53RGNdLeGcERJnNCeD0G5xa985tJi7L5M7fuU5Hf8FCcKzDqe2He7jejV+Ry2JMyA1uijKD4PzYVjgQXF0wdrIp/1bVcwOj3Y7JZRlHWcUWkOZlt6A/rM8SmBZzdk2nNimnqJWct4OSuoq95onvuSFhl5r2vCNjADoTxkUQ/nQIxwst/JFV50SEE/z/om4I1xWXOnGz0LjhjBdG4/Q4Vgn4azuI7fc5A1vJsiusdW99umuKlF0vls5XoRlVTD7Y1tr/XbrQ7KbA49k8ZQb0FWg3y+BPqC5NJdlvo+ROjJNyzPCw0B9lfSBBbVCFjqHeLC+6V/n9Mt9Hb5BtCGgKFfZrzPh3NQTvlf0OSW5IePfFphWSYDdwLVPauFEjdMiUl4g82oB/SxtAp3pmoGXfk+GcMZRF39QepFzOC/J7onxpF0qSOiT4m+JD337NREY4eRzxbiQX2rBX4dkTvHSGMZ4LvJ7j1Xn084fPnybj46PJD4c/42059Po/mNLuL/f9RCRh6MGPR4fvTydHb8rBfoiBWINdG3ZyePDp8JSGPg3IDPzlNKjoHp3qwpBX1Z8ePA575XW/9gh7FV+ZtJiL2fJJodOnbopodbG6KLlqksv+XKsi7/s2Wzd11BjgLlgKI2bu/hm4sWVO8OwWL3iKRi1Z9SIfzjzK7KtlhhFig8trsit5HWTY+UFdltUXJFNUC/caJaKMdde6LKJRtHO1t4M0KM13bitiVjtuqonXCWdXnHQLneINPv5wBM9FeTZCKJrKQFy4Nsuz22icix9gOS5wtjMi9QP+2KNftcEnaMOdRQ0DqsMSnB60DkvQOF87RCvllSaihhTXAeRkeKCBStI8daYVDzx8bpJR2EWNjh035Q6NpDuBVE7IOctVJ6rayOkhZXk6bji66fNc9C/B9fVjVq5u5INp/XR4cko3HF21yS2vw3GZfUMbmEz6VvUBz/OE01QYmZY1srcgx0f4CfY1YPbTudpG0K1j/nDR+PhocC5/9genz7AfCGt4M1dp9rfDVOdhMAGnUmgcifHPdvDbIn/qkr7odV0JuGYGq388ZWdI2ieIRQ7mrvM1yC7thj51G7Y3PlTzEeEUU4gbw4kvvGmvujoI5ztO+RJXk0xYioU5PCCO9+9pUTZPOL6H2/l85pEu7ZpingqPoZ1AitfaOJ67PiarHHXYYJHATEjhGsxd8iCkUUN5AuPastXCJ9l6bKqSZa90TIzLtTpbiiejMy4Tg5cJOVBYbGHUfqBmDPD6oRKZnKrNqbgEdvYWLHPO9MUTx0yNl2vxXOzMwfqrnZ66o/KYDqQqI5YYtSMaufYDUB2e1hh7DVyDZqe4GnrsS0iKTETypVeJGpP7JbVIWD2qJ8zoKJab/ujNFzaFGR7eMiBLbuHU1UVpo9FIKgvncs31MMxeY4lLUPuOM21UkMZViwvdOYgjAncJS6crjpa9wbDnDzFicdD7k1O3GjCHVarBgH2k6qJnhysmkkc0I2eSJ33KilMNEgkoL3UzNEMKmHeEmwpAKMrht4TStRYWvAVzx4lKJGvQ6mQF57UhE3/Arv6130njyvKxueZYqv4EpLV09u3Zs+oLX71+9uyulZkC13KnyWpnMPt7T7FXprDhFJ4/mQb+joJLoAQObiXOpu0NhoMheoygM/NhdgL6CjPllV2uT57CnKc7NLSvZn3jBu+QS5OqORnU5ubUwl9k8wBygmde8BjIwOUheWpPXSYwbCPkoiZcX34N9EmKi3bbHJQLiym4gYwLnGEGkEx5fPnfNeiuIUMZm7m+P7+vNK9Oa2RP1neQ2yqOerwO9fE61MfrUB+vQ/2zXIdq2+ftes7a3vpI5Swil9jHKlEvGjWu2qyHKxe9aIFBzugsur1FVf+s09UKH9NOjZEHBkjuJDoFKYkwdB7Ld5xssZtPPnkH5yn7l9zn2Ul4CCjkshbJRT0f89XoxtgxRBoPo+OPviC2ky6Hf/vu2pJEDA//D2jYdhvs/QmpLq1t0OPGHjis+6fuFsQwouuuz+qjcRxDXmdQ+/RwPbI//nByGuHhCHfFauYzLkpnvuuz/BNj79XqfwGE7fxi
+api: eJztPWtzGzeSfwU12atYXj4kWc5umPPV0rIcK7FsWZLzWNFFgTMgidUMMAEwkmiX/vtWdwPzIIeUHG/qclf6IkszGKBfaPQL7U+R4zMbDc6j93mqeRJ96EQ3XVvkuTZOJF2ey+6lWHTdIhcw6lAl4uZUmCsZi6gTHQtjteIpfJYIGxuZO6lVNPDTMc6mMhXMacZZrE1eWDbVhvHC6Yw7GTMnbhwTN87wGL7ssHheqEupZh3GVcIkrCfVrMfO5tIyoZJcS+WYtCwRVs6USHDCQllnitgVRiQs0XGRCeUsu54LI9hCF+yaK8d+ErHjhgM4c66SVLCcGyvVDOdY6KLHDng8ZwUCD1MD8DFXbCJYkcN3jx/vbLOj548f90ZqpE4DoTyai1xYJlWcFokYjFSXHXFzmehrxR5d9LLkYgueHb942R/CgzyZ0pO3uVBvp1MZixrsjy56OnE04EjGRls9dexnbRJ4lej4osPw35vlMcf6WphjpBOskjscmefOjzxOuVRE+UcXPXfjF3l1dvQaHsxdltKT17/Qk/QmPDk5ewkPjPOQHxy/fw4PRF5M/JOMyxTJYdmjk5f77O+7u1uMMSDXYDBQ2omReqkNsyKT3VauuTl3zIjfCmkEy7QRLNbKGZ0yfSUMm0qRJpZpwzLheMId77DCCubmgp0/frxvBHeC7ZO0vfCzsuHx4ePHHx71Ex3bvhHWgWz3YxzcJdHsBhC2mFTWCZ70EGYA/auv2DBJJMgoT0FcMu6Y3yfMzY0uZvNSvg7VTFgHnx1OUfqUEAlIj8QXjNdmquRGGwbIMKsLEwvbwS9B+AJyOheqS28B0eZqgNzcudwO+v2ZdPNi0ot11r+iQeHfLkGwxY4Xbq4VmxqeiWttLnvssMTHAr2ViJ02tF2vxcRKByCdnJ6yqRCJ7bD90586bF+raVoIFYsOe1VMTnPtOszrhzf6usN+kIZ32BtNm/s05fFlhx2JRPKf5aXssO+le1VMOux0zo1Ame2ws2vpnDD9XzrsV12cFRNBygBEoeflKOYFTDlSTSqAYsiNvpKwe7llXDWoJm54lqeCVItlSjumYd9JnqYLVqq9BtuPitTJnBuHXPfSB++aGknc5CJ2lnF2kYUv+vBFF5h6gfIMAF5LN0duTnWa6mtUPjglrtdljx8HqX78mD3SOcnJ1oD9cPr2TSnxqFGdA2XlNE4Hmqy2i3qw4xg7IIQH7CJ8+ezTKLoUi1E0GEVXPC3EKLq9oIWD6h1bZ7gTs8USBPu0Cy2b6+ugs0GuQZFIS5pbJH7lF2LKixR2s2ZWKAcy0p1wgDGswx5pJegvlgtTDttaAf7TKII9gkCHUeMVcAGTXv1LFN6M37B4zhFYU669NGnGb8YwyLbN2qm/z4WhMaNo8HRnN9DO8UkqxtVBNo61msrZEgUPFAyztQOP6Slz9HBqdFbJYF0z2CKegzQfv3hp22jjpxvTRKNowJwpRAANJgI4vEZNtgbsDOTPH8x02PWqsYpnbePhvK3raXb4osNsLmI5lSJBuYZTJcxM05Js46Yd0h4CJN1cWJRYngknjO3gZ1aYK2Gs30mMsyueyoT98PMZO9OXQjE//auzs2M2FzwRhjbNxcVFXJh0pEajvzD4jXVfs+4v7Pjt6Rn7OihFnsue14I9qftXu33Q+trw/oDU//hSLPoE9hhQ+JqNRiPVfcW+BsEXynXPFrkYsJbtXQ0dxrHI3YDxPE9lzIHF/X9ZraoRN8GoGrCP1268s/tk7+k3/vVL9nW5T0ejcqeycquORrffgUw8WzP/S/Y1gP7sH/2cu3nf6T78iT/A3Pgu8PeZ5+Y4PIC3X3tiesX30r+ypLOUVt3h6f7hYbWbUA3+PBfKc5uUWbr6xSP49UDNUmnnW7XvO6VonxTWStDWhu3PpRJWdJhQtjCCzIEgVwAQKJv3J6+ZULFOQOGAeIZz4OTg9AwOe69fLRxezDquEm4SsAhlPC+Ni/cnr7t+FpJaxLfnCXAqaN2axMPWG6kzUGkgoXFhnc4qIwO2RM6tZdIBUk2gSXovgjC9kDbXFu2ACy/OJM0tAwasFLXvEMZnowgmHkXflQs8G0ULXZhxgHYsk1GEvARrC80oqchwAb3DJ7pwrGWtDrPCG1NH+qNMU14SgL7UKuy+yuJIxJVIdS5ML6NvetrM+kJ135+SxfWzmPRh4/Zf0af9lpW3AuGHdLLVzKSwK2DAr94s4mtHhTMRWTpZeC21APHk1aDqOO94sYBZwdQE85jTgWudgdMCGfOJEdWt/AinBoOty27DdjnjkyLl3oarKXiwNWyRZdzIj5xslpE6Fc4BOBdrzo1eU6WzZ6jRL5hYd4BUSz8KW2oqFVdg2gAdpJpV58jOdvfHDvx812Gn3Z2tHitpmlqNumsRZDs3OssdcyLLU+4EneceHUFHF9IMxD8pgFjVidK01M5wbA3yRAuywYIdbWOuwKOTGZ+BQRyOxoY9tk9w0coNwpLWWQZ4VDMSSwP3vO3zAl3BNXjXZF3HtjxJwMZGAZ8UMk36YEpLNesCJF0C/quSWv4BvaRlurSM3Qq0K3WNJyL5valwFt2BREwl2EzreAOqMjhLYKXBLnj9+ohJ5YTJDUxTl0f4BAmBkuNBqDjUY8+DHMiP8AoNTVx0HBat3BTHZQp+Hc0tyHVIdMal6no7IWYpV7OCz9Ci5+nCyZinYPzBACevwMfQxvtXuENyI6bCgMFX6uVDEI/Ay0ofeL87SI9UrNW7JC6jfjv00QU4L+7tGqKQPedWfLNHJxCGJzwQKM1ClSKcSCNily7oK6kSeSWTgqfst0KYRXAKbI95RxHDFE4zI5yR4kowzkrS4ZTEYnA8solIksrwqrR0zRs+CdPQt21ozoTr4tutkYo6Eehw3A2HSTSISAjBEIg6UWWvRYPzT5GEMA8dBFEnghMoGkQnhFD3TGZCFy5aDgvBSQ2H87VMU5bxS0BwAm6RmE7Rk9Ys1mDYOsIgeE3+8KzMTStirSgK4GQmmC5cL+pENp6LjEeDTxFFrCIQ/BlCmEklsyKLBju3nSjYttFgylMrbjv3w6d7JNNU2j8OrQzn/xLcSlTAAKwQqUzcVuALJX8rBLsUCyYToZw/LQE4H7bTU39Ili5DecQCcBVB4aCqA9tcbAjCabqljw4rYkTQrwNzefTo6I06kffao0GULfx+RHGEIAHMec67H4fdf253vx2PRs9Go+6Hv/4FiMJvXgs1c/No8HS7EznpcA4KDP0oFtHt7QcCXFj3XCeLVWibUUyA09VMTdB/aESQMy5QF2vyxFHNusKAWsLoZ6nYa46SR9m7Y8Y6hj4SnHtzUfkZpbg07BO1qOb8jLDAW5UuGPjd1cd8QfFNH/TkYNmC4AEv/NEOpGnxe+DxOk77rVOTlzKgGwjqSeMlrFRkdOIIw3gc60K5mkzoyb9EDGolN6CpnBQWQfP4t8ibmUhnuFkw+pT0J+7TifC0olBRKzGBhFWko6RiC0CVGXpcA402QynAAB1QMEOSRkLNpBLCi3mi4zEFJKJBxE08l07g6TVOJJ8ZnkW3t51oJT4Bs9YWCJtnbZQkul0Fvkmz/bnWVpD9oJnNU+lq5ycyDWe1wWJYitJLy0LMg3WZpJMt0WTqkd8UIkABKIoAlBuqsIK8p4SiSOW4YKjj2WxZFT96lOgYKLvViCQBoxIJuGVScacNUMiLzuINaUakBWiLPAc+gDStDwbVKLyGeKdoY61iSIKXykw6Qk0V2UQY2OwZvwHtXfOLEQmcgpRDIDfREOL8Fk5AtFonugDfVgrUnc19QaAu7wn02K33QAAUGAas3oB4ZeYF8xIPLvAB9DTAF5hgt9rUuOclqPENBL7ttAXbVpE49WcmETOQsCLqemKWUsaTxJaiYn2SCqWpUE4Shk47nrZPK25iiITjMOQrWnGcgX0JvoWfeHVcB8IDuK2sD3z5kZw4S9TsQdRcDMothRkAUN4xt8JntlyQDVTiKBul+1oaHPXNsGI5kKVNj57sNkyJ7e3bhqV03soYTBh6b+iYG1ARMHTfM/Y08PVDdQIf8Zt9mGVlzG1nk976wq23qjMamqJB5xW1U8Aheg37RumWBaStbLgv3oXrSbCkJfEUI7TWYbVxG246I24/n62nfrpVtsJsWom3U3QcHvTng/580J9/jP58UJH/R1VkbVDbsbgmTLxk+zeDxuR93G3t40wFRX3Ix10O1IakXc2NXDH00bmb4h4Kzv0SL8pwr5+5kfc8fvGSUkersrGMVSnjE61TwdUKRodTdDPAfQP3q0Uiat56GzDLqIrwNviN6PCQ22jBoQPxKv1H1OA94Jqfm9yOVvUbV1T30ZU67YEXGjYWakZ0n8IWusthKme423mmCNEygIA15q18NGINYBvDNc4Pj5YVIS5ZE3lMDRyEuYE2QL6ZUD4YeX/6Vd94CIOP2hLw/3yqlnFz02PDNK2lsBk3orkZoFbJyGRpBszj2ruZkqbZ+H6MgfD+fZgxy113TwNdlyL49ahBpQGXl1zKNQTqosIPRA9aukbqRa8Ml2VcYUx8ot2c2YV1IkNCQUCQGQ37C/70GZEy2hYmvyJUIWvpMZ/oG8juedL22Ct9La6Ewfi3sWhsBSZQ6nUJ8Qt2JTlzoMmuuJEANe321YHShlgtCoaeQmXRMIfgEftJpDqWblHSpsfKjGsiICtiMWdK4ZTYq9s1INWyr6lWs67XnLX8612JKE+/suKL/u5SrGkL9VKmE5GO6/H8u+yGt0GyaxIfGFSLXsO8NUNgo1xEjbgYEADGFkZEg22yYR1UfVgqs9kUYAPt0tAk35dKgFTJkvZZOlDW6CGpFR2NQLGQZF/djiVlqnBt8CycbspfWWuxcZ/SzhhTeev4agcqMwIIq8s/lwqCm1SoSrHaMqCcNhUFPggnGDLJlyjU6hvaQCtN3AmutUJOBOxDg5vNeGyIeGJg87NjnmtCnveLc24ym1ptpYrR7YwIfFjLpiBK78vUmQ+Eo0Hg84XLNPKcOyOclmt71tLg7s82EODuj4PErR+pYyccFPEKnnUaNU95Mm0+yOy1Nknz2ZVKelCeeZOlJGS2i+WYojS+4Jvc6FhY8AqztFclOVcm4lZanK78GuyP5kCoU/7rR5k3nxo37WAZYx9qn/2vOVRJry6T2W4O9dU51ap+Hjq5ETbo8Sxt/OlXzXzB+LLSafKgAhCCK7Qhba6VJeNhd3un3W5YTWWwObdsIoQKmSI4gjkmln36o8rL1XJBK+KyIRE0rBazTkMy3vvXMG8neNxwSJSZlzJTBNWitOrdJpNM2pG+Q71VmvdQXWkZi+7e9hM8JdcmlRqzhmFfkBTKjdRGukU0iF7J2Rw1bOXtrK7tvRFfGCdruStPTDgCaAyYpWDi8isuUzx/8WRecfF8NTTVFyU1XLgxHHLG0omsBZyhn6pRgfD7eeXz0Icvmm5HLWfaskYLKyeQR1cz0u7jnZ2dmmpupSi8aqy5ef59biZasRORFES/I6i0iC0ss0FmQLbXLLKGUL7Srn0+/3LdlHewrpoB7dnP/XzIYpGmxPh7IgNqa4weUKsgQR05vt1M++dcXbIhUFqqDdP520Hf7HUn0jEfsVuZvz2S980e6t9U8w0L4Gso9qILADiO6nwSXYDU5kbE0oKjWa1HkdD6cjQY1oN4xvrlfLRjBYMQBQEjQac25y3e8lkjXh7rtMgU2X7IQ/jI+pgOFkTWIzvfhbBOzUsO3qy0bKfHjgrrwKacYZwNnAKu2Pb9wqUlW7EqR1/fB34Y9mcDvmb57Ys0rVuCVPFKZrO+XrMREaeg4pqnyZ370Ojr9m34sIMfdvDDDv7yHXyirymJGR68gCP+dilI0nriV08+w7o4pRAJcpoMDVMaGlRRaCHwdfCeTTjkDaViu9u7T3rRSiQEn1AtajuAvk51kyl5f32ifJ2pSEW91K1emlqz9iF9Vy82bNxOgABqGVnZYGF/llnpV5MkhC6g32ZedihCgqW4vv6YoRJiRkCgrs0vaeEkZPvceJP1OWR2ro3rsHmRcdU1gido8pJFGmJsCGeH6akTiiXS5ilfgLM20VcC6kQ5BAstBJrkHRC9K7hxwqQLdsrBQTgWBsmuYtRgMV8jzUM2MVKAQJI0U5IHC+aBEDcOwVBweyvlqpZMqqB3ixzKvdNFDYOJSOH0ugNoAnVm9DVcnjQCqmNh8nc7wKF3e8DO3e3dvTv35JABoSBGTJFZ8IRXtyhJBZalxhh6mMgUArzwoLpt4vHeDPmQTbjBrLcDRuN9z99KFtgaXh06eQCZwuXEFbyxAnkGI66kLmz4FLf/ztP/QjdVZmLcnj8F0T86PDqgvGkduQ7WosdVbNbfaA6RdYoq0n0S0Zv1OvRZ/1+5oMvyPxwffO+VR2uxQkWB6sOVyKFMIq+dxug01ZGpRWWx3v8oeOMwCabYVvE9hscBh1KRoW7Domy4wt9I7ZUZA5xwnbPsi/Hp+lAqLZKpKojE3JNQlGamQUt50lBxiOcalCBsWqCEe7JoRizutOZC8fDK+iEgPRN0t/tK4A1TKr9V/ioBrq6S6spCxnNf1GEFhGaZERbzLO9tgbuYtyXRNxiOa1xv1B1LPANUNosVJaApYhOuftiqdNgHANhcQsxp4bVF7+64Tv16WJ0bCBEE1q0oK6YtxbKqT2RKuUDn73dg+b6c+heQdjZyUjgflylTQQnkh5qxtt8bSQIoDYeCn2+3qQDFq6l2bIPuxh9BXX8GF140lWcKl5NQPtnSeUrCCdXxVBzQqkgBWmTgOJGZUGB4rzFb/AWoahhe9q+mvBZyNnefQclPd5r3nUgVKW7a8tJIZTAiOC8qoJc1HXKgptLCjVHQWDgYpBT0YGH5TCyVdUwWTtgxSBtUFe3uVSI8rr/affrNncUer/Q1y+AWoF+vySOYJ5R21IwxuNtfGChwSalIygi42RCyfDXt1bSg0IgDddccH6rFlwKGTX1RR2xZAN6UfgSOon04WdRNVyhAA3j0Nd76LSsE6aYBlN0ReGEA3KYIKgPsF3sfB7NW7LV9u4Yp62EvtUYTidYo6v1AuF2Vr1Ni83uUqqoiBTJBbZK2ki7yknV/uaqFlH8rNFyi+JMK2BpUN/utOTpLKzVC5b1LW2QiqV8aKenwJcysEtKej7cNnQ9OT5RxVUw5pE4h7O3Pxe7ukyc70dKJ5zOuuCqOApNCJYV1ZrE8UVRLRJz7lZZC69GyFhSGPfc76VBN9YqoHGnl5mm13fDU0TlrLMziVGJBXRVOLyPh5+fNOFS1Lt7owCLI+uvnPPXezdKLIV0vYtQxKIluP3wIIbqVNYZxRj2FcJpGXGlne/fJdm/36cr84JN3t3e6O0+hvm95xufCQdcaJDzI5Mq8f//b0+22OXe7OztdSFGtzvlPmPNoiYPL4D7Z+/bb3rffrgH3m+6TbaAEXo4LkYPAe7LV6zzf5E7WvMn7e3DL4vIHO1AN/8n7KjkaOTW/BLYN/hvJn56/Pbne/vH7mR4Oh8M3p+/nB+9n8OsB/Hi+PzwcDof775KdYwEPXhykB+9+OtlT3x/v9ft/7w+Hv/x1eLX35m/bfG+In6Uvzy5Pi3fZ/j7dR/SuzXkwmX+vodvc9St24YcWk+Oz7Iy2k2SNTn3SdjJFlLfe295ee+0SC1bKvkkcjnFMrFN+8ndmow+M0WbpwODVDUsf9AKCY/eZWr2TNuxKarpoT7NThxqqJbzTA8LI5ljA8muMWnoX2p+FKrvy/rfve+YNaw/x77BwvRl/iyaLtSE2uM7LDIzzY1fcgWDqCgstR9oxq/K5gdB0YvrOej7SNhdpzpZaNbBETIoZu8ZbmxhTNFrNVp2Suog954mvuUFml5L2pCViIEwmLXkQ/nYIh7YxtYY2VQvD/1A1BFXFpcRuFgo3SHmBN46PoScNNT0jst/nDmzFyza3lt76cNcEMLueL8hWwRV1jDbYxtz/XbLQrKaA69k89X2daJXen1BcmkKytwqSbyUIwjGFy0J/lPYRCUgDdaqrFcvL9l1+v8j34YvQlmIiKuiXiPH/VRG80e4loNzg8M7TdTskgWrgWqS02QZUNnrVfNEZ9KAD/mySUkkI3uqZCqO6Hg0yxoAXXVt7EBrZQKcN7KWJ4pDA3+gf+vJrJjOEycMIHWzItWHPwrNH0FSMMZ5LaM/xbBT9+vb9yXh4fDj+8eBX6D6Ir79i2tBv9P1YJmHo/uvDgzdn48MX5WA/xIrYCLc07PRg/+TgDIduBWB6vtsQCLoHp2oY8qz61U+PLea87NceYRcymxYzOV08Kky6RUtEtx9uP5RUtclld2Z0kXd9mS0tHTUGZMLNdRJGTKn/jLhxZUzw/BO0xosG65sVdyLv12xoWgwuUJimyfLq6wfWfynrV6i8JAIlrYMotH5QF4nqCxQNkC56DRzR1lF3mHk0iOptHj9VyNzW+zxCax1qPYncLUwKjYBau0biUlbEBVVrnn+Khrn8USyGBax2jqi+hT928a/a4FM4CkgxhwHVnQuOD1buXOA4n4IEZeeFJsK6FiokIh7uG4GZbZ6ShoZ7E++baBRuXu9+SUv2cSS2FtI5AkcKsI5UZQ/gQwwWtTRKKrtaUsUBBH5qZ8VKc8arVXTDO1ulCJgzvAzpY9jMX+0C7obOxL6pbO38hUZhoSnYVEI9c5rCYaILQwtwxy7WtwX9b8Ak9PX9nwsWmjuFR/6uV+Eg25EEfwxuEEGAwRYTn27zmUhp8euTsowgZOOw0tqIqpG503S30BUSrzvBAOpiCak238ISaTgt0qq5WY8aB1NaBKOoDITZB1YfP77axW7lXXZRR+yibJDJ2VwKg5cvoBlbOW/Ht0pLodwdL00DQPNFPhdIYobXnLzK7LCL1n6qZZr0oof9xTxkEG7qbfe24VAWJrNvp0E/VzJbv9mUihlP+zi0q6ddS4P7eGqkeobC1ty4K5ejZDYLU47hWgFU2vco1MNTd0bBlrDF0ApIuLn8ktnHKSShNq2B4YYY7UcBfdNBowmRTHh8+Y/a7JTz1tZlVFrl99xKj/3KQV3eXZ8qU/WhNf9Da/6H1vwPrfkfWvM/tOZ/aM3vHlrzP7Tmf2jN/9Ca/6E1/0Nr/ofW/A+t+R9a8z+05v9ztuZ3q70fOhSW+uTD3ecRxlW98RR1okGj7Xs95v2hE80hUj44jz59Atv/vUlvb+Exog/ha4iyU1ckjHQn0mJvAF/9vCHA9OgkmKfsP9JbvhXxEJVWi1o6IOr4xEENb0hAhHD15+HxR/9nBa14Efyr/49CiSLkGP4XcNj0PxPcH5HqP1Bo4ENj67Z8bURb3/nqI7Lqa8NXO9nU00PgeERwUZfa/Wc+badN5m8glb9CAuf29t/X0ozm
 sidebar_class_name: "post api-method"
 info_path: docs/rest-api/vectara-rest-api-v-2
 custom_edit_url: null
@@ -18,7 +18,6 @@ import StatusCodes from "@theme/StatusCodes";
 import OperationTabs from "@theme/OperationTabs";
 import TabItem from "@theme/TabItem";
 import Heading from "@theme/Heading";
-import CodePanel from '@site/src/theme/CodePanel';
 
 <Heading
   as={"h1"}
@@ -37,93 +36,92 @@ import CodePanel from '@site/src/theme/CodePanel';
 
 
 
-The File Upload API enables you to extract text from unstructured documents in 
-common file types like PDFs, Microsoft Word, Text, HTML, and Markdown. It also 
-supports extracting table data from PDFs, allowing for improved analysis and 
-querying of structured tabular data. Each file you upload can be up to 10 MB 
-in size. We recommend the File Upload API when you have not already written 
-your own extraction logic.
+Upload a file to a corpus for automatic text extraction, chunking, and indexing. This endpoint is designed for unstructured documents where you want Vectara to handle parsing for you. Each uploaded file can be up to **10 MB**.
 
-This endpoint expects a `multipart/form-data` request with the following fields:  
+Supported file types include:
+- Markdown (`.md`)
+- PDF/A (`.pdf`)
+- OpenOffice documents (`.odt`)
+- Microsoft Word (`.doc`, `.docx`)
+- Microsoft PowerPoint (`.ppt`, `.pptx`)
+- Plain text (`.txt`)
+- HTML (`.html`)
+- LXML (`.lxml`)
+- RTF (`.rtf`)
+- EPUB (`.epub`)
+- Email files (RFC 822)   
 
-- **metadata**: An optional JSON object containing additional metadata to associate with the document.  
-  Example: `metadata={"key": "value"}`
-- **chunking_strategy**: An optional JSON object that sets the chunking method for text extraction.  
-  - By default, the platform uses sentence-based chunking (one chunk per sentence).
-  - Example for explicit sentence chunking: `chunking_strategy={"type":"sentence_chunking_strategy"}`
-  - Example for max chars chunking: `chunking_strategy={"type":"max_chars_chunking_strategy","max_chars_per_chunk":512}`
-- **table_extraction_config**: An optional JSON object to control table extraction from supported file types (e.g., PDF).  
-  Example: `table_extraction_config={"extract_tables": true}`
-- **file**: The file to upload. Attach your file as the value for this field.
-- **filename**: The desired name for the uploaded file. Specify as part of the file field in your request.
-
-Apart from these parameters, the servers expect a valid JWT Token in the HTTP
-headers.
-
-```bash
-curl -L -X POST 'https://api.vectara.io/v2/corpora/:corpus_key/upload_file' \\
--H 'Content-Type: multipart/form-data' \\
--H 'Accept: application/json' \\
--H 'x-api-key: zwt_123456' \\
--F 'metadata={"key": "value"};type=application/json' \\
--F 'file=@/path/to/file/file.pdf;filename=desired_filename.pdf'
-```
-
-### Filenames with Non-ASCII Characters
-
-When uploading files with non-ASCII (non-English) characters, such as Russian 
-or Chinese, ensure that the filename is URL encoded. API v2 follows web 
-standards which require URL-encoded file names.
-
-### Image Support
-You can include images in structured documents using the Indexing API with 
-Base64 encoding. You cannot send images directly with individual query 
-requests. If you want to retrieve a specific image that is embedded within a 
-document, use the [Retrieve Image API](/docs/rest-api/get-image).
-
-### Set the Document ID
-
-The `Content-Disposition` header lets you specify the Document ID of a file
-when you use the following format:
-
-```json
-Content-Disposition: form-data; name="*file*"; filename="*your_document_id*"
-```
-
-where `file` is the name of the file, and `filename` is the Document ID that  
-you want. The primary purpose of this header is to specify the
-`form-data`, so using `filename` as the Document ID is specific to our
-platform. For more information about Content-Disposition, see
-the [Mozilla documentation on headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition).
-
-### Uploading PDFs with Tables
-
-Set the `table_extraction_config` field to `true` to extract table data from a 
-PDF. This feature is particularly useful for financial reports like 10-Q, 
-10-K, and S1 filings. With table extraction enabled, you can query specific 
-table cells using the Query API.
-
-:::caution
-This feature does not support extracting data from scanned-in images of tables.
+:::note
+For semi-structured documents that require more control over fields or metadata, use the [**Create Corpus Document API**](/docs/rest-api/create-corpus-document) instead.
 :::
 
-### Custom Table Summarization with Prompt Templates
+## Additional format support through Vectara Ingest
 
-Vectara supports [table summarization using custom prompt templates](/docs/generation/custom-prompt-templates-customization) during 
-document upload. This lets you define [custom prompt templates](/docs/prompts/vectara-prompt-engine) that control how the 
-LLM interprets and summarizes table data during extraction. By customizing the 
-`prompt_template`, you can tailor summaries for domain-specific language, 
-analytical perspectives, or formatting preferences.
+If you need to ingest additional file types or data sources, you can use the open-source [**Vectara Ingest**](https://github.com/vectara/vectara-ingest) Python framework. It supports connectors for websites, RSS feeds, CSV, Confluence, HubSpot, ServiceNow, Jira, Notion, Slack, MediaWiki, GitHub, SharePoint, Twitter/X, YouTube, and more.
 
-### Attach Additional Metadata
+:::caution
+Vectara Ingest is provided as an open-source example and is not officially supported.
+:::
 
-You can attach additional metadata to the file by specifying a `metadata`
-form field, which can contain a JSON string:
+## Multipart form fields
 
-```json
-{ "filesize": 1234 }
+This endpoint expects a `multipart/form-data` request with the following fields:
+
+- **metadata** (optional): JSON metadata to attach to the parsed document.  
+  Example: `metadata={"key":"value"}`
+- **chunking_strategy** (optional): Controls how extracted text is chunked.  
+  Defaults to sentence-based chunking (one chunk per sentence).  
+  Example: `{"type":"sentence_chunking_strategy"}`. 
+  Example for max character chunking: `{"type":"max_chars_chunking_strategy","max_chars_per_chunk":512}`
+- **table_extraction_config** (optional): Enables extraction of tables from supported file types such as PDFs.  
+  Example: `{"extract_tables": true}`
+- **file** (required): The file to upload.
+- **filename** (required): The desired document ID, specified within the file upload field.
+
+Apart from these parameters, the servers expect a valid JWT Token in the HTTP headers:
+
+```curl
+\$ curl -L -X POST 'https://api.vectara.io/v2/corpora/:corpus_key/upload_file' \
+-H 'Content-Type: multipart/form-data' \
+-H 'Accept: application/json' \
+-H 'x-api-key: zwt_123456' \
+-F 'metadata=\{"key": "value"\};type=application/json' \
+-F 'file=@/path/to/file/file.pdf;filename=desired_filename.pdf'
+
 ```
 
+## Filenames with non-ASCII characters
+
+When uploading files with non-ASCII (non-English) characters, such as Russian or Chinese, ensure that the filename is URL encoded. The Vectara REST API follows web standards which require URL-encoded file names.
+
+## Set the document ID
+  
+To set a custom Document ID, pass it as the filename in the `Content-Disposition` header:
+
+`Content-Disposition: form-data; name="file"; filename="your_document_id"`
+
+For more information about Content-Disposition, see the [Mozilla documentation on headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition).
+
+## Attach additional metadata
+
+You can attach additional metadata to the file by specifying a metadata form field, which can contain a JSON string:
+
+`{ "filesize": 1234 }`
+
+## Tabular data extraction and summarization
+
+Setting `table_extraction_config.extract_tables = true` enables extraction of tabular data (such as financial filings such as 10-K, 10-Q, S-1). You can also apply custom prompt templates to summarize table content during upload.
+
+:::caution
+Table extraction does not support scanned images of tables.
+:::
+
+## Custom table summarization with prompt templates
+
+Vectara supports [table summarization using custom prompt templates](https://docs.vectara.com/docs/build/working-with-tables#summarize-tables-with-custom-prompts) during document upload. This lets you define custom prompt templates that control how the LLM interprets and summarizes table data during extraction. By customizing the prompt_template, you can tailor summaries for domain-specific language, analytical perspectives, or formatting preferences.
+
+## Image support
+You can include images in structured documents using the [Indexing API](/docs/rest-api/create-corpus-document) with Base64 encoding. You cannot send images directly with individual query requests. If you want to retrieve a specific image that is embedded within a document, use the [Retrieve image API](/docs/rest-api/get-image)
 
 
 <Heading

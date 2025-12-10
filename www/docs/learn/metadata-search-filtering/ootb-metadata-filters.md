@@ -12,8 +12,7 @@ Document ID, Language, and Titles. These filters are very useful in a variety
 of situations.
 
 Note that you can set up additional fields to filter on by setting up
-[filter attributes](/docs/api-reference/admin-apis/create-corpus#filter-attribute) on a
-corpus.
+filter attributes on a corpus.
 
 
 ## `doc.id` field

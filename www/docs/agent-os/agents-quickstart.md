@@ -1,7 +1,7 @@
 ---
 id: agents-quickstart
-title: Agents quickstart
-sidebar_label: Agents quickstart
+title: Quickstart
+sidebar_label: Quickstart
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';

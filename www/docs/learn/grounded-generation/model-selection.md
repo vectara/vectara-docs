@@ -181,8 +181,8 @@ Combine model selection with [custom prompt templates](/docs/prompts/vectara-pro
 
 ## Data-driven model selection
 
-Rather than guessing which model works best for your use case, use the 
-[Vectara Open Eval Framework](/docs/build-apps/open-eval-framework) to systematically evaluate and optimize your model selection:
+Rather than guessing which model works best for your use case, use the
+[Vectara Open Eval Framework](/docs/hallucination-and-evaluation/open-eval-framework) to systematically evaluate and optimize your model selection:
 
 ### Systematic evaluation process
 1. **Create evaluation datasets** representative of your use case

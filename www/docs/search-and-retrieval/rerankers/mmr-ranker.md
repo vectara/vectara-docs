@@ -11,11 +11,10 @@ import {vars} from '@site/static/variables.json';
 import CodePanel from '@site/src/theme/CodePanel';
 
 The Maximal Marginal Relevance (MMR) reranker enables you to diversify search 
-results to reduce redundancy while maintaining relevance to the query. 
-Search queries often result in a collection of similar documents that, while 
-relevant, may lack variety. MMR addresses this by reranking the results to 
-include documents that are both relevant to your query but also different 
-from the documents already listed in the search results.
+results to reduce redundancy while maintaining relevance to the query. MMR 
+reranks the results to include documents that are both relevant to your 
+query but also different from the documents already listed in the search 
+results.
 
 This approach provides users with a more balanced set of results as they may 
 show different perspectives related to your query.
@@ -40,16 +39,3 @@ MMR Reranker.
    "type": "mmr",
    "diversity_bias": 0.4
  },`}]} title="Code Example" layout="stacked" />
-
-To enable the Maximal Marginal Relevance Reranker in the Vectara Console UI:
-
-1. Open a corpus from the list and select the **Query** tab.
-2. Click **Retrieval** and a navigation drawer opens.
-3. Enable the **Rerank search results** option. 
-
-   ![Diversity Reranker](/img/diversity_reranker.png)
-4. Enter a value between `0.0` and `1.0` in the `Diversity factor` field.
-5. Close the Configure retrieval drawer and click **Reload results**.
-
-By applying the MMR Reranker to queries, users get results that are not just 
-relevant but diverse and comprehensive.

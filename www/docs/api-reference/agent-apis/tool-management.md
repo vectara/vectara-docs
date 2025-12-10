@@ -25,15 +25,6 @@ The Tool Management APIs handle individual tools available to agents, including 
 - **Capabilities**: What actions the tool can perform
 - **Access control**: Which agents or users can use the tool
 
-## Available endpoints
-
-| Endpoint | Method | Purpose |
-|----------|--------|---------|
-| [List Tools](/docs/api-reference/agent-apis/tool/list-tools) | GET | Retrieve all available tools |
-| [Get Tool](/docs/api-reference/agent-apis/tool/get-tool) | GET | Get detailed configuration of a specific tool |
-| [Update Tool](/docs/api-reference/agent-apis/tool/update-tool) | PATCH | Modify tool settings or parameters |
-| [Delete Tool](/docs/api-reference/agent-apis/tool/delete-tool) | DELETE | Remove a custom tool |
-
 ## Built-in tools
 
 ### Web Search

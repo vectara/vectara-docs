@@ -13,7 +13,7 @@ methods support administrative tasks like creating, listing, updating, and
 deleting corpora, enabling you to organize data for search and Retrieval 
 Augmented Generation (RAG) operations. This guide focuses on corpus management, 
 not direct search or generation. For querying corpora (including RAG), see the 
-`corpora.search` method in the [Query API guide](https://docs.vectara.com/docs/api-reference/search-apis/search).
+`corpora.search` method in the [Query APIs](/docs/rest-api/queries).
 
 :::info Prerequisites
 This guide assumes you have a corpus called `my-docs`. If you haven't created a corpus yet, follow 
