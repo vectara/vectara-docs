@@ -6,7 +6,7 @@ sidebar_label: Instructions
 
 import CodePanel from '@site/src/theme/CodePanel';
 
-An agent's behavior is defined by the instructions you give it. The agent uses
+An agent's behavior is defined by the instructions you provide. The agent uses
 these instructions alongside information from a conversation session to
 determine how to respond to user input, including which tools to use.
 
@@ -20,19 +20,17 @@ terminology, instructions serve a similar purpose. Instructions define the
 role, behavior, and guidelines of an agent before any user interaction begins.
 :::
 
-## Creating instructions
+## Writing good instructions
 
-To create an instruction, you provide information like `name` and `description`, 
-`template`  details, and arbitrary `metadata` for tracking, versioning, or 
-categorization.
+To write good instructions, specify **exactly** what you want the agent to do. 
+* Use CAPS for emphasis, if you want the agent to follow a specific format.
+* Use negative prompts like **DO NOT DO _this_ or _that_**, if you want the 
+  agent to avoid any thing.
 
-Be specific to exactly what you want the agent to do. For emphasis, use CAPS 
-if you want the agent to follow a specific format. You can also use negative 
-prompts such as saying **DO NOT DO ...**.
+Agents can also use multiple instructions together that process in order. See 
+the [Create Instruction API](/docs/rest-api/create-instruction) for more details.
 
-See [Create Instruction API](/docs/rest-api/create-instruction) for detailed specifications.
-
-## Using instructions in agents
+## Inline vs reference instructions
 
 When creating or configuring agents, you can use instructions in two ways:
 
@@ -88,52 +86,11 @@ When creating or configuring agents, you can use instructions in two ways:
       ]}
     />
 
-### Use multiple instructions
+## Create dynamic instructions with Velocity templates
 
-Agents can use multiple instructions together that are processed in order. In 
-this example, you have three instructions:
-
-<CodePanel
-  title="Multiple Instructions"
-  layout="stacked"
-  snippets={[
-    {
-      language: "json",
-      code: `{
-  "first_step": {
-    "type": "conversational",
-    "instructions": [
-      {
-        "type": "reference",
-        "name": "Company Brand Voice",
-        "version": 2
-      },
-      {
-        "type": "reference",
-        "name": "Customer Support Guidelines",
-        "version": 1
-      },
-      {
-        "type": "inline",
-        "name": "Session-Specific Context",
-        "template_type": "velocity",
-        "template": "This session is for technical support inquiries only."
-      }
-    ],
-    "output_parser": {
-      "type": "default"
-    }
-  }
-}`
-    }
-  ]}
-/>
-
-## Velocity templates
-
-Instructions use the [Apache Velocity](Apache Velocity) templating engine, which enables you to
-dynamically insert variables into your prompts using the **tools context** and
-the **metadata context**.
+Instructions use the [Apache Velocity](https://velocity.apache.org/engine/1.7/user-guide.html) templating engine, which 
+enables you to dynamically insert variables into your prompts using the 
+**tools context** and the **metadata context**.
 
 See the [available prompt variables](/docs/prompts/vectara-prompt-engine#available-prompt-variables) for more information.
 

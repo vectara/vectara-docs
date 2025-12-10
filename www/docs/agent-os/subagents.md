@@ -1,7 +1,7 @@
 ---
 id: subagents
-title: Subagents
-sidebar_label: Subagents
+title: Sub-agents
+sidebar_label: Sub-agents
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';
