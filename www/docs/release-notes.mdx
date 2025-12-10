@@ -90,6 +90,54 @@ from potentially megabytes to ~100 bytes.
 
 ---
 
+  ## Voice AI with Speechmatics Integration
+
+_December 4, 2025_
+
+Vectara now integrates with Speechmatics for building real-time voice agents. 
+Combine Speechmatics' real-time speech-to-text (less than 1 second latency, 
+and 55+ languages) and text-to-speech (TTS) with Vectara's RAG capabilities 
+to create AI assistants that see, hear, and speak.
+
+**Why it matters:** Voice interfaces are becoming essential for accessible
+AI experiences. This integration delivers accuracy with
+ultra-low latency, making it practical to build production voice agents
+that can answer questions from your knowledge base in real-time.
+
+**More information:**
+* [Vectara and Speechmatics integration](/docs/integrations/vectara-and-speechmatics)
+
+---
+
+## Artifact Storage for Agents
+
+_November 15, 2025_
+
+The Agents API now supports artifact storage, a persistent, session-scoped 
+workspace for files that enables efficient multi-step document processing 
+workflows. Artifacts provide a persistent workspace where agents and users 
+can share files throughout a conversation without bloating the agent's context. 
+When the session expires, the artifacts are cleaned up.
+
+
+**Why it matters:** Before artifact storage, file uploads caused context window 
+bloat and inefficient multi-step workflows. Artifacts solve these problems by 
+separating file storage from file references. Upload a PDF once, and reference 
+it across multiple operations like conversion, analysis, and indexing.
+                                                                                                                                                                                                                      
+**What's new:**
+* Session-scoped storage: Files uploaded to agent sessions are stored as artifacts 
+with unique identifiers, remaining available throughout the conversation lifecycle.
+* Lightweight references: `ArtifactReference` objects contain only metadata (artifact_id, 
+filename, mime_type, size_bytes) instead of full file contents, reducing payload sizes 
+from potentially megabytes to ~100 bytes.                                                                                  
+
+**More information:**
+* [Agent tools overview](/docs/agent-os/agent-tools-overview)
+* [Working with artifacts](/docs/agent-os/sessions#working-with-artifacts-in-sessions)
+
+---
+
 ## Web Search Tool Enhanced with Domain filtering
 
 _November 14, 2025_
@@ -103,7 +151,7 @@ and relevance. You can now constrain web search behavior to trusted domains or r
 undesirable, or low-value sources.
 
 **More information:**
-[Agent tools overview](/docs/agent-os/agent-tools-overview)
+* [Agent tools overview](/docs/agent-os/agent-tools-overview)
 
 ---
 
