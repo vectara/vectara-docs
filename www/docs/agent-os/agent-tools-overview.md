@@ -21,7 +21,7 @@ summarizes each tool type and its capabilities.
 * Searches the internet for current information beyond your indexed corpora.
 * Configurable result limits and query parameters. You can also specify 
 
-# Subagents
+# Sub-agents
 * Initiates specialized sub-agents to handle complex, multi-step tasks autonomously.
 * Provides separate context management, configurable session timeouts, specialized workflows.
 
@@ -47,4 +47,4 @@ summarizes each tool type and its capabilities.
 ## Model Context Protocol (MCP)
 MCP tools extend agent functionality with external integrations, file handling, 
 and media processing capabilities. Each MCP tool operates in a secure sandbox 
-with clear input/output schemas.
+with clear input/output schemas. 
