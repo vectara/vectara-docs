@@ -82,7 +82,6 @@ const sidebars: SidebarsConfig = {
         },
         "agents/artifacts",
         "agents/sessions",
-      
         "search-and-retrieval/bring-your-own-llm",
       ],
     },
