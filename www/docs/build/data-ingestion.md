@@ -32,6 +32,12 @@ After understanding these basics, explore these advanced capabilities:
   - **[Working with tables](/docs/build/working-with-tables)** - Ingest and query tabular data
   - **[Metadata filters](/docs/build/prepare-data/metadata-filters)** - Filter results using SQL-like expressions
 
+:::tip Agent Artifacts
+For temporary file analysis without permanent indexing, agents support
+[artifacts](/docs/agents/artifacts) within sessions as a workspace for documents and
+images. Artifacts enable multi-modal analysis without corpus ingestion.
+:::
+
 ## Add content to a corpus
 
 A corpus is like a container that stores documents and their associated 
@@ -337,10 +343,12 @@ format like the following structure:
    ]
 }`}]} title="Structured Format Example" layout="stacked" />
 
-This data structure is built upon three core concepts:
+This data structure is built upon these core concepts:
 * Document
 * Metadata
 * Sections
+* Images (optional, embedded with base64 encoding)
+* Tables (optional)
 
 ### Document
 
