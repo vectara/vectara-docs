@@ -285,34 +285,13 @@ It contains metadata for information such as `customer_review_stars`,
   ]
 }`}]} title="Code Example" layout="stacked" />
 
-## Example User Defined Functions
+## Example User Defined Function
 
-<Tabs
-  defaultValue="rest"
-  values={[
-    { label: 'REST', value: 'rest', },
-    { label: 'gRPC', value: 'grpc', },
-  ]
-}>
-
-<TabItem value="grpc">
-
- <CodePanel snippets={[{language: "grpc", code: `request = serving_pb2.QueryRequest(
-        query=query, num_results=fetch)
- request.reranking_config.reranker_id = 272725722
- request.reranking_config.user_function = \\
-     "get('\$.score') + log10(get('\$.document_metadata.publish_ts')) + log(get('\$.document_metadata.customer_review_stars')) + get('\$.document_metadata.promoted')"`}]} title="Code Example" layout="stacked" />
-
-</TabItem>
-<TabItem value="rest">
 
 <CodePanel snippets={[{language: "json", code: `"reranker": {
     "type": "userfn",
     "user_function": "get('\$.score') + log10(get('\$.document_metadata.publish_ts')) + log(get('\$.document_metadata.  customer_review_stars')) + get('\$.document_metadata.promoted')"
   }`}]} title="Code Example" layout="stacked" />
-
-</TabItem>
-</Tabs>
 
 This example UDF modifies the score with the following options:
 

@@ -18,6 +18,27 @@ experimenting with Retrieval Augmented Generation (RAG), or exploring our
 newest API endpoints, this page is your go-to place to see how we’re evolving 
 and how these product and documentation changes can benefit your enterprise.
 
+---
+
+## Voice AI with Speechmatics Integration
+
+_December 4, 2025_
+
+Vectara now integrates with Speechmatics for building real-time voice agents. 
+Combine Speechmatics' real-time speech-to-text (less than 1 second latency, 
+and 55+ languages) and text-to-speech (TTS) with Vectara's RAG capabilities 
+to create AI assistants that see, hear, and speak.
+
+**Why it matters:** Voice interfaces are becoming essential for accessible
+AI experiences. This integration delivers accuracy with
+ultra-low latency, making it practical to build production voice agents
+that can answer questions from your knowledge base in real-time.
+
+**More information:**
+* [Vectara and Speechmatics integration](/docs/integrations/vectara-and-speechmatics)
+
+---
+
 ## Sub-agents: Autonomous, Specialized Agents Inside Your Agents
 
 _November 18, 2025_
@@ -40,20 +61,20 @@ sub-agents that maintain an independent state, reasoning, and workflow.
 
 ---
 
-## Document Conversion Tool for Agents 
+## Document Conversion Tool for Agents
 
 _November 16, 2025_
 
-Vectara introduces the Document Conversion Tool, a new standalone agent tool 
-that extracts content from uploaded files and converts them into clean, 
-structured Markdown format. These files include PDFs, Word documents, 
-PowerPoint presentations, and images. Converted outputs persist across a 
-session.
+Vectara introduces the Document Conversion Tool, a new standalone agent tool
+that extracts content from uploaded files and converts them into clean,
+structured Markdown format. These files include PDFs, Word documents,
+PowerPoint presentations, and images. The tool includes OCR capabilities for
+extracting text from images. Converted outputs persist across a session.
 
-**Why it matters:** Previously, converting uploaded files into readable text 
-required external preprocessing. This tool brings document parsing directly into 
-agent sessions, enabling agents to interpret file types and transform them 
-into context-ready text for reasoning, summarization, or indexing.
+**Why it matters:** Previously, converting uploaded files into readable text
+required external preprocessing. This tool brings document parsing and OCR
+directly into agent sessions, enabling agents to interpret file types and
+transform them into context-ready text for reasoning, summarization, or indexing.
 
 **More information:**
 [Agent tools overview](/docs/agent-os/agent-tools-overview)
@@ -65,76 +86,32 @@ into context-ready text for reasoning, summarization, or indexing.
 
 _November 15, 2025_
 
-The Agents API now supports artifact storage, a persistent, session-scoped 
-workspace for files that enables efficient multi-step document processing 
-workflows. Artifacts provide a persistent workspace where agents and users 
-can share files throughout a conversation without bloating the agent's context. 
-When the session expires, the artifacts are cleaned up.
+The Agents API now supports artifact storage, a persistent, session-scoped
+workspace for files that enables efficient multi-step document processing
+workflows. Artifacts provide a persistent workspace where agents and users
+can share files throughout a conversation without bloating the agent's context.
+Agents support multi-modal analysis through image artifacts (PNG, JPEG, GIF,
+WebP) alongside document formats. When the session expires, the artifacts are
+cleaned up.
 
-
-**Why it matters:** Before artifact storage, file uploads caused context window 
-bloat and inefficient multi-step workflows. Artifacts solve these problems by 
-separating file storage from file references. Upload a PDF once, and reference 
-it across multiple operations like conversion, analysis, and indexing.
+**Why it matters:** Before artifact storage, file uploads caused context window
+bloat and inefficient multi-step workflows. Artifacts solve these problems by
+separating file storage from file references. Upload a PDF or image once, and
+reference it across multiple operations like conversion, visual analysis, and
+indexing.
 
 **What's new:**
-* Session-scoped storage: Files uploaded to agent sessions are stored as artifacts 
+* Session-scoped storage: Files uploaded to agent sessions are stored as artifacts
 with unique identifiers, remaining available throughout the conversation lifecycle.
-* Lightweight references: `ArtifactReference` objects contain only metadata (artifact_id, 
-filename, mime_type, size_bytes) instead of full file contents, reducing payload sizes 
-from potentially megabytes to ~100 bytes.                                                                                  
+* Multi-modal support: Upload and analyze both documents and images in the same
+session workspace.
+* Lightweight references: `ArtifactReference` objects contain only metadata (artifact_id,
+filename, mime_type, size_bytes) instead of full file contents, reducing payload sizes
+from potentially megabytes to ~100 bytes.
 
 **More information:**
 [Agent tools overview](/docs/agent-os/agent-tools-overview)
 [Working with artifacts](/docs/agent-os/sessions#working-with-artifacts-in-sessions)
-
----
-
-  ## Voice AI with Speechmatics Integration
-
-_December 4, 2025_
-
-Vectara now integrates with Speechmatics for building real-time voice agents. 
-Combine Speechmatics' real-time speech-to-text (less than 1 second latency, 
-and 55+ languages) and text-to-speech (TTS) with Vectara's RAG capabilities 
-to create AI assistants that see, hear, and speak.
-
-**Why it matters:** Voice interfaces are becoming essential for accessible
-AI experiences. This integration delivers accuracy with
-ultra-low latency, making it practical to build production voice agents
-that can answer questions from your knowledge base in real-time.
-
-**More information:**
-* [Vectara and Speechmatics integration](/docs/integrations/vectara-and-speechmatics)
-
----
-
-## Artifact Storage for Agents
-
-_November 15, 2025_
-
-The Agents API now supports artifact storage, a persistent, session-scoped 
-workspace for files that enables efficient multi-step document processing 
-workflows. Artifacts provide a persistent workspace where agents and users 
-can share files throughout a conversation without bloating the agent's context. 
-When the session expires, the artifacts are cleaned up.
-
-
-**Why it matters:** Before artifact storage, file uploads caused context window 
-bloat and inefficient multi-step workflows. Artifacts solve these problems by 
-separating file storage from file references. Upload a PDF once, and reference 
-it across multiple operations like conversion, analysis, and indexing.
-                                                                                                                                                                                                                      
-**What's new:**
-* Session-scoped storage: Files uploaded to agent sessions are stored as artifacts 
-with unique identifiers, remaining available throughout the conversation lifecycle.
-* Lightweight references: `ArtifactReference` objects contain only metadata (artifact_id, 
-filename, mime_type, size_bytes) instead of full file contents, reducing payload sizes 
-from potentially megabytes to ~100 bytes.                                                                                  
-
-**More information:**
-* [Agent tools overview](/docs/agent-os/agent-tools-overview)
-* [Working with artifacts](/docs/agent-os/sessions#working-with-artifacts-in-sessions)
 
 ---
 
