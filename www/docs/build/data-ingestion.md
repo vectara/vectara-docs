@@ -267,9 +267,13 @@ specific corpus.
 
 ## Supported file formats
 
-For a list of supported file types, see the [API Reference](/docs/rest-api/upload). Customers who need 
-support for additional file types or data sources can use [Vectara Ingest](https://github.com/vectara/vectara-ingest), 
-an open-source Python framework.
+For a list of supported file types, see the [API Reference](/docs/rest-api/upload). The file
+upload API supports document formats like PDF, Word, PowerPoint, HTML, and Markdown. To
+embed images within documents, use the [Index Document API](/docs/rest-api/create-corpus-document)
+with base64 encoding.
+
+Customers who need support for additional file types or data sources can use
+[Vectara Ingest](https://github.com/vectara/vectara-ingest), an open-source Python framework.
 
 Vectara Ingest is an open-source Python framework that demonstrates how to 
 crawl datasets and ingest them into Vectara. It extends the file type support 
