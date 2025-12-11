@@ -20,6 +20,7 @@ appended to the session.
 Sessions support lifecycle operations such as creation, update, retrieval, 
 listing, and deletion.
 
+
 ## Chat with your agent
 
 After creating an agent, you can interact with it by creating a session and sending messages:
