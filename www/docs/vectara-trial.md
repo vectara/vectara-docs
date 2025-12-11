@@ -9,14 +9,13 @@ import CodePanel from '@site/src/theme/CodePanel';
 
 
 The Vectara trial offers access to all features for 30 days, 
-allowing you to explore how our RAG-as-a-Service platform can transform your 
-AI and search capabilities. This guide will walk you through what to expect 
-during your trial.
+allowing you to explore how our Agent OS for the enterprise can transform your 
+AI and search capabilities.
 
 ## Getting started with your trial
 
 Your Vectara trial begins upon account registration and lasts for 30 days. 
-During this trial period, you can use Vectara’s powerful query customization 
+During this trial period, you can use Vectara’s powerful agent and query 
 capabilities, generative models, and rerankers to see how our platform can 
 meet your business needs.
 
@@ -29,6 +28,4 @@ process.
 
 The Vectara trial includes 10,000 credits.
 
-For more details about our Small, Medium, and Large plans, see [**Pricing**](https://vectara.com/pricing/).
-:::
-
+For more details on our offerings, see [**Pricing**](https://vectara.com/pricing/).

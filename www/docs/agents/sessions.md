@@ -6,10 +6,12 @@ sidebar_label: Sessions
 
 import CodePanel from '@site/src/theme/CodePanel';
 
-Agents keep track of their conversations with sessions. One conversation is 
-one session. To begin chatting with an agent, you need to create a session 
-first. Each message sent by the user and each response from the agent is 
-appended to the session.
+Agents keep track of their conversations with sessions. One conversation is
+one session. To begin chatting with an agent, you need to create a session
+first. Each message sent by the user and each response from the agent is
+appended to the session. Sessions also provide a workspace for artifacts,
+allowing agents to work with uploaded documents and images throughout the
+conversation.
 
 ## Chat with your agent
 
@@ -76,8 +78,12 @@ Once you have a session, send messages using the events endpoint:
   layout="stacked"
 />
 
-The agent will respond with events including its reasoning, tool usage, and 
+The agent will respond with events including its reasoning, tool usage, and
 final response.
+
+You can also upload files (documents and images) to the session workspace using
+multipart requests. See [Artifacts](/docs/agents/artifacts) for details on working
+with files in agent sessions.
 
 ## Define session context with session metadata
 
@@ -192,4 +198,3 @@ access to certain corpora.
   }}
   layout="stacked"
 />
-

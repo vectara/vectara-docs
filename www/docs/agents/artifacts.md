@@ -4,12 +4,13 @@ title: Artifacts
 sidebar_label: Artifacts
 ---
 
-import CodePanel from '@site/src/theme/CodePanel';
+import CodePanel from '@site/src/theme/CodePanel'; 
 
-Artifacts give an agent access to files and documents without storing them in 
-a corpus. You upload artifacts to a session for temporary use, and the agent 
-uses these files during the conversation. This lets you analyze documents 
-on-the-fly without permanently indexing them into a corpus.
+Artifacts give an agent access to files and documents without storing them in
+a corpus. You upload artifacts to a session for temporary use, and the agent
+can read, convert, or analyze these files during the conversation. Agents support
+multi-modal analysis through image artifacts, letting you work with documents
+and images on-the-fly without permanently indexing them into a corpus.
 
 ## Working with artifacts in sessions
 
@@ -22,9 +23,10 @@ a multipart request. Files are stored as artifacts and can be referenced
 throughout the conversation.
 
 After files are uploaded as artifacts, the agent can extract content from PDFs,
-Word documents, or PowerPoint files and reference artifacts during 
-conversations. Artifacts remain available throughout the session lifecycle, 
-enabling multi-step workflows without re-uploading files.
+Word documents, PowerPoint files, and images. Supported formats include PDF,
+DOCX, PPTX, and images (PNG, JPEG, GIF, WebP). Artifacts remain available
+throughout the session lifecycle, enabling multi-step workflows without
+re-uploading files.
 
 :::tip Tip
 Artifacts only stay attached to their specific session. If you want these 
@@ -138,6 +140,9 @@ Download an artifact (including agent-generated ones).
 After files are uploaded as artifacts, the agent can:
 - Use document conversion tools to extract content from PDFs, Word documents,
   or PowerPoint files.
+- View and analyze images visually to answer questions about charts, diagrams,
+  screenshots, or photos.
+- Extract text from images using OCR through the document conversion tool.
 - Reference artifacts in analysis or question-answering workflows.
 - Pass artifacts to indexing tools to add content to corpora.
 - Create new artifacts as outputs of tool operations.

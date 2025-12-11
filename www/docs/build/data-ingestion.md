@@ -32,6 +32,12 @@ After understanding these basics, explore these advanced capabilities:
   - **[Working with tables](/docs/build/working-with-tables)** - Ingest and query tabular data
   - **[Metadata filters](/docs/build/prepare-data/metadata-filters)** - Filter results using SQL-like expressions
 
+:::tip Agent Artifacts
+For temporary file analysis without permanent indexing, agents support
+[artifacts](/docs/agents/artifacts) within sessions as a workspace for documents and
+images. Artifacts enable multi-modal analysis without corpus ingestion.
+:::
+
 ## Add content to a corpus
 
 A corpus is like a container that stores documents and their associated 
@@ -261,9 +267,13 @@ specific corpus.
 
 ## Supported file formats
 
-For a list of supported file types, see the [API Reference](/docs/rest-api/upload). Customers who need 
-support for additional file types or data sources can use [Vectara Ingest](https://github.com/vectara/vectara-ingest), 
-an open-source Python framework.
+For a list of supported file types, see the [API Reference](/docs/rest-api/upload). The file
+upload API supports document formats like PDF, Word, PowerPoint, HTML, and Markdown. To
+embed images within documents, use the [Index Document API](/docs/rest-api/create-corpus-document)
+with base64 encoding.
+
+Customers who need support for additional file types or data sources can use
+[Vectara Ingest](https://github.com/vectara/vectara-ingest), an open-source Python framework.
 
 Vectara Ingest is an open-source Python framework that demonstrates how to 
 crawl datasets and ingest them into Vectara. It extends the file type support 
@@ -337,10 +347,12 @@ format like the following structure:
    ]
 }`}]} title="Structured Format Example" layout="stacked" />
 
-This data structure is built upon three core concepts:
+This data structure is built upon these core concepts:
 * Document
 * Metadata
 * Sections
+* Images (optional, embedded with base64 encoding)
+* Tables (optional)
 
 ### Document
 

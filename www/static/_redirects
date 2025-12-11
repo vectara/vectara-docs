@@ -67,4 +67,7 @@
 /docs/learn/hallucination-evaluation                           /docs/hallucination-and-evaluation/hallucination-evaluation
 /docs/learn/vectara-hallucination-corrector                    /docs/hallucination-and-evaluation/vectara-hallucination-corrector
 /docs/build-apps/vectara-answer                                /docs/search-and-retrieval/vectara-answer
-/docs/agent-os/*                                              /docs/agents/:splat
+/docs/agent-os/*                                              /docs/agents/:splat                /docs/hallucination-and-evaluation/vectara-hallucination-corrector
+/docs/build-apps/vectara-answer                               /docs/search-and-retrieval/vectara-answer
+/docs/api-reference/rest                                      /docs/integrations/rest
+/docs/agents/mcp                                              /docs/agent-os/mcp
