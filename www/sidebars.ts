@@ -74,7 +74,7 @@ const sidebars: SidebarsConfig = {
             "agents/agent-tools",
             "agents/subagents",
             "agents/lambda-tools",
-            "agents/mcp",
+            "agents/model-context-protocol",
             // "agents/structured-indexing-tool",
           ],
         },
