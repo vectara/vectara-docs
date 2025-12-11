@@ -123,6 +123,8 @@ const sidebars: SidebarsConfig = {
       },
       collapsible: false,
       items: [
+        "integrations/rest",
+        "vectara-postman-collection",
         "tutorials/use-openai-libraries-with-vectara",
         "tutorials/use-external-applications-sdk",
         "integrations/vectara-and-langchain",
