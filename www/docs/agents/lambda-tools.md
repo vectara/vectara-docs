@@ -54,7 +54,7 @@ In this example, we'll create a simple Python function that does the following:
 6.  Before you create this tool, you can click **Test function** to verify that 
   it works.  
   ![Lambda tool 2](/img/test-lambda-function.png)
-7.  If the tool works successfully, click **Create lambda tool**.
+7. After verifying that the tool executes successfully, click **Create lambda tool**.
 
 To learn about creating this tool and using it with the API, see 
 [Create a lambda tool](/docs/agents/create-a-lambda-tool).

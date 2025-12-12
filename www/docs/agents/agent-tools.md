@@ -33,7 +33,8 @@ docs](/docs/rest-api/tools).
     environment.
   * Automatic input and output schema generation from type annotations.
 * **Document conversion**
-  * Converts supported document types (PDF, DOCX, PPTX, etc.) into markdown.
+  * Converts supported document types (PDF, DOCX, PPTX) and images into Markdown.
+  * Includes OCR for extracting text from images.
 * **Artifacts**
   * Reads artifact content stored within the agent session with optional range 
     and encoding parameters.
@@ -41,8 +42,9 @@ docs](/docs/rest-api/tools).
   * Cross-reference artifacts across multiple turns of a conversation.
   * Create new files during the session, such as saving reports.
 * **Image reading**
-  * Interprets image uploads with visual comprehension, such as
-  charts, graphs, screenshots, and diagrams.
+  * Enables visual analysis of image artifacts uploaded to agent sessions.
+  * Interprets charts, graphs, screenshots, and diagrams.
+  * Supports PNG, JPEG, GIF, and WebP formats.
 * **Model Context Protocol (MCP)**
   * MCP tools extend agent functionality with external integrations, file handling, 
   and media processing capabilities. Each MCP tool operates in a secure sandbox 
