@@ -63,27 +63,23 @@ const sidebars: SidebarsConfig = {
     {
       type: "category",
       label: "Agents",
-      link: {
-        type: 'doc',
-        id: 'agent-os/agent-platform-overview',
-      },
       collapsible: false,
       items: [
-        "agent-os/agents-quickstart",
+        "agents/agents-quickstart",
         "agents/instructions",
         {
           type: "category",
           label: "Tools",
           items: [
-            "agent-os/agent-tools",
-            "agent-os/subagents",
-            "agent-os/lambda-tools",
-            "agent-os/mcp",
-            // "agent-os/structured-indexing-tool",
+            "agents/agent-tools",
+            "agents/subagents",
+            "agents/lambda-tools",
+            "agents/model-context-protocol",
+            // "agents/structured-indexing-tool",
           ],
         },
         "agents/artifacts",
-        "agent-os/sessions",
+        "agents/sessions",
         "search-and-retrieval/bring-your-own-llm",
       ],
     },
@@ -222,6 +218,42 @@ const sidebars: SidebarsConfig = {
             "deployments/guides/vectara-okta-oidc",
           ]
         }
+      ],
+    },
+    {
+      type: "category",
+      label: "Tutorials",
+      link: {
+        type: 'generated-index',
+        title: "Tutorials",
+        description: "Tutorials to help you build with Vectara",
+        slug: "/tutorials",
+      },
+      collapsible: false,
+      items: [
+        "video-tutorials",
+        "tutorials/build-a-financial-research-agent",
+        "tutorials/faq-and-qna-matching",
+      ],
+    },
+    {
+      type: "category",
+      label: "Integrations",
+      link: {
+        type: 'doc',
+        id: 'integrations/community-collaborations-and-partnerships',
+      },
+      collapsible: false,
+      items: [
+        "tutorials/use-openai-libraries-with-vectara",
+        "tutorials/use-external-applications-sdk",
+        "integrations/vectara-and-langchain",
+        "integrations/vectara-and-llamaindex",
+        "integrations/vectara-and-flowise",
+        "integrations/vectara-and-langflow",
+        "integrations/vectara-and-airbyte",
+        "integrations/vectara-and-confluent",
+        "integrations/vectara-and-speechmatics",
       ],
     },
       ],
@@ -510,6 +542,14 @@ const sidebars: SidebarsConfig = {
                   label: "Synchronize tool server",
                   className: "api-method post",
                 },
+              ],
+            },
+            {
+              "type": "category",
+              "label": "Examples",
+              "items": [
+                "agents/create-agent-examples",
+                "agents/create-a-lambda-tool",
               ],
             },
           ],

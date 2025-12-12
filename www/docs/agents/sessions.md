@@ -13,15 +13,6 @@ appended to the session. Sessions also provide a workspace for artifacts,
 allowing agents to work with uploaded documents and images throughout the
 conversation.
 
-* A session key and human-readable name (`ase_12345`). If not provided, Vectara 
-  generates one automatically based on the name.
-* Associated `agent_key` (`agt_abcd`).
-* Metadata such as end_user_id, application_id, priority, or channel.
-* Timestamps for creation and last update.
-
-Sessions support lifecycle operations such as creation, update, retrieval, 
-listing, and deletion.
-
 ## Chat with your agent
 
 After creating an agent, you can interact with it by creating a session and sending messages:

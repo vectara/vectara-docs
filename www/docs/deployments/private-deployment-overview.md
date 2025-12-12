@@ -1,10 +1,12 @@
 ---
 id: private-deployment-overview
-title: Private deployment overview
-sidebar_label: Overview
+title: On prem and VPC deployment
+sidebar_label: On prem and VPC deployment
 ---
 
-A Vectara private deployment provides the same platform capabilities within your infrastructure, designed for organizations with specific data residency or security requirements.
+A Vectara private, on prem or VPC deployment provides the same platform capabilities 
+within your infrastructure, designed for organizations with specific data residency 
+or security requirements.
 
 **Why private deployment?**
 
@@ -15,30 +17,30 @@ A Vectara private deployment provides the same platform capabilities within your
 
 ## Agentic AI platform capabilities
 
-- Multilingual semantic search capabilities
-- Advanced RAG with accuracy controls
-- AI Agents framework with tool integration
-- Enterprise-grade performance
+- Multilingual semantic search capabilities.
+- Advanced RAG with accuracy controls.
+- AI Agents framework with tool integration.
+- Enterprise-grade performance.
 
 ## Deploy anywhere
 
-- **On-premises**: Traditional data center deployments
-- **Cloud VPC**: Major cloud providers supported
-- **Air-gapped**: Isolated network environments
-- **Kubernetes**: Container-based deployment
+- **On-premises**: Traditional data center deployments.
+- **Cloud VPC**: Major cloud providers supported.
+- **Air-gapped**: Isolated network environments.
+- **Kubernetes**: Container-based deployment.
 
 ## Technical deployment
 
 Infrastructure as code deployment:
 
-1. **Terraform/Helm packages** - Deploy like any other K8s app
-2. **Your models or ours** - Connect OpenAI, Anthropic, Google, or use included models
-3. **Standard integrations** - OIDC auth, Prometheus metrics, S3 storage
+1. **Terraform/Helm packages** - Deploy like any other K8s application.
+2. **Your models or ours** - Connect OpenAI, Anthropic, Google, or use included models.
+3. **Standard integrations** - OIDC auth, Prometheus metrics, S3 storage.
 
 ## Why engineers choose private deployment
 
-- **Control the stack**: Your K8s, your monitoring, your backups
-- **Model flexibility**: Use GPT-4 for chat, Llama for summaries, whatever works
-- **No black boxes**: See the metrics, logs, and traces
-- **Updates when ready**: Deploy updates on your schedule
+- **Control the stack**: Your K8s, your monitoring, your backups.
+- **Model flexibility**: Use GPT-4 for chat, Llama for summaries, whatever works.
+- **No black boxes**: See the metrics, logs, and traces.
+- **Updates when ready**: Deploy updates on your schedule.
 
