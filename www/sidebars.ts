@@ -110,6 +110,7 @@ const sidebars: SidebarsConfig = {
       collapsible: false,
       items: [
         "video-tutorials",
+        "tutorials/build-a-chatbot",
         "tutorials/build-a-financial-research-agent",
         "tutorials/faq-and-qna-matching",
       ],
