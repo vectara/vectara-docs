@@ -4,18 +4,20 @@ title: Build a chatbot
 sidebar_label: Build a chatbot
 ---
 
-This tutorial guides you through creating an agent using our APIs. In this 
-example, a fictional manufacturing company has a corpus with onboarding data, 
-answering employee questions grounded in factual content from uploaded 
-documents. This data includes safety protocols and equipment manuals. This 
-example may provide inspiration for your specific use case.
+import CodePanel from '@site/src/theme/CodePanel';
+
+Learn how to build a chatbot using our Agent APIs. In this tutorial, you will 
+create an onboarding assistant for a fictional manufacturing company that 
+answers employee questions grounded in uploaded documents from a corpus that 
+contains safety protocols and equipment manuals. This example may provide 
+inspiration for your specific use case.
 
 ## What you will build
 
 A single-page web app with a clean chat interface, powered by React for the
-frontend and Vectara's Agent APIs for backend processing. The agent intelligently
-uses multiple tools to provide beginner-friendly answers in Markdown format with
-numbered lists and clickable links. The application has the following features:
+frontend and Vectara's Agent APIs for backend processing. The agent uses corpora 
+and web search tools to provide beginner-friendly answers in Markdown format. 
+The application has the following features:
 
 * **Accepts user input**: Users type questions in a text field.
 * **Intelligent tool selection**: The agent automatically chooses between searching
@@ -35,13 +37,13 @@ example:
 
 Before starting this tutorial, ensure you have the following:
 
-- Basic knowledge of React and TypeScript
+- Basic knowledge of React and TypeScript.
 - **Vectara account**: [Sign up](https://console.vectara.com) and get an API key with
   query and indexing permissions, or use your Personal API key.
-- Install the latest releases of Node.js and npm
+- Install the latest releases of Node.js and npm.
 
-This tutorial includes complete instructions for creating a corpus with sample manufacturing
-data, so no existing data is required.
+This tutorial includes complete instructions for creating a corpus with sample 
+manufacturing data, so no existing data is required.
 
 ## Chatbot build overview
 
@@ -81,34 +83,46 @@ Follow this process to create the chatbot.
 5. Create the project structure and components.
 6. Test your chatbot.
 
-## Step 1. Set Up Your Vectara Corpus with Sample Data
+## Step 1. Set up your Vectara corpus with sample data
 
-Create a corpus and populate it with sample manufacturing data. You can do this via the
-Vectara Console or using the API.
+Create a corpus and populate it with sample manufacturing data. This example 
+shows you how to create a corpus with the API.
 
-### Create the Corpus
+### Create the corpus
 
-```bash
-curl -X POST "https://api.vectara.io/v2/corpora" \
-  -H "Authorization: Bearer YOUR_API_KEY" \
-  -H "Content-Type: application/json" \
+<CodePanel
+  title="Create corpus"
+  snippets={[
+    {
+      language: 'bash',
+      code: `curl -X POST "https://api.vectara.io/v2/corpora" \\
+  -H "Authorization: Bearer YOUR_API_KEY" \\
+  -H "Content-Type: application/json" \\
   -d '{
     "key": "acme_onboarding",
     "name": "ACME Manufacturing Onboarding",
     "description": "Employee onboarding documents for ACME Manufacturing"
-  }'
-```
+  }'`
+    }
+  ]}
+  layout="stacked"
+  collapsible={false}
+/>
 
-### Add Sample Documents
+### Add sample documents
 
 Index sample documents to populate your corpus. Here are example documents you can add:
 
-**Safety Protocol Document:**
+**Safety protocol document**
 
-```bash
-curl -X POST "https://api.vectara.io/v2/corpora/acme_onboarding/documents" \
-  -H "Authorization: Bearer YOUR_API_KEY" \
-  -H "Content-Type: application/json" \
+<CodePanel
+  title="Index safety protocol document"
+  snippets={[
+    {
+      language: 'bash',
+      code: `curl -X POST "https://api.vectara.io/v2/corpora/acme_onboarding/documents" \\
+  -H "Authorization: Bearer YOUR_API_KEY" \\
+  -H "Content-Type: application/json" \\
   -d '{
     "id": "safety_protocol_001",
     "type": "core",
@@ -119,21 +133,29 @@ curl -X POST "https://api.vectara.io/v2/corpora/acme_onboarding/documents" \
     },
     "document_parts": [
       {
-        "text": "CNC Machine X Safety Protocols\n\n1. Personal Protective Equipment (PPE):\n- Safety glasses must be worn at all times\n- Steel-toed boots are required in the machine shop\n- Hearing protection required when machine is operating\n- No loose clothing or jewelry\n\n2. Machine Operation:\n- Never operate the machine without proper training\n- Always perform pre-operation safety checks\n- Emergency stop button is located on the front panel\n- Keep work area clean and free of debris\n\n3. Maintenance:\n- Only certified technicians may perform maintenance\n- Machine must be powered off and locked out during maintenance\n- Report any unusual sounds or vibrations immediately",
+        "text": "CNC Machine X Safety Protocols\\n\\n1. Personal Protective Equipment (PPE):\\n- Safety \nglasses must be worn at all times\\n- Steel-toed boots are required in the machine shop\\n- Hearing \nprotection required when machine is operating\\n- No loose clothing or jewelry\\n\\n2. Machine \nOperation:\\n- Never operate the machine without proper training\\n- Always perform pre-operation \nsafety checks\\n- Emergency stop button is located on the front panel\\n- Keep work area clean and free \nof debris\\n\\n3. Maintenance:\\n- Only certified technicians may perform maintenance\\n- Machine must be \npowered off and locked out during maintenance\\n- Report any unusual sounds or vibrations immediately",
         "metadata": {
           "section": "safety"
         }
       }
     ]
-  }'
-```
+  }'`
+    }
+  ]}
+  layout="stacked"
+  collapsible={false}
+/>
 
-**Equipment Manual Document:**
+**Equipment manual document**
 
-```bash
-curl -X POST "https://api.vectara.io/v2/corpora/acme_onboarding/documents" \
-  -H "Authorization: Bearer YOUR_API_KEY" \
-  -H "Content-Type: application/json" \
+<CodePanel
+  title="Index equipment manual document"
+  snippets={[
+    {
+      language: 'bash',
+      code: `curl -X POST "https://api.vectara.io/v2/corpora/acme_onboarding/documents" \\
+  -H "Authorization: Bearer YOUR_API_KEY" \\
+  -H "Content-Type: application/json" \\
   -d '{
     "id": "equipment_manual_001",
     "type": "core",
@@ -144,21 +166,29 @@ curl -X POST "https://api.vectara.io/v2/corpora/acme_onboarding/documents" \
     },
     "document_parts": [
       {
-        "text": "CNC Machine X Operating Manual\n\nStartup Procedure:\n1. Perform visual inspection of machine\n2. Check coolant levels\n3. Verify all safety guards are in place\n4. Power on the main control panel\n5. Run homing sequence\n6. Load program from control interface\n\nDaily Maintenance:\n- Clean machine bed and surrounding area\n- Check and refill coolant as needed\n- Inspect cutting tools for wear\n- Lubricate moving parts per schedule\n\nTroubleshooting:\n- If machine fails to home: Check limit switches\n- If spindle won't start: Verify emergency stop is released\n- For error codes, consult technical manual section 7",
+        "text": "CNC Machine X Operating Manual\\n\\nStartup Procedure:\\n1. Perform visual inspection of \nmachine\\n2. Check coolant levels\\n3. Verify all safety guards are in place\\n4. Power on the main control \npanel\\n5. Run homing sequence\\n6. Load program from control interface\\n\\nDaily Maintenance:\\n- Clean \nmachine bed and surrounding area\\n- Check and refill coolant as needed\\n- Inspect cutting tools \nfor wear\\n- Lubricate moving parts per schedule\\n\\nTroubleshooting:\\n- If machine fails to home: \nCheck limit switches\\n- If spindle won't start: Verify emergency stop is released\\n- For error \ncodes, consult technical manual section 7",
         "metadata": {
           "section": "operation"
         }
       }
     ]
-  }'
-```
+  }'`
+    }
+  ]}
+  layout="stacked"
+  collapsible={false}
+/>
 
-**Onboarding Guide Document:**
+**Onboarding guide document**
 
-```bash
-curl -X POST "https://api.vectara.io/v2/corpora/acme_onboarding/documents" \
-  -H "Authorization: Bearer YOUR_API_KEY" \
-  -H "Content-Type: application/json" \
+<CodePanel
+  title="Index onboarding guide document"
+  snippets={[
+    {
+      language: 'bash',
+      code: `curl -X POST "https://api.vectara.io/v2/corpora/acme_onboarding/documents" \\
+  -H "Authorization: Bearer YOUR_API_KEY" \\
+  -H "Content-Type: application/json" \\
   -d '{
     "id": "onboarding_guide_001",
     "type": "core",
@@ -168,27 +198,35 @@ curl -X POST "https://api.vectara.io/v2/corpora/acme_onboarding/documents" \
     },
     "document_parts": [
       {
-        "text": "New Employee Onboarding Guide\n\nFirst Week Checklist:\n1. Complete safety orientation (mandatory)\n2. Receive and review employee handbook\n3. Get ID badge and access credentials\n4. Tour manufacturing facility\n5. Meet your supervisor and team\n6. Review emergency procedures\n\nTraining Requirements:\n- General safety training: 8 hours\n- Equipment-specific training: 16 hours\n- Quality control procedures: 4 hours\n- Emergency response: 2 hours\n\nImportant Contacts:\n- Safety Officer: ext. 2100\n- HR Department: ext. 2200\n- Facilities: ext. 2300\n- IT Support: ext. 2400",
+        "text": "New Employee Onboarding Guide\\n\\nFirst Week Checklist:\\n1. Complete safety orientation \n(mandatory)\\n2. Receive and review employee handbook\\n3. Get ID badge and access credentials\\n4. Tour \nmanufacturing facility\\n5. Meet your supervisor and team\\n6. Review emergency procedures\\n\\nTraining \nRequirements:\\n- General safety training: 8 hours\\n- Equipment-specific training: 16 hours\\n- Quality \ncontrol procedures: 4 hours\\n- Emergency response: 2 hours\\n\\nImportant Contacts:\\n- Safety Officer: \next. 2100\\n- HR Department: ext. 2200\\n- Facilities: ext. 2300\\n- IT Support: ext. 2400",
         "metadata": {
           "section": "onboarding"
         }
       }
     ]
-  }'
-```
+  }'`
+    }
+  ]}
+  layout="stacked"
+  collapsible={false}
+/>
 
 After adding these documents, your corpus will be ready for the agent to search.
 
-## Step 2. Create an Agent with Multiple Search Tools
+## Step 2. Create an agent with multiple search tools
 
 Before building the frontend, create an agent that will power your chatbot. This agent
 will have access to both your corpus and web search as a backup for questions outside
-your corpus. You can do this via the Vectara Console or using the API:
+your corpus.
 
-```bash
-curl -X POST "https://api.vectara.io/v2/agents" \
-  -H "Authorization: Bearer YOUR_API_KEY" \
-  -H "Content-Type: application/json" \
+<CodePanel
+  title="Create agent with multiple tools"
+  snippets={[
+    {
+      language: 'bash',
+      code: `curl -X POST "https://api.vectara.io/v2/agents" \\
+  -H "Authorization: Bearer YOUR_API_KEY" \\
+  -H "Content-Type: application/json" \\
   -d '{
     "key": "factory-friend",
     "name": "Factory Friend",
@@ -196,7 +234,7 @@ curl -X POST "https://api.vectara.io/v2/agents" \
     "tool_configurations": {
       "search_onboarding": {
         "type": "corpora_search",
-        "description_template": "Search the ACME Manufacturing onboarding documents for company-specific information about safety protocols, equipment operation, and factory policies.",
+        "description_template": "Search the ACME Manufacturing onboarding documents for company-specific \ninformation about safety protocols, equipment operation, and factory policies.",
         "query_configuration": {
           "search": {
             "corpora": [
@@ -228,7 +266,7 @@ curl -X POST "https://api.vectara.io/v2/agents" \
         {
           "type": "inline",
           "name": "Factory Assistant Instructions",
-          "template": "You are Factory Friend, a helpful assistant for manufacturing employees at ACME Manufacturing.\n\nIMPORTANT - Tool Usage:\n- ALWAYS try the search_onboarding tool FIRST for questions about ACME-specific safety protocols, equipment, procedures, and policies\n- Only use web_search if the corpus search returns no relevant results or for general manufacturing questions not specific to ACME\n- When using information from the corpus, ALWAYS cite the source\n- When using web search results, indicate that the information is from external sources\n\nResponse Style:\n- Be clear, concise, and beginner-friendly\n- Use numbered lists when appropriate\n- Prioritize safety information\n- If you are unsure or the information is not available, say so clearly"
+          "template": "You are Factory Friend, a helpful assistant for manufacturing employees at ACME Manufacturing.\\n\\nIMPORTANT - Tool Usage:\\n- ALWAYS try the search_onboarding tool FIRST for questions about ACME-specific safety protocols, equipment, procedures, and policies\\n- Only use web_search if the corpus search returns no relevant results or for general manufacturing questions not specific to ACME\\n- When using information from the corpus, ALWAYS cite the source\\n- When using web search results, indicate that the information is from external sources\\n\\nResponse Style:\\n- Be clear, concise, and beginner-friendly\\n- Use numbered lists when appropriate\\n- Prioritize safety information\\n- If you are unsure or the information is not available, say so clearly"
         }
       ],
       "output_parser": {
@@ -242,43 +280,73 @@ curl -X POST "https://api.vectara.io/v2/agents" \
         "max_tokens": 1000
       }
     }
-  }'
-```
+  }'`
+    }
+  ]}
+  layout="stacked"
+  collapsible={false}
+/>
 
 This creates an agent with:
-- **Corpora search tool**: Searches your `acme_onboarding` corpus for company-specific information
-- **Web search tool**: Falls back to web search for general questions or when corpus lacks information
-- **Smart instructions**: The agent knows to try internal documents first, then web search as backup
-- **Conversational step**: Responds naturally to user input with proper tool selection
+- **Corpora search tool**: Searches your `acme_onboarding` corpus for 
+  company-specific information.
+- **Web search tool**: Falls back to web search for general questions, or 
+  when the corpus lacks information.
+- **Smart instructions**: The agent knows to try internal documents first, 
+  then web search as backup.
+- **Conversational step**: Responds naturally to user input with proper 
+  tool selection.
 
-The agent will automatically choose the appropriate tool based on the question. For example:
+The agent will automatically choose the appropriate tool based on the 
+question. For example:
 - "What are the safety protocols for CNC Machine X?" → Uses corpus search
 - "What is Six Sigma?" → May use web search if not in your corpus
 - "How do I get my ID badge?" → Uses corpus search
 
-Save the `agent_key` (in this example: `factory-friend`) for use in your application.
+Save the `agent_key` (in this example: `factory-friend`) for use in your 
+application.
 
 ## Step 3. Create a new React project with Vite
 
-```bash
-npm create vite@latest factory-friend -- --template react-ts
+<CodePanel
+  title="Initialize React project"
+  snippets={[
+    {
+      language: 'bash',
+      code: `npm create vite@latest factory-friend -- --template react-ts
 cd factory-friend
-npm install
-```
+npm install`
+    }
+  ]}
+  layout="stacked"
+  collapsible={false}
+/>
 
 ## Step 4. Install required dependencies
 
-```bash
-npm install react-markdown uuid lucide-react remark-gfm
-npm install -D @types/uuid
-```
+<CodePanel
+  title="Install dependencies"
+  snippets={[
+    {
+      language: 'bash',
+      code: `npm install react-markdown uuid lucide-react remark-gfm
+npm install -D @types/uuid`
+    }
+  ]}
+  layout="stacked"
+  collapsible={false}
+/>
 
 ## Step 5. Create the project structure and components
 
 Create the following directory structure:
 
-```
-factory-friend/
+<CodePanel
+  title="Project structure"
+  snippets={[
+    {
+      language: 'bash',
+      code: `factory-friend/
 ├── src/
 │   ├── components/
 │   │   ├── ApiKeyForm.tsx
@@ -291,17 +359,26 @@ factory-friend/
 │   │   ├── vectaraApi.ts
 │   ├── App.tsx
 │   ├── main.tsx
-│   ├── index.css
-```
+│   ├── index.css`
+    }
+  ]}
+  layout="stacked"
+  collapsible={false}
+/>
 
 Now let's create each file with the proper implementation.
 
 ### Update global styles
 
-`src/index.css`
+Set up the base styles for the application, including the Inter font family and
+consistent spacing and button states across all components.
 
-```css
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+<CodePanel
+  title="src/index.css"
+  snippets={[
+    {
+      language: 'css',
+      code: `@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 * {
   box-sizing: border-box;
@@ -321,15 +398,25 @@ button {
 button:disabled {
   cursor: not-allowed;
   opacity: 0.7;
-}
-```
+}`
+    }
+  ]}
+  layout="stacked"
+  collapsible={false}
+/>
 
 ### Create the API service
 
-`src/services/vectaraApi.ts`
+This service manages communication with the Vectara Agent API, including session
+creation, message sending, and error handling. It maintains session state across
+multiple messages for conversation continuity.
 
-```ts
-const BASE_URL = 'https://api.vectara.io/v2';
+<CodePanel
+  title="src/services/vectaraApi.ts"
+  snippets={[
+    {
+      language: 'typescript',
+      code: `const BASE_URL = 'https://api.vectara.io/v2';
 let currentSessionKey: string | null = null;
 
 export const resetSession = () => {
@@ -344,13 +431,13 @@ export const sendAgentInput = async (
   try {
     // Create session if needed
     if (!currentSessionKey) {
-      const sessionResponse = await fetch(`${BASE_URL}/agents/${agentKey}/sessions`, {
+      const sessionResponse = await fetch(\`\${BASE_URL}/agents/\${agentKey}/sessions\`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`,
+          'Authorization': \`Bearer \${apiKey}\`,
         },
-        body: JSON.stringify({ name: `Session ${Date.now()}` })
+        body: JSON.stringify({ name: \`Session \${Date.now()}\` })
       });
 
       if (!sessionResponse.ok) {
@@ -363,12 +450,12 @@ export const sendAgentInput = async (
 
     // Send message
     const response = await fetch(
-      `${BASE_URL}/agents/${agentKey}/sessions/${currentSessionKey}/events`,
+      \`\${BASE_URL}/agents/\${agentKey}/sessions/\${currentSessionKey}/events\`,
       {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`,
+          'Authorization': \`Bearer \${apiKey}\`,
         },
         body: JSON.stringify({
           type: 'input_message',
@@ -393,15 +480,24 @@ export const sendAgentInput = async (
     console.error('Error:', error);
     return 'Sorry, I encountered an error. Please try again.';
   }
-};
-```
+};`
+    }
+  ]}
+  layout="stacked"
+  collapsible={false}
+/>
 
 ### Create message types and component
 
-`src/components/ChatMessage.tsx`
+Define the message data structure and create a component that displays individual
+chat messages.
 
-```tsx
-import ReactMarkdown from "react-markdown";
+<CodePanel
+  title="src/components/ChatMessage.tsx"
+  snippets={[
+    {
+      language: 'tsx',
+      code: `import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
 export type MessageRole = "user" | "assistant";
@@ -421,7 +517,7 @@ export function ChatMessage({ message }: ChatMessageProps) {
   const isUser = message.role === "user";
 
   return (
-    <div className={`flex w-full ${isUser ? "justify-end" : "justify-start"}`} style={{ marginBottom: '24px' }}>
+    <div className={\`flex w-full \${isUser ? "justify-end" : "justify-start"}\`} style={{ marginBottom: '24px' }}>
       <div style={{ maxWidth: '70%' }}>
         <div
           style={{
@@ -449,15 +545,24 @@ export function ChatMessage({ message }: ChatMessageProps) {
       </div>
     </div>
   );
-}
-```
+}`
+    }
+  ]}
+  layout="stacked"
+  collapsible={false}
+/>
 
 ### Create input component
 
-`src/components/ChatInput.tsx`
+Build a text input component with a send button that handles message submission,
+input validation, and disabled states during API calls.
 
-```tsx
-import { useState, type FormEvent } from "react";
+<CodePanel
+  title="src/components/ChatInput.tsx"
+  snippets={[
+    {
+      language: 'tsx',
+      code: `import { useState, type FormEvent } from "react";
 import { Send } from "lucide-react";
 
 interface ChatInputProps {
@@ -530,15 +635,25 @@ export function ChatInput({ onSendMessage, disabled = false }: ChatInputProps) {
       </form>
     </div>
   );
-}
-```
+}`
+    }
+  ]}
+  layout="stacked"
+  collapsible={false}
+/>
 
 ### Create chat container
 
-`src/components/ChatContainer.tsx`
+Assemble the main chat interface that manages message state, handles sending and
+receiving messages through the API service, and orchestrates the header, message
+list, and input components.
 
-```tsx
-import { useState, useRef, useEffect } from "react";
+<CodePanel
+  title="src/components/ChatContainer.tsx"
+  snippets={[
+    {
+      language: 'tsx',
+      code: `import { useState, useRef, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { ChatMessage, type Message } from "./ChatMessage";
 import { ChatInput } from "./ChatInput";
@@ -651,15 +766,24 @@ export function ChatContainer({ apiKey }: { apiKey: string }) {
       <ChatInput onSendMessage={handleSendMessage} disabled={isLoading} />
     </>
   );
-}
-```
+}`
+    }
+  ]}
+  layout="stacked"
+  collapsible={false}
+/>
 
 ### Create API key form
 
-`src/components/ApiKeyForm.tsx`
+Build a simple form component that prompts users to enter their Vectara API key
+before accessing the chatbot. This handles input validation and submission.
 
-```tsx
-import { useState } from "react";
+<CodePanel
+  title="src/components/ApiKeyForm.tsx"
+  snippets={[
+    {
+      language: 'tsx',
+      code: `import { useState } from "react";
 
 interface ApiKeyFormProps {
   onApiKeySubmit: (apiKey: string) => void;
@@ -739,15 +863,25 @@ export function ApiKeyForm({ onApiKeySubmit }: ApiKeyFormProps) {
       </form>
     </div>
   );
-}
-```
+}`
+    }
+  ]}
+  layout="stacked"
+  collapsible={false}
+/>
 
 ### Create main page
 
-`src/pages/Index.tsx`
+Create the main application page that manages API key storage in `localStorage`,
+conditionally renders either the API key form or the chat interface, and handles
+the transition between these states.
 
-```tsx
-import { useState, useEffect } from "react";
+<CodePanel
+  title="src/pages/Index.tsx"
+  snippets={[
+    {
+      language: 'tsx',
+      code: `import { useState, useEffect } from "react";
 import { ChatContainer } from "../components/ChatContainer";
 import { ApiKeyForm } from "../components/ApiKeyForm";
 
@@ -833,27 +967,44 @@ const Index = () => {
   );
 };
 
-export default Index;
-```
+export default Index;`
+    }
+  ]}
+  layout="stacked"
+  collapsible={false}
+/>
 
 ### Create App component
 
-`src/App.tsx`
+Define the root application component that simply renders the Index page.
 
-```tsx
-import Index from "./pages/Index";
+<CodePanel
+  title="src/App.tsx"
+  snippets={[
+    {
+      language: 'tsx',
+      code: `import Index from "./pages/Index";
 
 const App = () => <Index />;
 
-export default App;
-```
+export default App;`
+    }
+  ]}
+  layout="stacked"
+  collapsible={false}
+/>
 
 ### Update main entry point
 
-`src/main.tsx`
+Set up the React application entry point that mounts the App component to the DOM
+with StrictMode enabled for development warnings.
 
-```tsx
-import { StrictMode } from 'react';
+<CodePanel
+  title="src/main.tsx"
+  snippets={[
+    {
+      language: 'tsx',
+      code: `import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
 import './index.css';
@@ -862,39 +1013,50 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <App />
   </StrictMode>
-);
-```
+);`
+    }
+  ]}
+  layout="stacked"
+  collapsible={false}
+/>
 
 ## Step 6. Run and test your chatbot
 
 Start the development server:
 
-```bash
-npm run dev
-```
+<CodePanel
+  title="Start development server"
+  snippets={[
+    {
+      language: 'bash',
+      code: `npm run dev`
+    }
+  ]}
+  layout="stacked"
+  collapsible={false}
+/>
 
-## Step 7. Test Your Chatbot
+## Step 7. Test your chatbot
 
 To verify your chatbot works:
 
 1. Open the app in your browser (`http://localhost:5173` after running `npm run dev`).
 2. Enter your Vectara API key when prompted.
 3. Try these sample questions to test both search tools:
-
    **Questions that should use corpus search:**
    - "What are the safety protocols for operating CNC Machine X?"
    - "How do I maintain the equipment?"
    - "What is the onboarding process for new employees?"
    - "What PPE do I need in the machine shop?"
-
    **Questions that should use web search (not in corpus):**
    - "What is Six Sigma methodology?"
    - "What are the latest ISO manufacturing standards?"
    - "Who invented the assembly line?"
-
 4. Check that responses include Markdown formatting (numbered lists, citations).
 5. Verify the agent correctly chooses which tool to use based on the question.
 6. Test the conversation history - sessions maintain context across messages automatically.
+
+---
 
 ### Additional customization options
 
@@ -902,9 +1064,10 @@ Consider these updates after completing the tutorial:
 
 * **Agent configuration**: Update your agent in the Vectara Console to refine
   instructions, add additional tools, or adjust model parameters. Your agent already
-  has corpora search and web search - you could add tools like lambda functions for
-  custom logic or structured indexing.
-* **Metadata filtering**: Add metadata filters to the corpora_search tool configuration
+  has corpora search and web search. You could add tools like lambda functions for
+  custom logic or structured indexing. You could also remove the Web Search to only 
+  use the Corpora Search tool.
+* **Metadata filtering**: Add metadata filters to the `corpora_search` tool configuration
   to target specific document subsets. For example, filter by `doc.document_type = 'safety_protocol'`
   for safety-specific questions.
 * **Tool priorities**: Adjust the `description_template` for each tool to guide the agent
@@ -916,6 +1079,8 @@ Consider these updates after completing the tutorial:
 * **Streaming responses**: Update the `sendAgentInput` function to support `stream_response: true`
   for real-time response streaming.
 * **Enhanced error handling**: Add more detailed error messages and retry logic in the API service.
+
+---
 
 ## Move your chatbot to production
 

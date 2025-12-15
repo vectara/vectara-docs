@@ -353,6 +353,72 @@ export default function CodePanel({
       };
     }
 
+    // Define TypeScript grammar (extends JavaScript)
+    if (!Prism.languages.typescript) {
+      Prism.languages.typescript = Prism.languages.extend('javascript', {
+        'class-name': {
+          pattern: /(\b(?:class|extends|implements|instanceof|interface|new|type)\s+)(?!keyof|typeof|readonly)[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?:\s*<(?:[^<>]|<(?:[^<>]|<[^<>]*>)*>)*>)?/,
+          lookbehind: true,
+          greedy: true,
+          inside: null
+        },
+        'builtin': /\b(?:Array|ArrayBuffer|Boolean|DataView|Date|Error|EvalError|Float32Array|Float64Array|Function|Int8Array|Int16Array|Int32Array|Map|Math|Number|Object|Promise|Proxy|RangeError|ReferenceError|Reflect|RegExp|Set|String|Symbol|SyntaxError|TypeError|URIError|Uint8Array|Uint8ClampedArray|Uint16Array|Uint32Array|WeakMap|WeakSet|any|boolean|console|declare|enum|module|namespace|never|number|string|symbol|type|unknown|void)\b/,
+        'keyword': /\b(?:abstract|accessor|as|asserts|async|await|break|case|catch|class|const|constructor|continue|debugger|declare|default|delete|do|else|enum|export|extends|false|finally|for|from|function|get|if|implements|import|in|infer|instanceof|interface|is|keyof|let|module|namespace|new|null|of|package|private|protected|public|readonly|return|require|set|static|super|switch|this|throw|true|try|type|typeof|undefined|unique|var|void|while|with|yield)\b/
+      });
+    }
+
+    // Define JSX grammar (extends JavaScript with JSX tags)
+    if (!Prism.languages.jsx) {
+      Prism.languages.jsx = Prism.languages.extend('javascript', {});
+      Prism.languages.insertBefore('jsx', 'keyword', {
+        'tag': {
+          pattern: /<\/?(?:[\w.:-]+(?:\s+(?:[\w.:$-]+(?:=(?:"(?:\\[\s\S]|[^\\"])*"|'(?:\\[\s\S]|[^\\'])*'|[^\s{'"/>=]+|(\{(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])+\})))?|\{(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])+\}))*\s*\/?)?>/,
+          greedy: true,
+          inside: {
+            'tag': {
+              pattern: /^<\/?[^\s>\/]*/,
+              inside: {
+                'punctuation': /^<\/?/,
+                'namespace': /^[^\s>\/:]+:/,
+                'class-name': /^[A-Z]\w*(?:\.[A-Z]\w*)*$/
+              }
+            },
+            'attr-value': {
+              pattern: /=(?!\{)(?:"(?:\\[\s\S]|[^\\"])*"|'(?:\\[\s\S]|[^\\'])*'|[^\s'">]+)/,
+              inside: {
+                'punctuation': [
+                  {
+                    pattern: /^=/,
+                    alias: 'attr-equals'
+                  },
+                  /"|'/
+                ]
+              }
+            },
+            'punctuation': /\/?>/,
+            'attr-name': /[^\s>\/]+/
+          }
+        }
+      });
+      Prism.languages.insertBefore('jsx', 'string', {
+        'char': {
+          pattern: /(\{)(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})+(?=\})/,
+          lookbehind: true
+        }
+      });
+    }
+
+    // Define TSX grammar (combines TypeScript and JSX)
+    if (!Prism.languages.tsx) {
+      Prism.languages.tsx = Prism.languages.extend('typescript', {});
+      Prism.languages.insertBefore('tsx', 'keyword', {
+        'tag': Prism.languages.jsx.tag
+      });
+      Prism.languages.insertBefore('tsx', 'string', {
+        'char': Prism.languages.jsx.char
+      });
+    }
+
     // Define bash grammar manually
     if (!Prism.languages.bash) {
       Prism.languages.bash = {
