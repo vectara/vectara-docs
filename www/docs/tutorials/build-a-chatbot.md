@@ -6,30 +6,20 @@ sidebar_label: Build a chatbot
 
 import CodePanel from '@site/src/theme/CodePanel';
 
-Learn how to build a chatbot using our Agent APIs. In this tutorial, you will 
-create an onboarding assistant for a fictional manufacturing company that 
-answers employee questions grounded in uploaded documents from a corpus that 
-contains safety protocols and equipment manuals. This example may provide 
+Learn how to build a chatbot using our Agent APIs. In this tutorial, we 
+create an onboarding assistant for a manufacturing use case. This chatbot 
+answers employee questions from uploaded documents that contain 
+safety protocols and equipment manuals. This example may provide 
 inspiration for your specific use case.
 
 ## What you will build
 
 A single-page web app with a clean chat interface, powered by React for the
-frontend and Vectara's Agent APIs for backend processing. The agent uses corpora 
+frontend and Vectara's Agent APIs for the backend. The agent uses corpora 
 and web search tools to provide beginner-friendly answers in Markdown format. 
 The application has the following features:
 
-* **Accepts user input**: Users type questions in a text field.
-* **Intelligent tool selection**: The agent automatically chooses between searching
-  your company corpus or the web based on the question.
-* **Multi-source answers**: Searches internal documents first, falls back to web search
-  for general knowledge questions.
-* **Displays responses**: Shows answers in a chat format with numbered lists and Markdown
-  links with proper source citations.
-* **Maintains conversation**: Tracks agent sessions for follow-up questions with full context.
-
-After you complete the tutorial, the chatbot will look like this
-example:
+The chatbot will look like this example:
 
 ![Chatbot example](/img/build-a-chatbot.png)
 
@@ -83,7 +73,7 @@ Follow this process to create the chatbot.
 5. Create the project structure and components.
 6. Test your chatbot.
 
-## Step 1. Set up your Vectara corpus with sample data
+## Step 1. Set up your corpus with sample data
 
 Create a corpus and populate it with sample manufacturing data. This example 
 shows you how to create a corpus with the API.
@@ -217,7 +207,8 @@ After adding these documents, your corpus will be ready for the agent to search.
 
 Before building the frontend, create an agent that will power your chatbot. This agent
 will have access to both your corpus and web search as a backup for questions outside
-your corpus.
+your corpus. If you want, you can omit the web search tool and only use the 
+corpora search.
 
 <CodePanel
   title="Create agent with multiple tools"
@@ -297,11 +288,11 @@ This creates an agent with:
 - **Conversational step**: Responds naturally to user input with proper 
   tool selection.
 
-The agent will automatically choose the appropriate tool based on the 
+The agent chooses the appropriate tool automatically based on the 
 question. For example:
-- "What are the safety protocols for CNC Machine X?" → Uses corpus search
-- "What is Six Sigma?" → May use web search if not in your corpus
-- "How do I get my ID badge?" → Uses corpus search
+- "What are the safety protocols for CNC Machine X?" - Uses corpus search
+- "What is Six Sigma?" - May use web search if not in your corpus
+- "How do I get my ID badge?" - Uses corpus search
 
 Save the `agent_key` (in this example: `factory-friend`) for use in your 
 application.
@@ -370,7 +361,7 @@ Now let's create each file with the proper implementation.
 
 ### Update global styles
 
-Set up the base styles for the application, including the Inter font family and
+Set up the base styles for the application, including the font family and
 consistent spacing and button states across all components.
 
 <CodePanel
@@ -407,7 +398,7 @@ button:disabled {
 
 ### Create the API service
 
-This service manages communication with the Vectara Agent API, including session
+This service manages communication with the Agent API, including session
 creation, message sending, and error handling. It maintains session state across
 multiple messages for conversation continuity.
 
@@ -872,9 +863,8 @@ export function ApiKeyForm({ onApiKeySubmit }: ApiKeyFormProps) {
 
 ### Create main page
 
-Create the main application page that manages API key storage in `localStorage`,
-conditionally renders either the API key form or the chat interface, and handles
-the transition between these states.
+Create the main application page that manages API key storage in `localStorage` 
+and conditionally renders either the API key form or the chat interface.
 
 <CodePanel
   title="src/pages/Index.tsx"
@@ -976,7 +966,7 @@ export default Index;`
 
 ### Create App component
 
-Define the root application component that simply renders the Index page.
+Define the root application component that renders the Index page.
 
 <CodePanel
   title="src/App.tsx"
@@ -1040,15 +1030,16 @@ Start the development server:
 
 To verify your chatbot works:
 
-1. Open the app in your browser (`http://localhost:5173` after running `npm run dev`).
+1. Open the app in your browser (for example: `http://localhost:5173` after running 
+   `npm run dev`).
 2. Enter your Vectara API key when prompted.
-3. Try these sample questions to test both search tools:
+3. Try these sample questions:
    **Questions that should use corpus search:**
    - "What are the safety protocols for operating CNC Machine X?"
    - "How do I maintain the equipment?"
    - "What is the onboarding process for new employees?"
    - "What PPE do I need in the machine shop?"
-   **Questions that should use web search (not in corpus):**
+   **Questions that will probably use web search (data not in corpus):**
    - "What is Six Sigma methodology?"
    - "What are the latest ISO manufacturing standards?"
    - "Who invented the assembly line?"
@@ -1056,29 +1047,8 @@ To verify your chatbot works:
 5. Verify the agent correctly chooses which tool to use based on the question.
 6. Test the conversation history - sessions maintain context across messages automatically.
 
----
-
-### Additional customization options
-
-Consider these updates after completing the tutorial:
-
-* **Agent configuration**: Update your agent in the Vectara Console to refine
-  instructions, add additional tools, or adjust model parameters. Your agent already
-  has corpora search and web search. You could add tools like lambda functions for
-  custom logic or structured indexing. You could also remove the Web Search to only 
-  use the Corpora Search tool.
-* **Metadata filtering**: Add metadata filters to the `corpora_search` tool configuration
-  to target specific document subsets. For example, filter by `doc.document_type = 'safety_protocol'`
-  for safety-specific questions.
-* **Tool priorities**: Adjust the `description_template` for each tool to guide the agent
-  on when to use each tool more precisely.
-* **Web search options**: Configure the web_search tool with domain restrictions using
-  `argument_override` to limit results to trusted sources.
-* **UI styling**: Modify the inline styles in the components to match your company's branding
-  (colors, fonts, spacing, border radius).
-* **Streaming responses**: Update the `sendAgentInput` function to support `stream_response: true`
-  for real-time response streaming.
-* **Enhanced error handling**: Add more detailed error messages and retry logic in the API service.
+You can upload your own data and test the agent responses, and use other 
+[agent tools](/docs/agent-os/agent-tools).
 
 ---
 
