@@ -66,6 +66,7 @@ const sidebars: SidebarsConfig = {
       collapsible: false,
       items: [
         "agents/agents-quickstart",
+        "agents/agent-concepts",
         "agents/instructions",
         {
           type: "category",

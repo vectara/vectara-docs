@@ -5,15 +5,16 @@ sidebar_label: Concepts
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';
+import { Spacer } from "@site/src/components/ui/Spacer";
 
 Agents are autonomous systems that understand natural language and use tools 
-and reasoning to accomplish tasks. An Agent maintains state and uses reasoning 
-to determine the best way to solve a user's problem.
+and reasoning to accomplish tasks. They maintain conversation context through 
+sessions and can handle multi-turn interactions.
 
-:::tip Quick Start
-To build your first agent, see the [**Agent quick start**](/docs/agents/agents-quickstart). 
-Or, check out our [**Agents APIs**](/docs/rest-api/agents).
-:::
+To build your first agent, see the 
+[**Agent quick start**](/docs/agents/agents-quickstart). Or, check out our [**Agents APIs**](/docs/rest-api/agents).
+
+## How agents work
 
 <div className="mermaid-container">
 ```mermaid
@@ -65,11 +66,10 @@ flowchart TD
     class AvailableTools toolLayer;
     class ExtMCP external;
     class MCP mcpTP;
-
 ```
 </div>
 
----
+<Spacer size="l" />
 
 An agent consists of these primary components that define its behavior and
 capabilities.
