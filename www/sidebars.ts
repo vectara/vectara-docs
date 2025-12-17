@@ -281,7 +281,7 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               type: "category",
-              label: "CRUD",
+              label: "Management",
               link: {
                 type: "doc",
                 id: "rest-api/agents",
@@ -327,7 +327,7 @@ const sidebars: SidebarsConfig = {
             },
             {
               type: "category",
-              label: "Agent sessions",
+              label: "Sessions",
               link: {
                 type: "doc",
                 id: "rest-api/agent-sessions",
