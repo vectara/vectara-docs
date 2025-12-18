@@ -11,25 +11,30 @@ import {vars} from '@site/static/variables.json';
 import CodePanel from '@site/src/theme/CodePanel';
 
 
-The Vectara Prompt Engine empowers our users to customize prompt templates 
-that can reference the most relevant text and metadata for use cases that 
-require Retrieval Augmented Generation (RAG). Vectara enables developers to 
-directly add the retrieved documents and their metadata into the prompt 
-generation. Vectara supports [Velocity Templates](https://velocity.apache.org/engine/1.7/user-guide.html) which offer 
-developers a flexible way of customizing prompt templates and enhance the 
-effectiveness of their generative AI applications.
+The Vectara Prompt Engine empowers our users to customize templates using 
+  [Velocity Templates](https://velocity.apache.org/engine/1.7/user-guide.html) 
+  for two primary scenarios:
+  1. **Query prompt templates** - Customize prompts for Retrieval Augmented Generation (RAG) 
+     that reference retrieved documents and metadata
+  2. **Agent tool templates** - Dynamically describe agent tools using session and agent context
 
-This capability unlocks more advanced workflows and customizations to answer 
-questions about your business data. For example, answer questions based on 
-previous answers, such as with RFI, RFP, and questionnaires. Draft support 
-tickets from user feedback. You can even customize the formatting of results.
+  This capability unlocks more advanced workflows and customizations to answer 
+  questions about your business data. For example, answer questions based on 
+  previous answers, such as with RFI, RFP, and questionnaires. Draft support 
+  tickets from user feedback. You can even customize the formatting of results.
 
-:::tip
-Users can override the default prompt text with custom `prompt_template` in the 
-`generation` object of a [**query**](/docs/rest-api/queries).
-:::
+  :::tip
+  Users can override the default prompt text with custom `prompt_template` in the
+  `generation` object of a [**query**](/docs/rest-api/queries).
+  :::
 
-## Effective prompts and templates
+## Query prompt templates
+
+  The following sections describe how to customize prompt templates for queries
+  that require Retrieval Augmented Generation (RAG). Vectara enables developers to
+  directly add the retrieved documents and their metadata into the prompt generation.
+
+### Effective prompts and templates
 
 Effective prompt templates guide LLMs to generate responses that meet specific 
 user needs or objectives in generative AI applications. Define an objective 
@@ -43,7 +48,7 @@ Reach out to support if you want to modify the default prompt that Vectara
 uses.
 :::
 
-## Prompt template design
+### Prompt template design
 Prompt template design includes a specific a `role` and `content` about this role, 
 which provide context about how you want the role to behave and the kind of 
 information that you want to retrieve. These values can also specify [variables 
@@ -188,4 +193,23 @@ user gets a response that `The returned results did not contain sufficient infor
         "content": "Generate a comprehensive and informative answer for the question \${vectaraQuery} solely based on the search results in this chat. You must only use information from the provided results. Combine search results together into a coherent answer. Do not repeat text. Only use the most relevant results that answer the question accurately. If there are 2 answers that seem in conflict, use the most recent answer according to the date. If a result does not answer the question, do not use it. If the search results are not valid, respond with 'The returned results did not contain sufficient information to the question.'"
     }
 ]`}]} title="Code Example" layout="stacked" />
+
+## Agent tool velocity templates
+
+In addition to query prompts, Velocity templates can be used to dynamically
+describe agent tools at runtime. Unlike query templates which work with search
+results, agent tool templates reference agent and session context.
+
+Agent tools support the following Velocity variables:
+
+* `$agent.name` - Agent name
+* `$agent.metadata` - Agent metadata map
+* `$session.key` - Session key
+* `$session.metadata` - Session metadata map
+* `$currentDate` - Current date/time in ISO 8601 format (e.g., "2025-10-24T15:30:45Z")
+
+**Examples:**
+* `Search tool configured for agent $agent.name` on $currentDate`
+* `Search tool configured on $currentDate for agent $agent.name`
+* `#if($session.metadata.department) Search $session.metadata.department documents#else Search all documents#end for $agent.name`
 

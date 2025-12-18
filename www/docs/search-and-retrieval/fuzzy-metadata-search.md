@@ -8,7 +8,8 @@ import CodePanel from '@site/src/theme/CodePanel';
 
 The tech preview of Fuzzy Metadata Search combines exact filtering with 
 approximate matching. This approach is useful because metadata can have 
-inconsistencies in typos in titles, categories, or keywords.
+inconsistencies in typos in titles, categories, or keywords. To try this 
+fuzzy metadata search, see the [API Reference](/docs/rest-api/query-metadata).
 
 Fuzzy search operates in two main steps:
 1. **Exact filtering:** A `metadata_filter` is first applied to narrow results 
@@ -19,7 +20,7 @@ Fuzzy search operates in two main steps:
    weighting. This means you can give `title` a higher weight than `category`.
 
 The final result is a ranked list that helps users find what they _mean_, even 
-if they did not type the metadata value exactly.
+if they did not type the metadata value exactly. 
 
 :::tip
 Use `document` level metadata when you want unique documents. Use `part` level 
@@ -115,58 +116,4 @@ Adjust field weights to control search relevance:
 }`
 }]} title="Document-Level Response" layout="stacked" />
 
-
-## Filter syntax
-
-`metadata_filter` uses Vectara’s metadata filter expression syntax. Prefix every field with its scope: `doc.` (document-level) or `part.` (part-level).
-
-
-## Supported operators
-
-* Arithmetic: `+ - * / %`
-* Comparisons: `&lt; &lt;= > >= = == != &lt;>`
-* Null tests: `IS NULL`, `IS NOT NULL`
-* Membership: `IN (...)`
-* Logical: `NOT`, `AND`, `OR`
-
-
-## Examples
-
-* `doc.status = 'Active'`
-* `doc.pageCount > 10`
-* `doc.publish_date >= '2025-08-01'`
-* `doc.category IN ('contract', 'policy')`
-* `doc.status = 'Active' AND part.clause_type = 'Liability'`
-
-The filter language does **not** support SQL `LIKE`. Use fuzzy `queries` to handle approximate text.
-
-### Weighted multi‑field search
-
-<CodePanel snippets={[{language: "json", code: `{
-   "queries": [
-     { "field": "title",    "query": "nda",       "weight": 3.0 },
-     { "field": "category", "query": "agreement", "weight": 2.0 }
-   ],
-   "limit": 20
-}`
-}]} title="Weighted multi‑field search" layout="stacked" />
-
-### Exact filtering plus fuzzy ranking
-
-<CodePanel snippets={[{language: "json", code: `{
-   "queries": [ { "field": "title", "query": "master services" } ],
-   "metadata_filter": "doc.status = 'Active' AND doc.region = 'EMEA'",
-   "limit": 10
-}`
-}]} title="Exact filtering plus fuzzy ranking" layout="stacked" />
-
-### Part‑level search
-
-<CodePanel snippets={[{language: "json", code: `{
-   "level": "part",
-   "queries": [ { "field": "heading", "query": "termination" } ],
-   "metadata_filter": "part.section = 'Terms'",
-   "limit": 5
-}`
-}]} title="Part‑level search" layout="stacked" />
 

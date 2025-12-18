@@ -1,6 +1,6 @@
 ---
-id: mcp
-title: What is Model Context Protocol (MCP)?
+id: model-context-protocol
+title: Model Context Protocol (MCP)
 sidebar_label: Model Context Protocol (MCP)
 ---
 
@@ -40,4 +40,3 @@ and enterprise systems. MCP provides the following benefits:
 | Enterprise integration | Tools can represent internal APIs, RAG systems, databases, or even other agents.
 | Auditability and security | Permissions and access control can be managed per tool, enabling secure orchestration.
 | Model-agnostic | MCP works across agent platforms (Vectara, Claude, OpenAI SDK, Google Gemini, and so on).
-

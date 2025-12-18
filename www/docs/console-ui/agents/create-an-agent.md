@@ -70,5 +70,5 @@ instructions on testing and chatting with your agent, see [Use Agents](/docs/con
 
 ## Quick start example
 
-Check out our [Agent Quick Start](/docs/agent-os/agents-quickstart) for a walkthrough 
+Check out our [Agent Quick Start](/docs/agents/agents-quickstart) for a walkthrough 
 including API equivalents.
