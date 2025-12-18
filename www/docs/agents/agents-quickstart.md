@@ -89,12 +89,20 @@ agent.
   test it in the Console chat interface.
 2. Click **Create agent**.
 
-## Step 6: Create and test the agent
+## Step 6: Test the agent
 
 After you finish the wizard, you get a message that the agent was created 
-successfully and you can now chat with your agent.
+successfully.
 
-TBD screenshots
+The Preview tab opens and you can now chat with your agent. To update the 
+agent's configuration, click the **Settings** tab.
+
+![Test agent chat](/img/agents/test-agent-chat.png)
+
+:::tip
+If you leave the page, go back to **Agents** and select the 
+**Research Assistant** agent from the list.
+:::
 
 ## Create an agent with the API
 
