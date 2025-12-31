@@ -24,7 +24,7 @@ description to help identify its purpose and capabilities.
 3. Add a **Name** like `Research Assistant`.
 4. Add a **Description** like 
    `A research assistant that can search the web for current information.`  
-   ![Create agent general](/img/create-agent-general.png)  
+   ![Create agent general](/img/agents/create-agent-general.png)  
 5. Click **Next**.
 
 ## Step 2: Select the model
@@ -35,7 +35,7 @@ level with the temperature parameter.
 
 1. Select a **Model name** like `gpt-4o`.
 2. Set the `temperature` parameter to `0.3`.
-   ![Create agent model](/img/create-agent-model.png)  
+   ![Create agent model](/img/agents/create-agent-model.png)  
   This temperature value provides more consistent results with factual 
 accuracy and low creativity. This `0.3` value is like a _sweet spot_ for many 
 use cases involving Q&As, research assistants, and technical outputs.
@@ -49,7 +49,7 @@ responses. You can use our recommended instructions, or you can choose your
 own.
 
 1. Click **Use our recommended instructions**.  
-   ![Create agent instructions 1](/img/use-recommended-instructions.png)  
+   ![Create agent instructions 1](/img/agents/use-recommended-instructions.png)  
 2. Click **Next** to move to the Tools configuration.
 
 ## Step 4: Add and configure the Web Search tool
@@ -57,9 +57,9 @@ own.
 Tools extend your agent's capabilities beyond its base knowledge. Proper tool configuration helps the agent understand when and how to use the tool effectively.
 
 1. Click **Add first tool**.
-   ![Create agent tools 1](/img/create-agent-tools-1.png)  
-2. Select **Web Search**.  
-   ![Create agent tools 2](/img/create-agent-tools-2.png)
+   ![Create agent tools 1](/img/agents/create-agent-tools-1.png)  
+2. Enter **Web Search** and select the tool.  
+   ![Create agent tools 2](/img/agents/create-agent-tools-2.png)
 3. Enter **web_search** as the Name and provide a description for this tool:
 
    _The web search tool that find up to date information from trustworthy sources 
@@ -72,7 +72,7 @@ Tools extend your agent's capabilities beyond its base knowledge. Proper tool co
    other options such as query, exclude domains, and include domains in the 
    [API Reference](/docs/rest-api/create-agent).
 
-   ![Create agent tools 3](/img/web-search-tool.png)
+   ![Create agent tools 3](/img/agents/web-search-tool.png)
 
 5. Click **Next** to move to the Advanced options pane.
 
@@ -83,8 +83,11 @@ Metadata helps you organize and categorize agents, making them easier to find an
 This final step of the wizard lets you add metadata to help organize your 
 agent.
 
-1. Add a **Research** category and **version**.  
-  ![Create agent tools 5](/img/create-agent-tools-5.png)  
+1. Add a **Research** category and **version** `{
+    "category":"Research",
+    "version":"1.0"
+   }`
+  ![Create agent tools 5](/img/agents/create-agent-tools-advanced.png)  
   With all configurations complete, you can now create your agent and 
   test it in the Console chat interface.
 2. Click **Create agent**.
