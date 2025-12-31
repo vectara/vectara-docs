@@ -6,13 +6,12 @@ sidebar_label: Built-in tools
 
 import CodePanel from '@site/src/theme/CodePanel';
 
-Tools provide agents with capabilities to interact with data and external
-systems. An agent uses the conversational context and its instructions to
-decide which tools to call, and how use the tools' responses to respond to
+Tools provide agents with capabilities to interact with data and external 
+systems. An agent uses the conversational context and its instructions to 
+decide which tools to call, and how use the tools' responses to respond to 
 the user's query.
 
-Vectara offers a number of useful tools out-of-the-box, including multi-modal
-capabilities for working with text, images, and documents. You can also build
+Vectara offers a number of useful tools out-of-the-box, but you can also build
 your own. For a complete list of available tools, refer to the [Tools API
 docs](/docs/rest-api/tools).
 
@@ -26,7 +25,7 @@ docs](/docs/rest-api/tools).
     * Searches the internet for current information beyond your indexed corpora.
     * Configurable result limits and query parameters. You can also specify 
   domains to include or exclude from the search.
-* **Sub-agents** 
+* **Subagents** 
   * Initiates specialized sub-agents to handle complex, multi-step tasks autonomously.
   * Provides separate context management, configurable session timeouts, specialized workflows.
 * **Lambda tools**
@@ -34,7 +33,7 @@ docs](/docs/rest-api/tools).
     environment.
   * Automatic input and output schema generation from type annotations.
 * **Document conversion**
-  * Converts supported document types (PDF, DOCX, PPTX) and images into markdown.
+  * Converts supported document types (PDF, DOCX, PPTX) and images into Markdown.
   * Includes OCR for extracting text from images.
 * **Artifacts**
   * Reads artifact content stored within the agent session with optional range 

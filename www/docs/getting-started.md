@@ -23,7 +23,7 @@ application in minutes.
 1. **[Get trial access](/docs/vectara-trial)** - Sign up if you haven't already.
 2. **[Developer quickstart](/docs/developer-quickstart)** - Learn the basics of 
    corpora and queries.
-3. **[Create your first agent](/docs/agent-os/agents-quickstart)** - Create your 
+3. **[Create your first agent](/docs/agents/agents-quickstart)** - Create your 
    first AI agent that can use tools, follow instructions, and maintain conversation 
    context.
 4. **[Deploy to production](/docs/deploy-and-scale)** - Set up authentication and access 
