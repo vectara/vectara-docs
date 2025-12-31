@@ -12,6 +12,24 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 
 ---
 
+# December 2025
+
+### ✨ New Features
+- Add new integration between Vectara and Speechmatics (#538)
+- Enhance agents with configurable, autonomous subagents (#526)
+- Enhance agent sessions with artifact storage (#524)
+
+### 📝 Documentation Changes
+- Add a tutorial about how to build a chatbot with the Agent APIs (#542)
+- Misc documentation and link fixes (#541)
+- Update Vectara trial page (#540)
+- Add List metadata types and IN operator syntax examples (#537)
+- Restructure API Reference sidebar categories (#536)
+
+
+
+---
+
 # November 2025
 
 ### 📚 API Changes
