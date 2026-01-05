@@ -43,18 +43,52 @@ In this example, we'll create a simple Python function that does the following:
 1. Navigate to **Agents** in the [Vectara Console](https://console.vectara.com/console/agents/).
 2. Select the **Lambda tools** tab.
 3. Click **Create lambda tool**.  
-   ![Lanbda tools](/img/lambda-tools.png)
-4. Add a **Name** `Lambda Tool`, **Title** `My function` and **Description** `A simple Python function.`
+   <img
+    src="/img/agents/lambda-tools.png"
+    alt="Create lambda tool"
+    style={{ width: '800px', maxWidth: '100%', height: 'auto' }}
+    />
+4. Add the following:
+     * **Name** as `Lambda Tool` 
+     * **Title** as `My function`
+     * **Description** as 
+   `Calculate a customer score based on order history and max revenue. Returns a score between 0-100, formatted as a percentage.`
 5. Add this function to the **Code** field:  
    ```python
-   def process(name: str):
-    return {"result": "Hello, " + name + "!"}
+   from typing import List, Dict
+
+   def process(orders: List[Dict[str, float]], 
+              max_revenue: float = 5000.0) -> str:
+      """
+      Calculate a customer score based on order history and revenue.
+      For example, { "orders": [{"amount": 1500.0}, {"amount": 2000.0}] }
+      will return output of { "value": "35%" }
+      """
+
+      if not orders:
+          return 0
+
+      # Find average order amount and convert to percentage of max revenue.
+      order_count = len(orders)
+      total_revenue = sum(order.get("amount", 0.0) for order in orders)
+      average_order_amount = total_revenue / order_count
+      customer_score = average_order_amount / max_revenue * 100
+
+      return f"{int(customer_score)}%"
    ```
-   ![Lambda tool](/img/create-lambda-tool.png)
-6.  Before you create this tool, you can click **Test function** to verify that 
+   <img
+    src="/img/agents/create-lambda-tools.png"
+    alt="Create lambda tool"
+    style={{ width: '700px', maxWidth: '100%', height: 'auto' }}
+    />
+6.  Before you create this tool, you can click **Test function** and **Run test** to verify that 
   it works.  
-  ![Lambda tool 2](/img/test-lambda-function.png)
-7. After verifying that the tool executes successfully, click **Create lambda tool**.
+  <img
+    src="/img/agents/run-test.png"
+    alt="Create lambda tool"
+    style={{ width: '600px', maxWidth: '100%', height: 'auto' }}
+    />
+1. After verifying that the tool executes successfully, click **Create lambda tool**.
 
 To learn about creating this tool and using it with the API, see 
 [Create a lambda tool](/docs/agents/create-a-lambda-tool).

@@ -5,17 +5,65 @@ sidebar_label: Sub-agents
 ---
 
 import CodePanel from '@site/src/theme/CodePanel';
+import { Spacer } from "@site/src/components/ui/Spacer";
 
-The sub-agent tool enables your agent to delegate specialized tasks to other 
+The sub-agent tool enables your agent to delegate specialized tasks to existing 
 agents that work independently and reduce the load and context bloat for the 
 main agent. Think of them as isolated domain experts that your parent 
-agent can use for specific tasks. Each sub-agent maintains its own tools, 
-instructions, and conversation history that enables sub-agents to complete 
-tasks independently before returning results to the parent agent.
+agent can invoke as subordinates for specific tasks.
 
-A sub-agent should have a clear purpose, such as code reviewer, researcher, 
-content writer, or data analyst. The parent agent must tell the sub-agent 
-exactly what to do with precise instructions.
+Each sub-agent maintains its own tools, instructions, and conversation history 
+that enables it to complete tasks independently before returning the final 
+response to the parent agent.
+
+<div className="mermaid-container">
+```mermaid
+flowchart TB
+  %% User
+  User["👤 User"]
+
+  %% Parent Agent
+  ParentAgent["Parent Agent"]
+
+  %% Sub-agents
+  SubAgent1["🔧 Sub-agent 1"]
+  SubAgent2["💳 Sub-agent 2"]
+  SubAgent3["👤 Sub-agent 3"]
+
+  %% Flow
+  User -->|"Query"| ParentAgent
+
+  ParentAgent <-.-> SubAgent1
+  ParentAgent <-.-> SubAgent2
+  ParentAgent <-.-> SubAgent3
+
+  ParentAgent -->|"Response"| User
+
+  %% Styling
+  classDef userStyle fill:#182033,color:#fff,stroke:#fff,stroke-width:2px;
+  classDef parentStyle fill:#4A90E2,color:#fff,stroke:#4A90E2,stroke-width:2px;
+  classDef subagentStyle fill:#EEF2F8,color:#182033,stroke:#787878,stroke-width:2px;
+
+  class User userStyle;
+  class ParentAgent parentStyle;
+  class SubAgent1,SubAgent2,SubAgent3 subagentStyle;
+```
+</div>
+
+<Spacer size="l" />
+
+Use sub-agents when tasks require distinct areas of expertise that benefit 
+from specialized instructions and tools, or when a single agent has become too 
+complex. For example, a document processing system needs legal review, technical 
+accuracy checks, and content reformatting. Each of these tasks requires 
+different instructions and tools.
+
+:::note
+A sub-agent should have a clear purpose. The parent agent must also tell the 
+sub-agent exactly what to do with precise instructions. For more information 
+about writing good instructions, see [**Instructions**](/docs/agents/instructions).
+:::
+
 
 ## How sub-agents work
 
@@ -37,11 +85,33 @@ sub-agent instructions so that the final message is self-contained.
 or tool state with the parent unless configured with artifact sharing.
 :::
 
+## Add a sub-agent with the UI
+
+The easiest way to add a subagent is with the UI when you create or update 
+an agent.
+
+1. In the agent creation wizard, go to the **Tools** tab.
+2. Click **Add tool**.  
+3. Find the Sub Agent tool in the list.
+    <img
+      src="/img/agents/find-subagent-tool.png"
+      alt="Sub-agent tool selection UI"
+      style={{ width: '700px', maxWidth: '100%', height: 'auto' }}
+    />
+4. Enter a name for your sub agent, add a description, and enter the 
+   `agent_key`.
+   <img
+     src="/img/agents/subagent-tool-select.png"
+     alt="Sub-agent tool selection UI"
+     style={{ width: '700px', maxWidth: '100%', height: 'auto' }}
+   />
+5. Click **Update agent**.
+
 ## Configure a sub-agent tool
 
-You can configure the sub-agent tool inline when creating or updating an agent. 
-The configuration defines which agent to invoke (`agent_key`), optional session 
-behavior, and optional `argument_override`.
+You can also configure the sub-agent tool inline when creating or 
+updating an agent with the API. The configuration defines which agent to invoke (`agent_key`), 
+optional session behavior, and optional `argument_override`.
 
 `argument_override` lets you hardcode values for fields exposed to the LLM of the 
 sub-agent tool (`message` and `session_tti_minutes`). The LLM cannot modify 
@@ -196,3 +266,6 @@ exist in the parent’s workspace, the system returns an error.
     }
   ]}
 />
+
+
+

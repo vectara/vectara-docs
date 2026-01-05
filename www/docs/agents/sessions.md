@@ -21,15 +21,15 @@ all agent interactions.
 
 ### Create a session (UI)
 
-1. Log into the [Vectara Console(https://console.vectara.com/console/home)].
-2. Navigate to the [Agents](https://console.vectara.com/console/agents/list) page.
-3. Select an agent from the list.  
+1. Log into the [**Vectara Console**](https://console.vectara.com/console/home).
+2. Navigate to the [**Agents**](https://console.vectara.com/console/agents/list) page.
+3. Select an agent from the list such as **Agent Research Assistant**.   
    The agent opens the **Preview** tab. 
    ![Create agent session](/img/create-agent-session.png)
 4. Chat with the agent in the **Preview** tab.
-5. Upload [***artifacts**](/docs/agents/artifacts) to the session, and chat about these artifacts 
+5. Upload [**artifacts**](/docs/agents/artifacts) (files) to the session, and chat about these artifacts 
    with your agent.  
-   You can configure and fine tune the agent through the **Settings** tab.
+   You can continue to configure and fine tune the agent through the **Settings** tab.
 
 ### Create a session (API)
 

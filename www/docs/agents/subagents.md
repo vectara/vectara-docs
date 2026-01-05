@@ -6,16 +6,55 @@ sidebar_label: Sub-agents
 
 import CodePanel from '@site/src/theme/CodePanel';
 
-The sub-agent tool enables your agent to delegate specialized tasks to other 
+The sub-agent tool enables your agent to delegate specialized tasks to existing  
 agents that work independently and reduce the load and context bloat for the 
 main agent. Think of them as isolated domain experts that your parent 
-agent can use for specific tasks. Each sub-agent maintains its own tools, 
+agent can invoke for specific tasks. Each sub-agent maintains its own tools, 
 instructions, and conversation history that enables sub-agents to complete 
 tasks independently before returning results to the parent agent.
 
 A sub-agent should have a clear purpose, such as code reviewer, researcher, 
 content writer, or data analyst. The parent agent must tell the sub-agent 
 exactly what to do with precise instructions.
+
+<div className="mermaid-container">
+```mermaid
+flowchart TB
+  %% User
+  User["👤 User"]
+
+  %% Parent Agent
+  ParentAgent["🤖 Parent Agent<br/><small>Routes and orchestrates</small>"]
+
+  %% Sub-agents
+  SubAgent1["🔧 Technical Support Agent<br/><small>Tools: docs search, tickets</small>"]
+  SubAgent2["💳 Billing Agent<br/><small>Tools: invoices, refunds</small>"]
+  SubAgent3["👤 Account Agent<br/><small>Tools: profile, settings</small>"]
+
+  %% Flow
+  User -->|"1. Query"| ParentAgent
+
+  ParentAgent -.->|"2. Delegates to<br/>appropriate specialist"| SubAgent1
+  ParentAgent -.-> SubAgent2
+  ParentAgent -.-> SubAgent3
+
+  SubAgent1 -.->|"3. Returns<br/>final result"| ParentAgent
+  SubAgent2 -.-> ParentAgent
+  SubAgent3 -.-> ParentAgent
+
+  ParentAgent -->|"4. Response"| User
+
+  %% Styling
+  classDef userStyle fill:#182033,color:#fff,stroke:#fff,stroke-width:2px;
+  classDef parentStyle fill:#4A90E2,color:#fff,stroke:#4A90E2,stroke-width:2px;
+  classDef subagentStyle fill:#EEF2F8,color:#182033,stroke:#787878,stroke-width:2px;
+
+  class User userStyle;
+  class ParentAgent parentStyle;
+  class SubAgent1,SubAgent2,SubAgent3 subagentStyle;
+```
+</div>
+
 
 ## How sub-agents work
 

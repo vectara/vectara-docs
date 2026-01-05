@@ -27,7 +27,11 @@ flowchart TD
     Query["**Agent Query**"]
 
     %% Tools layer
-    AvailableTools["**Tools** (Corpora Search, Web Search, Lambda Tools)"]
+    AvailableTools["**Tools**<br/><small>(Corpora search, Web search, Lambda tools, etc)</small>"]
+
+    %% Sub-agents
+    SubAgents["**Sub-agent(s)**<br/><small>Delegated tasks to separate, existing agents</small>"]
+    SubAgentTasks["Independent instructions and tools"]
 
     %% MCP
     MCP["**MCP Tool + Client**"]
@@ -41,6 +45,8 @@ flowchart TD
 
     %% Tool execution paths
     Query <--> AvailableTools
+    Query <--> SubAgents
+    SubAgents <--> SubAgentTasks
 
     %% Optional MCP path (de-emphasized)
     Query <--> MCP
@@ -63,7 +69,7 @@ flowchart TD
     class User userEntry;
     class Session session;
     class Agent,Inst,Query agentic;
-    class AvailableTools toolLayer;
+    class AvailableTools,SubAgents toolLayer;
     class ExtMCP external;
     class MCP mcpTP;
 ```
@@ -78,11 +84,10 @@ capabilities.
   behavior, how to respond to user input, and which tools to use. 
 * **Tools** provide agents with capabilities to interact with data and external
   systems including corpora search, web search, artifacts (uploaded files),
-  subagents and MCP servers.
-* **Sub-agents** enable you to create modular agent systems. This
-    allows the main agent to delegate domain-specific tasks to a sub-agent that 
-    executes its own reasoning loop and returns the result to the
-    parent agent.
+  and MCP servers.
+* **Sub-agents** enable you to create modular agent systems. The parent agent 
+  can delegate domain-specific tasks to an existing agent. This sub-agent then 
+  executes its own reasoning loop and returns the result   to the parent agent.
 * **Sessions** preserve context throughout a conversation so the agent can
   consider all prior information when responding to a query.
 * **Artifacts:** define uploaded documents and files within a session for the 

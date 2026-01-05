@@ -74,6 +74,7 @@ const sidebars: SidebarsConfig = {
           items: [
             "agents/agent-tools",
             "agents/subagents",
+            "agents/custom-tools",
             "agents/lambda-tools",
             "agents/model-context-protocol",
             // "agents/structured-indexing-tool",

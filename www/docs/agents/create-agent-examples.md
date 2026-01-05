@@ -1,22 +1,22 @@
 ---
 id: create-agent-examples
-title: Create agent examples
-sidebar_label: Create agent examples
+title: Create agent example
+sidebar_label: Create agent example
 ---
 
 import CodePanel from '@site/src/theme/CodePanel'; 
 
-This section provides some examples of creating agents with the API.
+Let's create an agent with the API.
 
 ## Research assistant agent 
 
 This agent completes the following tasks:
 
 * Search the web when users ask questions requiring current information.
-* SLimit search results to `20` for comprehensive responses.
-* SUse a lower temperature (`0.3`) for more consistent, factual responses.
-* SFollow instructions to cite sources and admit uncertainty when appropriate.
-* SConfigure retry logic to handle transient API failures gracefully.
+* Limit search results to `20` for comprehensive responses.
+* Use a lower temperature (`0.3`) for more consistent, factual responses.
+* Follow instructions to cite sources and admit uncertainty when appropriate.
+* Configure retry logic to handle transient API failures gracefully.
 
 This example requires no corpus setup, making it perfect for immediate testing.
 
