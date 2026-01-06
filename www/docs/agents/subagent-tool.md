@@ -8,13 +8,20 @@ import CodePanel from '@site/src/theme/CodePanel';
 import { Spacer } from "@site/src/components/ui/Spacer";
 
 The sub-agent tool enables your agent to delegate specialized tasks to existing 
-agents that work independently and reduce the load and context bloat for the 
-main agent. Think of them as isolated domain experts that your parent 
-agent can invoke as subordinates for specific tasks.
+agents, reducing load and context bloat in the main agent. Think of sub-agents 
+as isolated domain experts that the parent agent can invoke independently for 
+specific tasks. A sub-agent is a reference to another agent. You create those 
+agents first, then add them as sub-agents.
 
-Each sub-agent maintains its own tools, instructions, and conversation history 
-that enables it to complete tasks independently before returning the final 
-response to the parent agent.
+This approach is especially useful when tasks require distinct expertise or 
+when a single agent becomes too complex. When you add a sub-agent, you define 
+its purpose in the sub-agent tool description or the main agent [**instructions**](/docs/agents/instructions).. 
+The main agent passes input to the sub-agent, which can access all files and 
+artifacts available to the parent agent.
+
+Each sub-agent maintains its own tools, instructions, and conversation history, 
+allowing it to complete tasks independently before returning results to the main 
+agent.
 
 <div className="mermaid-container">
 ```mermaid
@@ -23,21 +30,21 @@ flowchart TB
   User["👤 User"]
 
   %% Parent Agent
-  ParentAgent["Parent Agent"]
+  ParentAgent["Main agent"]
 
   %% Sub-agents
-  SubAgent1["🔧 Sub-agent 1"]
-  SubAgent2["💳 Sub-agent 2"]
-  SubAgent3["👤 Sub-agent 3"]
+  SubAgent1["Sub-agent 1<br><small>Existing specialized agent</small>"]
+  SubAgent2["Sub-agent 2<br><small>Existing specialized agent</small>"]
+  SubAgent3["Sub-agent 3<br><small>Existing specialized agent</small>"]
 
   %% Flow
-  User -->|"Query"| ParentAgent
+  User -->|"<small>Query</small>"| ParentAgent
 
-  ParentAgent <-.-> SubAgent1
-  ParentAgent <-.-> SubAgent2
-  ParentAgent <-.-> SubAgent3
+  ParentAgent <-.-> |<small>Task and result</small>| SubAgent1
+  ParentAgent <-.-> |<small>Task and result</small>| SubAgent2
+  ParentAgent <-.-> |<small>Task and result</small>| SubAgent3
 
-  ParentAgent -->|"Response"| User
+  ParentAgent -->|"<small>Response</small>"| User
 
   %% Styling
   classDef userStyle fill:#182033,color:#fff,stroke:#fff,stroke-width:2px;
@@ -52,18 +59,16 @@ flowchart TB
 
 <Spacer size="l" />
 
-Use sub-agents when tasks require distinct areas of expertise that benefit 
-from specialized instructions and tools, or when a single agent has become too 
-complex. For example, a document processing system needs legal review, technical 
-accuracy checks, and content reformatting. Each of these tasks requires 
-different instructions and tools.
+Use sub-agents when tasks benefit from specialized instructions and tools. For 
+example, a document processing system might delegate legal review, technical 
+accuracy checks, and content reformatting to separate sub-agents, since each 
+task requires different expertise. 
 
-:::note
-A sub-agent should have a clear purpose. The parent agent must also tell the 
-sub-agent exactly what to do with precise instructions. For more information 
-about writing good instructions, see [**Instructions**](/docs/agents/instructions).
-:::
-
+:::tip Sub-agents Tutorial                                                                                                                                                            
+Try our [**Sub-agents Jupyter notebook**](https://github.com/vectara/example-notebooks/blob/main/notebooks/api-examples/5-sub-agents.ipynb) for a hands-on example. 
+Build a research assistant with three specialized sub-agents, including API 
+validation to prevent common errors.
+::: 
 
 ## How sub-agents work
 
@@ -76,6 +81,9 @@ When a parent agent invokes a `sub_agent` tool:
      * The parent agent cannot access the sub-agent's tools.
 4. The sub-agent tool returns the `session_key` and `sub_agent_response` (the sub-agent's 
    final output) to the parent agent.
+
+For more information about sub-agents architecture and how they work, 
+see our [**blog**](https://www.vectara.com/blog/introducing-sub-agents#subagents-architecture).
 
 :::tip Tips
 * The sub-agent tool always returns **only the final response** of the sub-agent. Activity 
@@ -109,9 +117,9 @@ an agent.
 
 ## Configure a sub-agent tool
 
-You can also configure the sub-agent tool inline when creating or 
-updating an agent with the API. The configuration defines which agent to invoke (`agent_key`), 
-optional session behavior, and optional `argument_override`.
+You can also configure the sub-agent tool inline with the API. The 
+configuration defines which agent to invoke (`agent_key`), optional session 
+behavior, and optional `argument_override`.
 
 `argument_override` lets you hardcode values for fields exposed to the LLM of the 
 sub-agent tool (`message` and `session_tti_minutes`). The LLM cannot modify 
@@ -183,8 +191,8 @@ exist in the parent’s workspace, the system returns an error.
     {
       language: "json",
       code: `{
-  "type": "sub_agent",
-  "message": "Summarize the attached document for key findings."
+   "type": "sub_agent",
+   "message": "Summarize the attached document for key findings."
 }`
     }
   ]}
@@ -200,9 +208,9 @@ exist in the parent’s workspace, the system returns an error.
     {
       language: "json",
       code: `{
-  "type": "sub_agent",
-  "session_key": "analysis_session_42",
-  "message": "Add details about emerging 2024 research trends."
+   "type": "sub_agent",
+   "session_key": "analysis_session_42",
+   "message": "Add details about emerging 2024 research trends."
 }`
     }
   ]}
@@ -217,7 +225,7 @@ exist in the parent’s workspace, the system returns an error.
     {
       language: "json",
       code: `{
-  "tools": [
+   "tools": [
     {
       "type": "sub_agent",
       "name": "data_analyst",

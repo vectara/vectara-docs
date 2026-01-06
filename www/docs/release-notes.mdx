@@ -56,6 +56,7 @@ sub-agents that maintain an independent state, reasoning, and workflow.
 
 **More information:**
 
+* [Introducing Sub-agents](https://www.vectara.com/blog/introducing-sub-agents)
 * [Agent tools overview](/docs/agent-os/agent-tools-overview)
 * [Sub-agents](/docs/agent-os/subagents)
 
@@ -79,6 +80,39 @@ transform them into context-ready text for reasoning, summarization, or indexing
 **More information:**
 [Agent tools overview](/docs/agent/agent-tools)
 [Document upload and conversion](docs/agent/sessions#document-upload-and-conversion)
+
+---
+
+_November 15, 2025_
+
+The Agents API now supports artifact storage, a persistent, session-scoped
+workspace for files that enables efficient multi-step document processing
+workflows. Artifacts provide a persistent workspace where agents and users
+can share files throughout a conversation without bloating the agent's context.
+Agents support multi-modal analysis through image artifacts (PNG, JPEG, GIF,
+WebP) alongside document formats. When the session expires, the artifacts are
+cleaned up.
+
+**Why it matters:** Before artifact storage, file uploads caused context window
+bloat and inefficient multi-step workflows. Artifacts solve these problems by
+separating file storage from file references. Upload a PDF or image once, and
+reference it across multiple operations like conversion, visual analysis, and
+indexing.
+
+**What's new:**
+* Session-scoped storage: Files uploaded to agent sessions are stored as artifacts
+with unique identifiers, remaining available throughout the conversation lifecycle.
+* Multi-modal support: Upload and analyze both documents and images in the same
+session workspace.
+* Lightweight references: `ArtifactReference` objects contain only metadata (artifact_id,
+filename, mime_type, size_bytes) instead of full file contents, reducing payload sizes
+from potentially megabytes to ~100 bytes.
+
+**More information:**
+
+* [Beyond Text: Introducing Artifacts for Vectara Agents](https://www.vectara.com/blog/beyond-text-introducing-artifacts-for-vectara-agents)
+* [Agent tools overview](/docs/agents/agent-tools)
+* [Working with artifacts](/docs/agents/artifacts)
 
 ---
 

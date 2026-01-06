@@ -8,10 +8,9 @@ import CodePanel from '@site/src/theme/CodePanel';
 
 This guide walks you through creating and configuring a Research 
 Assistant agent in the Vectara Console. In just a few minutes, you will have 
-a working agent capable of searching the web to answer questions. 
-
-The Create agent wizard lets you customize an agent including its model, 
-instructions, tools, and other advanced options.
+a working agent capable of searching the web to answer questions. The Create 
+agent wizard lets you customize an agent including its model, instructions, 
+tools, and other advanced options.
 
 ## Step 1: Create the agent and configure general settings
 
@@ -80,7 +79,8 @@ Tools extend your agent's capabilities beyond its base knowledge. Proper tool co
    alt="Add web search tool"
    style={{ width: '700px', maxWidth: '100%', height: 'auto' }}
    /> 
-3. Enter **web_search** as the Name and provide a description for this tool:
+3. Enter **web_search** as the **Name** and provide a description for this tool 
+   like:  
 
    _The web search tool that find up to date information from trustworthy sources 
    and returns concise summaries with links. Use when a query needs current 
@@ -88,7 +88,8 @@ Tools extend your agent's capabilities beyond its base knowledge. Proper tool co
    authoritative sites such as documentation government and academic pages and 
    avoid low quality or speculative content._
 
-4. Specify a `limit` of `10` results. You can learn more about the 
+4. Specify a **Limit** of `10` results.  
+   You can learn more about the 
    other options such as query, exclude domains, and include domains in the 
    [API Reference](/docs/rest-api/create-agent).
 
@@ -107,7 +108,7 @@ Metadata helps you organize and categorize agents, making them easier to find an
 This final step of the wizard lets you add metadata to help organize your 
 agent.
 
-1. Add a **Research** category and **version** `{
+1. Add a **Research** category and **version** like `{
     "category":"Research",
     "version":"1.0"
    }`
@@ -116,27 +117,33 @@ agent.
    alt="Configure web search tool"
    style={{ width: '700px', maxWidth: '100%', height: 'auto' }}
    />  
-  With all configurations complete, you can now create your agent and 
+   With all configurations complete, you can now create your agent and 
   test it in the Console chat interface.
-1. Click **Create agent**.
+
+2. Click **Create agent**.
 
 ## Step 6: Test the agent
 
 After you finish the wizard, you get a message that the agent was created 
 successfully.
 
-1. The Preview tab opens and you can now chat with your agent.
-2. To update the agent's configuration, click the **Settings** tab.
+1. The **Preview** tab opens and you can now chat with your agent.
+2. (Optional) To update the agent's configuration from the previous steps, click the **Settings** tab.
+3. Let's test the agent by asking questions about the data.  
 ![Test agent chat](/img/agents/test-agent-chat.png)
 
 :::tip
-If you leave the page, go back to **Agents** and select the 
-**Research Assistant** agent from the list.
+If you leave this page, go back to **Agents** and select the 
+**Research Assistant** agent from the list of created agents.
 :::
 
 ## Create an agent with the API
 
-Alternatively, you can create the same agent with the [Create Agent API](/docs/agents/create-agent-examples).
+Alternatively, you can create the same agent with the Create Agent API in this [**example**](/docs/agents/create-agent-examples).
+
+We also have an [**Agent API tutorial notebook**](https://github.com/vectara/example-notebooks/blob/main/notebooks/api-examples/4-agent-api.ipynb). Create a research 
+assistant that searches academic papers and documentation, maintains 
+conversation context, and provides cited responses.
 
 Read on to learn about agents, how to craft custom instructions, tools in our 
 platform, and other information.
