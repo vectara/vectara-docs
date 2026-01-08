@@ -10,8 +10,8 @@ import { Spacer } from "@site/src/components/ui/Spacer";
 The sub-agent tool enables your agent to delegate specialized tasks to existing 
 agents, reducing load and context bloat in the main agent. Think of sub-agents 
 as isolated domain experts that the parent agent can invoke independently for 
-specific tasks. A sub-agent is a reference to another agent. You create those 
-agents first, then add them as sub-agents.
+specific tasks. A sub-agent is a reference to another agent by its `agent_key`. 
+You create those agents first, then add them as sub-agents.
 
 This approach is especially useful when tasks require distinct expertise or 
 when a single agent becomes too complex. When you add a sub-agent, you define 
@@ -68,7 +68,14 @@ task requires different expertise.
 Try our [**Sub-agents Jupyter notebook**](https://github.com/vectara/example-notebooks/blob/main/notebooks/api-examples/5-sub-agents.ipynb) for a hands-on example. 
 Build a research assistant with three specialized sub-agents, including API 
 validation to prevent common errors.
-::: 
+:::
+
+## Agent key
+
+The `agent_key` uniquely identifies an agent. A parent agent needs this value to  
+reference and invoke specific agents as subagents. You can get the 
+`agent_key` from the [Agents List (UI)](https://console.vectara.com/console/agents/list) 
+or the [List Agents endpoint (API)](/docs/rest-api/list-agents).
 
 ## How sub-agents work
 
@@ -107,7 +114,7 @@ an agent.
       style={{ width: '700px', maxWidth: '100%', height: 'auto' }}
     />
 4. Enter a name for your sub agent, add a description, and enter the 
-   `agent_key`.
+   `agent_key`. You can get this value from the [Agents List (UI)](https://console.vectara.com/console/agents/list).
    <img
      src="/img/agents/subagent-tool-select.png"
      alt="Sub-agent tool selection UI"
@@ -119,7 +126,8 @@ an agent.
 
 You can also configure the sub-agent tool inline with the API. The 
 configuration defines which agent to invoke (`agent_key`), optional session 
-behavior, and optional `argument_override`.
+behavior, and optional `argument_override`. You can get the `agent_key` value from 
+the [List Agents endpoint (API)](/docs/rest-api/list-agents).
 
 `argument_override` lets you hardcode values for fields exposed to the LLM of the 
 sub-agent tool (`message` and `session_tti_minutes`). The LLM cannot modify 
