@@ -12,6 +12,15 @@ import { TopicButton } from "@site/src/components/ui/TopicButton";
 
 ---
 
+# January 2026
+
+### 📝 Documentation Changes
+- Enhance Agents content with updated quickstart, concepts, instructions, and tools (#539)
+
+
+
+---
+
 # December 2025
 
 ### ✨ New Features
