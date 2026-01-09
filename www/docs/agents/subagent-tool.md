@@ -11,11 +11,11 @@ The sub-agent tool enables your agent to delegate specialized tasks to existing
 agents, reducing load and context bloat in the main agent. Think of sub-agents 
 as isolated domain experts that the parent agent can invoke independently for 
 specific tasks. A sub-agent is a reference to another agent by its `agent_key`. 
-You create those agents first, then add them as sub-agents.
+You create those agents first, and then add them as sub-agents.
 
 This approach is especially useful when tasks require distinct expertise or 
 when a single agent becomes too complex. When you add a sub-agent, you define 
-its purpose in the sub-agent tool description or the main agent [**instructions**](/docs/agents/instructions).. 
+its purpose in the sub-agent tool description, or in the main agent [**instructions**](/docs/agents/instructions).
 The main agent passes input to the sub-agent, which can access all files and 
 artifacts available to the parent agent.
 
@@ -33,9 +33,9 @@ flowchart TB
   ParentAgent["Main agent"]
 
   %% Sub-agents
-  SubAgent1["Sub-agent 1<br><small>Existing specialized agent</small>"]
-  SubAgent2["Sub-agent 2<br><small>Existing specialized agent</small>"]
-  SubAgent3["Sub-agent 3<br><small>Existing specialized agent</small>"]
+  SubAgent1["Sub-agent 1<br><small>Pre-created agent</small>"]
+  SubAgent2["Sub-agent 2<br><small>Pre-created agent</small>"]
+  SubAgent3["Sub-agent 3<br><small>Pre-created agent</small>"]
 
   %% Flow
   User -->|"<small>Query</small>"| ParentAgent
