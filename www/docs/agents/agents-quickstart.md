@@ -128,9 +128,11 @@ After you finish the wizard, you get a message that the agent was created
 successfully.
 
 1. The **Preview** tab opens and you can now chat with your agent.
-2. (Optional) To update the agent's configuration from the previous steps, click the **Settings** tab.
-3. Let's test the agent by asking questions about the data.  
-![Test agent chat](/img/agents/test-agent-chat.png)
+2. (Optional) To update the agent's configuration from the previous steps, 
+   click the **Settings** tab.  
+3. Because you configured the agent with the **web_search** tool, it will be able to 
+   retrieve information from the web to answer your question. For example, try 
+   asking, "What's the weather like in Tokyo today?"
 
 :::tip
 If you leave this page, go back to **Agents** and select the 
