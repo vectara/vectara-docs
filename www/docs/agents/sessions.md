@@ -13,79 +13,79 @@ appended to the session. Sessions also provide a workspace for artifacts,
 allowing agents to work with uploaded documents and images throughout the
 conversation.
 
-* A session key and human-readable name (`ase_12345`). If not provided, Vectara 
-  generates one automatically based on the name.
-* Associated `agent_key` (`agt_abcd`).
-* Metadata such as end_user_id, application_id, priority, or channel.
-* Timestamps for creation and last update.
-
-Sessions support lifecycle operations such as creation, update, retrieval, 
-listing, and deletion.
-
 ## Chat with your agent
 
-After creating an agent, you can interact with it by creating a session and sending messages:
+After creating an agent, you can interact with it by creating a session and 
+sending messages. Sessions provide conversation context and are required for 
+all agent interactions.
 
-### 1. Create a session
+### Create a session (UI)
 
-Sessions provide conversation context and are required for all agent interactions:
+1. Log into the [**Vectara Console**](https://console.vectara.com/console/home).
+2. Navigate to the [**Agents**](https://console.vectara.com/console/agents/list) page.
+3. Select an agent from the list such as **Agent Research Assistant**.   
+   The agent opens the **Preview** tab. 
+   ![Create agent session](/img/create-agent-session.png)
+4. Chat with the agent in the **Preview** tab.
+5. Upload [**artifacts**](/docs/agents/artifacts) (files) to the session, and chat about these artifacts 
+   with your agent.  
+   You can continue to configure and fine tune the agent through the **Settings** tab.
 
-<CodePanel
-  title="Create a session"
-  snippets={[
-    {
-      language: 'bash',
-      code: `POST /v2/agents/{agent_key}/sessions`
-    },
-    {
-      language: 'json',
-      code: `{
-  "name": "Customer support session",
-  "description": "Help with password reset"
-}`
-    }
-  ]}
-  annotations={{
-    json: [
-      { line: 2, text: 'Session name for identification and tracking' },
-      { line: 3, text: 'Optional description of session purpose and context' }
-    ]
-  }}
-  layout="stacked"
-/>
+### Create a session (API)
 
-### 2. Send messages to the agent
-
-Once you have a session, send messages using the events endpoint:
-
-<CodePanel
-  title="Send a message"
-  snippets={[
-    {
-      language: 'bash',
-      code: `POST /v2/agents/{agent_key}/sessions/{session_key}/events`
-    },
-    {
-      language: 'json',
-      code: `{
-  "type": "input_message",
-  "messages": [{
-    "type": "text",
-    "content": "I forgot my password. Can you help?"
-  }]
-}`
-    }
-  ]}
-  annotations={{
-    json: [
-      { line: 2, text: 'Event type must be "input_message" for user input' },
-      { line: 3, text: 'Array containing one or more message objects' },
-      { line: 4, text: 'Message type "text" for plain text content' },
-      { line: 5, text: 'User message content to send to the agent' }
-    ]
-  }}
-  layout="stacked"
-/>
+1. Send a `POST` request to the sessions endpoint.
+    <CodePanel
+      title="Create a session"
+      snippets={[
+        {
+          language: 'bash',
+          code: `POST /v2/agents/{agent_key}/sessions`
+        },
+        {
+          language: 'json',
+          code: `{
+      "name": "Customer support session",
+      "description": "Help with password reset"
+      }`
+        }
+      ]}
+      annotations={{
+        json: [
+          { line: 2, text: 'Session name for identification and tracking' },
+          { line: 3, text: 'Optional description of session purpose and context' }
+        ]
+      }}
+      layout="stacked"
+    />
+2. Once you have a session, send messages using the events endpoint:
+    <CodePanel
+      title="Send a message"
+      snippets={[
+        {
+          language: 'bash',
+          code: `POST /v2/agents/{agent_key}/sessions/{session_key}/events`
+        },
+        {
+          language: 'json',
+          code: `{
+      "type": "input_message",
+      "messages": [{
+        "type": "text",
+        "content": "I forgot my password. Can you help?"
+      }]
+     }`
+        }
+      ]}
+      annotations={{
+        json: [
+          { line: 2, text: 'Event type must be "input_message" for user input' },
+          { line: 3, text: 'Array containing one or more message objects' },
+          { line: 4, text: 'Message type "text" for plain text content' },
+          { line: 5, text: 'User message content to send to the agent' }
+        ]
+      }}
+      layout="stacked"
+    />
 
 The agent will respond with events including its reasoning, tool usage, and
 final response.
