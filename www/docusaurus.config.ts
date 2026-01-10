@@ -29,7 +29,7 @@ const config: Config = {
           },
         },
         theme: {
-          customCss: require.resolve("./src/css/custom.css"),
+          customCss: require.resolve("./src/css/custom.scss"),
         },
       },
     ],
